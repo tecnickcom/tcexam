@@ -1,0 +1,1063 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="keywords" content="TDM_REP">
+		
+
+		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
+		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
+		<title>TCExam Database - HTML Report</title>
+	</head>
+
+<body class="rightPage">
+<a name = "Table_5"></a>
+<div class="caption1">tce_answers</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > answer_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal answer unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > answer_question_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal question unique ID.<br> Indicates to which question this answer belongs.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_description    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Answer description.    </td>    <td class="tabdata" > This text may contain special markup tags for formatting and image linking.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_explanation    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Explantion of the answer.    </td>    <td class="tabdata" > This field must be displayed only on results.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_isright    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> Indicates when the answer is right.<br> The legal values are:<br> FALSE = wrong answer;<br> TRUE = right answer.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata" > Indicates when the answer is enabled.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>    <td class="tabdata" > Only enabled answers may be evaluated during test generation for a specific user.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_position    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Indicates the right answer order.    </td>    <td class="tabdata" > This field can be used for ordering questions or for specify the appearance order of answers.<br> This order is used when test_random_answers_select and test_random_answers_order are both set to false.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > answer_keyboard_key    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Keyboard key used to select this answer.<br> NULL = no key.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_question_answers (rel_question_answers)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > tce_answers    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_answer_logs (rel_answer_logs)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_answers    </td>    <td class="tabdata" > tce_tests_logs_answers    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_answer (ak_answer)    </td>    <td class="tabdata" > answer_question_id, answer_description, answer_position   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all answers relative to a specific questions.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each question may have an unlimited number of answers and at least one of these must be right.<br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_17"></a>
+<div class="caption1">tce_modules</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > module_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal module unique ID.     </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > module_name    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique name for the module.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > module_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Char (20)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata" > The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.     </td>    <td class="tabdata" > Only enabled modules can be used for a new test.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_module_subjects (rel_module_subjects)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_module_name (ak_module_name)    </td>    <td class="tabdata" > module_name   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > A module is a container for subjects.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_4"></a>
+<div class="caption1">tce_questions</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > question_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal question unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > question_subject_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal subject unique ID.<br> Indicates to which subject this question belongs.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_description    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Question description (e.g.: What is a carbonate, and what is it used for?).    </td>    <td class="tabdata" > This text may contain special markup tags for formatting and image linking.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_explanation    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Explanation of the question.    </td>    <td class="tabdata" > This field must be displayed only on results.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_type    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Indicates the type of question:<br> 1 = single [radiobutton] (only one answer is right);<br> 2 = multiple [checkbox] (more than one answer may be right);<br> 3 = free-answer [textarea] (the user introduces the answer using keyboard);<br> 4 = answers odering.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_difficulty    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata" > Integer value representing the difficulty level of the question.<br> This value will be multiplied with test_score_right to obtain the question score.    </td>    <td class="tabdata" > Higher values represent questions with an high grade of difficulty.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata" > Indicates when the question is enabled.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>    <td class="tabdata" > Only enabled questions may be evaluated during test generation for a specific user.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_position    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Indicates the right question appearance order.    </td>    <td class="tabdata" > This order is used when test_random_questions_select and test_random_questions_order are both set to false.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_timer    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Maximum visualization time for this question.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_fullscreen    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If true diplay the question using the full screen area.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_inline_answers    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If TRUE display answers one next each other instead of vertical list layout.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > question_auto_next    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If TRUE automatically moves on next question when a MCSA answer is selected.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_questions (rel_subject_questions)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_question_answers (rel_question_answers)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > tce_answers    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_question_logs (rel_question_logs)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_question (ak_question)    </td>    <td class="tabdata" > question_subject_id, question_description   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all questions relative to specific subjects.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Each subject may have an unlimited number of questions.<br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_1"></a>
+<div class="caption1">tce_sessions</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > cpsession_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (32)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > This string represents the user's Web session identification (ID).<br>     </td>    <td class="tabdata" > Session IDs are identification tokens for users, and servers can use them to maintain session data (e.g., variables) for creating a session-like experience to the users.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > cpsession_expiry    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > This attribute stores the last time this session experienced any call activity.<br>     </td>    <td class="tabdata" > This information is used to close the user's session automatically, if there has been no session-related activity for the prescribed amount of time.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > cpsession_data    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > This attribute stores the encoded user's session data.    </td>    <td class="tabdata" > In PHP this information may be encoded/decoded using the session_encode/session_decode functions.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > session_data (session_data)    </td>    <td class="tabdata" > Informative    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_sessions    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table stores information about users' Web sessions.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > The basic idea behind web session management is that the server generates a session identifier (ID) at some early point in user interaction, sends this ID to the user's browser and makes sure that this same ID will be sent back by the browser along with each subsequent request. Session IDs thereby become identification tokens for users, and servers can use them to maintain session data (e.g., variables) for creating a session-like experience to the users.<br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_3"></a>
+<div class="caption1">tce_subjects</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > subject_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal subject unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > subject_name    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique name of the subject (e.g.: History I, History II, Geography).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > subject_description    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Subject description.    </td>    <td class="tabdata" > This text may contain special markup tags for formatting and image linking.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > subject_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata" > Indicates when the subject is enabled.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>    <td class="tabdata" > Only enabled subjects can be used for a new test.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > subject_user_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Only the administrator and the author of this subject (or his/her group) may update or delete this record.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > subject_module_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> This number represents the internal module unique ID.<br> Indicates to which module this subject belongs.    </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_questions (rel_subject_questions)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_set (rel_subject_set)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > tce_test_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_author (rel_subject_author)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_module_subjects (rel_module_subjects)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_subject_name (ak_subject_name)    </td>    <td class="tabdata" > subject_module_id, subject_name   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all tests subjects (topics, branch of studies).   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_16"></a>
+<div class="caption1">tce_test_subject_set</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead"  colspan="2"> Description    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > tsubset_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique ID representing a group of subjects for the specified test.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > tsubset_test_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> ID of the test    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > tsubset_type    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Indicates the type of question:<br> 1 = MCSA - single [radiobutton] (only one answer is right);<br> 2 = MCMA - multiple [checkbox] (more than one answer may be right);<br> 3 = free-answer [textarea] (the user introduces the answer using keyboard).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > tsubset_difficulty    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Integer value representing the difficulty level of the question.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > tsubset_quantity    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Maximum number of questions to be selected.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > tsubset_answers    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Number of alternative answers to be selected for the single and multiple questions.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_subjset (rel_test_subjset)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_test_subject_set    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_set_subjects (rel_set_subjects)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_test_subject_set    </td>    <td class="tabdata" > tce_test_subjects    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table lists the type and quantity of the questions associated to each set of subjects selected for a particular test.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_7"></a>
+<div class="caption1">tce_test_subjects</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead"  colspan="2"> Description    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > subjset_tsubset_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="3">     </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > subjset_subject_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test unique ID.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_set (rel_subject_set)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > tce_test_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_set_subjects (rel_set_subjects)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_test_subject_set    </td>    <td class="tabdata" > tce_test_subjects    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains the list of subjects for each subject set relative to the selected test.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_15"></a>
+<div class="caption1">tce_testgroups</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead"  colspan="3"> Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > tstgrp_test_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="3">     </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > tstgrp_group_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="3">    </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_group (rel_test_group)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_testgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_group_test (rel_group_test)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_testgroups    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_6"></a>
+<div class="caption1">tce_tests</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > test_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_name    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique name of the test (e.g.: History I 2004, Geography 1st class 2005).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_description    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Test description.    </td>    <td class="tabdata" > This text may contain special markup tags for formatting and image linking.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_begin_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) after which the test will be active.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_end_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) after which the test will be deactivated.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_duration_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata" > Maximum duration of the test in minutes.    </td>    <td class="tabdata" > Once started, the test will have to be completed within the specified amount of time.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_ip_range    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '*.*.*.*'    </td>    <td class="tabdata" > Enabled IP addresses.    </td>    <td class="tabdata" > This attribute may contain a comma-separated list of the different IP addresses of the client computers entitled to perform the test.<br> An IP address can also contain wildcards (* = any number),  <br> (e.g.: 192.168.1.*, 192.168.2.*).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_results_to_users    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If true enable users to view their test results immediately after finish.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_report_to_users    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If true enable users to view a detailed report on executed tests.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_score_right    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Default score for right answers.<br> This value will be multiplied by question_difficulty value to obtain the question score.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_score_wrong    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Score to be assigned to the wrong answers.<br> This value will be multiplied by question_difficulty value to obtain the question score.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_score_unanswered    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Score to be assigned to the unanswered questions.<br> This value will be multiplied by question_difficulty value to obtain the question score.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_max_score    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Maximum score that could be reached with this test.<br> This value could be calculated using the related tables and it's saved for statistical purposes.     </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > test_user_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata" > User ID of the author of the test.    </td>    <td class="tabdata" > Only the administrator and the author of the test (or his/her group) may update/delete the test.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_score_threshold    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Minimum score required to pass the exam.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_random_questions_select    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true the questions will be selected randomly for each user.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_random_questions_order    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true the questions will be ordered randomly for each user.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_random_answers_select    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true the answers will be selected randomly for each question.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_random_answers_order    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true the answers will be ordered randomly for each question.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_comment_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true enable test comment: the user may leave a general test comment on a textarea.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_menu_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true enables the navigation menu for questions during test execution.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_noanswer_enabled    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true enable the 'no-answe' option on available answers.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_mcma_radio    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '1'    </td>    <td class="tabdata"  colspan="2"> If true uses radiobuttons instead of checkboxes for MCMA questions.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > test_repeatable    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > '0'    </td>    <td class="tabdata"  colspan="2"> If true the test can be repeated by the same user.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_users (rel_test_users)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_author (rel_test_author)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_group (rel_test_group)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_testgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_subjset (rel_test_subjset)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_test_subject_set    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_test_name (ak_test_name)    </td>    <td class="tabdata" > test_name   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all tests data.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Tests can contain several topics (subjects).<br> You cannot modify a test that has already performed.<br> When a test is deleted, so they are all its logs. <br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_9"></a>
+<div class="caption1">tce_tests_logs</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > testlog_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test-log unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > testlog_testuser_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test-user unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_user_ip    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (39)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> IP address of the client computer from where the aswer has been received.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > testlog_question_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal question unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_answer_text    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text of the answer given by user.    </td>    <td class="tabdata" > This will be set only if the question is free-answer type.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_score    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Numeric (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Total score gained by the user for this question.    </td>    <td class="tabdata" > This score may be automatically calculated in case of multiple-choice question, otherwise may be manually set.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_creation_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) indicating when the question (tuple) has been generated.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_display_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) indicating when the question has been displayed to the user for the first time.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_change_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) indicating when the last answer has been set.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_reaction_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Time (milliseconds) elapsed between question visualisation and user's answer.     </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_order    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata"  colspan="2"> Display order of the questions.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_num_answers    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 0    </td>    <td class="tabdata"  colspan="2"> Number of alternative answers associated to this question.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testlog_comment    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Teacher or Supervisor comment to the question   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_question_logs (rel_question_logs)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_questions    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_testuser_logs (rel_testuser_logs)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_testlog_answers (rel_testlog_answers)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > tce_tests_logs_answers    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_testuser_question (ak_testuser_question)    </td>    <td class="tabdata" > testlog_testuser_id, testlog_question_id   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all questions and user answers relative to a specific test for a specific user.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > All tuples (rows) are created during test creation process (when user request to execute a specific test).<br> The tuples are updated when user answer questions.<br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_10"></a>
+<div class="caption1">tce_tests_logs_answers</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > logansw_testlog_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test-log unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > logansw_answer_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal answer unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > logansw_selected    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > -1    </td>    <td class="tabdata"  colspan="2"> Indicate the user's answer.<br> Legal values are:<br> -1 = no answer;<br> 0 = false or not selected;<br> 1 = true or selecte    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > logansw_order    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata" > Presentation order of the answer inside the question    </td>    <td class="tabdata" > This avoid an automatic ordering problem that happens in MySQL    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > logansw_position    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > User's selected order for this answer.    </td>    <td class="tabdata" > This field is used only for ordering questions.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_answer_logs (rel_answer_logs)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_answers    </td>    <td class="tabdata" > tce_tests_logs_answers    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_testlog_answers (rel_testlog_answers)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > tce_tests_logs_answers    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains the list of the selected alternative answers for each multiple-choice question.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_8"></a>
+<div class="caption1">tce_tests_users</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > testuser_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal user-test unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > testuser_test_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal test unique ID.<br> Indicates the test type selected by the user.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > testuser_user_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).<br> Indicates to which user the test belongs.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testuser_status    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > testuser_status IN (0,1,2,3,4)    </td>    <td class="tabdata" > 0    </td>    <td class="tabdata" > Numeric code that indicates the user-test status.    </td>    <td class="tabdata" > TCExam legal values are:<br> 0 = the test generation process is started but not completed;<br> 1 = the test has been successfully created;<br> 2 = all questions have been displayed to the user;<br> 3 = all questions have been answered;<br> 4 = test locked (for timeout);    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testuser_creation_time    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date and time (relative to server clock) indicating the end of the test creation process.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > testuser_comment    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Text    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's optional comment about the test.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_user_tests (rel_user_tests)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_users (rel_test_users)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_testuser_logs (rel_testuser_logs)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > tce_tests_logs    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_testuser (ak_testuser)    </td>    <td class="tabdata" > testuser_test_id, testuser_user_id   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains the list of tests generated for each user.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_13"></a>
+<div class="caption1">tce_user_groups</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead"  colspan="2"> Description    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > group_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal group identification (ID).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > group_name    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique name of this group.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_group_user (rel_group_user)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_group_test (rel_group_test)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_testgroups    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Users' groups. Each user belongs to one of the groups defined in this table.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_2"></a>
+<div class="caption1">tce_users</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > user_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_name    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Username, unique name by which a user is identified when accessing a multi-user system.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_password    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Password, keyword, code word, alphanumeric code that together with the username is used to gain access to this system.    </td>    <td class="tabdata" > Passwords are encrypted by a one way algorithm (MD5).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_email    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's email address (e.g.: name@domain.com).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_regdate    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Timestamp    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User registration date and time relative to server clock.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_ip    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (39)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> IP address of the client computer from where the user's registration request has been received.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_firstname    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's real first name (e.g.: Albert, Maria).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_lastname    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's real last name, family name, surname (e.g.: Smith, Einstein).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_birthdate    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Date    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Date of birth, year month and day on which user was born.    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_birthplace    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's place of birth (city or country).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_regnumber    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique user's registration number (e.g.: school registration number).    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_ssn    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (255)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> User's Social Security number (SSN) or other equivalent unique code (e.g.: Codice Fiscale for Italian users)    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_level    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > 1    </td>    <td class="tabdata" > The user's level is a numeric value that indicates which resources (pages, modules, services) are accessible by the user.<br> <br> <br>     </td>    <td class="tabdata" > To gain access to a specific resource, the user's level must be equal or greater to the one specified for the requested resource.<br> TCExam has 10 predefined user's levels:<br> 0 = anonymous user (not registered).<br> 1 = basic user (registered);<br> 2-9 = configurable/custom levels;<br> 10 = administrator with full access rights    </td>  </tr>
+  <tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > user_verifycode    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Varchar (32)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> Unique code used to verify user's email during remote registration process.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_user_tests (rel_user_tests)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_tests_users    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > session_data (session_data)    </td>    <td class="tabdata" > Informative    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_sessions    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_test_author (rel_test_author)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_tests    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_subject_author (rel_subject_author)    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_user_group (rel_user_group)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Alternative keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint name    </td>    <td class="tabhead" > Columns    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_user_name (ak_user_name)    </td>    <td class="tabdata" > user_name    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_user_regnumber (ak_user_regnumber)    </td>    <td class="tabdata" > user_regnumber    </td>  </tr>
+  <tr>
+    <td class="tabdata" > ak_user_ssn (ak_user_ssn)    </td>    <td class="tabdata" > user_ssn   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains all registered users' data, including system administrators and a special 'anonymous' user.   </td>  </tr>
+</table>
+
+<div class="caption2">Notes</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > Just the registered users granted with a username and a password are entitled to access the restricted areas of TCExam and the public area to perform the tests.<br> It is possible to specify different access levels for users to gain access to a specific resource (pages, forms, sections). The user's level must be equal or greater to the one specified for the requested resource.<br>    </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > Yes    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Table_14"></a>
+<div class="caption1">tce_usrgroups</div>
+<div class="caption2">Columns</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Key    </td>    <td class="tabhead" > Column name    </td>    <td class="tabhead" > Domain    </td>    <td class="tabhead" > Data type    </td>    <td class="tabhead" > Not null    </td>    <td class="tabhead" > Unique    </td>    <td class="tabhead" > Check    </td>    <td class="tabhead" > Default    </td>    <td class="tabhead"  colspan="2"> Description    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > usrgrp_user_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal user unique ID.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > usrgrp_group_id    </td>    <td class="tabdata" >     </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" >     </td>    <td class="tabdata" >     </td>    <td class="tabdata"  colspan="2"> This number represents the internal group unique ID.   </td>  </tr>
+</table>
+
+<div class="caption2">Relationships</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Constraint (relationship) name    </td>    <td class="tabhead" > Relationship type    </td>    <td class="tabhead" > Parent table    </td>    <td class="tabhead" > Child table    </td>    <td class="tabhead" > Card.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_user_group (rel_user_group)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_group_user (rel_group_user)    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This table contains the list of groups to whom each user belongs.   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Temporary Table    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Inherited Tables    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Without OIDs    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Schema    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Tablespace    </td>    <td class="tabdata" >     </td>  </tr>
+  <tr>
+    <td class="tabdata" > Using index tablespace (for Primary key)    </td>    <td class="tabdata" >    </td>  </tr>
+</table>
+
+ <br><br> 
+</body></html>

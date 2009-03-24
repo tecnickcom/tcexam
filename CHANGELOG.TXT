@@ -1,0 +1,691 @@
+9.0.004 (2009-03-24)
+	- Several minor bugs were fixed on administration interfaces.	
+
+9.0.003 (2009-03-24)
+	- 'Inserting image' bug was fixed (tce_functions_tcecode_editor.php).	
+
+9.0.002 (2009-03-23)
+	- Hungarian language was updated.
+	- An issue between tce_edit_test.php interface and Opera Web-Browser was fixed.
+	- TCPDF library was updated.
+	
+9.0.001 (2009-03-18)
+	- Arabic language was updated.
+	- TCPDF library was updated.
+	
+9.0.000 (2009-03-08)
+	- THIS IS A MAJOR RELEASE.
+	- Database schema is changed (see documentation on admin/doc/database).
+	- A new option "repeatable" was added to test, so users can have the ability to repeat the same test several times.
+	- "Terminate Test" now redirect user to index page without logging-out.
+	- A calendar widget was added to date/time input fields (shared/jscripts/jscalendar).
+	- TCPDF was updated.
+	- IMPORTANT: translations must be updated to reflect latest changes.
+
+--------------------------------------------------------------------------------
+
+8.0.002 (2009-03-03)
+	- Hungarian language was updated.
+	- TCPDF was updated.
+
+8.0.001 (2009-02-24)
+	- A bug on public interface buttons was fixed.
+	- Arabic language was updated.
+	- TCPDF was updated.
+
+8.0.000 (2009-02-20)
+	- THIS IS A MAJOR RELEASE.
+	- Database schema is changed (see documentation on admin/doc/database).
+	- Configuration files were changed AND MUST BE REPLACED.
+	- New 'explanation' fields were added to questions and answers.
+	- CSS files were updated.
+	- Minor bugs were fixed.
+	- TCPDF was updated.
+	- IMPORTANT: translations must be updated to reflect latest changes.
+
+--------------------------------------------------------------------------------
+
+7.1.002 (2009-02-17)
+	- Installation scripts were improved.
+	- Hungarian language was updated.
+	- Source code was cleaned up.
+
+7.1.001 (2009-02-15)
+	- Scoring system has been fixed.
+	- Bug n.2601919 "Single answer - wrong answer and wrong points" was fixed.
+
+7.1.000 (2009-02-13)
+	- CAS authentication module was added (check the /shared/config/tce_cas.php for configuration).
+	- All IP addresses are now converted to IPv6 expanded notation (8 4-bytes hexadecimal numbers separate by ':' character).
+	- Test editor now accepts IPv6 addresses and ranges, for example: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140,2001:0db8:0000:0000:0000:0000:1428:57ab
+	- Source code was cleaned up to improve performances.
+	- Cached language files were updated.
+	- Installation form was improved.
+	- TCPDF library was updated.
+	
+7.0.029 (2009-02-05)
+	- IPv6 support was added. Please ugrade the database using the following SQL queries (by case):
+		
+		# --- For MySQL:
+		ALTER TABLE tce_users CHANGE user_ip user_ip VARCHAR(39) NOT NULL;
+		ALTER TABLE tce_tests_logs CHANGE testlog_user_ip testlog_user_ip VARCHAR(39) NULL DEFAULT NULL;
+
+		# --- For PostgreSQL:
+		ALTER TABLE "tce_users" ALTER "user_ip" TYPE Varchar(39);
+		ALTER TABLE "tce_tests_logs" ALTER "testlog_user_ip" TYPE Varchar(39);
+		
+	- tce_functions_test.php source code was cleaned up.
+	- tce_show_result_allusers.php was fixed.
+	- tce_functions_user_select.php was fixed.
+	
+7.0.028 (2009-01-28)
+	- A bug on evaluation of MCSA questions was fixed.
+	- Test editor was fixed.
+	- Subject editor was fixed.
+	- PDF results were fixed.
+	
+7.0.027 (2009-01-27)
+	- Bug n. 2540741 "Test Management - Wrong number of elements" was fixed.
+	- TCPDF library was updated.
+	
+7.0.026 (2009-01-26)
+	- Update SQL errors on results were fixed. 
+	- TCPDF library was updated.
+	
+7.0.025 (2009-01-24)
+	- TCPDF library was fixed.
+
+7.0.024 (2009-01-23)
+	- TCPDF library was updated.
+
+7.0.023 (2009-01-23)
+	- Several authorization systems were updated or improved.
+
+7.0.022 (2009-01-23)
+	- Bug "SQL wrong in tce_functions_auth_sql.php" was fixed.
+	- Polish language was added.
+
+7.0.021 (2009-01-21)
+	- Spanish language was updated.
+	- TCPDF library was updated.
+
+7.0.020 (2009-01-20)
+	- Arabic and Hebrew languages were updated.
+
+7.0.019 (2009-01-20)
+	- Bugs #2523328 "Modify is forwarding without passing the correct parameters" was fixed.
+
+7.0.018 (2009-01-19)
+	- Malay (Bahasa Melayu) language was added.
+	- TCPDF library was updated.
+
+7.0.017 (2009-01-13)
+	- Some PDF alignments for RTL languages were fixed.
+
+7.0.016 (2009-01-12)
+	- TCPDF library was updated.
+	- Chinese language was added.
+
+7.0.015 (2008-12-28)
+	- TCPDF library was updated.
+	- language_tmx.xml was updated (arabic).
+	- strtoupper function was removed from several files to improve compatibility with some languages.
+
+7.0.014 (2008-12-26)
+	- language_tmx.xml was fixed.
+
+7.0.013 (2008-12-26)
+	- New User's Results form were added + export in CSV, XML and PDF.
+	- Descriptive statistics were improved and added to PDF and XML.
+	- language_tmx.xml contains new terms (please note that all old translations must be checked against new english version).
+
+7.0.012 (2008-12-25)
+	- "Test Results Summary" was improved.
+	- Descriptive statistics were added on results.
+	- language_tmx.xml contains new terms.
+	- CSS styles were updated.
+
+7.0.011 (2008-12-23)
+	- TCPDF library was updated.
+
+7.0.010 (2008-12-22)
+	- Bulgarian language was updated.
+	- tce_show_all_questions.php was changed.
+	- Questions and Answers ordering was fixed.
+	- Questions statistics bug was fixed.
+
+7.0.009 (2008-12-12)
+	- TCPDF library and relative fonts were updated.
+
+7.0.008 (2008-12-09)
+	- TCPDF bug was fixed.
+
+7.0.007 (2008-12-09)
+	- Hebrew language was added.
+	- Arabic, Italian and Spanish languages were updated.
+	- TCPDF was updated, including fonts and font utils
+
+7.0.006 (2008-12-05)
+	- Italian translation was corrected.
+	- TCPDF was updated.
+
+7.0.005 (2008-12-04)
+	- Import and export functions were fixed.
+	- Some translations were updated.
+	- TCPDF was updated.
+
+7.0.004 (2008-12-02)
+	- Clear button bug was fixed.
+	- Source code was cleaned up.
+
+7.0.003 (2008-12-02)
+	- Questions ordering was fixed.
+
+7.0.002 (2008-12-02)
+	- Installation script was fixed.
+
+7.0.001 (2008-12-01)
+	- Bugfixing.
+
+7.0.000 (2008-12-01)
+	- THIS IS A MAJOR RELEASE.
+	- Database schema is changed (see documentation on admin/doc/database).
+	- Configuration files were changed AND MUST BE REPLACED.
+	- A new 'Modules' level was added to group topics. The new hierarchy is: module -> topic -> question -> answer.
+	- Questions export/import now includes information on topics and modules.
+	- Custom question import is now supported by defining admin/code/tce_import_custom.php file.
+	- Custom results export is now supported by defining admin/code/tce_export_custom.php file.
+	- TCPDF was updated.
+	- IMPORTANT: translations must be updated to reflect latest changes.
+
+--------------------------------------------------------------------------------
+
+6.1.000 (2008-11-26)
+	- Questions selection was improved: now you can enable, disable, delete or move several questions at the same time.
+	- Users selection was improved: now you can delete users or add/delete/move groups.
+	- 'Test Results Summary' was improved.
+	- A bug related to reaction time recording was fixed.
+	- TCPDF was updated.
+
+6.0.004 (2008-11-17)
+	- PASSED/NOT-PASSED bug was fixed.
+	- PASSED/NOT-PASSED information was added on results pages.
+	- F_text_to_xml() function was fixed.
+	- XML and CVS headers were fixed.
+	- TCPDF was updated.
+
+6.0.003 (2008-11-14)
+	- MySQl structure file was changed to add Indexes.
+	- A bug relative to multimedia object was fixed.
+	- A bug relative to question editor was fixed.
+	- Question random selection bug was fixed.
+	- TCPDF was updated.
+
+6.0.002 (2008-11-12)
+	- A bug relative to PDF fill color on next page was fixed.
+
+6.0.001 (2008-11-12)
+	- Hindi language was added.
+	- Users' results page was fixed.
+	- Question statistics were fixed.
+	- TCPDF was updated.
+
+6.0.000 (2008-11-04)
+	- THIS IS A MAJOR RELEASE.
+	- database schema is changed (see documentation on admin/doc/database).
+	- Group filter was added on 'Users Selection' form.
+	- The following features were added to the questions:
+		* position : to display the questions on the given order.
+		* timer: to close automatically the question after the specified amount of seconds.
+		* fullscreen: to display the question using the full screen.
+	- Several options were added to the Test form:
+		* options to set the basic score for right, wrong and unanswered questions (negative values are supported).
+		* option to set the required point to pass the exam.
+		* independent options to choose if question and answers must be randomly extracted and/or randomly ordered (questions and answers may be displayed on a predefined order).
+		* options to enable/disable: test comment, questions menu, no-answer option.
+		* option to choose radiobuttons for MCMA questions instead of checkboxes.
+		* option to send detailed PDF report to users (reveal correct answers to users).
+	- Reaction time stores the milliseconds elapsed between question visualization and user's answer.
+	- Option to add a teacher/supervisor comment to the TEXT answers.
+	- A bug on F_remove_tcecode() function was removed.
+	- TCEcode is now fully compatible with common BBCode.
+	- The following tags were added to TCECode: color (text color), bgcolor (background color), u (underline), o (overline), s (strikethrough), size (text size in percentage).
+	- A color picker utility was added.
+	- the boolean costant K_DISPLAY_PDFTEXT_BUTTON was added to admin/config/tce_config.php to display an additional PDF-TEXT button to print only the TEXT answers on all users' results.
+	- Bulgarian language was added.
+	- Japanese Language was added.
+	- CSS files were updated.
+	- TCPDF library was updated.
+	- TCPDF default font is now helvetica.
+	- Several bugs were fixed.
+	
+--------------------------------------------------------------------------------
+
+5.4.006 (2008-09-01)
+	- Indonesian language was added.
+	- Arabic language was updated.
+	- TCPDF was updated.
+
+5.4.005 (2008-08-11)
+	- TCPDF was updated.
+
+5.4.004 (2008-08-05)
+	- TCPDF was updated.
+	- Font utils were updated.
+	
+5.4.003 (2008-07-31)
+	- TCPDF was updated.
+
+5.4.002 (2008-07-15)
+	- German language (DE) was added.
+	- Text direction on tce_show_result_questions.php was fixed.
+	- TCPDF was updated.
+	- CSS files were updated (answers are now listed with numbers instead of letters).
+
+5.4.001 (2008-07-08)
+	- Fixed wrong count in PDF questions list.
+	- TCPDF was updated.
+
+5.4.000 (2008-07-05)
+	- An XML button was added to export the entire test results to XML format.
+	- TCPDF library was updated - now includes better support for Arabic and Persian languages.
+	- K_PATH_URL was added on /shared/config/tce_paths.php for TCPDF.
+	- Arabic language was updated.
+	- Bug [2004946] "global $db lost in session_write_close" was fixed.
+	- Bug [2010079] "HOWTO LDAP Authentication with Windows 2003 AD Server" was fixed.
+
+5.3.008 (2008-06-04)
+	- TCPDF library was updated.
+	
+5.3.007 (2008-06-04)
+	- TCPDF library was updated.
+	- All CSS Files were updated.
+	- Page footer was changed.
+
+5.3.006 (2008-05-30)
+	- TCPDF library was updated.
+	- shared/config/tce_paths.php was updated.
+
+5.3.005 (2008-05-06)
+	- User registration form was updated.
+	- French language was updated.
+	- TCPDF library was updated (Arabic support was fixed).
+
+5.3.004 (2008-04-21)
+	- User registration form was updated.
+	- TCPDF library was updated.
+	
+5.3.003 (2008-04-11)
+	- TCPDF library was updated.
+	
+5.3.002 (2008-04-11)
+	- TCPDF library was updated.
+	- Dutch language (NL) was updated.
+
+5.3.001 (2008-04-07)
+	- TCPDF library was updated.
+	- Dutch language (NL) was added.
+
+5.3.000 (2008-03-28)
+	- Software license was changed to GPLv3 (see LICENSE.TXT).
+	- TCPDF library was updated.
+	- LDAP authentication was added (check the shared/config/tce_ldap.php configuration file).
+	- RADIUS support was improved (shared/config/tce_radius.php configuration file was changed).
+	- User registration module was added (check the shared/config/tce_user_registration.php configuration file).
+	- TMX file contains new translations (search for 5.3.000 comment).
+
+5.2.005 (2008-03-03)
+	- TCPDF was updated.
+	
+5.2.004 (2008-02-28)
+	- TCPDF was updated.
+	- tce_pdf_results.php was fixed.
+	- TMX language file was fixed.
+
+5.2.003 (2008-02-23)
+	- TCPDF was updated.
+	- TMX language file was fixed.
+	- INSTALL.TXT file was added.
+	- Guide files were removed. The guide is now hosted online on http://www.tcexam.com
+	- Source code documentation template was changed.
+	- Installation form and guide were updated.
+	
+5.2.002 (2008-02-10)
+	- French language was added.
+	- TMX language file was fixed.
+	- TCPDF was updated.
+
+5.2.001 (2008-01-27)
+	- Arabian language were added
+	- K_TCEXAM_STYLE_RTL constant was added to /admin/config/tce_config.php to define a stylesheet for RTL languages.
+	- K_SITE_STYLE_RTL constant was added to /public/config/tce_config.php to define a stylesheet for RTL languages.
+	- default_rtl.css was added to /admin/styles
+	- default_rtl.css was added to /public/styles
+	- /admin/tce_edit_answer.php was fixed.
+	- tce_preview_tcecode.php was fixed.
+	
+5.2.000 (2008-01-14)
+	- RADIUS authentication was added. The php_sockets extension must be enabled. Check /shared/tce-radius for configuration.
+	- TCPDF was updated.
+	- Guide in Marhati language was added.
+	- time extension were added to tce_show_result_allusers.php
+	- time extension was fixed for MySQL database.
+	- K_EXTEND_TIME_MINUTES was added to /shared/config/tce_config.php
+	
+5.1.001 (2007-12-27)
+	- MCMA bug [1858111] was fixed.
+
+5.1.000 (2007-12-05)
+	- Several SQL injection vulnerabilities were fixed. 
+	- Language selector bug was fixed.
+
+5.0.004 (2007-11-03)
+	- The bug relative to questions importing was fixed (tce_import_xml_questions.php).
+	- Marathi language was added.
+	- Copyright information was updated.
+	- "Test Results" interface was improved (tce_show_result_user.php).
+	- Administration menu is now dynamic. The elements not accessible to the user are disabled. 
+
+5.0.003 (2007-09-16)
+	- The Russian language was added.
+	
+5.0.002 (2007-09-15)
+	- The scoring algorithm was fixed.
+
+5.0.001 (2007-09-14)
+	- hungarian language was added.
+	- fixed require_once path on shared/code/tce_functions_errmsg.php.
+	- fixed title on installation script.
+
+5.0.000 (2007-08-28)
+	- database schema is changed (see documentation on admin/doc/database).
+	- new ordering type questions was added.
+	- free answer questions may now be checked against alternative text answers (short answers).
+	- the questions selection was fixed on test editor and test generators.
+	- all answers of MCMA question may be false.
+	- the offline PDF tests now contains the correct answers in hidden white color; to display the correct results:
+		* from PDF viewer, go to "Accessibility" -> "Page Display preferences", check "Replace Document Colors", uncheck "Only change the color of black text or line art".
+	
+--------------------------------------------------------------------------------
+
+4.2.003 (2007-08-14)
+	- TCPDF library was updated.
+
+4.2.002 (2007-05-21)
+	- An improvement on questions selection was added.
+
+4.2.001 (2007-05-19)
+	- The bit depth of LaTeX images was forced to 8 bit to avoid incompatibility with TCPDF.
+	
+4.2.000 (2007-05-18)
+	- LaTeX support was added (read: /install/README_LATEX.TXT)
+
+4.1.000 (2007-04-30)
+	- Some severe security vulnerabilities were fixed (please update also configuration files).
+	- Group filter was added on test results.
+	- Test end time and test duration were added on user's results.
+	- Answer statistics were added on "statistics".
+
+4.0.011 (2007-04-05)
+	- K_TIMEZONE constant was added to shared/config/tce_config.php to simplify the timezone settings.
+	- shared/code/tce_db_dal_mysql.php was updated.
+
+4.0.010 (2007-03-20)
+	- tcpdf library were updated. Now you may search and copy unicode text from PDF documents.
+	- language selector were added.
+	- a bug on user XML export were fixed.
+
+4.0.009 (2007-03-06)
+	- tcpdf were updated.
+	- DejaVu fonts for TCPDF were added.
+	
+4.0.008 (2007-02-14)
+	- duplicate answers bug for MCMA questions on PDF test were fixed.
+	
+4.0.007 (2007-02-12)
+	- shared/code/tce_functions_form.php were updated.
+	- vietnamese language were added.
+	
+4.0.006 (2006-12-15)
+	- Minor bugfixing on /admin/code/tce_edit_test.php.
+	- TCPDF were updated.
+
+4.0.005 (2006-11-24)
+	- Third party applications phpMyAdmin and phpPgAmin were removed from TCExam distribution.
+	- Installation instructions and documentation were updated.
+
+4.0.004 (2006-11-20)
+	- Brazilian Portuguese and Turkish language were added.
+	- alt attribute were added for images/objects.
+	- questions are now copied when a new test is created from an existing one.
+	- documentation were updated.
+	
+4.0.003 (2006-11-10)
+	- CSS files were fixed for IE7.
+		
+4.0.002 (2006-11-08)
+	- two unreported bugs were fixed on:
+		shared/code/tce_functions_test.php
+		public/code/tce_test_execute.php
+		
+4.0.001 (2006-10-27)
+	- TCPDF library were updated to version 1.53.TC025.
+	- phpMyAdmin were updated to version 2.9.0.2.
+
+4.0.000 (2006-10-01)
+	- database schema is changed and it's not back-compatible.
+	- database charset encodings were fixed to UTF8 UNICODE.
+	- "safe_mode = On" and other php.ini security settings are not more required.
+	- score percentages are now displayed on results.
+	- a "terminate test" button were added to submit a test before the end of the available time.
+	- tcpdf library were updated.
+	- XML user importer may now be used to update users' data.
+	- users may belong to none, one, or many groups.
+	- tests may be assigned to one or many users' groups.
+	- form functions were fixed.
+	- information for translators were added on TRANSLATORS.TXT file.
+	- utf-8 charset for MySQL database were fixed.
+	- users' may now leave a comment on test.
+	- phpMyAdmin and phpPgAdmin were updated.
+	
+--------------------------------------------------------------------------------
+
+3.0.022 (2006-09-14)
+	- An SQL bug on test execution were fixed.
+	
+3.0.021 (2006-09-05)
+	- You cannot create a user with a level higher than yours.
+
+3.0.020 (2006-07-01)
+	- TCDPF library were updated.
+	
+3.0.019 (2006-06-26)
+	- fixed sql error introduced with latest version.
+	
+3.0.018 (2006-06-26)
+	- some bugs on test generation were fixed.
+	- lock/unlock button were added on Test Results Summary (/admin/code/tce_show_result_allusers.php).
+	
+3.0.017 (2006-06-21)
+	- CSS files were updated.
+	- code preview bug were fixed.
+
+3.0.016 (2006-06-20)
+	- /shared/jscript/inserttag.js were updated.
+	- files path for [object] were fixed.
+	- mime types were updated on /shared/config/tce_mime.php.
+	- accessibility and usability were improved.
+	- spanish translation by Carlos Alarcon were introduced.
+	- test time extender button and lock/unlock button were added on user's results page.
+	
+3.0.015 (2006-06-03)
+	- TMX-PHP bridge were updated.
+	
+3.0.014 (2006-06-02)
+	- TCExam logo were changed.
+	- phpMyAdmin were updated.
+	- documentation were updated.
+	
+3.0.013 (2006-05-23)
+	- page selection bug on questions list were fixed.
+	
+3.0.012 (2006-05-21)
+	- tmx language file were updated.
+	- CSS files were updated.
+	- tcpdf were updated.
+	- public interface is now independent from javascript.
+	- admin interfaces now works also without javascript.
+	
+3.0.011 (2006-05-18)
+	- fixed font names.
+	
+3.0.010 (2006-05-18)
+	- TCPDF library were updated.
+	- New PDF default fonts were installed.
+	
+3.0.009 (2006-05-15)
+	- A bug on test editor were fixed.
+	
+3.0.008 (2006-05-13)
+	- Accessibility were deeply improved for visually impaired users.
+
+3.0.007 (2006-05-10)
+	- configuration file for phpMyAdmin were fixed (/admin/phpMyAdmin/config.inc.php).
+	
+3.0.006 (2006-04-21)
+	- phpMyAdmin were updated.
+	- documentation and installation instructions were updated.
+	- the admin menu now displays either phpMyAdmin or PhpPgAdmin by case.
+	
+3.0.005 (2006-04-15)
+	- a bug related to time formatting when using MySQL database were fixed.
+	- CSS files were updated.
+	
+3.0.004 (2006-04-15)
+	- a bug regarding the order of answers were fixed.
+	
+3.0.003 (2006-04-14)
+	- a bug regarding questions selection were fixed.
+
+3.0.002 (2006-04-07)
+	- minor improvements.
+	- CSS code were cleaned.
+	
+3.0.001 (2006-04-01)
+	- a new field 'logansw_order' has been introduced on 'tce_tests_logs_answers' table to fix the sorting BUG.
+
+3.0.000 (2006-03-31)
+	- this release contains new features and improvements.
+	- database schema and configuration files were changed.
+	- multiple answers on multiple-choiche questions are now supported.
+	- users' groups were supported.
+	- new scoring system were introduced.
+	- pages now conforms to "DTD XHTML 1.0 Strict".
+	- tcpdf class were updated to latest version.
+	- TMXResourceBundle class were updated to latest version.
+	- documentation were updated.
+	- accessibility were improved.
+	- questions can be exported and imported via XML files.
+	- users and groups can be exported and imported via XML or CSV files.
+	- a chaching mechanism has been introduced to speed up the loading of TMX language files.
+	- users results can be exported in CSV file format (tab delimited text).
+
+--------------------------------------------------------------------------------
+
+2.0.022 (2006-02-07)
+	- first Open Source release.
+	
+2.0.021 (2006-01-18)
+	- phpMailer were updated.
+	
+2.0.020 (2006-01-01)
+	- fixed session/authentication bug.
+	- phpMyAdmin were updated.
+	- phpPgAdmin were updated.
+	
+2.0.019 (2005-08-07)
+	- TMX logo were removed.
+	
+2.0.018 (2005-07-07)
+	- the ebable/disable mechanism for topics, questions and answers were improved.
+	- Question List were added.
+	- the documentation were updated.
+	- minor bugs were fixed.
+	
+2.0.017 (2005-07-04)
+	- new licenses were added.
+	
+2.0.016 (2005-07-02)
+	- all interfaces were tested and cleaned to comply with XHTML AND W3C-WAI specifications.
+	
+2.0.015 (2005-06-27)
+	- XHTML warnings were fixed.
+	
+2.0.014 (2005-05-29)
+	- automatic logout at test ending were added.
+	- some PDF issues were fixed.
+	
+2.0.013 (2005-04-30)
+	- fixed time visualization on question statistics.
+	
+2.0.012 (2005-04-30)
+	- the "no answer" as alternative answer could be disabled.
+	- fixed client countdown timer .
+	
+2.0.011 (2005-04-27)
+	- fixed user result void view.
+	
+2.0.010 (2005-04-23)
+	- fixed user statistic selection.
+	
+2.0.009 (2005-04-23)
+	- fixed user statistic selection.
+	
+2.0.008 (2005-04-23)
+	- fixed login issue.
+	
+2.0.007 (2005-04-07)
+	- fixed checkbox bug on postgresql.
+	- fixed authentication bug for old browsers.
+	
+2.0.006 (2005-03-31)
+	- TCPDF library were updated.
+	
+2.0.005 (2005-03-23)
+	- TCPDF library were updated.
+	
+2.0.004 (2005-03-04)
+	- multimedia files support were added.
+	
+2.0.003 (2005-02-26)
+	- email support were added.
+	
+2.0.002 (2005-02-23)
+	- TMX logo on about page were added.
+	
+2.0.001 (2005-02-21)
+	- minor bug fixing and improvements.
+	
+2.0.000 (2005-01-10)
+	- new major release.
+	- require PHP5, MySQL 4.1 or PostgreSQL 7.4.
+
+--------------------------------------------------------------------------------
+
+1.0.004 (2004-08-10)
+	- documentation were updated.
+	
+1.0.003 (2004-07-18)
+	- the english language were added.
+	
+1.0.002 (2004-07-15)
+	- xhtml to PDF conversion where improved.
+	
+1.0.001 (2004-07-14)
+	- xhtml to pdf conversion were fixed.
+	- phpMyAdmin were updated to 2.5.7.
+	
+1.0.000 (2004-04-17)
+	- first stable release.
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,367 @@
+/* --------------------------------------- */
+/* --------------- GENERAL --------------- */
+/* --------------------------------------- */
+
+body {
+	color: #000000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 10px ;
+	background : #FFFFFF;
+	visibility : visible;
+}
+
+.topPage {
+	margin: 0px;
+	padding: 0px;
+	background: url(Img/fBg.png);
+	height: 76px;
+}
+
+.rightPage {
+	margin: 20px;
+	background: url(Img/bookBgRev.png) bottom right no-repeat #ffffff;
+}
+
+.leftPage {
+	background: url(Img/bookBg.png) top left no-repeat #ffffff;
+	
+}
+
+
+
+/* --------------------------------------- */
+/* -------------- TOP FRAME -------------- */
+/* --------------------------------------- */
+
+.title {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin: auto;
+	padding-bottom : 0px;
+	padding-left : 0pt;
+	padding-right : 0px;
+	padding-top : 0px ;
+	width : 100%;
+	height: 34px;
+	vertical-align : middle;
+	visibility : visible;
+	background: url(Img/headBg.png);
+}
+
+.title1  {
+	color: #ffffff;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 12pt;
+	font-weight : bold;
+	margin: auto;
+	padding-left : 40px;
+	padding-right : 0px;
+	line-height : 34px;
+	background : url(Img/headBgTitle.png) left top no-repeat;
+	display : block;
+	float: left;
+	vertical-align : middle;
+	visibility : visible;
+}
+
+.separator1  {
+	color: #FFFFFF;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 5pt;
+	display : none;
+	line-height: 4px;
+	height: 4px;
+	float: left;
+	width: 10pt;
+	vertical-align : middle;
+	visibility : visible;
+	background: #FFFFFF;
+	position: relative;
+	top: 15px;
+	left: 6px;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.title2  {
+	color: #999999;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 10pt;
+	font-weight : normal;
+	padding-bottom : 0px;
+	padding-left : 10px;
+	padding-right : 0px;
+	padding-top : 0px;
+	line-height : 14px;
+	display : none;
+	float: left;
+	vertical-align : middle;
+	visibility : visible;
+}
+
+.separator2 {
+	color: #FFFFFF;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 20pt;
+	line-height : 14px;
+	display : none;
+	float: left;
+	width: 20pt;
+	vertical-align : middle;
+	visibility : visible;
+}
+
+.titleimage{
+	color: #FFFFFF;
+	text-align : right;
+	padding-right : 5px;
+	visibility : visible;
+	display: block;
+}
+
+
+.topMenu {
+margin: 0pt;
+padding: 0pt;
+display: block;
+width: 100%;
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+
+.topMenu td {
+padding-left: 6pt;
+padding-right: 6pt;
+background: url(Img/topBg.png);
+border-left: 1px solid #ffffff;
+border-right: 1px solid #cccccc;
+height: 40px;
+line-height: 10pt;
+vertical-align: middle;
+text-align: center;
+}
+
+.topMenu a  {
+color: #666666;
+font-size: 8pt;
+text-decoration: none;
+}
+
+.topMenu a:hover {
+text-decoration: underline;
+}
+
+.selected {
+color: black;
+font-size: 8pt;
+width: 100%;
+display: block;
+text-decoration: underline;
+}
+
+
+margin: 0pt;
+padding: 0pt;
+display: block;
+width: 100%;
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+
+
+/* --------------------------------------- */
+/* -------------- LEFT FRAME ------------- */
+/* --------------------------------------- */
+
+.bookmark {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	font-weight : normal;
+	text-align : left;
+	padding-top : 24px;
+	width : 100%;
+	visibility : visible;
+}
+
+.bookmark a {
+	color: #333333;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	font-weight : normal;
+	text-align : left;
+	text-decoration : none;
+	padding-left : 17px;
+	padding-right : 2px;
+	display : block;
+	padding-top: 2px;
+	padding-bottom: 2px; 
+	width: 100%;
+	line-height: 12px;
+	height: 12px;
+	visibility : visible;
+}
+
+
+.bookmark a:link {}
+.bookmark a:visited {}
+.bookmark a:active {}
+.bookmark a:hover {font-weight: bold; color: #000000;}
+
+
+/* --------------------------------------- */
+/* -------------- MAIN FRAME ------------- */
+/* --------------------------------------- */
+
+.caption1 {
+	color: #057EC7;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 12pt;
+	font-weight : bold;
+	text-align : left;
+	margin-top : 14px;
+	padding-bottom : 1px;
+	padding-top : 1px;
+	line-height : 24px;
+	visibility : visible;
+}
+
+.width770 {
+width: 770px;
+}
+
+.caption2 {
+	color: #990000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 10pt;
+	font-weight : bold;
+	margin-bottom : 5px;
+	margin-left : 0px;
+	margin-right : 0px;
+	margin-top : 15px;
+	padding-bottom : 5px;
+	padding-left : 25px;
+	padding-right : 0px;
+	padding-top : 5px;
+	visibility : visible;
+	background: url(Img/arrow.gif) no-repeat left;
+}
+
+.tabformat {border:1px solid #CCCCCC;
+}
+
+.tabhead {
+	color: #000000;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	font-weight : normal;
+	text-align : left;
+	border: 0pt solid #000000;
+	padding-bottom : 3px;
+	padding-left : 10px;
+	padding-right : 2px;
+	padding-top : 3px;
+	background : url(Img/topBgSel.png) left top repeat-x #ffffff;
+	visibility : visible;
+}
+
+.tabdata {
+	color: #333333;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 8pt;
+	font-weight : normal;
+	text-align : left;
+	border: 0pt solid #000000;
+	padding-bottom : 3px;
+	padding-left : 10px;
+	padding-right : 2px;
+	padding-top : 3px;
+	background :#F8F8F8;
+	visibility : visible;
+}
+
+
+/* --------------------------------------- */
+/* -------------- LEFT TOP FRAME --------- */
+/* --------------------------------------- */
+
+
+.titleLeft {
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	margin: auto;
+	padding-bottom : 0px;
+	padding-left : 0pt;
+	padding-right : 0px;
+	padding-top : 0px ;
+	width : 100%;
+	height: 34px;
+	vertical-align : middle;
+	visibility : visible;
+	background: url(Img/headBg.png);
+}
+
+.titleLeft1 {
+color: white;
+font-size: 12pt;
+text-align: center;
+padding-top: 8px;
+background : url(Img/headBgTitle.png) left top no-repeat;
+height: 30px;
+}
+
+.titleLeft2 {
+color: white;
+font-size: 10pt;
+text-align: center;
+display: none;
+}
+
+.topLeft {
+background: url(Img/bookBg.png) bottom left no-repeat #ffffff;
+height: 100%;
+}
+
+.topMenuLeft {
+background: url(Img/topBg.png);
+border-left: 1px solid #ffffff;
+border-right: 1px solid #cccccc;
+display: block;
+vertical-align:top;
+text-align: left;
+border: 1px solid #CCCCCC;
+}
+
+.topMenuLeft a  {
+color: #666666;
+padding-left: 15px;
+font-size: 8pt;
+line-height: 20px;
+width: 183px;
+background : url(Img/topBgSel.png) left top repeat-x #ffffff;
+display: block;
+vertical-align: middle;
+text-decoration: none;
+border-top: 1px solid white;
+}
+
+.topMenuLeft a:hover {
+text-decoration: underline;
+background : #F8F8F8;
+}
+
+.selectedLeft {
+color: #666666;
+padding-left: 15px;
+font-size: 8pt;
+line-height: 20px;
+width: 183px;
+background : #F8F8F8;
+display: block;
+vertical-align: middle;
+text-decoration: none;
+border-top: 1px solid white;
+}
+
+.leftPageLeft {
+	background: #ffffff;
+	
+}
+

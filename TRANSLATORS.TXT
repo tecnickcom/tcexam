@@ -1,0 +1,53 @@
+TCExam - TRANSLATORS
+============================================================
+
+We are looking for volunteer translators to help translate TCExam from English to other languages.
+
+The TCExam translation process is the following:
+
+1. download TCExam from http://www.sourceforge.net/projects/tcexam
+
+2. uncompress the downloaded archive on your web root if you want install it or wherever you want if you only want to translate.
+
+3. locate the following file: /shared/config/lang/language_tmx.xml
+
+4. the "language_tmx.xml" is an XML file in TMX standard and could be edited either manually or using a compatible CAT Software (Computer Aided Translation, check http://www.lisa.org/standards/tmx/ for more information).
+
+
+--- NOTES FOR TMX FILE -------
+
+TUID IDENTIFIERS PREFIXES:
+
+d_ indicates a brief description;
+
+h_ indicates an help message to de used on title fields of html tags;
+
+w_ is a single word or small sentence to be used as a field label;
+
+m_ is a general message;
+
+
+SPECIAL IDENTIFIERS:
+
+a_meta_charset is the charset used for the selected language, must be always "UTF-8"
+
+a_meta_dir indicates the direction of the language: ltr = left to right, rtl = right to left;
+
+a_meta_language is the HTML code of the selected language (en=english, it=italian, ...)
+
+
+XHTML CODE:
+
+Some fields includes XHTML code. The "<" and ">" symbols are escaped using "&lg;" and "&gt;".
+
+
+TESTING:
+
+If you wish to test your genereted XML file, you must install TCExam and delete the language_tmx_XX.php files on "/cache" folder.
+
+----------
+
+Once completed, send the files by email to info@tecnick.com.
+Your credits will be added on the credits page. 
+
+============================================================

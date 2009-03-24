@@ -1,0 +1,10 @@
+TCExam - INSTALL
+============================================================
+
+For quick installation instruction check:
+	install/index.htm
+
+For further information check the documentation on the 
+official TCExam website: http://www.tcexam.org
+
+============================================================

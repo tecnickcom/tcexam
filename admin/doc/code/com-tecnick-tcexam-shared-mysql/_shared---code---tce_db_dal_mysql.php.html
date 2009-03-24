@@ -1,0 +1,422 @@
+<html>
+<head>
+<title>Docs for page tce_db_dal_mysql.php</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">com-tecnick-tcexam-shared-mysql</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                                                                                                    
+                                                                                                              		  [ <a href="../classtrees_com-tecnick-tcexam-shared-mysql.html" class="menu">class tree: com-tecnick-tcexam-shared-mysql</a> ]
+		  [ <a href="../elementindex_com-tecnick-tcexam-shared-mysql.html" class="menu">index: com-tecnick-tcexam-shared-mysql</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_com-tecnick-latex.html">com-tecnick-latex</a><br />
+              <a href="../li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
+              <a href="../li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
+              <a href="../li_com-tecnick-tcexam-shared.html">com-tecnick-tcexam-shared</a><br />
+              <a href="../li_com-tecnick-tcexam-shared-mysql.html">com-tecnick-tcexam-shared-mysql</a><br />
+              <a href="../li_com-tecnick-tcexam-shared-postgresql.html">com-tecnick-tcexam-shared-postgresql</a><br />
+              <a href="../li_com-tecnick-tcpdf.html">com-tecnick-tcpdf</a><br />
+              <a href="../li_com-tecnick-tmxphpbridge.html">com-tecnick-tmxphpbridge</a><br />
+              <a href="../li_PHPMailer.html">PHPMailer</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html">		tce_db_dal_mysql.php
+		</a><br>
+	  </div><br />
+      
+      
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Procedural File: tce_db_dal_mysql.php</h1>
+Source Location: /shared/code/tce_db_dal_mysql.php<br /><br />
+
+<br>
+<br>
+
+
+<h2>Page Details:</h2>
+MySQL driver for TCExam Database Abstraction Layer (DAL).<br /><br /><p>This abstraction layer uses the same SQL syntax of MySQL.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright &amp;copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>2003-10-12</td>
+  </tr>
+  <tr>
+    <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a></td>
+  </tr>
+</table>
+</div>
+<br /><br />
+<br /><br />
+<br /><br />
+<br />
+  <hr />
+	<a name="functionF_db_affected_rows"></a>
+	<h3>F_db_affected_rows <span class="smalllinenumber">[line 125]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Number F_db_affected_rows(
+resource $link_identifier, resource $result)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Returns number of rows (tuples) affected by the last INSERT, UPDATE or DELETE query associated with link_identifier.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>of rows.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$link_identifier</b>&nbsp;&nbsp;</td>
+        <td>database link identifier.</td>
+      </tr>
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$result</b>&nbsp;&nbsp;</td>
+        <td>result resource to the query result [UNUSED].</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_close"></a>
+	<h3>F_db_close <span class="smalllinenumber">[line 83]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>bool F_db_close(
+resource $link_identifier)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Closes the non-persistent connection to a database associated with the given connection resource.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>TRUE on success or FALSE on failure</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$link_identifier</b>&nbsp;&nbsp;</td>
+        <td>database link identifier.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_connect"></a>
+	<h3>F_db_connect <span class="smalllinenumber">[line 65]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>MySQL F_db_connect(
+[ $host = &#039;localhost&#039;], [ $port = &#039;3306&#039;], [string $username = &#039;root&#039;], [string $password = &#039;&#039;], [string $database = &#039;&#039;], string $server)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Open a connection to a MySQL Server and select a database.<br /><br /><p>If a second call is made to mysql_connect() with the same arguments, no new link will be established, but instead, the link identifier of the already opened link will be returned.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>link identifier on success, or FALSE on failure.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$server</b>&nbsp;&nbsp;</td>
+        <td>Database server path. It can also include a port number. e.g. &quot;hostname:port&quot; or a path to a local socket e.g. &quot;:/path/to/socket&quot; for the localhost. Note: Whenever you specify &quot;localhost&quot; or &quot;localhost:port&quot; as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use &quot;127.0.0.1&quot; instead of &quot;localhost&quot;. If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$username</b>&nbsp;&nbsp;</td>
+        <td>Name of the user that owns the server process.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$password</b>&nbsp;&nbsp;</td>
+        <td>Password of the user that owns the server process.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$database</b>&nbsp;&nbsp;</td>
+        <td>Database name.</td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$host</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$port</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_error"></a>
+	<h3>F_db_error <span class="smalllinenumber">[line 91]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string F_db_error(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Returns the text of the error message from previous database operation<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>error message.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_fetch_array"></a>
+	<h3>F_db_fetch_array <span class="smalllinenumber">[line 115]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Returns F_db_fetch_array(
+resource $result)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Fetch a result row as an associative and numeric array.<br /><br /><p>Note: This function sets NULL fields to PHP NULL value.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>an array that corresponds to the fetched row, or FALSE if there are no more rows.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$result</b>&nbsp;&nbsp;</td>
+        <td>result resource to the query result.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_insert_id"></a>
+	<h3>F_db_insert_id <span class="smalllinenumber">[line 145]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>int F_db_insert_id(
+resource $link_identifier, [string $tablename = &#039;&#039;], [string $fieldname = &#039;&#039;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Get the ID generated from the previous INSERT operation<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>ID generated from the last INSERT operation.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$link_identifier</b>&nbsp;&nbsp;</td>
+        <td>database link identifier.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$tablename</b>&nbsp;&nbsp;</td>
+        <td>Table name.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$fieldname</b>&nbsp;&nbsp;</td>
+        <td>Field name (column name).</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_num_rows"></a>
+	<h3>F_db_num_rows <span class="smalllinenumber">[line 134]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>Number F_db_num_rows(
+resource $result)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Get number of rows in result.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>of affected rows.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$result</b>&nbsp;&nbsp;</td>
+        <td>result resource to the query result.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_db_query"></a>
+	<h3>F_db_query <span class="smalllinenumber">[line 103]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>FALSE F_db_query(
+string $query, resource $link_identifier)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert PostgreSQL RANDOM() function to MySQL RAND() on ORDER BY clause of selection queries.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>in case of error, TRUE or resource-identifier in case of success.</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$query</b>&nbsp;&nbsp;</td>
+        <td>The query tosend. The query string should not end with a semicolon.</td>
+      </tr>
+		      <tr>
+        <td class="type">resource&nbsp;&nbsp;</td>
+        <td><b>$link_identifier</b>&nbsp;&nbsp;</td>
+        <td>database link identifier.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_escape_sql"></a>
+	<h3>F_escape_sql <span class="smalllinenumber">[line 168]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string F_escape_sql(
+string $str)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Escape a string for insertion into a SQL text field (avoiding SQL injection).<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>Returns the escaped string, or FALSE on error.</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>5.0.005 2007-12-05</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$str</b>&nbsp;&nbsp;</td>
+        <td>The string that is to be escaped.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 24 Mar 2009 13:52:15 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
