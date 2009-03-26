@@ -1,10 +1,10 @@
 <?php
 //============================================================+
 // File name   : index.php
-// Begin       : 2002-01-11
+// Begin       : 2009-03-26
 // Last Update : 2009-03-26
-// 
-// Description : Redirect browser to main page     
+//
+// Description : Redirect browser to main page
 //
 // Author: Nicola Asuni
 //
@@ -39,7 +39,7 @@
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
-header("Location: public/code/index.php"); //redirect browser to public main page
+header("Location: code/index.php"); //redirect browser to public main page
 
 //============================================================+
 // END OF FILE                                                 

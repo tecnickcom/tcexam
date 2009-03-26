@@ -1,5 +1,9 @@
+9.0.005 (2009-03-26)
+	- English language were updated.
+	- index.php redirect was added in the admin and in the public directory.
+
 9.0.004 (2009-03-24)
-	- Several minor bugs were fixed on administration interfaces.	
+	- Several minor bugs were fixed on administration interfaces.
 
 9.0.003 (2009-03-24)
 	- 'Inserting image' bug was fixed (tce_functions_tcecode_editor.php).	
