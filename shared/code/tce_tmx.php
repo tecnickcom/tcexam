@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tmx.php
 // Begin       : 2004-10-19
-// Last Update : 2009-02-17
+// Last Update : 2009-03-26
 // 
 // Description : TMX-PHP Bridge Class
 // Platform    : PHP 5
@@ -38,7 +38,7 @@
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  * @author Nicola Asuni [www.tecnick.com]
  * @copyright Copyright (c) 2004-2009 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
- * @version 1.1.004
+ * @version 1.1.005
  */
 class TMXResourceBundle {
 	
@@ -108,7 +108,7 @@ class TMXResourceBundle {
 				file_put_contents($this->cachefile, '<'.'?php'."\n".
 				'// CACHE FILE FOR LANGUAGE: '.substr($language,0,2)."\n".
 				'// DATE: '.date('Y-m-d H:i:s')."\n".
-				'// *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***'."\n", FILE_APPEND);
+				'// *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***'."\n", FILE_APPEND | LOCK_EX);
 			}
 			
 			// creates a new XML parser to be used by the other XML functions

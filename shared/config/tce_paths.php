@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_paths.php
 // Begin       : 2002-01-15
-// Last Update : 2009-02-12
+// Last Update : 2009-03-26
 //
 // Description : Configuration file for files and directories
 //               paths.
@@ -96,6 +96,11 @@ define ('K_PATH_CACHE', K_PATH_MAIN.'cache/');
  * url path to to cache directory
  */
 define ('K_PATH_URL_CACHE', K_PATH_TCEXAM.'cache/');
+
+/**
+ * full path to cache directory used for language files
+ */
+define ('K_PATH_LANG_CACHE', K_PATH_CACHE.'lang/');
 
 /**
  * full path to fonts directory

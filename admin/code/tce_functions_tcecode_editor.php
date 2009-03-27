@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2009-03-24
+// Last Update : 2009-03-27
 // 
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -124,9 +124,7 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	$handle = opendir(K_PATH_CACHE);
 	$buttons .= '<option value="">&nbsp;</option>'.K_NEWLINE;
 		while ($file = readdir($handle)) {
-			//$path_parts = pathinfo($file);
-			//$file_ext = strtolower($path_parts['extension']);
-			if (($file != '.') AND ($file != '..')) {
+			if (is_file(K_PATH_CACHE.$file)) {
 				$buttons .= '<option value="'.$file.'"';
 				if (isset($uploadedfile['\''.$id.'\'']) AND (strcmp($uploadedfile['\''.$id.'\''], $file) == 0)) {
 					$buttons .= ' selected="selected"';

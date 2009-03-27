@@ -7,22 +7,22 @@
  * This Radius class is a radius client implementation in pure PHP
  * following the RFC 2865 rules (http://www.ietf.org/rfc/rfc2865.txt)
  *
- * This class works with the following RADIUS servers:
+ * This class works with at least the following RADIUS servers:
  *  - Authenex Strong Authentication System (ASAS) with two-factor authentication
  *  - FreeRADIUS, a free Radius server implementation for Linux and *nix environments
  *  - Microsoft Radius server IAS
+ *  - Mideye RADIUS server (http://www.mideye.com)
  *  - Radl, a free Radius server for Windows
  *  - RSA SecurID
+ *  - VASCO Middleware 3.0 server
  *  - WinRadius, Windows Radius server (free for 5 users)
- *  - ZyXEL ZyWALL OTP (One-Time Password for Two-Factor Authentication, Authenex ASAS branded by ZyXEL and cheaper ;-)
- *
- * Challenge / response is not yet implemented
+ *  - ZyXEL ZyWALL OTP (Authenex ASAS branded by ZyXEL, cheaper)
  *
  *
  * LICENCE
  *
- *   Copyright (c) 2008, SysCo systèmes de communication sa
- *   SysCo (tm) is a trademark of SysCo systèmes de communication sa
+ *   Copyright (c) 2008, SysCo systemes de communication sa
+ *   SysCo (tm) is a trademark of SysCo systemes de communication sa
  *   (http://www.sysco.ch/)
  *   All rights reserved.
  * 
@@ -45,9 +45,9 @@
  *
  * @author: SysCo/al
  * @since CreationDate: 2008-01-04
- * @copyright (c) 2008 by SysCo systèmes de communication sa
- * @version $LastChangedRevision: 1.0 $
- * @version $LastChangedDate: 2008-01-07 $
+ * @copyright (c) 2008 by SysCo systemes de communication sa
+ * @version $LastChangedRevision: 1.2.2 $
+ * @version $LastChangedDate: 2009-01-05 $
  * @version $LastChangedBy: SysCo/al $
  * @link $HeadURL: radius.class.php $
  * @link http://developer.sysco.ch/php/
@@ -68,6 +68,7 @@
  *     <?php
  *         require_once('radius.class.php');
  *         $radius = new Radius('127.0.0.1', 'secret');
+ *         $radius->SetNasIpAddress('1.2.3.4'); // Needed for some devices, and not auto_detected if PHP not runned through a web server
  *         if ($radius->AccessRequest('user', 'pass'))
  *         {
  *             echo "Authentication accepted.";
@@ -83,6 +84,7 @@
  *         require_once('radius.class.php');
  *         $radius = new Radius('127.0.0.1', 'secret');
  *         $radius->SetNasPort(0);
+ *         $radius->SetNasIpAddress('1.2.3.4'); // Needed for some devices, and not auto_detected if PHP not runned through a web server
  *         if ($radius->AccessRequest('user', 'pass'))
  *         {
  *             echo "Authentication accepted.";
@@ -118,14 +120,49 @@
  *
  * Other related ressources
  *
- *   FreeRADIUS, a free Radius server implementation for Linux and *nix environments: http://www.freeradius.org/
- *   WinRadius, Windows Radius server (free for 5 users): http://www.itconsult2000.com/en/product/WinRadius.zip
- *   Radl, a free Radius server for Windows: http://www.loriotpro.com/Products/RadiusServer/FreeRadiusServer_EN.php
- *   DOS command line Radius client: http://www.itconsult2000.com/en/product/WinRadiusClient.zip
+ *   FreeRADIUS, a free Radius server implementation for Linux and *nix environments:
+ *     http://www.freeradius.org/
+ *
+ *   WinRadius, Windows Radius server (free for 5 users):
+ *     http://www.itconsult2000.com/en/product/WinRadius.zip
+ *
+ *   Radl, a free Radius server for Windows:
+ *     http://www.loriotpro.com/Products/RadiusServer/FreeRadiusServer_EN.php
+ *
+ *   DOS command line Radius client:
+ *     http://www.itconsult2000.com/en/product/WinRadiusClient.zip
+ *
+ *
+ * Users feedbacks and comments
+ *
+ * 2008-07-02 Pim Koeman/Parantion
+ *
+ *   When using a radius connection behind a linux iptables firewall
+ * 	 allow port 1812 and 1813 with udp protocol
+ *
+ *   IPTABLES EXAMPLE (command line):
+ *   iptables -A AlwaysACCEPT -p udp --dport 1812 -j ACCEPT
+ *   iptables -A AlwaysACCEPT -p udp --dport 1813 -j ACCEPT
+ *
+ *   or put the lines in /etc/sysconfig/iptables (red-hat type systems (fedora, centos, rhel etc.)
+ *   -A AlwaysACCEPT -p udp --dport 1812 -j ACCEPT
+ *   -A AlwaysACCEPT -p udp --dport 1813 -j ACCEPT
  *
  *
  * Change Log
  *
+ *   2009-01-05 1.2.2 SysCo/al Added Robert Svensson feedback, Mideye RADIUS server is supported
+ *   2008-11-11 1.2.1 SysCo/al Added Carlo Ferrari resolution in examples (add NAS IP Address for a VASCO Middleware server)
+ *   2008-07-07 1.2   SysCo/al Added Pim Koeman (Parantion) contribution
+ *                              - comments concerning using radius behind a linux iptables firewall
+ *                             Added Jon Bright (tick Trading Software AG) contribution
+ *                              - false octal encoding with 0xx indexes (indexes are now rewritten in xx only)
+ *                              - challenge/response support for the RSA SecurID New-PIN mode
+ *                             Added GetRadiusPacketInfo() method
+ *                             Added GetAttributesInfo() method
+ *                             Added DecodeVendorSpecificContent() (to answer Raul Carvalho's question)
+ *                             Added Decoded Vendor Specific Content in debug messages
+ *   2008-02-04 1.1   SysCo/al Typo error for the udp_timeout parameter (line 256 in the version 1.0)
  *   2008-01-07 1.0   SysCo/al Initial release
  *
  *********************************************************************/
@@ -137,8 +174,9 @@
  * Pure PHP radius class
  *
  * Creation 2008-01-04
+ * Update 2009-01-05
  * @package radius
- * @version v.1.0
+ * @version v.1.2.2
  * @author SysCo/al
  *
  *********************************************************************/
@@ -178,7 +216,8 @@ class Radius
      * short description: Radius class constructor
      *
      * Creation 2008-01-04
-     * @version v.1.0
+     * Update 2009-01-05
+     * @version v.1.2.2
      * @author SysCo/al
      * @param string ip address of the radius server
      * @param string shared secret with the radius server
@@ -190,30 +229,30 @@ class Radius
      *********************************************************************/
     public function Radius($ip_radius_server = '127.0.0.1', $shared_secret = '', $radius_suffix = '', $udp_timeout = 5, $authentication_port = 1812, $accounting_port = 1813)
     {
-        $this->_radius_packet_info[001] = 'Access-Request';
-        $this->_radius_packet_info[002] = 'Access-Accept';
-        $this->_radius_packet_info[003] = 'Access-Reject';
-        $this->_radius_packet_info[004] = 'Accounting-Request';
-        $this->_radius_packet_info[005] = 'Accounting-Response';
-        $this->_radius_packet_info[011] = 'Access-Challenge';
-        $this->_radius_packet_info[012] = 'Status-Server (experimental)';
-        $this->_radius_packet_info[013] = 'Status-Client (experimental)';
+        $this->_radius_packet_info[1] = 'Access-Request';
+        $this->_radius_packet_info[2] = 'Access-Accept';
+        $this->_radius_packet_info[3] = 'Access-Reject';
+        $this->_radius_packet_info[4] = 'Accounting-Request';
+        $this->_radius_packet_info[5] = 'Accounting-Response';
+        $this->_radius_packet_info[11] = 'Access-Challenge';
+        $this->_radius_packet_info[12] = 'Status-Server (experimental)';
+        $this->_radius_packet_info[13] = 'Status-Client (experimental)';
         $this->_radius_packet_info[255] = 'Reserved';
         
-        $this->_attributes_info[01] = array('User-Name', 'S');
-        $this->_attributes_info[02] = array('User-Password', 'S');
-        $this->_attributes_info[03] = array('CHAP-Password', 'S'); // Type (1) / Length (1) / CHAP Ident (1) / String
-        $this->_attributes_info[04] = array('NAS-IP-Address', 'A');
-        $this->_attributes_info[05] = array('NAS-Port', 'I');
-        $this->_attributes_info[06] = array('Service-Type', 'I');
-        $this->_attributes_info[07] = array('Framed-Protocol', 'I');
-        $this->_attributes_info[08] = array('Framed-IP-Address', 'A');
-        $this->_attributes_info[09] = array('Framed-IP-Netmask', 'A');
+        $this->_attributes_info[1] = array('User-Name', 'S');
+        $this->_attributes_info[2] = array('User-Password', 'S');
+        $this->_attributes_info[3] = array('CHAP-Password', 'S'); // Type (1) / Length (1) / CHAP Ident (1) / String
+        $this->_attributes_info[4] = array('NAS-IP-Address', 'A');
+        $this->_attributes_info[5] = array('NAS-Port', 'I');
+        $this->_attributes_info[6] = array('Service-Type', 'I');
+        $this->_attributes_info[7] = array('Framed-Protocol', 'I');
+        $this->_attributes_info[8] = array('Framed-IP-Address', 'A');
+        $this->_attributes_info[9] = array('Framed-IP-Netmask', 'A');
         $this->_attributes_info[10] = array('Framed-Routing', 'I');
         $this->_attributes_info[11] = array('Filter-Id', 'T');
         $this->_attributes_info[12] = array('Framed-MTU', 'I');
         $this->_attributes_info[13] = array('Framed-Compression', 'I');
-        $this->_attributes_info[14] = array('Login-IP-Host', 'A');
+        $this->_attributes_info[14] = array( 'Login-IP-Host', 'A');
         $this->_attributes_info[15] = array('Login-service', 'I');
         $this->_attributes_info[16] = array('Login-TCP-Port', 'I');
         $this->_attributes_info[17] = array('(unassigned)', '');
@@ -243,6 +282,7 @@ class Radius
         $this->_attributes_info[61] = array('NAS-Port-Type', 'I');
         $this->_attributes_info[62] = array('Port-Limit', 'I');
         $this->_attributes_info[63] = array('Login-LAT-Port', 'S');
+        $this->_attributes_info[76] = array('Prompt', 'I');
 
         $this->_identifier_to_send = 0;
         $this->_user_ip_address = (isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'0.0.0.0');
@@ -446,6 +486,12 @@ class Radius
     }
     
     
+    function GetReceivedPacket()
+    {
+        return $this->_radius_packet_received;
+    }
+
+
     function GetReceivedAttributes()
     {
         return $this->_attributes_received;
@@ -455,11 +501,26 @@ class Radius
     function GetReadableReceivedAttributes()
     {
         $readable_attributes = '';
-        foreach($this->_attributes_received as $one_received_attribute)
+        if (isset($this->_attributes_received))
         {
-            $readable_attributes .= $this->_attributes_info[$one_received_attribute[0]][0].": ";
-            $readable_attributes .= $one_received_attribute[1];
-            $readable_attributes .= "<br />\n";
+            foreach($this->_attributes_received as $one_received_attribute)
+            {
+                $attributes_info = $this->GetAttributesInfo($one_received_attribute[0]);
+                $readable_attributes .= $attributes_info[0].": ";
+                if (26 == $one_received_attribute[0])
+                {
+                    $vendor_array = $this->DecodeVendorSpecificContent($one_received_attribute[1]);
+                    foreach($vendor_array as $vendor_one)
+                    {
+                        $readable_attributes .= 'Vendor-Id: '.$vendor_one[0].", Vendor-type: ".$vendor_one[1].",  Attribute-specific: ".$vendor_one[2];
+                    }
+                }
+                else
+                {
+                    $readable_attributes .= $one_received_attribute[1];
+                }
+                $readable_attributes .= "<br />\n";
+            }
         }
         return $readable_attributes;
     }
@@ -478,7 +539,33 @@ class Radius
         }
         return $attribute_value;
     }
-    
+
+
+    function GetRadiusPacketInfo($info_index)
+    {
+        if (isset($this->_radius_packet_info[intval($info_index)]))
+        {
+            return $this->_radius_packet_info[intval($info_index)];
+        }
+        else
+        {
+            return '';
+        }
+    }
+
+
+    function GetAttributesInfo($info_index)
+    {
+        if (isset($this->_attributes_info[intval($info_index)]))
+        {
+            return $this->_attributes_info[intval($info_index)];
+        }
+        else
+        {
+            return array('','');
+        }
+    }
+
 
     function DebugInfo($debug_info)
     {
@@ -504,26 +591,31 @@ class Radius
             }
         }
 
-        switch ($this->_attributes_info[$type][1])
+        $temp_attribute = NULL;
+        
+        if (isset($this->_attributes_info[$type]))
         {
-            case 'T': // Text, 1-253 octets containing UTF-8 encoded ISO 10646 characters (RFC 2279).
-                $temp_attribute = chr($type).chr(2+strlen($value)).$value;
-                break;
-            case 'S': // String, 1-253 octets containing binary data (values 0 through 255 decimal, inclusive).
-                $temp_attribute = chr($type).chr(2+strlen($value)).$value;
-                break;
-            case 'A': // Address, 32 bit value, most significant octet first.
-                $ip_array = explode(".", $value);
-                $temp_attribute = chr($type).chr(6).chr($ip_array[0]).chr($ip_array[1]).chr($ip_array[2]).chr($ip_array[3]);
-                break;
-            case 'I': // Integer, 32 bit unsigned value, most significant octet first.
-                $temp_attribute = chr($type).chr(6).chr(($value/(256*256*256))%256).chr(($value/(256*256))%256).chr(($value/(256))%256).chr($value%256);
-                break;
-            case 'D': // Time, 32 bit unsigned value, most significant octet first -- seconds since 00:00:00 UTC, January 1, 1970. (not used in this RFC)
-                $temp_attribute = NULL;
-                break;
-            default:
-                $temp_attribute = NULL;
+            switch ($this->_attributes_info[$type][1])
+            {
+                case 'T': // Text, 1-253 octets containing UTF-8 encoded ISO 10646 characters (RFC 2279).
+                    $temp_attribute = chr($type).chr(2+strlen($value)).$value;
+                    break;
+                case 'S': // String, 1-253 octets containing binary data (values 0 through 255 decimal, inclusive).
+                    $temp_attribute = chr($type).chr(2+strlen($value)).$value;
+                    break;
+                case 'A': // Address, 32 bit value, most significant octet first.
+                    $ip_array = explode(".", $value);
+                    $temp_attribute = chr($type).chr(6).chr($ip_array[0]).chr($ip_array[1]).chr($ip_array[2]).chr($ip_array[3]);
+                    break;
+                case 'I': // Integer, 32 bit unsigned value, most significant octet first.
+                    $temp_attribute = chr($type).chr(6).chr(($value/(256*256*256))%256).chr(($value/(256*256))%256).chr(($value/(256))%256).chr($value%256);
+                    break;
+                case 'D': // Time, 32 bit unsigned value, most significant octet first -- seconds since 00:00:00 UTC, January 1, 1970. (not used in this RFC)
+                    $temp_attribute = NULL;
+                    break;
+                default:
+                    $temp_attribute = NULL;
+            }
         }
                     
         if ($attribute_index > -1)
@@ -536,8 +628,8 @@ class Radius
             $this->_attributes_to_send[] = $temp_attribute;
             $additional_debug = 'Added';
         }
-        
-        $this->DebugInfo($additional_debug.' Attribute '.$type.' ('.$this->_attributes_info[$type][0].'), format '.$this->_attributes_info[$type][1].', value <em>'.$value.'</em>');
+        $attribute_info = $this->GetAttributesInfo($type);
+        $this->DebugInfo($additional_debug.' Attribute '.$type.' ('.$attribute_info[0].'), format '.$attribute_info[1].', value <em>'.$value.'</em>');
     }
 
 
@@ -545,36 +637,61 @@ class Radius
     {
         $attribute_value = NULL;
         
-        switch ($this->_attributes_info[$attribute_format][1])
+        if (isset($this->_attributes_info[$attribute_format]))
         {
-            case 'T': // Text, 1-253 octets containing UTF-8 encoded ISO 10646 characters (RFC 2279).
-                $attribute_value = $attribute_raw_value;
-                break;
-            case 'S': // String, 1-253 octets containing binary data (values 0 through 255 decimal, inclusive).
-                $attribute_value = $attribute_raw_value;
-                break;
-            case 'A': // Address, 32 bit value, most significant octet first.
-                $attribute_value = ord(substr($attribute_raw_value, 0, 1)).'.'.ord(substr($attribute_raw_value, 1, 1)).'.'.ord(substr($attribute_raw_value, 2, 1)).'.'.ord(substr($attribute_raw_value, 3, 1));
-                break;
-            case 'I': // Integer, 32 bit unsigned value, most significant octet first.
-                $attribute_value = (ord(substr($attribute_raw_value, 0, 1))*256*256*256)+(ord(substr($attribute_raw_value, 1, 1))*256*256)+(ord(substr($attribute_raw_value, 2, 1))*256)+ord(substr($attribute_raw_value, 3, 1));
-                break;
-            case 'D': // Time, 32 bit unsigned value, most significant octet first -- seconds since 00:00:00 UTC, January 1, 1970. (not used in this RFC)
-                $attribute_value = NULL;
-                break;
-            default:
-                $attribute_value = NULL;
+            switch ($this->_attributes_info[$attribute_format][1])
+            {
+                case 'T': // Text, 1-253 octets containing UTF-8 encoded ISO 10646 characters (RFC 2279).
+                    $attribute_value = $attribute_raw_value;
+                    break;
+                case 'S': // String, 1-253 octets containing binary data (values 0 through 255 decimal, inclusive).
+                    $attribute_value = $attribute_raw_value;
+                    break;
+                case 'A': // Address, 32 bit value, most significant octet first.
+                    $attribute_value = ord(substr($attribute_raw_value, 0, 1)).'.'.ord(substr($attribute_raw_value, 1, 1)).'.'.ord(substr($attribute_raw_value, 2, 1)).'.'.ord(substr($attribute_raw_value, 3, 1));
+                    break;
+                case 'I': // Integer, 32 bit unsigned value, most significant octet first.
+                    $attribute_value = (ord(substr($attribute_raw_value, 0, 1))*256*256*256)+(ord(substr($attribute_raw_value, 1, 1))*256*256)+(ord(substr($attribute_raw_value, 2, 1))*256)+ord(substr($attribute_raw_value, 3, 1));
+                    break;
+                case 'D': // Time, 32 bit unsigned value, most significant octet first -- seconds since 00:00:00 UTC, January 1, 1970. (not used in this RFC)
+                    $attribute_value = NULL;
+                    break;
+                default:
+                    $attribute_value = NULL;
+            }
         }
         return $attribute_value;
+    }
+
+
+    /*********************************************************************
+     * Array returned: array(array(Vendor-Id1, Vendor type1, Attribute-Specific1), ..., array(Vendor-IdN, Vendor typeN, Attribute-SpecificN)
+     *********************************************************************/
+    function DecodeVendorSpecificContent($vendor_specific_raw_value)
+    {
+        $result = array();
+        $offset_in_raw = 0;
+        $vendor_id = (ord(substr($vendor_specific_raw_value, 0, 1))*256*256*256)+(ord(substr($vendor_specific_raw_value, 1, 1))*256*256)+(ord(substr($vendor_specific_raw_value, 2, 1))*256)+ord(substr($vendor_specific_raw_value, 3, 1));
+        $offset_in_raw += 4;
+        while ($offset_in_raw < strlen($vendor_specific_raw_value))
+        {
+            $vendor_type = (ord(substr($vendor_specific_raw_value, 0+$offset_in_raw, 1)));
+            $vendor_length = (ord(substr($vendor_specific_raw_value, 1+$offset_in_raw, 1)));
+            $attribute_specific = substr($vendor_specific_raw_value, 2+$offset_in_raw, $vendor_length);
+            $result[] = array($vendor_id, $vendor_type, $attribute_specific);
+            $offset_in_raw += ($vendor_length);
+        }
+        
+        return $result;
     }
 
 
     /*
      * Function : AccessRequest
      *
-     * Return TRUE if Access-Reuqest is accepted, FALSE otherwise
+     * Return TRUE if Access-Request is accepted, FALSE otherwise
      */
-    function AccessRequest($username = '', $password = '', $udp_timeout = 0)
+    function AccessRequest($username = '', $password = '', $udp_timeout = 0, $state = NULL)
     {
         $this->ClearDataReceived();
         $this->ClearLastError();
@@ -590,8 +707,15 @@ class Radius
         {
             $this->SetPassword($password);
         }
-        
-        $this->SetAttribute(6, 1); // 1=Login
+
+        if ($state!==NULL)
+        {
+            $this->SetAttribute(24, $state);
+        }
+        else
+        {
+            $this->SetAttribute(6, 1); // 1=Login
+        }
 
         if (intval($udp_timeout) > 0)
         {
@@ -634,13 +758,14 @@ class Radius
         }
         else
         {
-            $this->DebugInfo('<b>Packet type '.$this->_radius_packet_to_send.' ('.$this->_radius_packet_info[$this->_radius_packet_to_send].') sent</b>');
+            $this->DebugInfo('<b>Packet type '.$this->_radius_packet_to_send.' ('.$this->GetRadiusPacketInfo($this->_radius_packet_to_send).')'.' sent</b>');
             if ($this->_debug_mode)
             {
                 $readable_attributes = '';
                 foreach($this->_attributes_to_send as $one_attribute_to_send)
                 {
-                    $this->DebugInfo('Attribute '.ord(substr($one_attribute_to_send,0,1)).' ('.$this->_attributes_info[ord(substr($one_attribute_to_send,0,1))][0].'), length '.(ord(substr($one_attribute_to_send,1,1))-2).', format '.$this->_attributes_info[ord(substr($one_attribute_to_send,0,1))][1].', value <em>'.$this->DecodeAttribute(substr($one_attribute_to_send,2), ord(substr($one_attribute_to_send,0,1))).'</em>');
+                    $attribute_info = $this->GetAttributesInfo(ord(substr($one_attribute_to_send,0,1)));
+                    $this->DebugInfo('Attribute '.ord(substr($one_attribute_to_send,0,1)).' ('.$attribute_info[0].'), length '.(ord(substr($one_attribute_to_send,1,1))-2).', format '.$attribute_info[1].', value <em>'.$this->DecodeAttribute(substr($one_attribute_to_send,2), ord(substr($one_attribute_to_send,0,1))).'</em>');
                 }
             }
             $read_socket_array   = array($_socket_to_server);
@@ -673,7 +798,7 @@ class Radius
 
         $this->_radius_packet_received = intval(ord(substr($received_packet, 0, 1)));
         
-        $this->DebugInfo('<b>Packet type '.$this->_radius_packet_received.' ('.$this->_radius_packet_info[$this->_radius_packet_received].') received</b>');
+        $this->DebugInfo('<b>Packet type '.$this->_radius_packet_received.' ('.$this->GetRadiusPacketInfo($this->_radius_packet_received).')'.' received</b>');
         
         if ($this->_radius_packet_received > 0)
         {
@@ -690,7 +815,19 @@ class Radius
 
                 $attribute_value = $this->DecodeAttribute($attribute_raw_value, $attribute_type);
 
-                $this->DebugInfo('Attribute '.$attribute_type.' ('.$this->_attributes_info[$attribute_type][0].'), length '.($attribute_length-2).', format '.$this->_attributes_info[$attribute_type][1].', value <em>'.$attribute_value.'</em>');
+                $attribute_info = $this->GetAttributesInfo($attribute_type);
+                if (26 == $attribute_type)
+                {
+                    $vendor_array = $this->DecodeVendorSpecificContent($attribute_value);
+                    foreach($vendor_array as $vendor_one)
+                    {
+                        $this->DebugInfo('Attribute '.$attribute_type.' ('.$attribute_info[0].'), length '.($attribute_length-2).', format '.$attribute_info[1].', Vendor-Id: '.$vendor_one[0].", Vendor-type: ".$vendor_one[1].",  Attribute-specific: ".$vendor_one[2]);
+                    }
+                }
+                else
+                {
+                    $this->DebugInfo('Attribute '.$attribute_type.' ('.$attribute_info[0].'), length '.($attribute_length-2).', format '.$attribute_info[1].', value <em>'.$attribute_value.'</em>');
+                }
 
                 $this->_attributes_received[] = array($attribute_type, $attribute_value);
             }

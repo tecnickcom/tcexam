@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 
@@ -7,7 +7,7 @@
 <title>TCExam Installation</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="description" content="TCExam Installation instructions" />
-<meta name="author" content="Nicola Asuni" />
+<meta name="author" content="nick"/>
 <meta name="keywords" content="Installation, TCExam, CBA, Computer-Based Assessment, CBT, Computer-Based Testing, e-exam, test, exam" />
 </head>
 
@@ -60,7 +60,27 @@ php_value magic_quotes_runtime Off
 php_value magic_quotes_sybase Off</pre></li></ul>
 
 <a name="installation"></a>
-<h2>Installation</h2><p>When installing TCExam for the first time, verify the <a href="#requirements" title="TCExam System Requirements">system requirements</a>. Assuming you have a working Apache/IIS web server, with PHP and a MySQL/PostgreSQL DBMS, you are on your way to installing TCExam.<br />If you are installing TCExam on Linux, check also the guide on:<strong><a href="http://www.tcexam.org" title="TCExam Website" target="_blank">http://www.tcexam.org</a></strong></p><h3>TCExam Upgrade</h3><p>The TCExam upgrade process may vary at each release. Detailed instructions are contained on the UPGRADE.TXT file attached to each TCExam release.</p><h3>Getting the files</h3> <p>TCExam can be downloaded from <a title="TCExam download" href="http://sourceforge.net/project/showfiles.php?group_id=159398" target="_blank">SourceForge.net</a>. The file is a compressed archive so you will need an utility program, either locally or on your host server, that can "unzip" the file (i.e. WinZip, WinRAR, 7Zip). Ensure that you choose latest stable release version.</p><h4>Installing Files</h4><p>We are assuming you have established a working web server, with the <a href="#requirements" title="TCExam System Requirements">necessary requirements</a>, and that you know where to put files to display on the web server.<br />Unzip the distribution file into a directory under your web server root. If you are using the Apache web server, this is typically <em>c:\apache group\apache\htdocs</em> on the Windows OS and <em>/usr/local/apache/htdocs</em> or <em>/var/www/</em> on a UNIX-like system but it my vary particularly on hosted servers and between different distributions of GNU-Linux OS.<br />What you do to install TCExam on a remote host is largely dependant upon the facilities your host provides - with regard to Control Panel software and connection resources. It may also depend upon your own skills concerning server access methods. A simple and typical procedure may involve: unzip the TCExam distribution file to a local directory on your local computer and then FTP the files to the host server placing them either directly under, or in, a directory under the web server root. There are many free FTP programs available for this operation, such as Filezilla. A Google search or visit to any of the open source resource sites will assist you in finding a suitable tool.<br /><br />When you have finished uploading the files and folders, change the files owner to the Web server user (typically "www-data" or "apache"). On POSIX based systems (like Unix, Linux, etc), change to the TCExam directory and enter the following system command (substitute the user name appropriate for your system): <em>chown -R apache</em>.<br />Change the files access permission so that all user can write into the them. On POSIX based systems change to the TCExam directory and enter the following system command: <em>chmod -R 777</em>. For security reasons, you must properly set the permissions of these files at the end of the installation process.</p><a name="browser" id="browser"></a><h3>Browser Installation</h3><p>This type of installation will automatically install the database and will configure the essential system parameters. The installation process will delete any data of previous installations of TCExam, reason why in this case it is advisable to make backup copy of these data.<br /><br />Point your Web browser (i.e. Mozilla Firefox or Internet Explorer) to the TCExam installation script (http://www.yoursite.com/install/install.php or http://yoursite.com/tcexam_folder/install/install.php). To start the installation you must fill up the form completely and press the button INSTALL.</p>
+<h2>Installation</h2><p>When installing TCExam for the first time, verify the <a href="#requirements" title="TCExam System Requirements">system requirements</a>. Assuming you have a working Apache/IIS web server, with PHP and a MySQL/PostgreSQL DBMS, you are on your way to installing TCExam.<br />
+If you are installing TCExam on Linux, check also the guide on:<strong><a href="http://www.tcexam.org" title="TCExam Website" target="_blank">http://www.tcexam.org</a></strong></p>
+
+<h3>TCExam Upgrade</h3>
+<p>The TCExam upgrade process may vary at each release. Detailed instructions are contained on the UPGRADE.TXT file attached to each TCExam release.</p>
+
+<h3>Getting the files</h3>
+<p>TCExam can be downloaded from <a title="TCExam download" href="http://sourceforge.net/project/showfiles.php?group_id=159398" target="_blank">SourceForge.net</a>. The file is a compressed archive so you will need an utility program, either locally or on your host server, that can "unzip" the file (i.e. WinZip, WinRAR, 7Zip). Ensure that you choose latest stable release version.</p>
+
+<h4>Installing Files</h4>
+<p>We are assuming you have established a working web server, with the <a href="#requirements" title="TCExam System Requirements">necessary requirements</a>, and that you know where to put files to display on the web server.<br />
+Unzip the distribution file into a directory under your web server root. If you are using the Apache web server, this is typically <em>c:\apache group\apache\htdocs</em> on the Windows OS and <em>/usr/local/apache/htdocs</em> or <em>/var/www/</em> on a UNIX-like system but it my vary particularly on hosted servers and between different distributions of GNU-Linux OS.<br />
+What you do to install TCExam on a remote host is largely dependant upon the facilities your host provides - with regard to Control Panel software and connection resources. It may also depend upon your own skills concerning server access methods. A simple and typical procedure may involve: unzip the TCExam distribution file to a local directory on your local computer and then FTP the files to the host server placing them either directly under, or in, a directory under the web server root. There are many free FTP programs available for this operation, such as Filezilla. A Google search or visit to any of the open source resource sites will assist you in finding a suitable tool.<br /><br />
+When you have finished uploading the files and folders, change the files owner to the Web server user (typically "www-data" or "apache"). On POSIX based systems (like Unix, Linux, etc), change to the TCExam directory and enter the following system command (substitute the user name appropriate for your system): <em>chown -R apache:apache /var/www/tcexam</em>.<br />
+Change the files access permission so that all user can write into the them. On POSIX based systems change to the TCExam directory and enter the following system command: <em>chmod -R 777 /var/www/tcexam</em>. For security reasons, you must properly set the permissions of these files at the end of the installation process.</p>
+
+<a name="browser" id="browser"></a>
+
+<h3>Browser Installation</h3>
+<p>This type of installation will automatically install the database and will configure the essential system parameters. The installation process will delete any data of previous installations of TCExam, reason why in this case it is advisable to make backup copy of these data.<br /><br />
+Point your Web browser (i.e. Mozilla Firefox or Internet Explorer) to the TCExam installation script (http://www.yoursite.com/install/install.php or http://yoursite.com/tcexam_folder/install/install.php). To start the installation you must fill up the form completely and press the button INSTALL.</p>
 
 The required fields are:<ul>
 <li><strong>db type</strong>: type of DBMS (the default is <em>MySQL</em>).</li>
@@ -96,17 +116,27 @@ mysql&gt; CREATE DATABASE TCExam;
 mysql&gt; quit
 shell&gt; mysql -u root -p TCExam &lt; mysql_db_structure.sql
 shell&gt; mysql -u root -p TCExam &lt; db_data.sql</pre><p>As another option you can use an external DBMS manager (i.e. phpMyAdmin, phpPgAdmin, pgAdmin3, etc.) to create the database and run the SQL files by using the specific commands.</p><a name="post" id="post"></a><h3>Post Installation and Configuration</h3><p>Once the installation is completed you must:</p><ul>
-<li>delete the <em>install</em> folder since it is not necessary anymore and represent a security issue for the system;</li>
-<li>set as <em>read-only</em> the entire TCExam folder (<em>chmod -R 644</em> in POSIX systems);</li>
-<li>properly set the write permissions for the following folders where TCExam will have to write (<em>chmod -R 666</em> in POSIX systems):<ul>
-<li>admin/log</li>
-<li>cache</li>
-<li>images</li>
-<li>public/log</li></ul></li>
-<li>configure TCExam to fit your needs and activate additional features.</li></ul><a name="config" id="config"></a><h4>Configuration</h4><p>Once the above installation procedure is successfully completed, TCExam will work in "basic" mode. Some additional configuration steps are required in order to activate some features (RADIUS, email, LaTeX) and to personalize some settings to fit your needs. All you have to do is to manually edit the following configuration files:</p><ul>
+<li>delete the <em>install</em> folder since it is not necessary anymore and represent a security issue for the system (<em>rm -fR /var/www/tcexam/install</em>);</li>
+<li>there are additional commands required to ensure that files can not be altered unless intended by the administrator; on POSIX system you can use the following commands:<br />
+<code>cd /var/www/tcexam<br />
+find . -exec chown -R apache:apache {} \;<br />
+find . -type f -exec chmod 544 {} \;<br />
+find cache/ -type f -exec chmod 644 {} \;<br />
+find cache/lang -type f -exec chmod 544 {} \;<br />
+find admin/log/ -type f -exec chmod 644 {} \;<br />
+find public/log/ -type f -exec chmod 644 {} \;<br />
+find . -type d -exec chmod 755 {} \;</code><br />
+(n this example <em>/var/www/tcexam</em> is the installation folder, <em>apache</em>  is the name of Apache user and group)
+</li>
+<li>configure TCExam to fit your needs and activate additional features.</li></ul>
+
+<a name="config" id="config"></a>
+<h4>Configuration</h4>
+<p>Once the above installation procedure is successfully completed, TCExam will work in "basic" mode. Some additional configuration steps are required in order to activate some features (RADIUS, email, LaTeX) and to personalize some settings to fit your needs. All you have to do is to manually edit the following configuration files:</p><ul>
 <li><strong>shared/config/</strong> - Main configuration files:<ul>
 <li><strong>lang/</strong> - language files<ul>
 <li><strong>language_tmx.xml</strong> - TMX language file (contains all translations)</li></ul></li>
+<li><strong>tce_cas.php</strong> - Configuration file for CAS (Central Authentication Service)</li>
 <li><strong>tce_config.php</strong> - system general configuration</li>
 <li><strong>tce_db_config.php</strong> - database configuration</li>
 <li><strong>tce_email_config.php</strong> - general configuration of the email system</li>

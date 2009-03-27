@@ -1,5 +1,13 @@
+9.0.006 (2009-03-27)
+	- The class shared/code/tce_txm.php was updated to acquire an exclusive lock on the cache file while proceeding to the writing. 
+	- The K_PATH_LANG_CACHE constant was added to shared/config/tce_paths.php to define the default folder used for language files. By default the language files are now stored on the new folder: /cache/lang.
+	- The file shared/config/tce_config.php was changed to consider the new K_PATH_LANG_CACHE constant.
+	- The class phpMailer was updated to version 2.3.
+	- The class Radius was updated to version 1.2.2.
+	- Installation guide was updated.
+	
 9.0.005 (2009-03-26)
-	- English language were updated.
+	- The English language was updated.
 	- index.php redirect was added in the admin and in the public directory.
 
 9.0.004 (2009-03-24)

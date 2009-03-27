@@ -80,7 +80,7 @@ echo '<h2>'.$l['t_third_parties'].'</h2>'.K_NEWLINE;
 echo '<ul class="credits">'.K_NEWLINE;
 
 echo '<li><strong>PHPMailer</strong><br />
-Class for sending email using either sendmail, PHP mail(), or SMTP.<br />
+Full Featured Email Transfer Class for PHP.<br />
 Author: Brent R. Matzelle (<a href="mailto:bmatzelle@yahoo.com">bmatzelle@yahoo.com</a>)<br />
 Homepage: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
 License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
