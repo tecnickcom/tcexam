@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_postgresql.php
 // Begin       : 2003-10-12
-// Last Update : 2009-02-12
+// Last Update : 2009-04-12
 // 
 // Description : PostgreSQL driver for TCExam Database
 //               Abstraction Layer (DAL).
@@ -148,12 +148,13 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
 /**
  * Escape a string for insertion into a SQL text field (avoiding SQL injection).
  * @param string $str The string that is to be escaped.
+ * @param boolean $stripslashes if true and magic_quotes_gpc is on, then strip slashes from string
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
  */
-function F_escape_sql($str) {
+function F_escape_sql($str, $stripslashes=true) {
 	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
-	if (get_magic_quotes_gpc()) {
+	if ($stripslashes AND get_magic_quotes_gpc()) {
 		$str = stripslashes($str);
 	}
 	return pg_escape_string($str);

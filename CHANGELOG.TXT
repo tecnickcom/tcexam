@@ -1,3 +1,7 @@
+9.0.007 (2009-04-12)
+	- Import functions were fixed.
+	- TCPDF library was updated.
+	
 9.0.006 (2009-03-27)
 	- The class shared/code/tce_txm.php was updated to acquire an exclusive lock on the cache file while proceeding to the writing. 
 	- The K_PATH_LANG_CACHE constant was added to shared/config/tce_paths.php to define the default folder used for language files. By default the language files are now stored on the new folder: /cache/lang.

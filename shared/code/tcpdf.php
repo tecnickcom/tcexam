@@ -2,9 +2,9 @@
 //============================================================+
 // File name   : tcpdf.php
 // Begin       : 2002-08-03
-// Last Update : 2009-03-27
+// Last Update : 2009-04-11
 // Author      : Nicola Asuni - info@tecnick.com - http://www.tcpdf.org
-// Version     : 4.5.034
+// Version     : 4.5.039
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
 //  Copyright (C) 2002-2009  Nicola Asuni - Tecnick.com S.r.l.
@@ -122,7 +122,7 @@
  * @copyright 2002-2009 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 4.5.034
+ * @version 4.5.039
  */
 
 
@@ -142,14 +142,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */ 
-	define('PDF_PRODUCER', 'TCPDF 4.5.034 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 4.5.039 (http://www.tcpdf.org)');
 	
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 4.5.034
+	* @version 4.5.039
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -1236,6 +1236,29 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 4.5.030 (2009-03-20)
 		 */
 		protected $theadMargin = '';
+
+		/**
+		 * Cache array for UTF8StringToArray() method.
+		 * @access protected
+		 * @since 4.5.037 (2009-04-07)
+		 */
+		protected $cache_UTF8StringToArray = array();
+
+		/**
+		 * Maximum size of cache array used for UTF8StringToArray() method.
+		 * @access protected
+		 * @since 4.5.037 (2009-04-07)
+		 */
+		protected $cache_maxsize_UTF8StringToArray = 8;
+
+		/**
+		 * Current size of cache array used for UTF8StringToArray() method.
+		 * @access protected
+		 * @since 4.5.037 (2009-04-07)
+		 */
+		protected $cache_size_UTF8StringToArray = 0;
+		
+		
 		//------------------------------------------------------------
 		// METHODS
 		//------------------------------------------------------------
@@ -1347,11 +1370,11 @@ if (!class_exists('TCPDF', false)) {
 			$this->ur_document = '/FullSave';
 			$this->ur_annots = '/Create/Delete/Modify/Copy/Import/Export';
 			$this->ur_form = '/Add/Delete/FillIn/Import/Export/SubmitStandalone/SpawnTemplate';
-			$this->ur_signature = '/Modify';
+			$this->ur_signature = '/Modify';			
 			// set default JPEG quality
 			$this->jpeg_quality = 75;
 			// initialize some settings
-			$this->utf8Bidi(array(''));
+			$this->utf8Bidi(array(''), '');
 			// set default font
 			$this->SetFont($this->FontFamily, $this->FontStyle, $this->FontSizePt);
 		}
@@ -2718,7 +2741,7 @@ if (!class_exists('TCPDF', false)) {
 		* @since 1.2
 		*/
 		public function GetStringWidth($s, $fontname='', $fontstyle='', $fontsize=0) {
-			return $this->GetArrStringWidth($this->utf8Bidi($this->UTF8StringToArray($s), $this->tmprtl), $fontname, $fontstyle, $fontsize);
+			return $this->GetArrStringWidth($this->utf8Bidi($this->UTF8StringToArray($s), $s, $this->tmprtl), $fontname, $fontstyle, $fontsize);
 		}
 		
 		/**
@@ -3186,7 +3209,7 @@ if (!class_exists('TCPDF', false)) {
 			//Output a string
 			if ($this->rtl) {
 				// bidirectional algorithm (some chars may be changed affecting the line length)
-				$s = $this->utf8Bidi($this->UTF8StringToArray($txt), $this->tmprtl);
+				$s = $this->utf8Bidi($this->UTF8StringToArray($txt), $txt, $this->tmprtl);
 				$l = $this->GetArrStringWidth($s);
 				$xr = $this->w - $x - $this->GetArrStringWidth($s);
 			} else {
@@ -3846,10 +3869,18 @@ if (!class_exists('TCPDF', false)) {
 			} else {
 				$arabic = false;
 			}
+			// check if string contains RTL text
+			if ($arabic OR $this->tmprtl OR preg_match(K_RE_PATTERN_RTL, $txt)) {
+				$rtlmode = true;
+			} else {
+				$rtlmode = false;
+			}
 			// get a char width
 			$chrwidth = $this->GetCharWidth('.');
-			// get array of chars
+			// get array of unicode values
 			$chars = $this->UTF8StringToArray($s);
+			// get array of chars
+			$uchars = $this->UTF8ArrayToUniArray($chars);
 			// get the number of characters
 			$nb = count($chars);
 			// handle single space character
@@ -3904,9 +3935,15 @@ if (!class_exists('TCPDF', false)) {
 					} else {
 						$talign = $align;
 					}
+					$tmpstr = $this->UniArrSubString($uchars, $j, $i);
 					if ($firstline) {
 						$startx = $this->x;
-						$linew = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, $i), $this->tmprtl));
+						$tmparr = array_slice($chars, $j, $i);
+						if ($rtlmode) {
+							$tmparr = $this->utf8Bidi($tmparr, $tmpstr, $this->tmprtl);
+						}
+						$linew = $this->GetArrStringWidth($tmparr);
+						unset($tmparr);
 						if ($this->rtl) {
 							$this->endlinex = $startx - $linew;
 						} else {
@@ -3918,10 +3955,11 @@ if (!class_exists('TCPDF', false)) {
 							$this->cMargin = 0;
 						}
 					}
-					$this->Cell($w, $h, $this->UTF8ArrSubString($chars, $j, $i), 0, 1, $talign, $fill, $link, $stretch);
+					$this->Cell($w, $h, $tmpstr, 0, 1, $talign, $fill, $link, $stretch);
+					unset($tmpstr);
 					if ($firstline) {
 						$this->cMargin = $tmpcmargin;
-						return ($this->UTF8ArrSubString($chars, $i));
+						return ($this->UniArrSubString($uchars, $i));
 					}
 					++$nl;
 					$j = $i + 1;
@@ -3936,8 +3974,12 @@ if (!class_exists('TCPDF', false)) {
 					$w = $this->getRemainingWidth();
 					$wmax = $w - (2 * $this->cMargin);
 				} else {
-					// 160 is the non-breaking space, 173 is SHY (Soft Hypen)
-					if (($c != 160) AND (preg_match('/[\s]/', $this->unichr($c)) OR ($c == 173))) {
+					// 160 is the non-breaking space.
+					// 173 is SHY (Soft Hypen).
+					// \p{Z} or \p{Separator}: any kind of Unicode whitespace or invisible separator.
+					// \p{Lo} or \p{Other_Letter}: a Unicode letter or ideograph that does not have lowercase and uppercase variants.
+					// \p{Lo} is needed because Chinese characters are packed next to each other without spaces in between.
+					if (($c != 160) AND (($c == 173) OR preg_match('/[\s\p{Z}\p{Lo}]/', $this->unichr($c)))) {
 						// update last blank space position
 						$sep = $i;
 						// check if is a SHY
@@ -3951,7 +3993,7 @@ if (!class_exists('TCPDF', false)) {
 					if ((($this->CurrentFont['type'] == 'TrueTypeUnicode') OR ($this->CurrentFont['type'] == 'cidfont0')) AND ($arabic)) {
 						// with bidirectional algorithm some chars may be changed affecting the line length
 						// *** very slow ***
-						$l = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, $i-$j+1), $this->tmprtl));
+						$l = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, $i-$j+1), '', $this->tmprtl));
 					} else {
 						$l += $this->GetCharWidth($c);
 					}
@@ -3965,13 +4007,19 @@ if (!class_exists('TCPDF', false)) {
 								$this->Cell($w, $h, '', 0, 1);
 								$linebreak = true;
 								if ($firstline) {
-									return ($this->UTF8ArrSubString($chars, $j));
+									return ($this->UniArrSubString($uchars, $j));
 								}
 							} else {
 								// truncate the word because do not fit on column
+								$tmpstr = $this->UniArrSubString($uchars, $j, $i);
 								if ($firstline) {
 									$startx = $this->x;
-									$linew = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, $i), $this->tmprtl));
+									$tmparr = array_slice($chars, $j, $i);
+									if ($rtlmode) {
+										$tmparr = $this->utf8Bidi($tmparr, $tmpstr, $this->tmprtl);
+									}
+									$linew = $this->GetArrStringWidth($tmparr);
+									unset($tmparr);
 									if ($this->rtl) {
 										$this->endlinex = $startx - $linew;
 									} else {
@@ -3983,10 +4031,11 @@ if (!class_exists('TCPDF', false)) {
 										$this->cMargin = 0;
 									}
 								}
-								$this->Cell($w, $h, $this->UTF8ArrSubString($chars, $j, $i), 0, 1, $align, $fill, $link, $stretch);
+								$this->Cell($w, $h, $tmpstr, 0, 1, $align, $fill, $link, $stretch);
+								unset($tmpstr);
 								if ($firstline) {
 									$this->cMargin = $tmpcmargin;
-									return ($this->UTF8ArrSubString($chars, $i));
+									return ($this->UniArrSubString($uchars, $i));
 								}
 								$j = $i;
 								--$i;
@@ -4013,9 +4062,15 @@ if (!class_exists('TCPDF', false)) {
 								$shy_char_left = '';
 								$shy_char_right = '';
 							}
+							$tmpstr = $this->UniArrSubString($uchars, $j, ($sep + $endspace));
 							if ($firstline) {
 								$startx = $this->x;
-								$linew = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, ($sep + $endspace)), $this->tmprtl));
+								$tmparr = array_slice($chars, $j, ($sep + $endspace));
+								if ($rtlmode) {
+									$tmparr = $this->utf8Bidi($tmparr, $tmpstr, $this->tmprtl);
+								}
+								$linew = $this->GetArrStringWidth($tmparr);
+								unset($tmparr);
 								if ($this->rtl) {
 									$this->endlinex = $startx - $linew - $shy_width;
 								} else {
@@ -4028,11 +4083,12 @@ if (!class_exists('TCPDF', false)) {
 								}
 							}
 							// print the line
-							$this->Cell($w, $h, $shy_char_left.$this->UTF8ArrSubString($chars, $j, ($sep + $endspace)).$shy_char_right, 0, 1, $align, $fill, $link, $stretch);
+							$this->Cell($w, $h, $shy_char_left.$tmpstr.$shy_char_right, 0, 1, $align, $fill, $link, $stretch);
+							unset($tmpstr);
 							if ($firstline) {
 								// return the remaining text
 								$this->cMargin = $tmpcmargin;
-								return ($this->UTF8ArrSubString($chars, ($sep + $endspace)));
+								return ($this->UniArrSubString($uchars, ($sep + $endspace)));
 							}
 							$i = $sep;
 							$sep = -1;
@@ -4085,9 +4141,15 @@ if (!class_exists('TCPDF', false)) {
 						break;
 					}
 				}
+				$tmpstr = $this->UniArrSubString($uchars, $j, $nb);
 				if ($firstline) {
 					$startx = $this->x;
-					$linew = $this->GetArrStringWidth($this->utf8Bidi(array_slice($chars, $j, $nb), $this->tmprtl));
+					$tmparr = array_slice($chars, $j, $nb);
+					if ($rtlmode) {
+						$tmparr = $this->utf8Bidi($tmparr, $tmpstr, $this->tmprtl);
+					}
+					$linew = $this->GetArrStringWidth($tmparr);
+					unset($tmparr);
 					if ($this->rtl) {
 						$this->endlinex = $startx - $linew;
 					} else {
@@ -4099,10 +4161,11 @@ if (!class_exists('TCPDF', false)) {
 						$this->cMargin = 0;
 					}
 				}
-				$this->Cell($w, $h, $this->UTF8ArrSubString($chars, $j, $nb), 0, $ln, $align, $fill, $link, $stretch);
+				$this->Cell($w, $h, $tmpstr, 0, $ln, $align, $fill, $link, $stretch);
+				unset($tmpstr);
 				if ($firstline) {
 					$this->cMargin = $tmpcmargin;
-					return ($this->UTF8ArrSubString($chars, $nb));
+					return ($this->UniArrSubString($uchars, $nb));
 				}
 				++$nl;
 			}
@@ -4125,7 +4188,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 
-	 /**
+	 	/**
 		* Extract a slice of the $strarr array and return it as string.
 		* @param string $strarr The input array of characters.
 		* @param int $start the starting element of $strarr.
@@ -4145,6 +4208,40 @@ if (!class_exists('TCPDF', false)) {
 				$string .= $this->unichr($strarr[$i]);
 			}
 			return $string;
+		}
+
+	 	/**
+		* Extract a slice of the $uniarr array and return it as string.
+		* @param string $uniarr The input array of characters.
+		* @param int $start the starting element of $strarr.
+		* @param int $end first element that will not be returned.
+		* @return Return part of a string
+		* @access public
+		* @since 4.5.037 (2009-04-07)
+		*/
+		public function UniArrSubString($uniarr, $start='', $end='') {
+			if (strlen($start) == 0) {
+				$start = 0;
+			}
+			if (strlen($end) == 0) {
+				$end = count($uniarr);
+			}
+			$string = '';
+			for ($i=$start; $i < $end; ++$i) {
+				$string .= $uniarr[$i];
+			}
+			return $string;
+		}
+
+	 	/**
+		* Convert an array of UTF8 values to array of unicode characters
+		* @param string $ta The input array of UTF8 values.
+		* @return Return array of unicode characters
+		* @access public
+		* @since 4.5.037 (2009-04-07)
+		*/
+		public function UTF8ArrayToUniArray($ta) {
+			return array_map(array($this, 'unichr'), $ta);
 		}
 		
 		/**
@@ -6384,6 +6481,16 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 1.53.0.TC005 (2005-01-05)
 		 */
 		protected function UTF8StringToArray($str) {
+			if (isset($this->cache_UTF8StringToArray[$str])) {
+				// return cached value
+				return($this->cache_UTF8StringToArray[$str]);
+			}
+			// check cache size
+			if ($this->cache_size_UTF8StringToArray >= $this->cache_maxsize_UTF8StringToArray) {
+				// remove first element
+				array_shift($this->cache_UTF8StringToArray);
+			}
+			++$this->cache_size_UTF8StringToArray;
 			if (!$this->isunicode) {
 				// split string into array of equivalent codes
 				$strarr = array();
@@ -6391,6 +6498,8 @@ if (!class_exists('TCPDF', false)) {
 				for($i=0; $i < $strlen; ++$i) {
 					$strarr[] = ord($str{$i});
 				}
+				// insert new value on cache
+				$this->cache_UTF8StringToArray[$str] = $strarr;
 				return $strarr;
 			}
 			$unicode = array(); // array containing unicode values
@@ -6447,6 +6556,8 @@ if (!class_exists('TCPDF', false)) {
 					$numbytes = 1;
 				}
 			}
+			// insert new value on cache
+			$this->cache_UTF8StringToArray[$str] = $unicode;
 			return $unicode;
 		}
 		
@@ -8063,26 +8174,29 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 2.1.000 (2008-01-08)
 		*/
 		protected function utf8StrRev($str, $setbom=false, $forcertl=false) {
-			return $this->arrUTF8ToUTF16BE($this->utf8Bidi($this->UTF8StringToArray($str), $forcertl), $setbom);
+			return $this->arrUTF8ToUTF16BE($this->utf8Bidi($this->UTF8StringToArray($str), $str, $forcertl), $setbom);
 		}
 		
 		/**
 		 * Reverse the RLT substrings using the Bidirectional Algorithm (http://unicode.org/reports/tr9/).
 		 * @param array $ta array of characters composing the string.
+		 * @param string $str string to process
 		 * @param bool $forcertl if 'R' forces RTL, if 'L' forces LTR
 		 * @return string
 		 * @author Nicola Asuni
 		 * @access protected
 		 * @since 2.4.000 (2008-03-06)
 		*/
-		protected function utf8Bidi($ta, $forcertl=false) {
+		protected function utf8Bidi($ta, $str='', $forcertl=false) {
 			global $unicode, $unicode_mirror, $unicode_arlet, $laa_array, $diacritics;
 			// paragraph embedding level
 			$pel = 0;
 			// max level
 			$maxlevel = 0;
-			// create string from array
-			$str = $this->UTF8ArrSubString($ta);
+			if (empty($str)) {
+				// create string from array
+				$str = $this->UTF8ArrSubString($ta);
+			}
 			// check if string contains arabic text
 			if (preg_match(K_RE_PATTERN_ARABIC, $str)) {
 				$arabic = true;
@@ -8940,6 +9054,8 @@ if (!class_exists('TCPDF', false)) {
 		
 		/*
 		* Enable Write permissions for PDF Reader.
+		* (EXPERIMENTAL - ONLY WORKS WITH SOME ACROBAT READER VERSIONS)
+		* TO BE COMPLETED
 		* @access protected
 		* @author Nicola Asuni
 		* @since 2.9.000 (2008-03-26)
@@ -8951,14 +9067,19 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out('/Perms');
 			$this->_out('<<');
 			$this->_out('/UR3');
-			$this->_out('<<');
-			//$this->_out('/SubFilter/adbe.pkcs7.detached/Filter/Adobe.PPKLite/Contents');
-			//$this->_out('<0>');
-			//$this->_out('/ByteRange[0 3]');
-			$this->_out('/M '.$this->_datastring('D:'.date('YmdHis')));
+			$this->_out('<<');			
+			$this->_out('/Type/Sig');
+			$this->_out('/Filter/Adobe.PPKLite');
+			$this->_out('/SubFilter/adbe.pkcs7.detached');
 			$this->_out('/Name(TCPDF)');
-			$this->_out('/Reference[');
+			$this->_out('/ByteRange[0 0 0 0]');
+			$this->_out('/Contents<>');
+			$this->_out('/M '.$this->_datastring('D:'.date('YmdHis')));
+			$this->_out('/Reference');
+			$this->_out('[');
 			$this->_out('<<');
+			$this->_out('/Type/SigRef');
+			$this->_out('/TransformMethod/UR3');
 			$this->_out('/TransformParams');
 			$this->_out('<<');
 			$this->_out('/Type/TransformParams');
@@ -8976,11 +9097,8 @@ if (!class_exists('TCPDF', false)) {
 				$this->_out('/Signature['.$this->ur_signature.']');
 			}			
 			$this->_out('>>');
-			$this->_out('/TransformMethod/UR3');
-			$this->_out('/Type/SigRef');
 			$this->_out('>>');
 			$this->_out(']');
-			$this->_out('/Type/Sig');
 			$this->_out('>>');
 			$this->_out('>>');
 		}
@@ -9961,16 +10079,16 @@ if (!class_exists('TCPDF', false)) {
 		}
 		
 		/**
-	 	 * Print Barcode.
+	 	 * Print a Linear Barcode.
 	 	 * @param string $code code to print
 	 	 * @param string $type type of barcode.
 		 * @param int $x x position in user units
 		 * @param int $y y position in user units
 		 * @param int $w width in user units
-		 * @param int $h height position in user units
+		 * @param int $h height in user units
 		 * @param float $xres width of the smallest bar in user units
 		 * @param array $style array of options:<ul><li>string $style['position'] barcode position inside the specified width: L = left (default for LTR); C = center; R = right (default for RTL); S = stretch</li><li>boolean $style['border'] if true prints a border around the barcode</li><li>int $style['padding'] padding to leave around the barcode in user units</li><li>array $style['fgcolor'] color array for bars and text</li><li>mixed $style['bgcolor'] color array for background or false for transparent</li><li>boolean $style["text"] boolean if true prints text below the barcode</li><li>string $style['font'] font name for text</li><li>int $style['fontsize'] font size for text</li><li>int $style['stretchtext']: 0 = disabled; 1 = horizontal scaling only if necessary; 2 = forced horizontal scaling; 3 = character spacing only if necessary; 4 = forced character spacing</li></ul>
-		 * @param string $align Indicates the alignment of the pointer next to image insertion relative to image height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
+		 * @param string $align Indicates the alignment of the pointer next to barcode insertion relative to barcode height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
 		 * @author Nicola Asuni
 		 * @since 3.1.000 (2008-06-09)
 		 * @access public
@@ -9983,10 +10101,10 @@ if (!class_exists('TCPDF', false)) {
 			// save current graphic settings
 			$gvars = $this->getGraphicVars();
 			// create new barcode object
-			$barcodeobj = new TCPDFbarcode($code, $type);
+			$barcodeobj = new TCPDFBarcode($code, $type);
 			$arrcode = $barcodeobj->getBarcodeArray();
 			if ($arrcode === false) {
-				$this->Error('Error in barcode string');
+				$this->Error('Error in 1D barcode string');
 			}
 			// set default values
 			if (!isset($style['position'])) {
@@ -10109,9 +10227,9 @@ if (!class_exists('TCPDF', false)) {
 				foreach ($arrcode['bcode'] as $k => $v) {
 					$bw = ($v['w'] * $xres);
 					if ($v['t']) {
-						// braw a vertical bar
+						// draw a vertical bar
 						$ypos = $y + $style['padding'] + ($v['p'] * $barh / $arrcode['maxh']);
-						$this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh  / $arrcode['maxh']), 'DF', array('L'=>0, 'T'=>0, 'R'=>0, 'B'=>0), $style['fgcolor']);
+						$this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh  / $arrcode['maxh']), 'DF', array(), $style['fgcolor']);
 					}
 					$xpos += $bw;
 				}
@@ -10212,6 +10330,152 @@ if (!class_exists('TCPDF', false)) {
 				$newstyle['stretchtext'] = 4;
 			}
 			$this->write1DBarcode($code, $type, $x, $y, $w, $h, $xres, $newstyle, '');
+		}
+		
+		/**
+	 	 * Print 2D Barcode.
+	 	 * @param string $code code to print
+	 	 * @param string $type type of barcode.
+		 * @param int $x x position in user units
+		 * @param int $y y position in user units
+		 * @param int $w width in user units
+		 * @param int $h height in user units
+		 * @param array $style array of options:<ul><li>boolean $style['border'] if true prints a border around the barcode</li><li>int $style['padding'] padding to leave around the barcode in user units</li><li>array $style['fgcolor'] color array for bars and text</li><li>mixed $style['bgcolor'] color array for background or false for transparent</li></ul>
+		 * @param string $align Indicates the alignment of the pointer next to barcode insertion relative to barcode height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
+		 * @author Nicola Asuni
+		 * @since 4.5.037 (2009-04-07)
+		 * @access public
+		 */
+		public function write2DBarcode($code, $type, $x='', $y='', $w='', $h='', $style='', $align='') {
+			if (empty($code)) {
+				return;
+			}
+			require_once(dirname(__FILE__).'/2dbarcodes.php');
+			// save current graphic settings
+			$gvars = $this->getGraphicVars();
+			// create new barcode object
+			$barcodeobj = new TCPDF2DBarcode($code, $type);
+			$arrcode = $barcodeobj->getBarcodeArray();
+			if ($arrcode === false) {
+				$this->Error('Error in 2D barcode string');
+			}
+			// set default values
+			if (!isset($style['padding'])) {
+				$style['padding'] = 0;
+			}
+			if (!isset($style['fgcolor'])) {
+				$style['fgcolor'] = array(0,0,0); // default black
+			}
+			if (!isset($style['bgcolor'])) {
+				$style['bgcolor'] = false; // default transparent
+			}
+			if (!isset($style['border'])) {
+				$style['border'] = false;
+			}
+			// set foreground color
+			$this->SetDrawColorArray($style['fgcolor']);
+			if (empty($x)) {
+				$x = $this->GetX();
+			}
+			if ($this->rtl) {
+				$x = $this->w - $x;
+			}
+			if (empty($y)) {
+				$y = $this->GetY();
+			}
+			if (empty($w) OR ($w <= 0)) {
+				if ($this->rtl) {
+					$w = $x - $this->lMargin;
+				} else {
+					$w = $this->w - $this->rMargin - $x;
+				}
+			}
+			if (empty($h) OR ($h <= 0)) {
+				// 2d barcodes are square by default
+				$h = $w;
+			}
+			if ($this->checkPageBreak($h)) {
+				$y = $this->y;
+			}
+			// calculate barcode size (excluding padding)
+			$bw = $w - (2 * $style['padding']);
+			$bh = $h - (2 * $style['padding']);
+			// calculate starting coordinates
+			if ($this->rtl) {
+				$xpos = $x - $w;
+			} else {
+				$xpos = $x;
+			}
+			$xpos += $style['padding'];
+			$ypos = $y + $style['padding'];
+			// barcode is always printed in LTR direction
+			$tempRTL = $this->rtl;
+			$this->rtl = false;
+			// print background color
+			if ($style['bgcolor']) {
+				$this->Rect($x, $y, $w, $h, 'DF', '', $style['bgcolor']);
+			} elseif ($style['border']) {
+				$this->Rect($x, $y, $w, $h, 'D');
+			}
+			// print barcode cells
+			if ($arrcode !== false) {
+				$rows = $arrcode['num_rows'];
+				$cols = $arrcode['num_cols'];
+				// calculate dimension of single barcode cell
+				$cw = $bw / $cols;
+				$ch = $bh / $rows;
+				// for each row
+				for ($r = 0; $r < $rows; ++$r) {
+					$xr = $xpos;
+					// for each column
+					for ($c = 0; $c < $cols; ++$c) {
+						if ($arrcode['bcode'][$r][$c] == 1) {
+							// draw a single barcode cell
+							$this->Rect($xr, $ypos, $cw, $ch, 'DF', array(), $style['fgcolor']);
+						}
+						$xr += $cw;
+					}
+					$ypos += $ch;
+				}
+			}
+			// restore original direction
+			$this->rtl = $tempRTL;
+			// restore previous settings
+			$this->setGraphicVars($gvars);
+			// set bottomcoordinates
+			$this->img_rb_y = $y + $h;
+			if ($this->rtl) {
+				// set left side coordinate
+				$this->img_rb_x = ($this->w - $x - $w);
+			} else {
+				// set right side coordinate
+				$this->img_rb_x = $x + $w;
+			}
+			// set pointer to align the successive text/objects
+			switch($align) {
+				case 'T':{
+					$this->y = $y;
+					$this->x = $this->img_rb_x;
+					break;
+				}
+				case 'M':{
+					$this->y = $y + round($h/2);
+					$this->x = $this->img_rb_x;
+					break;
+				}
+				case 'B':{
+					$this->y = $this->img_rb_y;
+					$this->x = $this->img_rb_x;
+					break;
+				}
+				case 'N':{
+					$this->SetY($this->img_rb_y);
+					break;
+				}
+				default:{
+					break;
+				}
+			}
 		}
 		
 		/**
@@ -10334,7 +10598,7 @@ if (!class_exists('TCPDF', false)) {
 		 */
 		protected function getHtmlDomArray($html) {
 			// remove all unsupported tags (the line below lists all supported tags)
-			$html = strip_tags($html, '<marker/><a><b><blockquote><br><br/><dd><del><div><dl><dt><em><font><h1><h2><h3><h4><h5><h6><hr><i><img><li><ol><p><pre><small><span><strong><sub><sup><table><td><th><thead><tr><tt><u><ul>'); 
+			$html = strip_tags($html, '<marker/><a><b><blockquote><br><br/><dd><del><div><dl><dt><em><font><h1><h2><h3><h4><h5><h6><hr><i><img><li><ol><p><pre><small><span><strong><sub><sup><table><tcpdf><td><th><thead><tr><tt><u><ul>'); 
 			//replace some blank characters
 			$html = preg_replace('@(\r\n|\r)@', "\n", $html);
 			$repTable = array("\t" => ' ', "\0" => ' ', "\x0B" => ' ', "\\" => "\\\\");
@@ -10479,7 +10743,7 @@ if (!class_exists('TCPDF', false)) {
 							$dom[$key]['listtype'] = $dom[$parentkey]['listtype'];
 						}
 						// get attributes
-						preg_match_all('/([^=\s]*)=["\']?([^"\']*)["\']?/', $element, $attr_array, PREG_PATTERN_ORDER);
+						preg_match_all('/([^=\s]*)=["]?([^"]*)["]?/', $element, $attr_array, PREG_PATTERN_ORDER);
 						$dom[$key]['attribute'] = array(); // reset attribute array
 						while (list($id, $name) = each($attr_array[1])) {
 							$dom[$key]['attribute'][strtolower($name)] = $attr_array[2][$id];
@@ -11326,11 +11590,6 @@ if (!class_exists('TCPDF', false)) {
 							$dom[$trid]['cellpos'][($cellid - 1)]['endx'] = $this->x;
 							// update the end of row position
 							if ($rowspan <= 1) {
-								if (isset($dom[$trid]['endpage'])) {
-									$dom[$trid]['endpage'] = max($this->page, $dom[$trid]['endpage']);
-								} else {
-									$dom[$trid]['endpage'] = $this->page;
-								}
 								if (isset($dom[$trid]['endy'])) {
 									if ($this->page == $dom[$trid]['endpage']) {
 										$dom[$trid]['endy'] = max($this->y, $dom[$trid]['endy']);
@@ -11340,6 +11599,11 @@ if (!class_exists('TCPDF', false)) {
 								} else {
 									$dom[$trid]['endy'] = $this->y;
 								}
+								if (isset($dom[$trid]['endpage'])) {
+									$dom[$trid]['endpage'] = max($this->page, $dom[$trid]['endpage']);
+								} else {
+									$dom[$trid]['endpage'] = $this->page;
+								}								
 							} else {
 								// account for row-spanned cells
 								$dom[$table_el]['rowspans'][($trsid - 1)]['endx'] = $this->x;
@@ -11838,6 +12102,21 @@ if (!class_exists('TCPDF', false)) {
 					$this->addHTMLVertSpace(1, $cell, ($tag['fontsize'] * 1.5) / $this->k, $firstorlast, $tag['value'], false);
 					break;
 				}
+				case 'tcpdf': {
+					// NOT HTML: used to call TCPDF methods
+					if (isset($tag['attribute']['method'])) {
+						$tcpdf_method = $tag['attribute']['method'];
+						if (method_exists($this, $tcpdf_method)) {
+							if (isset($tag['attribute']['params']) AND (!empty($tag['attribute']['params']))) {
+								eval('$params = array('.$tag['attribute']['params'].');');
+								call_user_func_array(array($this, $tcpdf_method), $params);
+							} else {
+								$this->$tcpdf_method();
+							}
+							$this->newline = true;
+						}
+					}
+				}
 				default: {
 					break;
 				}
@@ -11897,8 +12176,8 @@ if (!class_exists('TCPDF', false)) {
 							}
 						}
 					}
-					$this->setPage($parent['endpage']);
-					$this->y = $parent['endy'];
+					$this->setPage($dom[($dom[$key]['parent'])]['endpage']);
+					$this->y = $dom[($dom[$key]['parent'])]['endy'];					
 					if (isset($dom[$table_el]['attribute']['cellspacing'])) {
 						$cellspacing = $this->getHTMLUnitToUnits($dom[$table_el]['attribute']['cellspacing'], 1, 'px');
 						$this->y += $cellspacing;

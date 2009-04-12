@@ -376,12 +376,12 @@ string $query, resource $link_identifier)</code>
 	</div>
   <hr />
 	<a name="functionF_escape_sql"></a>
-	<h3>F_escape_sql <span class="smalllinenumber">[line 154]</span></h3>
+	<h3>F_escape_sql <span class="smalllinenumber">[line 155]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>string F_escape_sql(
-string $str)</code>
+string $str, [boolean $stripslashes = true])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -406,13 +406,18 @@ string $str)</code>
         <td><b>$str</b>&nbsp;&nbsp;</td>
         <td>The string that is to be escaped.</td>
       </tr>
+		      <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$stripslashes</b>&nbsp;&nbsp;</td>
+        <td>if true and magic_quotes_gpc is on, then strip slashes from string</td>
+      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 27 Mar 2009 19:42:11 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sun, 12 Apr 2009 11:23:19 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

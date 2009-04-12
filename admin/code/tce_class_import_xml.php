@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2009-02-20
+// Last Update : 2009-04-12
 // 
 // Description : Class to import questions from an XML file.
 //
@@ -251,7 +251,7 @@ class XMLQuestionImporter {
 			default: {
 				$elname = $this->level.'_'.$name;
 				if ($this->current_element == $elname) {
-					$this->level_data[$this->level][$this->current_element] = F_escape_sql(F_xml_to_text(utrim($this->current_data)));
+					$this->level_data[$this->level][$this->current_element] = F_escape_sql(F_xml_to_text(utrim($this->current_data)), false);
 				}
 				break;
 			}
@@ -414,6 +414,7 @@ class XMLQuestionImporter {
 				F_db_query('ROLLBACK', $db);
 			}
 		}
+		// insert question
 		$sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
 			question_subject_id,
 			question_description,
