@@ -1,3 +1,6 @@
+9.0.008 (2009-04-21)
+	- TCPDF library was updated.
+	
 9.0.007 (2009-04-12)
 	- Import functions were fixed.
 	- TCPDF library was updated.

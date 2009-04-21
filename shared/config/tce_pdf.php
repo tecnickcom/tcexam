@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2009-02-12
+// Last Update : 2009-04-20
 // 
 // Description : Configuration file for pdf documents.
 //
@@ -153,9 +153,9 @@ define ('PDF_FONT_NAME_DATA', 'helvetica');
 define ('PDF_FONT_SIZE_DATA', 7);
 
 /**
- *  scale factor for images (number of points in user unit)
+ * ratio used to adjust the conversion of pixels to user units
  */
-define ('PDF_IMAGE_SCALE_RATIO', 2);
+define ('PDF_IMAGE_SCALE_RATIO', 1);
 
 /**
  * magnification factor for titles
