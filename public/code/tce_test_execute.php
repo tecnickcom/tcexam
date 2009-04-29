@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2009-02-12
+// Last Update : 2009-04-28
 // 
 // Description : execute a specific test
 //
@@ -74,11 +74,26 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	if (isset($_REQUEST['testlogid']) AND ($_REQUEST['testlogid'] > 0)) {
 		$testlog_id = intval($_REQUEST['testlogid']);
 	}
+	if (isset($_REQUEST['answerid']) AND ($_REQUEST['answerid'] > 0)) {
+		$answer_id = $_REQUEST['answerid'];
+	}
+	if (isset($_REQUEST['answertext']) AND (!empty($_REQUEST['answertext']))) {
+		$answer_text = $_REQUEST['answertext'];
+	}
+	if (isset($_REQUEST['reaction_time']) AND ($_REQUEST['reaction_time'] > 0)) {
+		$reaction_time = intval($_REQUEST['reaction_time']);
+	} else {
+		$reaction_time = 0;
+	}
 	require_once('../../shared/code/tce_functions_test.php');
 	
 	if (F_executeTest($test_id)) {
 		
 		if (isset($_REQUEST['forceterminate']) AND (!empty($_REQUEST['forceterminate']))) {
+			if ($_REQUEST['forceterminate'] == 'lasttimedquestion') {
+				// update last question
+				F_updateQuestionLog($test_id, $testlog_id, $answer_id, $answer_text, $reaction_time);
+			}
 			// terminate the test (lock the test to status=4
 			F_terminateUserTest($test_id);
 			// redirect the user to the index page
@@ -103,23 +118,11 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		require_once('../code/tce_page_header.php');
 		echo '<div class="container">'.K_NEWLINE;
 		
-		echo '<span class="infolink">['.F_testInfoLink($test_id, $l['w_info']).']<br /><br /></span>'.K_NEWLINE;
+		echo '<span class="infolink">'.F_testInfoLink($test_id, $l['w_info']).'<br /><br /></span>'.K_NEWLINE;
 		
 		if (!isset($_REQUEST['terminationform'])) {
 			if (F_isRightTestlogUser($test_id, $testlog_id)) {
 				// the form has been submitted, update testlogid data
-				if (isset($_REQUEST['answerid']) AND ($_REQUEST['answerid'] > 0)) {
-					$answer_id = $_REQUEST['answerid'];
-				}
-				if (isset($_REQUEST['answertext']) AND (!empty($_REQUEST['answertext']))) {
-					$answer_text = $_REQUEST['answertext'];
-				}
-				if (isset($_REQUEST['reaction_time']) AND ($_REQUEST['reaction_time'] > 0)) {
-					$reaction_time = intval($_REQUEST['reaction_time']);
-				} else {
-					$reaction_time = 0;
-				}
-				
 				F_updateQuestionLog($test_id, $testlog_id, $answer_id, $answer_text, $reaction_time);
 				
 				// update user's test comment

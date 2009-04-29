@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-03-08
+// Last Update : 2009-04-29
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -81,28 +81,28 @@ function F_getUserTests() {
 				if (($test_status < 4) OR (F_getBoolean($m['test_results_to_users']))) {
 					$str .= '<li title="'.F_tcecodeToTitle($m['test_description']).'">';
 					$str .= $m['test_name'];
-					$str .= ' ['.F_testInfoLink($m['test_id'], $l['w_info']).']';
+					$str .= ' '.F_testInfoLink($m['test_id'], $l['w_info']).'';
 				}
 				// display various links by status case
 				switch ($test_status) {
 					case 0: { // 0 = the test generation process is started but not completed
 						// print execute test link
-						$str .= ' [<a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_execute'].'">'.$l['w_execute'].'</a>]';
+						$str .= ' <a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a>';
 						break;
 					}
 					case 1: // 1 = the test has been successfully created
 					case 2: // 2 = all questions have been displayed to the user
 					case 3: { // 3 = all questions have been answered
 						// continue test
-						$str .= ' [<a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_continue'].'">'.$l['w_continue'].'</a>]';
+						$str .= ' <a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_continue'].'" class="xmlbutton">'.$l['w_continue'].'</a>';
 						break;
 					}
 					case 4: { // 4 = test locked (for timeout)
 						if (F_getBoolean($m['test_results_to_users'])) {
-							$str .= ' [<a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'">'.$l['w_result'].'</a>]';
+							$str .= ' <a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'" class="xmlbutton">'.$l['w_result'].'</a>';
 						}
 						if (F_getBoolean($m['test_repeatable'])) {
-							$str .= ' [<a href="index.php?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'">'.$l['w_repeat'].'</a>]';
+							$str .= ' <a href="index.php?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'" class="xmlbutton">'.$l['w_repeat'].'</a>';
 						}
 						break;
 					}
@@ -355,7 +355,7 @@ function F_testInfoLink($test_id, $link_name='') {
 	$onclickinfo .= ',width='.K_TEST_INFO_WIDTH;
 	$onclickinfo .= ',menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\');';
 	$onclickinfo .= 'return false;';
-	$str .= '<a href="tce_popup_test_info.php?testid='.$test_id.'" onclick="'.$onclickinfo.'" title="'.$l['m_new_window_link'].'">';
+	$str .= '<a href="tce_popup_test_info.php?testid='.$test_id.'" onclick="'.$onclickinfo.'" title="'.$l['m_new_window_link'].'" class="xmlbutton">';
 	if (strlen($link_name) > 0) {
 		$str .= $link_name;
 	} else {
@@ -1480,7 +1480,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			$str .= 'document.onkeypress = actionByChar;'.K_NEWLINE;
 			if ($m['question_timer'] > 0) {
 				// automatic submit form after specified fime
-				$str .= "setTimeout('document.getElementById(\'".$formname."\').submit();', ".($m['question_timer'] * 1000).");".K_NEWLINE;
+				$str .= "setTimeout('document.getElementById(\'autonext\').value=1;document.getElementById(\'".$formname."\').submit();', ".($m['question_timer'] * 1000).");".K_NEWLINE;
 			}
 			$str .= '//]]>'.K_NEWLINE;
 			$str .= '</script>'.K_NEWLINE;
@@ -1519,7 +1519,7 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 	$testlog_id_prev = 0; // previous question ID
 	$testlog_id_next = 0; // next question ID
 	$testlog_id_last = 0; // temp variable
-	$sql = 'SELECT question_description, question_difficulty, testlog_id, testlog_answer_text, testlog_display_time, testlog_change_time
+	$sql = 'SELECT question_description, question_difficulty, question_timer, testlog_id, testlog_answer_text, testlog_display_time, testlog_change_time
 		FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.' 
 		WHERE question_id=testlog_question_id 
 			AND testlog_testuser_id='.$testuser_id.'
@@ -1536,6 +1536,7 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 				$str .= '<li class="selected">';
 				$str .= '<input type="button" name="jumpquestion_'.$m['testlog_id'].'" id="jumpquestion_'.$m['testlog_id'].'" value="&gt;" title="'.F_tcecodeToTitle($m['question_description']).'" disabled="disabled"/> ';
 				$testlog_id_prev = $testlog_id_last;
+				$question_timer = F_getBoolean($m['question_timer']);
 			}
 			// display mark when the current question has been displayed
 			$str .= '<acronym';
@@ -1582,14 +1583,16 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 	$navlink = '';
 	
 	// button for previous question
-	$navlink .= '<input type="submit" name="prevquestion" id="prevquestion" value="&lt; '.$l['w_previous'].'" title="'.$l['w_previous'].'"';
-	if (($testlog_id_prev <= 0) OR ($testlog_id_prev > $testlog_id)) {
-		$navlink .= ' disabled="disabled"';
+	if (!$question_timer) {
+		$navlink .= '<input type="submit" name="prevquestion" id="prevquestion" value="&lt; '.$l['w_previous'].'" title="'.$l['w_previous'].'"';
+		if (($testlog_id_prev <= 0) OR ($testlog_id_prev > $testlog_id)) {
+			$navlink .= ' disabled="disabled"';
+		}
+		$navlink .= ' />';
+		
+		// button for confirm current question
+		$navlink .= '<input type="submit" name="confirmanswer" id="confirmanswer" value="'.$l['w_confirm'].'" />';
 	}
-	$navlink .= ' />';
-	
-	// button for confirm current question
-	$navlink .= '<input type="submit" name="confirmanswer" id="confirmanswer" value="'.$l['w_confirm'].'" />';
 	
 	// button for next question
 	$navlink .= '<input type="submit" name="nextquestion" id="nextquestion" value="'.$l['w_next'].' &gt;" title="'.$l['w_next'].'"';
@@ -1597,6 +1600,11 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 		$navlink .= ' disabled="disabled"';
 	}
 	$navlink .= ' />'.K_NEWLINE;
+	
+	if ($question_timer AND ($testlog_id_next <= 0)) {
+		// force test termination
+		$navlink .= '<input type="hidden" name="forceterminate" id="forceterminate" value="lasttimedquestion" />'.K_NEWLINE;
+	}
 	
 	$navlink .= '<input type="hidden" name="prevquestionid" id="prevquestionid" value="'.$testlog_id_prev.'" />'.K_NEWLINE;
 	$navlink .= '<input type="hidden" name="nextquestionid" id="nextquestionid" value="'.$testlog_id_next.'" />'.K_NEWLINE;

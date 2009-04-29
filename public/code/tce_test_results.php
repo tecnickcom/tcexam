@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-02-12
+// Last Update : 2009-04-28
 // 
 // Description : Display test results for current user.
 //
@@ -91,7 +91,7 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		echo '<div class="row"><span class="label">';
 		echo '<span title="'.$l['h_test_name'].'">'.$l['w_test'].': </span>'.K_NEWLINE;
 		echo '</span><span class="formw">';
-		echo ''.$testdata['test_name'].' ['.F_testInfoLink($test_id, $l['w_info']).']';
+		echo ''.$testdata['test_name'].' '.F_testInfoLink($test_id, $l['w_info']).'';
 		echo '</span></div>'.K_NEWLINE;
 		
 		$passmsg = '';
