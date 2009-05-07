@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-03-24
+// Last Update : 2009-05-07
 // 
 // Description : Editor to manually rate free text answers.
 //
@@ -171,6 +171,7 @@ if($sql) {
 			$test_score_wrong = round(($m['test_score_wrong'] * $m['question_difficulty']), 3);
 			$test_score_unanswered = round(($m['test_score_unanswered'] * $m['question_difficulty']), 3);
 			$question = F_decode_tcecode($m['question_description']);
+			$explanation =  F_decode_tcecode($m['question_explanation']);
 			$answer = F_decode_tcecode($m['testlog_answer_text']);
 		} else {
 			$testlog_id = '';
@@ -179,6 +180,7 @@ if($sql) {
 			$test_score_wrong = 0;
 			$test_score_unanswered = 0;
 			$question = '';
+			$explanation = '';
 			$answer = '';
 			$testlog_comment = '';
 		}
@@ -326,6 +328,19 @@ echo ' onclick="document.getElementById(\'form_ratingeditor\').submit();" title=
 <?php echo $question; ?>&nbsp;
 </span>
 </div>
+
+<?php
+if (K_ENABLE_QUESTION_EXPLANATION AND !empty($explanation)) {
+	echo '<div class="row">'.K_NEWLINE;
+	echo '<span class="label">'.K_NEWLINE;
+	echo '<span title="'.$l['w_explanation'].'">'.$l['w_explanation'].'</span>'.K_NEWLINE;
+	echo '</span>'.K_NEWLINE;
+	echo '<span class="formw">'.K_NEWLINE;
+	echo $explanation.'&nbsp;'.K_NEWLINE;
+	echo '</span>'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+}
+?>
 
 <div class="row">
 <span class="label">

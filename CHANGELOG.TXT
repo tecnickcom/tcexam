@@ -1,3 +1,7 @@
+9.0.010 (2009-05-07)
+	- Question explanation was added on "Answer Evaluation" page.
+	- TCPDF library was updated.
+	
 9.0.009 (2009-04-29)
 	- Question "autonext" and "timer" features were fixed.
 	- TCPDF library was updated.
