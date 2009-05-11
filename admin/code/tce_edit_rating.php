@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-05-07
+// Last Update : 2009-05-11
 // 
 // Description : Editor to manually rate free text answers.
 //
@@ -139,7 +139,7 @@ if(!isset($test_id) OR empty($test_id)) {
 }
 
 if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($testlog_id)) OR empty($testlog_id)) {
-	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty
+	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty, question_explanation
 		FROM '.K_TABLE_TESTS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_QUESTIONS.'
 		WHERE testuser_test_id=test_id 
 			AND testlog_testuser_id=testuser_id
@@ -151,7 +151,7 @@ if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($testlog_id)) 
 		ORDER BY test_id, testlog_id, testuser_user_id 
 		LIMIT 1';
 } else {
-	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty
+	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty, question_explanation
 		FROM '.K_TABLE_TESTS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_QUESTIONS.'
 		WHERE testuser_test_id=test_id 
 			AND testlog_testuser_id=testuser_id

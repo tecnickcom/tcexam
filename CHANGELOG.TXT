@@ -1,3 +1,6 @@
+9.0.011 (2009-05-11)
+	- Bug related to question explanation appearance on "Answer Evaluation" page was fixed.
+
 9.0.010 (2009-05-07)
 	- Question explanation was added on "Answer Evaluation" page.
 	- TCPDF library was updated.

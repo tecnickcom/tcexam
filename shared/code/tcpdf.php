@@ -6912,6 +6912,7 @@ if (!class_exists('TCPDF', false)) {
 		 */		
 		public function convertHTMLColorToDec($color='#FFFFFF') {
 			global $webcolor;
+			$returncolor = false;
 			$color = preg_replace('/[\s]*/', '', $color); // remove extra spaces
 			$color = strtolower($color);
 			if (strlen($color) == 0) {
