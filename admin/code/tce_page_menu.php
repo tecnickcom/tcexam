@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2009-03-23
+// Last Update : 2009-05-25
 // 
 // Description : Output XHTML unordered list menu.
 //
@@ -86,7 +86,7 @@ echo '<li>'.F_menu_link('tce_show_result_user.php', $l['t_result_user'], $l['w_u
 echo '</ul></li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_show_result_questions.php', $l['t_result_questions'], $l['w_stats'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
 echo '</ul></li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('http://www.tcexam.com', $l['h_guide'], $l['w_guide'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
+echo '<li>'.F_menu_link('http://www.tcexam.org', $l['h_guide'], $l['w_guide'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_page_info.php', $l['h_info'], $l['w_info'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
 if ($_SESSION['session_user_level'] > 0) {
 	echo '<li>'.F_menu_link('tce_logout.php', $l['h_logout_link'], $l['w_logout'], 0, ($_SESSION['session_user_level'] > 1)).'</li>'.K_NEWLINE;

@@ -1,3 +1,8 @@
+9.0.012 (2009-05-25)
+	- CSS files were updated.
+	- TCPDF library was updated.
+	- The official Website for TCExam is http://www.tcexam.org
+
 9.0.011 (2009-05-11)
 	- Bug related to question explanation appearance on "Answer Evaluation" page was fixed.
 
@@ -376,7 +381,7 @@
 	- TCPDF was updated.
 	- TMX language file was fixed.
 	- INSTALL.TXT file was added.
-	- Guide files were removed. The guide is now hosted online on http://www.tcexam.com
+	- Guide files were removed. The guide is now hosted online on http://www.tcexam.org
 	- Source code documentation template was changed.
 	- Installation form and guide were updated.
 	

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-04-29
+// Last Update : 2009-05-25
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -108,7 +108,7 @@ function F_getUserTests() {
 					}
 				}
 				if (($test_status < 4) OR (F_getBoolean($m['test_results_to_users']))) {
-					$str .= '</li>';
+					$str .= '</li>'.K_NEWLINE;;
 				}
 			}
 		}
@@ -116,7 +116,7 @@ function F_getUserTests() {
 		F_display_db_error();
 	}
 	if (strlen($str) > 0) {
-		$str = $l['w_tests_available'].":<br />\n<ul>\n".$str."</ul>\n";
+		$str = $l['w_tests_available'].':<br />'.K_NEWLINE.'<ol class="testlist">'.K_NEWLINE.$str.'</ol>'.K_NEWLINE;
 	} else {
 		$str = $l['m_no_test_available'];
 	}

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-29
-// Last Update : 2009-02-20
+// Last Update : 2009-05-25
 // 
 // Description : Main page of administrator section.
 //
@@ -57,7 +57,7 @@ $pagelevel = K_AUTH_INDEX;
 require_once('../../shared/code/tce_authorization.php');
 require_once('tce_page_header.php');
 
-echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">YOU CAN\'T REMOVE OR MOVE THE ORIGINAL TCEXAM LOGO, COPYRIGHTS STATEMENTS AND LINKS TO <a href="http://www.tecnick.com" title="External link to Tecnick.com">TECNICK.COM</a> AND <a href="http://www.tcexam.com" title="External link to TCExam">TCEXAM</a> WEBSITES FROM THIS SOFTWARE. TCEXAM IS SUBJECT TO THE <a href="http://www.fsf.org/licensing/licenses/gpl.html" title="External link to GPL License">GNU-GPL v.3 LICENSE.</a></div>'.K_NEWLINE;
+echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">YOU CAN\'T REMOVE OR MOVE THE ORIGINAL TCEXAM LOGO, COPYRIGHTS STATEMENTS AND LINKS TO <a href="http://www.tecnick.com" title="External link to Tecnick.com">TECNICK.COM</a> AND <a href="http://www.tcexam.org" title="External link to TCExam">TCEXAM</a> WEBSITES FROM THIS SOFTWARE. TCEXAM IS SUBJECT TO THE <a href="http://www.fsf.org/licensing/licenses/gpl.html" title="External link to GPL License">GNU-GPL v.3 LICENSE.</a></div>'.K_NEWLINE;
 
 echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">PLEASE CONTACT <a href="mailto:info@tecnick.com" title="mail to tecnick.com">info@tecnick.com</a> FOR COMMERCIAL USAGE.</div>'.K_NEWLINE;
 

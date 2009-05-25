@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2009-02-20
+// Last Update : 2009-05-25
 // 
 // Description : Default CSS for admin area.
 //
@@ -291,6 +291,7 @@ div.header div.right input{
 	border: 0px none;
 	color: #FFFFFF;
 	font-size: 100%;
+	font-weight: bold;
 	text-align: right;
 }
 

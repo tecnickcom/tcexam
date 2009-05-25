@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2008-09-30
+// Last Update : 2009-05-25
 // 
 // Description : Default CSS for public area.
 //
@@ -262,6 +262,7 @@ div.header div.right input{
 	border: 0px none;
 	color: #FFFFFF;
 	font-size: 100%;
+	font-weight: bold;
 	text-align: right;
 }
 
@@ -701,6 +702,10 @@ a.xmlbutton:link, a.xmlbutton:visited {
 
 a.xmlbutton:hover {
 	background-color: #DDEEFF;
+}
+
+ol.testlist li {
+	margin: 0px 0px 10px 0px;
 }
 
 .infolink{

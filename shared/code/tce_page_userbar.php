@@ -100,7 +100,7 @@ echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" class="minibutton" ti
 echo '</div>'.K_NEWLINE;
 
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
-echo '<span class="copyright"><a href="http://www.tcexam.com">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2009 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>'.K_NEWLINE;
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2009 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 //============================================================+

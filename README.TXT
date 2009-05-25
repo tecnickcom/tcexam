@@ -8,9 +8,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 9.0.011
+Version: 9.0.012
 
-Release date: 2009-05-11
+Release date: 2009-05-25
 
 Author:
 	Nicola Asuni 
@@ -69,7 +69,7 @@ Software License
 
 Requirements and Install Documentation:
 	[ENG] install/index.htm
-	Check also the documentation on http://www.tcexam.com
+	Check also the documentation on http://www.tcexam.org
 
 Source Documentation:
 	admin/doc/code/index.html
