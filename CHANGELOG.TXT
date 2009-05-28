@@ -1,3 +1,6 @@
+9.0.013 (2009-05-28)
+	- TCPDF library was updated to fix list bullets position for RTL languages.
+
 9.0.012 (2009-05-25)
 	- CSS files were updated.
 	- TCPDF library was updated.
