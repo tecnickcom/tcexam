@@ -155,7 +155,7 @@ define ('PDF_FONT_SIZE_DATA', 7);
 /**
  * ratio used to adjust the conversion of pixels to user units
  */
-define ('PDF_IMAGE_SCALE_RATIO', 1);
+define ('PDF_IMAGE_SCALE_RATIO', 2);
 
 /**
  * magnification factor for titles

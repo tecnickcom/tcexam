@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-05-11
+// Last Update : 2009-06-03
 // 
 // Description : Editor to manually rate free text answers.
 //
@@ -66,16 +66,12 @@ require_once('../code/tce_functions_auth_sql.php');
 if (isset($selectcategory)) {
 	$changecategory = 1;
 }
-if (isset($test_id)) {
-	$test_id = intval($test_id);
-}
 if (isset($testlog_id)) {
 	$testlog_id = intval($testlog_id);
 }
 if (!isset($testlog_comment)) {
 	$testlog_comment = '';
 }
-
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
 	// check user's authorization
@@ -88,17 +84,26 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 switch($menu_mode) {
 	case 'update': { // Update
 		if($formstatus = F_check_form_fields()) {
-			$sql = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET 
-				testlog_score='.F_escape_sql($testlog_score).',
-				testlog_comment=\''.F_escape_sql($testlog_comment).'\'
-				WHERE testlog_id='.$testlog_id.'';
-			if(!$r = F_db_query($sql, $db)) {
-				F_display_db_error(false);
-			} else {
-				F_print_error('MESSAGE', $l['m_updated']);
-				$testlog_score = '';
-				$testlog_id = '';
-				$testlog_comment = '';
+			if (isset($testlog_score) AND isset($max_score)) {
+				// score cannot be greater than max_score
+				$testlog_score = floatval($testlog_score);
+				$max_score = floatval($max_score);
+				if ($testlog_score > $max_score) {
+					F_print_error('WARNING', $l['m_score_higher_than_max']);
+					break;
+				}
+				$sql = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET 
+					testlog_score='.$testlog_score.',
+					testlog_comment=\''.F_escape_sql($testlog_comment).'\'
+					WHERE testlog_id='.$testlog_id.'';
+				if(!$r = F_db_query($sql, $db)) {
+					F_display_db_error(false);
+				} else {
+					F_print_error('MESSAGE', $l['m_updated']);
+					$testlog_score = '';
+					$testlog_id = '';
+					$testlog_comment = '';
+				}
 			}
 		}
 		break;
@@ -367,6 +372,7 @@ if (K_ENABLE_QUESTION_EXPLANATION AND !empty($explanation)) {
 &nbsp;
 </span>
 <span class="formw">
+<input type="hidden" name="max_score" id="max_score" value="<?php echo $test_score_right; ?>" />
 <input type="radio" name="default_score" id="default_score_correct" value="0" onclick="document.getElementById('form_ratingeditor').testlog_score.value='<?php echo $test_score_right; ?>'" title="<?php echo $l['h_score_right']; ?>" /><label for="default_score_correct"><?php echo $l['w_score_right']." [".$test_score_right."]"; ?></label>
 </span>
 </div>

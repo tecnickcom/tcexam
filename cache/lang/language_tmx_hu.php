@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2009-03-26 19:55:04
+// DATE: 2009-06-03 17:01:35
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -489,6 +489,7 @@ $tmx['h_repeatable_test']='a felhasználók ismételhetik a tesztet';
 $tmx['w_repeat']='ismétlés';
 $tmx['h_repeat_test']='ennek a tesznek az ismétlése (az eddigi eredmények törlődnek)';
 $tmx['w_calendar']='naptár';
+$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
 
 // EOF ----------
 ?>

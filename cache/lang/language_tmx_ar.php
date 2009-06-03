@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2009-03-26 19:54:30
+// DATE: 2009-06-03 17:01:07
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -487,6 +487,7 @@ $tmx['h_repeatable_test']='يسمح للمستخدمين باعادة الإخت
 $tmx['w_repeat']='اعاده';
 $tmx['h_repeat_test']='اعادة هذا الاختبار (تم حذف النتائج الحالية)';
 $tmx['w_calendar']='جدول الاختبارات';
+$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
 
 // EOF ----------
 ?>

@@ -8,9 +8,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 9.0.013
+Version: 9.0.014
 
-Release date: 2009-05-28
+Release date: 2009-06-03
 
 Author:
 	Nicola Asuni 
@@ -62,8 +62,8 @@ Software License
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	 
-	Additionally, you can't remove the original TCExam logo, copyrights statements
-	and links to Tecnick.com and TCExam websites.
+	Additionally, you can't remove the original TCExam logo, 
+	copyrights statements and links to Tecnick.com and TCExam Websites.
 	
 	See LICENSE.TXT file for more information.
 

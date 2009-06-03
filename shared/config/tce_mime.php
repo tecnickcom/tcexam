@@ -2,10 +2,9 @@
 //============================================================+
 // File name   : tce_mime.php
 // Begin       : 2005-03-04
-// Last Update : 2009-02-12
+// Last Update : 2009-06-02
 // 
 // Description : file extension - MIME type associations
-//
 //
 // Author: Nicola Asuni
 //
@@ -65,6 +64,7 @@ $mime['aif'] = 'audio/x-aiff';
 $mime['aifc'] = 'audio/x-aiff';
 $mime['aiff'] = 'audio/x-aiff';
 $mime['ano'] = 'application/x-annotator';
+$mime['anx'] = 'application/annodex';
 $mime['apm'] = 'application/studiom';
 $mime['asc'] = 'text/plain';
 $mime['asd'] = 'application/astound';
@@ -75,7 +75,9 @@ $mime['asr'] = 'video/x-ms-asf';
 $mime['asx'] = 'video/x-ms-asf';
 $mime['au'] = 'audio/basic';
 $mime['avi'] = 'video/x-msvideo';
+$mime['axa'] = 'audio/annodex';
 $mime['axs'] = 'application/olescript';
+$mime['axv'] = 'video/annodex';
 $mime['bas'] = 'text/plain';
 $mime['bcpio'] = 'application/x-bcpio';
 $mime['bin'] = 'application/octet-stream';
@@ -130,6 +132,7 @@ $mime['fh7'] = 'image/x-freehand';
 $mime['fhc'] = 'image/x-freehand';
 $mime['fif'] = 'application/fractals';
 $mime['fif'] = 'image/fif';
+$mime['flac'] = 'audio/flac';
 $mime['flr'] = 'x-world/x-vrml';
 $mime['fm'] = 'application/x-framemaker';
 $mime['frame'] = 'application/x-framemaker';
@@ -217,6 +220,10 @@ $mime['mvb'] = 'application/x-msmediaview';
 $mime['nc'] = 'application/x-netcdf';
 $mime['nws'] = 'message/rfc822';
 $mime['oda'] = 'application/oda';
+$mime['ogx'] = 'application/ogg';
+$mime['ogv'] = 'video/ogg';
+$mime['oga'] = 'audio/ogg';
+$mime['ogg'] = 'audio/ogg';
 $mime['p10'] = 'application/pkcs10';
 $mime['p12'] = 'application/x-pkcs12';
 $mime['p7b'] = 'application/x-pkcs7-certificates';
@@ -295,6 +302,7 @@ $mime['spl'] = 'application/futuresplash';
 $mime['spl'] = 'application/x-futuresplash';
 $mime['spr'] = 'application/x-sprite';
 $mime['sprite'] = 'application/x-sprite';
+$mime['spx'] = 'audio/ogg';
 $mime['src'] = 'application/x-wais-source';
 $mime['sst'] = 'application/vnd.ms-pkicertstore';
 $mime['stl'] = 'application/vnd.ms-pkistl';
@@ -365,6 +373,7 @@ $mime['xlw'] = 'application/vnd.ms-excel';
 $mime['xml'] = 'text/xml';
 $mime['xof'] = 'x-world/x-vrml';
 $mime['xpm'] = 'image/x-xpixmap';
+$mime['xspf'] = 'application/xspf+xml';
 $mime['xvd'] = 'video/x-xvid';
 $mime['xvid'] = 'video/x-xvid';
 $mime['xwd'] = 'image/x-xwindowdump';

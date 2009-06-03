@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20090522T151900Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20090603T1700Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -33027,6 +33027,75 @@
    </tuv>
    <tuv xml:lang="EN">
     <seg>calendar</seg>
+   </tuv>
+  </tu>
+  <!-- TCExam 9.0.014 (2009-06-03) -->
+  <tu tuid="m_score_higher_than_max" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>il punteggio selezionato è maggiore del massimo consentito</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>the selected score is higher than maximum allowed</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>the selected score is higher than maximum allowed</seg>
    </tuv>
   </tu>
  </body>

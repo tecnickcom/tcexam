@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2009-03-26 19:55:10
+// DATE: 2009-06-03 17:01:39
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -489,6 +489,7 @@ $tmx['h_repeatable_test']='gli utenti possono ripetere questo test diverse volte
 $tmx['w_repeat']='ripeti';
 $tmx['h_repeat_test']='ripeti questo test (i risultati correnti verranno cancellati)';
 $tmx['w_calendar']='calendario';
+$tmx['m_score_higher_than_max']='il punteggio selezionato è maggiore del massimo consentito';
 
 // EOF ----------
 ?>
