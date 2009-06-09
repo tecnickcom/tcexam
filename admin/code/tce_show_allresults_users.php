@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2009-02-15
+// Last Update : 2009-06-09
 // 
 // Description : Display all test results for the selected users.
 //
@@ -70,17 +70,19 @@ require_once('../code/tce_functions_statistics.php');
 if (isset($_REQUEST['user_id'])) {
 	$user_id = intval($_REQUEST['user_id']);
 	// check user's authorization
-	$sql = 'SELECT user_id 
-		FROM '.K_TABLE_USERS.' 
-		WHERE user_id='.$user_id.' 
-			AND user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
-	if($r = F_db_query($sql, $db)) {
-		if(!F_db_fetch_array($r)) {
-			F_print_error('ERROR', $l['m_authorization_denied']);
-			exit;
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		$sql = 'SELECT user_id 
+			FROM '.K_TABLE_USERS.' 
+			WHERE user_id='.$user_id.' 
+				AND user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+		if($r = F_db_query($sql, $db)) {
+			if(!F_db_fetch_array($r)) {
+				F_print_error('ERROR', $l['m_authorization_denied']);
+				exit;
+			}
+		} else {
+			F_display_db_error();
 		}
-	} else {
-		F_display_db_error();
 	}
 }
 
@@ -155,7 +157,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				}
 				case 'lock':{
 					// update test mode to 4 = test locked
-					$sqlu = 'UPDATE ".K_TABLE_TEST_USER."
+					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 						SET testuser_status=4 
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$ru = F_db_query($sqlu, $db)) {
