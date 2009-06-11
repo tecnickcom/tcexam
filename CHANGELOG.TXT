@@ -1,3 +1,6 @@
+9.0.017 (2009-06-11)
+	- TCPDF library was updated.
+
 9.0.016 (2009-06-08)
 	- tce_show_allresults_users.php was fixed for various errors.
 
