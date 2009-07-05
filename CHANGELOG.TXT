@@ -1,5 +1,9 @@
+9.0.019 (2009-07-05)
+	- Language files were updated.
+	- TCPDF library was updated.
+
 9.0.018 (2009-06-15)
-	- Language filese were updated.
+	- Language files were updated.
 	- TCPDF library was updated.
 
 9.0.017 (2009-06-11)
