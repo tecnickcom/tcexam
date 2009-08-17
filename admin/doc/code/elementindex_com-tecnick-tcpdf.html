@@ -132,7 +132,7 @@
 							<dt><b>_md5_16</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_md5_16">TCPDF::_md5_16()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Encrypts a string using MD5 and returns it's value as a binary string.</dd>
 							<dt><b>_newobj</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_newobj">TCPDF::_newobj()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Begin a new object.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_newobj">TCPDF::_newobj()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Begin a new object and return the object number.</dd>
 							<dt><b>_objectkey</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_objectkey">TCPDF::_objectkey()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compute encryption key depending on object number where the encrypted data is stored</dd>
 							<dt><b>_out</b></dt>
@@ -159,8 +159,6 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putbookmarks">TCPDF::_putbookmarks()</a></dd>
 							<dt><b>_putcatalog</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcatalog">TCPDF::_putcatalog()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Catalog.</dd>
-							<dt><b>_putcertification</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcertification">TCPDF::_putcertification()</a></dd>
 							<dt><b>_putcidfont0</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcidfont0">TCPDF::_putcidfont0()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output CID-0 fonts.</dd>
 							<dt><b>_putEmbeddedFiles</b></dt>
@@ -191,6 +189,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putresources">TCPDF::_putresources()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Resources.</dd>
 							<dt><b>_putshaders</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putshaders">TCPDF::_putshaders()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output shaders.</dd>
+							<dt><b>_putsignature</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putsignature">TCPDF::_putsignature()</a></dd>
 							<dt><b>_putspotcolors</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putspotcolors">TCPDF::_putspotcolors()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Spot Colors Resources.</dd>
 							<dt><b>_putstream</b></dt>
@@ -199,8 +199,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttrailer">TCPDF::_puttrailer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output trailer.</dd>
 							<dt><b>_puttruetypeunicode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttruetypeunicode">TCPDF::_puttruetypeunicode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds unicode fonts.<br /></dd>
-							<dt><b>_putuserrights</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putuserrights">TCPDF::_putuserrights()</a></dd>
+							<dt><b>_putursignature</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putursignature">TCPDF::_putursignature()</a></dd>
 							<dt><b>_putviewerpreferences</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putviewerpreferences">TCPDF::_putviewerpreferences()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output viewer preferences.</dd>
 							<dt><b>_putxobjectdict</b></dt>
@@ -261,6 +261,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAliasNumPage">TCPDF::AliasNumPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines an alias for the page number.</dd>
 							<dt><b>Annotation</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAnnotation">TCPDF::Annotation()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Puts a markup annotation on a rectangular area of the page.</dd>
+							<dt><b>Arrow</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodArrow">TCPDF::Arrow()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a grahic arrow.</dd>
 							<dt><b>arrUTF8ToUTF16BE</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodarrUTF8ToUTF16BE">TCPDF::arrUTF8ToUTF16BE()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Converts array of UTF-8 characters to UTF16-BE string.<br /></dd>
 					</dl>
@@ -345,6 +347,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cell_height_ratio">TCPDF::$cell_height_ratio</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default cell height ratio.</dd>
 							<dt><b>$cMargin</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cMargin">TCPDF::$cMargin</a></dd>
+							<dt><b>$cntmrk</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cntmrk">TCPDF::$cntmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store content positions inside the pages buffer.</dd>
 							<dt><b>$ColorFlag</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$ColorFlag">TCPDF::$ColorFlag</a></dd>
 							<dt><b>$compress</b></dt>
@@ -623,6 +627,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetX">TCPDF::GetX()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the relative X value of current position.</dd>
 							<dt><b>GetY</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetY">TCPDF::GetY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the ordinate of the current position.</dd>
+							<dt><b>get_mqr</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodget_mqr">TCPDF::get_mqr()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Gets the current active configuration setting of magic_quotes_runtime (if the get_magic_quotes_runtime function exist)</dd>
 							<dt><b>Gradient</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGradient">TCPDF::Gradient()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output gradient.</dd>
 					</dl>
@@ -1039,6 +1045,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$signature_data">TCPDF::$signature_data</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature data</dd>
 							<dt><b>$signature_max_lenght</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$signature_max_lenght">TCPDF::$signature_max_lenght</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature max lenght</dd>
+							<dt><b>$sig_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$sig_obj_id">TCPDF::$sig_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature object ID</dd>
 							<dt><b>$spot_colors</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$spot_colors">TCPDF::$spot_colors</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array of Spot colors</dd>
 							<dt><b>$state</b></dt>
@@ -1060,11 +1068,11 @@
 							<dt><b>SetAutoPageBreak</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetAutoPageBreak">TCPDF::SetAutoPageBreak()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Enables or disables the automatic page breaking mode. When enabling, the second parameter is the distance from the bottom of the page that defines the triggering limit. By default, the mode is on and the margin is 2 cm.</dd>
 							<dt><b>setBarcode</b></dt>
+				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
+							<dt><b>setBarcode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBarcode">TCPDF::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set document barcode.</dd>
 							<dt><b>setBarcode</b></dt>
 				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
-							<dt><b>setBarcode</b></dt>
-				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>SetBooklet</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetBooklet">TCPDF::SetBooklet()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the booklet mode for double-sided pages.</dd>
 							<dt><b>setBuffer</b></dt>
@@ -1075,6 +1083,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCellPadding">TCPDF::SetCellPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the internal Cell padding.</dd>
 							<dt><b>SetCompression</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCompression">TCPDF::SetCompression()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Activates or deactivates page compression. When activated, the internal representation of each page is compressed, which leads to a compression ratio of about 2 for the resulting document. Compression is on by default.</dd>
+							<dt><b>setContentMark</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetContentMark">TCPDF::setContentMark()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set start-writing mark on selected page.</dd>
 							<dt><b>SetCreator</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCreator">TCPDF::SetCreator()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the creator of the document. This is typically the name of the application that generates the PDF.</dd>
 							<dt><b>SetDefaultMonospacedFont</b></dt>
@@ -1211,6 +1221,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetXY">TCPDF::SetXY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the abscissa and ordinate of the current position.</dd>
 							<dt><b>SetY</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetY">TCPDF::SetY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Moves the current abscissa back to the left margin and sets the ordinate.</dd>
+							<dt><b>set_mqr</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodset_mqr">TCPDF::set_mqr()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the current active configuration setting of magic_quotes_runtime (if the set_magic_quotes_runtime function exist)</dd>
 							<dt><b>Skew</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSkew">TCPDF::Skew()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Skew.</dd>
 							<dt><b>SkewX</b></dt>
@@ -1408,7 +1420,7 @@
 	<a href="elementindex_com-tecnick-tcpdf.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 05 Jul 2009 22:26:07 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Mon, 17 Aug 2009 18:03:28 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

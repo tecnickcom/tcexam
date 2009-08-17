@@ -148,6 +148,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAliasNumPage">TCPDF::AliasNumPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines an alias for the page number.</dd>
 							<dt><b>Annotation</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAnnotation">TCPDF::Annotation()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Puts a markup annotation on a rectangular area of the page.</dd>
+							<dt><b>Arrow</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodArrow">TCPDF::Arrow()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a grahic arrow.</dd>
 							<dt><b>arrUTF8ToUTF16BE</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodarrUTF8ToUTF16BE">TCPDF::arrUTF8ToUTF16BE()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Converts array of UTF-8 characters to UTF16-BE string.<br /></dd>
 							<dt><b>AttachAll</b></dt>
@@ -254,6 +256,8 @@
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$CharSet">PHPMailer::$CharSet</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the CharSet of the message.</dd>
 							<dt><b>$cMargin</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cMargin">TCPDF::$cMargin</a></dd>
+							<dt><b>$cntmrk</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cntmrk">TCPDF::$cntmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store content positions inside the pages buffer.</dd>
 							<dt><b>$ColorFlag</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$ColorFlag">TCPDF::$ColorFlag</a></dd>
 							<dt><b>$compress</b></dt>
@@ -940,6 +944,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetY">TCPDF::GetY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the ordinate of the current position.</dd>
 							<dt><b>get_lines</b></dt>
 				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodget_lines">SMTP::get_lines()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Read in as many lines as possible  either before eof or socket timeout occurs on the operation.</dd>
+							<dt><b>get_mqr</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodget_mqr">TCPDF::get_mqr()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Gets the current active configuration setting of magic_quotes_runtime (if the get_magic_quotes_runtime function exist)</dd>
 							<dt><b>Gradient</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGradient">TCPDF::Gradient()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output gradient.</dd>
 					</dl>
@@ -1838,6 +1844,8 @@
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$sign_key_file">PHPMailer::$sign_key_file</a></dd>
 							<dt><b>$sign_key_pass</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$sign_key_pass">PHPMailer::$sign_key_pass</a></dd>
+							<dt><b>$sig_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$sig_obj_id">TCPDF::$sig_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature object ID</dd>
 							<dt><b>$SingleTo</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Provides the ability to have the TO field process individual</dd>
 							<dt><b>$smtp</b></dt>
@@ -1881,9 +1889,9 @@
 							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>Send</b></dt>
-				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodSend">SMTP::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a mail transaction from the email address specified in</dd>
-							<dt><b>Send</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#methodSend">PHPMailer::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates message and assigns Mailer. If the message is  not sent successfully then it returns false.  Use the ErrorInfo  variable to view description of the error.</dd>
+							<dt><b>Send</b></dt>
+				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodSend">SMTP::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a mail transaction from the email address specified in</dd>
 							<dt><b>SendAndMail</b></dt>
 				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodSendAndMail">SMTP::SendAndMail()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a mail transaction from the email address specified in</dd>
 							<dt><b>SendHello</b></dt>
@@ -1920,6 +1928,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCellPadding">TCPDF::SetCellPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the internal Cell padding.</dd>
 							<dt><b>SetCompression</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCompression">TCPDF::SetCompression()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Activates or deactivates page compression. When activated, the internal representation of each page is compressed, which leads to a compression ratio of about 2 for the resulting document. Compression is on by default.</dd>
+							<dt><b>setContentMark</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetContentMark">TCPDF::setContentMark()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set start-writing mark on selected page.</dd>
 							<dt><b>SetCreator</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCreator">TCPDF::SetCreator()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the creator of the document. This is typically the name of the application that generates the PDF.</dd>
 							<dt><b>SetDefaultMonospacedFont</b></dt>
@@ -1935,9 +1945,9 @@
 							<dt><b>SetDrawSpotColor</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetDrawSpotColor">TCPDF::SetDrawSpotColor()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the spot color used for all drawing operations (lines, rectangles and cell borders).</dd>
 							<dt><b>SetError</b></dt>
-				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#methodSetError">PHPMailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds the error message to the error container.</dd>
-							<dt><b>SetError</b></dt>
 				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodSetError">C_mailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace the default SetError</dd>
+							<dt><b>SetError</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#methodSetError">PHPMailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds the error message to the error container.</dd>
 							<dt><b>setExtGState</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetExtGState">TCPDF::setExtGState()</a></dd>
 							<dt><b>setFilenamePrefix</b></dt>
@@ -2098,6 +2108,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetXY">TCPDF::SetXY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the abscissa and ordinate of the current position.</dd>
 							<dt><b>SetY</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetY">TCPDF::SetY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Moves the current abscissa back to the left margin and sets the ordinate.</dd>
+							<dt><b>set_mqr</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodset_mqr">TCPDF::set_mqr()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the current active configuration setting of magic_quotes_runtime (if the set_magic_quotes_runtime function exist)</dd>
 							<dt><b>showRequiredField</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionshowRequiredField">showRequiredField()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return a string containing an HTML acronym for required/not required fields.</dd>
 							<dt><b>Sign</b></dt>
@@ -2595,7 +2607,7 @@
 							<dt><b>_mime_types</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#method_mime_types">PHPMailer::_mime_types()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Gets the mime type of the embedded or inline image</dd>
 							<dt><b>_newobj</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_newobj">TCPDF::_newobj()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Begin a new object.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_newobj">TCPDF::_newobj()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Begin a new object and return the object number.</dd>
 							<dt><b>_objectkey</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_objectkey">TCPDF::_objectkey()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compute encryption key depending on object number where the encrypted data is stored</dd>
 							<dt><b>_out</b></dt>
@@ -2622,8 +2634,6 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putbookmarks">TCPDF::_putbookmarks()</a></dd>
 							<dt><b>_putcatalog</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcatalog">TCPDF::_putcatalog()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Catalog.</dd>
-							<dt><b>_putcertification</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcertification">TCPDF::_putcertification()</a></dd>
 							<dt><b>_putcidfont0</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putcidfont0">TCPDF::_putcidfont0()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output CID-0 fonts.</dd>
 							<dt><b>_putEmbeddedFiles</b></dt>
@@ -2654,6 +2664,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putresources">TCPDF::_putresources()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Resources.</dd>
 							<dt><b>_putshaders</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putshaders">TCPDF::_putshaders()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output shaders.</dd>
+							<dt><b>_putsignature</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putsignature">TCPDF::_putsignature()</a></dd>
 							<dt><b>_putspotcolors</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putspotcolors">TCPDF::_putspotcolors()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output Spot Colors Resources.</dd>
 							<dt><b>_putstream</b></dt>
@@ -2662,8 +2674,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttrailer">TCPDF::_puttrailer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output trailer.</dd>
 							<dt><b>_puttruetypeunicode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttruetypeunicode">TCPDF::_puttruetypeunicode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds unicode fonts.<br /></dd>
-							<dt><b>_putuserrights</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putuserrights">TCPDF::_putuserrights()</a></dd>
+							<dt><b>_putursignature</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putursignature">TCPDF::_putursignature()</a></dd>
 							<dt><b>_putviewerpreferences</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putviewerpreferences">TCPDF::_putviewerpreferences()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output viewer preferences.</dd>
 							<dt><b>_putxobjectdict</b></dt>
@@ -2709,7 +2721,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 05 Jul 2009 22:26:08 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Mon, 17 Aug 2009 18:03:29 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

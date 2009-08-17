@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2008  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@
  * Process all TTF files on current directory to build TCPDF compatible font files.
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2008, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link www.tecnick.com
  * @since 2008-12-07
