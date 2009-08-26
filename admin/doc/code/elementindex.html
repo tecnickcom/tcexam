@@ -190,6 +190,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$buffer">TCPDF::$buffer</a></dd>
 							<dt><b>$bufferlen</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$bufferlen">TCPDF::$bufferlen</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Lenght of the buffer in bytes.</dd>
+							<dt><b>$byterange_string</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$byterange_string">TCPDF::$byterange_string</a><br>&nbsp;&nbsp;&nbsp;&nbsp;ByteRange placemark used during signature process.</dd>
 							<dt><b>barcode_c128</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodbarcode_c128">TCPDFBarcode::barcode_c128()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;C128 barcodes.</dd>
 							<dt><b>barcode_codabar</b></dt>
@@ -1844,6 +1846,8 @@
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$sign_key_file">PHPMailer::$sign_key_file</a></dd>
 							<dt><b>$sign_key_pass</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="com.tecnick.tcexam/PHPMailer.html#var$sign_key_pass">PHPMailer::$sign_key_pass</a></dd>
+							<dt><b>$sig_annot_ref</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$sig_annot_ref">TCPDF::$sig_annot_ref</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Placemark used during signature process.</dd>
 							<dt><b>$sig_obj_id</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$sig_obj_id">TCPDF::$sig_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature object ID</dd>
 							<dt><b>$SingleTo</b></dt>
@@ -1889,9 +1893,9 @@
 							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>Send</b></dt>
-				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#methodSend">PHPMailer::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates message and assigns Mailer. If the message is  not sent successfully then it returns false.  Use the ErrorInfo  variable to view description of the error.</dd>
-							<dt><b>Send</b></dt>
 				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodSend">SMTP::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a mail transaction from the email address specified in</dd>
+							<dt><b>Send</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="com.tecnick.tcexam/PHPMailer.html#methodSend">PHPMailer::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates message and assigns Mailer. If the message is  not sent successfully then it returns false.  Use the ErrorInfo  variable to view description of the error.</dd>
 							<dt><b>SendAndMail</b></dt>
 				<dd>in file class.smtp.php, method <a href="com.tecnick.tcexam/SMTP.html#methodSendAndMail">SMTP::SendAndMail()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a mail transaction from the email address specified in</dd>
 							<dt><b>SendHello</b></dt>
@@ -2577,7 +2581,9 @@
 							<dt><b>_beginpage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_beginpage">TCPDF::_beginpage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Initialize a new page.</dd>
 							<dt><b>_datastring</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_datastring">TCPDF::_datastring()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Format a date string for meta information</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_datastring">TCPDF::_datastring()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Format a data string for meta information</dd>
+							<dt><b>_datestring</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_datestring">TCPDF::_datestring()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a formatted date for meta information</dd>
 							<dt><b>_destroy</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_destroy">TCPDF::_destroy()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Unset all class variables except the following critical variables: internal_encoding, state, bufferlen, buffer and diskcache.</dd>
 							<dt><b>_dochecks</b></dt>
@@ -2721,7 +2727,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 17 Aug 2009 18:03:29 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Wed, 26 Aug 2009 09:06:46 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -1,3 +1,6 @@
+9.0.021 (2009-08-26)
+	- TCPDF library was updated (it was broken on previous release).
+
 9.0.020 (2009-08-17)
 	- Font files were updated.
 	- TCPDF library was updated.

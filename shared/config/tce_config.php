@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2009-04-28
+// Last Update : 2009-08-25
 // 
 // Description : Shared configuration file.
 //
@@ -247,7 +247,9 @@ require_once('../../shared/code/tce_tmx.php'); // TMX class
 $lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php'); // istantiate new TMXResourceBundle object
 $l = $lang_resources->getResource(); // language array
 
-set_magic_quotes_runtime(0); //disable magic quotes
+if (function_exists('set_magic_quotes_runtime')) {
+	@set_magic_quotes_runtime(false); //disable magic quotes
+}
 ini_set('arg_separator.output', '&amp;');
 ini_set('magic_quotes_gpc', 'On');
 ini_set('magic_quotes_runtime', 'Off');
