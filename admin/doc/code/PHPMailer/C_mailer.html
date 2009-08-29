@@ -13,7 +13,7 @@
   <tr>
     <td class="header_menu">
         
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                    
                               		  [ <a href="../classtrees_PHPMailer.html" class="menu">class tree: PHPMailer</a> ]
 		  [ <a href="../elementindex_PHPMailer.html" class="menu">index: PHPMailer</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
@@ -25,8 +25,10 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr valign="top">
     <td width="200" class="menu">
+	<div id="todolist">
+			<p><a href="../todolist.html">Todo List</a></p>
+	</div>
       <b>Packages:</b><br />
-              <a href="../li_com.tecnick.tcexam.html">com.tecnick.tcexam</a><br />
               <a href="../li_com-tecnick-latex.html">com-tecnick-latex</a><br />
               <a href="../li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
               <a href="../li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
@@ -39,6 +41,12 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../PHPMailer/_shared---phpmailer---class.phpmailer.php.html">		class.phpmailer.php
+		</a><br>
+			<a href="../PHPMailer/_shared---phpmailer---class.pop3.php.html">		class.pop3.php
+		</a><br>
+			<a href="../PHPMailer/_shared---phpmailer---class.smtp.php.html">		class.smtp.php
+		</a><br>
 			<a href="../PHPMailer/_shared---code---tce_class_mailer.php.html">		tce_class_mailer.php
 		</a><br>
 	  </div><br />
@@ -47,6 +55,10 @@
             <b>Classes:</b><br />
         <div class="package">
 		    		<a href="../PHPMailer/C_mailer.html">C_mailer</a><br />
+	    		<a href="../PHPMailer/PHPMailer.html">PHPMailer</a><br />
+	    		<a href="../PHPMailer/phpmailerException.html">phpmailerException</a><br />
+	    		<a href="../PHPMailer/POP3.html">POP3</a><br />
+	    		<a href="../PHPMailer/SMTP.html">SMTP</a><br />
 	  </div>
                 </td>
     <td>
@@ -60,20 +72,25 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 <tr><td valign="top">
 
 <h3><a href="#class_details">Class Overview</a></h3>
-<pre><a href="../com.tecnick.tcexam/PHPMailer.html">PHPMailer</a>
+<pre><a href="../PHPMailer/PHPMailer.html">PHPMailer</a>
    |
    --C_mailer</pre><br />
 <div class="description">C_mailer - PHPMailer class extension</div><br /><br />
 <h4>Author(s):</h4>
 <ul>
           <li>Nicola Asuni</li>
-                              </ul>
+                                    </ul>
 
 
 
 
+        
           
               
+<h4>Version:</h4>
+<ul>
+  <li>$Id: class.phpmailer.php 447 2009-05-25 01:36:38Z codeworxtech $</li>
+</ul>
 
 <h4>Copyright:</h4>
 <ul>
@@ -105,272 +122,310 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 
 
 
+<td valign="top">
+<h3>Inherited Constants</h3>
+<div class="tags">
+<h4>Class: <a href="../PHPMailer/PHPMailer.html">PHPMailer</a></h4>
+<dl>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#constSTOP_CONTINUE">PHPMailer::STOP_CONTINUE</a>
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#constSTOP_CRITICAL">PHPMailer::STOP_CRITICAL</a>
+</dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#constSTOP_MESSAGE">PHPMailer::STOP_MESSAGE</a>
+</dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
+</td>
 
 <td valign="top">
 <h3>Inherited Variables</h3>
 <div class="tags">
-<h4>Class: <a href="../com.tecnick.tcexam/PHPMailer.html">PHPMailer</a></h4>
+<h4>Class: <a href="../PHPMailer/PHPMailer.html">PHPMailer</a></h4>
 <dl>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$AltBody">PHPMailer::$AltBody</a>
+  <a href="../PHPMailer/PHPMailer.html#var$all_recipients">PHPMailer::$all_recipients</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$attachment">PHPMailer::$attachment</a>
+  <a href="../PHPMailer/PHPMailer.html#var$AltBody">PHPMailer::$AltBody</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$bcc">PHPMailer::$bcc</a>
+  <a href="../PHPMailer/PHPMailer.html#var$attachment">PHPMailer::$attachment</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Body">PHPMailer::$Body</a>
+  <a href="../PHPMailer/PHPMailer.html#var$bcc">PHPMailer::$bcc</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$boundary">PHPMailer::$boundary</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Body">PHPMailer::$Body</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$cc">PHPMailer::$cc</a>
+  <a href="../PHPMailer/PHPMailer.html#var$boundary">PHPMailer::$boundary</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$CharSet">PHPMailer::$CharSet</a>
+  <a href="../PHPMailer/PHPMailer.html#var$cc">PHPMailer::$cc</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$ConfirmReadingTo">PHPMailer::$ConfirmReadingTo</a>
+  <a href="../PHPMailer/PHPMailer.html#var$CharSet">PHPMailer::$CharSet</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$ContentType">PHPMailer::$ContentType</a>
+  <a href="../PHPMailer/PHPMailer.html#var$ConfirmReadingTo">PHPMailer::$ConfirmReadingTo</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$CustomHeader">PHPMailer::$CustomHeader</a>
+  <a href="../PHPMailer/PHPMailer.html#var$ContentType">PHPMailer::$ContentType</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Encoding">PHPMailer::$Encoding</a>
+  <a href="../PHPMailer/PHPMailer.html#var$CustomHeader">PHPMailer::$CustomHeader</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$ErrorInfo">PHPMailer::$ErrorInfo</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Encoding">PHPMailer::$Encoding</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$error_count">PHPMailer::$error_count</a>
+  <a href="../PHPMailer/PHPMailer.html#var$ErrorInfo">PHPMailer::$ErrorInfo</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$From">PHPMailer::$From</a>
+  <a href="../PHPMailer/PHPMailer.html#var$error_count">PHPMailer::$error_count</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$FromName">PHPMailer::$FromName</a>
+  <a href="../PHPMailer/PHPMailer.html#var$exceptions">PHPMailer::$exceptions</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Helo">PHPMailer::$Helo</a>
+  <a href="../PHPMailer/PHPMailer.html#var$From">PHPMailer::$From</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Host">PHPMailer::$Host</a>
+  <a href="../PHPMailer/PHPMailer.html#var$FromName">PHPMailer::$FromName</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Hostname">PHPMailer::$Hostname</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Helo">PHPMailer::$Helo</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$LE">PHPMailer::$LE</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Host">PHPMailer::$Host</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Mailer">PHPMailer::$Mailer</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Hostname">PHPMailer::$Hostname</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$MessageID">PHPMailer::$MessageID</a>
+  <a href="../PHPMailer/PHPMailer.html#var$LE">PHPMailer::$LE</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$message_type">PHPMailer::$message_type</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Mailer">PHPMailer::$Mailer</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Password">PHPMailer::$Password</a>
+  <a href="../PHPMailer/PHPMailer.html#var$MessageID">PHPMailer::$MessageID</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$PluginDir">PHPMailer::$PluginDir</a>
+  <a href="../PHPMailer/PHPMailer.html#var$message_type">PHPMailer::$message_type</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Port">PHPMailer::$Port</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Password">PHPMailer::$Password</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Priority">PHPMailer::$Priority</a>
+  <a href="../PHPMailer/PHPMailer.html#var$PluginDir">PHPMailer::$PluginDir</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$ReplyTo">PHPMailer::$ReplyTo</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Port">PHPMailer::$Port</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Sender">PHPMailer::$Sender</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Priority">PHPMailer::$Priority</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Sendmail">PHPMailer::$Sendmail</a>
+  <a href="../PHPMailer/PHPMailer.html#var$ReplyTo">PHPMailer::$ReplyTo</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$sign_cert_file">PHPMailer::$sign_cert_file</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Sender">PHPMailer::$Sender</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$sign_key_file">PHPMailer::$sign_key_file</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Sendmail">PHPMailer::$Sendmail</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$sign_key_pass">PHPMailer::$sign_key_pass</a>
+  <a href="../PHPMailer/PHPMailer.html#var$sign_cert_file">PHPMailer::$sign_cert_file</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a>
+  <a href="../PHPMailer/PHPMailer.html#var$sign_key_file">PHPMailer::$sign_key_file</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$smtp">PHPMailer::$smtp</a>
+  <a href="../PHPMailer/PHPMailer.html#var$sign_key_pass">PHPMailer::$sign_key_pass</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$SMTPAuth">PHPMailer::$SMTPAuth</a>
+  <a href="../PHPMailer/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$SMTPDebug">PHPMailer::$SMTPDebug</a>
+  <a href="../PHPMailer/PHPMailer.html#var$smtp">PHPMailer::$smtp</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$SMTPKeepAlive">PHPMailer::$SMTPKeepAlive</a>
+  <a href="../PHPMailer/PHPMailer.html#var$SMTPAuth">PHPMailer::$SMTPAuth</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$SMTPSecure">PHPMailer::$SMTPSecure</a>
+  <a href="../PHPMailer/PHPMailer.html#var$SMTPDebug">PHPMailer::$SMTPDebug</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Subject">PHPMailer::$Subject</a>
+  <a href="../PHPMailer/PHPMailer.html#var$SMTPKeepAlive">PHPMailer::$SMTPKeepAlive</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Timeout">PHPMailer::$Timeout</a>
+  <a href="../PHPMailer/PHPMailer.html#var$SMTPSecure">PHPMailer::$SMTPSecure</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$to">PHPMailer::$to</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Subject">PHPMailer::$Subject</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Username">PHPMailer::$Username</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Timeout">PHPMailer::$Timeout</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$Version">PHPMailer::$Version</a>
+  <a href="../PHPMailer/PHPMailer.html#var$to">PHPMailer::$to</a>
   </dt>
 <dd>
    
 </dd>
 <dt>
-  <a href="../com.tecnick.tcexam/PHPMailer.html#var$WordWrap">PHPMailer::$WordWrap</a>
+  <a href="../PHPMailer/PHPMailer.html#var$Username">PHPMailer::$Username</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$Version">PHPMailer::$Version</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$WordWrap">PHPMailer::$WordWrap</a>
   </dt>
 <dd>
    
@@ -382,373 +437,409 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 <td valign="top">
 <h3>Inherited Methods</h3>
 <div class="tags">
-<h4>Class: <a href="../com.tecnick.tcexam/PHPMailer.html">PHPMailer</a></h4>
+<h4>Class: <a href="../PHPMailer/PHPMailer.html">PHPMailer</a></h4>
 <dl>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddAddress">PHPMailer::AddAddress()</a>
+    <a href="../PHPMailer/PHPMailer.html#method__construct">PHPMailer::__construct()</a>
+  </dt>
+  <dd>
+    Constructor
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodAddAddress">PHPMailer::AddAddress()</a>
   </dt>
   <dd>
     Adds a &quot;To&quot; address.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddAttachment">PHPMailer::AddAttachment()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddAnAddress">PHPMailer::AddAnAddress()</a>
+  </dt>
+  <dd>
+    Adds an address to one of the recipient arrays
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodAddAttachment">PHPMailer::AddAttachment()</a>
   </dt>
   <dd>
     Adds an attachment from a path on the filesystem.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddBCC">PHPMailer::AddBCC()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddBCC">PHPMailer::AddBCC()</a>
   </dt>
   <dd>
-    Adds a &quot;Bcc&quot; address. Note: this function works  with the SMTP mailer on win32, not with the &quot;mail&quot;  mailer.
+    Adds a &quot;Bcc&quot; address.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddCC">PHPMailer::AddCC()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddCC">PHPMailer::AddCC()</a>
   </dt>
   <dd>
-    Adds a &quot;Cc&quot; address. Note: this function works  with the SMTP mailer on win32, not with the &quot;mail&quot;  mailer.
+    Adds a &quot;Cc&quot; address.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddCustomHeader">PHPMailer::AddCustomHeader()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddCustomHeader">PHPMailer::AddCustomHeader()</a>
   </dt>
   <dd>
     Adds a custom header.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddEmbeddedImage">PHPMailer::AddEmbeddedImage()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddEmbeddedImage">PHPMailer::AddEmbeddedImage()</a>
   </dt>
   <dd>
     Adds an embedded attachment.  This can include images, sounds, and  just about any other document.  Make sure to set the $type to an  image type.  For JPEG images use &quot;image/jpeg&quot; and for GIF images  use &quot;image/gif&quot;.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddrAppend">PHPMailer::AddrAppend()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddrAppend">PHPMailer::AddrAppend()</a>
   </dt>
   <dd>
     Creates recipient headers.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddReplyTo">PHPMailer::AddReplyTo()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddReplyTo">PHPMailer::AddReplyTo()</a>
   </dt>
   <dd>
     Adds a &quot;Reply-to&quot; address.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddrFormat">PHPMailer::AddrFormat()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddrFormat">PHPMailer::AddrFormat()</a>
   </dt>
   <dd>
     Formats an address correctly.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAddStringAttachment">PHPMailer::AddStringAttachment()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAddStringAttachment">PHPMailer::AddStringAttachment()</a>
   </dt>
   <dd>
     Adds a string or binary attachment (non-filesystem) to the list.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodAttachAll">PHPMailer::AttachAll()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodAttachAll">PHPMailer::AttachAll()</a>
   </dt>
   <dd>
     Attaches all fs, string, and binary attachments to the message.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodBase64EncodeWrapMB">PHPMailer::Base64EncodeWrapMB()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodBase64EncodeWrapMB">PHPMailer::Base64EncodeWrapMB()</a>
   </dt>
   <dd>
     Correctly encodes and wraps long multibyte strings for mail headers  without breaking lines within a character.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearAddresses">PHPMailer::ClearAddresses()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearAddresses">PHPMailer::ClearAddresses()</a>
   </dt>
   <dd>
     Clears all recipients assigned in the TO array.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearAllRecipients">PHPMailer::ClearAllRecipients()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearAllRecipients">PHPMailer::ClearAllRecipients()</a>
   </dt>
   <dd>
     Clears all recipients assigned in the TO, CC and BCC  array.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearAttachments">PHPMailer::ClearAttachments()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearAttachments">PHPMailer::ClearAttachments()</a>
   </dt>
   <dd>
     Clears all previously set filesystem, string, and binary  attachments.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearBCCs">PHPMailer::ClearBCCs()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearBCCs">PHPMailer::ClearBCCs()</a>
   </dt>
   <dd>
     Clears all recipients assigned in the BCC array.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearCCs">PHPMailer::ClearCCs()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearCCs">PHPMailer::ClearCCs()</a>
   </dt>
   <dd>
     Clears all recipients assigned in the CC array.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearCustomHeaders">PHPMailer::ClearCustomHeaders()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearCustomHeaders">PHPMailer::ClearCustomHeaders()</a>
   </dt>
   <dd>
     Clears all custom headers.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodClearReplyTos">PHPMailer::ClearReplyTos()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodClearReplyTos">PHPMailer::ClearReplyTos()</a>
   </dt>
   <dd>
     Clears all recipients assigned in the ReplyTo array.  Returns void.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodCreateBody">PHPMailer::CreateBody()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodCreateBody">PHPMailer::CreateBody()</a>
   </dt>
   <dd>
     Assembles the message body.  Returns an empty string on failure.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodCreateHeader">PHPMailer::CreateHeader()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodCreateHeader">PHPMailer::CreateHeader()</a>
   </dt>
   <dd>
     Assembles message header.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEncodeFile">PHPMailer::EncodeFile()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeFile">PHPMailer::EncodeFile()</a>
   </dt>
   <dd>
-    Encodes attachment in requested format.  Returns an  empty string on failure.
+    Encodes attachment in requested format.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEncodeHeader">PHPMailer::EncodeHeader()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeHeader">PHPMailer::EncodeHeader()</a>
   </dt>
   <dd>
-    Encode a header string to best of Q, B, quoted or none.
+    Encode a header string to best (shortest) of Q, B, quoted or none.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEncodeQ">PHPMailer::EncodeQ()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeQ">PHPMailer::EncodeQ()</a>
   </dt>
   <dd>
     Encode string to q encoding.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEncodeQP">PHPMailer::EncodeQP()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeQP">PHPMailer::EncodeQP()</a>
+  </dt>
+  <dd>
+    Encode string to RFC2045 (6.7) quoted-printable format
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeQPphp">PHPMailer::EncodeQPphp()</a>
   </dt>
   <dd>
     Encode string to quoted-printable.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEncodeString">PHPMailer::EncodeString()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEncodeString">PHPMailer::EncodeString()</a>
   </dt>
   <dd>
-    Encodes string to requested format. Returns an  empty string on failure.
+    Encodes string to requested format.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodEndBoundary">PHPMailer::EndBoundary()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodEndBoundary">PHPMailer::EndBoundary()</a>
   </dt>
   <dd>
     Returns the end of a message boundary.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodFixEOL">PHPMailer::FixEOL()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodFixEOL">PHPMailer::FixEOL()</a>
   </dt>
   <dd>
     Changes every end of line from CR or LF to CRLF.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodGetBoundary">PHPMailer::GetBoundary()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodGetAttachments">PHPMailer::GetAttachments()</a>
+  </dt>
+  <dd>
+    Return the current array of attachments
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodGetBoundary">PHPMailer::GetBoundary()</a>
   </dt>
   <dd>
     Returns the start of a message boundary.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodgetFile">PHPMailer::getFile()</a>
-  </dt>
-  <dd>
-    Read a file from a supplied filename and return it.
-  </dd>
-    <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodGetMailMIME">PHPMailer::GetMailMIME()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodGetMailMIME">PHPMailer::GetMailMIME()</a>
   </dt>
   <dd>
     Returns the message MIME.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodHasMultiBytes">PHPMailer::HasMultiBytes()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodGetTranslations">PHPMailer::GetTranslations()</a>
+  </dt>
+  <dd>
+    Return the current array of language strings
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodHasMultiBytes">PHPMailer::HasMultiBytes()</a>
   </dt>
   <dd>
     Checks if a string contains multibyte characters.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodHeaderLine">PHPMailer::HeaderLine()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodHeaderLine">PHPMailer::HeaderLine()</a>
   </dt>
   <dd>
-    
+    Returns a formatted header line.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodInlineImageExists">PHPMailer::InlineImageExists()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodInlineImageExists">PHPMailer::InlineImageExists()</a>
   </dt>
   <dd>
     Returns true if an inline attachment is present.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsError">PHPMailer::IsError()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsError">PHPMailer::IsError()</a>
   </dt>
   <dd>
     Returns true if an error occurred.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsHTML">PHPMailer::IsHTML()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsHTML">PHPMailer::IsHTML()</a>
   </dt>
   <dd>
     Sets message type to HTML.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsMail">PHPMailer::IsMail()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsMail">PHPMailer::IsMail()</a>
   </dt>
   <dd>
     Sets Mailer to send message using PHP mail() function.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsQmail">PHPMailer::IsQmail()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsQmail">PHPMailer::IsQmail()</a>
   </dt>
   <dd>
     Sets Mailer to send message using the qmail MTA.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsSendmail">PHPMailer::IsSendmail()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsSendmail">PHPMailer::IsSendmail()</a>
   </dt>
   <dd>
     Sets Mailer to send message using the $Sendmail program.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodIsSMTP">PHPMailer::IsSMTP()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodIsSMTP">PHPMailer::IsSMTP()</a>
   </dt>
   <dd>
     Sets Mailer to send message using SMTP.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodLang">PHPMailer::Lang()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodLang">PHPMailer::Lang()</a>
   </dt>
   <dd>
     Returns a message in the appropriate language.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodMailSend">PHPMailer::MailSend()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodMailSend">PHPMailer::MailSend()</a>
   </dt>
   <dd>
     Sends mail using the PHP mail() function.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodMsgHTML">PHPMailer::MsgHTML()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodMsgHTML">PHPMailer::MsgHTML()</a>
   </dt>
   <dd>
     Evaluates the message and returns modifications for inline images and backgrounds
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodRFCDate">PHPMailer::RFCDate()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodRFCDate">PHPMailer::RFCDate()</a>
   </dt>
   <dd>
     Returns the proper RFC 822 formatted date.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSecureHeader">PHPMailer::SecureHeader()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSecureHeader">PHPMailer::SecureHeader()</a>
   </dt>
   <dd>
     Strips newlines to prevent header injection.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSend">PHPMailer::Send()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSend">PHPMailer::Send()</a>
   </dt>
   <dd>
     Creates message and assigns Mailer. If the message is  not sent successfully then it returns false.  Use the ErrorInfo  variable to view description of the error.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSendmailSend">PHPMailer::SendmailSend()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSendmailSend">PHPMailer::SendmailSend()</a>
   </dt>
   <dd>
     Sends mail using the $Sendmail program.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodServerHostname">PHPMailer::ServerHostname()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodServerHostname">PHPMailer::ServerHostname()</a>
   </dt>
   <dd>
     Returns the server hostname or 'localhost.localdomain' if unknown.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodset">PHPMailer::set()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodset">PHPMailer::set()</a>
   </dt>
   <dd>
     Set (or reset) Class Objects (variables)
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSetError">PHPMailer::SetError()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSetError">PHPMailer::SetError()</a>
   </dt>
   <dd>
     Adds the error message to the error container.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSetLanguage">PHPMailer::SetLanguage()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSetFrom">PHPMailer::SetFrom()</a>
   </dt>
   <dd>
-    Sets the language for all class error messages.  Returns false  if it cannot load the language file.  The default language type  is English.
+    Set the From and FromName properties
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSetMessageType">PHPMailer::SetMessageType()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSetLanguage">PHPMailer::SetLanguage()</a>
+  </dt>
+  <dd>
+    Sets the language for all class error messages.
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodSetMessageType">PHPMailer::SetMessageType()</a>
   </dt>
   <dd>
     Sets the message type.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSetWordWrap">PHPMailer::SetWordWrap()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSetWordWrap">PHPMailer::SetWordWrap()</a>
   </dt>
   <dd>
     Set the body wrapping.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSign">PHPMailer::Sign()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSign">PHPMailer::Sign()</a>
   </dt>
   <dd>
     Set the private key file and password to sign the message.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSmtpClose">PHPMailer::SmtpClose()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSmtpClose">PHPMailer::SmtpClose()</a>
   </dt>
   <dd>
     Closes the active SMTP session if one exists.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSmtpConnect">PHPMailer::SmtpConnect()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSmtpConnect">PHPMailer::SmtpConnect()</a>
   </dt>
   <dd>
-    Initiates a connection to an SMTP server.  Returns false if the  operation failed.
+    Initiates a connection to an SMTP server.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodSmtpSend">PHPMailer::SmtpSend()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodSmtpSend">PHPMailer::SmtpSend()</a>
   </dt>
   <dd>
-    Sends mail via SMTP using PhpSMTP (Author:  Chris Ryan).  Returns bool.  Returns false if there is a  bad MAIL FROM, RCPT, or DATA input.
+    Sends mail via SMTP using PhpSMTP  Returns false if there is a bad MAIL FROM, RCPT, or DATA input.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodTextLine">PHPMailer::TextLine()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodTextLine">PHPMailer::TextLine()</a>
   </dt>
   <dd>
     Returns a formatted mail line.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodUTF8CharBoundary">PHPMailer::UTF8CharBoundary()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodUTF8CharBoundary">PHPMailer::UTF8CharBoundary()</a>
   </dt>
   <dd>
     Finds last character boundary prior to maxLength in a utf-8  quoted (printable) encoded string.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#methodWrapText">PHPMailer::WrapText()</a>
+    <a href="../PHPMailer/PHPMailer.html#methodValidateAddress">PHPMailer::ValidateAddress()</a>
+  </dt>
+  <dd>
+    Check that a string looks roughly like an email address should
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodWrapText">PHPMailer::WrapText()</a>
   </dt>
   <dd>
     Wraps message for use with mailers that do not  automatically perform wrapping and for quoted-printable.
   </dd>
     <dt>
-    <a href="../com.tecnick.tcexam/PHPMailer.html#method_mime_types">PHPMailer::_mime_types()</a>
+    <a href="../PHPMailer/PHPMailer.html#method_mime_types">PHPMailer::_mime_types()</a>
   </dt>
   <dd>
-    Gets the mime type of the embedded or inline image
+    Gets the MIME type of the embedded or inline image
   </dd>
   </dl>
 </div>
@@ -767,6 +858,9 @@ C_mailer - PHPMailer class extension<br /><br /><br /><br />
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>$Id: class.phpmailer.php 447 2009-05-25 01:36:38Z codeworxtech $</td>
   </tr>
   <tr>
     <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright &amp;copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
@@ -853,7 +947,7 @@ $key)</code>
 </div>
 <br /><br />
 
-	Overrides <a href="../com.tecnick.tcexam/PHPMailer.html#methodLang">PHPMailer::Lang()</a> (Returns a message in the appropriate language.)<br /><br />
+	Overrides <a href="../PHPMailer/PHPMailer.html#methodLang">PHPMailer::Lang()</a> (Returns a message in the appropriate language.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
@@ -892,7 +986,7 @@ $msg)</code>
 </div>
 <br /><br />
 
-	Overrides <a href="../com.tecnick.tcexam/PHPMailer.html#methodSetError">PHPMailer::SetError()</a> (Adds the error message to the error container.)<br /><br />
+	Overrides <a href="../PHPMailer/PHPMailer.html#methodSetError">PHPMailer::SetError()</a> (Adds the error message to the error container.)<br /><br />
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
@@ -910,7 +1004,7 @@ $msg)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 26 Aug 2009 09:06:50 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 29 Aug 2009 20:20:33 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

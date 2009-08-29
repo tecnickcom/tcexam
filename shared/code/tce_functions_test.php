@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-05-25
+// Last Update : 2009-08-29
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -75,7 +75,7 @@ function F_getUserTests() {
 	if($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) { // for each active test
 			// check user's authorization
-			if (F_isValidTestUser($m['test_id'],$_SESSION['session_user_ip'], $m['test_ip_range'])) {
+			if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
 				// the user's IP is valid, check test status
 				$test_status = F_checkTestStatus($_SESSION['session_user_id'], $m['test_id'], $m['test_duration_time']);
 				if (($test_status < 4) OR (F_getBoolean($m['test_results_to_users']))) {
@@ -1472,12 +1472,13 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			// script to handle keyboard events
 			$str .= '<script type="text/javascript">'.K_NEWLINE;
 			$str .= '//<![CDATA['.K_NEWLINE;
-			$str .= 'function actionByChar(e){var keynum;if(window.event){keynum=e.keyCode;}else if(e.which){keynum=e.which;}switch(keynum){'.K_NEWLINE;
+			$str .= 'function actionByChar(e){e=(e)?e:window.event;keynum=(e.keyCode)?e.keyCode:e.which;switch(keynum){'.K_NEWLINE;
 			foreach ($aswkeys as $key => $fieldid) {
 				$str .= 'case '.$key.':{document.getElementById(\''.$fieldid.'\').checked=true;var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;document.getElementById(\'autonext\').value=1;document.getElementById(\''.$formname.'\').submit();break;}'.K_NEWLINE;
 			}
 			$str .= '}}'.K_NEWLINE;
-			$str .= 'document.onkeypress = actionByChar;'.K_NEWLINE;
+			$str .= 'if(!document.all) {document.captureEvents(Event.KEYPRESS);}';
+			$str .= 'document.onkeypress=actionByChar;'.K_NEWLINE;
 			if ($m['question_timer'] > 0) {
 				// automatic submit form after specified fime
 				$str .= "setTimeout('document.getElementById(\'autonext\').value=1;document.getElementById(\'".$formname."\').submit();', ".($m['question_timer'] * 1000).");".K_NEWLINE;

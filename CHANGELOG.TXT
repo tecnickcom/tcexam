@@ -1,3 +1,9 @@
+9.0.022 (2009-08-29)
+	- localhost to IP conversion problem was fixed.
+	- JavaScript used to catch keycodes was fixed for IE.
+	- phpMailer Class was updated to version 5.0.2.
+	- TCPDF library was updated.
+
 9.0.021 (2009-08-26)
 	- TCPDF library was updated (it was broken on previous release).
 

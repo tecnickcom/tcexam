@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2009-02-13
+// Last Update : 2009-08-29
 // 
 // Description : General functions.
 //
@@ -260,6 +260,10 @@ function utrim($txt) {
  * @since 7.1.000 (2009-02-13)
  */
 function getNormalizedIP($ip) {
+	if (($ip == '0000:0000:0000:0000:0000:0000:0000:0001') OR ($ip == '::1')) {
+		// fix localhost problem
+		$ip = '127.0.0.1';
+	}
 	$ip = strtolower($ip);
 	// remove unsupported parts
 	if (($pos = strrpos($ip, '%')) !== false) {
