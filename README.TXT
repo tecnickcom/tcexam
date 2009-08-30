@@ -8,9 +8,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 9.0.022
+Version: 9.0.023
 
-Release date: 2009-08-29
+Release date: 2009-08-30
 
 Author:
 	Nicola Asuni 
@@ -28,23 +28,39 @@ URLs:
 	http://www.sourceforge.net/projects/tcexam
 
 Description:
-	TCExam is an assessment software system that enables educators and 
-	trainers to author, schedule, deliver, and report on surveys, quizzes, 
-	tests and exams. The software is used all over the world by 
-	universities, schools, companies and independent teachers. TCExam is 
-	open source and completely free to use.
+	TCExam is a Computer Based Assessment (CBA) software system (also know as 
+	CBT - Computer Based Testing or e-exam) that enables educators and trainers 
+	to author, schedule, deliver, and report on surveys, quizzes, tests and 
+	exams.
 
-	An e-exam (or CBT - Computer Based Testing)is an electronic exam that 
-	can be executed by using a personal computer or an equivalent 
-	electronic device (e.g. handheld computer).
+	TCExam is Free Open Source Software, Web-Based, Platform Independent, 
+	Language Independent (includes translations in several languages and RTL 
+	support) and conforms to W3C Accessibility and Usability guidelines to 
+	provide equal opportunity to people with disabilities, including blind 
+	users.
 
-	The use of e-exam systems, instead of traditional paper-based tests, 
-	allows you to simplify the entire exam cycle, including generation, 
-	execution, evaluation, presentation and archiving. This simplification 
-	allows you to save time and money while improving exams reliability.
+	TCExam is Web-based and it can be installed on almost any server. For users 
+	(test-takers), all TCExam requires is a computer or PDA with a Web browser 
+	(i.e. Mozilla Firefox or Internet Explorer) and an Internet or Intranet 
+	connection to the TCExam Web server. TCExam automates all assessment phases:
+	authoring, scheduling, delivering, and reporting. It's easy to use and do 
+	not require expensive hardware to run, nor additional commercial software.
 
-	Beyond the aforementioned advantages, TCExam introduces a large number 
-	of tools and features to improve the exams total quality.
+	TCExam Server ApplianceThe general advantages of TCExam over traditional 
+	Pen-and-Paper Testing (PPT) includes: increased delivery, administration and
+	scoring efficiency; reduced costs for many elements of the testing 
+	lifecycle; improved test security resulting from electronic transmission and
+	encryption; consistency and reliability; faster and more controlled test 
+	revision process with shorter response time; faster decision-making as the 
+	result of immediate scoring and reporting; unbiased test administration and 
+	scoring; fewer response entry and recognition errors; fewer comprehension 
+	errors caused by the testing process; improved translation and localization 
+	with universal availability of content; new advanced and flexible item 
+	types; increased candidate acceptance and satisfaction; evolutionary step 
+	toward future testing methodologies.
+
+	Beyond the aforementioned advantages, TCExam introduces several new quality 
+	features.
 
 Software License
 	Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.

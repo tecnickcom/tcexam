@@ -128,6 +128,136 @@ Configuration file for TCPDF.<br /><br /><br /><br />
 		</div>
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
+	<a name="defineK_DIGSIG_CERTIFICATE"></a>
+	<h3>K_DIGSIG_CERTIFICATE <span class="smalllinenumber">[line 192]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_CERTIFICATE = 'file://../../shared/config/tcpdf.crt'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    Signing certificate (string or filename prefixed with 'file://').<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_CERT_TYPE"></a>
+	<h3>K_DIGSIG_CERT_TYPE <span class="smalllinenumber">[line 216]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_CERT_TYPE = '1'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    The access permissions granted for this document.<br /><br /><p>Valid values shall be: <ol><li>= No changes to the document shall be permitted; any change to the document shall invalidate the signature;</li><li>= Permitted changes shall be filling in forms, instantiating page templates, and signing; other changes shall invalidate the signature;</li><li>= Permitted changes shall be the same as for 2, as well as annotation creation, deletion, and modification; other changes shall invalidate the signature.</li></ol></p><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_CONTACT"></a>
+	<h3>K_DIGSIG_CONTACT <span class="smalllinenumber">[line 236]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_CONTACT = 'you@example.com'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    Information provided by the signer to enable a recipient to contact the signer to verify the signature; for example, a phone number or email address.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_ENABLE"></a>
+	<h3>K_DIGSIG_ENABLE <span class="smalllinenumber">[line 187]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_ENABLE = false</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    If true digitally sign PDF documents.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_EXTRA_CERTS"></a>
+	<h3>K_DIGSIG_EXTRA_CERTS <span class="smalllinenumber">[line 207]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_EXTRA_CERTS = ''</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    Name of a file containing a bunch of extra certificates to include in the signature which can for example be used to help the recipient to verify the certificate that you used.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_LOCATION"></a>
+	<h3>K_DIGSIG_LOCATION <span class="smalllinenumber">[line 226]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_LOCATION = 'Office'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    The CPU host name or physical location of the signing.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_NAME"></a>
+	<h3>K_DIGSIG_NAME <span class="smalllinenumber">[line 221]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_NAME = 'TCEXAM'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    The name of the person or authority signing the document.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_PASSWORD"></a>
+	<h3>K_DIGSIG_PASSWORD <span class="smalllinenumber">[line 202]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_PASSWORD = 'tcpdfdemo'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    Password for private key.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_PRIVATE_KEY"></a>
+	<h3>K_DIGSIG_PRIVATE_KEY <span class="smalllinenumber">[line 197]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_PRIVATE_KEY = 'file://../../shared/config/tcpdf.crt'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    Private key (string or filename prefixed with 'file://').<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="defineK_DIGSIG_REASON"></a>
+	<h3>K_DIGSIG_REASON <span class="smalllinenumber">[line 231]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DIGSIG_REASON = 'Certification'</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    The reason for the signing, such as ( I agree ...).<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
 	<a name="defineK_SMALL_RATIO"></a>
 	<h3>K_SMALL_RATIO <span class="smalllinenumber">[line 178]</span></h3>
 	<div class="tags">
@@ -430,7 +560,7 @@ Configuration file for TCPDF.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sat, 29 Aug 2009 20:20:39 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sun, 30 Aug 2009 12:01:23 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

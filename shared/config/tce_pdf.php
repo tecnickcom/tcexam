@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2009-04-20
+// Last Update : 2009-08-30
 // 
 // Description : Configuration file for pdf documents.
 //
@@ -176,6 +176,64 @@ define('K_TITLE_MAGNIFICATION', 1.3);
  * reduction factor for small font
  */
 define('K_SMALL_RATIO', 2/3);
+
+
+// --- DATA FOR DIGITAL SIGNATURE ---
+
+
+/**
+ * If true digitally sign PDF documents.
+ */
+define('K_DIGSIG_ENABLE', false);
+
+/**
+ * Signing certificate (string or filename prefixed with 'file://').
+ */
+define('K_DIGSIG_CERTIFICATE', 'file://../../shared/config/tcpdf.crt');
+
+/**
+ * Private key (string or filename prefixed with 'file://').
+ */
+define('K_DIGSIG_PRIVATE_KEY', 'file://../../shared/config/tcpdf.crt');
+
+/**
+ * Password for private key.
+ */
+define('K_DIGSIG_PASSWORD', 'tcpdfdemo');
+
+/**
+ * Name of a file containing a bunch of extra certificates to include in the signature which can for example be used to help the recipient to verify the certificate that you used.
+ */
+define('K_DIGSIG_EXTRA_CERTS', '');
+
+/**
+ * The access permissions granted for this document.
+ * Valid values shall be:
+ * 1 = No changes to the document shall be permitted; any change to the document shall invalidate the signature;
+ * 2 = Permitted changes shall be filling in forms, instantiating page templates, and signing; other changes shall invalidate the signature;
+ * 3 = Permitted changes shall be the same as for 2, as well as annotation creation, deletion, and modification; other changes shall invalidate the signature.
+ */
+define('K_DIGSIG_CERT_TYPE', '1');
+
+/**
+ * The name of the person or authority signing the document.
+ */
+define('K_DIGSIG_NAME', 'TCEXAM');
+
+/**
+ * The CPU host name or physical location of the signing.
+ */
+define('K_DIGSIG_LOCATION', 'Office');
+
+/**
+ * The reason for the signing, such as ( I agree ...).
+ */
+define('K_DIGSIG_REASON', 'Certification');
+
+/**
+ * Information provided by the signer to enable a recipient to contact the signer to verify the signature; for example, a phone number or email address.
+ */
+define('K_DIGSIG_CONTACT', 'you@example.com');
 
 //============================================================+
 // END OF FILE                                                 

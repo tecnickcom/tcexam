@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2009-02-20
+// Last Update : 2009-08-30
 // 
 // Description : Creates a PDF document containing exported questions.
 // 
@@ -124,6 +124,11 @@ $defalign = $l['a_meta_dir']=='rtl' ? 'R' : 'L';
 
 //initialize document
 $pdf->AliasNbPages();
+
+if (defined('K_DIGSIG_ENABLE') AND K_DIGSIG_ENABLE) {
+	// set document signature
+	$pdf->setSignature(K_DIGSIG_CERTIFICATE, K_DIGSIG_PRIVATE_KEY, K_DIGSIG_PASSWORD, K_DIGSIG_EXTRA_CERTS, K_DIGSIG_CERT_TYPE, array('Name'=>K_DIGSIG_NAME, 'Location'=>K_DIGSIG_LOCATION, 'Reason'=>K_DIGSIG_REASON, 'ContactInfo'=>K_DIGSIG_CONTACT));
+}
 
 // calculate some sizes
 $page_width = $pdf->getPageWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;

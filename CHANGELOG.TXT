@@ -1,3 +1,7 @@
+9.0.023 (2009-08-30)
+	- This version creates digital signatures on PDF documents (see shared/config/tce_pdf.php).
+	- TCPDF library was updated.
+
 9.0.022 (2009-08-29)
 	- localhost to IP conversion problem was fixed.
 	- JavaScript used to catch keycodes was fixed for IE.
