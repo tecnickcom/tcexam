@@ -1,3 +1,6 @@
+9.0.024 (2009-08-31)
+	- Romanian language was added.
+
 9.0.023 (2009-08-30)
 	- This version creates digital signatures on PDF documents (see shared/config/tce_pdf.php).
 	- TCPDF library was updated.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20090705T2222Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20090831T2259Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -76,6 +76,9 @@
    <tuv xml:lang="HU">
     <seg>UTF-8</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>UTF-8</seg>
+   </tuv>
   </tu>
   <tu tuid="a_meta_dir" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -142,6 +145,9 @@
     <seg>ltr</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>ltr</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>ltr</seg>
    </tuv>
   </tu>
@@ -212,6 +218,9 @@
    <tuv xml:lang="HU">
     <seg>hu</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ro</seg>
+   </tuv>
   </tu>
   <tu tuid="d_admin_index" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -279,6 +288,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez a &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam&lt;/a&gt; adminisztrátori felülete. TCExam egy platform és nyelv független, felhasználó barát szoftver, aminek segítségével online teszteket lehet készíteni és felügyelni.&lt;br /&gt;&lt;br /&gt;A bal oldalon található menüből a rendszer különböző részeit lehet elérni:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;felhasználok&lt;/strong&gt;&lt;br /&gt;Ez a szekció tartalmaz oldalakat a felhasználók &lt;a href="tce_edit_user.php" title="User Management"&gt;létrehozására, felügyeletére&lt;/a&gt;, &lt;a href="tce_select_users.php" title="User Selection"&gt; a felhasználok listázására&lt;/a&gt; és a &lt;a href="tce_show_online_users.php" title="Online Users"&gt;bejelentkezett&lt;/a&gt; felhasználók listázására.&lt;br /&gt;Csak a regisztrált felhasználóknak, akiknek van felhasználói nevük és jelszavuk, jelentkezhetnek be a rendszerbe és tölthetnek ki teszteket.&lt;br /&gt;Különböző hozzáférési szinteket lehet hozzárendelni a felhasználókhoz és a rendszer különböző részeihez (oldalak, kérdőívek, szekciók).&lt;br /&gt;TCExam még egy biztonsági rendszert használ hogy meggátolja az illetéktelen hozzáférést, ugyanis a hozzáférést IP cím alapján is szűri.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;témák&lt;/strong&gt;&lt;br /&gt;Ez a szekcio tartalmaz oldalakat &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;témák&lt;/a&gt;, &lt;a href="tce_edit_question.php" title="Question Management"&gt;kérdések&lt;/a&gt; és &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;válaszok&lt;/a&gt; beillesztésére, módosítására és kezelésére.&lt;br /&gt;Korlátlan számu témát lehet használni egy tesztben és minden egyes témához korlátlan számú kérdést és választ lehet definiálni. A rendszer véletlenszerűen fog kérdéseket és válaszokat adni.&lt;br /&gt;TCExam támogatja mind a szabad, szöveges és a felelet-választos kérdéseket. A szöveges kérdéseket egy külön oldalon lehet &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt;kiértékelni&lt;/a&gt; míg a felelet-választós kérdésekre adott válaszokat a rendszer automatikusan értékeli ki.&lt;br /&gt;A tesztek, témák, kérdések és válaszok egy speciális kód (tcecode) segítségével szerkeszthetők. A kód támogatja a szövegek formázását és a képek beillesztését.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;teszt&lt;/strong&gt;&lt;br /&gt;Ez a szekció tartalmaz oldalakat a &lt;a href="tce_edit_test.php" title="Test Management"&gt;tesztek&lt;/a&gt; generálására és módosítására, a szöveges válaszok &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;kiértékelésére&lt;/a&gt;, az &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;eredmények&lt;/a&gt; megmutatására vagy az eredmények PDF file-ba mentésére, az eredmények &lt;a href="tce_show_result_user.php" title="User's tests"&gt;felhasználonkénti&lt;/a&gt; megjelenítésére és &lt;a href="tce_show_result_questions.php" title="Question Statistics"&gt;statisztikák&lt;/a&gt; készítésére.&lt;br /&gt;TCExam véletlenszerűen választja ki a kérdéseket és a kapcsolódó válaszokat így a különböző felhasználók különböző teszteket fognak látni.&lt;br /&gt;Lehetőseg van tetszőleges számú teszt generálására PDF formátumban, amelyeket ki lehet nyomtatni és felhasználni mint hagyományos papír alapú tesztet.&lt;/li&gt;&lt;/ul&gt;</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Aceasta este zona administrativă a &lt;a href="tce_page_info.php" title="despre TCExam"&gt;TCExam&lt;/a&gt;. Este un program prietenos, independent de platformă şi limbă, folosit pentru crearea, gestionarea şi executarea testelor online.&lt;br /&gt;&lt;br /&gt;Din meniul din partea stângă puteţi accesa diferite secţiuni ale sistemului:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;utilizatori&lt;/strong&gt;&lt;br /&gt;Această secţiune conţine formulare pentru &lt;a href="tce_edit_user.php" title="Gestionare Utilizatori"&gt;introducerea şi gestionarea&lt;/a&gt; utilizatorilor, pentru &lt;a href="tce_select_users.php" title="Selectare Utilizatori"&gt;selectarea&lt;/a&gt; acestora şi vizualizarea listei cu utilizatorii &lt;a href="tce_show_online_users.php" title="Utilizatori Online"&gt;online&lt;/a&gt;.&lt;br /&gt;Numai utilizatorii înregistraţi printr-un username şi o parolă sunt împuterniciţi să acceseze zona publică a sistemului şi să execute teste.&lt;br /&gt;Este posibil a se specifica diferite nivele de acces atât pentru utilizatori cât şi pentru diferitele componente şi părţi ale sistemului (pagini, formulare, secţiuni).&lt;br /&gt;TCExam foloseşte, de asemenea, un alt sistem de securitate pentru a preveni accesul neautorizat, bazat pe verificarea adreselor IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;module&lt;/strong&gt;&lt;br /&gt;Această secţiune conţine formulare necesare pentru adăugarea şi modificarea de &lt;a href="tce_edit_module.php" title="Gestionare Module"&gt;module&lt;/a&gt; test, &lt;a href="tce_edit_subject.php" title="Gestionare Teme"&gt;teme&lt;/a&gt;, &lt;a href="tce_edit_question.php" title="Gestionare Întrebări"&gt;întrebări&lt;/a&gt; şi &lt;a href="tce_edit_answer.php" title="Gestionare Răspunsuri-Multiple"&gt;răspunsuri&lt;/a&gt; înrudite.&lt;br /&gt;Puteţi selecta un număr nelimitat de teme care pot fi folosite împreună pentru un anumit test, şi pentru fiecare temă puteţi defini un număr nelimitat de întrebări şi răspunsuri posibile. În funcţie de selectarea sau nu a întrebărilor aleatorii şi răspunsurilor aleatorii, sistemul poate selecta aleator întrebări şi răspunsuri dintre cele disponibile.&lt;br /&gt;TCExam suportă atât întrebări cu răspunsuri multiple cât şi întrebări cu răspuns liber. Acestea din urmă vor fi evaluate printr-un &lt;a href="tce_edit_rating.php" title="Evaluare Răspunsuri"&gt;formular special&lt;/a&gt;, în timp ce primele vor fi evaluate automat.&lt;br /&gt;Toate descrierile testelor, temele, întrebările şi răspunsurile suportă un cod proprietar particular (tcecode) care, prin folosirea unei forme specifice, permite utilizarea imaginilor şi a diferitelor formate de text.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;teste&lt;/strong&gt;&lt;br /&gt;Această secţiune include un formular pentru adăugarea, generarea şi modificarea diferitelor &lt;a href="tce_edit_test.php" title="Gestionare Teste"&gt;teste&lt;/a&gt;, un formular pentru &lt;a href="tce_edit_rating.php" title="Evaluare Răspunsuri"&gt;evaluarea&lt;/a&gt; răspunsurilor libere şi formulare pentru a vizualiza şi genera versiuni PDF ale &lt;a href="tce_show_result_allusers.php" title="Sumar Rezultate Teste"&gt;rezultatelor&lt;/a&gt;,  o vizualizare detaliată a &lt;a href="tce_show_result_user.php" title="Rezultate Test"&gt;testelor utilizatorilor&lt;/a&gt; şi a &lt;a href="tce_show_result_questions.php" title="Statistici Întrebări"&gt;statisticilor&lt;/a&gt; întrebărilor şi răspunsurilor folosite.&lt;br /&gt;TCExam poate fi îndrumat pentru a selecta, printr-un temei aleator, diversele întrebări şi răspunsuri înrudite disponibile, astfel încât toate testele pentru diverşi utilizatori vor fi diferite unul faţă de altul.&lt;br /&gt;Este, de asemenea, posibil a genera un număr arbitrar de teste în format PDF astfel încât acestea pot fi printate şi folosite pentru un examen convenţional.&lt;/li&gt;&lt;/ul&gt;</seg>
    </tuv>
   </tu>
   <tu tuid="d_logout_desc" datatype="plaintext">
@@ -348,6 +360,9 @@
    <tuv xml:lang="HU">
     <seg>kijelentkezéshez kattintson a gombra</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>clic pe buton pentru a ieşi din sistem</seg>
+   </tuv>
   </tu>
   <tu tuid="d_tcexam_desc" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -415,6 +430,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>TCExam egy online teszteket kezelő szoftver.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>TCExam este un program pentru gestionare şi testare online.</seg>
    </tuv>
   </tu>
   <tu tuid="h_add" datatype="plaintext">
@@ -484,6 +502,9 @@
    <tuv xml:lang="HU">
     <seg>hozzáadja az aktuális rekordot az adatbázishoz</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>adaugă înregistrarea curentă bazei de date</seg>
+   </tuv>
   </tu>
   <tu tuid="h_add_image" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -551,6 +572,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>beilleszti a kiválasztott képet a szövegbe</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>introduceţi imaginea selectată în text</seg>
    </tuv>
   </tu>
   <tu tuid="h_add_object" datatype="plaintext">
@@ -620,6 +644,9 @@
    <tuv xml:lang="HU">
     <seg>beilleszti a kiválasztott objektumot a szövegbe</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>introduceţi obiectul selectat în text</seg>
+   </tuv>
   </tu>
   <tu tuid="h_add_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -687,6 +714,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>beilleszti a kiválasztott típusú kérdéseket</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>introduceţi tipul de întrebări selectat</seg>
    </tuv>
   </tu>
   <tu tuid="h_add_subject" datatype="plaintext">
@@ -756,6 +786,9 @@
    <tuv xml:lang="HU">
     <seg>beilleszti a kiválasztott témát ebbe a tesztbe</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>introduceţi tema selectată în acest test</seg>
+   </tuv>
   </tu>
   <tu tuid="h_add_tag" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -823,6 +856,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>beilleszti a kiválasztott elemet</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>introduceţi elementul selectat</seg>
    </tuv>
   </tu>
   <tu tuid="h_allow_no_answer" datatype="plaintext">
@@ -892,6 +928,9 @@
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, egy -nincs válasz- opció is megjelenik minden egyes kérdésnél</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, o opţiune suplimentară -nici un răspuns- va fi adăugată fiecărei întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -959,6 +998,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>lehetséges válasz a kiválasztott kérdésre</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri posibile pentru întrebarea selectată</seg>
    </tuv>
   </tu>
   <tu tuid="h_answer_isright" datatype="plaintext">
@@ -1028,6 +1070,9 @@
    <tuv xml:lang="HU">
     <seg>válasszuk ezt az opciót ha a válasz helyes</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>selectaţi această opţiune dacă raspunsul este corect</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answer_right" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1095,6 +1140,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>helyes válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspuns corect</seg>
    </tuv>
   </tu>
   <tu tuid="h_answer_score" datatype="plaintext">
@@ -1164,6 +1212,9 @@
    <tuv xml:lang="HU">
     <seg>pontok ezért a kérdésért (pl: 0.5, -0.1, ...)</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pentru această întrebare (ex.: 0.5, -0.1, ...)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answer_selected" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1231,6 +1282,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>kijelölt válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspuns selectat</seg>
    </tuv>
   </tu>
   <tu tuid="h_answer_time" datatype="plaintext">
@@ -1300,6 +1354,9 @@
    <tuv xml:lang="HU">
     <seg>átlagos válaszadási idő mm:ss -ban</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>timp mediu pentru răspuns în mm:ss</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answer_wrong" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1364,6 +1421,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>rossz válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspuns greşit</seg>
    </tuv>
   </tu>
   <tu tuid="h_answers_right" datatype="plaintext">
@@ -1433,6 +1493,9 @@
    <tuv xml:lang="HU">
     <seg>helyes válaszok</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri corecte</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answers_wrong" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1500,6 +1563,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>rossz válaszok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri greşite</seg>
    </tuv>
   </tu>
   <tu tuid="h_birth_date" datatype="plaintext">
@@ -1569,6 +1635,9 @@
    <tuv xml:lang="HU">
     <seg>születési idő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>data de naştere a utilizatorului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_birth_place" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1636,6 +1705,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>születési hely (város, állam, ország)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>locul naşterii utilizatorului (oraş, judeţ, ţară)</seg>
    </tuv>
   </tu>
   <tu tuid="h_cancel" datatype="plaintext">
@@ -1705,6 +1777,9 @@
    <tuv xml:lang="HU">
     <seg>a változások vagy az aktuális művelet érvénytelenítése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>anulaţi modificările din operaţiunea curentă</seg>
+   </tuv>
   </tu>
   <tu tuid="h_cancel_window" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1772,6 +1847,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>az oldal lezárása és a változások érvénytelenítése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>închideţi formularul şi anulaţi modificările</seg>
    </tuv>
   </tu>
   <tu tuid="h_clear" datatype="plaintext">
@@ -1841,6 +1919,9 @@
    <tuv xml:lang="HU">
     <seg>az oldal mezőinek törlése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>goleşte câmpurile formularului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_close_window" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -1908,6 +1989,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ablak bezárása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>închideţi fereastra</seg>
    </tuv>
   </tu>
   <tu tuid="h_continue" datatype="plaintext">
@@ -1977,6 +2061,9 @@
    <tuv xml:lang="HU">
     <seg>teszt folytatása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>continuaţi testul</seg>
+   </tuv>
   </tu>
   <tu tuid="h_database" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2044,6 +2131,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>adatbázis módosítása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>modificaţi baza de date</seg>
    </tuv>
   </tu>
   <tu tuid="h_delete" datatype="plaintext">
@@ -2113,6 +2203,9 @@
    <tuv xml:lang="HU">
     <seg>aktuális rekord törlése az adatbázisból</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>şterge înregistrarea curentă din baza de date</seg>
+   </tuv>
   </tu>
   <tu tuid="h_display_all" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2180,6 +2273,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>minden válasz megmutatása, ide értve a már értékelteket is</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată toate răspunsurile inclusiv cele deja evaluate</seg>
    </tuv>
   </tu>
   <tu tuid="h_display_user_info" datatype="plaintext">
@@ -2249,6 +2345,9 @@
    <tuv xml:lang="HU">
     <seg>ezt a tesztet kitöltő felhasználó adatainak megmutatása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată datele utilizatorului care a dat acest răspuns</seg>
+   </tuv>
   </tu>
   <tu tuid="h_email_all_results" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2316,6 +2415,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt eredmények küldése minden felhasználónak e-mail-ben</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimiteţi rapoartele testului prin email către toţi utilizatorii</seg>
    </tuv>
   </tu>
   <tu tuid="h_email_result" datatype="plaintext">
@@ -2385,6 +2487,9 @@
    <tuv xml:lang="HU">
     <seg>teszt eredmények küldése felhasználoknak e-mail-ben</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimiteţi rapoartele testului prin email către utilizatori</seg>
+   </tuv>
   </tu>
   <tu tuid="h_enable_single_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2452,6 +2557,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor bekapcsoljuk az egy-helyes-válasz módot</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activaţi varianta cu un singur răspuns corect</seg>
    </tuv>
   </tu>
   <tu tuid="h_enable_multiple_answers" datatype="plaintext">
@@ -2521,6 +2629,9 @@
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor bekapcsoljuk a több-helyes-válasz módot</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activaţi varianta cu răspunsuri multiple</seg>
+   </tuv>
   </tu>
   <tu tuid="h_enable_free_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2588,6 +2699,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor bekapcsoljuk a szöveges-válasz módot</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activaţi varianta cu răspuns liber</seg>
    </tuv>
   </tu>
   <tu tuid="h_enabled" datatype="plaintext">
@@ -2658,6 +2772,9 @@
    <tuv xml:lang="HU">
     <seg>aktuális rekord ki- és bekapcsolása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>activaţi/dezactivaţi înregistrarea curentă</seg>
+   </tuv>
   </tu>
   <tu tuid="h_execute" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2725,6 +2842,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt kitöltése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>executaţi testul</seg>
    </tuv>
   </tu>
   <tu tuid="h_file_type" datatype="plaintext">
@@ -2794,6 +2914,9 @@
    <tuv xml:lang="HU">
     <seg>fájl típus</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>tipul de fişier</seg>
+   </tuv>
   </tu>
   <tu tuid="h_file_type_xml" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2861,6 +2984,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>eXtensible Markup Language (kiterjesztett leíró nyelv)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>eXtensible Markup Language</seg>
    </tuv>
   </tu>
   <tu tuid="h_file_type_csv" datatype="plaintext">
@@ -2930,6 +3056,9 @@
    <tuv xml:lang="HU">
     <seg>Tabbal Elválasztott Szöveges Fájl</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Tab Delimited Text File</seg>
+   </tuv>
   </tu>
   <tu tuid="h_firstname" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -2997,6 +3126,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>keresztnév (pl.: Éva, Ádám, ...)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Prenumele utilizatorului (ex.: Mihai, Ion, ...)</seg>
    </tuv>
   </tu>
   <tu tuid="h_fiscal_code" datatype="plaintext">
@@ -3066,6 +3198,9 @@
    <tuv xml:lang="HU">
     <seg>társadalom biztosítási szám</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul asigurării sociale al utilizatorului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_global_score" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3133,6 +3268,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor felülírjuk a válaszra kapható pontokat az alábbi pontokkal</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, suprascrieţi punctele răspunsurilor cu punctele de mai jos</seg>
    </tuv>
   </tu>
   <tu tuid="h_group_name" datatype="plaintext">
@@ -3202,6 +3340,9 @@
    <tuv xml:lang="HU">
     <seg>felhasználói csoport neve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numele grupului utilizatorilor</seg>
+   </tuv>
   </tu>
   <tu tuid="h_guide" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3269,6 +3410,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Súgó</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ajutor</seg>
    </tuv>
   </tu>
   <tu tuid="h_index" datatype="plaintext">
@@ -3338,6 +3482,9 @@
    <tuv xml:lang="HU">
     <seg>fő oldal</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>pagina principală</seg>
+   </tuv>
   </tu>
   <tu tuid="h_info" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3405,6 +3552,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>TCExam információ</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>despre TCExam</seg>
    </tuv>
   </tu>
   <tu tuid="h_ip" datatype="plaintext">
@@ -3474,6 +3624,9 @@
    <tuv xml:lang="HU">
     <seg>az adatokat küldő számítógép IP címe</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>adresa IP a calculatorului de la care s-au transmis datele</seg>
+   </tuv>
   </tu>
   <tu tuid="h_ip_range" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3541,6 +3694,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>érvényes IP címek listája, vesszővel elválasztva (pl.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>lista cu adresele IP active, separate prin virgulă (ex.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
    </tuv>
   </tu>
   <tu tuid="h_lastname" datatype="plaintext">
@@ -3610,6 +3766,9 @@
    <tuv xml:lang="HU">
     <seg>vezetéknév (pl.: Kovács, Kiss, ...)</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Numele utilizatorului (exemplu: Popescu, Costache, ...)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_level" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3677,6 +3836,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>felhasználói szint, 0. szint anonymous felhasználót jelent (nem regisztrált), 1. szint alap felhasználónak felel meg, 10. szint adminisztrátor teljes jogokkal</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nivelul utilizatorului, nivelul 0 indică un utilizator anonim (neînregistrat), nivelul 1 indică un utilizator de bază, nivelul 10 indică un administrator cu toate drepturile de acces</seg>
    </tuv>
   </tu>
   <tu tuid="h_login_button" datatype="plaintext">
@@ -3746,6 +3908,9 @@
    <tuv xml:lang="HU">
     <seg>kattintson ide a bélépéshez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>clic aici pentru a intra</seg>
+   </tuv>
   </tu>
   <tu tuid="h_login_name" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3813,6 +3978,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>felhasználói név, a bélépéshez használt név</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>username, numele folosit pentru a intra în acest sistem multiutilizator</seg>
    </tuv>
   </tu>
   <tu tuid="h_logout_link" datatype="plaintext">
@@ -3882,6 +4050,9 @@
    <tuv xml:lang="HU">
     <seg>kattintson ide a kilépéshez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>clic pe acest link pentru a ieşi din sistem (sesiune încheiată)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_num_answers" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -3949,6 +4120,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>alternatív válaszok maximális száma minden egyes kérdésre</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul maxim de răspunsuri alternative pentru fiecare întrebare</seg>
    </tuv>
   </tu>
   <tu tuid="h_num_questions" datatype="plaintext">
@@ -4018,6 +4192,9 @@
    <tuv xml:lang="HU">
     <seg>kérdések maximális száma</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul maxim de întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="h_num_tquestions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4085,6 +4262,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szabad-válaszú kérdések maximális száma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul maxim de întrebări cu răspuns liber</seg>
    </tuv>
   </tu>
   <tu tuid="h_object_width" datatype="plaintext">
@@ -4154,6 +4334,9 @@
    <tuv xml:lang="HU">
     <seg>objektum szélessége [pixel]</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>lăţimea obiectului [pixeli]</seg>
+   </tuv>
   </tu>
   <tu tuid="h_object_height" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4221,6 +4404,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>objektum magassága [pixel]</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>înălţimea obiectului [pixeli]</seg>
    </tuv>
   </tu>
   <tu tuid="h_password" datatype="plaintext">
@@ -4290,6 +4476,9 @@
    <tuv xml:lang="HU">
     <seg>jelszó, a felhasználó nevéhez kapcsolva hozzáférést biztosít a rendszerhez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>parola, cod alfanumeric care împreună cu username-ul garantează accesul la acest sistem</seg>
+   </tuv>
   </tu>
   <tu tuid="h_password_repeat" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4357,6 +4546,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ismételjük meg a jelszót ebben a mezőben, az esetleges elgépelés ellenőrzése miatt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>repetaţi parola în acest câmp pentru a verifica posibile greşeli de tastare</seg>
    </tuv>
   </tu>
   <tu tuid="h_pdf" datatype="plaintext">
@@ -4426,6 +4618,9 @@
    <tuv xml:lang="HU">
     <seg>PDF dokumentum generálása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>generaţi un document PDF</seg>
+   </tuv>
   </tu>
   <tu tuid="h_pdf_all" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4493,6 +4688,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>részletes jelentés generálása minden egyes felhasználóra vonatkozóan</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>generaţi un raport detaliat pentru fiecare utilizator</seg>
    </tuv>
   </tu>
   <tu tuid="h_pdf_offline_test" datatype="plaintext">
@@ -4562,6 +4760,9 @@
    <tuv xml:lang="HU">
     <seg>PDF dokumentum generálása off-line teszthez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>generaţi documente PDF pentru executarea testului off-line</seg>
+   </tuv>
   </tu>
   <tu tuid="h_preview" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4629,6 +4830,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>előzőleg bevitt kód előnézete</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată o previzualizare a codului introdus anterior</seg>
    </tuv>
   </tu>
   <tu tuid="h_question" datatype="plaintext">
@@ -4698,6 +4902,9 @@
    <tuv xml:lang="HU">
     <seg>a választott témakörhöz tartozó kérdés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebare legată de tema selectată</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_answered" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4765,6 +4972,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>erre a kérdésre már válaszolt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>la această întrebare s-a răspuns deja</seg>
    </tuv>
   </tu>
   <tu tuid="h_question_not_answered" datatype="plaintext">
@@ -4834,6 +5044,9 @@
    <tuv xml:lang="HU">
     <seg>erre a kérdésre még nem válaszolt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>la această întrebare nu s-a răspuns</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_description" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -4901,6 +5114,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>kérdés jellege (pl.: (I) igaz, (H) hamis, ...)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>tipul de întrebare (ex.: adevărată, falsă, ...)</seg>
    </tuv>
   </tu>
   <tu tuid="h_question_difficulty" datatype="plaintext">
@@ -4970,6 +5186,9 @@
    <tuv xml:lang="HU">
     <seg>nehézségi szint - az alap pontok szorzója</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nivelul de dificultate - multiplicatorul punctelor de bază</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_displayed" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5037,6 +5256,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ezt a kérdést már megnézte</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>această întrebare a fost afişată</seg>
    </tuv>
   </tu>
   <tu tuid="h_question_not_displayed" datatype="plaintext">
@@ -5106,6 +5328,9 @@
    <tuv xml:lang="HU">
     <seg>ez a kérdés még nem jelent meg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>această întrebare nu a fost afişată</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_recurrence" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5173,6 +5398,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a kérdés már előfordult más tesztekben</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>revenirea acestei îtrebări în diverse teste</seg>
    </tuv>
   </tu>
   <tu tuid="h_question_type" datatype="plaintext">
@@ -5242,6 +5470,9 @@
    <tuv xml:lang="HU">
     <seg>kérdés jellege</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>tipul de întrebare</seg>
+   </tuv>
   </tu>
   <tu tuid="h_questions_unanswered" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5309,6 +5540,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>megválaszolatlan kérdések</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări la care nu s-a răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="h_questions_undisplayed" datatype="plaintext">
@@ -5378,6 +5612,9 @@
    <tuv xml:lang="HU">
     <seg>meg nem jelenített kérdések</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări neafişate</seg>
+   </tuv>
   </tu>
   <tu tuid="h_questions_unrated" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5445,6 +5682,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nem értékelt kérdések</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări neevaluate</seg>
    </tuv>
   </tu>
   <tu tuid="h_random_answers" datatype="plaintext">
@@ -5514,6 +5754,9 @@
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor a kérdésekhez tartozó válaszok véletlenszerűen lesznek megadva</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, se vor extrage aleator răspunsurile multiple ale fiecărei întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="h_random_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5581,6 +5824,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor a témakörökhöz tartozó válaszok véletlenszerűen lesznek megadva</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, se vor extrage aleator răspunsurile fiecărei teme selectate</seg>
    </tuv>
   </tu>
   <tu tuid="h_regcode" datatype="plaintext">
@@ -5650,6 +5896,9 @@
    <tuv xml:lang="HU">
     <seg>felhasználó regisztrációs száma</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul de înregistrare, numărul de înregistrare al utilizatorului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_regdate" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5717,6 +5966,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>regisztráció dátuma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>data înregistrării utilizatorului</seg>
    </tuv>
   </tu>
   <tu tuid="h_result" datatype="plaintext">
@@ -5786,6 +6038,9 @@
    <tuv xml:lang="HU">
     <seg>a teszt eredményeinek megmutatása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată rezultatele testului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_results_to_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5853,6 +6108,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztjuk, akkor a felhasználo is látja az eredményeket</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, se permite utilizatorilor să vizualizeze rezultatele obţinute</seg>
    </tuv>
   </tu>
   <tu tuid="h_select_question" datatype="plaintext">
@@ -5922,6 +6180,9 @@
    <tuv xml:lang="HU">
     <seg>válasszuk ezt a kérdést</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>selectaţi această întrebare</seg>
+   </tuv>
   </tu>
   <tu tuid="h_score" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -5989,6 +6250,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>erre a válaszra adható pontok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pentru acest răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="h_score_average" datatype="plaintext">
@@ -6058,6 +6322,9 @@
    <tuv xml:lang="HU">
     <seg>átlagos pontszám</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>scor mediu</seg>
+   </tuv>
   </tu>
   <tu tuid="h_score_right" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6125,6 +6392,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>alap pontok minden nehézségi szinthez</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte de bază pentru fiecare nivel de dificultate al întrebărilor</seg>
    </tuv>
   </tu>
   <tu tuid="h_score_total" datatype="plaintext">
@@ -6194,6 +6464,9 @@
    <tuv xml:lang="HU">
     <seg>vegső pontszám</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>scor final</seg>
+   </tuv>
   </tu>
   <tu tuid="h_score_unanswered" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6261,6 +6534,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>pontok a meg nem válaszolt kérdésekre (pl.: 0, -0.5, ...)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pentru întrebarile la care nu s-a răspuns (ex.: 0, -0.5, ...)</seg>
    </tuv>
   </tu>
   <tu tuid="h_score_wrong" datatype="plaintext">
@@ -6330,6 +6606,9 @@
    <tuv xml:lang="HU">
     <seg>pontok a rossz válaszokra (pl.: 0, -0.1, ...)</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pentru răspunsuri greşite (ex.: 0, -0.1, ...)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_select_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6397,6 +6676,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>válasszuk ki az értékelendő kérdéseket</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>selectaţi răspunsurile pentru a fi evaluate</seg>
    </tuv>
   </tu>
   <tu tuid="h_select_user" datatype="plaintext">
@@ -6466,6 +6748,9 @@
    <tuv xml:lang="HU">
     <seg>egy felhasználó által választott oldal megnyitása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>deschideţi pagina pentru a selecta utilizatorul</seg>
+   </tuv>
   </tu>
   <tu tuid="h_subject" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6533,6 +6818,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt téma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>temă test</seg>
    </tuv>
   </tu>
   <tu tuid="h_subject_description" datatype="plaintext">
@@ -6602,6 +6890,9 @@
    <tuv xml:lang="HU">
     <seg>teszt téma leírása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>descrierea temei</seg>
+   </tuv>
   </tu>
   <tu tuid="h_subject_name" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6669,6 +6960,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt téma neve</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numele temei</seg>
    </tuv>
   </tu>
   <tu tuid="h_subjects" datatype="plaintext">
@@ -6738,6 +7032,9 @@
    <tuv xml:lang="HU">
     <seg>teszt témák listája</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>lista temelor</seg>
+   </tuv>
   </tu>
   <tu tuid="h_submit" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6805,6 +7102,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>adatok küldése a hívó folyamatnak</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite datele</seg>
    </tuv>
   </tu>
   <tu tuid="h_tcecode_editor" datatype="plaintext">
@@ -6874,6 +7174,9 @@
    <tuv xml:lang="HU">
     <seg>szerkesztő amely szöveg formázást tesz lehetővé</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>editor care permite formatare text folosind un simplu cod proprietar</seg>
+   </tuv>
   </tu>
   <tu tuid="h_test" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -6941,6 +7244,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt, vizsga</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>test, examen</seg>
    </tuv>
   </tu>
   <tu tuid="h_test_description" datatype="plaintext">
@@ -7010,6 +7316,9 @@
    <tuv xml:lang="HU">
     <seg>teszt leírás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>descrierea testului</seg>
+   </tuv>
   </tu>
   <tu tuid="h_test_name" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7077,6 +7386,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt neve</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numele testului</seg>
    </tuv>
   </tu>
   <tu tuid="h_test_time" datatype="plaintext">
@@ -7146,6 +7458,9 @@
    <tuv xml:lang="HU">
     <seg>a teszt maximális időtartama percben</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>durata maximă a testului în minute</seg>
+   </tuv>
   </tu>
   <tu tuid="h_time_begin" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7213,6 +7528,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a teszt kezdésének dátuma és ideje [yyyy-mm-dd hh:mm:ss]</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>data şi timpul de start al testului [aaaa-ll-zz hh:mm:ss]</seg>
    </tuv>
   </tu>
   <tu tuid="h_time_end" datatype="plaintext">
@@ -7282,6 +7600,9 @@
    <tuv xml:lang="HU">
     <seg>a teszt befejezésének dátuma és ideje [yyyy-mm-dd hh:mm:ss]</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>data şi timpul de final al testului [aaaa-ll-zz hh:mm:ss]</seg>
+   </tuv>
   </tu>
   <tu tuid="h_update" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7350,6 +7671,9 @@
    <tuv xml:lang="HU">
     <seg>aktuális adatok frissítése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>actualizează datele curente</seg>
+   </tuv>
   </tu>
   <tu tuid="h_upload_image" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7414,6 +7738,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a szervernek küldendő kép útvonalának megadása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>specificaţi calea către imaginea care urmează să fie trimisă către server</seg>
    </tuv>
   </tu>
   <tu tuid="h_upload_file" datatype="plaintext">
@@ -7483,6 +7810,9 @@
    <tuv xml:lang="HU">
     <seg>a szervernek küldendő file útvonalának megadása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>specificaţi calea către fişierul care urmează să fie trimis către server</seg>
+   </tuv>
   </tu>
   <tu tuid="h_user_info" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7550,6 +7880,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>információ a bejelentkezett felhasználókról</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată utilizatorul conectat</seg>
    </tuv>
   </tu>
   <tu tuid="h_usered_email" datatype="plaintext">
@@ -7619,6 +7952,9 @@
    <tuv xml:lang="HU">
     <seg>e-mail cím (pl.: nev@domain.hu)</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>adresa de email a utilizatorului (ex.: nume@domeniu.com)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_view_details" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7686,6 +8022,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>részletek megmutatása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată detalii</seg>
    </tuv>
   </tu>
   <tu tuid="h_csv_export" datatype="plaintext">
@@ -7755,6 +8094,9 @@
    <tuv xml:lang="HU">
     <seg>adatok exportálása CSV formátumba</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>exportaţi datele în format CSV (text Tab delimited)</seg>
+   </tuv>
   </tu>
   <tu tuid="h_xml_export" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7822,6 +8164,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>adatok exportálása XML formátumba</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>exportaţi datele în format XML</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_answer" datatype="plaintext">
@@ -7891,6 +8236,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet kezelni a kérdésekra adható összes választ. Tetszőleges számú helyes és helytelen válasz adható meg minden kérdésre. A teszt során a rendszer automatikusan fogja kiválasztani az egy vagy több helyes választ a kérdéstől függően. Nem lehet módosítani vagy törölni egy választ amelyik egy már kitöltött teszt része. Ebben az esetben a rendszer csak kikapcsolja a választ a [töröl] gomb megnyomása után. Jelmagyarázat: [+] Bekapcsolt; [-] Kikapcsolt. Kérdések jelölése: [S] Több lehetőség de csak egy jó válaszos kérdés; [M] Több lehetőség több jó válaszos kérdés; [T] Szabad, szöveges válaszos kérdés; [O] ORDER - Sorbarendezős kérdés. Válaszok jelölése: [I] igaz válasz; [H] hamis válasz.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi gestiona toate răspunsurile posibile asociate cu întrebarea selectată. Puteţi adăuga un număr oarecare de răspunsuri corecte şi greşite pentru fiecare întrebare; în timpul testului sistemul va selecta automat numai unul din răspunsurile corecte şi îl va afişa în lista cu variantele de răspuns. Nu puteţi modifica sau şterge un răspuns care a fost folosit într-un test deja efectuat; în acest caz puteţi doar să-l inactivaţi. Legenda: [+] Activ; [-] Inactiv. Legenda pentru întrebări: [S] MVSR - întrebare Multiple Variante Singur Răspuns; [M] MVMR - întrebare Multiple Variante Multiple Răspunsuri; [T] TEXT - Răspuns Liber; [O] ORDONARE - Ordonare Răspuns. Legenda pentru răspunsuri: [T] răspuns adevărat; [F] răspuns fals.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_edit_group" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -7958,6 +8306,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet kezelni a felhasználói csoportokat.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi gestiona diferitele grupuri ale utilizatorilor.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_question" datatype="plaintext">
@@ -8027,6 +8378,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet kezelni az egy témához tartozó kérdéseket. Nem lehet módosítani vagy törölni egy kérdést amelyik egy már kitöltött teszt része. Ebben az esetben a rendszer csak kikapcsolja a kérdést a [töröl] gomb megnyomása után. Jelmagyarázat: [+] Bekapcsolt; [-] Kikapcsolt; [S] Több lehetőség de csak egy jó válasz; [M] Több lehetőség több jó válasz; [T] Szabad, szöveges válasz; [O] ORDER - Sorbarendezős válasz.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi gestiona diferite întrebări asociate cu tema selectată. Nu puteţi modifica sau şterge o întrebare folosită într-un test care a fost deja efectuat; în acest caz puteţi doar s-o inactivaţi. Legenda: [+] Activ; [-] Inactiv. Legenda pentru întrebări: [S] MVSR - întrebare Multiple Variante Singur Răspuns; [M] MVMR - întrebare Multiple Variante Multiple Răspunsuri; [T] TEXT - Răspuns Liber; [O] ORDONARE - Ordonare Răspuns.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_edit_rating" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8094,6 +8448,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet megadni a szöveges válaszokra adható pontokat. A felhasználó válasza a felhasználó kiválasztása után lehet megnézni. A 'megjelenít mind' opció bekapcsolása után az összes választ egyszerre lehet értékelni.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi specifica punctele pentru răspunsurile libere. Puteţi vedea datele utilizatorului selectând câmpul 'date utilizator'. Câmpul 'afişează tot' vă permite să vedeţi şi să corectaţi răspunsurile deja evaluate.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_subject" datatype="plaintext">
@@ -8163,6 +8520,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet kezelni a tesztek témáit. A tesztekben feltehető kérdések különböző témák alá rendezhetők. Egy teszten belül különböző témákat választhatunk. Nem lehet törölni vagy módosítani egy témát amelyik egy már kitöltött tesztben felhasználásra került. Ilyenkor a törlés helyett a rendszer csak kikapcsolja a témát. Jelmagyarázat: [+] Bekapcsolt; [-] Kikapcsolt;</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi gestiona diferitele teme care aparţin modulului selectat. Întrebările din sistem pot fi catalogate conform acestor teme. Într-un singur test pot fi mai multe teme. Nu puteţi modifica sau şterge o temă care este parte într-un test deja efectuat; în acest caz puteţi doar să-l inactivaţi. Legenda: [+] Activ; [-] Inactiv;</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_edit_tcecode" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8230,6 +8590,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen a formon keresztül lehet képeket és formázást hozzáadni a szöveghez.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi adăuga imagini şi puteţi selecta formatul textului.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_test" datatype="plaintext">
@@ -8299,6 +8662,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet létrehozni, módosítani vagy törölni a teszteket. Egy teszt létrehozásához legalább egy definiált téma kell melyhez kérdések és válaszok tartoznak. A tesztet csak a megfelelő jogokkal és érvényes IP címmel rendelkező felhasználók tudják kitölteni. Az IP mező IP címek listáit is tartalmazhatja. Az IP címeket vesszővel kell elválasztani. Egy IP cím hivatkozhat több gépre is a csillag (*) karakterrel, mely azt jelzi hogy bármilyen 0 és 256 közötti szám szerepelhet a csillag karakter helyén. A teszt csak a megadott intervallumban lesz elérhető és ha egyszer elkezdtük kitölteni akkor a megadott maximum időn belül kell kitölteni. A tesztek több témat is tartalmazhatnak különböző jellegű kérdésekkel melyeket a rendszer véletlenszerűen választ ki. Lehetőségünk van a különböző nehézségű kérdések alap pontszámainak megváltoztatására is. Egy már kitöltött tesztet nem lehet módosítani. Ha egy tesztet törlünk, akkor minden a kitöltött tesztekhez tartozó adatot törlünk (logok). A [generál] gomb segítségével tetszőleges számú egyedi teszt készithető PDF formátumban melyeket számitogép nélkül is fel lehet használni.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un scor de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_edit_user" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8366,6 +8732,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet kezelni a rendszer regisztrált felhasználóit. Minden felhasználónak meg kell adni egy nevet, egy jelszót és egy elérési szintet. A 0. szint anonymous felhasználót jelent (nincs regisztrálva), 1. szint az alap felhasználó (pl. hallgató) és a 10. szint az adminisztrátor szint teljes jogkörrel.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi gestiona diferiţi utilizatori care au acces la acest sistem. Pentru fiecare utilizator puteţi alege un nume, o parolă şi un nivel de acces. Nivelul 0 indică un utilizator anonim (neînregistrat), nivelul 1 un utilizator de bază (ex.: un student), nivelul 10 indică un administrator cu drepturi de acces depline.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_email_result" datatype="plaintext">
@@ -8435,6 +8804,9 @@
    <tuv xml:lang="HU">
     <seg>Eredmények elküldése a felhasználóknak e-mail -ben</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Trimite rezultate către utilizatori prin email</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_import_xml_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8502,6 +8874,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet egy XML file-ból kérdéseket betölteni a kiválasztott témához.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi importa întrebări pentru tema selectată dintr-un fişier XML.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_import_xml_users" datatype="plaintext">
@@ -8571,6 +8946,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet felhasználókat és csoportokat betölteni file-ból. A file kiterjesztése XML vagy CSV lehet. A file formátuma megegyezik a Felhasználói lista oldalon kiírható file-ok formátumával.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi importa utilizatori şi grupuri dintr-un fişier XML sau CSV (text Tab delimited). Formatul fişierului este acelaşi cu cel obţinut prin exportul datelor din formularul Selectare Utilizatori.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_login" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8638,6 +9016,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>A TCExam különböző részeihez csak a megfelelő felhasználói név és jelszó megadásával lehet hozzáférni.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Pentru a putea accesa diferitele secţiuni ale TCExam trebuie să vă autentificaţi folosind numele şi parola furnizate de administratorul sistemului.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_online_users" datatype="plaintext">
@@ -8707,6 +9088,9 @@
    <tuv xml:lang="HU">
     <seg>Ez az oldal a jelenleg bejelentkezett felhasznalókat mutatja meg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Acest formular afişează utilizatorii care sunt momentan autentificaţi în sistem</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_public_index" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8774,6 +9158,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez a TCExam fő oldala, innen lehet elérni a teszteket</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Aceasta este pagina principală a TCExam. De la această pagină puteţi porni sau continua testele dumneavoastră</seg>
    </tuv>
   </tu>
   <tu tuid="hp_result_questions" datatype="plaintext">
@@ -8843,6 +9230,9 @@
    <tuv xml:lang="HU">
     <seg>Ez az oldal egy statisztikát jelenít meg a kiválasztott tesztről. Egy oszlop fejlécére kattintva a megjelenítési sorrend megváltoztatható. A sor elején szereplő számra kattintva a konkrét kérdést módosító oldalra lehet ugrani.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Această pagină redă date statistice pentru un test selectat. Printr-un clic pe numele coloanelor puteţi schimba secvenţa de vizualizare a tabelului. Dând clic pe numărul întrebării puteţi accesa pagina de modificare a acesteia.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_result_user" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -8910,6 +9300,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez az oldal egy felhasználó eredményeit mutatja meg. Az adatok egy sorban: &lt;br /&gt; kérdés száma [pontszám] (felhasználó IP címe | megjelenítési idő hh:mm:aa | utolsó módosítás ideje hh:mm:ss | válaszadási idő mm:ss) &lt;br /&gt;A ® szimbólum jelöli a helyesen megválaszolt kérdéseket, míg a felhasználó válaszát egy 'x' jelöli. A [PDF] gomb segítségével az eredmények egy PDF dokumentumba menthetők.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Această pagină redă detaliile testului utilizatorului selectat. Datele în fiecare linie sunt: &lt;br /&gt; numărul întrebării. [scorul] (IP-ul utilizatorului | timpul vizualizării în hh:mm:ss| timpul ultimei modificări în hh:mm:ss| timpul de răspuns în mm:ss) &lt;br /&gt;Simbolul ® indică răspunsul corect, în timp ce răspunsul dat de utilizator este redat cu 'x'. Butonul [PDF] exportă rezultatele într-un document PDF.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_select_all_questions" datatype="plaintext">
@@ -8979,6 +9372,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon látható és választható ki az egy témához tartozó összes kérdés és a kérdésekre adható válasz.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi vizualiza şi selecta toate întrebările şi răspunsurile acestora specifice unei teme.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_select_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9046,6 +9442,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez az oldal listázza a regisztrált felhasználókat. A megjelenítési sorrendet megváltoztathatjuk ha az oszlop fejlécére kattintunk.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>În acest formular puteţi vizualiza şi selecta utilizatorii înregistraţi. Puteţi schimba secvenţa de vizualizare cu un clic pe numele coloanelor.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_sending_in_progress" datatype="plaintext">
@@ -9115,6 +9514,9 @@
    <tuv xml:lang="HU">
     <seg>E-mail küldés folyamatban. Kérem várjon.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Trimiterea email-ului în progres. Vă rugăm aşteptaţi până când procesul de trimitere este complet.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_test_execute" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9182,6 +9584,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon lehet a kiválasztott tesztet kitölteni.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Această pagină vă permite să efectuaţi testul selectat.</seg>
    </tuv>
   </tu>
   <tu tuid="hp_test_info" datatype="plaintext">
@@ -9251,6 +9656,9 @@
    <tuv xml:lang="HU">
     <seg>A kiválasztott tesztre vonatkozó információk megmutatása.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Arată informaţii despre testul selectat.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_test_results" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9318,6 +9726,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez az oldal mutatja a kiválasztott teszt eredményeit. Az eredmények csak a több-válaszos kérdésekre vonatkoznak.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Această pagină afişează rezultatele testului selectat. Rezultatele aparţin doar întrebărilor cu răspunsuri multiple.</seg>
    </tuv>
   </tu>
   <tu tuid="m_authorization_denied" datatype="plaintext">
@@ -9387,6 +9798,9 @@
    <tuv xml:lang="HU">
     <seg>BELÉPÉS MEGTAGADVA!</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>AUTORIZARE REFUZATĂ!</seg>
+   </tuv>
   </tu>
   <tu tuid="m_databasempty" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9454,6 +9868,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>az adatbázis üres!</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>baza de date este goală!</seg>
    </tuv>
   </tu>
   <tu tuid="m_delete_anonymous" datatype="plaintext">
@@ -9523,6 +9940,9 @@
    <tuv xml:lang="HU">
     <seg>az anonymous felhasználót nem lehet törölni</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizatorul anonim nu poate fi şters</seg>
+   </tuv>
   </tu>
   <tu tuid="m_delete_confirm" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9590,6 +10010,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>biztos, hogy töröli</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>confirmaţi ştergerea</seg>
    </tuv>
   </tu>
   <tu tuid="m_delete_confirm_test" datatype="plaintext">
@@ -9659,6 +10082,9 @@
    <tuv xml:lang="HU">
     <seg>a teszt törlése minden kapcsolódó információ (logok, eredmények) elvesztésével jár</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ştergerea acestui test duce la ştergerea înregistrărilor sale (rezultatele testului)</seg>
+   </tuv>
   </tu>
   <tu tuid="m_delete_prohibited" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9726,6 +10152,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ezt a rekordot nem lehet törölni</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>această înregistrare nu poate fi ştearsă</seg>
    </tuv>
   </tu>
   <tu tuid="m_deleted" datatype="plaintext">
@@ -9795,6 +10224,9 @@
    <tuv xml:lang="HU">
     <seg>a rekord törölve lett az adatbázisból</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea a fost eliminată din baza de date</seg>
+   </tuv>
   </tu>
   <tu tuid="m_different_passwords" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9862,6 +10294,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a jelszavak eltérőek</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>parolele sunt diferite</seg>
    </tuv>
   </tu>
   <tu tuid="m_empty_password" datatype="plaintext">
@@ -9931,6 +10366,9 @@
    <tuv xml:lang="HU">
     <seg>a jelszó mező üres</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>câmpul parolei este gol</seg>
+   </tuv>
   </tu>
   <tu tuid="m_disabled_vs_deleted" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9998,6 +10436,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a rekordot nem lehetett letörölni mert egy másik táblában használva van, így csak ki lett kapcsolva. A rekord csak az azt tartalmazó teszt törlése után törölhető.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea a fost dezactivată, nu poate fi ştearsă deoarece este folosită în alte tabele. Veţi putea şterge această înregistrare numai după ştergerea testului unde aceasta este folosită.</seg>
    </tuv>
   </tu>
   <tu tuid="m_duplicate_answer" datatype="plaintext">
@@ -10067,6 +10508,9 @@
    <tuv xml:lang="HU">
     <seg>ez a válasz már meg lett adva</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>acest răspuns a fost deja introdus</seg>
+   </tuv>
   </tu>
   <tu tuid="m_duplicate_name" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10134,6 +10578,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ez a név már foglalt, egy másikat kell választani</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>acest nume a fost folosit deja, trebuie să alegeţi alt nume</seg>
    </tuv>
   </tu>
   <tu tuid="m_duplicate_regnumber" datatype="plaintext">
@@ -10203,6 +10650,9 @@
    <tuv xml:lang="HU">
     <seg>ez a regisztrációs szám már foglalt, egy másikat kell választani</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>acest număr de înregistrare a fost folosit deja, trebuie să alegeţi un alt număr</seg>
+   </tuv>
   </tu>
   <tu tuid="m_duplicate_ssn" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10270,6 +10720,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ez az SSN szám már foglalt, egy másikat kell választani</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>acest SSN a fost folosit deja, trebuie să alegeţi un altul</seg>
    </tuv>
   </tu>
   <tu tuid="m_duplicate_question" datatype="plaintext">
@@ -10339,6 +10792,9 @@
    <tuv xml:lang="HU">
     <seg>ez a kérdés már meg lett adva</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>această întrebare a fost introdusă deja</seg>
+   </tuv>
   </tu>
   <tu tuid="m_exam_end_time" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10406,6 +10862,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Sajnálom, a teszt kitöltésére szánt idő letelt!</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Ne pare rău, dar timpul alocat completării testului s-a terminat!</seg>
    </tuv>
   </tu>
   <tu tuid="m_form_missing_fields" datatype="plaintext">
@@ -10475,6 +10934,9 @@
    <tuv xml:lang="HU">
     <seg>néhány kötelező mező üres</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>unele câmpuri obligatorii nu au fost completate</seg>
+   </tuv>
   </tu>
   <tu tuid="m_form_wrong_fields" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10542,6 +11004,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>néhány mező formátuma nem megfelelő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>unele câmpuri au fost completate într-un format deadecvat</seg>
    </tuv>
   </tu>
   <tu tuid="m_group_deleted" datatype="plaintext">
@@ -10611,6 +11076,9 @@
    <tuv xml:lang="HU">
     <seg>csoport törlése sikeres volt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>grupul a fost şters din baza de date</seg>
+   </tuv>
   </tu>
   <tu tuid="m_group_updated" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10678,6 +11146,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a csoport adatainak frissítése sikeres</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>datele utilizatorului au fost actualizate</seg>
    </tuv>
   </tu>
   <tu tuid="m_importing_complete" datatype="plaintext">
@@ -10747,6 +11218,9 @@
    <tuv xml:lang="HU">
     <seg>XML importálása sikeres volt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>importul XML complet</seg>
+   </tuv>
   </tu>
   <tu tuid="m_login_wrong" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10814,6 +11288,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>rossz felhasználói név / jelszó</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizator / parolă greşite</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_authenticate" datatype="plaintext">
@@ -10883,6 +11360,9 @@
    <tuv xml:lang="HU">
     <seg>[SMTP] Nem lehet azonosítani.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>[SMTP] Nu s-a realizat autentificarea.</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_connect_host" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -10950,6 +11430,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>[SMTP] Nem lehet kapcsolódni az SMTP szerverhez.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>[SMTP] Nu s-a realizat conectarea la gazda SMTP.</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_data_not_accepted" datatype="plaintext">
@@ -11019,6 +11502,9 @@
    <tuv xml:lang="HU">
     <seg>[SMTP] Adat elutasítva.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>[SMTP] Datele nu au fost acceptate.</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_encoding" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11086,6 +11572,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ismeretlen kódolás:</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Codificare necunoscută:</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_execute" datatype="plaintext">
@@ -11155,6 +11644,9 @@
    <tuv xml:lang="HU">
     <seg>Nem lehet végrehajtani:</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu s-a putut executa:</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_file_access" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11222,6 +11714,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Nem lehet elérni a file-t:</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu s-a accesat fişierul:</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_file_open" datatype="plaintext">
@@ -11291,6 +11786,9 @@
    <tuv xml:lang="HU">
     <seg>Nem lehet megnyitni a file-t:</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu s-a deschis fişierul:</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_from_failed" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11358,6 +11856,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>A következő From címek nem működtek:</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Următoarele adrese DE LA au eşuat:</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_instantiate" datatype="plaintext">
@@ -11427,6 +11928,9 @@
    <tuv xml:lang="HU">
     <seg>Nem lehet létrehozni a levélküldési funkciót.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu s-a pornit funcţia mail.</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_mailer_not_supported" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11494,6 +11998,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Levelezés nem támogatott.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Mailer-ul nu este suportat.</seg>
    </tuv>
   </tu>
   <tu tuid="m_mailerror_provide_address" datatype="plaintext">
@@ -11563,6 +12070,9 @@
    <tuv xml:lang="HU">
     <seg>Legalább egy e-mail címet meg kell adni.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Trebuie să specificaţi cel puţin o adresă de email a destinatarului.</seg>
+   </tuv>
   </tu>
   <tu tuid="m_mailerror_recipients_failed" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11630,6 +12140,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>[SMTP] A következő e-mail címek tévesek, hibásak:</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>[SMTP] Următorii destinatari au eşuat:</seg>
    </tuv>
   </tu>
   <tu tuid="m_new_window_link" datatype="plaintext">
@@ -11699,6 +12212,9 @@
    <tuv xml:lang="HU">
     <seg>ez a link egy új böngésző ablakot nyit meg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>acest link va deschide o nouă fereastră în browser</seg>
+   </tuv>
   </tu>
   <tu tuid="m_no_test_available" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11766,6 +12282,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>jelenleg nincs elérhető teszt!</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu sunt teste disponibile!</seg>
    </tuv>
   </tu>
   <tu tuid="m_process_completed" datatype="plaintext">
@@ -11835,6 +12354,9 @@
    <tuv xml:lang="HU">
     <seg>folyamat befejezve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>proces complet</seg>
+   </tuv>
   </tu>
   <tu tuid="m_search_void" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -11902,6 +12424,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nincs találat</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nu s-a găsit nimic</seg>
    </tuv>
   </tu>
   <tu tuid="m_unanswered" datatype="plaintext">
@@ -11974,6 +12499,9 @@
    <tuv xml:lang="HU">
     <seg>nincs válasz, kihagy</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nici un răspuns</seg>
+   </tuv>
   </tu>
   <tu tuid="m_unknown_email" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12041,6 +12569,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ismeretlen e-mail</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>email necunoscut</seg>
    </tuv>
   </tu>
   <tu tuid="m_update_restrict" datatype="plaintext">
@@ -12110,6 +12641,9 @@
    <tuv xml:lang="HU">
     <seg>a rekordot nem lehet frissíteni mert egy másik táblában használva van.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea nu poate fi actualizată deoarece este folosită în alte tabele.</seg>
+   </tuv>
   </tu>
   <tu tuid="m_updated" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12177,6 +12711,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a rekord frissítése sikeres</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea a fost actualizată</seg>
    </tuv>
   </tu>
   <tu tuid="m_upload_not" datatype="plaintext">
@@ -12246,6 +12783,9 @@
    <tuv xml:lang="HU">
     <seg>nem lehet feltölteni a file-t</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nu se poate trimite fişierul</seg>
+   </tuv>
   </tu>
   <tu tuid="m_upload_yes" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12313,6 +12853,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a fájl feltöltése sikers volt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>fişier trimis corect</seg>
    </tuv>
   </tu>
   <tu tuid="m_used_not_update" datatype="plaintext">
@@ -12382,6 +12925,9 @@
    <tuv xml:lang="HU">
     <seg>a rekordot nem lehet frissíteni mert a teszt eredmény táblájában már használva van. A rekord módosítása csak a teszt törlése után lehetséges. Ugyanakkor ki lehet kapcsolni a [delete] gombbal.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea nu poate fi actualizată deoarece este folosită în tabelele rezultatelor testului. Veţi putea modifica această înregistrare numai după ştergerea testului care o foloseşte. O puteţi dezactiva cu butonul [şterge].</seg>
+   </tuv>
   </tu>
   <tu tuid="m_used_not_update_test" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12449,6 +12995,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a rekordot nem lehet frissíteni mert a teszt eredmény táblájában már használva van.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>înregistrarea nu poate fi actualizată deoarece este folosită în tabelele rezultatelor testului.</seg>
    </tuv>
   </tu>
   <tu tuid="m_user_deleted" datatype="plaintext">
@@ -12518,6 +13067,9 @@
    <tuv xml:lang="HU">
     <seg>a felhasználó az adatbázisból törölve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizatorul a fost şters din baza de date</seg>
+   </tuv>
   </tu>
   <tu tuid="m_user_updated" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12585,6 +13137,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a felhasználói adatok frissítése megtörtént</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>datele utilizatorului au fost actualizate</seg>
    </tuv>
   </tu>
   <tu tuid="t_answers_editor" datatype="plaintext">
@@ -12654,6 +13209,9 @@
    <tuv xml:lang="HU">
     <seg>Válasz szerkesztő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Răspunsuri-Multiple</seg>
+   </tuv>
   </tu>
   <tu tuid="t_email_result" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12721,6 +13279,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Eredmények elküldése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Trimiteţi rezultatele</seg>
    </tuv>
   </tu>
   <tu tuid="t_error" datatype="plaintext">
@@ -12790,6 +13351,9 @@
    <tuv xml:lang="HU">
     <seg>HIBA</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>EROARE</seg>
+   </tuv>
   </tu>
   <tu tuid="t_group_editor" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12857,6 +13421,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Csoport szerkesztő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Grupuri</seg>
    </tuv>
   </tu>
   <tu tuid="t_group_select" datatype="plaintext">
@@ -12926,6 +13493,9 @@
    <tuv xml:lang="HU">
     <seg>Csoportok listája</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Listă Grupuri</seg>
+   </tuv>
   </tu>
   <tu tuid="t_help" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -12993,6 +13563,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Súgó</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Ajutor</seg>
    </tuv>
   </tu>
   <tu tuid="t_image_upload" datatype="plaintext">
@@ -13062,6 +13635,9 @@
    <tuv xml:lang="HU">
     <seg>Kép feltöltése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Adaugă Imagine</seg>
+   </tuv>
   </tu>
   <tu tuid="t_login_form" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13130,6 +13706,9 @@
    <tuv xml:lang="HU">
     <seg>Belépés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Autentificare</seg>
+   </tuv>
   </tu>
   <tu tuid="t_main" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13196,6 +13775,9 @@
     <seg>TCExam</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>TCExam</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>TCExam</seg>
    </tuv>
   </tu>
@@ -13266,6 +13848,9 @@
    <tuv xml:lang="HU">
     <seg>ÜZENET</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>MESAJ</seg>
+   </tuv>
   </tu>
   <tu tuid="t_online_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13333,6 +13918,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Belépett felhasználók</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Utilizatori Online</seg>
    </tuv>
   </tu>
   <tu tuid="t_page_guide" datatype="plaintext">
@@ -13402,6 +13990,9 @@
    <tuv xml:lang="HU">
     <seg>TCExam :: Súgó</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>TCExam :: Ajutor</seg>
+   </tuv>
   </tu>
   <tu tuid="t_page_info" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13469,6 +14060,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>TCExam információ</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Despre TCExam</seg>
    </tuv>
   </tu>
   <tu tuid="t_public_index" datatype="plaintext">
@@ -13538,6 +14132,9 @@
    <tuv xml:lang="HU">
     <seg>TCExam :: Teszt Kitöltés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>TCExam :: Exectuare Test</seg>
+   </tuv>
   </tu>
   <tu tuid="t_questions_editor" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13605,6 +14202,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Kérdés szerkesztő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Întrebări</seg>
    </tuv>
   </tu>
   <tu tuid="t_questions_list" datatype="plaintext">
@@ -13674,6 +14274,9 @@
    <tuv xml:lang="HU">
     <seg>Kérdés Lista</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Listă Întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="t_question_importer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13741,6 +14344,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Kérdés Importálás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Import Întrebări</seg>
    </tuv>
   </tu>
   <tu tuid="t_rating_editor" datatype="plaintext">
@@ -13810,6 +14416,9 @@
    <tuv xml:lang="HU">
     <seg>Értékelés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Evaluare Răspunsuri</seg>
+   </tuv>
   </tu>
   <tu tuid="t_result_all_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13878,6 +14487,9 @@
    <tuv xml:lang="HU">
     <seg>Eredmények összegzése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Sumar Rezultate Teste</seg>
+   </tuv>
   </tu>
   <tu tuid="t_result_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -13945,6 +14557,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Statisztika</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Statistici Întrebări</seg>
    </tuv>
   </tu>
   <tu tuid="t_result_user" datatype="plaintext">
@@ -14017,6 +14632,9 @@
    <tuv xml:lang="HU">
     <seg>Teszt Eredmények</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Rezultate Teste</seg>
+   </tuv>
   </tu>
   <tu tuid="t_subjects_editor" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14084,6 +14702,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Téma Szerkesztő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Teme</seg>
    </tuv>
   </tu>
   <tu tuid="t_tcecode_editor" datatype="plaintext">
@@ -14153,6 +14774,9 @@
    <tuv xml:lang="HU">
     <seg>Szöveg Formázás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Format Text</seg>
+   </tuv>
   </tu>
   <tu tuid="t_test_execute" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14220,6 +14844,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Teszt Kitöltés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Executare Test</seg>
    </tuv>
   </tu>
   <tu tuid="t_test_info" datatype="plaintext">
@@ -14289,6 +14916,9 @@
    <tuv xml:lang="HU">
     <seg>Teszt Információ</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Informaţii despre Test</seg>
+   </tuv>
   </tu>
   <tu tuid="t_test_results" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14356,6 +14986,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Tesztek Eredményei</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Rezultatele Testului</seg>
    </tuv>
   </tu>
   <tu tuid="t_tests_editor" datatype="plaintext">
@@ -14425,6 +15058,9 @@
    <tuv xml:lang="HU">
     <seg>Teszt Szerkesztő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Teste</seg>
+   </tuv>
   </tu>
   <tu tuid="t_third_parties" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14492,6 +15128,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Harmadik fél készítésű szoftver</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Software Third-party</seg>
    </tuv>
   </tu>
   <tu tuid="t_user_editor" datatype="plaintext">
@@ -14561,6 +15200,9 @@
    <tuv xml:lang="HU">
     <seg>Felhasználó Szerkesztő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Utilizatori</seg>
+   </tuv>
   </tu>
   <tu tuid="t_user_importer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14628,6 +15270,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Felhasználó Importálás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Import Utilizatori</seg>
    </tuv>
   </tu>
   <tu tuid="t_user_select" datatype="plaintext">
@@ -14697,6 +15342,9 @@
    <tuv xml:lang="HU">
     <seg>Felhasználói lista</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Selectare Utilizatori</seg>
+   </tuv>
   </tu>
   <tu tuid="t_warning" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14764,6 +15412,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>FIGYELEM</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ATENŢIE</seg>
    </tuv>
   </tu>
   <tu tuid="w_add" datatype="plaintext">
@@ -14833,6 +15484,9 @@
    <tuv xml:lang="HU">
     <seg>hozzáad</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>adaugă</seg>
+   </tuv>
   </tu>
   <tu tuid="w_add_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -14900,6 +15554,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>kérdések hozzáadása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>adăugaţi întrebările</seg>
    </tuv>
   </tu>
   <tu tuid="w_add_subject" datatype="plaintext">
@@ -14969,6 +15626,9 @@
    <tuv xml:lang="HU">
     <seg>téma hozzáadása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>adăugaţi tema</seg>
+   </tuv>
   </tu>
   <tu tuid="w_allow_no_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15036,6 +15696,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nincs válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nici un răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="w_anonymous" datatype="plaintext">
@@ -15105,6 +15768,9 @@
    <tuv xml:lang="HU">
     <seg>névtelen</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>anonim</seg>
+   </tuv>
   </tu>
   <tu tuid="w_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15172,6 +15838,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="w_answer_time" datatype="plaintext">
@@ -15241,6 +15910,9 @@
    <tuv xml:lang="HU">
     <seg>idő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>timp</seg>
+   </tuv>
   </tu>
   <tu tuid="w_answers" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15308,6 +15980,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>válaszok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri</seg>
    </tuv>
   </tu>
   <tu tuid="w_answers_right" datatype="plaintext">
@@ -15377,6 +16052,9 @@
    <tuv xml:lang="HU">
     <seg>helyes</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>corecte</seg>
+   </tuv>
   </tu>
   <tu tuid="w_answers_right_th" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15444,6 +16122,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>helyes</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>corecte</seg>
    </tuv>
   </tu>
   <tu tuid="w_answers_wrong" datatype="plaintext">
@@ -15513,6 +16194,9 @@
    <tuv xml:lang="HU">
     <seg>hibás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>greşite</seg>
+   </tuv>
   </tu>
   <tu tuid="w_answers_wrong_th" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15580,6 +16264,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>hibás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>greşite</seg>
    </tuv>
   </tu>
   <tu tuid="w_ascent" datatype="plaintext">
@@ -15649,6 +16336,9 @@
    <tuv xml:lang="HU">
     <seg>emelkedő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ascensiune</seg>
+   </tuv>
   </tu>
   <tu tuid="w_attachment" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15716,6 +16406,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>csatolás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ataşament</seg>
    </tuv>
   </tu>
   <tu tuid="w_author" datatype="plaintext">
@@ -15785,6 +16478,9 @@
    <tuv xml:lang="HU">
     <seg>szerző</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>autor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_birth_date" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15852,6 +16548,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>születési dátum</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>data de naştere</seg>
    </tuv>
   </tu>
   <tu tuid="w_birth_place" datatype="plaintext">
@@ -15921,6 +16620,9 @@
    <tuv xml:lang="HU">
     <seg>születési hely</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>locul naşterii</seg>
+   </tuv>
   </tu>
   <tu tuid="w_cancel" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -15988,6 +16690,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>mégse</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>anulează</seg>
    </tuv>
   </tu>
   <tu tuid="w_city" datatype="plaintext">
@@ -16057,6 +16762,9 @@
    <tuv xml:lang="HU">
     <seg>város</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>oraş</seg>
+   </tuv>
   </tu>
   <tu tuid="w_clear" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16124,6 +16832,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>mező törlés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>goleşte</seg>
    </tuv>
   </tu>
   <tu tuid="w_clock_timer" datatype="plaintext">
@@ -16193,6 +16904,9 @@
    <tuv xml:lang="HU">
     <seg>óra / stopper</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ceas / temporizator</seg>
+   </tuv>
   </tu>
   <tu tuid="w_close" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16260,6 +16974,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>bezár</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>închide</seg>
    </tuv>
   </tu>
   <tu tuid="w_code" datatype="plaintext">
@@ -16329,6 +17046,9 @@
    <tuv xml:lang="HU">
     <seg>kód</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>cod</seg>
+   </tuv>
   </tu>
   <tu tuid="w_confirm" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16396,6 +17116,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>megerősít</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>confirmă</seg>
    </tuv>
   </tu>
   <tu tuid="w_continue" datatype="plaintext">
@@ -16465,6 +17188,9 @@
    <tuv xml:lang="HU">
     <seg>folytat</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>continuă</seg>
+   </tuv>
   </tu>
   <tu tuid="w_country" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16532,6 +17258,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ország</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>tară</seg>
    </tuv>
   </tu>
   <tu tuid="w_database" datatype="plaintext">
@@ -16601,6 +17330,9 @@
    <tuv xml:lang="HU">
     <seg>adatbázis</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>bază de date</seg>
+   </tuv>
   </tu>
   <tu tuid="w_date_format" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16668,6 +17400,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>[yyyy-mm-dd]</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>[aaaa-ll-zz]</seg>
    </tuv>
   </tu>
   <tu tuid="w_datetime_format" datatype="plaintext">
@@ -16737,6 +17472,9 @@
    <tuv xml:lang="HU">
     <seg>[yyyy-mm-dd hh:mm:ss]</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>[aaaa-ll-zz hh:mm:ss]</seg>
+   </tuv>
   </tu>
   <tu tuid="w_delete" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16804,6 +17542,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>töröl</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>şterge</seg>
    </tuv>
   </tu>
   <tu tuid="w_descent" datatype="plaintext">
@@ -16873,6 +17614,9 @@
    <tuv xml:lang="HU">
     <seg>csökkenés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>coborâre</seg>
+   </tuv>
   </tu>
   <tu tuid="w_description" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -16940,6 +17684,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>leírás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>descriere</seg>
    </tuv>
   </tu>
   <tu tuid="w_disabled" datatype="plaintext">
@@ -17009,6 +17756,9 @@
    <tuv xml:lang="HU">
     <seg>kikapcsolt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>inactiv</seg>
+   </tuv>
   </tu>
   <tu tuid="w_display_all" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17076,6 +17826,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>megjelenít mind</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>afişează tot</seg>
    </tuv>
   </tu>
   <tu tuid="w_display_user_info" datatype="plaintext">
@@ -17145,6 +17898,9 @@
    <tuv xml:lang="HU">
     <seg>felhasználói adat</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>date utilizator</seg>
+   </tuv>
   </tu>
   <tu tuid="w_edit" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17213,6 +17969,9 @@
    <tuv xml:lang="HU">
     <seg>módosít</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>modifică</seg>
+   </tuv>
   </tu>
   <tu tuid="w_email" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17279,6 +18038,9 @@
     <seg>Email</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>email</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>email</seg>
    </tuv>
   </tu>
@@ -17349,6 +18111,9 @@
    <tuv xml:lang="HU">
     <seg>e-mail-ek küldése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite email-uri</seg>
+   </tuv>
   </tu>
   <tu tuid="w_email_result" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17416,6 +18181,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>e-mail küldés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite email</seg>
    </tuv>
   </tu>
   <tu tuid="w_group" datatype="plaintext">
@@ -17485,6 +18253,9 @@
    <tuv xml:lang="HU">
     <seg>csoport</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>grup</seg>
+   </tuv>
   </tu>
   <tu tuid="w_groups" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17552,6 +18323,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>csoportok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>grupuri</seg>
    </tuv>
   </tu>
   <tu tuid="w_group_select" datatype="plaintext">
@@ -17621,6 +18395,9 @@
    <tuv xml:lang="HU">
     <seg>csoportok listája</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>lista grupurilor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_single_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17688,6 +18465,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>egy-válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>un singur răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="w_multiple_answers" datatype="plaintext">
@@ -17757,6 +18537,9 @@
    <tuv xml:lang="HU">
     <seg>több-válasz</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri multiple</seg>
+   </tuv>
   </tu>
   <tu tuid="w_free_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17824,6 +18607,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szabad-válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspuns liber</seg>
    </tuv>
   </tu>
   <tu tuid="w_enabled" datatype="plaintext">
@@ -17893,6 +18679,9 @@
    <tuv xml:lang="HU">
     <seg>bekapcsolt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>activ</seg>
+   </tuv>
   </tu>
   <tu tuid="w_end" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -17960,6 +18749,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>vége</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>sfârşit</seg>
    </tuv>
   </tu>
   <tu tuid="w_execute" datatype="plaintext">
@@ -18029,6 +18821,9 @@
    <tuv xml:lang="HU">
     <seg>kitöltés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>execută</seg>
+   </tuv>
   </tu>
   <tu tuid="w_filter" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18096,6 +18891,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szűrés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>filtru</seg>
    </tuv>
   </tu>
   <tu tuid="w_firstname" datatype="plaintext">
@@ -18165,6 +18963,9 @@
    <tuv xml:lang="HU">
     <seg>keresztnév</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>prenume</seg>
+   </tuv>
   </tu>
   <tu tuid="w_fiscal_code" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18232,6 +19033,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>társadalombiztosítási szám</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul asigurării sociale</seg>
    </tuv>
   </tu>
   <tu tuid="w_generate" datatype="plaintext">
@@ -18301,6 +19105,9 @@
    <tuv xml:lang="HU">
     <seg>generál</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>generează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_global_score" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18368,6 +19175,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>globális pontszám</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>scor global</seg>
    </tuv>
   </tu>
   <tu tuid="w_guide" datatype="plaintext">
@@ -18437,6 +19247,9 @@
    <tuv xml:lang="HU">
     <seg>súgó</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ajutor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_height" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18504,6 +19317,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>magasság</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>înălţime</seg>
    </tuv>
   </tu>
   <tu tuid="w_help" datatype="plaintext">
@@ -18573,6 +19389,9 @@
    <tuv xml:lang="HU">
     <seg>súgó</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ajutor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_image" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18641,6 +19460,9 @@
    <tuv xml:lang="HU">
     <seg>kép</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>imagine</seg>
+   </tuv>
   </tu>
   <tu tuid="w_index" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18707,6 +19529,9 @@
     <seg>Index</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>index</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>index</seg>
    </tuv>
   </tu>
@@ -18777,6 +19602,9 @@
    <tuv xml:lang="HU">
     <seg>import</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>import</seg>
+   </tuv>
   </tu>
   <tu tuid="w_info" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18843,6 +19671,9 @@
     <seg>Informasi</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>info</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>info</seg>
    </tuv>
   </tu>
@@ -18913,6 +19744,9 @@
    <tuv xml:lang="HU">
     <seg>IP</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>IP</seg>
+   </tuv>
   </tu>
   <tu tuid="w_ip_range" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -18980,6 +19814,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>engedélyezett IP címek</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>IP-uri autorizate</seg>
    </tuv>
   </tu>
   <tu tuid="w_jump_menu" datatype="plaintext">
@@ -19049,6 +19886,9 @@
    <tuv xml:lang="HU">
     <seg>ugrás a navigációs menüre</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>sări la meniul de navigare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_jump_timer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19116,6 +19956,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ugrás az órához/stopperhez</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>sări la ceas/temporizator</seg>
    </tuv>
   </tu>
   <tu tuid="w_jump_questions" datatype="plaintext">
@@ -19185,6 +20028,9 @@
    <tuv xml:lang="HU">
     <seg>ugrás a kérdések listájához</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>sări la lista întrebărilor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_lastname" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19252,6 +20098,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>vezetéknév</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nume</seg>
    </tuv>
   </tu>
   <tu tuid="w_level" datatype="plaintext">
@@ -19321,6 +20170,9 @@
    <tuv xml:lang="HU">
     <seg>szint</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nivel</seg>
+   </tuv>
   </tu>
   <tu tuid="w_levels" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19388,6 +20240,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szintek</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nivele</seg>
    </tuv>
   </tu>
   <tu tuid="w_license" datatype="plaintext">
@@ -19457,6 +20312,9 @@
    <tuv xml:lang="HU">
     <seg>licensz</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>licenţă</seg>
+   </tuv>
   </tu>
   <tu tuid="w_list" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19524,6 +20382,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>lista</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>listă</seg>
    </tuv>
   </tu>
   <tu tuid="w_login" datatype="plaintext">
@@ -19593,6 +20454,9 @@
    <tuv xml:lang="HU">
     <seg>belépés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>autentificare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_logout" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19660,6 +20524,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>kilépés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ieşire</seg>
    </tuv>
   </tu>
   <tu tuid="w_main" datatype="plaintext">
@@ -19729,6 +20596,9 @@
    <tuv xml:lang="HU">
     <seg>fő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>principal</seg>
+   </tuv>
   </tu>
   <tu tuid="w_max_score" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19796,6 +20666,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>max pontszám</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>scor maxim</seg>
    </tuv>
   </tu>
   <tu tuid="w_minutes" datatype="plaintext">
@@ -19865,6 +20738,9 @@
    <tuv xml:lang="HU">
     <seg>perc</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>min</seg>
+   </tuv>
   </tu>
   <tu tuid="w_modify" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -19932,6 +20808,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>módosít</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>modifică</seg>
    </tuv>
   </tu>
   <tu tuid="w_name" datatype="plaintext">
@@ -20001,6 +20880,9 @@
    <tuv xml:lang="HU">
     <seg>név</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nume</seg>
+   </tuv>
   </tu>
   <tu tuid="w_name_first" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20068,6 +20950,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>keresztnév</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>prenume</seg>
    </tuv>
   </tu>
   <tu tuid="w_name_last" datatype="plaintext">
@@ -20137,6 +21022,9 @@
    <tuv xml:lang="HU">
     <seg>vezetéknév</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nume</seg>
+   </tuv>
   </tu>
   <tu tuid="w_next" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20204,6 +21092,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>következő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>următorul</seg>
    </tuv>
   </tu>
   <tu tuid="w_notes" datatype="plaintext">
@@ -20273,6 +21164,9 @@
    <tuv xml:lang="HU">
     <seg>megjegyzések</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>note</seg>
+   </tuv>
   </tu>
   <tu tuid="w_num_answers" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20340,6 +21234,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>válaszok száma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul răspunsurilor</seg>
    </tuv>
   </tu>
   <tu tuid="w_num_questions" datatype="plaintext">
@@ -20409,6 +21306,9 @@
    <tuv xml:lang="HU">
     <seg>kérdések száma</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul întrebărilor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_num_tquestions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20476,6 +21376,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szabad-válaszos kérdések száma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numbărul întrebărilor cu răspuns liber</seg>
    </tuv>
   </tu>
   <tu tuid="w_number_of_records" datatype="plaintext">
@@ -20545,6 +21448,9 @@
    <tuv xml:lang="HU">
     <seg>rekordok száma</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul înregistrărilor</seg>
+   </tuv>
   </tu>
   <tu tuid="w_object" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20613,6 +21519,9 @@
    <tuv xml:lang="HU">
     <seg>objektum</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>obiect</seg>
+   </tuv>
   </tu>
   <tu tuid="w_online" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20679,6 +21588,9 @@
     <seg>Online</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>online</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>online</seg>
    </tuv>
   </tu>
@@ -20749,6 +21661,9 @@
    <tuv xml:lang="HU">
     <seg>oldal</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>pagina</seg>
+   </tuv>
   </tu>
   <tu tuid="w_password" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20817,6 +21732,9 @@
    <tuv xml:lang="HU">
     <seg>jelszó</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>parola</seg>
+   </tuv>
   </tu>
   <tu tuid="w_pdf" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -20883,6 +21801,9 @@
     <seg>PDF</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>PDF</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>PDF</seg>
    </tuv>
   </tu>
@@ -20953,6 +21874,9 @@
    <tuv xml:lang="HU">
     <seg>PDF tesztek</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>teste PDF</seg>
+   </tuv>
   </tu>
   <tu tuid="w_pdf_offline_test" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21020,6 +21944,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>PDF offline teszt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>teste PDF offline</seg>
    </tuv>
   </tu>
   <tu tuid="w_place" datatype="plaintext">
@@ -21089,6 +22016,9 @@
    <tuv xml:lang="HU">
     <seg>hely</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>plasează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_postal_code" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21156,6 +22086,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Iranyítószám</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>zip</seg>
    </tuv>
   </tu>
   <tu tuid="w_preview" datatype="plaintext">
@@ -21225,6 +22158,9 @@
    <tuv xml:lang="HU">
     <seg>előnézet</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>previzualizare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_previous" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21292,6 +22228,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>előző</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>anterior</seg>
    </tuv>
   </tu>
   <tu tuid="w_print" datatype="plaintext">
@@ -21361,6 +22300,9 @@
    <tuv xml:lang="HU">
     <seg>nyomtat</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>printează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_province" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21428,6 +22370,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>állam/megye</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>stat/provincie</seg>
    </tuv>
   </tu>
   <tu tuid="w_question" datatype="plaintext">
@@ -21497,6 +22442,9 @@
    <tuv xml:lang="HU">
     <seg>kérdés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_question_difficulty" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21564,6 +22512,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nehézség</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dificultate</seg>
    </tuv>
   </tu>
   <tu tuid="w_questions" datatype="plaintext">
@@ -21633,6 +22584,9 @@
    <tuv xml:lang="HU">
     <seg>kérdések</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="w_questions_available" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21700,6 +22654,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>választható kérdések</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări disponibile</seg>
    </tuv>
   </tu>
   <tu tuid="w_questions_unanswered" datatype="plaintext">
@@ -21769,6 +22726,9 @@
    <tuv xml:lang="HU">
     <seg>nem volt válasz</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>la care nu s-a răspuns</seg>
+   </tuv>
   </tu>
   <tu tuid="w_questions_unanswered_th" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21836,6 +22796,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nincs válasz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>nu a răsp.</seg>
    </tuv>
   </tu>
   <tu tuid="w_questions_undisplayed" datatype="plaintext">
@@ -21905,6 +22868,9 @@
    <tuv xml:lang="HU">
     <seg>nem nézte meg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>neafişate</seg>
+   </tuv>
   </tu>
   <tu tuid="w_questions_undisplayed_th" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -21972,6 +22938,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nem nézte.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>neafiş.</seg>
    </tuv>
   </tu>
   <tu tuid="w_questions_unrated" datatype="plaintext">
@@ -22041,6 +23010,9 @@
    <tuv xml:lang="HU">
     <seg>nincs értékelve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>neevaluate</seg>
+   </tuv>
   </tu>
   <tu tuid="w_questions_unrated_th" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22108,6 +23080,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>nincs értékelve</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>neeval.</seg>
    </tuv>
   </tu>
   <tu tuid="w_quote" datatype="plaintext">
@@ -22177,6 +23152,9 @@
    <tuv xml:lang="HU">
     <seg>idézet</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>citează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_random_answers" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22244,6 +23222,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>véletlen válaszok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri aleatorii</seg>
    </tuv>
   </tu>
   <tu tuid="w_random_questions" datatype="plaintext">
@@ -22313,6 +23294,9 @@
    <tuv xml:lang="HU">
     <seg>véletlen kérdések</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări aleatorii</seg>
+   </tuv>
   </tu>
   <tu tuid="w_rating" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22380,6 +23364,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>értékelés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>evaluare</seg>
    </tuv>
   </tu>
   <tu tuid="w_record_status" datatype="plaintext">
@@ -22449,6 +23436,9 @@
    <tuv xml:lang="HU">
     <seg>rekord állapot</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>status înregistrare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_recurrence" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22516,6 +23506,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ismétlődés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>recurent</seg>
    </tuv>
   </tu>
   <tu tuid="w_regcode" datatype="plaintext">
@@ -22585,6 +23578,9 @@
    <tuv xml:lang="HU">
     <seg>regisztrációs szám</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul de înregistrare</seg>
+   </tuv>
   </tu>
   <tu tuid="w_regdate" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22652,6 +23648,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>regisztráció dátuma</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>data înregistrării</seg>
    </tuv>
   </tu>
   <tu tuid="w_reload" datatype="plaintext">
@@ -22721,6 +23720,9 @@
    <tuv xml:lang="HU">
     <seg>újratöltés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>reîncarcă</seg>
+   </tuv>
   </tu>
   <tu tuid="w_result" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22788,6 +23790,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>eredmény</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>rezultat</seg>
    </tuv>
   </tu>
   <tu tuid="w_results" datatype="plaintext">
@@ -22857,6 +23862,9 @@
    <tuv xml:lang="HU">
     <seg>eredmények</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>rezultate</seg>
+   </tuv>
   </tu>
   <tu tuid="w_results_to_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -22924,6 +23932,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>eredmények felhasználóknak</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>rezultate către utilizatori</seg>
    </tuv>
   </tu>
   <tu tuid="w_right" datatype="plaintext">
@@ -22993,6 +24004,9 @@
    <tuv xml:lang="HU">
     <seg>helyes</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>corect</seg>
+   </tuv>
   </tu>
   <tu tuid="w_skip_navigation" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23060,6 +24074,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>navigációs menü átugrása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>sări peste meniul de navigaţie</seg>
    </tuv>
   </tu>
   <tu tuid="w_score" datatype="plaintext">
@@ -23129,6 +24146,9 @@
    <tuv xml:lang="HU">
     <seg>pontok</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte</seg>
+   </tuv>
   </tu>
   <tu tuid="w_score_average" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23196,6 +24216,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>átlag</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>medie</seg>
    </tuv>
   </tu>
   <tu tuid="w_score_right" datatype="plaintext">
@@ -23265,6 +24288,9 @@
    <tuv xml:lang="HU">
     <seg>alap pontok</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte de bază</seg>
+   </tuv>
   </tu>
   <tu tuid="w_score_unanswered" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23332,6 +24358,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>pontok ha nem válaszolt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pt. nici un răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="w_score_wrong" datatype="plaintext">
@@ -23401,6 +24430,9 @@
    <tuv xml:lang="HU">
     <seg>pontok hibás válaszért</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pt. răspuns greşit</seg>
+   </tuv>
   </tu>
   <tu tuid="w_search" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23468,6 +24500,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>keresés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>caută</seg>
    </tuv>
   </tu>
   <tu tuid="w_select" datatype="plaintext">
@@ -23537,6 +24572,9 @@
    <tuv xml:lang="HU">
     <seg>felhasználó lista</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>selectează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_selection" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23604,6 +24642,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>választás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>selecţie</seg>
    </tuv>
   </tu>
   <tu tuid="w_show" datatype="plaintext">
@@ -23673,6 +24714,9 @@
    <tuv xml:lang="HU">
     <seg>megmutat</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>arată</seg>
+   </tuv>
   </tu>
   <tu tuid="w_start" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23740,6 +24784,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>kezdés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>start</seg>
    </tuv>
   </tu>
   <tu tuid="w_stats" datatype="plaintext">
@@ -23809,6 +24856,9 @@
    <tuv xml:lang="HU">
     <seg>statisztikák</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>statistici</seg>
+   </tuv>
   </tu>
   <tu tuid="w_street" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -23876,6 +24926,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>cím</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>adresă</seg>
    </tuv>
   </tu>
   <tu tuid="w_subject" datatype="plaintext">
@@ -23945,6 +24998,9 @@
    <tuv xml:lang="HU">
     <seg>téma</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>temă</seg>
+   </tuv>
   </tu>
   <tu tuid="w_subjects" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24012,6 +25068,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>témák</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>teme</seg>
    </tuv>
   </tu>
   <tu tuid="w_submit" datatype="plaintext">
@@ -24081,6 +25140,9 @@
    <tuv xml:lang="HU">
     <seg>elküld</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite</seg>
+   </tuv>
   </tu>
   <tu tuid="w_teacher" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24148,6 +25210,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>professzor</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>profesor</seg>
    </tuv>
   </tu>
   <tu tuid="w_test" datatype="plaintext">
@@ -24217,6 +25282,9 @@
    <tuv xml:lang="HU">
     <seg>teszt</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>test</seg>
+   </tuv>
   </tu>
   <tu tuid="w_test_time" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24284,6 +25352,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt idő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>timpul alocat</seg>
    </tuv>
   </tu>
   <tu tuid="w_tests" datatype="plaintext">
@@ -24353,6 +25424,9 @@
    <tuv xml:lang="HU">
     <seg>tesztek</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>teste</seg>
+   </tuv>
   </tu>
   <tu tuid="w_tests_available" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24420,6 +25494,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>elérhető tesztek</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>teste disponibile</seg>
    </tuv>
   </tu>
   <tu tuid="w_max_score" datatype="plaintext">
@@ -24533,6 +25610,9 @@
    <tuv xml:lang="HU">
     <seg>szöveg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>următorul</seg>
+   </tuv>
   </tu>
   <tu tuid="w_time" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24600,6 +25680,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>idő</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>durata</seg>
    </tuv>
   </tu>
   <tu tuid="w_time_begin" datatype="plaintext">
@@ -24669,6 +25752,9 @@
    <tuv xml:lang="HU">
     <seg>kezdés idje</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>moment start</seg>
+   </tuv>
   </tu>
   <tu tuid="w_time_end" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24737,6 +25823,9 @@
    <tuv xml:lang="HU">
     <seg>befejezés ideje</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>moment sfârşit</seg>
+   </tuv>
   </tu>
   <tu tuid="w_time_hhmmss" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24803,6 +25892,9 @@
     <seg>jm:mn:dt</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>hh:mm:ss</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>hh:mm:ss</seg>
    </tuv>
   </tu>
@@ -24873,6 +25965,9 @@
    <tuv xml:lang="HU">
     <seg>mm:ss</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>mm:ss</seg>
+   </tuv>
   </tu>
   <tu tuid="w_timestamp" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -24940,6 +26035,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>időbélyeg</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>marcaj de timp</seg>
    </tuv>
   </tu>
   <tu tuid="w_type" datatype="plaintext">
@@ -25009,6 +26107,9 @@
    <tuv xml:lang="HU">
     <seg>típus</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>tip</seg>
+   </tuv>
   </tu>
   <tu tuid="w_update" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25076,6 +26177,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>frissít</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>actualizează</seg>
    </tuv>
   </tu>
   <tu tuid="w_updated_at" datatype="plaintext">
@@ -25145,6 +26249,9 @@
    <tuv xml:lang="HU">
     <seg>frissít</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>actualizează către</seg>
+   </tuv>
   </tu>
   <tu tuid="w_upload" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25212,6 +26319,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>feltölt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite</seg>
    </tuv>
   </tu>
   <tu tuid="w_upload_file" datatype="plaintext">
@@ -25281,6 +26391,9 @@
    <tuv xml:lang="HU">
     <seg>file feltöltés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>upload fişier</seg>
+   </tuv>
   </tu>
   <tu tuid="w_user" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25348,6 +26461,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>felhasználó</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizator</seg>
    </tuv>
   </tu>
   <tu tuid="w_username" datatype="plaintext">
@@ -25417,6 +26533,9 @@
    <tuv xml:lang="HU">
     <seg>felhasználói név</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>username</seg>
+   </tuv>
   </tu>
   <tu tuid="w_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25484,6 +26603,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>felhasználók</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizatori</seg>
    </tuv>
   </tu>
   <tu tuid="w_weight" datatype="plaintext">
@@ -25553,6 +26675,9 @@
    <tuv xml:lang="HU">
     <seg>súly</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>greutate</seg>
+   </tuv>
   </tu>
   <tu tuid="w_width" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25620,6 +26745,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>szélesség</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>lăţime</seg>
    </tuv>
   </tu>
   <tu tuid="w_no" datatype="plaintext">
@@ -25689,6 +26817,9 @@
    <tuv xml:lang="HU">
     <seg>nem</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nu</seg>
+   </tuv>
   </tu>
   <tu tuid="w_xml" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25755,6 +26886,9 @@
     <seg>XML</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>XML</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>XML</seg>
    </tuv>
   </tu>
@@ -25825,6 +26959,9 @@
    <tuv xml:lang="HU">
     <seg>igen</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>da</seg>
+   </tuv>
   </tu>
   <tu tuid="w_undo" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -25892,6 +27029,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>visszavon</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>anulează</seg>
    </tuv>
   </tu>
   <tu tuid="w_redo" datatype="plaintext">
@@ -25961,6 +27101,9 @@
    <tuv xml:lang="HU">
     <seg>újra</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>reface</seg>
+   </tuv>
   </tu>
   <tu tuid="h_undo" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26028,6 +27171,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>utolsó akció visszavonása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>anulează ultima acţiune</seg>
    </tuv>
   </tu>
   <tu tuid="h_redo" datatype="plaintext">
@@ -26100,6 +27246,9 @@
    <tuv xml:lang="HU">
     <seg>utolsó akció ismétlése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>reface ultima acţiune</seg>
+   </tuv>
   </tu>
   <tu tuid="h_submit_file" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26167,6 +27316,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>file küldés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>trimite fişierul</seg>
    </tuv>
   </tu>
   <tu tuid="w_questions_for" datatype="plaintext">
@@ -26236,6 +27388,9 @@
    <tuv xml:lang="HU">
     <seg>kérdés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebări pentru</seg>
+   </tuv>
   </tu>
   <tu tuid="m_unavailable_questions" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26303,6 +27458,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a választott kérdések nem elérhetők az adatbázisban</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>întrebările selectate nu sunt disponibile în baza de date</seg>
    </tuv>
   </tu>
   <tu tuid="w_status" datatype="plaintext">
@@ -26372,6 +27530,9 @@
    <tuv xml:lang="HU">
     <seg>állapot</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>status</seg>
+   </tuv>
   </tu>
   <tu tuid="w_lock" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26439,6 +27600,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>lezár</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>blochează</seg>
    </tuv>
   </tu>
   <tu tuid="w_unlock" datatype="plaintext">
@@ -26508,6 +27672,9 @@
    <tuv xml:lang="HU">
     <seg>felold</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>deblochează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_locked" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26575,6 +27742,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>lezárt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>blocat</seg>
    </tuv>
   </tu>
   <tu tuid="w_unlocked" datatype="plaintext">
@@ -26644,6 +27814,9 @@
    <tuv xml:lang="HU">
     <seg>feloldott</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>deblocat</seg>
+   </tuv>
   </tu>
   <tu tuid="h_add_five_minutes" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26711,6 +27884,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>5 perc hozzáadása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>adaugă cinci minute</seg>
    </tuv>
   </tu>
   <tu tuid="w_terminate" datatype="plaintext">
@@ -26780,6 +27956,9 @@
    <tuv xml:lang="HU">
     <seg>befejez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>termină</seg>
+   </tuv>
   </tu>
   <tu tuid="w_terminate_exam" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26847,6 +28026,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>teszt befejezése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>termină examenul</seg>
    </tuv>
   </tu>
   <tu tuid="m_confirm_test_termination" datatype="plaintext">
@@ -26916,6 +28098,9 @@
    <tuv xml:lang="HU">
     <seg>biztosan befejezi a tesztet?</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>confirmaţi terminarea testului</seg>
+   </tuv>
   </tu>
   <tu tuid="w_comment" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -26983,6 +28168,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>megjegyzés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>comentariu</seg>
    </tuv>
   </tu>
   <tu tuid="h_testcomment" datatype="plaintext">
@@ -27052,6 +28240,9 @@
    <tuv xml:lang="HU">
     <seg>megjegyzés teszthez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>comentariu test</seg>
+   </tuv>
   </tu>
   <tu tuid="t_translations" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27119,6 +28310,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Fordítás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Traduceri</seg>
    </tuv>
   </tu>
   <tu tuid="w_position" datatype="plaintext">
@@ -27188,6 +28382,9 @@
    <tuv xml:lang="HU">
     <seg>pozíció</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>poziţie</seg>
+   </tuv>
   </tu>
   <tu tuid="w_ordering_answer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27255,6 +28452,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>rendezős válaszok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ordonează răspunsurile</seg>
    </tuv>
   </tu>
   <tu tuid="h_enable_ordering_answer" datatype="plaintext">
@@ -27324,6 +28524,9 @@
    <tuv xml:lang="HU">
     <seg>ha kijelöli, engedélyezi a sorbarendezős válaszolási módot</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activaţi modul ordonării răspunsurilor</seg>
+   </tuv>
   </tu>
   <tu tuid="t_user_registration" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27391,6 +28594,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Új Felhasználó Regisztrálása</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Înregistrare Utilizator Nou</seg>
    </tuv>
   </tu>
   <tu tuid="hp_user_registration" datatype="plaintext">
@@ -27460,6 +28666,9 @@
    <tuv xml:lang="HU">
     <seg>Ez az oldal lehetővé teszi új felhasználó felvételét.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Acest formular vă permite să creaţi un cont nou de utilizator.</seg>
+   </tuv>
   </tu>
   <tu tuid="w_user_registration_link" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27527,6 +28736,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Nem rendelkezik hozzáféréssel? Regisztráljon.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Nu aveţi cont? Creaţi un cont!</seg>
    </tuv>
   </tu>
   <tu tuid="m_user_verification_sent" datatype="plaintext">
@@ -27596,6 +28808,9 @@
    <tuv xml:lang="HU">
     <seg>egy ellenörző üzenet ami erre a címre lesz elküldve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>un mesaj de verificare a fost trimis la această adresă</seg>
+   </tuv>
   </tu>
   <tu tuid="m_user_registration_ok" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27663,6 +28878,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a felhasználó regisztrációja teljes</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizator înregistrat cu succes</seg>
    </tuv>
   </tu>
   <tu tuid="w_i_agree" datatype="plaintext">
@@ -27732,6 +28950,9 @@
    <tuv xml:lang="HU">
     <seg>egyetértek a felhasználási feltételekkel, jogokkal</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Sunt de acord cu termenii şi condiţiile</seg>
+   </tuv>
   </tu>
   <tu tuid="w_registration_verification" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27800,6 +29021,9 @@
    <tuv xml:lang="HU">
     <seg>Regisztráció Ellenőrzése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Verificare Înregistrare</seg>
+   </tuv>
   </tu>
   <tu tuid="m_email_registration" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -27867,6 +29091,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;Ez egy automatikus válaszlevél az Ön &lt;a href="#TCEXAMURL#"&gt;TCExam&lt;/a&gt; Új Felhasználói Regisztrációs Kérelméhez.&lt;br /&gt;A regisztráció kérése a #EMAIL# cím megadásával és a IP #USERIP# -ről érkezett.&lt;br /&gt;Ha úgy gondolja, hogy a küldött levél téves kérem hagyja figyelmen kívül.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;A REGISZTRÁCIÓ BEFEJEZÉSÉHEZ KÉREM KATTINTSON A KÖVETKEZŐ HIVATKOZÁSRA:&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ro" lang="ro" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;Acesta este un răspuns automat pentru a verifica &lt;a href="#TCEXAMURL#"&gt;TCExam&lt;/a&gt; Cerinţă Înregistrare Utilizator Nou.&lt;br /&gt;Verificare cerută pentru email #EMAIL# submitted by remote IP #USERIP#.&lt;br /&gt;Dacă acest mesaj a fost trimis din greşeală, ne cerem scuze.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;PENTRU A CONFIRMA ÎNREGISTRAREA URMAŢI LINK-UL:&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
    </tuv>
   </tu>
 <!-- TCExam 6.0.000 -->
@@ -27937,6 +29164,9 @@
    <tuv xml:lang="HU">
     <seg>időzítés [sec]</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>temporizator [sec]</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_timer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28004,6 +29234,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>maximális idő másdopercben, ameddig a kérdés látható (0 = időzítés tiltása)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul maxim de secunde pentru afişarea întrebării (0 = dezactivează temporizatorul)</seg>
    </tuv>
   </tu>
   <tu tuid="w_fullscreen" datatype="plaintext">
@@ -28073,6 +29306,9 @@
    <tuv xml:lang="HU">
     <seg>teljes képernyő</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>pe tot ecranul</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_fullscreen" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28140,6 +29376,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>engedélyezi/tiltja a teljes képernyős módot ehhez a kérdéshez</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>activează/dezactivează modul -pe tot ecranul-  pentru această întrebare</seg>
    </tuv>
   </tu>
   <tu tuid="h_position" datatype="plaintext">
@@ -28209,6 +29448,9 @@
    <tuv xml:lang="HU">
     <seg>megfelelő megjelenítési sorrend</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>corectează ordinea vizualizării</seg>
+   </tuv>
   </tu>
   <tu tuid="w_order" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28276,6 +29518,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>rendezés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>ordonează</seg>
    </tuv>
   </tu>
   <tu tuid="w_selection" datatype="plaintext">
@@ -28398,6 +29643,9 @@
    <tuv xml:lang="HU">
     <seg>ponthatár a sikeres vizsgához</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>puncte pt. a promova examenul</seg>
+   </tuv>
   </tu>
   <tu tuid="h_test_score_threshold" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28465,6 +29713,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>minimális pontszám a sikeres vizsgához</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>numărul minim de puncte necesar pentru a promova examenul</seg>
    </tuv>
   </tu>
   <tu tuid="w_mcma_radio" datatype="plaintext">
@@ -28534,6 +29785,9 @@
    <tuv xml:lang="HU">
     <seg>rádiógombok az MCMA kérdésekhez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>radio butoane pentru MVMR</seg>
+   </tuv>
   </tu>
   <tu tuid="h_mcma_radio" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28601,6 +29855,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztotta akkor rádiógombok lesznek az MCMA kérdésekhez</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, se vor folosi radio butoane în loc de căsuţe de bifare pentru întrebările MVMR</seg>
    </tuv>
   </tu>
   <tu tuid="w_enable_noanswer" datatype="plaintext">
@@ -28670,6 +29927,9 @@
    <tuv xml:lang="HU">
     <seg>'nincs válasz' opció</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>opţiune 'nici un răspuns' </seg>
+   </tuv>
   </tu>
   <tu tuid="h_enable_noanswer" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28737,6 +29997,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztotta akkor engedélyezi a 'nincs válasz' opciót mint alternatív választ</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activează opţiunea 'nici un răspuns' ca răspuns alternativ</seg>
    </tuv>
   </tu>
   <tu tuid="w_enable_menu" datatype="plaintext">
@@ -28806,6 +30069,9 @@
    <tuv xml:lang="HU">
     <seg>kérdések menü</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>meniu întrebări</seg>
+   </tuv>
   </tu>
   <tu tuid="h_enable_menu" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -28873,6 +30139,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztotta engedélyezi a kérdések nevigációs menüt</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activează meniul de navigare pentru întrebări</seg>
    </tuv>
   </tu>
   <tu tuid="w_enable_comment" datatype="plaintext">
@@ -28942,6 +30211,9 @@
    <tuv xml:lang="HU">
     <seg>megjegyzés a teszthez</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>comentariu test</seg>
+   </tuv>
   </tu>
   <tu tuid="h_enable_comment" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29009,6 +30281,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztotta engedélyezi a szöveges megjegyzések lehetőséget.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activează un câmp text pentru a lăsa un comentariu general despre test.</seg>
    </tuv>
   </tu>
   <tu tuid="w_report_to_users" datatype="plaintext">
@@ -29078,6 +30353,9 @@
    <tuv xml:lang="HU">
     <seg>eredmények küldése a felhasználóknak</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>rapoarte către utilizatori</seg>
+   </tuv>
   </tu>
   <tu tuid="h_report_to_users" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29145,6 +30423,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválaszotta akkor a felhasználók megtekinthetik a teszt részletes értékelését</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, activează posibilitatea utilizatorilor de a vedea un raport detaliat despre test</seg>
    </tuv>
   </tu>
   <tu tuid="w_passed" datatype="plaintext">
@@ -29214,6 +30495,9 @@
    <tuv xml:lang="HU">
     <seg>SIKERES VIZSGA</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>PROMOVAT</seg>
+   </tuv>
   </tu>
   <tu tuid="w_not_passed" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29281,6 +30565,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>SIKERTELEN VIZSGA</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>NEPROMOVAT</seg>
    </tuv>
   </tu>
   <tu tuid="w_inline_answers" datatype="plaintext">
@@ -29350,6 +30637,9 @@
    <tuv xml:lang="HU">
     <seg>gördülő válaszok</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>răspunsuri în ordine</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_inline_answers" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29417,6 +30707,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztotta megmutatja a válaszokat is.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, afişează răspunsurile unul după altul.</seg>
    </tuv>
   </tu>
   <tu tuid="w_auto_next" datatype="plaintext">
@@ -29486,6 +30779,9 @@
    <tuv xml:lang="HU">
     <seg>automatikus továbblépés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>următoarea automat</seg>
+   </tuv>
   </tu>
   <tu tuid="h_question_auto_next" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29553,6 +30849,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ha kiválasztja automatikusan a következő kérdésre fog ugrani amikor egy MCSA kérdésre adott választ bejelöl.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>dacă selectaţi, trece automat la următoarea întrebare atunci când un răspuns al întrebării MVSR este selectat.</seg>
    </tuv>
   </tu>
   <tu tuid="w_keyboard_key" datatype="plaintext">
@@ -29622,6 +30921,9 @@
    <tuv xml:lang="HU">
     <seg>kiválasztó billentyű</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>tasta de selectare</seg>
+   </tuv>
   </tu>
   <tu tuid="h_answer_keyboard_key" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29689,6 +30991,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>opcionálisan billentyű is használható ennek a kérdésnek a kiválasztásához</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>tastă opţională  de selectare folosită pentru a selecta acest răspuns</seg>
    </tuv>
   </tu>
   <tu tuid="w_reaction" datatype="plaintext">
@@ -29758,6 +31063,9 @@
    <tuv xml:lang="HU">
     <seg>reakció</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>reacţia</seg>
+   </tuv>
   </tu>
   <tu tuid="w_true" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29825,6 +31133,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>igaz</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>adevărat</seg>
    </tuv>
   </tu>
   <tu tuid="w_false" datatype="plaintext">
@@ -29894,6 +31205,9 @@
    <tuv xml:lang="HU">
     <seg>hamis</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>fals</seg>
+   </tuv>
   </tu>
   <tu tuid="w_true_acronym" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -29961,6 +31275,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>I</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>A</seg>
    </tuv>
   </tu>
   <tu tuid="w_false_acronym" datatype="plaintext">
@@ -30030,6 +31347,9 @@
    <tuv xml:lang="HU">
     <seg>H</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>F</seg>
+   </tuv>
   </tu>
   <tu tuid="w_unanswered_acronym" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30097,6 +31417,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>K</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>N</seg>
    </tuv>
   </tu>
   <tu tuid="w_required" datatype="plaintext">
@@ -30166,6 +31489,9 @@
    <tuv xml:lang="HU">
     <seg>szükséges</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>necesar</seg>
+   </tuv>
   </tu>
   <tu tuid="w_not_required" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30234,6 +31560,9 @@
    <tuv xml:lang="HU">
     <seg>nem szükséges</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>nu este necesar</seg>
+   </tuv>
   </tu>
   <tu tuid="w_details" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30301,6 +31630,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>részletek</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>detalii</seg>
    </tuv>
   </tu>
 <!-- 6.1.000 2008-11-24 -->
@@ -30371,6 +31703,9 @@
    <tuv xml:lang="HU">
     <seg>válaszok elrejtése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>ascunde răspunsurile</seg>
+   </tuv>
   </tu>
   <tu tuid="w_enable" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30438,6 +31773,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>engedélyezés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>activează</seg>
    </tuv>
   </tu>
   <tu tuid="w_disable" datatype="plaintext">
@@ -30507,6 +31845,9 @@
    <tuv xml:lang="HU">
     <seg>tiltás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>dezactivează</seg>
+   </tuv>
   </tu>
   <tu tuid="w_copy" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30574,6 +31915,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>másolás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>copiază</seg>
    </tuv>
   </tu>
   <tu tuid="w_move" datatype="plaintext">
@@ -30643,6 +31987,9 @@
    <tuv xml:lang="HU">
     <seg>mozgatás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>mută</seg>
+   </tuv>
   </tu>
   <tu tuid="w_from" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30710,6 +32057,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>tól</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>de la</seg>
    </tuv>
   </tu>
   <tu tuid="w_to" datatype="plaintext">
@@ -30779,6 +32129,9 @@
    <tuv xml:lang="HU">
     <seg>ig</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>la</seg>
+   </tuv>
   </tu>
   <tu tuid="w_check_all" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30846,6 +32199,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>összes kijelölése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>selectează tot</seg>
    </tuv>
   </tu>
   <tu tuid="w_uncheck_all" datatype="plaintext">
@@ -30915,6 +32271,9 @@
    <tuv xml:lang="HU">
     <seg>kijelölés visszavonása</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>deselectează tot</seg>
+   </tuv>
   </tu>
   <tu tuid="m_with_selected" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -30982,6 +32341,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a kiválasztottak:</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>cu cele selectate:</seg>
    </tuv>
   </tu>
 <!-- 7.0.000 2008-11-24 -->
@@ -31052,6 +32414,9 @@
    <tuv xml:lang="HU">
     <seg>modul</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>modul</seg>
+   </tuv>
   </tu>
   <tu tuid="w_modules" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31119,6 +32484,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>modulok</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>module</seg>
    </tuv>
   </tu>
   <tu tuid="t_modules_editor" datatype="plaintext">
@@ -31188,6 +32556,9 @@
    <tuv xml:lang="HU">
     <seg>Modulok Kezelése</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Gestionare Module</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_edit_module" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31256,6 +32627,9 @@
    <tuv xml:lang="HU">
     <seg>Ezen az oldalon tudja a modulokat kezelni. A témák rendezhetőek az adott modulhoz. Egy egyszerű teszt több modult is tartalmazhat. Ön nem tudja módosítani vagy törölni a modult ameddig egy tesztben használja azt, csak arra van lehetőség, hogy a [delete] billentyűvel letiltsa azt. Magyarázat: [+] Engedélyezve; [-] Tiltva;</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Cu acest formular puteţi gestiona diferite module. Temele în sistem pot fi catalogate conform acestor module. Într-un singur test pot fi câteva module. Nu puteţi modifica sau şterge un modul care este parte într-un test deja efectuat; în acest caz puteţi doar să-l inactivaţi. Legenda: [+] Activ; [-] Inactiv;</seg>
+   </tuv>
   </tu>
   <tu tuid="w_all" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31323,6 +32697,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>mind</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>tot</seg>
    </tuv>
   </tu>
 <!-- TCExam 7.0.012-->
@@ -31393,6 +32770,9 @@
    <tuv xml:lang="HU">
     <seg>szám</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>number</seg>
+   </tuv>
   </tu>
   <tu tuid="w_minimum" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31459,6 +32839,9 @@
     <seg>Minimum</seg>
    </tuv>
    <tuv xml:lang="HU">
+    <seg>minimum</seg>
+   </tuv>
+   <tuv xml:lang="RO">
     <seg>minimum</seg>
    </tuv>
   </tu>
@@ -31529,6 +32912,9 @@
    <tuv xml:lang="HU">
     <seg>maximum</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>maximum</seg>
+   </tuv>
   </tu>
   <tu tuid="w_sum" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31596,6 +32982,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>összesen</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>sum</seg>
    </tuv>
   </tu>
   <tu tuid="w_sumsq" datatype="plaintext">
@@ -31665,6 +33054,9 @@
    <tuv xml:lang="HU">
     <seg>négyzetes összeg</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>squared sum</seg>
+   </tuv>
   </tu>
   <tu tuid="w_mean" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31732,6 +33124,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>közép</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>mean</seg>
    </tuv>
   </tu>
   <tu tuid="w_median" datatype="plaintext">
@@ -31801,6 +33196,9 @@
    <tuv xml:lang="HU">
     <seg>medián</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>median</seg>
+   </tuv>
   </tu>
   <tu tuid="w_mode" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -31868,6 +33266,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>mód</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>mode</seg>
    </tuv>
   </tu>
   <tu tuid="w_range" datatype="plaintext">
@@ -31937,6 +33338,9 @@
    <tuv xml:lang="HU">
     <seg>tartomány</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>range</seg>
+   </tuv>
   </tu>
   <tu tuid="w_variance" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32004,6 +33408,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>eltérés</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>variance</seg>
    </tuv>
   </tu>
   <tu tuid="w_standard_deviation" datatype="plaintext">
@@ -32073,6 +33480,9 @@
    <tuv xml:lang="HU">
     <seg>eltérés mértéke</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>abatere standard</seg>
+   </tuv>
   </tu>
   <tu tuid="w_statistics" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32140,6 +33550,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>statisztikák</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>statistici</seg>
    </tuv>
   </tu>
 <!-- TCExam 7.0.013 - 2008-12-26 -->
@@ -32210,6 +33623,9 @@
    <tuv xml:lang="HU">
     <seg>torzulás</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>asimetrie</seg>
+   </tuv>
   </tu>
   <tu tuid="w_kurtosi" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32277,6 +33693,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>eloszlás</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>kurtosi</seg>
    </tuv>
   </tu>
   <tu tuid="t_all_results_user" datatype="plaintext">
@@ -32346,6 +33765,9 @@
    <tuv xml:lang="HU">
     <seg>Felhasználók Válaszai</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Rezultate Utilizatori</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_allresults_user" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32414,6 +33836,9 @@
    <tuv xml:lang="HU">
     <seg>Ez az oldal összesíti a felhasználók válaszait.</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>Acest formular redă sumarul rezultatelor utilizatorului specificat.</seg>
+   </tuv>
   </tu>
   <tu tuid="hp_result_alluser" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32481,6 +33906,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez az oldal összegzi a tesztet kitöltött összes felhasználó eredményét.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Acest formular redă sumarul rezultatelor tuturor utilizatorilor pentru testul selectat.</seg>
    </tuv>
   </tu>
 <!-- TCExam 8.0.000 -->
@@ -32551,6 +33979,9 @@
    <tuv xml:lang="HU">
     <seg>a modul neve</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>numele modulului</seg>
+   </tuv>
   </tu>
   <tu tuid="w_explanation" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32619,6 +34050,9 @@
    <tuv xml:lang="HU">
     <seg>értelmezés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>explicaţie</seg>
+   </tuv>
   </tu>
   <tu tuid="h_explanation" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32686,6 +34120,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>az eredményekhez fűzött magyarázatok megjelenítése</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>explicaţie ce urmează a fi tipărită pe rezultate</seg>
    </tuv>
   </tu>
 <!-- TCExam 9.0.000 -->
@@ -32756,6 +34193,9 @@
    <tuv xml:lang="HU">
     <seg>ismételhető</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>repetabil</seg>
+   </tuv>
   </tu>
   <tu tuid="h_repeatable_test" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32823,6 +34263,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a felhasználók ismételhetik a tesztet</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>utilizatorii pot repeta acest test de câteva ori</seg>
    </tuv>
   </tu>
   <tu tuid="w_repeat" datatype="plaintext">
@@ -32892,6 +34335,9 @@
    <tuv xml:lang="HU">
     <seg>ismétlés</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>repetă</seg>
+   </tuv>
   </tu>
   <tu tuid="h_repeat_test" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -32959,6 +34405,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>ennek a tesznek az ismétlése (az eddigi eredmények törlődnek)</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>repetă acest test (rezultatele curente vor fi şterse)</seg>
    </tuv>
   </tu>
   <tu tuid="w_calendar" datatype="plaintext">
@@ -33028,6 +34477,9 @@
    <tuv xml:lang="HU">
     <seg>naptár</seg>
    </tuv>
+   <tuv xml:lang="RO">
+    <seg>calendar</seg>
+   </tuv>
   </tu>
 <!-- TCExam 9.0.014 (2009-06-03) -->
   <tu tuid="m_score_higher_than_max" datatype="plaintext">
@@ -33096,6 +34548,9 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a kiválasztott pontszám nagyobb mint a maximálisan elfogadható</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>scorul selectat este mai mare decât cel maxim admis</seg>
    </tuv>
   </tu>
  </body>

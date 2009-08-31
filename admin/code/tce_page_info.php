@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2009-03-08
+// Last Update : 2009-08-31
 //
 // Description : Outputs TCExam information page.
 //
@@ -149,6 +149,7 @@ echo '<li>[MR] Marathi : Tushar Sayankar</li>'.K_NEWLINE;
 echo '<li>[MS] Malay (Bahasa Melayu) : Arvind Prakash Jha</li>'.K_NEWLINE;
 echo '<li>[NL] Dutch : Chris de Boer</li>'.K_NEWLINE;
 echo '<li>[PL] Polish : Tomasz Parol</li>'.K_NEWLINE;
+echo '<li>[RO] Romanian : Ovidiu Dragomir</li>'.K_NEWLINE;
 echo '<li>[RU] Russian : Andrey</li>'.K_NEWLINE;
 echo '<li>[TR] Turkish : Mehmet Arif Icir</li>'.K_NEWLINE;
 echo '<li>[VN] Vietnamese : Nguyen Quynh Nga</li>'.K_NEWLINE;

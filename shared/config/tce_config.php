@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2009-08-29
+// Last Update : 2009-08-31
 // 
 // Description : Shared configuration file.
 //
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '9.0.023');
+define ('K_TCEXAM_VERSION', '9.0.024');
 
 /**
  * 2-letters code for default language.
@@ -86,6 +86,7 @@ define ('K_AVAILABLE_LANGUAGES', serialize(array(
 	'ms' => 'Malay (Bahasa Melayu)',
 	'nl' => 'Dutch',
 	'pl' => 'Polish',
+	'ro' => 'Romanian',
 	'ru' => 'Russian',
 	'tr' => 'Turkish',
 	'vn' => 'Vietnamese'
