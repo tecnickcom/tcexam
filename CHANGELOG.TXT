@@ -1,3 +1,7 @@
+9.0.025 (2009-09-21)
+	- TCPDF library was updated.
+	- Installation instructions were udpdated.
+
 9.0.024 (2009-08-31)
 	- Romanian language was added.
 

@@ -51,13 +51,15 @@ date.timezone = Europe/Rome ; http://php.net/manual/en/timezones.php
 arg_separator.output = "&amp;amp;"
 magic_quotes_gpc = On
 magic_quotes_runtime = Off
-magic_quotes_sybase = Off</pre></li>
+magic_quotes_sybase = Off
+request_order = "GPC"</pre></li>
 <li>Apache module (<strong>/etc/httpd/conf/httpd.conf</strong>):<br /><pre>
 AddDefaultCharset UTF-8
 php_value arg_separator.output "&amp;amp;"
 php_value magic_quotes_gpc On
 php_value magic_quotes_runtime Off
-php_value magic_quotes_sybase Off</pre></li></ul>
+php_value magic_quotes_sybase Off
+php_value request_order "GPC"</pre></li></ul>
 
 <a name="installation"></a>
 <h2>Installation</h2><p>When installing TCExam for the first time, verify the <a href="#requirements" title="TCExam System Requirements">system requirements</a>. Assuming you have a working Apache/IIS web server, with PHP and a MySQL/PostgreSQL DBMS, you are on your way to installing TCExam.<br />

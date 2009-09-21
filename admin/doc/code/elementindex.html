@@ -94,10 +94,16 @@
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$all_recipients">PHPMailer::$all_recipients</a></dd>
 							<dt><b>$AltBody</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$AltBody">PHPMailer::$AltBody</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the text-only body of the message.  This automatically sets the  email to multipart/alternative.  This body can be read by mail  clients that do not have HTML email capability such as mutt. Clients  that can read HTML will view the normal Body.</dd>
+							<dt><b>$annotation_fonts</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$annotation_fonts">TCPDF::$annotation_fonts</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of fonts used on form fields (fontname =&gt; fontkey).</dd>
 							<dt><b>$annots_start_obj_id</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$annots_start_obj_id">TCPDF::$annots_start_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Start ID for annotation objects</dd>
 							<dt><b>$annot_obj_id</b></dt>
-				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$annot_obj_id">TCPDF::$annot_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current ID of annotation object</dd>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$annot_obj_id">TCPDF::$annot_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max ID of annotation object</dd>
+							<dt><b>$apxo_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$apxo_obj_id">TCPDF::$apxo_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current ID of appearance streams XObjects</dd>
+							<dt><b>$apxo_start_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$apxo_start_obj_id">TCPDF::$apxo_start_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Start ID for appearance streams XObjects</dd>
 							<dt><b>$attachment</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$attachment">PHPMailer::$attachment</a></dd>
 							<dt><b>$author</b></dt>
@@ -130,6 +136,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodaddHtmlLink">TCPDF::addHtmlLink()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output anchor link.</dd>
 							<dt><b>addHTMLVertSpace</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodaddHTMLVertSpace">TCPDF::addHTMLVertSpace()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add vertical spaces if needed.</dd>
+							<dt><b>addJavascriptObject</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodaddJavascriptObject">TCPDF::addJavascriptObject()</a></dd>
 							<dt><b>AddLink</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAddLink">TCPDF::AddLink()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates a new internal link and returns its identifier. An internal link is a clickable area which directs to another place within the document.<br />  The identifier can then be passed to Cell(), Write(), Image() or Link(). The destination is defined with SetLink().</dd>
 							<dt><b>addModule</b></dt>
@@ -310,6 +318,8 @@
 				<dd>in file tce_tmx.php, variable <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#var$current_language">TMXResourceBundle::$current_language</a></dd>
 							<dt><b>$currpagegroup</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$currpagegroup">TCPDF::$currpagegroup</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Contains the alias of the current page group</dd>
+							<dt><b>$curr_annot_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$curr_annot_obj_id">TCPDF::$curr_annot_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current ID of annotation object</dd>
 							<dt><b>$CustomHeader</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$CustomHeader">PHPMailer::$CustomHeader</a></dd>
 							<dt><b>$customlistindent</b></dt>
@@ -353,9 +363,9 @@
 							<dt><b>Clip</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodClip">TCPDF::Clip()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set a rectangular clipping area.</dd>
 							<dt><b>Close</b></dt>
-				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodClose">SMTP::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the socket and cleans up the state of the class.</dd>
-							<dt><b>Close</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodClose">TCPDF::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Terminates the PDF document.</dd>
+							<dt><b>Close</b></dt>
+				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodClose">SMTP::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the socket and cleans up the state of the class.</dd>
 							<dt><b>closeHTMLTagHandler</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodcloseHTMLTagHandler">TCPDF::closeHTMLTagHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Process closing tags.</dd>
 							<dt><b>ComboBox</b></dt>
@@ -363,9 +373,9 @@
 							<dt><b>commitTransaction</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodcommitTransaction">TCPDF::commitTransaction()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Delete the copy of the current TCPDF object used for undo operation.</dd>
 							<dt><b>Connect</b></dt>
-				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodConnect">SMTP::Connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Connect to the server specified on the port specified.</dd>
-							<dt><b>Connect</b></dt>
 				<dd>in file class.pop3.php, method <a href="PHPMailer/POP3.html#methodConnect">POP3::Connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Connect to the POP3 server</dd>
+							<dt><b>Connect</b></dt>
+				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodConnect">SMTP::Connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Connect to the server specified on the port specified.</dd>
 							<dt><b>Connected</b></dt>
 				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodConnected">SMTP::Connected()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if connected to a server otherwise false</dd>
 							<dt><b>convertHTMLColorToDec</b></dt>
@@ -394,6 +404,8 @@
 	<div>
 		<h2>d</h2>
 		<dl>
+							<dt><b>$default_form_prop</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$default_form_prop">TCPDF::$default_form_prop</a></dd>
 							<dt><b>$default_monospaced_font</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$default_monospaced_font">TCPDF::$default_monospaced_font</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default monospaced font</dd>
 							<dt><b>$default_table_columns</b></dt>
@@ -532,6 +544,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$FontSizePt">TCPDF::$FontSizePt</a></dd>
 							<dt><b>$FontStyle</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$FontStyle">TCPDF::$FontStyle</a></dd>
+							<dt><b>$font_obj_ids</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$font_obj_ids">TCPDF::$font_obj_ids</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Store the font object IDs.</dd>
 							<dt><b>$font_size</b></dt>
 				<dd>in file tce_latexrender.php, variable <a href="com-tecnick-latex/LatexRender.html#var$font_size">LatexRender::$font_size</a></dd>
 							<dt><b>$footerlen</b></dt>
@@ -544,6 +558,14 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$footer_margin">TCPDF::$footer_margin</a></dd>
 							<dt><b>$formula_density</b></dt>
 				<dd>in file tce_latexrender.php, variable <a href="com-tecnick-latex/LatexRender.html#var$formula_density">LatexRender::$formula_density</a></dd>
+							<dt><b>$form_action</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$form_action">TCPDF::$form_action</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current form action (used during XHTML rendering)</dd>
+							<dt><b>$form_enctype</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$form_enctype">TCPDF::$form_enctype</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current form encryption type (used during XHTML rendering)</dd>
+							<dt><b>$form_mode</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$form_mode">TCPDF::$form_mode</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current method to submit forms.</dd>
+							<dt><b>$form_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$form_obj_id">TCPDF::$form_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of form annotations IDs</dd>
 							<dt><b>$From</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$From">PHPMailer::$From</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the From email address for the message.</dd>
 							<dt><b>$FromName</b></dt>
@@ -595,33 +617,33 @@
 							<dt><b>F_db_affected_rows</b></dt>
 				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_affected_rows">F_db_affected_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns number of rows (tuples) affected by the last INSERT, UPDATE or DELETE query associated with link_identifier.</dd>
 							<dt><b>F_db_close</b></dt>
-				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_close">F_db_close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the non-persistent connection to a database associated with the given connection resource.</dd>
-							<dt><b>F_db_close</b></dt>
 				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_close">F_db_close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the non-persistent connection to a database associated with the given connection resource.</dd>
+							<dt><b>F_db_close</b></dt>
+				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_close">F_db_close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the non-persistent connection to a database associated with the given connection resource.</dd>
 							<dt><b>F_db_connect</b></dt>
 				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_connect">F_db_connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Open a connection to a PostgreSQL Server and select a database.</dd>
 							<dt><b>F_db_connect</b></dt>
 				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_connect">F_db_connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Open a connection to a MySQL Server and select a database.</dd>
 							<dt><b>F_db_error</b></dt>
-				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_error">F_db_error()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the text of the error message from previous database operation</dd>
-							<dt><b>F_db_error</b></dt>
 				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_error">F_db_error()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the text of the error message from previous database operation</dd>
-							<dt><b>F_db_fetch_array</b></dt>
-				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_fetch_array">F_db_fetch_array()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fetch a result row as an associative and numeric array.</dd>
+							<dt><b>F_db_error</b></dt>
+				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_error">F_db_error()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the text of the error message from previous database operation</dd>
 							<dt><b>F_db_fetch_array</b></dt>
 				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_fetch_array">F_db_fetch_array()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fetch a result row as an associative and numeric array.</dd>
-							<dt><b>F_db_insert_id</b></dt>
-				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_insert_id">F_db_insert_id()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the ID generated from the previous INSERT operation</dd>
+							<dt><b>F_db_fetch_array</b></dt>
+				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_fetch_array">F_db_fetch_array()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fetch a result row as an associative and numeric array.</dd>
 							<dt><b>F_db_insert_id</b></dt>
 				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_insert_id">F_db_insert_id()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the ID generated from the previous INSERT operation</dd>
-							<dt><b>F_db_num_rows</b></dt>
-				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_num_rows">F_db_num_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get number of rows in result.</dd>
+							<dt><b>F_db_insert_id</b></dt>
+				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_insert_id">F_db_insert_id()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the ID generated from the previous INSERT operation</dd>
 							<dt><b>F_db_num_rows</b></dt>
 				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_num_rows">F_db_num_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get number of rows in result.</dd>
-							<dt><b>F_db_query</b></dt>
-				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_query">F_db_query()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert MySQL RAND() function to PostgreSQL RANDOM() on ORDER BY clause of selection queries.</dd>
+							<dt><b>F_db_num_rows</b></dt>
+				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_num_rows">F_db_num_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get number of rows in result.</dd>
 							<dt><b>F_db_query</b></dt>
 				<dd>in file tce_db_dal_mysql.php, function <a href="com-tecnick-tcexam-shared-mysql/_shared---code---tce_db_dal_mysql.php.html#functionF_db_query">F_db_query()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert PostgreSQL RANDOM() function to MySQL RAND() on ORDER BY clause of selection queries.</dd>
+							<dt><b>F_db_query</b></dt>
+				<dd>in file tce_db_dal_postgresql.php, function <a href="com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html#functionF_db_query">F_db_query()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert MySQL RAND() function to PostgreSQL RANDOM() on ORDER BY clause of selection queries.</dd>
 							<dt><b>F_decode_form_fields</b></dt>
 				<dd>in file tce_functions_form.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_form.php.html#functionF_decode_form_fields">F_decode_form_fields()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing form fields.</dd>
 							<dt><b>F_decode_tcecode</b></dt>
@@ -828,6 +850,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetAliasNbPages">TCPDF::getAliasNbPages()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the string alias used for the total number of pages.</dd>
 							<dt><b>getAliasNumPage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetAliasNumPage">TCPDF::getAliasNumPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the string alias used for the page number.</dd>
+							<dt><b>getAnnotOptFromJSProp</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetAnnotOptFromJSProp">TCPDF::getAnnotOptFromJSProp()</a></dd>
 							<dt><b>GetArrStringWidth</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetArrStringWidth">TCPDF::GetArrStringWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the string length of an array of chars in user unit. A font must be selected.<br /></dd>
 							<dt><b>GetAttachments</b></dt>
@@ -835,9 +859,9 @@
 							<dt><b>getBarcode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetBarcode">TCPDF::getBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get current barcode.</dd>
 							<dt><b>getBarcodeArray</b></dt>
-				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
-							<dt><b>getBarcodeArray</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodgetBarcodeArray">TCPDFBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
+							<dt><b>getBarcodeArray</b></dt>
+				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
 							<dt><b>getBorderMode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetBorderMode">TCPDF::getBorderMode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the border mode accounting for multicell position (opens bottom side of multicell crossing pages)</dd>
 							<dt><b>GetBoundary</b></dt>
@@ -851,7 +875,7 @@
 							<dt><b>getCellHeightRatio</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCellHeightRatio">TCPDF::getCellHeightRatio()</a></dd>
 							<dt><b>GetCharWidth</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetCharWidth">TCPDF::GetCharWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the length of the char in user unit for the current font.<br /></dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetCharWidth">TCPDF::GetCharWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the length of the char in user unit for the current font.</dd>
 							<dt><b>getError</b></dt>
 				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodgetError">SMTP::getError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the current error</dd>
 							<dt><b>getErrorCode</b></dt>
@@ -874,6 +898,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFooterFont">TCPDF::getFooterFont()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get Footer font.</dd>
 							<dt><b>getFooterMargin</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFooterMargin">TCPDF::getFooterMargin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns footer margin in user units.</dd>
+							<dt><b>getFormDefaultProp</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFormDefaultProp">TCPDF::getFormDefaultProp()</a></dd>
 							<dt><b>getFormulaURL</b></dt>
 				<dd>in file tce_latexrender.php, method <a href="com-tecnick-latex/LatexRender.html#methodgetFormulaURL">LatexRender::getFormulaURL()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Tries to match the LaTeX Formula given as argument against the  formula cache. If the picture has not been rendered before, it'll  try to render the formula and drop it in the picture cache directory.</dd>
 							<dt><b>getGDgamma</b></dt>
@@ -895,7 +921,7 @@
 							<dt><b>getHTMLUnitToUnits</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetHTMLUnitToUnits">TCPDF::getHTMLUnitToUnits()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;convert html string containing value and unit of measure to user's units or points.</dd>
 							<dt><b>getImageBuffer</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetImageBuffer">TCPDF::getImageBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get page buffer content.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetImageBuffer">TCPDF::getImageBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get image buffer content.</dd>
 							<dt><b>getImageButton</b></dt>
 				<dd>in file tce_functions_tcecode_editor.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_tcecode_editor.php.html#functiongetImageButton">getImageButton()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display one tag button</dd>
 							<dt><b>getImageHeight</b></dt>
@@ -1110,6 +1136,12 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$javascript">TCPDF::$javascript</a><br>&nbsp;&nbsp;&nbsp;&nbsp;javascript code</dd>
 							<dt><b>$jpeg_quality</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$jpeg_quality">TCPDF::$jpeg_quality</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the default JPEG compression quality (1-100)</dd>
+							<dt><b>$js_objects</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$js_objects">TCPDF::$js_objects</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Javascript objects array</dd>
+							<dt><b>$js_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$js_obj_id">TCPDF::$js_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current ID of javascript object</dd>
+							<dt><b>$js_start_obj_id</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$js_start_obj_id">TCPDF::$js_start_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Start ID for javascript objects</dd>
 					</dl>
 	</div>
 	<a href="elementindex.html#top">top</a><br>
@@ -1796,6 +1828,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodPolycurve">TCPDF::Polycurve()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a poly-Bezier curve.</dd>
 							<dt><b>Polygon</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodPolygon">TCPDF::Polygon()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a polygon.</dd>
+							<dt><b>PolyLine</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodPolyLine">TCPDF::PolyLine()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a polygonal line</dd>
 							<dt><b>POP3</b></dt>
 				<dd>in file class.pop3.php, class <a href="PHPMailer/POP3.html">POP3</a><br>&nbsp;&nbsp;&nbsp;&nbsp;POP Before SMTP Authentication Class  Version 5.0.0</dd>
 							<dt><b>putHtmlListBullet</b></dt>
@@ -1822,6 +1856,10 @@
 	<div>
 		<h2>r</h2>
 		<dl>
+							<dt><b>$radiobutton_groups</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$radiobutton_groups">TCPDF::$radiobutton_groups</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of radio buttons parent objects.</dd>
+							<dt><b>$radio_groups</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$radio_groups">TCPDF::$radio_groups</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of radio group objects IDs</dd>
 							<dt><b>$ReplyTo</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$ReplyTo">PHPMailer::$ReplyTo</a></dd>
 							<dt><b>$resource</b></dt>
@@ -2014,6 +2052,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFooterFont">TCPDF::setFooterFont()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set footer font.</dd>
 							<dt><b>setFooterMargin</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFooterMargin">TCPDF::setFooterMargin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set footer margin.</dd>
+							<dt><b>setFormDefaultProp</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFormDefaultProp">TCPDF::setFormDefaultProp()</a></dd>
 							<dt><b>setFormulaDensity</b></dt>
 				<dd>in file tce_latexrender.php, method <a href="com-tecnick-latex/LatexRender.html#methodsetFormulaDensity">LatexRender::setFormulaDensity()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set formula density (used by ImageMagick)</dd>
 							<dt><b>SetFrom</b></dt>
@@ -2173,11 +2213,11 @@
 							<dt><b>StarPolygon</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodStarPolygon">TCPDF::StarPolygon()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a star polygon</dd>
 							<dt><b>startElementHandler</b></dt>
-				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodstartElementHandler">XMLQuestionImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
+				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodstartElementHandler">XMLUserImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startElementHandler</b></dt>
 				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodstartElementHandler">TMXResourceBundle::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startElementHandler</b></dt>
-				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodstartElementHandler">XMLUserImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
+				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodstartElementHandler">XMLQuestionImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startPage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodstartPage">TCPDF::startPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a new page to the document. The page must be closed using the endPage() function.</dd>
 							<dt><b>startPageGroup</b></dt>
@@ -2232,6 +2272,8 @@
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$to">PHPMailer::$to</a></dd>
 							<dt><b>$transfmatrix</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$transfmatrix">TCPDF::$transfmatrix</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array of transformation matrix</dd>
+							<dt><b>$transfmatrix_key</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$transfmatrix_key">TCPDF::$transfmatrix_key</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Current key for transformation matrix</dd>
 							<dt><b>$transfmrk</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$transfmrk">TCPDF::$transfmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store positions of graphics transformation blocks inside the page buffer.</dd>
 							<dt><b>$tval</b></dt>
@@ -2682,6 +2724,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putannotsobjs">TCPDF::_putannotsobjs()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output annotations objects for all pages.</dd>
 							<dt><b>_putannotsrefs</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putannotsrefs">TCPDF::_putannotsrefs()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output referencees to page annotations</dd>
+							<dt><b>_putAPXObject</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putAPXObject">TCPDF::_putAPXObject()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Put appearance streams XObject used to define annotation's appearance states</dd>
 							<dt><b>_putbookmarks</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putbookmarks">TCPDF::_putbookmarks()</a></dd>
 							<dt><b>_putcatalog</b></dt>
@@ -2726,8 +2770,6 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttrailer">TCPDF::_puttrailer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output trailer.</dd>
 							<dt><b>_puttruetypeunicode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_puttruetypeunicode">TCPDF::_puttruetypeunicode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds unicode fonts.<br /></dd>
-							<dt><b>_putursignature</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putursignature">TCPDF::_putursignature()</a></dd>
 							<dt><b>_putviewerpreferences</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_putviewerpreferences">TCPDF::_putviewerpreferences()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output viewer preferences.</dd>
 							<dt><b>_putxobjectdict</b></dt>
@@ -2775,7 +2817,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 31 Aug 2009 23:08:18 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Mon, 21 Sep 2009 17:12:17 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>
