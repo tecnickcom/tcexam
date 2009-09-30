@@ -1,10 +1,10 @@
 <?php
 //============================================================+
-// File name   : gso_update.php
+// File name   : tce_update.php
 // Begin       : 2009-09-14
 // Last Update : 2009-09-30
 // 
-// Description : Automatic updates.
+// Description : Automatic updates for linux systems.
 //
 // Author: Nicola Asuni
 //
@@ -30,7 +30,7 @@
 
 require_once('../config/tce_config.php');
 $pagelevel = K_AUTH_ADMINISTRATOR;
-require_once(dirname(__FILE__).'/gso_authorization.php');
+require_once('../../shared/code/tce_authorization.php');
 $thispage_title = 'UPDATE';
 require_once('../code/tce_page_header.php');
 
@@ -43,7 +43,7 @@ define ('K_UPDATE_SERVER', 'http://updates.tecnick.com');
 /**
  * UPDATES PASSKEY
  */
-define ('K_UPDATE_PASSKEY', '');
+define ('K_UPDATE_PASSKEY', '0');
 
 echo '<div class="container">';
 
@@ -105,7 +105,7 @@ while ($continue) {
 }
 
 echo '</div>'.K_NEWLINE;
-require_once(dirname(__FILE__).'/gso_page_footer.php');
+require_once(dirname(__FILE__).'/tce_page_footer.php');
 
 //============================================================+
 // END OF FILE                                                 
