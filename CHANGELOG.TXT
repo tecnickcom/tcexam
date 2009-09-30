@@ -1,3 +1,8 @@
+9.0.026 (2009-09-30)
+	- Compatibility with PHP 5.3 was improved.
+	- TCPDF library was updated.
+	- Source code was cleaned up.
+
 9.0.025 (2009-09-21)
 	- TCPDF library was updated.
 	- Installation instructions were udpdated.

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2009-02-15
+// Last Update : 2009-09-30
 // 
 // Description : Functions to display and select registered user.
 //

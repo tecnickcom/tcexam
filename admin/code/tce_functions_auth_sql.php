@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_auth_sql.php
 // Begin       : 2006-03-11
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Functions to select topics.
 //

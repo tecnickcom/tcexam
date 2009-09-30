@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-20
-// Last Update : 2009-03-08
+// Last Update : 2009-09-30
 // 
 // Description : main user page - allows test selection
 //

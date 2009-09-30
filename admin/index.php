@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2009-03-26
-// Last Update : 2009-03-26
+// Last Update : 2009-09-30
 //
 // Description : Redirect browser to main page
 //
@@ -39,7 +39,7 @@
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
-header("Location: code/index.php"); //redirect browser to public main page
+header('Location: code/index.php'); //redirect browser to public main page
 
 //============================================================+
 // END OF FILE                                                 

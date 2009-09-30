@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-06-03
+// Last Update : 2009-09-30
 // 
 // Description : Editor to manually rate free text answers.
 //

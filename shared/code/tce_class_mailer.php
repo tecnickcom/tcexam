@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : cp_class_mailer.php
 // Begin       : 2001-10-20
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Extend PHPMailer class with inheritance
 //

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2009-08-31
+// Last Update : 2009-09-30
 //
 // Description : Outputs TCExam information page.
 //

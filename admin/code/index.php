@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-29
-// Last Update : 2009-05-25
+// Last Update : 2009-09-30
 // 
 // Description : Main page of administrator section.
 //

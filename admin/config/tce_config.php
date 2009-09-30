@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Configuration file for administration section.
 //
@@ -138,12 +138,12 @@ define ('K_DISPLAY_PDFTEXT_BUTTON', false);
 /**
  * name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php)
  */
-define ('K_ENABLE_CUSTOM_IMPORT', '');
+define ('K_ENABLE_CUSTOM_IMPORT', 'Custom XML format');
 
 /**
  * name of the button to export results in custom format (file: admin/code/tce_export_custom.php)
  */
-define ('K_ENABLE_CUSTOM_EXPORT', '');
+define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
 
 // -- INCLUDE files -- 
 require_once('../../shared/config/tce_db_config.php');

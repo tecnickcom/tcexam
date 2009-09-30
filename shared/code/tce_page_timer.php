@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_timer.php
 // Begin       : 2004-04-29
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Display timer (date-time + countdown).
 //

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_registration.php
 // Begin       : 2008-03-31
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 // 
 // Description : Support functions for user registration.
 //

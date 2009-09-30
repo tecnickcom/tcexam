@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_upload.php
 // Begin       : 2001-11-19
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Upload functions.
 //

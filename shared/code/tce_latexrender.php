@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_latexrender.php
 // Begin       : 2007-05-18
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // Author      : Nicola Asuni
 //
 // Description : 

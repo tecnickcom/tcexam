@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 //
 // Description : Check user authorization against alternative
 //               systems (RADIUS, LDAP, CAS, ...)

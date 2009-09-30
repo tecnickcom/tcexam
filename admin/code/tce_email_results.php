@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_email_results.php
 // Begin       : 2005-02-24
-// Last Update : 2009-02-17
+// Last Update : 2009-09-30
 // 
 // Description : Interface to send test reports to users via 
 //               email.

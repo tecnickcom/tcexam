@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2009-04-12
+// Last Update : 2009-09-30
 // 
 // Description : Class to import questions from an XML file.
 //

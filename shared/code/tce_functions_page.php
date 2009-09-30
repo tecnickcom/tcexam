@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_page.php
 // Begin       : 2002-03-21
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Functions for XHTML pages.
 //

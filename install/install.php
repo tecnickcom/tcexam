@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-03-08
+// Last Update : 2009-09-30
 // 
 // Description : TCExam installation script.
 //

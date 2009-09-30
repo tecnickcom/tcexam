@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2009-02-17
+// Last Update : 2009-09-30
 // 
 // Description : Edit users' groups.
 //

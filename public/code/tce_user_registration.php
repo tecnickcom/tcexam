@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 // 
 // Description : User registration form.
 //

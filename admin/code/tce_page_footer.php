@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_footer.php
 // Begin       : 2001-09-02
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Outputs default XHTML page footer.
 //

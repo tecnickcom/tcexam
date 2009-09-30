@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_header.php
 // Begin       : 2001-09-18
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Outputs default XHTML page header.
 //

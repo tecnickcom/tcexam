@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.

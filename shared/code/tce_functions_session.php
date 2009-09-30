@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 // 
 // Description : User-level session storage functions.
 //

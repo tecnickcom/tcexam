@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_radius.php
 // Begin       : 2008-01-15
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 //
 // Description : Configuration file for RADIUS Render Class.
 //

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_cas.php
 // Begin       : 2009-02-06
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 //
 // Description : Configuration file for CAS
 //

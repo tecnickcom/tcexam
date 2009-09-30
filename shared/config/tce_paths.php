@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_paths.php
 // Begin       : 2002-01-15
-// Last Update : 2009-03-26
+// Last Update : 2009-09-30
 //
 // Description : Configuration file for files and directories
 //               paths.

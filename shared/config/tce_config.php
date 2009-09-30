@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2009-08-31
+// Last Update : 2009-09-30
 // 
 // Description : Shared configuration file.
 //
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '9.0.025');
+define ('K_TCEXAM_VERSION', '9.0.026');
 
 /**
  * 2-letters code for default language.
@@ -248,9 +248,14 @@ require_once('../../shared/code/tce_tmx.php'); // TMX class
 $lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php'); // istantiate new TMXResourceBundle object
 $l = $lang_resources->getResource(); // language array
 
-if (function_exists('set_magic_quotes_runtime')) {
+if(!defined('PHP_VERSION_ID')) {
+	$version = PHP_VERSION;
+	define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
+}
+if (PHP_VERSION_ID < 50300) {
 	@set_magic_quotes_runtime(false); //disable magic quotes
 }
+
 ini_set('arg_separator.output', '&amp;');
 ini_set('magic_quotes_gpc', 'On');
 ini_set('magic_quotes_runtime', 'Off');

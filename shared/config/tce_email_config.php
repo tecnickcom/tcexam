@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : cp_email_config.php
 // Begin       : 2001-10-20
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Default values for public variables of
 //				 C_mailer class

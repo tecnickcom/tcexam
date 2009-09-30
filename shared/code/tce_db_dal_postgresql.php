@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_postgresql.php
 // Begin       : 2003-10-12
-// Last Update : 2009-04-12
+// Last Update : 2009-09-30
 // 
 // Description : PostgreSQL driver for TCExam Database
 //               Abstraction Layer (DAL).

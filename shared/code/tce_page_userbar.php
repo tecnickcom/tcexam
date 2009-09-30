@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Display user's bar containing copyright 
 //               information, user status and language 

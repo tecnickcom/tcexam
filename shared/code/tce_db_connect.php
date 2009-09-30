@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_connect.php
 // Begin       : 2001-09-02
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : open connection with active database
 //

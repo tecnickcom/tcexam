@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-10-23
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 //
 // Description : Configuration file for public section.
 //

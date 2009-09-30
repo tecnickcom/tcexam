@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_general_constants.php
 // Begin       : 2002-03-01
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Configuration file for general constants.
 //

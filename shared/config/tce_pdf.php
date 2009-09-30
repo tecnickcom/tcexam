@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2009-08-30
+// Last Update : 2009-09-30
 // 
 // Description : Configuration file for pdf documents.
 //

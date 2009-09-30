@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Functions to translate TCExam code 
 //               into XHTML. 
@@ -251,11 +251,9 @@ function F_objects_callback($matches) {
 function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') {
 	require_once('../config/tce_config.php');
 	global $l, $db;
-	
-	$filename = $name.".".$extension;
+	$filename = $name.'.'.$extension;
 	$extension = strtolower($extension);
 	$htmlcode = '';
-	
 	switch($extension) {
 		case 'gif': 
 		case 'jpg':

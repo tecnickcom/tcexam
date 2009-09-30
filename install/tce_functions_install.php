@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-02-16
+// Last Update : 2009-09-30
 // 
 // Description : Installation functions for TCExam.
 //
@@ -216,7 +216,13 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
  */
 function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_password, $database_name, $table_prefix, $path_host, $path_tcexam, $path_main, $standard_port, $progress_log) {
 	
-	set_magic_quotes_runtime(0); //disable magic quotes
+	if(!defined('PHP_VERSION_ID')) {
+		$version = PHP_VERSION;
+		define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
+	}
+	if (PHP_VERSION_ID < 50300) {
+		@set_magic_quotes_runtime(0);
+	}
 	
 	$config_file = array(); // configuration files
 	
@@ -317,7 +323,9 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		echo "\n".'<li>end process <i>'.basename($file_name).'</i> file</li>';
 		error_log('  [END] process file: '.basename($file_name)."\n", 3, $progress_log); //log info
 	}
-	set_magic_quotes_runtime(get_magic_quotes_gpc()); //restore magic quotes settings
+	if (PHP_VERSION_ID < 50300) {
+		set_magic_quotes_runtime(get_magic_quotes_gpc()); //restore magic quotes settings
+	}
 	flush(); // force browser output
 	return TRUE;
 }

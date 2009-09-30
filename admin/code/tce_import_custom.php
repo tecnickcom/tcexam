@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_custom.php
 // Begin       : 2006-03-12
-// Last Update : 2009-02-20
+// Last Update : 2009-09-30
 // 
 // Description : Class to import questions from a custom XML file.
 //

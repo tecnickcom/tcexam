@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2009-02-17
+// Last Update : 2009-09-30
 // 
 // Description : Import users from an XML file or tab-delimited 
 //               CSV file.

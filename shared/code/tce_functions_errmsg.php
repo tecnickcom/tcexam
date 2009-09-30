@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_errmsg.php
 // Begin       : 2001-09-17
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : handle error messages
 //

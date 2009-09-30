@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_verification.php
 // Begin       : 2008-03-31
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : User verification.
 //

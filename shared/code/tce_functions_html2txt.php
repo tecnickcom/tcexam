@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_html2txt.php                     
 // Begin       : 2001-10-21
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Function to convert HTML code to Text string.
 //

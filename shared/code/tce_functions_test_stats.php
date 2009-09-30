@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 // 
 // Description : Statistical functions for test results.
 //

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_latex.php
 // Begin       : 2007-05-18
-// Last Update : 2009-02-12
+// Last Update : 2009-09-30
 //
 // Description : Configuration file LaTeX Render Class.
 //

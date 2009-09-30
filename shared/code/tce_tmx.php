@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tmx.php
 // Begin       : 2004-10-19
-// Last Update : 2009-03-26
+// Last Update : 2009-09-30
 // 
 // Description : TMX-PHP Bridge Class
 // Platform    : PHP 5

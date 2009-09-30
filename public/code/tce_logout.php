@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_logout.php
 // Begin       : 2001-09-28
-// Last Update : 2009-02-13
+// Last Update : 2009-09-30
 // 
 // Description : Destroy user's session (logout).
 //
