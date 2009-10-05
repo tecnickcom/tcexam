@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-09-30
+// Last Update : 2009-10-05
 // 
 // Description : Installation functions for TCExam.
 //
@@ -283,7 +283,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 				while(list($pkey, $pval) = each($parameter[$key])) { //for each file parameter
 					echo "\n".'<li>update value '.$pkey.' ...........';
 					error_log('      update value '.$pkey.'', 3, $progress_log); //log info
-					$file_data = ereg_replace ($pval[0], $pval[1], $file_data); //update cfg parameters
+					$file_data = preg_replace('#'.$pval[0].'#', $pval[1], $file_data); //update cfg parameters
 					echo '<span style="color:#008000">[OK]</span></li>';
 					error_log(' [OK]'."\n", 3, $progress_log); //log info
 				}
