@@ -203,8 +203,62 @@ require_once(<a href="../com-tecnick-tcexam-admin/_admin---config---tce_config.p
 <br /><br />
 <br />
   <hr />
+	<a name="functiongetDirFiles"></a>
+	<h3>getDirFiles <span class="smalllinenumber">[line 197]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array getDirFiles(
+string $path, [boolean $sort = true], [ $baselen = 0])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		returns an array of files contained on the specified folder and subfolders<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright &amp;copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>2009-10-07</td>
+  </tr>
+  <tr>
+    <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a></td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$path</b>&nbsp;&nbsp;</td>
+        <td>initial directory path</td>
+      </tr>
+		      <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$sort</b>&nbsp;&nbsp;</td>
+        <td>if true sort in alphabetical ascending order, if false sort in alphabetical descending order  òparam int $baselen string lenght of the base dir path.</td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$baselen</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
 	<a name="functiongetImageButton"></a>
-	<h3>getImageButton <span class="smalllinenumber">[line 178]</span></h3>
+	<h3>getImageButton <span class="smalllinenumber">[line 175]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -339,7 +393,7 @@ string $callingform, string $callingfield, [int $id = 0])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 05 Oct 2009 11:52:43 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Wed, 07 Oct 2009 12:39:51 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

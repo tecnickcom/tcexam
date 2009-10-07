@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2009-09-30
+// Last Update : 2009-10-07
 // 
 // Description : Creates PDF documents for offline testing.
 // 
@@ -260,21 +260,20 @@ for ($item = 1; $item <= $test_num; $item++) {
 	$itemcount = 1; // count questions
 	
 	// selected questions IDs
-	$selected_questions = "0";
+	$selected_questions = '0';
 	
 	// 1. for each set of subjects
 	// ------------------------------
 	$sql = 'SELECT *
 		FROM '.K_TABLE_TEST_SUBJSET.'
 		WHERE tsubset_test_id='.$test_id.'
-		ORDER BY tsubset_type,tsubset_difficulty,tsubset_answers DESC';
+		ORDER BY tsubset_type, tsubset_difficulty, tsubset_answers DESC';
 	if($r = F_db_query($sql, $db)) {
+		$questions_data = array();
 		while ($m = F_db_fetch_array($r)) {
-			
 			// 2. select questions
 			// ------------------------------
-			
-			$sqlq = 'SELECT question_id, question_type, question_difficulty, question_description
+			$sqlq = 'SELECT question_id, question_type, question_difficulty, question_position, question_description
 				FROM '.K_TABLE_QUESTIONS.'';
 			$sqlq .= ' WHERE question_subject_id IN (
 					SELECT subjset_subject_id
@@ -347,125 +346,152 @@ for ($item = 1; $item <= $test_num; $item++) {
 			$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
 			if($rq = F_db_query($sqlq, $db)) {
 				while ($mq = F_db_fetch_array($rq)) {
-					
-					$selected_questions .= ','.$mq['question_id'].'';
-					
-					// 3. add question
-					// ------------------------------
-					// add question number
-					$pdf->Cell($data_cell_width_third, $data_cell_height, ''.$itemcount.' '.$qtype[($mq['question_type']-1)].'', 1, 0, 'R', 0);
-					// add max points
-					$pdf->Cell($data_cell_width_third, $data_cell_height, ''.($mq['question_difficulty'] * $testdata['test_score_right']).'', 1, 0, 'R', 0);
-					// add question description
-					$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($mq['question_description']), 1, 1);
-					
-					$itemcount++;
-					
-					// 4. add answers
-					// ------------------------------
-					if ($mq['question_type'] == 3) {
-						// print space for user text answer
-						$restspace = $pdf->getPageHeight() - $pdf->GetY() - $pdf->getBreakMargin();
-						$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'R', 0);
-						
-						// get the list of short answers
-						$shortanswers = '';
-						$sqlsa = 'SELECT answer_description 
-							FROM '.K_TABLE_ANSWERS.'
-							WHERE answer_question_id='.$mq['question_id'].'
-								AND answer_enabled=\'1\' 
-								AND answer_isright=\'1\'';
-						if($rsa = F_db_query($sqlsa, $db)) {
-							while($msa = F_db_fetch_array($rsa)) {
-								$shortanswers .= ''.$msa['answer_description'].' ; ';
-							}
-						} else {
-							F_display_db_error();
-						}
-						
-						// print correct answer in hidden white color
-						/* to display the correct results, from PDF viewer, go to "Accessibility" ->
-						   "Page Display preferences", check "Replace Document Colors", 
-						   uncheck "Only change the color of black text or line art" */
-						$pdf->SetTextColor(255, 255, 255, false);
-						if ($restspace > PDF_TEXTANSWER_HEIGHT) {
-							$pdf->Cell(0, PDF_TEXTANSWER_HEIGHT, $shortanswers, 1, 1, 'C', 0);
-						} else {
-							// split text area across two pages
-							$pdf->Cell(0, $restspace, '', 'LTR', 1, 'C', 0);
-							$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'R', 0);
-							$pdf->Cell(0, (PDF_TEXTANSWER_HEIGHT - $restspace), $shortanswers, 'LRB', 1, 'C', 0);
-						}
-						$pdf->SetTextColor(0, 0, 0, false);
-						$pdf->Ln($data_cell_height);
+					// store questions data
+					$tmp_data = array(
+						'id' => $mq['question_id'],
+						'type' => $mq['question_type'],
+						'answers' => $m['tsubset_answers'],
+						'score' => ($testdata['test_score_unanswered'] * $mq['question_difficulty']),
+						'difficulty' => $mq['question_difficulty'],
+						'description' => $mq['question_description']
+						);
+					if (F_getBoolean($testdata['test_random_questions_select']) OR F_getBoolean($testdata['test_random_questions_order'])) {
+						$questions_data[] = $tmp_data;
 					} else {
-						// display alternative answers
-						$answers_ids = array(); // to store answers IDs
-						$randorder = F_getBoolean($testdata['test_random_answers_order']);
-						switch ($mq['question_type']) {
-							case 1: {
-								// select first random right answer
-								$answers_ids += F_selectAnswers($mq['question_id'], 1, false, 1, 0, $randorder);
-								// select remaining answers
-								$answers_ids += F_selectAnswers($mq['question_id'], 0, false, ($m['tsubset_answers'] - 1), 1, $randorder);
-								shuffle($answers_ids);
-								break;
-							}
-							case 2: {
-								// select answers
-								$answers_ids += F_selectAnswers($mq['question_id'], '', false, $m['tsubset_answers'], 0, $randorder);
-								break;
-							}
-							case 4: {
-								// select answers
-								$answers_ids += F_selectAnswers($mq['question_id'], '', true, 0, 0, true);
-								break;
-							}
-						}
-						// randomizes the order of the answers
-						if ($randorder) {
-							shuffle($answers_ids);
-						}
-						// add answers
-						$answ_id = 0;
-						// display multiple answers
-						while (list($key, $answer_id) = each($answers_ids)) {
-							$answ_id++;
-							// display each answer option
-							$sqla = 'SELECT * 
-								FROM '.K_TABLE_ANSWERS.' 
-								WHERE answer_id='.$answer_id.' 
-								LIMIT 1';
-							if($ra = F_db_query($sqla, $db)) {
-								if($ma = F_db_fetch_array($ra)) {
-									$rightanswer = '';
-									if ($mq['question_type'] == 4) {
-										$rightanswer = $ma['answer_position'];
-									} elseif (F_getBoolean($ma['answer_isright'])) {
-										$rightanswer = 'X';
-									}
-									$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
-									// print correct answer in hidden white color
-									/* to display the correct results, from PDF viewer, go to "Accessibility" ->
-									   "Page Display preferences", check "Replace Document Colors", 
-									   uncheck "Only change the color of black text or line art" */
-									$pdf->SetTextColor(255, 255, 255, false);
-									$pdf->Cell($data_cell_width_third, $data_cell_height, $rightanswer, 1, 0, 'C', 0);
-									$pdf->SetTextColor(0, 0, 0, false);
-									$pdf->Cell($data_cell_width_third, $data_cell_height, $answ_id, 1, 0, 'R', 0);
-									$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
-								}
-							} else {
-								F_display_db_error();
-							}
-						}
-						$pdf->Ln($data_cell_height);
-					} // -- end if multiple-choice question
-					
+						$questions_data[$mq['question_position']] = $tmp_data;
+					}
+					$selected_questions .= ','.$mq['question_id'].'';
 				} // end while select questions
 			} else {
-				F_display_db_error();
-			}
+				F_display_db_error(false);
+				return false;
+			} // --- end 2
+		} // end while for each set of subjects
+		// 3. SORT QUESTIONS
+		// ------------------------------
+		if ((!F_getBoolean($testdata['test_random_questions_select'])) AND (!F_getBoolean($testdata['test_random_questions_order']))) {
+			// order questions
+			ksort($questions_data);
+		} else {
+			shuffle($questions_data);
+		}
+		// 4. PRINT QUESTIONS
+		// ------------------------------
+		$question_order = 0;			
+		foreach ($questions_data as $key => $q) {
+			$question_order++;
+			
+			// ------------------------------
+			// add question number
+			$pdf->Cell($data_cell_width_third, $data_cell_height, ''.$itemcount.' '.$qtype[($q['type']-1)].'', 1, 0, 'R', 0);
+			// add max points
+			$pdf->Cell($data_cell_width_third, $data_cell_height, ''.($q['difficulty'] * $testdata['test_score_right']).'', 1, 0, 'R', 0);
+			// add question description
+			$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($q['description']), 1, 1);
+			
+			$itemcount++;
+						
+			if ($q['type'] == 3) {
+				// print space for user text answer
+				$restspace = $pdf->getPageHeight() - $pdf->GetY() - $pdf->getBreakMargin();
+				$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'R', 0);
+				
+				// get the list of short answers
+				$shortanswers = '';
+				$sqlsa = 'SELECT answer_description 
+					FROM '.K_TABLE_ANSWERS.'
+					WHERE answer_question_id='.$q['id'].'
+						AND answer_enabled=\'1\' 
+						AND answer_isright=\'1\'';
+				if($rsa = F_db_query($sqlsa, $db)) {
+					while($msa = F_db_fetch_array($rsa)) {
+						$shortanswers .= ''.$msa['answer_description'].' ; ';
+					}
+				} else {
+					F_display_db_error();
+				}
+				
+				// print correct answer in hidden white color
+				/* to display the correct results, from PDF viewer, go to "Accessibility" ->
+				   "Page Display preferences", check "Replace Document Colors", 
+				   uncheck "Only change the color of black text or line art" */
+				$pdf->SetTextColor(255, 255, 255, false);
+				if ($restspace > PDF_TEXTANSWER_HEIGHT) {
+					$pdf->Cell(0, PDF_TEXTANSWER_HEIGHT, $shortanswers, 1, 1, 'C', 0);
+				} else {
+					// split text area across two pages
+					$pdf->Cell(0, $restspace, '', 'LTR', 1, 'C', 0);
+					$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'R', 0);
+					$pdf->Cell(0, (PDF_TEXTANSWER_HEIGHT - $restspace), $shortanswers, 'LRB', 1, 'C', 0);
+				}
+				$pdf->SetTextColor(0, 0, 0, false);
+				$pdf->Ln($data_cell_height);
+			} else {
+				$randorder = F_getBoolean($testdata['test_random_answers_order']);
+				// for each question
+				$answers_ids = array(); // array used to store answers IDs
+				switch ($q['type']) {
+					case 1: { // MCSA
+						// select first right answer
+						$answers_ids += F_selectAnswers($q['id'], 1, false, 1, 0, $randorder);
+						// select remaining answers
+						$answers_ids += F_selectAnswers($q['id'], 0, false, ($q['answers'] - 1), 1, $randorder);
+						break;
+					}
+					case 2: { // MCMA
+						// select answers
+						$answers_ids += F_selectAnswers($q['id'], '', false, $q['answers'], 0, $randorder);
+						break;
+					}
+					case 4: { // ORDERING
+						// select answers
+						$randorder = true;
+						$answers_ids += F_selectAnswers($q['id'], '', true, 0, 0, $randorder);
+						break;
+					}
+				}
+				// randomizes the order of the answers
+				if ($randorder) {
+					shuffle($answers_ids);
+				} else {
+					ksort($answers_ids);
+				}
+				// print answers
+				// add answers
+				$answ_id = 0;
+				// display multiple answers
+				while (list($key, $answer_id) = each($answers_ids)) {
+					$answ_id++;
+					// display each answer option
+					$sqla = 'SELECT * 
+						FROM '.K_TABLE_ANSWERS.' 
+						WHERE answer_id='.$answer_id.' 
+						LIMIT 1';
+					if($ra = F_db_query($sqla, $db)) {
+						if($ma = F_db_fetch_array($ra)) {
+							$rightanswer = '';
+							if ($mq['question_type'] == 4) {
+								$rightanswer = $ma['answer_position'];
+							} elseif (F_getBoolean($ma['answer_isright'])) {
+								$rightanswer = 'X';
+							}
+							$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
+							// print correct answer in hidden white color
+							/* to display the correct results, from PDF viewer, go to "Accessibility" ->
+							   "Page Display preferences", check "Replace Document Colors", 
+							   uncheck "Only change the color of black text or line art" */
+							$pdf->SetTextColor(255, 255, 255, false);
+							$pdf->Cell($data_cell_width_third, $data_cell_height, $rightanswer, 1, 0, 'C', 0);
+							$pdf->SetTextColor(0, 0, 0, false);
+							$pdf->Cell($data_cell_width_third, $data_cell_height, $answ_id, 1, 0, 'R', 0);
+							$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
+						}
+					} else {
+						F_display_db_error();
+					}
+				}
+				$pdf->Ln($data_cell_height);
+			} // not-text question
 		} // end while type of questions
 	} else {
 		F_display_db_error();

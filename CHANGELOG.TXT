@@ -1,3 +1,10 @@
+9.0.028 (2009-10-07)
+	- The problem of fixed ordered answers on MCSA questions in PDF test preview was fixed (tce_pdf_testgen).
+	- Search feature was added to "User Selection" form.
+	- Links to "User's Results" were added on "User Selection" form.
+	- Image / object selection was improved (now support subfolders and alphabetic ordering).
+	- The cache name for latex images was changed (now includes date-time).
+
 9.0.027 (2009-10-05)
 	- Compatibility with PHP 5.3 was improved.
 

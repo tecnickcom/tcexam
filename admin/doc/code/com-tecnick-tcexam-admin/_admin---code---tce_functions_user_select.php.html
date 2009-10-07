@@ -199,7 +199,7 @@ Functions to display and select registered user.<br /><br /><br /><br />
 <br />
   <hr />
 	<a name="functionF_get_user_groups"></a>
-	<h3>F_get_user_groups <span class="smalllinenumber">[line 292]</span></h3>
+	<h3>F_get_user_groups <span class="smalllinenumber">[line 307]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -231,12 +231,12 @@ int $user_id)</code>
 	</div>
   <hr />
 	<a name="functionF_select_user"></a>
-	<h3>F_select_user <span class="smalllinenumber">[line 67]</span></h3>
+	<h3>F_select_user <span class="smalllinenumber">[line 69]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>true F_select_user(
-string $order_field, string $orderdir, string $firstrow, string $rowsperpage, [int $group_id = 0])</code>
+string $order_field, string $orderdir, string $firstrow, string $rowsperpage, [int $group_id = 0], [string $andwhere = &#039;&#039;], [string $searchterms = &#039;&#039;])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -293,17 +293,27 @@ string $order_field, string $orderdir, string $firstrow, string $rowsperpage, [i
         <td><b>$group_id</b>&nbsp;&nbsp;</td>
         <td>id of the group (default = 0 = no specific group selected)</td>
       </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$andwhere</b>&nbsp;&nbsp;</td>
+        <td>additional SQL WHERE query conditions</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$searchterms</b>&nbsp;&nbsp;</td>
+        <td>search terms</td>
+      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
 	<a name="functionF_show_select_user"></a>
-	<h3>F_show_select_user <span class="smalllinenumber">[line 88]</span></h3>
+	<h3>F_show_select_user <span class="smalllinenumber">[line 92]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>false F_show_select_user(
-string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group_id = 0])</code>
+string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group_id = 0], [string $andwhere = &#039;&#039;], [string $searchterms = &#039;&#039;])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -363,12 +373,22 @@ string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group
         <td><b>$group_id</b>&nbsp;&nbsp;</td>
         <td>id of the group (default = 0 = no specific group selected)</td>
       </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$andwhere</b>&nbsp;&nbsp;</td>
+        <td>additional SQL WHERE query conditions</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$searchterms</b>&nbsp;&nbsp;</td>
+        <td>search terms</td>
+      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
 	<a name="functionF_user_group_select"></a>
-	<h3>F_user_group_select <span class="smalllinenumber">[line 264]</span></h3>
+	<h3>F_user_group_select <span class="smalllinenumber">[line 279]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -400,12 +420,12 @@ string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group
 	</div>
   <hr />
 	<a name="functionF_user_table_header_element"></a>
-	<h3>F_user_table_header_element <span class="smalllinenumber">[line 244]</span></h3>
+	<h3>F_user_table_header_element <span class="smalllinenumber">[line 259]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>table F_user_table_header_element(
-string $order_field, string $orderdir, string $title, string $name, [string $current_order_field = &amp;quot;&amp;quot;], [int $group_id = 0])</code>
+string $order_field, string $orderdir, string $title, string $name, [string $current_order_field = &#039;&#039;], [int $group_id = 0], [string $filter = &#039;&#039;])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -452,13 +472,18 @@ string $order_field, string $orderdir, string $title, string $name, [string $cur
         <td><b>$group_id</b>&nbsp;&nbsp;</td>
         <td>id of the group (default = 0 = no specific group selected)</td>
       </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$filter</b>&nbsp;&nbsp;</td>
+        <td>additional parameters to pass on URL</td>
+      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Mon, 05 Oct 2009 11:52:44 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Wed, 07 Oct 2009 12:39:52 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

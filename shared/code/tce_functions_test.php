@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-09-30
+// Last Update : 2009-10-07
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -970,7 +970,7 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
 			$answers_ids = array(); // array used to store answers IDs
 			switch ($question_type) {
 				case 1: { // MCSA
-					// select first random right answer
+					// select first right answer
 					$answers_ids += F_selectAnswers($question_id, 1, false, 1, 0, $randorder);
 					// select remaining answers
 					$answers_ids += F_selectAnswers($question_id, 0, false, ($num_answers - 1), 1, $randorder);

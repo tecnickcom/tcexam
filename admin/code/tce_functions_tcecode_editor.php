@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2009-09-30
+// Last Update : 2009-10-07
 // 
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -118,21 +118,18 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	
 	// --- insert image/object
 	$buttons .= '<br />'.K_NEWLINE;
-	$buttons .= '<label for="selectobject'.$id.'">'.$l['w_image'].'/'.$l['w_object'].'</label>'.K_NEWLINE;
+	$buttons .= '<label for="selectobject'.$id.'">'.$l['w_image'].' / '.$l['w_object'].'</label>'.K_NEWLINE;
 	$buttons .= '<select name="selectobject'.$id.'" id="selectobject'.$id.'" size="0">'.K_NEWLINE;
-	// read directory for files (only graphics files).
-	$handle = opendir(K_PATH_CACHE);
 	$buttons .= '<option value="">&nbsp;</option>'.K_NEWLINE;
-		while ($file = readdir($handle)) {
-			if (is_file(K_PATH_CACHE.$file)) {
-				$buttons .= '<option value="'.$file.'"';
-				if (isset($uploadedfile['\''.$id.'\'']) AND (strcmp($uploadedfile['\''.$id.'\''], $file) == 0)) {
-					$buttons .= ' selected="selected"';
-				}
-				$buttons .= '>'.$file.'</option>'.K_NEWLINE;
-			}
+	$files_list = getDirFiles(K_PATH_CACHE, true, strlen(K_PATH_CACHE));
+	foreach($files_list as $file) {
+		$buttons .= '<option value="'.$file.'"';
+		if (isset($uploadedfile['\''.$id.'\'']) AND (strcmp($uploadedfile['\''.$id.'\''], $file) == 0)) {
+			$buttons .= ' selected="selected"';
 		}
-	closedir($handle);
+		$buttons .= '>'.$file.'</option>'.K_NEWLINE;
+	}
+	
 	$buttons .= '</select>'.K_NEWLINE;
 	
 	$buttons .= '<br /><label for="object_alt'.$id.'">'.$l['w_description'].'</label>'.K_NEWLINE;
@@ -183,6 +180,38 @@ function getImageButton($callingform, $callingfield, $name, $tag, $image, $oncli
 	$str .= '<img src="'.$image.'" alt="'.$name.' ['.$accesskey.']" class="button" />';
 	$str .= '</a>';
 	return $str;
+}
+
+/**
+ * returns an array of files contained on the specified folder and subfolders
+ * @author Nicola Asuni
+ * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link www.tecnick.com
+ * @since 2009-10-07
+ * @param string $path initial directory path
+ * @param boolean $sort if true sort in alphabetical ascending order, if false sort in alphabetical descending order
+ * òparam int $baselen string lenght of the base dir path.
+ * @return array
+ */
+function getDirFiles($path, $sort=true, $baselen=0) {
+	$handle = opendir($path);
+	$files_list = array();
+	 while (false !== ($file = readdir($handle))) {
+		if (is_file($path.$file) AND (substr($file, 0, 6) != 'latex_')) {
+			$files_list[] = substr($path.$file, $baselen);
+		} elseif (is_dir($path.$file) AND ($file != '.') AND ($file != '..') AND ($file != 'lang')) {
+			$files_list = array_merge($files_list, getDirFiles($path.$file.'/', $sort, $baselen));
+		}
+	}
+	closedir($handle);
+	// sort alphabetically
+	if ($sort) {
+		sort($files_list);
+	} else {
+		rsort($files_list);
+	}
+	return $files_list;
 }
 
 //============================================================+

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2009-09-30
+// Last Update : 2009-10-07
 // 
 // Description : Display user selection table.
 //
@@ -69,6 +69,7 @@ if(!isset($orderdir)) {$orderdir=0;}
 if(!isset($firstrow)) {$firstrow=0;}
 if(!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}
 if(!isset($group_id)) {$group_id=0;}
+if(!isset($searchterms)) {$searchterms='';}
 ?>
 
 <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_userselect">
@@ -103,8 +104,28 @@ else {
 }
 ?>
 </select>
-</span>
-</div>
+
+<?php
+echo '<input type="text" name="searchterms" id="searchterms" value="'.htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset']).'" size="20" maxlength="255" title="'.$l['w_search'].'" />';
+F_submit_button('search', $l['w_search'], $l['w_search']);
+echo '</span></div>'.K_NEWLINE;
+// build a search query
+$wherequery = '';
+if (strlen($searchterms) > 0) {
+	$wherequery = '';
+	$terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
+	foreach ($terms as $word) {
+		$word = F_escape_sql($word);
+		$wherequery .= ' AND ((user_name LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (user_email LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (user_firstname LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (user_lastname LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (user_regnumber LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (user_ssn LIKE \'%'.$word.'%\'))';
+	}
+	$wherequery = '('.substr($wherequery, 5).')';
+}
+?>
 
 <noscript>
 <div class="row">
@@ -202,7 +223,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 	F_print_error('MESSAGE', $l['m_updated']);
 }
 
-F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id);
+F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id, $wherequery, $searchterms);
 
 echo '</form>'.K_NEWLINE;
 
