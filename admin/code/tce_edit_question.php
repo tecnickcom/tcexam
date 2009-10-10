@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 //
 // Description : Edit questions
 //
@@ -293,7 +293,12 @@ switch($menu_mode) {
 				break;
 			}
 			// check if alternate key is unique
-			if(!F_check_unique(K_TABLE_QUESTIONS, 'question_description=\''.F_escape_sql($question_description).'\' AND question_subject_id='.$question_subject_id.'', 'question_id', $question_id)) {
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+			} else {
+				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
+			}
+			if(!F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$question_subject_id.'', 'question_id', $question_id)) {
 				F_print_error('WARNING', $l['m_duplicate_question']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -370,7 +375,12 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if($formstatus = F_check_form_fields()) {
 			// check if alternate key is unique
-			if(!F_check_unique(K_TABLE_QUESTIONS, 'question_description=\''.F_escape_sql($question_description).'\' AND question_subject_id='.$question_subject_id.'')) {
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+			} else {
+				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
+			}
+			if(!F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$question_subject_id.'')) {
 				F_print_error('WARNING', $l['m_duplicate_question']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -488,8 +498,12 @@ if($formstatus) {
 			$sql = 'SELECT * 
 				FROM '.K_TABLE_QUESTIONS.' 
 				WHERE question_subject_id='.$question_subject_id.' 
-				ORDER BY question_position,question_description 
-				LIMIT 1';
+				ORDER BY question_position,';
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$sql .= 'CAST(question_description as varchar2(100))';
+			} else {
+				$sql .= 'question_description LIMIT 1';
+			}
 		} else {
 			$sql = 'SELECT * 
 				FROM '.K_TABLE_QUESTIONS.' 
@@ -633,10 +647,15 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="question_id" id="question_id" size="0" onchange="document.getElementById('form_questioneditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = "SELECT * 
-	FROM ".K_TABLE_QUESTIONS." 
-	WHERE question_subject_id=".$question_subject_id." 
-	ORDER BY question_enabled DESC, question_position, question_description";
+$sql = 'SELECT * 
+	FROM '.K_TABLE_QUESTIONS.' 
+	WHERE question_subject_id='.$question_subject_id.' 
+	ORDER BY question_enabled DESC, question_position,';
+if (K_DATABASE_TYPE == 'ORACLE') {
+	$sql .= 'CAST(question_description as varchar2(100))';
+} else {
+	$sql .= 'question_description';
+}
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

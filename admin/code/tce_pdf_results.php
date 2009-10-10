@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -240,17 +240,17 @@ if($r = F_db_query($sql, $db)) {
 }
 
 if (($_REQUEST['mode'] == 3) AND ($user_id > 0)) { // detailed report for single user
-	$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
+	$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
 		FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.' 
 		WHERE testlog_testuser_id=testuser_id
 			AND testuser_user_id=user_id
 			AND testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'
 			AND testuser_status>0
-		GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name
+		GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name
 		'.$sql_limit.'';
 } else {
-	$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
+	$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
 		FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.' 
 		WHERE testlog_testuser_id=testuser_id
 			AND testuser_user_id=user_id
@@ -263,7 +263,7 @@ if (($_REQUEST['mode'] == 3) AND ($user_id > 0)) { // detailed report for single
 				WHERE usrgrp_group_id='.$group_id.'
 			)';
 	}
-	$sql .= ' GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name
+	$sql .= ' GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name
 		ORDER BY testuser_test_id, user_lastname, user_firstname
 		'.$sql_limit.'';
 }
@@ -277,8 +277,16 @@ if($r = F_db_query($sql, $db)) {
 		$user_firstname = $m['user_firstname'];
 		$user_name = $m['user_name'];
 		$test_start_time = $m['testuser_creation_time'];
-		$test_score = $m['test_score'];	
-		$testuser_comment = F_decode_tcecode($m['testuser_comment']);
+		$test_score = $m['test_score'];
+		$testuser_comment = '';
+		$sqluc = 'SELECT testuser_comment FROM '.K_TABLE_TEST_USER.' WHERE testuser_id='.$testuser_id.'';
+		if($ruc = F_db_query($sqluc, $db)) {
+			if($muc = F_db_fetch_array($ruc)) {
+				$testuser_comment = F_decode_tcecode($muc['testuser_comment']);
+			}
+		} else {
+			F_display_db_error();
+		}
 		$test_end_time = $m['test_end_time'];
 		
 		// ------------------------------------------------------------
@@ -609,12 +617,12 @@ if($r = F_db_query($sql, $db)) {
 				$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 				
 				// output questions stats
-				$sqlr = 'SELECT question_id, question_description, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
+				$sqlr = 'SELECT question_id, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
 					FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.' 
 					WHERE testlog_testuser_id=testuser_id
 						AND testlog_question_id=question_id 
 						AND testuser_test_id='.$test_id.'
-					GROUP BY question_id, question_description 
+					GROUP BY question_id 
 					ORDER BY '.$full_order_field.'';
 				if($rr = F_db_query($sqlr, $db)) {
 					$itemcount = 1;
@@ -635,7 +643,16 @@ if($r = F_db_query($sql, $db)) {
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unanswered'], 1, 0, 'C', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['undisplayed'], 1, 0, 'C', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unrated'], 1, 1, 'C', 0);
-						$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($mr['question_description']), 1, 1);
+						$question_description = '';
+						$sqlq = 'SELECT question_description FROM '.K_TABLE_QUESTIONS.' WHERE question_id='.$mr['question_id'].'';
+						if($rq = F_db_query($sqlq, $db)) {
+							if($mq = F_db_fetch_array($rq)) {
+								$question_description = $mq['question_description'];
+							}
+						} else {
+							F_display_db_error();
+						}
+						$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($question_description), 1, 1);
 						
 						//$pdf->Ln(2);
 						

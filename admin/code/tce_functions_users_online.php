@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Functions to display online users' data.
 //
@@ -107,9 +107,14 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	}
 	
 	if (empty($wherequery)) {
-		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' ORDER BY '.$full_order_field.' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' ORDER BY '.$full_order_field.'';
 	} else {
-		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' '.$wherequery.' ORDER BY '.$full_order_field.' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' '.$wherequery.' ORDER BY '.$full_order_field.'';
+	}
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql = 'SELECT * FROM ('.$sql.') WHERE rownum BETWEEN '.$firstrow.' AND '.($firstrow + $rowsperpage).'';
+	} else {
+		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
 	}
 	
 	echo '<div class="container">'.K_NEWLINE;

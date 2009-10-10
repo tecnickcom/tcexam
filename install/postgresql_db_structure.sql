@@ -2,7 +2,7 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2009-03-08
+Last Update : 2009-10-09
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
@@ -186,19 +186,19 @@ CREATE TABLE "tce_user_groups" (
 	"group_id" BigSerial NOT NULL,
 	"group_name" Varchar(255) NOT NULL UNIQUE,
 constraint "pk_tce_user_groups" primary key ("group_id")
-) With Oids;
+) Without Oids;
 
 CREATE TABLE "tce_usrgroups" (
 	"usrgrp_user_id" Bigint NOT NULL,
 	"usrgrp_group_id" Bigint NOT NULL,
 constraint "pk_tce_usrgroups" primary key ("usrgrp_user_id","usrgrp_group_id")
-) With Oids;
+) Without Oids;
 
 CREATE TABLE "tce_testgroups" (
 	"tstgrp_test_id" Bigint NOT NULL,
 	"tstgrp_group_id" Bigint NOT NULL,
 constraint "pk_tce_testgroups" primary key ("tstgrp_test_id","tstgrp_group_id")
-) With Oids;
+) Without Oids;
 
 CREATE TABLE "tce_test_subject_set" (
 	"tsubset_id" BigSerial NOT NULL,
@@ -208,7 +208,7 @@ CREATE TABLE "tce_test_subject_set" (
 	"tsubset_quantity" Smallint NOT NULL Default 1,
 	"tsubset_answers" Smallint NOT NULL Default 0,
 constraint "pk_tce_test_subject_set" primary key ("tsubset_id")
-) With Oids;
+) Without Oids;
 
 /* Alternate Keys */
 

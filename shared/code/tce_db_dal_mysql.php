@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2009-09-30
+// Last Update : 2009-10-09
 // 
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -55,8 +55,8 @@
 
 /**
  * Open a connection to a MySQL Server and select a database.
- * If a second call is made to mysql_connect() with the same arguments, no new link will be established, but instead, the link identifier of the already opened link will be returned.
- * @param string $server Database server path. It can also include a port number. e.g. "hostname:port" or a path to a local socket e.g. ":/path/to/socket" for the localhost. Note: Whenever you specify "localhost" or "localhost:port" as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use "127.0.0.1" instead of "localhost". If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.
+ * @param string $host database server host name.
+ * @param string $port database connection port
  * @param string $username Name of the user that owns the server process.
  * @param string $password Password of the user that owns the server process.
  * @param string $database Database name.
@@ -148,7 +148,7 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
 	 * native MySQL C API function mysql_insert_id() to a type 
 	 * of long (named int in PHP). If your AUTO_INCREMENT column 
 	 * has a column type of BIGINT, the value returned by 
-	 * mysql_insert_id()  will be incorrect.
+	 * mysql_insert_id() will be incorrect.
 	 */
 	 //return mysql_insert_id($link_identifier);
 	if ($r = mysql_query('SELECT LAST_INSERT_ID() FROM '.$tablename.'', $link_identifier)) {

@@ -120,7 +120,7 @@ function F_csv_export_users() {
 			$csv .= K_TAB.$m['user_ip'];
 			$csv .= K_TAB.$m['user_firstname'];
 			$csv .= K_TAB.$m['user_lastname'];
-			$csv .= K_TAB.$m['user_birthdate'];
+			$csv .= K_TAB.substr($m['user_birthdate'],0,10);
 			$csv .= K_TAB.$m['user_birthplace'];
 			$csv .= K_TAB.$m['user_regnumber'];
 			$csv .= K_TAB.$m['user_ssn'];

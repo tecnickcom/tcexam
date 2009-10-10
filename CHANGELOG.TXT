@@ -1,3 +1,6 @@
+9.0.029 (2009-10-09)
+	- Support for ORACLE database was added (via oci8 PHP extension).
+
 9.0.028 (2009-10-07)
 	- The problem of fixed ordered answers on MCSA questions in PDF test preview was fixed (tce_pdf_testgen).
 	- Search feature was added to "User Selection" form.

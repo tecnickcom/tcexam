@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-10-07
+// Last Update : 2009-10-10
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -624,7 +624,11 @@ function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $
 		$sql .= ' AND answer_position>0 ORDER BY answer_position';
 	}
 	if ($limit > 0) {
-		$sql .= ' LIMIT '.$limit.'';
+		if (K_DATABASE_TYPE == 'ORACLE') {
+			$sql = 'SELECT * FROM ('.$sql.') WHERE rownum <= '.$limit.'';
+		} else {
+			$sql .= ' LIMIT '.$limit.'';
+		}
 	}
 	if($r = F_db_query($sql, $db)) {
 		while ($m = F_db_fetch_array($r)) {
@@ -860,7 +864,11 @@ function F_createTest($test_id, $user_id) {
 				} else {
 					$sqlq .= ' AND question_position>0 ORDER BY question_position';
 				}
-				$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
+				if (K_DATABASE_TYPE == 'ORACLE') {
+					$sqlq = 'SELECT * FROM ('.$sqlq.') WHERE rownum <= '.$m['tsubset_quantity'].'';
+				} else {
+					$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
+				}
 				if($rq = F_db_query($sqlq, $db)) {
 					while ($mq = F_db_fetch_array($rq)) {
 						// store questions data

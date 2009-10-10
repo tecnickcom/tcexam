@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 //  
 // Description : Edit Tests
 //
@@ -315,8 +315,11 @@ switch($menu_mode) {
 				if (F_getBoolean($test_random_questions_order)) {
 					$sqlq .= ' AND question_position>0';
 				}
-				$sqlq .= ' LIMIT '.$tsubset_quantity.'';
-				
+				if (K_DATABASE_TYPE == 'ORACLE') {
+					$sqlq = 'SELECT * FROM ('.$sqlq.') WHERE rownum <= '.$tsubset_quantity.'';
+				} else {
+					$sqlq .= ' LIMIT '.$tsubset_quantity.'';
+				}
 				$numofrows = 0;
 				if($rq = F_db_query($sqlq, $db)) {
 					if($mq = F_db_fetch_array($rq)) {

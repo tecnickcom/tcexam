@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Display all test results for the selected users.
 //
@@ -113,7 +113,7 @@ if(!isset($startdate) OR empty($startdate)) {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
 if(!isset($enddate) OR empty($enddate)) {
-	$enddate = date('Y').'-12-31 24:00:00';
+	$enddate = date('Y').'-12-31 23:59:59';
 }
 
 if (isset($menu_mode) AND (!empty($menu_mode))) {

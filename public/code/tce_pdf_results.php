@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -175,14 +175,14 @@ if($r = F_db_query($sql, $db)) {
 }
 
 
-$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
+$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
 	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.' 
 	WHERE testlog_testuser_id=testuser_id
 		AND testuser_user_id=user_id
 		AND testuser_test_id='.$test_id.'
 		AND testuser_user_id='.$user_id.'
 		AND testuser_status>0
-	GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_comment, user_lastname, user_firstname, user_name
+	GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name
 	LIMIT 1';
 if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
@@ -193,8 +193,15 @@ if($r = F_db_query($sql, $db)) {
 		$user_firstname = $m['user_firstname'];
 		$user_name = $m['user_name'];
 		$test_start_time = $m['testuser_creation_time'];
-		$test_score = $m['test_score'];	
-		$testuser_comment = F_decode_tcecode($m['testuser_comment']);
+		$test_score = $m['test_score'];
+		$sqluc = 'SELECT testuser_comment FROM '.K_TABLE_TEST_USER.' WHERE testuser_id='.$testuser_id.'';
+		if($ruc = F_db_query($sqluc, $db)) {
+			if($muc = F_db_fetch_array($ruc)) {
+				$testuser_comment = F_decode_tcecode($muc['testuser_comment']);
+			}
+		} else {
+			F_display_db_error();
+		}
 		$test_end_time = $m['test_end_time'];
 		
 		// ------------------------------------------------------------

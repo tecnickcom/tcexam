@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2009-09-30
+// Last Update : 2009-10-09
 // 
 // Description : General functions.
 //
@@ -122,7 +122,7 @@ function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
 	global $l, $db;
 	$sqlc = 'SELECT * FROM '.$table.' WHERE '.$where.' LIMIT 1';
 	if($rc = F_db_query($sqlc, $db)) {
-		if (($fieldname == FALSE) AND ($fieldid == FALSE) AND (F_db_num_rows($rc) > 0)) {
+		if (($fieldname === FALSE) AND ($fieldid === FALSE) AND (F_count_rows($table, 'WHERE '.$where) > 0)) {
 			return FALSE;
 		}
 		if($mc = F_db_fetch_array($rc)) {

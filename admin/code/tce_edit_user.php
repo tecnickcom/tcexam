@@ -319,7 +319,7 @@ if($formstatus) {
 				$user_regnumber = $m['user_regnumber'];
 				$user_firstname = $m['user_firstname'];
 				$user_lastname = $m['user_lastname'];
-				$user_birthdate = $m['user_birthdate'];
+				$user_birthdate = substr($m['user_birthdate'],0,10);
 				$user_birthplace = $m['user_birthplace'];
 				$user_ssn = $m['user_ssn'];
 				$user_level = $m['user_level'];

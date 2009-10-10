@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Class to import questions from an XML file.
 //
@@ -371,9 +371,13 @@ class XMLQuestionImporter {
 		// check if this question already exist
 		$sql = 'SELECT question_id 
 			FROM '.K_TABLE_QUESTIONS.'
-			WHERE question_description=\''.$this->level_data['question']['question_description'].'\'
-				AND question_subject_id='.$this->level_data['subject']['subject_id'].'
-			LIMIT 1';
+			WHERE ';
+		if (K_DATABASE_TYPE == 'ORACLE') {
+			$sql .= 'dbms_lob.instr(question_description,\''.$this->level_data['question']['question_description'].'\',1,1)>0';
+		} else {
+			$sql .= 'question_description=\''.$this->level_data['question']['question_description'].'\'';
+		}
+		$sql .= ' AND question_subject_id='.$this->level_data['subject']['subject_id'].' LIMIT 1';
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				// get existing question ID
@@ -468,9 +472,13 @@ class XMLQuestionImporter {
 		// check if this answer already exist
 		$sql = 'SELECT answer_id 
 			FROM '.K_TABLE_ANSWERS.'
-			WHERE answer_description=\''.$this->level_data['answer']['answer_description'].'\'
-				AND answer_question_id='.$this->level_data['question']['question_id'].'
-			LIMIT 1';
+			WHERE ';
+		if (K_DATABASE_TYPE == 'ORACLE') {
+			$sql .= 'dbms_lob.instr(answer_description, \''.$this->level_data['answer']['answer_description'].'\',1,1)>0';
+		} else {
+			$sql .= 'answer_description=\''.$this->level_data['answer']['answer_description'].'\'';
+		}
+		$sql .= ' AND answer_question_id='.$this->level_data['question']['question_id'].' LIMIT 1';
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				// get existing subject ID

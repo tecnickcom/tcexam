@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-10-05
+// Last Update : 2009-10-10
 // 
 // Description : Installation functions for TCExam.
 //
@@ -47,7 +47,7 @@
  * @param string $db_user database user
  * @param string $db_password database password
  * @param string $database_name database name
- * @param string $table_prefix table prefix
+ * @param string $table_prefix prefix for tables
  * @param boolean $drop_database if true drop existing database
  * @param boolean $create_new if true creates new database
  * @param string $progress_log log file name
@@ -58,6 +58,11 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 	define ('K_DATABASE_TYPE', $db_type); // database type (for Database Abstraction Layer)
 	// Load the Database Abstraction Layer for selected DATABASE type
 	switch (K_DATABASE_TYPE) {
+		case 'ORACLE':
+			default: {
+			require_once('../shared/code/tce_db_dal_oracle.php');
+			break;
+		}
 		case 'POSTGRESQL':
 			default: {
 			require_once('../shared/code/tce_db_dal_postgresql.php');
@@ -74,7 +79,7 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 	}
 	echo "\n".'<li>create or replace database and get connection........';
 	error_log('  create or replace database and get connection'."\n", 3, $progress_log); //log info
-	if ($db = F_create_database(K_DATABASE_TYPE, $db_host, $db_port, $db_user, $db_password, $database_name, $drop_database, $create_new)) { //create database if not exist
+	if ($db = F_create_database(K_DATABASE_TYPE, $db_host, $db_port, $db_user, $db_password, $database_name, $table_prefix, $drop_database, $create_new)) { //create database if not exist
 		echo '<span style="color:#008000">[OK]</span></li>';
 		echo "\n".'<li>create database tables..........';
 		error_log('  [START] create database tables'."\n", 3, $progress_log); //log info
@@ -149,6 +154,7 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 
 /**
  * Create new database. Existing database will be dropped.
+ * Oracle databases must be created manually (create the tcexam user and set the database name equal to user name)
  * @param string $host Database server path. It can also include a port number. e.g. "hostname:port" or a path to a local socket e.g. ":/path/to/socket" for the localhost. Note: Whenever you specify "localhost" or "localhost:port" as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use "127.0.0.1" instead of "localhost". If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.
  * @param string $dbtype database type ('MYSQL' or 'POSTGREQL')
  * @param string $host database host
@@ -156,33 +162,65 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
  * @param string $user Name of the user that owns the server process.
  * @param string $password Password of the user that owns the server process.
  * @param string $database Database name.
+ * @param string $table_prefix prefix for tables
  * @param boolean $drop if true drop existing database
  * @param boolean $create if true creates new database
  * @return database link identifier on success, FALSE otherwise.
  */
-function F_create_database($dbtype, $host, $port, $user, $password, $database, $drop, $create) {
+function F_create_database($dbtype, $host, $port, $user, $password, $database, $table_prefix, $drop, $create) {
 	// open default connection
 	if ($drop OR $create) {
 		if ($db = @F_db_connect($host, $port, $user, $password)) {
-			if ($drop) {
-				// DROP existing database (if exist)
-				@F_db_query('DROP DATABASE '.$database.'', $db);
-			} else { 
-				echo '<span style="color:#000080">[SKIP DROP]</span> ';
-			}
-			if($create) {
-				// create database
-				$sql = 'CREATE DATABASE '.$database.'';
-				if ($dbtype == 'POSTGRESQL') {
-					$sql .= ' ENCODING=\'UNICODE\'';
-				} elseif ($dbtype == 'MYSQL') {
-					$sql .= ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+			if ($dbtype == 'ORACLE') {
+				if ($drop) {
+					$table_prefix = strtoupper($table_prefix);
+					// DROP sequences
+					$sql = 'select \'DROP SEQUENCE \'||sequence_name||\'\' from user_sequences where sequence_name like \''.$table_prefix.'%\'';
+					if($r = @F_db_query($sql, $db)) {
+						while($m = @F_db_fetch_array($r)) {
+							@F_db_query($m[0], $db);
+						}
+					}
+					// DROP triggers
+					$sql = 'select \'DROP TRIGGER \'||trigger_name||\'\' from user_triggers where trigger_name like \''.$table_prefix.'%\'';
+					if($r = @F_db_query($sql, $db)) {
+						while($m = @F_db_fetch_array($r)) {
+							@F_db_query($m[0], $db);
+						}
+					}
+					// DROP tables
+					$sql = 'select \'DROP TABLE \'||table_name||\' CASCADE CONSTRAINTS\' from user_tables where table_name like \''.$table_prefix.'%\'';
+					if($r = @F_db_query($sql, $db)) {
+						while($m = @F_db_fetch_array($r)) {
+							@F_db_query($m[0], $db);
+						}
+					}
+				} else { 
+					echo '<span style="color:#000080">[SKIP DROP]</span> ';
 				}
-				if(!$r = @F_db_query($sql, $db)) {
-					return FALSE;
-				}
+				// Note: Oracle Database automatically creates a schema when you create a user, 
+				//       so you have to create a tcexam user before calling this.
 			} else {
-				echo '<span style="color:#000080">[SKIP CREATE]</span> ';
+				if ($drop) {
+					// DROP existing database (if exist)
+					@F_db_query('DROP DATABASE '.$database.'', $db);
+				} else { 
+					echo '<span style="color:#000080">[SKIP DROP]</span> ';
+				}
+				if($create) {
+					// create database
+					$sql = 'CREATE DATABASE '.$database.'';
+					if ($dbtype == 'MYSQL') {
+						$sql .= ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+					} elseif ($dbtype == 'POSTGRESQL') {
+						$sql .= ' ENCODING=\'UNICODE\'';
+					}
+					if(!$r = @F_db_query($sql, $db)) {
+						return FALSE;
+					}
+				} else {
+					echo '<span style="color:#000080">[SKIP CREATE]</span> ';
+				}
 			}
 			@F_db_close($db);
 		} else {

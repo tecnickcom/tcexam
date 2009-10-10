@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -124,7 +124,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 	// check if submitted login information are correct
 	$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
 	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) { 
+		if($m = F_db_fetch_array($r)) {
 			// sets some user's session data
 			$_SESSION['session_user_id'] = $m['user_id'];
 			$_SESSION['session_user_name'] = $m['user_name'];

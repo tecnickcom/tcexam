@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_page.php
 // Begin       : 2002-03-21
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Functions for XHTML pages.
 //
@@ -70,7 +70,7 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 	if(!$sql) {return FALSE;}
 	
 	if(!$r = F_db_query($sql, $db)) {
-			F_display_db_error();
+		F_display_db_error(); 
 	}
 	
 	// build base url for all links
@@ -85,7 +85,8 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 	$count_rows = preg_match('/GROUP BY/i', $sql); //check if query contain a "GROUP BY"
 	
 	$all_updates = F_db_num_rows($r);
-	if ( ($all_updates == 1) AND (!$count_rows) ) {
+	
+	if ( ($all_updates == 1) AND (!$count_rows) AND (K_DATABASE_TYPE != 'ORACLE')) {
 		list($all_updates) = F_db_fetch_array($r);
 	}
 	

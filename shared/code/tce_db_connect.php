@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_connect.php
 // Begin       : 2001-09-02
-// Last Update : 2009-09-30
+// Last Update : 2009-10-09
 // 
 // Description : open connection with active database
 //
@@ -54,7 +54,7 @@
 
 require_once('../../shared/code/tce_db_dal.php'); // Database Abstraction Layer for selected DATABASE type
 
-if(!$db = @F_db_connect(K_DATABASE_HOST,K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+if(!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT, K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
 	die('<h2>'.F_db_error().'</h2>');
 }
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_config.php
 // Begin       : 2001-09-02
-// Last Update : 2009-09-30
+// Last Update : 2009-10-09
 // 
 // Description : Database congiguration file.
 //
@@ -50,7 +50,7 @@
  */
 
 /**
- * database type (POSTGRESQL or MYSQL)
+ * database type (MYSQL, POSTGRESQL, ORACLE)
  */
 define ('K_DATABASE_TYPE', '');
 
@@ -60,7 +60,7 @@ define ('K_DATABASE_TYPE', '');
 define ('K_DATABASE_HOST', '');
 
 /**
- * database port (eg: 3306 or 5432)
+ * database port (eg: 3306, 5432, 1521)
  */
 define ('K_DATABASE_PORT', '');
 

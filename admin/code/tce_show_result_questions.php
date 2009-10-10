@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Display questions statistics for the selected
 //               test.
@@ -176,12 +176,12 @@ echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</t
 </tr>
 <?php
 // output questions stats
-$sqlr = 'SELECT question_id, question_description, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
+$sqlr = 'SELECT question_id, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.' 
 	WHERE testlog_testuser_id=testuser_id
 		AND testlog_question_id=question_id 
 		AND testuser_test_id='.$test_id.'
-	GROUP BY question_id, question_description 
+	GROUP BY question_id
 	ORDER BY '.$full_order_field.'';
 if($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 1;
@@ -204,7 +204,16 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo '<td>'.$qsttestdata['unrated'].'</td>'.K_NEWLINE;
 		echo '</tr>'.K_NEWLINE;
 		echo '<tr>';
-		echo '<td colspan="8" align="'.$txtdir.'">'.F_decode_tcecode($mr['question_description']).'</td>';
+		$question_description = '';
+		$sqlrq = 'SELECT question_description FROM '.K_TABLE_QUESTIONS.' WHERE question_id='.$mr['question_id'].'';
+		if($rrq = F_db_query($sqlrq, $db)) {
+			if($mrq = F_db_fetch_array($rrq)) {
+				$question_description = F_decode_tcecode($mrq['question_description']);
+			}
+		} else {
+			F_display_db_error();
+		}
+		echo '<td colspan="8" align="'.$txtdir.'">'.$question_description.'</td>';
 		echo '</tr>'.K_NEWLINE;
 		$itemcount++;
 		

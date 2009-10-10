@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_postgresql.php
 // Begin       : 2003-10-12
-// Last Update : 2009-09-30
+// Last Update : 2009-10-09
 // 
 // Description : PostgreSQL driver for TCExam Database
 //               Abstraction Layer (DAL).
@@ -56,7 +56,8 @@
 /**
  * Open a connection to a PostgreSQL Server and select a database.
  * If a second call is made to this function with the same arguments, no new link will be established, but instead, the link identifier of the already opened link will be returned.
- * @param string $server Database server path. It can also include a port number. e.g. "hostname:port" or a path to a local socket e.g. ":/path/to/socket" for the localhost.
+ * @param string $host database server host name.
+ * @param string $port database connection port
  * @param string $username Name of the user that owns the server process.
  * @param string $password Password of the user that owns the server process.
  * @param string $database Database name.

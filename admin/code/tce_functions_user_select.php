@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2009-10-07
+// Last Update : 2009-10-10
 // 
 // Description : Functions to display and select registered user.
 //
@@ -122,9 +122,12 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	$sql = 'SELECT * 
 		FROM '.K_TABLE_USERS.'
 		'.$wherequery.'
-		ORDER BY '.$full_order_field.' 
-		LIMIT '.$rowsperpage.' 
-		OFFSET '.$firstrow.'';
+		ORDER BY '.$full_order_field;
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql = 'SELECT * FROM ('.$sql.') WHERE rownum BETWEEN '.$firstrow.' AND '.($firstrow + $rowsperpage).'';
+	} else {
+		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+	}
 	
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {

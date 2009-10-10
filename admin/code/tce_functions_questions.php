@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Functions to manipulate questions.
 //
@@ -208,7 +208,12 @@ function F_question_copy($question_id, $new_subject_id) {
 	}
 	$q = F_question_get_data($question_id);
 	if ($q !== false) {
-		if(F_check_unique(K_TABLE_QUESTIONS, 'question_description=\''.F_escape_sql($q['question_description']).'\' AND question_subject_id='.$new_subject_id.'')) {
+		if (K_DATABASE_TYPE == 'ORACLE') {
+			$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($q['question_description']).'\',1,1)>0';
+		} else {
+			$chksql = 'question_description=\''.F_escape_sql($q['question_description']).'\'';
+		}
+		if(F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$new_subject_id.'')) {
 			$sql = 'START TRANSACTION';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Display all questions grouped by topic.
 //
@@ -68,7 +68,14 @@ require_once('tce_functions_questions.php');
 
 // set default values
 if (!isset($wherequery)) {$wherequery='';}
-if (!isset($order_field)) {$order_field='question_enabled DESC, question_position, question_description';}
+if (!isset($order_field)) {
+	$order_field = 'question_enabled DESC, question_position,';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$order_field .= 'CAST(question_description as varchar2(100))';
+	} else {
+		$order_field .= 'question_description';
+	}
+}
 if (!isset($orderdir)) {$orderdir=0;}
 if (!isset($firstrow)) {$firstrow=0;}
 if (!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}
@@ -83,7 +90,12 @@ if (isset($selectcategory)) {
 
 if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AND ($changecategory > 0))) {
 	$wherequery='';
-	$order_field='question_enabled DESC, question_position, question_description';
+	$order_field = 'question_enabled DESC, question_position,';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$order_field .= 'CAST(question_description as varchar2(100))';
+	} else {
+		$order_field .= 'question_description';
+	}
 	$firstrow=0;
 	$orderdir=0;
 }
@@ -405,8 +417,12 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	$sql = 'SELECT * 
 		FROM '.K_TABLE_QUESTIONS.'
 		'.$wherequery.'
-		ORDER BY '.$full_order_field.' 
-		LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+		ORDER BY '.$full_order_field;
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql = 'SELECT * FROM ('.$sql.') WHERE rownum BETWEEN '.$firstrow.' AND '.($firstrow + $rowsperpage).'';
+	} else {
+		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+	}
 	if($r = F_db_query($sql, $db)) {
 		$questlist = '';
 		$itemcount = $firstrow;

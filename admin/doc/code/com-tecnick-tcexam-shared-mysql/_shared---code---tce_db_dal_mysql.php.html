@@ -160,11 +160,11 @@ resource $link_identifier)</code>
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>MySQL F_db_connect(
-[ $host = &#039;localhost&#039;], [ $port = &#039;3306&#039;], [string $username = &#039;root&#039;], [string $password = &#039;&#039;], [string $database = &#039;&#039;], string $server)</code>
+[string $host = &#039;localhost&#039;], [string $port = &#039;3306&#039;], [string $username = &#039;root&#039;], [string $password = &#039;&#039;], [string $database = &#039;&#039;])</code>
     </td></tr></table>
     </td></tr></table><br />
 
-		Open a connection to a MySQL Server and select a database.<br /><br /><p>If a second call is made to mysql_connect() with the same arguments, no new link will be established, but instead, the link identifier of the already opened link will be returned.</p><br /><br /><br />
+		Open a connection to a MySQL Server and select a database.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -179,8 +179,13 @@ resource $link_identifier)</code>
     <table border="0" cellspacing="0" cellpadding="0">
 		      <tr>
         <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$server</b>&nbsp;&nbsp;</td>
-        <td>Database server path. It can also include a port number. e.g. &quot;hostname:port&quot; or a path to a local socket e.g. &quot;:/path/to/socket&quot; for the localhost. Note: Whenever you specify &quot;localhost&quot; or &quot;localhost:port&quot; as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use &quot;127.0.0.1&quot; instead of &quot;localhost&quot;. If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.</td>
+        <td><b>$host</b>&nbsp;&nbsp;</td>
+        <td>database server host name.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$port</b>&nbsp;&nbsp;</td>
+        <td>database connection port</td>
       </tr>
 		      <tr>
         <td class="type">string&nbsp;&nbsp;</td>
@@ -196,16 +201,6 @@ resource $link_identifier)</code>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$database</b>&nbsp;&nbsp;</td>
         <td>Database name.</td>
-      </tr>
-		      <tr>
-        <td class="type">&nbsp;&nbsp;</td>
-        <td><b>$host</b>&nbsp;&nbsp;</td>
-        <td></td>
-      </tr>
-		      <tr>
-        <td class="type">&nbsp;&nbsp;</td>
-        <td><b>$port</b>&nbsp;&nbsp;</td>
-        <td></td>
       </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
@@ -420,7 +415,7 @@ string $str, [boolean $stripslashes = true])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 07 Oct 2009 12:41:55 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 10 Oct 2009 15:52:19 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

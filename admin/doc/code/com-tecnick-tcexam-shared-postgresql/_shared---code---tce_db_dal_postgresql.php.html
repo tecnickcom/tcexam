@@ -42,6 +42,8 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_oracle.php.html">		tce_db_dal_oracle.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-shared-postgresql/_shared---code---tce_db_dal_postgresql.php.html">		tce_db_dal_postgresql.php
 		</a><br>
 	  </div><br />
@@ -86,7 +88,7 @@ PostgreSQL driver for TCExam Database Abstraction Layer (DAL).<br /><br /><p>Thi
 <br />
   <hr />
 	<a name="functionF_db_affected_rows"></a>
-	<h3>F_db_affected_rows <span class="smalllinenumber">[line 119]</span></h3>
+	<h3>F_db_affected_rows <span class="smalllinenumber">[line 120]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -123,7 +125,7 @@ resource $link_identifier, resource $result)</code>
 	</div>
   <hr />
 	<a name="functionF_db_close"></a>
-	<h3>F_db_close <span class="smalllinenumber">[line 78]</span></h3>
+	<h3>F_db_close <span class="smalllinenumber">[line 79]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -155,12 +157,12 @@ resource $link_identifier)</code>
 	</div>
   <hr />
 	<a name="functionF_db_connect"></a>
-	<h3>F_db_connect <span class="smalllinenumber">[line 65]</span></h3>
+	<h3>F_db_connect <span class="smalllinenumber">[line 66]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>PostgreSQL F_db_connect(
-[ $host = &#039;localhost&#039;], [ $port = &#039;5432&#039;], [string $username = &#039;postgres&#039;], [string $password = &#039;&#039;], [string $database = &#039;template1&#039;], string $server)</code>
+[string $host = &#039;localhost&#039;], [string $port = &#039;5432&#039;], [string $username = &#039;postgres&#039;], [string $password = &#039;&#039;], [string $database = &#039;template1&#039;])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -179,8 +181,13 @@ resource $link_identifier)</code>
     <table border="0" cellspacing="0" cellpadding="0">
 		      <tr>
         <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$server</b>&nbsp;&nbsp;</td>
-        <td>Database server path. It can also include a port number. e.g. &quot;hostname:port&quot; or a path to a local socket e.g. &quot;:/path/to/socket&quot; for the localhost.</td>
+        <td><b>$host</b>&nbsp;&nbsp;</td>
+        <td>database server host name.</td>
+      </tr>
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$port</b>&nbsp;&nbsp;</td>
+        <td>database connection port</td>
       </tr>
 		      <tr>
         <td class="type">string&nbsp;&nbsp;</td>
@@ -197,22 +204,12 @@ resource $link_identifier)</code>
         <td><b>$database</b>&nbsp;&nbsp;</td>
         <td>Database name.</td>
       </tr>
-		      <tr>
-        <td class="type">&nbsp;&nbsp;</td>
-        <td><b>$host</b>&nbsp;&nbsp;</td>
-        <td></td>
-      </tr>
-		      <tr>
-        <td class="type">&nbsp;&nbsp;</td>
-        <td><b>$port</b>&nbsp;&nbsp;</td>
-        <td></td>
-      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
 	<a name="functionF_db_error"></a>
-	<h3>F_db_error <span class="smalllinenumber">[line 86]</span></h3>
+	<h3>F_db_error <span class="smalllinenumber">[line 87]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -236,7 +233,7 @@ resource $link_identifier)</code>
 	</div>
   <hr />
 	<a name="functionF_db_fetch_array"></a>
-	<h3>F_db_fetch_array <span class="smalllinenumber">[line 109]</span></h3>
+	<h3>F_db_fetch_array <span class="smalllinenumber">[line 110]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -268,7 +265,7 @@ resource $result)</code>
 	</div>
   <hr />
 	<a name="functionF_db_insert_id"></a>
-	<h3>F_db_insert_id <span class="smalllinenumber">[line 139]</span></h3>
+	<h3>F_db_insert_id <span class="smalllinenumber">[line 140]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -310,7 +307,7 @@ resource $link_identifier, [string $tablename = &#039;&#039;], [string $fieldnam
 	</div>
   <hr />
 	<a name="functionF_db_num_rows"></a>
-	<h3>F_db_num_rows <span class="smalllinenumber">[line 128]</span></h3>
+	<h3>F_db_num_rows <span class="smalllinenumber">[line 129]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -342,7 +339,7 @@ resource $result)</code>
 	</div>
   <hr />
 	<a name="functionF_db_query"></a>
-	<h3>F_db_query <span class="smalllinenumber">[line 97]</span></h3>
+	<h3>F_db_query <span class="smalllinenumber">[line 98]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -379,7 +376,7 @@ string $query, resource $link_identifier)</code>
 	</div>
   <hr />
 	<a name="functionF_escape_sql"></a>
-	<h3>F_escape_sql <span class="smalllinenumber">[line 155]</span></h3>
+	<h3>F_escape_sql <span class="smalllinenumber">[line 156]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -420,7 +417,7 @@ string $str, [boolean $stripslashes = true])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 07 Oct 2009 12:41:55 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 10 Oct 2009 15:52:20 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : TCExam installation script.
 //
@@ -43,7 +43,7 @@ $progress_log = 'install.log'; //installation log file
 $start_installation = FALSE; // becomes true on form submission
 
 // define supported databases
-$dbtypes = Array('MYSQL', 'POSTGRESQL');
+$dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE');
 
 require_once('tce_functions_install.php');
 
@@ -75,6 +75,10 @@ echo '<body>'."\n";
 // initialize some variables
 $drop_existing = (isset($_REQUEST['drop_existing']) AND ($_REQUEST['drop_existing'] == 1));
 $create_new = ((isset($_REQUEST['create_new']) AND ($_REQUEST['create_new'] == 1)) OR $drop_existing);
+
+if (!isset($_REQUEST['database_name'])) {
+	$_REQUEST['database_name'] = '';
+}
 			
 //if this form has been submitted go on with installation process		
 if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
@@ -138,7 +142,7 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 			AND isset($_REQUEST['db_port']) AND $_REQUEST['db_port'] 
 			AND isset($_REQUEST['db_user']) AND $_REQUEST['db_user'] 
 			AND isset($_REQUEST['db_password']) AND $_REQUEST['db_password'] 
-			AND isset($_REQUEST['database_name']) AND $_REQUEST['database_name'] 
+			AND ((isset($_REQUEST['database_name']) AND $_REQUEST['database_name']) OR ($_REQUEST['db_type'] == 'ORACLE'))
 			AND isset($_REQUEST['table_prefix']) AND $_REQUEST['table_prefix']
 			AND isset($_REQUEST['path_host']) AND $_REQUEST['path_host']
 			AND isset($_REQUEST['path_tcexam']) AND $_REQUEST['path_tcexam']

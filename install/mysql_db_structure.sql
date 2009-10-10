@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2009-03-08
+Last Update : 2009-10-09
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+

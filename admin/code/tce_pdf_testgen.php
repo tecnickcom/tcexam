@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2009-10-07
+// Last Update : 2009-10-10
 // 
 // Description : Creates PDF documents for offline testing.
 // 
@@ -343,7 +343,11 @@ for ($item = 1; $item <= $test_num; $item++) {
 			} else {
 				$sqlq .= ' AND question_position>0 ORDER BY question_position';
 			}
-			$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$sqlq = 'SELECT * FROM ('.$sqlq.') WHERE rownum <= '.$m['tsubset_quantity'].'';
+			} else {
+				$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
+			}
 			if($rq = F_db_query($sqlq, $db)) {
 				while ($mq = F_db_fetch_array($rq)) {
 					// store questions data

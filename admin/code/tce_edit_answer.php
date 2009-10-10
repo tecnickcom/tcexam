@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Edit answers.
 //
@@ -283,7 +283,15 @@ switch($menu_mode) {
 				break;
 			}
 			// check if alternate key is unique
-			if(!F_check_unique(K_TABLE_ANSWERS, 'answer_description=\''.F_escape_sql($answer_description).'\' AND answer_question_id='.$answer_question_id.' AND answer_position='.$answer_position.'', "answer_id", $answer_id)) {
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+			} else {
+				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
+			}
+			if ($answer_position > 0) {
+				$chksql .= ' AND answer_position='.$answer_position;
+			}
+			if(!F_check_unique(K_TABLE_ANSWERS, $chksql.' AND answer_question_id='.$answer_question_id, 'answer_id', $answer_id)) {
 				F_print_error('WARNING', $l['m_duplicate_answer']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -359,7 +367,15 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if($formstatus = F_check_form_fields()) {
 			// check if alternate key is unique
-			if(!F_check_unique(K_TABLE_ANSWERS, 'answer_description=\''.F_escape_sql($answer_description).'\' AND answer_question_id='.$answer_question_id.' AND answer_position='.$answer_position.'')) {
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+			} else {
+				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
+			}
+			if ($answer_position > 0) {
+				$chksql .= ' AND answer_position='.$answer_position;
+			}
+			if(!F_check_unique(K_TABLE_ANSWERS, $chksql.' AND answer_question_id='.$answer_question_id)) {
 				F_print_error('WARNING', $l['m_duplicate_answer']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
@@ -466,8 +482,12 @@ if ((isset($changesubject) AND ($changesubject > 0))
 	$sql = 'SELECT question_id 
 		FROM '.K_TABLE_QUESTIONS.' 
 		WHERE question_subject_id='.$question_subject_id.'
-		ORDER BY question_description 
-		LIMIT 1';
+		ORDER BY ';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql .= 'CAST(question_description as varchar2(100))';
+	} else {
+		$sql .= 'question_description LIMIT 1';
+	}
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$answer_question_id = $m['question_id'];
@@ -489,8 +509,12 @@ if ($formstatus) {
 			$sql = 'SELECT * 
 				FROM '.K_TABLE_ANSWERS.' 
 				WHERE answer_question_id='.$answer_question_id.' 
-				ORDER BY answer_enabled DESC, answer_position, answer_isright DESC, answer_description 
-				LIMIT 1';
+				ORDER BY answer_enabled DESC, answer_position, answer_isright DESC,';
+			if (K_DATABASE_TYPE == 'ORACLE') {
+				$sql .= 'CAST(answer_description as varchar2(100))';
+			} else {
+				$sql .= 'answer_description LIMIT 1';
+			}
 		} else {
 			$sql = 'SELECT * 
 				FROM '.K_TABLE_ANSWERS.' 
@@ -627,10 +651,15 @@ if($r = F_db_query($sql, $db)) {
 <input type="hidden" name="changecategory" id="changecategory" value="" />
 <select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById('form_answereditor').changecategory.value=1; document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = "SELECT * 
-	FROM ".K_TABLE_QUESTIONS." 
-	WHERE question_subject_id=".$question_subject_id."
-	ORDER BY question_subject_id, question_description";
+$sql = 'SELECT * 
+	FROM '.K_TABLE_QUESTIONS.' 
+	WHERE question_subject_id='.$question_subject_id.'
+	ORDER BY question_subject_id,';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql .= 'CAST(question_description as varchar2(100))';
+	} else {
+		$sql .= 'question_description';
+	}
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
@@ -677,7 +706,12 @@ if($r = F_db_query($sql, $db)) {
 $sql = 'SELECT * 
 	FROM '.K_TABLE_ANSWERS.' 
 	WHERE answer_question_id='.$answer_question_id.' 
-	ORDER BY answer_position, answer_enabled DESC, answer_isright DESC, answer_description';
+	ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql .= 'CAST(answer_description as varchar2(100))';
+	} else {
+		$sql .= 'answer_description';
+	}
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

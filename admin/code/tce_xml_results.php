@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
-// Last Update : 2009-09-30
+// Last Update : 2009-10-10
 // 
 // Description : Export all users' results in XML.
 // 
@@ -152,7 +152,7 @@ $statsdata['unanswered'] = array();
 $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
-$sql = 'SELECT testuser_id, user_id, SUM(testlog_score) AS total_score, MAX(testlog_change_time) AS test_end_time, testuser_creation_time, testuser_comment
+$sql = 'SELECT testuser_id, user_id, SUM(testlog_score) AS total_score, MAX(testlog_change_time) AS test_end_time, testuser_creation_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' 
 	WHERE testlog_testuser_id=testuser_id
 		AND testuser_user_id=user_id 
@@ -164,7 +164,7 @@ if ($group_id > 0) {
 			WHERE usrgrp_group_id='.$group_id.'
 		)';
 }
-$sql .= ' GROUP BY testuser_id, user_id, testuser_creation_time, testuser_comment';
+$sql .= ' GROUP BY testuser_id, user_id, testuser_creation_time';
 if($r = F_db_query($sql, $db)) {
 	$passed = 0;
 	while($m = F_db_fetch_array($r)) {
@@ -184,7 +184,7 @@ if($r = F_db_query($sql, $db)) {
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ip>'.$ma['user_ip'].'</ip>'.K_NEWLINE;				
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<firstname>'.F_text_to_xml($ma['user_firstname']).'</firstname>'.K_NEWLINE;				
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<lastname>'.F_text_to_xml($ma['user_lastname']).'</lastname>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthdate>'.$ma['user_birthdate'].'</birthdate>'.K_NEWLINE;				
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthdate>'.substr($ma['user_birthdate'],0,10).'</birthdate>'.K_NEWLINE;				
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthplace>'.F_text_to_xml($ma['user_birthplace']).'</birthplace>'.K_NEWLINE;
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regnumber>'.F_text_to_xml($ma['user_regnumber']).'</regnumber>'.K_NEWLINE;
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ssn>'.F_text_to_xml($ma['user_ssn']).'</ssn>'.K_NEWLINE;
