@@ -1,3 +1,9 @@
+9.0.030 (2009-10-22)
+	- License terms were changed to AGPLv3 (read the LICENSE.TXT file for more information).
+	- TCPDF library was updated.
+	
+--------------------------------------------------------------------------------
+
 9.0.029 (2009-10-09)
 	- Support for ORACLE database was added (via oci8 PHP extension).
 

@@ -1,16 +1,15 @@
 TCExam - README
 ============================================================
 
-IF YOU'D LIKE TO SUPPORT TCEXAM, PLEASE CONSIDER MAKING A 
-DONATION: 
+IF YOU'D LIKE TO SUPPORT TCEXAM, PLEASE CONSIDER MAKING A DONATION: 
 http://sourceforge.net/donate/index.php?group_id=159398
 
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 9.0.029
+Version: 9.0.030
 
-Release date: 2009-10-10
+Release date: 2009-10-22
 
 Author:
 	Nicola Asuni 
@@ -46,7 +45,7 @@ Description:
 	authoring, scheduling, delivering, and reporting. It's easy to use and do 
 	not require expensive hardware to run, nor additional commercial software.
 
-	TCExam Server ApplianceThe general advantages of TCExam over traditional 
+	The general advantages of TCExam over traditional 
 	Pen-and-Paper Testing (PPT) includes: increased delivery, administration and
 	scoring efficiency; reduced costs for many elements of the testing 
 	lifecycle; improved test security resulting from electronic transmission and
@@ -66,17 +65,17 @@ Software License
 	Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
 	
 	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-	
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	 
 	Additionally, you can't remove the original TCExam logo, 
 	copyrights statements and links to Tecnick.com and TCExam Websites.

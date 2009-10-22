@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-29
-// Last Update : 2009-09-30
+// Last Update : 2009-10-22
 // 
 // Description : Main page of administrator section.
 //
@@ -21,16 +21,16 @@
 //    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
 //    
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
+//    GNU Affero General Public License for more details.
 //    
-//    You should have received a copy of the GNU General Public License
+//    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //     
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
@@ -44,7 +44,7 @@
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
  * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2004-04-20
  */
@@ -57,7 +57,7 @@ $pagelevel = K_AUTH_INDEX;
 require_once('../../shared/code/tce_authorization.php');
 require_once('tce_page_header.php');
 
-echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">YOU CAN\'T REMOVE OR MOVE THE ORIGINAL TCEXAM LOGO, COPYRIGHTS STATEMENTS AND LINKS TO <a href="http://www.tecnick.com" title="External link to Tecnick.com">TECNICK.COM</a> AND <a href="http://www.tcexam.org" title="External link to TCExam">TCEXAM</a> WEBSITES FROM THIS SOFTWARE. TCEXAM IS SUBJECT TO THE <a href="http://www.fsf.org/licensing/licenses/gpl.html" title="External link to GPL License">GNU-GPL v.3 LICENSE.</a></div>'.K_NEWLINE;
+echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">YOU CAN\'T REMOVE OR MOVE THE ORIGINAL TCEXAM LOGO, COPYRIGHTS STATEMENTS AND LINKS TO <a href="http://www.tecnick.com" title="External link to Tecnick.com">TECNICK.COM</a> AND <a href="http://www.tcexam.org" title="External link to TCExam">TCEXAM</a> WEBSITES FROM THIS SOFTWARE. TCEXAM IS SUBJECT TO THE <a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html" title="External link to GNU Affero General Public License">GNU-AGPL v.3 LICENSE.</a></div>'.K_NEWLINE;
 
 echo '<div style="border:1px solid black; padding:5px; margin:10px; background-color:#DDEEFF; color:#000000; width:95%; margin-left:auto; margin-right:auto; font-weight:bold; font-size:95%;">PLEASE CONTACT <a href="mailto:info@tecnick.com" title="mail to tecnick.com">info@tecnick.com</a> FOR COMMERCIAL USAGE.</div>'.K_NEWLINE;
 
