@@ -2,9 +2,9 @@
 //============================================================+
 // File name   : tcpdf.php
 // Begin       : 2002-08-03
-// Last Update : 2009-10-22
+// Last Update : 2009-10-23
 // Author      : Nicola Asuni - info@tecnick.com - http://www.tcpdf.org
-// Version     : 4.8.011
+// Version     : 4.8.012
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
 //  Copyright (C) 2002-2009  Nicola Asuni - Tecnick.com S.r.l.
@@ -128,7 +128,7 @@
  * @copyright 2002-2009 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 4.8.011
+ * @version 4.8.012
  */
 
 
@@ -148,14 +148,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */ 
-	define('PDF_PRODUCER', 'TCPDF 4.8.011 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 4.8.012 (http://www.tcpdf.org)');
 	
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 4.8.011
+	* @version 4.8.012
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -4768,8 +4768,14 @@ if (!class_exists('TCPDF', false)) {
 				$info = $this->getImageBuffer($file);
 			}
 			// Check whether we need a new page first as this does not fit
+			$prev_x = $this->x;
 			if ($this->checkPageBreak($h, $y)) {
 				$y = $this->GetY() + $this->cMargin;
+				if ($this->rtl) {
+					$x += ($prev_x - $this->x);
+				} else {
+					$x += ($this->x - $prev_x);
+				}
 			}
 			// set bottomcoordinates
 			$this->img_rb_y = $y + $h;
@@ -11845,8 +11851,14 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			// Check whether we need a new page first as this does not fit
+			$prev_x = $this->x;
 			if ($this->checkPageBreak($h, $y)) {
 				$y = $this->GetY() + $this->cMargin;
+				if ($this->rtl) {
+					$x += ($prev_x - $this->x);
+				} else {
+					$x += ($this->x - $prev_x);
+				}
 			}
 			// set bottomcoordinates
 			$this->img_rb_y = $y + $h;
@@ -12136,8 +12148,14 @@ if (!class_exists('TCPDF', false)) {
 			if ($this->empty_string($h) OR ($h <= 0)) {
 				$h = 10 + $extraspace;
 			}
-			if ($this->checkPageBreak($h)) {
-				$y = $this->y;
+			$prev_x = $this->x;
+			if ($this->checkPageBreak($h, $y)) {
+				$y = $this->GetY() + $this->cMargin;
+				if ($this->rtl) {
+					$x += ($prev_x - $this->x);
+				} else {
+					$x += ($this->x - $prev_x);
+				}
 			}
 			// maximum bar heigth
 			$barh = $h - $extraspace;
@@ -12362,8 +12380,14 @@ if (!class_exists('TCPDF', false)) {
 				// 2d barcodes are square by default
 				$h = $w;
 			}
-			if ($this->checkPageBreak($h)) {
-				$y = $this->y;
+			$prev_x = $this->x;
+			if ($this->checkPageBreak($h, $y)) {
+				$y = $this->GetY() + $this->cMargin;
+				if ($this->rtl) {
+					$x += ($prev_x - $this->x);
+				} else {
+					$x += ($this->x - $prev_x);
+				}
 			}
 			// calculate barcode size (excluding padding)
 			$bw = $w - (2 * $style['padding']);
@@ -12621,7 +12645,7 @@ if (!class_exists('TCPDF', false)) {
 			$html = preg_replace('/<\/(td|th)>/', '<marker style="font-size:0"/></\\1>', $html);
 			$html = preg_replace('/<\/table>([\s]*)<marker style="font-size:0"\/>/', '</table>', $html);
 			$html = preg_replace('/<img/', ' <img', $html);
-			$html = preg_replace('/<img([^\>]*)>/xi', '<img\\1><span></span>', $html);
+			$html = preg_replace('/<img([^\>]*)>/xi', '<img\\1><span><marker style="font-size:0"/></span>', $html);
 			$html = preg_replace('/<xre/', '<pre', $html); // restore pre tag
 			$html = preg_replace('/<textarea([^\>]*)>/xi', '<textarea\\1 value="', $html);
 			$html = preg_replace('/<\/textarea>/', '" />', $html);
@@ -14535,7 +14559,7 @@ if (!class_exists('TCPDF', false)) {
 					// account for booklet mode
 					if ($this->page > $parent['startpage']) {
 						if (($this->rtl) AND ($this->pagedim[$this->page]['orm'] != $this->pagedim[$parent['startpage']]['orm'])) {
-							$this->x += ($this->pagedim[$this->page]['orm'] - $this->pagedim[$parent['startpage']]['orm']);
+							$this->x -= ($this->pagedim[$this->page]['orm'] - $this->pagedim[$parent['startpage']]['orm']);
 						} elseif ((!$this->rtl) AND ($this->pagedim[$this->page]['olm'] != $this->pagedim[$parent['startpage']]['olm'])) {
 							$this->x += ($this->pagedim[$this->page]['olm'] - $this->pagedim[$parent['startpage']]['olm']);
 						}

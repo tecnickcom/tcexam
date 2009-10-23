@@ -300,10 +300,11 @@ div.pagehelp {
 	background-color: #DDEEFF;
 	border: 1px dotted #808080;
 	color: #333333;
-	font-size: 95%;
+	font-size: 80%;
 	margin: 5px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 100%;
+	text-align:justify;
 }
 
 /* Page selector --------------------------*/

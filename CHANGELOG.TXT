@@ -1,3 +1,6 @@
+9.0.031 (2009-10-23)
+	- TCPDF library was updated.
+
 9.0.030 (2009-10-22)
 	- License terms were changed to AGPLv3 (read the LICENSE.TXT file for more information).
 	- TCPDF library was updated.
