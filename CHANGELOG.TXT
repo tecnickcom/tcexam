@@ -1,3 +1,6 @@
+9.0.032 (2009-10-24)
+	- LaTeX caching bug was fixed.
+
 9.0.031 (2009-10-23)
 	- TCPDF library was updated.
 

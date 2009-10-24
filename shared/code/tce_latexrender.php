@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_latexrender.php
 // Begin       : 2007-05-18
-// Last Update : 2009-10-07
+// Last Update : 2009-10-24
 // Author      : Nicola Asuni
 //
 // Description : 
@@ -433,7 +433,7 @@ class LatexRender {
 	 * @returns minimalistic LaTeX document containing the given formula
 	 */
 	private function getFilename($latex_formula) {
-		$filename = $this->img_prefix.''.date('YmdHis').'_'.md5($latex_formula).'.'.$this->image_format;
+		$filename = $this->img_prefix.md5($latex_formula).'.'.$this->image_format;
 		return $filename;
 	}
 	
