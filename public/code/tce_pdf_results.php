@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-10-10
+// Last Update : 2009-11-03
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -393,7 +393,7 @@ if($r = F_db_query($sql, $db)) {
 			while($mq = F_db_fetch_array($rq)) {
 				$pdf->Cell($data_cell_width_third, $data_cell_height, $itemcount.' '.$qtype[($mq['question_type']-1)], 'LTRB', 0, $dirvalue, 0);
 				$pdf->Cell($data_cell_width, $data_cell_height, $mq['testlog_score'], 'LTRB', 0, 'C', 0);
-				$pdf->Cell($data_cell_width, $data_cell_height, getIpAsInt($mq['testlog_user_ip']), 'LTRB', 0, 'C', 0);
+				$pdf->Cell($data_cell_width, $data_cell_height, getIpAsString($mq['testlog_user_ip']), 'LTRB', 0, 'C', 0);
 				if (isset($mq['testlog_display_time']) AND (strlen($mq['testlog_display_time']) > 0)) {
 					$display_time =  substr($mq['testlog_display_time'], 11, 8);
 				} else {

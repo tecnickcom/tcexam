@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2009-10-09
+// Last Update : 2009-11-03
 // 
 // Description : General functions.
 //
@@ -325,6 +325,18 @@ function getIpAsInt($ip) {
 	$ip = getNormalizedIP($ip);
 	$ip = str_replace(':', '', $ip);
 	return hexdec($ip);
+}
+
+
+/**
+ * Converts a string containing an IP address into its integer value and return string representation.
+ * @param string IP address to convert.
+ * @return int IP address as string.
+ * @since 9.0.033 (2009-11-03)
+ */
+function getIpAsString($ip) {
+	$ip = getIpAsInt($ip);
+	return sprintf('%.0f', $ip);
 }
 
 //============================================================+

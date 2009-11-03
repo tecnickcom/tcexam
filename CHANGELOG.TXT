@@ -1,3 +1,6 @@
+9.0.033 (2009-11-03)
+	- IP addresses representation was fixed.
+
 9.0.032 (2009-10-24)
 	- LaTeX caching bug was fixed.
 

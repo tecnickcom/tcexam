@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2009-11-03
 // 
 // Description : Display test results for specified user.
 //
@@ -435,7 +435,7 @@ if (isset($testuser_id) AND (!empty($testuser_id))) {
 			// display question stats
 			echo '<strong>['.$m['testlog_score'].']'.K_NEWLINE;
 			echo ' (';
-			echo 'IP:'.getIpAsInt($m['testlog_user_ip']).K_NEWLINE;
+			echo 'IP:'.getIpAsString($m['testlog_user_ip']).K_NEWLINE;
 			if (isset($m['testlog_display_time']) AND (strlen($m['testlog_display_time']) > 0)) {
 				echo ' | '.substr($m['testlog_display_time'], 11, 8).K_NEWLINE;
 			} else {

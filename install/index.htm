@@ -52,6 +52,7 @@ arg_separator.output = "&amp;amp;"
 magic_quotes_gpc = On
 magic_quotes_runtime = Off
 magic_quotes_sybase = Off
+variables_order = "EGPCS"
 request_order = "GPC"</pre></li>
 <li>Apache module (<strong>/etc/httpd/conf/httpd.conf</strong>):<br /><pre>
 AddDefaultCharset UTF-8
@@ -59,6 +60,7 @@ php_value arg_separator.output "&amp;amp;"
 php_value magic_quotes_gpc On
 php_value magic_quotes_runtime Off
 php_value magic_quotes_sybase Off
+php_value variables_order "EGPCS"
 php_value request_order "GPC"</pre></li></ul>
 
 <a name="installation"></a>

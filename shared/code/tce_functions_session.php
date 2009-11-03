@@ -113,7 +113,7 @@ function F_session_write($key, $val) {
 	global $db;
 	if ((!isset($db)) OR (!$db)) {
 		// workaround for PHP bug 41230
-			if(!$db = @F_db_connect(K_DATABASE_HOST,K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+			if(!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
 				return;
 			}
 	}
