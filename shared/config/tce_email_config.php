@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : cp_email_config.php
 // Begin       : 2001-10-20
-// Last Update : 2009-09-30
+// Last Update : 2009-11-05
 // 
 // Description : Default values for public variables of
 //				 C_mailer class
@@ -100,23 +100,26 @@ $emailcfg['MsgFooter'] = '</body></html>';
 // Sets the SMTP hosts. All hosts must be separated by a semicolon 
 // (e.g. Host("smtp1.domain.com;smtp2.domain.com").
 // Hosts will be tried in order.
-// Default value is "localhost".
+// Default value is 'localhost'.
 $emailcfg['Host'] = '';
 
 // Sets the SMTP server port. Default value is 25.
 $emailcfg['Port'] = 25;
 
-// Default value is "localhost.localdomain".
+// Default value is 'localhost.localdomain'.
 $emailcfg['Helo'] = '';
 
 // Sets SMTP authentication. Remember to set the Username and Password.
 // Default value is false (off).
 $emailcfg['SMTPAuth'] = false;
 
-// Sets SMTP username. Default value is "".
+// sets the prefix to the server
+$emailcfg['SMTPSecure'] = '';
+
+// Sets SMTP username. Default value is ''.
 $emailcfg['Username'] = '';
 
-// Sets SMTP password. Default value is "".
+// Sets SMTP password. Default value is ''.
 $emailcfg['Password'] = '';
 
 // Sets the SMTP server timeout in seconds. 
@@ -129,7 +132,6 @@ $emailcfg['SMTPDebug'] = false;
 
 // Sets plugins directory path
 $emailcfg['PluginDir'] = '../../shared/phpmailer/';
-
 
 //============================================================+
 // END OF FILE  

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2009-09-30
+// Last Update : 2009-11-05
 // 
 // Description : Sends email test reports to users.
 //
@@ -85,6 +85,7 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0) {
 	$mail->Port = $emailcfg['Port'];
 	$mail->Helo = $emailcfg['Helo'];
 	$mail->SMTPAuth = $emailcfg['SMTPAuth'];
+	$mail->SMTPSecure = $emailcfg['SMTPSecure'];
 	$mail->Username = $emailcfg['Username'];
 	$mail->Password = $emailcfg['Password'];
 	$mail->Timeout = $emailcfg['Timeout'];
