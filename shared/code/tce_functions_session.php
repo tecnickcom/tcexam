@@ -46,7 +46,7 @@
  * NOTE: This script automatically starts the user's session.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-09-26
@@ -181,7 +181,7 @@ function F_session_gc($maxlife = K_SESSION_LIFE) {
 /**
  * Convert encoded session string data to array.
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-10-18

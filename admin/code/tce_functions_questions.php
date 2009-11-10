@@ -43,7 +43,7 @@
  * Functions to manipulate questions.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26
@@ -52,7 +52,7 @@
 /**
  * Enable/Disable selected question
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26
@@ -78,7 +78,7 @@ function F_question_set_enabled($question_id, $subject_id, $enabled=true) {
 /**
  * Get question position
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26
@@ -107,7 +107,7 @@ function F_question_get_position($question_id) {
 /**
  * Get question data
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26
@@ -136,7 +136,7 @@ function F_question_get_data($question_id) {
 /**
  * Delete selected question (or disable it if used)
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26
@@ -190,7 +190,7 @@ function F_question_delete($question_id, $subject_id) {
 /**
  * Copy selected question to another topic
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-11-26

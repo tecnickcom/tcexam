@@ -13,8 +13,8 @@
   <tr>
     <td class="header_menu">
         
-                                                                            
-                                                                                                                                                                          		  [ <a href="../classtrees_com-tecnick-tcexam-admin.html" class="menu">class tree: com-tecnick-tcexam-admin</a> ]
+                                    
+                                                                                                                                                                                              		  [ <a href="../classtrees_com-tecnick-tcexam-admin.html" class="menu">class tree: com-tecnick-tcexam-admin</a> ]
 		  [ <a href="../elementindex_com-tecnick-tcexam-admin.html" class="menu">index: com-tecnick-tcexam-admin</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
     </td>
@@ -29,13 +29,12 @@
 			<p><a href="../todolist.html">Todo List</a></p>
 	</div>
       <b>Packages:</b><br />
-              <a href="../li_com-tecnick-gasoffice-shared.html">com-tecnick-gasoffice-shared</a><br />
-              <a href="../li_com-tecnick-latex.html">com-tecnick-latex</a><br />
               <a href="../li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
+              <a href="../li_com-tecnick-tcexam-admin-cfg.html">com-tecnick-tcexam-admin-cfg</a><br />
               <a href="../li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
+              <a href="../li_com-tecnick-tcexam-public-cfg.html">com-tecnick-tcexam-public-cfg</a><br />
               <a href="../li_com-tecnick-tcexam-shared.html">com-tecnick-tcexam-shared</a><br />
-              <a href="../li_com-tecnick-tcexam-shared-mysql.html">com-tecnick-tcexam-shared-mysql</a><br />
-              <a href="../li_com-tecnick-tcexam-shared-postgresql.html">com-tecnick-tcexam-shared-postgresql</a><br />
+              <a href="../li_com-tecnick-tcexam-shared-cfg.html">com-tecnick-tcexam-shared-cfg</a><br />
               <a href="../li_com-tecnick-tcpdf.html">com-tecnick-tcpdf</a><br />
               <a href="../li_com-tecnick-tmxphpbridge.html">com-tecnick-tmxphpbridge</a><br />
               <a href="../li_PHPMailer.html">PHPMailer</a><br />
@@ -44,13 +43,9 @@
       	  <div class="package">
 			<a href="../com-tecnick-tcexam-admin/_admin---code---index.php.html">		index.php
 		</a><br>
-			<a href="../com-tecnick-tcexam-admin/_admin---config---tce_auth.php.html">		tce_auth.php
-		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_class_import_xml.php.html">		tce_class_import_xml.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_colorpicker.php.html">		tce_colorpicker.php
-		</a><br>
-			<a href="../com-tecnick-tcexam-admin/_admin---config---tce_config.php.html">		tce_config.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_csv_allresults_user.php.html">		tce_csv_allresults_user.php
 		</a><br>
@@ -142,6 +137,8 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_show_result_user.php.html">		tce_show_result_user.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_update.php.html">		tce_update.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_xhtml_header.php.html">		tce_xhtml_header.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_xml_questions.php.html">		tce_xml_questions.php
@@ -157,8 +154,7 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../com-tecnick-tcexam-admin/CustomQuestionImporter.html">CustomQuestionImporter</a><br />
-	    		<a href="../com-tecnick-tcexam-admin/XMLQuestionImporter.html">XMLQuestionImporter</a><br />
+		    		<a href="../com-tecnick-tcexam-admin/XMLQuestionImporter.html">XMLQuestionImporter</a><br />
 	    		<a href="../com-tecnick-tcexam-admin/XMLUserImporter.html">XMLUserImporter</a><br />
 	  </div>
                 </td>
@@ -181,7 +177,7 @@ Import questions from an XML file to a selected subject.<br /><br /><br /><br />
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
   </tr>
   <tr>
-    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright &amp;copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
   </tr>
   <tr>
     <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
@@ -200,7 +196,7 @@ Import questions from an XML file to a selected subject.<br /><br /><br /><br />
 require_once('../../shared/code/tce_authorization.php') [line 58]<br />
 require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_header.php.html">'../code/tce_page_header.php'</a>) [line 61]<br />
 require_once('../../shared/code/tce_functions_form.php') [line 62]<br />
-require_once(<a href="../com-tecnick-tcexam-admin/_admin---config---tce_config.php.html">'../config/tce_config.php'</a>) [line 55]<br />
+require_once(<a href="../com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html">'../config/tce_config.php'</a>) [line 55]<br />
 require_once('../../shared/code/tce_functions_tcecode.php') [line 63]<br />
 require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html">'../code/tce_functions_auth_sql.php'</a>) [line 64]<br />
 require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_class_import_xml.php.html">'../code/tce_class_import_xml.php'</a>) [line 82]<br />
@@ -214,7 +210,7 @@ require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Thu, 05 Nov 2009 15:58:23 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Tue, 10 Nov 2009 19:28:29 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

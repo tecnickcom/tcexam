@@ -43,7 +43,7 @@
  * Functions to display and select registered user.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-09-13
@@ -52,7 +52,7 @@
 /**
  * Display user selection for using F_show_select_user function.
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-09-13
@@ -76,7 +76,7 @@ function F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_
 /**
  * Display user selection XHTML table.
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-09-13

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_ldap.php
 // Begin       : 2008-03-28
-// Last Update : 2009-10-10
+// Last Update : 2009-11-10
 //
 // Description : Configuration file for LDAP
 //
@@ -44,35 +44,31 @@
  * LDAP is the Lightweight Directory Access Protocol, and is a protocol used to access "Directory Servers". 
  * The Directory is a special kind of database that holds information in a tree structure.
  * Check http://www.php.net/manual/en/ref.ldap.php for requirements and installation.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-03-28
  */
 
 /**
- * If true enable LDAP
+ * If true enable LDAP.
  */
 define ('K_LDAP_ENABLED', false);
 
 /**
- * LDAP hostname.
- * If you are using OpenLDAP 2.x.x you can specify a URL instead of the hostname. 
- * To use LDAP with SSL, compile OpenLDAP 2.x.x with SSL support, configure PHP with SSL, and set this parameter as ldaps://hostname/.
+ * LDAP hostname. If you are using OpenLDAP 2.x.x you can specify a URL instead of the hostname. To use LDAP with SSL, compile OpenLDAP 2.x.x with SSL support, configure PHP with SSL, and set this parameter as ldaps://hostname/.
  */
 define ('K_LDAP_HOST', 'localhost');
 
 /**
- * The port to connect to. Not used when using URLs. 
- * Defaults to 389.
+ * The port to connect to. Not used when using URLs.
  */
 define ('K_LDAP_PORT', 389);
 
 /**
  * LDAP protocol version.
- * Defaults to 3
  */
 define ('K_LDAP_PROTOCOL_VERSION', 3);
 
@@ -82,15 +78,12 @@ define ('K_LDAP_PROTOCOL_VERSION', 3);
 define ('K_LDAP_BASE_DN', 'ou=users,dc=mydom,dc=example,dc=org');
 
 /**
- * The search filter can be simple or advanced, using boolean operators in the format described in the LDAP documentation.
- * Use #USERNAME# as a placeholder for the username passed by login form
- * For W2K3 use: "(sAMAccountName=#USERNAME#)"
+ * The search filter can be simple or advanced, using boolean operators in the format described in the LDAP documentation. Use #USERNAME# as a placeholder for the username passed by login form. For W2K3 use: "(sAMAccountName=#USERNAME#)"
  */
 define ('K_LDAP_FILTER', 'uid=#USERNAME#');
 
 /**
- * Array of the required attributes.
- * This array maps TCExam user data with LDAP attributes.
+ * Array of the required attributes. This array maps TCExam user data with LDAP attributes.
  */
 $ldap_attr = array();
 $ldap_attr['dn'] = 'dn';
@@ -113,8 +106,7 @@ define ('K_LDAP_UTF8', true);
 define ('K_LDAP_USER_LEVEL', 1);
 
 /**
- * Default user group ID
- * This is the TCExam group id to which the ldap accounts belongs.
+ * Default user group ID. This is the TCExam group id to which the LDAP accounts belongs.
  */
 define ('K_LDAP_USER_GROUP_ID', 1);
 

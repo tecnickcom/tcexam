@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_radius.php
 // Begin       : 2008-01-15
-// Last Update : 2009-09-30
+// Last Update : 2009-11-10
 //
 // Description : Configuration file for RADIUS Render Class.
 //
@@ -41,16 +41,16 @@
 
 /**
  * Configuration file for RADIUS Render Class.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-01-15
  */
 
 /**
- * If true enable RADIUS
+ * If true enable RADIUS.
  */
 define ('K_RADIUS_ENABLED', false);
 
@@ -90,13 +90,12 @@ define ('K_RADIUS_ACCOUNTING_PORT', 1813);
 define ('K_RADIUS_UTF8', true);
 
 /**
- * Default user level
+ * Default user level.
  */
 define ('K_RADIUS_USER_LEVEL', 1);
 
 /**
- * Default user group ID
- * This is the TCExam group id to which the radius accounts belongs.
+ * Default user group ID. This is the TCExam group id to which the radius accounts belongs.
  */
 define ('K_RADIUS_USER_GROUP_ID', 1);
 

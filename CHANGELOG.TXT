@@ -1,3 +1,6 @@
+9.0.035 (2009-11-10)
+	- Source code documentation was fixed.
+
 9.0.034 (2009-11-05)
 	- The $emailcfg['SMTPSecure'] parameter was added to /gshared/config/cp_email_config.php file.
 	- The file tce_functions_email_reports.php was changed to include the SMTPSecure parameter.

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_latexrender.php
 // Begin       : 2007-05-18
-// Last Update : 2009-10-24
+// Last Update : 2009-11-10
 // Author      : Nicola Asuni
 //
 // Description : 
@@ -15,37 +15,11 @@
 // Please check the following Website to obtain the original
 // source code: http://www.mayer.dial.pipex.com/tex.htm
 // ------------------------------------------------------------
-//
-// License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
-//    
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU Affero General Public License as
-//    published by the Free Software Foundation, either version 3 of the
-//    License, or (at your option) any later version.
-//    
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU Affero General Public License for more details.
-//    
-//    You should have received a copy of the GNU Affero General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
-//    
-//    See LICENSE.TXT file for more information.
 //============================================================+
 
 /**
  * LaTeX Rendering Class.
- * @package com.tecnick.latex
- */
-
-/**
- * LaTeX Rendering Class.
- * @package com.tecnick.latex
+ * @package com.tecnick.tcexam.shared
  */
 
 /**
@@ -62,9 +36,9 @@ require_once('../../shared/config/tce_latex.php');
  * Please check the following Website to obtain the original
  * source code: http://www.mayer.dial.pipex.com/tex.htm
  * @name LaTeX Render
- * @package com.tecnick.latex
+ * @package com.tecnick.tcexam.shared
  * @abstract Class for generating images from LaTeX Formulas.
- * @author Nicola Asuni
+ * @author Benjamin Zeiss, Nicola Asuni
  * @license http://www.gnu.org/copyleft/gpl.html GPL
  */
 class LatexRender {
@@ -419,11 +393,10 @@ class LatexRender {
 		return $this->errorcode;
 	}
 	
-
-
-	//  ---------- private functions ---------- * ---------- * ---------- * ----------
-
-
+	
+	//  --- private functions --------------------------------------------------
+	
+	
 	/**
 	 * Wraps a minimalistic LaTeX document around the formula and returns a string
 	 * containing the whole document as string.

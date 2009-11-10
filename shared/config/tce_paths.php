@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_paths.php
 // Begin       : 2002-01-15
-// Last Update : 2009-09-30
+// Last Update : 2009-11-10
 //
 // Description : Configuration file for files and directories
 //               paths.
@@ -42,98 +42,100 @@
 
 /**
  * Configuration file for files and directories paths.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2002-01-15
  */
 
 /**
- * host URL (e.g.: "http://www.yoursite.com")
+ * Host URL (e.g.: "http://www.yoursite.com").
  */
 define ('K_PATH_HOST', '');
 
 /**
- * relative URL where this program is installed (e.g.: "/")
+ * Relative URL where this program is installed (e.g.: "/").
  */
 define ('K_PATH_TCEXAM', '');
 
 /**
- * real full path where this program is installed (e.g: "/var/www/html/TCExam/")
+ * Real full path where this program is installed (e.g: "/var/www/html/TCExam/").
  */
 define ('K_PATH_MAIN', '');
 
 /**
- * Constant used on TCPDF library
+ * Constant used on TCPDF library.
  */
 define ('K_PATH_URL', K_PATH_HOST.K_PATH_TCEXAM);
 
 /**
- * standard port for http (80) or https (443)
+ * Standard port for http (80) or https (443).
  */
 define ('K_STANDARD_PORT', 80);
 
-// --- DO NOT CHANGE THE FOLLOWING VALUES ---
+// -----------------------------------------------------------------------------
+// --- DO NOT CHANGE THE FOLLOWING VALUES --------------------------------------
+// -----------------------------------------------------------------------------
 
 /**
- * path to public code
+ * Path to public code.
  */
 define ('K_PATH_PUBLIC_CODE', K_PATH_HOST.K_PATH_TCEXAM.'public/code/');
 
 /**
- * server path to public code
+ * Server path to public code.
  */
 define ('K_PATH_PUBLIC_CODE_REAL', K_PATH_MAIN.'public/code/');
 
 /**
- * full path to cache directory
+ * Full path to cache directory.
  */
 define ('K_PATH_CACHE', K_PATH_MAIN.'cache/');
 
 /**
- * url path to to cache directory
+ * URL path to to cache directory.
  */
 define ('K_PATH_URL_CACHE', K_PATH_TCEXAM.'cache/');
 
 /**
- * full path to cache directory used for language files
+ * Full path to cache directory used for language files.
  */
 define ('K_PATH_LANG_CACHE', K_PATH_CACHE.'lang/');
 
 /**
- * full path to fonts directory
+ * Full path to fonts directory.
  */
 define ('K_PATH_FONTS', K_PATH_MAIN.'fonts/');
 
 /**
- * relative path to stylesheets directory
+ * Relative path to stylesheets directory.
  */
 define ('K_PATH_STYLE_SHEETS', '../styles/');
 
 /**
- * relative path to javascript directory
+ * Relative path to javascript directory.
  */
 define ('K_PATH_JSCRIPTS', '../jscripts/');
 
 /**
- * relative path to shared javascript directory
+ * Relative path to shared javascript directory.
  */
 define ('K_PATH_SHARED_JSCRIPTS', '../../shared/jscripts/');
 
 /**
- * relative path to images directory
+ * Relative path to images directory.
  */
 define ('K_PATH_IMAGES', '../../images/');
 
 /**
- * full path to TMX language file
+ * Full path to TMX language file.
  */
 define ('K_PATH_TMX_FILE', K_PATH_MAIN.'shared/config/lang/language_tmx.xml');
 
 /**
- * full path to a blank image
+ * Full path to a blank image.
  */
 define ('K_BLANK_IMAGE', K_PATH_IMAGES.'_blank.png');
 

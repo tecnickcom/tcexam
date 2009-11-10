@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_mime.php
 // Begin       : 2005-03-04
-// Last Update : 2009-09-30
+// Last Update : 2009-11-10
 // 
 // Description : file extension - MIME type associations
 //
@@ -41,15 +41,16 @@
 
 /**
  * Configuration file for MIME types.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-03-04
  */
 
 /**
+ * The $mime array associate each file extension with a specific MIME type.
  */
 
 $mime = array();

@@ -39,9 +39,9 @@
 
 /**
  * Shared configuration file.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2002-02-24
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '9.0.034');
+define ('K_TCEXAM_VERSION', '9.0.035');
 
 /**
  * 2-letters code for default language.

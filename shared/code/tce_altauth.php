@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2009-10-10
+// Last Update : 2009-11-10
 //
 // Description : Check user authorization against alternative
 //               systems (RADIUS, LDAP, CAS, ...)
@@ -41,11 +41,10 @@
 //============================================================+
 
 /**
- * <p>Check user authorization against alternative systems 
- * (RADIUS, LDAP, CAS, ...).</p>
+ * Check user authorization against alternative systems (RADIUS, LDAP, CAS, ...).
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-03-28

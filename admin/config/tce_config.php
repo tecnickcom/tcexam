@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2009-09-30
+// Last Update : 2009-11-10
 // 
 // Description : Configuration file for administration section.
 //
@@ -41,9 +41,9 @@
 
 /**
  * Configuration file for administration section.
- * @package com.tecnick.tcexam.admin
+ * @package com.tecnick.tcexam.admin.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-09-02
@@ -52,103 +52,107 @@
 /**
  */
 
-// -- INCLUDE files -- 
+// --- INCLUDE FILES -----------------------------------------------------------
+
 require_once('../config/tce_auth.php');
 require_once('../../shared/config/tce_config.php');
 
-// -- Options / COSTANTS --
+// --- OPTIONS / COSTANTS ------------------------------------------------------
 
 /**
- * max memory limit
+ * Max memory limit.
  */
 define ('K_MAX_MEMORY_LIMIT', '512M');
 
 /**
- * max number of rows to display in tables
+ * Max number of rows to display in tables.
  */
 define ('K_MAX_ROWS_PER_PAGE', 50);
 
 /**
- * max size to be uploaded in bytes
+ * Max size to be uploaded in bytes.
  */
 define ('K_MAX_UPLOAD_SIZE', 10000000);
 
 // -- DEFAULT META and BODY Tags --
 
 /**
- * TCExam title
+ * TCExam title.
  */
 define ('K_TCEXAM_TITLE', 'TCExam');
 
 /**
- * TCExam description
+ * TCExam description.
  */
 define ('K_TCEXAM_DESCRIPTION', 'TCExam by Tecnick.com');
 
 /**
- * TCExam Author
+ * TCExam Author.
  */
 define ('K_TCEXAM_AUTHOR', 'Nicola Asuni - Tecnick.com s.r.l.');
 
 /**
- * reply-to meta tag
+ * Reply-to meta tag.
  */
 define ('K_TCEXAM_REPLY_TO', '');
 
 /**
- * default html meta keywords
+ * Default html meta keywords.
  */
 define ('K_TCEXAM_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
 
 /**
- * relative path to html icon
+ * Relative path to html icon.
  */
 define ('K_TCEXAM_ICON', '../../favicon.ico');
 
 /**
- * full path to CSS stylesheet
+ * Full path to CSS stylesheet.
  */
 define ('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.'default.css');
 
 /**
- * full path to CSS stylesheet for RTL languages
+ * Full path to CSS stylesheet for RTL languages.
  */
 define ('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
 
 /**
- * full path to CSS stylesheet for help file
+ * Full path to CSS stylesheet for help file.
  */
 define ('K_TCEXAM_HELP_STYLE', K_PATH_STYLE_SHEETS.'help.css');
 
 /**
- * if true display admin clock in UTC (GMT)
+ * If true display admin clock in UTC (GMT).
  */
 define ('K_CLOCK_IN_UTC', false);
 
 /**
- * max number of chars to display on a selection box
+ * Max number of chars to display on a selection box.
  */
 define ('K_SELECT_SUBSTRING', 40);
 
 /**
- * if true display an additional button to print only the TEXT answers on all users' results 
+ * If true display an additional button to print only the TEXT answers on all users' results.
  */
 define ('K_DISPLAY_PDFTEXT_BUTTON', false);
 
 /**
- * name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php)
+ * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
  */
 define ('K_ENABLE_CUSTOM_IMPORT', '');
 
 /**
- * name of the button to export results in custom format (file: admin/code/tce_export_custom.php)
+ * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
  */
 define ('K_ENABLE_CUSTOM_EXPORT', '');
 
-// -- INCLUDE files -- 
+// --- INCLUDE FILES -----------------------------------------------------------
+ 
 require_once('../../shared/config/tce_db_config.php');
 require_once('../../shared/code/tce_db_connect.php');
 require_once('../../shared/code/tce_functions_general.php');
+
+// --- PHP SETTINGS -----------------------------------------------------------
 
 ini_set('memory_limit', K_MAX_MEMORY_LIMIT); // set PHPmemory limit
 ini_set('upload_max_filesize', K_MAX_UPLOAD_SIZE); // set max upload size

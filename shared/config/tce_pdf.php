@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2009-09-30
+// Last Update : 2009-11-10
 // 
 // Description : Configuration file for pdf documents.
 //
@@ -42,9 +42,9 @@
 /**
  * Configuration file for TCPDF.
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @package com.tecnick.tcpdf
+ * @package com.tecnick.tcexam.shared.cfg
  * @link http://tcpdf.sourceforge.net
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  * @since 2004-06-11
@@ -53,132 +53,132 @@
 // PLEASE SET THE FOLLOWING CONSTANTS:
 
 /**
- * header title
+ * Header title.
  */
 define ('PDF_HEADER_TITLE', "School name");
 
 /**
- * header description string
+ * Header description string.
  */
 define ('PDF_HEADER_STRING', "first row\nsecond row\nthird row");
 
 /**
- * image logo
+ * Image logo.
  */
 define ('PDF_HEADER_LOGO', 'logo_example.png');
 
 /**
- * header logo image width [mm]
+ * Header logo image width [mm].
  */
 define ('PDF_HEADER_LOGO_WIDTH', 20);
 
 /**
- * height of area for offline user answer
+ * Height of area for offline user answer.
  */
 define ('PDF_TEXTANSWER_HEIGHT', 40);
 
 /**
- * page format
+ * Page format.
  */
 define ('PDF_PAGE_FORMAT', 'A4');
 
 /**
- * page orientation (P=portrait, L=landscape)
+ * Page orientation (P=portrait, L=landscape).
  */
 define ('PDF_PAGE_ORIENTATION', 'P');
 
 /**
- * document creator
+ * Document creator.
  */
 define ('PDF_CREATOR', 'TCExam 9');
 
 /**
- * document author
+ * Document author.
  */
 define ('PDF_AUTHOR', 'TCExam 9');
 
 /**
- *  document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch]
+ * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
  */
 define ('PDF_UNIT', 'mm');
 
 /**
- * header margin
+ * Header margin.
  */
 define ('PDF_MARGIN_HEADER', 5);
 
 /**
- * footer margin
+ * Footer margin.
  */
 define ('PDF_MARGIN_FOOTER', 10);
 
 /**
- * top margin
+ * Top margin.
  */
 define ('PDF_MARGIN_TOP', 27);
 
 /**
- * bottom margin
+ * Bottom margin.
  */
 define ('PDF_MARGIN_BOTTOM', 30);
 
 /**
- * left margin
+ * Left margin.
  */
 define ('PDF_MARGIN_LEFT', 15);
 
 /**
- * right margin
+ * Right margin.
  */
 define ('PDF_MARGIN_RIGHT', 15);
 
 /**
- * main font name
+ * Main font name.
  */
 define ('PDF_FONT_NAME_MAIN', 'helvetica');
 
 /**
- * main font size
+ * Main font size.
  */
 define ('PDF_FONT_SIZE_MAIN', 9);
 
 /**
- * data font name
+ * Data font name.
  */
 define ('PDF_FONT_NAME_DATA', 'helvetica');
 
 /**
- * data font size
+ * Data font size.
  */
 define ('PDF_FONT_SIZE_DATA', 7);
 
 /**
- * ratio used to adjust the conversion of pixels to user units
+ * Ratio used to adjust the conversion of pixels to user units.
  */
 define ('PDF_IMAGE_SCALE_RATIO', 2);
 
 /**
- * magnification factor for titles
+ * Magnification factor for titles.
  */
 define('HEAD_MAGNIFICATION', 1.1);
 
 /**
- * height of cell repect font height
+ * Height of cell repect font height.
  */
 define('K_CELL_HEIGHT_RATIO', 1.25);
 
 /**
- * title magnification respect main font size
+ * Title magnification respect main font size.
  */
 define('K_TITLE_MAGNIFICATION', 1.3);
 
 /**
- * reduction factor for small font
+ * Reduction factor for small font.
  */
 define('K_SMALL_RATIO', 2/3);
 
 
-// --- DATA FOR DIGITAL SIGNATURE ---
+// --- DATA FOR DIGITAL SIGNATURE ----------------------------------------------
 
 
 /**

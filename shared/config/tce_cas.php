@@ -42,9 +42,9 @@
  * is now maintained by the Java Architectures Special Interest Group and was sometimes 
  * referred to as "Yale CAS" but now known as "JA-SIG CAS".
  * For more information see: http://www.ja-sig.org/products/cas/
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Tim Gebhardt
- * @copyright Copyright &copy; 2009, Tim Gebhardt - DePaul University - tgebhar@cdm.depaul.edu
+ * @copyright Copyright © 2009, Tim Gebhardt - DePaul University - tgebhar@cdm.depaul.edu
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.cdm.depaul.edu
  * @since 2009-02-06

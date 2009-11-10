@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2009-10-10
+// Last Update : 2009-11-10
 //
 // Description : Configuration file for user registration.
 //
@@ -43,23 +43,38 @@
  * Configuration file for user registration.
  * NOTE: the email verification template is stored on the 
  * TMX file at "m_email_registration" translation unit.
- * @package com.tecnick.tcexam.shared
+ * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2008-03-30
  */
 
 /**
- * If true enable USER REGISTRATION
+ * If true enable USER REGISTRATION.
  */
 define ('K_USRREG_ENABLED', true);
 
 /**
- * If true requires email confirmation
+ * If true requires email confirmation.
  */
 define ('K_USRREG_EMAIL_CONFIRM', true);
+
+/**
+ * Default user group ID for registered user.
+ */
+define ('K_USRREG_GROUP', 1);
+
+/**
+ * URL of an HTML page containing the registration agreement (i.e.: "http://www.yoursite.com/agreement.html").
+ */
+define ('K_USRREG_AGREEMENT', '');
+
+/**
+ * The following email will receive copies of verification messages.
+ */
+define ('K_USRREG_ADMIN_EMAIL', '');
 
 /**
  * Additional fields to display on registration form.
@@ -79,22 +94,6 @@ $regfields = array(
 	'user_groups' => 1,
 	'user_agreement' => 2
 );
-
-/**
- * Default user group ID for registered user.
- */
-define ('K_USRREG_GROUP', 1);
-
-/**
- * URL of an HTML page containing the registration agreement.
- * (i.e.: "http://www.yoursite.com/agreement.html")
- */
-define ('K_USRREG_AGREEMENT', '');
-
-/**
- * The following email will receive copies of verification messages.
- */
-define ('K_USRREG_ADMIN_EMAIL', '');
 
 //============================================================+
 // END OF FILE                                                 
