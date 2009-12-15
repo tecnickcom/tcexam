@@ -1,3 +1,10 @@
+9.0.036 (2009-12-15)
+	- Per-topic results were added on Test Results page.
+	- Answer Evaluation form was updated to order answers in various modes.
+	- TCPDF library was updated.
+	- Installation instructions were updated.
+	- Hungarian language was updated.
+
 9.0.035 (2009-11-10)
 	- Source code documentation was fixed.
 

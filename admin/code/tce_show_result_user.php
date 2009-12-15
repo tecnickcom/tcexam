@@ -242,6 +242,17 @@ if($formstatus) {
 		F_display_db_error();
 	}
 }
+
+// get test basic score
+$test_basic_score = 1;
+$sql = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+if($r = F_db_query($sql, $db)) {
+	if($m = F_db_fetch_array($r)) {
+		$test_basic_score = $m['test_score_right'];
+	}
+} else {
+	F_display_db_error();
+}
 ?>
 
 <div class="container">
@@ -389,7 +400,7 @@ if ($usrtestdata['score_threshold'] > 0) {
 		$passmsg = ' - '.$l['w_not_passed'];
 	}
 }
-echo ''.$test_score.' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'';
+echo ''.$usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'';
 ?>
 &nbsp;
 </span>
@@ -401,7 +412,7 @@ echo ''.$test_score.' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_s
 </span>
 <span class="formw">
 <?php 
-echo "".$usrtestdata['right'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)';
+echo ''.$usrtestdata['right'].' / '.$usrtestdata['all'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)';
 ?>
 &nbsp;
 </span>
@@ -421,16 +432,81 @@ echo ''.F_decode_tcecode($usrtestdata['comment']).'';
 
 <div class="rowl">
 <?php
+$topicresults = array(); // per-topic results
 if (isset($testuser_id) AND (!empty($testuser_id))) {
 	// display user questions
 	$sql = 'SELECT * 
-		FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.' 
+		FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_SUBJECTS.', '.K_TABLE_MODULES.'
 		WHERE question_id=testlog_question_id 
-		AND testlog_testuser_id='.$testuser_id.'
+			AND testlog_testuser_id='.$testuser_id.'
+			AND question_subject_id=subject_id
+			AND subject_module_id=module_id
 		ORDER BY testlog_id';
 	if($r = F_db_query($sql, $db)) {
 		echo '<ol class="question">'.K_NEWLINE;
 		while($m = F_db_fetch_array($r)) {
+			
+			// create per-topic results array
+			if (!array_key_exists($m['module_id'], $topicresults)) {
+				$topicresults[$m['module_id']] = array();
+				$topicresults[$m['module_id']]['name'] = $m['module_name'];
+				$topicresults[$m['module_id']]['num'] = 0;
+				$topicresults[$m['module_id']]['right'] = 0;
+				$topicresults[$m['module_id']]['wrong'] = 0;
+				$topicresults[$m['module_id']]['unanswered'] = 0;
+				$topicresults[$m['module_id']]['undisplayed'] = 0;
+				$topicresults[$m['module_id']]['unrated'] = 0;
+				$topicresults[$m['module_id']]['score'] = 0;
+				$topicresults[$m['module_id']]['maxscore'] = 0;
+				$topicresults[$m['module_id']]['subjects'] = array();
+			}
+			if (!array_key_exists($m['subject_id'], $topicresults[$m['module_id']]['subjects'])) {
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']] = array();
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['name'] = $m['subject_name'];
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['num'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['right'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['wrong'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['unanswered'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['undisplayed'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['unrated'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['score'] = 0;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['maxscore'] = 0;
+			}
+			$question_max_score = ($m['question_difficulty'] * $test_basic_score);
+			// total number of questions
+			$topicresults[$m['module_id']]['num'] += 1;
+			$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['num'] += 1;
+			// number of right answers
+			if ($m['testlog_score'] > ($question_max_score / 2)) {
+				$topicresults[$m['module_id']]['right'] += 1;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['right'] += 1;
+			} else {
+				// number of wrong answers
+				$topicresults[$m['module_id']]['wrong'] += 1;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['wrong'] += 1;
+			}
+			// total number of unanswered questions
+			if (strlen($m['testlog_change_time']) <= 0) {
+				$topicresults[$m['module_id']]['unanswered'] += 1;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['unanswered'] += 1;
+			}
+			// total number of undisplayed questions
+			if (strlen($m['testlog_display_time']) <= 0) {
+				$topicresults[$m['module_id']]['undisplayed'] += 1;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['undisplayed'] += 1;
+			}
+			// number of free-text unrated questions
+			if (strlen($m['testlog_score']) <= 0) {
+				$topicresults[$m['module_id']]['unrated'] += 1;
+				$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['unrated'] += 1;
+			}
+			// score
+			$topicresults[$m['module_id']]['score'] += $m['testlog_score'];
+			$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['score'] += $m['testlog_score'];
+			// max score
+			$topicresults[$m['module_id']]['maxscore'] += $question_max_score;
+			$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['maxscore'] += $question_max_score;
+			
 			echo '<li>'.K_NEWLINE;
 			// display question stats
 			echo '<strong>['.$m['testlog_score'].']'.K_NEWLINE;
@@ -547,8 +623,46 @@ if (isset($testuser_id) AND (!empty($testuser_id))) {
 ?>
 </div>
 
-<div class="row">
 <?php
+// print per-topic results
+echo '<div class="rowl">'.K_NEWLINE;
+echo '<hr />'.K_NEWLINE;
+echo '<h2>'.$l['w_subjects'].'</h2>';
+echo '<ul>';
+foreach ($topicresults as $res_module) {
+	echo '<li>';
+	$score_percent = round(100 * $res_module['score'] / $res_module['maxscore']);
+	echo '<acronym title="'.$l['w_score'].'" class="';
+	if ($score_percent > 50) {echo 'okbox';} else {echo 'nobox';}
+	echo '">'.$res_module['score'].' / '.$res_module['maxscore'].' ('.$score_percent.'%)</acronym>';
+	$score_percent = round(100 * $res_module['right'] / $res_module['num']);
+	echo ' <acronym title="'.$l['w_answers_right'].'" class="';
+	if ($score_percent > 50) {echo 'okbox';} else {echo 'nobox';}
+	echo '">'.$res_module['right'].' / '.$res_module['num'].' ('.$score_percent.'%)</acronym>';
+	echo ' <strong>'.$res_module['name'].'</strong>';
+	echo '<ul>';
+	foreach ($res_module['subjects'] as $res_subject) {
+		echo '<li>';
+		$score_percent = round(100 * $res_subject['score'] / $res_subject['maxscore']);
+		echo '<acronym title="'.$l['w_score'].'" class="';
+		if ($score_percent > 50) {echo 'okbox';} else {echo 'nobox';}
+		echo '">'.$res_subject['score'].' / '.$res_subject['maxscore'].' ('.$score_percent.'%)</acronym>';
+		$score_percent = round(100 * $res_subject['right'] / $res_subject['num']);
+		echo ' <acronym title="'.$l['w_answers_right'].'" class="';
+		if ($score_percent > 50) {echo 'okbox';} else {echo 'nobox';}
+		echo '">'.$res_subject['right'].' / '.$res_subject['num'].' ('.$score_percent.'%)</acronym>';
+		echo ' '.$res_subject['name'];
+		echo '</li>'.K_NEWLINE;
+	}
+	echo '</ul>';
+	echo '</li>'.K_NEWLINE;
+}
+echo '</ul>';
+echo '<hr />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0) AND isset($user_id) AND ($user_id > 0)) {
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);

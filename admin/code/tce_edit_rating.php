@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-09-30
+// Last Update : 2009-12-15
 // 
 // Description : Editor to manually rate free text answers.
 //
@@ -129,6 +129,29 @@ if (empty($display_all)) {
 	$sqlfilter = ' AND testlog_score IS NULL';
 }
 
+// set ordering mode
+if (!isset($sqlordermode)) {
+	$sqlordermode = 0;
+}
+switch ($sqlordermode) {
+	case 2: {
+		// ordered by test and question creation time
+		$sqlorder = 'ORDER BY testuser_test_id, testlog_id';
+		break;
+	}
+	case 1: {
+		// ordered by test and question
+		$sqlorder = 'ORDER BY testuser_test_id, testlog_question_id, testlog_testuser_id';
+		break;
+	}
+	default:
+	case 0: {
+		// ordered by test and users
+		$sqlorder = 'ORDER BY testuser_test_id, testlog_testuser_id, testlog_id';
+		break;
+	}
+}
+
 if(!isset($test_id) OR empty($test_id)) {
 	// select one executed test
 	$sql = F_select_executed_tests_sql().' LIMIT 1';
@@ -153,7 +176,7 @@ if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($testlog_id)) 
 			AND testuser_status>0
 			AND question_type=3
 			'.$sqlfilter.' 
-		ORDER BY test_id, testlog_id, testuser_user_id 
+		'.$sqlorder.' 
 		LIMIT 1';
 } else {
 	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty, question_explanation
@@ -256,7 +279,7 @@ $sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_na
 	AND testuser_status>0
 	AND question_type=3
 	'.$sqlfilter.' 
-	ORDER BY testuser_test_id, testlog_id, testuser_user_id';
+	'.$sqlorder.'';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
@@ -293,6 +316,42 @@ if($r = F_db_query($sql, $db)) {
 <span class="label">&nbsp;</span>
 <span class="formw">
 <input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
+</span>
+</div>
+</noscript>
+
+<div class="row">
+<span class="label">
+<label for="sqlordermode"><?php echo $l['w_order']; ?></label>
+</span>
+<span class="formw">
+<select name="sqlordermode" id="sqlordermode" size="0" onchange="document.getElementById('form_ratingeditor').submit()" title="<?php echo $l['w_order']; ?>">
+<?php
+echo '<option value="0"';
+if($sqlordermode == 0) {
+	echo ' selected="selected"';
+}
+echo '>'.$l['w_user'].'</option>'.K_NEWLINE;
+echo '<option value="1"';
+if($sqlordermode == 1) {
+	echo ' selected="selected"';
+}
+echo '>'.$l['w_question'].'</option>'.K_NEWLINE;
+echo '<option value="2"';
+if($sqlordermode == 2) {
+	echo ' selected="selected"';
+}
+echo '>'.$l['w_time'].'</option>'.K_NEWLINE;
+?>
+</select>
+</span>
+</div>
+
+<noscript>
+<div class="row">
+<span class="label">&nbsp;</span>
+<span class="formw">
+<input type="submit" name="selectmode" id="selectmode" value="<?php echo $l['w_select']; ?>" />
 </span>
 </div>
 </noscript>

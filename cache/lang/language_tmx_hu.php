@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2009-08-31 23:03:15
+// DATE: 2009-12-15 12:04:46
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -37,7 +37,7 @@ $tmx['h_delete']='aktuális rekord törlése az adatbázisból';
 $tmx['h_display_all']='minden válasz megmutatása, ide értve a már értékelteket is';
 $tmx['h_display_user_info']='ezt a tesztet kitöltő felhasználó adatainak megmutatása';
 $tmx['h_email_all_results']='teszt eredmények küldése minden felhasználónak e-mail-ben';
-$tmx['h_email_result']='teszt eredmények küldése felhasználoknak e-mail-ben';
+$tmx['h_email_result']='teszt eredmények küldése felhasználóknak e-mail-ben';
 $tmx['h_enable_single_answer']='ha kiválasztjuk, akkor bekapcsoljuk az egy-helyes-válasz módot';
 $tmx['h_enable_multiple_answers']='ha kiválasztjuk, akkor bekapcsoljuk a több-helyes-válasz módot';
 $tmx['h_enable_free_answer']='ha kiválasztjuk, akkor bekapcsoljuk a szöveges-válasz módot';
@@ -56,7 +56,7 @@ $tmx['h_info']='TCExam információ';
 $tmx['h_ip']='az adatokat küldő számítógép IP címe';
 $tmx['h_ip_range']='érvényes IP címek listája, vesszővel elválasztva (pl.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)';
 $tmx['h_lastname']='vezetéknév (pl.: Kovács, Kiss, ...)';
-$tmx['h_level']='felhasználói szint, 0. szint anonymous felhasználót jelent (nem regisztrált), 1. szint alap felhasználónak felel meg, 10. szint adminisztrátor teljes jogokkal';
+$tmx['h_level']='felhasználói szint, 0. szint anonymous felhasználót jelent (nem regisztrált), 1. szint alap felhasználónak felel meg, 10. szint adminisztrátor minden joggal';
 $tmx['h_login_button']='kattintson ide a bélépéshez';
 $tmx['h_login_name']='felhasználói név, a bélépéshez használt név';
 $tmx['h_logout_link']='kattintson ide a kilépéshez';
@@ -103,7 +103,7 @@ $tmx['h_subject_description']='teszt téma leírása';
 $tmx['h_subject_name']='teszt téma neve';
 $tmx['h_subjects']='teszt témák listája';
 $tmx['h_submit']='adatok küldése a hívó folyamatnak';
-$tmx['h_tcecode_editor']='szerkesztő amely szöveg formázást tesz lehetővé';
+$tmx['h_tcecode_editor']='olyan szerkesztő amely szövegformázást tesz lehetővé';
 $tmx['h_test']='teszt, vizsga';
 $tmx['h_test_description']='teszt leírás';
 $tmx['h_test_name']='teszt neve';
@@ -143,7 +143,7 @@ $tmx['hp_test_results']='Ez az oldal mutatja a kiválasztott teszt eredményeit.
 $tmx['m_authorization_denied']='BELÉPÉS MEGTAGADVA!';
 $tmx['m_databasempty']='az adatbázis üres!';
 $tmx['m_delete_anonymous']='az anonymous felhasználót nem lehet törölni';
-$tmx['m_delete_confirm']='biztos, hogy töröli';
+$tmx['m_delete_confirm']='törlés megerősítése';
 $tmx['m_delete_confirm_test']='a teszt törlése minden kapcsolódó információ (logok, eredmények) elvesztésével jár';
 $tmx['m_delete_prohibited']='ezt a rekordot nem lehet törölni';
 $tmx['m_deleted']='a rekord törölve lett az adatbázisból';
@@ -151,9 +151,9 @@ $tmx['m_different_passwords']='a jelszavak eltérőek';
 $tmx['m_empty_password']='a jelszó mező üres';
 $tmx['m_disabled_vs_deleted']='a rekordot nem lehetett letörölni mert egy másik táblában használva van, így csak ki lett kapcsolva. A rekord csak az azt tartalmazó teszt törlése után törölhető.';
 $tmx['m_duplicate_answer']='ez a válasz már meg lett adva';
-$tmx['m_duplicate_name']='ez a név már foglalt, egy másikat kell választani';
-$tmx['m_duplicate_regnumber']='ez a regisztrációs szám már foglalt, egy másikat kell választani';
-$tmx['m_duplicate_ssn']='ez az SSN szám már foglalt, egy másikat kell választani';
+$tmx['m_duplicate_name']='ez a név már foglalt, válasszon másikat';
+$tmx['m_duplicate_regnumber']='ez a regisztrációs szám már foglalt, válasszon másiket';
+$tmx['m_duplicate_ssn']='ez az SSN szám már foglalt, válasszon másikat';
 $tmx['m_duplicate_question']='ez a kérdés már meg lett adva';
 $tmx['m_exam_end_time']='Sajnálom, a teszt kitöltésére szánt idő letelt!';
 $tmx['m_form_missing_fields']='néhány kötelező mező üres';

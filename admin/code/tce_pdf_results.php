@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-11-03
+// Last Update : 2009-12-15
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -699,10 +699,24 @@ if($r = F_db_query($sql, $db)) {
 			case 3: // detailed report for single user
 			case 4: // detailed report for all users
 			case 5: { // detailed report for all users with only open questions
+				$topicresults = array(); // per-topic results
+				// get test basic score
+				$test_basic_score = 1;
+				$sql = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+				if($r = F_db_query($sql, $db)) {
+					if($m = F_db_fetch_array($r)) {
+						$test_basic_score = $m['test_score_right'];
+					}
+				} else {
+					F_display_db_error();
+				}
+				
 				$sqlq = 'SELECT * 
-					FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.' 
+					FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_SUBJECTS.', '.K_TABLE_MODULES.'
 					WHERE question_id=testlog_question_id 
-					AND testlog_testuser_id='.$testuser_id.'';
+						AND testlog_testuser_id='.$testuser_id.'
+						AND question_subject_id=subject_id
+						AND subject_module_id=module_id';
 				if ($_REQUEST['mode'] == 5) {
 					// display only TEXT questions
 					$sqlq .= ' AND question_type=3';
@@ -727,6 +741,68 @@ if($r = F_db_query($sql, $db)) {
 					$itemcount = 1;
 					
 					while($mq = F_db_fetch_array($rq)) {
+						
+						// create per-topic results array
+						if (!array_key_exists($mq['module_id'], $topicresults)) {
+							$topicresults[$mq['module_id']] = array();
+							$topicresults[$mq['module_id']]['name'] = $mq['module_name'];
+							$topicresults[$mq['module_id']]['num'] = 0;
+							$topicresults[$mq['module_id']]['right'] = 0;
+							$topicresults[$mq['module_id']]['wrong'] = 0;
+							$topicresults[$mq['module_id']]['unanswered'] = 0;
+							$topicresults[$mq['module_id']]['undisplayed'] = 0;
+							$topicresults[$mq['module_id']]['unrated'] = 0;
+							$topicresults[$mq['module_id']]['score'] = 0;
+							$topicresults[$mq['module_id']]['maxscore'] = 0;
+							$topicresults[$mq['module_id']]['subjects'] = array();
+						}
+						if (!array_key_exists($mq['subject_id'], $topicresults[$mq['module_id']]['subjects'])) {
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']] = array();
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['name'] = $mq['subject_name'];
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['num'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['right'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['wrong'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['unanswered'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['undisplayed'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['unrated'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['score'] = 0;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['maxscore'] = 0;
+						}
+						$question_max_score = ($mq['question_difficulty'] * $test_basic_score);
+						// total number of questions
+						$topicresults[$mq['module_id']]['num'] += 1;
+						$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['num'] += 1;
+						// number of right answers
+						if ($mq['testlog_score'] > ($question_max_score / 2)) {
+							$topicresults[$mq['module_id']]['right'] += 1;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['right'] += 1;
+						} else {
+							// number of wrong answers
+							$topicresults[$mq['module_id']]['wrong'] += 1;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['wrong'] += 1;
+						}
+						// total number of unanswered questions
+						if (strlen($mq['testlog_change_time']) <= 0) {
+							$topicresults[$mq['module_id']]['unanswered'] += 1;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['unanswered'] += 1;
+						}
+						// total number of undisplayed questions
+						if (strlen($mq['testlog_display_time']) <= 0) {
+							$topicresults[$mq['module_id']]['undisplayed'] += 1;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['undisplayed'] += 1;
+						}
+						// number of free-text unrated questions
+						if (strlen($mq['testlog_score']) <= 0) {
+							$topicresults[$mq['module_id']]['unrated'] += 1;
+							$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['unrated'] += 1;
+						}
+						// score
+						$topicresults[$mq['module_id']]['score'] += $mq['testlog_score'];
+						$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['score'] += $mq['testlog_score'];
+						// max score
+						$topicresults[$mq['module_id']]['maxscore'] += $question_max_score;
+						$topicresults[$mq['module_id']]['subjects'][$mq['subject_id']]['maxscore'] += $question_max_score;
+						
 						$pdf->Cell($data_cell_width_third, $data_cell_height, $itemcount.' '.$qtype[($mq['question_type']-1)], 1, 0, 'R', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $mq['testlog_score'], 1, 0, 'C', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, getIpAsString($mq['testlog_user_ip']), 1, 0, 'C', 0);
@@ -842,12 +918,77 @@ if($r = F_db_query($sql, $db)) {
 						}
 						$pdf->Ln($data_cell_height);
 						$itemcount++;
-					}
+					} // end of while (for each question)
 				} else {
 					F_display_db_error();
 				}
+				
+				// start transaction
+				$pdf->startTransaction();
+				$block_page = $pdf->getPage();
+				$print_block = 2; // 2 tries max
+				while ($print_block > 0) {
+					
+					// print per-topic results
+					$pdf->Ln($data_cell_height);
+					$pdf->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA);
+			
+					$pdf->Cell(0, $data_cell_height, $l['w_subjects'], 0, 1, 'C', 1);
+					$pdf->Ln($data_cell_height);
+			
+					$pdf->Cell($data_cell_width, $data_cell_height, $l['w_score'], 1, 0, 'C', 1);
+					$pdf->Cell($data_cell_width, $data_cell_height, $l['w_answers_right'], 1, 0, 'C', 1);
+					$pdf->Cell($data_cell_width * 5, $data_cell_height, $l['w_module'], 1, 1, $dirvalue, 1);
+					$pdf->Ln(0.5);
+					$pdf->Cell($data_cell_width, $data_cell_height, '', 0, 0, 'C', 0);
+					$pdf->Cell($data_cell_width, $data_cell_height, $l['w_score'], 1, 0, 'C', 1);
+					$pdf->Cell($data_cell_width, $data_cell_height, $l['w_answers_right'], 1, 0, 'C', 1);
+					$pdf->Cell($data_cell_width * 4, $data_cell_height, $l['w_subject'], 1, 1, $dirvalue, 1);
+					$pdf->Ln($data_cell_height);
+			
+					foreach ($topicresults as $res_module) {
+						$pdf->SetFont('', 'B', '');
+						$score_percent = round(100 * $res_module['score'] / $res_module['maxscore']);
+						$str = $res_module['score'].' / '.$res_module['maxscore'].' ('.$score_percent.'%)';
+						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+				
+						$score_percent = round(100 * $res_module['right'] / $res_module['num']);
+						$str = $res_module['right'].' / '.$res_module['num'].' ('.$score_percent.'%)';
+						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+				
+						$pdf->Cell($data_cell_width * 5, $data_cell_height, $res_module['name'], 1, 1, $dirvalue, 0);
+						$pdf->Ln(0.5);
+						foreach ($res_module['subjects'] as $res_subject) {
+							$pdf->SetFont('', '', '');
+							$pdf->Cell($data_cell_width, $data_cell_height, '', 0, 0, 'C', 0);
+					
+							$score_percent = round(100 * $res_subject['score'] / $res_subject['maxscore']);
+							$str = $res_subject['score'].' / '.$res_subject['maxscore'].' ('.$score_percent.'%)';
+							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+					
+							$score_percent = round(100 * $res_subject['right'] / $res_subject['num']);
+							$str = $res_subject['right'].' / '.$res_subject['num'].' ('.$score_percent.'%)';
+							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+					
+							$pdf->Cell($data_cell_width * 4, $data_cell_height, $res_subject['name'], 1, 1, $dirvalue, 0);
+							$pdf->Ln(0.5);
+						}
+					}
+					
+					// do not split BLOCKS in multiple pages
+					if ($pdf->getPage() == $block_page) {
+						$print_block = 0;
+					} else {
+						// rolls back to the last (re)start
+						$pdf = $pdf->rollbackTransaction();
+						$pdf->AddPage();
+						$block_page = $pdf->getPage();
+						--$print_block;
+					}
+				} // end while print_block 
+				
 				break;
-			}
+			} // end of case 3
 		}
 		// END page data
 		// ------------------------------------------------------------
