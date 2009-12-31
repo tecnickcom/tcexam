@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Display test results summary for all users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2004-06-10
@@ -485,7 +485,8 @@ if (isset($test_id) AND ($test_id > 0)) {
 		echo '<a href="'.pdfLink(5, $test_id, $group_id, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf_all'].' - TEXT">'.$l['w_pdf'].' TEXT</a> ';
 	}
 	echo '<a href="tce_xml_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
-	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].'">'.$l['w_email_all_results'].'</a> ';
+	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;mode=1&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].'">'.$l['w_email_all_results'].'</a> ';
+	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;mode=0&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].' + PDF">'.$l['w_email_all_results'].' + PDF</a> ';
 	$custom_export = K_ENABLE_CUSTOM_EXPORT;
 	if (!empty($custom_export)) {
 		echo '<a href="tce_export_custom.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$custom_export.'">'.$custom_export.'</a> ';

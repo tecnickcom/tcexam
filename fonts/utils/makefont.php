@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : makefont.php
 // Begin       : 2004-12-31
-// Last Update : 2009-09-30
-// Version     : 1.2.005
+// Last Update : 2008-12-06
+// Version     : 1.2.004
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
 // 	Copyright (C) 2008  Nicola Asuni - Tecnick.com S.r.l.
@@ -41,7 +41,7 @@
 /**
  * Utility to generate font definition files fot TCPDF.
  * @author Nicola Asuni, Olivier Plathey, Steven Wittens
- * @copyright 2004-2009 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright 2004-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @package com.tecnick.tcpdf
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -57,13 +57,7 @@
  */
 function MakeFont($fontfile, $fmfile, $embedded=true, $enc='cp1252', $patch=array()) {
 	//Generate a font definition file
-	if(!defined('PHP_VERSION_ID')) {
-		$version = PHP_VERSION;
-		define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
-	}
-	if (PHP_VERSION_ID < 50300) {
-		@set_magic_quotes_runtime(0);
-	}
+	set_magic_quotes_runtime(0);
 	ini_set('auto_detect_line_endings', '1');
 	if (!file_exists($fontfile)) {
 		die('Error: file not found: '.$fontfile);

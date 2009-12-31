@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_email_results.php
 // Begin       : 2005-02-24
-// Last Update : 2009-09-30
+// Last Update : 2009-12-31
 // 
 // Description : Interface to send test reports to users via 
 //               email.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -44,7 +44,7 @@
  * Interface to send email test reports to users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-02-24
@@ -89,8 +89,14 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		$group_id = 0;
 	}
 	
+	if (isset($_REQUEST['mode']) AND ($_REQUEST['mode'] > 0)) {
+		$mode = intval($_REQUEST['mode']);
+	} else {
+		$mode = 0;
+	}
+	
 	require_once('tce_functions_email_reports.php');
-	F_send_report_emails($test_id, $user_id, $group_id);
+	F_send_report_emails($test_id, $user_id, $group_id, $mode);
 }
 
 F_print_error('MESSAGE', $l['m_process_completed']);

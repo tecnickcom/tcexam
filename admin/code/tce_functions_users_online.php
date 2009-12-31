@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Functions to display online users' data.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-10-18
@@ -52,7 +52,7 @@
 /**
  * Display online users form using F_list_online_users function.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-10-18
@@ -74,7 +74,7 @@ function F_show_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 /**
  * Display online users.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-10-18

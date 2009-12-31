@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 // 	This program is free software: you can redistribute it and/or modify
 // 	it under the terms of the GNU Lesser General Public License as published by
@@ -55,7 +55,7 @@
  * @link http://tmxphpbridge.sourceforge.net
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
  * @author Nicola Asuni [www.tecnick.com]
- * @copyright Copyright (c) 2004-2009 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright (c) 2004-2010 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @version 1.1.005
  */
 class TMXResourceBundle {

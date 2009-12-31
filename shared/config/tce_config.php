@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2009-09-30
+// Last Update : 2009-12-31
 // 
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2009:
+// (c) Copyright 2004-2010:
 //               Nicola Asuni
 //               Tecnick.com S.r.l.
 //               ITALY
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -41,7 +41,7 @@
  * Shared configuration file.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2002-02-24
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '9.0.036');
+define ('K_TCEXAM_VERSION', '9.0.037');
 
 /**
  * 2-letters code for default language.
@@ -244,8 +244,11 @@ if(isset($_REQUEST['lang'])
 	 */
 	define ('K_USER_LANG', K_LANGUAGE);
 }
-require_once('../../shared/code/tce_tmx.php'); // TMX class
-$lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php'); // istantiate new TMXResourceBundle object
+
+// TMX class
+require_once('../../shared/code/tce_tmx.php');
+// istantiate new TMXResourceBundle object
+$lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php');
 $l = $lang_resources->getResource(); // language array
 
 if(!defined('PHP_VERSION_ID')) {

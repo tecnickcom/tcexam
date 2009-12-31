@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2009-10-10
+// Last Update : 2009-12-31
 // 
 // Description : Display all questions grouped by topic.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Display all questions grouped by topic.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-07-06
@@ -340,6 +340,7 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 	$pdflink = 'tce_pdf_all_questions.php';
 	$pdflink .= '?module_id='.$subject_module_id;
 	$pdflink .= '&amp;subject_id='.$subject_id;
+	$pdflink .= '&amp;hide_answers='.intval($hide_answers); // hide answers option
 	echo '<a href="'.$pdflink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_pdf'].'">PDF</a>';
 	echo '<a href="'.$pdflink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_pdf'].'">PDF '.$l['w_module'].'</a>';
 	echo '<a href="'.$pdflink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_pdf'].'">PDF '.$l['w_all'].'</a> ';
@@ -375,7 +376,7 @@ require_once('../code/tce_page_footer.php');
 /**
  * Display a list of selected questions.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-07-06

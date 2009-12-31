@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2009-12-31
 // 
 // Description : Creates a PDF document containing exported questions.
 // 
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Creates a PDF document containing exported questions.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-07-06
@@ -69,6 +69,11 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	$subject_id = intval($_REQUEST['subject_id']);
 } else {
 	exit;
+}
+
+$show_answers = true;
+if (isset($_REQUEST['hide_answers']) AND ($_REQUEST['hide_answers'] == 1)) {
+	$show_answers = false;
 }
 
 $doc_title = unhtmlentities($l['t_questions_list']);
@@ -243,49 +248,52 @@ if($rm = F_db_query($sqlm, $db)) {
 							$pdf->SetFont('', '');
 							$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($mq['question_explanation']), 'LRB', 1, '', '');
 						}
-						// display alternative answers
-						$sqla = 'SELECT *
-							FROM '.K_TABLE_ANSWERS.'
-							WHERE answer_question_id=\''.$mq['question_id'].'\'
-							ORDER BY answer_position,answer_isright DESC';
-						if($ra = F_db_query($sqla, $db)) {
-							$idx = 0; // count items
-							while($ma = F_db_fetch_array($ra)) {
-								$idx++;
-								$answer_disabled = intval(!F_getBoolean($ma['answer_enabled']));
-								$answer_isright = intval(F_getBoolean($ma['answer_isright']));
+						
+						if ($show_answers) {
+							// display alternative answers
+							$sqla = 'SELECT *
+								FROM '.K_TABLE_ANSWERS.'
+								WHERE answer_question_id=\''.$mq['question_id'].'\'
+								ORDER BY answer_position,answer_isright DESC';
+							if($ra = F_db_query($sqla, $db)) {
+								$idx = 0; // count items
+								while($ma = F_db_fetch_array($ra)) {
+									$idx++;
+									$answer_disabled = intval(!F_getBoolean($ma['answer_enabled']));
+									$answer_isright = intval(F_getBoolean($ma['answer_isright']));
 				
-								$pdf->Cell($data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
-								$pdf->Cell($data_cell_width_third, $data_cell_height, $idx, 1, 0, 'C', $answer_disabled);
+									$pdf->Cell($data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
+									$pdf->Cell($data_cell_width_third, $data_cell_height, $idx, 1, 0, 'C', $answer_disabled);
 				
-								if ($mq['question_type'] != 4) {
-									$pdf->Cell($data_cell_width_third/2, $data_cell_height, $qright[$answer_isright], 1, 0, 'C', $answer_disabled);
-								} else {
-									$pdf->Cell($data_cell_width_third/2, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
+									if ($mq['question_type'] != 4) {
+										$pdf->Cell($data_cell_width_third/2, $data_cell_height, $qright[$answer_isright], 1, 0, 'C', $answer_disabled);
+									} else {
+										$pdf->Cell($data_cell_width_third/2, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
+									}
+									if ($ma['answer_position'] > 0 ) {
+										$pdf->Cell($data_cell_width_third, $data_cell_height, $ma['answer_position'], 1, 0, 'C', $answer_disabled);
+									} else {
+										$pdf->Cell($data_cell_width_third, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
+									}
+									if ($ma['answer_keyboard_key'] > 0) {
+										$pdf->Cell($data_cell_width_third/2, $data_cell_height, F_text_to_xml(chr($ma['answer_keyboard_key'])), 1, 0, 'C', $answer_disabled);
+									} else {
+										$pdf->Cell($data_cell_width_third/2, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
+									}
+									$pdf->Ln();
+									$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1, '', '', '');
+									if (K_ENABLE_ANSWER_EXPLANATION AND !empty($ma['answer_explanation'])) {
+										$pdf->Cell((2 * $data_cell_width_third), $data_cell_height, '', 0, 0, 'C', 0);
+										$pdf->SetFont('', 'BIU');
+										$pdf->Cell(0, $data_cell_height, $l['w_explanation'], 'LTR', 1, '', 0, '', 0);
+										$pdf->SetFont('', '');
+										$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_explanation']), 'LRB', 1, '', '');
+									}
 								}
-								if ($ma['answer_position'] > 0 ) {
-									$pdf->Cell($data_cell_width_third, $data_cell_height, $ma['answer_position'], 1, 0, 'C', $answer_disabled);
-								} else {
-									$pdf->Cell($data_cell_width_third, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
-								}
-								if ($ma['answer_keyboard_key'] > 0) {
-									$pdf->Cell($data_cell_width_third/2, $data_cell_height, F_text_to_xml(chr($ma['answer_keyboard_key'])), 1, 0, 'C', $answer_disabled);
-								} else {
-									$pdf->Cell($data_cell_width_third/2, $data_cell_height, '', 1, 0, 'C', $answer_disabled);
-								}
-								$pdf->Ln();
-								$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1, '', '', '');
-								if (K_ENABLE_ANSWER_EXPLANATION AND !empty($ma['answer_explanation'])) {
-									$pdf->Cell((2 * $data_cell_width_third), $data_cell_height, '', 0, 0, 'C', 0);
-									$pdf->SetFont('', 'BIU');
-									$pdf->Cell(0, $data_cell_height, $l['w_explanation'], 'LTR', 1, '', 0, '', 0);
-									$pdf->SetFont('', '');
-									$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_explanation']), 'LRB', 1, '', '');
-								}
+							} else {
+								F_display_db_error();
 							}
-						} else {
-							F_display_db_error();
-						}
+						} // end $show_answers
 		
 						$pdf->Ln($data_cell_height);
 						$itemcount++;

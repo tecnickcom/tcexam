@@ -177,7 +177,7 @@ Functions to send email reports to users.<br /><br /><br /><br />
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
   </tr>
   <tr>
-    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
   </tr>
   <tr>
     <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
@@ -196,12 +196,12 @@ Functions to send email reports to users.<br /><br /><br /><br />
 <br />
   <hr />
 	<a name="functionF_send_report_emails"></a>
-	<h3>F_send_report_emails <span class="smalllinenumber">[line 63]</span></h3>
+	<h3>F_send_report_emails <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void F_send_report_emails(
-int $test_id, [int $user_id = 0], [int $group_id = 0])</code>
+int $test_id, [int $user_id = 0], [int $group_id = 0], [int $mode = 0])</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -213,7 +213,7 @@ int $test_id, [int $user_id = 0], [int $group_id = 0])</code>
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
   </tr>
   <tr>
-    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
   </tr>
   <tr>
     <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
@@ -248,13 +248,18 @@ int $test_id, [int $user_id = 0], [int $group_id = 0])</code>
         <td><b>$group_id</b>&nbsp;&nbsp;</td>
         <td>GROUP ID (0 means all groups)</td>
       </tr>
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$mode</b>&nbsp;&nbsp;</td>
+        <td>type of report to send: 0=detailed report; 1=summary report (without questions)</td>
+      </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 15 Dec 2009 19:03:51 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Thu, 31 Dec 2009 12:54:49 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

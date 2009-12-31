@@ -20,7 +20,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -45,7 +45,7 @@
  * Display user's bar containing copyright information, user status and language selector.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2004-04-24
@@ -101,7 +101,7 @@ echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" class="minibutton" ti
 echo '</div>'.K_NEWLINE;
 
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2009 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>'.K_NEWLINE;
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2010 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 //============================================================+

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2009-11-05
+// Last Update : 2009-12-31
 // 
 // Description : Sends email test reports to users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Functions to send email reports to users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-02-24
@@ -52,22 +52,26 @@
 /**
  * Sends email test reports to users.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2005-02-24
  * @param int $test_id TEST ID
  * @param int $user_id USER ID (0 means all users)
  * @param int $group_id GROUP ID (0 means all groups)
+ * @param int $mode type of report to send: 0=detailed report; 1=summary report (without questions)
  */
-function F_send_report_emails($test_id, $user_id=0, $group_id=0) {
+function F_send_report_emails($test_id, $user_id=0, $group_id=0, $mode=0) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
+	require_once('../../shared/code/tce_functions_test.php');
+	require_once('../../shared/code/tce_functions_test_stats.php');
 	require_once('../../shared/code/tce_class_mailer.php');
 	
 	$test_id = intval($test_id);
 	$user_id = intval($user_id);
 	$group_id = intval($group_id);
+	$mode = intval($mode);
 	
 	// Instantiate C_mailer class
 	$mail = new C_mailer;
@@ -124,7 +128,7 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0) {
 				)';
 		}
 	} else {
-		// select only one test
+		// select only one test of one user
 		$sql = 'SELECT user_id, user_name, user_email, user_firstname, user_lastname, testuser_creation_time
 				FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 				WHERE testuser_user_id=user_id
@@ -134,22 +138,55 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0) {
 				LIMIT 1';
 	}
 	
+	// get test data
+	$testdata = F_getTestData($test_id);
+	
 	if($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) {
 			if (strlen($m['user_email']) > 3) {
-				$doc_name = 'test_'.$test_id.'_'.$m['user_id'].'.pdf';
-
-				$pdf_content = file_get_contents (K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&testid='.$test_id.'&groupid=0&userid='.$m['user_id'].'&email=1');
 				
-				$mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
+				// get user's test stats
+				$usrtestdata = F_getUserTestStat($test_id, $m['user_id']);
+				
+				// set HTML header
 				$mail->Body = $emailcfg['MsgHeader'];
-				$mail->Body .= ''.$l['t_result_user'].' ['.$m['testuser_creation_time'].']<br />'.K_NEWLINE;
-				$mail->Body .= ''.$l['w_attachment'].': '.$doc_name.'';
-				$mail->Body .= $emailcfg['MsgFooter'];
 				
-				//compose alternative TEXT message body
+				// compose alternate TEXT message
 				$mail->AltBody = ''.$l['t_result_user'].' ['.$m['testuser_creation_time'].']'.K_NEWLINE;
-				$mail->AltBody .= ''.$l['w_attachment'].': '.$doc_name.'';
+				
+				$mail->AltBody .= $l['w_test'].': '.$testdata['test_name'].K_NEWLINE;
+				
+				$passmsg = '';
+				if ($testdata['test_score_threshold'] > 0) {
+					$mail->AltBody .= $l['w_test_score_threshold'].': '.$testdata['test_score_threshold'];
+					if ($usrtestdata['score'] >= $testdata['test_score_threshold']) {
+						$passmsg = ' - '.$l['w_passed'];
+					} else {
+						$passmsg = ' - '.$l['w_not_passed'];
+					}
+					$mail->AltBody .= K_NEWLINE;
+				}
+
+				$mail->AltBody .= $l['w_score'].': '.$usrtestdata['score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.K_NEWLINE;
+				$mail->AltBody .= $l['w_answers_right'].': '.$usrtestdata['right'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)'.K_NEWLINE;
+				$mail->AltBody .= $l['w_answers_wrong'].': '.$usrtestdata['wrong'].' ('.round(100 * $usrtestdata['wrong'] / $usrtestdata['all']).'%)'.K_NEWLINE;
+				$mail->AltBody .= $l['w_questions_unanswered'].': '.$usrtestdata['unanswered'].' ('.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'%)'.K_NEWLINE;
+				$mail->AltBody .= $l['w_questions_undisplayed'].': '.$usrtestdata['undisplayed'].' ('.round(100 * $usrtestdata['undisplayed'] / $usrtestdata['all']).'%)'.K_NEWLINE;
+				
+				if ($mode == 0) {
+					// create PDF doc
+					$pdf_content = file_get_contents (K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&testid='.$test_id.'&groupid=0&userid='.$m['user_id'].'&email=1');
+					// attach doc
+					$doc_name = 'test_'.date('Ymd', strtotime($m['testuser_creation_time'])).'_'.$test_id.'_'.$m['user_id'].'.pdf';
+					$mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
+					$mail->AltBody .= K_NEWLINE.$l['w_attachment'].': '.$doc_name.K_NEWLINE;
+				}
+				
+				// convert alternate text to HTML
+				$mail->Body .= str_replace(K_NEWLINE, '<br />'.K_NEWLINE, $mail->AltBody);
+				
+				// add HTML footer
+				$mail->Body .= $emailcfg['MsgFooter'];
 				
 				//--- Elaborate user Templates ---
 				$mail->Body = str_replace('#CHARSET#', $l['a_meta_charset'], $mail->Body);
@@ -160,11 +197,12 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0) {
 				$mail->Body = str_replace('#USERFIRSTNAME#', htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
 				$mail->Body = str_replace('#USERLASTNAME#', htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
 				
-				//Adds a "To" address
+				// add a "To" address
 				$mail->AddAddress($m['user_email'], $m['user_name']); 
 				
 				$email_num++;
 				$progresslog = ''.$email_num.'. '.$m['user_email'].' ['.$m['user_name'].']'; //output user data
+				
 				if(!$mail->Send()) { //send email to user
 	    			$progresslog .= ' ['.$l['t_error'].']'; //display error message
 				}

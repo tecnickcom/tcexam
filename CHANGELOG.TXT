@@ -1,3 +1,8 @@
+9.0.037 (2009-12-31)
+	- The "hide answers" options now works with PDF Questions List.
+	- The Results pages now includes the ability to send results via email with or without PDF report.
+	- TCPDF library was updated.
+
 9.0.036 (2009-12-15)
 	- Per-topic results were added on Test Results page.
 	- Answer Evaluation form was updated to order answers in various modes.

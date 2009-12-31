@@ -7,14 +7,14 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 9.0.036
+Version: 9.0.037
 
-Release date: 2009-12-15
+Release date: 2009-12-31
 
 Author:
 	Nicola Asuni 
 	
-Copyright (c) 2004-2009:
+Copyright (c) 2004-2010:
 	Nicola Asuni
 	Tecnick.com S.r.l.
 	Via Della Pace, 11
@@ -62,7 +62,7 @@ Description:
 	features.
 
 Software License
-	Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+	Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 	
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as

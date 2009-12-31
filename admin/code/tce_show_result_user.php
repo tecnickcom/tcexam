@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -43,7 +43,7 @@
  * Display test results for specified user.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2004-06-10
@@ -677,7 +677,8 @@ if (isset($test_id) AND ($test_id > 0) AND isset($user_id) AND ($user_id > 0)) {
 	
 	echo '<br /><br />';
 	echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '').'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
-	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'" class="xmlbutton" title="'.$l['h_email_result'].'">'.$l['w_email_result'].'</a> ';
+	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'&amp;mode=1" class="xmlbutton" title="'.$l['h_email_result'].'">'.$l['w_email_result'].'</a> ';
+	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'&amp;mode=0" class="xmlbutton" title="'.$l['h_email_result'].' + PDF">'.$l['w_email_result'].' + PDF</a> ';
 }
 ?>
 <!-- comma separated list of required fields -->
