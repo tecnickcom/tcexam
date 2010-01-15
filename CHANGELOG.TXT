@@ -1,3 +1,6 @@
+9.0.039 (2010-01-15)
+	- TCPDF library was updated.
+
 9.0.038 (2010-01-15)
 	- Sessions ID problem was fixed.
 	- TCPDF library was updated.
