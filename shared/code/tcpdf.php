@@ -2,12 +2,12 @@
 //============================================================+
 // File name   : tcpdf.php
 // Begin       : 2002-08-03
-// Last Update : 2009-12-21
+// Last Update : 2010-01-15
 // Author      : Nicola Asuni - info@tecnick.com - http://www.tcpdf.org
-// Version     : 4.8.020
+// Version     : 4.8.023
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
-//  Copyright (C) 2002-2009  Nicola Asuni - Tecnick.com S.r.l.
+//  Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
 // 	
 // 	This program is free software: you can redistribute it and/or modify
 // 	it under the terms of the GNU Lesser General Public License as published by
@@ -125,10 +125,10 @@
  * @package com.tecnick.tcpdf
  * @abstract Class for generating PDF files on-the-fly without requiring external extensions.
  * @author Nicola Asuni
- * @copyright 2002-2009 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 4.8.020
+ * @version 4.8.023
  */
 
 
@@ -148,14 +148,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */ 
-	define('PDF_PRODUCER', 'TCPDF 4.8.020 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 4.8.023 (http://www.tcpdf.org)');
 	
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 4.8.020
+	* @version 4.8.023
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -1377,7 +1377,7 @@ if (!class_exists('TCPDF', false)) {
 		 */
 		protected $form_obj_id = array();
 		
-		/*
+		/**
 		 * Deafult Javascript field properties. Possible values are described on official Javascript for Acrobat API reference. Annotation options can be directly specified using the 'aopt' entry.
 		 * @access protected
 		 * @since 4.8.000 (2009-09-07)
@@ -3083,6 +3083,8 @@ if (!class_exists('TCPDF', false)) {
 				$prev_FontSizePt = $this->FontSizePt;
 				$this->SetFont($fontname, $fontstyle, $fontsize);
 			}
+			// convert UTF-8 array to Latin1 if required
+			$sa = $this->UTF8ArrToLatin1($sa);		
 			$w = 0;
 			foreach ($sa as $char) {
 				$w += $this->GetCharWidth($char);
@@ -3518,7 +3520,7 @@ if (!class_exists('TCPDF', false)) {
 				$this->PageAnnots[$page] = array();
 			}
 			$this->PageAnnots[$page][] = array('x' => $x, 'y' => $y, 'w' => $w, 'h' => $h, 'txt' => $text, 'opt' => $opt, 'numspaces' => $spaces);
-			if (($opt['Subtype'] == 'FileAttachment') AND (!$this->empty_string($opt['FS'])) AND file_exists($opt['FS']) AND (!isset($this->embeddedfiles[basename($opt['FS'])]))) {
+			if ((($opt['Subtype'] == 'FileAttachment') OR ($opt['Subtype'] == 'Sound')) AND (!$this->empty_string($opt['FS'])) AND file_exists($opt['FS']) AND (!isset($this->embeddedfiles[basename($opt['FS'])]))) {
 				$this->embeddedfiles[basename($opt['FS'])] = array('file' => $opt['FS'], 'n' => (count($this->embeddedfiles) + $this->embedded_start_obj_id));
 			}
 			// Add widgets annotation's icons
@@ -3798,8 +3800,10 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			if ($txt != '') {
+				$txt2 = $this->_escapetext($txt);
 				// text lenght
-				$width = $this->GetStringWidth($txt);
+				$txwidth = $this->GetStringWidth($txt);
+				$width = $txwidth;
 				// ratio between cell lenght and text lenght
 				if ($width <= 0) {
 					$ratio = 1;
@@ -3829,7 +3833,7 @@ if (!class_exists('TCPDF', false)) {
 				if ($this->ColorFlag) {
 					$s .= 'q '.$this->TextColor.' ';
 				}
-				$txt2 = $this->_escapetext($txt);
+				
 				// Justification
 				if ($align == 'J') {
 					// count number of spaces
@@ -3843,8 +3847,9 @@ if (!class_exists('TCPDF', false)) {
 						$txt2 = str_replace(chr(0).' ', ') '.($spacewidth).' (', $txt2);
 					} else {
 						// get string width
-						$width = $this->GetStringWidth($txt);
+						$width = $txwidth;
 						$spacewidth = (($w - $width - (2 * $this->cMargin)) / ($ns?$ns:1)) * $this->k;
+						// set word spacing
 						$rs .= sprintf('BT %.3F Tw ET ', $spacewidth);
 					}
 					$width = $w - (2 * $this->cMargin);
@@ -5724,7 +5729,7 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		* Output annotations objects for all pages.
-		* !!! THIS FUNCTION IS NOT YET COMPLETED !!!
+		* !!! THIS METHOD IS NOT YET COMPLETED !!!
 		* See section 12.5 of PDF 32000_2008 reference.
 		* @access protected
 		* @author Nicola Asuni
@@ -6098,15 +6103,14 @@ if (!class_exists('TCPDF', false)) {
 								break;
 							}
 							case 'sound': {
-								if (!isset($pl['opt']['sound'])) {
+								if (!isset($pl['opt']['fs'])) {
 									break;
 								}
-								$filename = basename($pl['opt']['sound']);
+								$filename = basename($pl['opt']['fs']);
 								if (isset($this->embeddedfiles[$filename]['n'])) {
-									$annots .= ' /Sound <</Type /Sound';
 									// ... TO BE COMPLETED ...
 									// /R /C /B /E /CO /CP
-									// $annots .= ' /F '.$this->_datastring($filename).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
+									$annots .= ' /Sound <</Type /Filespec /F '.$this->_datastring($filename).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
 									$iconsapp = array('Speaker', 'Mic');
 									if (isset($pl['opt']['name']) AND in_array($pl['opt']['name'], $iconsapp)) {
 										$annots .= ' /Name /'.$pl['opt']['name'];
@@ -7628,6 +7632,35 @@ if (!class_exists('TCPDF', false)) {
 			}
 			return $outstr;
 		}
+		
+		/**
+		 * Converts UTF-8 characters array to Latin1<br>
+		 * @param array $unicode array containing UTF-8 unicode values
+		 * @return array
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 4.8.023 (2010-01-15)
+		 */
+		protected function UTF8ArrToLatin1($unicode) {
+			global $utf8tolatin;
+			if ((!$this->isunicode) OR ($this->CurrentFont['type'] == 'TrueTypeUnicode') OR ($this->CurrentFont['type'] == 'cidfont0')) {
+				return $unicode; // string is not in unicode
+			}
+			$outarr = array(); // array to be returned
+			foreach ($unicode as $char) {
+				if ($char < 256) {
+					$outarr[] = $char;
+				} elseif (array_key_exists($char, $utf8tolatin)) {
+					// map from UTF-8
+					$outarr[] = $utf8tolatin[$char];
+				} elseif ($char == 0xFFFD) {
+					// skip
+				} else {
+					$outarr[] = 63; // '?' character
+				}
+			}
+			return $outarr;
+		}
 
 		/**
 		 * Converts array of UTF-8 characters to UTF16-BE string.<br>
@@ -8461,7 +8494,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Set a draw point.
 		* @param float $x Abscissa of point.
 		* @param float $y Ordinate of point.
@@ -8475,7 +8508,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out(sprintf('%.2F %.2F m', $x * $this->k, ($this->h - $y) * $this->k));
 		}
 		
-		/*
+		/**
 		* Draws a line from last draw point.
 		* @param float $x Abscissa of end point.
 		* @param float $y Ordinate of end point.
@@ -8506,7 +8539,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s', $x * $this->k, ($this->h - $y) * $this->k, $w * $this->k, -$h * $this->k, $op));
 		}
 		
-		/*
+		/**
 		* Draws a Bezier curve from last draw point.
 		* The Bezier curve is a tangent to the line between the control points at either end of the curve.
 		* @param float $x1 Abscissa of control point 1.
@@ -9896,7 +9929,7 @@ if (!class_exists('TCPDF', false)) {
 		
 		// END OF BIDIRECTIONAL TEXT SECTION -------------------
 		
-		/*
+		/**
 		* Adds a bookmark.
 		* @param string $txt bookmark description.
 		* @param int $level bookmark level (minimum value is 0).
@@ -9928,7 +9961,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->outlines[] = array('t' => $txt, 'l' => $level, 'y' => $y, 'p' => $page);
 		}
 		
-		/*
+		/**
 		* Create a bookmark PDF string.
 		* @access protected
 		* @author Olivier Plathey, Nicola Asuni
@@ -10000,7 +10033,7 @@ if (!class_exists('TCPDF', false)) {
 		
 		// --- JAVASCRIPT ------------------------------------------------------
 		
-		/*
+		/**
 		* Adds a javascript
 		* @param string $script Javascript code
 		* @access public
@@ -10011,7 +10044,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->javascript .= $script;
 		}
 
-		/*
+		/**
 		* Adds a javascript object and return object ID
 		* @param string $script Javascript code
 		* @param boolean $onload if true executes this object when opening the document
@@ -10026,7 +10059,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->js_obj_id;
 		}
 
-		/*
+		/**
 		* Create a javascript PDF string.
 		* @access protected
 		* @author Johannes Güntert, Nicola Asuni
@@ -10085,7 +10118,7 @@ if (!class_exists('TCPDF', false)) {
 			}			
 		}
 		
-		/*
+		/**
 		* Convert color to javascript color.
 		* @param string $color color name or #RRGGBB
 		* @access protected
@@ -10103,7 +10136,7 @@ if (!class_exists('TCPDF', false)) {
 			return 'color.'.$color;
 		}
 		
-		/*
+		/**
 		* Adds a javascript form field.
 		* @param string $type field type
 		* @param string $name field name
@@ -10143,7 +10176,7 @@ if (!class_exists('TCPDF', false)) {
 
 		// --- FORM FIELDS -----------------------------------------------------
 
-		/*
+		/**
 		* Convert JavaScript form fields properties array to Annotation Properties array.
 		* @param array $prop javascript field properties. Possible values are described on official Javascript for Acrobat API reference.
 		* @return array of annotation properties
@@ -10508,7 +10541,7 @@ if (!class_exists('TCPDF', false)) {
 			return $opt;
 		}
 		
-		/*
+		/**
 		* Set default properties for form fields.
 		* @param array $prop javascript field properties. Possible values are described on official Javascript for Acrobat API reference.
 		* @access public
@@ -10519,7 +10552,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->default_form_prop = $prop;
 		}
 		
-		/*
+		/**
 		* Return the default properties for form fields.
 		* @return array $prop javascript field properties. Possible values are described on official Javascript for Acrobat API reference.
 		* @access public
@@ -10530,7 +10563,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->default_form_prop;
 		}
 		
-		/*
+		/**
 		* Creates a text field
 		* @param string $name field name
 		* @param float $w Width of the rectangle
@@ -10620,7 +10653,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 
-		/*
+		/**
 		* Creates a RadioButton field
 		* @param string $name field name
 		* @param int $w width
@@ -10708,7 +10741,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Creates a List-box field
 		* @param string $name field name
 		* @param int $w width
@@ -10768,7 +10801,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Creates a Combo-box field
 		* @param string $name field name
 		* @param int $w width
@@ -10829,7 +10862,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Creates a CheckBox field
 		* @param string $name field name
 		* @param int $w width
@@ -10898,7 +10931,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Creates a button field
 		* @param string $name field name
 		* @param int $w width
@@ -11057,7 +11090,7 @@ if (!class_exists('TCPDF', false)) {
 		
 		// --- END FORMS FIELDS ------------------------------------------------
 		
-		/*
+		/**
 		* Add certification signature (DocMDP or UR3)
 		* You can set only one signature type
 		* @access protected
@@ -11121,7 +11154,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out('/M '.$this->_datestring());
 		}
 		
-		/*
+		/**
 		* Set User's Rights for PDF Reader
 		* WARNING: This works only using the Adobe private key with the setSignature() method!.
 		* Check the PDF Reference 8.7.1 Transform Methods, 
@@ -11152,7 +11185,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Enable document signature (requires the OpenSSL Library).
 		* The digital signature improve document authenticity and integrity and allows o enable extra features on Acrobat Reader.
 		* @param mixed $signing_cert signing certificate (string or filename prefixed with 'file://')
@@ -11160,7 +11193,7 @@ if (!class_exists('TCPDF', false)) {
 		* @param string $private_key_password password
 		* @param string $extracerts specifies the name of a file containing a bunch of extra certificates to include in the signature which can for example be used to help the recipient to verify the certificate that you used.
 		* @param int $cert_type The access permissions granted for this document. Valid values shall be: 1 = No changes to the document shall be permitted; any change to the document shall invalidate the signature; 2 = Permitted changes shall be filling in forms, instantiating page templates, and signing; other changes shall invalidate the signature; 3 = Permitted changes shall be the same as for 2, as well as annotation creation, deletion, and modification; other changes shall invalidate the signature.
-		* @parm array $info array of option information: Name, Location, Reason, ContactInfo.
+		* @param array $info array of option information: Name, Location, Reason, ContactInfo.
 		* @access public
 		* @author Nicola Asuni
 		* @since 4.6.005 (2009-04-24)
@@ -11186,7 +11219,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->signature_data['info'] = $info;
 		}
 		
-		/*
+		/**
 		* Create a new page group.
 		* NOTE: call this function before calling AddPage()
 		* @param int $page starting group page (leave empty for next page).
@@ -11255,7 +11288,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->AliasNumPage;
 		}
 		
-		/*
+		/**
 		* Return the current page in the group.
 		* @return current page in the group
 		* @access public
@@ -11275,7 +11308,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->formatPageNumber($this->getGroupPageNo());
         }
 		
-		/*
+		/**
 		 * Return the alias of the current page group
          * If the current font is unicode type, the returned string is surrounded by additional curly braces.
 		 * (will be replaced by the total number of pages in this group).
@@ -11290,7 +11323,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->currpagegroup;
 		}
 		
-		/*
+		/**
 		 * Return the alias for the page number on the current page group
          * If the current font is unicode type, the returned string is surrounded by additional curly braces.
 		 * (will be replaced by the total number of pages in this group).
@@ -11338,7 +11371,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->formatPageNumber($this->PageNo());
         }
 
-        /*
+        /**
 		* Put visibility settings.
 		* @access protected
 		* @since 3.0.000 (2008-03-27)
@@ -11356,7 +11389,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out('endobj');
 		}
 		
-		/*
+		/**
 		* Set the visibility of the successive elements.
 		* This can be useful, for instance, to put a background 
 		* image or color that will show on screen but won't print.
@@ -11393,7 +11426,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->visibility = $v;
 		}
 		
-		/*
+		/**
 		* Add transparency parameters to the current extgstate
 		* @param array $params parameters
 		* @return the number of extgstates
@@ -11406,7 +11439,7 @@ if (!class_exists('TCPDF', false)) {
 			return $n;
 		}
 		
-		/*
+		/**
 		* Add an extgstate
 		* @param array $gs extgstate
 		* @access protected
@@ -11416,7 +11449,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_out(sprintf('/GS%d gs', $gs));
 		}
 		
-		/*
+		/**
 		* Put extgstates for object transparency
 		* @param array $gs extgstate
 		* @access protected
@@ -11436,7 +11469,7 @@ if (!class_exists('TCPDF', false)) {
 			}
 		}
 		
-		/*
+		/**
 		* Set alpha for stroking (CA) and non-stroking (ca) operations.
 		* @param float $alpha real value from 0 (transparent) to 1 (opaque)
 		* @param string $bm blend mode, one of the following: Normal, Multiply, Screen, Overlay, Darken, Lighten, ColorDodge, ColorBurn, HardLight, SoftLight, Difference, Exclusion, Hue, Saturation, Color, Luminosity
@@ -11448,7 +11481,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->setExtGState($gs);
 		}
 
-		/*
+		/**
 		* Set the default JPEG compression quality (1-100)
 		* @param int $quality JPEG quality, integer between 1 and 100
 		* @access public
@@ -11461,7 +11494,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->jpeg_quality = intval($quality);
 		}
 		
-		/*
+		/**
 		* Set the default number of columns in a row for HTML tables.
 		* @param int $cols number of columns
 		* @access public
@@ -11471,7 +11504,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->default_table_columns = intval($cols); 
 		}
 		
-		/*
+		/**
 		* Set the height of the cell (line height) respect the font height.
 		* @param int $h cell proportion respect font height (typical value = 1.25).
 		* @access public
@@ -11481,7 +11514,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->cell_height_ratio = $h; 
 		}
 		
-		/*
+		/**
 		* return the height of cell repect font height.
 		* @access public
 		* @since 4.0.012 (2008-07-24)
@@ -11490,7 +11523,7 @@ if (!class_exists('TCPDF', false)) {
 			return $this->cell_height_ratio; 
 		}
 		
-		/*
+		/**
 		* Set the PDF version (check PDF reference for valid values).
 		* Default value is 1.t
 		* @access public
@@ -11500,27 +11533,10 @@ if (!class_exists('TCPDF', false)) {
 			$this->PDFVersion = $version;
 		}
 		
-		/*
+		/**
 		* Set the viewer preferences dictionary controlling the way the document is to be presented on the screen or in print.
 		* (see Section 8.1 of PDF reference, "Viewer Preferences").
-		* <ul>
-		* <li>HideToolbar boolean (Optional) A flag specifying whether to hide the viewer application's tool bars when the document is active. Default value: false.</li>
-		* <li>HideMenubar boolean (Optional) A flag specifying whether to hide the viewer application's menu bar when the document is active. Default value: false.</li>
-		* <li>HideWindowUI boolean (Optional) A flag specifying whether to hide user interface elements in the document's window (such as scroll bars and navigation controls), leaving only the document's contents displayed. Default value: false.</li>
-		* <li>FitWindow boolean (Optional) A flag specifying whether to resize the document's window to fit the size of the first displayed page. Default value: false.</li>
-		* <li>CenterWindow boolean (Optional) A flag specifying whether to position the document's window in the center of the screen. Default value: false.</li>
-		* <li>DisplayDocTitle boolean (Optional; PDF 1.4) A flag specifying whether the window's title bar should display the document title taken from the Title entry of the document information dictionary (see Section 10.2.1, "Document Information Dictionary"). If false, the title bar should instead display the name of the PDF file containing the document. Default value: false.</li>
-		* <li>NonFullScreenPageMode name (Optional) The document's page mode, specifying how to display the document on exiting full-screen mode:<ul><li>UseNone Neither document outline nor thumbnail images visible</li><li>UseOutlines Document outline visible</li><li>UseThumbs Thumbnail images visible</li><li>UseOC Optional content group panel visible</li><ul>This entry is meaningful only if the value of the PageMode entry in the catalog dictionary (see Section 3.6.1, "Document Catalog") is FullScreen; it is ignored otherwise. Default value: UseNone.</li>
-		* <li>ViewArea name (Optional; PDF 1.4) The name of the page boundary representing the area of a page to be displayed when viewing the document on the screen. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li>
-		* <li>ViewClip name (Optional; PDF 1.4) The name of the page boundary to which the contents of a page are to be clipped when viewing the document on the screen. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li>
-		* <li>PrintArea name (Optional; PDF 1.4) The name of the page boundary representing the area of a page to be rendered when printing the document. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li>
-		* <li>PrintClip name (Optional; PDF 1.4) The name of the page boundary to which the contents of a page are to be clipped when printing the document. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li>
-		* <li>PrintScaling name (Optional; PDF 1.6) The page scaling option to be selected when a print dialog is displayed for this document. Valid values are: <ul><li>None, which indicates that the print dialog should reflect no page scaling</li><li>AppDefault (default), which indicates that applications should use the current print scaling</li><ul></li>
-		* <li>Duplex name (Optional; PDF 1.7) The paper handling option to use when printing the file from the print dialog. The following values are valid:<ul><li>Simplex - Print single-sided</li><li>DuplexFlipShortEdge - Duplex and flip on the short edge of the sheet</li><li>DuplexFlipLongEdge - Duplex and flip on the long edge of the sheet</li></ul>Default value: none</li>
-		* <li>PickTrayByPDFSize boolean (Optional; PDF 1.7) A flag specifying whether the PDF page size is used to select the input paper tray. This setting influences only the preset values used to populate the print dialog presented by a PDF viewer application. If PickTrayByPDFSize is true, the check box in the print dialog associated with input paper tray is checked. Note: This setting has no effect on Mac OS systems, which do not provide the ability to pick the input tray by size.</li>
-		* <li>PrintPageRange array (Optional; PDF 1.7) The page numbers used to initialize the print dialog box when the file is printed. The first page of the PDF file is denoted by 1. Each pair consists of the first and last pages in the sub-range. An odd number of integers causes this entry to be ignored. Negative numbers cause the entire array to be ignored. Default value: as defined by PDF viewer application</li>
-		* <li>NumCopies integer (Optional; PDF 1.7) The number of copies to be printed when the print dialog is opened for this file. Supported values are the integers 2 through 5. Values outside this range are ignored. Default value: as defined by PDF viewer application, but typically 1</li>
-		* </ul>
+		* <ul><li>HideToolbar boolean (Optional) A flag specifying whether to hide the viewer application's tool bars when the document is active. Default value: false.</li><li>HideMenubar boolean (Optional) A flag specifying whether to hide the viewer application's menu bar when the document is active. Default value: false.</li><li>HideWindowUI boolean (Optional) A flag specifying whether to hide user interface elements in the document's window (such as scroll bars and navigation controls), leaving only the document's contents displayed. Default value: false.</li><li>FitWindow boolean (Optional) A flag specifying whether to resize the document's window to fit the size of the first displayed page. Default value: false.</li><li>CenterWindow boolean (Optional) A flag specifying whether to position the document's window in the center of the screen. Default value: false.</li><li>DisplayDocTitle boolean (Optional; PDF 1.4) A flag specifying whether the window's title bar should display the document title taken from the Title entry of the document information dictionary (see Section 10.2.1, "Document Information Dictionary"). If false, the title bar should instead display the name of the PDF file containing the document. Default value: false.</li><li>NonFullScreenPageMode name (Optional) The document's page mode, specifying how to display the document on exiting full-screen mode:<ul><li>UseNone Neither document outline nor thumbnail images visible</li><li>UseOutlines Document outline visible</li><li>UseThumbs Thumbnail images visible</li><li>UseOC Optional content group panel visible</li></ul>This entry is meaningful only if the value of the PageMode entry in the catalog dictionary (see Section 3.6.1, "Document Catalog") is FullScreen; it is ignored otherwise. Default value: UseNone.</li><li>ViewArea name (Optional; PDF 1.4) The name of the page boundary representing the area of a page to be displayed when viewing the document on the screen. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li><li>ViewClip name (Optional; PDF 1.4) The name of the page boundary to which the contents of a page are to be clipped when viewing the document on the screen. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li><li>PrintArea name (Optional; PDF 1.4) The name of the page boundary representing the area of a page to be rendered when printing the document. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li><li>PrintClip name (Optional; PDF 1.4) The name of the page boundary to which the contents of a page are to be clipped when printing the document. Valid values are (see Section 10.10.1, "Page Boundaries").:<ul><li>MediaBox</li><li>CropBox (default)</li><li>BleedBox</li><li>TrimBox</li><li>ArtBox</li></ul></li><li>PrintScaling name (Optional; PDF 1.6) The page scaling option to be selected when a print dialog is displayed for this document. Valid values are: <ul><li>None, which indicates that the print dialog should reflect no page scaling</li><li>AppDefault (default), which indicates that applications should use the current print scaling</li></ul></li><li>Duplex name (Optional; PDF 1.7) The paper handling option to use when printing the file from the print dialog. The following values are valid:<ul><li>Simplex - Print single-sided</li><li>DuplexFlipShortEdge - Duplex and flip on the short edge of the sheet</li><li>DuplexFlipLongEdge - Duplex and flip on the long edge of the sheet</li></ul>Default value: none</li><li>PickTrayByPDFSize boolean (Optional; PDF 1.7) A flag specifying whether the PDF page size is used to select the input paper tray. This setting influences only the preset values used to populate the print dialog presented by a PDF viewer application. If PickTrayByPDFSize is true, the check box in the print dialog associated with input paper tray is checked. Note: This setting has no effect on Mac OS systems, which do not provide the ability to pick the input tray by size.</li><li>PrintPageRange array (Optional; PDF 1.7) The page numbers used to initialize the print dialog box when the file is printed. The first page of the PDF file is denoted by 1. Each pair consists of the first and last pages in the sub-range. An odd number of integers causes this entry to be ignored. Negative numbers cause the entire array to be ignored. Default value: as defined by PDF viewer application</li><li>NumCopies integer (Optional; PDF 1.7) The number of copies to be printed when the print dialog is opened for this file. Supported values are the integers 2 through 5. Values outside this range are ignored. Default value: as defined by PDF viewer application, but typically 1</li></ul>
 		* @param array $preferences array of options.
 		* @author Nicola Asuni
 		* @access public
@@ -15748,7 +15764,7 @@ if (!class_exists('TCPDF', false)) {
 			return false;
 		}
 
-        /**
+		/**
 		* Move a page to a previous position.
 		* @param int $frompage number of the source page
 		* @param int $topage number of the destination page (must be less than $frompage)
@@ -16164,8 +16180,8 @@ if (!class_exists('TCPDF', false)) {
 					$this->setPageBuffer($p, $temppage);
 				}
 				// move pages
+				$this->Bookmark($toc_name, 0, 0, $page_first);
 				for ($i = 0; $i < $numpages; ++$i) {
-					$this->Bookmark($toc_name, 0, 0, $page_last);
 					$this->movePage($page_last, $page);
 				}
 			}

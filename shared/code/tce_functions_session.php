@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2009-09-30
+// Last Update : 2010-01-15
 // 
 // Description : User-level session storage functions.
 //
@@ -211,8 +211,8 @@ if (isset($_REQUEST['PHPSESSID']) AND (strlen($_REQUEST['PHPSESSID'])>=32)) {
 	//Load $PHPSESSID from get/post/cookie
 	$PHPSESSID = substr($_REQUEST['PHPSESSID'],0,32);
 } else {
-	//create new PHPSESSID	
-	$PHPSESSID = md5($_SERVER['REMOTE_ADDR'].''.time().'TCExam');
+	//create new PHPSESSID
+	$PHPSESSID = md5(uniqid(uniqid('', true), true));
 }
 
 if ((!isset($_REQUEST['menu_mode'])) OR ($_REQUEST['menu_mode'] != 'startlongprocess')) { //temporary fix for flush problem for long processes
