@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2009-10-10
+// Last Update : 2010-02-06
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -87,7 +87,15 @@ function F_getUserTests() {
 				switch ($test_status) {
 					case 0: { // 0 = the test generation process is started but not completed
 						// print execute test link
-						$str .= ' <a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a>';
+						$str .= ' <a href="';
+						if ((!defined('K_DISPLAY_TEST_DESCRIPTION')) OR (!K_DISPLAY_TEST_DESCRIPTION)) {
+							// directly execute test
+							$str .= 'tce_test_execute.php';
+						} else {
+							// display test description before starting
+							$str .= 'tce_test_start.php';
+						}
+						$str .= '?testid='.$m['test_id'].'" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a>';
 						break;
 					}
 					case 1: // 1 = the test has been successfully created

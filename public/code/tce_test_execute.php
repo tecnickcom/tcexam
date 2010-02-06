@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2009-09-30
+// Last Update : 2010-02-06
 // 
 // Description : execute a specific test
 //
@@ -94,7 +94,7 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 				// update last question
 				F_updateQuestionLog($test_id, $testlog_id, $answer_id, $answer_text, $reaction_time);
 			}
-			// terminate the test (lock the test to status=4
+			// terminate the test (lock the test to status=4)
 			F_terminateUserTest($test_id);
 			// redirect the user to the index page
 			header('Location: index.php');

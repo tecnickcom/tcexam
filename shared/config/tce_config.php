@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2009-12-31
+// Last Update : 2010-02-06
 // 
 // Description : Shared configuration file.
 //
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '9.0.040');
+define ('K_TCEXAM_VERSION', '9.0.041');
 
 /**
  * 2-letters code for default language.
@@ -132,6 +132,11 @@ define ('K_ENABLE_QUESTION_EXPLANATION', true);
  * If true enable explanation field for answers.
  */
 define ('K_ENABLE_ANSWER_EXPLANATION', true);
+
+/**
+ * If true display test description before executing the test.
+ */
+define ('K_DISPLAY_TEST_DESCRIPTION', true);
 
 /**
  * User's session life time in seconds.
