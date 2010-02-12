@@ -1,3 +1,16 @@
+10.0.000 (2010-02-12)
+	- THIS IS A MAJOR RELEASE.
+	- Database schema is changed (see documentation on admin/doc/database).
+	- An option to avoid partial scoring for MCMA questions was added on Test Editor.
+	- An option to avoid logout when the time expires was added on Test Editor.
+	- A Database Backup and Restore page was added (works only on POSIX systems with MySQL or PostgreSQL).
+	- Constant K_PATH_BACKUP was added on shared/config/tce_paths.php
+	- Question statistics were improved.
+	- TCPDF library was updated.
+	- Language files were updated.
+
+--------------------------------------------------------------------------------
+
 9.0.041 (2010-02-06)
 	- Test description is now displayed before test execution (check the new K_DISPLAY_TEST_DESCRIPTION constant on shared/config/tce_config.php).
 	- TCPDF library was updated.

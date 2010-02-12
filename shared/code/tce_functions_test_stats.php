@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
+// Last Update : 2010-02-12
 // 
 // Description : Statistical functions for test results.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -141,13 +141,15 @@ function F_getQuestionTestStat($test_id, $question_id) {
 	$question_half_score = $test_score_right * $question_difficulty / 2;
 	
 	$data = array();
-	// number of right answers for multiple-choice questions
+	// number of questions
+	$data['num'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.'');
+	// number of questions with right answers
 	$data['right'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_score>'.$question_half_score.'');
-	// number of wrong answers for multiple-choice questions
+	// number of questions with wrong answers
 	$data['wrong'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_score<='.$question_half_score.'');
-	// total number of unanswered questions
+	// number of unanswered questions
 	$data['unanswered'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_change_time IS NULL');
-	// total number of undisplayed questions
+	// number of undisplayed questions
 	$data['undisplayed'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_display_time IS NULL');
 	// number of free-text unrated questions
 	$data['unrated'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_score IS NULL');

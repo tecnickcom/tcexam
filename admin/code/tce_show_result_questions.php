@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2009-10-10
+// Last Update : 2010-02-12
 // 
 // Description : Display questions statistics for the selected
 //               test.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -64,6 +64,7 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
+require_once('../code/tce_functions_statistics.php');
 require_once('../code/tce_functions_auth_sql.php');
 
 if ($l['a_meta_dir'] == 'rtl') {
@@ -172,11 +173,21 @@ echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NE
 echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
-?>
-</tr>
-<?php
+echo '</tr>'.K_NEWLINE;
+
+// get test data
+$testdata = F_getTestData($test_id);
+
+// get total number of questions for the selected test
+$num_questions = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.'');
+
 // output questions stats
-$sqlr = 'SELECT question_id, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
+$sqlr = 'SELECT 
+		question_id, 
+		COUNT(question_id) AS recurrence, 
+		AVG(testlog_score) AS average_score, 
+		AVG(testlog_change_time - testlog_display_time) AS average_time,
+		min(question_difficulty) AS question_difficulty
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.' 
 	WHERE testlog_testuser_id=testuser_id
 		AND testlog_question_id=question_id 
@@ -186,22 +197,24 @@ $sqlr = 'SELECT question_id, COUNT(question_id) AS recurrence, AVG(testlog_score
 if($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 1;
 	while($mr = F_db_fetch_array($rr)) {
-		echo '<tr>';
+		// get the question max score
+		$question_max_score = $testdata['test_score_right'] * $mr['question_difficulty'];
+		echo '<tr style="font-weight:bold;background-color:#FFFACD;">';
 		echo '<td rowspan="2" valign="top" class="questionid"><a href="tce_edit_question.php?question_id='.$mr['question_id'].'" title="'.$l['t_questions_editor'].'"><strong>'.$itemcount.'</strong></a></td>'.K_NEWLINE;
 		echo '<td rowspan="2" class="questionid">&nbsp;</td>'.K_NEWLINE;
-		echo '<td>'.$mr['recurrence'].'</td>'.K_NEWLINE;
-		echo '<td>'.number_format($mr['average_score'], 3, '.', '').'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$mr['recurrence'].' '.F_formatPercentage($mr['recurrence'] / $num_questions).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.number_format($mr['average_score'], 3, '.', '').' '.F_formatPercentage($mr['average_score'] / $question_max_score).'</td>'.K_NEWLINE;
 		if (stripos($mr['average_time'], ':') !== FALSE) {
 			// PostgreSQL returns formatted time, while MySQL returns the number of seconds
 			$mr['average_time'] = strtotime($mr['average_time']);
 		}
-		echo '<td>&nbsp;'.date('i:s', $mr['average_time']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">&nbsp;'.date('i:s', $mr['average_time']).'</td>'.K_NEWLINE;
 		$qsttestdata = F_getQuestionTestStat($test_id, $mr['question_id']);
-		echo '<td>'.$qsttestdata['right'].'</td>'.K_NEWLINE;
-		echo '<td>'.$qsttestdata['wrong'].'</td>'.K_NEWLINE;
-		echo '<td>'.$qsttestdata['unanswered'].'</td>'.K_NEWLINE;
-		echo '<td>'.$qsttestdata['undisplayed'].'</td>'.K_NEWLINE;
-		echo '<td>'.$qsttestdata['unrated'].'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$qsttestdata['right'].' '.F_formatPercentage($qsttestdata['right'] / $qsttestdata['num']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$qsttestdata['wrong'].' '.F_formatPercentage($qsttestdata['wrong'] / $qsttestdata['num']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$qsttestdata['unanswered'].' '.F_formatPercentage($qsttestdata['unanswered'] / $qsttestdata['num']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$qsttestdata['undisplayed'].' '.F_formatPercentage($qsttestdata['undisplayed'] / $qsttestdata['num']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$qsttestdata['unrated'].' '.F_formatPercentage($qsttestdata['unrated'] / $qsttestdata['num']).'</td>'.K_NEWLINE;
 		echo '</tr>'.K_NEWLINE;
 		echo '<tr>';
 		$question_description = '';
@@ -213,7 +226,7 @@ if($rr = F_db_query($sqlr, $db)) {
 		} else {
 			F_display_db_error();
 		}
-		echo '<td colspan="8" align="'.$txtdir.'">'.$question_description.'</td>';
+		echo '<td colspan="8" align="'.$txtdir.'" style="background-color:white;">'.$question_description.'</td>';
 		echo '</tr>'.K_NEWLINE;
 		$itemcount++;
 		
@@ -230,17 +243,42 @@ if($rr = F_db_query($sqlr, $db)) {
 				echo '<td rowspan="2">&nbsp;</td>'.K_NEWLINE;
 				echo '<td rowspan="2" valign="top"><a href="tce_edit_answer.php?answer_id='.$ma['answer_id'].'" title="'.$l['t_answers_editor'].'">'.$answcount.'</a></td>'.K_NEWLINE;
 				
+				$num_all_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
+				
+				$num_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
+				
 				$right_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=0) OR (answer_isright=\'1\' AND logansw_selected=1) OR (answer_position=logansw_position))');
 				
 				$wrong_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=1) OR (answer_isright=\'1\' AND logansw_selected=0)) AND (answer_position!=logansw_position)');
 				
 				$unanswered = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND logansw_selected=-1');
 				
-				echo '<td>'.($right_answers + $wrong_answers + $unanswered).'</td>'.K_NEWLINE;
+				$perc = 0;
+				if ($num_all_answers > 0 ) {
+					$perc = ($num_answers / $num_all_answers);
+				}
+				echo '<td class="numeric">'.$num_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
+				
 				echo '<td colspan="2">&nbsp;</td>'.K_NEWLINE;
-				echo '<td>'.$right_answers.'</td>'.K_NEWLINE;
-				echo '<td>'.$wrong_answers.'</td>'.K_NEWLINE;
-				echo '<td>'.$unanswered.'</td>'.K_NEWLINE;
+				
+				$perc = 0;
+				if ($num_answers > 0 ) {
+					$perc = ($right_answers / $num_answers);
+				}
+				echo '<td class="numeric">'.$right_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
+				
+				$perc = 0;
+				if ($num_answers > 0 ) {
+					$perc = round($wrong_answers * 100 / $num_answers);
+				}
+				echo '<td class="numeric">'.$wrong_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
+				
+				$perc = 0;
+				if ($num_answers > 0 ) {
+					$perc = round($unanswered * 100 / $num_answers);
+				}
+				echo '<td class="numeric">'.$unanswered.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
+				
 				echo '<td colspan="2">&nbsp;</td>'.K_NEWLINE;
 				echo '</tr>'.K_NEWLINE;
 				echo '<tr>'.K_NEWLINE;

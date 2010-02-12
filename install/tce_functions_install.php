@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2009-10-10
+// Last Update : 2010-02-08
 // 
 // Description : Installation functions for TCExam.
 //
@@ -58,18 +58,15 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 	define ('K_DATABASE_TYPE', $db_type); // database type (for Database Abstraction Layer)
 	// Load the Database Abstraction Layer for selected DATABASE type
 	switch (K_DATABASE_TYPE) {
-		case 'ORACLE':
-			default: {
+		case 'ORACLE': {
 			require_once('../shared/code/tce_db_dal_oracle.php');
 			break;
 		}
-		case 'POSTGRESQL':
-			default: {
+		case 'POSTGRESQL': {
 			require_once('../shared/code/tce_db_dal_postgresql.php');
 			break;
 		}
-		case 'MYSQL':
-			default: {
+		case 'MYSQL': {
 			require_once('../shared/code/tce_db_dal_mysql.php');
 			break;
 		}

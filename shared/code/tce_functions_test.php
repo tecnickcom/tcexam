@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-02-06
+// Last Update : 2010-02-12
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -1195,7 +1195,22 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 			}
 			if ($question_type > 1) {
 				// normalize score
-				$answer_score = round(($answer_score / $num_answers), 3);
+				if (F_getBoolean($testdata['test_mcma_partial_score'])) {
+					// use partial scoring for MCMA and ORDER questions
+					$answer_score = round(($answer_score / $num_answers), 3);
+				} else {
+					// all-or-nothing points
+					if ($answer_score >= ($question_right_score * $num_answers)) {
+						// right
+						$answer_score = $question_right_score;
+					} elseif ($answer_score == ($question_unanswered_score * $num_answers)) {
+						// unanswered
+						$answer_score = $question_unanswered_score;
+					} else {
+						// wrong
+						$answer_score = $question_wrong_score;
+					}
+				}
 			}
 		} else {
 			F_display_db_error();
@@ -1260,7 +1275,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 function F_questionForm($test_id, $testlog_id, $formname) {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_tcecode.php');
-	global $db, $l, $examtime;
+	global $db, $l, $examtime, $timeout_logout;
 	$test_id = intval($test_id);
 	$testlog_id = intval($testlog_id);
 	$user_id = intval($_SESSION['session_user_id']);
@@ -1321,9 +1336,14 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			$str .= '<input type="hidden" name="testid" id="testid" value="'.$test_id.'" />'.K_NEWLINE;
 			$str .= '<input type="hidden" name="testlogid" id="testlogid" value="'.$testlog_id.'" />'.K_NEWLINE;
 			$str .= '<input type="hidden" name="testuser_id" id="testuser_id" value="'.$m['testlog_testuser_id'].'" />'.K_NEWLINE;
+			// get test data
+			$test_data = F_getTestData($test_id);
 			// store time information for interactive timer
-			$examtime = F_getTestStartTime($m['testlog_testuser_id']) + F_getTestDuration($test_id);
+			$examtime = F_getTestStartTime($m['testlog_testuser_id']) + ($test_data['test_duration_time'] * K_SECONDS_IN_MINUTE);
 			$str .= '<input type="hidden" name="examtime" id="examtime" value="'.$examtime.'" />'.K_NEWLINE;
+			if (F_getBoolean($test_data['test_logout_on_timeout'])) {
+				$str .= '<input type="hidden" name="timeout_logout" id="timeout_logout" value="1" />'.K_NEWLINE;
+			}
 			$str .= '<a name="questionsection" id="questionsection"></a>'.K_NEWLINE;
 			$str .= '<div class="tcecontentbox">'.K_NEWLINE;
 			//fieldset

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2009-10-07
+// Last Update : 2010-02-12
 // 
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -200,7 +200,7 @@ function getDirFiles($path, $sort=true, $baselen=0) {
 	 while (false !== ($file = readdir($handle))) {
 		if (is_file($path.$file) AND (substr($file, 0, 6) != 'latex_')) {
 			$files_list[] = substr($path.$file, $baselen);
-		} elseif (is_dir($path.$file) AND ($file != '.') AND ($file != '..') AND ($file != 'lang')) {
+		} elseif (is_dir($path.$file) AND ($file != '.') AND ($file != '..') AND ($file != 'lang') AND ($file != 'backup')) {
 			$files_list = array_merge($files_list, getDirFiles($path.$file.'/', $sort, $baselen));
 		}
 	}

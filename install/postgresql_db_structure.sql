@@ -2,7 +2,7 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2009-10-09
+Last Update : 2010-02-12
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
@@ -18,7 +18,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License: 
-   Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+   Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -137,6 +137,8 @@ CREATE TABLE "tce_tests" (
 	"test_noanswer_enabled" Boolean NOT NULL Default '1',
 	"test_mcma_radio" Boolean NOT NULL Default '1',
 	"test_repeatable" Boolean NOT NULL Default '0',
+	"test_mcma_partial_score" Boolean NOT NULL Default '1',
+	"test_logout_on_timeout" Boolean NOT NULL Default '0',
 constraint "PK_tce_tests_test_id" primary key ("test_id")
 ) Without Oids;
 

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2009-12-15 12:04:50
+// DATE: 2010-02-12 13:08:00
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -490,6 +490,24 @@ $tmx['w_repeat']='ripeti';
 $tmx['h_repeat_test']='ripeti questo test (i risultati correnti verranno cancellati)';
 $tmx['w_calendar']='calendario';
 $tmx['m_score_higher_than_max']='il punteggio selezionato è maggiore del massimo consentito';
+$tmx['w_mcma_partial_score']='punteggio parziale per MCMA';
+$tmx['h_mcma_partial_score']='se selezionato, utilizza punteggi parziali per le domande MCMA ed ORDER';
+$tmx['h_logout_on_timeout']='se selezionato, chiude la sessione utente al termine del tempo disponibile';
+$tmx['w_logout_on_timeout']='logout al temine del tempo';
+$tmx['t_backup_editor']='Backup e Ripristino Database';
+$tmx['w_backup']='backup';
+$tmx['w_restore']='ripristina';
+$tmx['w_backup_file']='file di backup';
+$tmx['h_backup']='esegue un nuovo backup';
+$tmx['h_restore']='ripristina il backup selezionato';
+$tmx['m_backup_completed']='Il backup è stato eseguito';
+$tmx['m_restore_completed']='Il ripristino è stato eseguito';
+$tmx['m_restore_confirm']='conferma ripristino';
+$tmx['hp_edit_backups']='Attraverso questa maschera è possibile creare e ripristinare delle copie di archivio (backup) del database (fuziona solo nei sistemi POSIX con MySQL o PostgreSQL).
+Premendo il tasto [backup] il sistema crea una copia compressa del dump SQL dell\'intero database di TCExam (struttura e dati).
+Per ripristinare una copia di backup è sufficiente selezionarla e premere il tasto [rispristina].
+Per sicurezza, prima di ogni ripristino il sistema esegue un backup così da poter annullare l\'operazione di ripristino.
+I file di backup vengono registrati nella cartella "cache/backup" con la seguente sintassi: AAAAMMGGhhmmss_tcexam_backup.sql.gz , dove AAAAMMGGhhmmss rappresenta le cifre dell\'anno (A), mese (M), giorno (G), ora (h), minuti (m), secondi (s).';
 
 // EOF ----------
 ?>

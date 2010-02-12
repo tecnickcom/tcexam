@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2010-02-06
+// Last Update : 2010-02-12
 // 
 // Description : execute a specific test
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -196,10 +196,15 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		
 		// start the countdown if disabled
 		if (isset($examtime)) {
+			if (isset($timeout_logout) AND ($timeout_logout)) {
+				$timeout_logout = 'true';	
+			} else {
+				$timeout_logout = 'false';
+			}
 			echo '<script type="text/javascript">'.K_NEWLINE;
 			echo '//<![CDATA['.K_NEWLINE;
 			echo 'if(!enable_countdown) {'.K_NEWLINE;
-			echo '	FJ_start_timer(\'true\', '.(time() - $examtime).', \''.addslashes($l['m_exam_end_time']).'\');'.K_NEWLINE;
+			echo '	FJ_start_timer(\'true\', '.(time() - $examtime).', \''.addslashes($l['m_exam_end_time']).'\', '.$timeout_logout.');'.K_NEWLINE;
 			echo '}'.K_NEWLINE;
 			echo 'var loadtime=new Date();'.K_NEWLINE;
 			echo 'document.getElementById(\'display_time\').value=loadtime.getTime();'.K_NEWLINE;

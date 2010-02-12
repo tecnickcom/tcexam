@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal.php
 // Begin       : 2003-10-12
-// Last Update : 2009-10-09
+// Last Update : 2010-02-08
 // 
 // Description : Load the functions for the selected database
 //               type (Database Abstraction Layer).
@@ -56,17 +56,17 @@
  */
 
 switch (K_DATABASE_TYPE) {
-	case 'ORACLE': {
-		require_once('../../shared/code/tce_db_dal_oracle.php');
+	case 'MYSQL':
+	default: {
+		require_once('../../shared/code/tce_db_dal_mysql.php');
 		break;
 	}
 	case 'POSTGRESQL': {
 		require_once('../../shared/code/tce_db_dal_postgresql.php');
 		break;
 	}
-	case 'MYSQL':
-	default: {
-		require_once('../../shared/code/tce_db_dal_mysql.php');
+	case 'ORACLE': {
+		require_once('../../shared/code/tce_db_dal_oracle.php');
 		break;
 	}
 }

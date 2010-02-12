@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ru
-// DATE: 2009-12-15 12:05:04
+// DATE: 2010-02-12 13:08:10
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -490,6 +490,24 @@ $tmx['w_repeat']='repeat';
 $tmx['h_repeat_test']='repeat this test (current results will be deleted)';
 $tmx['w_calendar']='calendar';
 $tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
+$tmx['w_mcma_partial_score']='partial score for MCMA';
+$tmx['h_mcma_partial_score']='if selected, uses partial score for MCMA questions';
+$tmx['h_logout_on_timeout']='if selected, logs out the user when the time expires';
+$tmx['w_logout_on_timeout']='logout when time expires';
+$tmx['t_backup_editor']='Database Backup and Restore';
+$tmx['w_backup']='backup';
+$tmx['w_restore']='restore';
+$tmx['w_backup_file']='backup file';
+$tmx['h_backup']='create a new backup';
+$tmx['h_restore']='restore the selected backup';
+$tmx['m_backup_completed']='backup has been sucessfully created';
+$tmx['m_restore_completed']='restore has been sucessfully created';
+$tmx['m_restore_confirm']='confirm restoring';
+$tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 
 // EOF ----------
 ?>

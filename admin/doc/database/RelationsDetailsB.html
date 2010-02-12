@@ -3,26 +3,35 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta name="keywords" content="TDM_REP">
-		
+		<meta name="keywords" content="TCExam, database model, ERD">
+		<meta name="author" content="Nicola Asuni - tecnick.com s.r.l.">
 
 		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
 		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
-		<title>TCExam Database - HTML Report</title>
+		<title>Toad Data Modeler - HTML Report</title>
 	</head>
 
 <body class="rightPage">
 <a name = "Relation_6"></a>
-<div class="caption1">rel_answer_logs (rel_answer_logs)</div>
+<div class="caption1">Relationship 'rel_answer_logs'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_answers    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_answers    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -67,16 +76,25 @@
 
  <br><br> 
 <a name = "Relation_21"></a>
-<div class="caption1">rel_group_test (rel_group_test)</div>
+<div class="caption1">Relationship 'rel_group_test'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_user_groups    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_user_groups    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_testgroups   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_testgroups   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -114,16 +132,25 @@
 
  <br><br> 
 <a name = "Relation_19"></a>
-<div class="caption1">rel_group_user (rel_group_user)</div>
+<div class="caption1">Relationship 'rel_group_user'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_user_groups    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_user_groups    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_usrgroups   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_usrgroups   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -161,16 +188,25 @@
 
  <br><br> 
 <a name = "Relation_24"></a>
-<div class="caption1">rel_module_subjects (rel_module_subjects)</div>
+<div class="caption1">Relationship 'rel_module_subjects'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_modules    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_modules    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_subjects   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_subjects   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -208,16 +244,25 @@
 
  <br><br> 
 <a name = "Relation_4"></a>
-<div class="caption1">rel_question_answers (rel_question_answers)</div>
+<div class="caption1">Relationship 'rel_question_answers'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_answers   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_answers   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -262,16 +307,25 @@
 
  <br><br> 
 <a name = "Relation_5"></a>
-<div class="caption1">rel_question_logs (rel_question_logs)</div>
+<div class="caption1">Relationship 'rel_question_logs'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_questions    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -316,16 +370,25 @@
 
  <br><br> 
 <a name = "Relation_23"></a>
-<div class="caption1">rel_set_subjects (rel_set_subjects)</div>
+<div class="caption1">Relationship 'rel_set_subjects'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_test_subject_set    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_test_subject_set    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -370,16 +433,25 @@
 
  <br><br> 
 <a name = "Relation_17"></a>
-<div class="caption1">rel_subject_author (rel_subject_author)</div>
+<div class="caption1">Relationship 'rel_subject_author'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_subjects   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_subjects   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -417,16 +489,25 @@
 
  <br><br> 
 <a name = "Relation_1"></a>
-<div class="caption1">rel_subject_questions (rel_subject_questions)</div>
+<div class="caption1">Relationship 'rel_subject_questions'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_questions   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_questions   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -471,16 +552,25 @@
 
  <br><br> 
 <a name = "Relation_2"></a>
-<div class="caption1">rel_subject_set (rel_subject_set)</div>
+<div class="caption1">Relationship 'rel_subject_set'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_subjects    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_test_subjects   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -525,16 +615,25 @@
 
  <br><br> 
 <a name = "Relation_16"></a>
-<div class="caption1">rel_test_author (rel_test_author)</div>
+<div class="caption1">Relationship 'rel_test_author'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -579,16 +678,25 @@
 
  <br><br> 
 <a name = "Relation_20"></a>
-<div class="caption1">rel_test_group (rel_test_group)</div>
+<div class="caption1">Relationship 'rel_test_group'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_testgroups   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_testgroups   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -633,16 +741,25 @@
 
  <br><br> 
 <a name = "Relation_22"></a>
-<div class="caption1">rel_test_subjset (rel_test_subjset)</div>
+<div class="caption1">Relationship 'rel_test_subjset'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_test_subject_set   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_test_subject_set   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -687,16 +804,25 @@
 
  <br><br> 
 <a name = "Relation_8"></a>
-<div class="caption1">rel_test_users (rel_test_users)</div>
+<div class="caption1">Relationship 'rel_test_users'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_tests    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -741,16 +867,25 @@
 
  <br><br> 
 <a name = "Relation_11"></a>
-<div class="caption1">rel_testlog_answers (rel_testlog_answers)</div>
+<div class="caption1">Relationship 'rel_testlog_answers'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs_answers   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -795,16 +930,25 @@
 
  <br><br> 
 <a name = "Relation_10"></a>
-<div class="caption1">rel_testuser_logs (rel_testuser_logs)</div>
+<div class="caption1">Relationship 'rel_testuser_logs'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_logs   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -849,16 +993,25 @@
 
  <br><br> 
 <a name = "Relation_18"></a>
-<div class="caption1">rel_user_group (rel_user_group)</div>
+<div class="caption1">Relationship 'rel_user_group'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_usrgroups   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_usrgroups   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -903,16 +1056,25 @@
 
  <br><br> 
 <a name = "Relation_3"></a>
-<div class="caption1">rel_user_tests (rel_user_tests)</div>
+<div class="caption1">Relationship 'rel_user_tests'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_tests_users   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>
@@ -957,16 +1119,25 @@
 
  <br><br> 
 <a name = "Relation_12"></a>
-<div class="caption1">session_data (session_data)</div>
+<div class="caption1">Relationship 'session_data'</div>
 <div class="caption2">General info</div>
 <table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
  
   <tr>
     <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> informative    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
   <tr>
-    <td class="tabhead" > Parent table    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
   <tr>
-    <td class="tabhead" > Child table    </td>    <td class="tabdata"  colspan="3"> tce_sessions   </td>  </tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_sessions   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > optional    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
 </table>
 
 <div class="caption2">Referential integrity</div>

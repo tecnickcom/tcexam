@@ -1,7 +1,7 @@
 //============================================================+
 // File name   : timer.js
 // Begin       : 2004-04-29
-// Last Update : 2008-09-23
+// Last Update : 2010-02-12
 // 
 // Description : display clock and countdown timer
 //
@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -45,6 +45,7 @@ var remaining_time = 0; // countdown duration
 var msg_endtime = ""; // message to display at the end of time
 var start_time = 0; // client computer datetime
 var displayendtime = true; // display popup message indicating the end of the time
+var timeout_logout = false; // if true logout user at the end of available time
 
 /**
  * Display current date-time and remaining time (countdown)
@@ -97,8 +98,13 @@ function FJ_timer() {
 			if (displayendtime && (msg_endtime.length > 1)) {
 				displayendtime = false;
 				alert(msg_endtime);
-				// logout
-				window.location.replace("tce_logout.php");
+				if (timeout_logout) {
+					// logout
+					window.location.replace("tce_logout.php");
+				} else {
+					// redirect user to index page
+					window.location.replace("index.php");
+				}
 			}	
 		}
 		
@@ -138,11 +144,13 @@ function FJ_timer() {
  * @param countdown boolean if true enable countdown
  * @param remaining int remaining test time in seconds
  * @param msg string message to display at the end of countdown
+ * @param logout boolean if true logout user at the end of available time
  */
-function FJ_start_timer(countdown, remaining, msg) {
+function FJ_start_timer(countdown, remaining, msg, logout) {
 	enable_countdown = countdown;
 	remaining_time = remaining;
 	msg_endtime = msg;
+	timeout_logout = logout;
 	var startdate = new Date();
 	start_time = (startdate.getTime() / 1000); // local computer time
 	// update clock each second

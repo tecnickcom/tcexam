@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20091215T1202Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20100212T1200Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -34551,6 +34551,1093 @@
    </tuv>
    <tuv xml:lang="HU">
     <seg>a kiválasztott pontszám nagyobb mint a maximálisan elfogadható</seg>
+   </tuv>
+  </tu>
+<!-- TCExam 10.0.000 (2010-02-12) -->
+  <tu tuid="w_mcma_partial_score" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>punteggio parziale per MCMA</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>partial score for MCMA</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_mcma_partial_score" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>se selezionato, utilizza punteggi parziali per le domande MCMA ed ORDER</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>if selected, uses partial score for MCMA questions</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_logout_on_timeout" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>se selezionato, chiude la sessione utente al termine del tempo disponibile</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>if selected, logs out the user when the time expires</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_logout_on_timeout" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>logout al temine del tempo</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>logout when time expires</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>logout when time expires</seg>
+   </tuv>
+  </tu>
+    <tu tuid="t_backup_editor" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Backup e Ripristino Database</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Database Backup and Restore</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_backup" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>backup</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>backup</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_restore" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>ripristina</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>restore</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>restore</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_backup_file" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>file di backup</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>backup file</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>backup file</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_backup" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>esegue un nuovo backup</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>create a new backup</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>create a new backup</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_restore" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>ripristina il backup selezionato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>restore the selected backup</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>restore the selected backup</seg>
+   </tuv>
+  </tu>
+    <tu tuid="m_backup_completed" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Il backup è stato eseguito</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>backup has been sucessfully created</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_restore_completed" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Il ripristino è stato eseguito</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>restore has been sucessfully created</seg>
+   </tuv>
+  </tu>
+    <tu tuid="m_restore_confirm" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>conferma ripristino</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>confirm restoring</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>confirm restoring</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_edit_backups" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Attraverso questa maschera è possibile creare e ripristinare delle copie di archivio (backup) del database (fuziona solo nei sistemi POSIX con MySQL o PostgreSQL).
+Premendo il tasto [backup] il sistema crea una copia compressa del dump SQL dell'intero database di TCExam (struttura e dati).
+Per ripristinare una copia di backup è sufficiente selezionarla e premere il tasto [rispristina].
+Per sicurezza, prima di ogni ripristino il sistema esegue un backup così da poter annullare l'operazione di ripristino.
+I file di backup vengono registrati nella cartella "cache/backup" con la seguente sintassi: AAAAMMGGhhmmss_tcexam_backup.sql.gz , dove AAAAMMGGhhmmss rappresenta le cifre dell'anno (A), mese (M), giorno (G), ora (h), minuti (m), secondi (s).</seg>>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
+Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
+To restore an existing backup archive, select it and push the [restore] button.
+Note that before each restore the system automatically execute a new backup, so you can undo the operation.
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).</seg>
    </tuv>
   </tu>
  </body>

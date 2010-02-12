@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2009-10-10
+// Last Update : 2010-02-12
 //  
 // Description : Edit Tests
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -173,6 +173,16 @@ if(!isset($test_repeatable) OR (empty($test_repeatable))) {
 	$test_repeatable = 0;
 } else {
 	$test_repeatable = intval($test_repeatable);
+}
+if(!isset($test_mcma_partial_score) OR (empty($test_mcma_partial_score))) {
+	$test_mcma_partial_score = 0;
+} else {
+	$test_mcma_partial_score = intval($test_mcma_partial_score);
+}
+if(!isset($test_logout_on_timeout) OR (empty($test_logout_on_timeout))) {
+	$test_logout_on_timeout = 0;
+} else {
+	$test_logout_on_timeout = intval($test_logout_on_timeout);
 }
 if(!isset($test_max_score)) {
 	$test_max_score = 0;
@@ -451,7 +461,9 @@ switch($menu_mode) {
 				test_menu_enabled=\''.$test_menu_enabled.'\',
 				test_noanswer_enabled=\''.$test_noanswer_enabled.'\',
 				test_mcma_radio=\''.$test_mcma_radio.'\',
-				test_repeatable=\''.$test_repeatable.'\'
+				test_repeatable=\''.$test_repeatable.'\',
+				test_mcma_partial_score=\''.$test_mcma_partial_score.'\',
+				test_logout_on_timeout=\''.$test_logout_on_timeout.'\'
 				WHERE test_id='.$test_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -520,7 +532,9 @@ switch($menu_mode) {
 				test_menu_enabled,
 				test_noanswer_enabled,
 				test_mcma_radio,
-				test_repeatable
+				test_repeatable,
+				test_mcma_partial_score,
+				test_logout_on_timeout
 				) VALUES (
 				\''.F_escape_sql($test_name).'\',
 				\''.F_escape_sql($test_description).'\',
@@ -544,7 +558,9 @@ switch($menu_mode) {
 				\''.$test_menu_enabled.'\',
 				\''.$test_noanswer_enabled.'\',
 				\''.$test_mcma_radio.'\',
-				\''.$test_repeatable.'\'
+				\''.$test_repeatable.'\',
+				\''.$test_mcma_partial_score.'\',
+				\''.$test_logout_on_timeout.'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -643,6 +659,8 @@ switch($menu_mode) {
 		$test_noanswer_enabled = true;
 		$test_mcma_radio = true;
 		$test_repeatable = false;
+		$test_mcma_partial_score = true;
+		$test_logout_on_timeout = false;
 		break;
 	}
 
@@ -693,6 +711,8 @@ if($formstatus) {
 				$test_noanswer_enabled = F_getBoolean($m['test_noanswer_enabled']);
 				$test_mcma_radio = F_getBoolean($m['test_mcma_radio']);
 				$test_repeatable = F_getBoolean($m['test_repeatable']);
+				$test_mcma_partial_score = F_getBoolean($m['test_mcma_partial_score']);
+				$test_logout_on_timeout = F_getBoolean($m['test_logout_on_timeout']);
 			} else {
 				$test_name = '';
 				$test_description = '';
@@ -716,6 +736,8 @@ if($formstatus) {
 				$test_noanswer_enabled = true;
 				$test_mcma_radio = true;
 				$test_repeatable = false;
+				$test_mcma_partial_score = true;
+				$test_logout_on_timeout = false;
 			}
 		} else {
 			F_display_db_error();
@@ -964,6 +986,19 @@ echo ' title="'.$l['h_mcma_radio'].'" />';
 
 <div class="row">
 <span class="label">
+<label for="test_mcma_partial_score"><?php echo $l['w_mcma_partial_score']; ?></label>
+</span>
+<span class="formw">
+<?php
+echo '<input type="checkbox" name="test_mcma_partial_score" id="test_mcma_partial_score" value="1"';
+if($test_mcma_partial_score) {echo ' checked="checked"';}
+echo ' title="'.$l['h_mcma_partial_score'].'" />';
+?>
+</span>
+</div>
+
+<div class="row">
+<span class="label">
 <label for="test_noanswer_enabled"><?php echo $l['w_enable_noanswer']; ?></label>
 </span>
 <span class="formw">
@@ -1036,6 +1071,19 @@ echo ' title="'.$l['h_report_to_users'].'" />';
 echo '<input type="checkbox" name="test_repeatable" id="test_repeatable" value="1"';
 if($test_repeatable) {echo ' checked="checked"';}
 echo ' title="'.$l['h_repeatable_test'].'" />';
+?>
+</span>
+</div>
+
+<div class="row">
+<span class="label">
+<label for="test_logout_on_timeout"><?php echo $l['w_logout_on_timeout']; ?></label>
+</span>
+<span class="formw">
+<?php
+echo '<input type="checkbox" name="test_logout_on_timeout" id="test_logout_on_timeout" value="1"';
+if($test_logout_on_timeout) {echo ' checked="checked"';}
+echo ' title="'.$l['h_logout_on_timeout'].'" />';
 ?>
 </span>
 </div>

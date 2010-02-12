@@ -2,7 +2,7 @@
 ============================================================
 File name   : oracle_db_structure.sql
 Begin       : 2009-10-09
-Last Update : 2009-10-10
+Last Update : 2010-02-12
 
 Description : TCExam database structure.
 Database    : Oracle
@@ -18,7 +18,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License: 
-   Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com S.r.l.
+   Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
    
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -148,6 +148,8 @@ CREATE TABLE tce_tests (
 	test_noanswer_enabled NUMBER(1) DEFAULT '1' NOT NULL,
 	test_mcma_radio NUMBER(1) DEFAULT '1' NOT NULL,
 	test_repeatable NUMBER(1) DEFAULT '0' NOT NULL,
+	test_mcma_partial_score NUMBER(1) DEFAULT '1' NOT NULL,
+	test_logout_on_timeout Boolean NUMBER(1) DEFAULT '0' NOT NULL,
 constraint PK_tce_tests_test_id primary key (test_id)
 );
 CREATE SEQUENCE tce_tests_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;

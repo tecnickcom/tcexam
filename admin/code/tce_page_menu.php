@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2009-09-30
+// Last Update : 2010-02-12
 // 
 // Description : Output XHTML unordered list menu.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -86,6 +86,9 @@ echo '<li>'.F_menu_link('tce_show_result_user.php', $l['t_result_user'], $l['w_u
 echo '</ul></li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_show_result_questions.php', $l['t_result_questions'], $l['w_stats'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
 echo '</ul></li>'.K_NEWLINE;
+if ((K_DATABASE_TYPE == 'MYSQL') OR (K_DATABASE_TYPE == 'POSTGRESQL')) {
+	echo '<li>'.F_menu_link('tce_edit_backup.php', $l['t_backup_editor'], $l['w_backup'], K_AUTH_ADMINISTRATOR).'</li>'.K_NEWLINE;
+}
 echo '<li>'.F_menu_link('http://www.tcexam.org', $l['h_guide'], $l['w_guide'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_page_info.php', $l['h_info'], $l['w_info'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
 if ($_SESSION['session_user_level'] > 0) {

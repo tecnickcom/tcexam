@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_timer.php
 // Begin       : 2004-04-29
-// Last Update : 2009-09-30
+// Last Update : 2010-02-12
 // 
 // Description : Display timer (date-time + countdown).
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -50,10 +50,16 @@
  */
 
 if (!isset($_REQUEST['examtime'])) {
-	$_REQUEST['examtime'] = 0; // remaining exam time in seconds
+	$examtime = 0; // remaining exam time in seconds
 	$enable_countdown = 'false';	
 } else {
+	$examtime = floatval($_REQUEST['examtime']);
 	$enable_countdown = 'true';
+	if (isset($_REQUEST['timeout_logout']) AND ($_REQUEST['timeout_logout'])) {
+		$timeout_logout = 'true';	
+	} else {
+		$timeout_logout = 'false';
+	}
 }
 
 echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" id="timerform">'.K_NEWLINE;
@@ -65,7 +71,7 @@ echo '</form>'.K_NEWLINE;
 echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'timer.js" type="text/javascript"></script>'.K_NEWLINE;
 echo '<script type="text/javascript">'.K_NEWLINE;
 echo '//<![CDATA['.K_NEWLINE;
-echo 'FJ_start_timer('.$enable_countdown.', '.(time() - $_REQUEST['examtime']).', \''.addslashes($l['m_exam_end_time']).'\');'.K_NEWLINE;
+echo 'FJ_start_timer('.$enable_countdown.', '.(time() - $examtime).', \''.addslashes($l['m_exam_end_time']).'\', '.$timeout_logout.');'.K_NEWLINE;
 echo '//]]>'.K_NEWLINE;
 echo '</script>'.K_NEWLINE;
 
