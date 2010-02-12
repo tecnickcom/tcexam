@@ -1,3 +1,6 @@
+10.0.001 (2010-02-12)
+	- Missing update was added.
+	
 10.0.000 (2010-02-12)
 	- THIS IS A MAJOR RELEASE.
 	- Database schema is changed (see documentation on admin/doc/database).

@@ -311,7 +311,7 @@ if($r = F_db_query($sql, $db)) {
 		if ($_REQUEST['mode'] >= 3) {
 			
 			// add a bookmark
-			$pdf->Bookmark($user_lastname." ".$user_firstname." (".$user_name."), ".$test_score." ".F_formatPdfPercentage($test_score / $test_max_score)."", 0, 0);
+			$pdf->Bookmark($user_lastname.' '.$user_firstname.' ('.$user_name.'), '.$test_score.' '.F_formatPdfPercentage($test_score / $test_max_score), 0, 0);
 		
 			// calculate some sizes
 			$user_elements = 4;
@@ -340,7 +340,7 @@ if($r = F_db_query($sql, $db)) {
 			$pdf->Cell($user_data_cell_width, $data_cell_height, $user_lastname, 1, 0, 'C', 0);
 			$pdf->Cell($user_data_cell_width, $data_cell_height, $user_firstname, 1, 0, 'C', 0);
 			$pdf->Cell($user_data_cell_width, $data_cell_height, $user_name, 1, 0, 'C', 0);
-			$pdf->Cell($user_data_cell_width, $data_cell_height, $test_score." ".F_formatPdfPercentage($test_score / $test_max_score)."".$passmsg."", 1, 1, 'C', 0);
+			$pdf->Cell($user_data_cell_width, $data_cell_height, $test_score.' '.F_formatPdfPercentage($test_score / $test_max_score).''.$passmsg, 1, 1, 'C', 0);
 			
 			$pdf->Ln(5);
 		}
@@ -414,7 +414,7 @@ if($r = F_db_query($sql, $db)) {
 			$usrtestdata = F_getUserTestStat($test_id, $user_id);
 			// right answers
 			$pdf->Cell($column_names_width, $data_cell_height, $l['w_answers_right'].': ', 0, 0, $dirlabel, 0);
-			$pdf->Cell($info_cell_width, $data_cell_height, $usrtestdata['right']." ".F_formatPdfPercentage($usrtestdata['right'] / $usrtestdata['all'])."", 0, 1, $dirvalue, 0);
+			$pdf->Cell($info_cell_width, $data_cell_height, $usrtestdata['right'].' '.F_formatPdfPercentage($usrtestdata['right'] / $usrtestdata['all']), 0, 1, $dirvalue, 0);
 		}
 		/*
 		// Additional test information that could be printed if needed
@@ -597,6 +597,12 @@ if($r = F_db_query($sql, $db)) {
 			case 2: {
 				// questions stats
 				
+				// get test data
+				$testdata = F_getTestData($test_id);
+
+				// get total number of questions for the selected test
+				$num_questions = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.'');
+
 				// print table headings
 				
 				$pdf->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA);
@@ -617,7 +623,12 @@ if($r = F_db_query($sql, $db)) {
 				$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 				
 				// output questions stats
-				$sqlr = 'SELECT question_id, COUNT(question_id) AS recurrence, AVG(testlog_score) AS average_score, AVG(testlog_change_time - testlog_display_time) AS average_time
+				$sqlr = 'SELECT 
+						question_id, 
+						COUNT(question_id) AS recurrence, 
+						AVG(testlog_score) AS average_score, 
+						AVG(testlog_change_time - testlog_display_time) AS average_time,
+						min(question_difficulty) AS question_difficulty
 					FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.' 
 					WHERE testlog_testuser_id=testuser_id
 						AND testlog_question_id=question_id 
@@ -627,22 +638,27 @@ if($r = F_db_query($sql, $db)) {
 				if($rr = F_db_query($sqlr, $db)) {
 					$itemcount = 1;
 					while($mr = F_db_fetch_array($rr)) {
+						// get the question max score
+						$question_max_score = $testdata['test_score_right'] * $mr['question_difficulty'];
 						
 						$qsttestdata = F_getQuestionTestStat($test_id, $mr['question_id']);
 						
+						$pdf->SetFont($numberfont, 'B', 6);
 						$pdf->Cell(2 * $data_cell_width_third, $data_cell_height, $itemcount, 1, 0, 'R', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $mr['recurrence'], 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, number_format($mr['average_score'], 3, '.', ''), 1, 0, 'C', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $mr['recurrence'].' '.F_formatPdfPercentage($mr['recurrence'] / $num_questions), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, number_format($mr['average_score'], 3, '.', '').' '.F_formatPdfPercentage($mr['average_score'] / $question_max_score), 1, 0, 'R', 0);
 						if (stripos($mr['average_time'], ':') !== FALSE) {
 							// PostgreSQL returns formatted time, while MySQL returns the number of seconds
 							$mr['average_time'] = strtotime($mr['average_time']);
 						}
-						$pdf->Cell(4 * $data_cell_width_third, $data_cell_height, date("i:s", $mr['average_time']), 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['right'], 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['wrong'], 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unanswered'], 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['undisplayed'], 1, 0, 'C', 0);
-						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unrated'], 1, 1, 'C', 0);
+						$pdf->Cell(4 * $data_cell_width_third, $data_cell_height, date("i:s", $mr['average_time']), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['right'].' '.F_formatPdfPercentage($qsttestdata['right'] / $qsttestdata['num']), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['wrong'].' '.F_formatPdfPercentage($qsttestdata['wrong'] / $qsttestdata['num']), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unanswered'].' '.F_formatPdfPercentage($qsttestdata['unanswered'] / $qsttestdata['num']), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['undisplayed'].' '.F_formatPdfPercentage($qsttestdata['undisplayed'] / $qsttestdata['num']), 1, 0, 'R', 0);
+						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unrated'].' '.F_formatPdfPercentage($qsttestdata['unrated'] / $qsttestdata['num']), 1, 1, 'R', 0);
+						
+						$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 						$question_description = '';
 						$sqlq = 'SELECT question_description FROM '.K_TABLE_QUESTIONS.' WHERE question_id='.$mr['question_id'].'';
 						if($rq = F_db_query($sqlq, $db)) {
@@ -668,22 +684,51 @@ if($r = F_db_query($sql, $db)) {
 							$answcount = 1;
 							while($ma = F_db_fetch_array($ra)) {
 								
+								$num_all_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
+								
+								$num_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
+								
 								$right_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=0) OR (answer_isright=\'1\' AND logansw_selected=1) OR (answer_position=logansw_position))');
 				
 								$wrong_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=1) OR (answer_isright=\'1\' AND logansw_selected=0)) AND (answer_position!=logansw_position)');
 				
 								$unanswered = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER, 'WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND logansw_selected=-1');
-				
+								
+								$pdf->SetFont($numberfont, '', 6);
+								
 								$pdf->Cell(2 * $data_cell_width_third, $data_cell_height, '', '', 0, 'R', 0);
 								$pdf->Cell($data_cell_width_third, $data_cell_height, $answcount, 1, 0, 'R', 0);
-								$pdf->Cell($data_cell_width - $data_cell_width_third, $data_cell_height, ''.($right_answers + $wrong_answers + $unanswered).'', 1, 0, 'C', 0);
+								
+								$perc = 0;
+								if ($num_all_answers > 0 ) {
+									$perc = ($num_answers / $num_all_answers);
+								}
+								$pdf->Cell($data_cell_width - $data_cell_width_third, $data_cell_height, $num_answers.' '.F_formatPdfPercentage($perc), 1, 0, 'R', 0);
 								$pdf->Cell(2 * $data_cell_width + $data_cell_width_third, $data_cell_height, '', 1, 0, 'C', 0);
 								
-								$pdf->Cell($data_cell_width, $data_cell_height, $right_answers, 1, 0, 'C', 0);
-								$pdf->Cell($data_cell_width, $data_cell_height, $wrong_answers, 1, 0, 'C', 0);
-								$pdf->Cell($data_cell_width, $data_cell_height, $unanswered, 1, 0, 'C', 0);
+								$perc = 0;
+								if ($num_answers > 0 ) {
+									$perc = ($right_answers / $num_answers);
+								}
+								$pdf->Cell($data_cell_width, $data_cell_height, $right_answers.' '.F_formatPdfPercentage($perc), 1, 0, 'R', 0);
+								
+								$perc = 0;
+								if ($num_answers > 0 ) {
+									$perc = ($wrong_answers / $num_answers);
+								}
+								$pdf->Cell($data_cell_width, $data_cell_height, $wrong_answers.' '.F_formatPdfPercentage($perc), 1, 0, 'R', 0);
+								
+								$perc = 0;
+								if ($num_answers > 0 ) {
+									$perc = ($unanswered / $num_answers);
+								}
+								$pdf->Cell($data_cell_width, $data_cell_height, $unanswered.' '.F_formatPdfPercentage($perc), 1, 0, 'R', 0);
+								
 								$pdf->Cell(2 * $data_cell_width, $data_cell_height, '', 1, 1, 'C', 0);
-						$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (3 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
+								
+								$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
+								$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (3 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
+								
 								$answcount++;
 							}
 						} else {
