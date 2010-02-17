@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2009-09-30
+// Last Update : 2010-02-17
 // 
 // Description : Functions to translate TCExam code 
 //               into XHTML. 
@@ -181,7 +181,7 @@ function F_decode_tcecode($text_to_decode) {
 	$newtext = preg_replace($pattern, $replacement, $newtext);
 	
 	// line breaks
-	$newtext = ereg_replace("(\r\n|\n|\r)", '<br />', $newtext);
+	$newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
 	$newtext = str_replace('<br /><li', '<li', $newtext);
 	$newtext = str_replace('</li><br />', '</li>', $newtext);
 	$newtext = str_replace('<br /><param', '<param', $newtext);

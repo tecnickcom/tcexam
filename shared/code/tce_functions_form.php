@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2009-09-30
+// Last Update : 2010-02-17
 // 
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -136,7 +136,7 @@ function F_check_fields_format($formfields) {
 		if(substr($key,0,2) == 'x_') {
 			$fieldname = substr($key,2);
 			if(array_key_exists($fieldname, $formfields) AND strlen($formfields[$fieldname]) > 0) { //if is not empty
-				if(!eregi(stripslashes($value),$formfields[$fieldname])) { //check regular expression
+				if(!preg_match("'".stripslashes($value)."'i", $formfields[$fieldname])) { //check regular expression
 					if ($formfields['xl_'.$fieldname]) { //check if field has label
 						$fieldname = $formfields['xl_'.$fieldname];
 					}

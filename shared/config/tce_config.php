@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2010-02-12
+// Last Update : 2010-02-17
 // 
 // Description : Shared configuration file.
 //
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '10.0.002');
+define ('K_TCEXAM_VERSION', '10.0.003');
 
 /**
  * 2-letters code for default language.
@@ -262,13 +262,13 @@ if(!defined('PHP_VERSION_ID')) {
 }
 if (PHP_VERSION_ID < 50300) {
 	@set_magic_quotes_runtime(false); //disable magic quotes
+	ini_set('magic_quotes_gpc', 'On');
+	ini_set('magic_quotes_runtime', 'Off');
+	ini_set('register_long_arrays', 'On');
+	//ini_set('register_globals', 'On');
 }
 
 ini_set('arg_separator.output', '&amp;');
-ini_set('magic_quotes_gpc', 'On');
-ini_set('magic_quotes_runtime', 'Off');
-ini_set('register_long_arrays', 'On');
-//ini_set('register_globals', 'On');
 //date_default_timezone_set(K_TIMEZONE); 
 
 // --- get posted and get variables (to be compatible with register_globals off)
