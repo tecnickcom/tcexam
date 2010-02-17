@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-02-12
+// Last Update : 2010-02-17
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -1321,17 +1321,17 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 		if($m = F_db_fetch_array($r)) {
 			if (F_getBoolean($m['question_fullscreen'])) {
 				// hide some section for fullscreen mode
-				echo '<style>'.K_NEWLINE;
-				echo '.header{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.infolink{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo 'h1{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.pagehelp{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.userbar{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.minibutton{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.navlink{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '.testcomment{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '#terminatetest{visibility:hidden;display:none;}'.K_NEWLINE;
-				echo '</style>'.K_NEWLINE;
+				$str .= '<style>'.K_NEWLINE;
+				$str .= '.header{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.infolink{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= 'h1{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.pagehelp{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.userbar{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.minibutton{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.navlink{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '.testcomment{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '#terminatetest{visibility:hidden;display:none;}'.K_NEWLINE;
+				$str .= '</style>'.K_NEWLINE;
 			}
 			$str .= '<input type="hidden" name="testid" id="testid" value="'.$test_id.'" />'.K_NEWLINE;
 			$str .= '<input type="hidden" name="testlogid" id="testlogid" value="'.$testlog_id.'" />'.K_NEWLINE;
@@ -1516,7 +1516,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			$str .= 'if(!document.all) {document.captureEvents(Event.KEYPRESS);}';
 			$str .= 'document.onkeypress=actionByChar;'.K_NEWLINE;
 			if ($m['question_timer'] > 0) {
-				// automatic submit form after specified fime
+				// automatic submit form after specified amount of time
 				$str .= "setTimeout('document.getElementById(\'autonext\').value=1;document.getElementById(\'".$formname."\').submit();', ".($m['question_timer'] * 1000).");".K_NEWLINE;
 			}
 			$str .= '//]]>'.K_NEWLINE;
@@ -1638,7 +1638,7 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 	}
 	$navlink .= ' />'.K_NEWLINE;
 	
-	if ($question_timer AND ($testlog_id_next <= 0)) {
+	if (($question_timer OR $disable) AND ($testlog_id_next <= 0)) {
 		// force test termination
 		$navlink .= '<input type="hidden" name="forceterminate" id="forceterminate" value="lasttimedquestion" />'.K_NEWLINE;
 	}

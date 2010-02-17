@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2009-11-03
+// Last Update : 2010-02-17
 // 
 // Description : General functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -327,7 +327,6 @@ function getIpAsInt($ip) {
 	return hexdec($ip);
 }
 
-
 /**
  * Converts a string containing an IP address into its integer value and return string representation.
  * @param string IP address to convert.
@@ -337,6 +336,24 @@ function getIpAsInt($ip) {
 function getIpAsString($ip) {
 	$ip = getIpAsInt($ip);
 	return sprintf('%.0f', $ip);
+}
+
+/**
+ * Format a percentage number.
+ * @param float number to be formatted
+ * @return formatted string
+ */
+function F_formatPercentage($num) {
+	return '('.str_replace(' ', '&nbsp;', sprintf('% 3d', round(100 * $num))).'%)';
+}
+
+/**
+ * format a percentage number
+ * @param float number to be formatted
+ * @return string
+ */
+function F_formatPdfPercentage($num) {
+	return '('.sprintf('% 3d', round(100 * $num)).'%)';
 }
 
 //============================================================+

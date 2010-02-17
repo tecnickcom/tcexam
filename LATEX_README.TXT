@@ -1,8 +1,6 @@
 TCExam LaTeX rendering
 ============================================================
 
-Since version 4.2.000 (2007-05-18), TCExam supports LaTeX rendering.
-
 The LaTeX code could be added to the description of topics, questions and answers, for example:
 
 [tex]

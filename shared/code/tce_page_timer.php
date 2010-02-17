@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_timer.php
 // Begin       : 2004-04-29
-// Last Update : 2010-02-12
+// Last Update : 2010-02-17
 // 
 // Description : Display timer (date-time + countdown).
 //
@@ -51,7 +51,8 @@
 
 if (!isset($_REQUEST['examtime'])) {
 	$examtime = 0; // remaining exam time in seconds
-	$enable_countdown = 'false';	
+	$enable_countdown = 'false';
+	$timeout_logout = 'false';	
 } else {
 	$examtime = floatval($_REQUEST['examtime']);
 	$enable_countdown = 'true';

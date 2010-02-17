@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_statistics.php
 // Begin       : 2008-12-25
-// Last Update : 2009-09-30
+// Last Update : 2010-02-17
 // 
 // Description : Functions to calculate descriptive statistics.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -118,25 +118,6 @@ function F_getArrayStatistics($data) {
 		}
 	}
 	return $stats;
-}
-
-
-/**
- * Format a percentage number.
- * @param float number to be formatted
- * @return formatted string
- */
-function F_formatPercentage($num) {
-	return '('.str_replace(' ', '&nbsp;', sprintf('% 3d', round(100 * $num))).'%)';
-}
-
-/**
- * format a percentage number
- * @param float number to be formatted
- * @return string
- */
-function F_formatPdfPercentage($num) {
-	return '('.sprintf('% 3d', round(100 * $num)).'%)';
 }
 
 //============================================================+

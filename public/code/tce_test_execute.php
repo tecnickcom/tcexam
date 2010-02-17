@@ -132,10 +132,13 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 				}
 				
 				if ((isset($_REQUEST['nextquestion']) OR (isset($_REQUEST['autonext']) AND ($_REQUEST['autonext'] == 1))) AND ($_REQUEST['nextquestionid'] > 0)) {
+					// go to next question
 					$testlog_id = 0 + intval($_REQUEST['nextquestionid']);
 				} elseif (isset($_REQUEST['prevquestion']) AND ($_REQUEST['prevquestionid'] > 0)) {
+					// go to previous question
 					$testlog_id = intval($_REQUEST['prevquestionid']);
 				} else {
+					// go to selected question
 					while(list($key,$value) = each($_POST)) {
 						if (preg_match('/jumpquestion_([0-9]+)/', $key, $matches) > 0) {
 							$testlog_id = intval($matches[1]);

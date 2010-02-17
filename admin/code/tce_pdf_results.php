@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2009-12-15
+// Last Update : 2010-02-17
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -165,7 +165,7 @@ $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION.'');
 $pdf->SetAuthor(PDF_AUTHOR);
 $pdf->SetTitle($doc_title);
 $pdf->SetSubject($doc_description);
-$pdf->SetKeywords("TCExam, ".$doc_title);
+$pdf->SetKeywords('TCExam, '.$doc_title);
 
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 
@@ -375,14 +375,14 @@ if($r = F_db_query($sql, $db)) {
 		} else {
 			$time_diff = strtotime($test_end_time) - strtotime($test_start_time); //sec
 		}
-		$time_diff = gmdate("H:i:s", $time_diff);
+		$time_diff = gmdate('H:i:s', $time_diff);
 		
 		// elapsed time (time difference)
 		$pdf->Cell($column_names_width, $data_cell_height, $l['w_time'].': ', 0, 0, $dirlabel, 0);
 		$pdf->Cell($info_cell_width, $data_cell_height, $time_diff, 0, 1, $dirvalue, 0);
 		
 		// test duration
-		$pdf->Cell($column_names_width, $data_cell_height, $l['w_test_time']." [".$l['w_minutes']."]: ", 0, 0, $dirlabel, 0);
+		$pdf->Cell($column_names_width, $data_cell_height, $l['w_test_time'].' ['.$l['w_minutes'].']: ', 0, 0, $dirlabel, 0);
 		$pdf->Cell($info_cell_width, $data_cell_height, $test_duration_time, 0, 1, $dirvalue, 0);
 		
 		// authorized IPs
@@ -651,7 +651,7 @@ if($r = F_db_query($sql, $db)) {
 							// PostgreSQL returns formatted time, while MySQL returns the number of seconds
 							$mr['average_time'] = strtotime($mr['average_time']);
 						}
-						$pdf->Cell(4 * $data_cell_width_third, $data_cell_height, date("i:s", $mr['average_time']), 1, 0, 'R', 0);
+						$pdf->Cell(4 * $data_cell_width_third, $data_cell_height, date('i:s', $mr['average_time']), 1, 0, 'R', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['right'].' '.F_formatPdfPercentage($qsttestdata['right'] / $qsttestdata['num']), 1, 0, 'R', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['wrong'].' '.F_formatPdfPercentage($qsttestdata['wrong'] / $qsttestdata['num']), 1, 0, 'R', 0);
 						$pdf->Cell($data_cell_width, $data_cell_height, $qsttestdata['unanswered'].' '.F_formatPdfPercentage($qsttestdata['unanswered'] / $qsttestdata['num']), 1, 0, 'R', 0);
@@ -990,31 +990,33 @@ if($r = F_db_query($sql, $db)) {
 					$pdf->Cell($data_cell_width, $data_cell_height, $l['w_answers_right'], 1, 0, 'C', 1);
 					$pdf->Cell($data_cell_width * 4, $data_cell_height, $l['w_subject'], 1, 1, $dirvalue, 1);
 					$pdf->Ln($data_cell_height);
-			
+					
 					foreach ($topicresults as $res_module) {
-						$pdf->SetFont('', 'B', '');
-						$score_percent = round(100 * $res_module['score'] / $res_module['maxscore']);
-						$str = $res_module['score'].' / '.$res_module['maxscore'].' ('.$score_percent.'%)';
-						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+						$pdf->SetFont($numberfont, 'B', 6);
+						$score_percent = ($res_module['score'] / $res_module['maxscore']);
+						$str = $res_module['score'].' / '.$res_module['maxscore'].' '.F_formatPdfPercentage($score_percent);
+						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'R', 0);
 				
-						$score_percent = round(100 * $res_module['right'] / $res_module['num']);
-						$str = $res_module['right'].' / '.$res_module['num'].' ('.$score_percent.'%)';
-						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
-				
+						$score_percent = ($res_module['right'] / $res_module['num']);
+						$str = $res_module['right'].' / '.$res_module['num'].' '.F_formatPdfPercentage($score_percent);
+						$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'R', 0);
+						
+						$pdf->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA);
 						$pdf->Cell($data_cell_width * 5, $data_cell_height, $res_module['name'], 1, 1, $dirvalue, 0);
 						$pdf->Ln(0.5);
 						foreach ($res_module['subjects'] as $res_subject) {
-							$pdf->SetFont('', '', '');
+							$pdf->SetFont($numberfont, '', 6);
 							$pdf->Cell($data_cell_width, $data_cell_height, '', 0, 0, 'C', 0);
 					
-							$score_percent = round(100 * $res_subject['score'] / $res_subject['maxscore']);
-							$str = $res_subject['score'].' / '.$res_subject['maxscore'].' ('.$score_percent.'%)';
-							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
+							$score_percent = ($res_subject['score'] / $res_subject['maxscore']);
+							$str = $res_subject['score'].' / '.$res_subject['maxscore'].' '.F_formatPdfPercentage($score_percent);
+							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'R', 0);
 					
-							$score_percent = round(100 * $res_subject['right'] / $res_subject['num']);
-							$str = $res_subject['right'].' / '.$res_subject['num'].' ('.$score_percent.'%)';
-							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'C', 0);
-					
+							$score_percent = ($res_subject['right'] / $res_subject['num']);
+							$str = $res_subject['right'].' / '.$res_subject['num'].' '.F_formatPdfPercentage($score_percent);
+							$pdf->Cell($data_cell_width, $data_cell_height, $str, 1, 0, 'R', 0);
+							
+							$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 							$pdf->Cell($data_cell_width * 4, $data_cell_height, $res_subject['name'], 1, 1, $dirvalue, 0);
 							$pdf->Ln(0.5);
 						}

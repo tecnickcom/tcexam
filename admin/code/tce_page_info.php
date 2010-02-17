@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2009-10-22
+// Last Update : 2010-02-17
 //
 // Description : Outputs TCExam information page.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License: 
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 //    
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -72,7 +72,7 @@ echo '<li><strong>Copyright:</strong><br /> (c) 2004-2010 Nicola Asuni - Tecnick
 echo 'Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
-echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam websites.<br />See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a> file for more information.</li>'.K_NEWLINE;
+echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove or move the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a> file for more information.</li>'.K_NEWLINE;
 echo '</ul>'.K_NEWLINE;
 
 echo '<h2>'.$l['t_third_parties'].'</h2>'.K_NEWLINE;
@@ -162,9 +162,9 @@ echo '<br />'.K_NEWLINE;
 // display credit logos
 echo '<div class="creditslogos">'.K_NEWLINE;
 echo '<a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html"><img src="../../images/credits/agplv3-88x31.png" alt="GNU Affero General Public License" width="88" height="31" /></a>'.K_NEWLINE;
-echo '<a href="http://www.php.net"><img src="../../images/credits/poweredby_php_88x31.png" alt="Powered by PHP" width="88" height="31" /></a>'.K_NEWLINE;
-echo '<a href="http://www.mysql.com"><img src="../../images/credits/poweredbymysql_88x31.png" alt="Powered by MySQL" width="88" height="31" /></a>'.K_NEWLINE;
-echo '<a href="http://www.postgresql.org"><img src="../../images/credits/poweredbypgsql_88x31.png" alt="Powered by PostgreSQL" width="88" height="31" /></a>'.K_NEWLINE;
+//echo '<a href="http://www.php.net"><img src="../../images/credits/poweredby_php_88x31.png" alt="Powered by PHP" width="88" height="31" /></a>'.K_NEWLINE;
+//echo '<a href="http://www.mysql.com"><img src="../../images/credits/poweredbymysql_88x31.png" alt="Powered by MySQL" width="88" height="31" /></a>'.K_NEWLINE;
+//echo '<a href="http://www.postgresql.org"><img src="../../images/credits/poweredbypgsql_88x31.png" alt="Powered by PostgreSQL" width="88" height="31" /></a>'.K_NEWLINE;
 echo '<a href="http://validator.w3.org/check/referer"><img src="../../images/credits/w3c_xhtml10_88x31.png" alt="Valid XHTML 1.0!" height="31" width="88" /></a>'.K_NEWLINE;
 echo '<a href="http://jigsaw.w3.org/css-validator/"><img src="../../images/credits/w3c_css_88x31.png" alt="Valid CSS1!" height="31" width="88" /></a>'.K_NEWLINE;
 echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" title="Explanation of Level Triple-A Conformance"><img src="../../images/credits/w3c_wai_aaa_88x31.png" alt="Level Triple-A conformance icon, W3C-WAI Web Content Accessibility Guidelines 1.0" width="88" height="31" /></a>'.K_NEWLINE;

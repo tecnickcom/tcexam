@@ -1,3 +1,10 @@
+10.0.002 (2010-02-17)
+	- A timer/clock bug was fixed.
+	- Topics results were added on PDF user results.
+	- Test is now automatically terminated if the navigation menu is hidden and the last question is timed or auto-next.
+	- Language files were updated.
+	- UPGRADE.TXT instructions were updated.
+
 10.0.001 (2010-02-12)
 	- Missing update was added.
 	

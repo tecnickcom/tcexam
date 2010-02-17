@@ -1,89 +1,66 @@
 TCExam - GENERAL UPGRADE PROCESS
 ============================================================
 This is the general upgrade process for TCExam.
+-----------------------------------------------------------
 
-If the new main version number is different than your 
-installed main version number, please read the other guides 
-below.
+1.	Backup you entire existing database data and 
+	TCExam Folder.
+
+2.	If the new main version number (Y) is different than 
+	your installed main version number (X), execute one of 
+	the following SQL files to upgrade your TCExam database
+	schema:
+		install/mysql_db_upgrade_XtoY.sql
+		install/postgresql_db_upgrade_XtoY.sql
+		install/oracle_db_upgrade_XtoY.sql
+ 
+3.	Rename the current TCExam folder
+	(eg: from /var/www/tcexam to /var/www/tcexam.old).  
+ 
+4.	Extract the new TCExam version to the same folder where 
+	it was previously installed (eg: /var/www/tcexam).  
+ 
+5.	Delete the tcexam/install folder.  
+ 
+6.	Manually edit all configuration files (check the values 
+	of previous installation). The configuration files are 
+	located on the following folders:
+		admin/config/
+		public/config/
+		shared/config/
+ 
+7.	Copy the multimedia content (images etc.) from your old 
+	cache folder to the new cache folder. 
+ 
+8.	Set the right files permissions to work with your 
+	WebServer/PHP environment:
+   
+	cd /var/www/tcexam
+	find . -exec chown -R www-data:www-data {} \;
+	find . -type f -exec chmod 544 {} \;
+	find cache/ -type f -exec chmod 644 {} \;
+	find cache/backup -type f -exec chmod 644 {} \;
+	find cache/lang -type f -exec chmod 544 {} \;
+	find admin/log/ -type f -exec chmod 644 {} \;
+	find public/log/ -type f -exec chmod 644 {} \;
+	find . -type d -exec chmod 755 {} \;
+
+	(in this example /var/www/tcexam is the installation
+	folder, www-data is the name of Apache user and group) 
+ 
+9.	If you are using custom language files, replace the 
+	shared/config/lang/language_tmx.xml and delete the PHP 
+	files on cache folder.  
+ 
+10.	Check if TCExam is working fine.  
+ 
+11.	Backup and delete the old TCExam installation 
+	(tcexam.old).
 
 ------------------------------------------------------------
 
-0. No changes are required to the database. Anyway it's 
-safer to make a database backup using your favourite 
-database management application. 
- 
-1. Rename the current TCExam folder (eg: from 
-/var/www/tcexam to /var/www/tcexam.old).  
- 
-2. Extract the new TCExam version to the same folder where 
-it was previously installed (eg: /var/www/tcexam).  
- 
-3. Delete the tcexam/install folder.  
- 
-4. Manually edit all configuration files (check the values 
-of previous installation). The configuration files are 
-located on the following folders:
-admin/config/  
-public/config/  
-shared/config/ 
- 
-5. Copy the multimedia content (images etc.) from your old 
-cache folder to the new cache folder. 
- 
-6. Set the right files permissions to work with your 
-WebServer/PHP environment; some folders must be writeable by
-the Web user:  
-admin/log  
-public/log  
-cache  
- 
-7. If you are using custom language files, replace the 
-shared/config/lang/language_tmx.xml and delete the PHP files
-on cache folder.  
- 
-8. Check if TCExam is working fine.  
- 
-9. Backup and delete the old TCExam installation 
-(tcexam.old).
-
 ------------------------------------------------------------
-
-TCExam - UPGRADE FROM VERSION 6 to 7
-============================================================
-
-On TCExam 7 the database schema is changed, so you need to 
-alter your existing database installation.
-
-1. Backup you entire existing database data and 
-   TCExam Folder before any change.
-
-2. From your favourite database management application (e.g.
-   phpMyAdmin, phpPgAdmin, ...), use one of the following 
-   file to upgrade your TCExam database schema:
-       install/mysql_db_upgrade_6to7.sql
-       install/postgresql_db_upgrade_6to7.sql
-
-3. Follow the general upgrading steps above.
-
-------------------------------------------------------------
-
-TCExam - UPGRADE FROM VERSION 5 to 6
-============================================================
-
-On TCExam 6 the database schema is changed, so you need to 
-alter your existing database installation.
-
-1. Backup you entire existing database data and 
-   TCExam Folder before any change.
-
-2. From your favourite database management application (e.g.
-   phpMyAdmin, phpPgAdmin, ...), use one of the following 
-   file to upgrade your TCExam database schema:
-       install/mysql_db_upgrade_5to6.sql
-       install/postgresql_db_upgrade_5to6.sql
-
-3. Follow the general upgrading steps above.
-
+UPGRADE FROM OBSOLETE VERSIONS
 ------------------------------------------------------------
 
 TCExam - UPGRADE FROM VERSION 4 to 5

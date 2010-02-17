@@ -7,9 +7,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 10.0.001
+Version: 10.0.002
 
-Release date: 2010-02-12
+Release date: 2010-02-17
 
 Author:
 	Nicola Asuni 
@@ -98,7 +98,7 @@ Description:
 	server, leaving no sensitive data in the users’ client computers.
 
 Software License
-	Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+	Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
 	
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
@@ -113,8 +113,8 @@ Software License
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	 
-	Additionally, you can't remove the original TCExam logo, 
-	copyrights statements and links to Tecnick.com and TCExam Websites.
+	Additionally, you can't remove or move the original tcexam logo,
+	copyrights statements and links to tecnick.com and tcexam websites.
 	
 	See LICENSE.TXT file for more information.
 
