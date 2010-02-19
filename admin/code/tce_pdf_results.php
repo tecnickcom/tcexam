@@ -747,10 +747,10 @@ if($r = F_db_query($sql, $db)) {
 				$topicresults = array(); // per-topic results
 				// get test basic score
 				$test_basic_score = 1;
-				$sql = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
-				if($r = F_db_query($sql, $db)) {
-					if($m = F_db_fetch_array($r)) {
-						$test_basic_score = $m['test_score_right'];
+				$sqlbs = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+				if($rbs = F_db_query($sqlbs, $db)) {
+					if($mbs = F_db_fetch_array($rbs)) {
+						$test_basic_score = $mbs['test_score_right'];
 					}
 				} else {
 					F_display_db_error();
@@ -1035,7 +1035,7 @@ if($r = F_db_query($sql, $db)) {
 				} // end while print_block 
 				
 				break;
-			} // end of case 3
+			} // end of case 3, 4 and 5
 		}
 		// END page data
 		// ------------------------------------------------------------

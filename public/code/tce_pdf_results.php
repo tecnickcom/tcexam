@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-02-17
+// Last Update : 2010-02-19
 // 
 // Description : Create PDF document to display test results   
 //               summary for all users.
@@ -371,10 +371,10 @@ if($r = F_db_query($sql, $db)) {
 		$topicresults = array(); // per-topic results
 		// get test basic score
 		$test_basic_score = 1;
-		$sql = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
-				$test_basic_score = $m['test_score_right'];
+		$sqlbs = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+		if($rbs = F_db_query($sqlbs, $db)) {
+			if($mbs = F_db_fetch_array($rbs)) {
+				$test_basic_score = $mbs['test_score_right'];
 			}
 		} else {
 			F_display_db_error();

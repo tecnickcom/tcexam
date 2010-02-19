@@ -1,3 +1,6 @@
+10.0.005 (2010-02-19)
+	- Bug item #2954840 "Error in preparing the PDF data" was fixed.
+
 10.0.004 (2010-02-19)
 	- Question statistics were fixed.
 	- Language files were updated.
