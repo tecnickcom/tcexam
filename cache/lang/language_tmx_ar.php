@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-02-15 12:43:14
+// DATE: 2010-02-19 10:26:17
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -487,20 +487,20 @@ $tmx['h_repeatable_test']='يسمح للمستخدمين باعادة الإخت
 $tmx['w_repeat']='اعاده';
 $tmx['h_repeat_test']='اعادة هذا الاختبار (تم حذف النتائج الحالية)';
 $tmx['w_calendar']='جدول الاختبارات';
-$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
-$tmx['w_mcma_partial_score']='partial score for MCMA';
-$tmx['h_mcma_partial_score']='if selected, uses partial score for MCMA questions';
-$tmx['h_logout_on_timeout']='if selected, logs out the user when the time expires';
-$tmx['w_logout_on_timeout']='logout when time expires';
-$tmx['t_backup_editor']='Database Backup and Restore';
-$tmx['w_backup']='backup';
-$tmx['w_restore']='restore';
-$tmx['w_backup_file']='backup file';
-$tmx['h_backup']='create a new backup';
-$tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
-$tmx['m_restore_confirm']='confirm restoring';
+$tmx['m_score_higher_than_max']='النتيجة المختارة أعلى من الحد الأقصى المسموح به';
+$tmx['w_mcma_partial_score']='تجزيء درجة الاختيار المتعدد';
+$tmx['h_mcma_partial_score']='عند التحديد, يتم تجزيء درجة سؤال الاختيار المتعدد';
+$tmx['h_logout_on_timeout']='عند التحديد, خروج المستخدم عند انتهاء زمن الاختبار';
+$tmx['w_logout_on_timeout']='الخروج عند انتهاء الوقت';
+$tmx['t_backup_editor']='نسخ واستعادة قاعدة البيانات';
+$tmx['w_backup']='نسخ احتياطي';
+$tmx['w_restore']='استعادة';
+$tmx['w_backup_file']='نسخ احتياطي للملف';
+$tmx['h_backup']='انشاء نسخة احتياطية جديدة';
+$tmx['h_restore']='استعادة النسخة الاحتياطية المحددة';
+$tmx['m_backup_completed']='تم بنجاح انشاء النسخة الاحتياطية';
+$tmx['m_restore_completed']='تم بنجاح استعادة النسخة الاحتياطية';
+$tmx['m_restore_confirm']='تأكيد الاستعادة';
 $tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
 Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
 To restore an existing backup archive, select it and push the [restore] button.
