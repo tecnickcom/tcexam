@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2010-02-19 10:26:32
+// DATE: 2010-02-20 13:22:11
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -479,33 +479,33 @@ $tmx['w_kurtosi']='kurtosi';
 $tmx['t_all_results_user']='Resultados del Usuario';
 $tmx['hp_allresults_user']='Este formulario resume los resultados de un usuario determinado.';
 $tmx['hp_result_alluser']='Este formulario sintetiza los resultados de todos los usuarios para el test seleccionado.';
-$tmx['h_module_name']='name of the module';
-$tmx['w_explanation']='explanation';
-$tmx['h_explanation']='explanation to be printed on results';
-$tmx['w_repeatable']='repeatable';
-$tmx['h_repeatable_test']='users can repeat this test several times';
-$tmx['w_repeat']='repeat';
-$tmx['h_repeat_test']='repeat this test (current results will be deleted)';
-$tmx['w_calendar']='calendar';
-$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
-$tmx['w_mcma_partial_score']='partial score for MCMA';
-$tmx['h_mcma_partial_score']='if selected, uses partial score for MCMA questions';
-$tmx['h_logout_on_timeout']='if selected, logs out the user when the time expires';
-$tmx['w_logout_on_timeout']='logout when time expires';
-$tmx['t_backup_editor']='Database Backup and Restore';
-$tmx['w_backup']='backup';
-$tmx['w_restore']='restore';
-$tmx['w_backup_file']='backup file';
-$tmx['h_backup']='create a new backup';
-$tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
-$tmx['m_restore_confirm']='confirm restoring';
-$tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
-Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
-To restore an existing backup archive, select it and push the [restore] button.
-Note that before each restore the system automatically execute a new backup, so you can undo the operation.
-Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
+$tmx['h_module_name']='nombre del modulo';
+$tmx['w_explanation']='explicaciòn';
+$tmx['h_explanation']='explicaciòn que serà imprimida en los resultados';
+$tmx['w_repeatable']='repetible';
+$tmx['h_repeatable_test']='los usuarios pueden repetir este test varias veces';
+$tmx['w_repeat']='repite';
+$tmx['h_repeat_test']='repite este test (los resultados actuales vendràn cancelados)';
+$tmx['w_calendar']='calendario';
+$tmx['m_score_higher_than_max']='la puntuaciòn seleccionada es mayor que el maximo consentido';
+$tmx['w_mcma_partial_score']='puntuaciòn parcial para MCMA';
+$tmx['h_mcma_partial_score']='si seleccioanado, utiliza una puntuaciòn parcial para las preguntas MCMA y ORDER';
+$tmx['h_logout_on_timeout']='si seleccionado, cierra la sesiòn usuario al tèrmino del tiempo disponible';
+$tmx['w_logout_on_timeout']='Salida al tèrmino del tiempo';
+$tmx['t_backup_editor']='Cobertura y Restablecimiento de la Base de Datos';
+$tmx['w_backup']='cobertura';
+$tmx['w_restore']='restablezco';
+$tmx['w_backup_file']='expediente de cobertura';
+$tmx['h_backup']='ejecuta una nueva cobertura';
+$tmx['h_restore']='restablezco la cobertura seleccionada';
+$tmx['m_backup_completed']='La cobertura ha sido ejecutada';
+$tmx['m_restore_completed']='El restablecimiento ha sido ejecutado';
+$tmx['m_restore_confirm']='confirma restablecimiento';
+$tmx['hp_edit_backups']='Através de esta màscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
+Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump SQL de la entera base de datos de TCExam (estructura y datos).
+Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
+Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la \'operaciòn de restablecimiento.
+El expediente de cobertura viene registrado en la carpeta "cache/backup" con la siguiente sintaxis: AAAAMMGGhhmmss_tcexam_backup.sql.gz , donde AAAAMMGGhhmmss representa la cifra del\'año (A), mes (M), dia (G), hora (h), minutos (m), segundos (s).';
 
 // EOF ----------
 ?>

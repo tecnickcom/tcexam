@@ -1,3 +1,7 @@
+10.0.006 (2010-02-20)
+	- A warning message showing omitted questions is now displayed when the test termination button is pressed.
+	- Language files were updated.
+
 10.0.005 (2010-02-19)
 	- Bug item #2954840 "Error in preparing the PDF data" was fixed.
 

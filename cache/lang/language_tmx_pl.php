@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: pl
-// DATE: 2010-02-19 10:26:53
+// DATE: 2010-02-20 13:22:29
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -505,7 +505,7 @@ $tmx['hp_edit_backups']='This page allows you to make and restore database backu
 Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
 To restore an existing backup archive, select it and push the [restore] button.
 Note that before each restore the system automatically execute a new backup, so you can undo the operation.
-Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dove YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
+Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 
 // EOF ----------
 ?>

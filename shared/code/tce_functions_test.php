@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-02-17
+// Last Update : 2010-02-20
 // 
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -1540,7 +1540,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 }
 
 /**
- * Returns a questions menu and navigator buttons.<br>
+ * Returns a questions menu and navigator buttons.
  * @param array $testdata test data
  * @param int $testuser_id user's test ID
  * @param boolean $disable if TRUE disable the questions list.
@@ -1663,6 +1663,26 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 		$rstr .= '<br />'.K_NEWLINE;
 	}
 	return $rstr;
+}
+
+
+/**
+ * Returns the number of omitted questions (unanswered + undisplayed).
+ * @param int $test_id test ID
+ * @return integer number
+ */
+function F_getNumOmittedQuestions($test_id) {
+	require_once('../config/tce_config.php');
+	global $db, $l;
+	$test_id = intval($test_id);
+	$user_id = intval($_SESSION['session_user_id']);
+	// get th number of omitted questions
+	$omitted = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS, 
+		'WHERE testlog_testuser_id=testuser_id
+			AND testuser_test_id='.$test_id.'
+			AND testuser_user_id='.$user_id.'
+			AND (testlog_change_time IS NULL OR testlog_display_time IS NULL)');	
+	return $omitted;
 }
 
 /**

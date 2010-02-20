@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2010-02-12
+// Last Update : 2010-02-20
 // 
 // Description : execute a specific test
 //
@@ -150,7 +150,13 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		}
 		// confirmation form to terminate the test
 		if (isset($_REQUEST['terminatetest']) AND (!empty($_REQUEST['terminatetest']))) {
-			F_print_error('WARNING', $l['m_confirm_test_termination']);
+			// check if some questions were omitted (undisplayed or unanswered).
+			$num_omitted_questions = F_getNumOmittedQuestions($test_id);
+			$omitted_msg = '';
+			if ($num_omitted_questions > 0) {
+				$omitted_msg = '<br /><span style="color:#990000;font-size:120%;">[ '.$l['h_questions_unanswered'].': '.$num_omitted_questions.' ]</span><br />';
+			}			
+			F_print_error('WARNING', $omitted_msg.''.$l['m_confirm_test_termination']);
 			?>
 			<div class="confirmbox">
 			<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_test_terminate">
@@ -214,6 +220,21 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 			echo '//]]>'.K_NEWLINE;
 			echo '</script>'.K_NEWLINE;
 		}
+	} else {
+		// redirect the user to the index page
+		header('Location: index.php');
+		echo '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;
+		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'.K_NEWLINE;
+		echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language'].'" lang="'.$l['a_meta_language'].'" dir="'.$l['a_meta_dir'].'">'.K_NEWLINE;
+		echo '<head>'.K_NEWLINE;
+		echo '<title>REDIRECT</title>'.K_NEWLINE;
+		echo '<meta http-equiv="refresh" content="0;url=index.php" />'.K_NEWLINE; //reload page
+		echo '</head>'.K_NEWLINE;
+		echo '<body>'.K_NEWLINE;
+		echo '<a href="index.php">INDEX...</a>'.K_NEWLINE;
+		echo '</body>'.K_NEWLINE;
+		echo '</html>'.K_NEWLINE;
+		exit;
 	}
 } else {
 	require_once('../code/tce_page_header.php');
