@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2010-02-20 13:22:15
+// DATE: 2010-02-24 12:12:43
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -293,7 +293,7 @@ $tmx['w_list']='רשימה';
 $tmx['w_login']='כניסה';
 $tmx['w_logout']='ניתוק';
 $tmx['w_main']='ראשי';
-$tmx['w_max_score']='ניקוד מרבי';
+$tmx['w_max_score']='ניקוד מירבי';
 $tmx['w_minutes']='דקות';
 $tmx['w_modify']='עדכן';
 $tmx['w_name']='שם';
@@ -362,7 +362,6 @@ $tmx['w_test']='מבחן';
 $tmx['w_test_time']='משך הבחינה';
 $tmx['w_tests']='מבחנים';
 $tmx['w_tests_available']='מבחנים זמינים';
-$tmx['w_max_score']='ניקוד מירבי';
 $tmx['w_text']='מלל';
 $tmx['w_time']='זמן';
 $tmx['w_time_begin']='זמן התחלה';
@@ -419,7 +418,6 @@ $tmx['w_fullscreen']='מסך מלא';
 $tmx['h_question_fullscreen']='אפשר/נטרל תצוגת מסך מלא לשאלה זו';
 $tmx['h_position']='סדר תצוגה נכון';
 $tmx['w_order']='מיון';
-$tmx['w_selection']='בחירה';
 $tmx['w_test_score_threshold']='ניקוד למעבר המבחן';
 $tmx['h_test_score_threshold']='ניקוד מזערי נדרש למעבר הבחינה';
 $tmx['w_mcma_radio']='כפתורי רדיו עבור שאלות מרובות ברירה ומרובות תשובות';
@@ -481,33 +479,34 @@ $tmx['w_kurtosi']='גבנוניות';
 $tmx['t_all_results_user']='תוצאות המשתמש';
 $tmx['hp_allresults_user']='טופס זה מסכם את תוצאות המשתמש שצויין.';
 $tmx['hp_result_alluser']='טופס זה מסכם את תוצאות כלל המשתמשים עבור המבחן שצויין.';
-$tmx['h_module_name']='name of the module';
-$tmx['w_explanation']='explanation';
-$tmx['h_explanation']='explanation to be printed on results';
-$tmx['w_repeatable']='repeatable';
-$tmx['h_repeatable_test']='users can repeat this test several times';
-$tmx['w_repeat']='repeat';
-$tmx['h_repeat_test']='repeat this test (current results will be deleted)';
-$tmx['w_calendar']='calendar';
-$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
-$tmx['w_mcma_partial_score']='partial score for MCMA';
-$tmx['h_mcma_partial_score']='if selected, uses partial score for MCMA questions';
-$tmx['h_logout_on_timeout']='if selected, logs out the user when the time expires';
-$tmx['w_logout_on_timeout']='logout when time expires';
-$tmx['t_backup_editor']='Database Backup and Restore';
-$tmx['w_backup']='backup';
-$tmx['w_restore']='restore';
-$tmx['w_backup_file']='backup file';
-$tmx['h_backup']='create a new backup';
-$tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
-$tmx['m_restore_confirm']='confirm restoring';
-$tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
-Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
-To restore an existing backup archive, select it and push the [restore] button.
-Note that before each restore the system automatically execute a new backup, so you can undo the operation.
-Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
+$tmx['h_module_name']='שם יחידת הלימוד';
+$tmx['w_explanation']='הסבר';
+$tmx['h_explanation']='הסבר שיודפס על דפי התוצאות';
+$tmx['w_repeatable']='ביצוע חוזר';
+$tmx['h_repeatable_test']='הנבחנים רשאים לחזור על המבחן כמה פעמים';
+$tmx['w_repeat']='בצע שוב';
+$tmx['h_repeat_test']='בצע את המבחן שוב (התוצאות הנוכחיות ימחקו)';
+$tmx['w_calendar']='לוח שנה';
+$tmx['m_score_higher_than_max']='נבחר ניקוד גדול מהניקוד המירבי המותר';
+$tmx['w_mcma_partial_score']='ניקוד חלקי עבור שאלות מרובות תשובות';
+$tmx['h_mcma_partial_score']='בחירה תגרום לשימוש בניקוד חלקי עבור שאלות מרובות תשובות';
+$tmx['h_logout_on_timeout']='בחירה תגרום ליציאת המשתמש מהמערכת בסיום המבחן';
+$tmx['w_logout_on_timeout']='יציאה מהמערכת כאשר תם הזמן המוקצב';
+$tmx['t_backup_editor']='גיבוי ושחזור בסיס הנתונים';
+$tmx['w_backup']='גיבוי';
+$tmx['w_restore']='שחזור';
+$tmx['w_backup_file']='קובץ גיבוי';
+$tmx['h_backup']='יצירת גיבוי חדש';
+$tmx['h_restore']='שחזור מקובץ הגיבוי שנבחר';
+$tmx['m_backup_completed']='הגיבוי הושלם בהצלחה';
+$tmx['m_restore_completed']='השחזור הושלם בהצלחה';
+$tmx['m_restore_confirm']='נא לאשר שחזור בסיס הנתונים';
+$tmx['hp_edit_backups']='דף זה מאפשר לגבות ולשחזר את בסיס הנתונים (זמין רק במערכות POSIX עם בסיסי נתונים MySQL או PostgreSQL).
+נא ללחוץ על כפתור [גיבוי] כדי ליצור קובץ גיבוי דחוס של בסיס הנתונים (כולל מבנה ותוכן).
+על מנת לשחזר מגיבוי קודם, יש לבחור אותו וללחוץ על כפתור [שחזור].
+שימו לב שלפני כל שחזור, מבוצע גיבוי אוטומטי על ידי המערכת בכדי שניתן יהיה לחזור למצב הקודם.
+קבצי הגיבוי מאוחסנים תחת התיקיה "cache/backup" בשמות במבנה הבא: YYYYMMDDhhmmss_tcexam_backup.sql.gz,
+כאשר YYYYMMDDhhmmss מציינות את השנה (Y), חודש (M), יום (D), שעה (h), דקה (m), שניה (s).';
 
 // EOF ----------
 ?>

@@ -179,7 +179,11 @@ find . -type d -exec chmod 755 {} \;</code><br />
 <li><strong>public/config/</strong> - Configuration files for the public area:<ul>
 <li><strong>tce_config.php</strong> - general configuration for the public area</li></ul></li></ul><p>Configuration files are self-explanatory. If you encounter a problem please check the <a href="http://www.tecnick.com/public/code/cp_dpage.php?aiocp_dp=tcexam_support" title="TCExam support and services">Support and Services</a> page.</p><a name="security" id="security"></a><h3>Access and Security</h3><p>Once the installation and configuration procedures are completed, you can access the administration section by pointing your Web browser to <em>http://www.yoursite.com/tcexam_folder/admin/code/</em> and using the following username and password:</p><ul>
 <li>name: admin</li>
-<li>password: 1234</li></ul><p>In order to protect your system and be granted with an unique personal access, remember to change the password with the <em>Users</em> form.<br /><br />To achieve a better level of security you have to protect the whole <em>admin</em> folder with a web-based user autentication system. For Apache check the <a href="http://httpd.apache.org/docs/1.3/howto/auth.html" target="_blank" title="Apache basic authentication">Apache Authentication, Authorization, and Access Control</a>.</p>
+<li>password: 1234</li></ul>
+<p>In order to protect your system and be granted with an unique personal access, remember to change the password with the <em>Users</em> form.<br /><br />To achieve a better level of security you have to protect the whole <em>admin</em> folder with a web-based user autentication system. For Apache check the <a href="http://httpd.apache.org/docs/1.3/howto/auth.html" target="_blank" title="Apache basic authentication">Apache Authentication, Authorization, and Access Control</a>.<br />
+If you have SELinux enabled and you are unable to login, check the SELinux settings or disable SELinux.
+
+</p>
 
 </body>
 </html>
