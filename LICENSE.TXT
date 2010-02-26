@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 TCEXAM IS SUBJECT TO THE FOLLOWING AGPLV3 LICENSE.
-ADDITIONALLY, YOU CAN'T REMOVE OR MOVE THE ORIGINAL TCEXAM LOGO, 
+ADDITIONALLY, YOU CAN'T REMOVE, MOVE OR HIDE THE ORIGINAL TCEXAM LOGO, 
 COPYRIGHTS STATEMENTS AND LINKS TO TECNICK.COM AND TCEXAM WEBSITES.
 --------------------------------------------------------------------------------
 

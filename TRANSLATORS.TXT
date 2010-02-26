@@ -13,6 +13,8 @@ The TCExam translation process is the following:
 
 4. the "language_tmx.xml" is an XML file in TMX standard and could be edited either manually or using a compatible CAT Software (Computer Aided Translation, check http://www.lisa.org/standards/tmx/ for more information).
 
+5. As alternative you can directly translate one of the language files located on "/cache/lang" folder.
+
 
 --- NOTES FOR TMX FILE -------
 
@@ -43,7 +45,7 @@ Some fields includes XHTML code. The "<" and ">" symbols are escaped using "&lg;
 
 TESTING:
 
-If you wish to test your genereted XML file, you must install TCExam and delete the language_tmx_XX.php files on "/cache" folder.
+If you wish to test your genereted XML file, you must install TCExam and delete the language_tmx_XX.php files on "/cache/lang" folder.
 
 ----------
 

@@ -1,3 +1,6 @@
+10.0.008 (2010-02-26)
+	- Language files were updated.
+
 10.0.007 (2010-02-24)
 	- Language files were updated.
 	- TCPDF library was updated.
