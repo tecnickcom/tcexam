@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2010-02-24 12:12:33
+// DATE: 2010-02-26 13:01:59
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
