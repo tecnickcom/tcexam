@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2010-02-26 13:02:15
+// DATE: 2010-03-10 19:20:20
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']=' メール機能を instantiate できません
 $tmx['m_mailerror_mailer_not_supported']='メーラーがサポートされていません。';
 $tmx['m_mailerror_provide_address']=' 少なくとも一つの recipient の電子メールアドレスが必要です。';
 $tmx['m_mailerror_recipients_failed']='[SMTP] 次の recipients は失敗しました：';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='クリックすると新しいウィンドウが開きます';
 $tmx['m_no_test_available']='受験可能なテストがありません！';
 $tmx['m_process_completed']='プロセス完了';

@@ -108,6 +108,8 @@
 	<div>
 		<h2>a</h2>
 		<dl>
+							<dt><b>$action_function</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$action_function">PHPMailer::$action_function</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Callback Action function name</dd>
 							<dt><b>$all_recipients</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$all_recipients">PHPMailer::$all_recipients</a></dd>
 							<dt><b>$AltBody</b></dt>
@@ -228,6 +230,14 @@
 	<div>
 		<h2>d</h2>
 		<dl>
+							<dt><b>$DKIM_domain</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_domain">PHPMailer::$DKIM_domain</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_identity</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_identity">PHPMailer::$DKIM_identity</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_private</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_private">PHPMailer::$DKIM_private</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_selector</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_selector">PHPMailer::$DKIM_selector</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
 							<dt><b>$do_debug</b></dt>
 				<dd>in file class.smtp.php, variable <a href="PHPMailer/SMTP.html#var$do_debug">SMTP::$do_debug</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets whether debugging is turned on</dd>
 							<dt><b>$do_debug</b></dt>
@@ -240,6 +250,18 @@
 				<dd>in file class.pop3.php, method <a href="PHPMailer/POP3.html#methodDisconnect">POP3::Disconnect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Disconnect from the POP3 server</dd>
 							<dt><b>displayErrors</b></dt>
 				<dd>in file class.pop3.php, method <a href="PHPMailer/POP3.html#methoddisplayErrors">POP3::displayErrors()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If debug is enabled, display the error message array</dd>
+							<dt><b>DKIM_Add</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_Add">PHPMailer::DKIM_Add()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Create the DKIM header, body, as new header</dd>
+							<dt><b>DKIM_BodyC</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_BodyC">PHPMailer::DKIM_BodyC()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM Canonicalization Body</dd>
+							<dt><b>DKIM_HeaderC</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_HeaderC">PHPMailer::DKIM_HeaderC()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM Canonicalization Header</dd>
+							<dt><b>DKIM_QP</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_QP">PHPMailer::DKIM_QP()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the private key file and password to sign the message.</dd>
+							<dt><b>DKIM_Sign</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_Sign">PHPMailer::DKIM_Sign()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM signature</dd>
+							<dt><b>doCallback</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methoddoCallback">PHPMailer::doCallback()</a></dd>
 					</dl>
 	</div>
 	<a href="elementindex_PHPMailer.html#top">top</a><br>
@@ -476,6 +498,8 @@
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$sign_key_pass">PHPMailer::$sign_key_pass</a></dd>
 							<dt><b>$SingleTo</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Provides the ability to have the TO field process individual</dd>
+							<dt><b>$SingleToArray</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$SingleToArray">PHPMailer::$SingleToArray</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If SingleTo is true, this provides the array to hold the email addresses</dd>
 							<dt><b>$smtp</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$smtp">PHPMailer::$smtp</a></dd>
 							<dt><b>$SMTPAuth</b></dt>
@@ -583,6 +607,8 @@
 							<dt><b>$Version</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$Version">PHPMailer::$Version</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the PHPMailer Version number</dd>
 							<dt><b>ValidateAddress</b></dt>
+				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodValidateAddress">C_mailer::ValidateAddress()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check that a string looks roughly like an email address should  (override original ValidateAddress method).</dd>
+							<dt><b>ValidateAddress</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodValidateAddress">PHPMailer::ValidateAddress()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check that a string looks roughly like an email address should</dd>
 					</dl>
 	</div>
@@ -601,7 +627,7 @@
 	<a href="elementindex_PHPMailer.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 26 Feb 2010 13:03:34 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 10 Mar 2010 19:41:43 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

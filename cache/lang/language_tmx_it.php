@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2010-02-26 13:02:14
+// DATE: 2010-03-10 19:20:19
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Impossibile istanziare la funzione mail.';
 $tmx['m_mailerror_mailer_not_supported']='Mailer non supportato.';
 $tmx['m_mailerror_provide_address']='Deve essere fornito almeno un indirizzo ricevente.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] I seguenti indirizzi destinatari hanno generato un errore:';
+$tmx['m_mailerror_signing']='Errore di firma: ';
+$tmx['m_mailerror_smtp_error']='Errore Server SMTP: ';
+$tmx['m_mailerror_empty_message']='Il contenuto del messaggio è vuoto';
+$tmx['m_mailerror_invalid_address']='Indirizzo non valido';
+$tmx['m_mailerror_variable_set']='Impossibile impostare o resettare la variabile: ';
 $tmx['m_new_window_link']='questo link apre una nuova finestra del browser';
 $tmx['m_no_test_available']='nessun test è attualmente disponibile!';
 $tmx['m_process_completed']='processo completato';

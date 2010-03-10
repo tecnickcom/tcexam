@@ -112,6 +112,7 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 <ul>
     <li><a href="../PHPMailer/C_mailer.html#methodLang">Lang</a></li>
     <li><a href="../PHPMailer/C_mailer.html#methodSetError">SetError</a></li>
+    <li><a href="../PHPMailer/C_mailer.html#methodValidateAddress">ValidateAddress</a></li>
   </ul>
 </td>
 
@@ -154,6 +155,12 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 <div class="tags">
 <h4>Class: <a href="../PHPMailer/PHPMailer.html">PHPMailer</a></h4>
 <dl>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$action_function">PHPMailer::$action_function</a>
+  </dt>
+<dd>
+   
+</dd>
 <dt>
   <a href="../PHPMailer/PHPMailer.html#var$all_recipients">PHPMailer::$all_recipients</a>
   </dt>
@@ -216,6 +223,30 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 </dd>
 <dt>
   <a href="../PHPMailer/PHPMailer.html#var$CustomHeader">PHPMailer::$CustomHeader</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$DKIM_domain">PHPMailer::$DKIM_domain</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$DKIM_identity">PHPMailer::$DKIM_identity</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$DKIM_private">PHPMailer::$DKIM_private</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$DKIM_selector">PHPMailer::$DKIM_selector</a>
   </dt>
 <dd>
    
@@ -360,6 +391,12 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
 </dd>
 <dt>
   <a href="../PHPMailer/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../PHPMailer/PHPMailer.html#var$SingleToArray">PHPMailer::$SingleToArray</a>
   </dt>
 <dd>
    
@@ -576,6 +613,42 @@ Source Location: /shared/code/tce_class_mailer.php<br /><br />
   </dt>
   <dd>
     Assembles message header.
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodDKIM_Add">PHPMailer::DKIM_Add()</a>
+  </dt>
+  <dd>
+    Create the DKIM header, body, as new header
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodDKIM_BodyC">PHPMailer::DKIM_BodyC()</a>
+  </dt>
+  <dd>
+    Generate DKIM Canonicalization Body
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodDKIM_HeaderC">PHPMailer::DKIM_HeaderC()</a>
+  </dt>
+  <dd>
+    Generate DKIM Canonicalization Header
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodDKIM_QP">PHPMailer::DKIM_QP()</a>
+  </dt>
+  <dd>
+    Set the private key file and password to sign the message.
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methodDKIM_Sign">PHPMailer::DKIM_Sign()</a>
+  </dt>
+  <dd>
+    Generate DKIM signature
+  </dd>
+    <dt>
+    <a href="../PHPMailer/PHPMailer.html#methoddoCallback">PHPMailer::doCallback()</a>
+  </dt>
+  <dd>
+    
   </dd>
     <dt>
     <a href="../PHPMailer/PHPMailer.html#methodEncodeFile">PHPMailer::EncodeFile()</a>
@@ -920,6 +993,45 @@ C_mailer - PHPMailer class extension<br /><br /><br /><br />
 <a name="class_methods"></a>
 <h3>Class Methods</h3>
 <div class="tags">
+  <hr />
+	<a name="methodValidateAddress"></a>
+	<h3>static method ValidateAddress <span class="smalllinenumber">[line 120]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>static boolean ValidateAddress(
+string
+$address)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Check that a string looks roughly like an email address should  (override original ValidateAddress method).<br /><br /><p>Conforms approximately to RFC2822</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://www.hexillion.com/samples/#Regex">Original pattern found here</a></td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../PHPMailer/PHPMailer.html#methodValidateAddress">PHPMailer::ValidateAddress()</a> (Check that a string looks roughly like an email address should)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$address</b>&nbsp;&nbsp;</td>
+        <td>The email address to check</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
 
   <hr />
 	<a name="methodLang"></a>
@@ -941,7 +1053,7 @@ $key)</code>
     <td><b>var:</b>&nbsp;&nbsp;</td><td>language key</td>
   </tr>
   <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
   </tr>
 </table>
 </div>
@@ -1004,7 +1116,7 @@ $msg)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 26 Feb 2010 13:03:36 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 10 Mar 2010 19:41:44 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

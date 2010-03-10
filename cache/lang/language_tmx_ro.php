@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-02-26 13:02:21
+// DATE: 2010-03-10 19:20:25
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Nu s-a pornit funcţia mail.';
 $tmx['m_mailerror_mailer_not_supported']='Mailer-ul nu este suportat.';
 $tmx['m_mailerror_provide_address']='Trebuie să specificaţi cel puţin o adresă de email a destinatarului.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Următorii destinatari au eşuat:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='acest link va deschide o nouă fereastră în browser';
 $tmx['m_no_test_available']='Nu sunt teste disponibile!';
 $tmx['m_process_completed']='proces complet';

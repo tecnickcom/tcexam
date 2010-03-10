@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2010-02-26 13:02:12
+// DATE: 2010-03-10 19:20:18
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Tidak dapat menginstan fungsi email';
 $tmx['m_mailerror_mailer_not_supported']='Mailer tidak mendukung';
 $tmx['m_mailerror_provide_address']='Anda harus menunjuk sedikitnya satu penerima email';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Penerimaan email telah gagal';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='Link ini akan membuka window browser yang baru';
 $tmx['m_no_test_available']='Tidak ada test yang tersedia!';
 $tmx['m_process_completed']='Proses Komplit';

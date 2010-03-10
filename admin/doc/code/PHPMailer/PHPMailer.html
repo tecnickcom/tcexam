@@ -101,6 +101,7 @@ Source Location: /shared/phpmailer/class.phpmailer.php<br /><br />
 <td valign="top">
 <h3><a href="#class_vars">Variables</a></h3>
 <ul>
+    <li><a href="../PHPMailer/PHPMailer.html#var$action_function">$action_function</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$all_recipients">$all_recipients</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$AltBody">$AltBody</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$attachment">$attachment</a></li>
@@ -112,6 +113,10 @@ Source Location: /shared/phpmailer/class.phpmailer.php<br /><br />
     <li><a href="../PHPMailer/PHPMailer.html#var$ConfirmReadingTo">$ConfirmReadingTo</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$ContentType">$ContentType</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$CustomHeader">$CustomHeader</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#var$DKIM_domain">$DKIM_domain</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#var$DKIM_identity">$DKIM_identity</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#var$DKIM_private">$DKIM_private</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#var$DKIM_selector">$DKIM_selector</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$Encoding">$Encoding</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$ErrorInfo">$ErrorInfo</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$error_count">$error_count</a></li>
@@ -137,6 +142,7 @@ Source Location: /shared/phpmailer/class.phpmailer.php<br /><br />
     <li><a href="../PHPMailer/PHPMailer.html#var$sign_key_file">$sign_key_file</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$sign_key_pass">$sign_key_pass</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$SingleTo">$SingleTo</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#var$SingleToArray">$SingleToArray</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$smtp">$smtp</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$SMTPAuth">$SMTPAuth</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#var$SMTPDebug">$SMTPDebug</a></li>
@@ -186,6 +192,12 @@ Source Location: /shared/phpmailer/class.phpmailer.php<br /><br />
     <li><a href="../PHPMailer/PHPMailer.html#methodClearReplyTos">ClearReplyTos</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#methodCreateBody">CreateBody</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#methodCreateHeader">CreateHeader</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methodDKIM_Add">DKIM_Add</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methodDKIM_BodyC">DKIM_BodyC</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methodDKIM_HeaderC">DKIM_HeaderC</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methodDKIM_QP">DKIM_QP</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methodDKIM_Sign">DKIM_Sign</a></li>
+    <li><a href="../PHPMailer/PHPMailer.html#methoddoCallback">doCallback</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#methodEncodeFile">EncodeFile</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#methodEncodeHeader">EncodeHeader</a></li>
     <li><a href="../PHPMailer/PHPMailer.html#methodEncodeQ">EncodeQ</a></li>
@@ -287,10 +299,34 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 <a name="class_vars"></a>
 <h3>Class Variables</h3>
 <div class="tags">
+	<a name="var$action_function"></a>
+	<p></p>
+	<h4>$action_function = <span class="value">&nbsp;''</span></h4>
+	<p>[line 297]</p>
+  Callback Action function name<br /><br /><p>the function that handles the result of the send email action. Parameters:    bool    $result        result of the send action    string  $to            email address of the recipient    string  $cc            cc email addresses    string  $bcc           bcc email addresses    string  $subject       the subject    string  $body          the email body</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="var$all_recipients"></a>
 	<p></p>
 	<h4>$all_recipients = <span class="value">array()</span></h4>
-	<p>[line 268]</p>
+	<p>[line 314]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -338,7 +374,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$attachment"></a>
 	<p></p>
 	<h4>$attachment = <span class="value">array()</span></h4>
-	<p>[line 269]</p>
+	<p>[line 315]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -362,7 +398,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$bcc"></a>
 	<p></p>
 	<h4>$bcc = <span class="value">array()</span></h4>
-	<p>[line 266]</p>
+	<p>[line 312]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -410,7 +446,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$boundary"></a>
 	<p></p>
 	<h4>$boundary = <span class="value">array()</span></h4>
-	<p>[line 272]</p>
+	<p>[line 318]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -434,7 +470,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$cc"></a>
 	<p></p>
 	<h4>$cc = <span class="value">array()</span></h4>
-	<p>[line 265]</p>
+	<p>[line 311]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -530,7 +566,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$CustomHeader"></a>
 	<p></p>
 	<h4>$CustomHeader = <span class="value">array()</span></h4>
-	<p>[line 270]</p>
+	<p>[line 316]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -547,6 +583,102 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
     <tr>
       <td><b>Type:</b>&nbsp;&nbsp;</td>
       <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$DKIM_domain"></a>
+	<p></p>
+	<h4>$DKIM_domain = <span class="value">&nbsp;''</span></h4>
+	<p>[line 277]</p>
+  Used with DKIM DNS Resource Record<br /><br /><p>optional, in format of email address 'you@yourdomain.com'</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$DKIM_identity"></a>
+	<p></p>
+	<h4>$DKIM_identity = <span class="value">&nbsp;''</span></h4>
+	<p>[line 270]</p>
+  Used with DKIM DNS Resource Record<br /><br /><p>optional, in format of email address 'you@yourdomain.com'</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$DKIM_private"></a>
+	<p></p>
+	<h4>$DKIM_private = <span class="value">&nbsp;''</span></h4>
+	<p>[line 284]</p>
+  Used with DKIM DNS Resource Record<br /><br /><p>optional, in format of email address 'you@yourdomain.com'</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$DKIM_selector"></a>
+	<p></p>
+	<h4>$DKIM_selector = <span class="value">&nbsp;'phpmailer'</span></h4>
+	<p>[line 263]</p>
+  Used with DKIM DNS Resource Record<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>string</td>
     </tr>
       </table>
 	</div><br /><br />
@@ -602,7 +734,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$error_count"></a>
 	<p></p>
 	<h4>$error_count = <span class="value">&nbsp;0</span></h4>
-	<p>[line 274]</p>
+	<p>[line 320]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -626,7 +758,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$exceptions"></a>
 	<p></p>
 	<h4>$exceptions = <span class="value">&nbsp;false</span></h4>
-	<p>[line 278]</p>
+	<p>[line 324]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -770,7 +902,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$language"></a>
 	<p></p>
 	<h4>$language = <span class="value">array()</span></h4>
-	<p>[line 273]</p>
+	<p>[line 319]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -794,7 +926,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$LE"></a>
 	<p></p>
 	<h4>$LE = <span class="value">&nbsp;&quot;\n&quot;</span></h4>
-	<p>[line 251]</p>
+	<p>[line 257]</p>
   Provides the ability to change the line ending<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -866,7 +998,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$message_type"></a>
 	<p></p>
 	<h4>$message_type = <span class="value">&nbsp;''</span></h4>
-	<p>[line 271]</p>
+	<p>[line 317]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -986,7 +1118,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$ReplyTo"></a>
 	<p></p>
 	<h4>$ReplyTo = <span class="value">array()</span></h4>
-	<p>[line 267]</p>
+	<p>[line 313]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1058,7 +1190,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$sign_cert_file"></a>
 	<p></p>
 	<h4>$sign_cert_file = <span class="value">&nbsp;&quot;&quot;</span></h4>
-	<p>[line 275]</p>
+	<p>[line 321]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1082,7 +1214,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$sign_key_file"></a>
 	<p></p>
 	<h4>$sign_key_file = <span class="value">&nbsp;&quot;&quot;</span></h4>
-	<p>[line 276]</p>
+	<p>[line 322]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1106,7 +1238,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$sign_key_pass"></a>
 	<p></p>
 	<h4>$sign_key_pass = <span class="value">&nbsp;&quot;&quot;</span></h4>
-	<p>[line 277]</p>
+	<p>[line 323]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1151,10 +1283,34 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
       </table>
 	</div><br /><br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$SingleToArray"></a>
+	<p></p>
+	<h4>$SingleToArray = <span class="value">array()</span></h4>
+	<p>[line 251]</p>
+  If SingleTo is true, this provides the array to hold the email addresses<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>bool</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="var$smtp"></a>
 	<p></p>
 	<h4>$smtp = <span class="value">&nbsp;NULL</span></h4>
-	<p>[line 263]</p>
+	<p>[line 309]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1322,7 +1478,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<a name="var$to"></a>
 	<p></p>
 	<h4>$to = <span class="value">array()</span></h4>
-	<p>[line 264]</p>
+	<p>[line 310]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1369,8 +1525,8 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="var$Version"></a>
 	<p></p>
-	<h4>$Version = <span class="value">&nbsp;'5.0.2'</span></h4>
-	<p>[line 257]</p>
+	<h4>$Version = <span class="value">&nbsp;'5.1'</span></h4>
+	<p>[line 303]</p>
   Sets the PHPMailer Version number<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -1423,7 +1579,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
 <div class="tags">
   <hr />
 	<a name="methodRFCDate"></a>
-	<h3>static method RFCDate <span class="smalllinenumber">[line 1803]</span></h3>
+	<h3>static method RFCDate <span class="smalllinenumber">[line 1924]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1448,7 +1604,7 @@ PHPMailer - PHP email transport class<br /><br /><p>NOTE: Requires PHP version 5
   </div>
   <hr />
 	<a name="methodValidateAddress"></a>
-	<h3>static method ValidateAddress <span class="smalllinenumber">[line 469]</span></h3>
+	<h3>static method ValidateAddress <span class="smalllinenumber">[line 523]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1472,6 +1628,12 @@ $address)</code>
 </div>
 <br /><br />
 
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../PHPMailer/C_mailer.html#methodValidateAddress">C_mailer::ValidateAddress()</a></dt>
+		<dd>Check that a string looks roughly like an email address should  (override original ValidateAddress method).</dd>
+	</dl>
+	</p>
 	
         <h4>Parameters:</h4>
     <div class="tags">
@@ -1487,7 +1649,7 @@ $address)</code>
   </div>
   <hr />
 	<a name="method_mime_types"></a>
-	<h3>static method _mime_types <span class="smalllinenumber">[line 1920]</span></h3>
+	<h3>static method _mime_types <span class="smalllinenumber">[line 2041]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1527,7 +1689,7 @@ $ext = ''])</code>
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 296]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 342]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1563,7 +1725,7 @@ $exceptions = false])</code>
   </div>
   <hr />
 	<a name="methodAddAddress"></a>
-	<h3>method AddAddress <span class="smalllinenumber">[line 361]</span></h3>
+	<h3>method AddAddress <span class="smalllinenumber">[line 407]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1608,7 +1770,7 @@ $name = ''])</code>
   </div>
   <hr />
 	<a name="methodAddAnAddress"></a>
-	<h3>method AddAnAddress <span class="smalllinenumber">[line 406]</span></h3>
+	<h3>method AddAnAddress <span class="smalllinenumber">[line 452]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1659,7 +1821,7 @@ $name = ''])</code>
   </div>
   <hr />
 	<a name="methodAddAttachment"></a>
-	<h3>method AddAttachment <span class="smalllinenumber">[line 1223]</span></h3>
+	<h3>method AddAttachment <span class="smalllinenumber">[line 1344]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1713,7 +1875,7 @@ $type = 'application/octet-stream'])</code>
   </div>
   <hr />
 	<a name="methodAddBCC"></a>
-	<h3>method AddBCC <span class="smalllinenumber">[line 383]</span></h3>
+	<h3>method AddBCC <span class="smalllinenumber">[line 429]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1758,7 +1920,7 @@ $name = ''])</code>
   </div>
   <hr />
 	<a name="methodAddCC"></a>
-	<h3>method AddCC <span class="smalllinenumber">[line 372]</span></h3>
+	<h3>method AddCC <span class="smalllinenumber">[line 418]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1803,7 +1965,7 @@ $name = ''])</code>
   </div>
   <hr />
 	<a name="methodAddCustomHeader"></a>
-	<h3>method AddCustomHeader <span class="smalllinenumber">[line 1873]</span></h3>
+	<h3>method AddCustomHeader <span class="smalllinenumber">[line 1994]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1839,7 +2001,7 @@ $custom_header)</code>
   </div>
   <hr />
 	<a name="methodAddEmbeddedImage"></a>
-	<h3>method AddEmbeddedImage <span class="smalllinenumber">[line 1662]</span></h3>
+	<h3>method AddEmbeddedImage <span class="smalllinenumber">[line 1783]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1899,7 +2061,7 @@ $type = 'application/octet-stream'])</code>
   </div>
   <hr />
 	<a name="methodAddrAppend"></a>
-	<h3>method AddrAppend <span class="smalllinenumber">[line 782]</span></h3>
+	<h3>method AddrAppend <span class="smalllinenumber">[line 897]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1941,7 +2103,7 @@ $addr)</code>
   </div>
   <hr />
 	<a name="methodAddReplyTo"></a>
-	<h3>method AddReplyTo <span class="smalllinenumber">[line 393]</span></h3>
+	<h3>method AddReplyTo <span class="smalllinenumber">[line 439]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -1983,7 +2145,7 @@ $name = ''])</code>
   </div>
   <hr />
 	<a name="methodAddrFormat"></a>
-	<h3>method AddrFormat <span class="smalllinenumber">[line 799]</span></h3>
+	<h3>method AddrFormat <span class="smalllinenumber">[line 914]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2019,7 +2181,7 @@ $addr)</code>
   </div>
   <hr />
 	<a name="methodAddStringAttachment"></a>
-	<h3>method AddStringAttachment <span class="smalllinenumber">[line 1635]</span></h3>
+	<h3>method AddStringAttachment <span class="smalllinenumber">[line 1756]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2073,7 +2235,7 @@ $type = 'application/octet-stream'])</code>
   </div>
   <hr />
 	<a name="methodAttachAll"></a>
-	<h3>method AttachAll <span class="smalllinenumber">[line 1271]</span></h3>
+	<h3>method AttachAll <span class="smalllinenumber">[line 1392]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2098,7 +2260,7 @@ $type = 'application/octet-stream'])</code>
   </div>
   <hr />
 	<a name="methodBase64EncodeWrapMB"></a>
-	<h3>method Base64EncodeWrapMB <span class="smalllinenumber">[line 1478]</span></h3>
+	<h3>method Base64EncodeWrapMB <span class="smalllinenumber">[line 1599]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2134,7 +2296,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearAddresses"></a>
-	<h3>method ClearAddresses <span class="smalllinenumber">[line 1711]</span></h3>
+	<h3>method ClearAddresses <span class="smalllinenumber">[line 1832]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2159,7 +2321,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearAllRecipients"></a>
-	<h3>method ClearAllRecipients <span class="smalllinenumber">[line 1753]</span></h3>
+	<h3>method ClearAllRecipients <span class="smalllinenumber">[line 1874]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2184,7 +2346,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearAttachments"></a>
-	<h3>method ClearAttachments <span class="smalllinenumber">[line 1765]</span></h3>
+	<h3>method ClearAttachments <span class="smalllinenumber">[line 1886]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2209,7 +2371,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearBCCs"></a>
-	<h3>method ClearBCCs <span class="smalllinenumber">[line 1733]</span></h3>
+	<h3>method ClearBCCs <span class="smalllinenumber">[line 1854]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2234,7 +2396,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearCCs"></a>
-	<h3>method ClearCCs <span class="smalllinenumber">[line 1722]</span></h3>
+	<h3>method ClearCCs <span class="smalllinenumber">[line 1843]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2259,7 +2421,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearCustomHeaders"></a>
-	<h3>method ClearCustomHeaders <span class="smalllinenumber">[line 1773]</span></h3>
+	<h3>method ClearCustomHeaders <span class="smalllinenumber">[line 1894]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2284,7 +2446,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodClearReplyTos"></a>
-	<h3>method ClearReplyTos <span class="smalllinenumber">[line 1744]</span></h3>
+	<h3>method ClearReplyTos <span class="smalllinenumber">[line 1865]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2309,7 +2471,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodCreateBody"></a>
-	<h3>method CreateBody <span class="smalllinenumber">[line 1069]</span></h3>
+	<h3>method CreateBody <span class="smalllinenumber">[line 1190]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2337,7 +2499,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodCreateHeader"></a>
-	<h3>method CreateHeader <span class="smalllinenumber">[line 958]</span></h3>
+	<h3>method CreateHeader <span class="smalllinenumber">[line 1073]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2364,8 +2526,278 @@ $str)</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodDKIM_Add"></a>
+	<h3>method DKIM_Add <span class="smalllinenumber">[line 2271]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void DKIM_Add(
+string
+$headers_line, string
+$subject, string
+$body)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Create the DKIM header, body, as new header<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$headers_line</b>&nbsp;&nbsp;</td>
+        <td>Header lines</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$subject</b>&nbsp;&nbsp;</td>
+        <td>Subject</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$body</b>&nbsp;&nbsp;</td>
+        <td>Body</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodDKIM_BodyC"></a>
+	<h3>method DKIM_BodyC <span class="smalllinenumber">[line 2251]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void DKIM_BodyC(
+string
+$body)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Generate DKIM Canonicalization Body<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$body</b>&nbsp;&nbsp;</td>
+        <td>Message Body</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodDKIM_HeaderC"></a>
+	<h3>method DKIM_HeaderC <span class="smalllinenumber">[line 2232]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void DKIM_HeaderC(
+string
+$s)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Generate DKIM Canonicalization Header<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$s</b>&nbsp;&nbsp;</td>
+        <td>Header</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodDKIM_QP"></a>
+	<h3>method DKIM_QP <span class="smalllinenumber">[line 2194]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void DKIM_QP(
+
+$txt, string
+$key_filename, string
+$key_pass)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set the private key file and password to sign the message.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$key_filename</b>&nbsp;&nbsp;</td>
+        <td>Parameter File Name</td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$key_pass</b>&nbsp;&nbsp;</td>
+        <td>Password for private key</td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$txt</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodDKIM_Sign"></a>
+	<h3>method DKIM_Sign <span class="smalllinenumber">[line 2214]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void DKIM_Sign(
+string
+$s)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Generate DKIM signature<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$s</b>&nbsp;&nbsp;</td>
+        <td>Header</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoddoCallback"></a>
+	<h3>method doCallback <span class="smalllinenumber">[line 2306]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void doCallback(
+
+$isSent, 
+$to, 
+$cc, 
+$bcc, 
+$subject, 
+$body)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$isSent</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$to</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$cc</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$bcc</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$subject</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$body</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodEncodeFile"></a>
-	<h3>method EncodeFile <span class="smalllinenumber">[line 1338]</span></h3>
+	<h3>method EncodeFile <span class="smalllinenumber">[line 1459]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2410,7 +2842,7 @@ $encoding = 'base64'])</code>
   </div>
   <hr />
 	<a name="methodEncodeHeader"></a>
-	<h3>method EncodeHeader <span class="smalllinenumber">[line 1401]</span></h3>
+	<h3>method EncodeHeader <span class="smalllinenumber">[line 1522]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2452,7 +2884,7 @@ $position = 'text'])</code>
   </div>
   <hr />
 	<a name="methodEncodeQ"></a>
-	<h3>method EncodeQ <span class="smalllinenumber">[line 1600]</span></h3>
+	<h3>method EncodeQ <span class="smalllinenumber">[line 1721]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2497,7 +2929,7 @@ $position = 'text'])</code>
   </div>
   <hr />
 	<a name="methodEncodeQP"></a>
-	<h3>method EncodeQP <span class="smalllinenumber">[line 1571]</span></h3>
+	<h3>method EncodeQP <span class="smalllinenumber">[line 1692]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2551,7 +2983,7 @@ $space_conv = false])</code>
   </div>
   <hr />
 	<a name="methodEncodeQPphp"></a>
-	<h3>method EncodeQPphp <span class="smalllinenumber">[line 1518]</span></h3>
+	<h3>method EncodeQPphp <span class="smalllinenumber">[line 1639]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2605,7 +3037,7 @@ $string)</code>
   </div>
   <hr />
 	<a name="methodEncodeString"></a>
-	<h3>method EncodeString <span class="smalllinenumber">[line 1370]</span></h3>
+	<h3>method EncodeString <span class="smalllinenumber">[line 1491]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2647,7 +3079,7 @@ $encoding = 'base64'])</code>
   </div>
   <hr />
 	<a name="methodEndBoundary"></a>
-	<h3>method EndBoundary <span class="smalllinenumber">[line 1166]</span></h3>
+	<h3>method EndBoundary <span class="smalllinenumber">[line 1287]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2683,7 +3115,7 @@ $boundary)</code>
   </div>
   <hr />
 	<a name="methodFixEOL"></a>
-	<h3>method FixEOL <span class="smalllinenumber">[line 1861]</span></h3>
+	<h3>method FixEOL <span class="smalllinenumber">[line 1982]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2719,7 +3151,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodGetAttachments"></a>
-	<h3>method GetAttachments <span class="smalllinenumber">[line 1261]</span></h3>
+	<h3>method GetAttachments <span class="smalllinenumber">[line 1382]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2744,7 +3176,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodGetBoundary"></a>
-	<h3>method GetBoundary <span class="smalllinenumber">[line 1142]</span></h3>
+	<h3>method GetBoundary <span class="smalllinenumber">[line 1263]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2798,7 +3230,7 @@ $encoding)</code>
   </div>
   <hr />
 	<a name="methodGetMailMIME"></a>
-	<h3>method GetMailMIME <span class="smalllinenumber">[line 1035]</span></h3>
+	<h3>method GetMailMIME <span class="smalllinenumber">[line 1156]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2823,7 +3255,7 @@ $encoding)</code>
   </div>
   <hr />
 	<a name="methodGetTranslations"></a>
-	<h3>method GetTranslations <span class="smalllinenumber">[line 769]</span></h3>
+	<h3>method GetTranslations <span class="smalllinenumber">[line 884]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2848,7 +3280,7 @@ $encoding)</code>
   </div>
   <hr />
 	<a name="methodHasMultiBytes"></a>
-	<h3>method HasMultiBytes <span class="smalllinenumber">[line 1462]</span></h3>
+	<h3>method HasMultiBytes <span class="smalllinenumber">[line 1583]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2884,7 +3316,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodHeaderLine"></a>
-	<h3>method HeaderLine <span class="smalllinenumber">[line 1196]</span></h3>
+	<h3>method HeaderLine <span class="smalllinenumber">[line 1317]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2926,7 +3358,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodInlineImageExists"></a>
-	<h3>method InlineImageExists <span class="smalllinenumber">[line 1694]</span></h3>
+	<h3>method InlineImageExists <span class="smalllinenumber">[line 1815]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2951,7 +3383,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodIsError"></a>
-	<h3>method IsError <span class="smalllinenumber">[line 1852]</span></h3>
+	<h3>method IsError <span class="smalllinenumber">[line 1973]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -2976,7 +3408,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodIsHTML"></a>
-	<h3>method IsHTML <span class="smalllinenumber">[line 305]</span></h3>
+	<h3>method IsHTML <span class="smalllinenumber">[line 351]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3012,7 +3444,7 @@ $ishtml = true])</code>
   </div>
   <hr />
 	<a name="methodIsMail"></a>
-	<h3>method IsMail <span class="smalllinenumber">[line 325]</span></h3>
+	<h3>method IsMail <span class="smalllinenumber">[line 371]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3037,7 +3469,7 @@ $ishtml = true])</code>
   </div>
   <hr />
 	<a name="methodIsQmail"></a>
-	<h3>method IsQmail <span class="smalllinenumber">[line 344]</span></h3>
+	<h3>method IsQmail <span class="smalllinenumber">[line 390]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3062,7 +3494,7 @@ $ishtml = true])</code>
   </div>
   <hr />
 	<a name="methodIsSendmail"></a>
-	<h3>method IsSendmail <span class="smalllinenumber">[line 333]</span></h3>
+	<h3>method IsSendmail <span class="smalllinenumber">[line 379]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3087,7 +3519,7 @@ $ishtml = true])</code>
   </div>
   <hr />
 	<a name="methodIsSMTP"></a>
-	<h3>method IsSMTP <span class="smalllinenumber">[line 317]</span></h3>
+	<h3>method IsSMTP <span class="smalllinenumber">[line 363]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3112,7 +3544,7 @@ $ishtml = true])</code>
   </div>
   <hr />
 	<a name="methodLang"></a>
-	<h3>method Lang <span class="smalllinenumber">[line 1835]</span></h3>
+	<h3>method Lang <span class="smalllinenumber">[line 1956]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3127,7 +3559,7 @@ $key)</code>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>access:</b>&nbsp;&nbsp;</td><td>private</td>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>protected</td>
   </tr>
 </table>
 </div>
@@ -3154,7 +3586,7 @@ $key)</code>
   </div>
   <hr />
 	<a name="methodMailSend"></a>
-	<h3>method MailSend <span class="smalllinenumber">[line 564]</span></h3>
+	<h3>method MailSend <span class="smalllinenumber">[line 644]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3196,7 +3628,7 @@ $body)</code>
   </div>
   <hr />
 	<a name="methodMsgHTML"></a>
-	<h3>method MsgHTML <span class="smalllinenumber">[line 1882]</span></h3>
+	<h3>method MsgHTML <span class="smalllinenumber">[line 2003]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3238,7 +3670,7 @@ $basedir = ''])</code>
   </div>
   <hr />
 	<a name="methodSecureHeader"></a>
-	<h3>method SecureHeader <span class="smalllinenumber">[line 2047]</span></h3>
+	<h3>method SecureHeader <span class="smalllinenumber">[line 2168]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3274,7 +3706,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodSend"></a>
-	<h3>method Send <span class="smalllinenumber">[line 491]</span></h3>
+	<h3>method Send <span class="smalllinenumber">[line 545]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3299,7 +3731,7 @@ $str)</code>
   </div>
   <hr />
 	<a name="methodSendmailSend"></a>
-	<h3>method SendmailSend <span class="smalllinenumber">[line 539]</span></h3>
+	<h3>method SendmailSend <span class="smalllinenumber">[line 598]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3341,7 +3773,7 @@ $body)</code>
   </div>
   <hr />
 	<a name="methodServerHostname"></a>
-	<h3>method ServerHostname <span class="smalllinenumber">[line 1818]</span></h3>
+	<h3>method ServerHostname <span class="smalllinenumber">[line 1939]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3366,7 +3798,7 @@ $body)</code>
   </div>
   <hr />
 	<a name="methodset"></a>
-	<h3>method set <span class="smalllinenumber">[line 2025]</span></h3>
+	<h3>method set <span class="smalllinenumber">[line 2146]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3411,7 +3843,7 @@ $value = ''])</code>
   </div>
   <hr />
 	<a name="methodSetError"></a>
-	<h3>method SetError <span class="smalllinenumber">[line 1786]</span></h3>
+	<h3>method SetError <span class="smalllinenumber">[line 1907]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3453,14 +3885,15 @@ $msg)</code>
   </div>
   <hr />
 	<a name="methodSetFrom"></a>
-	<h3>method SetFrom <span class="smalllinenumber">[line 442]</span></h3>
+	<h3>method SetFrom <span class="smalllinenumber">[line 488]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>boolean SetFrom(
 string
 $address, [string
-$name = ''])</code>
+$name = ''], [
+$auto = 1])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -3489,13 +3922,18 @@ $name = ''])</code>
         <td><b>$name</b>&nbsp;&nbsp;</td>
         <td></td>
       </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$auto</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
         </table>
     </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodSetLanguage"></a>
-	<h3>method SetLanguage <span class="smalllinenumber">[line 735]</span></h3>
+	<h3>method SetLanguage <span class="smalllinenumber">[line 850]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3537,7 +3975,7 @@ $lang_path = 'language/'])</code>
   </div>
   <hr />
 	<a name="methodSetMessageType"></a>
-	<h3>method SetMessageType <span class="smalllinenumber">[line 1175]</span></h3>
+	<h3>method SetMessageType <span class="smalllinenumber">[line 1296]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3562,7 +4000,7 @@ $lang_path = 'language/'])</code>
   </div>
   <hr />
 	<a name="methodSetWordWrap"></a>
-	<h3>method SetWordWrap <span class="smalllinenumber">[line 937]</span></h3>
+	<h3>method SetWordWrap <span class="smalllinenumber">[line 1052]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3587,7 +4025,7 @@ $lang_path = 'language/'])</code>
   </div>
   <hr />
 	<a name="methodSign"></a>
-	<h3>method Sign <span class="smalllinenumber">[line 2060]</span></h3>
+	<h3>method Sign <span class="smalllinenumber">[line 2181]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3635,7 +4073,7 @@ $key_pass)</code>
   </div>
   <hr />
 	<a name="methodSmtpClose"></a>
-	<h3>method SmtpClose <span class="smalllinenumber">[line 719]</span></h3>
+	<h3>method SmtpClose <span class="smalllinenumber">[line 834]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3660,7 +4098,7 @@ $key_pass)</code>
   </div>
   <hr />
 	<a name="methodSmtpConnect"></a>
-	<h3>method SmtpConnect <span class="smalllinenumber">[line 657]</span></h3>
+	<h3>method SmtpConnect <span class="smalllinenumber">[line 772]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3688,7 +4126,7 @@ $key_pass)</code>
   </div>
   <hr />
 	<a name="methodSmtpSend"></a>
-	<h3>method SmtpSend <span class="smalllinenumber">[line 609]</span></h3>
+	<h3>method SmtpSend <span class="smalllinenumber">[line 701]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3733,7 +4171,7 @@ $body)</code>
   </div>
   <hr />
 	<a name="methodTextLine"></a>
-	<h3>method TextLine <span class="smalllinenumber">[line 1205]</span></h3>
+	<h3>method TextLine <span class="smalllinenumber">[line 1326]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3769,7 +4207,7 @@ $value)</code>
   </div>
   <hr />
 	<a name="methodUTF8CharBoundary"></a>
-	<h3>method UTF8CharBoundary <span class="smalllinenumber">[line 899]</span></h3>
+	<h3>method UTF8CharBoundary <span class="smalllinenumber">[line 1014]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3811,7 +4249,7 @@ $maxLength)</code>
   </div>
   <hr />
 	<a name="methodWrapText"></a>
-	<h3>method WrapText <span class="smalllinenumber">[line 817]</span></h3>
+	<h3>method WrapText <span class="smalllinenumber">[line 932]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -3866,21 +4304,21 @@ $qp_mode = false])</code>
 	<a name="constSTOP_CONTINUE"></a>
 	<p></p>
 	<h4>STOP_CONTINUE = <span class="value">&nbsp;1</span></h4>
-	<p>[line 285]</p>
+	<p>[line 331]</p>
   
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constSTOP_CRITICAL"></a>
 	<p></p>
 	<h4>STOP_CRITICAL = <span class="value">&nbsp;2</span></h4>
-	<p>[line 286]</p>
+	<p>[line 332]</p>
   
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="constSTOP_MESSAGE"></a>
 	<p></p>
 	<h4>STOP_MESSAGE = <span class="value">&nbsp;0</span></h4>
-	<p>[line 284]</p>
+	<p>[line 330]</p>
   
   <br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
@@ -3888,7 +4326,7 @@ $qp_mode = false])</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 26 Feb 2010 13:03:35 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 10 Mar 2010 19:41:43 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

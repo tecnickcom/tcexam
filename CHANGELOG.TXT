@@ -1,3 +1,9 @@
+10.0.009 (2010-03-10)
+	- phpMailer library was updated.
+	- Language files were updated.
+	- TCPDF library was updated.
+	- A minor javascript bug was fixed.
+
 10.0.008 (2010-02-26)
 	- Language files were updated.
 

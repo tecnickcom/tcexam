@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2010-02-20
+// Last Update : 2010-03-10
 // 
 // Description : execute a specific test
 //
@@ -164,6 +164,8 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 			<input type="hidden" name="testid" id="testid" value="<?php echo $test_id; ?>" />
 			<input type="hidden" name="testlogid" id="testlogid" value="<?php echo $testlog_id; ?>" />
 			<input type="hidden" name="terminationform" id="terminationform" value="1" />
+			<input type="hidden" name="display_time" id="display_time" value="" />
+			<input type="hidden" name="reaction_time" id="reaction_time" value="" />
 			<?php 
 			F_submit_button('forceterminate', $l['w_terminate'], $l['w_terminate_exam']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);

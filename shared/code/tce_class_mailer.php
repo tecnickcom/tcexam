@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : cp_class_mailer.php
 // Begin       : 2001-10-20
-// Last Update : 2009-09-30
+// Last Update : 2010-03-10
 // 
 // Description : Extend PHPMailer class with inheritance
 //
@@ -96,16 +96,31 @@ class C_mailer extends PHPMailer {
      * Returns a message in the appropriate language.
      * (override original Lang method).
      * @var string $key language key
-     * @access private
+     * @access protected
      * @return string
      */
-    public function Lang($key) {
+    protected function Lang($key) {
         if(isset($this->language['m_mailerror_'.$key])) {
             return $this->language['m_mailerror_'.$key];
         } else {
             return 'UNKNOW ERROR: ['.$key.']';
         }
     }
+        
+	/**
+	 * Check that a string looks roughly like an email address should
+	 * (override original ValidateAddress method).
+	 * Conforms approximately to RFC2822
+	 * @link http://www.hexillion.com/samples/#Regex Original pattern found here
+	 * @param string $address The email address to check
+	 * @return boolean
+	 * @static
+	 * @access public
+	*/
+	public static function ValidateAddress($address) {
+		return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
+	}
+	
 } //end of class
 
 //============================================================+

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2010-02-17
+// Last Update : 2010-03-10
 //
 // Description : Outputs TCExam information page.
 //
@@ -72,7 +72,7 @@ echo '<li><strong>Copyright:</strong><br /> (c) 2004-2010 Nicola Asuni - Tecnick
 echo 'Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
-echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove or move the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a> file for more information.</li>'.K_NEWLINE;
+echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove, move or hide the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a> file for more information.</li>'.K_NEWLINE;
 echo '</ul>'.K_NEWLINE;
 
 echo '<h2>'.$l['t_third_parties'].'</h2>'.K_NEWLINE;
@@ -139,7 +139,7 @@ echo '<li>[EL] Greek : Kottas Alexandros</li>'.K_NEWLINE;
 echo '<li>[EN] English : Nicola Asuni - Tecnick.com S.r.l</li>'.K_NEWLINE;
 echo '<li>[ES] Spanish : Carlos Alarcon, Maria del Rocio Peñas Serrano, Alejandra Ruiz</li>'.K_NEWLINE;
 echo '<li>[FR] French : Roger Koukerjinian - Transtxt [http://www.transtxt.com]</li>'.K_NEWLINE;
-echo '<li>[HI] Hindi : Mahesh K Bhandari ,Shekhar K Maravi, Pradeep K Nayak (M.Tech CSE, IIT Bombay)</li>'.K_NEWLINE;
+echo '<li>[HI] Hindi : Mahesh K Bhandari, Shekhar K Maravi, Pradeep K Nayak (M.Tech CSE, IIT Bombay)</li>'.K_NEWLINE;
 echo '<li>[HE] Hebrew : Oron Peled</li>'.K_NEWLINE;
 echo '<li>[HU] Hungarian : Peter Ivanyi, Tibor Balázs</li>'.K_NEWLINE;
 echo '<li>[ID] Indonesian : Ahmad Bardosono</li>'.K_NEWLINE;
@@ -150,7 +150,7 @@ echo '<li>[MS] Malay (Bahasa Melayu) : Arvind Prakash Jha</li>'.K_NEWLINE;
 echo '<li>[NL] Dutch : Chris de Boer</li>'.K_NEWLINE;
 echo '<li>[PL] Polish : Tomasz Parol</li>'.K_NEWLINE;
 echo '<li>[RO] Romanian : Ovidiu Dragomir</li>'.K_NEWLINE;
-echo '<li>[RU] Russian : Andrey</li>'.K_NEWLINE;
+echo '<li>[RU] Russian : Andrey, Sergey C.</li>'.K_NEWLINE;
 echo '<li>[TR] Turkish : Mehmet Arif Icir</li>'.K_NEWLINE;
 echo '<li>[VN] Vietnamese : Nguyen Quynh Nga</li>'.K_NEWLINE;
 echo '</ul>'.K_NEWLINE;

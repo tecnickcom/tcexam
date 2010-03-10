@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: bg
-// DATE: 2010-02-26 13:01:56
+// DATE: 2010-03-10 19:20:07
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Не може да инициализира м�
 $tmx['m_mailerror_mailer_not_supported']='Програма за адресиране на писма не се поддържа.';
 $tmx['m_mailerror_provide_address']='Трябва да запишите адреса на поне един е-майл получател.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Не достигна до следните получатели:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='този линк ще отвори нов браузър';
 $tmx['m_no_test_available']='няма налични тестове!';
 $tmx['m_process_completed']='процеса е завършен';

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2010-02-26 13:02:26
+// DATE: 2010-03-10 19:20:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Không thể thực hiện hàm email.';
 $tmx['m_mailerror_mailer_not_supported']='Không hỗ trợ gửi email.';
 $tmx['m_mailerror_provide_address']='Bạn phải cung cấp ít nhất 1 địa chỉ email của người nhận.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Những người nhận sau không gửi được:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='đường dẫn này mở 1 cửa sổ mới';
 $tmx['m_no_test_available']='không có bài kiểm tra nào!';
 $tmx['m_process_completed']='xử lý thành công';

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2010-02-26 13:02:01
+// DATE: 2010-03-10 19:20:12
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Δεν μπορεί να ξεκινήσει η 
 $tmx['m_mailerror_mailer_not_supported']='Ο διακομιστής δεν υποστηρίζεται.';
 $tmx['m_mailerror_provide_address']='Πρέπει να δώσετε τουλάχιστον μια ηλεκτρονική διεύθυνση παραλήπτη.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Οι ακόλουθοι παραλήπτες απέτυχαν:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='αυτός ο σύνδεσμος θα ανοίξει σε καινούριο παράθυρο';
 $tmx['m_no_test_available']='Δεν υπάρχουν διαθέσιμα διαγωνίσματα!';
 $tmx['m_process_completed']='η διαδικασία ολοκληρώθηκε';

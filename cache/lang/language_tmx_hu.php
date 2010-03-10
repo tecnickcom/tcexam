@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2010-02-26 13:02:11
+// DATE: 2010-03-10 19:20:18
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='Nem lehet létrehozni a levélküldési funkci�
 $tmx['m_mailerror_mailer_not_supported']='Levelezés nem támogatott.';
 $tmx['m_mailerror_provide_address']='Legalább egy e-mail címet meg kell adni.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] A következő e-mail címek tévesek, hibásak:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='ez a link egy új böngésző ablakot nyit meg';
 $tmx['m_no_test_available']='jelenleg nincs elérhető teszt!';
 $tmx['m_process_completed']='folyamat befejezve';

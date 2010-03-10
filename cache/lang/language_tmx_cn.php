@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2010-02-26 13:01:59
+// DATE: 2010-03-10 19:20:09
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -173,6 +173,11 @@ $tmx['m_mailerror_instantiate']='不能使用邮件功能';
 $tmx['m_mailerror_mailer_not_supported']='不支持邮件功能';
 $tmx['m_mailerror_provide_address']='你必须至少提供一个接收者的邮件地址';
 $tmx['m_mailerror_recipients_failed']='[SMTP]下列收件者错误:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='本链接将会打开一个新的浏览器窗口';
 $tmx['m_no_test_available']='没有可用的测验!';
 $tmx['m_process_completed']='处理完成';

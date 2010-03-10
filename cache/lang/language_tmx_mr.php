@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: mr
-// DATE: 2010-02-26 13:02:16
+// DATE: 2010-03-10 19:20:21
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='मेल चे कार्य ताबड�
 $tmx['m_mailerror_mailer_not_supported']='मेल करणारा सहका्र्य करित नाही.';
 $tmx['m_mailerror_provide_address']='प्राप्त कर्त्याला इमेल पत्याची माहिती दिलीच पाहिजे.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] खालील प्राप्तकर्ता अयशस्वी ठरला:';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='ही साखळी नवीन मनोरंजनाच्या चौकटीकरीता उघडेल.';
 $tmx['m_no_test_available']='येथे परीक्षा उपलब्ध नाही!';
 $tmx['m_process_completed']='प्रक्रिया पूर्ण झाली.';

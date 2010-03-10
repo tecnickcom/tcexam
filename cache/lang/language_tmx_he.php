@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2010-02-26 13:02:10
+// DATE: 2010-03-10 19:20:16
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,6 +174,11 @@ $tmx['m_mailerror_instantiate']='לא ניתן להפעיל את פונקצית 
 $tmx['m_mailerror_mailer_not_supported']='תוכנת הדואר האלקטרוני לא נתמכת.';
 $tmx['m_mailerror_provide_address']='עליך לספק לפחות כתובת נמען אחת.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] משלוח לנמענים הבאים נכשל';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='קישור זה יפתח חלון דפדפן חדש';
 $tmx['m_no_test_available']='אין מבחנים זמינים !';
 $tmx['m_process_completed']='תהליך הושלם';

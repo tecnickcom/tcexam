@@ -86,6 +86,8 @@
 	<div>
 		<h2>a</h2>
 		<dl>
+							<dt><b>$action_function</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$action_function">PHPMailer::$action_function</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Callback Action function name</dd>
 							<dt><b>$AliasNbPages</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$AliasNbPages">TCPDF::$AliasNbPages</a></dd>
 							<dt><b>$AliasNumPage</b></dt>
@@ -414,6 +416,14 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$diffs">TCPDF::$diffs</a></dd>
 							<dt><b>$diskcache</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$diskcache">TCPDF::$diskcache</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true enables disk caching.</dd>
+							<dt><b>$DKIM_domain</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_domain">PHPMailer::$DKIM_domain</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_identity</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_identity">PHPMailer::$DKIM_identity</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_private</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_private">PHPMailer::$DKIM_private</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
+							<dt><b>$DKIM_selector</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$DKIM_selector">PHPMailer::$DKIM_selector</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Used with DKIM DNS Resource Record</dd>
 							<dt><b>$do_debug</b></dt>
 				<dd>in file class.smtp.php, variable <a href="PHPMailer/SMTP.html#var$do_debug">SMTP::$do_debug</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets whether debugging is turned on</dd>
 							<dt><b>$do_debug</b></dt>
@@ -436,6 +446,18 @@
 				<dd>in file class.pop3.php, method <a href="PHPMailer/POP3.html#methodDisconnect">POP3::Disconnect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Disconnect from the POP3 server</dd>
 							<dt><b>displayErrors</b></dt>
 				<dd>in file class.pop3.php, method <a href="PHPMailer/POP3.html#methoddisplayErrors">POP3::displayErrors()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If debug is enabled, display the error message array</dd>
+							<dt><b>DKIM_Add</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_Add">PHPMailer::DKIM_Add()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Create the DKIM header, body, as new header</dd>
+							<dt><b>DKIM_BodyC</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_BodyC">PHPMailer::DKIM_BodyC()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM Canonicalization Body</dd>
+							<dt><b>DKIM_HeaderC</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_HeaderC">PHPMailer::DKIM_HeaderC()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM Canonicalization Header</dd>
+							<dt><b>DKIM_QP</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_QP">PHPMailer::DKIM_QP()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the private key file and password to sign the message.</dd>
+							<dt><b>DKIM_Sign</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodDKIM_Sign">PHPMailer::DKIM_Sign()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate DKIM signature</dd>
+							<dt><b>doCallback</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methoddoCallback">PHPMailer::doCallback()</a></dd>
 					</dl>
 	</div>
 	<a href="elementindex.html#top">top</a><br>
@@ -1079,7 +1101,7 @@
 							<dt><b>$internal_encoding</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$internal_encoding">TCPDF::$internal_encoding</a></dd>
 							<dt><b>$inthead</b></dt>
-				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$inthead">TCPDF::$inthead</a><br>&nbsp;&nbsp;&nbsp;&nbsp;True when we are in thead</dd>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$inthead">TCPDF::$inthead</a><br>&nbsp;&nbsp;&nbsp;&nbsp;True when we are printing the thead section on a new page</dd>
 							<dt><b>$intmrk</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$intmrk">TCPDF::$intmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store positions inside the pages buffer.</dd>
 							<dt><b>$isunicode</b></dt>
@@ -1936,6 +1958,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$sig_obj_id">TCPDF::$sig_obj_id</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Signature object ID</dd>
 							<dt><b>$SingleTo</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$SingleTo">PHPMailer::$SingleTo</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Provides the ability to have the TO field process individual</dd>
+							<dt><b>$SingleToArray</b></dt>
+				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$SingleToArray">PHPMailer::$SingleToArray</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If SingleTo is true, this provides the array to hold the email addresses</dd>
 							<dt><b>$smtp</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$smtp">PHPMailer::$smtp</a></dd>
 							<dt><b>$SMTPAuth</b></dt>
@@ -1958,10 +1982,10 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$state">TCPDF::$state</a></dd>
 							<dt><b>$string_length_limit</b></dt>
 				<dd>in file tce_latexrender.php, variable <a href="com-tecnick-tcexam-shared/LatexRender.html#var$string_length_limit">LatexRender::$string_length_limit</a></dd>
-							<dt><b>$subject</b></dt>
-				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$subject">TCPDF::$subject</a></dd>
 							<dt><b>$Subject</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$Subject">PHPMailer::$Subject</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the Subject of the message.</dd>
+							<dt><b>$subject</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$subject">TCPDF::$subject</a></dd>
 							<dt><b>Scale</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodScale">TCPDF::Scale()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Vertical and horizontal non-proportional Scaling.</dd>
 							<dt><b>ScaleX</b></dt>
@@ -1975,9 +1999,9 @@
 							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodsegContentHandler">XMLQuestionImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>segContentHandler</b></dt>
-				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
-							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodsegContentHandler">XMLUserImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
+							<dt><b>segContentHandler</b></dt>
+				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>Send</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSend">PHPMailer::Send()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates message and assigns Mailer. If the message is  not sent successfully then it returns false.  Use the ErrorInfo  variable to view description of the error.</dd>
 							<dt><b>SendAndMail</b></dt>
@@ -1999,11 +2023,11 @@
 							<dt><b>SetAutoPageBreak</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetAutoPageBreak">TCPDF::SetAutoPageBreak()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Enables or disables the automatic page breaking mode. When enabling, the second parameter is the distance from the bottom of the page that defines the triggering limit. By default, the mode is on and the margin is 2 cm.</dd>
 							<dt><b>setBarcode</b></dt>
+				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
+							<dt><b>setBarcode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBarcode">TCPDF::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set document barcode.</dd>
 							<dt><b>setBarcode</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
-							<dt><b>setBarcode</b></dt>
-				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>SetBooklet</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetBooklet">TCPDF::SetBooklet()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the booklet mode for double-sided pages.</dd>
 							<dt><b>setBuffer</b></dt>
@@ -2031,9 +2055,9 @@
 							<dt><b>SetDrawSpotColor</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetDrawSpotColor">TCPDF::SetDrawSpotColor()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the spot color used for all drawing operations (lines, rectangles and cell borders).</dd>
 							<dt><b>SetError</b></dt>
-				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSetError">PHPMailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds the error message to the error container.</dd>
-							<dt><b>SetError</b></dt>
 				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodSetError">C_mailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace the default SetError</dd>
+							<dt><b>SetError</b></dt>
+				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSetError">PHPMailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds the error message to the error container.</dd>
 							<dt><b>setExtGState</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetExtGState">TCPDF::setExtGState()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add an extgstate</dd>
 							<dt><b>setFilenamePrefix</b></dt>
@@ -2048,10 +2072,10 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFont">TCPDF::SetFont()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the font used to print character strings.</dd>
 							<dt><b>setFontBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontBuffer">TCPDF::setFontBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font buffer content.</dd>
-							<dt><b>SetFontSize</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFontSize">TCPDF::SetFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the size of the current font.</dd>
 							<dt><b>setFontSize</b></dt>
 				<dd>in file tce_latexrender.php, method <a href="com-tecnick-tcexam-shared/LatexRender.html#methodsetFontSize">LatexRender::setFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font size.</dd>
+							<dt><b>SetFontSize</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFontSize">TCPDF::SetFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the size of the current font.</dd>
 							<dt><b>setFontSubBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontSubBuffer">TCPDF::setFontSubBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font buffer content.</dd>
 							<dt><b>setFooter</b></dt>
@@ -2601,6 +2625,8 @@
 							<dt><b>$visibility</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$visibility">TCPDF::$visibility</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Restrict the rendering of some elements to screen or printout.</dd>
 							<dt><b>ValidateAddress</b></dt>
+				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodValidateAddress">C_mailer::ValidateAddress()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check that a string looks roughly like an email address should  (override original ValidateAddress method).</dd>
+							<dt><b>ValidateAddress</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodValidateAddress">PHPMailer::ValidateAddress()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check that a string looks roughly like an email address should</dd>
 					</dl>
 	</div>
@@ -2843,7 +2869,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 26 Feb 2010 13:03:34 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 10 Mar 2010 19:41:43 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -51,7 +51,7 @@ $emailcfg['AttachmentsEncoding'] = 'base64';
 $emailcfg['AdminEmail'] = '';
 
 // Sets the From email address for the message. Default value is 'root@localhost'.
-$emailcfg['From'] = '';
+$emailcfg['From'] = 'tecnick.com@gmail.com';
 
 // Sets the From name of the message. Default value is 'Root User'.
 $emailcfg['FromName'] = 'TCExam';
