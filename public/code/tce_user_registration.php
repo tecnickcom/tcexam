@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2009-09-30
+// Last Update : 2010-03-29
 // 
 // Description : User registration form.
 //
@@ -182,10 +182,10 @@ if ($menu_mode == "add") { // process submited data
 			} else {
 				F_print_error('MESSAGE', $l['m_user_registration_ok']);
 				echo K_NEWLINE;
-				echo '<div class="container">'.K_NEWLINE;
-				echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
-				echo '</div>'.K_NEWLINE;
 			}
+			echo '<div class="container">'.K_NEWLINE;
+			echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
+			echo '</div>'.K_NEWLINE;
 			require_once('../code/tce_page_footer.php');
 			exit;
 		}

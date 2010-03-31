@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_registration.php
 // Begin       : 2008-03-31
-// Last Update : 2009-09-30
+// Last Update : 2010-03-29
 // 
 // Description : Support functions for user registration.
 //
@@ -80,6 +80,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode) {
 	$mail->Port = $emailcfg['Port'];
 	$mail->Helo = $emailcfg['Helo'];
 	$mail->SMTPAuth = $emailcfg['SMTPAuth'];
+	$mail->SMTPSecure = $emailcfg['SMTPSecure'];
 	$mail->Username = $emailcfg['Username'];
 	$mail->Password = $emailcfg['Password'];
 	$mail->Timeout = $emailcfg['Timeout'];

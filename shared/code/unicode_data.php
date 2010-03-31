@@ -2,24 +2,24 @@
 //============================================================+
 // File name   : unicode_data.php
 // Begin       : 2008-01-01
-// Last Update : 2009-08-17
+// Last Update : 2010-03-27
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
-//  Copyright (C) 2002-2009  Nicola Asuni - Tecnick.com S.r.l.
-// 	
+//  Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
+//
 // 	This program is free software: you can redistribute it and/or modify
 // 	it under the terms of the GNU Lesser General Public License as published by
 // 	the Free Software Foundation, either version 2.1 of the License, or
 // 	(at your option) any later version.
-// 	
+//
 // 	This program is distributed in the hope that it will be useful,
 // 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 // 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // 	GNU Lesser General Public License for more details.
-// 	
+//
 // 	You should have received a copy of the GNU Lesser General Public License
 // 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-// 	
+//
 // 	See LICENSE.TXT file for more information.
 //  ----------------------------------------------------------------------------
 //
@@ -17851,7 +17851,7 @@ $unicode = array(
 
 /**
  * Mirror unicode characters.
- * For information on bidi mirroring, see UAX #9: Bidirectional Algorithm, 
+ * For information on bidi mirroring, see UAX #9: Bidirectional Algorithm,
  * at http://www.unicode.org/unicode/reports/tr9/
  */
 global $unicode_mirror;
@@ -18306,9 +18306,8 @@ $laa_array = array (
 );
 
 /**
- * Array of character substitutions for sequences of two diacritics symbols starting with SHADDA (0651 HEX, 1617 DEC).
- * Combining characters that can occur with Shadda (U0651) are placed in UE586-UE594. 
- * Putting the combining mark and shadda in the same glyph allows us to avoid the two marks overlapping each other in an illegible manner.
+ * Array of character substitutions for sequences of two diacritics symbols.
+ * Putting the combining mark and character in the same glyph allows us to avoid the two marks overlapping each other in an illegible manner.
  * second NSM char code=>substitution char
  */
 global $diacritics;

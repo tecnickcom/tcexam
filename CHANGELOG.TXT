@@ -1,3 +1,8 @@
+10.0.010 (2010-03-31)
+	- TCPDF library was updated.
+	- User registration email mail functions were fixed to support SSL.
+	- Offline test generator now avoids page splitting of questions or answers. 
+
 10.0.009 (2010-03-10)
 	- phpMailer library was updated.
 	- Language files were updated.

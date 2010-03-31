@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2009-10-10
+// Last Update : 2010-03-29
 // 
 // Description : Creates PDF documents for offline testing.
 // 
@@ -177,10 +177,10 @@ for ($item = 1; $item <= $test_num; $item++) {
 	
 	$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 	
-	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), "", 1, 0, 'C', 0);
-	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), "", 1, 0, 'C', 0);
-	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), "", 1, 0, 'C', 0);
-	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), "", 1, 1, 'C', 0);
+	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), '', 1, 0, 'C', 0);
+	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), '', 1, 0, 'C', 0);
+	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), '', 1, 0, 'C', 0);
+	$pdf->Cell($user_data_cell_width, (1.5 * $data_cell_height), '', 1, 1, 'C', 0);
 	
 	$pdf->Ln(5);
 	
@@ -385,13 +385,32 @@ for ($item = 1; $item <= $test_num; $item++) {
 		foreach ($questions_data as $key => $q) {
 			$question_order++;
 			
-			// ------------------------------
-			// add question number
-			$pdf->Cell($data_cell_width_third, $data_cell_height, ''.$itemcount.' '.$qtype[($q['type']-1)].'', 1, 0, 'R', 0);
-			// add max points
-			$pdf->Cell($data_cell_width_third, $data_cell_height, ''.($q['difficulty'] * $testdata['test_score_right']).'', 1, 0, 'R', 0);
-			// add question description
-			$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($q['description']), 1, 1);
+			// start transaction
+			$pdf->startTransaction();
+			$block_page = $pdf->getPage();
+			$print_block = 2; // 2 tries max
+			while ($print_block > 0) {
+
+				// ------------------------------
+				// add question number
+				$pdf->Cell($data_cell_width_third, $data_cell_height, ''.$itemcount.' '.$qtype[($q['type']-1)].'', 1, 0, 'R', 0);
+				// add max points
+				$pdf->Cell($data_cell_width_third, $data_cell_height, ''.($q['difficulty'] * $testdata['test_score_right']).'', 1, 0, 'R', 0);
+				// add question description
+				$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + (2 * $data_cell_width_third)), $pdf->GetY(), F_decode_tcecode($q['description']), 1, 1);
+				// ------------------------------
+
+				// do not split BLOCKS in multiple pages
+				if ($pdf->getPage() == $block_page) {
+					$print_block = 0;
+				} else {
+					// rolls back to the last (re)start
+					$pdf = $pdf->rollbackTransaction();
+					$pdf->AddPage();
+					$block_page = $pdf->getPage();
+					--$print_block;
+				}
+			} // end while print_block 
 			
 			$itemcount++;
 						
@@ -479,16 +498,38 @@ for ($item = 1; $item <= $test_num; $item++) {
 							} elseif (F_getBoolean($ma['answer_isright'])) {
 								$rightanswer = 'X';
 							}
-							$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
-							// print correct answer in hidden white color
-							/* to display the correct results, from PDF viewer, go to "Accessibility" ->
-							   "Page Display preferences", check "Replace Document Colors", 
-							   uncheck "Only change the color of black text or line art" */
-							$pdf->SetTextColor(255, 255, 255, false);
-							$pdf->Cell($data_cell_width_third, $data_cell_height, $rightanswer, 1, 0, 'C', 0);
-							$pdf->SetTextColor(0, 0, 0, false);
-							$pdf->Cell($data_cell_width_third, $data_cell_height, $answ_id, 1, 0, 'R', 0);
-							$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
+							
+							// start transaction
+							$pdf->startTransaction();
+							$block_page = $pdf->getPage();
+							$print_block = 2; // 2 tries max
+							while ($print_block > 0) {
+
+								// ------------------------------
+								$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
+								// print correct answer in hidden white color
+								/* to display the correct results, from PDF viewer, go to "Accessibility" ->
+								   "Page Display preferences", check "Replace Document Colors", 
+								   uncheck "Only change the color of black text or line art" */
+								$pdf->SetTextColor(255, 255, 255, false);
+								$pdf->Cell($data_cell_width_third, $data_cell_height, $rightanswer, 1, 0, 'C', 0);
+								$pdf->SetTextColor(0, 0, 0, false);
+								$pdf->Cell($data_cell_width_third, $data_cell_height, $answ_id, 1, 0, 'R', 0);
+								$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($ma['answer_description']), 1, 1);
+								// ------------------------------
+
+								// do not split BLOCKS in multiple pages
+								if ($pdf->getPage() == $block_page) {
+									$print_block = 0;
+								} else {
+									// rolls back to the last (re)start
+									$pdf = $pdf->rollbackTransaction();
+									$pdf->AddPage();
+									$block_page = $pdf->getPage();
+									--$print_block;
+								}
+							} // end while print_block 
+							
 						}
 					} else {
 						F_display_db_error();

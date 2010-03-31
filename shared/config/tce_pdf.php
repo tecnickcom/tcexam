@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2009-11-10
+// Last Update : 2010-03-15
 // 
 // Description : Configuration file for pdf documents.
 //
@@ -90,12 +90,12 @@ define ('PDF_PAGE_ORIENTATION', 'P');
 /**
  * Document creator.
  */
-define ('PDF_CREATOR', 'TCExam 9');
+define ('PDF_CREATOR', 'TCExam 10');
 
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'TCExam 9');
+define ('PDF_AUTHOR', 'TCExam 10');
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
