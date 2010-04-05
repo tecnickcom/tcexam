@@ -1,3 +1,6 @@
+10.0.012 (2010-04-05)
+	- TCPDF library was updated.
+
 10.0.011 (2010-04-05)
 	- TCPDF library was updated.
 
