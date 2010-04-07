@@ -2,9 +2,9 @@
 //============================================================+
 // File name   : tcpdf.php
 // Begin       : 2002-08-03
-// Last Update : 2010-04-05
+// Last Update : 2010-04-07
 // Author      : Nicola Asuni - info@tecnick.com - http://www.tcpdf.org
-// Version     : 4.9.009
+// Version     : 4.9.011
 // License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
 // 	----------------------------------------------------------------------------
 //  Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
@@ -35,31 +35,26 @@
 //
 // Main features:
 //  * no external libraries are required for the basic functions;
-// 	* supports all ISO page formats;
-// 	* supports custom page formats, margins and units of measure;
-// 	* supports UTF-8 Unicode and Right-To-Left languages;
-// 	* supports TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;
-// 	* supports document encryption;
-// 	* includes methods to publish some XHTML code, including forms;
-// 	* includes graphic (geometric) and transformation methods;
-// 	* includes Javascript and Forms support;
-// 	* includes a method to print various barcode formats: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code;
-// 	* includes methods to set Bookmarks and print a Table of Content;
-// 	* includes methods to move and delete pages;
-// 	* includes methods for automatic page header and footer management;
-//  * supports multi-column mode;
-// 	* supports automatic page break;
-// 	* supports automatic page numbering and page groups;
-// 	* supports automatic line break and text justification;
-// 	* supports JPEG and PNG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)
-// 	* supports stroke and clipping mode for text;
-// 	* supports clipping masks;
-// 	* supports Grayscale, RGB, CMYK, Spot Colors and Transparencies;
-// 	* supports several annotations, including links, text and file attachments;
-// 	* supports page compression (requires zlib extension);
-//  * supports text hyphenation.
-//  * supports transactions to UNDO commands.
-//  * supports signature certifications.
+//  * all ISO page formats, custom page formats, custom margins and units of measure;
+//  * UTF-8 Unicode and Right-To-Left languages;
+//  * TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;
+//  * methods to publish some XHTML code, Javascript and Forms;
+//  * images, graphic (geometric figures) and transformation methods;
+//  * supports JPEG and PNG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)
+//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code;
+//  * Grayscale, RGB, CMYK, Spot Colors and Transparencies;
+//  * automatic page header and footer management;
+//  * document encryption and digital signature certifications;
+//  * transactions to UNDO commands;
+//  * PDF annotations, including links, text and file attachments;
+//  * text rendering modes (fill, stroke and clipping);
+//  * multiple columns mode;
+//  * bookmarks and table of content;
+//  * text hyphenation;
+//  * automatic page break, line break and text alignments including justification;
+//  * automatic page numbering and page groups;
+//  * move and delete pages;
+//  * page compression (requires php-zlib extension);
 //
 // -----------------------------------------------------------
 // THANKS TO:
@@ -97,32 +92,27 @@
  * TCPDF project (http://www.tcpdf.org) was originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * <h3>TCPDF main features are:</h3>
  * <ul>
-* <li>no external libraries are required for the basic functions;</li>
-* <li>supports all ISO page formats;</li>
-* <li>supports custom page formats, margins and units of measure;</li>
-* <li>supports UTF-8 Unicode and Right-To-Left languages;</li>
-* <li>supports TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;</li>
-* <li>supports document encryption;</li>
-* <li>includes methods to publish some XHTML code, including forms;</li>
-* <li>includes graphic (geometric) and transformation methods;</li>
-* <li>includes Javascript and Forms support;</li>
-* <li>includes a method to print various barcode formats: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS</li>
-* <li>includes methods to set Bookmarks and print a Table of Content;</li>
-* <li>includes methods to move and delete pages;</li>
-* <li>includes methods for automatic page header and footer management;</li>
-* <li>supports multi-column mode;</li>
-* <li>supports automatic page break;</li>
-* <li>supports automatic page numbering and page groups;</li>
-* <li>supports automatic line break and text justification;</li>
-* <li>supports JPEG and PNG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)</li>
-* <li>supports stroke and clipping mode for text;</li>
-* <li>supports clipping masks;</li>
-* <li>supports Grayscale, RGB, CMYK, Spot Colors and Transparencies;</li>
-* <li>supports several annotations, including links, text and file attachments;</li>
-* <li>supports page compression (requires zlib extension);</li>
-* <li>supports text hyphenation.</li>
-* <li>supports transactions to UNDO commands.</li>
-* <li>supports signature certifications.</li>
+ * <li>no external libraries are required for the basic functions;</li>
+ * <li>all ISO page formats, custom page formats, custom margins and units of measure;</li>
+ * <li>UTF-8 Unicode and Right-To-Left languages;</li>
+ * <li>TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;</li>
+ * <li>methods to publish some XHTML code, Javascript and Forms;</li>
+ * <li>images, graphic (geometric figures) and transformation methods;
+ * <li>supports JPEG and PNG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)</li>
+ * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code;</li>
+ * <li>Grayscale, RGB, CMYK, Spot Colors and Transparencies;</li>
+ * <li>automatic page header and footer management;</li>
+ * <li>document encryption and digital signature certifications;</li>
+ * <li>transactions to UNDO commands;</li>
+ * <li>PDF annotations, including links, text and file attachments;</li>
+ * <li>text rendering modes (fill, stroke and clipping);</li>
+ * <li>multiple columns mode;</li>
+ * <li>bookmarks and table of content;</li>
+ * <li>text hyphenation;</li>
+ * <li>automatic page break, line break and text alignments including justification;</li>
+ * <li>automatic page numbering and page groups;</li>
+ * <li>move and delete pages;</li>
+ * <li>page compression (requires php-zlib extension);</li>
  * </ul>
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
@@ -131,7 +121,7 @@
  * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 4.9.009
+ * @version 4.9.011
  */
 
 
@@ -151,14 +141,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */
-	define('PDF_PRODUCER', 'TCPDF 4.9.009 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 4.9.011 (http://www.tcpdf.org)');
 
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 4.9.009
+	* @version 4.9.011
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -3721,19 +3711,28 @@ if (!class_exists('TCPDF', false)) {
 		* @param float $x Abscissa of the cell origin
 		* @param float $y Ordinate of the cell origin
 		* @param string $txt String to print
-		* @param int $stroke outline size in user units (false = disable)
-		* @param boolean $clip if true activate clipping mode (you must call StartTransform() before this function and StopTransform() to stop the clipping tranformation).
-		* @param boolean $fill if true fills the text
+		* @param int $fstroke outline size in user units (false = disable)
+		* @param boolean $fclip if true activate clipping mode (you must call StartTransform() before this function and StopTransform() to stop the clipping tranformation).
+		* @param boolean $ffill if true fills the text
+		* @param mixed $border Indicates if borders must be drawn around the cell. The value can be either a number:<ul><li>0: no border (default)</li><li>1: frame</li></ul>or a string containing some or all of the following characters (in any order):<ul><li>L: left</li><li>T: top</li><li>R: right</li><li>B: bottom</li></ul>
+		* @param int $ln Indicates where the current position should go after the call. Possible values are:<ul><li>0: to the right (or left for RTL languages)</li><li>1: to the beginning of the next line</li><li>2: below</li></ul>Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value: 0.
+		* @param string $align Allows to center or align the text. Possible values are:<ul><li>L or empty string: left align (default value)</li><li>C: center</li><li>R: right align</li><li>J: justify</li></ul>
+		* @param int $fill Indicates if the cell background must be painted (1) or transparent (0). Default value: 0.
+		* @param mixed $link URL or identifier returned by AddLink().
+		* @param int $stretch stretch carachter mode: <ul><li>0 = disabled</li><li>1 = horizontal scaling only if necessary</li><li>2 = forced horizontal scaling</li><li>3 = character spacing only if necessary</li><li>4 = forced character spacing</li></ul>
+		* @param boolean $ignore_min_height if true ignore automatic minimum height value.
+		* @param string $calign cell vertical alignment relative to the specified Y value. Possible values are:<ul><li>T : cell top</li><li>A : font top</li><li>L : font baseline</li><li>D : font bottom</li><li>B : cell bottom</li></ul>
+		* @param string $valign text vertical alignment inside the cell. Possible values are:<ul><li>T : top</li><li>C : center</li><li>B : bottom</li></ul>
 		* @access public
 		* @since 1.0
 		* @see Cell(), Write(), MultiCell(), WriteHTML(), WriteHTMLCell()
 		*/
-		public function Text($x, $y, $txt, $stroke=false, $clip=false, $fill=true) {
+		public function Text($x, $y, $txt, $fstroke=false, $fclip=false, $ffill=true, $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M') {
 			$textrendermode = $this->textrendermode;
 			$textstrokewidth = $this->textstrokewidth;
-			$this->setTextRenderingMode($stroke, $fill, $clip);
+			$this->setTextRenderingMode($fstroke, $ffill, $fclip);
 			$this->SetXY($x, $y);
-			$this->Cell(0, 0, $txt, 0, 0, '', 0, '', 0, false);
+			$this->Cell(0, 0, $txt, $border, $ln, $align, $fill, $link, $stretch, $ignore_min_height, $calign, $valign);
 			// restore previous rendering mode
 			$this->textrendermode = $textrendermode;
 			$this->textstrokewidth = $textstrokewidth;
@@ -3819,11 +3818,13 @@ if (!class_exists('TCPDF', false)) {
 		* @param mixed $link URL or identifier returned by AddLink().
 		* @param int $stretch stretch carachter mode: <ul><li>0 = disabled</li><li>1 = horizontal scaling only if necessary</li><li>2 = forced horizontal scaling</li><li>3 = character spacing only if necessary</li><li>4 = forced character spacing</li></ul>
 		* @param boolean $ignore_min_height if true ignore automatic minimum height value.
+		* @param string $calign cell vertical alignment relative to the specified Y value. Possible values are:<ul><li>T : cell top</li><li>C : center</li><li>B : cell bottom</li><li>A : font top</li><li>L : font baseline</li><li>D : font bottom</li></ul>
+		* @param string $valign text vertical alignment inside the cell. Possible values are:<ul><li>T : top</li><li>C : center</li><li>B : bottom</li></ul>
 		* @access public
 		* @since 1.0
 		* @see SetFont(), SetDrawColor(), SetFillColor(), SetTextColor(), SetLineWidth(), AddLink(), Ln(), MultiCell(), Write(), SetAutoPageBreak()
 		*/
-		public function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false) {
+		public function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M') {
 			if (!$ignore_min_height) {
 				$min_cell_height = $this->FontSize * $this->cell_height_ratio;
 				if ($h < $min_cell_height) {
@@ -3831,7 +3832,7 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			$this->checkPageBreak($h);
-			$this->_out($this->getCellCode($w, $h, $txt, $border, $ln, $align, $fill, $link, $stretch, $ignore_min_height));
+			$this->_out($this->getCellCode($w, $h, $txt, $border, $ln, $align, $fill, $link, $stretch, $ignore_min_height, $calign, $valign));
 		}
 
 		/**
@@ -3872,11 +3873,13 @@ if (!class_exists('TCPDF', false)) {
 		* @param mixed $link URL or identifier returned by AddLink().
 		* @param int $stretch stretch carachter mode: <ul><li>0 = disabled</li><li>1 = horizontal scaling only if necessary</li><li>2 = forced horizontal scaling</li><li>3 = character spacing only if necessary</li><li>4 = forced character spacing</li></ul>
 		* @param boolean $ignore_min_height if true ignore automatic minimum height value.
+		* @param string $calign cell vertical alignment relative to the specified Y value. Possible values are:<ul><li>T : cell top</li><li>C : center</li><li>B : cell bottom</li><li>A : font top</li><li>L : font baseline</li><li>D : font bottom</li></ul>
+		* @param string $valign text vertical alignment inside the cell. Possible values are:<ul><li>T : top</li><li>C : center</li><li>B : bottom</li></ul>
 		* @access protected
 		* @since 1.0
 		* @see Cell()
 		*/
-		protected function getCellCode($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false) {
+		protected function getCellCode($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M') {
 			$txt = $this->removeSHY($txt);
 			$rs = ''; //string to be returned
 			if (!$ignore_min_height) {
@@ -3886,11 +3889,116 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			$k = $this->k;
+			$x = $this->x;
+			$y = $this->y;
+			// cell vertical alignment
+			switch ($calign) {
+				case 'A': {
+					// font top
+					switch ($valign) {
+						case 'T': {
+							// top
+							$y -= ($this->LineWidth / 2);
+							break;
+						}
+						case 'B': {
+							// bottom
+							$y -= ($h - $this->FontAscent - $this->FontDescent - ($this->LineWidth / 2));
+							break;
+						}
+						default:
+						case 'M': {
+							// center
+							$y -= (($h - $this->FontAscent - $this->FontDescent) / 2);
+							break;
+						}
+					}
+					break;
+				}
+				case 'L': {
+					// font baseline
+					switch ($valign) {
+						case 'T': {
+							// top
+							$y -= ($this->FontAscent + ($this->LineWidth / 2));
+							break;
+						}
+						case 'B': {
+							// bottom
+							$y -= ($h - $this->FontDescent - ($this->LineWidth / 2));
+							break;
+						}
+						default:
+						case 'M': {
+							// center
+							$y -= (($h + $this->FontAscent - $this->FontDescent) / 2);
+							break;
+						}
+					}
+					break;
+				}
+				case 'D': {
+					// font bottom
+					switch ($valign) {
+						case 'T': {
+							// top
+							$y -= ($this->FontAscent + $this->FontDescent + ($this->LineWidth / 2));
+							break;
+						}
+						case 'B': {
+							// bottom
+							$y -= ($h - ($this->LineWidth / 2));
+							break;
+						}
+						default:
+						case 'M': {
+							// center
+							$y -= (($h + $this->FontAscent + $this->FontDescent) / 2);
+							break;
+						}
+					}
+					break;
+				}
+				case 'B': {
+					// cell bottom
+					$y -= $h;
+					break;
+				}
+				case 'C': {
+					// cell center
+					$y -= ($h / 2);
+					break;
+				}
+				default:
+				case 'T': {
+					// cell top
+					break;
+				}
+			}
+			// text vertical alignment
+			switch ($valign) {
+				case 'T': {
+					// top
+					$basefonty = $y + $this->FontAscent + ($this->LineWidth / 2);
+					break;
+				}
+				case 'B': {
+					// bottom
+					$basefonty = $y + $h - $this->FontDescent - ($this->LineWidth / 2);
+					break;
+				}
+				default:
+				case 'M': {
+					// center
+					$basefonty = $y + (($h + $this->FontAscent - $this->FontDescent) / 2);
+					break;
+				}
+			}
 			if ($this->empty_string($w) OR ($w <= 0)) {
 				if ($this->rtl) {
-					$w = $this->x - $this->lMargin;
+					$w = $x - $this->lMargin;
 				} else {
-					$w = $this->w - $this->rMargin - $this->x;
+					$w = $this->w - $this->rMargin - $x;
 				}
 			}
 			$s = '';
@@ -3906,12 +4014,10 @@ if (!class_exists('TCPDF', false)) {
 				} else {
 					$xk = ($this->x * $k);
 				}
-				$s .= sprintf('%.2F %.2F %.2F %.2F re %s ', $xk, (($this->h - $this->y) * $k), ($w * $k), (-$h * $k), $op);
+				$s .= sprintf('%.2F %.2F %.2F %.2F re %s ', $xk, (($this->h - $y) * $k), ($w * $k), (-$h * $k), $op);
 			}
 			if (is_string($border)) {
 				$lm = ($this->LineWidth / 2);
-				$x = $this->x;
-				$y = $this->y;
 				if (strpos($border,'L') !== false) {
 					if ($this->rtl) {
 						$xk = ($x - $w) * $k;
@@ -4080,8 +4186,6 @@ if (!class_exists('TCPDF', false)) {
 					$xdx = $this->x + $dx;
 				}
 				$xdk = $xdx * $k;
-				// get position of the font base line
-				$basefonty = $this->y + (($h + $this->FontAscent - $this->FontDescent) / 2);
 				// print text
 				$s .= sprintf('BT %.2F %.2F Td [(%s)] TJ ET', $xdk, (($this->h - $basefonty) * $k), $txt2);
 				if (isset($uniblock)) {
@@ -4115,7 +4219,7 @@ if (!class_exists('TCPDF', false)) {
 					$s .= ' Q';
 				}
 				if ($link) {
-					$this->Link($xdx, $this->y + (($h - $this->FontSize)/2), $width, $this->FontSize, $link, $ns);
+					$this->Link($xdx, $y + (($h - $this->FontSize)/2), $width, $this->FontSize, $link, $ns);
 				}
 			}
 			// output cell
@@ -4138,7 +4242,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->lasth = $h;
 			if ($ln > 0) {
 				//Go to the beginning of the next line
-				$this->y += $h;
+				$this->y = $y + $h;
 				if ($ln == 1) {
 					if ($this->rtl) {
 						$this->x = $this->w - $this->rMargin;
@@ -12813,7 +12917,7 @@ if (!class_exists('TCPDF', false)) {
 					$x += ($this->x - $prev_x);
 				}
 			}
-			// maximum bar heigth
+			// maximum bar height
 			$barh = $h - $extraspace;
 			switch ($style['position']) {
 				case 'L': { // left
@@ -13246,12 +13350,12 @@ if (!class_exists('TCPDF', false)) {
 		 */
 		protected function getHtmlDomArray($html) {
 			// define block tags
-			$blocktags = array('blockquote','br','dd','dl','div','dt','h1','h2','h3','h4','h5','h6','hr','li','ol','p','ul','tcpdf','table','tr','td');
+			$blocktags = array('blockquote','br','dd','dl','div','dt','h1','h2','h3','h4','h5','h6','hr','li','ol','p','pre','ul','tcpdf','table','tr','td');
 			// remove all unsupported tags (the line below lists all supported tags)
 			$html = strip_tags($html, '<marker/><a><b><blockquote><body><br><br/><dd><del><div><dl><dt><em><font><form><h1><h2><h3><h4><h5><h6><hr><i><img><input><label><li><ol><option><p><pre><select><small><span><strong><sub><sup><table><tablehead><tcpdf><td><textarea><th><thead><tr><tt><u><ul>');
 			//replace some blank characters
 			$html = preg_replace('/<pre/', '<xre', $html); // preserve pre tag
-			$html = preg_replace('/<(table|tr|td|th|tcpdf|blockquote|dd|div|dt|form|h1|h2|h3|h4|h5|h6|br|hr|li|ol|ul|p)([^\>]*)>[\n\r\t]+/', '<\\1\\2>', $html);
+			$html = preg_replace('/<(table|tr|td|th|tcpdf|blockquote|dd|div|dl|dt|form|h1|h2|h3|h4|h5|h6|br|hr|li|ol|ul|p)([^\>]*)>[\n\r\t]+/', '<\\1\\2>', $html);
 			$html = preg_replace('@(\r\n|\r)@', "\n", $html);
 			$repTable = array("\t" => ' ', "\0" => ' ', "\x0B" => ' ', "\\" => "\\\\");
 			$html = strtr($html, $repTable);
@@ -13297,12 +13401,12 @@ if (!class_exists('TCPDF', false)) {
 			// restore textarea newlines
 			$html = str_replace('<TBR>', "\n", $html);
 			// remove extra spaces from code
-			$html = preg_replace('/[\s]+<\/(table|tr|td|th|ul|ol|li)>/', '</\\1>', $html);
-			$html = preg_replace('/[\s]+<(tr|td|th|ul|ol|li|br)/', '<\\1', $html);
-			$html = preg_replace('/<\/(table|tr|td|th|blockquote|dd|div|dt|h1|h2|h3|h4|h5|h6|hr|li|ol|ul|p)>[\s]+</', '</\\1><', $html);
+			$html = preg_replace('/[\s]+<\/(table|tr|td|th|ul|ol|li|dl|dt|dd)>/', '</\\1>', $html);
+			$html = preg_replace('/[\s]+<(tr|td|th|ul|ol|li|dl|dt|dd|br)/', '<\\1', $html);
+			$html = preg_replace('/<\/(table|tr|td|th|blockquote|dd|dt|dl|div|dt|h1|h2|h3|h4|h5|h6|hr|li|ol|ul|p)>[\s]+</', '</\\1><', $html);
 			$html = preg_replace('/<\/(td|th)>/', '<marker style="font-size:0"/></\\1>', $html);
 			$html = preg_replace('/<\/table>([\s]*)<marker style="font-size:0"\/>/', '</table>', $html);
-			$html = preg_replace('/<img/', ' <img', $html);
+			$html = preg_replace('/[\s]*<img/', ' <img', $html);
 			$html = preg_replace('/<img([^\>]*)>/xi', '<img\\1><span><marker style="font-size:0"/></span>', $html);
 			$html = preg_replace('/<xre/', '<pre', $html); // restore pre tag
 			$html = preg_replace('/<textarea([^\>]*)>/xi', '<textarea\\1 value="', $html);
@@ -14186,6 +14290,9 @@ if (!class_exists('TCPDF', false)) {
 						if ((isset($plalign) AND ((($plalign == 'C') OR ($plalign == 'J') OR (($plalign == 'R') AND (!$this->rtl)) OR (($plalign == 'L') AND ($this->rtl))))) OR ($yshift < 0)) {
 							// calculate shifting amount
 							$tw = $w;
+							if (($plalign == 'J') AND $this->isRTLTextDir() AND ($this->num_columns > 1)) {
+								$tw += $this->cMargin;
+							}
 							if ($this->lMargin != $prevlMargin) {
 								$tw += ($prevlMargin - $this->lMargin);
 							}
@@ -14265,7 +14372,7 @@ if (!class_exists('TCPDF', false)) {
 									}
 									// calculate additional space to add to each space
 									$spacelen = $one_space_width;
-									$spacewidth = ((($tw - $linew + $this->cMargin) + (($no - $ns) * $spacelen)) / ($ns?$ns:1)) * $this->k;
+									$spacewidth = ((($tw - $linew) + (($no - $ns) * $spacelen)) / ($ns?$ns:1)) * $this->k;
 									$spacewidthu = -1000 * (($tw - $linew) + ($no * $spacelen)) / ($ns?$ns:1) / $this->FontSize;
 									$nsmax = $ns;
 									$ns = 0;
@@ -14405,7 +14512,6 @@ if (!class_exists('TCPDF', false)) {
 										if (isset($this->PageAnnots[$this->page])) {
 											$cxpos = ($currentxpos / $this->k);
 											$lmpos = ($this->lMargin + $this->cMargin + $this->feps);
-
 											foreach ($this->PageAnnots[$this->page] as $pak => $pac) {
 												if (($pac['y'] >= $minstartliney) AND (($pac['x'] * $this->k) >= ($currentxpos - $this->feps)) AND (($pac['x'] * $this->k) <= ($currentxpos + $this->feps))) {
 													if ($cxpos > $lmpos) {
@@ -14954,23 +15060,31 @@ if (!class_exists('TCPDF', false)) {
 				$this->tmprtl = false;
 			}
 			if ($tag['block']) {
+				$hbz = 0; // distance from y to line bottom
+				$hb = 0; // vertical space between block tags
 				// calculate vertical space for block tags
-				$hb = '';
-				if (isset($tag['fontsize'])) {
-					$cur_h = ($tag['fontsize'] / $this->k) * $this->cell_height_ratio;
+				if ($this->htmlvspace <= 0) {
 					if (isset($parent['fontsize'])) {
-						$pre_h = (($parent['fontsize'] / $this->k) * $this->cell_height_ratio);
+						$hbz = (($parent['fontsize'] / $this->k) * $this->cell_height_ratio);
 					} else {
-						$pre_h = $this->FontSize * $this->cell_height_ratio;
-					}
-					if ($this->htmlvspace == 0) {
-						$hb = $cur_h + $pre_h;
-					} elseif ($cur_h > $this->htmlvspace) {
-						$hb = $cur_h + ($this->htmlvspace / 2);
-					} else {
-						$hb = $cur_h + $pre_h;
+						$hbz = $this->FontSize * $this->cell_height_ratio;
 					}
 				}
+				if (isset($this->tagvspaces[$tag['value']][0]['h']) AND ($this->tagvspaces[$tag['value']][0]['h'] >= 0)) {
+					$cur_h = $this->tagvspaces[$tag['value']][0]['h'];
+				} elseif (isset($tag['fontsize'])) {
+					$cur_h = ($tag['fontsize'] / $this->k) * $this->cell_height_ratio;
+				} else {
+					$cur_h = $this->FontSize * $this->cell_height_ratio;
+				}
+				if (isset($this->tagvspaces[$tag['value']][0]['n'])) {
+					$n = $this->tagvspaces[$tag['value']][0]['n'];
+				} elseif (preg_match('/[h][0-9]/', $tag['value']) > 0) {
+					$n = 0.6;
+				} else {
+					$n = 1;
+				}
+				$hb = ($n * $cur_h);
 			}
 			//Opening tag
 			switch($tag['value']) {
@@ -15010,20 +15124,25 @@ if (!class_exists('TCPDF', false)) {
 					break;
 				}
 				case 'hr': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
-					$this->htmlvspace = 0;
 					$wtmp = $this->w - $this->lMargin - $this->rMargin;
 					if ((isset($tag['attribute']['width'])) AND ($tag['attribute']['width'] != '')) {
 						$hrWidth = $this->getHTMLUnitToUnits($tag['attribute']['width'], $wtmp, 'px');
 					} else {
 						$hrWidth = $wtmp;
 					}
+					if ((isset($tag['height'])) AND ($tag['height'] != '')) {
+						$hrHeight = $this->getHTMLUnitToUnits($tag['height'], 1, 'px');
+					} else {
+						$hrHeight = $this->GetLineWidth();
+					}
+					$this->addHTMLVertSpace($hbz, ($hrHeight / 2), $cell, $firstorlast);
 					$x = $this->GetX();
 					$y = $this->GetY();
 					$prevlinewidth = $this->GetLineWidth();
+					$this->SetLineWidth($hrHeight);
 					$this->Line($x, $y, $x + $hrWidth, $y);
 					$this->SetLineWidth($prevlinewidth);
-					$this->addHTMLVertSpace(1, $cell, '', !isset($dom[($key + 1)]), $tag['value'], false);
+					$this->addHTMLVertSpace(($hrHeight / 2), 0, $cell, !isset($dom[($key + 1)]));
 					break;
 				}
 				case 'a': {
@@ -15155,11 +15274,15 @@ if (!class_exists('TCPDF', false)) {
 				}
 				case 'dl': {
 					++$this->listnum;
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], false);
+					if ($this->listnum == 1) {
+						$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
+					} else {
+						$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
+					}
 					break;
 				}
 				case 'dt': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'dd': {
@@ -15169,13 +15292,11 @@ if (!class_exists('TCPDF', false)) {
 						$this->lMargin += $this->listindent;
 					}
 					++$this->listindentlevel;
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'ul':
 				case 'ol': {
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], false);
-					$this->htmlvspace = 0;
 					++$this->listnum;
 					if ($tag['value'] == 'ol') {
 						$this->listordered[$this->listnum] = true;
@@ -15193,12 +15314,15 @@ if (!class_exists('TCPDF', false)) {
 						$this->lMargin += $this->listindent;
 					}
 					++$this->listindentlevel;
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], false);
-					$this->htmlvspace = 0;
+					if ($this->listnum == 1) {
+						$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
+					} else {
+						$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
+					}
 					break;
 				}
 				case 'li': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					if ($this->listordered[$this->listnum]) {
 						// ordered item
 						if (isset($parent['attribute']['type']) AND !$this->empty_string($parent['attribute']['type'])) {
@@ -15235,23 +15359,23 @@ if (!class_exists('TCPDF', false)) {
 						$this->lMargin += $this->listindent;
 					}
 					++$this->listindentlevel;
-					$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				case 'br': {
-					$this->Ln('', $cell);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'div': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'p': {
-					$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				case 'pre': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					$this->premode = true;
 					break;
 				}
@@ -15269,7 +15393,7 @@ if (!class_exists('TCPDF', false)) {
 				case 'h4':
 				case 'h5':
 				case 'h6': {
-					$this->addHTMLVertSpace(1, $cell, 3*$hb/4, $firstorlast, $tag['value'], false);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				// Form fields (since 4.8.000 - 2009-09-07)
@@ -15531,15 +15655,26 @@ if (!class_exists('TCPDF', false)) {
 			$firstorlast = ((!isset($dom[($key + 1)])) OR ((!isset($dom[($key + 2)])) AND ($dom[($key + 1)]['value'] == 'marker')));
 			$in_table_head = false;
 			if ($tag['block']) {
+				$hbz = 0; // distance from y to line bottom
+				$hb = 0; // vertical space between block tags
 				// calculate vertical space for block tags
-				if (isset($parent['fontsize'])) {
+				if (isset($this->tagvspaces[$tag['value']][1]['h']) AND ($this->tagvspaces[$tag['value']][1]['h'] >= 0)) {
+					$pre_h = $this->tagvspaces[$tag['value']][1]['h'];
+				} elseif (isset($parent['fontsize'])) {
 					$pre_h = (($parent['fontsize'] / $this->k) * $this->cell_height_ratio);
 				} else {
 					$pre_h = $this->FontSize * $this->cell_height_ratio;
 				}
-				$hb = $pre_h;
+				if (isset($this->tagvspaces[$tag['value']][1]['n'])) {
+					$n = $this->tagvspaces[$tag['value']][1]['n'];
+				} elseif (preg_match('/[h][0-9]/', $tag['value']) > 0) {
+					$n = 0.6;
+				} else {
+					$n = 1;
+				}
+				$hb = ($n * $pre_h);
 				if ($this->y < $maxbottomliney) {
-					$hb += ($maxbottomliney - $this->y);
+					$hbz = ($maxbottomliney - $this->y);
 				}
 			}
 			//Closing tag
@@ -15788,7 +15923,7 @@ if (!class_exists('TCPDF', false)) {
 					break;
 				}
 				case 'div': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace($hbz, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'blockquote': {
@@ -15798,15 +15933,15 @@ if (!class_exists('TCPDF', false)) {
 						$this->lMargin -= $this->listindent;
 					}
 					--$this->listindentlevel;
-					$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				case 'p': {
-					$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				case 'pre': {
-					$this->addHTMLVertSpace(1, $cell, '', $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					$this->premode = false;
 					break;
 				}
@@ -15814,13 +15949,16 @@ if (!class_exists('TCPDF', false)) {
 					--$this->listnum;
 					if ($this->listnum <= 0) {
 						$this->listnum = 0;
-						$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], true);
+						$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
+					} else {
+						$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
 					}
+					$this->lasth = $this->FontSize * $this->cell_height_ratio;
 					break;
 				}
 				case 'dt': {
 					$this->lispacer = '';
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'dd': {
@@ -15831,7 +15969,7 @@ if (!class_exists('TCPDF', false)) {
 						$this->lMargin -= $this->listindent;
 					}
 					--$this->listindentlevel;
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'ul':
@@ -15846,14 +15984,16 @@ if (!class_exists('TCPDF', false)) {
 					--$this->listindentlevel;
 					if ($this->listnum <= 0) {
 						$this->listnum = 0;
-						$this->addHTMLVertSpace(1, $cell, $hb, $firstorlast, $tag['value'], true);
+						$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
+					} else {
+						$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
 					}
 					$this->lasth = $this->FontSize * $this->cell_height_ratio;
 					break;
 				}
 				case 'li': {
 					$this->lispacer = '';
-					$this->addHTMLVertSpace(0, $cell, '', $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace(0, 0, $cell, $firstorlast);
 					break;
 				}
 				case 'h1':
@@ -15862,7 +16002,7 @@ if (!class_exists('TCPDF', false)) {
 				case 'h4':
 				case 'h5':
 				case 'h6': {
-					$this->addHTMLVertSpace(1, $cell, 3*$hb/4, $firstorlast, $tag['value'], true);
+					$this->addHTMLVertSpace($hbz, $hb, $cell, $firstorlast);
 					break;
 				}
 				// Form fields (since 4.8.000 - 2009-09-07)
@@ -15893,35 +16033,25 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		 * Add vertical spaces if needed.
-		 * @param int $n number of spaces to add
+		 * @param string $hbz Distance between current y and line bottom.
+		 * @param string $hb The height of the break.
 		 * @param boolean $cell if true add the default cMargin space to each new line (default false).
-		 * @param string $h The height of the break. By default, the value equals the height of the last printed cell.
 		 * @param boolean $firstorlast if true do not print additional empty lines.
-		 * @param string $tag HTML tag to which this space will be applied
-		 * @param boolean $closing true if this space will be applied to a closing tag, false otherwise
 		 * @access protected
 		 */
-		protected function addHTMLVertSpace($n, $cell=false, $h='', $firstorlast=false, $tag='', $closing=false) {
+		protected function addHTMLVertSpace($hbz=0, $hb=0, $cell=false, $firstorlast=false) {
 			if ($firstorlast) {
 				$this->Ln(0, $cell);
 				$this->htmlvspace = 0;
 				return;
 			}
-			if (isset($this->tagvspaces[$tag][intval($closing)]['n'])) {
-				$n = $this->tagvspaces[$tag][intval($closing)]['n'];
-			}
-			if (isset($this->tagvspaces[$tag][intval($closing)]['h'])) {
-				$h = $this->tagvspaces[$tag][intval($closing)]['h'];
-			}
-			if (is_string($h)) {
-				$vsize = $n * $this->lasth;
+			if ($hb < $this->htmlvspace) {
+				$hd = 0;
 			} else {
-				$vsize = $n * $h;
+				$hd = $hb - $this->htmlvspace;
+				$this->htmlvspace = $hb;
 			}
-			if ($vsize > $this->htmlvspace) {
-				$this->Ln(($vsize - $this->htmlvspace), $cell);
-				$this->htmlvspace = $vsize;
-			}
+			$this->Ln(($hbz + $hd), $cell);
 		}
 
 		/**
