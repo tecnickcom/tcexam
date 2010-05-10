@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2010-03-10
+// Last Update : 2010-05-10
 //
 // Description : Outputs TCExam information page.
 //
@@ -132,18 +132,18 @@ echo '<h2>'.$l['t_translations'].'</h2>'.K_NEWLINE;
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li>[AR] Arabic : Hatim Alahmadi</li>'.K_NEWLINE;
 echo '<li>[BG] Bulgarian : Georgi Kostadinov</li>'.K_NEWLINE;
-echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna - SouthTech Datacenter Brazil [http://www.stech.net.br]</li>'.K_NEWLINE;
+echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna</li>'.K_NEWLINE;
 echo '<li>[CN] Chinese : Liu Yongxin</li>'.K_NEWLINE;
-echo '<li>[DE] German : Oliver Kasch</li>'.K_NEWLINE;
+echo '<li>[DE] German : Oliver Kasch, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[EL] Greek : Kottas Alexandros</li>'.K_NEWLINE;
-echo '<li>[EN] English : Nicola Asuni - Tecnick.com S.r.l</li>'.K_NEWLINE;
+echo '<li>[EN] English : Nicola Asuni</li>'.K_NEWLINE;
 echo '<li>[ES] Spanish : Carlos Alarcon, Maria del Rocio Peñas Serrano, Alejandra Ruiz</li>'.K_NEWLINE;
-echo '<li>[FR] French : Roger Koukerjinian - Transtxt [http://www.transtxt.com]</li>'.K_NEWLINE;
-echo '<li>[HI] Hindi : Mahesh K Bhandari, Shekhar K Maravi, Pradeep K Nayak (M.Tech CSE, IIT Bombay)</li>'.K_NEWLINE;
+echo '<li>[FR] French : Roger Koukerjinian, André Scherrer</li>'.K_NEWLINE;
+echo '<li>[HI] Hindi : Mahesh K Bhandari, Shekhar K Maravi, Pradeep K Nayak</li>'.K_NEWLINE;
 echo '<li>[HE] Hebrew : Oron Peled</li>'.K_NEWLINE;
 echo '<li>[HU] Hungarian : Peter Ivanyi, Tibor Balázs</li>'.K_NEWLINE;
 echo '<li>[ID] Indonesian : Ahmad Bardosono</li>'.K_NEWLINE;
-echo '<li>[IT] Italian : Nicola Asuni - Tecnick.com S.r.l</li>'.K_NEWLINE;
+echo '<li>[IT] Italian : Nicola Asuni</li>'.K_NEWLINE;
 echo '<li>[JP] Japanese : Koji Nakajima</li>'.K_NEWLINE;
 echo '<li>[MR] Marathi : Tushar Sayankar</li>'.K_NEWLINE;
 echo '<li>[MS] Malay (Bahasa Melayu) : Arvind Prakash Jha</li>'.K_NEWLINE;

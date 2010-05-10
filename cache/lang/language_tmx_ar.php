@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-03-10 19:20:06
+// DATE: 2010-05-10 15:09:57
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='تحديث البيانات الحالية';
 $tmx['h_upload_image']='تحديد مسار صورة ﻻرسالها للخادم';
 $tmx['h_upload_file']='تحديد مسار ملف ﻻرساله للخادم';
 $tmx['h_user_info']='عرض المعلومات المتعلقة باتصال المستخدم';
-$tmx['h_usered_email']='البريد اﻻلكتروني للمستخدم (مثل.: name@domain.com)';
+$tmx['h_usered_email']='البريد اﻻلكتروني للمستخدم (مثل.: name@example.com)';
 $tmx['h_view_details']='عرض التفاصيل';
 $tmx['h_csv_export']='تصدير البيانات إلى CSV (Tab delimited text file)';
 $tmx['h_xml_export']='تصدير البيانات إلى XML';

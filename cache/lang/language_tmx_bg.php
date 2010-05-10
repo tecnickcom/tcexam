@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: bg
-// DATE: 2010-03-10 19:20:07
+// DATE: 2010-05-10 15:10:03
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='обновява текущите данни';
 $tmx['h_upload_image']='определя пътя на снимката, която ще бъде изпратена до сървъра';
 $tmx['h_upload_file']='определя пътя на файла, който ще бъде изпратен до сървъра';
 $tmx['h_user_info']='показва информация за свързания потребител';
-$tmx['h_usered_email']='е-майл на потребителя (например: name@domain.com)';
+$tmx['h_usered_email']='е-майл на потребителя (например: name@example.com)';
 $tmx['h_view_details']='показва детайли';
 $tmx['h_csv_export']='извлича данни до CSV (текстов файл разделен с табове)';
 $tmx['h_xml_export']='извлича данни до XML';

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
-// Last Update : 2009-10-10
+// Last Update : 2010-05-10
 // 
 // Description : Export all users' results in XML.
 // 
@@ -278,7 +278,7 @@ if($r = F_db_query($sql, $db)) {
 				if ($mq['question_type'] == 3) {
 					// free-text question
 					// print user text answer
-					$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<text>'.$mq['testlog_answer_text'].'</text>'.K_NEWLINE;
+					$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<text>'.F_text_to_xml($mq['testlog_answer_text']).'</text>'.K_NEWLINE;
 				} else {
 					// display each answer option
 					$sqla = 'SELECT *

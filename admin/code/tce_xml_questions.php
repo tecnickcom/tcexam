@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2009-09-30
+// Last Update : 2010-05-10
 // 
 // Description : Functions to export questions using XML
 //               format.
@@ -53,27 +53,28 @@
 /**
  */
 
-// send XML headers
-header('Content-Description: XML File Transfer');
-header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-header('Pragma: public');
-header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-// force download dialog
-header('Content-Type: application/force-download');
-header('Content-Type: application/octet-stream', false);
-header('Content-Type: application/download', false);
-header('Content-Type: application/xml', false);
-// use the Content-Disposition header to supply a recommended filename
-header('Content-Disposition: attachment; filename=tcexam_questions_'.$_REQUEST['subject_id'].'_'.date('YmdHis').'.xml;');
-header('Content-Transfer-Encoding: binary');
-
 if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	AND (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0))
 	AND (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0))) {
 	$expmode = intval($_REQUEST['expmode']);
 	$module_id = intval($_REQUEST['module_id']);
 	$subject_id = intval($_REQUEST['subject_id']);
+	
+	// send XML headers
+	header('Content-Description: XML File Transfer');
+	header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+	header('Pragma: public');
+	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+	header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+	// force download dialog
+	header('Content-Type: application/force-download');
+	header('Content-Type: application/octet-stream', false);
+	header('Content-Type: application/download', false);
+	header('Content-Type: application/xml', false);
+	// use the Content-Disposition header to supply a recommended filename
+	header('Content-Disposition: attachment; filename=tcexam_questions_'.$subject_id.'_'.date('YmdHis').'.xml;');
+	header('Content-Transfer-Encoding: binary');
+	
 	echo F_xml_export_questions($module_id, $subject_id, $expmode);
 } else {
 	exit;

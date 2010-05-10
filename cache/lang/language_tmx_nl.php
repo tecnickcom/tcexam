@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: nl
-// DATE: 2010-03-10 19:20:23
+// DATE: 2010-05-10 15:10:25
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='herzien van huidige gegevens';
 $tmx['h_upload_image']='in welke directory staat het beeldbestand';
 $tmx['h_upload_file']='in welke directory staat het bestand';
 $tmx['h_user_info']='toont info over de gebruiker';
-$tmx['h_usered_email']='gebruikers e-mailadres (bijv.: name@domain.com)';
+$tmx['h_usered_email']='gebruikers e-mailadres (bijv.: name@example.com)';
 $tmx['h_view_details']='toont details';
 $tmx['h_csv_export']='export data naar CSV (TAB /komma gescheiden tekstbestand)';
 $tmx['h_xml_export']='export data naar XML';

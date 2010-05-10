@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2010-03-10 19:20:20
+// DATE: 2010-05-10 15:10:21
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='現在のデータを更新します';
 $tmx['h_upload_image']='サーバに送る画像のパスを特定';
 $tmx['h_upload_file']='サーバに送るファイルのパスを特定';
 $tmx['h_user_info']='ログイン中のユーザー名';
-$tmx['h_usered_email']='ユーザーの電子メールアドレス (例: name@domain.com)';
+$tmx['h_usered_email']='ユーザーの電子メールアドレス (例: name@example.com)';
 $tmx['h_view_details']='詳細を表示';
 $tmx['h_csv_export']='CSV ファイルを生成（タブ区切りのテキストファイル）';
 $tmx['h_xml_export']='XML ファイルを生成';

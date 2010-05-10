@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: tr
-// DATE: 2010-03-10 19:20:27
+// DATE: 2010-05-10 15:10:30
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -59,7 +59,7 @@ $tmx['h_lastname']='Kullanicinin soyadi (ornek: Icir, Donmez, ...)';
 $tmx['h_level']='kullanicinin seviyesi, seviye 0 adsiz kullaniciyi belirtir (kayitli degil), seviye 1 normal kullaniciyi belirtir, seviye 10 her hakka sahip yonetici kullaniciyi gosterir';
 $tmx['h_login_button']='giris icin buraya tiklayiniz';
 $tmx['h_login_name']='kullanici adi, bu coklu kullanicili sisteme girmek icin kullanilir';
-$tmx['h_logout_link']='Sistemden cikmak icin bu linke tiklayin (oturumu kapat)';
+$tmx['h_logout_link']='sistemden cikmak icin bu linke tiklayin (oturumu kapat)';
 $tmx['h_num_answers']='her soru icin maksimum alternatif cevap sayisi';
 $tmx['h_num_questions']='maksimum soru sayisi';
 $tmx['h_num_tquestions']='serbest cevapli sorularin maksimum sayisi';
@@ -114,7 +114,7 @@ $tmx['h_update']='gecerli veriyi guncellestirir';
 $tmx['h_upload_image']='sunucuya resim gonderimini tarif eder';
 $tmx['h_upload_file']='sunucuya dosya gonderimini tarif eder';
 $tmx['h_user_info']='baglantidaki kullanicilarla ilgili bilgileri gosterir';
-$tmx['h_usered_email']='kullanicinin email adresi (e.g.: isim@domain.com)';
+$tmx['h_usered_email']='kullanicinin email adresi (e.g.: isim@example.com)';
 $tmx['h_view_details']='detaylari goster';
 $tmx['h_csv_export']='veriyi CSV\'ye aktar (sinirli etiketli metin dosyasi)';
 $tmx['h_xml_export']='veriyi XML\'e aktar';

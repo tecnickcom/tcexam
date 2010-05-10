@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2010-02-19
+// Last Update : 2010-05-10
 // 
 // Description : Display questions statistics for the selected
 //               test.
@@ -302,6 +302,7 @@ if($rr = F_db_query($sqlr, $db)) {
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0)) {
 	echo '<a href="'.pdfLink(2, $test_id, 0, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+	echo '<a href="tce_xml_question_stats.php?testid='.$test_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 }
 ?>
 <input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />

@@ -1,12 +1,33 @@
 <?php
 // CACHE FILE FOR LANGUAGE: fr
-// DATE: 2010-03-10 19:20:14
+// DATE: 2010-05-10 15:10:14
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='fr';
-$tmx['d_admin_index']='Vous êtes sur l\'interface d\'administration de <a href="tce_page_info.php" title="A propos de TCExam">TCExam</a>, une application web indépendante de toute plate-forme ou langage, conçue pour créer, gérer et exécuter facilement des tests en ligne.<br /><br />Depuis le menu de gauche, vous avez accès aux différentes parties du système : <ul><li><strong>utilisateurs</strong><br />Cette partie contient les formulaires pour <a href="tce_edit_user.php" title="Gestion des utilisateurs">inscrire et gérer</a> les utilisateurs, <a href="tce_select_users.php" title="Sélection des utilisateurs"> les sélectionner</a> et afficher la liste des utilisateurs <a href="tce_show_online_users.php" title="Utilisateurs en ligne">en ligne</a>.<br />Uniquement les utilisateurs inscrits ayant reçu un identifiant et un mot de passe peuvent accéder à la partie publique du système et passer les tests.<br />Il est possible de définir différents niveaux d\'accès pour les utilisateurs et pour les différents composants et parties du système (pages, formulaires, parties).<br />TCExam utilise également un autre système de sécurité empêchant les accès non autorisés et basé sur les adresses IP.</li><li><strong>thèmes</strong><br />Cette section contient les formulaires pour créer et modifier les <a href="tce_edit_subject.php" title="Gestion des thèmes">thèmes</a> des tests, les <a href="tce_edit_question.php" title="Gestion des questions">questions</a> associées et les <a href="tce_edit_answer.php" title="Gestion des réponses multiples">réponses</a>.<br />Vous pouvez sélectionner un nombre quelconque de thèmes et les utiliser ensemble pour un test donné, et pour chaque thème vous pouvez définir un nombre quelconque de questions et de réponses possibles. Le système sélectionnera de manière aléatoire des questions et des réponses parmi celles créées.<br />TCExam supporte aussi bien les questions à réponse texte que les questions à choix multiples. Les premières seront évaluées à l\'aide d\'un formulaire spécial <a href="tce_edit_rating.php" title="Evaluation des réponses texte"></a>, et les dernières seront évaluées automatiquement.<br />Les descriptions des tests, les thèmes, les questions et les réponses supportent un code propriétaire particulier (tcecode) qui, grâce à un formulaire particulier, autorise l\'utilisation d\'images et la mise en forme des textes.</li><li><strong>test</strong><br />Cette partie contient un formulaire pour insérer, créer et modifier les différents <a href="tce_edit_test.php" title="Gestion des tests">tests</a>, le formulaire pour <a href="tce_edit_rating.php" title="Evaluation des réponses texte">évaluer</a> les réponses texte, les formulaires pour afficher ou générer des versionss PDF des <a href="tce_show_result_allusers.php" title="Résumé des résultats des tests">résultats</a>, un affichage détaillé des <a href="tce_show_result_user.php" title="Résultats des tests">tests des utilisateurs</a> et les <a href="tce_show_result_questions.php" title="Statistiques sur les questions">statistiques</a> sur les questions et réponses utilisées.<br />TCExam sélectionne de manière aléatoire les différentes questions et les réponses associées disponibles de façon à ce que les tests des utilisateurs soient différents les uns des autres.<br />Il est également possible de générer un nombre quelconque de tests au format PDF pour les imprimer et les utiliser pour un test traditionnel sur papier.</li></ul>';
+$tmx['d_admin_index']='C\'est la zone d\'administration <a href="tce_page_info.php" title="A propos de TCExam">TCExam</a>, un système indépendant de la plate-forme et de la langue, pour créer, gérer et effectuer des examens en
+ligne.
+
+Dans le menu, vous pouvez accéder les fonctionnes différentes du système:<ul>
+
+<li><strong>utilisateurs</strong><br />
+Cette section contient les formulaires utilisés pour insérer et gérer les utilisateurs, de les sélectionner et afficher la liste de ceux actuellement en ligne.<br />
+Seuls les utilisateurs enregistrés sont autorisés à accéder la zone publique du système et effectuer des examens.<br />
+Il est possible de spécifier différents niveaux d\'accès pour les deux, les utilisateurs ainsi que les différentes composantes et les éléments du système (pages, formes, sections).<br />
+TCExam utilise également un autre système de sécurité pour empêcher l\'accès non autorisé, fondé sur une vérification des adresses IP.</li>
+
+<li><strong>modules</strong><br />
+Cette section contient les formulaires pour insérer et modifier des modules des examens, les sujets, les questions et réponses.<br />
+Pour chaque examen, vous pouvez définir un nombre illimité de sujets différents, contenait des questions et des réponses liées.<br />
+Dépendent des paramètres spécifiés pour la choix aléatoire des questions et réponses, le système va compiler automatiquement l\'examen.<br />
+TCExam supporte différents types de questions. Les réponses par la choix multiples et mettre  en ordre seront vérifié par la système, les réponses en texte libre doivent être évalués manuellement.<br />
+Les descriptions des examens, des sujets, questions et réponses sont créés en utilisant un codage (tcecode) qui permet également l\'utilisation de texte formaté ainsi que des images.</li>
+
+<li><strong>examens</strong><br />
+Cette section fournit des formulaires pour générer et modifier des examens, d\'évaluer les réponses du texte libre et de revoir des résultats ordonnées par le test ainsi que par les utilisateurs.<br />
+Utilisation de la fonction PDF sur les examens permettant la création des examens en papier qui sont mis ensemble au hasard, comme ça chaque élève reçoit un examen différent.<br />
+Statistiques des questions et des réponses peuvent non seulement être consultées en ligne, chaque rapport peut aussi être fusionné à des documents PDF à imprimer.</li></ul>';
 $tmx['d_logout_desc']='cliquer sur le bouton pour quitter le système';
 $tmx['d_tcexam_desc']='TCExam est une application pour la gestion et l\'exécution de tests en ligne.';
 $tmx['h_add']='ajoute l\'enregistrement en cours à la base de données';
@@ -45,11 +66,11 @@ $tmx['h_enabled']='active/désactive l\'enregistrement en cours';
 $tmx['h_execute']='exécute le test';
 $tmx['h_file_type']='type de fichier';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Fichier texte délimité par tabulation';
+$tmx['h_file_type_csv']='fichier texte délimité par tabulation';
 $tmx['h_firstname']='nom de l\'utilisateur (p. ex. Michel, Jean, ...)';
-$tmx['h_fiscal_code']='Numéro de sécurité sociale de l\'utilisateur';
+$tmx['h_fiscal_code']='numéro de sécurité sociale de l\'utilisateur';
 $tmx['h_global_score']='si sélectionné, écrase les points des réponses avec les points ci-dessous';
-$tmx['h_group_name']='Nom du groupe d\'utilisateurs';
+$tmx['h_group_name']='nom du groupe d\'utilisateurs';
 $tmx['h_guide']='aide';
 $tmx['h_index']='page principale';
 $tmx['h_info']='à propos de TCExam';
@@ -114,32 +135,32 @@ $tmx['h_update']='actualise les données en cours';
 $tmx['h_upload_image']='définit le chemin d\'une image à envoyer au serveur';
 $tmx['h_upload_file']='définit le chemin du fichier à envoyer au serveur';
 $tmx['h_user_info']='affiche les informations relatives à l\'utilisateur connecté';
-$tmx['h_usered_email']='adresse email de l\'utilisateur (p. ex. nom@domain.com)';
+$tmx['h_usered_email']='adresse email de l\'utilisateur (p. ex. nom@example.com)';
 $tmx['h_view_details']='affiche les détails';
 $tmx['h_csv_export']='exporte les données au format CSV (fichier texte délimité par tabulation)';
 $tmx['h_xml_export']='exporte les données au format XML';
-$tmx['hp_edit_answer']='Avec ce formulaire, vous pouvez gérer toutes les réponses possibles relatives à la question sélectionnée. Pour chaque question, vous pouvez ajouter un nombre quelconque de réponses correctes ou non correctes. Au cours du test, le système sélectionnera automatiquement une seule réponse correcte et l\'affichera dans la liste des réponses possibles. Vous ne pouvez pas modifier ou supprimer une réponse qui fait partie d\'un test déjà exécuté. Dans ce cas, vous pouvez uniquement la désactiver en utilisant le bouton [supprimer]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
-$tmx['hp_edit_group']='Dans ce formulaire, vous pouvez gérer les différents groupes d\'utilisateurs.';
-$tmx['hp_edit_question']='Avec ce formulaire, vous pouvez gérer les différentes questions relatives au thème sélectionné. Vous ne pouvez pas modifier ou supprimer une question qui fait partie d\'un test déjà exécuté. Dans ce cas, vous pouvez uniquement désactiver la question en utilisant le bouton [supprimer]. Légende : [+] Activé ; [-] Désactivé ; [S] MCSA - Question à choix multiples à réponse unique ; [M] MCMA - Question à choix multiples à réponses multiples; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
+$tmx['hp_edit_answer']='Entrez n\'importe quel nombre de réponses (correctes et incorrectes) à la question sélectionné. Dans les examens, le nombre requis de réponses correctes seront insérées au hasard, et complétés par de mauvaises réponses. NOTE: Les réponses qui sont utilisées dans les examens déjà complété seront seulement désactive par appuyer sur [supprimer].';
+$tmx['hp_edit_group']='Dans ce formulaire, vous pouvez gérer les groupes d\'utilisateurs.';
+$tmx['hp_edit_question']='Avec ce formulaire, vous pouvez gérer les différentes questions relatives au thème sélectionné. Vous ne pouvez pas modifier ou supprimer une question qui fait partie d\'un test déjà exécuté. Dans ce cas, vous pouvez uniquement désactiver la question en utilisant le bouton [supprimer]. Légende: [+] activé; [-] desactivé. Légende pour questions: [S] MCSA - Multiple Choice Single Answer; [M] MCMA - Multiple Choice Multiple Answer; [T] TEXT - texte libre; [O] ORDER - Ordre. Légende pour réponses: [T] réponse correcte; [F] réponse incorrect.';
 $tmx['hp_edit_rating']='Dans ce formulaire, vous pouvez définir les points pour les réponses texte. Vous pouvez afficher les données de l\'utilisateur en sélectionnant le champ \'données utilisateur\'. Le champ \'tout afficher\' vous permet de voir et de corriger également les réponses déjà évaluées.';
 $tmx['hp_edit_subject']='Avec ce formulaire, vous pouvez gérer les différents thèmes du test. Ces thèmes permettent de répertorier les questions dans le système. Dans un test donné, il peut y avoir plusieurs thèmes. Vous ne pouvez pas modifier ou supprimer un thème qui fait partie d\'un test déjà exécuté. Dans ce cas, vous pouvez uniquement le désactiver en utilisant le bouton [supprimer]. Légende : [+] Activé ; [-] Désactivé ;';
 $tmx['hp_edit_tcecode']='Avec ce formulaire, vous pouvez ajouter des images et mettre en forme le texte';
-$tmx['hp_edit_test']='Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un test, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d\'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter le test, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n\'importe quel nombre). Le test restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un test qui a déjà été exécuté. Lorsqu\'un test est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur.';
-$tmx['hp_edit_user']='Dans ce formulaire, vous pouvez gérer les différents utilisateurs autorisés à accéder au système. Pour chaque utilisateur, vous pouvez choisir un identifiant, un mot de passe et un niveau d\'accès. Le niveau 0 indique un utilisateur anonyme (non inscrit), le niveau 1 indique un utilisateur de base (p. ex. un étudiant), le niveau 10 indique un administrateur avec tous les droits d\'accès.';
+$tmx['hp_edit_test']='Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d\'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l\'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n\'importe quel nombre). L\'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu\'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur.';
+$tmx['hp_edit_user']='Dans ce formulaire, vous pouvez gérer les différents utilisateurs autorisés à accéder se système. Pour chaque utilisateur, vous pouvez choisir un identifiant, un mot de passe et un niveau d\'accès. Le niveau 0 indique un utilisateur anonyme (non inscrit), le niveau 1 indique un utilisateur de base (p. ex. un étudiant), le niveau 10 indique un administrateur avec tous les droits d\'accès.';
 $tmx['hp_email_result']='Envoyer les résultats aux utilisateurs par email';
 $tmx['hp_import_xml_questions']='Avec ce formulaire, vous pouvez importer des questions dans le thème sélectionné depuis un fichier XML.';
 $tmx['hp_import_xml_users']='Avec ce formulaire, vous pouvez importer des utilisateurs et des groupes depuis un fichier XML ou CSV (texte délimité par tabulation). Les formats des fichiers sont identiques à ceux obtenus en exportant des données depuis le formulaire Sélection d\'utilisateurs.';
-$tmx['hp_login']='Pour accéder aux différentes parties de TCExam, vous devez vous connecter en utilisant l\'identifiant et le mot de passe fournis par l\'administrateur du système';
+$tmx['hp_login']='Pour accéder au "TCExam", contactez l\'administrateur du système s.v.p.';
 $tmx['hp_online_users']='Ce formulaire affiche les utilisateurs actuellement connectés';
-$tmx['hp_public_index']='Vous êtes sur la page d\'accueil de TCExam. Depuis cette page, vous pouvez commencer ou continuer vos tests.';
-$tmx['hp_result_questions']='Cette page affiche des données statistiques pour un test sélectionné. En cliquant sur les titres de certaines colonnes, vous pouvez modifier l\'ordre d\'affichage dans le tableau. En cliquant sur un numéro de ligne, vous accédez à la page de modification de la question sélectionnée.';
-$tmx['hp_result_user']='Cette page affiche les détails du test pour l\'utilisateur sélectionné. Les données de chaque ligne sont : <br />   numéro de question. [score] (IP utilisateur | temps d\'affichage en hh:mm:ss| heure dernière modification en hh:mm:ss| durée pour répondre en mm:ss) <br />Le symbole ® indique une question à réponse correcte, et les réponses choisies par l\'utilisateur sont indiquées par un \'x\'. Le bouton [PDF] exporte les résultats vers un document PDF.';
+$tmx['hp_public_index']='Vous êtes sur la page d\'accueil de TCExam. Depuis cette page, vous pouvez commencer ou continuer vos examens.';
+$tmx['hp_result_questions']='Cette page affiche des données statistiques pour un examen sélectionné. En cliquant sur les titres de certaines colonnes, vous pouvez modifier l\'ordre d\'affichage dans le tableau. En cliquant sur un numéro de ligne, vous accédez à la page de modification de la question sélectionnée.';
+$tmx['hp_result_user']='Cette page affiche les détails de l\'examen pour l\'utilisateur sélectionné. Les données de chaque ligne sont : <br />   numéro de question. [score] (IP utilisateur | temps d\'affichage en hh:mm:ss| heure dernière modification en hh:mm:ss| durée pour répondre en mm:ss) <br />Le symbole ® indique une question à réponse correcte, et les réponses choisies par l\'utilisateur sont indiquées par un \'x\'. Le bouton [PDF] exporte les résultats vers un document PDF.';
 $tmx['hp_select_all_questions']='Dans ce formulaire, vous pouvez visualiser et sélectionner toutes les questions et les réponses associées pour un thème donné.';
 $tmx['hp_select_users']='Dans ce formulaire, vous pouvez visualiser et sélectionner les utilisateurs inscrits. Vous pouvez modifier l\'ordre d\'affichage en cliquant sur le nom des colonnes.';
 $tmx['hp_sending_in_progress']='Envoi email en cours. Veuillez attendre la fin de l\'envoi.';
-$tmx['hp_test_execute']='Cette page permet d\'exécuter le test sélectionné.';
-$tmx['hp_test_info']='Affiche les informations pour le test sélectionné.';
-$tmx['hp_test_results']='Cette page affiche les résultats du test sélectionné. Les résultats sont relatifs uniquement aux questions à choix multiples.';
+$tmx['hp_test_execute']='Cette page permet d\'exécuter l\'examen sélectionné.';
+$tmx['hp_test_info']='Affiche les informations pour l\'examen sélectionné.';
+$tmx['hp_test_results']='Cette page affiche les résultats de l\'examen sélectionné. Les résultats sont relatifs uniquement aux questions à choix multiples.';
 $tmx['m_authorization_denied']='AUTORISATION REFUSEE!';
 $tmx['m_databasempty']='la base de données est vide !';
 $tmx['m_delete_anonymous']='l\'utilisateur anonyme ne peut pas être supprimé';
@@ -180,7 +201,7 @@ $tmx['m_mailerror_empty_message']='Message body empty';
 $tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='ce lien ouvrira une nouvelle fenêtre de navigateur';
-$tmx['m_no_test_available']='Il n\'y a aucun test disponible !';
+$tmx['m_no_test_available']='il n\'y a aucun test disponible !';
 $tmx['m_process_completed']='processus terminé';
 $tmx['m_search_void']='rien de trouvé';
 $tmx['m_unanswered']='pas de réponse';
@@ -406,14 +427,14 @@ $tmx['w_terminate_exam']='terminer l\'examen';
 $tmx['m_confirm_test_termination']='confirmer la fin du test';
 $tmx['w_comment']='commentaire';
 $tmx['h_testcomment']='commentaire sur le test';
-$tmx['t_translations']='Traductions';
+$tmx['t_translations']='traductions';
 $tmx['w_position']='position';
 $tmx['w_ordering_answer']='questions à correspondances';
 $tmx['h_enable_ordering_answer']='si sélectionné, permet le mode questions à correspondances';
 $tmx['t_user_registration']='Enregistrer un nouvel utilisateur';
 $tmx['hp_user_registration']='Ce formulaire vous permet d\'enregistrer un nouvel utilisateur.';
 $tmx['w_user_registration_link']='Pas d\'identifiant? Créer un compte.';
-$tmx['m_user_verification_sent']='Un message de vérification a été envoyé à cette adresse';
+$tmx['m_user_verification_sent']='un message de vérification a été envoyé à cette adresse';
 $tmx['m_user_registration_ok']='utilisateur enregistré';
 $tmx['w_i_agree']='Je suis d\'accord avec les termes du contrat';
 $tmx['w_registration_verification']='Vérification de l\'enregistrement';
@@ -468,51 +489,48 @@ $tmx['w_module']='module';
 $tmx['w_modules']='modules';
 $tmx['t_modules_editor']='Gestion des modules';
 $tmx['hp_edit_module']='Vous pouvez gérer les différents modules depuis ce formulaire. Les thèmes dans le système peuvent être catalogués d\'après ces modules. Dans un test donné, il peut y avoir plusieurs modules. Vous ne pouvez pas modifier ou supprimer un module faisant partie d\'un test déjà pris. Dans ce cas, vous pouvez juste le désactiver en utilisant le bouton [supprimer]. Légende : [+] Activé ; [-] Désactivé ;';
+$tmx['hp_edit_module']='Vous pouvez gérer les différents modules depuis ce formulaire. Les thèmes dans le système peuvent être catalogués d\'après ces modules. Dans un examen donné, il peut y avoir plusieurs modules. Vous ne pouvez pas modifier ou supprimer un module faisant partie d\'un examen déjà pris. Dans ce cas, vous pouvez juste le désactiver en utilisant le bouton [supprimer]. Légende : [+] Activé ; [-] Désactivé ;';
 $tmx['w_all']='tout';
-$tmx['w_number']='number';
+$tmx['w_number']='nombre';
 $tmx['w_minimum']='minimum';
 $tmx['w_maximum']='maximum';
-$tmx['w_sum']='sum';
-$tmx['w_sumsq']='square sum';
-$tmx['w_mean']='mean';
-$tmx['w_median']='median';
+$tmx['w_sum']='somme';
+$tmx['w_sumsq']='somme quadratique';
+$tmx['w_mean']='moyenne';
+$tmx['w_median']='médiane';
 $tmx['w_mode']='mode';
-$tmx['w_range']='range';
+$tmx['w_range']='gamme';
 $tmx['w_variance']='variance';
-$tmx['w_standard_deviation']='standard deviation';
-$tmx['w_statistics']='statistics';
-$tmx['w_skewness']='skewness';
-$tmx['w_kurtosi']='kurtosi';
-$tmx['t_all_results_user']='User\'s Results';
-$tmx['hp_allresults_user']='This form summarize the results of the specified user.';
-$tmx['hp_result_alluser']='Ce formulaire résume les résultats de tous les utilisateurs pour un test sélectionné.';
-$tmx['h_module_name']='name of the module';
+$tmx['w_standard_deviation']='ecart-type';
+$tmx['w_statistics']='statistiques';
+$tmx['w_skewness']='asymétrie';
+$tmx['w_kurtosi']='kurtosis';
+$tmx['t_all_results_user']='Résultats par Étudiant';
+$tmx['hp_allresults_user']='Ce formulaire récapitule les résultats pour l\'utilisateur spécifié.';
+$tmx['hp_result_alluser']='Ce formulaire résume les résultats de tous les utilisateurs pour l\'examen sélectionné. ATTENTION: [envoyer emails +PDF] enverra tous les tests, y compris ses questions à chaque étudiant qui a effectué le test!!!';
+$tmx['h_module_name']='nom du module';
 $tmx['w_explanation']='explanation';
-$tmx['h_explanation']='explanation to be printed on results';
-$tmx['w_repeatable']='repeatable';
-$tmx['h_repeatable_test']='users can repeat this test several times';
-$tmx['w_repeat']='repeat';
-$tmx['h_repeat_test']='repeat this test (current results will be deleted)';
-$tmx['w_calendar']='calendar';
-$tmx['m_score_higher_than_max']='the selected score is higher than maximum allowed';
-$tmx['w_mcma_partial_score']='partial score for MCMA';
-$tmx['h_mcma_partial_score']='if selected, uses partial score for MCMA questions';
-$tmx['h_logout_on_timeout']='if selected, logs out the user when the time expires';
-$tmx['w_logout_on_timeout']='logout when time expires';
-$tmx['t_backup_editor']='Database Backup and Restore';
+$tmx['h_explanation']='explication à être imprimé sur le résultat';
+$tmx['w_repeatable']='possibilité d\'une répétition';
+$tmx['h_repeatable_test']='utilisateurs peuvent repeter cet examen plusieurs fois';
+$tmx['w_repeat']='repeter';
+$tmx['h_repeat_test']='répétez cet examen (les résultats actuels seront supprimés)';
+$tmx['w_calendar']='calendrier';
+$tmx['m_score_higher_than_max']='le nombre de points choisi est supérieur au maximum autorisé';
+$tmx['w_mcma_partial_score']='points partial pour MCMA';
+$tmx['h_mcma_partial_score']='s\'il est sélectionné, utilise points partiel pour les questions MCMA';
+$tmx['h_logout_on_timeout']='si séléctionnée, l\'utilisateur est déconnecté automaticement';
+$tmx['w_logout_on_timeout']='déconnecter automatiquement';
+$tmx['t_backup_editor']='Backup et Restauration';
 $tmx['w_backup']='backup';
-$tmx['w_restore']='restore';
-$tmx['w_backup_file']='backup file';
-$tmx['h_backup']='create a new backup';
-$tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
-$tmx['m_restore_confirm']='confirm restoring';
-$tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
-Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
-To restore an existing backup archive, select it and push the [restore] button.
-Note that before each restore the system automatically execute a new backup, so you can undo the operation.
-Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
+$tmx['w_restore']='restaurer';
+$tmx['w_backup_file']='fichier backup';
+$tmx['h_backup']='créez un nouveau backup';
+$tmx['h_restore']='restaurer le backup selectionné';
+$tmx['m_backup_completed']='crée fichier backup avec succès';
+$tmx['m_restore_completed']='récupération réussie';
+$tmx['m_restore_confirm']='confirmer la restauration';
+$tmx['hp_edit_backups']='Cette page vous permet de créer des fichiers backup (fonctionne sur les systèmes POSIX avec MySQL ou PostgreSQL). En appuyant [backup] une base de données backup sera créée dans le format SQL compressé (structure et données). Pour restaurer le fichier sélectionner cliquez sur [Rétablir]. Note: Avant de restaurer, un fichier backup supplémentaire est automatiquement créé. Les fichiers backup sont sauvé dans le dossier cache / backup avec la syntaxe suivante: aaaammjjhhmmss_tcexam_backup.sql.gz, ou aaaammjjhhmmss indiquant le moment de la création du fichier.';
 
 // EOF ----------
 ?>

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2010-03-10 19:20:18
+// DATE: 2010-05-10 15:10:18
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='aktuális adatok frissítése';
 $tmx['h_upload_image']='a szervernek küldendő kép útvonalának megadása';
 $tmx['h_upload_file']='a szervernek küldendő file útvonalának megadása';
 $tmx['h_user_info']='információ a bejelentkezett felhasználókról';
-$tmx['h_usered_email']='e-mail cím (pl.: nev@domain.hu)';
+$tmx['h_usered_email']='e-mail cím (pl.: nev@example.com)';
 $tmx['h_view_details']='részletek megmutatása';
 $tmx['h_csv_export']='adatok exportálása CSV formátumba';
 $tmx['h_xml_export']='adatok exportálása XML formátumba';

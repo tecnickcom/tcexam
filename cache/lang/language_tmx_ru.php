@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ru
-// DATE: 2010-03-10 19:20:26
+// DATE: 2010-05-10 15:10:29
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='обновить текущую дату';
 $tmx['h_upload_image']='определить путь к изображению, которое будет отправлено на сервер';
 $tmx['h_upload_file']='определить путь к файлу, который будет отправлен на сервер';
 $tmx['h_user_info']='показать информацию, связанную с подключенным пользователем';
-$tmx['h_usered_email']='эл. адрес пользователя (например: name@mail.ru)';
+$tmx['h_usered_email']='эл. адрес пользователя (например: name@example.com)';
 $tmx['h_view_details']='показать подробности';
 $tmx['h_csv_export']='экспорт данных в CSV формате (текстовый файл с разделением записей табуляцией)';
 $tmx['h_xml_export']='экспорт данных в XML формате';
@@ -480,7 +480,7 @@ $tmx['w_variance']='дисперсия';
 $tmx['w_standard_deviation']='стандартное отклонение';
 $tmx['w_statistics']='статистика';
 $tmx['w_skewness']='асимметрия';
-$tmx['w_kurtosi']='Куртози';
+$tmx['w_kurtosi']='куртози';
 $tmx['t_all_results_user']='Результаты Пользователя';
 $tmx['hp_allresults_user']='Эта форма является сводной о результатах выбранного пользователя.';
 $tmx['hp_result_alluser']='Эта форма суммирует результаты всех пользователей для выбранного теста.';

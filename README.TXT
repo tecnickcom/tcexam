@@ -1,19 +1,19 @@
 TCExam - README
 ============================================================
 
-IF YOU'D LIKE TO SUPPORT TCEXAM, PLEASE CONSIDER MAKING A DONATION: 
+IF YOU'D LIKE TO SUPPORT TCEXAM, PLEASE CONSIDER MAKING A DONATION:
 http://sourceforge.net/donate/index.php?group_id=159398
 
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 10.0.013
+Version: 10.1.000
 
-Release date: 2010-04-07
+Release date: 2010-05-10
 
 Author:
-	Nicola Asuni 
-	
+	Nicola Asuni
+
 Copyright (c) 2004-2010:
 	Nicola Asuni
 	Tecnick.com S.r.l.
@@ -21,85 +21,85 @@ Copyright (c) 2004-2010:
 	09044 Quartucciu (CA)
 	ITALY
 	http://www.tecnick.com
-	
+
 URLs:
 	http://www.tcexam.org
 	http://www.sourceforge.net/projects/tcexam
 
 Description:
-	TCExam is a technological solution (CBA - Computer-Based Assessment) to 
-	drastically simplify the evaluation process for schools, universities, 
-	recruiting firms as well as private and public companies, allowing 
-	professors, teachers and examiners to create, distribute and manage exams, 
+	TCExam is a technological solution (CBA - Computer-Based Assessment) to
+	drastically simplify the evaluation process for schools, universities,
+	recruiting firms as well as private and public companies, allowing
+	professors, teachers and examiners to create, distribute and manage exams,
 	tests, surveys and quizzes.
-	
-	Compared to the traditional Pen-and-Paper Testing (PPT), TCExam simplifies 
-	the whole process of evaluation reducing costs and improving quality and 
+
+	Compared to the traditional Pen-and-Paper Testing (PPT), TCExam simplifies
+	the whole process of evaluation reducing costs and improving quality and
 	reliability of the examinations.
-	
-	TCExam comes in a variety of languages and is already used all over the 
-	world by top universities, schools, private and public institutions, 
+
+	TCExam comes in a variety of languages and is already used all over the
+	world by top universities, schools, private and public institutions,
 	independent educators and research centers.
-	
+
 	KEY FEATURES
-	
-	* Flexibility and Configurability: The system has been designed to offer a 
-	high degree of adaptability to cover a great variety of usage scenarios. 
+
+	* Flexibility and Configurability: The system has been designed to offer a
+	high degree of adaptability to cover a great variety of usage scenarios.
 	Numerous configuration features allow customizing TCExam to fit all possible
 	requirements.
-	
-	* Free Open Source Software (FOSS): TCExam software is distributed with 
+
+	* Free Open Source Software (FOSS): TCExam software is distributed with
 	GNU-AGPLv3 license. Open Source promotes Software reliability and quality by
 	supporting independent peer review and rapid evolution of the source code.
-	
-	* Web-based Architecture: TCExam is Web-based and developed with LAMP 
-	(Linux, Apache, MySQL, PHP) technology. User-friendly interface allows you 
-	to install and use TCExam by simply connecting one cable to the switch of 
-	your computer network. All the computers on the network will be able to use 
+
+	* Web-based Architecture: TCExam is Web-based and developed with LAMP
+	(Linux, Apache, MySQL, PHP) technology. User-friendly interface allows you
+	to install and use TCExam by simply connecting one cable to the switch of
+	your computer network. All the computers on the network will be able to use
 	TCExam independently from the client’s operating system as a normal intranet
 	website, with no need to install any additional software or plug-in.
-	
-	* Internationalization (I18N): TCExam is language-independent through the 
-	adoption of the UTF-8, Unicode and  TMX standards. It supports the 
-	Right-To-Left mode and currently includes translations in 23 different 
+
+	* Internationalization (I18N): TCExam is language-independent through the
+	adoption of the UTF-8, Unicode and  TMX standards. It supports the
+	Right-To-Left mode and currently includes translations in 23 different
 	languages.
-	
-	* Accessibility and Usability: TCExam Web interface conforms to the XHTML 
-	1.0 Strict standard, the guidelines on Accessibility (W3C-WAI-WCAG 1.0) and 
-	Usability, to provide equal access and equal opportunity to people with 
+
+	* Accessibility and Usability: TCExam Web interface conforms to the XHTML
+	1.0 Strict standard, the guidelines on Accessibility (W3C-WAI-WCAG 1.0) and
+	Usability, to provide equal access and equal opportunity to people with
 	disabilities, including blindness.
-	
+
 	* Results and Statistics: TCExam outputs a variety of result pages, enabling
-	various selection filters and providing numerous statistical indexes. 
-	Results and statistics can then be exported into various formats for filing 
-	or reworking. The test-takers can immediately be informed of the result of 
+	various selection filters and providing numerous statistical indexes.
+	Results and statistics can then be exported into various formats for filing
+	or reworking. The test-takers can immediately be informed of the result of
 	their test, or have it delivered via email.
-	
-	* Data Import and Export: TCExam uses Open Standard protocols for data 
-	filing and interchange: CSV, XML and PDF. Everything is fully documented to 
-	be easily extended or used by external applications. Custom filters can be 
-	added to import data from other systems. TCExam supports several types of 
-	remote authentication and single-sign-on protocols: LDAP, RADIUS, CAS.  
-	
-	* Multimedia Content: TCExam uses a common mark-up language to add text 
-	formatting, images, multimedia objects (audio and video) and mathematical 
+
+	* Data Import and Export: TCExam uses Open Standard protocols for data
+	filing and interchange: CSV, XML and PDF. Everything is fully documented to
+	be easily extended or used by external applications. Custom filters can be
+	added to import data from other systems. TCExam supports several types of
+	remote authentication and single-sign-on protocols: LDAP, RADIUS, CAS.
+
+	* Multimedia Content: TCExam uses a common mark-up language to add text
+	formatting, images, multimedia objects (audio and video) and mathematical
 	formulas (supports LaTeX).
-	
-	* Unique Tests: TCExam can simultaneously generate unique tests for 
-	different users by randomly selecting and sorting questions and alternative 
-	answers. This feature drastically reduces or eliminates the chances of 
+
+	* Unique Tests: TCExam can simultaneously generate unique tests for
+	different users by randomly selecting and sorting questions and alternative
+	answers. This feature drastically reduces or eliminates the chances of
 	cheating on the test.
-	
-	* Security: TCExam is more secure than traditional Pen-and-Paper testing. 
-	It uses SSL (Secure Socket Layer) encryption and includes various 
-	authentication levels to discriminate the access to the various sections 
-	(user/password, access level, group, IP address). Test time, test activity, 
+
+	* Security: TCExam is more secure than traditional Pen-and-Paper testing.
+	It uses SSL (Secure Socket Layer) encryption and includes various
+	authentication levels to discriminate the access to the various sections
+	(user/password, access level, group, IP address). Test time, test activity,
 	results, and statistics: every part of the test is managed and stored in the
 	server, leaving no sensitive data in the users’ client computers.
 
 Software License
 	Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-	
+
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
     published by the Free Software Foundation, either version 3 of the
@@ -112,10 +112,10 @@ Software License
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-	 
+
 	Additionally, you can't remove or move the original tcexam logo,
 	copyrights statements and links to tecnick.com and tcexam websites.
-	
+
 	See LICENSE.TXT file for more information.
 
 Requirements and Install Documentation:

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2010-03-10 19:20:28
+// DATE: 2010-05-10 15:10:32
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='cập nhật dữ liệu hiện hành';
 $tmx['h_upload_image']='xác định đường dẫn của hình ảnh để gửi lên máy chủ';
 $tmx['h_upload_file']='xác định đường dẫn của tệp gửi lên máy chủ';
 $tmx['h_user_info']='hiển thị thông tin liên quan với người dùng đang kết nối';
-$tmx['h_usered_email']='địa chỉ email người dùng(ví dụ: name@domain.com)';
+$tmx['h_usered_email']='địa chỉ email người dùng(ví dụ: name@example.com)';
 $tmx['h_view_details']='hiển thị chi tiết';
 $tmx['h_csv_export']='xuất dữ liệu dạng CSV (Tab delimited text file)';
 $tmx['h_xml_export']='xuất dữ liệu dạng XML';

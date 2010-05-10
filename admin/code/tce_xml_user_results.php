@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2009-09-30
+// Last Update : 2010-05-10
 // 
 // Description : Export all user's results in XML.
 // 

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: pl
-// DATE: 2010-03-10 19:20:24
+// DATE: 2010-05-10 15:10:27
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='uaktualnia dane';
 $tmx['h_upload_image']='ścieżka dostępu do obrazka, który ma zostać wsłany na serwer';
 $tmx['h_upload_file']='ścieżka dostępu do pliku';
 $tmx['h_user_info']='pokazuje informacje na temat połączonego użytkownika';
-$tmx['h_usered_email']='adres e-mail użytkownika (np.: nazwa@domain.com)';
+$tmx['h_usered_email']='adres e-mail użytkownika (np.: nazwa@example.com)';
 $tmx['h_view_details']='pokazuje szczegóły';
 $tmx['h_csv_export']='eksportuje dane do CSV (Tab delimited text file)';
 $tmx['h_xml_export']='eksportuje dane do XML';
@@ -180,7 +180,7 @@ $tmx['m_mailerror_empty_message']='Message body empty';
 $tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='ten link otwiera nowe okno przeglądarki';
-$tmx['m_no_test_available']='Aktualnie nie ma żadnych aktywnych testów!';
+$tmx['m_no_test_available']='aktualnie nie ma żadnych aktywnych testów!';
 $tmx['m_process_completed']='proces zakończony';
 $tmx['m_search_void']='nic nie znaleziono';
 $tmx['m_unanswered']='brak odpowiedzi';

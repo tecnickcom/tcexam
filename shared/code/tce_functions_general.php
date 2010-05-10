@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2010-02-17
-// 
+// Last Update : 2010-05-10
+//
 // Description : General functions.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -63,7 +63,7 @@ function F_count_rows($dbtable, $where='') {
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$numofrows = $m['numrows'];
-		} 
+		}
 	} else {
 		F_display_db_error();
 	}
@@ -132,7 +132,7 @@ function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
 		} else {
 			// the new values are not yet present on table
 			return TRUE;
-		} 
+		}
 	} else {
 		F_display_db_error();
 	}
@@ -162,7 +162,7 @@ function unhtmlentities($text_to_convert, $preserve_tagsign=FALSE) {
  * Remove the following characters:
  * <ul>
  * <li>"\t" (ASCII 9 (0x09)), a tab.</li>
- * <li>"\n" (ASCII 10 (0x0A)), a new line (line feed)</li> 
+ * <li>"\n" (ASCII 10 (0x0A)), a new line (line feed)</li>
  * <li>"\r" (ASCII 13 (0x0D)), a carriage return</li>
  * <li>"\0" (ASCII 0 (0x00)), the NUL-byte</li>
  * <li>"\x0B" (ASCII 11 (0x0B)), a vertical tab</li>
@@ -356,7 +356,17 @@ function F_formatPdfPercentage($num) {
 	return '('.sprintf('% 3d', round(100 * $num)).'%)';
 }
 
+
+/**
+ * format a percentage number for XML
+ * @param float number to be formatted
+ * @return string
+ */
+function F_formatXMLPercentage($num) {
+	return sprintf('%3d', round(100 * $num));
+}
+
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

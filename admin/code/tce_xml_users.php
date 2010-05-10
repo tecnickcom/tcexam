@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2009-09-30
+// Last Update : 2010-05-10
 // 
 // Description : Functions to export users' accounts using 
 //               XML format.

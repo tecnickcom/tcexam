@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-03-10 19:20:25
+// DATE: 2010-05-10 15:10:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='actualizează datele curente';
 $tmx['h_upload_image']='specificaţi calea către imaginea care urmează să fie trimisă către server';
 $tmx['h_upload_file']='specificaţi calea către fişierul care urmează să fie trimis către server';
 $tmx['h_user_info']='arată utilizatorul conectat';
-$tmx['h_usered_email']='adresa de email a utilizatorului (ex.: nume@domeniu.com)';
+$tmx['h_usered_email']='adresa de email a utilizatorului (ex.: nume@example.com)';
 $tmx['h_view_details']='arată detalii';
 $tmx['h_csv_export']='exportaţi datele în format CSV (text Tab delimited)';
 $tmx['h_xml_export']='exportaţi datele în format XML';
@@ -180,7 +180,7 @@ $tmx['m_mailerror_empty_message']='Message body empty';
 $tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='acest link va deschide o nouă fereastră în browser';
-$tmx['m_no_test_available']='Nu sunt teste disponibile!';
+$tmx['m_no_test_available']='nu sunt teste disponibile!';
 $tmx['m_process_completed']='proces complet';
 $tmx['m_search_void']='nu s-a găsit nimic';
 $tmx['m_unanswered']='nici un răspuns';

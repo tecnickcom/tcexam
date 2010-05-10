@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ms
-// DATE: 2010-03-10 19:20:22
+// DATE: 2010-05-10 15:10:24
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='data semasa kemaskini';
 $tmx['h_upload_image']='mencirikan laluan itu satu imej untuk dihantar ke pelayan';
 $tmx['h_upload_file']='mencirikan laluan itu bagi fail untuk dihantar ke pelayan';
 $tmx['h_user_info']='menunjukkan informations berkait untuk pengguna berkait';
-$tmx['h_usered_email']='emel pengguna alamat (e.g.: name@domain.com)';
+$tmx['h_usered_email']='emel pengguna alamat (e.g.: name@example.com)';
 $tmx['h_view_details']='menunjukkan butiran';
 $tmx['h_csv_export']='data eksport untuk CSV (Tab delimited fail teks)';
 $tmx['h_xml_export']='data eksport kepada XML';

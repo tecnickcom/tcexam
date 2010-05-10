@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2010-03-10 19:20:12
+// DATE: 2010-05-10 15:10:10
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_time_end']='ημερομηνία και ώρα λήξης διαγωνί
 $tmx['h_update']='ενημέρωση των δεδομένων';
 $tmx['h_upload_file']='δώσε τη διαδρομή για το αρχείο που ώστε να σταλεί στο server';
 $tmx['h_user_info']='δείχνει πληροφορίες σε σχέση με τους χρήστες που είναι συνδεδεμένοι';
-$tmx['h_usered_email']='ηλεκτρονικη διευθύνση ,e-mail, του χρήστη (π.χ.: name@domain.com)';
+$tmx['h_usered_email']='ηλεκτρονικη διευθύνση ,e-mail, του χρήστη (π.χ.: name@example.com)';
 $tmx['h_view_details']='δείχνει λεπτομέρειες';
 $tmx['h_csv_export']='εξαγωγή δεδομένων σε CSV (Tab delimited text file)';
 $tmx['h_xml_export']='εξαγωγή δεδομένων σε XML';
@@ -180,7 +180,7 @@ $tmx['m_mailerror_empty_message']='Message body empty';
 $tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
 $tmx['m_new_window_link']='αυτός ο σύνδεσμος θα ανοίξει σε καινούριο παράθυρο';
-$tmx['m_no_test_available']='Δεν υπάρχουν διαθέσιμα διαγωνίσματα!';
+$tmx['m_no_test_available']='δεν υπάρχουν διαθέσιμα διαγωνίσματα!';
 $tmx['m_process_completed']='η διαδικασία ολοκληρώθηκε';
 $tmx['m_search_void']='δεν βρέθηκε τίποτα';
 $tmx['m_unanswered']='χωρίς απάντηση';

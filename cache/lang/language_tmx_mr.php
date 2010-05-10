@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: mr
-// DATE: 2010-03-10 19:20:21
+// DATE: 2010-05-10 15:10:23
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -114,7 +114,7 @@ $tmx['h_update']='अदयावत चालू घटक .';
 $tmx['h_upload_image']='नियत्रकाला खासनमुद केलेल्या मार्गामधुन प्रतिमा पाठविणे.';
 $tmx['h_upload_file']='नियत्रकाला खासनमुद केलेल्या मार्गामधुन दस्ताएवज पाठविणे.';
 $tmx['h_user_info']='जोडलेल्या उपयोगकर्त्या संबधी माहिती दर्शविणे.';
-$tmx['h_usered_email']='उपयोगकर्त्याचा इमेल पत्ता. (e.g.: name@domain.com)';
+$tmx['h_usered_email']='उपयोगकर्त्याचा इमेल पत्ता. (e.g.: name@example.com)';
 $tmx['h_view_details']='सक्षिप्त माहिती दर्शविने.';
 $tmx['h_csv_export']='सी एस व्ही चे घटक निर्यात करणे. (Tab delimited text file)';
 $tmx['h_xml_export']='एक्स एम एल चे घटक निर्यात करणे.';
