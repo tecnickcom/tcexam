@@ -7,9 +7,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 10.1.001
+Version: 10.1.002
 
-Release date: 2010-05-10
+Release date: 2010-05-12
 
 Author:
 	Nicola Asuni
