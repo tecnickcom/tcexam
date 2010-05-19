@@ -421,9 +421,9 @@
 							<dt><b>Clip</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodClip">TCPDF::Clip()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set a rectangular clipping area.</dd>
 							<dt><b>Close</b></dt>
-				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodClose">SMTP::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the socket and cleans up the state of the class.</dd>
-							<dt><b>Close</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodClose">TCPDF::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Terminates the PDF document.</dd>
+							<dt><b>Close</b></dt>
+				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodClose">SMTP::Close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the socket and cleans up the state of the class.</dd>
 							<dt><b>closeHTMLTagHandler</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodcloseHTMLTagHandler">TCPDF::closeHTMLTagHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Process closing tags.</dd>
 							<dt><b>colorRegistrationBar</b></dt>
@@ -444,6 +444,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertHexStringToString">TCPDF::convertHexStringToString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert hexadecimal string to string</dd>
 							<dt><b>convertHTMLColorToDec</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertHTMLColorToDec">TCPDF::convertHTMLColorToDec()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an associative array (keys: R,G,B) from an html color name or a six-digit or three-digit hexadecimal color representation (i.e. #3FE5AA or #7FF).</dd>
+							<dt><b>convertStringToHexString</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertStringToHexString">TCPDF::convertStringToHexString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert string to  hexadecimal string (byte string)</dd>
 							<dt><b>convertSVGtMatrix</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertSVGtMatrix">TCPDF::convertSVGtMatrix()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert SVG transformation matrix to PDF.</dd>
 							<dt><b>CoonsPatchMesh</b></dt>
@@ -1013,9 +1015,9 @@
 							<dt><b>getBarcodeArray</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodgetBarcodeArray">TCPDFBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
 							<dt><b>getBarcodeArray</b></dt>
-				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
-							<dt><b>getBarcodeArray</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetBarcodeArray">QRcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a barcode array which is readable by TCPDF</dd>
+							<dt><b>getBarcodeArray</b></dt>
+				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
 							<dt><b>getBitStream</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetBitStream">QRcode::getBitStream()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a stream of bits.</dd>
 							<dt><b>getBorderMode</b></dt>
@@ -1156,6 +1158,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPageHeight">TCPDF::getPageHeight()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the page height in units.</dd>
 							<dt><b>getPageNumGroupAlias</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPageNumGroupAlias">TCPDF::getPageNumGroupAlias()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the alias for the page number on the current page group  If the current font is unicode type, the returned string is surrounded by additional curly braces.</dd>
+							<dt><b>getPageSizeFromFormat</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPageSizeFromFormat">TCPDF::getPageSizeFromFormat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get page dimensions from fromat name.</dd>
 							<dt><b>getPageWidth</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPageWidth">TCPDF::getPageWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the page width in units.</dd>
 							<dt><b>getPathPaintOperator</b></dt>
@@ -2352,10 +2356,10 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$strokecolor">TCPDF::$strokecolor</a></dd>
 							<dt><b>$structured</b></dt>
 				<dd>in file qrcode.php, variable <a href="com-tecnick-tcpdf/QRcode.html#var$structured">QRcode::$structured</a></dd>
-							<dt><b>$subject</b></dt>
-				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$subject">TCPDF::$subject</a></dd>
 							<dt><b>$Subject</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$Subject">PHPMailer::$Subject</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the Subject of the message.</dd>
+							<dt><b>$subject</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$subject">TCPDF::$subject</a></dd>
 							<dt><b>$svgclipid</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$svgclipid">TCPDF::$svgclipid</a></dd>
 							<dt><b>$svgclipmode</b></dt>
@@ -2459,9 +2463,9 @@
 							<dt><b>setEqualColumns</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetEqualColumns">TCPDF::setEqualColumns()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set multiple columns of the same size</dd>
 							<dt><b>SetError</b></dt>
-				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodSetError">C_mailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace the default SetError</dd>
-							<dt><b>SetError</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSetError">PHPMailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds the error message to the error container.</dd>
+							<dt><b>SetError</b></dt>
+				<dd>in file tce_class_mailer.php, method <a href="PHPMailer/C_mailer.html#methodSetError">C_mailer::SetError()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace the default SetError</dd>
 							<dt><b>setExtGState</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetExtGState">TCPDF::setExtGState()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Add an extgstate</dd>
 							<dt><b>setFilenamePrefix</b></dt>
@@ -2558,6 +2562,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetOpenCell">TCPDF::setOpenCell()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the top/bottom cell sides to be open or closed when the cell cross the page.</dd>
 							<dt><b>setPage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPage">TCPDF::setPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Move pointer at the specified document page and update page dimensions.</dd>
+							<dt><b>setPageBoxes</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageBoxes">TCPDF::setPageBoxes()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set page boundaries.</dd>
 							<dt><b>setPageBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageBuffer">TCPDF::setPageBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set page buffer content.</dd>
 							<dt><b>setPageFormat</b></dt>
@@ -2694,6 +2700,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSVGTransform">TCPDF::SVGTransform()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Apply SVG graphic transformation matrix.</dd>
 							<dt><b>swapMargins</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodswapMargins">TCPDF::swapMargins()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Swap the left and right margins.</dd>
+							<dt><b>swapPageBoxCoordinates</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodswapPageBoxCoordinates">TCPDF::swapPageBoxCoordinates()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Swap X and Y coordinates of page boxes (change page boxes orientation).</dd>
 					</dl>
 	</div>
 	<a href="elementindex.html#top">top</a><br>
@@ -3202,6 +3210,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_freadint">TCPDF::_freadint()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Read a 4-byte integer from file.</dd>
 							<dt><b>_generateencryptionkey</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_generateencryptionkey">TCPDF::_generateencryptionkey()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compute encryption key</dd>
+							<dt><b>_getannotsrefs</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_getannotsrefs">TCPDF::_getannotsrefs()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get references to page annotations.</dd>
 							<dt><b>_getfontpath</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#method_getfontpath">TCPDF::_getfontpath()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return fonts path</dd>
 							<dt><b>_getstream</b></dt>
@@ -3341,7 +3351,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 12 May 2010 15:53:25 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 19 May 2010 13:20:40 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
