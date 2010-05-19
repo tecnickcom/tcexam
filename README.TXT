@@ -1,13 +1,14 @@
 TCExam - README
 ============================================================
 
-IF YOU'D LIKE TO SUPPORT TCEXAM, PLEASE CONSIDER MAKING A DONATION:
+I WISH TO IMPROVE AND EXPAND TCEXAM BUT I NEED YOUR SUPPORT.
+PLEASE MAKE A DONATION: 
 http://sourceforge.net/donate/index.php?group_id=159398
 
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 10.1.003
+Version: 10.1.004
 
 Release date: 2010-05-19
 

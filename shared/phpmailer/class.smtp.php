@@ -44,6 +44,7 @@
  * error. SMTP also provides some utility methods for sending mail
  * to an SMTP server.
  * original author: Chris Ryan
+ * @package PHPMailer
  */
 
 class SMTP {

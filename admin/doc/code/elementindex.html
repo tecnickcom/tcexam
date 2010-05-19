@@ -776,22 +776,6 @@
 				<dd>in file tce_csv_result_allusers.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_csv_result_allusers.php.html#functionF_csv_export_result_allusers">F_csv_export_result_allusers()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Export all test results to CSV.</dd>
 							<dt><b>F_csv_export_users</b></dt>
 				<dd>in file tce_csv_users.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_csv_users.php.html#functionF_csv_export_users">F_csv_export_users()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Export all users to CSV grouped by users' groups.</dd>
-							<dt><b>F_db_affected_rows</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_affected_rows">F_db_affected_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns number of rows (tuples) affected by the last INSERT, UPDATE or DELETE query associated with link_identifier.</dd>
-							<dt><b>F_db_close</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_close">F_db_close()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Closes the non-persistent connection to a database associated with the given connection resource.</dd>
-							<dt><b>F_db_connect</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_connect">F_db_connect()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Open a connection to a Oracle Server and select a database.</dd>
-							<dt><b>F_db_error</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_error">F_db_error()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the text of the error message from previous database operation</dd>
-							<dt><b>F_db_fetch_array</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_fetch_array">F_db_fetch_array()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fetch a result row as an associative and numeric array.</dd>
-							<dt><b>F_db_insert_id</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_insert_id">F_db_insert_id()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the ID generated from the previous INSERT operation</dd>
-							<dt><b>F_db_num_rows</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_num_rows">F_db_num_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get number of rows in result.</dd>
-							<dt><b>F_db_query</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_db_query">F_db_query()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sends a query to the currently active database on the server that's associated with the specified link identifier.<br />  NOTE: Convert MySQL RAND() function to Oracle RANDOM() on ORDER BY clause of selection queries.</dd>
 							<dt><b>F_decode_form_fields</b></dt>
 				<dd>in file tce_functions_form.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_form.php.html#functionF_decode_form_fields">F_decode_form_fields()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing form fields.</dd>
 							<dt><b>F_decode_tcecode</b></dt>
@@ -802,8 +786,6 @@
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_empty_to_null">F_empty_to_null()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Prepare field value for SQL query.<br />  Returns the quoted string if not empty, NULL otherwise.</dd>
 							<dt><b>F_error_handler</b></dt>
 				<dd>in file tce_functions_errmsg.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_errmsg.php.html#functionF_error_handler">F_error_handler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Custom PHP error handler function.</dd>
-							<dt><b>F_escape_sql</b></dt>
-				<dd>in file tce_db_dal_oracle.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_db_dal_oracle.php.html#functionF_escape_sql">F_escape_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Escape a string for insertion into a SQL text field (avoiding SQL injection).</dd>
 							<dt><b>F_executeTest</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_executeTest">F_executeTest()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the current user is authorized to execute the selected test.<br />  Generates the test if it's not already generated.</dd>
 							<dt><b>F_formatPdfPercentage</b></dt>
@@ -2125,9 +2107,9 @@
 							<dt><b>PDF_UNIT</b></dt>
 				<dd>in file tce_pdf.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_pdf.php.html#definePDF_UNIT">PDF_UNIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].</dd>
 							<dt><b>PHPMailer</b></dt>
-				<dd>in file class.phpmailer.php, class <a href="PHPMailer/PHPMailer.html">PHPMailer</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHPMailer - PHP email transport class</dd>
+				<dd>in file class.phpmailer.php, class <a href="PHPMailer/PHPMailer.html">PHPMailer</a></dd>
 							<dt><b>phpmailerException</b></dt>
-				<dd>in file class.phpmailer.php, class <a href="PHPMailer/phpmailerException.html">phpmailerException</a></dd>
+				<dd>in file class.phpmailer.php, class <a href="PHPMailer/phpmailerException.html">phpmailerException</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHPMailer Exceptions</dd>
 							<dt><b>PHP_VERSION_ID</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#definePHP_VERSION_ID">PHP_VERSION_ID</a></dd>
 							<dt><b>PieSector</b></dt>
@@ -2567,7 +2549,7 @@
 							<dt><b>setPageBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageBuffer">TCPDF::setPageBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set page buffer content.</dd>
 							<dt><b>setPageFormat</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageFormat">TCPDF::setPageFormat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the page format</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageFormat">TCPDF::setPageFormat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Change the format of the current page</dd>
 							<dt><b>setPageMark</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetPageMark">TCPDF::setPageMark()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set start-writing mark on current page stream used to put borders and fills.</dd>
 							<dt><b>setPageOrientation</b></dt>
@@ -3351,7 +3333,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 19 May 2010 13:20:40 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 19 May 2010 18:22:07 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

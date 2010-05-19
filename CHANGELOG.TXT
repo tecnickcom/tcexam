@@ -1,3 +1,7 @@
+10.1.004 (2010-05-19)
+	- Sourco code documentation was fixed.
+	- TCPDF library was updated.
+
 10.1.003 (2010-05-19)
 	- TCPDF library was updated.
 

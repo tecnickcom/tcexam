@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2009-10-09
-// 
+// Last Update : 2010-05-19
+//
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
 //               This abstraction use the same SQL syntax
@@ -20,25 +20,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -60,7 +60,8 @@
  * @param string $username Name of the user that owns the server process.
  * @param string $password Password of the user that owns the server process.
  * @param string $database Database name.
- * @return MySQL link identifier on success, or FALSE on failure. 
+ * @return MySQL link identifier on success, or FALSE on failure.
+ * @ignore
  */
 function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '') {
 	if(!$db = @mysql_connect($host.':'.$port, $username, $password)) {
@@ -79,6 +80,7 @@ function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $
  * Closes the non-persistent connection to a database associated with the given connection resource.
  * @param resource $link_identifier database link identifier.
  * @return bool TRUE on success or FALSE on failure
+ * @ignore
  */
 function F_db_close($link_identifier) {
 	return mysql_close($link_identifier);
@@ -87,6 +89,7 @@ function F_db_close($link_identifier) {
 /**
  * Returns the text of the error message from previous database operation
  * @return string error message.
+ * @ignore
  */
 function F_db_error() {
 	return '['.mysql_errno().']: '.mysql_error().'';
@@ -96,9 +99,10 @@ function F_db_error() {
 /**
  * Sends a query to the currently active database on the server that's associated with the specified link identifier.<br>
  * NOTE: Convert PostgreSQL RANDOM() function to MySQL RAND() on ORDER BY clause of selection queries.
- * @param string $query The query tosend. The query string should not end with a semicolon. 
+ * @param string $query The query tosend. The query string should not end with a semicolon.
  * @param resource $link_identifier database link identifier.
  * @return FALSE in case of error, TRUE or resource-identifier in case of success.
+ * @ignore
  */
 function F_db_query($query, $link_identifier) {
 	// convert PostgreSQL RANDOM() function to MySQL RAND()
@@ -111,7 +115,8 @@ function F_db_query($query, $link_identifier) {
  * Note: This function sets NULL fields to PHP NULL value.
  * @param resource $result result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
-*/
+ * @ignore
+ */
 function F_db_fetch_array($result) {
 	return mysql_fetch_array($result);
 }
@@ -121,6 +126,7 @@ function F_db_fetch_array($result) {
  * @param resource $link_identifier database link identifier.
  * @param resource $result result resource to the query result [UNUSED].
  * @return Number of rows.
+ * @ignore
  */
 function F_db_affected_rows($link_identifier, $result) {
 	return mysql_affected_rows($link_identifier);
@@ -130,6 +136,7 @@ function F_db_affected_rows($link_identifier, $result) {
  * Get number of rows in result.
  * @param resource $result result resource to the query result.
  * @return Number of affected rows.
+ * @ignore
  */
 function F_db_num_rows($result) {
 	return mysql_num_rows($result);
@@ -141,13 +148,14 @@ function F_db_num_rows($result) {
  * @param string Table name.
  * @param string Field name (column name).
  * @return int ID generated from the last INSERT operation.
+ * @ignore
  */
 function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
 	/*
-	 * NOTE : mysql_insert_id() converts the return type of the 
-	 * native MySQL C API function mysql_insert_id() to a type 
-	 * of long (named int in PHP). If your AUTO_INCREMENT column 
-	 * has a column type of BIGINT, the value returned by 
+	 * NOTE : mysql_insert_id() converts the return type of the
+	 * native MySQL C API function mysql_insert_id() to a type
+	 * of long (named int in PHP). If your AUTO_INCREMENT column
+	 * has a column type of BIGINT, the value returned by
 	 * mysql_insert_id() will be incorrect.
 	 */
 	 //return mysql_insert_id($link_identifier);
@@ -165,6 +173,7 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
  * @param boolean $stripslashes if true and magic_quotes_gpc is on, then strip slashes from string
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
+ * @ignore
  */
 function F_escape_sql($str, $stripslashes=true) {
 	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
@@ -175,6 +184,6 @@ function F_escape_sql($str, $stripslashes=true) {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>
