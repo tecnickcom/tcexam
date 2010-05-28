@@ -3,7 +3,7 @@
 // File name   : tce_update.php
 // Begin       : 2009-09-14
 // Last Update : 2010-05-19
-// 
+//
 // Description : Automatic updates for linux systems.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -73,7 +73,7 @@ $continue = true;
 
 // install all updates
 while ($continue) {
-	
+
 	// get current version date
 	$vdate = file_get_contents(K_PATH_CACHE.'date.txt');
 
@@ -98,7 +98,7 @@ while ($continue) {
 		fwrite($f, $update, strlen($update));
 	}
 	fclose($f);
-	
+
 	// *** start installation procedure ***
 
 	chdir(K_PATH_CACHE);
@@ -106,7 +106,7 @@ while ($continue) {
 	// extract files
 	exec('gzip -dc update.tar.gz | tar xf -');
 	exec('rm update.tar.gz');
-	
+
 	$version = file_get_contents(K_PATH_CACHE.'version.txt');
 
 	if (file_exists(K_PATH_CACHE.'patch.sql')) {
@@ -121,7 +121,7 @@ while ($continue) {
 	exec('patch < '.K_PATH_CACHE.'patch.diff');
 	echo '<h2>'.$version.': update completed.</h2>';
 	exec('rm '.K_PATH_CACHE.'patch.diff');
-	
+
 	// restore current dir
 	chdir(K_PATH_MAIN.'code/');
 }
@@ -130,6 +130,6 @@ echo '</div>'.K_NEWLINE;
 require_once(dirname(__FILE__).'/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

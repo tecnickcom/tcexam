@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2010-02-12
-// 
+// Last Update : 2010-05-28
+//
 // Description : Statistical functions for test results.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -107,13 +107,13 @@ function F_lockUserTest($test_id, $user_id) {
 function F_getQuestionTestStat($test_id, $question_id) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
-	
+
 	$test_id = intval($test_id);
 	$question_id = intval($question_id);
-	
+
 	$test_score_right = 0;
 	$question_difficulty = 0;
-	
+
 	// get test default scores
 	$sql = 'SELECT test_score_right
 		FROM '.K_TABLE_TESTS.'
@@ -125,7 +125,7 @@ function F_getQuestionTestStat($test_id, $question_id) {
 	} else {
 		F_display_db_error();
 	}
-	
+
 	// get question difficulty
 	$sql = 'SELECT question_difficulty
 		FROM '.K_TABLE_QUESTIONS.'
@@ -137,9 +137,9 @@ function F_getQuestionTestStat($test_id, $question_id) {
 	} else {
 		F_display_db_error();
 	}
-	
+
 	$question_half_score = $test_score_right * $question_difficulty / 2;
-	
+
 	$data = array();
 	// number of questions
 	$data['num'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.'');
@@ -153,7 +153,7 @@ function F_getQuestionTestStat($test_id, $question_id) {
 	$data['undisplayed'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_display_time IS NULL');
 	// number of free-text unrated questions
 	$data['unrated'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$question_id.' AND testlog_score IS NULL');
-	
+
 	return $data;
 }
 
@@ -171,6 +171,7 @@ function F_getQuestionTestStat($test_id, $question_id) {
  * <li>$data['max_score'] = maximum test score</li>
  * <li>$data['score'] = user's score</li>
  * <li>$data['comment'] = user's test comment</li>
+ * <li>$data['time'] = user's test start time</li>
  * </ul>
  * @param int $test_id test ID
  * @param int $testuser_id user's test ID
@@ -179,12 +180,12 @@ function F_getQuestionTestStat($test_id, $question_id) {
 function F_getUserTestStat($test_id, $user_id) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
-	
+
 	$test_id = intval($test_id);
 	$user_id = intval($user_id);
-	
+
 	$data = array();
-	
+
 	// get test default scores
 	$sql = 'SELECT test_score_right, test_max_score, test_score_threshold
 		FROM '.K_TABLE_TESTS.'
@@ -198,7 +199,7 @@ function F_getUserTestStat($test_id, $user_id) {
 	} else {
 		F_display_db_error();
 	}
-	
+
 	// total number of questions
 	$data['all'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS, 'WHERE testlog_testuser_id=testuser_id AND testlog_question_id=question_id AND testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'');
 	// number of right answers
@@ -212,7 +213,7 @@ function F_getUserTestStat($test_id, $user_id) {
 	// number of free-text unrated questions
 	$data['unrated'] = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND  testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testlog_score IS NULL');
 	// get user's score
-	$sql = 'SELECT SUM(testlog_score) AS total_score 
+	$sql = 'SELECT SUM(testlog_score) AS total_score
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.'
 		WHERE testlog_testuser_id=testuser_id
 			AND testuser_user_id='.$user_id.'
@@ -225,10 +226,10 @@ function F_getUserTestStat($test_id, $user_id) {
 	} else {
 		F_display_db_error();
 	}
-	
+
 	// get user's test comment
 	$data['comment'] = '';
-	$sql = 'SELECT testuser_comment
+	$sql = 'SELECT testuser_comment, testuser_creation_time
 	FROM '.K_TABLE_TEST_USER.'
 	WHERE testuser_user_id='.$user_id.'
 		AND testuser_test_id='.$test_id.'
@@ -236,15 +237,16 @@ function F_getUserTestStat($test_id, $user_id) {
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$data['comment'] = $m['testuser_comment'];
+			$data['time'] = $m['testuser_creation_time'];
 		}
 	} else {
 		F_display_db_error();
 	}
-	
+
 	return $data;
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

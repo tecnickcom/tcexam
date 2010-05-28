@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -48,7 +48,7 @@
  * @link www.tecnick.com
  * @since 2007-05-18
  */
- 
+
 /*
 NOTES
 ------------------------------------------------------------
@@ -68,7 +68,7 @@ Displayed formulae can be rendered using \displaystyle;
 
 Examples of conversions can be found in http://www.mayer.dial.pipex.com/latexrender/latexrender.htm
 
-Although the default size is set, you can resize a formula by using \mbox as in 
+Although the default size is set, you can resize a formula by using \mbox as in
 \mbox{\huge\sqrt{2}} or \mbox{\footnotesize\sqrt{2}}
 
 ------------------------------------------------------------
@@ -155,6 +155,6 @@ define ('K_LATEX_IMG_PREFIX', 'latex_');
 define ('K_LATEX_IMG_FORMAT', 'png');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

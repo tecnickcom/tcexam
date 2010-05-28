@@ -1,3 +1,9 @@
+10.1.007 (2010-05-28)
+	- A button to lock/unlock a test was added on Test Management.
+	- Remaining user's time information was added on Test Results Summary.
+	- Arabic language was updated. 
+	- TCPDF library was updated.
+
 10.1.006 (2010-05-21)
 	- TCPDF library was updated.
 

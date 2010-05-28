@@ -3,7 +3,7 @@
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
 // Last Update : 2009-09-30
-// 
+//
 // Description : Edit user data.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -82,10 +82,10 @@ switch($menu_mode) { // process submited data
 		<div class="confirmbox">
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
-		
+
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
 		<input type="hidden" name="user_name" id="user_name" value="<?php echo stripslashes($user_name); ?>" />
-		<?php 
+		<?php
 		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 		F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 		?>
@@ -136,7 +136,7 @@ switch($menu_mode) { // process submited data
 			}
 			// check password
 			if(!empty($newpassword) OR !empty($newpassword_repeat)) {
-				if($newpassword == $newpassword_repeat) { 
+				if($newpassword == $newpassword_repeat) {
 					$user_password = md5($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
@@ -144,19 +144,19 @@ switch($menu_mode) { // process submited data
 					break;
 				}
 			}
-			
-			$sql = 'UPDATE '.K_TABLE_USERS.' SET 
-				user_regdate=\''.F_escape_sql($user_regdate).'\', 
-				user_ip=\''.F_escape_sql($user_ip).'\', 
-				user_name=\''.F_escape_sql($user_name).'\', 
-				user_email='.F_empty_to_null(F_escape_sql($user_email)).', 
-				user_password=\''.F_escape_sql($user_password).'\', 
-				user_regnumber='.F_empty_to_null(F_escape_sql($user_regnumber)).', 
-				user_firstname='.F_empty_to_null(F_escape_sql($user_firstname)).', 
-				user_lastname='.F_empty_to_null(F_escape_sql($user_lastname)).', 
-				user_birthdate='.F_empty_to_null(F_escape_sql($user_birthdate)).', 
-				user_birthplace='.F_empty_to_null(F_escape_sql($user_birthplace)).', 
-				user_ssn='.F_empty_to_null(F_escape_sql($user_ssn)).', 
+
+			$sql = 'UPDATE '.K_TABLE_USERS.' SET
+				user_regdate=\''.F_escape_sql($user_regdate).'\',
+				user_ip=\''.F_escape_sql($user_ip).'\',
+				user_name=\''.F_escape_sql($user_name).'\',
+				user_email='.F_empty_to_null(F_escape_sql($user_email)).',
+				user_password=\''.F_escape_sql($user_password).'\',
+				user_regnumber='.F_empty_to_null(F_escape_sql($user_regnumber)).',
+				user_firstname='.F_empty_to_null(F_escape_sql($user_firstname)).',
+				user_lastname='.F_empty_to_null(F_escape_sql($user_lastname)).',
+				user_birthdate='.F_empty_to_null(F_escape_sql($user_birthdate)).',
+				user_birthplace='.F_empty_to_null(F_escape_sql($user_birthplace)).',
+				user_ssn='.F_empty_to_null(F_escape_sql($user_ssn)).',
 				user_level=\''.$user_level.'\'
 				WHERE user_id='.$user_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -165,7 +165,7 @@ switch($menu_mode) { // process submited data
 				F_print_error('MESSAGE', $user_name.': '.$l['m_user_updated']);
 			}
 			// delete previous groups
-			$sql = 'DELETE FROM '.K_TABLE_USERGROUP.' 
+			$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 				WHERE usrgrp_user_id='.$user_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -177,7 +177,7 @@ switch($menu_mode) { // process submited data
 						usrgrp_user_id,
 						usrgrp_group_id
 						) VALUES (
-						\''.$user_id.'\', 
+						\''.$user_id.'\',
 						\''.$group_id.'\'
 						)';
 					if(!$r = F_db_query($sql, $db)) {
@@ -211,7 +211,7 @@ switch($menu_mode) { // process submited data
 			}
 			// check password
 			if(!empty($newpassword) OR !empty($newpassword_repeat)) {// update password
-				if($newpassword == $newpassword_repeat) { 
+				if($newpassword == $newpassword_repeat) {
 					$user_password = md5($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
@@ -223,35 +223,35 @@ switch($menu_mode) { // process submited data
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
-			
+
 			$user_ip = getNormalizedIP($_SERVER['REMOTE_ADDR']); // get the user's IP number
 			$user_regdate = date(K_TIMESTAMP_FORMAT); // get the registration date and time
-			
+
 			$sql = 'INSERT INTO '.K_TABLE_USERS.' (
-				user_regdate, 
-				user_ip, 
-				user_name, 
-				user_email, 
-				user_password, 
+				user_regdate,
+				user_ip,
+				user_name,
+				user_email,
+				user_password,
 				user_regnumber,
-				user_firstname, 
-				user_lastname, 
-				user_birthdate, 
-				user_birthplace, 
-				user_ssn, 
+				user_firstname,
+				user_lastname,
+				user_birthdate,
+				user_birthplace,
+				user_ssn,
 				user_level
 				) VALUES (
-				\''.F_escape_sql($user_regdate).'\', 
-				\''.F_escape_sql($user_ip).'\', 
-				\''.F_escape_sql($user_name).'\', 
-				'.F_empty_to_null(F_escape_sql($user_email)).', 
-				\''.F_escape_sql($user_password).'\', 
-				'.F_empty_to_null(F_escape_sql($user_regnumber)).', 
-				'.F_empty_to_null(F_escape_sql($user_firstname)).', 
-				'.F_empty_to_null(F_escape_sql($user_lastname)).', 
-				'.F_empty_to_null(F_escape_sql($user_birthdate)).', 
-				'.F_empty_to_null(F_escape_sql($user_birthplace)).', 
-				'.F_empty_to_null(F_escape_sql($user_ssn)).', 
+				\''.F_escape_sql($user_regdate).'\',
+				\''.F_escape_sql($user_ip).'\',
+				\''.F_escape_sql($user_name).'\',
+				'.F_empty_to_null(F_escape_sql($user_email)).',
+				\''.F_escape_sql($user_password).'\',
+				'.F_empty_to_null(F_escape_sql($user_regnumber)).',
+				'.F_empty_to_null(F_escape_sql($user_firstname)).',
+				'.F_empty_to_null(F_escape_sql($user_lastname)).',
+				'.F_empty_to_null(F_escape_sql($user_birthdate)).',
+				'.F_empty_to_null(F_escape_sql($user_birthplace)).',
+				'.F_empty_to_null(F_escape_sql($user_ssn)).',
 				\''.$user_level.'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
@@ -266,7 +266,7 @@ switch($menu_mode) { // process submited data
 						usrgrp_user_id,
 						usrgrp_group_id
 						) VALUES (
-						\''.$user_id.'\', 
+						\''.$user_id.'\',
 						\''.$group_id.'\'
 						)';
 					if(!$r = F_db_query($sql, $db)) {
@@ -294,7 +294,7 @@ switch($menu_mode) { // process submited data
 		break;
 	}
 
-	default :{ 
+	default :{
 		break;
 	}
 
@@ -357,7 +357,7 @@ if($formstatus) {
 <select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_usereditor').submit()">
 <?php
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name
-	FROM '.K_TABLE_USERS.' 
+	FROM '.K_TABLE_USERS.'
 	ORDER BY user_lastname,user_firstname,user_name';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -579,6 +579,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

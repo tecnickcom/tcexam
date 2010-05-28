@@ -3,8 +3,8 @@
 // File name   : tce_csv_result_allusers.php
 // Begin       : 2006-03-30
 // Last Update : 2009-09-30
-// 
-// Description : Functions to export users' results using 
+//
+// Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
 //
 // Author: Nicola Asuni
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -106,18 +106,18 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_authorization.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
-	
+
 	$test_id = intval($test_id);
 	$group_id = intval($group_id);
 	$order_field = F_escape_sql($order_field);
-	
+
 	$csv = ''; // CSV data to be returned
-	
+
 	// check user's authorization
 	if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
 		return $csv;
 	}
-	
+
 	// print column names
 	$csv .= '#';
 	$csv .= K_TAB.$l['w_score'];
@@ -130,17 +130,17 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	$csv .= K_TAB.$l['w_questions_undisplayed'];
 	$csv .= K_TAB.$l['w_questions_unrated'];
 	$csv .= K_TAB.$l['w_comment'];
-	
+
 	// output users stats
-	$sqlr = 'SELECT testuser_id, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score 
-		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' 
+	$sqlr = 'SELECT testuser_id, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score
+		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 		WHERE testlog_testuser_id=testuser_id
-			AND testuser_user_id=user_id 
+			AND testuser_user_id=user_id
 			AND testuser_test_id='.$test_id.'';
 	if ($group_id > 0) {
 		$sqlr .= ' AND testuser_user_id IN (
 				SELECT usrgrp_user_id
-				FROM '.K_TABLE_USERGROUP.' 
+				FROM '.K_TABLE_USERGROUP.'
 				WHERE usrgrp_group_id='.$group_id.'
 			)';
 	}
@@ -166,11 +166,11 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	} else {
 		F_display_db_error();
 	}
-	
+
 	return $csv;
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

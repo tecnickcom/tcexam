@@ -3,7 +3,7 @@
 // File name   : tce_colorpicker.php
 // Begin       : 2001-11-05
 // Last Update : 2009-09-30
-// 
+//
 // Description : HTML Color Picker Functions.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -51,7 +51,7 @@
 
 /**
  */
- 
+
 require_once('../config/tce_config.php');
 $pagelevel = 0;
 //require_once('../../shared/code/tce_authorization.php');
@@ -73,10 +73,10 @@ function F_html_color_picker() {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/htmlcolors.php');
 	require_once('../../shared/code/tce_functions_form.php');
-	
+
 	echo '<a onclick="FJ_pick_color(0); document.form_colorpicker.colorname.selectedIndex=0;"><img src="'.K_PATH_IMAGES.'buttons/colortable.jpg" alt="" name="colorboard" id="colorboard" width="320" height="300" hspace="0" vspace="0" border="0" /></a>'.K_NEWLINE;
 	echo K_NEWLINE;
-	echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" name="form_colorpicker" id="form_colorpicker">'.K_NEWLINE;	
+	echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" name="form_colorpicker" id="form_colorpicker">'.K_NEWLINE;
 	echo '<div class="smalldigit" style="width:320px;font-size:80%;" >';
 	echo 'DEC:';
 	echo '<input type="text" name="RED" id="RED" size="3" maxlength="3" readonly="readonly" title="RED (DEC)"/>';
@@ -88,7 +88,7 @@ function F_html_color_picker() {
 	echo '<input type="text" name="HGREEN" id="HGREEN" size="3" maxlength="2" readonly="readonly" title="GREEN (HEX)"/>';
 	echo '<input type="text" name="HBLUE" id="HBLUE" size="3" maxlength="2" readonly="readonly" title="BLUE (HEX)"/>';
 	echo '</div>'.K_NEWLINE;
-	
+
 	// print a table of websafe colors
 	$ck = 1;
 	echo '<div style="width:320px;">';
@@ -137,12 +137,12 @@ function FJ_get_coordinates(e) {
   if(nnbrowser) { // Netscape
       Xpos = e.pageX;
       Ypos = e.pageY;
-  } 
+  }
   else { // IE
       Xpos = (event.clientX + document.body.scrollLeft);
       Ypos = (event.clientY + document.body.scrollTop);
   }
-  
+
   //calculate color
   if(Xpos<=50){
   	Red=255;
@@ -180,11 +180,11 @@ function FJ_get_coordinates(e) {
 	Green=light;
 	Blue=light;
   }
-  
+
   // change luminosity
 	if((Xpos>=0)&&(Xpos<=300)&&(Ypos>=0)&&(Ypos<=300)) {
 		light = Math.round((1-(Ypos/150))*255);
-		Red += light; 
+		Red += light;
 		if(Red>255) {
 			Red=255;
 		} else if(Red<0) {
@@ -202,13 +202,13 @@ function FJ_get_coordinates(e) {
 		} else if(Blue<0) {
 			Blue=0;
 		}
-	} 	
+	}
 	// display color
 	if((Xpos>=0)&&(Xpos<=320)&&(Ypos>=0)&&(Ypos<=300)) {
 		document.form_colorpicker.RED.value = Red;
 		document.form_colorpicker.GREEN.value = Green;
 		document.form_colorpicker.BLUE.value = Blue;
-	
+
 		document.form_colorpicker.HRED.value = FJ_dec_to_hex(Red);
 		document.form_colorpicker.HGREEN.value = FJ_dec_to_hex(Green);
 		document.form_colorpicker.HBLUE.value = FJ_dec_to_hex(Blue);
@@ -222,23 +222,23 @@ function FJ_get_coordinates(e) {
 // ------------------------------------------------------------
 function FJ_pick_color(manual) {
 	if((manual)||((Xpos<=320)&&(Ypos<=300))) { //check if coordinates are valid
-		
+
 		if(!manual) {
 			document.form_colorpicker.CSELECTED.value = '#'+document.form_colorpicker.HRED.value+''+document.form_colorpicker.HGREEN.value+''+document.form_colorpicker.HBLUE.value;
 		}
-		
+
 		newcolor = document.form_colorpicker.CSELECTED.value;
-		
+
 		//show selected color on picked color layer
 		// check browser capabilities
-		if(document.layers){                   
-			document.layers['pickedcolor'].bgColor=newcolor;         
-		}         
-		if(document.all){      
-			document.all.pickedcolor.style.backgroundColor=newcolor;  
-		}        
-		if(!document.all && document.getElementById){               
-			document.getElementById('pickedcolor').style.backgroundColor=newcolor;           
+		if(document.layers){
+			document.layers['pickedcolor'].bgColor=newcolor;
+		}
+		if(document.all){
+			document.all.pickedcolor.style.backgroundColor=newcolor;
+		}
+		if(!document.all && document.getElementById){
+			document.getElementById('pickedcolor').style.backgroundColor=newcolor;
 		}
 	}
 	return;
@@ -248,10 +248,10 @@ function FJ_pick_color(manual) {
 // convert decimal value to hexadecimal (FF is the max value)
 // ------------------------------------------------------------
 function FJ_dec_to_hex (Dec) {
-	var a = Dec % 16; 
-	var b = (Dec - a)/16; 
-	hex = hexChars.charAt(b)+''+hexChars.charAt(a); 
-	return hex; 
+	var a = Dec % 16;
+	var b = (Dec - a)/16;
+	hex = hexChars.charAt(b)+''+hexChars.charAt(a);
+	return hex;
 }
 
 // default color
@@ -259,10 +259,10 @@ document.form_colorpicker.CSELECTED.value='#000000';
 FJ_pick_color(1);
 //]]>
 </script>
-<?php 
+<?php
 	return;
 }
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

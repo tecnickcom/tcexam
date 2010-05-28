@@ -3,7 +3,7 @@
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
 // Last Update : 2009-10-10
-// 
+//
 // Description : Display all test results for the selected users.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -71,9 +71,9 @@ if (isset($_REQUEST['user_id'])) {
 	$user_id = intval($_REQUEST['user_id']);
 	// check user's authorization
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$sql = 'SELECT user_id 
-			FROM '.K_TABLE_USERS.' 
-			WHERE user_id='.$user_id.' 
+		$sql = 'SELECT user_id
+			FROM '.K_TABLE_USERS.'
+			WHERE user_id='.$user_id.'
 				AND user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 		if($r = F_db_query($sql, $db)) {
 			if(!F_db_fetch_array($r)) {
@@ -124,7 +124,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 			$testuser_id = intval($$keyname);
 			switch($menu_mode) {
 				case 'delete':{
-					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.' 
+					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$r = F_db_query($sql, $db)) {
 						echo $sql; //debug
@@ -136,8 +136,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					// extend the test time by 5 minutes
 					// this time extension is obtained moving forward the test starting time
 					$extseconds = K_EXTEND_TIME_MINUTES * K_SECONDS_IN_MINUTE;
-					$sqlus = 'SELECT testuser_creation_time 
-						FROM '.K_TABLE_TEST_USER.' 
+					$sqlus = 'SELECT testuser_creation_time
+						FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'
 						LIMIT 1';
 					if($rus = F_db_query($sqlus, $db)) {
@@ -158,7 +158,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				case 'lock':{
 					// update test mode to 4 = test locked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-						SET testuser_status=4 
+						SET testuser_status=4
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
@@ -168,7 +168,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				case 'unlock':{
 					// update test mode to 1 = test unlocked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-						SET testuser_status=1 
+						SET testuser_status=1
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
@@ -185,7 +185,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 if($formstatus) {
 	if(!isset($user_id) OR empty($user_id)) {
 		$sql = 'SELECT testuser_user_id
-			FROM '.K_TABLE_TEST_USER.' 
+			FROM '.K_TABLE_TEST_USER.'
 			WHERE testuser_status>0
 				AND testuser_creation_time>=\''.$startdate.'\'
 				AND testuser_creation_time<=\''.$enddate.'\'';
@@ -309,7 +309,7 @@ echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
 </tr>
 <?php
 // output users stats
-$sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score 
+$sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 		WHERE testuser_status>0
 			AND testuser_creation_time>=\''.$startdate.'\'
@@ -319,7 +319,7 @@ $sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuse
 			AND testuser_test_id=test_id';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	$sqlr .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
-}	
+}
 $sqlr .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status
 		ORDER BY '.$full_order_field.'';
 if($rr = F_db_query($sqlr, $db)) {
@@ -344,7 +344,7 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo ' />';
 		echo '</td>'.K_NEWLINE;
 		echo '<td><a href="tce_show_result_user.php?testuser_id='.$mr['testuser_id'].'&amp;test_id='.$mr['test_id'].'&amp;user_id='.$user_id.'" title="'.$l['h_view_details'].'">'.$itemcount.'</a></td>'.K_NEWLINE;
-		
+
 		echo '<td style="text-align:'.$tdalign.';">'.$mr['testuser_creation_time'].'</td>'.K_NEWLINE;
 		echo '<td style="text-align:'.$tdalign.';"><a href="tce_show_result_allusers.php?test_id='.$mr['test_id'].'">'.$mr['test_name'].'</a></td>'.K_NEWLINE;
 		$passmsg = '';
@@ -374,7 +374,7 @@ if($rr = F_db_query($sqlr, $db)) {
 			echo '<td>&nbsp;</td>'.K_NEWLINE;
 		}
 		echo '</tr>'.K_NEWLINE;
-		
+
 		// collects data for descriptive statistics
 		$statsdata['score'][] = $mr['total_score'] / $usrtestdata['max_score'];
 		$statsdata['right'][] = $usrtestdata['right'] / $usrtestdata['all'];
@@ -404,7 +404,7 @@ if ($itemcount > 0) {
 	F_submit_button('extendtime', '+'.K_EXTEND_TIME_MINUTES.' min', $l['h_add_five_minutes']);
 
 	echo '<br /><br />'.K_NEWLINE;
-	
+
 	// calculate statistics
 	$stats = F_getArrayStatistics($statsdata);
 	$excludestat = array('sum', 'variance');
@@ -537,6 +537,6 @@ function pdfUserResultsLink($user_id, $startdate, $enddate, $order_field='') {
 	return $pdflink;
 }
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

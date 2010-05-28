@@ -3,7 +3,7 @@
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
 // Last Update : 2009-09-30
-// 
+//
 // Description : Display form to edit exam subject_id (topics).
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -112,7 +112,7 @@ switch($menu_mode) {
 		// check if this record is used (test_log)
 		if(!F_check_unique(K_TABLE_SUBJECT_SET, 'subjset_subject_id='.$subject_id.'')) {
 			//this record will be only disabled and not deleted because it's used
-			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET 
+			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
 				subject_enabled=\'0\'
 				WHERE subject_id='.$subject_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -129,7 +129,7 @@ switch($menu_mode) {
 			<input type="hidden" name="subject_id" id="subject_id" value="<?php echo $subject_id; ?>" />
 			<input type="hidden" name="subject_module_id" id="subject_module_id" value="<?php echo $subject_module_id; ?>" />
 			<input type="hidden" name="subject_name" id="subject_name" value="<?php echo htmlspecialchars($subject_name, ENT_COMPAT, $l['a_meta_charset']); ?>" />
-			<?php 
+			<?php
 			F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 			?>
@@ -147,7 +147,7 @@ switch($menu_mode) {
 			$sql = 'DELETE FROM '.K_TABLE_SUBJECTS.' WHERE subject_id='.$subject_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
-			} else {				
+			} else {
 				$subject_id=FALSE;
 				F_print_error('MESSAGE', $subject_name.': '.$l['m_deleted']);
 			}
@@ -161,7 +161,7 @@ switch($menu_mode) {
 			if(!F_check_unique(K_TABLE_SUBJECT_SET, "subjset_subject_id=".$subject_id."")) {
 				F_print_error('WARNING', $l['m_update_restrict']);
 				// enable or disable record
-				$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET 
+				$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
 					subject_enabled=\''.$subject_enabled.'\'
 					WHERE subject_id='.$subject_id.'';
 				if(!$r = F_db_query($sql, $db)) {
@@ -186,9 +186,9 @@ switch($menu_mode) {
 				F_stripslashes_formfields();
 				break;
 			}
-			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET 
-				subject_name=\''.F_escape_sql($subject_name).'\', 
-				subject_description='.F_empty_to_null(F_escape_sql($subject_description)).', 
+			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
+				subject_name=\''.F_escape_sql($subject_name).'\',
+				subject_description='.F_empty_to_null(F_escape_sql($subject_description)).',
 				subject_enabled=\''.$subject_enabled.'\',
 				subject_module_id='.$subject_module_id.'
 				WHERE subject_id='.$subject_id.'';
@@ -200,7 +200,7 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	case 'add':{ // Add
 		if($formstatus = F_check_form_fields()) {
 			// check if name is unique
@@ -210,14 +210,14 @@ switch($menu_mode) {
 				break;
 			}
 			$sql = 'INSERT INTO '.K_TABLE_SUBJECTS.' (
-				subject_name, 
-				subject_description, 
+				subject_name,
+				subject_description,
 				subject_enabled,
 				subject_user_id,
 				subject_module_id
 				) VALUES (
-				\''.F_escape_sql($subject_name).'\', 
-				'.F_empty_to_null(F_escape_sql($subject_description)).', 
+				\''.F_escape_sql($subject_name).'\',
+				'.F_empty_to_null(F_escape_sql($subject_description)).',
 				\''.$subject_enabled.'\',
 				\''.$_SESSION['session_user_id'].'\',
 				'.$subject_module_id.'
@@ -238,7 +238,7 @@ switch($menu_mode) {
 		break;
 	}
 
-	default :{ 
+	default :{
 		break;
 	}
 
@@ -262,11 +262,11 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 // --- Initialize variables
 if($formstatus) {
 	if ($menu_mode != 'clear') {
-		if ((isset($changecategory) AND ($changecategory > 0)) 
+		if ((isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($subject_id)) OR empty($subject_id)) {
 			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'')." LIMIT 1";
 		} else {
-			$sql = 'SELECT * 
+			$sql = 'SELECT *
 				FROM '.K_TABLE_SUBJECTS.'
 				WHERE subject_id='.$subject_id.'
 					AND subject_module_id='.$subject_module_id.'
@@ -484,6 +484,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

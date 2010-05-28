@@ -3,7 +3,7 @@
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
 // Last Update : 2009-10-07
-// 
+//
 // Description : Display user selection table.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -87,7 +87,7 @@ if($group_id == 0) {
 }
 echo '>&nbsp;</option>'.K_NEWLINE;
 $sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.' 
+	FROM '.K_TABLE_GROUPS.'
 	ORDER BY group_name';
 if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
@@ -157,7 +157,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 			switch($menu_mode) {
 				case 'delete': {
 					if (($user_id > 1) AND ($user_id != $_SESSION['session_user_id'])) {
-						$sql = 'DELETE FROM '.K_TABLE_USERS.' 
+						$sql = 'DELETE FROM '.K_TABLE_USERS.'
 							WHERE user_id='.$user_id.'';
 						if(!$r = F_db_query($sql, $db)) {
 							F_display_db_error();
@@ -173,7 +173,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 								usrgrp_user_id,
 								usrgrp_group_id
 								) VALUES (
-								\''.$user_id.'\', 
+								\''.$user_id.'\',
 								\''.$new_group_id.'\'
 								)';
 							if(!$r = F_db_query($sql, $db)) {
@@ -185,7 +185,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				}
 				case 'delgroup': {
 					if (isset($new_group_id) AND ($new_group_id > 0)) {
-						$sql = 'DELETE FROM '.K_TABLE_USERGROUP.' 
+						$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 							WHERE usrgrp_user_id='.$user_id.'
 								AND usrgrp_group_id='.$new_group_id.'';
 						if(!$r = F_db_query($sql, $db)) {
@@ -207,7 +207,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 								F_display_db_error();
 							}
 						} else {
-							$sql = 'DELETE FROM '.K_TABLE_USERGROUP.' 
+							$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 							WHERE usrgrp_user_id='.$user_id.'
 								AND usrgrp_group_id='.$from_group_id.'';
 							if(!$r = F_db_query($sql, $db)) {
@@ -230,6 +230,6 @@ echo '</form>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

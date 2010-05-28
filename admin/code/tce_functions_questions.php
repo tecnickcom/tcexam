@@ -3,7 +3,7 @@
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
 // Last Update : 2009-10-10
-// 
+//
 // Description : Functions to manipulate questions.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -67,7 +67,7 @@ function F_question_set_enabled($question_id, $subject_id, $enabled=true) {
 		return; // unauthorized user
 	}
 	$question_id = intval($question_id);
-	$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+	$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 		question_enabled=\''.intval($enabled).'\'
 		WHERE question_id='.$question_id.'';
 	if(!$r = F_db_query($sql, $db)) {
@@ -91,8 +91,8 @@ function F_question_get_position($question_id) {
 	$question_id = intval($question_id);
 	$question_position = 0;
 	$sql = 'SELECT question_position
-		FROM '.K_TABLE_QUESTIONS.' 
-		WHERE question_id='.$question_id.' 
+		FROM '.K_TABLE_QUESTIONS.'
+		WHERE question_id='.$question_id.'
 		LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -120,8 +120,8 @@ function F_question_get_data($question_id) {
 	$question_id = intval($question_id);
 	$question_position = 0;
 	$sql = 'SELECT *
-		FROM '.K_TABLE_QUESTIONS.' 
-		WHERE question_id='.$question_id.' 
+		FROM '.K_TABLE_QUESTIONS.'
+		WHERE question_id='.$question_id.'
 		LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -170,7 +170,7 @@ function F_question_delete($question_id, $subject_id) {
 		} else {
 			// adjust questions ordering
 			if ($question_position > 0) {
-				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 					question_position=question_position-1
 					WHERE question_subject_id='.$subject_id.'
 						AND question_position>'.$question_position.'';
@@ -182,8 +182,8 @@ function F_question_delete($question_id, $subject_id) {
 			$sql = 'COMMIT';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error();
-			}				
-		}		
+			}
+		}
 	}
 }
 
@@ -221,7 +221,7 @@ function F_question_copy($question_id, $new_subject_id) {
 			}
 			// adjust questions ordering
 			if ($q['question_position'] > 0) {
-				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 					question_position=question_position+1
 					WHERE question_subject_id='.$new_subject_id.'
 						AND question_position>='.$q['question_position'].'';
@@ -231,8 +231,8 @@ function F_question_copy($question_id, $new_subject_id) {
 				}
 			}
 			$sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
-				question_subject_id, 
-				question_description, 
+				question_subject_id,
+				question_description,
 				question_type,
 				question_difficulty,
 				question_enabled,
@@ -242,8 +242,8 @@ function F_question_copy($question_id, $new_subject_id) {
 				question_inline_answers,
 				question_auto_next
 				) VALUES (
-				'.$new_subject_id.', 
-				\''.F_escape_sql($q['question_description']).'\', 
+				'.$new_subject_id.',
+				\''.F_escape_sql($q['question_description']).'\',
 				\''.$q['question_type'].'\',
 				\''.$q['question_difficulty'].'\',
 				\''.$q['question_enabled'].'\',
@@ -260,7 +260,7 @@ function F_question_copy($question_id, $new_subject_id) {
 			}
 			// copy associated answers
 			$sql = 'SELECT *
-				FROM '.K_TABLE_ANSWERS.' 
+				FROM '.K_TABLE_ANSWERS.'
 				WHERE answer_question_id='.$question_id.'';
 			if($r = F_db_query($sql, $db)) {
 				while($m = F_db_fetch_array($r)) {
@@ -282,7 +282,7 @@ function F_question_copy($question_id, $new_subject_id) {
 					if(!$ri = F_db_query($sqli, $db)) {
 						F_display_db_error(false);
 						F_db_query('ROLLBACK', $db); // rollback transaction
-					} 
+					}
 				}
 			} else {
 				F_display_db_error();
@@ -291,12 +291,12 @@ function F_question_copy($question_id, $new_subject_id) {
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 				break;
-			}			
+			}
 		}
 	}
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

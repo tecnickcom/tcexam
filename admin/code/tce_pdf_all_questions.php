@@ -3,9 +3,9 @@
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
 // Last Update : 2009-12-31
-// 
+//
 // Description : Creates a PDF document containing exported questions.
-// 
+//
 // Author: Nicola Asuni
 //
 // (c) Copyright:
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -81,8 +81,8 @@ $doc_description = F_compact_string(unhtmlentities($l['hp_select_all_questions']
 $page_elements = 6;
 $temp_order_field = 'question_description';
 
-$qtype = array('S', 'M', 'T', '0'); // question types 
-$qright = array(' ', '*'); // question types 
+$qtype = array('S', 'M', 'T', '0'); // question types
+$qright = array(' ', '*'); // question types
 
 // --- create pdf document
 
@@ -96,7 +96,7 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode); 
+$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
 
 // set document information
 $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION."");
@@ -117,7 +117,7 @@ $pdf->setHeaderMargin(PDF_MARGIN_HEADER);
 $pdf->setFooterMargin(PDF_MARGIN_FOOTER);
 
 //set image scale factor
-$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO); 
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
 $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -154,7 +154,7 @@ if($rm = F_db_query($sqlm, $db)) {
 		$module_id =  $mm['module_id'];
 		$module_name = $mm['module_name'];
 		//$module_enabled = F_getBoolean($mm['module_enabled']);
-		
+
 		// ---- topic
 		$where_sqls = 'subject_module_id='.$module_id.'';
 		if ($expmode < 2) {
@@ -167,9 +167,9 @@ if($rm = F_db_query($sqlm, $db)) {
 				$subject_name = $ms['subject_name'];
 				$subject_description = F_decode_tcecode($ms['subject_description']);
 				//$subject_enabled = F_getBoolean($ms['subject_enabled']);
-				
+
 				// --- start page data ---
-				
+
 				$pdf->AddPage();
 
 				// set barcode
@@ -187,15 +187,15 @@ if($rm = F_db_query($sqlm, $db)) {
 
 				// --- display subject info ---
 				$pdf->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA * HEAD_MAGNIFICATION);
-				$pdf->Cell($page_width, $data_cell_height * HEAD_MAGNIFICATION, ''.$module_name.' :: '.$subject_name.'', 1, 1, $defalign, 1);	
+				$pdf->Cell($page_width, $data_cell_height * HEAD_MAGNIFICATION, ''.$module_name.' :: '.$subject_name.'', 1, 1, $defalign, 1);
 				$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
-				$pdf->writeHTMLCell(0, $data_cell_height, PDF_MARGIN_LEFT, $pdf->GetY(), $subject_description, 1, 1);	
+				$pdf->writeHTMLCell(0, $data_cell_height, PDF_MARGIN_LEFT, $pdf->GetY(), $subject_description, 1, 1);
 				// --- end subject info ---
-		
-				$pdf->Ln(5);		
+
+				$pdf->Ln(5);
 
 				// ---- questions
-				$sqlq = 'SELECT * 
+				$sqlq = 'SELECT *
 					FROM '.K_TABLE_QUESTIONS.'
 					WHERE question_subject_id='.$subject_id.'
 					ORDER BY question_enabled DESC, question_position, question_description';
@@ -208,10 +208,10 @@ if($rm = F_db_query($sqlm, $db)) {
 							$question_disabled = 1;
 						}
 						$pdf->Cell($data_cell_width_third, $data_cell_height, $itemcount, 1, 0, 'R', $question_disabled);
-		
+
 						$pdf->Cell($data_cell_width_third/2, $data_cell_height, $qtype[($mq['question_type']-1)], 1, 0, 'C', $question_disabled);
 						$pdf->Cell($data_cell_width_third/2, $data_cell_height, $mq['question_difficulty'], 1, 0, 'R', $question_disabled);
-		
+
 						if ($mq['question_position'] <= 0) {
 							$mq['question_position'] = '';
 						}
@@ -221,7 +221,7 @@ if($rm = F_db_query($sqlm, $db)) {
 						} else {
 							$mq['question_fullscreen'] = '';
 						}
-						$pdf->Cell($data_cell_width_third/2, $data_cell_height, $mq['question_fullscreen'], 1, 0, 'C', $question_disabled);	
+						$pdf->Cell($data_cell_width_third/2, $data_cell_height, $mq['question_fullscreen'], 1, 0, 'C', $question_disabled);
 						if (F_getBoolean($mq['question_inline_answers'])) {
 							$mq['question_inline_answers'] = 'I';
 						} else {
@@ -238,7 +238,7 @@ if($rm = F_db_query($sqlm, $db)) {
 							$mq['question_timer'] = '';
 						}
 						$pdf->Cell($data_cell_width_third, $data_cell_height, $mq['question_timer'], 1, 0, 'R', $question_disabled);
-				
+
 						$pdf->Ln();
 						$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($mq['question_description']), 1, 1, '', '');
 						if (K_ENABLE_QUESTION_EXPLANATION AND !empty($mq['question_explanation'])) {
@@ -248,7 +248,7 @@ if($rm = F_db_query($sqlm, $db)) {
 							$pdf->SetFont('', '');
 							$pdf->writeHTMLCell(0, $data_cell_height, (PDF_MARGIN_LEFT + $data_cell_width_third), $pdf->GetY(), F_decode_tcecode($mq['question_explanation']), 'LRB', 1, '', '');
 						}
-						
+
 						if ($show_answers) {
 							// display alternative answers
 							$sqla = 'SELECT *
@@ -261,10 +261,10 @@ if($rm = F_db_query($sqlm, $db)) {
 									$idx++;
 									$answer_disabled = intval(!F_getBoolean($ma['answer_enabled']));
 									$answer_isright = intval(F_getBoolean($ma['answer_isright']));
-				
+
 									$pdf->Cell($data_cell_width_third, $data_cell_height, '', 0, 0, 'C', 0);
 									$pdf->Cell($data_cell_width_third, $data_cell_height, $idx, 1, 0, 'C', $answer_disabled);
-				
+
 									if ($mq['question_type'] != 4) {
 										$pdf->Cell($data_cell_width_third/2, $data_cell_height, $qright[$answer_isright], 1, 0, 'C', $answer_disabled);
 									} else {
@@ -294,7 +294,7 @@ if($rm = F_db_query($sqlm, $db)) {
 								F_display_db_error();
 							}
 						} // end $show_answers
-		
+
 						$pdf->Ln($data_cell_height);
 						$itemcount++;
 					} // end while for questions
@@ -304,7 +304,7 @@ if($rm = F_db_query($sqlm, $db)) {
 			} // end while for topics
 		} else {
 			F_display_db_error();
-		}	
+		}
 	} // end while for module
 } else {
 	F_display_db_error();
@@ -314,6 +314,6 @@ if($rm = F_db_query($sqlm, $db)) {
 $pdf->Output('tcexam_questions_'.$subject_id.'_'.date('YmdHi').'.pdf', 'I');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

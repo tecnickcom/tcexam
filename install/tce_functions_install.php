@@ -1,9 +1,9 @@
-<?php 
+<?php
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
 // Last Update : 2010-02-08
-// 
+//
 // Description : Installation functions for TCExam.
 //
 // Author: Nicola Asuni
@@ -17,32 +17,32 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
 /**
  * Install TCExam database.
  * @param string $db_type database type (MySQL)
- * @param string $db_host database host 
+ * @param string $db_host database host
  * @param string $db_port database port number
  * @param string $db_user database user
  * @param string $db_password database password
@@ -81,13 +81,13 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 		echo "\n".'<li>create database tables..........';
 		error_log('  [START] create database tables'."\n", 3, $progress_log); //log info
 		// process structure sql file
-		if (F_execute_sql_queries($db, strtolower(K_DATABASE_TYPE).'_db_structure.sql', 'tce_', $table_prefix, $progress_log)) { 
+		if (F_execute_sql_queries($db, strtolower(K_DATABASE_TYPE).'_db_structure.sql', 'tce_', $table_prefix, $progress_log)) {
 			echo '<span style="color:#008000">[OK]</span></li>';
 			error_log('  [END:OK] create database tables'."\n", 3, $progress_log); //log info
 			echo "\n".'<li>fill tables with default data...';
 			error_log('  [START] fill tables with default data'."\n", 3, $progress_log); //log info
-			// process data sql file 
-			if (F_execute_sql_queries($db, 'db_data.sql', 'tce_', $table_prefix, $progress_log)) { 
+			// process data sql file
+			if (F_execute_sql_queries($db, 'db_data.sql', 'tce_', $table_prefix, $progress_log)) {
 				echo '<span style="color:#008000">[OK]</span></li>';
 				error_log('  [END:OK] fill tables with default data'."\n", 3, $progress_log); //log info
 			} else {
@@ -121,7 +121,7 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
  */
 function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log) {
 	ini_set('memory_limit', -1); // remove memory limit
-		
+
 	$sql_data = @fread(@fopen($sql_file, 'r'), @filesize($sql_file)); //open and read file
 	if ($search) {
 		$sql_data = str_replace($search, $replace, $sql_data); // execute search and replace for the given parameters
@@ -145,7 +145,7 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 		if(!$r = F_db_query($sql, $db)) {
 			return FALSE;
 		}
-	}	
+	}
 	return TRUE;
 }
 
@@ -192,16 +192,16 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 							@F_db_query($m[0], $db);
 						}
 					}
-				} else { 
+				} else {
 					echo '<span style="color:#000080">[SKIP DROP]</span> ';
 				}
-				// Note: Oracle Database automatically creates a schema when you create a user, 
+				// Note: Oracle Database automatically creates a schema when you create a user,
 				//       so you have to create a tcexam user before calling this.
 			} else {
 				if ($drop) {
 					// DROP existing database (if exist)
 					@F_db_query('DROP DATABASE '.$database.'', $db);
-				} else { 
+				} else {
 					echo '<span style="color:#000080">[SKIP DROP]</span> ';
 				}
 				if($create) {
@@ -236,7 +236,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 /**
  * Update some configuration files.
  * @param string $db_type database type (MySQL)
- * @param string $db_host database host 
+ * @param string $db_host database host
  * @param string $db_port database port number
  * @param string $db_user database user
  * @param string $db_password database password
@@ -250,7 +250,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
  * @return boolean true in case of success, false otherwise
  */
 function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_password, $database_name, $table_prefix, $path_host, $path_tcexam, $path_main, $standard_port, $progress_log) {
-	
+
 	if(!defined('PHP_VERSION_ID')) {
 		$version = PHP_VERSION;
 		define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
@@ -258,17 +258,17 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	if (PHP_VERSION_ID < 50300) {
 		@set_magic_quotes_runtime(0);
 	}
-	
+
 	$config_file = array(); // configuration files
-	
+
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
-	
+
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
-	$parameter = array(); 
-	
+	$parameter = array();
+
 	$parameter[0] = array(
-		
+
 		'0'  => array ('0' => "K_DATABASE_TYPE', '([^\']*)'", '1' => "K_DATABASE_TYPE', '".$db_type."'"),
 		'1'  => array ('0' => "K_DATABASE_HOST', '([^\']*)'", '1' => "K_DATABASE_HOST', '".$db_host."'"),
 		'2'  => array ('0' => "K_DATABASE_PORT', '([^\']*)'", '1' => "K_DATABASE_PORT', '".$db_port."'"),
@@ -277,22 +277,22 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".$db_password."'"),
 		'6'  => array ('0' => "K_TABLE_PREFIX', '([^\']*)'", '1' => "K_TABLE_PREFIX', '".$table_prefix."'")
 	);
-	
+
 	$parameter[1] = array(
 		'0'  => array ('0' => "K_PATH_HOST', '([^\']*)'", '1' => "K_PATH_HOST', '".$path_host."'"),
 		'1'  => array ('0' => "K_PATH_TCEXAM', '([^\']*)'", '1' => "K_PATH_TCEXAM', '".$path_tcexam."'"),
 		'2'  => array ('0' => "K_PATH_MAIN', '([^\']*)'", '1' => "K_PATH_MAIN', '".$path_main."'"),
 		'3'  => array ('0' => "K_STANDARD_PORT', ([^\)]*)", '1' => "K_STANDARD_PORT', ".$standard_port."")
 	);
-	
+
 	while(list($key, $file_name) = each($config_file)) { //for each configuration file
-		
+
 		error_log('  [START] process file: '.basename($file_name)."\n", 3, $progress_log); //log info
 		echo "\n".'<li>start process <i>'.basename($file_name).'</i> file:';
 		echo "\n".'<ul>';
 		//try to change file permissions (unix-like only)
 		//chmod($file_name, 0777);
-		
+
 		echo "\n".'<li>open file.................';
 		error_log('    open file', 3, $progress_log); //log info
 		$fp = fopen($file_name, 'r+');
@@ -302,7 +302,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		} else { // the file has been opened
 			echo '<span style="color:#008000">[OK]</span></li>';
 			error_log(' [OK]'."\n", 3, $progress_log); //log info
-			
+
 			//read the file
 			echo "\n".'<li>read file.................';
 			error_log('    read file', 3, $progress_log); //log info
@@ -310,10 +310,10 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 			if (!$file_data){
 				echo '<span style="color:#CC0000">[ERROR]</span></li>';
 				error_log(' [ERROR]'."\n", 3, $progress_log); //log info
-			} else { 
+			} else {
 				echo '<span style="color:#008000">[OK]</span></li>';
 				error_log(' [OK]'."\n", 3, $progress_log); //log info
-				
+
 				//change cfg file values
 				while(list($pkey, $pval) = each($parameter[$key])) { //for each file parameter
 					echo "\n".'<li>update value '.$pkey.' ...........';
@@ -323,7 +323,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 					error_log(' [OK]'."\n", 3, $progress_log); //log info
 				}
 			}
-			
+
 			//write the file
 			echo "\n".'<li>write file................';
 			error_log('    write file', 3, $progress_log); //log info
@@ -331,15 +331,15 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 			if (!fwrite ($fp, $file_data)) {
 				echo '<span style="color:#CC0000">[ERROR]</span></li>';
 				error_log(' [ERROR]'."\n", 3, $progress_log); //log info
-			} else { 
+			} else {
 				echo '<span style="color:#008000">[OK]</span></li>';
 				error_log(' [OK]'."\n", 3, $progress_log); //log info
 			}
-			
+
 			if (strlen($file_data) < filesize($file_name)) {
 				ftruncate ($fp, strlen($file_data)); //truncate file
 			}
-			
+
 			echo "\n".'<li>close file................';
 			error_log('    close file', 3, $progress_log); //log info
 			if (fclose($fp)) {
@@ -350,7 +350,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 				error_log(' [ERROR]'."\n", 3, $progress_log); //log info
 			}
 		}
-		
+
 		//try to set file permissions to read only (unix-like only)
 		//chmod($file_name, 0644);
 		echo "\n".'</ul>';
@@ -366,6 +366,6 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

@@ -3,7 +3,7 @@
 // File name   : install.php
 // Begin       : 2002-05-13
 // Last Update : 2010-02-22
-// 
+//
 // Description : TCExam installation script.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -79,22 +79,22 @@ $create_new = ((isset($_REQUEST['create_new']) AND ($_REQUEST['create_new'] == 1
 if (!isset($_REQUEST['database_name'])) {
 	$_REQUEST['database_name'] = '';
 }
-			
-//if this form has been submitted go on with installation process		
+
+//if this form has been submitted go on with installation process
 if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
-	
+
 	if (!isset($_REQUEST['path_main'])) {
 		$_REQUEST['path_main'] = ''; //this field is not required
 	}
-	
+
 	echo "\n".'<p><b>Please wait, this installation may take a while...</b></p>';
-	
+
 	//install database
 	echo "\n".'<ul class="log">';
 	echo "\n".'<li>start TCExam installation............<span style="color:#008000">[OK]</span></li>';
-	
+
 	echo "\n".'<li>start database installation.........<span style="color:#008000">[OK]</span>';
-	
+
 	echo "\n".'<ul class="log">';
 	error_log('[START] database installation'."\n", 3, $progress_log); //log info
 	// Install TCExam database
@@ -102,9 +102,9 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 	error_log('[END] database installation'."\n", 3, $progress_log); //log info
 	echo "\n".'</ul>';
 	echo "\n".'</li>';
-	
+
 	echo "\n".'<li>end database installation...........<span style="color:#008000">[OK]</span></li>';
-	
+
 	// update configuration files
 	echo "\n".'<li>start config files update...........<span style="color:#008000">[OK]</span>';
 	echo "\n".'<ul class="log">';
@@ -114,12 +114,12 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 	error_log('[END] update config files'."\n", 3, $progress_log); //log info
 	echo "\n".'</ul>';
 	echo "\n".'</li>';
-	
+
 	echo "\n".'<li>end config files update.............<span style="color:#008000">[OK]</span></li>';
-	
+
 	echo "\n".'<li>end TCExam installation..............<span style="color:#008000">[OK]</span></li>';
 	echo "\n".'</ul>';
-	
+
 	//display here post-installation comments
 	echo "\n".'<p>';
 	echo "\n".'The automatic installation process is finished.<br />';
@@ -130,18 +130,18 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 	echo "\n".'<br />';
 	echo "\n".'If it\'s all OK <a href="../admin/code/index.php">click here</a> to start TCExam.<br />';
 	echo "\n".'<br /></p>';
-	
+
 	error_log('--- END LOG: '.date('Y-m-d H:i:s').' ---'."\n", 3, $progress_log); //create progress log file
-	
+
 } else { //display input form
-	
+
 	if (isset($_REQUEST['startinstall'])) {
 		// check if all required fields have been submitted
-		if ( isset($_REQUEST['db_type']) AND $_REQUEST['db_type'] 
-			AND isset($_REQUEST['db_host']) AND $_REQUEST['db_host'] 
-			AND isset($_REQUEST['db_port']) AND $_REQUEST['db_port'] 
-			AND isset($_REQUEST['db_user']) AND $_REQUEST['db_user'] 
-			AND isset($_REQUEST['db_password']) AND $_REQUEST['db_password'] 
+		if ( isset($_REQUEST['db_type']) AND $_REQUEST['db_type']
+			AND isset($_REQUEST['db_host']) AND $_REQUEST['db_host']
+			AND isset($_REQUEST['db_port']) AND $_REQUEST['db_port']
+			AND isset($_REQUEST['db_user']) AND $_REQUEST['db_user']
+			AND isset($_REQUEST['db_password']) AND $_REQUEST['db_password']
 			AND ((isset($_REQUEST['database_name']) AND $_REQUEST['database_name']) OR ($_REQUEST['db_type'] == 'ORACLE'))
 			AND isset($_REQUEST['table_prefix']) AND $_REQUEST['table_prefix']
 			AND isset($_REQUEST['path_host']) AND $_REQUEST['path_host']
@@ -186,7 +186,7 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 			$_REQUEST['standard_port'] = 80;
 		}
 		$drop_existing = true;
-		$create_new = true;	
+		$create_new = true;
 	}
 
 // display an input form to collect installation data
@@ -320,7 +320,7 @@ To start installation fill the form below and click the INSTALL button.<br />
 <input type="checkbox" name="drop_existing" id="drop_existing" value="1" <?PHP echo $drop_existing ? 'checked="checked"' : ''; ?>"/>
 </span>
 </div>
- 
+
 <div class="row">
 <span class="label">
 <label for="create_new" title="Create New Database?">Create New Database?</label>
@@ -363,6 +363,6 @@ if ($start_installation) {
 
 <?php
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

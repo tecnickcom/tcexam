@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-05-10 15:09:57
+// DATE: 2010-05-28 14:33:26
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -174,11 +174,11 @@ $tmx['m_mailerror_instantiate']='لا يمكن تنفيذ مهمة البريد 
 $tmx['m_mailerror_mailer_not_supported']='الارسال غير مدعوم.';
 $tmx['m_mailerror_provide_address']='يجب عليك ادراج عنوان البريد الكتروني لمستلم واحد على الاقل.';
 $tmx['m_mailerror_recipients_failed']='[بروتوكول نقل البريد الالكتروني] فشل المستفيدين التاليين:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_signing']='توقيع الخطأ: ';
+$tmx['m_mailerror_smtp_error']='SMTP خطأ في خادم: ';
+$tmx['m_mailerror_empty_message']='نص الرسالة فارغ';
+$tmx['m_mailerror_invalid_address']='عنوان غير صالح';
+$tmx['m_mailerror_variable_set']='لا يمكن تعيين أو اعادة تعيين المتغير: ';
 $tmx['m_new_window_link']='هذا الرابط يفتح نافذة متصفح جديدة';
 $tmx['m_no_test_available']='ﻻ توجد اختبارات متاحة!';
 $tmx['m_process_completed']='اكتمات العملية';
@@ -416,7 +416,7 @@ $tmx['m_user_verification_sent']='تم ارسال كود تأكيد التسجي
 $tmx['m_user_registration_ok']='تم تسجيل المستخدم بنجاح';
 $tmx['w_i_agree']='أوافق على الاتفاقية';
 $tmx['w_registration_verification']='تأكيد التسجيل';
-$tmx['m_email_registration']='<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><body><p>This is an automated response to verify <a href="#TCEXAMURL#">تكسام</a> طلب تسجيل مستخدم جديد.<br />طلب تأكيد تسجيل للبريد  #EMAIL# مقدم بواسطة المعرف  #USERIP#.<br />اذا وصلتك هذه الرسالة بالخطأ, فضلاً تجاهلها.<br /><br /><b>لتأكيد التسجيل استخدم الرابط التالي:<br /><a href="#SUBSCRIBEURL#">#SUBSCRIBEURL#</a></b></p></body></html>';
+$tmx['m_email_registration']='<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><body><p>هذه رسالة آلية للتحقق <a href="#TCEXAMURL#">تكسام</a> طلب تسجيل مستخدم جديد.<br />طلب تأكيد تسجيل للبريد  #EMAIL# مقدم بواسطة المعرف  #USERIP#.<br />اذا وصلتك هذه الرسالة بالخطأ, فضلاً تجاهلها.<br /><br /><b>لتأكيد التسجيل استخدم الرابط التالي:<br /><a href="#SUBSCRIBEURL#">#SUBSCRIBEURL#</a></b></p></body></html>';
 $tmx['w_timer']='التوقيت [ث]';
 $tmx['h_question_timer']='الحد الاقصى من الثواني لعرض السؤال (0 = تعطيل الوقت)';
 $tmx['w_fullscreen']='كامل الشاشة';

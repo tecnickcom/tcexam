@@ -3,9 +3,9 @@
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
 // Last Update : 2010-05-10
-// 
+//
 // Description : Export all users' results in XML.
-// 
+//
 // Author: Nicola Asuni
 //
 // (c) Copyright:
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -109,8 +109,8 @@ $xml .= K_TAB.'</header>'.K_NEWLINE;
 $xml .=  K_TAB.'<body>'.K_NEWLINE;
 
 // get test data
-$sql = 'SELECT * 
-	FROM '.K_TABLE_TESTS.' 
+$sql = 'SELECT *
+	FROM '.K_TABLE_TESTS.'
 	WHERE test_id='.$test_id.'
 	LIMIT 1';
 if($r = F_db_query($sql, $db)) {
@@ -153,14 +153,14 @@ $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
 $sql = 'SELECT testuser_id, user_id, SUM(testlog_score) AS total_score, MAX(testlog_change_time) AS test_end_time, testuser_creation_time
-	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' 
+	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 	WHERE testlog_testuser_id=testuser_id
-		AND testuser_user_id=user_id 
+		AND testuser_user_id=user_id
 		AND testuser_test_id='.$test_id.'';
 if ($group_id > 0) {
 	$sql .= ' AND testuser_user_id IN (
 			SELECT usrgrp_user_id
-			FROM '.K_TABLE_USERGROUP.' 
+			FROM '.K_TABLE_USERGROUP.'
 			WHERE usrgrp_group_id='.$group_id.'
 		)';
 }
@@ -170,21 +170,21 @@ if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		$testuser_id = $m['testuser_id'];
 		$user_id = $m['user_id'];
-		$xml .= K_TAB.K_TAB.'<user id="'.$user_id.'">'.K_NEWLINE;			
-		$sqla = 'SELECT * 
+		$xml .= K_TAB.K_TAB.'<user id="'.$user_id.'">'.K_NEWLINE;
+		$sqla = 'SELECT *
 			FROM '.K_TABLE_USERS.'
 			WHERE user_id='.$user_id.'
 			LIMIT 1';
 		if($ra = F_db_query($sqla, $db)) {
 			$xml .= K_TAB.K_TAB.K_TAB.'<userdata>'.K_NEWLINE;
-			if($ma = F_db_fetch_array($ra)) {		
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<name>'.F_text_to_xml($ma['user_name']).'</name>'.K_NEWLINE;		
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<email>'.$ma['user_email'].'</email>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regdate>'.$ma['user_regdate'].'</regdate>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ip>'.$ma['user_ip'].'</ip>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<firstname>'.F_text_to_xml($ma['user_firstname']).'</firstname>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<lastname>'.F_text_to_xml($ma['user_lastname']).'</lastname>'.K_NEWLINE;				
-				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthdate>'.substr($ma['user_birthdate'],0,10).'</birthdate>'.K_NEWLINE;				
+			if($ma = F_db_fetch_array($ra)) {
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<name>'.F_text_to_xml($ma['user_name']).'</name>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<email>'.$ma['user_email'].'</email>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regdate>'.$ma['user_regdate'].'</regdate>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ip>'.$ma['user_ip'].'</ip>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<firstname>'.F_text_to_xml($ma['user_firstname']).'</firstname>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<lastname>'.F_text_to_xml($ma['user_lastname']).'</lastname>'.K_NEWLINE;
+				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthdate>'.substr($ma['user_birthdate'],0,10).'</birthdate>'.K_NEWLINE;
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthplace>'.F_text_to_xml($ma['user_birthplace']).'</birthplace>'.K_NEWLINE;
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regnumber>'.F_text_to_xml($ma['user_regnumber']).'</regnumber>'.K_NEWLINE;
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ssn>'.F_text_to_xml($ma['user_ssn']).'</ssn>'.K_NEWLINE;
@@ -196,13 +196,13 @@ if($r = F_db_query($sql, $db)) {
 		$usrtestdata = F_getUserTestStat($test_id, $user_id);
 		$xml .= K_TAB.K_TAB.K_TAB.'<stats>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'],1).'</score>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;					
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right>'.$usrtestdata['right'].'</right>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;						
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<wrong>'.$usrtestdata['wrong'].'</wrong>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<wrong_percent>'.round(100 * $usrtestdata['wrong'] / $usrtestdata['all']).'</wrong_percent>'.K_NEWLINE;						
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<wrong_percent>'.round(100 * $usrtestdata['wrong'] / $usrtestdata['all']).'</wrong_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered>'.$usrtestdata['unanswered'].'</unanswered>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'</unanswered_percent>'.K_NEWLINE;				
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'</unanswered_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed>'.$usrtestdata['undisplayed'].'</undisplayed>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed_percent>'.round(100 * $usrtestdata['undisplayed'] / $usrtestdata['all']).'</undisplayed_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<start_time>'.$m['testuser_creation_time'].'</start_time>'.K_NEWLINE;
@@ -217,9 +217,9 @@ if($r = F_db_query($sql, $db)) {
 			}
 		}
 		$xml .= K_TAB.K_TAB.K_TAB.'</stats>'.K_NEWLINE;
-		
+
 		$xml .= K_TAB.K_TAB.K_TAB.'<details>'.K_NEWLINE;
-		
+
 		// collects data for descriptive statistics
 		$statsdata['score'][] = $m['total_score'];
 		$statsdata['right'][] = $usrtestdata['right'];
@@ -227,11 +227,11 @@ if($r = F_db_query($sql, $db)) {
 		$statsdata['unanswered'][] = $usrtestdata['unanswered'];
 		$statsdata['undisplayed'][] = $usrtestdata['undisplayed'];
 		$statsdata['unrated'][] = $usrtestdata['unrated'];
-		
+
 		// detailed test report
-		$sqlq = 'SELECT * 
-			FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.' 
-			WHERE question_id=testlog_question_id 
+		$sqlq = 'SELECT *
+			FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.'
+			WHERE question_id=testlog_question_id
 			AND testlog_testuser_id='.$testuser_id.'
 			ORDER BY testlog_id';
 		if($rq = F_db_query($sqlq, $db)) {
@@ -290,7 +290,7 @@ if($r = F_db_query($sql, $db)) {
 						$idx = 1; // count answer items
 						while($ma = F_db_fetch_array($ra)) {
 							$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<answer num="'.$idx.'" id="'.$ma['answer_id'].'">'.K_NEWLINE;
-							if ($mq['question_type'] == 4) {	
+							if ($mq['question_type'] == 4) {
 								$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<position>'.$ma['answer_position'].'</position>'.K_NEWLINE;
 								$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<answposition>'.$ma['logansw_position'].'</answposition>'.K_NEWLINE;
 							} else {
@@ -315,13 +315,13 @@ if($r = F_db_query($sql, $db)) {
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'</question>'.K_NEWLINE;
 				$itemcount++;
 			} // end questions
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.'</details>'.K_NEWLINE;
 		} else {
 			F_display_db_error();
 		}
 	$xml .= K_TAB.K_TAB.'</user>'.K_NEWLINE;
-	} 
+	}
 } else {
 	F_display_db_error();
 }
@@ -370,6 +370,6 @@ $xml .= '</tcexamresults>'.K_NEWLINE;
 echo $xml;
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

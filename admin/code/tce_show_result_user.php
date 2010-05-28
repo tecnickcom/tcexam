@@ -3,7 +3,7 @@
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
 // Last Update : 2009-11-03
-// 
+//
 // Description : Display test results for specified user.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -93,9 +93,9 @@ if(isset($_POST['lock'])) {
 }
 
 switch($menu_mode) {
-	
+
 	case 'delete':{
-		F_stripslashes_formfields(); 
+		F_stripslashes_formfields();
 		// ask confirmation
 		F_print_error('WARNING', $l['m_delete_confirm']);
 		?>
@@ -103,7 +103,7 @@ switch($menu_mode) {
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
 		<input type="hidden" name="testuser_id" id="testuser_id" value="<?php echo $testuser_id; ?>" />
-		<?php 
+		<?php
 		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 		F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 		?>
@@ -113,11 +113,11 @@ switch($menu_mode) {
 		<?php
 		break;
 	}
-	
+
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete
 		if($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
-				$sql = 'DELETE FROM '.K_TABLE_TEST_USER.' 
+				$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 					WHERE testuser_id='.$testuser_id.'';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
@@ -128,7 +128,7 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	case 'extendtime':{
 		// extend the test time by 5 minutes
 		// this time extension is obtained moving forward the test starting time
@@ -142,11 +142,11 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	case 'lock':{
 		// update test mode to 4 = test locked
 		$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-			SET testuser_status=4 
+			SET testuser_status=4
 			WHERE testuser_id='.$testuser_id.'';
 		if(!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
@@ -155,11 +155,11 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	case 'unlock':{
 		// update test mode to 1 = test unlocked
 		$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-			SET testuser_status=1 
+			SET testuser_status=1
 			WHERE testuser_id='.$testuser_id.'';
 		if(!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
@@ -168,8 +168,8 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
-	default: { 
+
+	default: {
 		break;
 	}
 
@@ -194,7 +194,7 @@ if(!isset($test_id) OR empty($test_id)) {
 if($formstatus) {
 	if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($user_id)) OR empty($user_id)) {
 			$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_status, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
-				FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.' 
+				FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.'
 				WHERE testlog_testuser_id=testuser_id
 					AND testuser_user_id=user_id
 					AND testuser_test_id='.$test_id.'
@@ -204,7 +204,7 @@ if($formstatus) {
 				LIMIT 1';
 	} else {
 		$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_status, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
-			FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.' 
+			FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.'
 			WHERE testlog_testuser_id=testuser_id
 				AND testuser_user_id=user_id
 				AND testuser_test_id='.$test_id.'
@@ -304,7 +304,7 @@ else {
 <select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_resultuser').submit()" title="<?php echo $l['h_select_user']; ?>">
 <?php
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name
-	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' 
+	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 	WHERE testuser_user_id=user_id
 	AND testuser_test_id='.$test_id.'
 	ORDER BY user_lastname, user_firstname, user_name';
@@ -411,7 +411,7 @@ echo ''.$usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $
 <span title="<?php echo $l['h_answers_right']; ?>"><?php echo $l['w_answers_right']; ?>:</span>
 </span>
 <span class="formw">
-<?php 
+<?php
 echo ''.$usrtestdata['right'].' / '.$usrtestdata['all'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)';
 ?>
 &nbsp;
@@ -423,7 +423,7 @@ echo ''.$usrtestdata['right'].' / '.$usrtestdata['all'].' ('.round(100 * $usrtes
 <span title="<?php echo $l['h_testcomment']; ?>"><?php echo $l['w_comment']; ?>:</span>
 </span>
 <span class="formw">
-<?php 
+<?php
 echo ''.F_decode_tcecode($usrtestdata['comment']).'';
 ?>
 &nbsp;
@@ -435,9 +435,9 @@ echo ''.F_decode_tcecode($usrtestdata['comment']).'';
 $topicresults = array(); // per-topic results
 if (isset($testuser_id) AND (!empty($testuser_id))) {
 	// display user questions
-	$sql = 'SELECT * 
+	$sql = 'SELECT *
 		FROM '.K_TABLE_QUESTIONS.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_SUBJECTS.', '.K_TABLE_MODULES.'
-		WHERE question_id=testlog_question_id 
+		WHERE question_id=testlog_question_id
 			AND testlog_testuser_id='.$testuser_id.'
 			AND question_subject_id=subject_id
 			AND subject_module_id=module_id
@@ -445,7 +445,7 @@ if (isset($testuser_id) AND (!empty($testuser_id))) {
 	if($r = F_db_query($sql, $db)) {
 		echo '<ol class="question">'.K_NEWLINE;
 		while($m = F_db_fetch_array($r)) {
-			
+
 			// create per-topic results array
 			if (!array_key_exists($m['module_id'], $topicresults)) {
 				$topicresults[$m['module_id']] = array();
@@ -506,7 +506,7 @@ if (isset($testuser_id) AND (!empty($testuser_id))) {
 			// max score
 			$topicresults[$m['module_id']]['maxscore'] += $question_max_score;
 			$topicresults[$m['module_id']]['subjects'][$m['subject_id']]['maxscore'] += $question_max_score;
-			
+
 			echo '<li>'.K_NEWLINE;
 			// display question stats
 			echo '<strong>['.$m['testlog_score'].']'.K_NEWLINE;
@@ -666,7 +666,7 @@ echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0) AND isset($user_id) AND ($user_id > 0)) {
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
-	
+
 	if($testuser_status < 4) {
 		// lock test button
 		F_submit_button('lock', $l['w_lock'], $l['w_lock']);
@@ -674,7 +674,7 @@ if (isset($test_id) AND ($test_id > 0) AND isset($user_id) AND ($user_id > 0)) {
 		// unlock test button
 		F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
 	}
-	
+
 	echo '<br /><br />';
 	echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '').'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'&amp;mode=1" class="xmlbutton" title="'.$l['h_email_result'].'">'.$l['w_email_result'].'</a> ';
@@ -701,6 +701,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

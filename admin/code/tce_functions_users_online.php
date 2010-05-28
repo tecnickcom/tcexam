@@ -3,7 +3,7 @@
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
 // Last Update : 2009-10-10
-// 
+//
 // Description : Functions to display online users' data.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -89,7 +89,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
-	
+
 	//initialize variables
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
@@ -100,12 +100,12 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 		$nextorderdir = 0;
 		$full_order_field = $order_field.' DESC';
 	}
-	
+
 	if(!F_count_rows(K_TABLE_SESSIONS)) { //if the table is void (no items) display message
 		echo '<h2>'.$l['m_databasempty'].'</h2>';
 		return FALSE;
 	}
-	
+
 	if (empty($wherequery)) {
 		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' ORDER BY '.$full_order_field.'';
 	} else {
@@ -116,7 +116,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	} else {
 		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
 	}
-	
+
 	echo '<div class="container">'.K_NEWLINE;
 	echo '<table class="userselect">'.K_NEWLINE;
 	echo '<tr>'.K_NEWLINE;
@@ -124,10 +124,10 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	echo '<th>'.$l['w_level'].'</th>'.K_NEWLINE;
 	echo '<th>'.$l['w_ip'].'</th>'.K_NEWLINE;
 	echo '</tr>'.K_NEWLINE;
-	
+
 	if($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) {
-			
+
 			$this_session = F_session_string_to_array($m['cpsession_data']);
 			echo '<tr>';
 			echo '<td align="left">';
@@ -153,7 +153,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 		F_display_db_error();
 	}
 	echo '</table>'.K_NEWLINE;
-	
+
 	// --- ------------------------------------------------------
 	// --- page jump
 	$sql = 'SELECT count(*) AS total FROM '.K_TABLE_SESSIONS.' '.$wherequery.'';
@@ -167,6 +167,6 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

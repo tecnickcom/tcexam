@@ -6,7 +6,7 @@
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
-// 
+//
 // Author: Nicola Asuni
 //
 // (c) Copyright:
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -86,7 +86,7 @@ if($rs = F_db_query($sqls, $db)) {
 		$_SESSION['session_user_level'] = 0;
 		$_SESSION['session_user_firstname'] = '';
 		$_SESSION['session_user_lastname'] = '';
-		// read client cookie 
+		// read client cookie
 		if(isset($_COOKIE['LastVisit'])) {
 			$_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
 		} else {
@@ -109,7 +109,7 @@ if (K_CAS_ENABLED) {
 	phpCAS::client(K_CAS_VERSION, K_CAS_HOST, K_CAS_PORT, K_CAS_PATH, false);
 	phpCAS::setNoCasServerValidation();
 	phpCAS::forceAuthentication();
-	if($_SESSION['session_user_name'] != phpCAS::getUser()) { 
+	if($_SESSION['session_user_name'] != phpCAS::getUser()) {
 		$_POST['xuser_name'] = phpCAS::getUser();
 		$_POST['xuser_password'] = phpCAS::getUser();
 		$_POST['logaction'] = 'login';
@@ -130,7 +130,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 			$_SESSION['session_user_level'] = $m['user_level'];
 			$_SESSION['session_user_firstname'] = urlencode($m['user_firstname']);
 			$_SESSION['session_user_lastname'] = urlencode($m['user_lastname']);
-			// read client cookie 
+			// read client cookie
 			if(isset($_COOKIE['LastVisit'])) {
 				$_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
 			} else {
@@ -169,7 +169,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 					'.F_empty_to_null(F_escape_sql($altusr['user_lastname'])).',
 					'.F_empty_to_null(F_escape_sql($altusr['user_birthdate'])).',
 					'.F_empty_to_null(F_escape_sql($altusr['user_birthplace'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_ssn'])).', 
+					'.F_empty_to_null(F_escape_sql($altusr['user_ssn'])).',
 					\''.F_escape_sql($altusr['user_level']).'\'
 					)';
 				if(!$r = F_db_query($sql, $db)) {
@@ -181,7 +181,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 						usrgrp_user_id,
 						usrgrp_group_id
 						) VALUES (
-						\''.$user_id.'\', 
+						\''.$user_id.'\',
 						\''.F_escape_sql($altusr['usrgrp_group_id']).'\'
 						)';
 					if(!$r = F_db_query($sql, $db)) {
@@ -254,6 +254,6 @@ if($logged) { //if user is just logged in: reloads page
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

@@ -3,7 +3,7 @@
 // File name   : tce_functions_auth_sql.php
 // Begin       : 2006-03-11
 // Last Update : 2009-09-30
-// 
+//
 // Description : Functions to select topics.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -93,7 +93,7 @@ function F_select_module_subjects_sql($andwhere='') {
 	$sql = 'SELECT * FROM '.K_TABLE_MODULES.','.K_TABLE_SUBJECTS.'';
 	$sql .= ' WHERE module_id=subject_module_id';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$sql .= ' AND subject_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';	
+		$sql .= ' AND subject_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 	}
 	if (!empty($andwhere)) {
 		$sql .= ' AND '.$andwhere;
@@ -117,7 +117,7 @@ function F_select_tests_sql() {
 	$sql = 'SELECT * FROM '.K_TABLE_TESTS.'';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 		$sql .= ' WHERE test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
-	}	
+	}
 	$sql .= ' ORDER BY test_begin_time DESC, test_name';
 	return $sql;
 }
@@ -138,7 +138,7 @@ function F_select_executed_tests_sql() {
 		FROM '.K_TABLE_TESTS.'
 		WHERE test_id IN (
 			SELECT testuser_test_id
-			FROM '.K_TABLE_TEST_USER.' 
+			FROM '.K_TABLE_TEST_USER.'
 			WHERE testuser_status>0
 		)';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
@@ -149,6 +149,6 @@ function F_select_executed_tests_sql() {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

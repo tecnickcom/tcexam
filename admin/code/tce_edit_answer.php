@@ -3,7 +3,7 @@
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
 // Last Update : 2009-10-10
-// 
+//
 // Description : Edit answers.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -131,7 +131,7 @@ if (isset($_REQUEST['answer_id']) AND ($_REQUEST['answer_id'] > 0)) {
 		FROM '.K_TABLE_SUBJECTS.', '.K_TABLE_QUESTIONS.', '.K_TABLE_ANSWERS.'
 		WHERE subject_id=question_subject_id
 			AND question_id=answer_question_id
-			AND answer_id='.$answer_id.' 
+			AND answer_id='.$answer_id.'
 		LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -148,11 +148,11 @@ if (isset($_REQUEST['answer_id']) AND ($_REQUEST['answer_id'] > 0)) {
 switch($menu_mode) {
 
 	case 'delete':{
-		F_stripslashes_formfields(); 
+		F_stripslashes_formfields();
 		// check if this record is used (test_log)
 		if(!F_check_unique(K_TABLE_LOG_ANSWER, 'logansw_answer_id='.$answer_id.'')) {
 			//this record will be only disabled and not deleted because it's used
-			$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+			$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 				answer_enabled=\'0\'
 				WHERE answer_id='.$answer_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -172,7 +172,7 @@ switch($menu_mode) {
 			<input type="hidden" name="answer_question_id" id="answer_question_id" value="<?php echo $answer_question_id; ?>" />
 			<input type="hidden" name="answer_description" id="answer_description" value="<?php echo $answer_description; ?>" />
 			<input type="hidden" name="answer_explanation" id="answer_explanation" value="<?php echo $answer_explanation; ?>" />
-			<?php 
+			<?php
 			F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 			?>
@@ -187,17 +187,17 @@ switch($menu_mode) {
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete
 		if($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
-			
+
 			$sql = 'START TRANSACTION';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 				break;
 			}
-			
+
 			// get answer position (if defined)
 			$sql = 'SELECT answer_position
-				FROM '.K_TABLE_ANSWERS.' 
-				WHERE answer_id='.$answer_id.' 
+				FROM '.K_TABLE_ANSWERS.'
+				WHERE answer_id='.$answer_id.'
 				LIMIT 1';
 			if($r = F_db_query($sql, $db)) {
 				if($m = F_db_fetch_array($r)) {
@@ -215,7 +215,7 @@ switch($menu_mode) {
 				$answer_id=FALSE;
 				// adjust questions ordering
 				if ($answer_position > 0) {
-					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 						answer_position=answer_position-1
 						WHERE answer_question_id='.$answer_question_id.'
 							AND answer_position>'.$answer_position.'';
@@ -224,13 +224,13 @@ switch($menu_mode) {
 						F_db_query('ROLLBACK', $db); // rollback transaction
 					}
 				}
-				
+
 				$sql = 'COMMIT';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
 					break;
 				}
-				
+
 				F_print_error('MESSAGE', $l['m_deleted']);
 			}
 		}
@@ -242,8 +242,8 @@ switch($menu_mode) {
 			// get previous answer position (if defined)
 			$prev_answer_position = 0;
 			$sql = 'SELECT answer_position
-				FROM '.K_TABLE_ANSWERS.' 
-				WHERE answer_id='.$answer_id.' 
+				FROM '.K_TABLE_ANSWERS.'
+				WHERE answer_id='.$answer_id.'
 				LIMIT 1';
 			if($r = F_db_query($sql, $db)) {
 				if($m = F_db_fetch_array($r)) {
@@ -252,11 +252,11 @@ switch($menu_mode) {
 			} else {
 				F_display_db_error();
 			}
-			
+
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if(!F_check_unique(K_TABLE_LOG_ANSWER, 'logansw_answer_id='.$answer_id.'')) {
 				F_print_error('WARNING', $l['m_update_restrict']);
-				
+
 				// when the answer is disabled, the position is discarded
 				if (!$answer_enabled) {
 					$answer_position = 0;
@@ -264,8 +264,8 @@ switch($menu_mode) {
 					$answer_position = $prev_answer_position;
 				}
 				// enable or disable record
-				$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
-					answer_enabled=\''.$answer_enabled.'\', 
+				$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
+					answer_enabled=\''.$answer_enabled.'\',
 					answer_position='.F_zero_to_null($answer_position).'
 					WHERE answer_id='.$answer_id.'';
 				if(!$r = F_db_query($sql, $db)) {
@@ -296,13 +296,13 @@ switch($menu_mode) {
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
-			
+
 			$sql = 'START TRANSACTION';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 				break;
 			}
-			
+
 			// when the answer is disabled, the position is discarded
 			if (!$answer_enabled) {
 				$answer_position = 0;
@@ -315,20 +315,20 @@ switch($menu_mode) {
 				if ($answer_position > 0) {
 					if ($prev_answer_position > 0) {
 						// swap positions
-						$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+						$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 							answer_position='.$prev_answer_position.'
 							WHERE answer_question_id='.$answer_question_id.'
 								AND answer_position='.$answer_position.'';
 					} elseif ($prev_answer_position == 0) {
 						// right shift positions
-						$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+						$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 							answer_position=answer_position+1
 							WHERE answer_question_id='.$answer_question_id.'
 								AND answer_position>='.$answer_position.'';
 					}
 				} else {
 					// left shift positions
-					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 						answer_position=answer_position-1
 						WHERE answer_question_id='.$answer_question_id.'
 							AND answer_position>'.$prev_answer_position.'';
@@ -337,9 +337,9 @@ switch($menu_mode) {
 					F_display_db_error(false);
 					F_db_query('ROLLBACK', $db); // rollback transaction
 				}
-			}		
+			}
 			// update field
-			$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+			$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 				answer_question_id='.$answer_question_id.',
 				answer_description=\''.F_escape_sql($answer_description).'\',
 				answer_explanation='.F_empty_to_null($answer_explanation).',
@@ -354,7 +354,7 @@ switch($menu_mode) {
 			} else {
 				F_print_error('MESSAGE', $l['m_updated']);
 			}
-			
+
 			$sql = 'COMMIT';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -381,7 +381,7 @@ switch($menu_mode) {
 				F_stripslashes_formfields();
 				break;
 			}
-			
+
 			$sql = 'START TRANSACTION';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -389,7 +389,7 @@ switch($menu_mode) {
 			}
 			// adjust questions ordering
 			if ($answer_position > 0) {
-				$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+				$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 					answer_position=answer_position+1
 					WHERE answer_question_id='.$answer_question_id.'
 						AND answer_position>='.$answer_position.'';
@@ -440,7 +440,7 @@ switch($menu_mode) {
 		break;
 	}
 
-	default :{ 
+	default :{
 		break;
 	}
 
@@ -461,7 +461,7 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 }
 
 // select default subject
-if ((isset($changemodule) AND ($changemodule > 0)) 
+if ((isset($changemodule) AND ($changemodule > 0))
 	OR (!(isset($question_subject_id) AND ($question_subject_id > 0)))) {
 	$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
@@ -476,11 +476,11 @@ if ((isset($changemodule) AND ($changemodule > 0))
 }
 
 // select default question
-if ((isset($changesubject) AND ($changesubject > 0)) 
-	OR (isset($changemodule) AND ($changemodule > 0)) 
+if ((isset($changesubject) AND ($changesubject > 0))
+	OR (isset($changemodule) AND ($changemodule > 0))
 	OR (!(isset($answer_question_id) AND ($answer_question_id > 0)))) {
-	$sql = 'SELECT question_id 
-		FROM '.K_TABLE_QUESTIONS.' 
+	$sql = 'SELECT question_id
+		FROM '.K_TABLE_QUESTIONS.'
 		WHERE question_subject_id='.$question_subject_id.'
 		ORDER BY ';
 	if (K_DATABASE_TYPE == 'ORACLE') {
@@ -504,11 +504,11 @@ if ($formstatus) {
 	if ($menu_mode != 'clear') {
 		if ((isset($changemodule) AND ($changemodule > 0))
 			OR (isset($changesubject) AND ($changesubject > 0))
-			OR (isset($changecategory) AND ($changecategory > 0)) 
+			OR (isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($answer_id)) OR empty($answer_id)) {
-			$sql = 'SELECT * 
-				FROM '.K_TABLE_ANSWERS.' 
-				WHERE answer_question_id='.$answer_question_id.' 
+			$sql = 'SELECT *
+				FROM '.K_TABLE_ANSWERS.'
+				WHERE answer_question_id='.$answer_question_id.'
 				ORDER BY answer_enabled DESC, answer_position, answer_isright DESC,';
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$sql .= 'CAST(answer_description as varchar2(100))';
@@ -516,9 +516,9 @@ if ($formstatus) {
 				$sql .= 'answer_description LIMIT 1';
 			}
 		} else {
-			$sql = 'SELECT * 
-				FROM '.K_TABLE_ANSWERS.' 
-				WHERE answer_id='.$answer_id.' 
+			$sql = 'SELECT *
+				FROM '.K_TABLE_ANSWERS.'
+				WHERE answer_id='.$answer_id.'
 				LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
@@ -651,8 +651,8 @@ if($r = F_db_query($sql, $db)) {
 <input type="hidden" name="changecategory" id="changecategory" value="" />
 <select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById('form_answereditor').changecategory.value=1; document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = 'SELECT * 
-	FROM '.K_TABLE_QUESTIONS.' 
+$sql = 'SELECT *
+	FROM '.K_TABLE_QUESTIONS.'
 	WHERE question_subject_id='.$question_subject_id.'
 	ORDER BY question_subject_id,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
@@ -703,9 +703,9 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="answer_id" id="answer_id" size="0" onchange="document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_answer']; ?>">
 <?php
-$sql = 'SELECT * 
-	FROM '.K_TABLE_ANSWERS.' 
-	WHERE answer_question_id='.$answer_question_id.' 
+$sql = 'SELECT *
+	FROM '.K_TABLE_ANSWERS.'
+	WHERE answer_question_id='.$answer_question_id.'
 	ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql .= 'CAST(answer_description as varchar2(100))';
@@ -756,7 +756,7 @@ if($r = F_db_query($sql, $db)) {
 <span class="label">
 <label for="answer_description"><?php echo $l['w_answer']; ?></label>
 <br />
-<?php 
+<?php
 echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_answereditor\').answer_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>'.K_NEWLINE;
 ?>
 </span>
@@ -915,6 +915,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

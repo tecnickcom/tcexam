@@ -8,17 +8,17 @@
  */
 
 $this->_strings = array(
- CAS_STR_USING_SERVER 
+ CAS_STR_USING_SERVER
  => 'utilisant le serveur',
- CAS_STR_AUTHENTICATION_WANTED 
+ CAS_STR_AUTHENTICATION_WANTED
  => 'Authentication CAS nécessaire&nbsp;!',
- CAS_STR_LOGOUT 
+ CAS_STR_LOGOUT
  => 'Déconnexion demandée&nbsp;!',
- CAS_STR_SHOULD_HAVE_BEEN_REDIRECTED 
+ CAS_STR_SHOULD_HAVE_BEEN_REDIRECTED
  => 'Vous auriez du etre redirigé(e) vers le serveur CAS. Cliquez <a href="%s">ici</a> pour continuer.',
- CAS_STR_AUTHENTICATION_FAILED 
+ CAS_STR_AUTHENTICATION_FAILED
  => 'Authentification CAS infructueuse&nbsp;!',
- CAS_STR_YOU_WERE_NOT_AUTHENTICATED 
+ CAS_STR_YOU_WERE_NOT_AUTHENTICATED
  => '<p>Vous n\'avez pas été authentifié(e).</p><p>Vous pouvez soumettre votre requete à nouveau en cliquant <a href="%s">ici</a>.</p><p>Si le problème persiste, vous pouvez contacter <a href="mailto:%s">l\'administrateur de ce site</a>.</p>',
  CAS_STR_SERVICE_UNAVAILABLE
  => 'Le service `<b>%s</b>\' est indisponible (<b>%s</b>)'

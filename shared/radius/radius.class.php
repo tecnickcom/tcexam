@@ -25,19 +25,19 @@
  *   SysCo (tm) is a trademark of SysCo systemes de communication sa
  *   (http://www.sysco.ch/)
  *   All rights reserved.
- * 
+ *
  *   This file is part of the Pure PHP radius class
  *
  *   Pure PHP radius class is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU Lesser General Public License as
  *   published by the Free Software Foundation, either version 3 of the License,
  *   or (at your option) any later version.
- * 
+ *
  *   Pure PHP radius class is distributed in the hope that it will be useful,
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *   GNU Lesser General Public License for more details.
- * 
+ *
  *   You should have received a copy of the GNU Lesser General Public
  *   License along with Pure PHP radius class.
  *   If not, see <http://www.gnu.org/licenses/>.
@@ -208,7 +208,7 @@ class Radius
     var $_radius_packet_info;     // Radius packet codes info array
     var $_last_error_code;        // Last error code
     var $_last_error_message;     // Last error message
-    
+
 
     /*********************************************************************
      *
@@ -238,7 +238,7 @@ class Radius
         $this->_radius_packet_info[12] = 'Status-Server (experimental)';
         $this->_radius_packet_info[13] = 'Status-Client (experimental)';
         $this->_radius_packet_info[255] = 'Reserved';
-        
+
         $this->_attributes_info[1] = array('User-Name', 'S');
         $this->_attributes_info[2] = array('User-Password', 'S');
         $this->_attributes_info[3] = array('CHAP-Password', 'S'); // Type (1) / Length (1) / CHAP Ident (1) / String
@@ -286,7 +286,7 @@ class Radius
 
         $this->_identifier_to_send = 0;
         $this->_user_ip_address = (isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:'0.0.0.0');
-        
+
         $this->GenerateRequestAuthenticator();
         $this->SetIpRadiusServer($ip_radius_server);
         $this->SetSharedSecret($shared_secret);
@@ -298,7 +298,7 @@ class Radius
         $this->SetPassword();
         $this->SetNasIpAddress();
         $this->SetNasPort();
-        
+
         $this->ClearLastError();
         $this->ClearDataToSend();
         $this->ClearDataReceived();
@@ -310,7 +310,7 @@ class Radius
         $this->_identifier_to_send = (($this->_identifier_to_send + 1) % 256);
         return $this->_identifier_to_send;
     }
-    
+
 
     function GenerateRequestAuthenticator()
     {
@@ -339,52 +339,52 @@ class Radius
             return '';
         }
     }
-    
-    
+
+
     function ClearDataToSend()
     {
         $this->_radius_packet_to_send = 0;
         $this->_attributes_to_send = NULL;
     }
-    
-    
+
+
     function ClearDataReceived()
     {
         $this->_radius_packet_received = 0;
         $this->_attributes_received = NULL;
     }
-    
+
 
     function SetPacketCodeToSend($packet_code)
     {
         $this->_radius_packet_to_send = $packet_code;
     }
-    
-    
+
+
     function SetDebugMode($debug_mode)
     {
         $this->_debug_mode = (TRUE === $debug_mode);
     }
-    
-    
+
+
     function SetIpRadiusServer($ip_radius_server)
     {
         $this->_ip_radius_server = gethostbyname($ip_radius_server);
     }
-    
-    
+
+
     function SetSharedSecret($shared_secret)
     {
         $this->_shared_secret = $shared_secret;
     }
-    
-    
+
+
     function SetRadiusSuffix($radius_suffix)
     {
         $this->_radius_suffix = $radius_suffix;
     }
-    
-    
+
+
     function SetUsername($username = '')
     {
         $temp_username = $username;
@@ -392,29 +392,29 @@ class Radius
         {
             $temp_username .= $this->_radius_suffix;
         }
-        
+
         $this->_username = $temp_username;
         $this->SetAttribute(1, $this->_username);
     }
-    
-    
+
+
     function SetPassword($password = '')
     {
         $this->_password = $password;
         $encrypted_password = '';
         $padded_password = $password;
-        
+
         if (0 != (strlen($password)%16))
         {
             $padded_password .= str_repeat(chr(0),(16-strlen($password)%16));
         }
-        
+
         $previous_result = $this->_request_authenticator;
-        
+
         for ($full_loop = 0; $full_loop < (strlen($padded_password)/16); $full_loop++)
         {
             $xor_value = md5($this->_shared_secret.$previous_result);
-            
+
             $previous_result = '';
             for ($xor_loop = 0; $xor_loop <= 15; $xor_loop++)
             {
@@ -425,7 +425,7 @@ class Radius
             }
             $encrypted_password .= $previous_result;
         }
-        
+
         $this->_encrypted_password = $encrypted_password;
         $this->SetAttribute(2, $this->_encrypted_password);
     }
@@ -443,15 +443,15 @@ class Radius
         }
         $this->SetAttribute(4, $this->_nas_ip_address);
     }
-    
-    
+
+
     function SetNasPort($nas_port = 0)
     {
         $this->_nas_port = intval($nas_port);
         $this->SetAttribute(5, $this->_nas_port);
     }
-    
-    
+
+
     function SetUdpTimeout($udp_timeout = 5)
     {
         if (intval($udp_timeout) > 0)
@@ -459,15 +459,15 @@ class Radius
             $this->_udp_timeout = intval($udp_timeout);
         }
     }
-    
-    
+
+
     function ClearLastError()
     {
         $this->_last_error_code    = 0;
         $this->_last_error_message = '';
     }
-    
-    
+
+
     function SetAuthenticationPort($authentication_port)
     {
         if ((intval($authentication_port) > 0) && (intval($authentication_port) < 65536))
@@ -475,8 +475,8 @@ class Radius
             $this->_authentication_port = intval($authentication_port);
         }
     }
-    
-    
+
+
     function SetAccountingPort($accounting_port)
     {
         if ((intval($accounting_port) > 0) && (intval($accounting_port) < 65536))
@@ -484,8 +484,8 @@ class Radius
             $this->_accounting_port = intval($accounting_port);
         }
     }
-    
-    
+
+
     function GetReceivedPacket()
     {
         return $this->_radius_packet_received;
@@ -496,7 +496,7 @@ class Radius
     {
         return $this->_attributes_received;
     }
-    
+
 
     function GetReadableReceivedAttributes()
     {
@@ -524,7 +524,7 @@ class Radius
         }
         return $readable_attributes;
     }
-    
+
 
     function GetAttribute($attribute_type)
     {
@@ -577,8 +577,8 @@ class Radius
             flush();
         }
     }
-    
-    
+
+
     function SetAttribute($type, $value)
     {
         $attribute_index = -1;
@@ -592,7 +592,7 @@ class Radius
         }
 
         $temp_attribute = NULL;
-        
+
         if (isset($this->_attributes_info[$type]))
         {
             switch ($this->_attributes_info[$type][1])
@@ -617,7 +617,7 @@ class Radius
                     $temp_attribute = NULL;
             }
         }
-                    
+
         if ($attribute_index > -1)
         {
             $this->_attributes_to_send[$attribute_index] = $temp_attribute;
@@ -636,7 +636,7 @@ class Radius
     function DecodeAttribute($attribute_raw_value, $attribute_format)
     {
         $attribute_value = NULL;
-        
+
         if (isset($this->_attributes_info[$attribute_format]))
         {
             switch ($this->_attributes_info[$attribute_format][1])
@@ -681,7 +681,7 @@ class Radius
             $result[] = array($vendor_id, $vendor_type, $attribute_specific);
             $offset_in_raw += ($vendor_length);
         }
-        
+
         return $result;
     }
 
@@ -695,14 +695,14 @@ class Radius
     {
         $this->ClearDataReceived();
         $this->ClearLastError();
-        
+
         $this->SetPacketCodeToSend(1); // Access-Request
-        
+
         if (0 < strlen($username))
         {
             $this->SetUsername($username);
         }
-        
+
         if (0 < strlen($password))
         {
             $this->SetPassword($password);
@@ -731,7 +731,7 @@ class Radius
         $packet_length  = 4; // Radius packet code + Identifier + Length high + Length low
         $packet_length += strlen($this->_request_authenticator); // Request-Authenticator
         $packet_length += strlen($attributes_content); // Attributes
-        
+
         $packet_data  = chr($this->_radius_packet_to_send);
         $packet_data .= chr($this->GetNextIdentifier());
         $packet_data .= chr(intval($packet_length/256));
@@ -740,7 +740,7 @@ class Radius
         $packet_data .= $attributes_content;
 
         $_socket_to_server = socket_create(AF_INET, SOCK_DGRAM, 17); // UDP packet = 17
-        
+
         if ($_socket_to_server === FALSE)
         {
             $this->_last_error_code    = socket_last_error();
@@ -797,9 +797,9 @@ class Radius
         }
 
         $this->_radius_packet_received = intval(ord(substr($received_packet, 0, 1)));
-        
+
         $this->DebugInfo('<b>Packet type '.$this->_radius_packet_received.' ('.$this->GetRadiusPacketInfo($this->_radius_packet_received).')'.' received</b>');
-        
+
         if ($this->_radius_packet_received > 0)
         {
             $this->_identifier_received = intval(ord(substr($received_packet, 1, 1)));
@@ -832,7 +832,7 @@ class Radius
                 $this->_attributes_received[] = array($attribute_type, $attribute_value);
             }
         }
-        
+
         return (2 == ($this->_radius_packet_received));
     }
 }

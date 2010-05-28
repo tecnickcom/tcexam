@@ -3,9 +3,9 @@
 // File name   : tce_xml_user_results.php
 // Begin       : 2008-12-26
 // Last Update : 2010-05-10
-// 
+//
 // Description : Export all user's results in XML.
-// 
+//
 // Author: Nicola Asuni
 //
 // (c) Copyright:
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -121,7 +121,7 @@ $statsdata['unanswered'] = array();
 $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
-$sql = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score 
+$sql = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 		WHERE testuser_status>0
 			AND testuser_creation_time>=\''.$startdate.'\'
@@ -141,13 +141,13 @@ if($r = F_db_query($sql, $db)) {
 		$xml .= K_TAB.K_TAB.K_TAB.'<start_time>'.$m['testuser_creation_time'].'</start_time>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<name>'.F_text_to_xml($m['test_name']).'</name>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'], 1).'</score>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;					
+		$xml .= K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<right>'.$usrtestdata['right'].'</right>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;						
+		$xml .= K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<wrong>'.$usrtestdata['wrong'].'</wrong>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<wrong_percent>'.round(100 * $usrtestdata['wrong'] / $usrtestdata['all']).'</wrong_percent>'.K_NEWLINE;						
+		$xml .= K_TAB.K_TAB.K_TAB.'<wrong_percent>'.round(100 * $usrtestdata['wrong'] / $usrtestdata['all']).'</wrong_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<unanswered>'.$usrtestdata['unanswered'].'</unanswered>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'</unanswered_percent>'.K_NEWLINE;				
+		$xml .= K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'</unanswered_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<undisplayed>'.$usrtestdata['undisplayed'].'</undisplayed>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<undisplayed_percent>'.round(100 * $usrtestdata['undisplayed'] / $usrtestdata['all']).'</undisplayed_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<comment>'.F_text_to_xml($usrtestdata['comment']).'</comment>'.K_NEWLINE;
@@ -160,7 +160,7 @@ if($r = F_db_query($sql, $db)) {
 			}
 		}
 		$xml .= K_TAB.K_TAB.'</test>'.K_NEWLINE;
-		
+
 		// collects data for descriptive statistics
 		$statsdata['score'][] = $m['total_score'] / $usrtestdata['max_score'];
 		$statsdata['right'][] = $usrtestdata['right'] / $usrtestdata['all'];
@@ -168,7 +168,7 @@ if($r = F_db_query($sql, $db)) {
 		$statsdata['unanswered'][] = $usrtestdata['unanswered'] / $usrtestdata['all'];
 		$statsdata['undisplayed'][] = $usrtestdata['undisplayed'] / $usrtestdata['all'];
 		$statsdata['unrated'][] = $usrtestdata['unrated'] / $usrtestdata['all'];
-	} 
+	}
 } else {
 	F_display_db_error();
 }
@@ -199,7 +199,7 @@ foreach ($stats as $row => $columns) {
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed>'.round($columns['undisplayed'], 3).'</undisplayed>'.K_NEWLINE;
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unrated>'.round($columns['unrated'], 3).'</unrated>'.K_NEWLINE;
 		}
-		$xml .= K_TAB.K_TAB.K_TAB.'</'.$row.'>'.K_NEWLINE;	
+		$xml .= K_TAB.K_TAB.K_TAB.'</'.$row.'>'.K_NEWLINE;
 	}
 }
 $xml .= K_TAB.K_TAB.'</teststatistics>'.K_NEWLINE;
@@ -209,6 +209,6 @@ $xml .= '</tcexamuserresults>'.K_NEWLINE;
 echo $xml;
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

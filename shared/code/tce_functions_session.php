@@ -3,7 +3,7 @@
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
 // Last Update : 2010-01-15
-// 
+//
 // Description : User-level session storage functions.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -69,8 +69,8 @@ ini_set('session.use_cookies', TRUE);
  * @return bool always TRUE
  */
 function F_session_open($save_path, $session_name) {
-	return true; 
-} 
+	return true;
+}
 
 /**
  * Close session.<br>
@@ -79,8 +79,8 @@ function F_session_open($save_path, $session_name) {
  */
 function F_session_close() {
 	F_session_gc(); //call garbage collector
-	return true; 
-} 
+	return true;
+}
 
 /**
  * Get session data.
@@ -90,10 +90,10 @@ function F_session_close() {
 function F_session_read($key) {
 	global $db;
 	$key = F_escape_sql($key);
-	$sql = 'SELECT cpsession_data 
-			FROM '.K_TABLE_SESSIONS.' 
-			WHERE cpsession_id=\''.$key.'\' 
-				AND cpsession_expiry>=\''.date(K_TIMESTAMP_FORMAT).'\' 
+	$sql = 'SELECT cpsession_data
+			FROM '.K_TABLE_SESSIONS.'
+			WHERE cpsession_id=\''.$key.'\'
+				AND cpsession_expiry>=\''.date(K_TIMESTAMP_FORMAT).'\'
 			LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -122,9 +122,9 @@ function F_session_write($key, $val) {
 	//$val = stripslashes($val);
 	$expiry = date(K_TIMESTAMP_FORMAT);
 	// check if this session already exist on database
-	$sql = 'SELECT cpsession_id 
-			FROM '.K_TABLE_SESSIONS.' 
-			WHERE cpsession_id=\''.$key.'\' 
+	$sql = 'SELECT cpsession_id
+			FROM '.K_TABLE_SESSIONS.'
+			WHERE cpsession_id=\''.$key.'\'
 			LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -137,7 +137,7 @@ function F_session_write($key, $val) {
 			// SQL to insert new session
 			$sqlup = 'INSERT INTO '.K_TABLE_SESSIONS.' (
 				cpsession_id,
-				cpsession_expiry, 
+				cpsession_expiry,
 				cpsession_data
 				) VALUES (
 				\''.$key.'\',
@@ -203,7 +203,7 @@ function F_session_string_to_array($sd) {
 // ------------------------------------------------------------
 
 // Sets user-level session storage functions.
-session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 'F_session_write', 'F_session_destroy', 'F_session_gc'); 
+session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 'F_session_write', 'F_session_destroy', 'F_session_gc');
 
 // start user session
 
@@ -223,6 +223,6 @@ session_start(); //start session
 header('Cache-control: private'); // fix IE6 bug
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

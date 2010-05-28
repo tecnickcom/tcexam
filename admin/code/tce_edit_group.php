@@ -3,7 +3,7 @@
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
 // Last Update : 2009-09-30
-// 
+//
 // Description : Edit users' groups.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -82,10 +82,10 @@ switch($menu_mode) { // process submited data
 		<div class="confirmbox">
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
-		
+
 		<input type="hidden" name="group_id" id="group_id" value="<?php echo $group_id; ?>" />
 		<input type="hidden" name="group_name" id="group_name" value="<?php echo stripslashes($group_name); ?>" />
-		<?php 
+		<?php
 		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 		F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 		?>
@@ -118,7 +118,7 @@ switch($menu_mode) { // process submited data
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
-			$sql = 'UPDATE '.K_TABLE_GROUPS.' SET 
+			$sql = 'UPDATE '.K_TABLE_GROUPS.' SET
 				group_name=\''.F_escape_sql($group_name).'\'
 				WHERE group_id='.$group_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -156,7 +156,7 @@ switch($menu_mode) { // process submited data
 		break;
 	}
 
-	default :{ 
+	default :{
 		break;
 	}
 
@@ -197,7 +197,7 @@ if($formstatus) {
 <select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_groupeditor').submit()">
 <?php
 $sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.' 
+	FROM '.K_TABLE_GROUPS.'
 	ORDER BY group_name';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -247,7 +247,7 @@ if ($group_id) {
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
-F_submit_button('clear', $l['w_clear'], $l['h_clear']); 
+F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 ?>
 
 <!-- comma separated list of required fields -->
@@ -267,6 +267,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

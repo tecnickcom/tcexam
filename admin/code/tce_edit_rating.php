@@ -3,7 +3,7 @@
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
 // Last Update : 2009-12-15
-// 
+//
 // Description : Editor to manually rate free text answers.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -92,7 +92,7 @@ switch($menu_mode) {
 					F_print_error('WARNING', $l['m_score_higher_than_max']);
 					break;
 				}
-				$sql = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET 
+				$sql = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET
 					testlog_score='.$testlog_score.',
 					testlog_comment=\''.F_escape_sql($testlog_comment).'\'
 					WHERE testlog_id='.$testlog_id.'';
@@ -108,7 +108,7 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	default: { 
+	default: {
 		break;
 	}
 } //end of switch
@@ -169,21 +169,21 @@ if(!isset($test_id) OR empty($test_id)) {
 if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($testlog_id)) OR empty($testlog_id)) {
 	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty, question_explanation
 		FROM '.K_TABLE_TESTS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_QUESTIONS.'
-		WHERE testuser_test_id=test_id 
+		WHERE testuser_test_id=test_id
 			AND testlog_testuser_id=testuser_id
-			AND testlog_question_id=question_id 
-			AND testuser_test_id='.$test_id.' 
+			AND testlog_question_id=question_id
+			AND testuser_test_id='.$test_id.'
 			AND testuser_status>0
 			AND question_type=3
-			'.$sqlfilter.' 
-		'.$sqlorder.' 
+			'.$sqlfilter.'
+		'.$sqlorder.'
 		LIMIT 1';
 } else {
 	$sql = 'SELECT test_id, test_score_right, test_score_wrong, test_score_unanswered, testlog_id, testlog_score, testlog_answer_text, testlog_comment, question_description, question_difficulty, question_explanation
 		FROM '.K_TABLE_TESTS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_QUESTIONS.'
-		WHERE testuser_test_id=test_id 
+		WHERE testuser_test_id=test_id
 			AND testlog_testuser_id=testuser_id
-			AND testlog_question_id=question_id 
+			AND testlog_question_id=question_id
 			AND testlog_id='.$testlog_id.'
 		LIMIT 1';
 }
@@ -272,13 +272,13 @@ if($r = F_db_query($sql, $db)) {
 <?php
 $sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.'
-	WHERE testlog_testuser_id=testuser_id 
+	WHERE testlog_testuser_id=testuser_id
 	AND testuser_user_id=user_id
 	AND testlog_question_id=question_id
-	AND testuser_test_id='.$test_id.' 
+	AND testuser_test_id='.$test_id.'
 	AND testuser_status>0
 	AND question_type=3
-	'.$sqlfilter.' 
+	'.$sqlfilter.'
 	'.$sqlorder.'';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -488,6 +488,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

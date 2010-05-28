@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2010-04-02
+// Last Update : 2010-05-28
 //
 // Description : Configuration file for pdf documents.
 //
@@ -153,27 +153,32 @@ define ('PDF_FONT_NAME_DATA', 'helvetica');
 define ('PDF_FONT_SIZE_DATA', 7);
 
 /**
- * Ratio used to adjust the conversion of pixels to user units.
+ * default monospaced font name
  */
-define ('PDF_IMAGE_SCALE_RATIO', 2);
+define ('PDF_FONT_MONOSPACED', 'courier');
 
 /**
- * Magnification factor for titles.
+ * ratio used to adjust the conversion of pixels to user units
+ */
+define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+
+/**
+ * magnification factor for titles
  */
 define('HEAD_MAGNIFICATION', 1.1);
 
 /**
- * Height of cell repect font height.
+ * height of cell repect font height
  */
 define('K_CELL_HEIGHT_RATIO', 1.25);
 
 /**
- * Title magnification respect main font size.
+ * title magnification respect main font size
  */
 define('K_TITLE_MAGNIFICATION', 1.3);
 
 /**
- * Reduction factor for small font.
+ * reduction factor for small font
  */
 define('K_SMALL_RATIO', 2/3);
 

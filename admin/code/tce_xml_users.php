@@ -3,8 +3,8 @@
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
 // Last Update : 2010-05-10
-// 
-// Description : Functions to export users' accounts using 
+//
+// Description : Functions to export users' accounts using
 //               XML format.
 //
 // Author: Nicola Asuni
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -87,11 +87,11 @@ echo F_xml_export_users();
 function F_xml_export_users() {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	
+
 	$boolean = array('false','true');
-	
+
 	$xml = ''; // XML data to be returned
-	
+
 	$xml .= '<'.'?xml version="1.0" encoding="UTF-8" ?'.'>'.K_NEWLINE;
 	$xml .= '<tcexamusers version="'.K_TCEXAM_VERSION.'">'.K_NEWLINE;
 	$xml .=  K_TAB.'<header';
@@ -99,71 +99,71 @@ function F_xml_export_users() {
 	$xml .= ' date="'.date(K_TIMESTAMP_FORMAT).'">'.K_NEWLINE;
 	$xml .= K_TAB.'</header>'.K_NEWLINE;
 	$xml .=  K_TAB.'<body>'.K_NEWLINE;
-	
+
 	// add users
-	$sqla = 'SELECT * 
+	$sqla = 'SELECT *
 		FROM '.K_TABLE_USERS.'
 		ORDER BY user_lastname,user_firstname,user_name';
 	if($ra = F_db_query($sqla, $db)) {
 		while($ma = F_db_fetch_array($ra)) {
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.'<user id="'.$ma['user_id'].'">'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<name>';
 			$xml .= F_text_to_xml($ma['user_name']);
 			$xml .= '</name>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<password>';
 			// password cannot be exported because is encrypted
 			//$xml .= $ma['user_password'];
 			$xml .= '</password>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<email>';
 			$xml .= $ma['user_email'];
 			$xml .= '</email>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regdate>';
 			$xml .= $ma['user_regdate'];
 			$xml .= '</regdate>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ip>';
 			$xml .= $ma['user_ip'];
 			$xml .= '</ip>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<firstname>';
 			$xml .= F_text_to_xml($ma['user_firstname']);
 			$xml .= '</firstname>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<lastname>';
 			$xml .= F_text_to_xml($ma['user_lastname']);
 			$xml .= '</lastname>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthdate>';
 			$xml .= substr($ma['user_birthdate'],0,10);
 			$xml .= '</birthdate>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<birthplace>';
 			$xml .= F_text_to_xml($ma['user_birthplace']);
 			$xml .= '</birthplace>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<regnumber>';
 			$xml .= F_text_to_xml($ma['user_regnumber']);
 			$xml .= '</regnumber>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<ssn>';
 			$xml .= F_text_to_xml($ma['user_ssn']);
 			$xml .= '</ssn>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<level>';
 			$xml .= $ma['user_level'];
 			$xml .= '</level>'.K_NEWLINE;
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<verifycode>';
 			$xml .= $ma['user_verifycode'];
 			$xml .= '</verifycode>'.K_NEWLINE;
-			
+
 			// add user's groups
-			$sqlg = 'SELECT * 
+			$sqlg = 'SELECT *
 				FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
 				WHERE usrgrp_group_id=group_id
 					AND usrgrp_user_id='.$ma['user_id'].'
@@ -177,19 +177,19 @@ function F_xml_export_users() {
 			} else {
 				F_display_db_error();
 			}
-			
+
 			$xml .= K_TAB.K_TAB.K_TAB.'</user>'.K_NEWLINE;
 		}
 	} else {
 		F_display_db_error();
 	}
-	
+
 	$xml .= K_TAB.'</body>'.K_NEWLINE;
 	$xml .= '</tcexamusers>'.K_NEWLINE;
 	return $xml;
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

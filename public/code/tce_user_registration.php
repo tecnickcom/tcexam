@@ -3,7 +3,7 @@
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
 // Last Update : 2010-03-29
-// 
+//
 // Description : User registration form.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -70,7 +70,7 @@ require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 
 if ($menu_mode == "add") { // process submited data
-	
+
 	foreach ($regfields as $name => $enabled) {
 		// disable unauthorized fields
 		if (!$enabled) {
@@ -99,7 +99,7 @@ if ($menu_mode == "add") { // process submited data
 		}
 		// check password
 		if(!empty($newpassword) OR !empty($newpassword_repeat)) {// update password
-			if($newpassword == $newpassword_repeat) { 
+			if($newpassword == $newpassword_repeat) {
 				$user_password = md5($newpassword);
 			} else { //print message and exit
 				F_print_error('WARNING', $l['m_different_passwords']);
@@ -116,38 +116,38 @@ if ($menu_mode == "add") { // process submited data
 			$user_verifycode = md5(uniqid(mt_rand(), true)); // verification code
 			$user_ip = getNormalizedIP($_SERVER['REMOTE_ADDR']); // get the user's IP number
 			$user_regdate = date(K_TIMESTAMP_FORMAT); // get the registration date and time
-			
+
 			if (K_USRREG_EMAIL_CONFIRM) {
 				$usrlevel = 0;
 			} else {
 				$usrlevel = 1;
 			}
 			$sql = 'INSERT INTO '.K_TABLE_USERS.' (
-				user_regdate, 
-				user_ip, 
-				user_name, 
-				user_email, 
-				user_password, 
+				user_regdate,
+				user_ip,
+				user_name,
+				user_email,
+				user_password,
 				user_regnumber,
-				user_firstname, 
-				user_lastname, 
-				user_birthdate, 
-				user_birthplace, 
-				user_ssn, 
+				user_firstname,
+				user_lastname,
+				user_birthdate,
+				user_birthplace,
+				user_ssn,
 				user_level,
 				user_verifycode
 				) VALUES (
-				\''.F_escape_sql($user_regdate).'\', 
-				\''.F_escape_sql($user_ip).'\', 
-				\''.F_escape_sql($user_name).'\', 
-				'.F_empty_to_null(F_escape_sql($user_email)).', 
-				\''.F_escape_sql($user_password).'\', 
-				'.F_empty_to_null(F_escape_sql($user_regnumber)).', 
-				'.F_empty_to_null(F_escape_sql($user_firstname)).', 
-				'.F_empty_to_null(F_escape_sql($user_lastname)).', 
-				'.F_empty_to_null(F_escape_sql($user_birthdate)).', 
-				'.F_empty_to_null(F_escape_sql($user_birthplace)).', 
-				'.F_empty_to_null(F_escape_sql($user_ssn)).', 
+				\''.F_escape_sql($user_regdate).'\',
+				\''.F_escape_sql($user_ip).'\',
+				\''.F_escape_sql($user_name).'\',
+				'.F_empty_to_null(F_escape_sql($user_email)).',
+				\''.F_escape_sql($user_password).'\',
+				'.F_empty_to_null(F_escape_sql($user_regnumber)).',
+				'.F_empty_to_null(F_escape_sql($user_firstname)).',
+				'.F_empty_to_null(F_escape_sql($user_lastname)).',
+				'.F_empty_to_null(F_escape_sql($user_birthdate)).',
+				'.F_empty_to_null(F_escape_sql($user_birthplace)).',
+				'.F_empty_to_null(F_escape_sql($user_ssn)).',
 				\''.$usrlevel.'\',
 				\''.$user_verifycode.'\'
 				)';
@@ -167,7 +167,7 @@ if ($menu_mode == "add") { // process submited data
 					usrgrp_user_id,
 					usrgrp_group_id
 					) VALUES (
-					\''.$user_id.'\', 
+					\''.$user_id.'\',
 					\''.$group_id.'\'
 					)';
 				if(!$r = F_db_query($sql, $db)) {
@@ -455,6 +455,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

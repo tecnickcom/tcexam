@@ -3,8 +3,8 @@
 // File name   : tce_import_xml_users.php
 // Begin       : 2006-03-17
 // Last Update : 2009-09-30
-// 
-// Description : Import users from an XML file or tab-delimited 
+//
+// Description : Import users from an XML file or tab-delimited
 //               CSV file.
 //
 // Author: Nicola Asuni
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -88,7 +88,7 @@ switch($menu_mode) {
 		break;
 	}
 
-	default: { 
+	default: {
 		break;
 	}
 
@@ -156,43 +156,43 @@ require_once('../code/tce_page_footer.php');
  * @version 1.0.000
  */
 class XMLUserImporter {
-	
+
 	/**
 	 * @var string Current data element.
 	 * @access private
 	 */
 	private $current_element = '';
-	
+
 	/**
 	 * @var string Current data value.
 	 * @access private
 	 */
 	private $current_data = '';
-	
+
 	/**
 	 * @var array Array for storing user data.
 	 * @access private
 	 */
 	private $user_data = Array();
-	
+
 	/**
 	 * @var array Array for storing user's group data.
 	 * @access private
 	 */
 	private $group_data = Array();
-	
+
 	/**
 	 * @var int ID of last inserted user (counter)
 	 * @access private
 	 */
 	private $user_id = 0;
-	
+
 	/**
 	 * @var string XML file
 	 * @access private
 	 */
 	private $xmlfile = '';
-	
+
 	/**
 	 * Class constructor.
 	 * @param string $xmlfile XML file name
@@ -219,7 +219,7 @@ class XMLUserImporter {
 		// free this XML parser
 		xml_parser_free($this->parser);
 	}
-	
+
 	/**
 	 * Class destructor;
 	 */
@@ -227,12 +227,12 @@ class XMLUserImporter {
 		// delete uploaded file
 		@unlink($this->xmlfile);
 	}
-	
+
 	/**
 	 * Sets the start element handler function for the XML parser parser.start_element_handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
-	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on. 
+	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
 	 * @access private
 	 */
 	private function startElementHandler($parser, $name, $attribs) {
@@ -271,17 +271,17 @@ class XMLUserImporter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the end element handler function for the XML parser parser.end_element_handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
+	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
 	 * @access private
 	 */
 	private function endElementHandler($parser, $name) {
 		global $l, $db;
 		require_once('../config/tce_config.php');
-		
+
 		switch(strtolower($name)) {
 			case 'name':
 			case 'password':
@@ -305,8 +305,8 @@ class XMLUserImporter {
 			case 'group': {
 				$group_name = F_escape_sql(F_xml_to_text($this->current_data));
 				// check if group already exist
-				$sql = 'SELECT group_id 
-					FROM '.K_TABLE_GROUPS.' 
+				$sql = 'SELECT group_id
+					FROM '.K_TABLE_GROUPS.'
 					WHERE group_name=\''.$group_name.'\'
 					LIMIT 1';
 				if($r = F_db_query($sql, $db)) {
@@ -329,7 +329,7 @@ class XMLUserImporter {
 				} else {
 					F_display_db_error();
 				}
-				
+
 				break;
 			}
 			case 'user': {
@@ -345,8 +345,8 @@ class XMLUserImporter {
 						$this->user_data['user_level'] = 1;
 					}
 					// check if user already exist
-					$sql = 'SELECT user_id 
-						FROM '.K_TABLE_USERS.' 
+					$sql = 'SELECT user_id
+						FROM '.K_TABLE_USERS.'
 						WHERE user_name=\''.$this->user_data['user_name'].'\'
 							OR user_regnumber=\''.$this->user_data['user_regnumber'].'\'
 							OR user_ssn=\''.$this->user_data['user_ssn'].'\'
@@ -355,9 +355,9 @@ class XMLUserImporter {
 						if($m = F_db_fetch_array($r)) {
 							// the user has been already added
 							$user_id = $m['user_id'];
-							
+
 							//update user data
-							$sqlu = 'UPDATE '.K_TABLE_USERS.' SET 
+							$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
 								user_regdate=\''.$this->user_data['user_regdate'].'\',
 								user_ip=\''.$this->user_data['user_ip'].'\',
 								user_name=\''.$this->user_data['user_name'].'\',
@@ -376,21 +376,21 @@ class XMLUserImporter {
 								F_display_db_error(false);
 								return FALSE;
 							}
-							
+
 						} else {
 							// add new user
 							$sqlu = 'INSERT INTO '.K_TABLE_USERS.' (
-								user_regdate, 
-								user_ip, 
-								user_name, 
-								user_email, 
-								user_password, 
+								user_regdate,
+								user_ip,
+								user_name,
+								user_email,
+								user_password,
 								user_regnumber,
-								user_firstname, 
-								user_lastname, 
-								user_birthdate, 
-								user_birthplace, 
-								user_ssn, 
+								user_firstname,
+								user_lastname,
+								user_birthdate,
+								user_birthplace,
+								user_ssn,
 								user_level,
 								user_verifycode
 								) VALUES (
@@ -419,13 +419,13 @@ class XMLUserImporter {
 						F_display_db_error(false);
 						return FALSE;
 					}
-					
+
 					// user's groups
 					if (!empty($this->group_data)) {
 						while(list($key,$group_id)=each($this->group_data)) {
 							// check if user-group already exist
-							$sqls = 'SELECT * 
-								FROM '.K_TABLE_USERGROUP.' 
+							$sqls = 'SELECT *
+								FROM '.K_TABLE_USERGROUP.'
 								WHERE usrgrp_group_id=\''.$group_id.'\'
 									AND usrgrp_user_id=\''.$user_id.'\'
 								LIMIT 1';
@@ -458,11 +458,11 @@ class XMLUserImporter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the character data handler function for the XML parser parser.handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $data The second parameter, data, contains the character data as a string. 
+	 * @param string $data The second parameter, data, contains the character data as a string.
 	 * @access private
 	 */
 	private function segContentHandler($parser, $data) {
@@ -471,7 +471,7 @@ class XMLUserImporter {
 			$this->current_data .= $data;
 		}
 	}
-	
+
 } // END OF CLASS
 
 /**
@@ -483,21 +483,21 @@ class XMLUserImporter {
 function F_import_csv_users($csvfile) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	
+
 	// get file content as array
 	$csvrows = file($csvfile); // array of CSV lines
 	if ($csvrows === FALSE) {
 		return FALSE;
 	}
-	
+
 	// move pointer to second line (discard headers)
 	next($csvrows);
-	
+
 	// for each row
 	while (list($item, $rowdata) = each($csvrows)) {
 		// get user data into array
 		$userdata = explode("\t", $rowdata);
-		
+
 		// set some default values
 		if (empty($userdata[4])) {
 			$userdata[4] = date(K_TIMESTAMP_FORMAT);
@@ -508,10 +508,10 @@ function F_import_csv_users($csvfile) {
 		if (empty($userdata[12])) {
 			$userdata[12] = 1;
 		}
-		
+
 		// check if user already exist
-		$sql = 'SELECT user_id 
-			FROM '.K_TABLE_USERS.' 
+		$sql = 'SELECT user_id
+			FROM '.K_TABLE_USERS.'
 			WHERE user_name=\''.F_escape_sql($userdata[1]).'\'
 				OR user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).'
 				OR user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).'
@@ -520,9 +520,9 @@ function F_import_csv_users($csvfile) {
 			if($m = F_db_fetch_array($r)) {
 				// the user has been already added
 				$user_id = $m['user_id'];
-				
+
 				//update user data
-				$sqlu = 'UPDATE '.K_TABLE_USERS.' SET 
+				$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
 					user_name=\''.F_escape_sql($userdata[1]).'\',
 					user_password=\''.md5($userdata[2]).'\',
 					user_email='.F_empty_to_null(F_escape_sql($userdata[3])).',
@@ -541,21 +541,21 @@ function F_import_csv_users($csvfile) {
 					F_display_db_error(false);
 					return FALSE;
 				}
-				
+
 			} else {
 				// add new user
 				$sqlu = 'INSERT INTO '.K_TABLE_USERS.' (
-					user_name, 
-					user_password, 
-					user_email, 
-					user_regdate, 
-					user_ip, 
-					user_firstname, 
-					user_lastname, 
-					user_birthdate, 
-					user_birthplace, 
+					user_name,
+					user_password,
+					user_email,
+					user_regdate,
+					user_ip,
+					user_firstname,
+					user_lastname,
+					user_birthdate,
+					user_birthplace,
 					user_regnumber,
-					user_ssn, 
+					user_ssn,
 					user_level,
 					user_verifycode
 					) VALUES (
@@ -584,15 +584,15 @@ function F_import_csv_users($csvfile) {
 			F_display_db_error(false);
 			return FALSE;
 		}
-		
+
 		// user's groups
 		if (!empty($userdata[14])) {
 			$groups = explode(',', addslashes($userdata[14]));
 			while(list($key,$group_name)=each($groups)) {
 				$group_name = F_escape_sql($group_name);
 				// check if group already exist
-				$sql = 'SELECT group_id 
-					FROM '.K_TABLE_GROUPS.' 
+				$sql = 'SELECT group_id
+					FROM '.K_TABLE_GROUPS.'
 					WHERE group_name=\''.$group_name.'\'
 					LIMIT 1';
 				if($r = F_db_query($sql, $db)) {
@@ -618,8 +618,8 @@ function F_import_csv_users($csvfile) {
 					return FALSE;
 				}
 				// check if user-group already exist
-				$sqls = 'SELECT * 
-					FROM '.K_TABLE_USERGROUP.' 
+				$sqls = 'SELECT *
+					FROM '.K_TABLE_USERGROUP.'
 					WHERE usrgrp_group_id=\''.$group_id.'\'
 						AND usrgrp_user_id=\''.$user_id.'\'
 					LIMIT 1';
@@ -645,11 +645,11 @@ function F_import_csv_users($csvfile) {
 			}
 		}
 	}
-	
+
 	return TRUE;
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

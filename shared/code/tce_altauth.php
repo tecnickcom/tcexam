@@ -6,7 +6,7 @@
 //
 // Description : Check user authorization against alternative
 //               systems (RADIUS, LDAP, CAS, ...)
-// 
+//
 // Author: Nicola Asuni
 //
 // (c) Copyright:
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -61,9 +61,9 @@
 function F_altLogin($username, $password) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	
+
 	// TCExam tries to retrive the user login information from the following systems:
-	
+
 	// 1) RADIUS ---------------------------------------------
 	require_once('../../shared/config/tce_radius.php');
 	if (K_RADIUS_ENABLED) {
@@ -91,7 +91,7 @@ function F_altLogin($username, $password) {
 		}
 	}
 	// -------------------------------------------------------
-	
+
 	// 2) LDAP -----------------------------------------------
 	require_once('../../shared/config/tce_ldap.php');
 	if (K_LDAP_ENABLED) {
@@ -133,7 +133,7 @@ function F_altLogin($username, $password) {
 		@ldap_unbind($ldapconn);
 	}
 	// -------------------------------------------------------
-	
+
 	// 3) CAS ---------------------------------------------
 	require_once('../../shared/config/tce_cas.php');
 	if (K_CAS_ENABLED) {
@@ -156,6 +156,6 @@ function F_altLogin($username, $password) {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

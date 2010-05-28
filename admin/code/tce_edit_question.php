@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -142,9 +142,9 @@ $qtype = array('S', 'M', 'T', 'O'); // question types
 if (isset($_REQUEST['question_id']) AND ($_REQUEST['question_id'] > 0)) {
 	$question_id = intval($_REQUEST['question_id']);
 	$sql = 'SELECT subject_module_id,question_subject_id
-		FROM '.K_TABLE_SUBJECTS.', '.K_TABLE_QUESTIONS.' 
+		FROM '.K_TABLE_SUBJECTS.', '.K_TABLE_QUESTIONS.'
 		WHERE subject_id=question_subject_id
-			AND question_id='.$question_id.' 
+			AND question_id='.$question_id.'
 		LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -161,11 +161,11 @@ if (isset($_REQUEST['question_id']) AND ($_REQUEST['question_id'] > 0)) {
 switch($menu_mode) {
 
 	case 'delete':{
-		F_stripslashes_formfields(); 
+		F_stripslashes_formfields();
 		// check if this record is used (test_log)
 		if(!F_check_unique(K_TABLE_TESTS_LOGS, 'testlog_question_id='.$question_id.'')) {
 			//this record will be only disabled and not deleted because it's used
-			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 				question_enabled=\'0\'
 				WHERE question_id='.$question_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -184,7 +184,7 @@ switch($menu_mode) {
 			<input type="hidden" name="question_subject_id" id="question_subject_id" value="<?php echo $question_subject_id; ?>" />
 			<input type="hidden" name="question_description" id="question_description" value="<?php echo $question_description; ?>" />
 			<input type="hidden" name="question_explanation" id="question_explanation" value="<?php echo $question_explanation; ?>" />
-			<?php 
+			<?php
 			F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 			?>
@@ -204,11 +204,11 @@ switch($menu_mode) {
 				F_display_db_error(false);
 				break;
 			}
-			
+
 			// get question position (if defined)
 			$sql = 'SELECT question_position
-				FROM '.K_TABLE_QUESTIONS.' 
-				WHERE question_id='.$question_id.' 
+				FROM '.K_TABLE_QUESTIONS.'
+				WHERE question_id='.$question_id.'
 				LIMIT 1';
 			if($r = F_db_query($sql, $db)) {
 				if($m = F_db_fetch_array($r)) {
@@ -226,7 +226,7 @@ switch($menu_mode) {
 				$question_id=FALSE;
 				// adjust questions ordering
 				if ($question_position > 0) {
-					$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+					$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 						question_position=question_position-1
 						WHERE question_subject_id='.$question_subject_id.'
 							AND question_position>'.$question_position.'';
@@ -235,7 +235,7 @@ switch($menu_mode) {
 						F_db_query('ROLLBACK', $db); // rollback transaction
 					}
 				}
-				
+
 				$sql = 'COMMIT';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
@@ -252,8 +252,8 @@ switch($menu_mode) {
 			// get previous question position (if defined)
 			$prev_question_position = 0;
 			$sql = 'SELECT question_position
-				FROM '.K_TABLE_QUESTIONS.' 
-				WHERE question_id='.$question_id.' 
+				FROM '.K_TABLE_QUESTIONS.'
+				WHERE question_id='.$question_id.'
 				LIMIT 1';
 			if($r = F_db_query($sql, $db)) {
 				if($m = F_db_fetch_array($r)) {
@@ -262,7 +262,7 @@ switch($menu_mode) {
 			} else {
 				F_display_db_error();
 			}
-			
+
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if(!F_check_unique(K_TABLE_TESTS_LOGS, 'testlog_question_id='.$question_id.'')) {
 				F_print_error('WARNING', $l['m_update_restrict']);
@@ -273,8 +273,8 @@ switch($menu_mode) {
 					$question_position = $prev_question_position;
 				}
 				// enable or disable record
-				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
-					question_enabled=\''.$question_enabled.'\', 
+				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
+					question_enabled=\''.$question_enabled.'\',
 					question_position='.F_zero_to_null($question_position).'
 					WHERE question_id='.$question_id.'';
 				if(!$r = F_db_query($sql, $db)) {
@@ -288,7 +288,7 @@ switch($menu_mode) {
 					}
 					F_print_error('MESSAGE', $strmsg);
 				}
-				
+
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
@@ -303,7 +303,7 @@ switch($menu_mode) {
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
-			
+
 			$sql = 'START TRANSACTION';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -321,20 +321,20 @@ switch($menu_mode) {
 				if ($question_position > 0) {
 					if ($prev_question_position > 0) {
 						// swap positions
-						$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+						$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 							question_position='.$prev_question_position.'
 							WHERE question_subject_id='.$question_subject_id.'
 								AND question_position='.$question_position.'';
 					} elseif ($prev_question_position == 0) {
 						// right shift positions
-						$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+						$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 							question_position=question_position+1
 							WHERE question_subject_id='.$question_subject_id.'
 								AND question_position>='.$question_position.'';
 					}
 				} else {
 					// left shift positions
-					$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+					$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 						question_position=question_position-1
 						WHERE question_subject_id='.$question_subject_id.'
 							AND question_position>'.$prev_question_position.'';
@@ -344,7 +344,7 @@ switch($menu_mode) {
 					F_db_query('ROLLBACK', $db); // rollback transaction
 				}
 			}
-			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 				question_subject_id='.$question_subject_id.',
 				question_description=\''.F_escape_sql($question_description).'\',
 				question_explanation='.F_empty_to_null($question_explanation).',
@@ -356,13 +356,13 @@ switch($menu_mode) {
 				question_fullscreen=\''.$question_fullscreen.'\',
 				question_inline_answers=\''.$question_inline_answers.'\',
 				question_auto_next=\''.$question_auto_next.'\'
-				WHERE question_id='.$question_id.'';	
+				WHERE question_id='.$question_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {
 				F_print_error('MESSAGE', $l['m_updated']);
 			}
-			
+
 			$sql = 'COMMIT';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -392,7 +392,7 @@ switch($menu_mode) {
 			}
 			// adjust questions ordering
 			if ($question_position > 0) {
-				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 					question_position=question_position+1
 					WHERE question_subject_id='.$question_subject_id.'
 						AND question_position>='.$question_position.'';
@@ -402,7 +402,7 @@ switch($menu_mode) {
 				}
 			}
 			$sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
-				question_subject_id, 
+				question_subject_id,
 				question_description,
 				question_explanation,
 				question_type,
@@ -414,7 +414,7 @@ switch($menu_mode) {
 				question_inline_answers,
 				question_auto_next
 				) VALUES (
-				'.$question_subject_id.', 
+				'.$question_subject_id.',
 				\''.F_escape_sql($question_description).'\',
 				'.F_empty_to_null($question_explanation).',
 				\''.$question_type.'\',
@@ -454,7 +454,7 @@ switch($menu_mode) {
 		break;
 	}
 
-	default :{ 
+	default :{
 		break;
 	}
 
@@ -475,7 +475,7 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 }
 
 // select subject
-if ((isset($changemodule) AND ($changemodule > 0)) 
+if ((isset($changemodule) AND ($changemodule > 0))
 	OR (!(isset($question_subject_id) AND ($question_subject_id > 0)))) {
 	$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
@@ -492,12 +492,12 @@ if ((isset($changemodule) AND ($changemodule > 0))
 // --- Initialize variables
 if($formstatus) {
 	if ($menu_mode != 'clear') {
-		if ((isset($changemodule) AND ($changemodule > 0)) 
-			OR (isset($changecategory) AND ($changecategory > 0)) 
+		if ((isset($changemodule) AND ($changemodule > 0))
+			OR (isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($question_id)) OR empty($question_id)) {
-			$sql = 'SELECT * 
-				FROM '.K_TABLE_QUESTIONS.' 
-				WHERE question_subject_id='.$question_subject_id.' 
+			$sql = 'SELECT *
+				FROM '.K_TABLE_QUESTIONS.'
+				WHERE question_subject_id='.$question_subject_id.'
 				ORDER BY question_position,';
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$sql .= 'CAST(question_description as varchar2(100))';
@@ -505,9 +505,9 @@ if($formstatus) {
 				$sql .= 'question_description LIMIT 1';
 			}
 		} else {
-			$sql = 'SELECT * 
-				FROM '.K_TABLE_QUESTIONS.' 
-				WHERE question_id='.$question_id.' 
+			$sql = 'SELECT *
+				FROM '.K_TABLE_QUESTIONS.'
+				WHERE question_id='.$question_id.'
 				LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
@@ -647,9 +647,9 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="question_id" id="question_id" size="0" onchange="document.getElementById('form_questioneditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = 'SELECT * 
-	FROM '.K_TABLE_QUESTIONS.' 
-	WHERE question_subject_id='.$question_subject_id.' 
+$sql = 'SELECT *
+	FROM '.K_TABLE_QUESTIONS.'
+	WHERE question_subject_id='.$question_subject_id.'
 	ORDER BY question_enabled DESC, question_position,';
 if (K_DATABASE_TYPE == 'ORACLE') {
 	$sql .= 'CAST(question_description as varchar2(100))';
@@ -932,6 +932,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

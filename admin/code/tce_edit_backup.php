@@ -3,7 +3,7 @@
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
 // Last Update : 2010-02-12
-// 
+//
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
 //               SOME POSIX COMMANDS ARE HARD-CODED
@@ -20,25 +20,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -75,14 +75,14 @@ if(isset($_POST['backup'])) {
 switch($menu_mode) { // process submited data
 
 	case 'restore':{
-		if (isset($backup_file) AND !empty($backup_file)) {		
+		if (isset($backup_file) AND !empty($backup_file)) {
 			F_print_error('WARNING', $l['m_restore_confirm'].': '.$backup_file);
 			?>
 			<div class="confirmbox">
 			<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 			<div>
 			<input type="hidden" name="backup_file" id="backup_file" value="<?php echo stripslashes($backup_file); ?>" />
-			<?php 
+			<?php
 			F_submit_button('forcerestore', $l['w_restore'], $l['h_restore']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 			?>
@@ -90,7 +90,7 @@ switch($menu_mode) { // process submited data
 			</form>
 			</div>
 			<?php
-		
+
 		}
 		break;
 	}
@@ -166,8 +166,8 @@ switch($menu_mode) { // process submited data
 		F_print_error('MESSAGE', $l['m_backup_completed']);
 		break;
 	}
-	
-	default :{ 
+
+	default :{
 		break;
 	}
 
@@ -236,6 +236,6 @@ echo '</div>'.K_NEWLINE;
 require_once('../code/tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

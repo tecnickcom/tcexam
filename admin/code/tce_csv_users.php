@@ -3,7 +3,7 @@
 // File name   : tce_csv_users.php
 // Begin       : 2006-03-30
 // Last Update : 2009-09-30
-// 
+//
 // Description : Functions to export users using CSV format.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -87,9 +87,9 @@ echo F_csv_export_users();
 function F_csv_export_users() {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	
+
 	$csv = ''; // CSV data to be returned
-	
+
 	// print column names
 	$csv .= 'user_id';
 	$csv .= K_TAB.'user_name';
@@ -106,8 +106,8 @@ function F_csv_export_users() {
 	$csv .= K_TAB.'user_level';
 	$csv .= K_TAB.'user_verifycode';
 	$csv .= K_TAB.'user_groups';
-	
-	$sql = 'SELECT * 
+
+	$sql = 'SELECT *
 		FROM '.K_TABLE_USERS.'
 		ORDER BY user_lastname,user_firstname,user_name';
 	if($r = F_db_query($sql, $db)) {
@@ -129,7 +129,7 @@ function F_csv_export_users() {
 			$csv .= K_TAB;
 			$grp = '';
 			// comma separated list of user's groups
-			$sqlg = 'SELECT * 
+			$sqlg = 'SELECT *
 				FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
 				WHERE usrgrp_group_id=group_id
 					AND usrgrp_user_id='.$m['user_id'].'
@@ -153,6 +153,6 @@ function F_csv_export_users() {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

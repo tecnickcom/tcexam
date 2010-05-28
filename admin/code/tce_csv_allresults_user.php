@@ -3,8 +3,8 @@
 // File name   : tce_csv_allresults_user.php
 // Begin       : 2008-12-26
 // Last Update : 2009-09-30
-// 
-// Description : Functions to export users' results using 
+//
+// Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
 //
 // Author: Nicola Asuni
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -114,14 +114,14 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_authorization.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
-	
+
 	$user_id = intval($user_id);
 	$startdate = F_escape_sql($startdate);
 	$enddate = F_escape_sql($enddate);
 	$order_field = F_escape_sql($order_field);
-	
+
 	$csv = ''; // CSV data to be returned
-		
+
 	// print column names
 	$csv .= '#';
 	$csv .= K_TAB.$l['w_time'];
@@ -133,9 +133,9 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 	$csv .= K_TAB.$l['w_questions_undisplayed'];
 	$csv .= K_TAB.$l['w_questions_unrated'];
 	$csv .= K_TAB.$l['w_comment'];
-	
+
 	// output users stats
-	$sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score 
+	$sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 		WHERE testuser_status>0
 			AND testuser_creation_time>=\''.$startdate.'\'
@@ -164,11 +164,11 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 	} else {
 		F_display_db_error();
 	}
-	
+
 	return $csv;
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

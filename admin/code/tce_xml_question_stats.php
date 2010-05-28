@@ -52,7 +52,7 @@
 
 /**
  */
- 
+
  // check user's authorization
 require_once('../config/tce_config.php');
 $pagelevel = K_AUTH_ADMIN_RESULTS;

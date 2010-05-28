@@ -3,7 +3,7 @@
 // File name   : tce_functions_errmsg.php
 // Begin       : 2001-09-17
 // Last Update : 2009-09-30
-// 
+//
 // Description : handle error messages
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -125,15 +125,15 @@ function F_display_db_error($exit=true) {
 
 /**
  * Custom PHP error handler function.
- * @param int $errno The first parameter, errno, contains the level of the error raised, as an integer. 
- * @param string $errstr The second parameter, errstr, contains the error message, as a string. 
- * @param string $errfile The third parameter is optional, errfile, which contains the filename that the error was raised in, as a string. 
- * @param int $errline The fourth parameter is optional, errline, which contains the line number the error was raised at, as an integer. 
+ * @param int $errno The first parameter, errno, contains the level of the error raised, as an integer.
+ * @param string $errstr The second parameter, errstr, contains the error message, as a string.
+ * @param string $errfile The third parameter is optional, errfile, which contains the filename that the error was raised in, as a string.
+ * @param int $errline The fourth parameter is optional, errline, which contains the line number the error was raised at, as an integer.
  * @uses F_print_error
  */
 function F_error_handler($errno, $errstr, $errfile, $errline) {
 	$messagetoprint = '['.$errno.'] '.$errstr.' | LINE: '.$errline.' | FILE: '.$errfile.'';
-	switch ($errno) { 
+	switch ($errno) {
 		case E_ERROR:
 		case E_USER_ERROR: {
 			F_print_error('ERROR', $messagetoprint, true);
@@ -153,10 +153,10 @@ function F_error_handler($errno, $errstr, $errfile, $errline) {
 	}
 }
 
-// Set the custom error handler function 
+// Set the custom error handler function
 $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

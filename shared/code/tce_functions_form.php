@@ -3,7 +3,7 @@
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
 // Last Update : 2010-02-17
-// 
+//
 // Description : Functions to handle XHTML Form Fields.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -110,17 +110,17 @@ function F_check_required_fields($formfields) {
 	}
 	if(strlen($missing_fields)>1) {
 		$missing_fields = substr($missing_fields, 1); // cuts first comma
-	} 
+	}
 	return ($missing_fields);
 }
 
 /**
  * Check fields format using regular expression comparisons.<br>
  * Returns a string containing a list of wrong fields (comma separated).
- * 
+ *
  * NOTE:
  * to check a field create a new hidden field with the same name starting with 'x_'
- * 
+ *
  * An example powerful regular expression for email check is:
  *  ^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
  * @param string $formfields input array containing form fields
@@ -147,7 +147,7 @@ function F_check_fields_format($formfields) {
 	}
 	if(strlen($wrongfields) > 1) {
 		$wrongfields = substr($wrongfields, 2); // cuts first 2 chars
-	} 
+	}
 	return ($wrongfields);
 }
 
@@ -159,16 +159,16 @@ function F_check_fields_format($formfields) {
 function F_check_form_fields() {
 	require_once('../config/tce_config.php');
 	global $l;
-	
+
 	$formfields = F_decode_form_fields(); //decode form fields
-	
+
 	//check missing fields
 	if($missing_fields = F_check_required_fields($formfields)) {
 		F_print_error('WARNING', $l['m_form_missing_fields'].': '.$missing_fields);
 		F_stripslashes_formfields();
 		return FALSE;
 	}
-	
+
 	//check fields format
 	if($wrong_fields = F_check_fields_format($formfields)) {
 		F_print_error('WARNING', $l['m_form_wrong_fields'].': '.$wrong_fields);
@@ -221,6 +221,6 @@ function F_submit_button($name, $value, $title="") {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

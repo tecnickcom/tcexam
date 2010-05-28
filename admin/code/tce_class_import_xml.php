@@ -3,7 +3,7 @@
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
 // Last Update : 2009-10-10
-// 
+//
 // Description : Class to import questions from an XML file.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -60,56 +60,56 @@
  * @version 1.1.000
  */
 class XMLQuestionImporter {
-	
+
 	/**
 	 * @var XML file
 	 * @access private
 	 */
 	private $xmlfile = 0;
-	
+
 	/**
 	 * @var Current level: 'module', 'subject', 'question', 'answer'
 	 * @access private
 	 */
 	private $level = '';
-	
+
 	/**
 	 * @var Array to store current level data.
 	 * @access private
 	 */
 	private $level_data = Array();
-	
+
 	/**
 	 * @var Current data element.
 	 * @access private
 	 */
 	private $current_element = '';
-	
+
 	/**
 	 * @var Current data value.
 	 * @access private
 	 */
 	private $current_data = '';
-	
+
 	/**
 	 * @var Boolean values.
 	 * @access private
 	 */
 	private $boolval = Array('false' => '0', 'true' => '1');
-	
+
 	/**
 	 * @var Type of questions.
 	 * @access private
 	 */
 	private $qtype = Array('single' => '1', 'multiple' => '2', 'text' => '3', 'ordering' => '4');
-	
+
 	/**
 	 * @var store hash values of question descriptions.
 	 * This is used to avoid the 255 chars limitation for string indexes on MySQL
 	 * @access private
 	 */
 	private $questionhash = array();
-	
+
 	/**
 	 * Class constructor.
 	 * @param string $xmlfile xml (XML) file name
@@ -139,7 +139,7 @@ class XMLQuestionImporter {
 		xml_parser_free($this->parser);
 		return true;
 	}
-	
+
 	/**
 	 * Class destructor;
 	 */
@@ -147,12 +147,12 @@ class XMLQuestionImporter {
 		// delete uploaded file
 		@unlink($this->xmlfile);
 	}
-	
+
 	/**
 	 * Sets the start element handler function for the XML parser parser.start_element_handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
-	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on. 
+	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
 	 * @access private
 	 */
 	private function startElementHandler($parser, $name, $attribs) {
@@ -216,11 +216,11 @@ class XMLQuestionImporter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the end element handler function for the XML parser parser.end_element_handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters. 
+	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
 	 * @access private
 	 */
 	private function endElementHandler($parser, $name) {
@@ -257,11 +257,11 @@ class XMLQuestionImporter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Sets the character data handler function for the XML parser parser.handler.
 	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $data The second parameter, data, contains the character data as a string. 
+	 * @param string $data The second parameter, data, contains the character data as a string.
 	 * @access private
 	 */
 	private function segContentHandler($parser, $data) {
@@ -270,7 +270,7 @@ class XMLQuestionImporter {
 			$this->current_data .= $data;
 		}
 	}
-	
+
 	/**
 	 * Add a new module if not exist.
 	 * @access private
@@ -282,7 +282,7 @@ class XMLQuestionImporter {
 			return;
 		}
 		// check if this module already exist
-		$sql = 'SELECT module_id 
+		$sql = 'SELECT module_id
 			FROM '.K_TABLE_MODULES.'
 			WHERE module_name=\''.$this->level_data['module']['module_name'].'\'
 			LIMIT 1';
@@ -310,7 +310,7 @@ class XMLQuestionImporter {
 			F_display_db_error();
 		}
 	}
-	
+
 	/**
 	 * Add a new subject if not exist.
 	 * @access private
@@ -322,7 +322,7 @@ class XMLQuestionImporter {
 			return;
 		}
 		// check if this subject already exist
-		$sql = 'SELECT subject_id 
+		$sql = 'SELECT subject_id
 			FROM '.K_TABLE_SUBJECTS.'
 			WHERE subject_name=\''.$this->level_data['subject']['subject_name'].'\'
 				AND subject_module_id='.$this->level_data['module']['module_id'].'
@@ -334,14 +334,14 @@ class XMLQuestionImporter {
 			} else {
 				// insert new subject
 				$sql = 'INSERT INTO '.K_TABLE_SUBJECTS.' (
-					subject_name, 
-					subject_description, 
+					subject_name,
+					subject_description,
 					subject_enabled,
 					subject_user_id,
 					subject_module_id
 					) VALUES (
 					\''.$this->level_data['subject']['subject_name'].'\',
-					'.F_empty_to_null($this->level_data['subject']['subject_description']).', 
+					'.F_empty_to_null($this->level_data['subject']['subject_description']).',
 					\''.$this->boolval[$this->level_data['subject']['subject_enabled']].'\',
 					\''.$_SESSION['session_user_id'].'\',
 					'.$this->level_data['module']['module_id'].'
@@ -357,7 +357,7 @@ class XMLQuestionImporter {
 			F_display_db_error();
 		}
 	}
-	
+
 	/**
 	 * Add a new question if not exist.
 	 * @access private
@@ -369,7 +369,7 @@ class XMLQuestionImporter {
 			return;
 		}
 		// check if this question already exist
-		$sql = 'SELECT question_id 
+		$sql = 'SELECT question_id
 			FROM '.K_TABLE_QUESTIONS.'
 			WHERE ';
 		if (K_DATABASE_TYPE == 'ORACLE') {
@@ -409,7 +409,7 @@ class XMLQuestionImporter {
 		}
 		// adjust questions ordering
 		if (!empty($this->level_data['question']['question_position']) AND ($this->level_data['question']['question_position'] > 0)) {
-			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET 
+			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 				question_position=question_position+1
 				WHERE question_subject_id='.$this->level_data['subject']['subject_id'].'
 					AND question_position>='.$this->level_data['question']['question_position'].'';
@@ -432,7 +432,7 @@ class XMLQuestionImporter {
 			question_inline_answers,
 			question_auto_next
 			) VALUES (
-			'.$this->level_data['subject']['subject_id'].', 
+			'.$this->level_data['subject']['subject_id'].',
 			\''.$this->level_data['question']['question_description'].'\',
 			'.F_empty_to_null($this->level_data['question']['question_explanation']).',
 			\''.$this->qtype[$this->level_data['question']['question_type']].'\',
@@ -456,9 +456,9 @@ class XMLQuestionImporter {
 		$sql = 'COMMIT';
 		if(!$r = F_db_query($sql, $db)) {
 			F_display_db_error();
-		}		
+		}
 	}
-	
+
 	/**
 	 * Add a new answer if not exist.
 	 * @access private
@@ -470,7 +470,7 @@ class XMLQuestionImporter {
 			return;
 		}
 		// check if this answer already exist
-		$sql = 'SELECT answer_id 
+		$sql = 'SELECT answer_id
 			FROM '.K_TABLE_ANSWERS.'
 			WHERE ';
 		if (K_DATABASE_TYPE == 'ORACLE') {
@@ -490,7 +490,7 @@ class XMLQuestionImporter {
 				}
 				// adjust answers ordering
 				if (!empty($this->level_data['answer']['answer_position']) AND ($this->level_data['answer']['answer_position'] > 0)) {
-					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET 
+					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 						answer_position=answer_position+1
 						WHERE answer_question_id='.$this->level_data['question']['question_id'].'
 							AND answer_position>='.$this->level_data['answer']['answer_position'].'';
@@ -532,10 +532,10 @@ class XMLQuestionImporter {
 			F_display_db_error();
 		}
 	}
-		
+
 } // END OF CLASS
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

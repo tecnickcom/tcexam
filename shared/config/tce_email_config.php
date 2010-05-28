@@ -3,7 +3,7 @@
 // File name   : cp_email_config.php
 // Begin       : 2001-10-20
 // Last Update : 2009-11-05
-// 
+//
 // Description : Default values for public variables of
 //				 C_mailer class
 //
@@ -16,7 +16,7 @@
 //               09044 Quartucciu (CA)
 //               ITALY
 //               www.tecnick.com
-//               info@tecnick.com                           
+//               info@tecnick.com
 //============================================================+
 
 /**
@@ -51,7 +51,7 @@ $emailcfg['AttachmentsEncoding'] = 'base64';
 $emailcfg['AdminEmail'] = '';
 
 // Sets the From email address for the message. Default value is 'root@localhost'.
-$emailcfg['From'] = 'tecnick.com@gmail.com';
+$emailcfg['From'] = '';
 
 // Sets the From name of the message. Default value is 'Root User'.
 $emailcfg['FromName'] = 'TCExam';
@@ -69,7 +69,7 @@ $emailcfg['ReplyName'] = '';
 $emailcfg['WordWrap'] = false;
 
 // Method to send mail: ('mail', 'sendmail', or 'smtp').
-$emailcfg['Mailer'] = 'sendmail';
+$emailcfg['Mailer'] = 'smtp';
 
 // Sets the path of the sendmail program. Default value is '/usr/sbin/sendmail'.
 $emailcfg['Sendmail'] = '/usr/sbin/sendmail';
@@ -93,19 +93,19 @@ $emailcfg['MsgFooter'] = '</body></html>';
 // -----------------------------------------------------------------------------
 
 // Sets the SMTP hosts. All hosts must be separated by a semicolon (e.g. Host("smtp1.domain.com;smtp2.domain.com"). Hosts will be tried in order.
-$emailcfg['Host'] = 'localhost';
+$emailcfg['Host'] = 'smtp.gmail.com';
 
 // Sets the SMTP server port. Default value is 25.
-$emailcfg['Port'] = 25;
+$emailcfg['Port'] = 465;
 
 // Default value is 'localhost.localdomain'.
 $emailcfg['Helo'] = '';
 
 // Sets SMTP authentication. Remember to set the Username and Password. Default value is false (off).
-$emailcfg['SMTPAuth'] = false;
+$emailcfg['SMTPAuth'] = true;
 
 // Sets the prefix to the server. Options are '', 'ssl' or 'tls'.
-$emailcfg['SMTPSecure'] = '';
+$emailcfg['SMTPSecure'] = 'ssl';
 
 // Sets SMTP username. Default value is ''.
 $emailcfg['Username'] = '';
@@ -123,6 +123,6 @@ $emailcfg['SMTPDebug'] = false;
 $emailcfg['PluginDir'] = '../../shared/phpmailer/';
 
 //============================================================+
-// END OF FILE  
+// END OF FILE
 //============================================================+
 ?>

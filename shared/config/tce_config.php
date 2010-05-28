@@ -3,7 +3,7 @@
 // File name   : tce_config.php
 // Begin       : 2002-02-24
 // Last Update : 2010-03-10
-// 
+//
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
@@ -15,25 +15,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '10.1.006');
+define ('K_TCEXAM_VERSION', '10.1.007');
 
 /**
  * 2-letters code for default language.
@@ -94,7 +94,7 @@ define ('K_AVAILABLE_LANGUAGES', serialize(array(
 
 ini_set('zend.ze1_compatibility_mode', false); // disable PHP4 compatibility mode
 
-// -- INCLUDE files -- 
+// -- INCLUDE files --
 require_once('../../shared/config/tce_paths.php');
 require_once('../../shared/config/tce_general_constants.php');
 
@@ -168,7 +168,7 @@ define ('K_COOKIE_PATH', '/');
 /**
  * If true use secure cookies.
  */
-define ('K_COOKIE_SECURE', false); 
+define ('K_COOKIE_SECURE', false);
 
 /**
  * Expiration time for cookies.
@@ -203,10 +203,10 @@ define ('K_ENABLE_JSERRORS', false);
 
 /**
  * Set your own timezone here.
- * Possible values are listed on: 
+ * Possible values are listed on:
  * http://php.net/manual/en/timezones.php
  */
-define ('K_TIMEZONE', 'UTC'); 
+define ('K_TIMEZONE', 'UTC');
 
 /**
  * Default minutes used to extend test duration.
@@ -224,8 +224,8 @@ require_once('../../shared/code/tce_functions_errmsg.php');
 // load language resources
 
 // set user's selected language or default language
-if(isset($_REQUEST['lang']) 
-	AND (strlen($_REQUEST['lang']) == 2) 
+if(isset($_REQUEST['lang'])
+	AND (strlen($_REQUEST['lang']) == 2)
 	AND (array_key_exists($_REQUEST['lang'],unserialize(K_AVAILABLE_LANGUAGES)))) {
 	/**
 	 * Use requested language.
@@ -234,8 +234,8 @@ if(isset($_REQUEST['lang'])
 	define ('K_USER_LANG', $_REQUEST['lang']);
 	// set client cookie
 	setcookie('SessionUserLang', K_USER_LANG, time() + K_COOKIE_EXPIRE, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
-} elseif (isset($_COOKIE['SessionUserLang']) 
-	AND (strlen($_COOKIE['SessionUserLang']) == 2) 
+} elseif (isset($_COOKIE['SessionUserLang'])
+	AND (strlen($_COOKIE['SessionUserLang']) == 2)
 	AND (array_key_exists($_COOKIE['SessionUserLang'],unserialize(K_AVAILABLE_LANGUAGES)))) {
 	/**
 	 * Use session language.
@@ -269,17 +269,17 @@ if (PHP_VERSION_ID < 50300) {
 }
 
 ini_set('arg_separator.output', '&amp;');
-//date_default_timezone_set(K_TIMEZONE); 
+//date_default_timezone_set(K_TIMEZONE);
 
 // --- get posted and get variables (to be compatible with register_globals off)
 foreach ($_REQUEST as $postkey => $postvalue) {
-	if (($postkey{0} != '_') AND 
+	if (($postkey{0} != '_') AND
 		(!preg_match("/[A-Z]/", $postkey{0}))) {
 		$$postkey = $postvalue;
 	}
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

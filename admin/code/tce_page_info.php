@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -106,9 +106,9 @@ echo '<li><strong>phpCAS</strong><br />
 CAS client in PHP.<br />
 Copyright: Copyright &copy; 2003-2008, The ESUP-Portail consortium &amp; the JA-SIG Collaborative. All rights reserved.<br />
 Author: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a>.<br />
-Developers: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a>, University of Rennes 1, 
-<a href="http://www.ja-sig.org/wiki/display/~saltybeagle">Brett Bieber</a>, University of Nebraska-Lincoln, 
-<a href="http://www.ja-sig.org/wiki/display/~jmarchal">Julien Marchal</a>, University of Nancy 2, 
+Developers: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a>, University of Rennes 1,
+<a href="http://www.ja-sig.org/wiki/display/~saltybeagle">Brett Bieber</a>, University of Nebraska-Lincoln,
+<a href="http://www.ja-sig.org/wiki/display/~jmarchal">Julien Marchal</a>, University of Nancy 2,
 <a href="http://www.ja-sig.org/wiki/display/~olivierberger">Olivier Berger</a>, Institut TELECOM, SudParis.<br />
 This class includes an integrated copy of <a href="http://alexandre.alapetite.net/doc-alex/domxml-php4-php5/">domxml-php4-php5.php</a>, written by <a href="http://alexandre.alapetite.net/cv/">Alexandre Alapetite</a>, Copyright 2004, <a href="http://creativecommons.org/licenses/by-sa/2.0/fr/">Licence: Creative Commons "Attribution-ShareAlike 2.0 France" BY-SA</a>.<br />
 This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University\'s College of Computing and Digital Media) and Nicola Asuni (Tecnick.com s.r.l.).<br />
@@ -173,6 +173,6 @@ echo '</div>'.K_NEWLINE;
 require_once('tce_page_footer.php');
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

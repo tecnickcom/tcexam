@@ -3,7 +3,7 @@
 // File name   : tce_page_timer.php
 // Begin       : 2004-04-29
 // Last Update : 2010-02-17
-// 
+//
 // Description : Display timer (date-time + countdown).
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -52,12 +52,12 @@
 if (!isset($_REQUEST['examtime'])) {
 	$examtime = 0; // remaining exam time in seconds
 	$enable_countdown = 'false';
-	$timeout_logout = 'false';	
+	$timeout_logout = 'false';
 } else {
 	$examtime = floatval($_REQUEST['examtime']);
 	$enable_countdown = 'true';
 	if (isset($_REQUEST['timeout_logout']) AND ($_REQUEST['timeout_logout'])) {
-		$timeout_logout = 'true';	
+		$timeout_logout = 'true';
 	} else {
 		$timeout_logout = 'false';
 	}
@@ -77,6 +77,6 @@ echo '//]]>'.K_NEWLINE;
 echo '</script>'.K_NEWLINE;
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

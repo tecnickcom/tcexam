@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -121,18 +121,18 @@ define ('K_MAX_MEMORY_LIMIT', '32M');
  */
 define ('K_MAIN_PAGE', 'index.php');
 
-// --- INCLUDE FILES ----------------------------------------------------------- 
+// --- INCLUDE FILES -----------------------------------------------------------
 
 require_once('../../shared/config/tce_db_config.php');
 require_once('../../shared/code/tce_db_connect.php');
 require_once('../../shared/code/tce_functions_general.php');
 
-// --- PHP SETTINGS ------------------------------------------------------------ 
+// --- PHP SETTINGS ------------------------------------------------------------
 
 ini_set('memory_limit', K_MAX_MEMORY_LIMIT); // set PHP memory limit
 ini_set('session.use_trans_sid', 0); // if =1 use PHPSESSID (for clients that do not support cookies)
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

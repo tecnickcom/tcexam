@@ -3,7 +3,7 @@
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
 // Last Update : 2009-12-31
-// 
+//
 // Description : Display all questions grouped by topic.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -115,7 +115,7 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 }
 
 // select subject
-if ((isset($changemodule) AND ($changemodule > 0)) 
+if ((isset($changemodule) AND ($changemodule > 0))
 	OR (!(isset($subject_id) AND ($subject_id > 0)))) {
 	$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
@@ -168,7 +168,7 @@ if (isset($menu_mode) AND ($menu_mode == 'update') AND isset($menu_action) AND !
 				case 'enable': {
 					F_question_set_enabled($question_id, $subject_id, true);
 					break;
-				}	
+				}
 			} // end of switch
 		}
 	}
@@ -296,14 +296,14 @@ echo ' title="'.$l['w_hide_answers'].'" onclick="document.getElementById(\'form_
 
 <div class="row"><hr /></div>
 
-<?php 
+<?php
 // display questions statistics
 $qtype = array('<acronym class="offbox" title="'.$l['w_single_answer'].'">S</acronym>', '<acronym class="offbox" title="'.$l['w_multiple_answers'].'">M</acronym>', '<acronym class="offbox" title="'.$l['w_free_answer'].'">T</acronym>', '<acronym class="offbox" title="'.$l['w_ordering_answer'].'">O</acronym>'); // question types
 $qstat = '';
 $nqsum = 0;
-$sql = 'SELECT question_type, COUNT(*) as numquestions 
-	FROM '.K_TABLE_QUESTIONS.' 
-	WHERE question_subject_id='.$subject_id.' 
+$sql = 'SELECT question_type, COUNT(*) as numquestions
+	FROM '.K_TABLE_QUESTIONS.'
+	WHERE question_subject_id='.$subject_id.'
 	GROUP BY question_type';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -324,9 +324,9 @@ echo '</div>'.K_NEWLINE;
 <div class="row"><hr /></div>
 
 <div class="rowl">
-<?php 
+<?php
 if (isset($subject_id) AND ($subject_id > 0)) {
-	F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers); 
+	F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers);
 }
 ?>
 &nbsp;
@@ -394,7 +394,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
-	
+
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
 	if($orderdir == 0) {
@@ -404,18 +404,18 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 		$nextorderdir = 0;
 		$full_order_field = $order_field.' DESC';
 	}
-	
+
 	if(!F_count_rows(K_TABLE_QUESTIONS)) { //if the table is void (no items) display message
 		F_print_error('MESSAGE', $l['m_databasempty']);
 		return FALSE;
 	}
-	
+
 	if(empty($wherequery)) {
 		$wherequery = 'WHERE question_subject_id='.$subject_id.'';
 	} else {
 		$wherequery .= ' AND question_subject_id='.$subject_id.'';
 	}
-	$sql = 'SELECT * 
+	$sql = 'SELECT *
 		FROM '.K_TABLE_QUESTIONS.'
 		'.$wherequery.'
 		ORDER BY '.$full_order_field;
@@ -480,13 +480,13 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 				$questlist .= ' <acronym class="onbox" title="'.$l['w_auto_next'].': '.$l['w_enabled'].'">A</acronym>';
 			} else {
 				$questlist .= ' <acronym class="offbox" title="'.$l['w_auto_next'].': '.$l['w_disabled'].'">&nbsp;</acronym>';
-			}			
+			}
 			if ($m['question_timer'] > 0) {
 				$questlist .= ' <acronym class="onbox" title="'.$l['h_question_timer'].'">'.intval($m['question_timer']).'</acronym>';
 			} else {
 				$questlist .= ' <acronym class="offbox" title="'.$l['h_question_timer'].'">&nbsp;</acronym>';
 			}
-			
+
 			$questlist .= ' <a href="tce_edit_question.php?subject_module_id='.$subject_module_id.'&amp;question_subject_id='.$subject_id.'&amp;question_id='.$m['question_id'].'" title="'.$l['t_questions_editor'].' [ID = '.$m['question_id'].']" class="xmlbutton">'.$l['w_edit'].'</a>';
 
 			$questlist .= '<br /><br />'.K_NEWLINE;
@@ -526,7 +526,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 						} else {
 							$answlist .= ' <acronym class="offbox" title="'.$l['h_answer_keyboard_key'].'">&nbsp;</acronym>';
 						}
-					
+
 						$answlist .= ' <a href="tce_edit_answer.php?subject_module_id='.$subject_module_id.'&amp;question_subject_id='.$subject_id.'&amp;answer_question_id='.$m['question_id'].'&amp;answer_id='.$ma['answer_id'].'" title="'.$l['t_answers_editor'].' [ID = '.$ma['answer_id'].']" class="xmlbutton">'.$l['w_edit'].'</a>';
 						//$answlist .= " ";
 						//$answlist .= "".F_decode_tcecode($ma['answer_description'])."";
@@ -595,7 +595,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 			// submit button
 			F_submit_button("update", $l['w_update'], $l['h_update']);
 		}
-		
+
 		// ---------------------------------------------------------------
 		// -- page jumper (menu for successive pages)
 		$sql = 'SELECT count(*) AS total FROM '.K_TABLE_QUESTIONS.' '.$wherequery.'';
@@ -613,6 +613,6 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

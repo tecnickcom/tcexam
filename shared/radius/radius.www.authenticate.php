@@ -15,19 +15,19 @@
  *   SysCo (tm) is a trademark of SysCo systèmes de communication sa
  *   (http://www.sysco.ch/)
  *   All rights reserved.
- * 
+ *
  *   This file is part of the Pure PHP radius class
  *
  *   Pure PHP radius class is free software; you can redistribute it and/or
  *   modify it under the terms of the GNU Lesser General Public License as
  *   published by the Free Software Foundation, either version 3 of the License,
  *   or (at your option) any later version.
- * 
+ *
  *   Pure PHP radius class is distributed in the hope that it will be useful,
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of
  *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *   GNU Lesser General Public License for more details.
- * 
+ *
  *   You should have received a copy of the GNU Lesser General Public
  *   License along with Pure PHP radius class.
  *   If not, see <http://www.gnu.org/licenses/>.
@@ -73,9 +73,9 @@ require_once('radius.class.php');
 function authenticate_and_cache($ip_radius_server, $shared_secret, $username, $password, $timeout = 900)
 {
     $result = FALSE;
-    
+
     $cache_unique_id = (isset($_SESSION["authentication_unique_id"])?$_SESSION["authentication_unique_id"]:'');
-    
+
     if ('' != $cache_unique_id)
     {
         $cache_timestamp   = $_SESSION[$cache_unique_id."_authentication_timestamp"];

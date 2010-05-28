@@ -13,33 +13,33 @@
 //               DePaul University
 //               tgebhar@cdm.depaul.edu
 //
-// License: 
+// License:
 //    Copyright (C) 2009   Tim Gebhardt - DePaul University
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
 /**
  * Configuration file for CAS (Central Authentication Service)
- * CAS is a centralize authentication service for the web where the user does not need to give their 
- * login credentials (password) to the target website. It was developed at Yale and 
- * is now maintained by the Java Architectures Special Interest Group and was sometimes 
+ * CAS is a centralize authentication service for the web where the user does not need to give their
+ * login credentials (password) to the target website. It was developed at Yale and
+ * is now maintained by the Java Architectures Special Interest Group and was sometimes
  * referred to as "Yale CAS" but now known as "JA-SIG CAS".
  * For more information see: http://www.ja-sig.org/products/cas/
  * @package com.tecnick.tcexam.shared.cfg
@@ -67,7 +67,7 @@ define ('K_CAS_VERSION', '2.0');
 define ('K_CAS_HOST', '');
 
 /**
- * The port to connect to. 
+ * The port to connect to.
  * Defaults to 443
  */
 define ('K_CAS_PORT', 443);
@@ -92,6 +92,6 @@ define ('K_CAS_USER_LEVEL', 1);
 define ('K_CAS_USER_GROUP_ID', 1);
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

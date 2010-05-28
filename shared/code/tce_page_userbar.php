@@ -3,9 +3,9 @@
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
 // Last Update : 2009-09-30
-// 
-// Description : Display user's bar containing copyright 
-//               information, user status and language 
+//
+// Description : Display user's bar containing copyright
+//               information, user status and language
 //               selector.
 //
 // Author: Nicola Asuni
@@ -19,25 +19,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -64,7 +64,7 @@ echo '<div class="userbar">'.K_NEWLINE;
 echo '<span title="'.$l['h_user_info'].'">'.$l['w_user'].': '.$_SESSION['session_user_name'].'</span>'.K_NEWLINE;
 if ($_SESSION['session_user_level'] > 0) {
 	// display logout link
-	echo ' <a href="tce_logout.php" class="logoutbutton" title="'.$l['h_logout_link'].'">'.$l['w_logout'].'</a>'.K_NEWLINE; 
+	echo ' <a href="tce_logout.php" class="logoutbutton" title="'.$l['h_logout_link'].'">'.$l['w_logout'].'</a>'.K_NEWLINE;
 }
 echo '&nbsp;'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
@@ -92,7 +92,7 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 	echo '</span>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
-	
+
 // Display W3C logos
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
 echo '<a href="http://validator.w3.org/check/referer" class="minibutton" title="This Page Is Valid XHTML 1.0 Strict!">W3C <span>XHTML 1.0</span></a>'.K_NEWLINE;
@@ -105,6 +105,6 @@ echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.
 echo '</div>'.K_NEWLINE;
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

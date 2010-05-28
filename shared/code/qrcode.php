@@ -2805,8 +2805,6 @@ if (!class_exists('QRcode', false)) {
 			}
 			$rs['iprim'] = (int)($iprim / $prim);
 			$rs['genpoly'][0] = 1;
-
-
 			for ($i = 0,$root=$fcr*$prim; $i < $nroots; $i++, $root += $prim) {
 				$rs['genpoly'][$i+1] = 1;
 				// Multiply rs->genpoly[] by  @**(root + x)

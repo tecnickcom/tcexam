@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2009-09-30
-// 
+// Last Update : 2010-05-28
+//
 // Description : Display test results summary for all users.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -112,7 +112,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 			$testuser_id = $$keyname;
 			switch($menu_mode) {
 				case 'delete':{
-					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.' 
+					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$r = F_db_query($sql, $db)) {
 						echo $sql; //debug
@@ -124,8 +124,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					// extend the test time by 5 minutes
 					// this time extension is obtained moving forward the test starting time
 					$extseconds = K_EXTEND_TIME_MINUTES * K_SECONDS_IN_MINUTE;
-					$sqlus = 'SELECT testuser_creation_time 
-						FROM '.K_TABLE_TEST_USER.' 
+					$sqlus = 'SELECT testuser_creation_time
+						FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'
 						LIMIT 1';
 					if($rus = F_db_query($sqlus, $db)) {
@@ -147,7 +147,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				case 'lock':{
 					// update test mode to 4 = test locked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-						SET testuser_status=4 
+						SET testuser_status=4
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
@@ -157,7 +157,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				case 'unlock':{
 					// update test mode to 1 = test unlocked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
-						SET testuser_status=1 
+						SET testuser_status=1
 						WHERE testuser_id='.$testuser_id.'';
 					if(!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
@@ -183,8 +183,10 @@ if($formstatus) {
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$test_id = $m['test_id'];
+			$test_duration_time = ($m['test_duration_time'] * K_SECONDS_IN_MINUTE);
 		} else {
 			$test_id = 0;
+			$test_duration_time = 0;
 		}
 	} else {
 		F_display_db_error();
@@ -243,7 +245,7 @@ $sql = 'SELECT *
 	FROM '.K_TABLE_GROUPS.'
 	WHERE group_id IN (
 		SELECT tstgrp_group_id
-		FROM '.K_TABLE_TEST_GROUPS.' 
+		FROM '.K_TABLE_TEST_GROUPS.'
 		WHERE tstgrp_test_id='.$test_id.'
 	)
 	ORDER BY group_name';
@@ -305,13 +307,13 @@ echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NE
 echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['w_status'].'">'.$l['w_status'].'</th>'.K_NEWLINE;
+echo '<th title="'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])">'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
 ?>
 </tr>
 <?php
 // output users stats
-$sqlr = 'SELECT testuser_id, testuser_status, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score 
+$sqlr = 'SELECT testuser_id, testuser_status, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'';
 if (isset($group_id) AND ($group_id > 0)) {
 	$sqlr .= ','.K_TABLE_USERGROUP.'';
@@ -347,7 +349,7 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo ' />';
 		echo '</td>'.K_NEWLINE;
 		echo '<td><a href="tce_show_result_user.php?testuser_id='.$mr['testuser_id'].'&amp;test_id='.$test_id.'&amp;user_id='.$mr['user_id'].'" title="'.$l['h_view_details'].'">'.$itemcount.'</a></td>'.K_NEWLINE;
-		
+
 		$passmsg = '';
 		if ($usrtestdata['score_threshold'] > 0) {
 			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
@@ -367,18 +369,23 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo '<td class="numeric">'.$usrtestdata['undisplayed'].' '.F_formatPercentage($usrtestdata['undisplayed'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
 		echo '<td class="numeric">'.$usrtestdata['unrated'].' '.F_formatPercentage($usrtestdata['unrated'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
 		if ($mr['testuser_status'] == 4) {
-			echo '<td style="background-color:#FFBBBB;">'.$l['w_locked'].'</td>';
+			echo '<td style="background-color:#FFBBBB;">'.$l['w_locked'];
 		} else {
-			echo '<td style="background-color:#BBFFBB;">'.$l['w_unlocked'].'</td>';
+			echo '<td style="background-color:#BBFFBB;">'.$l['w_unlocked'];
 		}
-		echo "\n";
+		// remaining user time in minutes
+		$remaining_time = round(((time() - strtotime($usrtestdata['time'])) - $test_duration_time) / K_SECONDS_IN_MINUTE);
+		if ($remaining_time < 0) {
+			echo ' ('.$remaining_time.')';
+		}
+		echo '</td>'.K_NEWLINE;
 		if (!empty($usrtestdata['comment'])) {
 			echo '<td title="'.substr(F_compact_string(htmlspecialchars($usrtestdata['comment'], ENT_NOQUOTES, $l['a_meta_charset'])), 0, 255).'">'.$l['w_yes'].'</td>'.K_NEWLINE;
 		} else {
 			echo '<td>&nbsp;</td>'.K_NEWLINE;
 		}
 		echo '</tr>'.K_NEWLINE;
-		
+
 		// collects data for descriptive statistics
 		$statsdata['score'][] = $mr['total_score'];
 		$statsdata['right'][] = $usrtestdata['right'];
@@ -539,6 +546,6 @@ function F_result_allusers_table_header_element($test_id, $order_field, $orderdi
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

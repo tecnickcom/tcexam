@@ -3,7 +3,7 @@
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
 // Last Update : 2009-10-10
-// 
+//
 // Description : Functions to display and select registered user.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -97,10 +97,10 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
 	if($orderdir == 0) {
-		$nextorderdir=1; 
+		$nextorderdir=1;
 		$full_order_field = $order_field;
 	} else {
-		$nextorderdir=0; 
+		$nextorderdir=0;
 		$full_order_field = $order_field.' DESC';
 	}
 	if(!F_count_rows(K_TABLE_USERS)) { //if the table is void (no items) display message
@@ -118,8 +118,8 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			$wherequery .= ' AND '.$andwhere;
 		}
 	}
-	
-	$sql = 'SELECT * 
+
+	$sql = 'SELECT *
 		FROM '.K_TABLE_USERS.'
 		'.$wherequery.'
 		ORDER BY '.$full_order_field;
@@ -128,7 +128,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	} else {
 		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
 	}
-	
+
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			// -- Table structure with links:
@@ -169,7 +169,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 				echo '<td>&nbsp;'.htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
 				// comma separated list of user's groups
 				$grp = '';
-				$sqlg = 'SELECT * 
+				$sqlg = 'SELECT *
 					FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
 					WHERE usrgrp_group_id=group_id
 						AND usrgrp_user_id='.$m['user_id'].'
@@ -182,14 +182,14 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 					F_display_db_error();
 				}
 				echo '<td>&nbsp;'.htmlspecialchars(substr($grp,0,-2), ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
-				
+
 				echo '<td><a href="tce_show_allresults_users.php?user_id='.$m['user_id'].'" class="xmlbutton" title="'.$l['t_all_results_user'].'">...</a></td>'.K_NEWLINE;
-				
+
 				echo '</tr>'.K_NEWLINE;
 			} while($m = F_db_fetch_array($r));
-			
+
 			echo '</table>'.K_NEWLINE;
-			
+
 			echo '<br />'.K_NEWLINE;
 			// check/uncheck all options
 			echo '<span dir="ltr">';
@@ -221,7 +221,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			F_submit_button('move', $l['w_move'], $l['w_move']);
 			echo '</li></ul>'.K_NEWLINE;
 			echo '<div class="row"><hr /></div>'.K_NEWLINE;
-			
+
 			// ---------------------------------------------------------------
 			// -- page jumper (menu for successive pages)
 			$sql = 'SELECT count(*) AS total FROM '.K_TABLE_USERS.''.$wherequery.'';
@@ -230,13 +230,13 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			if (!empty($group_id)) {$param_array .= '&amp;group_id='.intval($group_id).'';}
 			$param_array .= '&amp;submitted=1';
 			F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
-						
+
 			echo '<div class="row">'.K_NEWLINE;
 			echo '<br />';
 			echo '<a href="tce_xml_users.php" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 			echo '<a href="tce_csv_users.php" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a>';
 			echo '</div>'.K_NEWLINE;
-			
+
 			echo '<div class="pagehelp">'.$l['hp_select_users'].'</div>'.K_NEWLINE;
 			echo '</div>'.K_NEWLINE;
 		} else {
@@ -285,7 +285,7 @@ function F_user_group_select($name='group_id') {
 	$str = '';
 	$str .= '<select name="'.$name.'" id="'.$name.'" size="0" title="'.$l['w_group'].'">'.K_NEWLINE;
 	$sql = 'SELECT *
-		FROM '.K_TABLE_GROUPS.' 
+		FROM '.K_TABLE_GROUPS.'
 		ORDER BY group_name';
 	if($r = F_db_query($sql, $db)) {
 		$str .= '<option value="0" style="color:gray" selected="selected">'.$l['w_group'].'</option>'.K_NEWLINE;
@@ -313,7 +313,7 @@ function F_get_user_groups($user_id) {
 	$user_id = intval($user_id);
 	$groups = array();
 	$sql = 'SELECT usrgrp_group_id
-		FROM '.K_TABLE_USERGROUP.' 
+		FROM '.K_TABLE_USERGROUP.'
 		WHERE usrgrp_user_id='.$user_id.'';
 	if($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) {
@@ -326,6 +326,6 @@ function F_get_user_groups($user_id) {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

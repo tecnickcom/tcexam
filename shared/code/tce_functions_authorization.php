@@ -3,7 +3,7 @@
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
 // Last Update : 2009-09-30
-// 
+//
 // Description : Functions for Authorization / LOGIN
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -208,7 +208,7 @@ function F_isAuthorizedUser($table, $field_id_name, $value_id, $field_user_id) {
 	} else {
 		F_display_db_error();
 	}
-	if (($author_id > 1) 
+	if (($author_id > 1)
 		AND (F_count_rows(K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
 		WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
 			AND ta.usrgrp_user_id='.$author_id.'
@@ -251,6 +251,6 @@ function F_getAuthorizedUsers($user_id) {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

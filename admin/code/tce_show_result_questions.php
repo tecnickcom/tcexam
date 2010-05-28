@@ -3,7 +3,7 @@
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
 // Last Update : 2010-05-10
-// 
+//
 // Description : Display questions statistics for the selected
 //               test.
 //
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -182,15 +182,15 @@ $testdata = F_getTestData($test_id);
 $num_questions = F_count_rows(K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER, 'WHERE testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.'');
 
 // output questions stats
-$sqlr = 'SELECT 
-		question_id, 
-		COUNT(question_id) AS recurrence, 
-		AVG(testlog_score) AS average_score, 
+$sqlr = 'SELECT
+		question_id,
+		COUNT(question_id) AS recurrence,
+		AVG(testlog_score) AS average_score,
 		AVG(testlog_change_time - testlog_display_time) AS average_time,
 		min(question_difficulty) AS question_difficulty
-	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.' 
+	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_QUESTIONS.'
 	WHERE testlog_testuser_id=testuser_id
-		AND testlog_question_id=question_id 
+		AND testlog_question_id=question_id
 		AND testuser_test_id='.$test_id.'
 	GROUP BY question_id
 	ORDER BY '.$full_order_field.'';
@@ -229,11 +229,11 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo '<td colspan="8" align="'.$txtdir.'" style="background-color:white;">'.$question_description.'</td>';
 		echo '</tr>'.K_NEWLINE;
 		$itemcount++;
-		
+
 		// answers statistics
-		
+
 		$sqla = 'SELECT *
-			FROM '.K_TABLE_ANSWERS.' 
+			FROM '.K_TABLE_ANSWERS.'
 			WHERE answer_question_id='.$mr['question_id'].'
 			ORDER BY answer_id';
 		if($ra = F_db_query($sqla, $db)) {
@@ -242,43 +242,43 @@ if($rr = F_db_query($sqlr, $db)) {
 				echo '<tr>';
 				echo '<td rowspan="2">&nbsp;</td>'.K_NEWLINE;
 				echo '<td rowspan="2" valign="top"><a href="tce_edit_answer.php?answer_id='.$ma['answer_id'].'" title="'.$l['t_answers_editor'].'">'.$answcount.'</a></td>'.K_NEWLINE;
-				
+
 				$num_all_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER.' WHERE logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
-				
+
 				$num_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER.' WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].'');
-				
+
 				$right_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER.' WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=0) OR (answer_isright=\'1\' AND logansw_selected=1) OR (answer_position IS NOT NULL AND logansw_position IS NOT NULL AND answer_position=logansw_position))');
-				
+
 				$wrong_answers = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER.' WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND ((answer_isright=\'0\' AND logansw_selected=1) OR (answer_isright=\'1\' AND logansw_selected=0) OR (answer_position IS NOT NULL AND answer_position!=logansw_position))');
-				
+
 				$unanswered = F_count_rows(K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_ANSWERS.', '.K_TABLE_LOG_ANSWER.' WHERE answer_id='.$ma['answer_id'].' AND logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id AND testuser_test_id='.$test_id.' AND testlog_question_id='.$mr['question_id'].' AND logansw_selected=-1');
-				
+
 				$perc = 0;
 				if ($num_all_answers > 0 ) {
 					$perc = ($num_answers / $num_all_answers);
 				}
 				echo '<td class="numeric">'.$num_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
-				
+
 				echo '<td colspan="2">&nbsp;</td>'.K_NEWLINE;
-				
+
 				$perc = 0;
 				if ($num_answers > 0 ) {
 					$perc = ($right_answers / $num_answers);
 				}
 				echo '<td class="numeric">'.$right_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
-				
+
 				$perc = 0;
 				if ($num_answers > 0 ) {
 					$perc = round($wrong_answers / $num_answers);
 				}
 				echo '<td class="numeric">'.$wrong_answers.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
-				
+
 				$perc = 0;
 				if ($num_answers > 0 ) {
 					$perc = round($unanswered / $num_answers);
 				}
 				echo '<td class="numeric">'.$unanswered.' '.F_formatPercentage($perc).'</td>'.K_NEWLINE;
-				
+
 				echo '<td colspan="2">&nbsp;</td>'.K_NEWLINE;
 				echo '</tr>'.K_NEWLINE;
 				echo '<tr>'.K_NEWLINE;
@@ -307,7 +307,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 ?>
 <input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />
 <input type="hidden" name="orderdir" id="orderdir" value="<?php echo $orderdir; ?>" />
-	
+
 <!-- comma separated list of required fields -->
 <input type="hidden" name="ff_required" id="ff_required" value="" />
 <input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />
@@ -339,7 +339,7 @@ require_once('../code/tce_page_footer.php');
 function F_stats_table_header_element($test_id, $order_field, $orderdir, $title, $name, $current_order_field="") {
 	global $l;
 	require_once('../config/tce_config.php');
-	
+
 	$ord = '';
 	if ($order_field == $current_order_field) {
 		if ($orderdir) {
@@ -353,6 +353,6 @@ function F_stats_table_header_element($test_id, $order_field, $orderdir, $title,
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

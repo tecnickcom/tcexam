@@ -3,9 +3,9 @@
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
 // Last Update : 2010-02-17
-// 
-// Description : Functions to translate TCExam code 
-//               into XHTML. 
+//
+// Description : Functions to translate TCExam code
+//               into XHTML.
 //               The TCExam code is compatible to the common BBCode.
 //
 // Author: Nicola Asuni
@@ -19,25 +19,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove the original TCExam logo, copyrights statements
 //    and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -60,33 +60,33 @@
 function F_decode_tcecode($text_to_decode) {
 	require_once('../config/tce_config.php');
 	global $l, $db;
-	
+
 	// Patterns and replacements
 	$pattern = array();
 	$replacement = array();
 	$i=0;
-	
+
 	$newtext = htmlspecialchars($text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']); // escape some special HTML characters
-	
+
 	// --- convert some BBCode to TCECode: ---
 	// [*]list item - convert to new [li] tag
-	$newtext = preg_replace("'\[\*\](.*?)\n'i", "[li]\\1[/li]",  $newtext);	
+	$newtext = preg_replace("'\[\*\](.*?)\n'i", "[li]\\1[/li]",  $newtext);
 	// [img]image[/img] - convert to new object tag
 	$newtext = preg_replace("'\[img\](.*?)\[/img\]'si", "[object]\\1[/object]",  $newtext);
 	// [img=WIDTHxHEIGHT]image[/img] - convert to new object tag
 	$newtext = preg_replace("'\[img=(.*?)x(.*?)\](.*?)\[/img\]'si", "[object]\\3[/object:\\1:\\2]",  $newtext);
 	// ---
-	
+
 	// [tex]LaTeX_code[/tex]
 	$newtext = preg_replace_callback("#\[tex\](.*?)\[/tex\]#si", 'F_latex_callback', $newtext);
-		
+
 	// [object]object_url[/object:width:height:alt]
 	$newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\:(.*?)\]#si", 'F_objects_callback', $newtext);
 	// [object]object_url[/object:width:height]
 	$newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\]#si", 'F_objects_callback', $newtext);
 	// [object]object_url[/object]
 	$newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\]#si", 'F_objects_callback', $newtext);
-	
+
 	// replace newline chars on [code] tag
 	//$newtext = preg_replace("'\r\n'si", "\n",  $newtext);
 	//$newtext = preg_replace("'\n\r'si", "\n",  $newtext);
@@ -97,98 +97,98 @@ function F_decode_tcecode($text_to_decode) {
 	while (preg_match("'\[code\](.*?)\n(.*?)\[/code\]'si", $newtext)) {
 		$newtext = preg_replace("'\[code\](.*?)\n(.*?)\[/code\]'si", "[code]\\1@n@\\2[/code]",  $newtext);
 	}*/
-	
+
 	// [url]http://www.domain.com[/url]
 	$pattern[++$i] = "#\[url\](.*?)\[/url\]#si";
 	$replacement[++$i] = '<a class="tcecode" href="\1">\1</a>';
-	
+
 	// [url=http://www.domain.com]linkname[/url]
 	$pattern[++$i] = "#\[url=(.*?)\](.*?)\[/url\]#si";
 	$replacement[++$i] = '<a class="tcecode" href="\1">\2</a>';
-	
+
 	// [code] and [/code] display text as source code
 	$pattern[++$i] = "#\[code\](.*?)\[/code\]#si";
 	$replacement[++$i] = '<div class="tcecodepre">\1</div>';
-	
+
 	// [small] and [/small] for small text
 	$pattern[++$i] = "#\[small\](.*?)\[/small\]#si";
 	$replacement[++$i] = '<small class="tcecode">\1</small>';
-	
+
 	// [b] and [/b] for bolding text.
 	$pattern[++$i] = "#\[b\](.*?)\[/b\]#si";
 	$replacement[++$i] = '<strong class="tcecode">\1</strong>';
-	
+
 	// [i] and [/i] for italicizing text.
 	$pattern[++$i] = "#\[i\](.*?)\[/i\]#si";
 	$replacement[++$i] = '<em class="tcecode">\1</em>';
-	
+
 	// [s] and [/s] for strikethrough text.
 	$pattern[++$i] = "#\[s\](.*?)\[/s\]#si";
 	$replacement[++$i] = '<span style="text-decoration:line-through;">\1</span>';
-	
+
 	// [u] and [/u] for underlined text.
 	$pattern[++$i] = "#\[u\](.*?)\[/u\]#si";
 	$replacement[++$i] = '<span style="text-decoration:underline;">\1</span>';
-	
+
 	// [o] and [/o] for overlined text.
 	$pattern[++$i] = "#\[o\](.*?)\[/o\]#si";
 	$replacement[++$i] = '<span style="text-decoration:overline;">\1</span>';
-	
+
 	// [sub] and [/sub] for subscript text.
 	$pattern[++$i] = "#\[sub\](.*?)\[/sub\]#si";
 	$replacement[++$i] = '<sub class="tcecode">\1</sub>';
-	
+
 	// [sup] and [/sup] for superscript text.
 	$pattern[++$i] = "#\[sup\](.*?)\[/sup\]#si";
 	$replacement[++$i] = '<sup class="tcecode">\1</sup>';
-	
+
 	// [ulist] and [/ulist] unordered list
 	$pattern[++$i] = "#\[ulist\](.*?)\[/ulist\]#si";
 	$replacement[++$i] = '<ul class="tcecode">\1</ul>';
-	
+
 	// [olist] and [/olist] ordered list.
 	$pattern[++$i] = "#\[olist\](.*?)\[/olist\]#si";
 	$replacement[++$i] = '<ol class="tcecode">\1</ol>';
-	
+
 	// [olist=1] and [/olist] ordered list.
 	$pattern[++$i] = "#\[olist=1\](.*?)\[/olist\]#si";
 	$replacement[++$i] = '<ol class="tcecode" style="list-style-type:arabic-numbers">\1</ol>';
-	
+
 	// [olist=a] and [/olist] ordered list.
 	$pattern[++$i] = "#\[olist=a\](.*?)\[/olist\]#si";
 	$replacement[++$i] = '<ol class="tcecode" style="list-style-type:lower-alpha">\1</ol>';
-		
+
 	// [li] list items [/li]
 	$pattern[++$i] = "#\[li\](.*?)\[/li\]#si";
 	$replacement[++$i] = '<li class="tcecode">\1</li>';
-	
+
 	// [color=#RRGGBB] and [/color]
 	// [color=rgb(red,green,blue)] and [/color]
 	// [color=html_color_name] and [/color]
 	$pattern[++$i] = "#\[color=(.*?)\](.*?)\[/color\]#si";
 	$replacement[++$i] = '<span style="color:\1">\2</span>';
-	
+
 	// [bgcolor=#RRGGBB] and [/bgcolor]
 	// [bgcolor=rgb(red,green,blue)] and [/bgcolor]
 	// [bgcolor=html_color_name] and [/bgcolor]
 	$pattern[++$i] = "#\[bgcolor=(.*?)\](.*?)\[/bgcolor\]#si";
 	$replacement[++$i] = '<span style="background-color:\1">\2</span>';
-	
+
 	// [size=percent] and [/size]
 	$pattern[++$i] = "#\[size=(.*?)\](.*?)\[/size\]#si";
 	$replacement[++$i] = '<span style="font-size:\1%">\2</span>';
-	
+
 	$newtext = preg_replace($pattern, $replacement, $newtext);
-	
+
 	// line breaks
 	$newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
 	$newtext = str_replace('<br /><li', '<li', $newtext);
 	$newtext = str_replace('</li><br />', '</li>', $newtext);
 	$newtext = str_replace('<br /><param', '<param', $newtext);
-	
+
 	// restore newline chars on [code] tag
 	//$newtext = preg_replace("'@n@'si", "\n",  $newtext);
-	
+
 	return ($newtext);
 }
 
@@ -255,7 +255,7 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 	$extension = strtolower($extension);
 	$htmlcode = '';
 	switch($extension) {
-		case 'gif': 
+		case 'gif':
 		case 'jpg':
 		case 'jpeg':
 		case 'png': { // images
@@ -377,7 +377,7 @@ function F_tcecodeToTitle($str) {
 }
 
 /**
- * Return a substring of XHTML code while making sure no html tags are chopped. 
+ * Return a substring of XHTML code while making sure no html tags are chopped.
  * It also prevents chopping while a tag is still open.
  * this function is based on a public-domain script posted on www.php.net by fox@conskript.server and mr@bbp.biz
  * @param string $htmltext
@@ -444,6 +444,6 @@ function F_substrHTML($htmltext, $min_length=100, $offset_length=20) {
 }
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>
