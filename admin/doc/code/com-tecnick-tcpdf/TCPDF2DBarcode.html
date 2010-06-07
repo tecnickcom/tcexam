@@ -47,6 +47,8 @@
 		</a><br>
 			<a href="../com-tecnick-tcpdf/_shared---code---htmlcolors.php.html">		htmlcolors.php
 		</a><br>
+			<a href="../com-tecnick-tcpdf/_shared---code---pdf417.php.html">		pdf417.php
+		</a><br>
 			<a href="../com-tecnick-tcpdf/_shared---code---qrcode.php.html">		qrcode.php
 		</a><br>
 			<a href="../com-tecnick-tcpdf/_shared---code---tcpdf.php.html">		tcpdf.php
@@ -58,7 +60,8 @@
       
             <b>Classes:</b><br />
         <div class="package">
-		    		<a href="../com-tecnick-tcpdf/QRcode.html">QRcode</a><br />
+		    		<a href="../com-tecnick-tcpdf/PDF417.html">PDF417</a><br />
+	    		<a href="../com-tecnick-tcpdf/QRcode.html">QRcode</a><br />
 	    		<a href="../com-tecnick-tcpdf/TCPDF.html">TCPDF</a><br />
 	    		<a href="../com-tecnick-tcpdf/TCPDF2DBarcode.html">TCPDF2DBarcode</a><br />
 	    		<a href="../com-tecnick-tcpdf/TCPDFBarcode.html">TCPDFBarcode</a><br />
@@ -89,7 +92,7 @@ Source Location: /shared/code/2dbarcodes.php<br /><br />
                 
 <h4>Version:</h4>
 <ul>
-  <li>1.0.003</li>
+  <li>1.0.006</li>
 </ul>
 
         
@@ -128,7 +131,7 @@ Source Location: /shared/code/2dbarcodes.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 62]<br />
+[line 55]<br />
 PHP class to creates array representations for 2D barcodes to be used with TCPDF (http://www.tcpdf.org).<br /><br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -137,7 +140,7 @@ PHP class to creates array representations for 2D barcodes to be used with TCPDF
     <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
   </tr>
   <tr>
-    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0.003</td>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>1.0.006</td>
   </tr>
   <tr>
     <td><b>link:</b>&nbsp;&nbsp;</td><td><a href="http://www.tcpdf.org">http://www.tcpdf.org</a></td>
@@ -160,7 +163,7 @@ PHP class to creates array representations for 2D barcodes to be used with TCPDF
 	<a name="var$barcode_array"></a>
 	<p></p>
 	<h4>$barcode_array = <span class="value">&nbsp;false</span></h4>
-	<p>[line 68]</p>
+	<p>[line 61]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -193,7 +196,7 @@ PHP class to creates array representations for 2D barcodes to be used with TCPDF
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 80]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 73]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -227,7 +230,7 @@ $type)</code>
           <tr>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$type</b>&nbsp;&nbsp;</td>
-        <td>type of barcode: <ul><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>QRCODE : QR-CODE Low error correction</li><li>QRCODE,L : QR-CODE Low error correction</li><li>QRCODE,M : QR-CODE Medium error correction</li><li>QRCODE,Q : QR-CODE Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li></ul></td>
+        <td>type of barcode: <ul><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>QRCODE : QR-CODE Low error correction</li><li>QRCODE,L : QR-CODE Low error correction</li><li>QRCODE,M : QR-CODE Medium error correction</li><li>QRCODE,Q : QR-CODE Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: &quot;\xff&quot;.</li></ul></td>
       </tr>
         </table>
     </div><br />
@@ -235,7 +238,7 @@ $type)</code>
   </div>
   <hr />
 	<a name="methodgetBarcodeArray"></a>
-	<h3>method getBarcodeArray <span class="smalllinenumber">[line 88]</span></h3>
+	<h3>method getBarcodeArray <span class="smalllinenumber">[line 81]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -260,7 +263,7 @@ $type)</code>
   </div>
   <hr />
 	<a name="methodsetBarcode"></a>
-	<h3>method setBarcode <span class="smalllinenumber">[line 98]</span></h3>
+	<h3>method setBarcode <span class="smalllinenumber">[line 91]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -294,7 +297,7 @@ $type)</code>
           <tr>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$type</b>&nbsp;&nbsp;</td>
-        <td>type of barcode: <ul><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>QRCODE : QR-CODE Low error correction</li><li>QRCODE,L : QR-CODE Low error correction</li><li>QRCODE,M : QR-CODE Medium error correction</li><li>QRCODE,Q : QR-CODE Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li></ul></td>
+        <td>type of barcode: <ul><li>RAW: raw mode - comma-separad list of array rows</li><li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li><li>QRCODE : QR-CODE Low error correction</li><li>QRCODE,L : QR-CODE Low error correction</li><li>QRCODE,M : QR-CODE Medium error correction</li><li>QRCODE,Q : QR-CODE Better error correction</li><li>QRCODE,H : QR-CODE Best error correction</li><li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: &quot;\xff&quot;.</li></ul></td>
       </tr>
         </table>
     </div><br />
@@ -305,7 +308,7 @@ $type)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 28 May 2010 14:39:38 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 07 Jun 2010 17:19:35 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
