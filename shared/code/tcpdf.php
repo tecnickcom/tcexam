@@ -1,47 +1,50 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
+// Version     : 5.3.002
 // Begin       : 2002-08-03
-// Last Update : 2010-05-27
-// Author      : Nicola Asuni - info@tecnick.com - http://www.tcpdf.org
-// Version     : 5.1.002
-// License     : GNU LGPL (http://www.gnu.org/copyleft/lesser.html)
-// 	----------------------------------------------------------------------------
-//  Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
+// Last Update : 2010-06-07
+// Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
+// -------------------------------------------------------------------
+// Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
 //
-// 	This program is free software: you can redistribute it and/or modify
-// 	it under the terms of the GNU Lesser General Public License as published by
-// 	the Free Software Foundation, either version 2.1 of the License, or
-// 	(at your option) any later version.
+// This file is part of TCPDF software library.
 //
-// 	This program is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU Lesser General Public License for more details.
+// TCPDF is free software: you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-// 	You should have received a copy of the GNU Lesser General Public License
-// 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// TCPDF is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU General Public License for more details.
 //
-// 	See LICENSE.TXT file for more information.
-//  ----------------------------------------------------------------------------
+// You should have received a copy of the GNU General Public License
+// along with TCPDF.  If not, see <http://www.gnu.org/licenses/>.
+//
+// See LICENSE.TXT file for more information.
+// -------------------------------------------------------------------
 //
 // Description : This is a PHP class for generating PDF documents without
 //               requiring external extensions.
 //
 // NOTE:
-// This class was originally derived in 2002 from the Public
-// Domain FPDF class by Olivier Plathey (http://www.fpdf.org),
-// but now is almost entirely rewritten.
+//   This class was originally derived in 2002 from the Public
+//   Domain FPDF class by Olivier Plathey (http://www.fpdf.org),
+//   but now is almost entirely rewritten.
 //
 // Main features:
 //  * no external libraries are required for the basic functions;
 //  * all ISO page formats, custom page formats, custom margins and units of measure;
 //  * UTF-8 Unicode and Right-To-Left languages;
 //  * TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;
+//  * Font subsetting;
 //  * methods to publish some XHTML + CSS code, Javascript and Forms;
 //  * images, graphic (geometric figures) and transformation methods;
 //  * supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)
-//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code;
+//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code, PDF417;
 //  * Grayscale, RGB, CMYK, Spot Colors and Transparencies;
 //  * automatic page header and footer management;
 //  * document encryption and digital signature certifications;
@@ -97,10 +100,11 @@
  * <li>all ISO page formats, custom page formats, custom margins and units of measure;</li>
  * <li>UTF-8 Unicode and Right-To-Left languages;</li>
  * <li>TrueTypeUnicode, OpenTypeUnicode, TrueType, OpenType, Type1 and CID-0 fonts;</li>
+ * <li>Font subsetting;</li>
  * <li>methods to publish some XHTML + CSS code, Javascript and Forms;</li>
  * <li>images, graphic (geometric figures) and transformation methods;
  * <li>supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)</li>
- * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code;</li>
+ * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code, PDF417;</li>
  * <li>Grayscale, RGB, CMYK, Spot Colors and Transparencies;</li>
  * <li>automatic page header and footer management;</li>
  * <li>document encryption and digital signature certifications;</li>
@@ -122,7 +126,7 @@
  * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 5.1.002
+ * @version 5.3.002
  */
 
 
@@ -142,14 +146,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */
-	define('PDF_PRODUCER', 'TCPDF 5.1.002 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 5.3.002 (http://www.tcpdf.org)');
 
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 5.1.002
+	* @version 5.3.002
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -1540,6 +1544,13 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 5.0.000 (2010-04-26)
 		 */
 		protected $rasterize_vector_images = false;
+
+		/**
+		 * @var If true enables font subsetting by default
+		 * @access protected
+		 * @since 5.3.002 (2010-06-07)
+		 */
+		protected $font_subsetting = true;
 
 		/**
 		 * @var directory used for the last SVG image
@@ -3662,11 +3673,15 @@ if (!class_exists('TCPDF', false)) {
 		 * @param string $style Font style. Possible values are (case insensitive):<ul><li>empty string: regular (default)</li><li>B: bold</li><li>I: italic</li><li>BI or IB: bold italic</li></ul>
 		 * @param string $fontfile The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
 		 * @return array containing the font data, or false in case of error.
+		 * @param mixed $subset if true embedd only a subset of the font (stores only the information related to the used characters); if false embedd full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
 		 * @access public
 		 * @since 1.5
-		 * @see SetFont()
+		 * @see SetFont(), setFontSubsetting(), setFontSubsetting()
 		 */
-		public function AddFont($family, $style='', $fontfile='') {
+		public function AddFont($family, $style='', $fontfile='', $subset='default') {
+			if ($subset === 'default') {
+				$subset = $this->font_subsetting;
+			}
 			if ($this->empty_string($family)) {
 				if (!$this->empty_string($this->FontFamily)) {
 					$family = $this->FontFamily;
@@ -3829,7 +3844,9 @@ if (!class_exists('TCPDF', false)) {
 			} else {
 				$this->Error('Unknow font type: '.$type.'');
 			}
-			$this->setFontBuffer($fontkey, array('i' => $this->numfonts, 'type' => $type, 'name' => $name, 'desc' => $desc, 'up' => $up, 'ut' => $ut, 'cw' => $cw, 'dw' => $dw, 'enc' => $enc, 'cidinfo' => $cidinfo, 'file' => $file, 'ctg' => $ctg));
+			// initialize subsetchars to contain default ASCII values (0-255)
+			$subsetchars = array_fill(0, 256, true);
+			$this->setFontBuffer($fontkey, array('fontkey' => $fontkey, 'i' => $this->numfonts, 'type' => $type, 'name' => $name, 'desc' => $desc, 'up' => $up, 'ut' => $ut, 'cw' => $cw, 'dw' => $dw, 'enc' => $enc, 'cidinfo' => $cidinfo, 'file' => $file, 'ctg' => $ctg, 'subset' => $subset, 'subsetchars' => $subsetchars));
 			if (isset($diff) AND (!empty($diff))) {
 				//Search existing encodings
 				$d = 0;
@@ -3847,10 +3864,18 @@ if (!class_exists('TCPDF', false)) {
 				$this->setFontSubBuffer($fontkey, 'diff', $d);
 			}
 			if (!$this->empty_string($file)) {
-				if ((strcasecmp($type,'TrueType') == 0) OR (strcasecmp($type, 'TrueTypeUnicode') == 0)) {
-					$this->FontFiles[$file] = array('length1' => $originalsize, 'fontdir' => $fontdir);
-				} elseif ($type != 'core') {
-					$this->FontFiles[$file] = array('length1' => $size1, 'length2' => $size2, 'fontdir' => $fontdir);
+				if (!isset($this->FontFiles[$file])) {
+					if ((strcasecmp($type,'TrueType') == 0) OR (strcasecmp($type, 'TrueTypeUnicode') == 0)) {
+						$this->FontFiles[$file] = array('length1' => $originalsize, 'fontdir' => $fontdir, 'subset' => $subset, 'fontkeys' => array($fontkey));
+					} elseif ($type != 'core') {
+						$this->FontFiles[$file] = array('length1' => $size1, 'length2' => $size2, 'fontdir' => $fontdir, 'subset' => $subset, 'fontkeys' => array($fontkey));
+					}
+				} else {
+					// update fontkeys that are sharing this font file
+					$this->FontFiles[$file]['subset'] = ($this->FontFiles[$file]['subset'] AND $subset);
+					if (!in_array($fontkey, $this->FontFiles[$file]['fontkeys'])) {
+						$this->FontFiles[$file]['fontkeys'][] = $fontkey;
+					}
 				}
 			}
 			return $fontdata;
@@ -3866,17 +3891,19 @@ if (!class_exists('TCPDF', false)) {
 		 * @param string $style Font style. Possible values are (case insensitive):<ul><li>empty string: regular</li><li>B: bold</li><li>I: italic</li><li>U: underline</li><li>D: line trough</li><li>O: overline</li></ul> or any combination. The default value is regular. Bold and italic styles do not apply to Symbol and ZapfDingbats basic fonts or other fonts when not defined.
 		 * @param float $size Font size in points. The default value is the current size. If no size has been specified since the beginning of the document, the value taken is 12
 		 * @param string $fontfile The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
+		 * @param mixed $subset if true embedd only a subset of the font (stores only the information related to the used characters); if false embedd full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
+		 * @author Nicola Asuni
 		 * @access public
 		 * @since 1.0
 		 * @see AddFont(), SetFontSize()
 		 */
-		public function SetFont($family, $style='', $size=0, $fontfile='') {
+		public function SetFont($family, $style='', $size=0, $fontfile='', $subset='default') {
 			//Select a font; size given in points
 			if ($size == 0) {
 				$size = $this->FontSizePt;
 			}
 			// try to add font (if not already added)
-			$fontdata = $this->AddFont($family, $style, $fontfile);
+			$fontdata = $this->AddFont($family, $style, $fontfile, $subset);
 			$this->FontFamily = $fontdata['family'];
 			$this->FontStyle = $fontdata['style'];
 			$this->CurrentFont = $this->getFontBuffer($fontdata['fontkey']);
@@ -4231,6 +4258,30 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
+		 * Removes SHY characters from text.
+		 * Unicode Data:<ul>
+		 * <li>Name : SOFT HYPHEN, commonly abbreviated as SHY</li>
+		 * <li>HTML Entity (decimal): &amp;#173;</li>
+		 * <li>HTML Entity (hex): &amp;#xad;</li>
+		 * <li>HTML Entity (named): &amp;shy;</li>
+		 * <li>How to type in Microsoft Windows: [Alt +00AD] or [Alt 0173]</li>
+		 * <li>UTF-8 (hex): 0xC2 0xAD (c2ad)</li>
+		 * <li>UTF-8 character: chr(194).chr(173)</li>
+		 * </ul>
+		 * @param string $txt input string
+		 * @return string without SHY characters.
+		 * @access public
+		 * @since (4.5.019) 2009-02-28
+		 */
+		public function removeSHY($txt='') {
+			$txt = preg_replace('/([\\xc2]{1}[\\xad]{1})/', '', $txt);
+			if (!$this->isunicode) {
+				$txt = preg_replace('/([\\xad]{1})/', '', $txt);
+			}
+			return $txt;
+		}
+
+		/**
 		 * Prints a cell (rectangular area) with optional borders, background color and character string. The upper-left corner of the cell corresponds to the current position. The text can be aligned or centered. After the call, the current position moves to the right or to the next line. It is possible to put a link on the text.<br />
 		 * If automatic page breaking is enabled and the cell goes beyond the limit, a page break is done before outputting.
 		 * @param float $w Cell width. If 0, the cell extends up to the right margin.
@@ -4259,31 +4310,6 @@ if (!class_exists('TCPDF', false)) {
 			}
 			$this->checkPageBreak($h);
 			$this->_out($this->getCellCode($w, $h, $txt, $border, $ln, $align, $fill, $link, $stretch, $ignore_min_height, $calign, $valign));
-		}
-
-		/**
-		 * Removes SHY characters from text.
-		 * @param string $txt input string
-		 * @return string without SHY characters.
-		 * @access public
-		 * @since (4.5.019) 2009-02-28
-		 */
-		public function removeSHY($txt='') {
-			/*
-			* Unicode Data
-			* Name : SOFT HYPHEN, commonly abbreviated as SHY
-			* HTML Entity (decimal): &#173;
-			* HTML Entity (hex): &#xad;
-			* HTML Entity (named): &shy;
-			* How to type in Microsoft Windows: [Alt +00AD] or [Alt 0173]
-			* UTF-8 (hex): 0xC2 0xAD (c2ad)
-			* UTF-8 character: chr(194).chr(173)
-			*/
-			$txt = preg_replace('/([\\xc2]{1}[\\xad]{1})/', '', $txt);
-			if (!$this->isunicode) {
-				$txt = preg_replace('/([\\xad]{1})/', '', $txt);
-			}
-			return $txt;
 		}
 
 		/**
@@ -4510,7 +4536,7 @@ if (!class_exists('TCPDF', false)) {
 									$uniblock[$unik][] = $unicode[$i];
 									++$unik;
 									$uniblock[$unik] = array();
-									$unicode[$i] = 8203; // Unicode Character 'ZERO WIDTH SPACE' (U+200B)
+									$unicode[$i] = 0x200b; // Unicode Character 'ZERO WIDTH SPACE' (DEC:8203, U+200B)
 								} else {
 									$uniblock[$unik][] = $unicode[$i];
 								}
@@ -5559,16 +5585,18 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 4.8.017 (2009-11-27)
 		 */
 		public function getImageFileType($imgfile, $iminfo=array()) {
+			$type = '';
 			if (isset($iminfo['mime']) AND !empty($iminfo['mime'])) {
 				$mime = explode('/', $iminfo['mime']);
 				if ((count($mime) > 1) AND ($mime[0] == 'image') AND (!empty($mime[1]))) {
-					return trim($mime[1]);
+					$type = trim($mime[1]);
 				}
 			}
-			$type = '';
-			$fileinfo = pathinfo($imgfile);
-			if (isset($fileinfo['extension']) AND (!$this->empty_string($fileinfo['extension']))) {
-				$type = strtolower(trim($fileinfo['extension']));
+			if (empty($type)) {
+				$fileinfo = pathinfo($imgfile);
+				if (isset($fileinfo['extension']) AND (!$this->empty_string($fileinfo['extension']))) {
+					$type = strtolower(trim($fileinfo['extension']));
+				}
 			}
 			if ($type == 'jpg') {
 				$type = 'jpeg';
@@ -7482,141 +7510,422 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
-		 * Output fonts.
+		 * Get ULONG from string (Big Endian 32-bit unsigned integer).
+		 * @param string $str string from where to extract value
+		 * @param int $offset point from where to read the data
+		 * @return int 32 bit value
+		 * @author Nicola Asuni
 		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
 		 */
-		protected function _putfonts() {
-			$nf = $this->n;
-			foreach ($this->diffs as $diff) {
-				//Encodings
-				$this->_newobj();
-				$this->_out('<</Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences ['.$diff.']>> endobj');
+		protected function _getULONG(&$str, &$offset) {
+			$v = unpack('Ni', substr($str, $offset, 4));
+			$offset += 4;
+			return $v['i'];
+		}
+
+		/**
+		 * Get USHORT from string (Big Endian 16-bit unsigned integer).
+		 * @param string $str string from where to extract value
+		 * @param int $offset point from where to read the data
+		 * @return int 16 bit value
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
+		 */
+		protected function _getUSHORT(&$str, &$offset) {
+			$v = unpack('ni', substr($str, $offset, 2));
+			$offset += 2;
+			return $v['i'];
+		}
+
+		/**
+		 * Get SHORT from string (Big Endian 16-bit signed integer).
+		 * @param string $str string from where to extract value
+		 * @param int $offset point from where to read the data
+		 * @return int 16 bit value
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
+		 */
+		protected function _getSHORT(&$str, &$offset) {
+			$v = unpack('si', substr($str, $offset, 2));
+			$offset += 2;
+			return $v['i'];
+		}
+
+		/**
+		 * Get BYTE from string (8-bit unsigned integer).
+		 * @param string $str string from where to extract value
+		 * @param int $offset point from where to read the data
+		 * @return int 8 bit value
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
+		 */
+		protected function _getBYTE(&$str, &$offset) {
+			$v = unpack('Ci', substr($str, $offset, 1));
+			++$offset;
+			return $v['i'];
+		}
+
+		/**
+		 * Returns a subset of the TrueType font data without the unused glyphs.
+		 * @param string $font TrueType font data
+		 * @param array $subsetchars array of used characters (the glyphs to keep)
+		 * @return string a subset of TrueType font data without the unused glyphs
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
+		 */
+		protected function _getTrueTypeFontSubset($font, $subsetchars) {
+			ksort($subsetchars);
+			$offset = 0; // offset position of the font data
+			if ($this->_getULONG($font, $offset) != 0x10000) {
+				// sfnt version must be 0x00010000 for TrueType version 1.0.
+				return $font;
 			}
-			$mqr = $this->get_mqr();
-			$this->set_mqr(false);
-			foreach ($this->FontFiles as $file => $info) {
-				// search and get font file to embedd
-				$fontdir = $info['fontdir'];
-				$file = strtolower($file);
-				$fontfile = '';
-				// search files on various directories
-				if (($fontdir !== false) AND file_exists($fontdir.$file)) {
-					$fontfile = $fontdir.$file;
-				} elseif (file_exists($this->_getfontpath().$file)) {
-					$fontfile = $this->_getfontpath().$file;
-				} elseif (file_exists($file)) {
-					$fontfile = $file;
+			// get number of tables
+			$numTables = $this->_getUSHORT($font, $offset);
+			// skip searchRange, entrySelector and rangeShift
+			$offset += 6;
+			// tables array
+			$table = array();
+			// for each table
+			for ($i = 0; $i < $numTables; ++$i) {
+				// get table info
+				$tag = substr($font, $offset, 4);
+				$offset += 4;
+				$table[$tag] = array();
+				$table[$tag]['checkSum'] = $this->_getULONG($font, $offset);
+				$table[$tag]['offset'] = $this->_getULONG($font, $offset);
+				$table[$tag]['length'] = $this->_getULONG($font, $offset);
+			}
+			// check magicNumber
+			$offset = $table['head']['offset'] + 12;
+			if ($this->_getULONG($font, $offset) != 0x5F0F3CF5) {
+				// magicNumber must be 0x5F0F3CF5
+				return $font;
+			}
+			// get offset mode (indexToLocFormat : 0 = short, 1 = long)
+			$offset = $table['head']['offset'] + 50;
+			$short_offset = ($this->_getSHORT($font, $offset) == 0);
+			// get the offsets to the locations of the glyphs in the font, relative to the beginning of the glyphData table
+			$indexToLoc = array();
+			$offset = $table['loca']['offset'];
+			if ($short_offset) {
+				// short version
+				$n = $table['loca']['length'] / 2; // numGlyphs + 1
+				for ($i = 0; $i < $n; ++$i) {
+					$indexToLoc[$i] = $this->_getUSHORT($font, $offset) * 2;
 				}
-				if (!$this->empty_string($fontfile)) {
-					$font = file_get_contents($fontfile);
-					$compressed = (substr($file, -2) == '.z');
-					if ((!$compressed) AND (isset($info['length2']))) {
-						$header = (ord($font{0}) == 128);
-						if ($header) {
-							//Strip first binary header
-							$font = substr($font, 6);
-						}
-						if ($header AND (ord($font{$info['length1']}) == 128)) {
-							//Strip second binary header
-							$font = substr($font, 0, $info['length1']).substr($font, ($info['length1'] + 6));
-						}
-					}
-					$this->_newobj();
-					$this->FontFiles[$file]['n'] = $this->n;
-					$out = '<</Length '.strlen($font);
-					if ($compressed) {
-						$out .= ' /Filter /FlateDecode';
-					}
-					$out .= ' /Length1 '.$info['length1'];
-					if (isset($info['length2'])) {
-						$out .= ' /Length2 '.$info['length2'].' /Length3 0';
-					}
-					$out .= ' >>';
-					$out .= ' '.$this->_getstream($font);
-					$out .= ' endobj';
-					$this->_out($out);
+			} else {
+				// long version
+				$n = $table['loca']['length'] / 4; // numGlyphs + 1
+				for ($i = 0; $i < $n; ++$i) {
+					$indexToLoc[$i] = $this->_getULONG($font, $offset);
 				}
 			}
-			$this->set_mqr($mqr);
-			foreach ($this->fontkeys as $k) {
-				//Font objects
-				$this->setFontSubBuffer($k, 'n', $this->n + 1);
-				$font = $this->getFontBuffer($k);
-				$type = $font['type'];
-				$name = $font['name'];
-				if ($type == 'core') {
-					//Standard font
-					$obj_id = $this->_newobj();
-					$out = '<</Type /Font';
-					$out .= ' /Subtype /Type1';
-					$out .= ' /BaseFont /'.$name;
-					$out .= ' /Name /F'.$font['i'];
-					if ((strtolower($name) != 'symbol') AND (strtolower($name) != 'zapfdingbats')) {
-						$out .= ' /Encoding /WinAnsiEncoding';
-					}
-					if (strtolower($name) == 'helvetica') {
-						// add default font for annotations
-						$this->annotation_fonts['helvetica'] = $k;
-					}
-					$out .= ' >> endobj';
-					$this->_out($out);
-				} elseif (($type == 'Type1') OR ($type == 'TrueType')) {
-					//Additional Type1 or TrueType font
-					$obj_id = $this->_newobj();
-					$out = '<</Type /Font';
-					$out .= ' /Subtype /'.$type;
-					$out .= ' /BaseFont /'.$name;
-					$out .= ' /Name /F'.$font['i'];
-					$out .= ' /FirstChar 32 /LastChar 255';
-					$out .= ' /Widths '.($this->n + 1).' 0 R';
-					$out .= ' /FontDescriptor '.($this->n + 2).' 0 R';
-					if ($font['enc']) {
-						if (isset($font['diff'])) {
-							$out .= ' /Encoding '.($nf + $font['diff']).' 0 R';
-						} else {
-							$out .= ' /Encoding /WinAnsiEncoding';
-						}
-					}
-					$out .= ' >> endobj';
-					$this->_out($out);
-					// Widths
-					$this->_newobj();
-					$cw = &$font['cw'];
-					$s = '[';
-					for ($i = 32; $i < 256; ++$i) {
-						$s .= $cw[$i].' ';
-					}
-					$this->_out($s.'] endobj');
-					//Descriptor
-					$this->_newobj();
-					$s = '<</Type /FontDescriptor /FontName /'.$name;
-					foreach ($font['desc'] as $fdk => $fdv) {
-						if(is_float($fdv)) {
-							$fdv = sprintf('%.3F', $fdv);
-						}
-						$s .= ' /'.$fdk.' '.$fdv.'';
-					}
-					if (!$this->empty_string($font['file'])) {
-						$s .= ' /FontFile'.($type == 'Type1' ? '' : '2').' '.$this->FontFiles[$font['file']]['n'].' 0 R';
-					}
-					$this->_out($s.'>> endobj');
+			// get glyphs indexes of chars from cmap table
+			$subsetglyphs = array(); // glyph IDs on key
+			$subsetglyphs[0] = true; // character codes that do not correspond to any glyph in the font should be mapped to glyph index 0
+			$offset = $table['cmap']['offset'] + 2;
+			$numEncodingTables = $this->_getUSHORT($font, $offset);
+			$encodingTables = array();
+			for ($i = 0; $i < $numEncodingTables; ++$i) {
+				$encodingTables[$i]['platformID'] = $this->_getUSHORT($font, $offset);
+				$encodingTables[$i]['encodingID'] = $this->_getUSHORT($font, $offset);
+				$encodingTables[$i]['offset'] = $this->_getULONG($font, $offset);
+			}
+			foreach ($encodingTables as $enctable) {
+				if (($enctable['platformID'] == 3) AND ($enctable['encodingID'] == 0)) {
+					$modesymbol = true;
 				} else {
-					//Allow for additional types
-					$mtd = '_put'.strtolower($type);
-					if (!method_exists($this, $mtd)) {
-						$this->Error('Unsupported font type: '.$type);
-					}
-					$obj_id = $this->$mtd($font);
+					$modesymbol = false;
 				}
-				// store object ID for current font
-				$this->font_obj_ids[$k] = $obj_id;
+				$offset = $table['cmap']['offset'] + $enctable['offset'];
+				$format = $this->_getUSHORT($font, $offset);
+				switch ($format) {
+					case 0: { // Format 0: Byte encoding table
+						$offset += 4; // skip length and version/language
+						for ($k = 0; $k < 256; ++$k) {
+							if (isset($subsetchars[$k])) {
+								$g = $this->_getBYTE($font, $offset);
+								$subsetglyphs[$g] = $k;
+							} else {
+								++$offset;
+							}
+						}
+						break;
+					}
+					case 2: { // Format 2: High-byte mapping through table
+						$offset += 4; // skip length and version
+						// to be implemented ...
+						break;
+					}
+					case 4: { // Format 4: Segment mapping to delta values
+						$length = $this->_getUSHORT($font, $offset);
+						$offset += 2; // skip version/language
+						$segCount = ($this->_getUSHORT($font, $offset) / 2);
+						$offset += 6; // skip searchRange, entrySelector, rangeShift
+						$endCount = array(); // array of end character codes for each segment
+						for ($k = 0; $k < $segCount; ++$k) {
+							$endCount[$k] = $this->_getUSHORT($font, $offset);
+						}
+						$offset += 2; // skip reservedPad
+						$startCount = array(); // array of start character codes for each segment
+						for ($k = 0; $k < $segCount; ++$k) {
+							$startCount[$k] = $this->_getUSHORT($font, $offset);
+						}
+						$idDelta = array(); // delta for all character codes in segment
+						for ($k = 0; $k < $segCount; ++$k) {
+							$idDelta[$k] = $this->_getUSHORT($font, $offset);
+						}
+						$idRangeOffset = array(); // Offsets into glyphIdArray or 0
+						for ($k = 0; $k < $segCount; ++$k) {
+							$idRangeOffset[$k] = $this->_getUSHORT($font, $offset);
+						}
+						$gidlen = ($length / 2) - 8 - (4 * $segCount);
+						$glyphIdArray = array(); // glyph index array
+						for ($k = 0; $k < $gidlen; ++$k) {
+							$glyphIdArray[$k] = $this->_getUSHORT($font, $offset);
+						}
+						for ($k = 0; $k < $segCount; ++$k) {
+							for ($c = $startCount[$k]; $c <= $endCount[$k]; ++$c) {
+								if (isset($subsetchars[$c])) {
+									if ($idRangeOffset[$k] == 0) {
+										$g = $c;
+									} else {
+										$gid = (($idRangeOffset[$k] / 2) + ($c - $startCount[$k]) - ($segCount - $k));
+										$g = $glyphIdArray[$gid];
+									}
+									$g += ($idDelta[$k] - 65536);
+									if ($g < 0) {
+										$g = 0;
+									}
+									$subsetglyphs[$g] = $c;
+								}
+							}
+						}
+						break;
+					}
+					case 6: { // Format 6: Trimmed table mapping
+						$offset += 4; // skip length and version/language
+						$firstCode = $this->_getUSHORT($font, $offset);
+						$entryCount = $this->_getUSHORT($font, $offset);
+						for ($k = 0; $k < $entryCount; ++$k) {
+							$c = ($k + $firstCode);
+							if (isset($subsetchars[$c])) {
+								$g = $this->_getUSHORT($font, $offset);
+								$subsetglyphs[$g] = $c;
+							} else {
+								$offset += 2;
+							}
+						}
+						break;
+					}
+					case 8: { // Format 8: Mixed 16-bit and 32-bit coverage
+						$offset += 10; // skip length and version
+						// to be implemented ...
+						break;
+					}
+					case 10: { // Format 10: Trimmed array
+						$offset += 10; // skip length and version/language
+						$startCharCode = $this->_getULONG($font, $offset);
+						$numChars = $this->_getULONG($font, $offset);
+						for ($k = 0; $k < $numChars; ++$k) {
+							$c = ($k + $startCharCode);
+							if (isset($subsetchars[$c])) {
+								$g = $this->_getUSHORT($font, $offset);
+								$subsetglyphs[$g] = $c;
+							} else {
+								$offset += 2;
+							}
+						}
+						break;
+					}
+					case 12: { // Format 12: Segmented coverage
+						$offset += 10; // skip length and version/language
+						$nGroups = $this->_getULONG($font, $offset);
+						for ($k = 0; $k < $nGroups; ++$k) {
+							$startCharCode = $this->_getULONG($font, $offset);
+							$endCharCode = $this->_getULONG($font, $offset);
+							$startGlyphCode = $this->_getULONG($font, $offset);
+							for ($c = $startCharCode; $c <= $endCharCode; ++$c) {
+								if (isset($subsetchars[$c])) {
+									$subsetglyphs[$startGlyphCode] = $c;
+								}
+								++$startGlyphCode;
+							}
+						}
+						break;
+					}
+				}
 			}
+			// sort glyphs by key
+			ksort($subsetglyphs);
+			// add composite glyps to $subsetglyphs and remove missing glyphs
+			foreach ($subsetglyphs as $key => $val) {
+				if (isset($indexToLoc[$key])) {
+					$offset = $table['glyf']['offset'] + $indexToLoc[$key];
+					$numberOfContours = $this->_getSHORT($font, $offset);
+					if ($numberOfContours < 0) { // composite glyph
+						$offset += 8; // skip xMin, yMin, xMax, yMax
+						do {
+							$flags = $this->_getUSHORT($font, $offset);
+							$glyphIndex = $this->_getUSHORT($font, $offset);
+							if (!isset($subsetglyphs[$glyphIndex]) AND isset($indexToLoc[$glyphIndex])) {
+								// add missing glyphs
+								$subsetglyphs[$glyphIndex] = true;
+							}
+							// skip some bytes by case
+							if ($flags & 1) {
+								$offset += 4;
+							} else {
+								$offset += 2;
+							}
+							if ($flags & 8) {
+								$offset += 2;
+							} elseif ($flags & 64) {
+								$offset += 4;
+							} elseif ($flags & 128) {
+								$offset += 8;
+							}
+						} while ($flags & 32);
+					}
+				} else {
+					unset($subsetglyphs[$key]);
+				}
+			}
+			// build new glyf table with only used glyphs
+			$glyf = '';
+			$glyfSize = 0;
+			// create new empty indexToLoc table
+			$newIndexToLoc = array_fill(0, count($indexToLoc), 0);
+			$goffset = 0;
+			foreach ($subsetglyphs as $glyphID => $char) {
+				if (isset($indexToLoc[$glyphID]) AND isset($indexToLoc[($glyphID + 1)])) {
+					$start = $indexToLoc[$glyphID];
+					$length = ($indexToLoc[($glyphID + 1)] - $start);
+					$glyf .= substr($font, ($table['glyf']['offset'] + $start), $length);
+					$newIndexToLoc[$glyphID] = $goffset;
+					$goffset += $length;
+				}
+			}
+			// build new loca table
+			$loca = '';
+			if ($short_offset) {
+				foreach ($newIndexToLoc as $glyphID => $offset) {
+					$loca .= pack('n', ($offset / 2));
+				}
+			} else {
+				foreach ($newIndexToLoc as $glyphID => $offset) {
+					$loca .= pack('N', $offset);
+				}
+			}
+			// array of table names to preserve (loca and glyf tables will be added later)
+			//$table_names = array ('cmap', 'head', 'hhea', 'hmtx', 'maxp', 'name', 'OS/2', 'post', 'cvt ', 'fpgm', 'prep');
+			// the cmap table is not needed and shall not be present, since the mapping from character codes to glyph descriptions is provided separately
+			$table_names = array ('head', 'hhea', 'hmtx', 'maxp', 'cvt ', 'fpgm', 'prep'); // minimum required table names
+			// get the tables to preserve
+			$offset = 12;
+			foreach ($table as $tag => $val) {
+				if (in_array($tag, $table_names)) {
+					$table[$tag]['data'] = substr($font, $table[$tag]['offset'], $table[$tag]['length']);
+					if ($tag == 'head') {
+						// set the checkSumAdjustment to 0
+						$table[$tag]['data'] = substr($table[$tag]['data'], 0, 8)."\x0\x0\x0\x0".substr($table[$tag]['data'], 12);
+					}
+					$pad = 4 - ($table[$tag]['length'] % 4);
+					if ($pad != 4) {
+						// the length of a table must be a multiple of four bytes
+						$table[$tag]['length'] += $pad;
+						$table[$tag]['data'] .= str_repeat("\x0", $pad);
+					}
+					$table[$tag]['offset'] = $offset;
+					$offset += $table[$tag]['length'];
+					// check sum is not changed (so keep the following line commented)
+					//$table[$tag]['checkSum'] = $this->_getTTFtableChecksum($table[$tag]['data'], $table[$tag]['length']);
+				} else {
+					unset($table[$tag]);
+				}
+			}
+			// add loca
+			$table['loca']['data'] = $loca;
+			$table['loca']['length'] = strlen($loca);
+			$pad = 4 - ($table['loca']['length'] % 4);
+			if ($pad != 4) {
+				// the length of a table must be a multiple of four bytes
+				$table['loca']['length'] += $pad;
+				$table['loca']['data'] .= str_repeat("\x0", $pad);
+			}
+			$table['loca']['offset'] = $offset;
+			$table['loca']['checkSum'] = $this->_getTTFtableChecksum($table['loca']['data'], $table['loca']['length']);
+			$offset += $table['loca']['length'];
+			// add glyf
+			$table['glyf']['data'] = $glyf;
+			$table['glyf']['length'] = strlen($glyf);
+			$pad = 4 - ($table['glyf']['length'] % 4);
+			if ($pad != 4) {
+				// the length of a table must be a multiple of four bytes
+				$table['glyf']['length'] += $pad;
+				$table['glyf']['data'] .= str_repeat("\x0", $pad);
+			}
+			$table['glyf']['offset'] = $offset;
+			$table['glyf']['checkSum'] = $this->_getTTFtableChecksum($table['glyf']['data'], $table['glyf']['length']);
+			// rebuild font
+			$font = '';
+			$font .= pack('N', 0x10000); // sfnt version
+			$numTables = count($table);
+			$font .= pack('n', $numTables); // numTables
+			$entrySelector = floor(log($numTables, 2));
+			$searchRange = pow(2, $entrySelector) * 16;
+			$rangeShift = ($numTables * 16) - $searchRange;
+			$font .= pack('n', $searchRange); // searchRange
+			$font .= pack('n', $entrySelector); // entrySelector
+			$font .= pack('n', $rangeShift); // rangeShift
+			$offset = ($numTables * 16);
+			foreach ($table as $tag => $data) {
+				$font .= $tag; // tag
+				$font .= pack('N', $data['checkSum']); // checkSum
+				$font .= pack('N', ($data['offset'] + $offset)); // offset
+				$font .= pack('N', $data['length']); // length
+			}
+			foreach ($table as $data) {
+				$font .= $data['data'];
+			}
+			// set checkSumAdjustment on head table
+			$checkSumAdjustment = 0xB1B0AFBA - $this->_getTTFtableChecksum($font, strlen($font));
+			$font = substr($font, 0, $table['head']['offset'] + 8).pack('N', $checkSumAdjustment).substr($font, $table['head']['offset'] + 12);
+			return $font;
+		}
+
+		/**
+		 * Returs the checksum of a TTF table.
+		 * @param string $table table to check
+		 * @param int $length lenght of table in bytes
+		 * @return int checksum
+		 * @author Nicola Asuni
+		 * @access protected
+		 * @since 5.2.000 (2010-06-02)
+		 */
+		protected function _getTTFtableChecksum($table, $length) {
+			$sum = 0;
+			$tlen = ($length / 4);
+			$offset = 0;
+			for ($i = 0; $i < $tlen; ++$i) {
+				$v = unpack('Ni', substr($table, $offset, 4));
+				$sum += $v['i'];
+				$offset += 4;
+			}
+			$sum = unpack('Ni', pack('N', $sum));
+			return $sum['i'];
 		}
 
 		/**
 		 * Outputs font widths
-		 * @parameter array $font font data
-		 * @parameter int $cidoffset offset for CID values
+		 * @param array $font font data
+		 * @param int $cidoffset offset for CID values
 		 * @return PDF command string for font widths
 		 * @author Nicola Asuni
 		 * @access protected
@@ -7632,6 +7941,10 @@ if (!class_exists('TCPDF', false)) {
 			// for each character
 			foreach ($font['cw'] as $cid => $width) {
 				$cid -= $cidoffset;
+				if ($font['subset'] AND ($cid > 255) AND (!isset($font['subsetchars'][$cid]))) {
+					// ignore the unused characters (font subsetting)
+					continue;
+				}
 				if ($width != $font['dw']) {
 					if ($cid == ($prevcid + 1)) {
 						// consecutive CID
@@ -7713,21 +8026,178 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
+		 * Output fonts.
+		 * @author Nicola Asuni
+		 * @access protected
+		 */
+		protected function _putfonts() {
+			$nf = $this->n;
+			foreach ($this->diffs as $diff) {
+				//Encodings
+				$this->_newobj();
+				$this->_out('<< /Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences ['.$diff.'] >> endobj');
+			}
+			$mqr = $this->get_mqr();
+			$this->set_mqr(false);
+			foreach ($this->FontFiles as $file => $info) {
+				// search and get font file to embedd
+				$fontdir = $info['fontdir'];
+				$file = strtolower($file);
+				$fontfile = '';
+				// search files on various directories
+				if (($fontdir !== false) AND file_exists($fontdir.$file)) {
+					$fontfile = $fontdir.$file;
+				} elseif (file_exists($this->_getfontpath().$file)) {
+					$fontfile = $this->_getfontpath().$file;
+				} elseif (file_exists($file)) {
+					$fontfile = $file;
+				}
+				if (!$this->empty_string($fontfile)) {
+					$font = file_get_contents($fontfile);
+					$compressed = (substr($file, -2) == '.z');
+					if ((!$compressed) AND (isset($info['length2']))) {
+						$header = (ord($font{0}) == 128);
+						if ($header) {
+							//Strip first binary header
+							$font = substr($font, 6);
+						}
+						if ($header AND (ord($font{$info['length1']}) == 128)) {
+							//Strip second binary header
+							$font = substr($font, 0, $info['length1']).substr($font, ($info['length1'] + 6));
+						}
+					} elseif ($info['subset'] AND (!$compressed) OR ($compressed AND function_exists('gzcompress'))) {
+						if ($compressed) {
+							// uncompress font
+							$font = gzuncompress($font);
+						}
+						// merge subset characters
+						$subsetchars = array(); // used chars
+						foreach ($info['fontkeys'] as $fontkey) {
+							$fontinfo = $this->getFontBuffer($fontkey);
+							$subsetchars += $fontinfo['subsetchars'];
+						}
+						$font = $this->_getTrueTypeFontSubset($font, $subsetchars);
+						if ($compressed) {
+							// recompress font
+							$font = gzcompress($font);
+						}
+					}
+					$this->_newobj();
+					$this->FontFiles[$file]['n'] = $this->n;
+					$out = '<</Length '.strlen($font);
+					if ($compressed) {
+						$out .= ' /Filter /FlateDecode';
+					}
+					$out .= ' /Length1 '.$info['length1'];
+					if (isset($info['length2'])) {
+						$out .= ' /Length2 '.$info['length2'].' /Length3 0';
+					}
+					$out .= ' >>';
+					$out .= ' '.$this->_getstream($font);
+					$out .= ' endobj';
+					$this->_out($out);
+				}
+			}
+			$this->set_mqr($mqr);
+			foreach ($this->fontkeys as $k) {
+				//Font objects
+				$this->setFontSubBuffer($k, 'n', $this->n + 1);
+				$font = $this->getFontBuffer($k);
+				$type = $font['type'];
+				$name = $font['name'];
+				if ($type == 'core') {
+					// standard core font
+					$obj_id = $this->_newobj();
+					$out = '<</Type /Font';
+					$out .= ' /Subtype /Type1';
+					$out .= ' /BaseFont /'.$name;
+					$out .= ' /Name /F'.$font['i'];
+					if ((strtolower($name) != 'symbol') AND (strtolower($name) != 'zapfdingbats')) {
+						$out .= ' /Encoding /WinAnsiEncoding';
+					}
+					if (strtolower($name) == 'helvetica') {
+						// add default font for annotations
+						$this->annotation_fonts['helvetica'] = $k;
+					}
+					$out .= ' >> endobj';
+					$this->_out($out);
+				} elseif (($type == 'Type1') OR ($type == 'TrueType')) {
+					// additional Type1 or TrueType font
+					$obj_id = $this->_newobj();
+					$out = '<</Type /Font';
+					$out .= ' /Subtype /'.$type;
+					$out .= ' /BaseFont /'.$name;
+					$out .= ' /Name /F'.$font['i'];
+					$out .= ' /FirstChar 32 /LastChar 255';
+					$out .= ' /Widths '.($this->n + 1).' 0 R';
+					$out .= ' /FontDescriptor '.($this->n + 2).' 0 R';
+					if ($font['enc']) {
+						if (isset($font['diff'])) {
+							$out .= ' /Encoding '.($nf + $font['diff']).' 0 R';
+						} else {
+							$out .= ' /Encoding /WinAnsiEncoding';
+						}
+					}
+					$out .= ' >> endobj';
+					$this->_out($out);
+					// Widths
+					$this->_newobj();
+					$cw = &$font['cw'];
+					$s = '[';
+					for ($i = 32; $i < 256; ++$i) {
+						$s .= $cw[$i].' ';
+					}
+					$this->_out($s.'] endobj');
+					//Descriptor
+					$this->_newobj();
+					$s = '<</Type /FontDescriptor /FontName /'.$name;
+					foreach ($font['desc'] as $fdk => $fdv) {
+						if(is_float($fdv)) {
+							$fdv = sprintf('%.3F', $fdv);
+						}
+						$s .= ' /'.$fdk.' '.$fdv.'';
+					}
+					if (!$this->empty_string($font['file'])) {
+						$s .= ' /FontFile'.($type == 'Type1' ? '' : '2').' '.$this->FontFiles[$font['file']]['n'].' 0 R';
+					}
+					$this->_out($s.'>> endobj');
+				} else {
+					// additional types
+					$mtd = '_put'.strtolower($type);
+					if (!method_exists($this, $mtd)) {
+						$this->Error('Unsupported font type: '.$type);
+					}
+					$obj_id = $this->$mtd($font);
+				}
+				// store object ID for current font
+				$this->font_obj_ids[$k] = $obj_id;
+			}
+		}
+
+		/**
 		 * Adds unicode fonts.<br>
 		 * Based on PDF Reference 1.3 (section 5)
-		 * @parameter array $font font data
+		 * @param array $font font data
 		 * @return int font object ID
 		 * @access protected
 		 * @author Nicola Asuni
 		 * @since 1.52.0.TC005 (2005-01-05)
 		 */
 		protected function _puttruetypeunicode($font) {
+			$fontname = '';
+			if ($font['subset']) {
+				// change name for font subsetting
+				$subtag = sprintf('%06u', $font['i']);
+				$subtag = strtr($subtag, '0123456789', 'ABCDEFGHIJ');
+				$fontname .= $subtag.'+';
+			}
+			$fontname .= $font['name'];
 			// Type0 Font
 			// A composite font composed of other fonts, organized hierarchically
 			$obj_id = $this->_newobj();
 			$out = '<</Type /Font';
 			$out .= ' /Subtype /Type0';
-			$out .= ' /BaseFont /'.$font['name'].'';
+			$out .= ' /BaseFont /'.$fontname;
 			$out .= ' /Name /F'.$font['i'];
 			$out .= ' /Encoding /'.$font['enc'];
 			$out .= ' /ToUnicode /Identity-H';
@@ -7740,7 +8210,7 @@ if (!class_exists('TCPDF', false)) {
 			$this->_newobj();
 			$out = '<</Type /Font';
 			$out .= ' /Subtype /CIDFontType2';
-			$out .= ' /BaseFont /'.$font['name'];
+			$out .= ' /BaseFont /'.$fontname;
 			// A dictionary containing entries that define the character collection of the CIDFont.
 			$cidinfo = '/Registry '.$this->_datastring($font['cidinfo']['Registry']);
 			$cidinfo .= ' /Ordering '.$this->_datastring($font['cidinfo']['Ordering']);
@@ -7749,13 +8219,14 @@ if (!class_exists('TCPDF', false)) {
 			$out .= ' /FontDescriptor '.($this->n + 1).' 0 R';
 			$out .= ' /DW '.$font['dw']; // default width
 			$out .= "\n".$this->_putfontwidths($font, 0);
-			$out .= ' /CIDToGIDMap '.($this->n + 2).' 0 R >> endobj';
+			$out .= ' /CIDToGIDMap '.($this->n + 2).' 0 R';
+			$out .= ' >> endobj';
 			$this->_out($out);
 			// Font descriptor
 			// A font descriptor describing the CIDFont default metrics other than its glyph widths
 			$this->_newobj();
 			$out = '<</Type /FontDescriptor';
-			$out .= ' /FontName /'.$font['name'];
+			$out .= ' /FontName /'.$fontname;
 			foreach ($font['desc'] as $key => $value) {
 				if(is_float($value)) {
 					$value = sprintf('%.3F', $value);
@@ -8502,7 +8973,7 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
-		 * Read a 4-byte integer from file.
+		 * Read a 4-byte (32 bit) integer from file.
 		 * @param string $f file name.
 		 * @return 4-byte integer
 		 * @access protected
@@ -8706,6 +9177,7 @@ if (!class_exists('TCPDF', false)) {
 				$this->cache_UTF8StringToArray['_'.$str] = $strarr;
 				return $strarr;
 			}
+			$unichar = -1; // last unicode char
 			$unicode = array(); // array containing unicode values
 			$bytes  = array(); // array containing single character byte sequences
 			$numbytes  = 1; // number of octetc needed to represent the UTF-8 character
@@ -8715,7 +9187,7 @@ if (!class_exists('TCPDF', false)) {
 				$char = ord($str{$i}); // get one string character at time
 				if (count($bytes) == 0) { // get starting octect
 					if ($char <= 0x7F) {
-						$unicode[] = $char; // use the character "as is" because is ASCII
+						$unichar = $char; // use the character "as is" because is ASCII
 						$numbytes = 1;
 					} elseif (($char >> 0x05) == 0x06) { // 2 bytes character (0x06 = 110 BIN)
 						$bytes[] = ($char - 0xC0) << 0x06;
@@ -8728,7 +9200,7 @@ if (!class_exists('TCPDF', false)) {
 						$numbytes = 4;
 					} else {
 						// use replacement character for other invalid sequences
-						$unicode[] = 0xFFFD;
+						$unichar = 0xFFFD;
 						$bytes = array();
 						$numbytes = 1;
 					}
@@ -8745,9 +9217,9 @@ if (!class_exists('TCPDF', false)) {
 							U+D800 and U+DFFF, which are reserved for use with the UTF-16
 							encoding form (as surrogate pairs) and do not directly represent
 							characters. */
-							$unicode[] = 0xFFFD; // use replacement character
+							$unichar = 0xFFFD; // use replacement character
 						} else {
-							$unicode[] = $char; // add char to array
+							$unichar = $char; // add char to array
 						}
 						// reset data for next char
 						$bytes = array();
@@ -8755,11 +9227,20 @@ if (!class_exists('TCPDF', false)) {
 					}
 				} else {
 					// use replacement character for other invalid sequences
-					$unicode[] = 0xFFFD;
+					$unichar = 0xFFFD;
 					$bytes = array();
 					$numbytes = 1;
 				}
+				if ($unichar >= 0) {
+					// insert unicode value into array
+					$unicode[] = $unichar;
+					// store this char for font subsetting
+					$this->CurrentFont['subsetchars'][$unichar] = true;
+					$unichar = -1;
+				}
 			}
+			// update font subsetchars
+			$this->setFontSubBuffer($this->CurrentFont['fontkey'], 'subsetchars', $this->CurrentFont['subsetchars']);
 			// insert new value on cache
 			$this->cache_UTF8StringToArray['_'.$str] = $unicode;
 			return $unicode;
@@ -8886,7 +9367,9 @@ if (!class_exists('TCPDF', false)) {
 				$outstr .= "\xFE\xFF"; // Byte Order Mark (BOM)
 			}
 			foreach ($unicode as $char) {
-				if ($char == 0xFFFD) {
+				if ($char == 0x200b) {
+					// skip Unicode Character 'ZERO WIDTH SPACE' (DEC:8203, U+200B)
+				} elseif ($char == 0xFFFD) {
 					$outstr .= "\xFF\xFD"; // replacement character
 				} elseif ($char < 0x10000) {
 					$outstr .= chr($char >> 0x08);
@@ -10737,13 +11220,13 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		 * Draws a grahic arrow.
-		 * @parameter float $x0 Abscissa of first point.
-		 * @parameter float $y0 Ordinate of first point.
-		 * @parameter float $x0 Abscissa of second point.
-		 * @parameter float $y1 Ordinate of second point.
-		 * @parameter int $head_style (0 = draw only arrowhead arms, 1 = draw closed arrowhead, but no fill, 2 = closed and filled arrowhead, 3 = filled arrowhead)
-		 * @parameter float $arm_size length of arrowhead arms
-		 * @parameter int $arm_angle angle between an arm and the shaft
+		 * @param float $x0 Abscissa of first point.
+		 * @param float $y0 Ordinate of first point.
+		 * @param float $x0 Abscissa of second point.
+		 * @param float $y1 Ordinate of second point.
+		 * @param int $head_style (0 = draw only arrowhead arms, 1 = draw closed arrowhead, but no fill, 2 = closed and filled arrowhead, 3 = filled arrowhead)
+		 * @param float $arm_size length of arrowhead arms
+		 * @param int $arm_angle angle between an arm and the shaft
 		 * @author Piotr Galecki, Nicola Asuni, Andy Meier
 		 * @since 4.6.018 (2009-07-10)
 		 */
@@ -11395,8 +11878,11 @@ if (!class_exists('TCPDF', false)) {
 			$ordarray = array();
 			for ($i=0; $i < $numchars; ++$i) {
 				$ordarray[] = $chardata[$i]['char'];
+				// store char values for subsetting
+				$this->CurrentFont['subsetchars'][$chardata[$i]['char']] = true;
 			}
-
+			// update font subsetchars
+			$this->setFontSubBuffer($this->CurrentFont['fontkey'], 'subsetchars', $this->CurrentFont['subsetchars']);
 			return $ordarray;
 		}
 
@@ -14096,6 +14582,7 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			if (($h === '') OR ($h <= 0)) {
+				// horizontal aspect ration by default
 				$h = $w / 3;
 			}
 			if ($this->empty_string($xres)) {
@@ -14276,13 +14763,14 @@ if (!class_exists('TCPDF', false)) {
 		 * @param int $y y position in user units
 		 * @param int $w width in user units
 		 * @param int $h height in user units
-		 * @param array $style array of options:<ul><li>boolean $style['border'] if true prints a border around the barcode</li><li>int $style['padding'] padding to leave around the barcode in user units (set to 'auto' for automatic padding)</li><li>array $style['fgcolor'] color array for bars and text</li><li>mixed $style['bgcolor'] color array for background or false for transparent</li><li>string $style['position'] barcode position on the page: L = left margin; C = center; R = right margin; S = stretch</li></ul>
+		 * @param array $style array of options:<ul><li>boolean $style['border'] if true prints a border around the barcode</li><li>int $style['padding'] padding to leave around the barcode in barcode units (set to 'auto' for automatic padding)</li><li>int $style['hpadding'] horizontal padding in barcode units (set to 'auto' for automatic padding)</li><li>int $style['vpadding'] vertical padding in barcode units (set to 'auto' for automatic padding)</li><li>int $style['module_width'] width of a single module in points</li><li>int $style['module_height'] height of a single module in points</li><li>array $style['fgcolor'] color array for bars and text</li><li>mixed $style['bgcolor'] color array for background or false for transparent</li><li>string $style['position'] barcode position on the page: L = left margin; C = center; R = right margin; S = stretch</li><li>$style['module_width'] width of a single module in points</li><li>$style['module_height'] height of a single module in points</li></ul>
 		 * @param string $align Indicates the alignment of the pointer next to barcode insertion relative to barcode height. The value can be:<ul><li>T: top-right for LTR or top-left for RTL</li><li>M: middle-right for LTR or middle-left for RTL</li><li>B: bottom-right for LTR or bottom-left for RTL</li><li>N: next line</li></ul>
+		 * @param boolean $distort if true distort the barcode to fit width and height, otherwise preserve aspect ratio
 		 * @author Nicola Asuni
 		 * @since 4.5.037 (2009-04-07)
 		 * @access public
 		 */
-		public function write2DBarcode($code, $type, $x='', $y='', $w='', $h='', $style='', $align='') {
+		public function write2DBarcode($code, $type, $x='', $y='', $w='', $h='', $style='', $align='', $distort=false) {
 			if ($this->empty_string(trim($code))) {
 				return;
 			}
@@ -14308,6 +14796,29 @@ if (!class_exists('TCPDF', false)) {
 			if (!isset($style['border'])) {
 				$style['border'] = false;
 			}
+			// padding
+			if (!isset($style['padding'])) {
+				$style['padding'] = 0;
+			} elseif ($style['padding'] === 'auto') {
+				$style['padding'] = 4;
+			}
+			if (!isset($style['hpadding'])) {
+				$style['hpadding'] = $style['padding'];
+			} elseif ($style['hpadding'] === 'auto') {
+				$style['hpadding'] = 4;
+			}
+			if (!isset($style['vpadding'])) {
+				$style['vpadding'] = $style['padding'];
+			} elseif ($style['vpadding'] === 'auto') {
+				$style['vpadding'] = 4;
+			}
+			// cell (module) dimension
+			if (!isset($style['module_width'])) {
+				$style['module_width'] = 1; // width of a single module in points
+			}
+			if (!isset($style['module_height'])) {
+				$style['module_height'] = 1; // height of a single module in points
+			}
 			// set foreground color
 			$this->SetDrawColorArray($style['fgcolor']);
 			if ($x === '') {
@@ -14316,25 +14827,66 @@ if (!class_exists('TCPDF', false)) {
 			if ($y === '') {
 				$y = $this->y;
 			}
-			if (($w === '') OR ($w <= 0)) {
-				if ($this->rtl) {
-					$w = $this->x - $this->lMargin;
-				} else {
-					$w = $this->w - $this->rMargin - $this->x;
+			// number of barcode columns and rows
+			$rows = $arrcode['num_rows'];
+			$cols = $arrcode['num_cols'];
+			// module width and height
+			$mw = $style['module_width'];
+			$mh = $style['module_height'];
+			// get max dimensions
+			if ($this->rtl) {
+				$maxw = $this->x - $this->lMargin;
+			} else {
+				$maxw = $this->w - $this->rMargin - $this->x;
+			}
+			$maxh = ($this->h - $this->tMargin - $this->bMargin);
+			$ratioHW = ($rows * $mh) / ($cols * $mw);
+			$ratioWH = ($cols * $mw) / ($rows * $mh);
+			if (!$distort) {
+				if (($maxw * $ratioHW) > $maxh) {
+					$maxw = $maxh * $ratioWH;
+				}
+				if (($maxh * $ratioWH) > $maxw) {
+					$maxh = $maxw * $ratioHW;
 				}
 			}
-			if (($h === '') OR ($h <= 0)) {
-				$h = $w;
+			// set maximum dimesions
+			if ($w > $maxw) {
+				$w = $maxw;
 			}
-			// padding
-			if (!isset($style['padding'])) {
-				$style['padding'] = 0;
-			} elseif ($style['padding'] === 'auto') {
-				$style['padding'] = 4 * $w / (8 + $arrcode['num_cols']);
+			if ($h > $maxh) {
+				$h = $maxh;
 			}
-			// calculate barcode size (excluding padding)
-			$bw = $w - (2 * $style['padding']);
-			$bh = $h - (2 * $style['padding']);
+			$hpad = (2 * $style['hpadding']);
+			$vpad = (2 * $style['vpadding']);
+			// set dimensions
+			if ((($w === '') OR ($w <= 0)) AND (($h === '') OR ($h <= 0))) {
+				$w = ($cols + $hpad) * ($mw / $this->k);
+				$h = ($rows + $vpad) * ($mh / $this->k);
+			} elseif (($w === '') OR ($w <= 0)) {
+				$w = $h * $ratioWH;
+			} elseif (($h === '') OR ($h <= 0)) {
+				$h = $w * $ratioHW;
+			}
+			// barcode size (excluding padding)
+			$bw = ($w * $cols) / ($cols + $hpad);
+			$bh = ($h * $rows) / ($rows + $vpad);
+			// dimension of single barcode cell unit
+			$cw = $bw / $cols;
+			$ch = $bh / $rows;
+			if (!$distort) {
+				if (($cw / $ch) > ($mw / $mh)) {
+					// correct horizontal distortion
+					$cw = $ch * $mw / $mh;
+					$bw = $cw * $cols;
+					$style['hpadding'] = ($w - $bw) / (2 * $cw);
+				} else {
+					// correct vertical distortion
+					$ch = $cw * $mh / $mw;
+					$bh = $ch * $rows;
+					$style['vpadding'] = ($h - $bh) / (2 * $ch);
+				}
+			}
 			// Check whether we need a new page first as this does not fit
 			$prev_x = $this->x;
 			if ($this->checkPageBreak($h, $y)) {
@@ -14371,8 +14923,8 @@ if (!class_exists('TCPDF', false)) {
 				}
 				$this->img_rb_x = $xpos + $w;
 			}
-			$xstart = $xpos + $style['padding'];
-			$ystart = $y + $style['padding'];
+			$xstart = $xpos + ($style['hpadding'] * $cw);
+			$ystart = $y + ($style['vpadding'] * $ch);
 			// barcode is always printed in LTR direction
 			$tempRTL = $this->rtl;
 			$this->rtl = false;
@@ -14383,11 +14935,6 @@ if (!class_exists('TCPDF', false)) {
 				$this->Rect($xpos, $y, $w, $h, 'D');
 			}
 			// print barcode cells
-			$rows = $arrcode['num_rows'];
-			$cols = $arrcode['num_cols'];
-			// calculate dimension of single barcode cell unit
-			$cw = $bw / $cols;
-			$ch = $bh / $rows;
 			// for each row
 			for ($r = 0; $r < $rows; ++$r) {
 				$xr = $xstart;
@@ -14920,7 +15467,8 @@ if (!class_exists('TCPDF', false)) {
 			// create an array of elements
 			$dom = array();
 			$dom[$key] = array();
-			// set first void element
+			// set inheritable properties fot the first void element
+			// possible inheritable properties are: azimuth, border-collapse, border-spacing, caption-side, color, cursor, direction, empty-cells, font, font-family, font-stretch, font-size, font-size-adjust, font-style, font-variant, font-weight, letter-spacing, line-height, list-style, list-style-image, list-style-position, list-style-type, orphans, page, page-break-inside, quotes, speak, speak-header, text-align, text-indent, text-transform, volume, white-space, widows, word-spacing
 			$dom[$key]['tag'] = false;
 			$dom[$key]['block'] = false;
 			$dom[$key]['value'] = '';
@@ -14933,7 +15481,7 @@ if (!class_exists('TCPDF', false)) {
 			$dom[$key]['clip'] = ($this->textrendermode > 3);
 			$dom[$key]['line-height'] = $this->cell_height_ratio;
 			$dom[$key]['bgcolor'] = false;
-			$dom[$key]['fgcolor'] = $this->fgcolor;
+			$dom[$key]['fgcolor'] = $this->fgcolor; // color
 			$dom[$key]['strokecolor'] = $this->strokecolor;
 			$dom[$key]['align'] = '';
 			$dom[$key]['listtype'] = '';
@@ -19454,6 +20002,28 @@ if (!class_exists('TCPDF', false)) {
 				}
 			}
 			return $op;
+		}
+
+		/**
+		 * Enable or disable default option for font subsetting.
+		 * @param boolean $enable if true enable font subsetting by default.
+		 * @author Nicola Asuni
+		 * @access public
+		 * @since 5.3.002 (2010-06-07)
+		 */
+		public function setFontSubsetting($enable=true) {
+			$this->font_subsetting = $enable ? true : false;
+		}
+
+		/**
+		 * Return the default option for font subsetting.
+		 * @return boolean default font subsetting state.
+		 * @author Nicola Asuni
+		 * @access public
+		 * @since 5.3.002 (2010-06-07)
+		 */
+		public function getFontSubsetting() {
+			return $this->font_subsetting;
 		}
 
 		// -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
