@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2010-02-17
+// Last Update : 2010-06-07
 //
 // Description : Functions to translate TCExam code
 //               into XHTML.
@@ -258,7 +258,8 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 		case 'gif':
 		case 'jpg':
 		case 'jpeg':
-		case 'png': { // images
+		case 'png':
+		case 'svg': { // images
 			$htmlcode = '<img src="'.K_PATH_URL_CACHE.$filename.'"';
 			if (!empty($alt)) {
 				$htmlcode .= ' alt="'.$alt.'"';
