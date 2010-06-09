@@ -1,3 +1,6 @@
+10.1.009 (2010-06-09) 
+	- TCPDF library was updated.
+
 10.1.008 (2010-06-07) 
 	- TCPDF library was updated (now uses font subsetting by deafult).
 
