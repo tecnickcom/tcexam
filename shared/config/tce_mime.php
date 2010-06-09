@@ -204,6 +204,7 @@ $mime['mp2v'] = 'video/x-mpeg2';
 //$mime['mp3'] = 'audio/mpeg';
 $mime['mp3'] = 'audio/x-mpeg';
 $mime['mp3url '] = 'audio/x-mpegurl';
+$mime['mp4'] = 'video/mp4';
 $mime['mpa'] = 'video/mpeg';
 $mime['mpa2'] = 'audio/x-mpeg2';
 $mime['mpe'] = 'video/mpeg';
