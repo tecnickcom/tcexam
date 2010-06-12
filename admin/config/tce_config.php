@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2009-11-10
+// Last Update : 2010-06-12
 //
 // Description : Configuration file for administration section.
 //
@@ -74,6 +74,12 @@ define ('K_MAX_ROWS_PER_PAGE', 50);
  */
 define ('K_MAX_UPLOAD_SIZE', 10000000);
 
+/**
+ * List of allowed file types for upload (remove all extensions to disable upload).
+ * FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE
+ */
+define ('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid')));
+
 // -- DEFAULT META and BODY Tags --
 
 /**
@@ -139,12 +145,12 @@ define ('K_DISPLAY_PDFTEXT_BUTTON', false);
 /**
  * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
  */
-define ('K_ENABLE_CUSTOM_IMPORT', '');
+define ('K_ENABLE_CUSTOM_IMPORT', 'Custom XML format');
 
 /**
  * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
  */
-define ('K_ENABLE_CUSTOM_EXPORT', '');
+define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
 
 // --- INCLUDE FILES -----------------------------------------------------------
 

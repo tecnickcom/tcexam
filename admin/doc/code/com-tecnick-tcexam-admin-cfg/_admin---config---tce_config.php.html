@@ -84,17 +84,30 @@ Configuration file for administration section.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-require_once('../../shared/code/tce_db_connect.php') [line 152]<br />
+require_once('../../shared/code/tce_db_connect.php') [line 158]<br />
 require_once(<a href="../com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html">'../config/tce_auth.php'</a>) [line 57]<br />
-require_once('../../shared/code/tce_functions_general.php') [line 153]<br />
-require_once('../../shared/config/tce_db_config.php') [line 151]<br />
+require_once('../../shared/code/tce_functions_general.php') [line 159]<br />
+require_once('../../shared/config/tce_db_config.php') [line 157]<br />
 require_once('../../shared/config/tce_config.php') [line 58]<br />
 </div>
 <br /><br />
 <br /><br />
   <hr />
+	<a name="defineK_ALLOWED_UPLOAD_EXTENSIONS"></a>
+	<h3>K_ALLOWED_UPLOAD_EXTENSIONS <span class="smalllinenumber">[line 81]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_ALLOWED_UPLOAD_EXTENSIONS = serialize(array('png','gif','jpg','jpeg','svg','mp3','mid','oga','ogg','wav','wma','avi','flv','m2v','mpeg','mpeg4','mpg','mpg2','mpv','ogm','ogv','vid'))</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    List of allowed file types for upload (remove all extensions to disable upload).<br /><br /><p>FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE</p><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
 	<a name="defineK_CLOCK_IN_UTC"></a>
-	<h3>K_CLOCK_IN_UTC <span class="smalllinenumber">[line 127]</span></h3>
+	<h3>K_CLOCK_IN_UTC <span class="smalllinenumber">[line 133]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -107,7 +120,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_DISPLAY_PDFTEXT_BUTTON"></a>
-	<h3>K_DISPLAY_PDFTEXT_BUTTON <span class="smalllinenumber">[line 137]</span></h3>
+	<h3>K_DISPLAY_PDFTEXT_BUTTON <span class="smalllinenumber">[line 143]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -120,11 +133,11 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_ENABLE_CUSTOM_EXPORT"></a>
-	<h3>K_ENABLE_CUSTOM_EXPORT <span class="smalllinenumber">[line 147]</span></h3>
+	<h3>K_ENABLE_CUSTOM_EXPORT <span class="smalllinenumber">[line 153]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>K_ENABLE_CUSTOM_EXPORT = ''</code>
+		<code>K_ENABLE_CUSTOM_EXPORT = 'CUSTOM'</code>
     </td></tr></table>
     </td></tr></table>
 
@@ -133,11 +146,11 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_ENABLE_CUSTOM_IMPORT"></a>
-	<h3>K_ENABLE_CUSTOM_IMPORT <span class="smalllinenumber">[line 142]</span></h3>
+	<h3>K_ENABLE_CUSTOM_IMPORT <span class="smalllinenumber">[line 148]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>K_ENABLE_CUSTOM_IMPORT = ''</code>
+		<code>K_ENABLE_CUSTOM_IMPORT = 'Custom XML format'</code>
     </td></tr></table>
     </td></tr></table>
 
@@ -185,7 +198,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_SELECT_SUBSTRING"></a>
-	<h3>K_SELECT_SUBSTRING <span class="smalllinenumber">[line 132]</span></h3>
+	<h3>K_SELECT_SUBSTRING <span class="smalllinenumber">[line 138]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -198,7 +211,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_AUTHOR"></a>
-	<h3>K_TCEXAM_AUTHOR <span class="smalllinenumber">[line 92]</span></h3>
+	<h3>K_TCEXAM_AUTHOR <span class="smalllinenumber">[line 98]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -211,7 +224,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_DESCRIPTION"></a>
-	<h3>K_TCEXAM_DESCRIPTION <span class="smalllinenumber">[line 87]</span></h3>
+	<h3>K_TCEXAM_DESCRIPTION <span class="smalllinenumber">[line 93]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -224,7 +237,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_HELP_STYLE"></a>
-	<h3>K_TCEXAM_HELP_STYLE <span class="smalllinenumber">[line 122]</span></h3>
+	<h3>K_TCEXAM_HELP_STYLE <span class="smalllinenumber">[line 128]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -237,7 +250,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_ICON"></a>
-	<h3>K_TCEXAM_ICON <span class="smalllinenumber">[line 107]</span></h3>
+	<h3>K_TCEXAM_ICON <span class="smalllinenumber">[line 113]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -250,7 +263,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_KEYWORDS"></a>
-	<h3>K_TCEXAM_KEYWORDS <span class="smalllinenumber">[line 102]</span></h3>
+	<h3>K_TCEXAM_KEYWORDS <span class="smalllinenumber">[line 108]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -263,7 +276,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_REPLY_TO"></a>
-	<h3>K_TCEXAM_REPLY_TO <span class="smalllinenumber">[line 97]</span></h3>
+	<h3>K_TCEXAM_REPLY_TO <span class="smalllinenumber">[line 103]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -276,7 +289,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_STYLE"></a>
-	<h3>K_TCEXAM_STYLE <span class="smalllinenumber">[line 112]</span></h3>
+	<h3>K_TCEXAM_STYLE <span class="smalllinenumber">[line 118]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -289,7 +302,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_STYLE_RTL"></a>
-	<h3>K_TCEXAM_STYLE_RTL <span class="smalllinenumber">[line 117]</span></h3>
+	<h3>K_TCEXAM_STYLE_RTL <span class="smalllinenumber">[line 123]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -302,7 +315,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TCEXAM_TITLE"></a>
-	<h3>K_TCEXAM_TITLE <span class="smalllinenumber">[line 82]</span></h3>
+	<h3>K_TCEXAM_TITLE <span class="smalllinenumber">[line 88]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -317,7 +330,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 09 Jun 2010 18:01:24 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Sat, 12 Jun 2010 17:45:08 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

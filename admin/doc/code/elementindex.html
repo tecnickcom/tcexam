@@ -842,6 +842,8 @@
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isValidIP">F_isValidIP()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if user's IP is valid over test IP range</dd>
 							<dt><b>F_isValidTestUser</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isValidTestUser">F_isValidTestUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if user is authorized to execute the specified test</dd>
+							<dt><b>F_is_allowed_upload</b></dt>
+				<dd>in file tce_functions_upload.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_upload.php.html#functionF_is_allowed_upload">F_is_allowed_upload()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if the uploaded file extension is allowed.</dd>
 							<dt><b>F_latex_callback</b></dt>
 				<dd>in file tce_functions_tcecode.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_tcecode.php.html#functionF_latex_callback">F_latex_callback()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Callback function for preg_replace_callback (LaTeX replacement).</dd>
 							<dt><b>F_list_online_users</b></dt>
@@ -1400,6 +1402,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$k">TCPDF::$k</a></dd>
 							<dt><b>$keywords</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$keywords">TCPDF::$keywords</a></dd>
+							<dt><b>K_ALLOWED_UPLOAD_EXTENSIONS</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_ALLOWED_UPLOAD_EXTENSIONS">K_ALLOWED_UPLOAD_EXTENSIONS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of allowed file types for upload (remove all extensions to disable upload).</dd>
 							<dt><b>K_ANSWER_TEXTAREA_COLS</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_ANSWER_TEXTAREA_COLS">K_ANSWER_TEXTAREA_COLS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Number of columns for answer textarea.</dd>
 							<dt><b>K_ANSWER_TEXTAREA_ROWS</b></dt>
@@ -1575,17 +1579,17 @@
 							<dt><b>K_MAIN_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAIN_PAGE">K_MAIN_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Main page (homepage).</dd>
 							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit for a PHP script.</dd>
-							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit.</dd>
-							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
+							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit for a PHP script.</dd>
 							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
-							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max file size to be uploaded [bytes].</dd>
+							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
 							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max size to be uploaded in bytes.</dd>
+							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max file size to be uploaded [bytes].</dd>
 							<dt><b>K_NEWLINE</b></dt>
 				<dd>in file tce_general_constants.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_general_constants.php.html#defineK_NEWLINE">K_NEWLINE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;New line character.</dd>
 							<dt><b>K_PATH_BACKUP</b></dt>
@@ -3399,7 +3403,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 09 Jun 2010 18:01:21 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Sat, 12 Jun 2010 17:45:05 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

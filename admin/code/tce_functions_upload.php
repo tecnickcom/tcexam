@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_upload.php
 // Begin       : 2001-11-19
-// Last Update : 2009-09-30
+// Last Update : 2010-06-12
 //
 // Description : Upload functions.
 //
@@ -50,12 +50,34 @@
  */
 
 /**
- * Uploads image file to the server.
+ * Check if the uploaded file extension is allowed.
  * @author Nicola Asuni
  * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @link www.tecnick.com
  * @since 2001-11-19
+ * @param string $filename the filename
+ * @return true in case of allowed file type, false otherwise
+ */
+function F_is_allowed_upload($filename) {
+	if (!defined('K_ALLOWED_UPLOAD_EXTENSIONS')) {
+		return false;
+	}
+	$allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+	$path_parts = pathinfo($filename);
+	if (in_array($path_parts['extension'], $allowed_extensions)) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Uploads image file to the server.
+ * @author Nicola Asuni
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @link www.tecnick.com
+ * @since 2010-06-12
  * @param string $fieldname form field name containing the source file path
  * @param string $uploaddir upload directory
  * @return mixed file name or false in case of error
@@ -63,7 +85,8 @@
 function F_upload_file($fieldname, $uploaddir) {
 	global $l;
 	require_once('../config/tce_config.php');
-	if(move_uploaded_file ($_FILES[$fieldname]['tmp_name'], $uploaddir.$_FILES[$fieldname]['name'])) {
+	$filename = $uploaddir.$_FILES[$fieldname]['name'];
+	if (F_is_allowed_upload($filename) AND move_uploaded_file($_FILES[$fieldname]['tmp_name'], $filename)) {
 		F_print_error('MESSAGE', htmlspecialchars($_FILES[$fieldname]['name']).': '.$l['m_upload_yes']);
 		return $_FILES[$fieldname]['name'];
 	}
