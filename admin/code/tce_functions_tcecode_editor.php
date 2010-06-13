@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2010-06-12
+// Last Update : 2010-06-13
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -49,20 +49,6 @@
  * @link www.tecnick.com
  * @since 2002-02-20
  */
-
-/**
- */
-
-require_once('../config/tce_config.php');
-
-// upload files
-$uploadedfile = array();
-for ($id = 0; $id < 2; ++$id) {
-	if(isset($_POST['sendfile'.$id]) AND ($_FILES['userfile'.$id]['name'])) {
-		require_once('../code/tce_functions_upload.php');
-		$uploadedfile['\''.$id.'\''] = F_upload_file('userfile'.$id, K_PATH_CACHE);
-	}
-}
 
 /**
  * Display TCExam Code EDITOR Tag Buttons

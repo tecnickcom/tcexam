@@ -1,3 +1,6 @@
+10.1.012 (2010-06-13) 
+	- THIS VERSION CONTAINS A SECURITY FIX.
+
 10.1.011 (2010-06-12) 
 	- THIS VERSION CONTAINS A SECURITY FIX.
 	- Now you can upload only the file types listed on K_ALLOWED_UPLOAD_EXTENSIONS constant at admin/config/tce_config.php.

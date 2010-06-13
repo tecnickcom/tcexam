@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_upload.php
 // Begin       : 2001-11-19
-// Last Update : 2010-06-12
+// Last Update : 2010-06-13
 //
 // Description : Upload functions.
 //
@@ -85,12 +85,15 @@ function F_is_allowed_upload($filename) {
 function F_upload_file($fieldname, $uploaddir) {
 	global $l;
 	require_once('../config/tce_config.php');
-	$filename = $uploaddir.$_FILES[$fieldname]['name'];
-	if (F_is_allowed_upload($filename) AND move_uploaded_file($_FILES[$fieldname]['tmp_name'], $filename)) {
-		F_print_error('MESSAGE', htmlspecialchars($_FILES[$fieldname]['name']).': '.$l['m_upload_yes']);
-		return $_FILES[$fieldname]['name'];
+	// sanitize file name
+	$filename = preg_replace('/[\s]/', '_', $_FILES[$fieldname]['name']);
+	$filename = preg_replace('/[^a-zA-Z0-9_\.\-]/', '', $filename);
+	$filepath = $uploaddir.$filename;
+	if (F_is_allowed_upload($filename) AND move_uploaded_file($_FILES[$fieldname]['tmp_name'], $filepath)) {
+		F_print_error('MESSAGE', htmlspecialchars($filename).': '.$l['m_upload_yes']);
+		return $filename;
 	}
-	F_print_error('ERROR', htmlspecialchars($_FILES[$fieldname]['name']).': '.$l['m_upload_not'].'');
+	F_print_error('ERROR', htmlspecialchars($filename).': '.$l['m_upload_not'].'');
 	return FALSE;
 }
 

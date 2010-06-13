@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2009-10-10
+// Last Update : 2010-06-13
 //
 // Description : Edit answers.
 //
@@ -63,6 +63,15 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../code/tce_functions_tcecode_editor.php');
 require_once('../code/tce_functions_auth_sql.php');
+
+// upload multimedia files
+$uploadedfile = array();
+for ($id = 0; $id < 2; ++$id) {
+	if(isset($_POST['sendfile'.$id]) AND ($_FILES['userfile'.$id]['name'])) {
+		require_once('../code/tce_functions_upload.php');
+		$uploadedfile['\''.$id.'\''] = F_upload_file('userfile'.$id, K_PATH_CACHE);
+	}
+}
 
 // set default values
 if(!isset($answer_id)) {
