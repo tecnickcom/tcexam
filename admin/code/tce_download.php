@@ -41,7 +41,7 @@
 
 /**
  * Download TCExam Database Backup.
- * @package com.tecnick.gasoffice
+ * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
  * @copyright Copyright &copy; 2008-2010 Nicola Asuni, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @since 2010-06-16
