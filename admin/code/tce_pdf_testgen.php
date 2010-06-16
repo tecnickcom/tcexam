@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2010-03-29
+// Last Update : 2010-06-16
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -544,7 +544,7 @@ for ($item = 1; $item <= $test_num; $item++) {
 } //end for test_num
 
 //Close and outputs PDF document
-$pdf->Output('tcexam_test_'.$test_id.'_'.date('YmdHis').'.pdf', 'I');
+$pdf->Output('tcexam_test_'.$test_id.'_'.date('YmdHis').'.pdf', 'D');
 
 //============================================================+
 // END OF FILE

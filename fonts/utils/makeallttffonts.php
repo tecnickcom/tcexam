@@ -4,7 +4,7 @@
 // Begin       : 2008-12-07
 // Last Update : 2008-12-07
 //
-// Description : Process all TTF files on current directory to 
+// Description : Process all TTF files on current directory to
 //               build TCPDF compatible font files.
 //
 // Author: Nicola Asuni
@@ -18,25 +18,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
 //    the Free Software Foundation, either version 3 of the License, or
 //    (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
-//    
+//
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -44,7 +44,7 @@
  * Process all TTF files on current directory to build TCPDF compatible font files.
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @copyright Copyright &copy; 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link www.tecnick.com
  * @since 2008-12-07
@@ -66,6 +66,6 @@ while($file = readdir($handle)) {
 closedir($handle);
 
 //============================================================+
-// END OF FILE                                                 
+// END OF FILE
 //============================================================+
 ?>

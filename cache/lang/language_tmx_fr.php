@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: fr
-// DATE: 2010-05-28 14:33:34
+// DATE: 2010-06-16 13:58:49
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -531,6 +531,8 @@ $tmx['m_backup_completed']='crée fichier backup avec succès';
 $tmx['m_restore_completed']='récupération réussie';
 $tmx['m_restore_confirm']='confirmer la restauration';
 $tmx['hp_edit_backups']='Cette page vous permet de créer des fichiers backup (fonctionne sur les systèmes POSIX avec MySQL ou PostgreSQL). En appuyant [backup] une base de données backup sera créée dans le format SQL compressé (structure et données). Pour restaurer le fichier sélectionner cliquez sur [Rétablir]. Note: Avant de restaurer, un fichier backup supplémentaire est automatiquement créé. Les fichiers backup sont sauvé dans le dossier cache / backup avec la syntaxe suivante: aaaammjjhhmmss_tcexam_backup.sql.gz, ou aaaammjjhhmmss indiquant le moment de la création du fichier.';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

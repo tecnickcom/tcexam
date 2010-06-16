@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2009-10-10
+// Last Update : 2010-06-16
 //
 // Description : Class to import questions from an XML file.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -278,6 +278,7 @@ class XMLQuestionImporter {
 	private function addModule() {
 		global $l, $db;
 		require_once('../config/tce_config.php');
+		require_once('../code/tce_functions_auth_sql.php');
 		if (isset($this->level_data['module']['module_id']) AND ($this->level_data['module']['module_id'] > 0)) {
 			return;
 		}
@@ -289,7 +290,12 @@ class XMLQuestionImporter {
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				// get existing module ID
-				$this->level_data['module']['module_id'] = $m['module_id'];
+				if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['module_id'], 'module_user_id')) {
+					// unauthorized user
+					$this->level_data['module']['module_id'] = false;
+				} else {
+					$this->level_data['module']['module_id'] = $m['module_id'];
+				}
 			} else {
 				// insert new module
 				$sql = 'INSERT INTO '.K_TABLE_MODULES.' (
@@ -330,8 +336,14 @@ class XMLQuestionImporter {
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				// get existing subject ID
-				$this->level_data['subject']['subject_id'] = $m['subject_id'];
-			} else {
+				if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $m['subject_id'], 'subject_user_id')) {
+					// unauthorized user
+					$this->level_data['subject']['subject_id'] = false;
+				} else {
+					$this->level_data['subject']['subject_id'] = $m['subject_id'];
+				}
+				
+			} elseif ($this->level_data['module']['module_id'] !== false) {
 				// insert new subject
 				$sql = 'INSERT INTO '.K_TABLE_SUBJECTS.' (
 					subject_name,
@@ -352,6 +364,8 @@ class XMLQuestionImporter {
 					// get new subject ID
 					$this->level_data['subject']['subject_id'] = F_db_insert_id($db, K_TABLE_SUBJECTS, 'subject_id');
 				}
+			} else {
+				$this->level_data['subject']['subject_id'] = false;
 			}
 		} else {
 			F_display_db_error();
@@ -365,6 +379,12 @@ class XMLQuestionImporter {
 	private function addQuestion() {
 		global $l, $db;
 		require_once('../config/tce_config.php');
+		if ($this->level_data['module']['module_id'] === false) {
+			return;
+		}
+		if ($this->level_data['subject']['subject_id'] === false) {
+			return;
+		}
 		if (isset($this->level_data['question']['question_id']) AND ($this->level_data['question']['question_id'] > 0)) {
 			return;
 		}
@@ -466,6 +486,12 @@ class XMLQuestionImporter {
 	private function addAnswer() {
 		global $l, $db;
 		require_once('../config/tce_config.php');
+		if ($this->level_data['module']['module_id'] === false) {
+			return;
+		}
+		if ($this->level_data['subject']['subject_id'] === false) {
+			return;
+		}
 		if (isset($this->level_data['answer']['answer_id']) AND ($this->level_data['answer']['answer_id'] > 0)) {
 			return;
 		}

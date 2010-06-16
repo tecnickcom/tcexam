@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2009-12-31
+// Last Update : 2010-06-16
 //
 // Description : Display all questions grouped by topic.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -102,16 +102,22 @@ if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AN
 
 // select default module/subject (if not specified)
 if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
-	$sql = F_select_subjects_sql().' LIMIT 1';
+	$sql = F_select_modules_sql().' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
-			$subject_module_id = $m['subject_module_id'];
+			$subject_module_id = $m['module_id'];
 		} else {
 			$subject_module_id = 0;
 		}
 	} else {
 		F_display_db_error();
 	}
+}
+
+// check user's authorization
+if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+	F_print_error('ERROR', $l['m_authorization_denied']);
+	exit;
 }
 
 // select subject
@@ -189,7 +195,7 @@ if (isset($menu_mode) AND ($menu_mode == 'update') AND isset($menu_action) AND !
 <input type="hidden" name="changemodule" id="changemodule" value="" />
 <select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById('form_selectquestions').changemodule.value=1;document.getElementById('form_selectquestions').changecategory.value=1; document.getElementById('form_selectquestions').submit();" title="<?php echo $l['w_module']; ?>">
 <?php
-$sql = 'SELECT * FROM '.K_TABLE_MODULES.' ORDER BY module_name';
+$sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

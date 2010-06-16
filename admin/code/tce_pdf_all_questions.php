@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2009-12-31
+// Last Update : 2010-06-16
 //
 // Description : Creates a PDF document containing exported questions.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -68,6 +68,15 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	$module_id = intval($_REQUEST['module_id']);
 	$subject_id = intval($_REQUEST['subject_id']);
 } else {
+	exit;
+}
+
+// check user's authorization for module
+if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
+	exit;
+}
+// check user's authorization for subject
+if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
 	exit;
 }
 
@@ -144,11 +153,11 @@ $data_cell_width_third = round($data_cell_width / 3, 2);
 $data_cell_width_half = round($data_cell_width / 2, 2);
 
 // ---- module
-$sqlm = 'SELECT * FROM '.K_TABLE_MODULES.'';
+$andmodwhere = '';
 if ($expmode < 3) {
-	$sqlm .= ' WHERE module_id='.$module_id.'';
+	$andmodwhere = 'module_id='.$module_id.'';
 }
-$sqlm .= ' ORDER BY module_name';
+$sqlm = F_select_modules_sql($andmodwhere);
 if($rm = F_db_query($sqlm, $db)) {
 	while($mm = F_db_fetch_array($rm)) {
 		$module_id =  $mm['module_id'];
@@ -310,8 +319,28 @@ if($rm = F_db_query($sqlm, $db)) {
 	F_display_db_error();
 }
 
+// set PDF file name
+switch ($expmode) {
+	case 1: {
+		$pdf_filename = 'tcexam_subject_'.$subject_id.'_'.date('YmdHi').'.pdf';
+		break;
+	}
+	case 2: {
+		$pdf_filename = 'tcexam_module_'.$module_id.'_'.date('YmdHi').'.pdf';
+		break;
+	}
+	case 3: {
+		$pdf_filename = 'tcexam_all_modules_'.date('YmdHi').'.pdf';
+		break;
+	}
+	default: {
+		$pdf_filename = 'tcexam_export_'.date('YmdHi').'.pdf';
+		break;
+	}
+}
+
 // Send PDF output
-$pdf->Output('tcexam_questions_'.$subject_id.'_'.date('YmdHi').'.pdf', 'I');
+$pdf->Output($pdf_filename, 'D');
 
 //============================================================+
 // END OF FILE

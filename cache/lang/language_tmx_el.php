@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2010-05-28 14:33:31
+// DATE: 2010-06-16 13:58:43
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -513,6 +513,8 @@ $tmx['hp_edit_backups']='Η σελίδα αυτή σας επιτρέπει να
      Για αποκατάση ενός αντιγράφου, επιλέξτε το και πατήστε το [restore] κουμπί.
      Σημειώστε ότι πριν από κάθε αποκατάσταση του συστήματος, δημιουργείτε ένα καινούριο αντίγραφο ασφαλείας ώστε να μπορείτε να γυρίσετε στην τωρινή κατάσταση.
      Τα αντίγραφα ασφαλείας αποθηκέυονται στο φάκελο "cache/backup" με όνομα: YYYYMMDDhhmmss_tcexam_backup.sql.gz, (Υ) είναι τα ψηφία της χρονιάς,(Μ) μήνας, (D) ημέρα, ώρα (h), λεπτά (m), δευτερόλεπτα (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

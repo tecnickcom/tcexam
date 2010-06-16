@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2010-05-28 14:33:40
+// DATE: 2010-06-16 13:58:56
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -513,6 +513,8 @@ Premendo il tasto [backup] il sistema crea una copia compressa del dump SQL dell
 Per ripristinare una copia di backup è sufficiente selezionarla e premere il tasto [rispristina].
 Per sicurezza, prima di ogni ripristino il sistema esegue un backup così da poter annullare l\'operazione di ripristino.
 I file di backup vengono registrati nella cartella "cache/backup" con la seguente sintassi: AAAAMMGGhhmmss_tcexam_backup.sql.gz , dove AAAAMMGGhhmmss rappresenta le cifre dell\'anno (A), mese (M), giorno (G), ora (h), minuti (m), secondi (s).';
+$tmx['w_download']='scarica';
+$tmx['h_download']='scarica il file di backup selezionato';
 
 // EOF ----------
 ?>

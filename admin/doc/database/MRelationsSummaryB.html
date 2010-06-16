@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta name="keywords" content="TCExam, database model, ERD">
-		<meta name="author" content="Nicola Asuni - tecnick.com s.r.l.">
+		<meta name="keywords" content="TCExam, DataBase">
+		<meta name="author" content="Nicola Asuni - Tecnick.com">
 
 		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
 		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
-		<title>TCExam 10 Database Documentation</title>
+		<title>TCExam 11 DataBase - HTML Report</title>
 	</head>
 
 <body class="rightPage">
@@ -24,6 +24,8 @@
     <td class="tabdata" > rel_group_test    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_testgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
   <tr>
     <td class="tabdata" > rel_group_user    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_user_groups    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_module_author    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > 1:N    </td>  </tr>
   <tr>
     <td class="tabdata" > rel_module_subjects    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
   <tr>

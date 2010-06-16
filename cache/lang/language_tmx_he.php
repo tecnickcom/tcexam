@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2010-05-28 14:33:36
+// DATE: 2010-06-16 13:58:52
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -512,6 +512,8 @@ $tmx['hp_edit_backups']='דף זה מאפשר לגבות ולשחזר את בס�
 שימו לב שלפני כל שחזור, מבוצע גיבוי אוטומטי על ידי המערכת בכדי שניתן יהיה לחזור למצב הקודם.
 קבצי הגיבוי מאוחסנים תחת התיקיה "cache/backup" בשמות במבנה הבא: YYYYMMDDhhmmss_tcexam_backup.sql.gz,
 כאשר YYYYMMDDhhmmss מציינות את השנה (Y), חודש (M), יום (D), שעה (h), דקה (m), שניה (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2010-05-10
+// Last Update : 2010-06-16
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -83,7 +83,7 @@ echo '<li>'.F_menu_link('tce_edit_subject.php', $l['t_subjects_editor'], $l['w_s
 echo '<li>'.F_menu_link('tce_edit_question.php', $l['t_questions_editor'], $l['w_questions'], K_AUTH_ADMIN_QUESTIONS).'</li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_edit_answer.php', $l['t_answers_editor'], $l['w_answers'], K_AUTH_ADMIN_ANSWERS).'</li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_show_all_questions.php', $l['t_questions_list'], $l['w_list'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_import_xml_questions.php', $l['t_question_importer'], $l['w_import'], K_AUTH_ADMIN_SUBJECTS).'</li>'.K_NEWLINE;
+echo '<li>'.F_menu_link('tce_import_xml_questions.php', $l['t_question_importer'], $l['w_import'], K_AUTH_ADMIN_IMPORT).'</li>'.K_NEWLINE;
 echo '</ul></li>'.K_NEWLINE;
 
 echo '<li>'.F_menu_link('tce_menu_tests.php', '', $l['w_tests'], K_AUTH_ADMIN_TESTS).$ie6_iframe.'<ul>'.K_NEWLINE;
@@ -95,7 +95,7 @@ echo '<li>'.F_menu_link('tce_show_result_user.php', $l['t_result_user'], $l['w_u
 echo '<li>'.F_menu_link('tce_show_result_questions.php', $l['t_result_questions'], $l['w_stats'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
 echo '</ul></li>'.K_NEWLINE;
 if ((K_DATABASE_TYPE == 'MYSQL') OR (K_DATABASE_TYPE == 'POSTGRESQL')) {
-	echo '<li>'.F_menu_link('tce_edit_backup.php', $l['t_backup_editor'], $l['w_backup'], K_AUTH_ADMINISTRATOR).'</li>'.K_NEWLINE;
+	echo '<li>'.F_menu_link('tce_edit_backup.php', $l['t_backup_editor'], $l['w_backup'], K_AUTH_BACKUP).'</li>'.K_NEWLINE;
 }
 echo '<li>'.F_menu_link('http://www.tcexam.org', $l['h_guide'], $l['w_guide'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
 echo '<li>'.F_menu_link('tce_page_info.php', $l['h_info'], $l['w_info'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;

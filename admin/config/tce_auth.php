@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2009-11-10
+// Last Update : 2010-06-16
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -37,8 +37,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -57,6 +57,11 @@
 // SECURITY WARNING :
 // SET THIS FILE AS READ ONLY AFTER MODIFICATIONS
 // ************************************************************
+
+/**
+ * Administrator level.
+ */
+define ('K_AUTH_ADMINISTRATOR', 10);
 
 /**
  * Required user's level to access index page.
@@ -124,9 +129,14 @@ define ('K_AUTH_ADMIN_RATING', 5);
 define ('K_AUTH_ADMIN_RESULTS', 5);
 
 /**
- * Administrator level.
+ * Required user's level to import questions.
  */
-define ('K_AUTH_ADMINISTRATOR', 10);
+define ('K_AUTH_ADMIN_IMPORT', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to import questions.
+ */
+define ('K_AUTH_BACKUP', K_AUTH_ADMINISTRATOR);
 
 //============================================================+
 // END OF FILE

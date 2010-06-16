@@ -2,12 +2,13 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2010-02-12
+Last Update : 2010-06-16
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
 
 Author: Nicola Asuni
+
 (c) Copyright:
               Nicola Asuni
               Tecnick.com S.r.l.
@@ -17,27 +18,27 @@ Author: Nicola Asuni
               www.tecnick.com
               info@tecnick.com
 
-License: 
+License:
    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-   
+
    This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-   Additionally, you can't remove the original TCExam logo, copyrights statements
-   and links to Tecnick.com and TCExam websites.
-   
+
+   Additionally, you can't remove, move or hide the original TCExam logo,
+   copyrights statements and links to Tecnick.com and TCExam websites.
+
    See LICENSE.TXT file for more information.
-============================================================+
+//============================================================+
 */
 
 /* Tables */
@@ -74,6 +75,7 @@ CREATE TABLE tce_modules (
 	module_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
 	module_name Varchar(255) NOT NULL,
 	module_enabled Bool NOT NULL DEFAULT '0',
+	module_user_id Bigint UNSIGNED NOT NULL DEFAULT 1,
  Primary Key (module_id)
 ) ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -246,6 +248,7 @@ ALTER TABLE tce_tests_logs ADD UNIQUE ak_testuser_question (testlog_testuser_id,
 
 ALTER TABLE tce_tests_users ADD INDEX p_testuser_user_id (testuser_user_id);
 ALTER TABLE tce_tests ADD INDEX p_test_user_id (test_user_id);
+ALTER TABLE tce_modules ADD INDEX p_module_user_id (module_user_id);
 ALTER TABLE tce_subjects ADD INDEX p_subject_user_id (subject_user_id);
 ALTER TABLE tce_usrgroups ADD INDEX p_usrgrp_user_id (usrgrp_user_id);
 ALTER TABLE tce_questions ADD INDEX p_question_subject_id (question_subject_id);
@@ -266,6 +269,7 @@ ALTER TABLE tce_test_subjects ADD INDEX p_subjset_tsubset_id (subjset_tsubset_id
 
 ALTER TABLE tce_tests_users ADD Foreign Key (testuser_user_id) references tce_users (user_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_tests ADD Foreign Key (test_user_id) references tce_users (user_id) ON DELETE cascade ON UPDATE no action;
+ALTER TABLE tce_modules ADD Foreign Key (module_user_id) references tce_users (user_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_subjects ADD Foreign Key (subject_user_id) references tce_users (user_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_subjects ADD Foreign Key (subject_module_id) references tce_modules (module_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_usrgroups ADD Foreign Key (usrgrp_user_id) references tce_users (user_id) ON DELETE cascade ON UPDATE no action;

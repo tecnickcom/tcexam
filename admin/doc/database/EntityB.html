@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta name="keywords" content="TCExam, database model, ERD">
-		<meta name="author" content="Nicola Asuni - tecnick.com s.r.l.">
+		<meta name="keywords" content="TCExam, DataBase">
+		<meta name="author" content="Nicola Asuni - Tecnick.com">
 
 		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
 		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
-		<title>TCExam 10 Database Documentation</title>
+		<title>TCExam 11 DataBase - HTML Report</title>
 	</head>
 
 <body class="rightPage">
@@ -117,7 +117,9 @@
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > module_name    </td>    <td class="tabdata" > Varchar(n) (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata"  colspan="2"> Unique name for the module.    </td>  </tr>
   <tr>
-    <td class="tabdata" >     </td>    <td class="tabdata" > module_enabled    </td>    <td class="tabdata" > Char (20)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.     </td>    <td class="tabdata" > Only enabled modules can be used for a new test.   </td>  </tr>
+    <td class="tabdata" >     </td>    <td class="tabdata" > module_enabled    </td>    <td class="tabdata" > Char (20)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.     </td>    <td class="tabdata" > Only enabled modules can be used for a new test.    </td>  </tr>
+  <tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > module_id/module_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Author's ID. This module can be edited by the administrator, the author of this module and the users belonging to the same group of the author.   </td>  </tr>
 </table>
 
 <div class="caption2">Relationships</div>
@@ -126,7 +128,9 @@
   <tr>
     <td class="tabhead"  width="24%"> Relationship name    </td>    <td class="tabhead"  width="20%"> Type    </td>    <td class="tabhead"  width="23%"> Parent entity    </td>    <td class="tabhead"  width="23%"> Child entity    </td>    <td class="tabhead"  width="10%"> Card.    </td>  </tr>
   <tr>
-    <td class="tabdata" > rel_module_subjects    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+    <td class="tabdata" > rel_module_subjects    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_module_author    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > 1:N   </td>  </tr>
 </table>
 
 <div class="caption2">Alternative keys</div>
@@ -349,7 +353,7 @@
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > subject_enabled    </td>    <td class="tabdata" > Boolean    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > Indicates when the subject is enabled.<br> The legal values are:<br> FALSE = disabled;<br> TRUE = enabled.    </td>    <td class="tabdata" > Only enabled subjects can be used for a new test.    </td>  </tr>
   <tr>
-    <td class="tabdata" > FK    </td>    <td class="tabdata" > user_id/subject_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Only the administrator and the author of this subject (or his/her group) may update or delete this record.    </td>  </tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > module_id/subject_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Author's ID. This module can be edited by the administrator, the author of this module and the users belonging to the same group of the author.    </td>  </tr>
   <tr>
     <td class="tabdata" > FK    </td>    <td class="tabdata" > module_id/subject_module_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal module unique ID.<br> Indicates to which module this subject belongs.    </td>  </tr>
 </table>
@@ -621,7 +625,7 @@
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > test_max_score    </td>    <td class="tabdata" > Numeric(p,s) (10,3)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Maximum score that could be reached with this test.<br> This value could be calculated using the related tables and it's saved for statistical purposes.     </td>  </tr>
   <tr>
-    <td class="tabdata" > FK    </td>    <td class="tabdata" > user_id/test_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > User ID of the author of the test.    </td>    <td class="tabdata" > Only the administrator and the author of the test (or his/her group) may update/delete the test.    </td>  </tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > module_id/test_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > User ID of the author of the test.    </td>    <td class="tabdata" > Only the administrator and the author of the test (or his/her group) may update/delete the test.    </td>  </tr>
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > test_score_threshold    </td>    <td class="tabdata" > Numeric(p,s) (10,3)    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Minimum score required to pass the exam.    </td>  </tr>
   <tr>
@@ -887,7 +891,7 @@
   <tr>
     <td class="tabdata" > FK    </td>    <td class="tabdata" > test_id/testuser_test_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal test unique ID.<br> Indicates the test type selected by the user.    </td>  </tr>
   <tr>
-    <td class="tabdata" > FK    </td>    <td class="tabdata" > user_id/testuser_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).<br> Indicates to which user the test belongs.    </td>  </tr>
+    <td class="tabdata" > FK    </td>    <td class="tabdata" > module_id/testuser_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).<br> Indicates to which user the test belongs.    </td>  </tr>
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > testuser_status    </td>    <td class="tabdata" > Smallint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata" > Numeric code that indicates the user-test status.    </td>    <td class="tabdata" > TCExam legal values are:<br> 0 = the test generation process is started but not completed;<br> 1 = the test has been successfully created;<br> 2 = all questions have been displayed to the user;<br> 3 = all questions have been answered;<br> 4 = test locked (for timeout);    </td>  </tr>
   <tr>
@@ -915,7 +919,7 @@
   <tr>
     <td class="tabhead"  width="40%"> Name    </td>    <td class="tabhead"  width="60%"> Attributes    </td>  </tr>
   <tr>
-    <td class="tabdata" > ak_testuser    </td>    <td class="tabdata" > test_id, user_id   </td>  </tr>
+    <td class="tabdata" > ak_testuser    </td>    <td class="tabdata" > test_id, module_id   </td>  </tr>
 </table>
 
 <div class="caption2">Description</div>
@@ -1018,7 +1022,7 @@
   <tr>
     <td class="tabhead"  width="5%"> Key    </td>    <td class="tabhead"  width="25%"> Attribute/role name    </td>    <td class="tabhead"  width="15%"> Data type    </td>    <td class="tabhead"  width="10%"> Not null    </td>    <td class="tabhead"  width="10%"> Unique    </td>    <td class="tabhead" > Description    </td>    <td class="tabhead" > Notes    </td>  </tr>
   <tr>
-    <td class="tabdata" > PK    </td>    <td class="tabdata" > user_id    </td>    <td class="tabdata" > BigSerial    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).    </td>  </tr>
+    <td class="tabdata" > PK    </td>    <td class="tabdata" > module_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user's identification (ID).    </td>  </tr>
   <tr>
     <td class="tabdata" >     </td>    <td class="tabdata" > user_name    </td>    <td class="tabdata" > Varchar(n) (255)    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> Username, unique name by which a user is identified when accessing a multi-user system.    </td>  </tr>
   <tr>
@@ -1061,7 +1065,9 @@
   <tr>
     <td class="tabdata" > rel_subject_author    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_subjects    </td>    <td class="tabdata" > 1:N    </td>  </tr>
   <tr>
-    <td class="tabdata" > rel_user_group    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N   </td>  </tr>
+    <td class="tabdata" > rel_user_group    </td>    <td class="tabdata" > Identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_usrgroups    </td>    <td class="tabdata" > 1:N    </td>  </tr>
+  <tr>
+    <td class="tabdata" > rel_module_author    </td>    <td class="tabdata" > Non-identifying    </td>    <td class="tabdata" > tce_users    </td>    <td class="tabdata" > tce_modules    </td>    <td class="tabdata" > 1:N   </td>  </tr>
 </table>
 
 <div class="caption2">Alternative keys</div>
@@ -1126,7 +1132,7 @@
   <tr>
     <td class="tabhead"  width="5%"> Key    </td>    <td class="tabhead"  width="25%"> Attribute/role name    </td>    <td class="tabhead"  width="15%"> Data type    </td>    <td class="tabhead"  width="10%"> Not null    </td>    <td class="tabhead"  width="10%"> Unique    </td>    <td class="tabhead"  colspan="2"> Description    </td>  </tr>
   <tr>
-    <td class="tabdata" > PFK    </td>    <td class="tabdata" > user_id/usrgrp_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user unique ID.    </td>  </tr>
+    <td class="tabdata" > PFK    </td>    <td class="tabdata" > module_id/usrgrp_user_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal user unique ID.    </td>  </tr>
   <tr>
     <td class="tabdata" > PFK    </td>    <td class="tabdata" > group_id/usrgrp_group_id    </td>    <td class="tabdata" > Bigint    </td>    <td class="tabdata" > YES    </td>    <td class="tabdata" > NO    </td>    <td class="tabdata"  colspan="2"> This number represents the internal group unique ID.   </td>  </tr>
 </table>

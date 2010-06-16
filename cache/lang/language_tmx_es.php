@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2010-05-28 14:33:33
+// DATE: 2010-06-16 13:58:47
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -511,6 +511,8 @@ Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump 
 Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
 Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la \'operaciòn de restablecimiento.
 El expediente de cobertura viene registrado en la carpeta "cache/backup" con la siguiente sintaxis: AAAAMMGGhhmmss_tcexam_backup.sql.gz , donde AAAAMMGGhhmmss representa la cifra del\'año (A), mes (M), dia (G), hora (h), minutos (m), segundos (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

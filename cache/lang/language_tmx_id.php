@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2010-05-28 14:33:39
+// DATE: 2010-06-16 13:58:55
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -513,6 +513,8 @@ Klik tombol [backup] untuk membuat sebuah cadangan database dalam SQL format (st
 Untuk mengembalikan data dari file cadangan, klik pada tombol [restore].
 Perlu diingat bahwa sebelum anda membuat file cadangan maka sistem secara otomatis membuat cadangan baru, sehingga anda dapat mengembalikan ke keadaan semula.
 File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dimana YYYYMMDDhhmmss adalah tahun (Y), bulan (M), hari (D), jam (h), menit (m), detik (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

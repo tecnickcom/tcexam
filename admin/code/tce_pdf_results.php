@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-05-12
+// Last Update : 2010-06-16
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -34,8 +34,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -1046,8 +1046,36 @@ if($r = F_db_query($sql, $db)) {
 	F_display_db_error();
 }
 
+// set PDF file name
+$pdf_filename = 'tcexam_results_'.date('YmdHi', strtotime($test_start_time)).'_test_'.$test_id;
+switch ($_REQUEST['mode']) {
+	case 1: {
+		// all users results
+		$pdf_filename .= '_allusers_report';
+		break;
+	}
+	case 2: {
+		// questions stats
+		$pdf_filename .= '_questions_stats';
+		break;
+	}
+	case 3: {// detailed report for specific user
+		$pdf_filename .= '_user_'.$user_id.'';
+		break;
+	}
+	case 4: {// detailed report for all users
+		$pdf_filename .= '_allusers_details';
+		break;
+	}
+	case 5: { // detailed report for all users with only open questions
+		$pdf_filename .= '_allusers_openquestions';
+		break;
+	}
+}
+$pdf_filename .= '.pdf';
+
 // Send PDF output
-$pdf->Output('tcexam_results_'.$test_id.'_'.date('YmdHi', strtotime($test_start_time)).'.pdf', 'I');
+$pdf->Output($pdf_filename, 'D');
 
 //============================================================+
 // END OF FILE

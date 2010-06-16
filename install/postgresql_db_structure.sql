@@ -2,12 +2,13 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2010-02-12
+Last Update : 2010-06-16
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
 
 Author: Nicola Asuni
+
 (c) Copyright:
               Nicola Asuni
               Tecnick.com S.r.l.
@@ -17,27 +18,27 @@ Author: Nicola Asuni
               www.tecnick.com
               info@tecnick.com
 
-License: 
+License:
    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-   
+
    This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   
+   it under the terms of the GNU Affero General Public License as
+   published by the Free Software Foundation, either version 3 of the
+   License, or (at your option) any later version.
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   
-   You should have received a copy of the GNU General Public License
+   GNU Affero General Public License for more details.
+
+   You should have received a copy of the GNU Affero General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    
-   Additionally, you can't remove the original TCExam logo, copyrights statements
-   and links to Tecnick.com and TCExam websites.
-   
+
+   Additionally, you can't remove, move or hide the original TCExam logo,
+   copyrights statements and links to Tecnick.com and TCExam websites.
+
    See LICENSE.TXT file for more information.
-============================================================+
+//============================================================+
 */
 
 /* Tables */
@@ -71,6 +72,7 @@ CREATE TABLE "tce_modules" (
 	"module_id" BigSerial NOT NULL,
 	"module_name" Varchar(255) NOT NULL,
 	"module_enabled" Boolean NOT NULL Default '0',
+	"module_user_id" Bigint NOT NULL Default 1,
 constraint "PK_tce_modules_module_id" primary key ("module_id")
 ) Without Oids;
 
@@ -229,6 +231,7 @@ ALTER TABLE "tce_tests_logs" ADD Constraint "ak_testuser_question" UNIQUE ("test
 
 ALTER TABLE "tce_tests_users" ADD Constraint "rel_user_tests" foreign key ("testuser_user_id") references "tce_users" ("user_id") ON DELETE cascade;
 ALTER TABLE "tce_tests" ADD Constraint "rel_test_author" foreign key ("test_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_modules" ADD Constraint "rel_module_author" foreign key ("module_user_id") references "tce_users" ("user_id") ON DELETE cascade;
 ALTER TABLE "tce_subjects" ADD Constraint "rel_subject_author" foreign key ("subject_user_id") references "tce_users" ("user_id") ON DELETE cascade;
 ALTER TABLE "tce_subjects" ADD Constraint "rel_module_subjects" foreign key ("subject_module_id") references "tce_modules" ("module_id") ON DELETE cascade;
 ALTER TABLE "tce_usrgroups" ADD Constraint "rel_user_group" foreign key ("usrgrp_user_id") references "tce_users" ("user_id") ON DELETE cascade;

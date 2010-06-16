@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2010-06-13
+// Last Update : 2010-06-16
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -94,10 +94,9 @@ if (isset($subject_name)) {
 if (isset($subject_description)) {
 	$subject_description = utrim($subject_description);
 }
-
 if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
 	$subject_id = intval($_REQUEST['subject_id']);
-	// check user's authorization
+	// check user's authorization for subject
 	if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
@@ -107,6 +106,11 @@ if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				$subject_module_id = $m['subject_module_id'];
+				// check user's authorization for parent module
+				if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+					F_print_error('ERROR', $l['m_authorization_denied']);
+					exit;
+				}
 			}
 		} else {
 			F_display_db_error();
@@ -253,13 +257,12 @@ switch($menu_mode) {
 
 } //end of switch
 
-
 // select default module (if not specified)
 if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
-	$sql = F_select_subjects_sql().' LIMIT 1';
+	$sql = F_select_modules_sql().' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
-			$subject_module_id = $m['subject_module_id'];
+			$subject_module_id = $m['module_id'];
 		} else {
 			$subject_module_id = 0;
 		}
@@ -273,7 +276,7 @@ if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if ((isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($subject_id)) OR empty($subject_id)) {
-			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'')." LIMIT 1";
+			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
 		} else {
 			$sql = 'SELECT *
 				FROM '.K_TABLE_SUBJECTS.'
@@ -313,7 +316,7 @@ if($formstatus) {
 <input type="hidden" name="changecategory" id="changecategory" value="" />
 <select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById('form_subjecteditor').changecategory.value=1; document.getElementById('form_subjecteditor').submit();" title="<?php echo $l['w_module']; ?>">
 <?php
-$sql = 'SELECT * FROM '.K_TABLE_MODULES.' ORDER BY module_name';
+$sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

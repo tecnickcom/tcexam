@@ -13,7 +13,7 @@
   <tr>
     <td class="header_menu">
         
-                                                                                                                                                                                                      	    [ <a href="elementindex.html" class="menu">all elements</a> ]
+                                                                                                                                                                                                                          	    [ <a href="elementindex.html" class="menu">all elements</a> ]
     </td>
   </tr>
   <tr><td class="header_line"><img src="media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
@@ -27,6 +27,7 @@
 	</div>
       <b>Packages:</b><br />
               <a href="li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
+              <a href="li_com-tecnick-gasoffice.html">com-tecnick-gasoffice</a><br />
               <a href="li_com-tecnick-tcexam-admin-cfg.html">com-tecnick-tcexam-admin-cfg</a><br />
               <a href="li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
               <a href="li_com-tecnick-tcexam-public-cfg.html">com-tecnick-tcexam-public-cfg</a><br />
@@ -898,6 +899,8 @@
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_selectAnswers">F_selectAnswers()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array containing answer_id field of selected answers.<br /></dd>
 							<dt><b>F_select_executed_tests_sql</b></dt>
 				<dd>in file tce_functions_auth_sql.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html#functionF_select_executed_tests_sql">F_select_executed_tests_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a SQL string to select executed tests accounting for user authorizations.</dd>
+							<dt><b>F_select_modules_sql</b></dt>
+				<dd>in file tce_functions_auth_sql.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html#functionF_select_modules_sql">F_select_modules_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a SQL string to select modules accounting for user authorizations.</dd>
 							<dt><b>F_select_module_subjects_sql</b></dt>
 				<dd>in file tce_functions_auth_sql.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html#functionF_select_module_subjects_sql">F_select_module_subjects_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a SQL string to select modules and subjects accounting for user authorizations.</dd>
 							<dt><b>F_select_subjects_sql</b></dt>
@@ -1412,6 +1415,8 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMINISTRATOR">K_AUTH_ADMINISTRATOR</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Administrator level.</dd>
 							<dt><b>K_AUTH_ADMIN_ANSWERS</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_ANSWERS">K_AUTH_ADMIN_ANSWERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;answer editor&quot;.</dd>
+							<dt><b>K_AUTH_ADMIN_IMPORT</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_IMPORT">K_AUTH_ADMIN_IMPORT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
 							<dt><b>K_AUTH_ADMIN_INFO</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_INFO">K_AUTH_ADMIN_INFO</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;TCExam information&quot;.</dd>
 							<dt><b>K_AUTH_ADMIN_MODULES</b></dt>
@@ -1434,6 +1439,8 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_UPLOAD_IMAGES">K_AUTH_ADMIN_UPLOAD_IMAGES</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to upload images.</dd>
 							<dt><b>K_AUTH_ADMIN_USERS</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_USERS">K_AUTH_ADMIN_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;user editor&quot;.</dd>
+							<dt><b>K_AUTH_BACKUP</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_BACKUP">K_AUTH_BACKUP</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
 							<dt><b>K_AUTH_INDEX</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_INDEX">K_AUTH_INDEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access index page.</dd>
 							<dt><b>K_AVAILABLE_LANGUAGES</b></dt>
@@ -1502,6 +1509,8 @@
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_DISPLAY_PDFTEXT_BUTTON">K_DISPLAY_PDFTEXT_BUTTON</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true display an additional button to print only the TEXT answers on all users' results.</dd>
 							<dt><b>K_DISPLAY_TEST_DESCRIPTION</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_DISPLAY_TEST_DESCRIPTION">K_DISPLAY_TEST_DESCRIPTION</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true display test description before executing the test.</dd>
+							<dt><b>K_DOWNLOAD_BACKUPS</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_DOWNLOAD_BACKUPS">K_DOWNLOAD_BACKUPS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true enable the backup download.</dd>
 							<dt><b>K_ENABLE_ANSWER_EXPLANATION</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_ENABLE_ANSWER_EXPLANATION">K_ENABLE_ANSWER_EXPLANATION</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true enable explanation field for answers.</dd>
 							<dt><b>K_ENABLE_CUSTOM_EXPORT</b></dt>
@@ -1579,9 +1588,9 @@
 							<dt><b>K_MAIN_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAIN_PAGE">K_MAIN_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Main page (homepage).</dd>
 							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit.</dd>
-							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit for a PHP script.</dd>
+							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit.</dd>
 							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
 							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
@@ -2798,6 +2807,8 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_csv_result_allusers.php.html">tce_csv_result_allusers.php</a></dd>
 							<dt><b>tce_csv_users.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_csv_users.php.html">tce_csv_users.php</a></dd>
+							<dt><b>tce_download.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-gasoffice/_admin---code---tce_download.php.html">tce_download.php</a></dd>
 							<dt><b>tce_edit_answer.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_edit_answer.php.html">tce_edit_answer.php</a></dd>
 							<dt><b>tce_edit_backup.php</b></dt>
@@ -3403,7 +3414,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 13 Jun 2010 11:02:53 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 16 Jun 2010 16:30:26 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

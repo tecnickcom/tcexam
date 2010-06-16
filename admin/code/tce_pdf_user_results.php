@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2009-09-30
+// Last Update : 2010-06-16
 //
 // Description : Create PDF document to display user's results.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -323,7 +323,7 @@ foreach ($stats as $row => $columns) {
 }
 
 // Send PDF output
-$pdf->Output('tcexam_user_results_'.$user_id.'_'.date('YmdHis').'.pdf', 'I');
+$pdf->Output('tcexam_user_results_'.$user_id.'_'.date('YmdHis').'.pdf', 'D');
 
 //============================================================+
 // END OF FILE

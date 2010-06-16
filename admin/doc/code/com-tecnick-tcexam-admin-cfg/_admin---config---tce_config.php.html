@@ -13,7 +13,7 @@
   <tr>
     <td class="header_menu">
         
-                                                        
+                                                                            
                                                                                                                                                                           		  [ <a href="../classtrees_com-tecnick-tcexam-admin-cfg.html" class="menu">class tree: com-tecnick-tcexam-admin-cfg</a> ]
 		  [ <a href="../elementindex_com-tecnick-tcexam-admin-cfg.html" class="menu">index: com-tecnick-tcexam-admin-cfg</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
@@ -29,6 +29,7 @@
 			<p><a href="../todolist.html">Todo List</a></p>
 	</div>
       <b>Packages:</b><br />
+              <a href="../li_com-tecnick-gasoffice.html">com-tecnick-gasoffice</a><br />
               <a href="../li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
               <a href="../li_com-tecnick-tcexam-admin-cfg.html">com-tecnick-tcexam-admin-cfg</a><br />
               <a href="../li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
@@ -84,11 +85,11 @@ Configuration file for administration section.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-require_once('../../shared/code/tce_db_connect.php') [line 158]<br />
 require_once(<a href="../com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html">'../config/tce_auth.php'</a>) [line 57]<br />
-require_once('../../shared/code/tce_functions_general.php') [line 159]<br />
-require_once('../../shared/config/tce_db_config.php') [line 157]<br />
+require_once('../../shared/code/tce_functions_general.php') [line 164]<br />
+require_once('../../shared/config/tce_db_config.php') [line 162]<br />
 require_once('../../shared/config/tce_config.php') [line 58]<br />
+require_once('../../shared/code/tce_db_connect.php') [line 163]<br />
 </div>
 <br /><br />
 <br /><br />
@@ -132,12 +133,25 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 		</div>
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
+	<a name="defineK_DOWNLOAD_BACKUPS"></a>
+	<h3>K_DOWNLOAD_BACKUPS <span class="smalllinenumber">[line 158]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_DOWNLOAD_BACKUPS = true</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    If true enable the backup download.<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
 	<a name="defineK_ENABLE_CUSTOM_EXPORT"></a>
 	<h3>K_ENABLE_CUSTOM_EXPORT <span class="smalllinenumber">[line 153]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>K_ENABLE_CUSTOM_EXPORT = 'CUSTOM'</code>
+		<code>K_ENABLE_CUSTOM_EXPORT = ''</code>
     </td></tr></table>
     </td></tr></table>
 
@@ -150,7 +164,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>K_ENABLE_CUSTOM_IMPORT = 'Custom XML format'</code>
+		<code>K_ENABLE_CUSTOM_IMPORT = ''</code>
     </td></tr></table>
     </td></tr></table>
 
@@ -330,7 +344,7 @@ require_once('../../shared/config/tce_config.php') [line 58]<br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 13 Jun 2010 11:02:56 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 16 Jun 2010 16:30:29 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

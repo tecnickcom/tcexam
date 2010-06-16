@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2010-06-12
+// Last Update : 2010-06-16
 //
 // Description : Configuration file for administration section.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -145,12 +145,17 @@ define ('K_DISPLAY_PDFTEXT_BUTTON', false);
 /**
  * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
  */
-define ('K_ENABLE_CUSTOM_IMPORT', 'Custom XML format');
+define ('K_ENABLE_CUSTOM_IMPORT', '');
 
 /**
  * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
  */
-define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
+define ('K_ENABLE_CUSTOM_EXPORT', '');
+
+/**
+ * If true enable the backup download.
+ */
+define ('K_DOWNLOAD_BACKUPS', true);
 
 // --- INCLUDE FILES -----------------------------------------------------------
 

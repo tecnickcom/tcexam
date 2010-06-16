@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_questions.php
 // Begin       : 2006-03-12
-// Last Update : 2009-09-30
+// Last Update : 2010-06-16
 //
 // Description : Import questions from an XML file.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -54,7 +54,7 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = K_AUTH_ADMIN_SUBJECTS;
+$pagelevel = K_AUTH_ADMIN_IMPORT;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_question_importer'];

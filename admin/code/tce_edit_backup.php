@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2010-02-12
+// Last Update : 2010-06-16
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -36,8 +36,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -57,7 +57,7 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = K_AUTH_ADMINISTRATOR;
+$pagelevel = K_AUTH_BACKUP;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_backup_editor'];
@@ -70,6 +70,8 @@ if(isset($_POST['backup'])) {
 	$menu_mode = 'restore';
 } elseif(isset($_POST['forcerestore'])) {
 	$menu_mode = 'forcerestore';
+} elseif(isset($_POST['download'])) {
+	$menu_mode = 'download';
 }
 
 switch($menu_mode) { // process submited data
@@ -167,6 +169,24 @@ switch($menu_mode) { // process submited data
 		break;
 	}
 
+	case 'download':{
+		if (K_DOWNLOAD_BACKUPS AND isset($backup_file) AND !empty($backup_file)) {
+			if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) OR (strlen($backup_file) != 35) OR (substr($backup_file, -3) != '.gz')) {
+				// ERROR
+				F_print_error('ERROR', 'SECURITY ERROR');
+			} else {
+				// open a new window to send the file (requires JavaScript)
+				echo '<script language="JavaScript" type="text/javascript">'.K_NEWLINE;
+				echo '//<![CDATA['.K_NEWLINE;
+				echo 'dw=window.open(\'tce_download.php?t=b&f='.urlencode($backup_file).'\', \'dw\', \'dependent,height=1,width=1,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no\');'.K_NEWLINE;
+				echo 'setInterval(\'dw.close()\', 5000);'.K_NEWLINE;
+				echo '//]]>'.K_NEWLINE;
+				echo '</script>'.K_NEWLINE;
+			}
+		}
+		break;
+	}
+
 	default :{
 		break;
 	}
@@ -224,6 +244,9 @@ foreach($files_list as $file) {
 <?php
 F_submit_button('backup', $l['w_backup'], $l['h_backup']);
 F_submit_button('restore', $l['w_restore'], $l['h_restore']);
+if (K_DOWNLOAD_BACKUPS) {
+	F_submit_button('download', $l['w_download'], $l['h_download']);
+}
 ?>
 </div>
 

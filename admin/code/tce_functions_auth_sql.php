@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_auth_sql.php
 // Begin       : 2006-03-11
-// Last Update : 2009-09-30
+// Last Update : 2010-06-16
 //
 // Description : Functions to select topics.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -48,6 +48,34 @@
  * @link www.tecnick.com
  * @since 2006-03-11
  */
+
+/**
+ * Returns a SQL string to select modules accounting for user authorizations.
+ * @author Nicola Asuni
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @link www.tecnick.com
+ * @since 2010-06-16
+ * @param string $andwhere additional WHERE statements (e.g.: "module_enabled='1'")
+ * @return string sql statement
+ */
+function F_select_modules_sql($andwhere='') {
+	global $l;
+	require_once('../config/tce_config.php');
+	$sql = 'SELECT * FROM '.K_TABLE_MODULES.'';
+	if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+		if (!empty($andwhere)) {
+			$sql .= ' WHERE '.$andwhere;
+		}
+	} else {
+		$sql .= ' WHERE module_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+		if (!empty($andwhere)) {
+			$sql .= ' AND '.$andwhere;
+		}
+	}
+	$sql .= ' ORDER BY module_name';
+	return $sql;
+}
 
 /**
  * Returns a SQL string to select subjects accounting for user authorizations.
@@ -93,7 +121,9 @@ function F_select_module_subjects_sql($andwhere='') {
 	$sql = 'SELECT * FROM '.K_TABLE_MODULES.','.K_TABLE_SUBJECTS.'';
 	$sql .= ' WHERE module_id=subject_module_id';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$sql .= ' AND subject_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+		$authorized_users = F_getAuthorizedUsers($_SESSION['session_user_id']);
+		$sql .= ' AND module_user_id IN ('.$authorized_users.')';
+		$sql .= ' AND subject_user_id IN ('.$authorized_users.')';
 	}
 	if (!empty($andwhere)) {
 		$sql .= ' AND '.$andwhere;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20100528T143000Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20100616T140000Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -36024,6 +36024,149 @@ File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDh
 ﻻستعادة نسخة احتياطية من الارشيف, حددها ثم انقر على زر  [استعادة] .
 علماً أن النظام يقوم الياً باخذ نسخة احتياطية من قاعدة البيانات قبل أي عملية استعادة, بحيث يمكنك التراجع عن العملية.
 النسخ الاحتياطية تخزن في مجلد "cache/backup" بهيئة: YYYYMMDDhhmmss_tcexam_backup.sql.gz ; YYYYMMDDhhmmss الرموز تمثل عام (Y), شهر (M), يوم (D), ساعة (h), دقيقة (m), ثانية (s).</seg>
+   </tuv>
+  </tu>
+  <!-- TCExam 11.0.000 -->
+  <tu tuid="w_download" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>scarica</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>download</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>download</seg>
+   </tuv>
+  </tu>
+  <tu tuid="h_download" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>scarica il file di backup selezionato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>download the selected backup file</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>download the selected backup file</seg>
    </tuv>
   </tu>
  </body>

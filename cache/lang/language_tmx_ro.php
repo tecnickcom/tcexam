@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-05-28 14:33:47
+// DATE: 2010-06-16 13:59:03
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -511,6 +511,8 @@ Apăsaţi butonul [backup] pentru a crea o nouă copie de rezervă a bazei de da
 Pentru a restaura o arhivă a copiei de rezervă, selectaţi-o şi apăsaţi butonul [restaurează].
 De ştiut faptul că înaintea fiecărei restaurări sistemul realizează automat o nouă copie de rezervă, deci puteţi să reveniţi asupra operaţiunii.
 Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoarea sintaxă: AAAALLZZhhmmss_tcexam_backup.sql.gz , unde AAAALLZZhhmmss reprezintă cifrele anului (A), lunii (L), zilei (Z), orei (h), minutelor (m), secundelor (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2009-09-30
+// Last Update : 2010-06-16
 //
 // Description : Display form to edit modules.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -68,11 +68,16 @@ if(!isset($module_enabled) OR (empty($module_enabled))) {
 } else {
 	$module_enabled = intval($module_enabled);
 }
-if (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0)) {
-	$module_id = intval($_REQUEST['module_id']);
-}
 if (isset($module_name)) {
 	$module_name = utrim($module_name);
+}
+if (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0)) {
+	$module_id = intval($_REQUEST['module_id']);
+	// check user's authorization for module
+	if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 }
 
 switch($menu_mode) {
@@ -181,10 +186,12 @@ switch($menu_mode) {
 			}
 			$sql = 'INSERT INTO '.K_TABLE_MODULES.' (
 				module_name,
-				module_enabled
+				module_enabled,
+				module_user_id
 				) VALUES (
 				\''.F_escape_sql($module_name).'\',
-				\''.$module_enabled.'\'
+				\''.$module_enabled.'\',
+				\''.$_SESSION['session_user_id'].'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -249,7 +256,7 @@ if($formstatus) {
 <span class="formw">
 <select name="module_id" id="module_id" size="0" onchange="document.getElementById('form_moduleeditor').submit()" title="<?php echo $l['h_module_name']; ?>">
 <?php
-$sql = 'SELECT * FROM '.K_TABLE_MODULES.' ORDER BY module_name';
+$sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

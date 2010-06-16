@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2010-05-10
+// Last Update : 2010-06-16
 //
 // Description : Functions to export questions using XML
 //               format.
@@ -34,8 +34,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -60,6 +60,26 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	$module_id = intval($_REQUEST['module_id']);
 	$subject_id = intval($_REQUEST['subject_id']);
 
+	// set XML file name
+	switch ($expmode) {
+		case 1: {
+			$xml_filename = 'tcexam_subject_'.$subject_id.'_'.date('YmdHi').'.xml';
+			break;
+		}
+		case 2: {
+			$xml_filename = 'tcexam_module_'.$module_id.'_'.date('YmdHi').'.xml';
+			break;
+		}
+		case 3: {
+			$xml_filename = 'tcexam_all_modules_'.date('YmdHi').'.xml';
+			break;
+		}
+		default: {
+			$xml_filename = 'tcexam_export_'.date('YmdHi').'.xml';
+			break;
+		}
+	}
+
 	// send XML headers
 	header('Content-Description: XML File Transfer');
 	header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
@@ -72,7 +92,7 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	header('Content-Type: application/download', false);
 	header('Content-Type: application/xml', false);
 	// use the Content-Disposition header to supply a recommended filename
-	header('Content-Disposition: attachment; filename=tcexam_questions_'.$subject_id.'_'.date('YmdHis').'.xml;');
+	header('Content-Disposition: attachment; filename='.$xml_filename.';');
 	header('Content-Transfer-Encoding: binary');
 
 	echo F_xml_export_questions($module_id, $subject_id, $expmode);
@@ -115,11 +135,11 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 	$xml .=  K_TAB.'<body>'.K_NEWLINE;
 
 	// ---- module
-	$sqlm = 'SELECT * FROM '.K_TABLE_MODULES.'';
+	$andmodwhere = '';
 	if ($expmode < 3) {
-		$sqlm .= ' WHERE module_id='.$module_id.'';
+		$andmodwhere = 'module_id='.$module_id.'';
 	}
-	$sqlm .= ' ORDER BY module_name';
+	$sqlm = F_select_modules_sql($andmodwhere);
 	if($rm = F_db_query($sqlm, $db)) {
 		while($mm = F_db_fetch_array($rm)) {
 			$xml .= K_TAB.K_TAB.'<module>'.K_NEWLINE;

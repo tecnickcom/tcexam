@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
-// Last Update : 2010-05-10
+// Last Update : 2010-06-16
 //
 // Description : Export all users' results in XML.
 //
@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -95,7 +95,7 @@ header('Content-Type: application/octet-stream', false);
 header('Content-Type: application/download', false);
 header('Content-Type: application/xml', false);
 // use the Content-Disposition header to supply a recommended filename
-header('Content-Disposition: attachment; filename=tcexam_test_results_'.$test_id.'_'.date('YmdHis').'.xml;');
+header('Content-Disposition: attachment; filename=tcexam_results_'.date('YmdHis').'_test_'.$test_id.'.xml;');
 header('Content-Transfer-Encoding: binary');
 
 $xml = ''; // XML data to be returned

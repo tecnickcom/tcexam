@@ -33,8 +33,8 @@
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//    Additionally, you can't remove the original TCExam logo, copyrights statements
-//    and links to Tecnick.com and TCExam websites.
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
 //
 //    See LICENSE.TXT file for more information.
 //============================================================+
@@ -97,7 +97,7 @@ define ('K_KEY_SECURITY', 'VENFeGFtIChjKSAyMDA0LTIwMDggTmljb2xhIEFzdW5pIC0gVGVjb
 /**
  * String used as a seed for some security code generation please change this value and keep it secret.
  */
-define ('K_RANDOM_SECURITY', 'h2kl3x0A');
+define ('K_RANDOM_SECURITY', 'j8sl1a9x');
 
 //============================================================+
 // END OF FILE

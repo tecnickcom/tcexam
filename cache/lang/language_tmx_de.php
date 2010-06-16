@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: de
-// DATE: 2010-05-28 14:33:30
+// DATE: 2010-06-16 13:58:41
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -532,6 +532,8 @@ $tmx['hp_edit_backups']='Diese Seite ermöglicht das Anlegen von Datensicherunge
 	Um eine Datensicherung wiederherzustellen, gewünschte auswählen und [restore] anklicken.
 	Hinweis: Vor der Wiederherstellung wird automatisch eine weitere Datensicherung erstellt.
 	Sicherungsdateien werden im Ordner "cache / backup" mit folgender Syntax abgespeichert: YYYYMMDDhhmmss_tcexam_backup.sql.gz, wobei YYYYMMMDDhhmmss den Zeitpunkt der Sicherung angibt.';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

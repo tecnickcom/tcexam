@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-		<meta name="keywords" content="TCExam, database model, ERD">
-		<meta name="author" content="Nicola Asuni - tecnick.com s.r.l.">
+		<meta name="keywords" content="TCExam, DataBase">
+		<meta name="author" content="Nicola Asuni - Tecnick.com">
 
 		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
 		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
-		<title>TCExam 10 Database Documentation</title>
+		<title>TCExam 11 DataBase - HTML Report</title>
 	</head>
 
 <body class="rightPage">
@@ -171,6 +171,69 @@
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
     <td class="tabdata" > group_id    </td>    <td class="tabdata" > usrgrp_group_id   </td>  </tr>
+</table>
+
+<div class="caption2">User-defined variables</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="50%"> Name    </td>    <td class="tabhead"  width="50%"> Value    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Match Type    </td>    <td class="tabdata" > Default    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferrable (Deferre constraint to the end of the transaction)    </td>    <td class="tabdata" > No    </td>  </tr>
+  <tr>
+    <td class="tabdata" > Deferred (Check constraint at the end of the transaction)    </td>    <td class="tabdata" > No   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Relation_28"></a>
+<div class="caption1">Relationship 'rel_module_author'</div>
+<div class="caption2">General info</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Relationship type    </td>    <td class="tabdata"  width="47%"> non-identifying    </td>    <td class="tabhead"  width="20%"> Cardinality    </td>    <td class="tabdata"  width="8%"> 1:N    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent entity    </td>    <td class="tabdata"  colspan="3"> tce_users    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child entity    </td>    <td class="tabdata"  colspan="3"> tce_modules   </td>  </tr>
+</table>
+
+<div class="caption2">Partiality</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%"> Parent    </td>    <td class="tabdata" > mandatory    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > optional   </td>  </tr>
+</table>
+
+<div class="caption2">Referential integrity</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead"  width="25%">    </td>    <td class="tabhead"  width="25%"> Insert    </td>    <td class="tabhead"  width="25%"> Update    </td>    <td class="tabhead"  width="25%"> Delete    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Parent    </td>    <td class="tabdata" > ----    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > CASCADE    </td>  </tr>
+  <tr>
+    <td class="tabhead" > Child    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > NONE    </td>    <td class="tabdata" > ----   </td>  </tr>
+</table>
+
+<div class="caption2">Keys</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
+  <tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > module_user_id   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This module can be edited by the administrator, the author of this module and the users belonging to the same group of the author.   </td>  </tr>
 </table>
 
 <div class="caption2">User-defined variables</div>
@@ -471,7 +534,14 @@
   <tr>
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
-    <td class="tabdata" > user_id    </td>    <td class="tabdata" > subject_user_id   </td>  </tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > subject_user_id   </td>  </tr>
+</table>
+
+<div class="caption2">Description</div>
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > This subject can be edited by the administrator, the author of this subject and the users belonging to the same group of the author.   </td>  </tr>
 </table>
 
 <div class="caption2">User-defined variables</div>
@@ -653,7 +723,7 @@
   <tr>
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
-    <td class="tabdata" > user_id    </td>    <td class="tabdata" > test_user_id   </td>  </tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > test_user_id   </td>  </tr>
 </table>
 
 <div class="caption2">Description</div>
@@ -1031,7 +1101,7 @@
   <tr>
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
-    <td class="tabdata" > user_id    </td>    <td class="tabdata" > usrgrp_user_id   </td>  </tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > usrgrp_user_id   </td>  </tr>
 </table>
 
 <div class="caption2">Description</div>
@@ -1094,7 +1164,7 @@
   <tr>
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
-    <td class="tabdata" > user_id    </td>    <td class="tabdata" > testuser_user_id   </td>  </tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > testuser_user_id   </td>  </tr>
 </table>
 
 <div class="caption2">Description</div>
@@ -1157,7 +1227,7 @@
   <tr>
     <td class="tabhead" > Parent key    </td>    <td class="tabhead" > Child key    </td>  </tr>
   <tr>
-    <td class="tabdata" > user_id    </td>    <td class="tabdata" > ???   </td>  </tr>
+    <td class="tabdata" > module_id    </td>    <td class="tabdata" > ???   </td>  </tr>
 </table>
 
 <div class="caption2">Description</div>

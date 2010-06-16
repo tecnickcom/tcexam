@@ -18,7 +18,7 @@ The TCExam translation process is the following:
 
 --- NOTES ---
 
-Please respect the original uppercase/lowercase.
+Please respect the original uppercase/lowercase and the lenght of the sentences.
 
 TUID IDENTIFIERS PREFIXES:
 

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-05-28 14:33:26
+// DATE: 2010-06-16 13:58:35
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -511,6 +511,8 @@ $tmx['hp_edit_backups']='هذه الصفحة تسمح لك بالنسخ الاح
 ﻻستعادة نسخة احتياطية من الارشيف, حددها ثم انقر على زر  [استعادة] .
 علماً أن النظام يقوم الياً باخذ نسخة احتياطية من قاعدة البيانات قبل أي عملية استعادة, بحيث يمكنك التراجع عن العملية.
 النسخ الاحتياطية تخزن في مجلد "cache/backup" بهيئة: YYYYMMDDhhmmss_tcexam_backup.sql.gz ; YYYYMMDDhhmmss الرموز تمثل عام (Y), شهر (M), يوم (D), ساعة (h), دقيقة (m), ثانية (s).';
+$tmx['w_download']='download';
+$tmx['h_download']='download the selected backup file';
 
 // EOF ----------
 ?>

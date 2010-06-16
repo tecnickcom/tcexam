@@ -1,3 +1,12 @@
+11.0.000 (2010-06-18)
+	- Database schema is changed.
+	- Group authentication restrictions were added to the modules. Now, except for the administrator, the modules and relative subjects can be edited only by members of the same group of the module author.
+	- Some constants were added to the configuration files /admin/config/tce_auth.php and /admin/config/tce_config.php.
+	- A button to download backup files was added to Database Backup and Restore.
+	- TCPDF library was updated.
+
+------------------------------------------------------------
+
 10.1.012 (2010-06-13) 
 	- THIS VERSION CONTAINS A SECURITY FIX.
 

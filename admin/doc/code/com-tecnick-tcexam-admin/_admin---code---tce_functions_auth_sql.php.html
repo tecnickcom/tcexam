@@ -13,7 +13,7 @@
   <tr>
     <td class="header_menu">
         
-                                    
+                                                        
                                                                                                                                                                                               		  [ <a href="../classtrees_com-tecnick-tcexam-admin.html" class="menu">class tree: com-tecnick-tcexam-admin</a> ]
 		  [ <a href="../elementindex_com-tecnick-tcexam-admin.html" class="menu">index: com-tecnick-tcexam-admin</a> ]
 		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
@@ -29,6 +29,7 @@
 			<p><a href="../todolist.html">Todo List</a></p>
 	</div>
       <b>Packages:</b><br />
+              <a href="../li_com-tecnick-gasoffice.html">com-tecnick-gasoffice</a><br />
               <a href="../li_com-tecnick-tcexam-admin.html">com-tecnick-tcexam-admin</a><br />
               <a href="../li_com-tecnick-tcexam-admin-cfg.html">com-tecnick-tcexam-admin-cfg</a><br />
               <a href="../li_com-tecnick-tcexam-public.html">com-tecnick-tcexam-public</a><br />
@@ -206,7 +207,7 @@ Functions to select topics.<br /><br /><br /><br />
 <br />
   <hr />
 	<a name="functionF_select_executed_tests_sql"></a>
-	<h3>F_select_executed_tests_sql <span class="smalllinenumber">[line 134]</span></h3>
+	<h3>F_select_executed_tests_sql <span class="smalllinenumber">[line 164]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -244,8 +245,55 @@ Functions to select topics.<br /><br /><br /><br />
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
+	<a name="functionF_select_modules_sql"></a>
+	<h3>F_select_modules_sql <span class="smalllinenumber">[line 62]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string F_select_modules_sql(
+[string $andwhere = &#039;&#039;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Returns a SQL string to select modules accounting for user authorizations.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>sql statement</td>
+  </tr>
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Nicola Asuni</td>
+  </tr>
+  <tr>
+    <td><b>copyright:</b>&nbsp;&nbsp;</td><td>Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>link:</b>&nbsp;&nbsp;</td><td>www.tecnick.com</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>2010-06-16</td>
+  </tr>
+  <tr>
+    <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero General Public License</a></td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$andwhere</b>&nbsp;&nbsp;</td>
+        <td>additional WHERE statements (e.g.: &quot;module_enabled='1'&quot;)</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
 	<a name="functionF_select_module_subjects_sql"></a>
-	<h3>F_select_module_subjects_sql <span class="smalllinenumber">[line 90]</span></h3>
+	<h3>F_select_module_subjects_sql <span class="smalllinenumber">[line 118]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -292,7 +340,7 @@ Functions to select topics.<br /><br /><br /><br />
 	</div>
   <hr />
 	<a name="functionF_select_subjects_sql"></a>
-	<h3>F_select_subjects_sql <span class="smalllinenumber">[line 62]</span></h3>
+	<h3>F_select_subjects_sql <span class="smalllinenumber">[line 90]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -339,7 +387,7 @@ Functions to select topics.<br /><br /><br /><br />
 	</div>
   <hr />
 	<a name="functionF_select_tests_sql"></a>
-	<h3>F_select_tests_sql <span class="smalllinenumber">[line 114]</span></h3>
+	<h3>F_select_tests_sql <span class="smalllinenumber">[line 144]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -379,7 +427,7 @@ Functions to select topics.<br /><br /><br /><br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 13 Jun 2010 11:02:56 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 16 Jun 2010 16:30:30 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
