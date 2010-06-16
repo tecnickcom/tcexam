@@ -1,0 +1,54 @@
+<attach event="onmouseover" handler="rollOver" />
+<attach event="onmouseout" handler="rollOff" />
+<script language="JavaScript" type="text/javascript">
+//<![CDATA[
+//Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+function rollOver() {
+	//change the colour
+	element.className += (element.className?' ':'') + 'CSStoHighlight';
+	//change display of child
+	for ( var x = 0; element.childNodes[x]; x++ ) {
+		if ( element.childNodes[x].tagName == 'UL' ) {
+			element.childNodes[x].className += (element.childNodes[x].className?' ':'') + 'CSStoShow';
+			// fix for IE6 z-index bug
+			y = x - 1;
+			if (element.childNodes[y].tagName == 'IFRAME') {
+				if (element.childNodes[x].offsetHeight > 0) {
+					element.childNodes[y].style.height = element.childNodes[x].offsetHeight; 
+					element.childNodes[y].style.width = element.childNodes[x].offsetWidth;
+				} else {
+					// second level sub-menus
+					element.childNodes[y].style.top = 0; 
+					element.childNodes[y].style.left = 190;
+					element.childNodes[y].style.width = 200;
+					element.childNodes[y].style.height = 22 * element.childNodes[x].getElementsByTagName('LI').length;
+				}
+				element.childNodes[y].style.visibility = 'visible';
+				element.childNodes[y].style.display = 'block';
+			}
+		}
+		//if( element.childNodes[x].tagName == 'A' ) { element.childNodes[x].className += (element.childNodes[x].className?' ':'') + 'CSStoHighLink'; }
+	}
+}
+
+function rollOff() {
+	//change the colour
+	element.className = element.className.replace(/ ?CSStoHighlight$/,'');
+	//change display of child
+	for ( var x = 0; element.childNodes[x]; x++ ) {
+		if ( element.childNodes[x].tagName == 'UL' ) {
+			element.childNodes[x].className = element.childNodes[x].className.replace(/ ?CSStoShow$/,'');
+			// fix for IE6 z-index bug
+			y = x - 1;
+			if (element.childNodes[y].tagName == 'IFRAME') {
+				element.childNodes[y].style.height = 0; 
+				element.childNodes[y].style.width = 0;
+				element.childNodes[y].style.visibility = 'hidden';
+				element.childNodes[y].style.display = 'none';
+			}
+		}
+		//if( element.childNodes[x].tagName == 'A' ) { element.childNodes[x].className = element.childNodes[x].className.replace(/ ?CSStoHighLink$/,''); }
+	}
+}
+//]]>
+</script>
