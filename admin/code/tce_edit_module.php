@@ -218,15 +218,9 @@ switch($menu_mode) {
 if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if(!isset($module_id) OR empty($module_id)) {
-			$sql = 'SELECT *
-				FROM '.K_TABLE_MODULES.'
-				ORDER BY module_name
-				LIMIT 1';
+			$sql = F_select_modules_sql().' LIMIT 1';
 		} else {
-			$sql = 'SELECT *
-				FROM '.K_TABLE_MODULES.'
-				WHERE module_id='.$module_id.'
-				LIMIT 1';
+			$sql = F_select_modules_sql('module_id='.$module_id).' LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {

@@ -276,13 +276,9 @@ if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if ((isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($subject_id)) OR empty($subject_id)) {
-			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
+			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id).' LIMIT 1';
 		} else {
-			$sql = 'SELECT *
-				FROM '.K_TABLE_SUBJECTS.'
-				WHERE subject_id='.$subject_id.'
-					AND subject_module_id='.$subject_module_id.'
-				LIMIT 1';
+			$sql = F_select_subjects_sql('subject_id='.$subject_id.' AND subject_module_id='.$subject_module_id).' LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {

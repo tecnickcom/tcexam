@@ -71,7 +71,7 @@ define ('K_AUTH_INDEX', 5);
 /**
  * Required user's level to access "user editor".
  */
-define ('K_AUTH_ADMIN_USERS', 5);
+define ('K_AUTH_ADMIN_USERS', K_AUTH_ADMINISTRATOR);
 
 /**
  * Required user's level to access "tcecode editor".
