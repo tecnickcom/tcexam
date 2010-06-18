@@ -8,7 +8,7 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 11.0.000
+Version: 11.0.001
 
 Release date: 2010-06-18
 

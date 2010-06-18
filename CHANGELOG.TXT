@@ -1,3 +1,6 @@
+11.0.001 (2010-06-18)
+	- TCPDF library was updated.
+
 11.0.000 (2010-06-18)
 	- Database schema is changed.
 	- Group authentication restrictions were added to the modules. Now, except for the administrator, the modules and relative subjects can be edited only by members of the same group of the module author.
