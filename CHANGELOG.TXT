@@ -1,3 +1,6 @@
+11.0.002 (2010-06-18)
+	- TCPDF library was updated.
+
 11.0.001 (2010-06-18)
 	- TCPDF library was updated.
 
