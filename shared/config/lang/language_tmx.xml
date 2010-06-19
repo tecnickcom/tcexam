@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20100616T140000Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20100618T145000Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -335,7 +335,7 @@ Utilisation de la fonction PDF sur les examens permettant la création des exame
 Statistiques des questions et des réponses peuvent non seulement être consultées en ligne, chaque rapport peut aussi être fusionné à des documents PDF à imprimer.&lt;/li&gt;&lt;/ul&gt;</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>هذه منطقة ادارة  &lt;a href="tce_page_info.php" title="حول تكسام"&gt;تكسام&lt;/a&gt;, لجعل المنصة واللغة ممتعه للمستخدم بحيث ينشئ ويدير الاختبارات على النت بيسر وسهوله.&lt;br /&gt;&lt;br /&gt;من القائمة على اليمين تستطيع الوصول لاقسام النظام المختلفة:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;المستخدمين&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي على نماذج لـ &lt;a href="tce_edit_user.php" title="ادارة المستخدمين"&gt;اضافة وادارة&lt;/a&gt; المستخدمين, &lt;a href="tce_select_users.php" title="اختيار عضو"&gt; لاختيارهم&lt;/a&gt; أو لرؤية قائمة بـ &lt;a href="tce_show_online_users.php" title="الاعضاء المتواجدين"&gt;الموجودين&lt;/a&gt; حالياً.&lt;br /&gt;يحق للمسجلين باسم مستخدم وكلمة مرور صحيحة الدخول للمنطقة العامة للنظام واداء الاختبارات.&lt;br /&gt;ومن الممكن تحديد مستويات وصول مختلفة لكل من المستخدمين إلى اجزاء النظام (الصفحات, النماذج, الاقسام).&lt;br /&gt;يمتلك تكسام أيضاً نظام أمني لمنع الوصول غير المصرح به مبني على عناوين بروتوكول الانترنت.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;المواضيع&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي نماذج اضافة وتعديل  &lt;a href="tce_edit_subject.php" title="ادارة المواضيع"&gt;مواضيع &lt;/a&gt;الاختبار, تفاصيل &lt;a href="tce_edit_question.php" title="ادارة الاسئلة"&gt;الاسئلة&lt;/a&gt; و &lt;a href="tce_edit_answer.php" title="ادارة الاجابات المتعددة"&gt;الاجابات&lt;/a&gt;.&lt;br /&gt; يمكنك اختيار اسئلة الاختبار من أي عدد من المواضيع, كما يمكنك اختيار أي عدد من الاسئلة والاجابات لكل موضوع. وسيقوم النظام بالاختيار العشوائي من الأسئلة والاجابات المتاحة.&lt;br /&gt;تكسام يدعم الاسئلة الموضوعية والاسئلة المقالية. وسوف يتم تقييم الاسئلة المقالية من خلال استمارة تقييم خاصة وعملية  &lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;&lt;/a&gt;, كل النماذج تقيم آلياً.&lt;br /&gt;كل انواع الاسئلة والمواضيع والاسئلة والاجابات تدعم كود الملكية الخاصة (tcecode) , باستخدام نموذج خاص, مع استخدام الصور وتنسيق النصوص.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;الاختبارات&lt;/strong&gt;&lt;br /&gt;هذا القسم داخل النموذج لاضافة وانتاج مختلف  &lt;a href="tce_edit_test.php" title="ادارة الاختبار"&gt;الاختبارات&lt;/a&gt;, نموذج لـ&lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;تقييم&lt;/a&gt; الاجابة المقالية ونموذج لعرض أو انتاج ملفات  PDF الخاصة بـ  &lt;a href="tce_show_result_allusers.php" title="تقرير نتائج الاختبار"&gt;النتائج&lt;/a&gt;, عرض وصف لـ &lt;a href="tce_show_result_user.php" title="اختبارات الاعضاء"&gt;اختبارات الاعضاء&lt;/a&gt; و &lt;a href="tce_show_result_questions.php" title="احصاءات الاسئلة"&gt;احصاءات&lt;/a&gt; الاسئلة والاجابات.&lt;br /&gt;تكسام يعمل على الاختيار العشوائي للاسئلة وترتيب الاجوبة لكي يجعل اختبار كل مستخدم مختلف عن اﻵخر.&lt;br /&gt;ومن الممكن ايضاً انشاء أي عدد من الاختبارات العشوائية على شكل ملفات pdf لطباعتها واستخدامها كاختبارات تقليدية.&lt;/li&gt;&lt;/ul&gt;</seg>
+    <seg>هذه منطقة ادارة  &lt;a href="tce_page_info.php" title="حول تكسام"&gt;تكسام&lt;/a&gt;, لجعل المنصة واللغة ممتعه للمستخدم بحيث ينشئ ويدير الاختبارات على النت بيسر وسهوله.&lt;br /&gt;&lt;br /&gt;من القائمة الرئيسية في الاعلى تستطيع الوصول لاقسام النظام المختلفة:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;المستخدمين&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي على نماذج لـ &lt;a href="tce_edit_user.php" title="ادارة المستخدمين"&gt;اضافة وادارة&lt;/a&gt; المستخدمين, &lt;a href="tce_select_users.php" title="اختيار عضو"&gt; لاختيارهم&lt;/a&gt; أو لرؤية قائمة بـ &lt;a href="tce_show_online_users.php" title="الاعضاء المتواجدين"&gt;الموجودين&lt;/a&gt; حالياً.&lt;br /&gt;يحق للمسجلين باسم مستخدم وكلمة مرور صحيحة الدخول للمنطقة العامة للنظام واداء الاختبارات.&lt;br /&gt;ومن الممكن تحديد مستويات وصول مختلفة لكل من المستخدمين إلى اجزاء النظام (الصفحات, النماذج, الاقسام).&lt;br /&gt;يمتلك تكسام أيضاً نظام أمني لمنع الوصول غير المصرح به مبني على عناوين بروتوكول الانترنت.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;المواضيع&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي نماذج اضافة وتعديل  &lt;a href="tce_edit_subject.php" title="ادارة المواضيع"&gt;مواضيع &lt;/a&gt;الاختبار, تفاصيل &lt;a href="tce_edit_question.php" title="ادارة الاسئلة"&gt;الاسئلة&lt;/a&gt; و &lt;a href="tce_edit_answer.php" title="ادارة الاجابات المتعددة"&gt;الاجابات&lt;/a&gt;.&lt;br /&gt; يمكنك اختيار اسئلة الاختبار من أي عدد من المواضيع, كما يمكنك اختيار أي عدد من الاسئلة والاجابات لكل موضوع. وسيقوم النظام بالاختيار العشوائي من الأسئلة والاجابات المتاحة.&lt;br /&gt;تكسام يدعم الاسئلة الموضوعية والاسئلة المقالية. وسوف يتم تقييم الاسئلة المقالية من خلال استمارة تقييم خاصة وعملية  &lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;&lt;/a&gt;, كل النماذج تقيم آلياً.&lt;br /&gt;كل انواع الاسئلة والمواضيع والاسئلة والاجابات تدعم كود الملكية الخاصة (tcecode) , باستخدام نموذج خاص, مع استخدام الصور وتنسيق النصوص.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;الاختبارات&lt;/strong&gt;&lt;br /&gt;هذا القسم داخل النموذج لاضافة وانتاج مختلف  &lt;a href="tce_edit_test.php" title="ادارة الاختبار"&gt;الاختبارات&lt;/a&gt;, نموذج لـ&lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;تقييم&lt;/a&gt; الاجابة المقالية ونموذج لعرض أو انتاج ملفات  PDF الخاصة بـ  &lt;a href="tce_show_result_allusers.php" title="تقرير نتائج الاختبار"&gt;النتائج&lt;/a&gt;, عرض وصف لـ &lt;a href="tce_show_result_user.php" title="اختبارات الاعضاء"&gt;اختبارات الاعضاء&lt;/a&gt; و &lt;a href="tce_show_result_questions.php" title="احصاءات الاسئلة"&gt;احصاءات&lt;/a&gt; الاسئلة والاجابات.&lt;br /&gt;تكسام يعمل على الاختيار العشوائي للاسئلة وترتيب الاجوبة لكي يجعل اختبار كل مستخدم مختلف عن اﻵخر.&lt;br /&gt;ومن الممكن ايضاً انشاء أي عدد من الاختبارات العشوائية على شكل ملفات pdf لطباعتها واستخدامها كاختبارات تقليدية.&lt;/li&gt;&lt;/ul&gt;</seg>
    </tuv>
   </tu>
   <tu tuid="d_logout_desc" datatype="plaintext">
@@ -36026,7 +36026,7 @@ File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDh
 النسخ الاحتياطية تخزن في مجلد "cache/backup" بهيئة: YYYYMMDDhhmmss_tcexam_backup.sql.gz ; YYYYMMDDhhmmss الرموز تمثل عام (Y), شهر (M), يوم (D), ساعة (h), دقيقة (m), ثانية (s).</seg>
    </tuv>
   </tu>
-  <!-- TCExam 11.0.000 -->
+<!-- TCExam 11.0.000 -->
   <tu tuid="w_download" datatype="plaintext">
    <tuv xml:lang="NL">
     <seg>download</seg>
@@ -36095,7 +36095,7 @@ File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDh
     <seg>download</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>download</seg>
+    <seg>تنزيل</seg>
    </tuv>
   </tu>
   <tu tuid="h_download" datatype="plaintext">
@@ -36166,7 +36166,7 @@ File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDh
     <seg>download the selected backup file</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>download the selected backup file</seg>
+    <seg>تنزيل ملف النسخة الاحتياطية المحددة</seg>
    </tuv>
   </tu>
  </body>

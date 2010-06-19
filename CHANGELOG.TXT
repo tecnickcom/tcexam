@@ -1,4 +1,5 @@
 11.0.003 (2010-06-19)
+	- Arabic language was updated.
 	- TCPDF library was updated.
 
 11.0.002 (2010-06-18)
