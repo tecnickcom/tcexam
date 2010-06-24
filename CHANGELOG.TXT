@@ -1,3 +1,7 @@
+11.0.004 (2010-06-24)
+	- Brazilian and Romanian language was updated.
+	- TCPDF library was updated (several syntax errors and compatibility problems were corrected).
+
 11.0.003 (2010-06-19)
 	- Arabic language was updated.
 	- TCPDF library was updated.

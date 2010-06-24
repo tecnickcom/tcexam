@@ -132,7 +132,7 @@ echo '<h2>'.$l['t_translations'].'</h2>'.K_NEWLINE;
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li>[AR] Arabic : Hatim Alahmadi</li>'.K_NEWLINE;
 echo '<li>[BG] Bulgarian : Georgi Kostadinov</li>'.K_NEWLINE;
-echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna</li>'.K_NEWLINE;
+echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna, Flávio Veras</li>'.K_NEWLINE;
 echo '<li>[CN] Chinese : Liu Yongxin</li>'.K_NEWLINE;
 echo '<li>[DE] German : Oliver Kasch, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[EL] Greek : Kottas Alexandros</li>'.K_NEWLINE;
