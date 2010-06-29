@@ -8,9 +8,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 11.0.004
+Version: 11.0.005
 
-Release date: 2010-06-24
+Release date: 2010-06-29
 
 Author:
 	Nicola Asuni
