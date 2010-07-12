@@ -1,3 +1,6 @@
+11.0.006 (2010-07-12)
+	- TCPDF library was updated.
+
 11.0.005 (2010-06-29)
 	- Hungarian language was updated.
 	- TCPDF library was updated.

@@ -8,9 +8,9 @@ http://sourceforge.net/donate/index.php?group_id=159398
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 11.0.005
+Version: 11.0.006
 
-Release date: 2010-06-29
+Release date: 2010-07-12
 
 Author:
 	Nicola Asuni
@@ -116,6 +116,7 @@ Software License
 
 	Additionally, you can't remove or move the original tcexam logo,
 	copyrights statements and links to tecnick.com and tcexam websites.
+	Please contact info@tecnick.com for commercial usage.
 
 	See LICENSE.TXT file for more information.
 
