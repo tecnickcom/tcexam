@@ -1,3 +1,7 @@
+11.0.007 (2010-07-14)
+	- tce_edit_backup was fixed for special characters.
+	- TCPDF library was updated.
+
 11.0.006 (2010-07-12)
 	- TCPDF library was updated.
 
@@ -28,26 +32,26 @@
 
 ------------------------------------------------------------
 
-10.1.012 (2010-06-13) 
+10.1.012 (2010-06-13)
 	- THIS VERSION CONTAINS A SECURITY FIX.
 
-10.1.011 (2010-06-12) 
+10.1.011 (2010-06-12)
 	- THIS VERSION CONTAINS A SECURITY FIX.
 	- Now you can upload only the file types listed on K_ALLOWED_UPLOAD_EXTENSIONS constant at admin/config/tce_config.php.
 
-10.1.010 (2010-06-10) 
+10.1.010 (2010-06-10)
 	- MIME configuration file was updated to include MP4 video type.
 
-10.1.009 (2010-06-09) 
+10.1.009 (2010-06-09)
 	- TCPDF library was updated.
 
-10.1.008 (2010-06-07) 
+10.1.008 (2010-06-07)
 	- TCPDF library was updated (now uses font subsetting by deafult).
 
 10.1.007 (2010-05-28)
 	- A button to lock/unlock a test was added on Test Management.
 	- Remaining user's time information was added on Test Results Summary.
-	- Arabic language was updated. 
+	- Arabic language was updated.
 	- TCPDF library was updated.
 
 10.1.006 (2010-05-21)

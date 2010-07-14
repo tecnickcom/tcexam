@@ -2,15 +2,15 @@ TCExam - README
 ============================================================
 
 I WISH TO IMPROVE AND EXPAND TCEXAM BUT I NEED YOUR SUPPORT.
-PLEASE MAKE A DONATION: 
+PLEASE MAKE A DONATION:
 http://sourceforge.net/donate/index.php?group_id=159398
 
 ------------------------------------------------------------
 Name: TCExam
 
-Version: 11.0.006
+Version: 11.0.007
 
-Release date: 2010-07-12
+Release date: 2010-07-14
 
 Author:
 	Nicola Asuni

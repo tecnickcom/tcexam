@@ -2,8 +2,8 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2010-05-10
-// 
+// Last Update : 2010-07-14
+//
 // Description : Default CSS for admin area.
 //
 // Author: Nicola Asuni
@@ -17,25 +17,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove, move or hide the original TCExam logo,
 //    copyrights statements and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 */
@@ -424,7 +424,7 @@ div.rowl {
 div.row fieldset {
 	display:inline;
 	position:relative;
-    border:none; 
+    border:none;
     margin:0;
     padding:0;
     width: 100%;
@@ -639,7 +639,7 @@ table.userselect {
 
 table.userselect td {
 	border: 1px solid #808080;
-	
+
 }
 
 table.userselect th {
@@ -752,7 +752,7 @@ div.scrollmenu a{
 	color: #FFFFFF;
 	display: block;
 	float: left;
-	
+
 }
 
 div.scrollmenu a:visited{
@@ -848,7 +848,7 @@ ul.menu ul li:hover > ul, ul.menu ul *:focus + ul {
 	top: 0px;
 	margin: 0;
 	padding: 0;
-	background-color: #003399;	
+	background-color: #003399;
 	z-index: 1;
 }
 
