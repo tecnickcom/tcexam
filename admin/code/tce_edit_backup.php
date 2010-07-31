@@ -92,7 +92,6 @@ switch($menu_mode) { // process submited data
 			</form>
 			</div>
 			<?php
-
 		}
 		break;
 	}
@@ -105,7 +104,7 @@ switch($menu_mode) { // process submited data
 				switch (K_DATABASE_TYPE) {
 					case 'POSTGRESQL': {
 						$filename = K_PATH_BACKUP.date('YmdHis').'_tcexam_backup.tar';
-						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_dump -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.'  -U'.K_DATABASE_USER_NAME.' -w -Ft '.K_DATABASE_NAME.' | gzip > '.$filename.'.gz';
+						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_dump -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.'  -U'.K_DATABASE_USER_NAME.' -Ft '.K_DATABASE_NAME.' | gzip > '.$filename.'.gz';
 						break;
 					}
 					case 'MYSQL':
@@ -130,7 +129,7 @@ switch($menu_mode) { // process submited data
 				// restore SQL file
 				switch (K_DATABASE_TYPE) {
 					case 'POSTGRESQL': {
-						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_restore -c -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.' -U'.K_DATABASE_USER_NAME.' -w -d'.K_DATABASE_NAME.' -Ft '.$sql_backup_file.'';
+						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_restore -c -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.' -U'.K_DATABASE_USER_NAME.' -d'.K_DATABASE_NAME.' -Ft '.$sql_backup_file.'';
 						break;
 					}
 					case 'MYSQL':

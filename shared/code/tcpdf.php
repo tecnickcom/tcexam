@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.5.013
+// Version     : 5.6.000
 // Begin       : 2002-08-03
-// Last Update : 2010-07-14
+// Last Update : 2010-07-31
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -126,7 +126,7 @@
  * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 5.5.013
+ * @version 5.6.000
  */
 
 
@@ -146,14 +146,14 @@ if (!class_exists('TCPDF', false)) {
 	/**
 	 * define default PDF document producer
 	 */
-	define('PDF_PRODUCER', 'TCPDF 5.5.013 (http://www.tcpdf.org)');
+	define('PDF_PRODUCER', 'TCPDF 5.6.000 (http://www.tcpdf.org)');
 
 	/**
 	* This is a PHP class for generating PDF documents without requiring external extensions.<br>
 	* TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 	* @name TCPDF
 	* @package com.tecnick.tcpdf
-	* @version 5.5.013
+	* @version 5.6.000
 	* @author Nicola Asuni - info@tecnick.com
 	* @link http://www.tcpdf.org
 	* @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -1344,34 +1344,6 @@ if (!class_exists('TCPDF', false)) {
 		protected $page_obj_id = array();
 
 		/**
-		 * Start ID for embedded file objects
-		 * @access protected
-		 * @since 4.7.000 (2009-08-29)
-		 */
-		protected $embedded_start_obj_id = 100000;
-
-		/**
-		 * Start ID for annotation objects
-		 * @access protected
-		 * @since 4.7.000 (2009-08-29)
-		 */
-		protected $annots_start_obj_id = 200000;
-
-		/**
-		 * Max ID of annotation object
-		 * @access protected
-		 * @since 4.7.000 (2009-08-29)
-		 */
-		protected $annot_obj_id = 200000;
-
-		/**
-		 * Current ID of annotation object
-		 * @access protected
-		 * @since 4.8.003 (2009-09-15)
-		 */
-		protected $curr_annot_obj_id = 200000;
-
-		/**
 		 * List of form annotations IDs
 		 * @access protected
 		 * @since 4.8.000 (2009-09-07)
@@ -1393,20 +1365,6 @@ if (!class_exists('TCPDF', false)) {
 		protected $js_objects = array();
 
 		/**
-		 * Start ID for javascript objects
-		 * @access protected
-		 * @since 4.8.000 (2009-09-07)
-		 */
-		protected $js_start_obj_id = 300000;
-
-		/**
-		 * Current ID of javascript object
-		 * @access protected
-		 * @since 4.8.000 (2009-09-07)
-		 */
-		protected $js_obj_id = 300000;
-
-		/**
 		 * Current form action (used during XHTML rendering)
 		 * @access protected
 		 * @since 4.8.000 (2009-09-07)
@@ -1426,20 +1384,6 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 4.8.000 (2009-09-07)
 		 */
 		protected $form_mode = 'post';
-
-		/**
-		 * Start ID for appearance streams XObjects
-		 * @access protected
-		 * @since 4.8.001 (2009-09-09)
-		 */
-		protected $apxo_start_obj_id = 400000;
-
-		/**
-		 * Current ID of appearance streams XObjects
-		 * @access protected
-		 * @since 4.8.001 (2009-09-09)
-		 */
-		protected $apxo_obj_id = 400000;
 
 		/**
 		 * List of fonts used on form fields (fontname => fontkey).
@@ -1745,6 +1689,9 @@ if (!class_exists('TCPDF', false)) {
 				$this->internal_encoding = mb_internal_encoding();
 				mb_internal_encoding('ASCII');
 			}
+			$this->font_obj_ids = array();
+			$this->page_obj_id = array();
+			$this->form_obj_id = array();
 			// set disk caching
 			$this->diskcache = $diskcache ? true : false;
 			// set language direction
@@ -1855,10 +1802,6 @@ if (!class_exists('TCPDF', false)) {
 				// PCRE unicode support is turned OFF
 				$this->setSpacesRE('/[\s]/');
 			}
-			$this->annot_obj_id = $this->annots_start_obj_id;
-			$this->curr_annot_obj_id = $this->annots_start_obj_id;
-			$this->apxo_obj_id = $this->apxo_start_obj_id;
-			$this->js_obj_id = $this->js_start_obj_id;
 			$this->default_form_prop = array('lineWidth'=>1, 'borderStyle'=>'solid', 'fillColor'=>array(255, 255, 255), 'strokeColor'=>array(128, 128, 128));
 			// set file ID for trailer
 			$this->file_id = md5(microtime().__FILE__.'TCPDF'.$orientation.$unit.$format.$encoding.uniqid(''.rand()));
@@ -2009,7 +1952,7 @@ if (!class_exists('TCPDF', false)) {
 		 * <li>SRA2 (450x640 mm ; 17.72x25.20 in)</li>
 		 * <li>SRA3 (320x450 mm ; 12.60x17.72 in)</li>
 		 * <li>SRA4 (225x320 mm ; 8.86x12.60 in)</li>
-		 * <li><b>German  DIN 476</b></li>
+		 * <li><b>German DIN 476</b></li>
 		 * <li>4A0 (1682x2378 mm ; 66.22x93.62 in)</li>
 		 * <li>2A0 (1189x1682 mm ; 46.81x66.22 in)</li>
 		 * <li><b>Variations on the ISO Standard</b></li>
@@ -3257,7 +3200,7 @@ if (!class_exists('TCPDF', false)) {
 		public function SetCompression($compress) {
 			//Set page compression
 			if (function_exists('gzcompress')) {
-				$this->compress = $compress;
+				$this->compress = $compress ? true : false;
 			} else {
 				$this->compress = false;
 			}
@@ -3365,7 +3308,6 @@ if (!class_exists('TCPDF', false)) {
 			if ($this->page == 0) {
 				$this->AddPage();
 			}
-
 			// save current graphic settings
 			$gvars = $this->getGraphicVars();
 			$this->lastpage();
@@ -4771,9 +4713,11 @@ if (!class_exists('TCPDF', false)) {
 			if (!isset($this->PageAnnots[$page])) {
 				$this->PageAnnots[$page] = array();
 			}
-			$this->PageAnnots[$page][] = array('x' => $x, 'y' => $y, 'w' => $w, 'h' => $h, 'txt' => $text, 'opt' => $opt, 'numspaces' => $spaces);
+			++$this->n;
+			$this->PageAnnots[$page][] = array('n' => $this->n, 'x' => $x, 'y' => $y, 'w' => $w, 'h' => $h, 'txt' => $text, 'opt' => $opt, 'numspaces' => $spaces);
 			if ((($opt['Subtype'] == 'FileAttachment') OR ($opt['Subtype'] == 'Sound')) AND (!$this->empty_string($opt['FS'])) AND file_exists($opt['FS']) AND (!isset($this->embeddedfiles[basename($opt['FS'])]))) {
-				$this->embeddedfiles[basename($opt['FS'])] = array('file' => $opt['FS'], 'n' => (count($this->embeddedfiles) + $this->embedded_start_obj_id));
+				++$this->n;
+				$this->embeddedfiles[basename($opt['FS'])] = array('n' => $this->n, 'file' => $opt['FS']);
 			}
 			// Add widgets annotation's icons
 			if (isset($opt['mk']['i']) AND file_exists($opt['mk']['i'])) {
@@ -4785,7 +4729,6 @@ if (!class_exists('TCPDF', false)) {
 			if (isset($opt['mk']['ix']) AND file_exists($opt['mk']['ix'])) {
 				$this->Image($opt['mk']['ix'], '', '', 0, 0, '', '', '', false, 300, '', false, false, 0, false, true);
 			}
-			++$this->annot_obj_id;
 		}
 
 		/**
@@ -5125,7 +5068,7 @@ if (!class_exists('TCPDF', false)) {
 					$op = 'S';
 				}
 				if ($this->rtl) {
-					$xk = (($this->x  - $w) * $k);
+					$xk = (($this->x - $w) * $k);
 				} else {
 					$xk = ($this->x * $k);
 				}
@@ -5324,13 +5267,13 @@ if (!class_exists('TCPDF', false)) {
 						}
 					}
 				}
-				if ($this->underline)  {
+				if ($this->underline) {
 					$s .= ' '.$this->_dounderlinew($xdx, $basefonty, $width);
 				}
 				if ($this->linethrough) {
 					$s .= ' '.$this->_dolinethroughw($xdx, $basefonty, $width);
 				}
-				if ($this->overline)  {
+				if ($this->overline) {
 					$s .= ' '.$this->_dooverlinew($xdx, $basefonty, $width);
 				}
 				if ($this->ColorFlag) {
@@ -6409,21 +6352,49 @@ if (!class_exists('TCPDF', false)) {
 			if ($y === '') {
 				$y = $this->y;
 			}
+			$cached_file = false; // true when the file is cached
 			// get image dimensions
 			$imsize = @getimagesize($file);
 			if ($imsize === FALSE) {
-				// encode spaces on filename
+				// try to encode spaces on filename
 				$file = str_replace(' ', '%20', $file);
 				$imsize = @getimagesize($file);
 				if ($imsize === FALSE) {
-					if (($w > 0) AND ($h > 0)) {
+					if (function_exists('curl_init')) {
+						// try to get remote file data using cURL
+						$cs = curl_init(); // curl session
+						curl_setopt($cs, CURLOPT_URL, $file);
+						curl_setopt($cs, CURLOPT_BINARYTRANSFER, true);
+						curl_setopt($cs, CURLOPT_FAILONERROR, true);
+						curl_setopt($cs, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($cs, CURLOPT_CONNECTTIMEOUT, 5);
+						curl_setopt($cs, CURLOPT_TIMEOUT, 30);
+						$imgdata = curl_exec($cs);
+						curl_close($cs);
+						if($imgdata !== FALSE) {
+							// copy image to cache
+							$file = tempnam(K_PATH_CACHE, 'img_');
+							$fp = fopen($file, 'w');
+							fwrite($fp, $imgdata);
+							fclose($fp);
+							unset($imgdata);
+							$cached_file = true;
+							$imsize = @getimagesize($file);
+							if ($imsize === FALSE) {
+								unlink($file);
+								$cached_file = false;
+							}
+						}
+					} elseif (($w > 0) AND ($h > 0)) {
+						// get measures from specified data
 						$pw = $this->getHTMLUnitToUnits($w, 0, $this->pdfunit, true) * $this->imgscale * $this->k;
 						$ph = $this->getHTMLUnitToUnits($h, 0, $this->pdfunit, true) * $this->imgscale * $this->k;
 						$imsize = array($pw, $ph);
-					} else {
-						$this->Error('[Image] Unable to get image width and height: '.$file);
 					}
 				}
+			}
+			if ($imsize === FALSE) {
+				$this->Error('[Image] Unable to get image: '.$file);
 			}
 			// get original image width and height in pixels
 			list($pixw, $pixh) = $imsize;
@@ -6473,6 +6444,8 @@ if (!class_exists('TCPDF', false)) {
 				//First use of image, get info
 				if ($type == '') {
 					$type = $this->getImageFileType($file, $imsize);
+				} elseif ($type == 'jpg') {
+					$type = 'jpeg';
 				}
 				$mqr = $this->get_mqr();
 				$this->set_mqr(false);
@@ -6485,7 +6458,7 @@ if (!class_exists('TCPDF', false)) {
 					// TCPDF image functions
 					$info = $this->$mtd($file);
 					if ($info == 'pngalpha') {
-						return $this->ImagePngAlpha($file, $x, $y, $w, $h, 'PNG', $link, $align, $resize, $dpi, $palign);
+						return $this->ImagePngAlpha($file, $x, $y, $pixw, $pixh, $w, $h, 'PNG', $link, $align, $resize, $dpi, $palign);
 					}
 				}
 				if (!$info) {
@@ -6581,6 +6554,10 @@ if (!class_exists('TCPDF', false)) {
 				}
 				// add image to document
 				$this->setImageBuffer($file, $info);
+			}
+			if ($cached_file) {
+				// remove cached file
+				unlink($file);
 			}
 			// set alignment
 			$this->img_rb_y = $y + $h;
@@ -6878,7 +6855,7 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		 * Binary-safe and URL-safe file read.
-		 * Reads up to length  bytes from the file pointer referenced by handle. Reading stops as soon as one of the following conditions is met: length bytes have been read; EOF (end of file) is reached.
+		 * Reads up to length bytes from the file pointer referenced by handle. Reading stops as soon as one of the following conditions is met: length bytes have been read; EOF (end of file) is reached.
 		 * @param resource $handle
 		 * @param int $length
 		 * @return Returns the read string or FALSE in case of error.
@@ -6903,6 +6880,8 @@ if (!class_exists('TCPDF', false)) {
 		 * @param string $file Name of the file containing the image.
 		 * @param float $x Abscissa of the upper-left corner.
 		 * @param float $y Ordinate of the upper-left corner.
+		 * @param float $wpx Original width of the image in pixels.
+		 * @param float $hpx original height of the image in pixels.
 		 * @param float $w Width of the image in the page. If not specified or equal to zero, it is automatically calculated.
 		 * @param float $h Height of the image in the page. If not specified or equal to zero, it is automatically calculated.
 		 * @param string $type Image format. Possible values are (case insensitive): JPEG and PNG (whitout GD library) and all images supported by GD: GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM;. If not specified, the type is inferred from the file extension.
@@ -6916,9 +6895,7 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 4.3.007 (2008-12-04)
 		 * @see Image()
 		 */
-		protected function ImagePngAlpha($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='') {
-			// get image size
-			list($wpx, $hpx) = getimagesize($file);
+		protected function ImagePngAlpha($file, $x, $y, $wpx, $hpx, $w, $h, $type, $link, $align, $resize, $dpi, $palign) {
 			// generate images
 			$img = imagecreatefrompng($file);
 			$imgalpha = imagecreate($wpx, $hpx);
@@ -7567,7 +7544,7 @@ if (!class_exists('TCPDF', false)) {
 			//Pages root
 			$this->offsets[1] = $this->bufferlen;
 			$out = '1 0 obj'."\n";
-			$out .= '<< /Type /Pages  /Kids [';
+			$out .= '<< /Type /Pages /Kids [';
 			foreach($this->page_obj_id as $page_obj) {
 				$out .= ' '.$page_obj.' 0 R';
 			}
@@ -7602,13 +7579,9 @@ if (!class_exists('TCPDF', false)) {
 			}
 			$out = ' /Annots [';
 			if (isset($this->PageAnnots[$n])) {
-				$num_annots = count($this->PageAnnots[$n]);
-				for ($i = 0; $i < $num_annots; ++$i) {
-					++$this->curr_annot_obj_id;
-					if (!in_array($this->curr_annot_obj_id, $this->radio_groups)) {
-						$out .= ' '.$this->curr_annot_obj_id.' 0 R';
-					} else {
-						++$num_annots;
+				foreach ($this->PageAnnots[$n] as $key => $val) {
+					if (!in_array($val['n'], $this->radio_groups)) {
+						$out .= ' '.$val['n'].' 0 R';
 					}
 				}
 			}
@@ -7630,24 +7603,28 @@ if (!class_exists('TCPDF', false)) {
 		 */
 		protected function _putannotsobjs() {
 			// reset object counter
-			$this->annot_obj_id = $this->annots_start_obj_id;
 			for ($n=1; $n <= $this->numpages; ++$n) {
 				if (isset($this->PageAnnots[$n])) {
 					// set page annotations
 					foreach ($this->PageAnnots[$n] as $key => $pl) {
+						$annot_obj_id = $this->PageAnnots[$n][$key]['n'];
 						// create annotation object for grouping radiobuttons
 						if (isset($this->radiobutton_groups[$n][$pl['txt']]) AND is_array($this->radiobutton_groups[$n][$pl['txt']])) {
+							$radio_button_obj_id = $this->radiobutton_groups[$n][$pl['txt']]['n'];
+							$this->offsets[$radio_button_obj_id] = $this->bufferlen;
 							$annots = '<<';
 							$annots .= ' /Type /Annot';
 							$annots .= ' /Subtype /Widget';
-							$annots .= ' /T '.$this->_dataannobjstring($pl['txt']);
+							$annots .= ' /T '.$this->_datastring($pl['txt'], $radio_button_obj_id);
 							$annots .= ' /FT /Btn';
 							$annots .= ' /Ff 49152';
 							$annots .= ' /Kids [';
-							foreach ($this->radiobutton_groups[$n][$pl['txt']] as $data) {
-								$annots .= ' '.$data['kid'].' 0 R';
-								if ($data['def'] !== 'Off') {
-									$defval = $data['def'];
+							foreach ($this->radiobutton_groups[$n][$pl['txt']] as $key => $data) {
+								if ($key != 'n') {
+									$annots .= ' '.$data['kid'].' 0 R';
+									if ($data['def'] !== 'Off') {
+										$defval = $data['def'];
+									}
 								}
 							}
 							$annots .= ' ]';
@@ -7655,17 +7632,15 @@ if (!class_exists('TCPDF', false)) {
 								$annots .= ' /V /'.$defval;
 							}
 							$annots .= ' >>';
-							++$this->annot_obj_id;
-							$this->offsets[$this->annot_obj_id] = $this->bufferlen;
-							$this->_out($this->annot_obj_id.' 0 obj'."\n".$annots."\n".'endobj');
-							$this->form_obj_id[] = $this->annot_obj_id;
+							$this->_out($radio_button_obj_id.' 0 obj'."\n".$annots."\n".'endobj');
+							$this->form_obj_id[] = $radio_button_obj_id;
 							// store object id to be used on Parent entry of Kids
-							$this->radiobutton_groups[$n][$pl['txt']] = $this->annot_obj_id;
+							$this->radiobutton_groups[$n][$pl['txt']] = $radio_button_obj_id;
 						}
 						$formfield = false;
 						$pl['opt'] = array_change_key_case($pl['opt'], CASE_LOWER);
 						$a = $pl['x'] * $this->k;
-						$b = $this->pagedim[$n]['h'] - (($pl['y'] + $pl['h'])  * $this->k);
+						$b = $this->pagedim[$n]['h'] - (($pl['y'] + $pl['h']) * $this->k);
 						$c = $pl['w'] * $this->k;
 						$d = $pl['h'] * $this->k;
 						$rect = sprintf('%.2F %.2F %.2F %.2F', $a, $b, $a+$c, $b+$d);
@@ -7678,9 +7653,9 @@ if (!class_exists('TCPDF', false)) {
 							$annots .= ' /FT /'.$pl['opt']['ft'];
 							$formfield = true;
 						}
-						$annots .= ' /Contents '.$this->_textannobjstring($pl['txt']);
+						$annots .= ' /Contents '.$this->_textstring($pl['txt'], $annot_obj_id);
 						$annots .= ' /P '.$this->page_obj_id[$n].' 0 R';
-						$annots .= ' /NM '.$this->_dataannobjstring(sprintf('%04u-%04u', $n, $key));
+						$annots .= ' /NM '.$this->_datastring(sprintf('%04u-%04u', $n, $key), $annot_obj_id);
 						$annots .= ' /M '.$this->_datestring();
 						if (isset($pl['opt']['f'])) {
 							$val = 0;
@@ -7830,19 +7805,19 @@ if (!class_exists('TCPDF', false)) {
 						if (in_array(strtolower($pl['opt']['subtype']), $markups)) {
 							// this is a markup type
 							if (isset($pl['opt']['t']) AND is_string($pl['opt']['t'])) {
-								$annots .= ' /T '.$this->_textannobjstring($pl['opt']['t']);
+								$annots .= ' /T '.$this->_textstring($pl['opt']['t'], $annot_obj_id);
 							}
 							//$annots .= ' /Popup ';
 							if (isset($pl['opt']['ca'])) {
 								$annots .= ' /CA '.sprintf('%.4F', floatval($pl['opt']['ca']));
 							}
 							if (isset($pl['opt']['rc'])) {
-								$annots .= ' /RC '.$this->_textannobjstring($pl['opt']['rc']);
+								$annots .= ' /RC '.$this->_textstring($pl['opt']['rc'], $annot_obj_id);
 							}
 							$annots .= ' /CreationDate '.$this->_datestring();
 							//$annots .= ' /IRT ';
 							if (isset($pl['opt']['subj'])) {
-								$annots .= ' /Subj '.$this->_textannobjstring($pl['opt']['subj']);
+								$annots .= ' /Subj '.$this->_textstring($pl['opt']['subj'], $annot_obj_id);
 							}
 							//$annots .= ' /RT ';
 							//$annots .= ' /IT ';
@@ -7887,11 +7862,11 @@ if (!class_exists('TCPDF', false)) {
 							case 'link': {
 								if(is_string($pl['txt'])) {
 									// external URI link
-									$annots .= ' /A <</S /URI /URI '.$this->_dataannobjstring($this->unhtmlentities($pl['txt'])).'>>';
+									$annots .= ' /A <</S /URI /URI '.$this->_datastring($this->unhtmlentities($pl['txt']), $annot_obj_id).'>>';
 								} else {
 									// internal link
 									$l = $this->links[$pl['txt']];
-									$annots .= sprintf(' /Dest [%d 0 R /XYZ 0 %.2F null]', (1 + (2 * $l[0])), ($this->pagedim[$l[0]]['h'] - ($l[1] * $this->k)));
+									$annots .= sprintf(' /Dest [%d 0 R /XYZ 0 %.2F null]', $this->page_obj_id[($l[0])], ($this->pagedim[$l[0]]['h'] - ($l[1] * $this->k)));
 								}
 								$hmodes = array('N', 'I', 'O', 'P');
 								if (isset($pl['opt']['h']) AND in_array($pl['opt']['h'], $hmodes)) {
@@ -7911,10 +7886,10 @@ if (!class_exists('TCPDF', false)) {
 									$annots .= ' /Q '.intval($pl['opt']['q']);
 								}
 								if (isset($pl['opt']['rc'])) {
-									$annots .= ' /RC '.$this->_textannobjstring($pl['opt']['rc']);
+									$annots .= ' /RC '.$this->_textstring($pl['opt']['rc'], $annot_obj_id);
 								}
 								if (isset($pl['opt']['ds'])) {
-									$annots .= ' /DS '.$this->_textannobjstring($pl['opt']['ds']);
+									$annots .= ' /DS '.$this->_textstring($pl['opt']['ds'], $annot_obj_id);
 								}
 								if (isset($pl['opt']['cl']) AND is_array($pl['opt']['cl'])) {
 									$annots .= ' /CL [';
@@ -7984,7 +7959,7 @@ if (!class_exists('TCPDF', false)) {
 								}
 								$filename = basename($pl['opt']['fs']);
 								if (isset($this->embeddedfiles[$filename]['n'])) {
-									$annots .= ' /FS <</Type /Filespec /F '.$this->_dataannobjstring($filename).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
+									$annots .= ' /FS <</Type /Filespec /F '.$this->_datastring($filename, $annot_obj_id).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
 									$iconsapp = array('Graph', 'Paperclip', 'PushPin', 'Tag');
 									if (isset($pl['opt']['name']) AND in_array($pl['opt']['name'], $iconsapp)) {
 										$annots .= ' /Name /'.$pl['opt']['name'];
@@ -8002,7 +7977,7 @@ if (!class_exists('TCPDF', false)) {
 								if (isset($this->embeddedfiles[$filename]['n'])) {
 									// ... TO BE COMPLETED ...
 									// /R /C /B /E /CO /CP
-									$annots .= ' /Sound <</Type /Filespec /F '.$this->_dataannobjstring($filename).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
+									$annots .= ' /Sound <</Type /Filespec /F '.$this->_datastring($filename, $annot_obj_id).' /EF <</F '.$this->embeddedfiles[$filename]['n'].' 0 R>> >>';
 									$iconsapp = array('Speaker', 'Mic');
 									if (isset($pl['opt']['name']) AND in_array($pl['opt']['name'], $iconsapp)) {
 										$annots .= ' /Name /'.$pl['opt']['name'];
@@ -8081,7 +8056,7 @@ if (!class_exists('TCPDF', false)) {
 											$annots .= ' /S /'.$pl['opt']['mk']['if']['s'];
 										}
 										if (isset($pl['opt']['mk']['if']['a']) AND (is_array($pl['opt']['mk']['if']['a'])) AND !empty($pl['opt']['mk']['if']['a'])) {
-											$annots .= sprintf(' /A [%.2F  %.2F]', $pl['opt']['mk']['if']['a'][0], $pl['opt']['mk']['if']['a'][1]);
+											$annots .= sprintf(' /A [%.2F %.2F]', $pl['opt']['mk']['if']['a'][0], $pl['opt']['mk']['if']['a'][1]);
 										}
 										if (isset($pl['opt']['mk']['if']['fb']) AND ($pl['opt']['mk']['if']['fb'])) {
 											$annots .= ' /FB true';
@@ -8101,13 +8076,13 @@ if (!class_exists('TCPDF', false)) {
 							 		$annots .= ' /Parent '.$this->radiobutton_groups[$n][$pl['txt']].' 0 R';
 							 	}
 							 	if (isset($pl['opt']['t']) AND is_string($pl['opt']['t'])) {
-									$annots .= ' /T '.$this->_dataannobjstring($pl['opt']['t']);
+									$annots .= ' /T '.$this->_datastring($pl['opt']['t'], $annot_obj_id);
 								}
 								if (isset($pl['opt']['tu']) AND is_string($pl['opt']['tu'])) {
-									$annots .= ' /TU '.$this->_dataannobjstring($pl['opt']['tu']);
+									$annots .= ' /TU '.$this->_datastring($pl['opt']['tu'], $annot_obj_id);
 								}
 								if (isset($pl['opt']['tm']) AND is_string($pl['opt']['tm'])) {
-									$annots .= ' /TM '.$this->_dataannobjstring($pl['opt']['tm']);
+									$annots .= ' /TM '.$this->_datastring($pl['opt']['tm'], $annot_obj_id);
 								}
 								if (isset($pl['opt']['ff'])) {
 									if (is_array($pl['opt']['ff'])) {
@@ -8134,7 +8109,7 @@ if (!class_exists('TCPDF', false)) {
 											$annots .= ' '.$optval;
 										}
 									} else {
-										$annots .= ' '.$this->_textannobjstring($pl['opt']['v']);
+										$annots .= ' '.$this->_textstring($pl['opt']['v'], $annot_obj_id);
 									}
 								}
 								if (isset($pl['opt']['dv'])) {
@@ -8147,7 +8122,7 @@ if (!class_exists('TCPDF', false)) {
 											$annots .= ' '.$optval;
 										}
 									} else {
-										$annots .= ' '.$this->_textannobjstring($pl['opt']['dv']);
+										$annots .= ' '.$this->_textstring($pl['opt']['dv'], $annot_obj_id);
 									}
 								}
 								if (isset($pl['opt']['rv'])) {
@@ -8160,7 +8135,7 @@ if (!class_exists('TCPDF', false)) {
 											$annots .= ' '.$optval;
 										}
 									} else {
-										$annots .= ' '.$this->_textannobjstring($pl['opt']['rv']);
+										$annots .= ' '.$this->_textstring($pl['opt']['rv'], $annot_obj_id);
 									}
 								}
 								if (isset($pl['opt']['a']) AND !empty($pl['opt']['a'])) {
@@ -8179,9 +8154,9 @@ if (!class_exists('TCPDF', false)) {
 						 			$annots .= ' /Opt [';
 						 			foreach($pl['opt']['opt'] AS $copt) {
 						 				if (is_array($copt)) {
-						 					$annots .= ' ['.$this->_textannobjstring($copt[0]).' '.$this->_textannobjstring($copt[1]).']';
+						 					$annots .= ' ['.$this->_textstring($copt[0], $annot_obj_id).' '.$this->_textstring($copt[1], $annot_obj_id).']';
 						 				} else {
-						 					$annots .= ' '.$this->_textannobjstring($copt);
+						 					$annots .= ' '.$this->_textstring($copt, $annot_obj_id);
 						 				}
 						 			}
 						 			$annots .= ']';
@@ -8219,12 +8194,11 @@ if (!class_exists('TCPDF', false)) {
 						}
 						$annots .= '>>';
 						// create new annotation object
-						++$this->annot_obj_id;
-						$this->offsets[$this->annot_obj_id] = $this->bufferlen;
-						$this->_out($this->annot_obj_id.' 0 obj'."\n".$annots."\n".'endobj');
-						if ($formfield AND ! isset($this->radiobutton_groups[$n][$pl['txt']])) {
+						$this->offsets[$annot_obj_id] = $this->bufferlen;
+						$this->_out($annot_obj_id.' 0 obj'."\n".$annots."\n".'endobj');
+						if ($formfield AND !isset($this->radiobutton_groups[$n][$pl['txt']])) {
 							// store reference of form object
-							$this->form_obj_id[] = $this->annot_obj_id;
+							$this->form_obj_id[] = $annot_obj_id;
 						}
 					}
 				}
@@ -8242,9 +8216,9 @@ if (!class_exists('TCPDF', false)) {
 		 */
 		protected function _putAPXObject($w=0, $h=0, $stream='') {
 			$stream = trim($stream);
-			++$this->apxo_obj_id;
-			$this->offsets[$this->apxo_obj_id] = $this->bufferlen;
-			$out = $this->apxo_obj_id.' 0 obj'."\n";
+			++$this->n;
+			$this->offsets[$this->n] = $this->bufferlen;
+			$out = $this->n.' 0 obj'."\n";
 			$out .= '<<';
 			$out .= ' /Type /XObject';
 			$out .= ' /Subtype /Form';
@@ -8263,7 +8237,7 @@ if (!class_exists('TCPDF', false)) {
 			$out .= ' stream'."\n".$stream."\n".'endstream';
 			$out .= "\n".'endobj';
 			$this->_out($out);
-			return $this->apxo_obj_id;
+			return $this->n;
 		}
 
 		/**
@@ -9826,50 +9800,6 @@ if (!class_exists('TCPDF', false)) {
 			$objid_info = $this->_putinfo();
 			// Catalog
 			$objid_catalog = $this->_putcatalog();
-			// Normalize Object IDs
-			$buffer = $this->getBuffer(); // (requires a lot of memory)
-			// Embedded Files
-			if (isset($this->embeddedfiles) AND count($this->embeddedfiles) > 0) {
-				foreach ($this->embeddedfiles as $filename => $filedata) {
-					++$this->n;
-					$this->offsets[$this->n] = $this->offsets[$filedata['n']];
-					$newobjid = sprintf('% 6u', $this->n);
-					$buffer = str_replace(''.$filedata['n'].' 0 R', ''.$newobjid.' 0 R', $buffer);
-					$buffer = str_replace(''.$filedata['n'].' 0 obj', ''.$newobjid.' 0 obj', $buffer);
-				}
-			}
-			// Annotation Objects
-			if ($this->annot_obj_id > $this->annots_start_obj_id) {
-				for ($i = ($this->annots_start_obj_id + 1); $i <= $this->annot_obj_id; ++$i) {
-					++$this->n;
-					$this->offsets[$this->n] = $this->offsets[$i];
-					$newobjid = sprintf('% 6u', $this->n);
-					$buffer = str_replace($i.' 0 R', $newobjid.' 0 R', $buffer);
-					$buffer = str_replace($i.' 0 obj', $newobjid.' 0 obj', $buffer);
-				}
-			}
-			// Javascript Objects
-			if ($this->js_obj_id > $this->js_start_obj_id) {
-				for ($i = ($this->js_start_obj_id + 1); $i <= $this->js_obj_id; ++$i) {
-					++$this->n;
-					$this->offsets[$this->n] = $this->offsets[$i];
-					$newobjid = sprintf('% 6u', $this->n);
-					$buffer = str_replace($i.' 0 R', $newobjid.' 0 R', $buffer);
-					$buffer = str_replace($i.' 0 obj', $newobjid.' 0 obj', $buffer);
-				}
-			}
-			// Appearance streams XObjects
-			if ($this->apxo_obj_id > $this->apxo_start_obj_id) {
-				for ($i = ($this->apxo_start_obj_id + 1); $i <= $this->apxo_obj_id; ++$i) {
-					++$this->n;
-					$this->offsets[$this->n] = $this->offsets[$i];
-					$newobjid = sprintf('% 6u', $this->n);
-					$buffer = str_replace($i.' 0 R', $newobjid.' 0 R', $buffer);
-					$buffer = str_replace($i.' 0 obj', $newobjid.' 0 obj', $buffer);
-				}
-			}
-			// overwrite buffer
-			$this->replaceBuffer($buffer);
 			// Cross-ref
 			$o = $this->bufferlen;
 			// XREF section
@@ -10077,22 +10007,15 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Format a data string for meta information
 		 * @param string $s data string to escape.
+		 * @param int $n object ID
 		 * @return string escaped string.
 		 * @access protected
 		 */
-		protected function _datastring($s) {
-			$s = $this->_encrypt_data($this->n, $s);
-			return '('. $this->_escape($s).')';
-		}
-
-		/**
-		 * Format a data string for annotation objects
-		 * @param string $s data string to escape.
-		 * @return string escaped string.
-		 * @access protected
-		 */
-		protected function _dataannobjstring($s) {
-			$s = $this->_encrypt_data(($this->annot_obj_id + 1), $s);
+		protected function _datastring($s, $n=0) {
+			if ($n == 0) {
+				$n = $this->n;
+			}
+			$s = $this->_encrypt_data($n, $s);
 			return '('. $this->_escape($s).')';
 		}
 
@@ -10110,29 +10033,16 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Format a text string for meta information
 		 * @param string $s string to escape.
+		 * @param int $n object ID
 		 * @return string escaped string.
 		 * @access protected
 		 */
-		protected function _textstring($s) {
+		protected function _textstring($s, $n=0) {
 			if ($this->isunicode) {
 				//Convert string to UTF-16BE
 				$s = $this->UTF8ToUTF16BE($s, true);
 			}
-			return $this->_datastring($s);
-		}
-
-		/**
-		 * Format a UTF-8 text string for meta information on annotations
-		 * @param string $s string to escape.
-		 * @return string escaped string.
-		 * @access protected
-		 */
-		protected function _textannobjstring($s) {
-			if ($this->isunicode) {
-				//Convert string to UTF-16BE
-				$s = $this->UTF8ToUTF16BE($s, true);
-			}
-			return $this->_dataannobjstring($s);
+			return $this->_datastring($s, $n);
 		}
 
 		/**
@@ -10273,7 +10183,7 @@ if (!class_exists('TCPDF', false)) {
 			$unichar = -1; // last unicode char
 			$unicode = array(); // array containing unicode values
 			$bytes  = array(); // array containing single character byte sequences
-			$numbytes  = 1; // number of octetc needed to represent the UTF-8 character
+			$numbytes = 1; // number of octetc needed to represent the UTF-8 character
 			$str .= ''; // force $str to be a string
 			$length = strlen($str);
 			for ($i = 0; $i < $length; ++$i) {
@@ -10731,8 +10641,7 @@ if (!class_exists('TCPDF', false)) {
 			if (!$this->encrypted) {
 				return;
 			}
-			$this->_newobj();
-			$this->encryptdata['objid'] = $this->n;
+			$this->encryptdata['objid'] = $this->_newobj();
 			$out = '<<';
 			if (!isset($this->encryptdata['Filter']) OR empty($this->encryptdata['Filter'])) {
 				$this->encryptdata['Filter'] = 'Standard';
@@ -11197,7 +11106,7 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
-		 * Convert string to  hexadecimal string (byte string)
+		 * Convert string to hexadecimal string (byte string)
 		 * @param string $s string to convert
 		 * @return byte string
 		 * @access protected
@@ -12382,7 +12291,7 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Reverse the RLT substrings using the Bidirectional Algorithm (http://unicode.org/reports/tr9/).
 		 * @param string $str string to manipulate.
-		 * @param bool $setbom  if true set the Byte Order Mark (BOM = 0xFEFF)
+		 * @param bool $setbom if true set the Byte Order Mark (BOM = 0xFEFF)
 		 * @param bool $forcertl if true forces RTL text direction
 		 * @return string
 		 * @access protected
@@ -12397,7 +12306,7 @@ if (!class_exists('TCPDF', false)) {
 		 * Reverse the RLT substrings array using the Bidirectional Algorithm (http://unicode.org/reports/tr9/).
 		 * @param array $arr array of unicode values.
 		 * @param string $str string to manipulate (or empty value).
-		 * @param bool $setbom  if true set the Byte Order Mark (BOM = 0xFEFF)
+		 * @param bool $setbom if true set the Byte Order Mark (BOM = 0xFEFF)
 		 * @param bool $forcertl if true forces RTL text direction
 		 * @return string
 		 * @access protected
@@ -13029,7 +12938,7 @@ if (!class_exists('TCPDF', false)) {
 			$outline_p = array();
 			$outline_y = array();
 			foreach ($this->outlines as $key => $row) {
-				$outline_p[$key]  = $row['p'];
+				$outline_p[$key] = $row['p'];
 				$outline_k[$key] = $key;
 			}
 			// sort outlines by page and original position
@@ -13082,14 +12991,13 @@ if (!class_exists('TCPDF', false)) {
 				if (isset($o['last'])) {
 					$out .= ' /Last '.($n + $o['last']).' 0 R';
 				}
-				$out .= ' '.sprintf('/Dest [%d 0 R /XYZ 0 %.2F null]', (1 + (2 * $o['p'])), ($this->pagedim[$o['p']]['h'] - ($o['y'] * $this->k)));
+				$out .= ' '.sprintf('/Dest [%d 0 R /XYZ 0 %.2F null]', $this->page_obj_id[($o['p'])], ($this->pagedim[$o['p']]['h'] - ($o['y'] * $this->k)));
 				$out .= ' /Count 0 >>';
 				$out .= "\n".'endobj';
 				$this->_out($out);
 			}
 			//Outline root
-			$this->_newobj();
-			$this->OutlineRoot = $this->n;
+			$this->OutlineRoot = $this->_newobj();
 			$this->_out('<< /Type /Outlines /First '.$n.' 0 R /Last '.($n + $lru[0]).' 0 R >>'."\n".'endobj');
 		}
 
@@ -13116,9 +13024,9 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 4.8.000 (2009-09-07)
 		 */
 		public function addJavascriptObject($script, $onload=false) {
-			++$this->js_obj_id;
-			$this->js_objects[$this->js_obj_id] = array('js' => $script, 'onload' => $onload);
-			return $this->js_obj_id;
+			++$this->n;
+			$this->js_objects[$this->n] = array('n' => $this->n, 'js' => $script, 'onload' => $onload);
+			return $this->n;
 		}
 
 		/**
@@ -13750,11 +13658,12 @@ if (!class_exists('TCPDF', false)) {
 			}
 			if (!isset($this->radiobutton_groups[$this->page][$name])) {
 				$this->radiobutton_groups[$this->page][$name] = array();
-				++$this->annot_obj_id;
-				$this->radio_groups[] = $this->annot_obj_id;
+				++$this->n;
+				$this->radiobutton_groups[$this->page][$name]['n'] = $this->n;
+				$this->radio_groups[] = $this->n;
 			}
 			// save object ID to be added on Kids entry on parent object
-			$this->radiobutton_groups[$this->page][$name][] = array('kid' => ($this->annot_obj_id + 1), 'def' => $defval);
+			$this->radiobutton_groups[$this->page][$name][] = array('kid' => ($this->n + 1), 'def' => $defval);
 			// get default style
 			$prop = array_merge($this->getFormDefaultProp(), $prop);
 			$prop['NoToggleToOff'] = 'true';
@@ -14303,7 +14212,7 @@ if (!class_exists('TCPDF', false)) {
 				$this->signature_appearance['page'] = intval($page);
 			}
 			$a = $x * $this->k;
-			$b = $this->pagedim[($this->signature_appearance['page'])]['h'] - (($y + $h)  * $this->k);
+			$b = $this->pagedim[($this->signature_appearance['page'])]['h'] - (($y + $h) * $this->k);
 			$c = $w * $this->k;
 			$d = $h * $this->k;
 			$this->signature_appearance['rect'] = sprintf('%.2F %.2F %.2F %.2F', $a, $b, $a+$c, $b+$d);
@@ -14467,11 +14376,9 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 3.0.000 (2008-03-27)
 		 */
 		protected function _putocg() {
-			$this->_newobj();
-			$this->n_ocg_print = $this->n;
+			$this->n_ocg_print = $this->_newobj();
 			$this->_out('<< /Type /OCG /Name '.$this->_textstring('print').' /Usage << /Print <</PrintState /ON>> /View <</ViewState /OFF>> >> >>'."\n".'endobj');
-			$this->_newobj();
-			$this->n_ocg_view = $this->n;
+			$this->n_ocg_view = $this->_newobj();
 			$this->_out('<< /Type /OCG /Name '.$this->_textstring('view').' /Usage << /Print <</PrintState /OFF>> /View <</ViewState /ON>> >> >>'."\n".'endobj');
 		}
 
@@ -14551,8 +14458,7 @@ if (!class_exists('TCPDF', false)) {
 		protected function _putextgstates() {
 			$ne = count($this->extgstates);
 			for ($i = 1; $i <= $ne; ++$i) {
-				$this->_newobj();
-				$this->extgstates[$i]['n'] = $this->n;
+				$this->extgstates[$i]['n'] = $this->_newobj();
 				$out = '<< /Type /ExtGState';
 				foreach ($this->extgstates[$i]['parms'] as $k => $v) {
 					if (is_float($v)) {
@@ -15107,8 +15013,7 @@ if (!class_exists('TCPDF', false)) {
 			$idt = count($this->gradients); //index for transparency gradients
 			foreach ($this->gradients as $id => $grad) {
 				if (($grad['type'] == 2) OR ($grad['type'] == 3)) {
-					$this->_newobj();
-					$fc = $this->n;
+					$fc = $this->_newobj();
 					$out = '<<';
 					$out .= ' /FunctionType 3';
 					$out .= ' /Domain [0 1]';
@@ -15145,8 +15050,7 @@ if (!class_exists('TCPDF', false)) {
 					}
 					// set transparency fuctions
 					if ($grad['transparency']) {
-						$this->_newobj();
-						$ft = $this->n;
+						$ft = $this->_newobj();
 						$out = '<<';
 						$out .= ' /FunctionType 3';
 						$out .= ' /Domain [0 1]';
@@ -15335,7 +15239,7 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		 * Embed vector-based Adobe Illustrator (AI) or AI-compatible EPS files.
-		 * NOTE: EPS is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of SVG images using ImageMagick library.
+		 * NOTE: EPS is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of vector images using ImageMagick library.
 		 * Only vector drawing is supported, not text or bitmap.
 		 * Although the script was successfully tested with various AI format versions, best results are probably achieved with files that were exported in the AI3 format (tested with Illustrator CS2, Freehand MX and Photoshop CS2).
 		 * @param string $file Name of the file containing the image.
@@ -15766,7 +15670,7 @@ if (!class_exists('TCPDF', false)) {
 				if ($v['t']) {
 					// draw a vertical bar
 					$ypos = $y + $style['padding'] + ($v['p'] * $barh / $arrcode['maxh']);
-					$this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh  / $arrcode['maxh']), 'F', array(), $style['fgcolor']);
+					$this->Rect($xpos, $ypos, $bw, ($v['h'] * $barh / $arrcode['maxh']), 'F', array(), $style['fgcolor']);
 				}
 				$xpos += $bw;
 			}
@@ -16080,7 +15984,7 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Returns an array containing current margins:
 		 * <ul>
-				<li>$ret['left'] = left  margin</li>
+				<li>$ret['left'] = left margin</li>
 				<li>$ret['right'] = right margin</li>
 				<li>$ret['top'] = top margin</li>
 				<li>$ret['bottom'] = bottom margin</li>
@@ -16108,7 +16012,7 @@ if (!class_exists('TCPDF', false)) {
 		/**
 		 * Returns an array containing original margins:
 		 * <ul>
-				<li>$ret['left'] = left  margin</li>
+				<li>$ret['left'] = left margin</li>
 				<li>$ret['right'] = right margin</li>
 		 * </ul>
 		 * @return array containing all margins measures
@@ -16490,8 +16394,10 @@ if (!class_exists('TCPDF', false)) {
 			$html = preg_replace('/<style([^\>]*)>([^\<]*)<\/style>/isU', '', $html);
 			// define block tags
 			$blocktags = array('blockquote','br','dd','dl','div','dt','h1','h2','h3','h4','h5','h6','hr','li','ol','p','pre','ul','tcpdf','table','tr','td');
+			// define self-closing tags
+			$selfclosingtags = array('area','base','basefont','br','hr','input','img','link','meta');
 			// remove all unsupported tags (the line below lists all supported tags)
-			$html = strip_tags($html, '<marker/><a><b><blockquote><body><br><br/><dd><del><div><dl><dt><em><font><form><h1><h2><h3><h4><h5><h6><hr><hr/><i><img><input><label><li><ol><option><p><pre><select><small><span><strong><sub><sup><table><tablehead><tcpdf><td><textarea><th><thead><tr><tt><u><ul>');
+			$html = strip_tags($html, '<marker/><a><b><blockquote><body><br><br/><dd><del><div><dl><dt><em><font><form><h1><h2><h3><h4><h5><h6><hr><hr/><i><img><input><label><li><ol><option><p><pre><s><select><small><span><strike><strong><sub><sup><table><tablehead><tcpdf><td><textarea><th><thead><tr><tt><u><ul>');
 			//replace some blank characters
 			$html = preg_replace('/<pre/', '<xre', $html); // preserve pre tag
 			$html = preg_replace('/<(table|tr|td|th|tcpdf|blockquote|dd|div|dl|dt|form|h1|h2|h3|h4|h5|h6|br|hr|li|ol|ul|p)([^\>]*)>[\n\r\t]+/', '<\\1\\2>', $html);
@@ -16552,6 +16458,7 @@ if (!class_exists('TCPDF', false)) {
 			$html = preg_replace('/<xre/', '<pre', $html); // restore pre tag
 			$html = preg_replace('/<textarea([^\>]*)>/xi', '<textarea\\1 value="', $html);
 			$html = preg_replace('/<\/textarea>/', '" />', $html);
+			$html = preg_replace('/<li([^\>]*)><\/li>/', '<li\\1>&nbsp;</li>', $html);
 			// trim string
 			$html = preg_replace('/^'.$this->re_space['p'].'+/'.$this->re_space['m'], '', $html);
 			$html = preg_replace('/'.$this->re_space['p'].'+$/'.$this->re_space['m'], '', $html);
@@ -16671,15 +16578,16 @@ if (!class_exists('TCPDF', false)) {
 							$dom[($dom[$key]['parent'])]['thead'] .= '</tablehead>';
 						}
 					} else {
-						// *** opening html tag
+						// *** opening or self-closing html tag
 						$dom[$key]['opening'] = true;
 						$dom[$key]['parent'] = end($level);
-						if (substr($element, -1, 1) != '/') {
-							// not self-closing tag
+						if ((substr($element, -1, 1) == '/') OR (in_array($dom[$key]['value'], $selfclosingtags))) {
+							// self-closing tag
+							$dom[$key]['self'] = true;
+						} else {
+							// opening tag
 							array_push($level, $key);
 							$dom[$key]['self'] = false;
-						} else {
-							$dom[$key]['self'] = true;
 						}
 						// copy some values from parent
 						$parentkey = 0;
@@ -16940,7 +16848,7 @@ if (!class_exists('TCPDF', false)) {
 						if ($dom[$key]['value'] == 'u') {
 							$dom[$key]['fontstyle'] .= 'U';
 						}
-						if ($dom[$key]['value'] == 'del') {
+						if (($dom[$key]['value'] == 'del') OR ($dom[$key]['value'] == 's') OR ($dom[$key]['value'] == 'strike')) {
 							$dom[$key]['fontstyle'] .= 'D';
 						}
 						if (!isset($dom[$key]['style']['text-decoration']) AND ($dom[$key]['value'] == 'a')) {
@@ -17943,7 +17851,7 @@ if (!class_exists('TCPDF', false)) {
 											$rsendx += $dl;
 										}
 									}
-									if  (($trwsp['rowspan'] > 0)
+									if (($trwsp['rowspan'] > 0)
 										AND ($rsstartx > ($this->x - $cellspacing - $currentcmargin - $this->feps))
 										AND ($rsstartx < ($this->x + $cellspacing + $currentcmargin + $this->feps))
 										AND (($trwsp['starty'] < ($this->y - $this->feps)) OR ($trwsp['startpage'] < $this->page))) {
@@ -18476,7 +18384,7 @@ if (!class_exists('TCPDF', false)) {
 							$this->ImageEps($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, $imglink, true, $align, '', $border, true);
 						} elseif ($type == 'svg') {
 							$this->ImageSVG($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, $imglink, $align, '', $border, true);
-						} else  {
+						} else {
 							$this->Image($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, '', $imglink, $align, false, 300, '', false, false, $border, false, false, true);
 						}
 						switch($align) {
@@ -21069,7 +20977,7 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
-		 * Enable/disable rasterization of SVG images using ImageMagick library.
+		 * Enable/disable rasterization of vector images using ImageMagick library.
 		 * @param boolean $mode if true enable rasterization, false otherwise.
 		 * @access public
 		 * @since 5.0.000 (2010-04-27)
@@ -21198,7 +21106,7 @@ if (!class_exists('TCPDF', false)) {
 
 		/**
 		 * Embedd a Scalable Vector Graphics (SVG) image.
-		 * NOTE: SVG standard is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of SVG images using ImageMagick library.
+		 * NOTE: SVG standard is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of vector images using ImageMagick library.
 		 * @param string $file Name of the SVG file.
 		 * @param float $x Abscissa of the upper-left corner.
 		 * @param float $y Ordinate of the upper-left corner.
@@ -21429,7 +21337,7 @@ if (!class_exists('TCPDF', false)) {
 			xml_parser_free($this->parser);
 			// restore previous graphic state
 			$this->_out($this->epsmarker.'Q');
-			// restore  graphic vars
+			// restore graphic vars
 			$this->setGraphicVars($gvars);
 			if (!empty($border)) {
 				$bx = $this->x;
@@ -21588,7 +21496,7 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 5.0.000 (2010-05-02)
 		 * @access protected
 		 */
-		protected function getTransformationMatrixProduct($ta, $tb)  {
+		protected function getTransformationMatrixProduct($ta, $tb) {
 			$tm = array();
 			$tm[0] = ($ta[0] * $tb[0]) + ($ta[2] * $tb[1]);
 			$tm[1] = ($ta[1] * $tb[0]) + ($ta[3] * $tb[1]);
@@ -21645,7 +21553,7 @@ if (!class_exists('TCPDF', false)) {
 		 * @since 5.0.000 (2010-05-02)
 		 * @access protected
 		 */
-		protected function setSVGStyles($svgstyle, $prevsvgstyle, $x=0, $y=0, $w=1, $h=1, $clip_function='', $clip_params=array())  {
+		protected function setSVGStyles($svgstyle, $prevsvgstyle, $x=0, $y=0, $w=1, $h=1, $clip_function='', $clip_params=array()) {
 			$objstyle = '';
 			if(!isset($svgstyle['opacity'])) {
 				return $objstyle;
@@ -22209,7 +22117,7 @@ if (!class_exists('TCPDF', false)) {
 		}
 
 		/**
-		 * Returns the angle in  radiants between two vectors
+		 * Returns the angle in radiants between two vectors
 		 * @param int $x1 X coordiante of first vector point
 		 * @param int $y1 Y coordiante of first vector point
 		 * @param int $x2 X coordiante of second vector point

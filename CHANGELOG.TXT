@@ -1,3 +1,6 @@
+11.0.008 (2010-07-31)
+	- TCPDF library was updated.
+
 11.0.007 (2010-07-14)
 	- tce_edit_backup was fixed for special characters.
 	- TCPDF library was updated.
