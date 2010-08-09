@@ -44,4 +44,3 @@ header('Location: public/code/index.php'); //redirect browser to public main pag
 //============================================================+
 // END OF FILE
 //============================================================+
-?>
