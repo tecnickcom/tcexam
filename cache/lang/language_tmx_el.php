@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2010-06-29 16:43:48
+// DATE: 2010-08-09 11:25:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -516,5 +516,4 @@ $tmx['hp_edit_backups']='Η σελίδα αυτή σας επιτρέπει να
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
 
-// EOF ----------
-?>
+// --- EOF ---

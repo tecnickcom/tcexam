@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-06-29 16:43:43
+// DATE: 2010-08-09 11:25:21
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -514,5 +514,4 @@ $tmx['hp_edit_backups']='هذه الصفحة تسمح لك بالنسخ الاح
 $tmx['w_download']='تنزيل';
 $tmx['h_download']='تنزيل ملف النسخة الاحتياطية المحددة';
 
-// EOF ----------
-?>
+// --- EOF ---

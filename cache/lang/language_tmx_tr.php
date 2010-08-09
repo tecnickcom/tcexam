@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: tr
-// DATE: 2010-06-29 16:44:06
+// DATE: 2010-08-09 11:25:48
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -516,5 +516,4 @@ Backup files are stored on the "cache/backup" folder using the following syntax:
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
 
-// EOF ----------
-?>
+// --- EOF ---

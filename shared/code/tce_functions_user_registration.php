@@ -131,7 +131,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode) {
  	$mail->ClearAttachments(); // Clears all previously set filesystem, string, and binary attachments
 	$mail->ClearReplyTos(); // Clears all recipients assigned in the ReplyTo array
 }
+
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

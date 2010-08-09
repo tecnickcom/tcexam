@@ -171,4 +171,3 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

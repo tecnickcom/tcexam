@@ -137,4 +137,3 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

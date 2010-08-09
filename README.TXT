@@ -5,12 +5,15 @@ I WISH TO IMPROVE AND EXPAND TCEXAM BUT I NEED YOUR SUPPORT.
 PLEASE MAKE A DONATION:
 http://sourceforge.net/donate/index.php?group_id=159398
 
+FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
+
 ------------------------------------------------------------
+
 Name: TCExam
 
-Version: 11.0.008
+Version: 11.0.009
 
-Release date: 2010-07-31
+Release date: 2010-08-09
 
 Author:
 	Nicola Asuni
@@ -114,8 +117,8 @@ Software License
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-	Additionally, you can't remove or move the original tcexam logo,
-	copyrights statements and links to tecnick.com and tcexam websites.
+	Additionally, you can't remove, move or hide the original TCExam 
+	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
 	Please contact info@tecnick.com for commercial usage.
 
 	See LICENSE.TXT file for more information.

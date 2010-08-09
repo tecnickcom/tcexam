@@ -274,4 +274,7 @@ if (extension_loaded('xsl'))
   function result_dump_mem($dom_document) {return $dom_document->myDOMNode->saveHTML();}
  }
 }
-?>
+
+//============================================================+
+// END OF FILE
+//============================================================+

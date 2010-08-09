@@ -84,7 +84,7 @@ echo '<head>'.K_NEWLINE;
 echo '<title>'.htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charset']).'</title>'.K_NEWLINE;
 echo '<meta http-equiv="Content-Type" content="text/html; charset='.$l['a_meta_charset'].'" />'.K_NEWLINE;
 echo '<meta name="tcexam_level" content="'.$pagelevel.'" />'.K_NEWLINE;
-echo '<meta name="description" content="'.htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset']).' ['.base64_decode(K_KEY_SECURITY).']" />'.K_NEWLINE;
+echo '<meta name="description" content="'."\x5b\x54\x43\x45\x78\x61\x6d\x5d".' '.htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset']).' ['.base64_decode(K_KEY_SECURITY).']" />'.K_NEWLINE;
 echo '<meta name="author" content="'.htmlspecialchars($thispage_author, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '<meta name="reply-to" content="'.htmlspecialchars($thispage_reply, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '<meta name="keywords" content="'.htmlspecialchars($thispage_keywords, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
@@ -98,4 +98,3 @@ echo '<body>'.K_NEWLINE;
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

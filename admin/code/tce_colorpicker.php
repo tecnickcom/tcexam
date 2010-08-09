@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_colorpicker.php
 // Begin       : 2001-11-05
-// Last Update : 2009-09-30
+// Last Update : 2010-08-09
 //
 // Description : HTML Color Picker Functions.
 //
@@ -55,7 +55,7 @@
 require_once('../config/tce_config.php');
 $pagelevel = 0;
 //require_once('../../shared/code/tce_authorization.php');
-$thispage_title = "Color Picker";
+$thispage_title = 'Color Picker';
 require_once('../code/tce_page_header_popup.php');
 F_html_color_picker();
 require_once('../code/tce_page_footer_popup.php');
@@ -262,7 +262,7 @@ FJ_pick_color(1);
 <?php
 	return;
 }
+
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

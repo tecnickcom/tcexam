@@ -355,4 +355,3 @@ function F_stats_table_header_element($test_id, $order_field, $orderdir, $title,
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

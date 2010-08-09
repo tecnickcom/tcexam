@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2010-06-29 16:43:50
+// DATE: 2010-08-09 11:25:30
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -514,5 +514,4 @@ El expediente de cobertura viene registrado en la carpeta "cache/backup" con la 
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
 
-// EOF ----------
-?>
+// --- EOF ---

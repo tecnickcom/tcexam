@@ -185,4 +185,6 @@ class PGTStorage
 include_once(dirname(__FILE__).'/pgt-file.php');
 include_once(dirname(__FILE__).'/pgt-db.php');
 
-?>
+//============================================================+
+// END OF FILE
+//============================================================+

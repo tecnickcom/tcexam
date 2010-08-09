@@ -536,7 +536,7 @@ function pdfUserResultsLink($user_id, $startdate, $enddate, $order_field='') {
 	}
 	return $pdflink;
 }
+
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

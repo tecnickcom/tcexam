@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2010-06-29 16:43:57
+// DATE: 2010-08-09 11:25:38
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -516,5 +516,4 @@ I file di backup vengono registrati nella cartella "cache/backup" con la seguent
 $tmx['w_download']='scarica';
 $tmx['h_download']='scarica il file di backup selezionato';
 
-// EOF ----------
-?>
+// --- EOF ---

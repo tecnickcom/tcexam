@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2010-06-29 16:43:55
+// DATE: 2010-08-09 11:25:36
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -516,5 +516,4 @@ A mentés fájl tárolása a "cache/backup" alkönyvtárba kerül a következő 
 $tmx['w_download']='letöltés';
 $tmx['h_download']='a kiválasztott mentés letöltése';
 
-// EOF ----------
-?>
+// --- EOF ---

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tmx.php
 // Begin       : 2004-10-19
-// Last Update : 2009-09-30
+// Last Update : 2010-08-09
 //
 // Description : TMX-PHP Bridge Class
 // Platform    : PHP 5
@@ -149,7 +149,7 @@ class TMXResourceBundle {
 			xml_parser_free($this->parser);
 			if (!empty($this->cachefile)) {
 				// close cache file
-				file_put_contents($this->cachefile, "\n\n".'// EOF ----------'."\n".'?'.'>', FILE_APPEND);
+				file_put_contents($this->cachefile, "\n\n".'// --- EOF ---', FILE_APPEND);
 			}
 		}
 	}
@@ -261,4 +261,3 @@ class TMXResourceBundle {
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2010-06-29 16:43:55
+// DATE: 2010-08-09 11:25:37
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -516,5 +516,4 @@ File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDh
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
 
-// EOF ----------
-?>
+// --- EOF ---

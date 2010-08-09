@@ -548,4 +548,3 @@ function F_result_allusers_table_header_element($test_id, $order_field, $orderdi
 //============================================================+
 // END OF FILE
 //============================================================+
-?>

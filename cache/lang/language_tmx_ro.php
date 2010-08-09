@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-06-29 16:44:03
+// DATE: 2010-08-09 11:25:46
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -514,5 +514,4 @@ Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoa
 $tmx['w_download']='download';
 $tmx['h_download']='downloadați fișierul de backup selectat';
 
-// EOF ----------
-?>
+// --- EOF ---

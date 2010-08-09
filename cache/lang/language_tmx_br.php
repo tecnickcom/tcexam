@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: br
-// DATE: 2010-06-29 16:43:45
+// DATE: 2010-08-09 11:25:24
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -514,5 +514,4 @@ Os arquivos de backup são armazenados na pasta "cache/backup" usando a seguinte
 $tmx['w_download']='baixar';
 $tmx['h_download']='baixar o arquivo de backup selecionado';
 
-// EOF ----------
-?>
+// --- EOF ---
