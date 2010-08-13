@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2010-02-17
+// Last Update : 2010-08-13
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -81,9 +81,7 @@ if(!isset($menu_mode)) {
  * @return array containing form fields
  */
 function F_decode_form_fields() {
-	$formvars = 'HTTP_'.$_SERVER['REQUEST_METHOD'].'_VARS';
-	global $$formvars;
-	return $$formvars;
+	return $_REQUEST;
 }
 
 /**

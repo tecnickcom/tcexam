@@ -11,9 +11,9 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.0.009
+Version: 11.0.010
 
-Release date: 2010-08-09
+Release date: 2010-08-13
 
 Author:
 	Nicola Asuni
