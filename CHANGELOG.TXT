@@ -1,3 +1,6 @@
+11.0.011 (2010-08-14)
+	- TCPDF library was updated.
+	
 11.0.010 (2010-08-13)
 	- Method F_decode_form_fields() was fixed.
 	- TCPDF library was updated.
