@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2010-05-28
+// Last Update : 2010-08-17
 // // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -247,7 +247,8 @@ switch($menu_mode) {
 		// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 		if(!F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id='.$test_id.'')) {
 			F_print_error('WARNING', $l['m_update_restrict']);
-			$formstatus = FALSE;			F_stripslashes_formfields();
+			$formstatus = FALSE;
+			F_stripslashes_formfields();
 			break;
 		}
 		if($formstatus = F_check_form_fields()) {
@@ -286,34 +287,36 @@ switch($menu_mode) {
 				// NOTE: if the same subject is used in multiple sets this control may fail.
 				$sqlq = 'SELECT COUNT(*) AS numquestions
 					FROM '.K_TABLE_QUESTIONS.'';
-				$sqlq .= ' WHERE question_subject_id IN '.$subjids.'						AND question_type='.$tsubset_type.'						AND question_difficulty='.$tsubset_difficulty.'						AND question_enabled=\'1\'';
+				$sqlq .= ' WHERE question_subject_id IN '.$subjids.'
+					AND question_type='.$tsubset_type.'
+					AND question_difficulty='.$tsubset_difficulty.'
+					AND question_enabled=\'1\'';
 				if ($tsubset_type == 1) {
 					// single question (MCSA)
 					// check if the selected question has enough answers
-					$sqlq .= ' 						AND question_id IN (
+					$sqlq .= ' AND question_id IN (
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
-							WHERE answer_enabled=\'1\'								AND answer_isright=\'1\'';
+							WHERE answer_enabled=\'1\' AND answer_isright=\'1\'';
 					if (F_getBoolean($test_random_answers_order)) {
 						$sqlq .= ' AND answer_position>0';
 					}
 					$sqlq .= ' GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>0)
-						)';
-					$sqlq .= ' 						AND question_id IN (
+							HAVING (COUNT(answer_id)>0))';
+					$sqlq .= ' AND question_id IN (
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
-							WHERE answer_enabled=\'1\'								AND answer_isright=\'0\'';
+							WHERE answer_enabled=\'1\'
+							AND answer_isright=\'0\'';
 					if (F_getBoolean($test_random_answers_order)) {
 						$sqlq .= ' AND answer_position>0';
 					}
 					$sqlq .= ' GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>='.($tsubset_answers-1).')
-						)';
+							HAVING (COUNT(answer_id)>='.($tsubset_answers-1).'))';
 				} elseif ($tsubset_type == 2) {
 					// multiple question (MCMA)
 					// check if the selected question has enough answers
-					$sqlq .= ' 						AND question_id IN (
+					$sqlq .= ' AND question_id IN (
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
 							WHERE answer_enabled=\'1\'';
@@ -321,19 +324,17 @@ switch($menu_mode) {
 						$sqlq .= ' AND answer_position>0';
 					}
 					$sqlq .= ' GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>='.$tsubset_answers.')
-						)';
+							HAVING (COUNT(answer_id)>='.$tsubset_answers.'))';
 				} elseif ($tsubset_type == 4) {
 					// ordering question
 					// check if the selected question has enough answers
-					$sqlq .= ' 						AND question_id IN (
+					$sqlq .= ' AND question_id IN (
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
 							WHERE answer_enabled=\'1\'
 							AND answer_position>0
 							GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>1)
-					)';
+							HAVING (COUNT(answer_id)>1))';
 				}
 				if (F_getBoolean($test_random_questions_order)) {
 					$sqlq .= ' AND question_position>0';
@@ -347,7 +348,8 @@ switch($menu_mode) {
 				if($rq = F_db_query($sqlq, $db)) {
 					if($mq = F_db_fetch_array($rq)) {
 						$numofrows = $mq['numquestions'];
-					}				} else {
+					}
+				} else {
 					F_display_db_error();
 				}
 				if ($numofrows < $tsubset_quantity) {
@@ -357,7 +359,7 @@ switch($menu_mode) {
 
 				if (!empty($subject_id)) {
 					// insert new subject
-					$sql = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (						tsubset_test_id,
+					$sql = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (tsubset_test_id,
 						tsubset_type,
 						tsubset_difficulty,
 						tsubset_quantity,
@@ -379,7 +381,8 @@ switch($menu_mode) {
 								subjset_tsubset_id,
 								subjset_subject_id
 								) VALUES (
-								\''.$tsubset_id.'\',								\''.$subid.'\'
+								\''.$tsubset_id.'\',
+								\''.$subid.'\'
 								)';
 							if(!$r = F_db_query($sql, $db)) {
 								F_display_db_error(false);
@@ -432,20 +435,23 @@ switch($menu_mode) {
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if(!F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id='.$test_id.'')) {
 				F_print_error('WARNING', $l['m_update_restrict']);
-				$formstatus = FALSE;				F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 			// check if name is unique
 			if(!F_check_unique(K_TABLE_TESTS, 'test_name=\''.$test_name.'\'', 'test_id', $test_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
-				$formstatus = FALSE;				F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 
 			if ($test_score_threshold > $test_max_score) {
 				$test_score_threshold = 0.6 * $test_max_score;
 			}
-			$sql = 'UPDATE '.K_TABLE_TESTS.' SET				test_name=\''.F_escape_sql($test_name).'\',
+			$sql = 'UPDATE '.K_TABLE_TESTS.' SET
+				test_name=\''.F_escape_sql($test_name).'\',
 				test_description=\''.F_escape_sql($test_description).'\',
 				test_begin_time='.F_empty_to_null(F_escape_sql($test_begin_time)).',
 				test_end_time='.F_empty_to_null(F_escape_sql($test_end_time)).',
@@ -453,7 +459,9 @@ switch($menu_mode) {
 				test_ip_range=\''.F_escape_sql($test_ip_range).'\',
 				test_results_to_users=\''.$test_results_to_users.'\',
 				test_report_to_users=\''.$test_report_to_users.'\',
-				test_score_right=\''.$test_score_right.'\',				test_score_wrong=\''.$test_score_wrong.'\',				test_score_unanswered=\''.$test_score_unanswered.'\',
+				test_score_right=\''.$test_score_right.'\',
+				test_score_wrong=\''.$test_score_wrong.'\',
+				test_score_unanswered=\''.$test_score_unanswered.'\',
 				test_max_score=\''.$test_max_score.'\',
 				test_score_threshold=\''.$test_score_threshold.'\',
 				test_random_questions_select=\''.$test_random_questions_select.'\',
@@ -475,7 +483,8 @@ switch($menu_mode) {
 			}
 
 			// delete previous groups
-			$sql = 'DELETE FROM '.K_TABLE_TEST_GROUPS.'				WHERE tstgrp_test_id='.$test_id.'';
+			$sql = 'DELETE FROM '.K_TABLE_TEST_GROUPS.'
+				WHERE tstgrp_test_id='.$test_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			}
@@ -486,7 +495,8 @@ switch($menu_mode) {
 						tstgrp_test_id,
 						tstgrp_group_id
 						) VALUES (
-						\''.$test_id.'\',						\''.$group_id.'\'
+						\''.$test_id.'\',
+						\''.$group_id.'\'
 						)';
 					if(!$r = F_db_query($sql, $db)) {
 						F_display_db_error(false);
@@ -502,14 +512,16 @@ switch($menu_mode) {
 			// check if name is unique
 			if(!F_check_unique(K_TABLE_TESTS, 'test_name=\''.F_escape_sql($test_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
-				$formstatus = FALSE;				F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 			if (isset($test_id) AND ($test_id > 0)) {
 				// save previous test_id.
 				$old_test_id = $test_id;
 			}
-			$sql = 'INSERT INTO '.K_TABLE_TESTS.' (				test_name,
+			$sql = 'INSERT INTO '.K_TABLE_TESTS.' (
+			test_name,
 				test_description,
 				test_begin_time,
 				test_end_time,
@@ -517,7 +529,8 @@ switch($menu_mode) {
 				test_ip_range,
 				test_results_to_users,
 				test_report_to_users,
-				test_score_right,				test_score_wrong,
+				test_score_right,
+				test_score_wrong,
 				test_score_unanswered,
 				test_max_score,
 				test_user_id,
@@ -572,7 +585,8 @@ switch($menu_mode) {
 						tstgrp_test_id,
 						tstgrp_group_id
 						) VALUES (
-						\''.$test_id.'\',						\''.$group_id.'\'
+						\''.$test_id.'\',
+						\''.$group_id.'\'
 						)';
 					if(!$r = F_db_query($sql, $db)) {
 						F_display_db_error(false);
@@ -582,12 +596,14 @@ switch($menu_mode) {
 
 			if (isset($old_test_id) AND ($old_test_id > 0)) {
 				// copy here previous selected questions to this new test
-				$sql = 'SELECT *					FROM '.K_TABLE_TEST_SUBJSET.'
+				$sql = 'SELECT * 
+					FROM '.K_TABLE_TEST_SUBJSET.'
 					WHERE tsubset_test_id=\''.$old_test_id.'\'';
 				if($r = F_db_query($sql, $db)) {
 					while($m = F_db_fetch_array($r)) {
 						// insert new subject
-						$sqlu = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (							tsubset_test_id,
+						$sqlu = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (
+							tsubset_test_id,
 							tsubset_type,
 							tsubset_difficulty,
 							tsubset_quantity,
@@ -612,7 +628,8 @@ switch($menu_mode) {
 										subjset_tsubset_id,
 										subjset_subject_id
 										) VALUES (
-										\''.$tsubset_id.'\',										\''.$ms['subjset_subject_id'].'\'
+										\''.$tsubset_id.'\',
+										\''.$ms['subjset_subject_id'].'\'
 										)';
 									if(!$rp = F_db_query($sqlp, $db)) {
 										F_display_db_error();
@@ -674,7 +691,7 @@ if($formstatus) {
 		if(!isset($test_id) OR empty($test_id)) {
 			$sql = F_select_tests_sql().' LIMIT 1';
 		} else {
-			$sql = 'SELECT *				FROM '.K_TABLE_TESTS.'				WHERE test_id='.$test_id.'				LIMIT 1';
+			$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
@@ -1136,9 +1153,9 @@ if (isset($test_id) AND ($test_id > 0)) {
 <?php
 // select subject_id
 $sql = F_select_module_subjects_sql('module_enabled=\'1\' AND subject_enabled=\'1\'');
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	$prev_module_id = 0;
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		if ($m['module_id'] != $prev_module_id) {
 			$prev_module_id = $m['module_id'];
 			echo '<option value="#'.$m['module_id'].'" style="background-color:#DDEEFF;font-weight:bold">* '.htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -1147,8 +1164,54 @@ if($r = F_db_query($sql, $db)) {
 		if(in_array($m['subject_id'],$subject_id)) {
 			echo ' selected="selected"';
 		}
-		echo '>&nbsp;&nbsp;&nbsp;'.htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
-
+		echo '>&nbsp;&nbsp;&nbsp;'.htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']).' [';
+		// count available questions for each type
+		$qstat = '';
+		$sqln = 'SELECT question_type, question_difficulty, COUNT(*) as numquestions
+			FROM '.K_TABLE_QUESTIONS.'
+			WHERE question_subject_id='.$m['subject_id'].'
+				AND question_enabled=\'1\'
+			GROUP BY question_type, question_difficulty';
+		if ($rn = F_db_query($sqln, $db)) {
+			while ($mn = F_db_fetch_array($rn)) {
+				$qstat .= ' '.$mn['numquestions'].$qtype[($mn['question_type']-1)].$mn['question_difficulty'];
+				// count min and max alternative answers
+				$amin = 999999;
+				$amax = 0;
+				$sqla = 'SELECT question_id, COUNT(*) as numanswers
+					FROM '.K_TABLE_QUESTIONS.','.K_TABLE_ANSWERS.'
+					WHERE answer_question_id=question_id
+						AND question_subject_id='.$m['subject_id'].'
+						AND question_type='.$mn['question_type'].'
+						AND question_difficulty='.$mn['question_difficulty'].'
+						AND question_enabled=\'1\'
+						AND answer_enabled=\'1\'
+					GROUP BY question_id';
+				if ($ra = F_db_query($sqla, $db)) {
+					while ($ma = F_db_fetch_array($ra)) {
+						if ($ma['numanswers'] < $amin) {
+							$amin = $ma['numanswers'];
+						}
+						if ($ma['numanswers'] > $amax) {
+							$amax = $ma['numanswers'];
+						}
+					}
+				} else {
+					F_display_db_error();
+				}
+				if ($amin == 999999) {
+					$amin = 0;
+				}
+				// display minimum alternative answers
+				$qstat .= ':'.$amin;
+				if ($amax > $amin) {
+					$qstat .= '-'.$amax;
+				}
+			}
+		} else {
+			F_display_db_error();
+		}
+		echo $qstat.' ]</option>'.K_NEWLINE;
 	}
 } else {
 	echo '</select></span></div>'.K_NEWLINE;
@@ -1283,8 +1346,7 @@ if($r = F_db_query($sql, $db)) {
 		if (isset($test_max_score) AND ($test_max_score_new != $test_max_score)) {
 			$test_max_score = $test_max_score_new;
 			// update max score on test table
-			$sqlup = 'UPDATE '.K_TABLE_TESTS.' SET				test_max_score='.$test_max_score.'
-				WHERE test_id='.$test_id.'';
+			$sqlup = 'UPDATE '.K_TABLE_TESTS.' SET test_max_score='.$test_max_score.' WHERE test_id='.$test_id.'';
 			if(!$rup = F_db_query($sqlup, $db)) {
 				F_display_db_error(false);
 			}
