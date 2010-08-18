@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2009-10-10
+// Last Update : 2010-10-18
 //
 // Description : Functions to display and select registered user.
 //
@@ -191,6 +191,12 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '</table>'.K_NEWLINE;
 
 			echo '<br />'.K_NEWLINE;
+
+			echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="firstrow" id="firstrow" value="'.$firstrow.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="rowsperpage" id="rowsperpage" value="'.$rowsperpage.'" />'.K_NEWLINE;
+
 			// check/uncheck all options
 			echo '<span dir="ltr">';
 			echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_userselect\').submit()" />';
@@ -228,6 +234,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
 			if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
 			if (!empty($group_id)) {$param_array .= '&amp;group_id='.intval($group_id).'';}
+			if (!empty($searchterms)) {$param_array .= '&amp;searchterms='.urlencode($searchterms).'';}
 			$param_array .= '&amp;submitted=1';
 			F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
 
