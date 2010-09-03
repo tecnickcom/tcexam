@@ -1,22 +1,25 @@
+11.0.014 (2010-09-03)
+	- TCPDF library was updated.
+
 11.0.013 (2010-08-18)
 	- A minor bug on User Selection page was fixed.
 	- TCPDF library was updated.
-	
+
 11.0.012 (2010-08-17)
 	- Test management page now include questions statistics for each topic: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max-answers) ].
 	- TCPDF library was updated.
-	
+
 11.0.011 (2010-08-14)
 	- TCPDF library was updated.
-	
+
 11.0.010 (2010-08-13)
 	- Method F_decode_form_fields() was fixed.
 	- TCPDF library was updated.
-	
+
 11.0.009 (2010-08-09)
 	- PHP end tags were removed from end-of-file.
 	- TCPDF library was updated.
-	
+
 11.0.008 (2010-07-31)
 	- TCPDF library was updated.
 
