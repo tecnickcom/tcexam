@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_menu_tests.php
 // Begin       : 2004-04-20
-// Last Update : 2010-05-10
+// Last Update : 2010-09-05
 //
 // Description : Output XHTML unordered list menu for tests.
 //
@@ -62,14 +62,11 @@ require_once('../code/tce_page_header.php');
 
 echo '<div class="container">'.K_NEWLINE;
 
+// print submenu
 echo '<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_test.php', $l['t_tests_editor'], $l['w_tests'], K_AUTH_ADMIN_TESTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_rating.php', $l['t_rating_editor'], $l['w_rating'], K_AUTH_ADMIN_RATING).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_allusers.php', $l['t_result_all_users'], $l['w_results'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_user.php', $l['t_result_user'], $l['w_users'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_questions.php', $l['t_result_questions'], $l['w_stats'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-
+foreach ($menu['tce_menu_tests.php']['sub'] as $link => $data) {
+	echo F_menu_link($link, $data, 1);
+}
 echo '</ul>'.K_NEWLINE;
 
 //echo '<div class="pagehelp">'.$l['w_tests'].'</div>'.K_NEWLINE;

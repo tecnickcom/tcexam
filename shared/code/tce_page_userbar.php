@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
-// Last Update : 2009-09-30
+// Last Update : 2010-09-05
 //
 // Description : Display user's bar containing copyright
 //               information, user status and language
@@ -60,13 +60,15 @@ echo '<a href="#menusection" accesskey="4" title="[4] '.$l['w_jump_menu'].'" cla
 echo '</div>'.K_NEWLINE;
 
 echo '<div class="userbar">'.K_NEWLINE;
-// display user information
-echo '<span title="'.$l['h_user_info'].'">'.$l['w_user'].': '.$_SESSION['session_user_name'].'</span>'.K_NEWLINE;
 if ($_SESSION['session_user_level'] > 0) {
+	// display user information
+	echo '<span title="'.$l['h_user_info'].'">'.$l['w_user'].': '.$_SESSION['session_user_name'].'</span>';
 	// display logout link
 	echo ' <a href="tce_logout.php" class="logoutbutton" title="'.$l['h_logout_link'].'">'.$l['w_logout'].'</a>'.K_NEWLINE;
+} else {
+	// display login link
+	echo ' <a href="tce_login.php" class="loginbutton" title="'.$l['h_login_button'].'">'.$l['w_login'].'</a>'.K_NEWLINE;
 }
-echo '&nbsp;'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 // language selector
@@ -93,6 +95,10 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 	echo '</div>'.K_NEWLINE;
 }
 
+echo '<div class="minibutton" dir="ltr">';
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2010 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>';
+echo '</div>'.K_NEWLINE;
+
 // Display W3C logos
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
 echo '<a href="http://validator.w3.org/check/referer" class="minibutton" title="This Page Is Valid XHTML 1.0 Strict!">W3C <span>XHTML 1.0</span></a>'.K_NEWLINE;
@@ -100,9 +106,7 @@ echo '<a href="http://jigsaw.w3.org/css-validator/" class="minibutton" title="Th
 echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" class="minibutton" title="Explanation of Level Triple-A Conformance">W3C <span>WAI-AAA</span></a>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
-echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2010 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>'.K_NEWLINE;
-echo '</div>'.K_NEWLINE;
+
 
 //============================================================+
 // END OF FILE

@@ -212,25 +212,16 @@ require_once(<a href="../com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth
 <br />
   <hr />
 	<a name="functionF_menu_link"></a>
-	<h3>F_menu_link <span class="smalllinenumber">[line 120]</span></h3>
+	<h3>F_menu_link <span class="smalllinenumber">[line 116]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>string F_menu_link(
-string $link, string $title, string $name, [int $level = 0], [string $accesskey = &#039;&#039;], [boolean $enabled = true])</code>
+		<code>void F_menu_link(
+string $link, array $data, [int $level = 0])</code>
     </td></tr></table>
     </td></tr></table><br />
 
-		Returns a menu element link.<br /><br /><p>If the link refers to the current page, only the name will be returned.</p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>a list element containing a menu element</td>
-  </tr>
-</table>
-</div>
-    <br /><br />
+		Returns a menu element link wit subitems.<br /><br /><p>If the link refers to the current page, only the name will be returned.</p><br />    <br /><br />
 	
     		<h4>Parameters</h4>
     <table border="0" cellspacing="0" cellpadding="0">
@@ -240,29 +231,14 @@ string $link, string $title, string $name, [int $level = 0], [string $accesskey 
         <td>URL</td>
       </tr>
 		      <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$title</b>&nbsp;&nbsp;</td>
-        <td>title attribute</td>
-      </tr>
-		      <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$name</b>&nbsp;&nbsp;</td>
-        <td>link caption</td>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$data</b>&nbsp;&nbsp;</td>
+        <td>link data</td>
       </tr>
 		      <tr>
         <td class="type">int&nbsp;&nbsp;</td>
         <td><b>$level</b>&nbsp;&nbsp;</td>
-        <td>required level to access the link</td>
-      </tr>
-		      <tr>
-        <td class="type">string&nbsp;&nbsp;</td>
-        <td><b>$accesskey</b>&nbsp;&nbsp;</td>
-        <td>html accesskey attribute value</td>
-      </tr>
-		      <tr>
-        <td class="type">boolean&nbsp;&nbsp;</td>
-        <td><b>$enabled</b>&nbsp;&nbsp;</td>
-        <td>set to false to disable the link</td>
+        <td>item level</td>
       </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
@@ -270,7 +246,7 @@ string $link, string $title, string $name, [int $level = 0], [string $accesskey 
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 03 Sep 2010 10:03:59 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Sun, 05 Sep 2010 10:36:40 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

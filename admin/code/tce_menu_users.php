@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_menu_users.php
 // Begin       : 2004-04-20
-// Last Update : 2010-05-10
+// Last Update : 2010-09-05
 //
 // Description : Output XHTML unordered list menu for users.
 //
@@ -62,14 +62,11 @@ require_once('../code/tce_page_header.php');
 
 echo '<div class="container">'.K_NEWLINE;
 
+// print submenu
 echo '<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_user.php', $l['t_user_editor'], $l['w_users'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_group.php', $l['t_group_editor'], $l['w_groups'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_select_users.php', $l['t_user_select'], $l['w_select'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_online_users.php', $l['t_online_users'], $l['w_online'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_import_xml_users.php', $l['t_user_importer'], $l['w_import'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_allresults_users.php', $l['t_all_results_user'], $l['w_results'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
+foreach ($menu['tce_menu_users.php']['sub'] as $link => $data) {
+	echo F_menu_link($link, $data, 1);
+}
 echo '</ul>'.K_NEWLINE;
 
 //echo '<div class="pagehelp">'.$l['w_users'].'</div>'.K_NEWLINE;

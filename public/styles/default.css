@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2010-07-14
+// Last Update : 2010-09-05
 //
 // Description : Default CSS for public area.
 //
@@ -478,6 +478,20 @@ div.userbar a.logoutbutton:link, a.logoutbutton:visited {
 div.userbar a.logoutbutton:hover {
 	background-color: #FF0000;
 	color: #FFFF00;
+}
+
+/* Login link ------------ */
+div.userbar a.loginbutton:link, a.loginbutton:visited {
+	background-color: #22A222;
+	border: 1px solid #000000;
+	color: #FFFFFF;
+	padding: 1px 10px 1px 10px;
+	text-decoration: none;
+}
+
+div.userbar a.loginbutton:hover, div.userbar a.loginbutton:focus {
+	background-color: #00FF00;
+	color: #000000;
 }
 
 div.warning {

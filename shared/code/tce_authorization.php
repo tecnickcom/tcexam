@@ -198,7 +198,8 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 					$logged = true;
 				}
 			} else {
-				F_print_error('WARNING', $l['m_login_wrong']);
+				//F_print_error('WARNING', $l['m_login_wrong']);
+				$login_error = true;
 			}
 		}
 	} else {

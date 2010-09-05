@@ -106,6 +106,11 @@ echo '</head>'.K_NEWLINE;
 
 echo '<body>'.K_NEWLINE;
 
+global $login_error;
+if (isset($login_error) AND $login_error) {
+	F_print_error('WARNING', $l['m_login_wrong']);
+}
+
 //============================================================+
 // END OF FILE
 //============================================================+

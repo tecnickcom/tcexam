@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_menu_modules.php
 // Begin       : 2004-04-20
-// Last Update : 2010-05-10
+// Last Update : 2010-09-05
 //
 // Description : Output XHTML unordered list menu for modules.
 //
@@ -62,15 +62,11 @@ require_once('../code/tce_page_header.php');
 
 echo '<div class="container">'.K_NEWLINE;
 
+// print submenu
 echo '<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_module.php', $l['t_modules_editor'], $l['w_modules'], K_AUTH_ADMIN_MODULES).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_subject.php', $l['t_subjects_editor'], $l['w_subjects'], K_AUTH_ADMIN_SUBJECTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_question.php', $l['t_questions_editor'], $l['w_questions'], K_AUTH_ADMIN_QUESTIONS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_answer.php', $l['t_answers_editor'], $l['w_answers'], K_AUTH_ADMIN_ANSWERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_all_questions.php', $l['t_questions_list'], $l['w_list'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_import_xml_questions.php', $l['t_question_importer'], $l['w_import'], K_AUTH_ADMIN_SUBJECTS).'</li>'.K_NEWLINE;
-
+foreach ($menu['tce_menu_modules.php']['sub'] as $link => $data) {
+	echo F_menu_link($link, $data, 1);
+}
 echo '</ul>'.K_NEWLINE;
 
 //echo '<div class="pagehelp">'.$l['w_modules'].'</div>'.K_NEWLINE;

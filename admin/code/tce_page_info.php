@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2010-07-14
+// Last Update : 2010-09-05
 //
 // Description : Outputs TCExam information page.
 //
@@ -132,7 +132,7 @@ echo '</ul>'.K_NEWLINE;
 echo '<h2>'.$l['t_translations'].'</h2>'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
-echo '<li>[AR] Arabic : Hatim Alahmadi</li>'.K_NEWLINE;
+echo '<li>[AR] Arabic : Red Sea</li>'.K_NEWLINE;
 echo '<li>[BG] Bulgarian : Georgi Kostadinov</li>'.K_NEWLINE;
 echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna, Flávio Veras</li>'.K_NEWLINE;
 echo '<li>[CN] Chinese : Liu Yongxin</li>'.K_NEWLINE;

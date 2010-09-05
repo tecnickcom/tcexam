@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2010-06-16
+// Last Update : 2010-09-05
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -54,7 +54,43 @@
 
 require_once('../config/tce_auth.php');
 
-$ie6_iframe = '<!--[if lte IE 6]><iframe class="menu"></iframe><![endif]-->'.K_NEWLINE;
+$menu = array(	
+	'index.php' => array('link' => 'index.php', 'title' => $l['h_index'], 'name' => $l['w_index'], 'level' => K_AUTH_INDEX, 'key' => '', 'enabled' => true),
+	'tce_menu_users.php' => array('link' => 'tce_menu_users.php', 'title' => $l['w_users'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_menu_modules.php' => array('link' => 'tce_menu_modules.php', 'title' => $l['w_modules'], 'name' => $l['w_modules'], 'level' => K_AUTH_ADMIN_MODULES, 'key' => '', 'enabled' => true),
+	'tce_menu_tests.php' => array('link' => 'tce_menu_tests.php', 'title' => $l['w_tests'], 'name' => $l['w_tests'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
+	'tce_edit_backup.php' => array('link' => 'tce_edit_backup.php', 'title' => $l['t_backup_editor'], 'name' => $l['w_backup'], 'level' => K_AUTH_BACKUP, 'key' => '', 'enabled' => ((K_DATABASE_TYPE == 'MYSQL') OR (K_DATABASE_TYPE == 'POSTGRESQL'))),
+	'tcexam.org' => array('link' => 'http://www.tcexam.org', 'title' => $l['h_guide'], 'name' => $l['w_guide'], 'level' => K_AUTH_ADMIN_INFO, 'key' => '', 'enabled' => true),
+	'tce_page_info.php' => array('link' => 'tce_page_info.php', 'title' => $l['h_info'], 'name' => $l['w_info'], 'level' => K_AUTH_ADMIN_INFO, 'key' => '', 'enabled' => true),
+	'tce_logout.php' => array('link' => 'tce_logout.php', 'title' => $l['h_logout_link'], 'name' => $l['w_logout'], 'level' => 1, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] > 0)),
+	'tce_login.php' => array('link' => 'tce_login.php', 'title' => $l['h_login_button'], 'name' => $l['w_login'], 'level' => 0, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] < 1))
+);
+
+$menu['tce_menu_users.php']['sub'] = array(
+	'tce_edit_user.php' => array('link' => 'tce_edit_user.php', 'title' => $l['t_user_editor'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_edit_group.php' => array('link' => 'tce_edit_group.php', 'title' => $l['t_group_editor'], 'name' => $l['w_groups'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_select_users.php' => array('link' => 'tce_select_users.php', 'title' => $l['t_user_select'], 'name' => $l['w_select'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_show_online_users.php' => array('link' => 'tce_show_online_users.php', 'title' => $l['t_online_users'], 'name' => $l['w_online'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_import_xml_users.php' => array('link' => 'tce_import_xml_users.php', 'title' => $l['t_user_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
+	'tce_show_allresults_users.php' => array('link' => 'tce_show_allresults_users.php', 'title' => $l['t_all_results_user'], 'name' => $l['w_results'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true)
+);
+
+$menu['tce_menu_modules.php']['sub'] = array(
+	'tce_edit_module.php' => array('link' => 'tce_edit_module.php', 'title' => $l['t_modules_editor'], 'name' => $l['w_modules'], 'level' => K_AUTH_ADMIN_MODULES, 'key' => '', 'enabled' => true),
+	'tce_edit_subject.php' => array('link' => 'tce_edit_subject.php', 'title' => $l['t_subjects_editor'], 'name' => $l['w_subjects'], 'level' => K_AUTH_ADMIN_SUBJECTS, 'key' => '', 'enabled' => true),
+	'tce_edit_question.php' => array('link' => 'tce_edit_question.php', 'title' => $l['t_questions_editor'], 'name' => $l['w_questions'], 'level' => K_AUTH_ADMIN_QUESTIONS, 'key' => '', 'enabled' => true),
+	'tce_edit_answer.php' => array('link' => 'tce_edit_answer.php', 'title' => $l['t_answers_editor'], 'name' => $l['w_answers'], 'level' => K_AUTH_ADMIN_ANSWERS, 'key' => '', 'enabled' => true),
+	'tce_show_all_questions.php' => array('link' => 'tce_show_all_questions.php', 'title' => $l['t_questions_list'], 'name' => $l['w_list'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
+	'tce_import_xml_questions.php' => array('link' => 'tce_import_xml_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true)
+);
+
+$menu['tce_menu_tests.php']['sub'] = array(
+	'tce_edit_test.php' => array('link' => 'tce_edit_test.php', 'title' => $l['t_tests_editor'], 'name' => $l['w_tests'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
+	'tce_edit_rating.php' => array('link' => 'tce_edit_rating.php', 'title' => $l['t_rating_editor'], 'name' => $l['w_rating'], 'level' => K_AUTH_ADMIN_RATING, 'key' => '', 'enabled' => true),
+	'tce_show_result_allusers.php' => array('link' => 'tce_show_result_allusers.php', 'title' => $l['t_result_all_users'], 'name' => $l['w_results'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
+	'tce_show_result_user.php' => array('link' => 'tce_show_result_user.php', 'title' => $l['t_result_user'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
+	'tce_show_result_questions.php' => array('link' => 'tce_show_result_questions.php', 'title' => $l['t_result_questions'], 'name' => $l['w_stats'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true)
+);
 
 echo '<a name="menusection" id="menusection"></a>'.K_NEWLINE;
 
@@ -64,82 +100,54 @@ echo '<a href="#topofdoc" accesskey="2" title="[2] '.$l['w_skip_navigation'].'">
 echo '</div>'.K_NEWLINE;
 
 echo '<ul class="menu">'.K_NEWLINE;
-echo '<li>'.F_menu_link('index.php', $l['h_index'], $l['w_index'], K_AUTH_INDEX, '1').'</li>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_menu_users.php', '', $l['w_users'], K_AUTH_ADMIN_USERS).$ie6_iframe.'<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_user.php', $l['t_user_editor'], $l['w_users'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_group.php', $l['t_group_editor'], $l['w_groups'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_select_users.php', $l['t_user_select'], $l['w_select'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_online_users.php', $l['t_online_users'], $l['w_online'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_import_xml_users.php', $l['t_user_importer'], $l['w_import'], K_AUTH_ADMIN_USERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_allresults_users.php', $l['t_all_results_user'], $l['w_results'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '</ul></li>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_menu_modules.php', '', $l['w_modules'], K_AUTH_ADMIN_MODULES).$ie6_iframe.'<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_module.php', $l['t_modules_editor'], $l['w_modules'], K_AUTH_ADMIN_MODULES).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_subject.php', $l['t_subjects_editor'], $l['w_subjects'], K_AUTH_ADMIN_SUBJECTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_question.php', $l['t_questions_editor'], $l['w_questions'], K_AUTH_ADMIN_QUESTIONS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_answer.php', $l['t_answers_editor'], $l['w_answers'], K_AUTH_ADMIN_ANSWERS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_all_questions.php', $l['t_questions_list'], $l['w_list'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_import_xml_questions.php', $l['t_question_importer'], $l['w_import'], K_AUTH_ADMIN_IMPORT).'</li>'.K_NEWLINE;
-echo '</ul></li>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_menu_tests.php', '', $l['w_tests'], K_AUTH_ADMIN_TESTS).$ie6_iframe.'<ul>'.K_NEWLINE;
-
-echo '<li>'.F_menu_link('tce_edit_test.php', $l['t_tests_editor'], $l['w_tests'], K_AUTH_ADMIN_TESTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_edit_rating.php', $l['t_rating_editor'], $l['w_rating'], K_AUTH_ADMIN_RATING).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_allusers.php', $l['t_result_all_users'], $l['w_results'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_user.php', $l['t_result_user'], $l['w_users'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_show_result_questions.php', $l['t_result_questions'], $l['w_stats'], K_AUTH_ADMIN_RESULTS).'</li>'.K_NEWLINE;
-echo '</ul></li>'.K_NEWLINE;
-if ((K_DATABASE_TYPE == 'MYSQL') OR (K_DATABASE_TYPE == 'POSTGRESQL')) {
-	echo '<li>'.F_menu_link('tce_edit_backup.php', $l['t_backup_editor'], $l['w_backup'], K_AUTH_BACKUP).'</li>'.K_NEWLINE;
+foreach ($menu as $link => $data) {
+	echo F_menu_link($link, $data, 0);
 }
-echo '<li>'.F_menu_link('http://www.tcexam.org', $l['h_guide'], $l['w_guide'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
-echo '<li>'.F_menu_link('tce_page_info.php', $l['h_info'], $l['w_info'], K_AUTH_ADMIN_INFO).'</li>'.K_NEWLINE;
-if ($_SESSION['session_user_level'] > 0) {
-	echo '<li>'.F_menu_link('tce_logout.php', $l['h_logout_link'], $l['w_logout'], 0, ($_SESSION['session_user_level'] > 1)).'</li>'.K_NEWLINE;
-} else {
-	echo '<li>'.F_menu_link('index.php', $l['h_login_button'], $l['w_login'], 0, ($_SESSION['session_user_level'] > 1)).'</li>'.K_NEWLINE;
-}
-echo '</ul>'.K_NEWLINE;
+echo '</ul>'.K_NEWLINE; // end of menu
+
 
 /**
- * Returns a menu element link.
+ * Returns a menu element link wit subitems.
  * If the link refers to the current page, only the name will be returned.
  * @param string $link URL
- * @param string $title title attribute
- * @param string $name link caption
- * @param int $level required level to access the link
- * @param string $accesskey html accesskey attribute value
- * @param boolean $enabled set to false to disable the link
- * @return string a list element containing a menu element
+ * @param array $data link data
+ * @param int $level item level
  */
-function F_menu_link($link, $title, $name, $level=0, $accesskey='', $enabled=true) {
+function F_menu_link($link, $data, $level=0) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	if($_SESSION['session_user_level'] < $level) {
-		$enabled = false;
+	if (!$data['enabled'] OR ($_SESSION['session_user_level'] < $data['level'])) {
+		// this item is disabled
+		return;
 	}
-	$page_file = basename($link);
-	if (($pos = strpos($page_file, '?')) !== FALSE) {
-		$page_file = substr($page_file, 0, $pos);
+	if ($level == 0) {
+		$data['name'] = strtoupper($data['name']);
 	}
-	if (($pos = strpos($page_file, '#')) !== FALSE) {
-		$page_file = substr($page_file, 0, $pos);
-	}
-	if ($enabled AND (!empty($link)) AND ($page_file != basename($_SERVER['SCRIPT_NAME']))) {
-		$str = '<a href="'.$link.'" title="'.$title.'"';
-		if (!empty($accesskey)) {
-			$str .= ' accesskey="'.$accesskey.'"';
+	$str = '<li>';
+	if ($link != basename($_SERVER['SCRIPT_NAME'])) {
+		$str .= '<a href="'.$data['link'].'" title="'.$data['title'].'"';
+		if (!empty($data['key'])) {
+			$str .= ' accesskey="'.$data['key'].'"';
 		}
-		$str .= '>'.$name.'</a>'.K_NEWLINE;
+		if (isset($data['sub']) AND (!empty($data['sub'])) AND (array_key_exists(basename($_SERVER['SCRIPT_NAME']), $data['sub']))) {
+			$str .= ' class="active"';
+		}
+		$str .= '>'.$data['name'].'</a>';
 	} else {
-		//disabled link
-		$str = $name.K_NEWLINE;
+		// active link
+		$str .= '<span class="active">'.$data['name'].'</span>';
 	}
+	if (isset($data['sub']) AND !empty($data['sub'])) {
+		// print sub-items
+		$sublevel = ($level + 1);
+		$str .= K_NEWLINE.'<!--[if lte IE 6]><iframe class="menu"></iframe><![endif]-->'.K_NEWLINE;
+		$str .= '<ul>'.K_NEWLINE;
+		foreach ($data['sub'] as $sublink => $subdata) {
+			$str .= F_menu_link($sublink, $subdata, $sublevel);
+		}
+		$str .= '</ul>'.K_NEWLINE;
+	}
+	$str .= '</li>'.K_NEWLINE;
 	return $str;
 }
 

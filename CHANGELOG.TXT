@@ -1,3 +1,7 @@
+11.0.015 (2010-09-05)
+	- Administration menu system was improved.
+	- Minor improvements.
+
 11.0.014 (2010-09-03)
 	- TCPDF library was updated.
 

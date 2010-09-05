@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2010-07-14
+// Last Update : 2010-09-05
 //
 // Description : Default CSS for admin area.
 //
@@ -215,7 +215,7 @@ contains form box and help box */
 div.container {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
-	width: 100%;
+	width: 99%;
 }
 
 div.content {
@@ -508,6 +508,20 @@ div.userbar a.logoutbutton:hover {
 	color: #FFFF00;
 }
 
+/* Login link ------------ */
+div.userbar a.loginbutton:link, a.loginbutton:visited {
+	background-color: #22A222;
+	border: 1px solid #000000;
+	color: #FFFFFF;
+	padding: 1px 10px 1px 10px;
+	text-decoration: none;
+}
+
+div.userbar a.loginbutton:hover, div.userbar a.loginbutton:focus {
+	background-color: #00FF00;
+	color: #000000;
+}
+
 div.warning {
 	background-color: #99FF99;
 	font-size: 95%;
@@ -737,49 +751,30 @@ td.numeric {
 div.scrollmenu {
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
-	height: 25px;
+	height: 22px;
 	margin: 0 auto;
 	width: 100%;
-	background-color: #003399;
-	color: #FFFF00;
-	font-size: 80%;
+	color: #FFAA00;
+	font-size: 75%;
 	font-weight: bold;
 	text-decoration: none;
+	background: #003399;
+	border: 0;
 }
 
-div.scrollmenu a{
-	background-color: #003399;
-	color: #FFFFFF;
-	display: block;
-	float: left;
-
-}
-
-div.scrollmenu a:visited{
-	background-color: #003399;
-	color: #FFFFFF;
-	text-decoration: none;
-}
-
-div.scrollmenu a:hover, div.scrollmenu a:focus{
-	background-color: #003399;
-	color: #FFCC00;
-	text-decoration: none;
-}
-
-div.scrollmenu ul{
+div.scrollmenu ul {
 	list-style-type: none;
 	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 6px;
-	width: 100%;
+	padding: 0px 0px 0px 0px;
+	width: 99%;
 }
 
-div.scrollmenu ul li{
+div.scrollmenu ul li {
 	float: left;
 	height: 20px;
 	line-height: 20px;
 	margin: 0;
-	padding: 0px 6px 0 6px;
+	padding: 0;
 	position: relative;
 }
 
@@ -798,6 +793,11 @@ ul.menu li a {
 	color: #FFFFFF;
 	display: block;
 	text-decoration: none;
+	padding: 0px 6px 0px 6px;
+	border-top: 1px solid #4a98ff;
+	border-left: 1px solid #4a98ff;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
 }
 
 ul.menu li a:visited {
@@ -807,7 +807,7 @@ ul.menu li a:visited {
 }
 
 ul.menu li a:hover, ul.menu li a:focus {
-	color: #FFCC00;
+	color: #FFAA00;
 	text-decoration: none;
 }
 
@@ -815,27 +815,27 @@ ul.menu li:hover > ul, ul.menu *:focus + ul {
 	display: block;
 	position: absolute;
 	visibility: visible;
-	left: 6px;
+	left: 0px;
 	top: 20px;
 	width: 150px;
 	margin: 0;
 	padding: 0;
+	border: 0;
 	background-color: #003399;
 	z-index: 1;
 }
 
 ul.menu li:hover, ul.menu li.CSStoHighlight {
 	background-color: #003399;
-	color: #FFFF00;
+	color: #FFCC00;
 }
 
 ul.menu ul li {
 	background-color: #003399;
-	border: 1px solid #C0C0C0;
 	float: left;
 	list-style-type: none;
-	margin: 0;
-	padding: 0px 0px 0px 10px;
+	margin-bottom: 2px;
+	padding: 0;
 	text-decoration: none;
 	width: 100%;
 }
@@ -848,8 +848,41 @@ ul.menu ul li:hover > ul, ul.menu ul *:focus + ul {
 	top: 0px;
 	margin: 0;
 	padding: 0;
-	background-color: #003399;
+	background-color: #003399;	
 	z-index: 1;
+}
+
+ul.menu li a.active {
+	color: #003399;
+	display: block;
+	text-decoration: underline;
+	padding: 0px 6px 0 6px;
+	border-top: 1px solid #003399;
+	border-left: 1px solid #003399;
+	border-right: 1px solid #003399;
+	border-bottom: 1px solid white;
+	background-color: white;
+}
+
+ul.menu li span.active {
+	color: #003399;
+	display: block;
+	text-decoration: none;
+	padding: 0px 6px 0 6px;
+	border-top: 1px solid #003399;
+	border-left: 1px solid #003399;
+	border-right: 1px solid #003399;
+	border-bottom: 1px solid white;
+	background-color: white;
+}
+
+ul.menu ul li *.active {
+	color: #003399;
+	display: block;
+	text-decoration: none;
+	padding: 0px 6px 0 6px;
+	border: 1px solid #003399;
+	background-color: white;
 }
 
 ul.menu ul.CSStoShow {
@@ -866,3 +899,4 @@ iframe.menu {
 	position:absolute;
 	z-index:-1;
 }
+
