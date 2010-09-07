@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2010-09-05
+// Last Update : 2010-09-07
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -119,9 +119,6 @@ function F_menu_link($link, $data, $level=0) {
 	if (!$data['enabled'] OR ($_SESSION['session_user_level'] < $data['level'])) {
 		// this item is disabled
 		return;
-	}
-	if ($level == 0) {
-		$data['name'] = strtoupper($data['name']);
 	}
 	$str = '<li>';
 	if ($link != basename($_SERVER['SCRIPT_NAME'])) {

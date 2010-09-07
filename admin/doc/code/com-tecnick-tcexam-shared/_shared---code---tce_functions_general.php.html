@@ -244,6 +244,38 @@ string $dbtable, [string $where = &#039;&#039;])</code>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
+	<a name="functionF_db_getUTCoffset"></a>
+	<h3>F_db_getUTCoffset <span class="smalllinenumber">[line 385]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string F_db_getUTCoffset(
+string $timezone)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Returns the UTC time offset yo be used with CONVERT_TZ function<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>UTC time offset (+HH:mm)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$timezone</b>&nbsp;&nbsp;</td>
+        <td>current user timezone</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
 	<a name="functionF_empty_to_null"></a>
 	<h3>F_empty_to_null <span class="smalllinenumber">[line 79]</span></h3>
 	<div class="function">
@@ -381,6 +413,38 @@ string $str)</code>
         <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$str</b>&nbsp;&nbsp;</td>
         <td>string to check.</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_getUTCoffset"></a>
+	<h3>F_getUTCoffset <span class="smalllinenumber">[line 374]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>int F_getUTCoffset(
+string $timezone)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Returns the UTC time offset in seconds<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>UTC time offset in seconds</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$timezone</b>&nbsp;&nbsp;</td>
+        <td>current user timezone</td>
       </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
@@ -755,7 +819,7 @@ string $txt)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 05 Sep 2010 10:36:39 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Tue, 07 Sep 2010 09:24:24 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

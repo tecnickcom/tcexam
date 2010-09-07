@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2010-05-10
+// Last Update : 2010-09-06
 //
 // Description : General functions.
 //
@@ -364,6 +364,28 @@ function F_formatPdfPercentage($num) {
  */
 function F_formatXMLPercentage($num) {
 	return sprintf('%3d', round(100 * $num));
+}
+
+/**
+ * Returns the UTC time offset in seconds
+ * @param string $timezone current user timezone
+ * @return int UTC time offset in seconds
+ */
+function F_getUTCoffset($timezone) {
+	$user_timezone = new DateTimeZone($timezone);
+	$user_datetime = new DateTime('now', $user_timezone);
+	return $user_timezone->getOffset($user_datetime);
+}
+
+/**
+ * Returns the UTC time offset yo be used with CONVERT_TZ function
+ * @param string $timezone current user timezone
+ * @return string UTC time offset (+HH:mm)
+ */
+function F_db_getUTCoffset($timezone) {
+	$time_offset = F_getUTCoffset($timezone);
+	$sign = ($time_offset >= 0)?'+':'-';
+	return $sign.gmdate('H:i', abs($time_offset));
 }
 
 //============================================================+

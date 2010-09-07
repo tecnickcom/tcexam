@@ -1,3 +1,6 @@
+11.0.016 (2010-09-07)
+	- Automatic uppercase was removed from main menu for UTF-8 compatibility.
+
 11.0.015 (2010-09-05)
 	- Administration menu system was improved.
 	- Minor improvements.
