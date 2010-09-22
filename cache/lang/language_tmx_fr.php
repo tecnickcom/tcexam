@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: fr
-// DATE: 2010-08-09 11:25:31
+// DATE: 2010-09-22 15:53:26
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -145,7 +145,7 @@ $tmx['hp_edit_question']='Avec ce formulaire, vous pouvez gérer les différente
 $tmx['hp_edit_rating']='Dans ce formulaire, vous pouvez définir les points pour les réponses texte. Vous pouvez afficher les données de l\'utilisateur en sélectionnant le champ \'données utilisateur\'. Le champ \'tout afficher\' vous permet de voir et de corriger également les réponses déjà évaluées.';
 $tmx['hp_edit_subject']='Avec ce formulaire, vous pouvez gérer les différents thèmes du test. Ces thèmes permettent de répertorier les questions dans le système. Dans un test donné, il peut y avoir plusieurs thèmes. Vous ne pouvez pas modifier ou supprimer un thème qui fait partie d\'un test déjà exécuté. Dans ce cas, vous pouvez uniquement le désactiver en utilisant le bouton [supprimer]. Légende : [+] Activé ; [-] Désactivé ;';
 $tmx['hp_edit_tcecode']='Avec ce formulaire, vous pouvez ajouter des images et mettre en forme le texte';
-$tmx['hp_edit_test']='Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d\'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l\'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n\'importe quel nombre). L\'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu\'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur.';
+$tmx['hp_edit_test']='Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d\'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l\'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n\'importe quel nombre). L\'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu\'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Dans ce formulaire, vous pouvez gérer les différents utilisateurs autorisés à accéder se système. Pour chaque utilisateur, vous pouvez choisir un identifiant, un mot de passe et un niveau d\'accès. Le niveau 0 indique un utilisateur anonyme (non inscrit), le niveau 1 indique un utilisateur de base (p. ex. un étudiant), le niveau 10 indique un administrateur avec tous les droits d\'accès.';
 $tmx['hp_email_result']='Envoyer les résultats aux utilisateurs par email';
 $tmx['hp_import_xml_questions']='Avec ce formulaire, vous pouvez importer des questions dans le thème sélectionné depuis un fichier XML.';
@@ -533,5 +533,50 @@ $tmx['m_restore_confirm']='confirmer la restauration';
 $tmx['hp_edit_backups']='Cette page vous permet de créer des fichiers backup (fonctionne sur les systèmes POSIX avec MySQL ou PostgreSQL). En appuyant [backup] une base de données backup sera créée dans le format SQL compressé (structure et données). Pour restaurer le fichier sélectionner cliquez sur [Rétablir]. Note: Avant de restaurer, un fichier backup supplémentaire est automatiquement créé. Les fichiers backup sont sauvé dans le dossier cache / backup avec la syntaxe suivante: aaaammjjhhmmss_tcexam_backup.sql.gz, ou aaaammjjhhmmss indiquant le moment de la création du fichier.';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

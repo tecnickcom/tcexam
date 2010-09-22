@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2010-08-09 11:25:30
+// DATE: 2010-09-22 15:53:24
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Con este formulario se pueden administrar las diferent
 $tmx['hp_edit_rating']='En este formulario se puede especificar la puntuación para las respuestas libres. Se pueden ver los datos del usuario seleccionando el campo \'datos usuario\'. El campo \'muestra todo\' habilita ver y corregir también las respuestas ya evaluadas';
 $tmx['hp_edit_subject']='Con este formulario se puede administrar los diferentes tópicos del test. Las preguntas en el sistema pueden ser catalogadas de acuerdo a estos tópicos. En un test simple puede haber varios tópicos. No se puede modificar o borrar un tópico que forma parte de un test previamente realizado, en este caso se puede deshabilitarlo usando el botón [eliminar]. Leyenda: [+] Habilitado; [-] Deshabilitado;';
 $tmx['hp_edit_tcecode']='Con este formulario se puede añadir imágenes y formatos al texto';
-$tmx['hp_edit_test']='En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora.';
+$tmx['hp_edit_test']='En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='En este formulario se puede administrar los diferentes usuarios autorizados a acceder al sistema. Para cada usuario se puede elegir un nombre, una clave y un nivel de acceso. Nivel 0 indica un usuario anónimo (no registrado), nivel 1 un usuario básico (ej.: un estudiante), nivel 10 un administrador con todos los derechos de acceso';
 $tmx['hp_email_result']='Enviar los resultados a los usuarios por email';
 $tmx['hp_import_xml_questions']='Con este formulario se puede importar preguntas al tópico seleccionado desde un archivo XML.';
@@ -513,5 +513,50 @@ Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura a
 El expediente de cobertura viene registrado en la carpeta "cache/backup" con la siguiente sintaxis: AAAAMMGGhhmmss_tcexam_backup.sql.gz , donde AAAAMMGGhhmmss representa la cifra del\'año (A), mes (M), dia (G), hora (h), minutos (m), segundos (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

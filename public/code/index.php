@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-20
-// Last Update : 2009-09-30
+// Last Update : 2010-09-20
 //
 // Description : main user page - allows test selection
 //
@@ -54,8 +54,8 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = 1;
-$thispage_title = $l['t_public_index'];
+$pagelevel = K_AUTH_PUBLIC_INDEX;
+$thispage_title = $l['t_test_list'];
 $thispage_description = $l['hp_public_index'];
 
 require_once('../../shared/code/tce_authorization.php');

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2010-08-09 11:25:39
+// DATE: 2010-09-22 15:53:32
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='このフォームで選択したトピックに関連
 $tmx['hp_edit_rating']='このフォームで自由解答に対する得点を定めることができます。ユーザーのデータを表示するためには \'user data\' のフィールドを選択してください。\'shows all\' のフィールドを選択するとすでに採点された解答の表示ができます。 ';
 $tmx['hp_edit_subject']='このフォームでテストの異なるトピックを管理できます。システム内の問題はこれらのトピックに基づいて分類されます。一つのテストに複数のトピックを含めることができます。過去に実施されたテストの一部となっているトピックを修正、削除することはできません。その場合は[delete]ボタンにより無効にしてください。[+] 有効； [-] 無効；';
 $tmx['hp_edit_tcecode']=' このフォームで画像の追加、テキストの編集ができます';
-$tmx['hp_edit_test']='　このフォームではテストの挿入、修正、削除を行うことができます。テストを挿入するためには、事前に少なくともいくつかの問題と解答の含まれたトピックを作成する必要があります。十分な権限と妥当な IP アドレスを持つユーザーだけがテストを実行することができます。IP のフィールドには、異なる IP アドレスをコンマ区切りでリストとして含めることができます。IP アドレスはワイルドカード（* は任意の数字）を含めることができます。テストは特定した期間内のみ実行可能で、一度テストを開始すると、特定した時間内に終了しなければなりません。テストにはいくつかのトピックの異なるタイプの問題を含めることができ、ランダムに出題されます。各問題の難易度に対して、基本スコアを定めることもできます。既に実行されたテストを修正することはできません。テストが削除されるとログ（テストデータ）もすべて削除されます。[生成] ボタンをクリックすると、いくつでも印刷可能なテストを PDF 形式で生成するので、コンピュータなしでもテストを行うことができます（訳注：現在のバージョン(5.4.006）では日本語を含むPDFファイルは文字化けします）。';
+$tmx['hp_edit_test']='　このフォームではテストの挿入、修正、削除を行うことができます。テストを挿入するためには、事前に少なくともいくつかの問題と解答の含まれたトピックを作成する必要があります。十分な権限と妥当な IP アドレスを持つユーザーだけがテストを実行することができます。IP のフィールドには、異なる IP アドレスをコンマ区切りでリストとして含めることができます。IP アドレスはワイルドカード（* は任意の数字）を含めることができます。テストは特定した期間内のみ実行可能で、一度テストを開始すると、特定した時間内に終了しなければなりません。テストにはいくつかのトピックの異なるタイプの問題を含めることができ、ランダムに出題されます。各問題の難易度に対して、基本スコアを定めることもできます。既に実行されたテストを修正することはできません。テストが削除されるとログ（テストデータ）もすべて削除されます。[生成] ボタンをクリックすると、いくつでも印刷可能なテストを PDF 形式で生成するので、コンピュータなしでもテストを行うことができます（訳注：現在のバージョン(5.4.006）では日本語を含むPDFファイルは文字化けします）。 The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='このフォームでシステムを利用するユーザーを管理します。ユーザーごとに名前・パスワード・アクセスレベルを定めます。レベル０は匿名ユーザー（登録なし）で，レベル１は基本ユーザー（例：生徒・学生）で，レベル１０はフルアクセス権限を持った管理者です。';
 $tmx['hp_email_result']='電子メールで結果をユーザーに送る';
 $tmx['hp_import_xml_questions']='このフォームで選択したトピックに XML ファイルから問題をインポートできます。';
@@ -514,5 +514,50 @@ Note that before each restore the system automatically execute a new backup, so 
 Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

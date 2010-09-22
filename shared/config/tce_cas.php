@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_cas.php
 // Begin       : 2009-02-06
-// Last Update : 2009-09-30
+// Last Update : 2010-09-16
 //
 // Description : Configuration file for CAS
 //
@@ -42,6 +42,7 @@
  * is now maintained by the Java Architectures Special Interest Group and was sometimes
  * referred to as "Yale CAS" but now known as "JA-SIG CAS".
  * For more information see: http://www.ja-sig.org/products/cas/
+ * WARNING: TCExam trusts CAS mechanism and replicates any authenticated user into the TCExam database. Passwords are set to the username string, therefore, TCExam authentication is not secure for replicated users if CAS Authentication is turned off again.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Tim Gebhardt
  * @copyright Copyright © 2009, Tim Gebhardt - DePaul University - tgebhar@cdm.depaul.edu

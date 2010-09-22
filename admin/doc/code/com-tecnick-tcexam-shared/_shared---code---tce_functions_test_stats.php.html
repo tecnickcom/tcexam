@@ -65,6 +65,8 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_html2txt.php.html">		tce_functions_html2txt.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html">		tce_functions_menu.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_page.php.html">		tce_functions_page.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_session.php.html">		tce_functions_session.php
@@ -166,16 +168,7 @@ int $test_id,  $user_id, int $testuser_id)</code>
     </td></tr></table>
     </td></tr></table><br />
 
-		Returns test data structure for selected user:<br /><br /><p><ul><li>$data['all'] = total number of questions</li><li>$data['right'] = number of right answers for multiple-choice questions (score &amp;gt; 50% max points)</li><li>$data['wrong'] = number of wrong answers for multiple-choice questions (score &amp;lt;= 50% max points)</li><li>$data['textright'] = number of right answers for free-text questions (score &amp;gt; 50% max points)</li><li>$data['textwrong'] = number of wrong answers for free-text questions (score &amp;lt;= 50% max points)</li><li>$data['unanswered'] = total number of unanswered questions</li><li>$data['undisplayed'] = total number of undisplayed questions</li><li>$data['basic_score'] = basic points for each difficulty level of questions</li><li>$data['max_score'] = maximum test score</li><li>$data['score'] = user's score</li><li>$data['comment'] = user's test comment</li><li>$data['time'] = user's test start time</li></ul></p><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../com-tecnick-tcexam-public/_public---code---tce_test_results.php.html">tce_test_results.php</a></td>
-  </tr>
-</table>
-</div>
-    <br /><br />
+		Returns test data structure for selected user:<br /><br /><p><ul><li>$data['all'] = total number of questions</li><li>$data['right'] = number of right answers for multiple-choice questions (score &amp;gt; 50% max points)</li><li>$data['wrong'] = number of wrong answers for multiple-choice questions (score &amp;lt;= 50% max points)</li><li>$data['textright'] = number of right answers for free-text questions (score &amp;gt; 50% max points)</li><li>$data['textwrong'] = number of wrong answers for free-text questions (score &amp;lt;= 50% max points)</li><li>$data['unanswered'] = total number of unanswered questions</li><li>$data['undisplayed'] = total number of undisplayed questions</li><li>$data['basic_score'] = basic points for each difficulty level of questions</li><li>$data['max_score'] = maximum test score</li><li>$data['score'] = user's score</li><li>$data['comment'] = user's test comment</li><li>$data['time'] = user's test start time</li></ul></p><br />    <br /><br />
 	
     		<h4>Parameters</h4>
     <table border="0" cellspacing="0" cellpadding="0">
@@ -208,16 +201,7 @@ int $test_id, int $user_id)</code>
     </td></tr></table>
     </td></tr></table><br />
 
-		Lock the user's test.<br /><br /><br /><br /><br />
-<h4>Tags:</h4>
-<div class="tags">
-<table border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><b>usedby:</b>&nbsp;&nbsp;</td><td><a href="../com-tecnick-tcexam-public/_public---code---tce_test_results.php.html">tce_test_results.php</a></td>
-  </tr>
-</table>
-</div>
-    <br /><br />
+		Lock the user's test.<br /><br /><br />    <br /><br />
 	
     		<h4>Parameters</h4>
     <table border="0" cellspacing="0" cellpadding="0">
@@ -285,7 +269,7 @@ string $mode, int $test_id, [int $groupid = 0], [int $user_id = 0], [string $ord
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:24 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:35 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

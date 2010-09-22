@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2010-06-16
+// Last Update : 2010-09-21
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -137,6 +137,26 @@ define ('K_AUTH_ADMIN_IMPORT', K_AUTH_ADMINISTRATOR);
  * Required user's level to import questions.
  */
 define ('K_AUTH_BACKUP', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to access file manager for multimedia files.
+ */
+define ('K_AUTH_ADMIN_FILEMANAGER', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to create and delete directories.
+ */
+define ('K_AUTH_ADMIN_DIRS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to delete multimedia files.
+ */
+define ('K_AUTH_DELETE_MEDIAFILE', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to rename multimedia files.
+ */
+define ('K_AUTH_RENAME_MEDIAFILE', K_AUTH_ADMINISTRATOR);
 
 //============================================================+
 // END OF FILE

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_start.php
 // Begin       : 2010-02-06
-// Last Update : 2010-02-06
+// Last Update : 2010-09-17
 //
 // Description : Display selected test description and buttons
 //               to start or cancel the test.
@@ -56,7 +56,7 @@
 require_once('../config/tce_config.php');
 
 $test_id = 0;
-$pagelevel = 1;
+$pagelevel = K_AUTH_PUBLIC_TEST_EXECUTE;
 $thispage_title = $l['t_test_info'];
 $thispage_description = $l['hp_test_info'];
 require_once('../../shared/code/tce_authorization.php');

@@ -1,8 +1,8 @@
 //============================================================+
 // File name   : inserttag.js
 // Begin       : 2001-10-25
-// Last Update : 2008-09-24
-// 
+// Last Update : 2010-09-22
+//
 // Description : Insert TAGS on Textarea Form (XHTML)
 //
 // Author: Nicola Asuni
@@ -16,25 +16,25 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License: 
+// License:
 //    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
-//    
+//
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//    
+//
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//    
+//
 //    You should have received a copy of the GNU Affero General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//     
+//
 //    Additionally, you can't remove, move or hide the original TCExam logo,
 //    copyrights statements and links to Tecnick.com and TCExam websites.
-//    
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -85,7 +85,7 @@ function FJ_insert_tag(editText, tag) {
 			if (closetag.charAt(closetag.length-1)!='>') {
 				closetag += '>';
 			}
-		} else { 
+		} else {
 			//custom tag
 			tmpstr = tmpstr[0].split('=');
 			var closetag = '[/'+tmpstr[0].substring(1,(tmpstr[0].length));
@@ -129,9 +129,9 @@ function FJ_display_tag(editText, opentag, closetag) {
 			} else {
 				editText.value = editText.value + '' + opentag + '' + closetag;
 			}
-			
+
 			// restore selection
-			txtsel.moveStart("character", - sellen);      
+			txtsel.moveStart("character", - sellen);
 			txtsel.select();
 		} else {
 			editText.value = editText.value + '' + opentag + '' + closetag;

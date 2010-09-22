@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: nl
-// DATE: 2010-08-09 11:25:43
+// DATE: 2010-09-22 15:53:36
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Hier kunt u vragen van een topic beheren. U kunt geen 
 $tmx['hp_edit_rating']='Hier kunt u punten voor open antwoorden toekennen. Bekijk gegevens van een gebruiker met \'gebruikers data\'. Met \'shows all\' kunt u reeds ge-evalueerde antwoorden bekijken en corrigeren';
 $tmx['hp_edit_subject']='Hier kunt u de topics van een test beheren. Vragen kunt u katalogiseren m.b.t. deze topics. In iedere test kunnen meerdere topics zitten. U kunt geen topic wijzigen of weghalen van een reeds gedane test, u kunt het uitschakelen met [verwijder]. Legenda: [+] (voor de naam) Ingeschakeld; [-] Uitgeschakeld;';
 $tmx['hp_edit_tcecode']='Hier kunt u beeldmateriaal toevoegen en tekst bewerken';
-$tmx['hp_edit_test']='Hier kunt u een test toevoegen, wijzigen of weghalen. Maak eerst een topic met een aantal vragen met antwoorden aan alvorens een test toe te voegen !! Alleen gebruikers met voldoende rechten en toegestaan IP-adres kunnen een test doen. IP kan een lijst van toegestane IP-adressen bevatten, gescheiden met komma\'s. IP-adres kan ook wildcards bevatten (* = elk getal). Een test is de vermelde periode actief en moet binnen de maximale tijd uitgevoerd worden. Een test kan meerdere topics met diverse typen vragen bevatten die desgewenst random gekozen worden. U kunt basispunten toekennen aan elke moeilijkheidsgraad van een vraag. U kunt geen test wijzigen die reeds is uitgevoerd. Met het verwijderen van een test zijn ook alle testgegevens weg. Met [generate] genereert u een willekeurig aantal unieke testen in PDF format om af te drukken en af te nemen zonder computer.';
+$tmx['hp_edit_test']='Hier kunt u een test toevoegen, wijzigen of weghalen. Maak eerst een topic met een aantal vragen met antwoorden aan alvorens een test toe te voegen !! Alleen gebruikers met voldoende rechten en toegestaan IP-adres kunnen een test doen. IP kan een lijst van toegestane IP-adressen bevatten, gescheiden met komma\'s. IP-adres kan ook wildcards bevatten (* = elk getal). Een test is de vermelde periode actief en moet binnen de maximale tijd uitgevoerd worden. Een test kan meerdere topics met diverse typen vragen bevatten die desgewenst random gekozen worden. U kunt basispunten toekennen aan elke moeilijkheidsgraad van een vraag. U kunt geen test wijzigen die reeds is uitgevoerd. Met het verwijderen van een test zijn ook alle testgegevens weg. Met [generate] genereert u een willekeurig aantal unieke testen in PDF format om af te drukken en af te nemen zonder computer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Hier kunt u toegang aan gebruikers beheren. U kiest voor elke gebruiker een naam, wachtwoord en toegangsniveau. 0 voor een anonieme gebruiker (ongeregistreed),  1 voor een normale gebruiker (bijv.: een student), 10 voor de administrator met alle rechten';
 $tmx['hp_email_result']='Zend resultaten per e-mail naar gebruiker';
 $tmx['hp_import_xml_questions']='Hier kunt u vragen importeren voor de topic uit een XML-bestand.';
@@ -514,5 +514,50 @@ Note that before each restore the system automatically execute a new backup, so 
 Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

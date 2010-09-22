@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2010-06-16
+// Last Update : 2010-09-20
 //
 // Description : Edit answers.
 //
@@ -789,9 +789,15 @@ if (K_ENABLE_ANSWER_EXPLANATION) {
 	echo '<span class="label">'.K_NEWLINE;
 	echo '<label for="answer_explanation">'.$l['w_explanation'].'</label>'.K_NEWLINE;
 	echo '<br />'.K_NEWLINE;
+	$showexplanationarea = 'javascript:if(document.getElementById(\'explanationarea\').style.display==\'none\'){document.getElementById(\'explanationarea\').style.display=\'block\';document.getElementById(\'showexplanationarea\').style.display=\'none\';document.getElementById(\'hideexplanationarea\').style.display=\'block\';}';
+	echo '<span id="showexplanationarea"><a class="xmlbutton" href="#" onclick="'.$showexplanationarea.'" title="'.$l['w_show'].'">'.$l['w_show'].' &rarr;</a></span>';
+	$hideexplanationarea = 'javascript:if(document.getElementById(\'explanationarea\').style.display==\'block\'){document.getElementById(\'explanationarea\').style.display=\'none\';document.getElementById(\'showexplanationarea\').style.display=\'block\';document.getElementById(\'hideexplanationarea\').style.display=\'none\';}';
+	echo '<span id="hideexplanationarea" style="display:none;">';
 	echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_answereditor\').answer_explanation.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>'.K_NEWLINE;
+	echo '<a class="xmlbutton" href="#" onclick="'.$hideexplanationarea.'" title="'.$l['w_hide'].'">'.$l['w_hide'].'</a> ';
+	echo '</span>';
 	echo '</span>'.K_NEWLINE;
-	echo '<span class="formw" style="border:1px solid #808080;">'.K_NEWLINE;
+	echo '<span id="explanationarea" class="formw" style="display:none;border:1px solid #808080;">'.K_NEWLINE;
 	echo '<textarea cols="50" rows="10" name="answer_explanation" id="answer_explanation" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_explanation)" title="'.$l['h_explanation'].'">'.htmlspecialchars($answer_explanation, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
 	echo '<br />'.K_NEWLINE;
 	echo tcecodeEditorTagButtons('form_answereditor', 'answer_explanation', 1);

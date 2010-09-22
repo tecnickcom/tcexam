@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2010-01-15
+// Last Update : 2010-09-16
 //
 // Description : User-level session storage functions.
 //
@@ -206,12 +206,11 @@ function F_session_string_to_array($sd) {
 session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 'F_session_write', 'F_session_destroy', 'F_session_gc');
 
 // start user session
-
-if (isset($_REQUEST['PHPSESSID']) AND (strlen($_REQUEST['PHPSESSID'])>=32)) {
+if (isset($_REQUEST['PHPSESSID'])) {
 	//Load $PHPSESSID from get/post/cookie
-	$PHPSESSID = substr($_REQUEST['PHPSESSID'],0,32);
+	$PHPSESSID = substr(preg_replace('/[^0-9a-f]*/i', '', $_REQUEST['PHPSESSID']), 0, 32);
 } else {
-	//create new PHPSESSID
+	//create new PHPSESSID	
 	$PHPSESSID = md5(uniqid(uniqid('', true), true));
 }
 

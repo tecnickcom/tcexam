@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2010-03-10
+// Last Update : 2010-09-17
 //
 // Description : execute a specific test
 //
@@ -55,7 +55,7 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = 1;
+$pagelevel = K_AUTH_PUBLIC_TEST_EXECUTE;
 $thispage_title = $l['t_test_execute'];
 $thispage_description = $l['hp_test_execute'];
 require_once('../../shared/code/tce_authorization.php');

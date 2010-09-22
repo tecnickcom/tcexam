@@ -57,6 +57,8 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_page_header_popup.php.html">		tce_page_header_popup.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-public/_public---code---tce_page_user.php.html">		tce_page_user.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_popup_test_info.php.html">		tce_popup_test_info.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_test_execute.php.html">		tce_test_execute.php
@@ -64,6 +66,10 @@
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_test_results.php.html">		tce_test_results.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_test_start.php.html">		tce_test_start.php
+		</a><br>
+			<a href="../com-tecnick-tcexam-public/_public---code---tce_user_change_email.php.html">		tce_user_change_email.php
+		</a><br>
+			<a href="../com-tecnick-tcexam-public/_public---code---tce_user_change_password.php.html">		tce_user_change_password.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-public/_public---code---tce_user_registration.php.html">		tce_user_registration.php
 		</a><br>
@@ -86,7 +92,7 @@ Source Location: /public/code/tce_test_results.php<br /><br />
 
 
 <h2>Page Details:</h2>
-Display test results for current user.<br /><br /><br /><br />
+Display test results to the current user.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -103,15 +109,6 @@ Display test results for current user.<br /><br /><br /><br />
     <td><b>since:</b>&nbsp;&nbsp;</td><td>2004-06-10</td>
   </tr>
   <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_testInfoLink">F_testInfoLink()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_test_stats.php.html#functionF_lockUserTest">F_lockUserTest()</a></td>
-  </tr>
-  <tr>
-    <td><b>uses:</b>&nbsp;&nbsp;</td><td><a href="../com-tecnick-tcexam-shared/_shared---code---tce_functions_test_stats.php.html#functionF_getUserTestStat">F_getUserTestStat()</a></td>
-  </tr>
-  <tr>
     <td><b>license:</b>&nbsp;&nbsp;</td><td><a href="http://www.fsf.org/licensing/licenses/agpl-3.0.html">GNU Affero General Public License</a></td>
   </tr>
 </table>
@@ -119,12 +116,14 @@ Display test results for current user.<br /><br /><br /><br />
 <br /><br />
 <h4>Includes:</h4>
 <div class="tags">
-require_once('../../shared/code/tce_authorization.php') [line 63]<br />
-require_once(<a href="../com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html">'../config/tce_config.php'</a>) [line 58]<br />
-require_once(<a href="../com-tecnick-tcexam-public/_public---code---tce_page_header.php.html">'../code/tce_page_header.php'</a>) [line 68]<br />
-require_once('../../shared/code/tce_functions_test.php') [line 74]<br />
-require_once(<a href="../com-tecnick-tcexam-public/_public---code---tce_page_footer.php.html">'../code/tce_page_footer.php'</a>) [line 160]<br />
-require_once('../../shared/code/tce_functions_test_stats.php') [line 75]<br />
+require_once('../../shared/code/tce_authorization.php') [line 58]<br />
+require_once(<a href="../com-tecnick-tcexam-public/_public---code---tce_page_header.php.html">'../code/tce_page_header.php'</a>) [line 61]<br />
+require_once(<a href="../com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html">'../config/tce_config.php'</a>) [line 55]<br />
+require_once('../../shared/code/tce_functions_form.php') [line 62]<br />
+require_once('../../shared/code/tce_functions_tcecode.php') [line 63]<br />
+require_once('../../shared/code/tce_functions_test_stats.php') [line 65]<br />
+require_once(<a href="../com-tecnick-tcexam-public/_public---code---tce_page_footer.php.html">'../code/tce_page_footer.php'</a>) [line 451]<br />
+require_once('../../shared/code/tce_functions_test.php') [line 64]<br />
 </div>
 <br /><br />
 <br /><br />
@@ -132,7 +131,7 @@ require_once('../../shared/code/tce_functions_test_stats.php') [line 75]<br />
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:26 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:36 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

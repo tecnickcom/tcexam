@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20100629T164500Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20100922T120000Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -8642,73 +8642,73 @@ Statistiques des questions et des réponses peuvent non seulement être consult�
   </tu>
   <tu tuid="hp_edit_test" datatype="plaintext">
    <tuv xml:lang="NL">
-    <seg>Hier kunt u een test toevoegen, wijzigen of weghalen. Maak eerst een topic met een aantal vragen met antwoorden aan alvorens een test toe te voegen !! Alleen gebruikers met voldoende rechten en toegestaan IP-adres kunnen een test doen. IP kan een lijst van toegestane IP-adressen bevatten, gescheiden met komma's. IP-adres kan ook wildcards bevatten (* = elk getal). Een test is de vermelde periode actief en moet binnen de maximale tijd uitgevoerd worden. Een test kan meerdere topics met diverse typen vragen bevatten die desgewenst random gekozen worden. U kunt basispunten toekennen aan elke moeilijkheidsgraad van een vraag. U kunt geen test wijzigen die reeds is uitgevoerd. Met het verwijderen van een test zijn ook alle testgegevens weg. Met [generate] genereert u een willekeurig aantal unieke testen in PDF format om af te drukken en af te nemen zonder computer.</seg>
+    <seg>Hier kunt u een test toevoegen, wijzigen of weghalen. Maak eerst een topic met een aantal vragen met antwoorden aan alvorens een test toe te voegen !! Alleen gebruikers met voldoende rechten en toegestaan IP-adres kunnen een test doen. IP kan een lijst van toegestane IP-adressen bevatten, gescheiden met komma's. IP-adres kan ook wildcards bevatten (* = elk getal). Een test is de vermelde periode actief en moet binnen de maximale tijd uitgevoerd worden. Een test kan meerdere topics met diverse typen vragen bevatten die desgewenst random gekozen worden. U kunt basispunten toekennen aan elke moeilijkheidsgraad van een vraag. U kunt geen test wijzigen die reeds is uitgevoerd. Met het verwijderen van een test zijn ook alle testgegevens weg. Met [generate] genereert u een willekeurig aantal unieke testen in PDF format om af te drukken en af te nemen zonder computer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="MR">
-    <seg>या रचनेमध्ये तूम्ही परिक्षा टाकणे,बदल करणे व वगळण्याची कूती करू शकता.परीक्षा टाकण्याची आज्ञा देण्याकरीता तूम्हाला अगोदर प्रकरणाच्या मर्यादा स्पष्ट करून यादीसोबत निश्चित प्रश्नांचे आणि उत्तरांचे आकडे टाकणे आवश्यक  आहे. केवळ उपयोगकतर्याचा योग्य पुरेसा आणि साधार आय पी पत्ता परीक्षेकरीता सादर करू शकता. आय पी पत्याच्या परीक्षा सादर करण्यापूर्वा वेगळा स्वल्पविराम द्यावा लागेल.या आय पी पत्याचा समावेश एखाद्या क्रमांकामध्ये होवू शकतो ही परीक्षा केवळ दिलेल्या ठराविक वेळेसाठीच कार्यरत राहील आणि एकदा सूरू केल्यानंतर दिलेल्या ठराविक वेळेतच पूर्ण करावि लागेल परिक्षेमध्ये विविध प्रकरण ज्यामध्ये विविध प्रकारच्या प्रश्नांचा समावेश होवू शकतो. जे व्यवस्थितपणे मांडणी केली जाईल . तूम्ही दर्शविलेल्या प्रत्येक कठिण पदधतीच्या प्रश्नांकरिता मूद्यांचा समावेश करू शकता . परीक्षा पूर्ण झालेलि असल्यामुळे त्यामध्ये सुधारणा करू शकत नाही. जेव्हा परीक्षा रदद होते त्यावेळी ते संपूर्ण बंद केले जाते. पीडीएफ संच्यातिल आगळ्यावेगळ्या एखाद्या स्वच्छदि परीक्षांच्या क्रमाका साठी चालविण्यास प्रवूत्त करते जे संगणकाविना कार्यकूती व छपाई करू शकते.</seg>
+    <seg>या रचनेमध्ये तूम्ही परिक्षा टाकणे,बदल करणे व वगळण्याची कूती करू शकता.परीक्षा टाकण्याची आज्ञा देण्याकरीता तूम्हाला अगोदर प्रकरणाच्या मर्यादा स्पष्ट करून यादीसोबत निश्चित प्रश्नांचे आणि उत्तरांचे आकडे टाकणे आवश्यक  आहे. केवळ उपयोगकतर्याचा योग्य पुरेसा आणि साधार आय पी पत्ता परीक्षेकरीता सादर करू शकता. आय पी पत्याच्या परीक्षा सादर करण्यापूर्वा वेगळा स्वल्पविराम द्यावा लागेल.या आय पी पत्याचा समावेश एखाद्या क्रमांकामध्ये होवू शकतो ही परीक्षा केवळ दिलेल्या ठराविक वेळेसाठीच कार्यरत राहील आणि एकदा सूरू केल्यानंतर दिलेल्या ठराविक वेळेतच पूर्ण करावि लागेल परिक्षेमध्ये विविध प्रकरण ज्यामध्ये विविध प्रकारच्या प्रश्नांचा समावेश होवू शकतो. जे व्यवस्थितपणे मांडणी केली जाईल . तूम्ही दर्शविलेल्या प्रत्येक कठिण पदधतीच्या प्रश्नांकरिता मूद्यांचा समावेश करू शकता . परीक्षा पूर्ण झालेलि असल्यामुळे त्यामध्ये सुधारणा करू शकत नाही. जेव्हा परीक्षा रदद होते त्यावेळी ते संपूर्ण बंद केले जाते. पीडीएफ संच्यातिल आगळ्यावेगळ्या एखाद्या स्वच्छदि परीक्षांच्या क्रमाका साठी चालविण्यास प्रवूत्त करते जे संगणकाविना कार्यकूती व छपाई करू शकते. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="IT">
-    <seg>Attraverso questa maschera è possibile inserire, modificare o eliminare i test. Prima di inserire un test è necessario aver precedentemente inserito degli argomenti con un numero adeguato di relative domande e risposte. I test sono eseguibili solo dagli utenti abilitati e con un indirizzo IP valido. Il campo IP può contenere una lista separata da virgola degli indirizzi IP abilitati ad eseguire il test. Un indirizzo IP può anche contenere wildcards (* = qualsiasi numero). Il test sarà attivo solo durante l'intervallo temporale specificato e, una volta generato, dovrà essere completato entro la durata massima. I test possono essere composti da più argomenti con differenti tipi di domande che verranno estratte casualmente tra tutte quelle presenti. È inoltre possibile definire un punteggio base per ogni punto di difficoltà delle domande. Non è possibile modificare un test se questo è stato già eseguito. L'eliminazione di un test comporterà l'eliminazione di tutti i log relativi (dati dei test effettuati). Il pulsante [genera] consente la generazione di un numero arbitrario (specificato al lato) di test unici in formato PDF che possono essere stampati ed utilizzati per un esame tradizionale (senza computer).</seg>
+    <seg>Attraverso questa maschera è possibile inserire, modificare o eliminare i test. Prima di inserire un test è necessario aver precedentemente inserito degli argomenti con un numero adeguato di relative domande e risposte. I test sono eseguibili solo dagli utenti abilitati e con un indirizzo IP valido. Il campo IP può contenere una lista separata da virgola degli indirizzi IP abilitati ad eseguire il test. Un indirizzo IP può anche contenere wildcards (* = qualsiasi numero). Il test sarà attivo solo durante l'intervallo temporale specificato e, una volta generato, dovrà essere completato entro la durata massima. I test possono essere composti da più argomenti con differenti tipi di domande che verranno estratte casualmente tra tutte quelle presenti. È inoltre possibile definire un punteggio base per ogni punto di difficoltà delle domande. Non è possibile modificare un test se questo è stato già eseguito. L'eliminazione di un test comporterà l'eliminazione di tutti i log relativi (dati dei test effettuati). Il pulsante [genera] consente la generazione di un numero arbitrario (specificato al lato) di test unici in formato PDF che possono essere stampati ed utilizzati per un esame tradizionale (senza computer). I numeri e lettere all'interno delle parentesi quadre negli argomenti sono statistiche riassuntive: [ (numero di domande)(tipo di domanda S,M,T,O)(difficoltà):(risposte minime)-(risposte massime) ].</seg>
    </tuv>
    <tuv xml:lang="TR">
-    <seg>Bu form ile testi yerlestirir, degistirir ve silebilirsiniz. Siparisteki testte soru ve cavap numaralarini kesin bir sekilde konu da mutlaka tanimlamalisiniz. Sadece dogru ve saglam IP adreslerine sahip kullanicilar teste dahil olabilirler. IP alani test icra edilirken degisik isimlendirilmis, noktalarla ayrilmis IP adresleri icerebilir. Bir IP adrsi vahsikartlar (wildcards) icerebilir (* = numarasiz). Zaman tanimlamasi yapildiginda test aktif hale gelir, baslatildiginda testte maksimum zaman tanimlamasi tamamlanmis olmasi gerekir. Testler rastgele cikarilmis farkli tipte sorular ile birkac konu icerebilir. Her sorunun zorluk derecesine gore temel bir puan tanimlayabilirsiniz. Zaten icra edilir durumdaki testi degistiremezsiniz. Test silindigi zaman onun kayitlari da silinir (test verisi). Buton [generate] bir bilgisayar olmadan calistirilabilir ve yazdirilabilir bir PDF formatinin icine rastgele secilmis degismez bir test numarasi olusturmaniza olanak saglar.</seg>
+    <seg>Bu form ile testi yerlestirir, degistirir ve silebilirsiniz. Siparisteki testte soru ve cavap numaralarini kesin bir sekilde konu da mutlaka tanimlamalisiniz. Sadece dogru ve saglam IP adreslerine sahip kullanicilar teste dahil olabilirler. IP alani test icra edilirken degisik isimlendirilmis, noktalarla ayrilmis IP adresleri icerebilir. Bir IP adrsi vahsikartlar (wildcards) icerebilir (* = numarasiz). Zaman tanimlamasi yapildiginda test aktif hale gelir, baslatildiginda testte maksimum zaman tanimlamasi tamamlanmis olmasi gerekir. Testler rastgele cikarilmis farkli tipte sorular ile birkac konu icerebilir. Her sorunun zorluk derecesine gore temel bir puan tanimlayabilirsiniz. Zaten icra edilir durumdaki testi degistiremezsiniz. Test silindigi zaman onun kayitlari da silinir (test verisi). Buton [generate] bir bilgisayar olmadan calistirilabilir ve yazdirilabilir bir PDF formatinin icine rastgele secilmis degismez bir test numarasi olusturmaniza olanak saglar. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="JP">
-    <seg>　このフォームではテストの挿入、修正、削除を行うことができます。テストを挿入するためには、事前に少なくともいくつかの問題と解答の含まれたトピックを作成する必要があります。十分な権限と妥当な IP アドレスを持つユーザーだけがテストを実行することができます。IP のフィールドには、異なる IP アドレスをコンマ区切りでリストとして含めることができます。IP アドレスはワイルドカード（* は任意の数字）を含めることができます。テストは特定した期間内のみ実行可能で、一度テストを開始すると、特定した時間内に終了しなければなりません。テストにはいくつかのトピックの異なるタイプの問題を含めることができ、ランダムに出題されます。各問題の難易度に対して、基本スコアを定めることもできます。既に実行されたテストを修正することはできません。テストが削除されるとログ（テストデータ）もすべて削除されます。[生成] ボタンをクリックすると、いくつでも印刷可能なテストを PDF 形式で生成するので、コンピュータなしでもテストを行うことができます（訳注：現在のバージョン(5.4.006）では日本語を含むPDFファイルは文字化けします）。</seg>
+    <seg>　このフォームではテストの挿入、修正、削除を行うことができます。テストを挿入するためには、事前に少なくともいくつかの問題と解答の含まれたトピックを作成する必要があります。十分な権限と妥当な IP アドレスを持つユーザーだけがテストを実行することができます。IP のフィールドには、異なる IP アドレスをコンマ区切りでリストとして含めることができます。IP アドレスはワイルドカード（* は任意の数字）を含めることができます。テストは特定した期間内のみ実行可能で、一度テストを開始すると、特定した時間内に終了しなければなりません。テストにはいくつかのトピックの異なるタイプの問題を含めることができ、ランダムに出題されます。各問題の難易度に対して、基本スコアを定めることもできます。既に実行されたテストを修正することはできません。テストが削除されるとログ（テストデータ）もすべて削除されます。[生成] ボタンをクリックすると、いくつでも印刷可能なテストを PDF 形式で生成するので、コンピュータなしでもテストを行うことができます（訳注：現在のバージョン(5.4.006）では日本語を含むPDFファイルは文字化けします）。 The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="VN">
-    <seg>Trong mẫu này bạn có thể chèn, sửa hay xóa các bài kiểm tra. Để thêm 1 bài kiểm tra bạn phải xác định số lượng câu hỏi và câu trả lời ở đầu chủ đề. Chỉ có  với đủ quyền và địa chỉ IP hợp lệ mới có thể làm bài kiểm tra. Ô IP cũng có thể chứa 1 danh sách các địa chỉ IP khác nhau để làm bài kiểm tra, được cách nhau bởi dấu phẩy .Một địa chỉ IP cũng có thể chứa kí tự tự do (* = số bất kì). Bài kiểm tra sẽ được chạy trong suốt khung thời gian xác định và, mỗi lần bắt đầu, nó sẽ phải hoàn thành trong thời gian tối đa đã được đinh sẵn. Các bài kiểm tra có thể chứa một vài chủ đề với các dạng câu hỏi khác nhau được lấy ngẫu nhiên. Bạn cũng có thể xác định thang điểm cho mỗi mức độ khó của câu hỏi. Bạn không thể sửa các bài kiểm tra vừa được thực hiện. Khi 1 bài kiểm tra bị xóa, thì tất cả các dữ liệu của nó cũng bị xóa. Nút [generate] cho phép tạo số lượng tùy ý các bài kiểm tra duy nhất ở định dạng PDF, nó có thể được in và thực hiện mà không cần máy tinh.</seg>
+    <seg>Trong mẫu này bạn có thể chèn, sửa hay xóa các bài kiểm tra. Để thêm 1 bài kiểm tra bạn phải xác định số lượng câu hỏi và câu trả lời ở đầu chủ đề. Chỉ có  với đủ quyền và địa chỉ IP hợp lệ mới có thể làm bài kiểm tra. Ô IP cũng có thể chứa 1 danh sách các địa chỉ IP khác nhau để làm bài kiểm tra, được cách nhau bởi dấu phẩy .Một địa chỉ IP cũng có thể chứa kí tự tự do (* = số bất kì). Bài kiểm tra sẽ được chạy trong suốt khung thời gian xác định và, mỗi lần bắt đầu, nó sẽ phải hoàn thành trong thời gian tối đa đã được đinh sẵn. Các bài kiểm tra có thể chứa một vài chủ đề với các dạng câu hỏi khác nhau được lấy ngẫu nhiên. Bạn cũng có thể xác định thang điểm cho mỗi mức độ khó của câu hỏi. Bạn không thể sửa các bài kiểm tra vừa được thực hiện. Khi 1 bài kiểm tra bị xóa, thì tất cả các dữ liệu của nó cũng bị xóa. Nút [generate] cho phép tạo số lượng tùy ý các bài kiểm tra duy nhất ở định dạng PDF, nó có thể được in và thực hiện mà không cần máy tinh. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="HI">
-    <seg>इस फॉर्म में आप परीक्षाओं को शामिल, संशोधित या नष्ट कर सकते है.आपने परीक्षा शामिल करने के लिए पहले कम से कम एक विषय में एक निश्चित संख्या  में सवाल और जवाब परिभाषित किया होगा .केवल वही उपयोगाकर्ताए जिनके पास पर्याप्त अधिकार और एक वैध आईपी पता है परीक्षा निष्पादन कर सकते है. आईपी फिल्ड भी अलग आईपी पतों की एक सूची शामिल कर सकता है अल्पविराम के द्वारा अलग, जो परीक्षाओं के लिए हक़दार है .एक आईपी  पता वाएल्ड कार्ड्स भी शामिल कर सकते हैं (* = कोई भी संख्या) . परीक्षा केवल निर्देशित समय सीमा  के दौरान ही सक्रिय हो जाएगा और, एक बार शुरू किया, उसे निर्देशित अधिकतम समय मे ही पूरा करना होगा. परीक्षा में  कई विषयों से विभिन्न प्रकार के सवालों को शामिल कर सकते हैं जो बिना किसी क्रम से निकाला जाएगा. आप प्रत्येक सवालों की कठिनाई स्तर के अंक  के लिए  एक बुनियादी स्कोर भी निर्देशित कर सकते हैं. जो परीक्षा पहले से ही हो चुका है आप उसे संशोधित नहीं कर सकते. जब एक परीक्षा नष्ट कर दिया है, तब वे सभी अपने लोगस (परीक्षा डाटा) हैं. बटन [उत्पन्न] एक मनमाना संख्या का  एकमात्र परीक्षणों के पीडीएफ़ प्रारूप में  उत्पन्न करने के लिए सक्षम बनाता है          जो कि बिना कंप्यूटर के  मुद्रित और निष्पादन किया जा सकता है</seg>
+    <seg>इस फॉर्म में आप परीक्षाओं को शामिल, संशोधित या नष्ट कर सकते है.आपने परीक्षा शामिल करने के लिए पहले कम से कम एक विषय में एक निश्चित संख्या  में सवाल और जवाब परिभाषित किया होगा .केवल वही उपयोगाकर्ताए जिनके पास पर्याप्त अधिकार और एक वैध आईपी पता है परीक्षा निष्पादन कर सकते है. आईपी फिल्ड भी अलग आईपी पतों की एक सूची शामिल कर सकता है अल्पविराम के द्वारा अलग, जो परीक्षाओं के लिए हक़दार है .एक आईपी  पता वाएल्ड कार्ड्स भी शामिल कर सकते हैं (* = कोई भी संख्या) . परीक्षा केवल निर्देशित समय सीमा  के दौरान ही सक्रिय हो जाएगा और, एक बार शुरू किया, उसे निर्देशित अधिकतम समय मे ही पूरा करना होगा. परीक्षा में  कई विषयों से विभिन्न प्रकार के सवालों को शामिल कर सकते हैं जो बिना किसी क्रम से निकाला जाएगा. आप प्रत्येक सवालों की कठिनाई स्तर के अंक  के लिए  एक बुनियादी स्कोर भी निर्देशित कर सकते हैं. जो परीक्षा पहले से ही हो चुका है आप उसे संशोधित नहीं कर सकते. जब एक परीक्षा नष्ट कर दिया है, तब वे सभी अपने लोगस (परीक्षा डाटा) हैं. बटन [उत्पन्न] एक मनमाना संख्या का  एकमात्र परीक्षणों के पीडीएफ़ प्रारूप में  उत्पन्न करने के लिए सक्षम बनाता है          जो कि बिना कंप्यूटर के  मुद्रित और निष्पादन किया जा सकता है The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="BG">
-    <seg>В този форма можете да вмъквате, променяте или изтривате тестовете. За да вмъкнете тест трябва преди това да сте определили поне една тема съдържаща няколко въпроси и отговори. Само потребители с достатъчно права и валиден IP адрес могат да провеждат тестовете. Освен това, полето IP може да съдържа списък с валидни IP адреси разделени със запетаи. IP адреса може да съдържа и символа *, който е заместител за обхвата от 0 до 255. Теста ще бъде активен само за времето, което сме предвидили за него. Веднъж стартиран, теста ще трябва да бъде завършен преди да е свършило максимално определеното време. Тестовете могат да съдържат няколко теми с различен тип въпроси, които ще бъдат произволно извлечени. Също така можете да определите базисни точки. Точки са в зависимост от нивото на трудност на въпросите. Не можете да порменяте тест, който вече е бил проведен. Когато даден тест е изтрит, се записва като log (данни на теста). Бутона [генерирай] позволява да се генерират произволен брой, неповтарящи се тестове в PDF формат, така че да могат да бъдат изпринтирани и проведени без нуждата от компютър.</seg>
+    <seg>В този форма можете да вмъквате, променяте или изтривате тестовете. За да вмъкнете тест трябва преди това да сте определили поне една тема съдържаща няколко въпроси и отговори. Само потребители с достатъчно права и валиден IP адрес могат да провеждат тестовете. Освен това, полето IP може да съдържа списък с валидни IP адреси разделени със запетаи. IP адреса може да съдържа и символа *, който е заместител за обхвата от 0 до 255. Теста ще бъде активен само за времето, което сме предвидили за него. Веднъж стартиран, теста ще трябва да бъде завършен преди да е свършило максимално определеното време. Тестовете могат да съдържат няколко теми с различен тип въпроси, които ще бъдат произволно извлечени. Също така можете да определите базисни точки. Точки са в зависимост от нивото на трудност на въпросите. Не можете да порменяте тест, който вече е бил проведен. Когато даден тест е изтрит, се записва като log (данни на теста). Бутона [генерирай] позволява да се генерират произволен брой, неповтарящи се тестове в PDF формат, така че да могат да бъдат изпринтирани и проведени без нуждата от компютър. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="CN">
     <seg>在这个表单中你可以插入、修改或删除测验，为了</seg>
    </tuv>
    <tuv xml:lang="MS">
-    <seg>Dalam bentuk anda boleh memasukkan, mengubah suai atau memadamkan ujian. Teratur untuk menyelit satu ujian anda wajib mempunyai dahulunya ditakrifkan sekurang-kurangnya sesuatu tajuk dengan satu bilangan soalan tertentu dan jawapan. Hanya pengguna dengan hak-hak mencukupi dan satu alamat IP sahih boleh melakukan ujian. Bidang IP boleh mengandungi juga satu senarai alamat IP berbeza bertajuk bagi melaksanakan ujian, dipisahkan oleh koma. Satu alamat IP boleh juga mengandungi wildcards (* = sebarang nombor). Ujian akan aktif hanya sepanjang ditentukan kerangka masa dan, dimulakan sekali, ia akan hendaklah disempurnakan dalam ditentukan masa maksimum. Ujian dapat mengawal beberapa tajuk dengan jenis berbeza bagi pertanyaan yang akan secara rambang dikeluarkan. Anda boleh juga mengkhususkan satu belah mata asas bagi setiap menunjukkan aras kesukaran bagi pertanyaan-pertanyaan. Tidak boleh anda mengubah suai satu ujian itu telah sudah melaksanakan. Apabila satu ujian dipotong, supaya mereka semua balak-balaknya (data ujian). Butang [menjana] membolehkan untuk menjana satu jumlah arbitrari ujian unik dalam format PDF yang dapat dicetak dan dijalankan tanpa sebuah komputer.</seg>
+    <seg>Dalam bentuk anda boleh memasukkan, mengubah suai atau memadamkan ujian. Teratur untuk menyelit satu ujian anda wajib mempunyai dahulunya ditakrifkan sekurang-kurangnya sesuatu tajuk dengan satu bilangan soalan tertentu dan jawapan. Hanya pengguna dengan hak-hak mencukupi dan satu alamat IP sahih boleh melakukan ujian. Bidang IP boleh mengandungi juga satu senarai alamat IP berbeza bertajuk bagi melaksanakan ujian, dipisahkan oleh koma. Satu alamat IP boleh juga mengandungi wildcards (* = sebarang nombor). Ujian akan aktif hanya sepanjang ditentukan kerangka masa dan, dimulakan sekali, ia akan hendaklah disempurnakan dalam ditentukan masa maksimum. Ujian dapat mengawal beberapa tajuk dengan jenis berbeza bagi pertanyaan yang akan secara rambang dikeluarkan. Anda boleh juga mengkhususkan satu belah mata asas bagi setiap menunjukkan aras kesukaran bagi pertanyaan-pertanyaan. Tidak boleh anda mengubah suai satu ujian itu telah sudah melaksanakan. Apabila satu ujian dipotong, supaya mereka semua balak-balaknya (data ujian). Butang [menjana] membolehkan untuk menjana satu jumlah arbitrari ujian unik dalam format PDF yang dapat dicetak dan dijalankan tanpa sebuah komputer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="PL">
-    <seg>In this form you can insert, modify or delete the tests. In order to insert a test you must have previously defined at least a topic with a certain number of questions and answers. Only users with sufficient rights and a valid IP address can perform the tests. The field IP may contain also a list of the different IP addresses entitled to perform the test, separated by commas. An IP address can also contain wildcards (* = any number). The test will be active just during the specified time frame and, once started, it will have to be completed within the specified maximum time. Tests can contain several topics with different type of questions that will be randomly extracted. You can also specify a basic score for each point of difficulty level of questions. You cannot modify a test that has already performed. When a test is deleted, so they are all its logs (test data). The button [generate] enables to generate an arbitrary number of unique tests in PDF format that can be printed and performed without a computer.</seg>
+    <seg>In this form you can insert, modify or delete the tests. In order to insert a test you must have previously defined at least a topic with a certain number of questions and answers. Only users with sufficient rights and a valid IP address can perform the tests. The field IP may contain also a list of the different IP addresses entitled to perform the test, separated by commas. An IP address can also contain wildcards (* = any number). The test will be active just during the specified time frame and, once started, it will have to be completed within the specified maximum time. Tests can contain several topics with different type of questions that will be randomly extracted. You can also specify a basic score for each point of difficulty level of questions. You cannot modify a test that has already performed. When a test is deleted, so they are all its logs (test data). The button [generate] enables to generate an arbitrary number of unique tests in PDF format that can be printed and performed without a computer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="EN">
-    <seg>In this form you can insert, modify or delete the tests. In order to insert a test you must have previously defined at least one topic with a number of questions and answers. Only users with sufficient rights and a valid IP address can perform the tests. The field IP may contain also a list of the different IP addresses entitled to perform the test, separated by commas. An IP address can also contain wildcards (* = any number). The test will be active just during the specified time frame and, once started, it will have to be completed within the specified maximum time. Tests can contain several topics with different type of questions that will be randomly extracted. You can also specify a basic score for each point of difficulty level of questions. You cannot modify a test that has already performed. When a test is deleted all of its logs (test data) are also deleted. The [generate] button permits you to generate an arbitrary number of unique tests in PDF format that can be printed and performed without a computer.</seg>
+    <seg>In this form you can insert, modify or delete the tests. In order to insert a test you must have previously defined at least one topic with a number of questions and answers. Only users with sufficient rights and a valid IP address can perform the tests. The field IP may contain also a list of the different IP addresses entitled to perform the test, separated by commas. An IP address can also contain wildcards (* = any number). The test will be active just during the specified time frame and, once started, it will have to be completed within the specified maximum time. Tests can contain several topics with different type of questions that will be randomly extracted. You can also specify a basic score for each point of difficulty level of questions. You cannot modify a test that has already performed. When a test is deleted all of its logs (test data) are also deleted. The [generate] button permits you to generate an arbitrary number of unique tests in PDF format that can be printed and performed without a computer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="ES">
-    <seg>En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora.</seg>
+    <seg>En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="HE">
-    <seg>בטופס זה ניתן ליצור, לעדכן או למחוק מבחנים. בכדי ליצור מבחן דרוש לפחות נושא אחד הכולל מספר שאלות ותשובות.  רק משתמשים בעלי הרשאות מתאימות המחוברים ממחשבים בעלי כתובות מורשות יכולים להבחן. השדה "כתובת רשת" יכול להכיל רשימת כתובות מחשבים (IP) מופרדת בפסיקים.  ניתן להשתמש בכתובות גם בתווים כלליים (* = מספר כלשהו). המבחן יהיה פעיל רק בזמן שנקבע לביצועו וחובה לסיימו בזמן שהוקצב.  מבחן יכול להכיל נושאים וסוגי שאלות שונים אשר ישלפו מבסיס הנתונים באופן אקראי. כמו כן ניתן לקבוע ניקוד בסיסי לכל רמת קושי של השאלות.  לא ניתן לשנות מבחן שבוצע כבר. מחיקת מבחן גורמת גם למחיקת יומן הרישום של המבחן (נתוני המבחנים).  הכפתור [יצירה] מאפשר הפקת מספר שרירותי של טפסי מבחן אישיים בפורמט PDF שניתן להדפיסם ולהשתמש בהם ללא מחשב.</seg>
+    <seg>בטופס זה ניתן ליצור, לעדכן או למחוק מבחנים. בכדי ליצור מבחן דרוש לפחות נושא אחד הכולל מספר שאלות ותשובות.  רק משתמשים בעלי הרשאות מתאימות המחוברים ממחשבים בעלי כתובות מורשות יכולים להבחן. השדה "כתובת רשת" יכול להכיל רשימת כתובות מחשבים (IP) מופרדת בפסיקים.  ניתן להשתמש בכתובות גם בתווים כלליים (* = מספר כלשהו). המבחן יהיה פעיל רק בזמן שנקבע לביצועו וחובה לסיימו בזמן שהוקצב.  מבחן יכול להכיל נושאים וסוגי שאלות שונים אשר ישלפו מבסיס הנתונים באופן אקראי. כמו כן ניתן לקבוע ניקוד בסיסי לכל רמת קושי של השאלות.  לא ניתן לשנות מבחן שבוצע כבר. מחיקת מבחן גורמת גם למחיקת יומן הרישום של המבחן (נתוני המבחנים).  הכפתור [יצירה] מאפשר הפקת מספר שרירותי של טפסי מבחן אישיים בפורמט PDF שניתן להדפיסם ולהשתמש בהם ללא מחשב. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="EL">
-    <seg>Σε αυτή τη φόρμα μπορείτε να εισάγετε, τροποποιήσετε η να σβήσετε τα διαγωνίσματα. Για να μπορέσετε να εισάγετε ένα διαγωνίσμα θα πρέπει πρώτα να έχετε δημιουργήσει τουλάχιστον ένα θέμα με κάποιο αριθμό ερωτήσεων. Μόνο χρήστες με αρκετά δικαιώματα και έγκυρη ΙΡ διεύθυνση μπορούν να κάνουν τα διαγωνίσματα.Μια ΙΡ διέυθυνση μπορεί επίσης να περιέχει ειδικούς χαρακτήρες (* = οποιοδήποτε νούμερο). Το διαγώνισμα θα είναι ενεργό μόνο κατά την διάρκεια που έχετε καθορίσει και, όταν ξεκινήσει, θα πρέπει να έχει τελειώσει μέσα στην προκαθορισμένη ώρα. Τα διαγωνίσματα μπορούν να περιέχουν διάφορα θέματα με διαφορετικούς τύπους ερωτήσεων που θα δίνονται με τυχαία σειρά. Επίσης μπορείτε να προκαθορίσετε ένα βασικό σκορ για κάθε πόντο στο επίπεδο δυσκολίας των ερωτήσεων. Δε μπορείτε να τροποποιήσετε το διαγώνισμα όταν έχει ήδη πραγματοποιηθεί. Όταν ένα διαγώνισμα σβήνεται, σβήνονται και όλα τα αρχεία του.(δεδομένα του διαγωνίσματος). Το κουμπί [generate - δημιουργία] ενεργοποιεί τη δημιουργία ενός αυθαίρετου αριθμού μοναδικών διαγωνισμάτων σε PDF μορφή που μπορεί να εκτυπωθεί και να πραγματοποιηθεί χωρίς ηλεκτρονικό υπολογιστή.</seg>
+    <seg>Σε αυτή τη φόρμα μπορείτε να εισάγετε, τροποποιήσετε η να σβήσετε τα διαγωνίσματα. Για να μπορέσετε να εισάγετε ένα διαγωνίσμα θα πρέπει πρώτα να έχετε δημιουργήσει τουλάχιστον ένα θέμα με κάποιο αριθμό ερωτήσεων. Μόνο χρήστες με αρκετά δικαιώματα και έγκυρη ΙΡ διεύθυνση μπορούν να κάνουν τα διαγωνίσματα.Μια ΙΡ διέυθυνση μπορεί επίσης να περιέχει ειδικούς χαρακτήρες (* = οποιοδήποτε νούμερο). Το διαγώνισμα θα είναι ενεργό μόνο κατά την διάρκεια που έχετε καθορίσει και, όταν ξεκινήσει, θα πρέπει να έχει τελειώσει μέσα στην προκαθορισμένη ώρα. Τα διαγωνίσματα μπορούν να περιέχουν διάφορα θέματα με διαφορετικούς τύπους ερωτήσεων που θα δίνονται με τυχαία σειρά. Επίσης μπορείτε να προκαθορίσετε ένα βασικό σκορ για κάθε πόντο στο επίπεδο δυσκολίας των ερωτήσεων. Δε μπορείτε να τροποποιήσετε το διαγώνισμα όταν έχει ήδη πραγματοποιηθεί. Όταν ένα διαγώνισμα σβήνεται, σβήνονται και όλα τα αρχεία του.(δεδομένα του διαγωνίσματος). Το κουμπί [generate - δημιουργία] ενεργοποιεί τη δημιουργία ενός αυθαίρετου αριθμού μοναδικών διαγωνισμάτων σε PDF μορφή που μπορεί να εκτυπωθεί και να πραγματοποιηθεί χωρίς ηλεκτρονικό υπολογιστή. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="RU">
-    <seg>В этой форме Вы можете вставлять, изменять или удалять тесты. Для того, чтобы вставить тест Вы должны сначала определить, по крайней мере, тему с определенным количеством вопросов и ответов. Только пользователи с достаточными правами доступа, а также правильным/допустимым IP адресом выполнять тесты. Поле IP может также содержать список различных IP адресов, имеющих право выполнять тест, разделенных запятыми. IP адрес может также содержать подстановочные знаки (* = любой номер). Испытание будет активно только в течение, заранее определенного, интервала времени и, однажды начатое, должно быть закончено в пределах указанного максимального времени. Тесты могут содержать несколько тем с различным типом вопросов, которые будут выбраны случайным образом. Вы также можете определить основное (базис.) количество баллов для вопросов каждого уровня сложности. Вы не можете изменить тест, который уже выполнен. Когда тест удален, также удаляются все его логи (данные теста). Кнопка [генерировать] позволяет сгенерировать произвольное количество уникальных тестов в PDF формате, которые могут быть распечатаны и выполнены без компьютера.</seg>
+    <seg>В этой форме Вы можете вставлять, изменять или удалять тесты. Для того, чтобы вставить тест Вы должны сначала определить, по крайней мере, тему с определенным количеством вопросов и ответов. Только пользователи с достаточными правами доступа, а также правильным/допустимым IP адресом выполнять тесты. Поле IP может также содержать список различных IP адресов, имеющих право выполнять тест, разделенных запятыми. IP адрес может также содержать подстановочные знаки (* = любой номер). Испытание будет активно только в течение, заранее определенного, интервала времени и, однажды начатое, должно быть закончено в пределах указанного максимального времени. Тесты могут содержать несколько тем с различным типом вопросов, которые будут выбраны случайным образом. Вы также можете определить основное (базис.) количество баллов для вопросов каждого уровня сложности. Вы не можете изменить тест, который уже выполнен. Когда тест удален, также удаляются все его логи (данные теста). Кнопка [генерировать] позволяет сгенерировать произвольное количество уникальных тестов в PDF формате, которые могут быть распечатаны и выполнены без компьютера. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="ID">
-    <seg>Dalam formulir ini anda dapat menyisipkan, merubah atau menghapus test. Untuk menyisipkan test anda harus terlebih dahulu menentukan sedikitnya sebuah topik dengan beberapa soal dan jawaban. Hanya user dengan hak dan IP valid yang dapat melaksanakan test. Field IP berisi juga daftar dari ip adress yang digunakan untuk melakukan test, dipisahkan oleh koma. IP address dapat juga berisi * wildchar yang berarti nomor sembarang. Test akan diaktivasi sesaat test dimulai, dan harus diselesaikan dalam jangka waktu maksimum. Test dapat berisi beberapa topik dengan tipe soal yang berbeda yang akan diambil secara acak. Anda dapat juga menentukan skor dasar bagi tiap point sesuai tingkat kesulitan soal. Anda tidak dapat merubah test yang sedang berlangsung. Ketika test dihapus, akan menghapus juga semua data jawaban dan hasil test. Tombol [bangkitkan] memungkinkan untuk membangkitkan nomor khusus dari test yang unik dalam format PDF yang dapat dicetak dan dilaksanakan tanpa komputer.</seg>
+    <seg>Dalam formulir ini anda dapat menyisipkan, merubah atau menghapus test. Untuk menyisipkan test anda harus terlebih dahulu menentukan sedikitnya sebuah topik dengan beberapa soal dan jawaban. Hanya user dengan hak dan IP valid yang dapat melaksanakan test. Field IP berisi juga daftar dari ip adress yang digunakan untuk melakukan test, dipisahkan oleh koma. IP address dapat juga berisi * wildchar yang berarti nomor sembarang. Test akan diaktivasi sesaat test dimulai, dan harus diselesaikan dalam jangka waktu maksimum. Test dapat berisi beberapa topik dengan tipe soal yang berbeda yang akan diambil secara acak. Anda dapat juga menentukan skor dasar bagi tiap point sesuai tingkat kesulitan soal. Anda tidak dapat merubah test yang sedang berlangsung. Ketika test dihapus, akan menghapus juga semua data jawaban dan hasil test. Tombol [bangkitkan] memungkinkan untuk membangkitkan nomor khusus dari test yang unik dalam format PDF yang dapat dicetak dan dilaksanakan tanpa komputer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="DE">
-    <seg>Mit diesem Formular können Tests eingefügt, verändert oder gelöscht werden. Um einen Test anlegen zu können muss vorher mindestens ein Thema definiert und eine gewisse Anzahl an Fragen und Antworten verfügbar sein. Nur Benutzer mit ausreichend Rechten und einer gültigen IP-Adresse können Tests durchführen. Das Feld IP kann eine Liste unterschiedlicher, durch Komata getrennte IP-Adressen enthalten welche den Test durchführen können sollen. IP-Adressen können auch Platzhalter enthalten (* = irgendeine Zahl). Eine Prüfung ist nur während des angegebenen Gültigkeitsdauer verfügbar und muss, einmal gestartet, innerhalb der angegebenen Prüfungsdauer beendet werden. Prüfungen können unterschiedliche Themen mit unterschiedlichen Fragetypen enthalten, welche zufällig ausgewählt werden. Es kann eine Basispunktzahl für jeden Punkt des Schwierigkeitsgrades der Frage angegeben werden. Ein bereits durchgeführte Prüfung kann nicht verändert werden. Wenn eine Prüfung gelöscht wird, werden auch alle damit verbundenen Daten (Prüfungsergebnisse) gelöscht. Der Knopf [Erzeugen] ermöglicht es eine beliebige Anzahl unterschiedlicher Tests im PDF Format zu erstellen die ausgedruckt und ohne Computer benutzt werden können.</seg>
+    <seg>Mit diesem Formular können Tests eingefügt, verändert oder gelöscht werden. Um einen Test anlegen zu können muss vorher mindestens ein Thema definiert und eine gewisse Anzahl an Fragen und Antworten verfügbar sein. Nur Benutzer mit ausreichend Rechten und einer gültigen IP-Adresse können Tests durchführen. Das Feld IP kann eine Liste unterschiedlicher, durch Komata getrennte IP-Adressen enthalten welche den Test durchführen können sollen. IP-Adressen können auch Platzhalter enthalten (* = irgendeine Zahl). Eine Prüfung ist nur während des angegebenen Gültigkeitsdauer verfügbar und muss, einmal gestartet, innerhalb der angegebenen Prüfungsdauer beendet werden. Prüfungen können unterschiedliche Themen mit unterschiedlichen Fragetypen enthalten, welche zufällig ausgewählt werden. Es kann eine Basispunktzahl für jeden Punkt des Schwierigkeitsgrades der Frage angegeben werden. Ein bereits durchgeführte Prüfung kann nicht verändert werden. Wenn eine Prüfung gelöscht wird, werden auch alle damit verbundenen Daten (Prüfungsergebnisse) gelöscht. Der Knopf [Erzeugen] ermöglicht es eine beliebige Anzahl unterschiedlicher Tests im PDF Format zu erstellen die ausgedruckt und ohne Computer benutzt werden können. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="FR">
-    <seg>Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n'importe quel nombre). L'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur.</seg>
+    <seg>Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n'importe quel nombre). L'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>في هذا النموذج يمكنك ادراج أو تعديل او حذف الاختبارات. من اجل ادراج اختبار يجب ان يكون لديك موضوع واحد محدد على الاقل مع عدد معين من الاسئله والاجوبه. المستخدمين فقط مع صلاحية ومعرف آي بي يمكنهم اداء الاختبارات. المعرف قد يحتوي ايضا على قائمة من عناوين بروتوكول إنترنت مختلفة لاداء الاختبار ، تفصل بينها فواصل. المعرفات يمكن ان تحتوي ايضا على أحرف البدل (* = أي رقم). الاختبار سوف يفعل فقط خلال فترة زمنيه محددة ، ولمرة واحدة ، إلا انه يتعين انجازه خلال الوقت المحدد. الاختبارات يمكن ان تحتوى على عدة مواضيع مع انواع مختلفة من الاسئله التي سيتم اختيارها بشكل عشوائي. يمكنك ايضا تحديد نقاط اساسية لكل مستوى صعوبة في الاسئله. لا يمكنك تعديل الاختبار الذي سبق اداءه. عند حذف اختبار ، ستحذف جميع السجلات الخاصة به(بيانات الاختبار). الزر [انتاج] يمكننا من انتاج عدد من الاختبارات الفريده في شكل PDF لكي نتمكن من طباعتها وادائها يدوياً بدون استخدام الحاسوب.</seg>
+    <seg>في هذا النموذج يمكنك ادراج أو تعديل او حذف الاختبارات. من اجل ادراج اختبار يجب ان يكون لديك موضوع واحد محدد على الاقل مع عدد معين من الاسئله والاجوبه. المستخدمين فقط مع صلاحية ومعرف آي بي يمكنهم اداء الاختبارات. المعرف قد يحتوي ايضا على قائمة من عناوين بروتوكول إنترنت مختلفة لاداء الاختبار ، تفصل بينها فواصل. المعرفات يمكن ان تحتوي ايضا على أحرف البدل (* = أي رقم). الاختبار سوف يفعل فقط خلال فترة زمنيه محددة ، ولمرة واحدة ، إلا انه يتعين انجازه خلال الوقت المحدد. الاختبارات يمكن ان تحتوى على عدة مواضيع مع انواع مختلفة من الاسئله التي سيتم اختيارها بشكل عشوائي. يمكنك ايضا تحديد نقاط اساسية لكل مستوى صعوبة في الاسئله. لا يمكنك تعديل الاختبار الذي سبق اداءه. عند حذف اختبار ، ستحذف جميع السجلات الخاصة به(بيانات الاختبار). الزر [انتاج] يمكننا من انتاج عدد من الاختبارات الفريده في شكل PDF لكي نتمكن من طباعتها وادائها يدوياً بدون استخدام الحاسوب. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="BR">
-    <seg>Neste formulario voce pode inserir, editar e remover provas. Para inserir uma prova voce precisa definir no minimo um topico que contenha perguntas e respostas. Somente usuarios com permissoes adequeadas e endereco ip valido podem realizar este teste. O campo do endereco IP pode conter uma lista de ips separad por virgula e usar o coringa (*). Testes podem conter diversos topicos com quantidades diferentes de questoes que serao escolhidas aleatoriamente pelo sistema. Voce nao pode modificar um teste ja realizado. Quando remover um teste, o sistema vai remover tambem todas as respostas e resultados associadas a ele. O botao [gerar] permite gerar uma quantidade de provas em formato PDF para realizacao sem computador.</seg>
+    <seg>Neste formulario voce pode inserir, editar e remover provas. Para inserir uma prova voce precisa definir no minimo um topico que contenha perguntas e respostas. Somente usuarios com permissoes adequeadas e endereco ip valido podem realizar este teste. O campo do endereco IP pode conter uma lista de ips separad por virgula e usar o coringa (*). Testes podem conter diversos topicos com quantidades diferentes de questoes que serao escolhidas aleatoriamente pelo sistema. Voce nao pode modificar um teste ja realizado. Quando remover um teste, o sistema vai remover tambem todas as respostas e resultados associadas a ele. O botao [gerar] permite gerar uma quantidade de provas em formato PDF para realizacao sem computador. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="RO">
-    <seg>În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un punctaj de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator.</seg>
+    <seg>În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un punctaj de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="HU">
-    <seg>Ezen az oldalon lehet létrehozni, módosítani vagy törölni a teszteket. Egy teszt létrehozásához legalább egy definiált téma kell melyhez kérdések és válaszok tartoznak. A tesztet csak a megfelelő jogokkal és érvényes IP címmel rendelkező felhasználók tudják kitölteni. Az IP mező IP címek listáit is tartalmazhatja. Az IP címeket vesszővel kell elválasztani. Egy IP cím hivatkozhat több gépre is a csillag (*) karakterrel, mely azt jelzi hogy bármilyen 0 és 256 közötti szám szerepelhet a csillag karakter helyén. A teszt csak a megadott intervallumban lesz elérhető és ha egyszer elkezdtük kitölteni akkor a megadott maximum időn belül kell kitölteni. A tesztek több témat is tartalmazhatnak különböző jellegű kérdésekkel melyeket a rendszer véletlenszerűen választ ki. Lehetőségünk van a különböző nehézségű kérdések alap pontszámainak megváltoztatására is. Egy már kitöltött tesztet nem lehet módosítani. Ha egy tesztet törlünk, akkor minden a kitöltött tesztekhez tartozó adatot törlünk (logok). A [generál] gomb segítségével tetszőleges számú egyedi teszt készithető PDF formátumban melyeket számitogép nélkül is fel lehet használni.</seg>
+    <seg>Ezen az oldalon lehet létrehozni, módosítani vagy törölni a teszteket. Egy teszt létrehozásához legalább egy definiált téma kell melyhez kérdések és válaszok tartoznak. A tesztet csak a megfelelő jogokkal és érvényes IP címmel rendelkező felhasználók tudják kitölteni. Az IP mező IP címek listáit is tartalmazhatja. Az IP címeket vesszővel kell elválasztani. Egy IP cím hivatkozhat több gépre is a csillag (*) karakterrel, mely azt jelzi hogy bármilyen 0 és 256 közötti szám szerepelhet a csillag karakter helyén. A teszt csak a megadott intervallumban lesz elérhető és ha egyszer elkezdtük kitölteni akkor a megadott maximum időn belül kell kitölteni. A tesztek több témat is tartalmazhatnak különböző jellegű kérdésekkel melyeket a rendszer véletlenszerűen választ ki. Lehetőségünk van a különböző nehézségű kérdések alap pontszámainak megváltoztatására is. Egy már kitöltött tesztet nem lehet módosítani. Ha egy tesztet törlünk, akkor minden a kitöltött tesztekhez tartozó adatot törlünk (logok). A [generál] gomb segítségével tetszőleges számú egyedi teszt készithető PDF formátumban melyeket számitogép nélkül is fel lehet használni. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_user" datatype="plaintext">
@@ -36161,6 +36161,3204 @@ A mentés fájl tárolása a "cache/backup" alkönyvtárba kerül a következő 
    </tuv>
    <tuv xml:lang="HU">
     <seg>a kiválasztott mentés letöltése</seg>
+   </tuv>
+  </tu>
+  
+  <!-- TCExam 11.1.000 (2010-09-20) -->
+  
+  <tu tuid="t_user_change_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Modifica Password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Change Password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Change Password</seg>
+   </tuv>
+  </tu>
+  <tu tuid="t_user_change_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Modifica Email</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Change Email</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Change Email</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_user_change_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Attraverso questa maschera è possibile modificare la propria password di accesso.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>With this form you can change your access password.</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_user_change_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Attraverso questa mashera è possibile modificare la propria email. Un messaggio di verifica verrà inviato alla nuova email. L'account verrà disabilitato fino alla ricezione della conferma.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_password_updated" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>la password è stata aggiornata</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>the password has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>the password has been updated</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_email_updated" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>la password è stata aggiornata</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>the email has been updated</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>the email has been updated</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_different_emails" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>le email sono diverse</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>the emails are different</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>the emails are different</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_current_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>password attuale</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>current password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>current password</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_new_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>nuova password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>new password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>new password</seg>
+   </tuv>
+  </tu>
+  <tu tuid="d_password_lenght" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>almeno 8 caratteri alfanumerici</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>at least 8 alphanumeric characters</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_new_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>nuova email</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>new email</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>new email</seg>
+   </tuv>
+  </tu>
+  <tu tuid="h_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>indirizzo e-mail</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>e-mail address</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>e-mail address</seg>
+   </tuv>
+  </tu>
+  <tu tuid="h_login_link" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>clicca su questo link per accedere a questo sistema</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>click on this link to access on this system</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_change_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>modifica email</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>change email</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>change email</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_change_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>modifica password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>change password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>change password</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_admin" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>amministrazione</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>admin</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>admin</seg>
+   </tuv>
+  </tu> 
+  <tu tuid="h_admin_link" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>area di amministrazione</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>administration area</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>administration area</seg>
+   </tuv>
+  </tu>
+  <tu tuid="h_public_link" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>area pubblica</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>public area</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>public area</seg>
+   </tuv>
+  </tu> 
+  <tu tuid="w_public" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>pubblica</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>public</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>public</seg>
+   </tuv>
+  </tu>
+  <tu tuid="t_test_list" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Elenco Test</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Test List</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Test List</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_action" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>azione</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>action</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>action</seg>
+   </tuv>
+  </tu> 
+  <tu tuid="w_show" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>mostra</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>show</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>show</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_hide" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>nascondi</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>hide</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>hide</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_change_dir" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>cambia directory</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>change directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>change directory</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_size" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>dimensione</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>size</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>size</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_date" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>data</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>date</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>date</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_permissions" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>permessi</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>permissions</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>permissions</seg>
+   </tuv>
+  </tu>
+  <tu tuid="t_filemanager" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Gestione File Multimediali</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Media File Manager</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Media File Manager</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_filemanager" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Attraverso questa pagina è possibile gestire i file multimediali.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>With this form you can manage multimedia files.</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_used_file" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>questo file è utilizzato nella descrizione di una domanda o risposta</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>this file is used on question or answer description</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_delete_file_error" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>impossibile cancellare il file o la cartella selezionati</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>unable to delete the selected file or directory</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_rename" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>rinomina</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>rename</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>rename</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_file_renamed" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>il file è stato rinominato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>the file has been renamed</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>the file has been renamed</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_file_rename_error" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>impossibile rinominare il file selezonato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>unable to rename the selected file</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_file_already_exist" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>questo nome di file o directory è già utilizzato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>this file or directory name is already used</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_file_manager" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>gestione file</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+   <seg>file manager</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+   <seg>file manager</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_new_directory" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>nuova directory</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+   <seg>new directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+   <seg>new directory</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_create_directory" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>crea</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+   <seg>create</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+   <seg>create</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_directory_created" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>la directory è stata creata</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+   <seg>the directory has been created</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+   <seg>the directory has been created</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_directory_create_error" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>impossibile creare la directory richiesta</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+   <seg>unable to create the requested directory</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_directory" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>directory</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_table" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>table</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>table</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_visual" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>visivo</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>visual</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>visual</seg>
+   </tuv>
+  </tu>
+  <tu tuid="t_select_media_file" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Seleziona Oggetto</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Select Object</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Select Object</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_select_media_file" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Questa pagina consente di inserire un oggetto multimediale nella descrizione corrente. Seleziona l'oggetto da inserire, compila i campi di descrizione e premi il pulsante [aggiungi].</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.</seg>
    </tuv>
   </tu>
  </body>

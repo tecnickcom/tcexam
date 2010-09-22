@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: de
-// DATE: 2010-08-09 11:25:27
+// DATE: 2010-09-22 15:53:21
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -145,7 +145,7 @@ $tmx['hp_edit_question']='Mit diesem Formular können die einzelnen Fragen zum a
 $tmx['hp_edit_rating']='In diesem Formular kann die Anzahl der Punkte für Freitext Antworten angegeben werden. Die Daten der Benutzer sieht man nach Auswahl des Feldes \'Benutzerdaten\'. Das Feld \'alles zeigen\' ermöglich es auch bereits beantwortete Antwortedn zu sehen und korrigieren.';
 $tmx['hp_edit_subject']='Mit diesem Formular können unterschiedliche Themen der Tests verwaltet werden. Die Fragen im System werden bezüglich dieser Themen katalogisiert. Ein einzelner Test kann mehrere Themen enthalten. Ein Thema welches Bestandteil eines bereits durchgeführten Tests ist kann nicht gelöscht oder verändert werden, in diesem Fall kann es durch Benutzung des [Löschen] Knopfes deaktiviert werden. Legende: [+] Aktiviert; [-] Deaktiviert;';
 $tmx['hp_edit_tcecode']='Mit diesem Formular können dem Text Bilder und Formatierungen zugefügt werden';
-$tmx['hp_edit_test']='Mit diesem Formular können Tests eingefügt, verändert oder gelöscht werden. Um einen Test anlegen zu können muss vorher mindestens ein Thema definiert und eine gewisse Anzahl an Fragen und Antworten verfügbar sein. Nur Benutzer mit ausreichend Rechten und einer gültigen IP-Adresse können Tests durchführen. Das Feld IP kann eine Liste unterschiedlicher, durch Komata getrennte IP-Adressen enthalten welche den Test durchführen können sollen. IP-Adressen können auch Platzhalter enthalten (* = irgendeine Zahl). Eine Prüfung ist nur während des angegebenen Gültigkeitsdauer verfügbar und muss, einmal gestartet, innerhalb der angegebenen Prüfungsdauer beendet werden. Prüfungen können unterschiedliche Themen mit unterschiedlichen Fragetypen enthalten, welche zufällig ausgewählt werden. Es kann eine Basispunktzahl für jeden Punkt des Schwierigkeitsgrades der Frage angegeben werden. Ein bereits durchgeführte Prüfung kann nicht verändert werden. Wenn eine Prüfung gelöscht wird, werden auch alle damit verbundenen Daten (Prüfungsergebnisse) gelöscht. Der Knopf [Erzeugen] ermöglicht es eine beliebige Anzahl unterschiedlicher Tests im PDF Format zu erstellen die ausgedruckt und ohne Computer benutzt werden können.';
+$tmx['hp_edit_test']='Mit diesem Formular können Tests eingefügt, verändert oder gelöscht werden. Um einen Test anlegen zu können muss vorher mindestens ein Thema definiert und eine gewisse Anzahl an Fragen und Antworten verfügbar sein. Nur Benutzer mit ausreichend Rechten und einer gültigen IP-Adresse können Tests durchführen. Das Feld IP kann eine Liste unterschiedlicher, durch Komata getrennte IP-Adressen enthalten welche den Test durchführen können sollen. IP-Adressen können auch Platzhalter enthalten (* = irgendeine Zahl). Eine Prüfung ist nur während des angegebenen Gültigkeitsdauer verfügbar und muss, einmal gestartet, innerhalb der angegebenen Prüfungsdauer beendet werden. Prüfungen können unterschiedliche Themen mit unterschiedlichen Fragetypen enthalten, welche zufällig ausgewählt werden. Es kann eine Basispunktzahl für jeden Punkt des Schwierigkeitsgrades der Frage angegeben werden. Ein bereits durchgeführte Prüfung kann nicht verändert werden. Wenn eine Prüfung gelöscht wird, werden auch alle damit verbundenen Daten (Prüfungsergebnisse) gelöscht. Der Knopf [Erzeugen] ermöglicht es eine beliebige Anzahl unterschiedlicher Tests im PDF Format zu erstellen die ausgedruckt und ohne Computer benutzt werden können. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='In diesem Formular können die Systembenutzer werden. Für jeden Benutzer kann ein Name, ein Passwort und eine Zugriffsstufe gewählt werden. Stufe 0 für anonyme Benutzer (nicht registriert), Stufe 1 für normale Benutzer (z.B. Prüfungsteilnehmer), Stufe 10 für Administratoren mit vollen Zugriffsrechten';
 $tmx['hp_email_result']='Ergebnisse den Benutzern per email senden';
 $tmx['hp_import_xml_questions']='Mit diesem Formular können Fragen in das ausgewählte Them aus einer XML Datei importiert werden.';
@@ -534,5 +534,50 @@ $tmx['hp_edit_backups']='Diese Seite ermöglicht das Anlegen von Datensicherunge
 	Sicherungsdateien werden im Ordner "cache / backup" mit folgender Syntax abgespeichert: YYYYMMDDhhmmss_tcexam_backup.sql.gz, wobei YYYYMMMDDhhmmss den Zeitpunkt der Sicherung angibt.';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

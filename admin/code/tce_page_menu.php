@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2010-09-07
+// Last Update : 2010-09-21
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -53,6 +53,7 @@
  */
 
 require_once('../config/tce_auth.php');
+require_once('../../shared/code/tce_functions_menu.php');
 
 $menu = array(	
 	'index.php' => array('link' => 'index.php', 'title' => $l['h_index'], 'name' => $l['w_index'], 'level' => K_AUTH_INDEX, 'key' => '', 'enabled' => true),
@@ -60,6 +61,7 @@ $menu = array(
 	'tce_menu_modules.php' => array('link' => 'tce_menu_modules.php', 'title' => $l['w_modules'], 'name' => $l['w_modules'], 'level' => K_AUTH_ADMIN_MODULES, 'key' => '', 'enabled' => true),
 	'tce_menu_tests.php' => array('link' => 'tce_menu_tests.php', 'title' => $l['w_tests'], 'name' => $l['w_tests'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
 	'tce_edit_backup.php' => array('link' => 'tce_edit_backup.php', 'title' => $l['t_backup_editor'], 'name' => $l['w_backup'], 'level' => K_AUTH_BACKUP, 'key' => '', 'enabled' => ((K_DATABASE_TYPE == 'MYSQL') OR (K_DATABASE_TYPE == 'POSTGRESQL'))),
+	'public' => array('link' => '../../public/code/index.php', 'title' => $l['h_public_link'], 'name' => $l['w_public'], 'level' => 0, 'key' => '', 'enabled' => true),
 	'tcexam.org' => array('link' => 'http://www.tcexam.org', 'title' => $l['h_guide'], 'name' => $l['w_guide'], 'level' => K_AUTH_ADMIN_INFO, 'key' => '', 'enabled' => true),
 	'tce_page_info.php' => array('link' => 'tce_page_info.php', 'title' => $l['h_info'], 'name' => $l['w_info'], 'level' => K_AUTH_ADMIN_INFO, 'key' => '', 'enabled' => true),
 	'tce_logout.php' => array('link' => 'tce_logout.php', 'title' => $l['h_logout_link'], 'name' => $l['w_logout'], 'level' => 1, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] > 0)),
@@ -81,7 +83,8 @@ $menu['tce_menu_modules.php']['sub'] = array(
 	'tce_edit_question.php' => array('link' => 'tce_edit_question.php', 'title' => $l['t_questions_editor'], 'name' => $l['w_questions'], 'level' => K_AUTH_ADMIN_QUESTIONS, 'key' => '', 'enabled' => true),
 	'tce_edit_answer.php' => array('link' => 'tce_edit_answer.php', 'title' => $l['t_answers_editor'], 'name' => $l['w_answers'], 'level' => K_AUTH_ADMIN_ANSWERS, 'key' => '', 'enabled' => true),
 	'tce_show_all_questions.php' => array('link' => 'tce_show_all_questions.php', 'title' => $l['t_questions_list'], 'name' => $l['w_list'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
-	'tce_import_xml_questions.php' => array('link' => 'tce_import_xml_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true)
+	'tce_import_xml_questions.php' => array('link' => 'tce_import_xml_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true),
+	'tce_filemanager.php' => array('link' => 'tce_filemanager.php', 'title' => $l['t_filemanager'], 'name' => $l['w_file_manager'], 'level' => K_AUTH_ADMIN_FILEMANAGER, 'key' => '', 'enabled' => true)
 );
 
 $menu['tce_menu_tests.php']['sub'] = array(
@@ -104,49 +107,6 @@ foreach ($menu as $link => $data) {
 	echo F_menu_link($link, $data, 0);
 }
 echo '</ul>'.K_NEWLINE; // end of menu
-
-
-/**
- * Returns a menu element link wit subitems.
- * If the link refers to the current page, only the name will be returned.
- * @param string $link URL
- * @param array $data link data
- * @param int $level item level
- */
-function F_menu_link($link, $data, $level=0) {
-	global $l, $db;
-	require_once('../config/tce_config.php');
-	if (!$data['enabled'] OR ($_SESSION['session_user_level'] < $data['level'])) {
-		// this item is disabled
-		return;
-	}
-	$str = '<li>';
-	if ($link != basename($_SERVER['SCRIPT_NAME'])) {
-		$str .= '<a href="'.$data['link'].'" title="'.$data['title'].'"';
-		if (!empty($data['key'])) {
-			$str .= ' accesskey="'.$data['key'].'"';
-		}
-		if (isset($data['sub']) AND (!empty($data['sub'])) AND (array_key_exists(basename($_SERVER['SCRIPT_NAME']), $data['sub']))) {
-			$str .= ' class="active"';
-		}
-		$str .= '>'.$data['name'].'</a>';
-	} else {
-		// active link
-		$str .= '<span class="active">'.$data['name'].'</span>';
-	}
-	if (isset($data['sub']) AND !empty($data['sub'])) {
-		// print sub-items
-		$sublevel = ($level + 1);
-		$str .= K_NEWLINE.'<!--[if lte IE 6]><iframe class="menu"></iframe><![endif]-->'.K_NEWLINE;
-		$str .= '<ul>'.K_NEWLINE;
-		foreach ($data['sub'] as $sublink => $subdata) {
-			$str .= F_menu_link($sublink, $subdata, $sublevel);
-		}
-		$str .= '</ul>'.K_NEWLINE;
-	}
-	$str .= '</li>'.K_NEWLINE;
-	return $str;
-}
 
 //============================================================+
 // END OF FILE

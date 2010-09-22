@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_logout.php
 // Begin       : 2001-09-28
-// Last Update : 2009-09-30
+// Last Update : 2010-09-16
 //
 // Description : Destroy user's session (logout).
 //
@@ -56,7 +56,7 @@ require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_functions_session.php');
 
 session_destroy(); // Destroys all user's session data
-$login_page = '../code/tce_login.php';
+$login_page = '../code/index.php?logout=1';
 
 echo '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'.K_NEWLINE;

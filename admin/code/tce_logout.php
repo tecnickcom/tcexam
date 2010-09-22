@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_logout.php
 // Begin       : 2001-09-28
-// Last Update : 2009-09-30
+// Last Update : 2010-09-16
 //
 // Description : Destroy user's session (logout).
 //
@@ -58,12 +58,16 @@ require_once('../../shared/code/tce_functions_session.php');
 
 session_destroy(); // Destroys all user's session data
 if(!isset($current_page)) {
-	$current_page = '../code/index.php';
+	$current_page = '../code/index.php?logout=1';
+} elseif (strpos($current_page, '?') === false) {
+	$current_page .= '?logout=1';
+} else {
+	$current_page .= '&amp;logout=1';
 }
 
 echo '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">'.K_NEWLINE;
-echo '"<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language'].'" lang="'.$l['a_meta_language'].'" dir="'.$l['a_meta_dir'].'">'.K_NEWLINE;
+echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language'].'" lang="'.$l['a_meta_language'].'" dir="'.$l['a_meta_dir'].'">'.K_NEWLINE;
 echo '<head>'.K_NEWLINE;
 echo '<title>LOGOUT</title>'.K_NEWLINE;
 echo '<meta http-equiv="refresh" content="0;url='.$current_page.'" />'.K_NEWLINE; //reload page

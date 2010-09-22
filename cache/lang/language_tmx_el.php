@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2010-08-09 11:25:28
+// DATE: 2010-09-22 15:53:23
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Με τη φόρμα αυτή μπορείτε να δ
 $tmx['hp_edit_rating']='Σε αυτή τη φόρμα μπορείτε να προσδιορίσετε τους πόντους για τις ελεύθερες απαντήσεις. Μπορείτε να δείτε τα δεδομένα των χρηστών επιλέγοντας το πεδίο \'δεδομένα χρήστη. Το πεδίο \'δείκτα όλα\' σας επιτρέπει να δείτε και να διορθώσετε ακόμα και τις ερωτήσεις που έχουν ήδη βαθμολογηθεί.';
 $tmx['hp_edit_subject']='Με τη φόρμα αυτή μπορείτε να διαχειριστείτε τa διάφορα θέματα του διαγωνίσματος. Οι ερωτήσεις στο σύστημα μπορούν να κατηγοριοποιηθούν ανάλογα με αυτά τα θέματα. Σε ένα διαγωνίσμα μπορεί να περιέχονται διάφοα θέματα.Δεν μπορείτε να τροποποιήσετε ή να σβήσετε ένα θέμα που είναι μέρος ενός διαγωνίσματος το οποίο έχει πραγματοποιηθεί. Σε αυτή την περίπτωση μπορείτε απλώς να το απενεργοποιήσετε χρησιμοποιώντα το κουμπί [διαγραφή]. Επεξήγηση: [+] Ενεργοποιημένο; [-] Απενεργοποιημένο;';
 $tmx['hp_edit_tcecode']='Με τη φόρμα αυτή μπορείτε να προσθέσετε εικόνες και να αλλάξετε τη μορφοποίηση του κειμένου';
-$tmx['hp_edit_test']='Σε αυτή τη φόρμα μπορείτε να εισάγετε, τροποποιήσετε η να σβήσετε τα διαγωνίσματα. Για να μπορέσετε να εισάγετε ένα διαγωνίσμα θα πρέπει πρώτα να έχετε δημιουργήσει τουλάχιστον ένα θέμα με κάποιο αριθμό ερωτήσεων. Μόνο χρήστες με αρκετά δικαιώματα και έγκυρη ΙΡ διεύθυνση μπορούν να κάνουν τα διαγωνίσματα.Μια ΙΡ διέυθυνση μπορεί επίσης να περιέχει ειδικούς χαρακτήρες (* = οποιοδήποτε νούμερο). Το διαγώνισμα θα είναι ενεργό μόνο κατά την διάρκεια που έχετε καθορίσει και, όταν ξεκινήσει, θα πρέπει να έχει τελειώσει μέσα στην προκαθορισμένη ώρα. Τα διαγωνίσματα μπορούν να περιέχουν διάφορα θέματα με διαφορετικούς τύπους ερωτήσεων που θα δίνονται με τυχαία σειρά. Επίσης μπορείτε να προκαθορίσετε ένα βασικό σκορ για κάθε πόντο στο επίπεδο δυσκολίας των ερωτήσεων. Δε μπορείτε να τροποποιήσετε το διαγώνισμα όταν έχει ήδη πραγματοποιηθεί. Όταν ένα διαγώνισμα σβήνεται, σβήνονται και όλα τα αρχεία του.(δεδομένα του διαγωνίσματος). Το κουμπί [generate - δημιουργία] ενεργοποιεί τη δημιουργία ενός αυθαίρετου αριθμού μοναδικών διαγωνισμάτων σε PDF μορφή που μπορεί να εκτυπωθεί και να πραγματοποιηθεί χωρίς ηλεκτρονικό υπολογιστή.';
+$tmx['hp_edit_test']='Σε αυτή τη φόρμα μπορείτε να εισάγετε, τροποποιήσετε η να σβήσετε τα διαγωνίσματα. Για να μπορέσετε να εισάγετε ένα διαγωνίσμα θα πρέπει πρώτα να έχετε δημιουργήσει τουλάχιστον ένα θέμα με κάποιο αριθμό ερωτήσεων. Μόνο χρήστες με αρκετά δικαιώματα και έγκυρη ΙΡ διεύθυνση μπορούν να κάνουν τα διαγωνίσματα.Μια ΙΡ διέυθυνση μπορεί επίσης να περιέχει ειδικούς χαρακτήρες (* = οποιοδήποτε νούμερο). Το διαγώνισμα θα είναι ενεργό μόνο κατά την διάρκεια που έχετε καθορίσει και, όταν ξεκινήσει, θα πρέπει να έχει τελειώσει μέσα στην προκαθορισμένη ώρα. Τα διαγωνίσματα μπορούν να περιέχουν διάφορα θέματα με διαφορετικούς τύπους ερωτήσεων που θα δίνονται με τυχαία σειρά. Επίσης μπορείτε να προκαθορίσετε ένα βασικό σκορ για κάθε πόντο στο επίπεδο δυσκολίας των ερωτήσεων. Δε μπορείτε να τροποποιήσετε το διαγώνισμα όταν έχει ήδη πραγματοποιηθεί. Όταν ένα διαγώνισμα σβήνεται, σβήνονται και όλα τα αρχεία του.(δεδομένα του διαγωνίσματος). Το κουμπί [generate - δημιουργία] ενεργοποιεί τη δημιουργία ενός αυθαίρετου αριθμού μοναδικών διαγωνισμάτων σε PDF μορφή που μπορεί να εκτυπωθεί και να πραγματοποιηθεί χωρίς ηλεκτρονικό υπολογιστή. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Σε αυτή τη φόρμα μπορείτε να διαχειριστείτε τους διάφορους χρήστες που επιτρέπεται να έχουν πρόσβαση στο σύστημα. ΓΙα κάθε χρήστη μπορείτε να επιλέξετε ένα όνομα, ένα κωδικό και ένα επίπεδο πρόσβασης. Το επίπεδο 0 δείχνει σε ένα ανώνυμο χρήστη (δεν έχει εγγραφεί), το επίπεδο 1 σε ένα βασικό χρήστη (π.χ. ένα μαθητή), και το επίπεδο 10 σε ένα διαχειριστή του συστήματος με πλήρη δικαιώματα';
 $tmx['hp_email_result']='Στείλε τα αποτελέσματα στους χρήστες μέσο e-mail';
 $tmx['hp_import_xml_questions']='Με αυτή τη φόρμα μπορείτε να εισάγετε ερωτήσεις στο συγκεκριμένο θέμα μέσο ενός αρχείου XML.';
@@ -515,5 +515,50 @@ $tmx['hp_edit_backups']='Η σελίδα αυτή σας επιτρέπει να
      Τα αντίγραφα ασφαλείας αποθηκέυονται στο φάκελο "cache/backup" με όνομα: YYYYMMDDhhmmss_tcexam_backup.sql.gz, (Υ) είναι τα ψηφία της χρονιάς,(Μ) μήνας, (D) ημέρα, ώρα (h), λεπτά (m), δευτερόλεπτα (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

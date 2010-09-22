@@ -1,3 +1,18 @@
+11.1.000 (2010-09-22)
+	- Web menu was added on public area.
+	- Users can now change email and password form public area.
+	- Public test list was improved.
+	- Media File Manager was added on administration area.
+	- HTTP Basic Authentication was added. Check the new shared/config/tce_httpbasic.php configuration file.
+	- Configurations files now contains new options.
+	- A new /public/config/tce_auth.php configuration file was added to change the permission levels for public area.
+	- The "explanation" area on "Question Management" and "Multiple-Answer Management" is now collapsed by default.
+	- Question and Answer Management was simplified.
+	- Some compatibility issues were fixed.
+	- TCPDF library was updated.
+
+------------------------------------------------------------
+
 11.0.016 (2010-09-07)
 	- Automatic uppercase was removed from main menu for UTF-8 compatibility.
 

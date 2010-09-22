@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2010-08-09 11:25:38
+// DATE: 2010-09-22 15:53:31
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Attraverso questa maschera è possibile gestire le dom
 $tmx['hp_edit_rating']='Attraverso questa maschera è possibile assegnare un punteggio alle risposte aperte. La correzione è anonima in maniera predefinita ma è anche possibile visualizzare i dati dell\'utente selezionando il campo \'dati utente\'. Il campo \'mostra tutti\' consente di visualizzare e correggere le risposte che sono state gia valutate.';
 $tmx['hp_edit_subject']='Attraverso questa maschera è possibile gestire gli argomenti che appartengono al modulo selezionato. Tali argomenti costituiranno le categorie di raggruppamento delle domande presenti nel sistema. Un esame può essere costituito da più argomenti. Non è possibile modificare o eliminare un argomento se questo è presente tra i test eseguiti, in tal caso potrà essere solo disabilitato utilizzando il pulsante [elimina]. Legenda: [+] Abilitato; [-] Disabilitato;';
 $tmx['hp_edit_tcecode']='Attraverso questa maschera è possibile aggiungere della formattazione e delle immagini al testo.';
-$tmx['hp_edit_test']='Attraverso questa maschera è possibile inserire, modificare o eliminare i test. Prima di inserire un test è necessario aver precedentemente inserito degli argomenti con un numero adeguato di relative domande e risposte. I test sono eseguibili solo dagli utenti abilitati e con un indirizzo IP valido. Il campo IP può contenere una lista separata da virgola degli indirizzi IP abilitati ad eseguire il test. Un indirizzo IP può anche contenere wildcards (* = qualsiasi numero). Il test sarà attivo solo durante l\'intervallo temporale specificato e, una volta generato, dovrà essere completato entro la durata massima. I test possono essere composti da più argomenti con differenti tipi di domande che verranno estratte casualmente tra tutte quelle presenti. È inoltre possibile definire un punteggio base per ogni punto di difficoltà delle domande. Non è possibile modificare un test se questo è stato già eseguito. L\'eliminazione di un test comporterà l\'eliminazione di tutti i log relativi (dati dei test effettuati). Il pulsante [genera] consente la generazione di un numero arbitrario (specificato al lato) di test unici in formato PDF che possono essere stampati ed utilizzati per un esame tradizionale (senza computer).';
+$tmx['hp_edit_test']='Attraverso questa maschera è possibile inserire, modificare o eliminare i test. Prima di inserire un test è necessario aver precedentemente inserito degli argomenti con un numero adeguato di relative domande e risposte. I test sono eseguibili solo dagli utenti abilitati e con un indirizzo IP valido. Il campo IP può contenere una lista separata da virgola degli indirizzi IP abilitati ad eseguire il test. Un indirizzo IP può anche contenere wildcards (* = qualsiasi numero). Il test sarà attivo solo durante l\'intervallo temporale specificato e, una volta generato, dovrà essere completato entro la durata massima. I test possono essere composti da più argomenti con differenti tipi di domande che verranno estratte casualmente tra tutte quelle presenti. È inoltre possibile definire un punteggio base per ogni punto di difficoltà delle domande. Non è possibile modificare un test se questo è stato già eseguito. L\'eliminazione di un test comporterà l\'eliminazione di tutti i log relativi (dati dei test effettuati). Il pulsante [genera] consente la generazione di un numero arbitrario (specificato al lato) di test unici in formato PDF che possono essere stampati ed utilizzati per un esame tradizionale (senza computer). I numeri e lettere all\'interno delle parentesi quadre negli argomenti sono statistiche riassuntive: [ (numero di domande)(tipo di domanda S,M,T,O)(difficoltà):(risposte minime)-(risposte massime) ].';
 $tmx['hp_edit_user']='Attraverso questa maschera è possibile gestire gli utenti che hanno accesso a questo sistema. Per ogni utente è possibile scegliere un nome, una password ed un livello. Il livello 0 indica un utente anonimo (non registrato), il livello 1 indica un semplice utente (es: studente che deve sostenere un test), il livello 10 indica un amministratore che ha accesso a tutte le funzioni del sistema.';
 $tmx['hp_email_result']='Invia i risultati agli utenti via email';
 $tmx['hp_import_xml_questions']='Attraverso questa maschera è possibile importare delle domande nell\'argomento selezionato da un file XML.';
@@ -515,5 +515,50 @@ Per sicurezza, prima di ogni ripristino il sistema esegue un backup così da pot
 I file di backup vengono registrati nella cartella "cache/backup" con la seguente sintassi: AAAAMMGGhhmmss_tcexam_backup.sql.gz , dove AAAAMMGGhhmmss rappresenta le cifre dell\'anno (A), mese (M), giorno (G), ora (h), minuti (m), secondi (s).';
 $tmx['w_download']='scarica';
 $tmx['h_download']='scarica il file di backup selezionato';
+$tmx['t_user_change_password']='Modifica Password';
+$tmx['t_user_change_email']='Modifica Email';
+$tmx['hp_user_change_password']='Attraverso questa maschera è possibile modificare la propria password di accesso.';
+$tmx['hp_user_change_email']='Attraverso questa mashera è possibile modificare la propria email. Un messaggio di verifica verrà inviato alla nuova email. L\'account verrà disabilitato fino alla ricezione della conferma.';
+$tmx['m_password_updated']='la password è stata aggiornata';
+$tmx['m_email_updated']='la password è stata aggiornata';
+$tmx['m_different_emails']='le email sono diverse';
+$tmx['w_current_password']='password attuale';
+$tmx['w_new_password']='nuova password';
+$tmx['d_password_lenght']='almeno 8 caratteri alfanumerici';
+$tmx['w_new_email']='nuova email';
+$tmx['h_email']='indirizzo e-mail';
+$tmx['h_login_link']='clicca su questo link per accedere a questo sistema';
+$tmx['w_change_email']='modifica email';
+$tmx['w_change_password']='modifica password';
+$tmx['w_admin']='amministrazione';
+$tmx['h_admin_link']='area di amministrazione';
+$tmx['h_public_link']='area pubblica';
+$tmx['w_public']='pubblica';
+$tmx['t_test_list']='Elenco Test';
+$tmx['w_action']='azione';
+$tmx['w_show']='mostra';
+$tmx['w_hide']='nascondi';
+$tmx['w_change_dir']='cambia directory';
+$tmx['w_size']='dimensione';
+$tmx['w_date']='data';
+$tmx['w_permissions']='permessi';
+$tmx['t_filemanager']='Gestione File Multimediali';
+$tmx['hp_filemanager']='Attraverso questa pagina è possibile gestire i file multimediali.';
+$tmx['m_used_file']='questo file è utilizzato nella descrizione di una domanda o risposta';
+$tmx['m_delete_file_error']='impossibile cancellare il file o la cartella selezionati';
+$tmx['w_rename']='rinomina';
+$tmx['m_file_renamed']='il file è stato rinominato';
+$tmx['m_file_rename_error']='impossibile rinominare il file selezonato';
+$tmx['m_file_already_exist']='questo nome di file o directory è già utilizzato';
+$tmx['w_file_manager']='gestione file';
+$tmx['w_new_directory']='nuova directory';
+$tmx['w_create_directory']='crea';
+$tmx['m_directory_created']='la directory è stata creata';
+$tmx['m_directory_create_error']='impossibile creare la directory richiesta';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visivo';
+$tmx['t_select_media_file']='Seleziona Oggetto';
+$tmx['hp_select_media_file']='Questa pagina consente di inserire un oggetto multimediale nella descrizione corrente. Seleziona l\'oggetto da inserire, compila i campi di descrizione e premi il pulsante [aggiungi].';
 
 // --- EOF ---

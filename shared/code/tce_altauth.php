@@ -2,10 +2,10 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2009-11-10
+// Last Update : 2010-09-16
 //
 // Description : Check user authorization against alternative
-//               systems (RADIUS, LDAP, CAS, ...)
+//               systems (RADIUS, LDAP, CAS, HTTP BASIC, ...)
 //
 // Author: Nicola Asuni
 //
@@ -41,7 +41,7 @@
 //============================================================+
 
 /**
- * Check user authorization against alternative systems (RADIUS, LDAP, CAS, ...).
+ * Check user authorization against alternative systems (RADIUS, LDAP, CAS, HTTP BASIC, ...)
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
  * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
@@ -52,7 +52,7 @@
 
 /**
  * Alternate Login.
- * Try to login user using alternative systems (Radius, LDAP, CAS, ...)
+ * Try to login user using alternative systems (Radius, LDAP, CAS, HTTP BASIC, ...)
  * @param string $username user name
  * @param string $password password
  * @return array of user's data for successful login, false otherwise
@@ -134,7 +134,7 @@ function F_altLogin($username, $password) {
 	}
 	// -------------------------------------------------------
 
-	// 3) CAS ---------------------------------------------
+	// 3) CAS ------------------------------------------------
 	require_once('../../shared/config/tce_cas.php');
 	if (K_CAS_ENABLED) {
 		require_once('../../shared/cas/CAS.php');
@@ -148,6 +148,25 @@ function F_altLogin($username, $password) {
 		$usr['user_ssn'] = '';
 		$usr['user_level'] = K_CAS_USER_LEVEL;
 		$usr['usrgrp_group_id'] = K_CAS_USER_GROUP_ID;
+		return $usr;
+	}
+	// -------------------------------------------------------
+
+	// 4) HTTP BASIC -----------------------------------------
+	require_once('../../shared/config/tce_httpbasic.php');
+	if (K_HTTPBASIC_ENABLED
+		AND isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'Basic')
+		AND isset($_SERVER['PHP_AUTH_USER']) AND isset($_SERVER['PHP_AUTH_PW'])) {
+		$usr = array();
+		$usr['user_email'] = '';
+		$usr['user_firstname'] = '';
+		$usr['user_lastname'] = '';
+		$usr['user_birthdate'] = '';
+		$usr['user_birthplace'] = '';
+		$usr['user_regnumber'] = '';
+		$usr['user_ssn'] = '';
+		$usr['user_level'] = K_HTTPBASIC_USER_LEVEL;
+		$usr['usrgrp_group_id'] = K_HTTPBASIC_USER_GROUP_ID;
 		return $usr;
 	}
 	// -------------------------------------------------------

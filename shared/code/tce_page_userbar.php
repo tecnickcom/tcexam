@@ -84,7 +84,7 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 				$querystr = preg_replace("/([\?|\&]?)lang=([a-z]{2,3})/si", '', $_SERVER['QUERY_STRING']);
 			}
 			if (isset($querystr) AND (strlen($querystr)>0)) {
-				$langlink = $_SERVER['SCRIPT_NAME'].'?'.$querystr.'&amp;lang='.$lang_code;
+				$langlink = $_SERVER['SCRIPT_NAME'].'?'.str_replace('&', '&amp;', $querystr).'&amp;lang='.$lang_code;
 			} else {
 				$langlink = $_SERVER['SCRIPT_NAME'].'?lang='.$lang_code;
 			}

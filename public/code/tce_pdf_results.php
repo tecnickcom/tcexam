@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-06-16
+// Last Update : 2010-09-20
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -64,6 +64,11 @@ require_once('../../shared/code/tcpdf.php');
 require_once('../../shared/code/tce_authorization.php');
 
 $numberfont = 'courier';
+
+if (!K_ENABLE_PUBLIC_PDF) {
+	echo $l['m_authorization_denied'];
+	exit;
+}
 
 if (isset($_REQUEST['testid'])) {
 	$test_id = intval($_REQUEST['testid']);
@@ -210,7 +215,7 @@ if($r = F_db_query($sql, $db)) {
 		// --- start page data ---
 
 		$pdf->AddPage();
-
+		
 		// set barcode
 		$pdf->setBarcode($test_id.':'.$user_id.':'.$test_start_time);
 
@@ -662,6 +667,15 @@ if($r = F_db_query($sql, $db)) {
 	F_display_db_error();
 }
 
+$pdf->lastpage(true);
+$pdf->SetAutoPageBreak(false);
+$pdf->SetFont('helvetica', '', 5);
+$pdf->SetTextColor(0,127,255);
+$msg = "\x50\x6f\x77\x65\x72\x65\x64\x20\x62\x79\x20\x54\x43\x45\x78\x61\x6d\x20\x28\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e\x6f\x72\x67\x29";
+$lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e\x6f\x72\x67";
+$pdf->SetXY(15, $pdf->getPageHeight(), true);
+$pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
+		
 // Send PDF output
 $pdf->Output('tcexam_result_'.$user_id.'_'.$test_id.'_'.date('Ymd', strtotime($test_end_time)).'.pdf', 'D');
 

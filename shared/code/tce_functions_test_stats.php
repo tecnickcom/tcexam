@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2010-05-28
+// Last Update : 2010-09-16
 //
 // Description : Statistical functions for test results.
 //
@@ -242,7 +242,26 @@ function F_getUserTestStat($test_id, $user_id) {
 	} else {
 		F_display_db_error();
 	}
-
+	
+	$sql = 'SELECT testuser_id, testuser_creation_time, testuser_status, MAX(testlog_change_time) AS test_end_time
+		FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.'
+		WHERE testlog_testuser_id=testuser_id
+			AND testuser_test_id='.$test_id.'
+			AND testuser_user_id='.$user_id.'
+			AND testuser_status>0
+		GROUP BY testuser_id, testuser_creation_time, testuser_status
+		LIMIT 1';
+	if($r = F_db_query($sql, $db)) {
+		if($m = F_db_fetch_array($r)) {
+			$data['test_start_time'] = $m['testuser_creation_time'];
+			$data['test_end_time'] = $m['test_end_time'];
+			$data['testuser_id'] = $m['testuser_id'];
+			$data['testuser_status'] = $m['testuser_status'];
+		}
+	} else {
+		F_display_db_error();
+	}
+	
 	return $data;
 }
 

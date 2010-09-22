@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2009-11-03
+// Last Update : 2010-09-16
 //
 // Description : Display test results for specified user.
 //
@@ -245,10 +245,11 @@ if($formstatus) {
 
 // get test basic score
 $test_basic_score = 1;
-$sql = 'SELECT test_score_right	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+$sql = 'SELECT test_score_right, test_duration_time	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
 if($r = F_db_query($sql, $db)) {
 	if($m = F_db_fetch_array($r)) {
 		$test_basic_score = $m['test_score_right'];
+		$test_duration_time = $m['test_duration_time'];
 	}
 } else {
 	F_display_db_error();
@@ -378,7 +379,11 @@ echo ''.$test_end_time.' ';
 </span>
 <span class="formw">
 <?php
-$time_diff = strtotime($test_end_time) - strtotime($test_start_time); //sec
+if (!isset($test_end_time) OR ($test_end_time <= 0)) {
+	$time_diff = $test_duration_time * 60;
+} else {
+	$time_diff = strtotime($test_end_time) - strtotime($test_start_time); //sec
+}
 $time_diff = gmdate('H:i:s', $time_diff);
 echo ''.$time_diff.'';
 ?>

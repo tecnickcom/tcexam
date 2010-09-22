@@ -65,6 +65,8 @@
 		</a><br>
 			<a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_html2txt.php.html">		tce_functions_html2txt.php
 		</a><br>
+			<a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html">		tce_functions_menu.php
+		</a><br>
 			<a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_page.php.html">		tce_functions_page.php
 		</a><br>
 			<a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_session.php.html">		tce_functions_session.php
@@ -229,8 +231,10 @@
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getTestName">F_getTestName()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the test name.</dd>
 							<dt><b>F_getTestStartTime</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getTestStartTime">F_getTestStartTime()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the user's test start time in seconds since UNIX epoch (1970-01-01 00:00:00).</dd>
+							<dt><b>F_getUserData</b></dt>
+				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserData">F_getUserData()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns user data.</dd>
 							<dt><b>F_getUserTests</b></dt>
-				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserTests">F_getUserTests()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an XHTML unordered list of user's enabled tests.</dd>
+				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserTests">F_getUserTests()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an XHTML table of user's tests.</dd>
 							<dt><b>F_getUserTestStat</b></dt>
 				<dd>in file tce_functions_test_stats.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test_stats.php.html#functionF_getUserTestStat">F_getUserTestStat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns test data structure for selected user:</dd>
 							<dt><b>F_getUTCoffset</b></dt>
@@ -257,6 +261,10 @@
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_logout_form">F_logout_form()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display logout form.</dd>
 							<dt><b>F_logout_page</b></dt>
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_logout_page">F_logout_page()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display logout page.</dd>
+							<dt><b>F_menu_isChildActive</b></dt>
+				<dd>in file tce_functions_menu.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html#functionF_menu_isChildActive">F_menu_isChildActive()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the menu item has an active child, false otherwise.</dd>
+							<dt><b>F_menu_link</b></dt>
+				<dd>in file tce_functions_menu.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html#functionF_menu_link">F_menu_link()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a menu element link wit subitems.</dd>
 							<dt><b>F_newTestLog</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_newTestLog">F_newTestLog()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates a new tce_tests_logs table entry and returns inserted ID.</dd>
 							<dt><b>F_objects_callback</b></dt>
@@ -501,6 +509,8 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html">tce_functions_general.php</a></dd>
 							<dt><b>tce_functions_html2txt.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_html2txt.php.html">tce_functions_html2txt.php</a></dd>
+							<dt><b>tce_functions_menu.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html">tce_functions_menu.php</a></dd>
 							<dt><b>tce_functions_page.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_page.php.html">tce_functions_page.php</a></dd>
 							<dt><b>tce_functions_session.php</b></dt>
@@ -548,7 +558,7 @@
 	<a href="elementindex_com-tecnick-tcexam-shared.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:19 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:29 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

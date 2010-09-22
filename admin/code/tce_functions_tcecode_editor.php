@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2010-06-13
+// Last Update : 2010-09-22
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -90,55 +90,18 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	$buttons .= getImageButton($callingform, $callingfield, 'unordered list', '[ulist]', K_PATH_IMAGES.'buttons/bullist.gif', $onclick, 'l');
 	$buttons .= getImageButton($callingform, $callingfield, 'ordered list', '[olist]', K_PATH_IMAGES.'buttons/numlist.gif', $onclick, 'o');
 	$buttons .= getImageButton($callingform, $callingfield, 'list item', '[li]', K_PATH_IMAGES.'buttons/li.gif', $onclick, 't');
+	
+	$onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=bgcolor\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+	$buttons .= getImageButton($callingform, $callingfield, 'background-color', '', K_PATH_IMAGES.'buttons/bgcolor.gif', $onclick, '');
+
+	$onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=color\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+	$buttons .= getImageButton($callingform, $callingfield, 'color', '', K_PATH_IMAGES.'buttons/color.gif', $onclick, '');
+	
 	$buttons .= getImageButton($callingform, $callingfield, 'code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
 	$buttons .= getImageButton($callingform, $callingfield, 'latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
 
-	$onclick = 'document.getElementById(\'bgcolor'.$id.'\').value=window.showModalDialog(\'tce_colorpicker.php\',\'\',\'dialogHeight:600px;dialogWidth:330px;resizable:yes;scroll:no;status:no;\');FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
-	$buttons .= getImageButton($callingform, $callingfield, 'background-color', '[bgcolor=\'+document.getElementById(\'bgcolor'.$id.'\').value+\']', K_PATH_IMAGES.'buttons/bgcolor.gif', $onclick, '');
-
-	$onclick = 'document.getElementById(\'color'.$id.'\').value=window.showModalDialog(\'tce_colorpicker.php\',\'\',\'dialogHeight:600px;dialogWidth:330px;resizable:yes;scroll:no;status:no;\');FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
-	$buttons .= getImageButton($callingform, $callingfield, 'color', '[color=\'+document.getElementById(\'color'.$id.'\').value+\']', K_PATH_IMAGES.'buttons/color.gif', $onclick, '');
-
-	$buttons .= '<input type="hidden" name="bgcolor'.$id.'" id="bgcolor'.$id.'" value="" />';
-	$buttons .= '<input type="hidden" name="color'.$id.'" id="color'.$id.'" value="" />';
-
-	// --- insert image/object
-	$buttons .= '<br />'.K_NEWLINE;
-	$buttons .= '<label for="selectobject'.$id.'">'.$l['w_image'].' / '.$l['w_object'].'</label>'.K_NEWLINE;
-	$buttons .= '<select name="selectobject'.$id.'" id="selectobject'.$id.'" size="0">'.K_NEWLINE;
-	$buttons .= '<option value="">&nbsp;</option>'.K_NEWLINE;
-	$files_list = getDirFiles(K_PATH_CACHE, true, strlen(K_PATH_CACHE));
-	foreach($files_list as $file) {
-		$buttons .= '<option value="'.$file.'"';
-		if (isset($uploadedfile['\''.$id.'\'']) AND (strcmp($uploadedfile['\''.$id.'\''], $file) == 0)) {
-			$buttons .= ' selected="selected"';
-		}
-		$buttons .= '>'.$file.'</option>'.K_NEWLINE;
-	}
-
-	$buttons .= '</select>'.K_NEWLINE;
-
-	$buttons .= '<br /><label for="object_alt'.$id.'">'.$l['w_description'].'</label>'.K_NEWLINE;
-	$buttons .= '<input type="text" name="object_alt'.$id.'" id="object_alt'.$id.'" value="" size="30" maxlength="255" title="'.$l['w_description'].'"/>'.K_NEWLINE;
-
-	$buttons .= '<br /><label for="object_width'.$id.'">'.$l['w_width'].'</label>'.K_NEWLINE;
-	$buttons .= '<input type="text" name="object_width'.$id.'" id="object_width'.$id.'" value="" size="3" maxlength="5" title="'.$l['h_object_width'].'"/>'.K_NEWLINE;
-	$buttons .= '<label for="object_height'.$id.'">'.$l['w_height'].'</label>'.K_NEWLINE;
-	$buttons .= '<input type="text" name="object_height'.$id.'" id="object_height'.$id.'" value="" size="3" maxlength="5" title="'.$l['h_object_height'].'"/>'.K_NEWLINE;
-
-	$onclick = 'FJ_insert_text(document.getElementById(\''.$callingform.'\').'.$callingfield.',\'[object]\'+document.getElementById(\'selectobject'.$id.'\').value+\'[/object:\'+document.getElementById(\'object_width'.$id.'\').value+\':\'+document.getElementById(\'object_height'.$id.'\').value+\':\'+document.getElementById(\'object_alt'.$id.'\').value+\']\');';
-
-	$buttons .= '<input type="button" name="addobject'.$id.'" id="addobject'.$id.'" value="'.$l['w_add'].'" onclick="'.$onclick.'" title="'.$l['h_add_object'].'" />'.K_NEWLINE;
-
-	// --- upload object file
-	$buttons .= '<br />'.K_NEWLINE;
-	$buttons .= '<label for="userfile'.$id.'">'.$l['w_upload_file'].'</label>'.K_NEWLINE;
-	if ($id == 0) {
-		$buttons .= '<input type="hidden" name="MAX_FILE_SIZE" value="'.K_MAX_UPLOAD_SIZE.'" />'.K_NEWLINE;
-	}
-	$buttons .= '<input type="file" name="userfile'.$id.'" id="userfile'.$id.'" size="20" title="'.$l['h_upload_file'].'" />'.K_NEWLINE;
-	$buttons .= '<input type="submit" name="sendfile'.$id.'" id="sendfile'.$id.'" value="'.$l['w_upload'].'" title="'.$l['h_upload_file'].'" />'.K_NEWLINE;
-
+	$onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+	$buttons .= getImageButton($callingform, $callingfield, 'object', '', K_PATH_IMAGES.'buttons/image.gif', $onclick, '');
 	return $buttons;
 }
 
@@ -176,27 +139,22 @@ function getImageButton($callingform, $callingfield, $name, $tag, $image, $oncli
  * @link www.tecnick.com
  * @since 2009-10-07
  * @param string $path initial directory path
- * @param boolean $sort if true sort in alphabetical ascending order, if false sort in alphabetical descending order
  * òparam int $baselen string lenght of the base dir path.
  * @return array
  */
-function getDirFiles($path, $sort=true, $baselen=0) {
+function getDirFiles($path, $baselen=0) {
 	$handle = opendir($path);
 	$files_list = array();
 	 while (false !== ($file = readdir($handle))) {
 		if (is_file($path.$file) AND (substr($file, 0, 6) != 'latex_')) {
 			$files_list[] = substr($path.$file, $baselen);
 		} elseif (is_dir($path.$file) AND ($file != '.') AND ($file != '..') AND ($file != 'lang') AND ($file != 'backup')) {
-			$files_list = array_merge($files_list, getDirFiles($path.$file.'/', $sort, $baselen));
+			$files_list = array_merge($files_list, getDirFiles($path.$file.'/', $baselen));
 		}
 	}
 	closedir($handle);
 	// sort alphabetically
-	if ($sort) {
-		sort($files_list);
-	} else {
-		rsort($files_list);
-	}
+	natcasesort($files_list);
 	return $files_list;
 }
 

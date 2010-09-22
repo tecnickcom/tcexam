@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2010-09-05
+// Last Update : 2010-09-21
 //
 // Description : Default CSS for admin area.
 //
@@ -472,6 +472,14 @@ div.tceformbox {
 	width: 100%;
 }
 
+div.contentbox {
+	background-color: #F6F6F6;
+	border: 1px solid #808080;
+	margin: 0px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
+	width: 100%;
+}
+
 /* TITLE ------------------------------- */
 div.title {
 	color: #003399;
@@ -898,5 +906,27 @@ iframe.menu {
 	visibility: hidden;
 	position:absolute;
 	z-index:-1;
+}
+
+table.filemanager {
+	background-color: #F6F6F6;
+	border: 1px solid #808080;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+table.filemanager td {
+	border: 1px solid #808080;
+	padding: 4px 4px 4px 4px;
+}
+
+table.filemanager th {
+	border: 1px solid #808080;
+	padding: 4px 4px 4px 4px;
+	background-color: #ddeeff;
+}
+
+table.filemanager tr{
+	border: 1px solid #808080;
 }
 

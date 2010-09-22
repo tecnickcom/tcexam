@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: tr
-// DATE: 2010-08-09 11:25:48
+// DATE: 2010-09-22 15:53:40
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Bu formda farkli sorularla ilgili konu secimini yonete
 $tmx['hp_edit_rating']='Bu formda serbest cevaplandirilabilinen sorularin puanlarini acikca belirleyebilirsiniz. \'user data\' (kullanici verisi) alanindan secilen kullanicilarin verisini gorebilirsiniz. \'shows all\' (hepsini goster) alani zaten degerlendirilmis cevaplari gorebilmenize ve duzeltmenize olanak saglar.';
 $tmx['hp_edit_subject']='Bu form ile testteki fakli konulari yonetebilirsiniz. Sistem icindeki sorular bu konularda kataloglara ayrilabilir. Bir tekli testin icinde birkac konu olabilir. Bir parcasi bir testte kullanilmis konulari silemez ve degistiremezsiniz, bu durumda siz sedece butona (delete) basarak gecersiz kilabilirsiniz. Aciklama: [+] Gecerli; [-] Gecersiz;';
 $tmx['hp_edit_tcecode']='Bu form ile resim ekleyebilir ve metni bicimlendirebilirsiniz';
-$tmx['hp_edit_test']='Bu form ile testi yerlestirir, degistirir ve silebilirsiniz. Siparisteki testte soru ve cavap numaralarini kesin bir sekilde konu da mutlaka tanimlamalisiniz. Sadece dogru ve saglam IP adreslerine sahip kullanicilar teste dahil olabilirler. IP alani test icra edilirken degisik isimlendirilmis, noktalarla ayrilmis IP adresleri icerebilir. Bir IP adrsi vahsikartlar (wildcards) icerebilir (* = numarasiz). Zaman tanimlamasi yapildiginda test aktif hale gelir, baslatildiginda testte maksimum zaman tanimlamasi tamamlanmis olmasi gerekir. Testler rastgele cikarilmis farkli tipte sorular ile birkac konu icerebilir. Her sorunun zorluk derecesine gore temel bir puan tanimlayabilirsiniz. Zaten icra edilir durumdaki testi degistiremezsiniz. Test silindigi zaman onun kayitlari da silinir (test verisi). Buton [generate] bir bilgisayar olmadan calistirilabilir ve yazdirilabilir bir PDF formatinin icine rastgele secilmis degismez bir test numarasi olusturmaniza olanak saglar.';
+$tmx['hp_edit_test']='Bu form ile testi yerlestirir, degistirir ve silebilirsiniz. Siparisteki testte soru ve cavap numaralarini kesin bir sekilde konu da mutlaka tanimlamalisiniz. Sadece dogru ve saglam IP adreslerine sahip kullanicilar teste dahil olabilirler. IP alani test icra edilirken degisik isimlendirilmis, noktalarla ayrilmis IP adresleri icerebilir. Bir IP adrsi vahsikartlar (wildcards) icerebilir (* = numarasiz). Zaman tanimlamasi yapildiginda test aktif hale gelir, baslatildiginda testte maksimum zaman tanimlamasi tamamlanmis olmasi gerekir. Testler rastgele cikarilmis farkli tipte sorular ile birkac konu icerebilir. Her sorunun zorluk derecesine gore temel bir puan tanimlayabilirsiniz. Zaten icra edilir durumdaki testi degistiremezsiniz. Test silindigi zaman onun kayitlari da silinir (test verisi). Buton [generate] bir bilgisayar olmadan calistirilabilir ve yazdirilabilir bir PDF formatinin icine rastgele secilmis degismez bir test numarasi olusturmaniza olanak saglar. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Bu formda farkli kullanicilarin sisteme giris iznini yonetebilirsiniz. her kullanici icin bir isim, sifre ve kullanim seviyesi secebilirsiniz. Seviye (level) 0 bir isimsiz kullaniciyi tanimlar (kayitli degil), seviye (level) 1 bir temel kullaniciyi tanimlar (e.g.: bir ogrenci), seviye (level) 10 tum haklara sahip bir yonetici kullaniciyi tanimlar';
 $tmx['hp_email_result']='Urunleri kullanicilara mail ile gonder';
 $tmx['hp_import_xml_questions']='Bu formda bir XML dosyasindan secilmis konuda sorular getirebilirsiniz';
@@ -515,5 +515,50 @@ Note that before each restore the system automatically execute a new backup, so 
 Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

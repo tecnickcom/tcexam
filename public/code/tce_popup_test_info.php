@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_popup_test_info.php
 // Begin       : 2004-05-28
-// Last Update : 2009-09-30
+// Last Update : 2010-09-17
 //
 // Description : Output test information using popup page
 //               headers.
@@ -56,7 +56,7 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = 1;
+$pagelevel = K_AUTH_PUBLIC_TEST_INFO;
 $thispage_title = $l['t_test_info'];
 $thispage_description = $l['hp_test_info'];
 require_once('../../shared/code/tce_authorization.php');

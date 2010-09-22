@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: mr
-// DATE: 2010-08-09 11:25:40
+// DATE: 2010-09-22 15:53:33
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='या रचनेमधून तूम्ही व
 $tmx['hp_edit_rating']='या रचनेमधून तूम्ही खास नमूद केलेल्या मूद्तिल मूक्त उत्तर निवडू शकता. तूम्ही उपयोगकर्याच्या घटकाचा विभाग निवडण्या करीता उपयोग कर्याचा घटक पहा. तूम्ही प्रत्यक्षात टाकलेले उत्तर ,संपूर्ण दाखवा, हा विभाग त्या उत्तराला दाखविते व बरोबर करते.';
 $tmx['hp_edit_subject']='या रचनेमधून तूम्ही वेगवेगळ्या प्रकरणावर परीक्षा घेऊ शकता. प्रश्नाची यादी या प्रकरणाच्या यादिच्या आधाराने करू शकता . तेथे ऐकेरी परीक्षे करीता अनेक प्रकरण देऊ शकता. तूम्हि प्रकरणा मध्ये बदल किंवा गाळू शकत नाही कारण परीक्षेचा भाग यापूर्वीच सादर केलेला आहे, अशा स्थितीमध्ये तूम्ही डीलीट बटनचा उपयोग करण्यास असमर्थ आहे. [delete].बटण वरिल कोरीव शब्द  : [+] समर्थ करणे; [-] असमर्थ करणे;';
 $tmx['hp_edit_tcecode']='या रचनेमध्ये तुम्ही प्रतिमा टाकू शकता आणि पाठ्यपूस्तकच्या स्वरूपामध्ये बदल करू शकता.';
-$tmx['hp_edit_test']='या रचनेमध्ये तूम्ही परिक्षा टाकणे,बदल करणे व वगळण्याची कूती करू शकता.परीक्षा टाकण्याची आज्ञा देण्याकरीता तूम्हाला अगोदर प्रकरणाच्या मर्यादा स्पष्ट करून यादीसोबत निश्चित प्रश्नांचे आणि उत्तरांचे आकडे टाकणे आवश्यक  आहे. केवळ उपयोगकतर्याचा योग्य पुरेसा आणि साधार आय पी पत्ता परीक्षेकरीता सादर करू शकता. आय पी पत्याच्या परीक्षा सादर करण्यापूर्वा वेगळा स्वल्पविराम द्यावा लागेल.या आय पी पत्याचा समावेश एखाद्या क्रमांकामध्ये होवू शकतो ही परीक्षा केवळ दिलेल्या ठराविक वेळेसाठीच कार्यरत राहील आणि एकदा सूरू केल्यानंतर दिलेल्या ठराविक वेळेतच पूर्ण करावि लागेल परिक्षेमध्ये विविध प्रकरण ज्यामध्ये विविध प्रकारच्या प्रश्नांचा समावेश होवू शकतो. जे व्यवस्थितपणे मांडणी केली जाईल . तूम्ही दर्शविलेल्या प्रत्येक कठिण पदधतीच्या प्रश्नांकरिता मूद्यांचा समावेश करू शकता . परीक्षा पूर्ण झालेलि असल्यामुळे त्यामध्ये सुधारणा करू शकत नाही. जेव्हा परीक्षा रदद होते त्यावेळी ते संपूर्ण बंद केले जाते. पीडीएफ संच्यातिल आगळ्यावेगळ्या एखाद्या स्वच्छदि परीक्षांच्या क्रमाका साठी चालविण्यास प्रवूत्त करते जे संगणकाविना कार्यकूती व छपाई करू शकते.';
+$tmx['hp_edit_test']='या रचनेमध्ये तूम्ही परिक्षा टाकणे,बदल करणे व वगळण्याची कूती करू शकता.परीक्षा टाकण्याची आज्ञा देण्याकरीता तूम्हाला अगोदर प्रकरणाच्या मर्यादा स्पष्ट करून यादीसोबत निश्चित प्रश्नांचे आणि उत्तरांचे आकडे टाकणे आवश्यक  आहे. केवळ उपयोगकतर्याचा योग्य पुरेसा आणि साधार आय पी पत्ता परीक्षेकरीता सादर करू शकता. आय पी पत्याच्या परीक्षा सादर करण्यापूर्वा वेगळा स्वल्पविराम द्यावा लागेल.या आय पी पत्याचा समावेश एखाद्या क्रमांकामध्ये होवू शकतो ही परीक्षा केवळ दिलेल्या ठराविक वेळेसाठीच कार्यरत राहील आणि एकदा सूरू केल्यानंतर दिलेल्या ठराविक वेळेतच पूर्ण करावि लागेल परिक्षेमध्ये विविध प्रकरण ज्यामध्ये विविध प्रकारच्या प्रश्नांचा समावेश होवू शकतो. जे व्यवस्थितपणे मांडणी केली जाईल . तूम्ही दर्शविलेल्या प्रत्येक कठिण पदधतीच्या प्रश्नांकरिता मूद्यांचा समावेश करू शकता . परीक्षा पूर्ण झालेलि असल्यामुळे त्यामध्ये सुधारणा करू शकत नाही. जेव्हा परीक्षा रदद होते त्यावेळी ते संपूर्ण बंद केले जाते. पीडीएफ संच्यातिल आगळ्यावेगळ्या एखाद्या स्वच्छदि परीक्षांच्या क्रमाका साठी चालविण्यास प्रवूत्त करते जे संगणकाविना कार्यकूती व छपाई करू शकते. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='या रचनेमध्ये तूम्हि वेगवेगळ्या उपयोगकर्त्याचा प्रवेश करण्यात ततपर राहू शकता . प्रत्येक उपयोगकर्त्याकरिता तूम्हाला नाव, संकेतक्रमांक आणि प्रवेशाची पध्दती निवडावि लागेल. निनावि उपयोगकर्त्याची पध्दत शूण्यानि दर्शवावि, मुळ उपयोगकर्त्याकरिता पहिली पध्दत . (e.g.: a student), संस्थापकाकरीता पूर्ण तपासणी';
 $tmx['hp_email_result']='उपयोगकर्त्याच्या इमेलचे उत्तर पाठविने.';
 $tmx['hp_import_xml_questions']='एक्स एम एल फाईल मधील निवडलेल्या विषया करिता तूम्ही प़श्न तयार करा.';
@@ -515,5 +515,50 @@ Note that before each restore the system automatically execute a new backup, so 
 Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

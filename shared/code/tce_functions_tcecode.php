@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2010-06-07
+// Last Update : 2010-09-22
 //
 // Description : Functions to translate TCExam code
 //               into XHTML.
@@ -245,10 +245,12 @@ function F_objects_callback($matches) {
  * @param string $extension object extension (e.g.: gif, jpg, swf, ...)
  * @param int $width object width
  * @param int $height object height
+ * @param int $maxwidth object max or default width
+ * @param int $maxheight object max or default height
  * @param string $alt alternative content
  * @return string replacement string
  */
-function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') {
+function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='', &$maxwidth=0, &$maxheight=0) {
 	require_once('../config/tce_config.php');
 	global $l, $db;
 	$filename = $name.'.'.$extension;
@@ -266,6 +268,34 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 			} else {
 				$htmlcode .= ' alt="image:'.$filename.'"';
 			}
+			$imsize = @getimagesize(K_PATH_CACHE.$filename);
+			if ($imsize !== false) {
+				list($pixw, $pixh) = $imsize;
+				if (($width <= 0) AND ($height <= 0)) {
+					// get default size
+					$width = $pixw;
+					$height = $pixh;
+				} elseif ($width <= 0) {
+					$width = $height * $pixw / $pixh;
+				} elseif ($height <= 0) {
+					$height = $width * $pixh / $pixw;
+				}
+			}
+			$ratio = 1;
+			if (($width > 0) AND ($height > 0)) {
+				$ratio = $width / $height;
+			}
+			// fit image on max dimensions
+			if (($maxwidth > 0) AND ($width > $maxwidth)) {
+				$width = $maxwidth;
+				$height = round($width / $ratio);
+				$maxheight = min($maxheight, $height);
+			}
+			if (($maxheight > 0) AND ($height > $maxheight)) {
+				$height = $maxheight;
+				$width = round($height * $ratio);
+			}
+			// print size
 			if ($width > 0) {
 				$htmlcode .= ' width="'.$width.'"';
 			}
@@ -273,6 +303,10 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 				$htmlcode .= ' height="'.$height.'"';
 			}
 			$htmlcode .= ' class="tcecode" />';
+			if ($imsize !== false) {
+				$maxwidth = $pixw;
+				$maxheight = $pixh;
+			}
 			break;
 		}
 		default: {
@@ -281,9 +315,13 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 				$htmlcode = '<object type="'.$mime[$extension].'" data="'.K_PATH_URL_CACHE.$filename.'"';
 				if ($width >0) {
 					$htmlcode .= ' width="'.$width.'"';
+				} elseif ($maxwidth > 0) {
+					$htmlcode .= ' width="'.$maxwidth.'"';
 				}
 				if ($height >0) {
 					$htmlcode .= ' height="'.$height.'"';
+				} elseif ($maxheight > 0) {
+					$htmlcode .= ' height="'.$maxheight.'"';
 				}
 				$htmlcode .= '>';
 				$htmlcode .= '<param name="type" value="'.$mime[$extension].'" />';
@@ -291,9 +329,13 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='') 
 				$htmlcode .= '<param name="filename" value="'.K_PATH_URL_CACHE.$filename.'" />';
 				if ($width > 0) {
 					$htmlcode .= '<param name="width" value="'.$width.'" />';
+				} elseif ($maxwidth > 0) {
+					$htmlcode .= '<param name="width" value="'.$maxwidth.'" />';
 				}
 				if ($height > 0) {
 					$htmlcode .= '<param name="height" value="'.$height.'" />';
+				} elseif ($maxheight > 0) {
+					$htmlcode .= '<param name="height" value="'.$maxheight.'" />';
 				}
 				if (!empty($alt)) {
 					$htmlcode .= ''.$alt.'';

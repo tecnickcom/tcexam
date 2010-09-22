@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2010-08-09 11:25:36
+// DATE: 2010-09-22 15:53:29
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Ezen az oldalon lehet kezelni az egy témához tartoz�
 $tmx['hp_edit_rating']='Ezen az oldalon lehet megadni a szöveges válaszokra adható pontokat. A felhasználó válasza a felhasználó kiválasztása után lehet megnézni. A \'megjelenít mind\' opció bekapcsolása után az összes választ egyszerre lehet értékelni.';
 $tmx['hp_edit_subject']='Ezen az oldalon lehet kezelni a tesztek témáit. A tesztekben feltehető kérdések különböző témák alá rendezhetők. Egy teszten belül különböző témákat választhatunk. Nem lehet törölni vagy módosítani egy témát amelyik egy már kitöltött tesztben felhasználásra került. Ilyenkor a törlés helyett a rendszer csak kikapcsolja a témát. Jelmagyarázat: [+] Bekapcsolt; [-] Kikapcsolt;';
 $tmx['hp_edit_tcecode']='Képek, formázás hozzáadása a szöveghez.';
-$tmx['hp_edit_test']='Ezen az oldalon lehet létrehozni, módosítani vagy törölni a teszteket. Egy teszt létrehozásához legalább egy definiált téma kell melyhez kérdések és válaszok tartoznak. A tesztet csak a megfelelő jogokkal és érvényes IP címmel rendelkező felhasználók tudják kitölteni. Az IP mező IP címek listáit is tartalmazhatja. Az IP címeket vesszővel kell elválasztani. Egy IP cím hivatkozhat több gépre is a csillag (*) karakterrel, mely azt jelzi hogy bármilyen 0 és 256 közötti szám szerepelhet a csillag karakter helyén. A teszt csak a megadott intervallumban lesz elérhető és ha egyszer elkezdtük kitölteni akkor a megadott maximum időn belül kell kitölteni. A tesztek több témat is tartalmazhatnak különböző jellegű kérdésekkel melyeket a rendszer véletlenszerűen választ ki. Lehetőségünk van a különböző nehézségű kérdések alap pontszámainak megváltoztatására is. Egy már kitöltött tesztet nem lehet módosítani. Ha egy tesztet törlünk, akkor minden a kitöltött tesztekhez tartozó adatot törlünk (logok). A [generál] gomb segítségével tetszőleges számú egyedi teszt készithető PDF formátumban melyeket számitogép nélkül is fel lehet használni.';
+$tmx['hp_edit_test']='Ezen az oldalon lehet létrehozni, módosítani vagy törölni a teszteket. Egy teszt létrehozásához legalább egy definiált téma kell melyhez kérdések és válaszok tartoznak. A tesztet csak a megfelelő jogokkal és érvényes IP címmel rendelkező felhasználók tudják kitölteni. Az IP mező IP címek listáit is tartalmazhatja. Az IP címeket vesszővel kell elválasztani. Egy IP cím hivatkozhat több gépre is a csillag (*) karakterrel, mely azt jelzi hogy bármilyen 0 és 256 közötti szám szerepelhet a csillag karakter helyén. A teszt csak a megadott intervallumban lesz elérhető és ha egyszer elkezdtük kitölteni akkor a megadott maximum időn belül kell kitölteni. A tesztek több témat is tartalmazhatnak különböző jellegű kérdésekkel melyeket a rendszer véletlenszerűen választ ki. Lehetőségünk van a különböző nehézségű kérdések alap pontszámainak megváltoztatására is. Egy már kitöltött tesztet nem lehet módosítani. Ha egy tesztet törlünk, akkor minden a kitöltött tesztekhez tartozó adatot törlünk (logok). A [generál] gomb segítségével tetszőleges számú egyedi teszt készithető PDF formátumban melyeket számitogép nélkül is fel lehet használni. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Regisztrált felhasználók adminisztrálása. Minden felhasználónak meg kell adni egy nevet, egy jelszót és egy elérési szintet. A 0. szint anonymous felhasználót jelent (nincs regisztrálva), 1. szint az alap felhasználó (pl. hallgató) és a 10. szint az adminisztrátor szint teljes jogkörrel.';
 $tmx['hp_email_result']='Eredmények elküldése a felhasználóknak e-mail -ben';
 $tmx['hp_import_xml_questions']='Kérdések betöltése egy XML file-ból a kiválasztott témához.';
@@ -515,5 +515,50 @@ Automatikus visszaállítás előtt mentés történik, hogy visszavonási lehet
 A mentés fájl tárolása a "cache/backup" alkönyvtárba kerül a következő szintataxissal: YYYYMMDDhhmmss_tcexam_backup.sql.gz , ahol a YYYYMMDDhhmmss jelentése (Y) év, (M) hónap, (D) nap, (h) óra, (m) perc, (s) másodperc.';
 $tmx['w_download']='letöltés';
 $tmx['h_download']='a kiválasztott mentés letöltése';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

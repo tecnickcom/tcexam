@@ -117,7 +117,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode) {
 	$mail->AltBody = F_html_to_text($mail->Body, false, true);
 
 	$mail->AddAddress($user_email, ''); //Adds a "To" address
-	if (strlen(K_USRREG_ADMIN_EMAIL)>0) {
+	if (strlen(K_USRREG_ADMIN_EMAIL) > 0) {
 		// add administrator to BCC field
 		$mail->AddBCC(K_USRREG_ADMIN_EMAIL);
 	}

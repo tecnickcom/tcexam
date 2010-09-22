@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-10-23
-// Last Update : 2009-11-10
+// Last Update : 2010-09-20
 //
 // Description : Configuration file for public section.
 //
@@ -55,6 +55,7 @@
 
 // --- INCLUDE FILES -----------------------------------------------------------
 
+require_once('../config/tce_auth.php');
 require_once('../../shared/config/tce_config.php');
 
 // --- DEFAULT META TAGS -------------------------------------------------------
@@ -120,6 +121,11 @@ define ('K_MAX_MEMORY_LIMIT', '32M');
  * Main page (homepage).
  */
 define ('K_MAIN_PAGE', 'index.php');
+
+/**
+ * Enable PDF results on public area.
+ */
+define ('K_ENABLE_PUBLIC_PDF', true);
 
 // --- INCLUDE FILES -----------------------------------------------------------
 

@@ -14,11 +14,11 @@ function rollOver() {
 			y = x - 1;
 			if (element.childNodes[y].tagName == 'IFRAME') {
 				if (element.childNodes[x].offsetHeight > 0) {
-					element.childNodes[y].style.height = element.childNodes[x].offsetHeight; 
+					element.childNodes[y].style.height = element.childNodes[x].offsetHeight;
 					element.childNodes[y].style.width = element.childNodes[x].offsetWidth;
 				} else {
 					// second level sub-menus
-					element.childNodes[y].style.top = 0; 
+					element.childNodes[y].style.top = 0;
 					element.childNodes[y].style.left = 190;
 					element.childNodes[y].style.width = 200;
 					element.childNodes[y].style.height = 22 * element.childNodes[x].getElementsByTagName('LI').length;
@@ -41,7 +41,7 @@ function rollOff() {
 			// fix for IE6 z-index bug
 			y = x - 1;
 			if (element.childNodes[y].tagName == 'IFRAME') {
-				element.childNodes[y].style.height = 0; 
+				element.childNodes[y].style.height = 0;
 				element.childNodes[y].style.width = 0;
 				element.childNodes[y].style.visibility = 'hidden';
 				element.childNodes[y].style.display = 'none';

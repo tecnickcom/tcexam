@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2010-06-16
+// Last Update : 2010-09-20
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -542,6 +542,15 @@ for ($item = 1; $item <= $test_num; $item++) {
 		F_display_db_error();
 	}
 } //end for test_num
+
+$pdf->lastpage(true);
+$pdf->SetAutoPageBreak(false);
+$pdf->SetFont('helvetica', '', 5);
+$pdf->SetTextColor(0,127,255);
+$msg = "\x50\x6f\x77\x65\x72\x65\x64\x20\x62\x79\x20\x54\x43\x45\x78\x61\x6d\x20\x28\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e\x6f\x72\x67\x29";
+$lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e\x6f\x72\x67";
+$pdf->SetXY(15, $pdf->getPageHeight(), true);
+$pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
 
 //Close and outputs PDF document
 $pdf->Output('tcexam_test_'.$test_id.'_'.date('YmdHis').'.pdf', 'D');

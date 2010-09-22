@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2010-08-09 11:25:34
+// DATE: 2010-09-22 15:53:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='בטופס זה ניתן לנהל את השאלות ה
 $tmx['hp_edit_rating']='.טופס זה מיועד למתן ניקוד לשאלות הפתוחות. ניתן לצפות במידע על הנבחן על ידי בחירת השדה \'נתוני משתמש\'. השדה \'הצג הכל\' מאפשר לראות ולתקן גם תשובות שנוקדו כבר';
 $tmx['hp_edit_subject']='בטופס זה ניתן לנהל את הנושאים השונים השייכים ליחידת הלימוד שנבחרה. השאלות במערכת מקוטלגות על פי נושאים אלו. מבחן בודד יכול להכיל כמה נושאים.  לא ניתן לשנות או למחוק נושא הנמצא במבחן שכבר בוצע, במקרה כזה כפתור [מחיקה] ינטרל את הנושא וימנע שימוש בו במבחנים עתידיים.  מקרא: [+] מופעל; [-] מנוטרל;';
 $tmx['hp_edit_tcecode']='בטופס זה ניתן להוסיף למלל תמונות ועיצוב';
-$tmx['hp_edit_test']='בטופס זה ניתן ליצור, לעדכן או למחוק מבחנים. בכדי ליצור מבחן דרוש לפחות נושא אחד הכולל מספר שאלות ותשובות.  רק משתמשים בעלי הרשאות מתאימות המחוברים ממחשבים בעלי כתובות מורשות יכולים להבחן. השדה "כתובת רשת" יכול להכיל רשימת כתובות מחשבים (IP) מופרדת בפסיקים.  ניתן להשתמש בכתובות גם בתווים כלליים (* = מספר כלשהו). המבחן יהיה פעיל רק בזמן שנקבע לביצועו וחובה לסיימו בזמן שהוקצב.  מבחן יכול להכיל נושאים וסוגי שאלות שונים אשר ישלפו מבסיס הנתונים באופן אקראי. כמו כן ניתן לקבוע ניקוד בסיסי לכל רמת קושי של השאלות.  לא ניתן לשנות מבחן שבוצע כבר. מחיקת מבחן גורמת גם למחיקת יומן הרישום של המבחן (נתוני המבחנים).  הכפתור [יצירה] מאפשר הפקת מספר שרירותי של טפסי מבחן אישיים בפורמט PDF שניתן להדפיסם ולהשתמש בהם ללא מחשב.';
+$tmx['hp_edit_test']='בטופס זה ניתן ליצור, לעדכן או למחוק מבחנים. בכדי ליצור מבחן דרוש לפחות נושא אחד הכולל מספר שאלות ותשובות.  רק משתמשים בעלי הרשאות מתאימות המחוברים ממחשבים בעלי כתובות מורשות יכולים להבחן. השדה "כתובת רשת" יכול להכיל רשימת כתובות מחשבים (IP) מופרדת בפסיקים.  ניתן להשתמש בכתובות גם בתווים כלליים (* = מספר כלשהו). המבחן יהיה פעיל רק בזמן שנקבע לביצועו וחובה לסיימו בזמן שהוקצב.  מבחן יכול להכיל נושאים וסוגי שאלות שונים אשר ישלפו מבסיס הנתונים באופן אקראי. כמו כן ניתן לקבוע ניקוד בסיסי לכל רמת קושי של השאלות.  לא ניתן לשנות מבחן שבוצע כבר. מחיקת מבחן גורמת גם למחיקת יומן הרישום של המבחן (נתוני המבחנים).  הכפתור [יצירה] מאפשר הפקת מספר שרירותי של טפסי מבחן אישיים בפורמט PDF שניתן להדפיסם ולהשתמש בהם ללא מחשב. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='בטופס זה ניתן לנהל את המשתמשים בעלי זכות הגישה למערכת. עבור כל משתמש ניתן לבחור שם, ססמה ורמת גישה. רמה 0 מציינת משתמש אנונימי (לא רשום למערכת), רמה 1 מציינת משתמש רגיל (למשל תלמיד), רמה 10 מציינת מנהל מערכת בעל זכויות גישה מלאות';
 $tmx['hp_email_result']='שלח לנבחנים תשובות בדואר';
 $tmx['hp_import_xml_questions']='בעזרת טופס זה ניתן לייבא מקובץ XML שאלות עבור הנושא הנבחר.';
@@ -514,5 +514,50 @@ $tmx['hp_edit_backups']='דף זה מאפשר לגבות ולשחזר את בס�
 כאשר YYYYMMDDhhmmss מציינות את השנה (Y), חודש (M), יום (D), שעה (h), דקה (m), שניה (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

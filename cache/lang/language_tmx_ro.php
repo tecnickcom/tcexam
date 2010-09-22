@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-08-09 11:25:46
+// DATE: 2010-09-22 15:53:38
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Cu acest formular puteţi gestiona diferite întrebăr
 $tmx['hp_edit_rating']='În acest formular puteţi specifica punctele pentru răspunsurile libere. Puteţi vedea datele utilizatorului selectând câmpul \'date utilizator\'. Câmpul \'afişează tot\' vă permite să vedeţi şi să corectaţi răspunsurile deja evaluate.';
 $tmx['hp_edit_subject']='Cu acest formular puteţi gestiona diferitele teme care aparţin modulului selectat. Întrebările din sistem pot fi catalogate conform acestor teme. Într-un singur test pot fi mai multe teme. Nu puteţi modifica sau şterge o temă care este parte într-un test deja efectuat; în acest caz puteţi doar să-l inactivaţi. Legenda: [+] Activ; [-] Inactiv;';
 $tmx['hp_edit_tcecode']='Cu acest formular puteţi adăuga imagini şi puteţi selecta formatul textului.';
-$tmx['hp_edit_test']='În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un punctaj de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator.';
+$tmx['hp_edit_test']='În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un punctaj de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='În acest formular puteţi gestiona diferiţi utilizatori care au acces la acest sistem. Pentru fiecare utilizator puteţi alege un nume, o parolă şi un nivel de acces. Nivelul 0 indică un utilizator anonim (neînregistrat), nivelul 1 un utilizator de bază (ex.: un student), nivelul 10 indică un administrator cu drepturi de acces depline.';
 $tmx['hp_email_result']='Trimite rezultate către utilizatori prin email';
 $tmx['hp_import_xml_questions']='Cu acest formular puteţi importa întrebări pentru tema selectată dintr-un fişier XML.';
@@ -513,5 +513,50 @@ De ştiut faptul că înaintea fiecărei restaurări sistemul realizează automa
 Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoarea sintaxă: AAAALLZZhhmmss_tcexam_backup.sql.gz , unde AAAALLZZhhmmss reprezintă cifrele anului (A), lunii (L), zilei (Z), orei (h), minutelor (m), secundelor (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='downloadați fișierul de backup selectat';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

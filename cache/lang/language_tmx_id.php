@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2010-08-09 11:25:37
+// DATE: 2010-09-22 15:53:30
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -124,7 +124,7 @@ $tmx['hp_edit_question']='Dengan formulir ini anda dapat mengelola soal yang ber
 $tmx['hp_edit_rating']='Dalam formulir ini anda dapat menentukan point untuk jawaban uraian. Anda dapat melihat data user dengan memili field \'Data user\'. Field \'Tampilkan semua\' membolehkan anda untuk melihat dan melakukan koreksi terhadap jawaban yang sedang dievaluasi';
 $tmx['hp_edit_subject']='Dengan formulir ini anda dapat mengelola topik test yang berbeda. Soal yang ada dalam sistem dapat di kelompokkan menggunakan topik ini. Dalam sebuah test dapat berisi beberapa topik. Anda tidak dapat merubah atau menghapus topik yang merupakan bagian dari test yang sebelumnya dilaksanakan, dalam kasus ini anda dapat menonaktifkan dengan menggunakan tombol [hapus]. Legenda: [+]Aktif [-]Non Aktif;';
 $tmx['hp_edit_tcecode']='Dengan formulir ini anda dapat menambahkan gambar dan mengatur formatnya terhadap text';
-$tmx['hp_edit_test']='Dalam formulir ini anda dapat menyisipkan, merubah atau menghapus test. Untuk menyisipkan test anda harus terlebih dahulu menentukan sedikitnya sebuah topik dengan beberapa soal dan jawaban. Hanya user dengan hak dan IP valid yang dapat melaksanakan test. Field IP berisi juga daftar dari ip adress yang digunakan untuk melakukan test, dipisahkan oleh koma. IP address dapat juga berisi * wildchar yang berarti nomor sembarang. Test akan diaktivasi sesaat test dimulai, dan harus diselesaikan dalam jangka waktu maksimum. Test dapat berisi beberapa topik dengan tipe soal yang berbeda yang akan diambil secara acak. Anda dapat juga menentukan skor dasar bagi tiap point sesuai tingkat kesulitan soal. Anda tidak dapat merubah test yang sedang berlangsung. Ketika test dihapus, akan menghapus juga semua data jawaban dan hasil test. Tombol [bangkitkan] memungkinkan untuk membangkitkan nomor khusus dari test yang unik dalam format PDF yang dapat dicetak dan dilaksanakan tanpa komputer.';
+$tmx['hp_edit_test']='Dalam formulir ini anda dapat menyisipkan, merubah atau menghapus test. Untuk menyisipkan test anda harus terlebih dahulu menentukan sedikitnya sebuah topik dengan beberapa soal dan jawaban. Hanya user dengan hak dan IP valid yang dapat melaksanakan test. Field IP berisi juga daftar dari ip adress yang digunakan untuk melakukan test, dipisahkan oleh koma. IP address dapat juga berisi * wildchar yang berarti nomor sembarang. Test akan diaktivasi sesaat test dimulai, dan harus diselesaikan dalam jangka waktu maksimum. Test dapat berisi beberapa topik dengan tipe soal yang berbeda yang akan diambil secara acak. Anda dapat juga menentukan skor dasar bagi tiap point sesuai tingkat kesulitan soal. Anda tidak dapat merubah test yang sedang berlangsung. Ketika test dihapus, akan menghapus juga semua data jawaban dan hasil test. Tombol [bangkitkan] memungkinkan untuk membangkitkan nomor khusus dari test yang unik dalam format PDF yang dapat dicetak dan dilaksanakan tanpa komputer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Dalam formulir ini anda dapat mengelola user yang berbeda yang dibolehkan mengakses system. Untuk setiap user, anda dapat memilih sebuah nama, password dan level akses. Level 0 = user anonymous, level 1 = user dasar ( siswa), level 10 = administrator dengan hak akses penuh. ';
 $tmx['hp_email_result']='Mengirim hasil test ke user melalui email';
 $tmx['hp_import_xml_questions']='Dengan formulir in anda dapat mengimport soal yang barkaitan dengan topik dari file bentuk XML.';
@@ -515,5 +515,50 @@ Perlu diingat bahwa sebelum anda membuat file cadangan maka sistem secara otomat
 File cadangan tersimpan dalam folder "cache/backup" dengan tatabahasa: YYYYMMDDhhmmss_tcexam_backup.sql.gz , dimana YYYYMMDDhhmmss adalah tahun (Y), bulan (M), hari (D), jam (h), menit (m), detik (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='download the selected backup file';
+$tmx['t_user_change_password']='Change Password';
+$tmx['t_user_change_email']='Change Email';
+$tmx['hp_user_change_password']='With this form you can change your access password.';
+$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
+$tmx['m_password_updated']='the password has been updated';
+$tmx['m_email_updated']='the email has been updated';
+$tmx['m_different_emails']='the emails are different';
+$tmx['w_current_password']='current password';
+$tmx['w_new_password']='new password';
+$tmx['d_password_lenght']='at least 8 alphanumeric characters';
+$tmx['w_new_email']='new email';
+$tmx['h_email']='e-mail address';
+$tmx['h_login_link']='click on this link to access on this system';
+$tmx['w_change_email']='change email';
+$tmx['w_change_password']='change password';
+$tmx['w_admin']='admin';
+$tmx['h_admin_link']='administration area';
+$tmx['h_public_link']='public area';
+$tmx['w_public']='public';
+$tmx['t_test_list']='Test List';
+$tmx['w_action']='action';
+$tmx['w_show']='show';
+$tmx['w_hide']='hide';
+$tmx['w_change_dir']='change directory';
+$tmx['w_size']='size';
+$tmx['w_date']='date';
+$tmx['w_permissions']='permissions';
+$tmx['t_filemanager']='Media File Manager';
+$tmx['hp_filemanager']='With this form you can manage multimedia files.';
+$tmx['m_used_file']='this file is used on question or answer description';
+$tmx['m_delete_file_error']='unable to delete the selected file or directory';
+$tmx['w_rename']='rename';
+$tmx['m_file_renamed']='the file has been renamed';
+$tmx['m_file_rename_error']='unable to rename the selected file';
+$tmx['m_file_already_exist']='this file or directory name is already used';
+$tmx['w_file_manager']='file manager';
+$tmx['w_new_directory']='new directory';
+$tmx['w_create_directory']='create';
+$tmx['m_directory_created']='the directory has been created';
+$tmx['m_directory_create_error']='unable to create the requested directory';
+$tmx['w_directory']='directory';
+$tmx['w_table']='table';
+$tmx['w_visual']='visual';
+$tmx['t_select_media_file']='Select Object';
+$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
 
 // --- EOF ---

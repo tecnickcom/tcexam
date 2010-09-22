@@ -77,9 +77,13 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_export_custom.php.html">		tce_export_custom.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_filemanager.php.html">		tce_filemanager.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html">		tce_functions_auth_sql.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_email_reports.php.html">		tce_functions_email_reports.php
+		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html">		tce_functions_filemanager.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_functions_questions.php.html">		tce_functions_questions.php
 		</a><br>
@@ -117,13 +121,15 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_info.php.html">		tce_page_info.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_public---code---tce_page_menu.php.html">		tce_page_menu.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_menu.php.html">		tce_page_menu.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_pdf_all_questions.php.html">		tce_pdf_all_questions.php
 		</a><br>
-			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_pdf_results.php.html">		tce_pdf_results.php
-		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_public---code---tce_pdf_results.php.html">		tce_pdf_results.php
+		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_pdf_results.php.html">		tce_pdf_results.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_pdf_testgen.php.html">		tce_pdf_testgen.php
 		</a><br>
@@ -132,6 +138,8 @@
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_popup_test_info.php.html">		tce_popup_test_info.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_preview_tcecode.php.html">		tce_preview_tcecode.php
+		</a><br>
+			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_select_mediafile.php.html">		tce_select_mediafile.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-admin/_admin---code---tce_select_users.php.html">		tce_select_users.php
 		</a><br>
@@ -206,7 +214,7 @@ HTML Color Picker Functions.<br /><br /><br /><br />
 <h4>Includes:</h4>
 <div class="tags">
 require_once(<a href="../com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html">'../config/tce_config.php'</a>) [line 55]<br />
-require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_footer_popup.php.html">'../code/tce_page_footer_popup.php'</a>) [line 61]<br />
+require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_footer_popup.php.html">'../code/tce_page_footer_popup.php'</a>) [line 62]<br />
 require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_header_popup.php.html">'../code/tce_page_header_popup.php'</a>) [line 59]<br />
 </div>
 <br /><br />
@@ -214,12 +222,12 @@ require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_heade
 <br />
   <hr />
 	<a name="functionF_html_color_picker"></a>
-	<h3>F_html_color_picker <span class="smalllinenumber">[line 71]</span></h3>
+	<h3>F_html_color_picker <span class="smalllinenumber">[line 72]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void F_html_color_picker(
-)</code>
+ $callingform,  $callingfield,  $tag)</code>
     </td></tr></table>
     </td></tr></table><br />
 
@@ -246,12 +254,30 @@ require_once(<a href="../com-tecnick-tcexam-admin/_admin---code---tce_page_heade
 </div>
     <br /><br />
 	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$callingform</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$callingfield</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$tag</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:22 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:33 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

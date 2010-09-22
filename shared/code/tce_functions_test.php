@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-02-20
+// Last Update : 2010-09-20
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -51,14 +51,16 @@
  */
 
 /**
- * Returns an XHTML unordered list of user's enabled tests.
- * @return string containing an XHTML unordered list
+ * Returns an XHTML table of user's tests.
+ * @return string containing an XHTML table of user's tests.
  */
 function F_getUserTests() {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_tcecode.php');
+	require_once('../../shared/code/tce_functions_test_stats.php');
 	global $db, $l;
-	$str = ''; //string to return
+	$user_id = intval($_SESSION['session_user_id']);
+	$str = ''; // temp string
 	// get current date-time
 	$current_time = date(K_TIMESTAMP_FORMAT);
 	$sql = 'SELECT *
@@ -69,25 +71,44 @@ function F_getUserTests() {
 				FROM '.K_TABLE_TEST_SUBJSET.'
 			)
 			AND (test_begin_time < \''.$current_time.'\')
-			AND (test_end_time > \''.$current_time.'\')
 		)
-		ORDER BY test_name'; // select all active tests
-	if($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_array($r)) { // for each active test
+		ORDER BY test_begin_time DESC'; // select all active tests
+	if ($r = F_db_query($sql, $db)) {
+		while ($m = F_db_fetch_array($r)) { // for each active test
 			// check user's authorization
 			if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
+				$str .= '<tr>'.K_NEWLINE;
+				$str .= '<td><strong>'.F_testInfoLink($m['test_id'], $m['test_name']).'</strong></td>'.K_NEWLINE;
+				$str .= '<td>'.$m['test_begin_time'].'</td>'.K_NEWLINE;
+				$str .= '<td>'.$m['test_end_time'].'</td>'.K_NEWLINE;
 				// the user's IP is valid, check test status
-				$test_status = F_checkTestStatus($_SESSION['session_user_id'], $m['test_id'], $m['test_duration_time']);
-				if (($test_status < 4) OR (F_getBoolean($m['test_results_to_users']))) {
-					$str .= '<li title="'.F_tcecodeToTitle($m['test_description']).'">';
-					$str .= $m['test_name'];
-					$str .= ' '.F_testInfoLink($m['test_id'], $l['w_info']).'';
+				$test_status = F_checkTestStatus($user_id, $m['test_id'], $m['test_duration_time']);
+				// status
+				$str .= '<td';
+				if (($test_status == 4) AND F_getBoolean($m['test_results_to_users'])) {
+					$usrtestdata = F_getUserTestStat($m['test_id'], $user_id);
+					$passmsg = '';
+					if ($usrtestdata['score_threshold'] > 0) {
+						if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
+							$str .= ' style="background-color:#ddffdd;"';
+							$passmsg = ' - '.$l['w_passed'];
+						} else {
+							$str .= ' style="background-color:#ffdddd;"';
+							$passmsg = ' - '.$l['w_not_passed'];
+						}
+					}
+					$str .= '><a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'"';
+					$str .= '>'.$usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'</a>';
+				} else {
+					$str .= '>&nbsp;'.K_NEWLINE;
 				}
-				// display various links by status case
+				$str .= '</td>'.K_NEWLINE;
+				// display various action links by status case
+				$str .= '<td>';
 				switch ($test_status) {
 					case 0: { // 0 = the test generation process is started but not completed
 						// print execute test link
-						$str .= ' <a href="';
+						$str .= '<a href="';
 						if ((!defined('K_DISPLAY_TEST_DESCRIPTION')) OR (!K_DISPLAY_TEST_DESCRIPTION)) {
 							// directly execute test
 							$str .= 'tce_test_execute.php';
@@ -95,40 +116,45 @@ function F_getUserTests() {
 							// display test description before starting
 							$str .= 'tce_test_start.php';
 						}
-						$str .= '?testid='.$m['test_id'].'" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a>';
+						$str .= '?testid='.$m['test_id'].'" title="'.$l['h_execute'].'" class="buttongreen">'.$l['w_execute'].'</a>';
 						break;
 					}
 					case 1: // 1 = the test has been successfully created
 					case 2: // 2 = all questions have been displayed to the user
 					case 3: { // 3 = all questions have been answered
 						// continue test
-						$str .= ' <a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_continue'].'" class="xmlbutton">'.$l['w_continue'].'</a>';
+						$str .= '<a href="tce_test_execute.php?testid='.$m['test_id'].'" title="'.$l['h_continue'].'" class="xmlbutton">'.$l['w_continue'].'</a>';
 						break;
 					}
 					case 4: { // 4 = test locked (for timeout)
-						if (F_getBoolean($m['test_results_to_users'])) {
-							$str .= ' <a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'" class="xmlbutton">'.$l['w_result'].'</a>';
-						}
 						if (F_getBoolean($m['test_repeatable'])) {
-							$str .= ' <a href="index.php?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'" class="xmlbutton">'.$l['w_repeat'].'</a>';
+							$str .= '<a href="index.php?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'" class="buttonred">'.$l['w_repeat'].'</a>';
 						}
 						break;
 					}
 				}
-				if (($test_status < 4) OR (F_getBoolean($m['test_results_to_users']))) {
-					$str .= '</li>'.K_NEWLINE;;
-				}
+				$str .= '</td>'.K_NEWLINE;
+				$str .= '</tr>'.K_NEWLINE;
 			}
 		}
 	} else {
 		F_display_db_error();
 	}
 	if (strlen($str) > 0) {
-		$str = $l['w_tests_available'].':<br />'.K_NEWLINE.'<ol class="testlist">'.K_NEWLINE.$str.'</ol>'.K_NEWLINE;
+		$out = '<table class="testlist">'.K_NEWLINE;
+		$out .= '<tr>'.K_NEWLINE;
+		$out .= '<th>'.$l['w_test'].'</th>'.K_NEWLINE;
+		$out .= '<th>'.$l['w_from'].'</th>'.K_NEWLINE;
+		$out .= '<th>'.$l['w_to'].'</th>'.K_NEWLINE;
+		$out .= '<th>'.$l['w_status'].'</th>'.K_NEWLINE;
+		$out .= '<th>'.$l['w_action'].'</th>'.K_NEWLINE;
+		$out .= '</tr>'.K_NEWLINE;
+		$out .= $str;
+		$out .= '</table>'.K_NEWLINE;
 	} else {
-		$str = $l['m_no_test_available'];
+		$out = $l['m_no_test_available'];
 	}
-	return $str;
+	return $out;
 }
 
 /**
@@ -145,12 +171,12 @@ function F_removeTestResults($test_id) {
 		WHERE test_id='.$test_id.'
 			AND test_repeatable=\'1\'
 		LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.'
 				WHERE testuser_test_id='.$test_id.'
 					AND testuser_user_id='.$user_id.'';
-			if(!$rd = F_db_query($sqld, $db)) {
+			if (!$rd = F_db_query($sqld, $db)) {
 				F_display_db_error();
 			}
 		}
@@ -256,7 +282,7 @@ function F_terminateUserTest($test_id) {
 		SET testuser_status=4
 		WHERE testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		F_display_db_error();
 	}
 }
@@ -282,8 +308,8 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 		FROM '.K_TABLE_TEST_USER.'
 		WHERE testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$testuser_id = $m['testuser_id'];
 			$test_status = $m['testuser_status'];
 			$endtime = date(K_TIMESTAMP_FORMAT, strtotime($m['testuser_creation_time']) + ($duration * K_SECONDS_IN_MINUTE));
@@ -292,9 +318,10 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 				$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 					SET testuser_status=4
 					WHERE testuser_id='.$testuser_id.'';
-				if(!$ru = F_db_query($sqlu, $db)) {
+				if (!$ru = F_db_query($sqlu, $db)) {
 					F_display_db_error();
 				} else {
+					// test locked
 					$test_status = 4;
 				}
 			} else {
@@ -303,7 +330,7 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 						// delete incomplete test (also deletes test logs using database referential integrity)
 						$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.'
 							WHERE testuser_id='.$testuser_id.'';
-						if(!$rd = F_db_query($sqld, $db)) {
+						if (!$rd = F_db_query($sqld, $db)) {
 							F_display_db_error();
 						}
 						break;
@@ -315,7 +342,7 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 							$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 								SET testuser_status=2
 								WHERE testuser_id='.$testuser_id.'';
-							if(!$ru = F_db_query($sqlu, $db)) {
+							if (!$ru = F_db_query($sqlu, $db)) {
 								F_display_db_error();
 							} else {
 								$test_status = 2;
@@ -330,7 +357,7 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 							$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 								SET testuser_status=3
 								WHERE testuser_id='.$testuser_id.'';
-							if(!$ru = F_db_query($sqlu, $db)) {
+							if (!$ru = F_db_query($sqlu, $db)) {
 								F_display_db_error();
 							} else {
 								$test_status = 3;
@@ -363,7 +390,7 @@ function F_testInfoLink($test_id, $link_name='') {
 	$onclickinfo .= ',width='.K_TEST_INFO_WIDTH;
 	$onclickinfo .= ',menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\');';
 	$onclickinfo .= 'return false;';
-	$str .= '<a href="tce_popup_test_info.php?testid='.$test_id.'" onclick="'.$onclickinfo.'" title="'.$l['m_new_window_link'].'" class="xmlbutton">';
+	$str .= '<a href="tce_popup_test_info.php?testid='.$test_id.'" onclick="'.$onclickinfo.'" title="'.$l['m_new_window_link'].'">';
 	if (strlen($link_name) > 0) {
 		$str .= $link_name;
 	} else {
@@ -437,12 +464,34 @@ function F_getTestData($test_id) {
 		FROM '.K_TABLE_TESTS.'
 		WHERE test_id='.$test_id.'
 		LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		$td = F_db_fetch_array($r);
 	} else {
 		F_display_db_error();
 	}
 	return $td;
+}
+
+/**
+ * Returns user data.
+ * @param int $test_id test ID.
+ * @return array containing test data.
+ */
+function F_getUserData($user_id) {
+	require_once('../config/tce_config.php');
+	global $db, $l;
+	$user_id = intval($user_id);
+	$ud = Array();
+	$sql = 'SELECT *
+		FROM '.K_TABLE_USERS.'
+		WHERE user_id='.$user_id.'
+		LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		$ud = F_db_fetch_array($r);
+	} else {
+		F_display_db_error();
+	}
+	return $ud;
 }
 
 /**
@@ -482,8 +531,8 @@ function F_getTestStartTime($testuser_id) {
 	$sql = 'SELECT testuser_creation_time
 		FROM '.K_TABLE_TEST_USER.'
 		WHERE testuser_id='.$testuser_id.'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$starttime = strtotime($m['testuser_creation_time']);
 		}
 	} else {
@@ -536,8 +585,8 @@ function F_executeTest($test_id) {
 		WHERE test_id='.$test_id.'
 			AND test_begin_time < \''.$current_time.'\'
 			AND test_end_time > \''.$current_time.'\'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			// check user's authorization
 			if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
 				// the user's IP is valid, check test status
@@ -584,9 +633,9 @@ function F_isRightTestlogUser($test_id, $testlog_id) {
 		FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.'
 		WHERE testuser_id=testlog_testuser_id
 			AND testlog_id='.$testlog_id.'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
-			if(($m['testuser_user_id'] != $_SESSION['session_user_id']) OR ($m['testuser_test_id'] != $test_id)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			if (($m['testuser_user_id'] != $_SESSION['session_user_id']) OR ($m['testuser_test_id'] != $test_id)) {
 				return false;
 			}
 		} else {
@@ -638,7 +687,7 @@ function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $
 			$sql .= ' LIMIT '.$limit.'';
 		}
 	}
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		while ($m = F_db_fetch_array($r)) {
 			if ($randorder) {
 				$answers_ids[$startindex++] = $m['answer_id'];
@@ -677,7 +726,7 @@ function F_addLogAnswers($testlog_id, $answers_ids) {
 			-1,
 			'.$i.'
 			)';
-		if(!$ri = F_db_query($sqli, $db)) {
+		if (!$ri = F_db_query($sqli, $db)) {
 			F_display_db_error(false);
 			return false;
 		}
@@ -701,7 +750,7 @@ function F_getFirstTestUser($test_id) {
 		WHERE testuser_test_id='.$test_id.'
 			AND testuser_status>0
 		LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
 			$firsttest = $m['testuser_id'];
 		}
@@ -742,7 +791,7 @@ function F_newTestLog($testuser_id, $question_id, $score, $order, $num_answers=0
 		'.$order.',
 		'.$num_answers.'
 		)';
-	if(!$rl = F_db_query($sqll, $db)) {
+	if (!$rl = F_db_query($sqll, $db)) {
 		F_display_db_error(false);
 		return false;
 	}
@@ -778,7 +827,7 @@ function F_createTest($test_id, $user_id) {
 		0,
 		\''.date(K_TIMESTAMP_FORMAT).'\'
 		)';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		F_display_db_error(false);
 		return false;
 	} else {
@@ -797,7 +846,7 @@ function F_createTest($test_id, $user_id) {
 			FROM '.K_TABLE_TEST_SUBJSET.'
 			WHERE tsubset_test_id='.$test_id.'
 			ORDER BY tsubset_type, tsubset_difficulty, tsubset_answers DESC';
-		if($r = F_db_query($sql, $db)) {
+		if ($r = F_db_query($sql, $db)) {
 			$questions_data = array();
 			while ($m = F_db_fetch_array($r)) {
 				// 3. select questions
@@ -877,7 +926,7 @@ function F_createTest($test_id, $user_id) {
 				} else {
 					$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
 				}
-				if($rq = F_db_query($sqlq, $db)) {
+				if ($rq = F_db_query($sqlq, $db)) {
 					while ($mq = F_db_fetch_array($rq)) {
 						// store questions data
 						$tmp_data = array(
@@ -933,7 +982,7 @@ function F_createTest($test_id, $user_id) {
 		} else {
 			$sql .= ' ORDER BY testlog_order';
 		}
-		if($r = F_db_query($sql, $db)) {
+		if ($r = F_db_query($sql, $db)) {
 			$question_order = 0;
 			while ($m = F_db_fetch_array($r)) {
 				$question_order++;
@@ -956,7 +1005,7 @@ function F_createTest($test_id, $user_id) {
 		testuser_status=1,
 		testuser_creation_time=\''.date(K_TIMESTAMP_FORMAT).'\'
 		WHERE testuser_id='.$testuser_id.'';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		F_display_db_error(false);
 		return false;
 	}
@@ -1025,7 +1074,7 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
 		} else {
 			$sql .= ' ORDER BY logansw_order';
 		}
-		if($r = F_db_query($sql, $db)) {
+		if ($r = F_db_query($sql, $db)) {
 			$answers_ids = array();
 			while ($m = F_db_fetch_array($r)) {
 				$answers_ids[] = $m['logansw_answer_id'];
@@ -1069,7 +1118,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 		WHERE testlog_question_id=question_id
 			AND testlog_id='.$testlog_id.'
 		LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
 			// get previous answer text
 			$oldtext = $m['testlog_answer_text'];
@@ -1091,7 +1140,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 			WHERE logansw_answer_id=answer_id
 				AND logansw_testlog_id='.$testlog_id.'
 			ORDER BY logansw_order';
-		if($r = F_db_query($sql, $db)) {
+		if ($r = F_db_query($sql, $db)) {
 			while (($m = F_db_fetch_array($r))) {
 				$num_answers++;
 				// update each answer
@@ -1188,7 +1237,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 					}
 				} // end of switch
 				$sqlu .= ' WHERE logansw_testlog_id='.$testlog_id.' AND logansw_answer_id='.$m['logansw_answer_id'].'';
-				if(!$ru = F_db_query($sqlu, $db)) {
+				if (!$ru = F_db_query($sqlu, $db)) {
 					F_display_db_error();
 					return false;
 				}
@@ -1227,7 +1276,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 				WHERE answer_question_id='.$question_id.'
 					AND answer_enabled=\'1\'
 					AND answer_isright=\'1\'';
-			if($r = F_db_query($sql, $db)) {
+			if ($r = F_db_query($sql, $db)) {
 				while ($m = F_db_fetch_array($r)) {
 					if (strcasecmp(trim($answer_text), $m['answer_description']) == 0) {
 						$answer_score += $question_right_score;
@@ -1251,7 +1300,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 		$sqlu .= ' testlog_reaction_time='.intval($reaction_time).',';
 		$sqlu .= ' testlog_user_ip=\''.getNormalizedIP($_SERVER['REMOTE_ADDR']).'\'';
 		$sqlu .= ' WHERE testlog_id='.$testlog_id.'';
-		if(!$ru = F_db_query($sqlu, $db)) {
+		if (!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
 			return false;
 		}
@@ -1301,8 +1350,8 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 				AND testuser_user_id='.$user_id.'
 			ORDER BY testlog_id
 			LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				$testlog_id = $m['testlog_id'];
 			} else {
 				return;
@@ -1317,8 +1366,8 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			WHERE question_id=testlog_question_id
 				AND testlog_id='.$testlog_id.'
 			LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			if (F_getBoolean($m['question_fullscreen'])) {
 				// hide some section for fullscreen mode
 				$str .= '<style>'.K_NEWLINE;
@@ -1386,8 +1435,8 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 					WHERE logansw_answer_id=answer_id
 						AND logansw_testlog_id='.$testlog_id.'
 					ORDER BY logansw_order';
-				if($ra = F_db_query($sqla, $db)) {
-					while($ma = F_db_fetch_array($ra)) {
+				if ($ra = F_db_query($sqla, $db)) {
+					while ($ma = F_db_fetch_array($ra)) {
 						$str .= "<li>";
 						switch ($m['question_type']) {
 							case 1: {
@@ -1513,7 +1562,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 				$str .= 'case '.$key.':{document.getElementById(\''.$fieldid.'\').checked=true;var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;document.getElementById(\'autonext\').value=1;document.getElementById(\''.$formname.'\').submit();break;}'.K_NEWLINE;
 			}
 			$str .= '}}'.K_NEWLINE;
-			$str .= 'if(!document.all) {document.captureEvents(Event.KEYPRESS);}';
+			$str .= 'if (!document.all) {document.captureEvents(Event.KEYPRESS);}';
 			$str .= 'document.onkeypress=actionByChar;'.K_NEWLINE;
 			if ($m['question_timer'] > 0) {
 				// automatic submit form after specified amount of time
@@ -1529,7 +1578,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 			$sqlu = 'UPDATE '.K_TABLE_TESTS_LOGS.'
 				SET testlog_display_time=\''.date(K_TIMESTAMP_FORMAT).'\'
 				WHERE testlog_id='.$testlog_id.'';
-			if(!$ru = F_db_query($sqlu, $db)) {
+			if (!$ru = F_db_query($sqlu, $db)) {
 				F_display_db_error();
 			}
 		}
@@ -1561,8 +1610,8 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 		WHERE question_id=testlog_question_id
 			AND testlog_testuser_id='.$testuser_id.'
 		ORDER BY testlog_id';
-	if($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		while ($m = F_db_fetch_array($r)) {
 			if ($m['testlog_id'] != $testlog_id) {
 				$str .= '<li>';
 				$str .= '<input type="submit" name="jumpquestion_'.$m['testlog_id'].'" id="jumpquestion_'.$m['testlog_id'].'" value="&gt;" title="'.F_tcecodeToTitle($m['question_description']).'" /> ';
@@ -1707,8 +1756,8 @@ function F_testComment($test_id) {
 		WHERE testuser_user_id='.$user_id.'
 			AND testuser_test_id='.$test_id.'
 		LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				$comment = $m['testuser_comment'];
 			}
 		} else {
@@ -1737,7 +1786,7 @@ function F_updateTestComment($test_id, $testcomment) {
 		SET testuser_comment=\''.$testcomment.'\'
 		WHERE testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		F_display_db_error();
 	}
 }

@@ -51,6 +51,8 @@
 		</a><br>
 			<a href="../com-tecnick-tcexam-shared-cfg/_shared---config---tce_general_constants.php.html">		tce_general_constants.php
 		</a><br>
+			<a href="../com-tecnick-tcexam-shared-cfg/_shared---config---tce_httpbasic.php.html">		tce_httpbasic.php
+		</a><br>
 			<a href="../com-tecnick-tcexam-shared-cfg/_shared---config---tce_latex.php.html">		tce_latex.php
 		</a><br>
 			<a href="../com-tecnick-tcexam-shared-cfg/_shared---config---tce_ldap.php.html">		tce_ldap.php
@@ -80,7 +82,7 @@ Source Location: /shared/config/tce_cas.php<br /><br />
 
 
 <h2>Page Details:</h2>
-Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is a centralize authentication service for the web where the user does not need to give their  login credentials (password) to the target website. It was developed at Yale and  is now maintained by the Java Architectures Special Interest Group and was sometimes  referred to as &quot;Yale CAS&quot; but now known as &quot;JA-SIG CAS&quot;.  For more information see: http://www.ja-sig.org/products/cas/</p><br /><br /><br />
+Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is a centralize authentication service for the web where the user does not need to give their  login credentials (password) to the target website. It was developed at Yale and  is now maintained by the Java Architectures Special Interest Group and was sometimes  referred to as &quot;Yale CAS&quot; but now known as &quot;JA-SIG CAS&quot;.  For more information see: http://www.ja-sig.org/products/cas/  WARNING: TCExam trusts CAS mechanism and replicates any authenticated user into the TCExam database. Passwords are set to the username string, therefore, TCExam authentication is not secure for replicated users if CAS Authentication is turned off again.</p><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -106,7 +108,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 <br /><br />
   <hr />
 	<a name="defineK_CAS_ENABLED"></a>
-	<h3>K_CAS_ENABLED <span class="smalllinenumber">[line 56]</span></h3>
+	<h3>K_CAS_ENABLED <span class="smalllinenumber">[line 57]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -119,7 +121,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_HOST"></a>
-	<h3>K_CAS_HOST <span class="smalllinenumber">[line 67]</span></h3>
+	<h3>K_CAS_HOST <span class="smalllinenumber">[line 68]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -132,7 +134,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_PATH"></a>
-	<h3>K_CAS_PATH <span class="smalllinenumber">[line 81]</span></h3>
+	<h3>K_CAS_PATH <span class="smalllinenumber">[line 82]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -145,7 +147,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_PORT"></a>
-	<h3>K_CAS_PORT <span class="smalllinenumber">[line 73]</span></h3>
+	<h3>K_CAS_PORT <span class="smalllinenumber">[line 74]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -158,7 +160,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_USER_GROUP_ID"></a>
-	<h3>K_CAS_USER_GROUP_ID <span class="smalllinenumber">[line 92]</span></h3>
+	<h3>K_CAS_USER_GROUP_ID <span class="smalllinenumber">[line 93]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -171,7 +173,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_USER_LEVEL"></a>
-	<h3>K_CAS_USER_LEVEL <span class="smalllinenumber">[line 86]</span></h3>
+	<h3>K_CAS_USER_LEVEL <span class="smalllinenumber">[line 87]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -184,7 +186,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_CAS_VERSION"></a>
-	<h3>K_CAS_VERSION <span class="smalllinenumber">[line 62]</span></h3>
+	<h3>K_CAS_VERSION <span class="smalllinenumber">[line 63]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -199,7 +201,7 @@ Configuration file for CAS (Central Authentication Service)<br /><br /><p>CAS is
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:22 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:33 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

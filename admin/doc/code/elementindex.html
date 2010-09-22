@@ -778,6 +778,8 @@
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_compact_string">F_compact_string()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Remove the following characters:</dd>
 							<dt><b>F_count_rows</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_count_rows">F_count_rows()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Count rows of the given table.</dd>
+							<dt><b>F_createMediaDir</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_createMediaDir">F_createMediaDir()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Create a new media directory inside the cache</dd>
 							<dt><b>F_createTest</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_createTest">F_createTest()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Create user's test and returns TRUE on success.</dd>
 							<dt><b>F_csv_export_allresults_user</b></dt>
@@ -792,6 +794,10 @@
 				<dd>in file tce_functions_form.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_form.php.html#functionF_decode_form_fields">F_decode_form_fields()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing form fields.</dd>
 							<dt><b>F_decode_tcecode</b></dt>
 				<dd>in file tce_functions_tcecode.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_tcecode.php.html#functionF_decode_tcecode">F_decode_tcecode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns XHTML code from text marked-up with TCExam Code Tags</dd>
+							<dt><b>F_deleteMediaDir</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_deleteMediaDir">F_deleteMediaDir()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Delete the specified media directory</dd>
+							<dt><b>F_deleteMediaFile</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_deleteMediaFile">F_deleteMediaFile()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Delete the selected media file</dd>
 							<dt><b>F_display_db_error</b></dt>
 				<dd>in file tce_functions_errmsg.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_errmsg.php.html#functionF_display_db_error">F_display_db_error()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Print the database error message.</dd>
 							<dt><b>F_empty_to_null</b></dt>
@@ -800,6 +806,8 @@
 				<dd>in file tce_functions_errmsg.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_errmsg.php.html#functionF_error_handler">F_error_handler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Custom PHP error handler function.</dd>
 							<dt><b>F_executeTest</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_executeTest">F_executeTest()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the current user is authorized to execute the selected test.<br />  Generates the test if it's not already generated.</dd>
+							<dt><b>F_formatFileSize</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_formatFileSize">F_formatFileSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return a formatted file size</dd>
 							<dt><b>F_formatPdfPercentage</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_formatPdfPercentage">F_formatPdfPercentage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;format a percentage number</dd>
 							<dt><b>F_formatPercentage</b></dt>
@@ -812,8 +820,18 @@
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_getAuthorizedUsers">F_getAuthorizedUsers()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a comma separated string of ID of the users that belong to the same groups.</dd>
 							<dt><b>F_getBoolean</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_getBoolean">F_getBoolean()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns boolean value from string.<br />  This function is needed to get the right boolean value from boolean field returned by PostgreSQL query.</dd>
+							<dt><b>F_getDirFiles</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getDirFiles">F_getDirFiles()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get an associative array of directories and folder inside the specified dir.</dd>
+							<dt><b>F_getDirTable</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getDirTable">F_getDirTable()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get an html table containing files and subdirs</dd>
+							<dt><b>F_getDirVisualTable</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getDirVisualTable">F_getDirVisualTable()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get an html visual list of files and subdirs</dd>
+							<dt><b>F_getFileInfo</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getFileInfo">F_getFileInfo()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get file information</dd>
 							<dt><b>F_getFirstTestUser</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getFirstTestUser">F_getFirstTestUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the ID of the tce_tests_users table corresponding to a complete test of $test_id type.</dd>
+							<dt><b>F_getMediaDirPathLink</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getMediaDirPathLink">F_getMediaDirPathLink()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get an html string containing active path of the specified directory with links to subdirectories.</dd>
 							<dt><b>F_getNumOmittedQuestions</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getNumOmittedQuestions">F_getNumOmittedQuestions()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the number of omitted questions (unanswered + undisplayed).</dd>
 							<dt><b>F_getQuestionTestStat</b></dt>
@@ -826,8 +844,10 @@
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getTestName">F_getTestName()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the test name.</dd>
 							<dt><b>F_getTestStartTime</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getTestStartTime">F_getTestStartTime()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the user's test start time in seconds since UNIX epoch (1970-01-01 00:00:00).</dd>
+							<dt><b>F_getUserData</b></dt>
+				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserData">F_getUserData()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns user data.</dd>
 							<dt><b>F_getUserTests</b></dt>
-				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserTests">F_getUserTests()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an XHTML unordered list of user's enabled tests.</dd>
+				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_getUserTests">F_getUserTests()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an XHTML table of user's tests.</dd>
 							<dt><b>F_getUserTestStat</b></dt>
 				<dd>in file tce_functions_test_stats.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test_stats.php.html#functionF_getUserTestStat">F_getUserTestStat()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns test data structure for selected user:</dd>
 							<dt><b>F_getUTCoffset</b></dt>
@@ -844,6 +864,8 @@
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_isAuthorizedUser">F_isAuthorizedUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the current user is authorized to update and delete the selected database record.</dd>
 							<dt><b>F_isRightTestlogUser</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isRightTestlogUser">F_isRightTestlogUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Checks if the current user is the right testlog_id owner.<br />  This function is used for security reasons.</dd>
+							<dt><b>F_isUsedMediaFile</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_isUsedMediaFile">F_isUsedMediaFile()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the file is used on question or answer descriptions</dd>
 							<dt><b>F_isValidIP</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isValidIP">F_isValidIP()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if user's IP is valid over test IP range</dd>
 							<dt><b>F_isValidTestUser</b></dt>
@@ -864,8 +886,10 @@
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_logout_form">F_logout_form()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display logout form.</dd>
 							<dt><b>F_logout_page</b></dt>
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_logout_page">F_logout_page()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display logout page.</dd>
+							<dt><b>F_menu_isChildActive</b></dt>
+				<dd>in file tce_functions_menu.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html#functionF_menu_isChildActive">F_menu_isChildActive()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the menu item has an active child, false otherwise.</dd>
 							<dt><b>F_menu_link</b></dt>
-				<dd>in file tce_page_menu.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_page_menu.php.html#functionF_menu_link">F_menu_link()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a menu element link wit subitems.</dd>
+				<dd>in file tce_functions_menu.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html#functionF_menu_link">F_menu_link()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a menu element link wit subitems.</dd>
 							<dt><b>F_newTestLog</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_newTestLog">F_newTestLog()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Creates a new tce_tests_logs table entry and returns inserted ID.</dd>
 							<dt><b>F_objects_callback</b></dt>
@@ -896,6 +920,8 @@
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_removeTestResults">F_removeTestResults()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Remove the specified test results for the current user</dd>
 							<dt><b>F_remove_tcecode</b></dt>
 				<dd>in file tce_functions_tcecode.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_tcecode.php.html#functionF_remove_tcecode">F_remove_tcecode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns specified string without tcecode mark-up tags</dd>
+							<dt><b>F_renameMediaFile</b></dt>
+				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_renameMediaFile">F_renameMediaFile()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Rename the selected media file</dd>
 							<dt><b>F_replace_angulars</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_replace_angulars">F_replace_angulars()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace angular parenthesis with html equivalents (html entities).</dd>
 							<dt><b>F_result_allusers_table_header_element</b></dt>
@@ -1426,6 +1452,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$k">TCPDF::$k</a></dd>
 							<dt><b>$keywords</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$keywords">TCPDF::$keywords</a></dd>
+							<dt><b>K_ADMIN_LINK</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_ADMIN_LINK">K_ADMIN_LINK</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to display a link for administration area</dd>
 							<dt><b>K_ALLOWED_UPLOAD_EXTENSIONS</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_ALLOWED_UPLOAD_EXTENSIONS">K_ALLOWED_UPLOAD_EXTENSIONS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;List of allowed file types for upload (remove all extensions to disable upload).</dd>
 							<dt><b>K_ANSWER_TEXTAREA_COLS</b></dt>
@@ -1436,6 +1464,10 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMINISTRATOR">K_AUTH_ADMINISTRATOR</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Administrator level.</dd>
 							<dt><b>K_AUTH_ADMIN_ANSWERS</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_ANSWERS">K_AUTH_ADMIN_ANSWERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;answer editor&quot;.</dd>
+							<dt><b>K_AUTH_ADMIN_DIRS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_DIRS">K_AUTH_ADMIN_DIRS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to create and delete directories.</dd>
+							<dt><b>K_AUTH_ADMIN_FILEMANAGER</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_FILEMANAGER">K_AUTH_ADMIN_FILEMANAGER</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access file manager for multimedia files.</dd>
 							<dt><b>K_AUTH_ADMIN_IMPORT</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_IMPORT">K_AUTH_ADMIN_IMPORT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
 							<dt><b>K_AUTH_ADMIN_INFO</b></dt>
@@ -1462,8 +1494,26 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_USERS">K_AUTH_ADMIN_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;user editor&quot;.</dd>
 							<dt><b>K_AUTH_BACKUP</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_BACKUP">K_AUTH_BACKUP</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
+							<dt><b>K_AUTH_DELETE_MEDIAFILE</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_DELETE_MEDIAFILE">K_AUTH_DELETE_MEDIAFILE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to delete multimedia files.</dd>
 							<dt><b>K_AUTH_INDEX</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_INDEX">K_AUTH_INDEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access index page.</dd>
+							<dt><b>K_AUTH_PAGE_USER</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PAGE_USER">K_AUTH_PAGE_USER</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access user page submenu</dd>
+							<dt><b>K_AUTH_PUBLIC_INDEX</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PUBLIC_INDEX">K_AUTH_PUBLIC_INDEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access index page.</dd>
+							<dt><b>K_AUTH_PUBLIC_TEST_EXECUTE</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PUBLIC_TEST_EXECUTE">K_AUTH_PUBLIC_TEST_EXECUTE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to execute a test</dd>
+							<dt><b>K_AUTH_PUBLIC_TEST_INFO</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PUBLIC_TEST_INFO">K_AUTH_PUBLIC_TEST_INFO</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to view test general information</dd>
+							<dt><b>K_AUTH_PUBLIC_TEST_RESULTS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PUBLIC_TEST_RESULTS">K_AUTH_PUBLIC_TEST_RESULTS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to view test results</dd>
+							<dt><b>K_AUTH_RENAME_MEDIAFILE</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_RENAME_MEDIAFILE">K_AUTH_RENAME_MEDIAFILE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to rename multimedia files.</dd>
+							<dt><b>K_AUTH_USER_CHANGE_EMAIL</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_USER_CHANGE_EMAIL">K_AUTH_USER_CHANGE_EMAIL</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to change email</dd>
+							<dt><b>K_AUTH_USER_CHANGE_PASSWORD</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_USER_CHANGE_PASSWORD">K_AUTH_USER_CHANGE_PASSWORD</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to change password</dd>
 							<dt><b>K_AVAILABLE_LANGUAGES</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_AVAILABLE_LANGUAGES">K_AVAILABLE_LANGUAGES</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines a serialized array of available languages.</dd>
 							<dt><b>K_BLANK_IMAGE</b></dt>
@@ -1540,12 +1590,20 @@
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_ENABLE_CUSTOM_IMPORT">K_ENABLE_CUSTOM_IMPORT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).</dd>
 							<dt><b>K_ENABLE_JSERRORS</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_ENABLE_JSERRORS">K_ENABLE_JSERRORS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true display messages and errors on Javascript popup window.</dd>
+							<dt><b>K_ENABLE_PUBLIC_PDF</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_ENABLE_PUBLIC_PDF">K_ENABLE_PUBLIC_PDF</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Enable PDF results on public area.</dd>
 							<dt><b>K_ENABLE_QUESTION_EXPLANATION</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_ENABLE_QUESTION_EXPLANATION">K_ENABLE_QUESTION_EXPLANATION</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true enable explanation field for questions.</dd>
 							<dt><b>K_ERROR_TYPES</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_ERROR_TYPES">K_ERROR_TYPES</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Define error reporting types for debug.</dd>
 							<dt><b>K_EXTEND_TIME_MINUTES</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_config.php.html#defineK_EXTEND_TIME_MINUTES">K_EXTEND_TIME_MINUTES</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default minutes used to extend test duration.</dd>
+							<dt><b>K_HTTPBASIC_ENABLED</b></dt>
+				<dd>in file tce_httpbasic.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_httpbasic.php.html#defineK_HTTPBASIC_ENABLED">K_HTTPBASIC_ENABLED</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true trust HTTP Basic Auth</dd>
+							<dt><b>K_HTTPBASIC_USER_GROUP_ID</b></dt>
+				<dd>in file tce_httpbasic.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_httpbasic.php.html#defineK_HTTPBASIC_USER_GROUP_ID">K_HTTPBASIC_USER_GROUP_ID</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default user group ID  This is the TCExam group id to which the accounts belong.</dd>
+							<dt><b>K_HTTPBASIC_USER_LEVEL</b></dt>
+				<dd>in file tce_httpbasic.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_httpbasic.php.html#defineK_HTTPBASIC_USER_LEVEL">K_HTTPBASIC_USER_LEVEL</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default user level</dd>
 							<dt><b>K_KEY_SECURITY</b></dt>
 				<dd>in file tce_general_constants.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_general_constants.php.html#defineK_KEY_SECURITY">K_KEY_SECURITY</a><br>&nbsp;&nbsp;&nbsp;&nbsp;String used for security feature, do not alter.</dd>
 							<dt><b>K_LANGUAGE</b></dt>
@@ -1613,9 +1671,9 @@
 							<dt><b>K_MAX_MEMORY_LIMIT</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_MEMORY_LIMIT">K_MAX_MEMORY_LIMIT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max memory limit.</dd>
 							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
-							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
+							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
 							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max size to be uploaded in bytes.</dd>
 							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
@@ -2874,10 +2932,14 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_email_results.php.html">tce_email_results.php</a></dd>
 							<dt><b>tce_export_custom.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_export_custom.php.html">tce_export_custom.php</a></dd>
+							<dt><b>tce_filemanager.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_filemanager.php.html">tce_filemanager.php</a></dd>
 							<dt><b>tce_functions_auth_sql.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_auth_sql.php.html">tce_functions_auth_sql.php</a></dd>
 							<dt><b>tce_functions_email_reports.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_email_reports.php.html">tce_functions_email_reports.php</a></dd>
+							<dt><b>tce_functions_filemanager.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html">tce_functions_filemanager.php</a></dd>
 							<dt><b>tce_functions_questions.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_questions.php.html">tce_functions_questions.php</a></dd>
 							<dt><b>tce_functions_statistics.php</b></dt>
@@ -2930,6 +2992,8 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_popup_test_info.php.html">tce_popup_test_info.php</a></dd>
 							<dt><b>tce_preview_tcecode.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_preview_tcecode.php.html">tce_preview_tcecode.php</a></dd>
+							<dt><b>tce_select_mediafile.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_select_mediafile.php.html">tce_select_mediafile.php</a></dd>
 							<dt><b>tce_select_users.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_admin---code---tce_select_users.php.html">tce_select_users.php</a></dd>
 							<dt><b>tce_show_allresults_users.php</b></dt>
@@ -2974,6 +3038,10 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_page_header.php.html">tce_page_header.php</a></dd>
 							<dt><b>tce_page_header_popup.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_page_header_popup.php.html">tce_page_header_popup.php</a></dd>
+							<dt><b>tce_page_menu.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-admin/_public---code---tce_page_menu.php.html">tce_page_menu.php</a></dd>
+							<dt><b>tce_page_user.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_page_user.php.html">tce_page_user.php</a></dd>
 							<dt><b>tce_pdf_results.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-admin/_public---code---tce_pdf_results.php.html">tce_pdf_results.php</a></dd>
 							<dt><b>tce_popup_test_info.php</b></dt>
@@ -2984,12 +3052,18 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_test_results.php.html">tce_test_results.php</a></dd>
 							<dt><b>tce_test_start.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_test_start.php.html">tce_test_start.php</a></dd>
+							<dt><b>tce_user_change_email.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_user_change_email.php.html">tce_user_change_email.php</a></dd>
+							<dt><b>tce_user_change_password.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_user_change_password.php.html">tce_user_change_password.php</a></dd>
 							<dt><b>tce_user_registration.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_user_registration.php.html">tce_user_registration.php</a></dd>
 							<dt><b>tce_user_verification.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_user_verification.php.html">tce_user_verification.php</a></dd>
 							<dt><b>tce_xhtml_header.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public/_public---code---tce_xhtml_header.php.html">tce_xhtml_header.php</a></dd>
+							<dt><b>tce_auth.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html">tce_auth.php</a></dd>
 							<dt><b>tce_config.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html">tce_config.php</a></dd>
 							<dt><b>tce_altauth.php</b></dt>
@@ -3018,6 +3092,8 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html">tce_functions_general.php</a></dd>
 							<dt><b>tce_functions_html2txt.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_html2txt.php.html">tce_functions_html2txt.php</a></dd>
+							<dt><b>tce_functions_menu.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_menu.php.html">tce_functions_menu.php</a></dd>
 							<dt><b>tce_functions_page.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_page.php.html">tce_functions_page.php</a></dd>
 							<dt><b>tce_functions_session.php</b></dt>
@@ -3050,6 +3126,8 @@
 				<dd>procedural page <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_email_config.php.html">tce_email_config.php</a></dd>
 							<dt><b>tce_general_constants.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_general_constants.php.html">tce_general_constants.php</a></dd>
+							<dt><b>tce_httpbasic.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_httpbasic.php.html">tce_httpbasic.php</a></dd>
 							<dt><b>tce_latex.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_latex.php.html">tce_latex.php</a></dd>
 							<dt><b>tce_ldap.php</b></dt>
@@ -3457,7 +3535,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 07 Sep 2010 09:24:19 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 22 Sep 2010 16:07:30 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2009-10-10
+// Last Update : 2010-09-16
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -71,12 +71,12 @@ $PHPSESSIDSQL = F_escape_sql($PHPSESSID);
 
 // --- read existing user's session data from database
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
-if($rs = F_db_query($sqls, $db)) {
-	if($ms = F_db_fetch_array($rs)) { // the user's session already exist
+if ($rs = F_db_query($sqls, $db)) {
+	if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
 		session_decode($ms['cpsession_data']); //decode session data
 		$expiry = date(K_TIMESTAMP_FORMAT); // update session expiration time
 		$sqlx = 'UPDATE '.K_TABLE_SESSIONS.' SET cpsession_expiry=\''.$expiry.'\' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
-		if(!$rx = F_db_query($sqlx, $db)) {
+		if (!$rx = F_db_query($sqlx, $db)) {
 			F_display_db_error();
 		}
 	} else { // session do not exist so, create new anonymous session
@@ -87,10 +87,14 @@ if($rs = F_db_query($sqls, $db)) {
 		$_SESSION['session_user_firstname'] = '';
 		$_SESSION['session_user_lastname'] = '';
 		// read client cookie
-		if(isset($_COOKIE['LastVisit'])) {
+		if (isset($_COOKIE['LastVisit'])) {
 			$_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
 		} else {
 			$_SESSION['session_last_visit'] = 0;
+		}
+		// track when user request logout
+		if (isset($_REQUEST['logout'])) {
+			$_SESSION['logout'] = true;
 		}
 		// set client cookie
 		$cookie_now_time = time(); // note: while time() function returns a 32 bit integer, it works fine until year 2038.
@@ -102,17 +106,31 @@ if($rs = F_db_query($sqls, $db)) {
 	F_display_db_error();
 }
 
-// --- check for single-sign-on authentications
+// --- check for single-sign-on authentication
 require_once('../../shared/config/tce_cas.php');
 if (K_CAS_ENABLED) {
 	require_once('../../shared/cas/CAS.php');
 	phpCAS::client(K_CAS_VERSION, K_CAS_HOST, K_CAS_PORT, K_CAS_PATH, false);
 	phpCAS::setNoCasServerValidation();
 	phpCAS::forceAuthentication();
-	if($_SESSION['session_user_name'] != phpCAS::getUser()) {
+	if ($_SESSION['session_user_name'] != phpCAS::getUser()) {
 		$_POST['xuser_name'] = phpCAS::getUser();
 		$_POST['xuser_password'] = phpCAS::getUser();
 		$_POST['logaction'] = 'login';
+	}
+}
+
+// --- check for HTTP-Basic authentication
+$http_basic_auth = false;
+require_once('../../shared/config/tce_httpbasic.php');
+if (K_HTTPBASIC_ENABLED AND (!isset($_SESSION['logout']) OR !$_SESSION['logout'])) {
+	if (isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'Basic') 
+		AND isset($_SERVER['PHP_AUTH_USER']) AND isset($_SERVER['PHP_AUTH_PW'])
+		AND ($_SESSION['session_user_name'] != $_SERVER['PHP_AUTH_USER'])) {
+		$_POST['xuser_name'] = $_SERVER['PHP_AUTH_USER'];
+		$_POST['xuser_password'] = $_SERVER['PHP_AUTH_PW'];
+		$_POST['logaction'] = 'login';
+		$http_basic_auth = true;
 	}
 }
 
@@ -121,8 +139,8 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 	$xuser_password = md5($_POST['xuser_password']); // one-way password encoding
 	// check if submitted login information are correct
 	$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			// sets some user's session data
 			$_SESSION['session_user_id'] = $m['user_id'];
 			$_SESSION['session_user_name'] = $m['user_name'];
@@ -131,19 +149,49 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 			$_SESSION['session_user_firstname'] = urlencode($m['user_firstname']);
 			$_SESSION['session_user_lastname'] = urlencode($m['user_lastname']);
 			// read client cookie
-			if(isset($_COOKIE['LastVisit'])) {
+			if (isset($_COOKIE['LastVisit'])) {
 				$_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
 			} else {
 				$_SESSION['session_last_visit'] = 0;
 			}
-			$logged=TRUE;
-		} elseif(!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($_POST['xuser_name']).'\'')) {
+			$logged = true;
+		} elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($_POST['xuser_name']).'\'')) {
 				// the user name exist but the password is wrong
-				F_print_error('WARNING', $l['m_login_wrong']);
+				if ($http_basic_auth) {
+					// update the password in case of HTTP Basic Authentication
+					$xuser_password = md5($_POST['xuser_password']);
+					$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
+						user_password=\''.$xuser_password.'\'
+						WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\'';
+					if(!$ru = F_db_query($sqlu, $db)) {
+						F_display_db_error();
+					}
+					// get user data
+					$sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
+					if ($rd = F_db_query($sqld, $db)) {
+						if ($md = F_db_fetch_array($rd)) {
+							// sets some user's session data
+							$_SESSION['session_user_id'] = $md['user_id'];
+							$_SESSION['session_user_name'] = $md['user_name'];
+							$_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
+							$_SESSION['session_user_level'] = $md['user_level'];
+							$_SESSION['session_user_firstname'] = urlencode($md['user_firstname']);
+							$_SESSION['session_user_lastname'] = urlencode($md['user_lastname']);
+							$_SESSION['session_last_visit'] = 0;
+							$logged = true;
+						}
+					} else {
+						F_display_db_error();
+					}
+				} else {
+					// the password is wrong
+					F_print_error('WARNING', $l['m_login_wrong']);
+				}
 		} else {
+			// this user doesn't exist on TCExam database
 			// try to get account information from alternative systems (RADIUS, LDAP, CAS, ...)
 			require_once('../../shared/code/tce_altauth.php');
-			if(($altusr = F_altLogin($_POST['xuser_name'], $_POST['xuser_password'])) !== false) {
+			if (($altusr = F_altLogin($_POST['xuser_name'], $_POST['xuser_password'])) !== false) {
 				// replicate user account on TCExam local database
 				$sql = 'INSERT INTO '.K_TABLE_USERS.' (
 					user_regdate,
@@ -172,7 +220,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 					'.F_empty_to_null(F_escape_sql($altusr['user_ssn'])).',
 					\''.F_escape_sql($altusr['user_level']).'\'
 					)';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				} else {
 					$user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
@@ -184,7 +232,7 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 						\''.$user_id.'\',
 						\''.F_escape_sql($altusr['usrgrp_group_id']).'\'
 						)';
-					if(!$r = F_db_query($sql, $db)) {
+					if (!$r = F_db_query($sql, $db)) {
 						F_display_db_error();
 					}
 					// sets some user's session data
@@ -213,16 +261,16 @@ if (!isset($pagelevel)) {
 }
 
 // check user's level
-if($pagelevel) { // pagelevel=0 means access to anonymous user
+if ($pagelevel) { // pagelevel=0 means access to anonymous user
 	// pagelevel >= 1
-	if($_SESSION['session_user_level'] < $pagelevel) { //check user level
+	if ($_SESSION['session_user_level'] < $pagelevel) { //check user level
 		// To gain access to a specific resource, the user's level must be equal or greater to the one specified for the requested resource.
 		F_login_form(); //display login form
 	}
 }
 
-if($logged) { //if user is just logged in: reloads page
-	switch(K_REDIRECT_LOGIN_MODE) {
+if ($logged) { //if user is just logged in: reloads page
+	switch (K_REDIRECT_LOGIN_MODE) {
 		case 1: {
 			// relative redirect
 			header('Location: '.$_SERVER['SCRIPT_NAME']);

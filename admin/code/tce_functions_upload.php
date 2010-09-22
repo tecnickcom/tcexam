@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_upload.php
 // Begin       : 2001-11-19
-// Last Update : 2010-06-13
+// Last Update : 2010-09-21
 //
 // Description : Upload functions.
 //
@@ -65,7 +65,7 @@ function F_is_allowed_upload($filename) {
 	}
 	$allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
 	$path_parts = pathinfo($filename);
-	if (in_array($path_parts['extension'], $allowed_extensions)) {
+	if (in_array(strtolower($path_parts['extension']), $allowed_extensions)) {
 		return true;
 	}
 	return false;
