@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2010-09-16
+// Last Update : 2010-09-23
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -117,6 +117,7 @@ function F_login_form() {
 	global $l, $thispage_title;
 	global $xuser_name, $xuser_password;
 	require_once('../config/tce_config.php');
+	require_once('../../shared/config/tce_httpbasic.php');
 	if (K_HTTPBASIC_ENABLED AND (!isset($_SESSION['logout']) OR !$_SESSION['logout'])) {
 		// force HTTP Basic Authentication
 		header('WWW-Authenticate: Basic realm="TCExam"');

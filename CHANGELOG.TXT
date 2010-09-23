@@ -1,3 +1,6 @@
+11.1.001 (2010-09-23)
+	- The security of sessions has been improved.
+
 11.1.000 (2010-09-22)
 	- Web menu was added on public area.
 	- Users can now change email and password form public area.

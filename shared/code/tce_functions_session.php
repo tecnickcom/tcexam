@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2010-09-16
+// Last Update : 2010-09-23
 //
 // Description : User-level session storage functions.
 //
@@ -207,14 +207,19 @@ session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 
 
 // start user session
 if (isset($_REQUEST['PHPSESSID'])) {
-	//Load $PHPSESSID from get/post/cookie
-	$PHPSESSID = substr(preg_replace('/[^0-9a-f]*/i', '', $_REQUEST['PHPSESSID']), 0, 32);
+	// sanitize $PHPSESSID from get/post/cookie
+	$PHPSESSID = preg_replace('/[^0-9a-f]*/', '', $_REQUEST['PHPSESSID']);
+	if (strlen($PHPSESSID) != 32) {
+		// generate new ID
+		$PHPSESSID = md5(uniqid(uniqid('', true), true));
+	}
 } else {
-	//create new PHPSESSID	
+	// create new PHPSESSID	
 	$PHPSESSID = md5(uniqid(uniqid('', true), true));
 }
 
-if ((!isset($_REQUEST['menu_mode'])) OR ($_REQUEST['menu_mode'] != 'startlongprocess')) { //temporary fix for flush problem for long processes
+if ((!isset($_REQUEST['menu_mode'])) OR ($_REQUEST['menu_mode'] != 'startlongprocess')) {
+	// fix flush problem on long processes
 	session_id($PHPSESSID); //set session id
 }
 
