@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-09-20
+// Last Update : 2010-09-26
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -63,29 +63,32 @@ function F_getUserTests() {
 	$str = ''; // temp string
 	// get current date-time
 	$current_time = date(K_TIMESTAMP_FORMAT);
-	$sql = 'SELECT *
-		FROM '.K_TABLE_TESTS.'
-		WHERE (
-			test_id IN (
-				SELECT tsubset_test_id
-				FROM '.K_TABLE_TEST_SUBJSET.'
-			)
-			AND (test_begin_time < \''.$current_time.'\')
-		)
-		ORDER BY test_begin_time DESC'; // select all active tests
+	// select tests
+	$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE (test_id IN (SELECT tsubset_test_id FROM '.K_TABLE_TEST_SUBJSET.') AND (test_begin_time < \''.$current_time.'\')';
+	if (K_HIDE_EXPIRED_TESTS) {
+		$sql .= ' AND (test_end_time > \''.$current_time.'\')';
+	}
+	$sql .= ') ORDER BY test_begin_time DESC';
 	if ($r = F_db_query($sql, $db)) {
 		while ($m = F_db_fetch_array($r)) { // for each active test
 			// check user's authorization
 			if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
-				$str .= '<tr>'.K_NEWLINE;
-				$str .= '<td><strong>'.F_testInfoLink($m['test_id'], $m['test_name']).'</strong></td>'.K_NEWLINE;
-				$str .= '<td>'.$m['test_begin_time'].'</td>'.K_NEWLINE;
-				$str .= '<td>'.$m['test_end_time'].'</td>'.K_NEWLINE;
 				// the user's IP is valid, check test status
 				$test_status = F_checkTestStatus($user_id, $m['test_id'], $m['test_duration_time']);
+				if (strtotime($current_time) >= strtotime($m['test_end_time'])) {
+					// the test is expired.
+					$test_status = 5;
+					$datestyle = ' style="color:#666666;"';
+				} else {
+					$datestyle = '';
+				}
+				$str .= '<tr>'.K_NEWLINE;
+				$str .= '<td><strong>'.F_testInfoLink($m['test_id'], $m['test_name']).'</strong></td>'.K_NEWLINE;
+				$str .= '<td'.$datestyle.'>'.$m['test_begin_time'].'</td>'.K_NEWLINE;
+				$str .= '<td'.$datestyle.'>'.$m['test_end_time'].'</td>'.K_NEWLINE;
 				// status
 				$str .= '<td';
-				if (($test_status == 4) AND F_getBoolean($m['test_results_to_users'])) {
+				if (($test_status >= 4) AND F_getBoolean($m['test_results_to_users'])) {
 					$usrtestdata = F_getUserTestStat($m['test_id'], $user_id);
 					$passmsg = '';
 					if ($usrtestdata['score_threshold'] > 0) {
@@ -97,10 +100,14 @@ function F_getUserTests() {
 							$passmsg = ' - '.$l['w_not_passed'];
 						}
 					}
-					$str .= '><a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'"';
-					$str .= '>'.$usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'</a>';
+					$str .= '>';
+					if (isset($usrtestdata['score']) AND strlen(''.$usrtestdata['score']) > 0) {
+						$str .= '<a href="tce_test_results.php?testid='.$m['test_id'].'" title="'.$l['h_result'].'">'.$usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'</a>';
+					} else {
+						$str .= '&nbsp;';
+					}
 				} else {
-					$str .= '>&nbsp;'.K_NEWLINE;
+					$str .= '>&nbsp;';
 				}
 				$str .= '</td>'.K_NEWLINE;
 				// display various action links by status case

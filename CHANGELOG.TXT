@@ -1,3 +1,8 @@
+11.1.002 (2010-09-26)
+	- Public test list was improved (shared/code/tce_functions_test.php).
+	- The constant K_HIDE_EXPIRED_TESTS was added to public/config/tce_config.php to control the display of expired tests on public page.
+	- TCPDF library was updated.
+
 11.1.001 (2010-09-23)
 	- The security of sessions has been improved.
 

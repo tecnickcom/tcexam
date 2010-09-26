@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-10-23
-// Last Update : 2010-09-20
+// Last Update : 2010-09-26
 //
 // Description : Configuration file for public section.
 //
@@ -126,6 +126,11 @@ define ('K_MAIN_PAGE', 'index.php');
  * Enable PDF results on public area.
  */
 define ('K_ENABLE_PUBLIC_PDF', true);
+
+/**
+ * If true hide the expired tests from index table.
+ */
+define ('K_HIDE_EXPIRED_TESTS', false);
 
 // --- INCLUDE FILES -----------------------------------------------------------
 
