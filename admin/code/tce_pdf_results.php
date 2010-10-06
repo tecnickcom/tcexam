@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-09-20
+// Last Update : 2010-10-06
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -58,12 +58,14 @@
  */
 
 require_once('../config/tce_config.php');
+require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdf.php');
-require_once('../code/tce_functions_statistics.php');
+require_once('tce_functions_statistics.php');
+require_once('tce_functions_user_select.php');
 
 if(!isset($_REQUEST['mode'])) {
 	$_REQUEST['mode'] = '';
@@ -74,8 +76,6 @@ $numberfont = 'courier';
 if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	$test_id = intval($_REQUEST['testid']);
 	if (!isset($_REQUEST['email'])) {
-		// check user's authorization
-		require_once('../../shared/code/tce_authorization.php');
 		if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
 			exit;
 		}
@@ -83,15 +83,21 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 } else {
 	exit;
 }
-
 if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 	$group_id = intval($_REQUEST['groupid']);
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 } else {
 	$group_id = 0;
 }
-
-if (isset($_REQUEST['userid']) AND ($_REQUEST['userid'] > 0)) {
+if (isset($_REQUEST['userid']) AND ($_REQUEST['userid'] > 1)) {
 	$user_id = intval($_REQUEST['userid']);
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 } else {
 	$user_id = 0;
 }
@@ -195,9 +201,10 @@ if (defined('K_DIGSIG_ENABLE') AND K_DIGSIG_ENABLE) {
 }
 
 // calculate some sizes
+$cell_height_ratio = (K_CELL_HEIGHT_RATIO + 0.1);
 $page_width = $pdf->getPageWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;
-$data_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
-$main_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
+$data_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
+$main_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
 $data_cell_width = round($page_width / $page_elements, 2);
 $data_cell_width_third = round($data_cell_width / 3, 2);
 $data_cell_width_half = round($data_cell_width / 2, 2);
@@ -247,21 +254,19 @@ if (($_REQUEST['mode'] == 3) AND ($user_id > 0)) { // detailed report for single
 			AND testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'
 			AND testuser_status>0
-		GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name
-		'.$sql_limit.'';
-} else {
+		GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name '.$sql_limit.'';
+} else { // report for multiple users
 	$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
 		FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.', '.K_TABLE_USERS.'
 		WHERE testlog_testuser_id=testuser_id
 			AND testuser_user_id=user_id
 			AND testuser_test_id='.$test_id.'
 			AND testuser_status>0';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		$sql .= ' AND (user_level<'.$_SESSION['session_user_level'].' OR user_id='.$_SESSION['session_user_id'].')';
+	}
 	if ($group_id > 0) {
-		$sql .= ' AND testuser_user_id IN (
-				SELECT usrgrp_user_id
-				FROM '.K_TABLE_USERGROUP.'
-				WHERE usrgrp_group_id='.$group_id.'
-			)';
+		$sql .= ' AND testuser_user_id IN (SELECT usrgrp_user_id FROM '.K_TABLE_USERGROUP.' WHERE usrgrp_group_id='.$group_id.')';
 	}
 	$sql .= ' GROUP BY testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, user_lastname, user_firstname, user_name
 		ORDER BY testuser_test_id, user_lastname, user_firstname
@@ -276,7 +281,6 @@ if($r = F_db_query($sql, $db)) {
 		$user_lastname = $m['user_lastname'];
 		$user_firstname = $m['user_firstname'];
 		$user_name = $m['user_name'];
-
 		$test_score = $m['test_score'];
 		$testuser_comment = '';
 		$sqluc = 'SELECT testuser_comment FROM '.K_TABLE_TEST_USER.' WHERE testuser_id='.$testuser_id.'';

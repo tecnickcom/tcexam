@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2009-10-10
+// Last Update : 2010-10-05
 //
 // Description : Functions to display online users' data.
 //
@@ -89,7 +89,8 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
-
+	require_once('tce_functions_user_select.php');
+	
 	//initialize variables
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
@@ -131,22 +132,22 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 			$this_session = F_session_string_to_array($m['cpsession_data']);
 			echo '<tr>';
 			echo '<td align="left">';
-			echo '<a href="tce_edit_user.php?user_id='.$this_session['session_user_id'].'">';
+			$user_str = '';
 			if ($this_session['session_user_lastname']) {
-				echo ''.urldecode($this_session['session_user_lastname']).', ';
+				$user_str .= urldecode($this_session['session_user_lastname']).', ';
 			}
 			if ($this_session['session_user_firstname']) {
-				echo ''.urldecode($this_session['session_user_firstname']).'';
+				$user_str .= urldecode($this_session['session_user_firstname']).'';
 			}
-			echo ' ('.$this_session['session_user_name'].')';
-			echo '</a>';
+			$user_str .= ' ('.urldecode($this_session['session_user_name']).')';
+			if (F_isAuthorizedEditorForUser($this_session['session_user_id'])) {
+				echo '<a href="tce_edit_user.php?user_id='.$this_session['session_user_id'].'">'.$user_str.'</a>';
+			} else {
+				echo $user_str;
+			}
 			echo '</td>';
-			echo '<td>';
-			echo $this_session['session_user_level'];
-			echo '</td>';
-			echo '<td>';
-			echo $this_session['session_user_ip'];
-			echo '</td>';
+			echo '<td>'.$this_session['session_user_level'].'</td>';
+			echo '<td>'.$this_session['session_user_ip'].'</td>';
 			echo '</tr>'.K_NEWLINE;
 		}
 	} else {

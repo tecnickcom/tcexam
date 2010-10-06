@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2010-09-21
+// Last Update : 2010-10-06
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -72,6 +72,36 @@ define ('K_AUTH_INDEX', 5);
  * Required user's level to access "user editor".
  */
 define ('K_AUTH_ADMIN_USERS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to delete users.
+ */
+define ('K_AUTH_DELETE_USERS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to export users.
+ */
+define ('K_AUTH_EXPORT_USERS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to import users.
+ */
+define ('K_AUTH_IMPORT_USERS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to access "group editor".
+ */
+define ('K_AUTH_ADMIN_GROUPS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to delete user groups.
+ */
+define ('K_AUTH_DELETE_GROUPS', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to move users from one group to another.
+ */
+define ('K_AUTH_MOVE_GROUPS', K_AUTH_ADMINISTRATOR);
 
 /**
  * Required user's level to access "tcecode editor".

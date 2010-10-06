@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2009-09-30
+// Last Update : 2010-10-06
 //
 // Description : Import users from an XML file or tab-delimited
 //               CSV file.
@@ -55,7 +55,7 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = K_AUTH_ADMIN_USERS;
+$pagelevel = K_AUTH_IMPORT_USERS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_user_importer'];
@@ -65,7 +65,7 @@ require_once('../../shared/code/tce_functions_form.php');
 switch($menu_mode) {
 
 	case 'upload': {
-		if($_FILES['userfile']['name']) {
+		if ($_FILES['userfile']['name']) {
 			require_once('../code/tce_functions_upload.php');
 			// upload file
 			$uploadedfile = F_upload_file('userfile', K_PATH_CACHE);
@@ -211,7 +211,7 @@ class XMLUserImporter {
 		// sets the character data handler function for the XML parser
 		xml_set_character_data_handler($this->parser, 'segContentHandler');
 		// start parsing an XML document
-		if(!xml_parse($this->parser, file_get_contents($xmlfile))) {
+		if (!xml_parse($this->parser, file_get_contents($xmlfile))) {
 			die(sprintf('ERROR xmlResourceBundle :: XML error: %s at line %d',
 			xml_error_string(xml_get_error_code($this->parser)),
 			xml_get_current_line_number($this->parser)));
@@ -281,6 +281,7 @@ class XMLUserImporter {
 	private function endElementHandler($parser, $name) {
 		global $l, $db;
 		require_once('../config/tce_config.php');
+		require_once('tce_functions_user_select.php');
 
 		switch(strtolower($name)) {
 			case 'name':
@@ -309,8 +310,8 @@ class XMLUserImporter {
 					FROM '.K_TABLE_GROUPS.'
 					WHERE group_name=\''.$group_name.'\'
 					LIMIT 1';
-				if($r = F_db_query($sql, $db)) {
-					if($m = F_db_fetch_array($r)) {
+				if ($r = F_db_query($sql, $db)) {
+					if ($m = F_db_fetch_array($r)) {
 						// the group has been already added
 						$this->group_data[] = $m['group_id'];
 					} else {
@@ -320,7 +321,7 @@ class XMLUserImporter {
 							) VALUES (
 							\''.$group_name.'\'
 							)';
-						if(!$ri = F_db_query($sqli, $db)) {
+						if (!$ri = F_db_query($sqli, $db)) {
 							F_display_db_error(false);
 						} else {
 							$this->group_data[] = F_db_insert_id($db, K_TABLE_GROUPS, 'group_id');
@@ -329,7 +330,6 @@ class XMLUserImporter {
 				} else {
 					F_display_db_error();
 				}
-
 				break;
 			}
 			case 'user': {
@@ -341,42 +341,61 @@ class XMLUserImporter {
 					if (empty($this->user_data['user_ip'])) {
 						$this->user_data['user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
 					}
-					if (empty($this->user_data['user_level'])) {
+					if (!isset($this->user_data['user_level']) OR (strlen($this->user_data['user_level']) == 0)) {
 						$this->user_data['user_level'] = 1;
 					}
+					if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+						// you cannot edit a user with a level equal or higher than yours
+						$this->user_data['user_level'] = min(max(0, ($_SESSION['session_user_level'] - 1)), $this->user_data['user_level']);
+						// non-administrator can access only to his/her groups
+						if (empty($this->group_data)) {
+							break;
+						}
+						$common_groups = array_intersect(F_get_user_groups($_SESSION['session_user_id']), $this->group_data);
+						if (empty($common_groups)) {
+							break;
+						}
+					}
 					// check if user already exist
-					$sql = 'SELECT user_id
+					$sql = 'SELECT user_id,user_level
 						FROM '.K_TABLE_USERS.'
 						WHERE user_name=\''.$this->user_data['user_name'].'\'
 							OR user_regnumber=\''.$this->user_data['user_regnumber'].'\'
 							OR user_ssn=\''.$this->user_data['user_ssn'].'\'
 						LIMIT 1';
-					if($r = F_db_query($sql, $db)) {
-						if($m = F_db_fetch_array($r)) {
+					if ($r = F_db_query($sql, $db)) {
+						if ($m = F_db_fetch_array($r)) {
 							// the user has been already added
 							$user_id = $m['user_id'];
-
-							//update user data
-							$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-								user_regdate=\''.$this->user_data['user_regdate'].'\',
-								user_ip=\''.$this->user_data['user_ip'].'\',
-								user_name=\''.$this->user_data['user_name'].'\',
-								user_email='.F_empty_to_null($this->user_data['user_email']).',
-								user_password=\''.md5($this->user_data['user_password']).'\',
-								user_regnumber='.F_empty_to_null($this->user_data['user_regnumber']).',
-								user_firstname='.F_empty_to_null($this->user_data['user_firstname']).',
-								user_lastname='.F_empty_to_null($this->user_data['user_lastname']).',
-								user_birthdate='.F_empty_to_null($this->user_data['user_birthdate']).',
-								user_birthplace='.F_empty_to_null($this->user_data['user_birthplace']).',
-								user_ssn='.F_empty_to_null($this->user_data['user_ssn']).',
-								user_level=\''.$this->user_data['user_level'].'\',
-								user_verifycode='.F_empty_to_null($this->user_data['user_verifycode']).'
-								WHERE user_id='.$user_id.'';
-							if(!$ru = F_db_query($sqlu, $db)) {
-								F_display_db_error(false);
-								return FALSE;
+							if (($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) OR ($_SESSION['session_user_level'] > $m['user_level'])) {
+								//update user data
+								$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
+									user_regdate=\''.$this->user_data['user_regdate'].'\',
+									user_ip=\''.$this->user_data['user_ip'].'\',
+									user_name=\''.$this->user_data['user_name'].'\',
+									user_email='.F_empty_to_null($this->user_data['user_email']).',';
+								// update password only if it is specified
+								if (!empty($this->user_data['user_password'])) {
+									$sqlu .= ' user_password=\''.md5($this->user_data['user_password']).'\',';
+								}
+								$sqlu .= '
+									user_regnumber='.F_empty_to_null($this->user_data['user_regnumber']).',
+									user_firstname='.F_empty_to_null($this->user_data['user_firstname']).',
+									user_lastname='.F_empty_to_null($this->user_data['user_lastname']).',
+									user_birthdate='.F_empty_to_null($this->user_data['user_birthdate']).',
+									user_birthplace='.F_empty_to_null($this->user_data['user_birthplace']).',
+									user_ssn='.F_empty_to_null($this->user_data['user_ssn']).',
+									user_level=\''.$this->user_data['user_level'].'\',
+									user_verifycode='.F_empty_to_null($this->user_data['user_verifycode']).'
+									WHERE user_id='.$user_id.'';
+								if (!$ru = F_db_query($sqlu, $db)) {
+									F_display_db_error(false);
+									return FALSE;
+								}
+							} else {
+								// no user is updated, so empty groups
+								$this->group_data = Array();
 							}
-
 						} else {
 							// add new user
 							$sqlu = 'INSERT INTO '.K_TABLE_USERS.' (
@@ -408,7 +427,7 @@ class XMLUserImporter {
 								\''.$this->user_data['user_level'].'\',
 								'.F_empty_to_null($this->user_data['user_verifycode']).'
 								)';
-							if(!$ru = F_db_query($sqlu, $db)) {
+							if (!$ru = F_db_query($sqlu, $db)) {
 								F_display_db_error(false);
 								return FALSE;
 							} else {
@@ -422,15 +441,15 @@ class XMLUserImporter {
 
 					// user's groups
 					if (!empty($this->group_data)) {
-						while(list($key,$group_id)=each($this->group_data)) {
+						while(list($key,$group_id) = each($this->group_data)) {
 							// check if user-group already exist
 							$sqls = 'SELECT *
 								FROM '.K_TABLE_USERGROUP.'
 								WHERE usrgrp_group_id=\''.$group_id.'\'
 									AND usrgrp_user_id=\''.$user_id.'\'
 								LIMIT 1';
-							if($rs = F_db_query($sqls, $db)) {
-								if(!$ms = F_db_fetch_array($rs)) {
+							if ($rs = F_db_query($sqls, $db)) {
+								if (!$ms = F_db_fetch_array($rs)) {
 									// associate group to user
 									$sqlg = 'INSERT INTO '.K_TABLE_USERGROUP.' (
 										usrgrp_user_id,
@@ -439,7 +458,7 @@ class XMLUserImporter {
 										'.$user_id.',
 										'.$group_id.'
 										)';
-									if(!$rg = F_db_query($sqlg, $db)) {
+									if (!$rg = F_db_query($sqlg, $db)) {
 										F_display_db_error(false);
 										return FALSE;
 									}
@@ -505,43 +524,63 @@ function F_import_csv_users($csvfile) {
 		if (empty($userdata[5])) {
 			$userdata[5] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
 		}
-		if (empty($userdata[12])) {
+		// user level
+		if (!isset($userdata[12]) OR (strlen($userdata[12]) == 0)) {
 			$userdata[12] = 1;
 		}
-
+		if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+			// you cannot edit a user with a level equal or higher than yours
+			$userdata[12] = min(max(0, ($_SESSION['session_user_level'] - 1)), $userdata[12]);
+			// non-administrator can access only to his/her groups
+			if (empty($userdata[14])) {
+				break;
+			}
+			$usrgroups = explode(',', addslashes($userdata[14]));
+			$common_groups = array_intersect(F_get_user_groups($_SESSION['session_user_id']), $usrgroups);
+			if (empty($common_groups)) {
+				break;
+			}
+		}
 		// check if user already exist
-		$sql = 'SELECT user_id
+		$sql = 'SELECT user_id,user_level
 			FROM '.K_TABLE_USERS.'
 			WHERE user_name=\''.F_escape_sql($userdata[1]).'\'
 				OR user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).'
 				OR user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).'
 			LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				// the user has been already added
 				$user_id = $m['user_id'];
-
-				//update user data
-				$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-					user_name=\''.F_escape_sql($userdata[1]).'\',
-					user_password=\''.md5($userdata[2]).'\',
-					user_email='.F_empty_to_null(F_escape_sql($userdata[3])).',
-					user_regdate=\''.F_escape_sql($userdata[4]).'\',
-					user_ip=\''.F_escape_sql($userdata[5]).'\',
-					user_firstname='.F_empty_to_null(F_escape_sql($userdata[6])).',
-					user_lastname='.F_empty_to_null(F_escape_sql($userdata[7])).',
-					user_birthdate='.F_empty_to_null(F_escape_sql($userdata[8])).',
-					user_birthplace='.F_empty_to_null(F_escape_sql($userdata[9])).',
-					user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).',
-					user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).',
-					user_level=\''.intval($userdata[12]).'\',
-					user_verifycode='.F_empty_to_null(F_escape_sql($userdata[13])).'
-					WHERE user_id='.$user_id.'';
-				if(!$ru = F_db_query($sqlu, $db)) {
-					F_display_db_error(false);
-					return FALSE;
+				if (($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) OR ($_SESSION['session_user_level'] > $m['user_level'])) {
+					//update user data
+					$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
+						user_name=\''.F_escape_sql($userdata[1]).'\',';
+					// update password only if it is specified
+					if (!empty($userdata[2])) {
+						$sqlu .= ' user_password=\''.md5($userdata[2]).'\',';
+					}
+					$sqlu .= '
+						user_email='.F_empty_to_null(F_escape_sql($userdata[3])).',
+						user_regdate=\''.F_escape_sql($userdata[4]).'\',
+						user_ip=\''.F_escape_sql($userdata[5]).'\',
+						user_firstname='.F_empty_to_null(F_escape_sql($userdata[6])).',
+						user_lastname='.F_empty_to_null(F_escape_sql($userdata[7])).',
+						user_birthdate='.F_empty_to_null(F_escape_sql($userdata[8])).',
+						user_birthplace='.F_empty_to_null(F_escape_sql($userdata[9])).',
+						user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).',
+						user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).',
+						user_level=\''.intval($userdata[12]).'\',
+						user_verifycode='.F_empty_to_null(F_escape_sql($userdata[13])).'
+						WHERE user_id='.$user_id.'';
+					if (!$ru = F_db_query($sqlu, $db)) {
+						F_display_db_error(false);
+						return FALSE;
+					}
+				} else {
+					// no user is updated, so empty groups
+					$userdata[14] = '';
 				}
-
 			} else {
 				// add new user
 				$sqlu = 'INSERT INTO '.K_TABLE_USERS.' (
@@ -573,7 +612,7 @@ function F_import_csv_users($csvfile) {
 					\''.intval($userdata[12]).'\',
 					'.F_empty_to_null(F_escape_sql($userdata[13])).'
 					)';
-				if(!$ru = F_db_query($sqlu, $db)) {
+				if (!$ru = F_db_query($sqlu, $db)) {
 					F_display_db_error(false);
 					return FALSE;
 				} else {
@@ -587,7 +626,8 @@ function F_import_csv_users($csvfile) {
 
 		// user's groups
 		if (!empty($userdata[14])) {
-			$groups = explode(',', addslashes($userdata[14]));
+			$groups = preg_replace("/[\r\n]+/", '', $userdata[14]);
+			$groups = explode(',', addslashes($groups));
 			while(list($key,$group_name)=each($groups)) {
 				$group_name = F_escape_sql($group_name);
 				// check if group already exist
@@ -595,8 +635,8 @@ function F_import_csv_users($csvfile) {
 					FROM '.K_TABLE_GROUPS.'
 					WHERE group_name=\''.$group_name.'\'
 					LIMIT 1';
-				if($r = F_db_query($sql, $db)) {
-					if($m = F_db_fetch_array($r)) {
+				if ($r = F_db_query($sql, $db)) {
+					if ($m = F_db_fetch_array($r)) {
 						// the group already exist
 						$group_id = $m['group_id'];
 					} else {
@@ -606,7 +646,7 @@ function F_import_csv_users($csvfile) {
 							) VALUES (
 							\''.$group_name.'\'
 							)';
-						if(!$ri = F_db_query($sqli, $db)) {
+						if (!$ri = F_db_query($sqli, $db)) {
 							F_display_db_error(false);
 							return FALSE;
 						} else {
@@ -623,8 +663,8 @@ function F_import_csv_users($csvfile) {
 					WHERE usrgrp_group_id=\''.$group_id.'\'
 						AND usrgrp_user_id=\''.$user_id.'\'
 					LIMIT 1';
-				if($rs = F_db_query($sqls, $db)) {
-					if(!$ms = F_db_fetch_array($rs)) {
+				if ($rs = F_db_query($sqls, $db)) {
+					if (!$ms = F_db_fetch_array($rs)) {
 						// associate group to user
 						$sqlg = 'INSERT INTO '.K_TABLE_USERGROUP.' (
 							usrgrp_user_id,
@@ -633,7 +673,7 @@ function F_import_csv_users($csvfile) {
 							'.$user_id.',
 							'.$group_id.'
 							)';
-						if(!$rg = F_db_query($sqlg, $db)) {
+						if (!$rg = F_db_query($sqlg, $db)) {
 							F_display_db_error(false);
 							return FALSE;
 						}

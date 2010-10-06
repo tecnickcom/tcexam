@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2010-09-20
+// Last Update : 2010-10-06
 //
 // Description : Create PDF document to display user's results.
 //
@@ -58,18 +58,25 @@
  */
 
 require_once('../config/tce_config.php');
+require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdf.php');
 require_once('../code/tce_functions_statistics.php');
+require_once('tce_functions_user_select.php');
 
-if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 0)) {
+if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 1)) {
 	$user_id = intval($_REQUEST['user_id']);
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 } else {
 	exit;
 }
+
 if (isset($_REQUEST['startdate']) AND ($_REQUEST['startdate'] > 0)) {
 	$startdate = urldecode($_REQUEST['startdate']);
 } else {
@@ -142,9 +149,10 @@ if (defined('K_DIGSIG_ENABLE') AND K_DIGSIG_ENABLE) {
 }
 
 // calculate some sizes
+$cell_height_ratio = (K_CELL_HEIGHT_RATIO + 0.1);
 $page_width = $pdf->getPageWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;
-$data_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
-$main_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
+$data_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
+$main_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
 $data_cell_width = round($page_width / $page_elements, 2);
 $data_cell_width_third = round($data_cell_width / 3, 2);
 $data_cell_width_half = round($data_cell_width / 2, 2);
@@ -233,9 +241,11 @@ $sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuse
 			AND testuser_creation_time<=\''.$enddate.'\'
 			AND testuser_user_id='.$user_id.'
 			AND testlog_testuser_id=testuser_id
-			AND testuser_test_id=test_id
-		GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status
-		ORDER BY '.$order_field.'';
+			AND testuser_test_id=test_id';
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	$sqlr .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+}
+$sqlr .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.$order_field.'';
 if($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 0;
 	$passed = 0;

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2009-09-30
+// Last Update : 2010-10-05
 //
 // Description : Edit users' groups.
 //
@@ -54,35 +54,43 @@
 
 require_once('../config/tce_config.php');
 
-$pagelevel = K_AUTH_ADMIN_USERS;
+$pagelevel = K_AUTH_ADMIN_GROUPS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_group_editor'];
 require_once('../code/tce_page_header.php');
 
 require_once('../../shared/code/tce_functions_form.php');
+require_once('../code/tce_functions_user_select.php');
 
 $user_id = intval($_SESSION['session_user_id']);
 $userip = $_SESSION['session_user_ip'];
 $userlevel = intval($_SESSION['session_user_level']);
 
-if (isset($group_id)) {
-	$group_id = intval($group_id);
+if (isset($_REQUEST['group_id'])) {
+	$group_id = intval($_REQUEST['group_id']);
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 }
-if (isset($group_name)) {
-	$group_name = utrim($group_name);
+if (isset($_REQUEST['group_name'])) {
+	$group_name = $_REQUEST['group_name'];
 }
 
-switch($menu_mode) { // process submited data
+switch($menu_mode) { // process submitted data
 
 	case 'delete':{
 		F_stripslashes_formfields(); // ask confirmation
+		if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			break;
+		}
 		F_print_error('WARNING', $l['m_delete_confirm']);
 		?>
 		<div class="confirmbox">
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
-
 		<input type="hidden" name="group_id" id="group_id" value="<?php echo $group_id; ?>" />
 		<input type="hidden" name="group_name" id="group_name" value="<?php echo stripslashes($group_name); ?>" />
 		<?php
@@ -98,6 +106,10 @@ switch($menu_mode) { // process submited data
 
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete specified user
+		if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			break;
+		}
 		if($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
 			$sql = 'DELETE FROM '.K_TABLE_GROUPS.' WHERE group_id='.$group_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -131,7 +143,7 @@ switch($menu_mode) { // process submited data
 	}
 
 	case 'add':{ // Add user
-		if($formstatus = F_check_form_fields()) { // check submittef form fields
+		if($formstatus = F_check_form_fields()) { // check submitted form fields
 			// check if name is unique
 			if(!F_check_unique(K_TABLE_GROUPS, 'group_name=\''.F_escape_sql($group_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
@@ -146,6 +158,17 @@ switch($menu_mode) { // process submited data
 				F_display_db_error(false);
 			} else {
 				$group_id = F_db_insert_id($db, K_TABLE_GROUPS, 'group_id');
+			}
+			// add current user to the new group
+			$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
+				usrgrp_user_id,
+				usrgrp_group_id
+				) VALUES (
+				\''.$_SESSION['session_user_id'].'\',
+				\''.$group_id.'\'
+				)';
+			if (!$r = F_db_query($sql, $db)) {
+				F_display_db_error(false);
 			}
 		}
 		break;
@@ -166,9 +189,9 @@ switch($menu_mode) { // process submited data
 if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if(!isset($group_id) OR empty($group_id)) {
-			$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' ORDER BY group_name LIMIT 1';
+			$sql = F_user_group_select_sql().' LIMIT 1';
 		} else {
-			$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' WHERE group_id='.$group_id.' LIMIT 1';
+			$sql = F_user_group_select_sql('group_id='.$group_id).' LIMIT 1';
 		}
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
@@ -196,9 +219,7 @@ if($formstatus) {
 <span class="formw">
 <select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_groupeditor').submit()">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	ORDER BY group_name';
+$sql = F_user_group_select_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
@@ -242,9 +263,12 @@ else {
 <div class="row">
 <?php
 // show buttons by case
-if ($group_id) {
+if (isset($group_id) AND ($group_id > 0)) {
 	F_submit_button('update', $l['w_update'], $l['h_update']);
-	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+	if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) {
+		// your account and anonymous user can't be deleted
+		F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+	}
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);

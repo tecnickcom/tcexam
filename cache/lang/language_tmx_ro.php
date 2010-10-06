@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2010-09-22 15:53:38
+// DATE: 2010-09-30 20:15:02
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -513,50 +513,49 @@ De ştiut faptul că înaintea fiecărei restaurări sistemul realizează automa
 Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoarea sintaxă: AAAALLZZhhmmss_tcexam_backup.sql.gz , unde AAAALLZZhhmmss reprezintă cifrele anului (A), lunii (L), zilei (Z), orei (h), minutelor (m), secundelor (s).';
 $tmx['w_download']='download';
 $tmx['h_download']='downloadați fișierul de backup selectat';
-$tmx['t_user_change_password']='Change Password';
-$tmx['t_user_change_email']='Change Email';
-$tmx['hp_user_change_password']='With this form you can change your access password.';
-$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
-$tmx['m_password_updated']='the password has been updated';
-$tmx['m_email_updated']='the email has been updated';
-$tmx['m_different_emails']='the emails are different';
-$tmx['w_current_password']='current password';
-$tmx['w_new_password']='new password';
-$tmx['d_password_lenght']='at least 8 alphanumeric characters';
-$tmx['w_new_email']='new email';
-$tmx['h_email']='e-mail address';
-$tmx['h_login_link']='click on this link to access on this system';
-$tmx['w_change_email']='change email';
-$tmx['w_change_password']='change password';
+$tmx['t_user_change_password']='Schimbă Parola';
+$tmx['t_user_change_email']='Schimbă E-mail';
+$tmx['hp_user_change_password']='Cu acest formular vă puteţi schimba parola de acces.';
+$tmx['hp_user_change_email']='Cu acest formular vă puteţi schimba adresa de e-mail. Un mesaj de verificare va fi trimis la noua d-voastră adresă de e-mail. Contul d-voastră va fi dezactivat până la trimiterea confirmării.';
+$tmx['m_password_updated']='parola a fost actualizată';
+$tmx['m_email_updated']='adresa de e-mail a fost actualizată';
+$tmx['m_different_emails']='adresele de e-mail sunt diferite';
+$tmx['w_current_password']='parola curentă';
+$tmx['w_new_password']='parola nouă';
+$tmx['d_password_lenght']='cel puţin 8 caractere alfanumerice';
+$tmx['w_new_email']='noua adresă de e-mail';
+$tmx['h_email']='adresa de e-mail';
+$tmx['h_login_link']='clic pe acest link pentru a accesa acest sistem';
+$tmx['w_change_email']='schimbă e-mail';
+$tmx['w_change_password']='schimbă parola';
 $tmx['w_admin']='admin';
-$tmx['h_admin_link']='administration area';
-$tmx['h_public_link']='public area';
+$tmx['h_admin_link']='zona administrativă';
+$tmx['h_public_link']='zona publică';
 $tmx['w_public']='public';
-$tmx['t_test_list']='Test List';
-$tmx['w_action']='action';
-$tmx['w_show']='show';
-$tmx['w_hide']='hide';
-$tmx['w_change_dir']='change directory';
-$tmx['w_size']='size';
-$tmx['w_date']='date';
-$tmx['w_permissions']='permissions';
-$tmx['t_filemanager']='Media File Manager';
-$tmx['hp_filemanager']='With this form you can manage multimedia files.';
-$tmx['m_used_file']='this file is used on question or answer description';
-$tmx['m_delete_file_error']='unable to delete the selected file or directory';
-$tmx['w_rename']='rename';
-$tmx['m_file_renamed']='the file has been renamed';
-$tmx['m_file_rename_error']='unable to rename the selected file';
-$tmx['m_file_already_exist']='this file or directory name is already used';
-$tmx['w_file_manager']='file manager';
-$tmx['w_new_directory']='new directory';
-$tmx['w_create_directory']='create';
-$tmx['m_directory_created']='the directory has been created';
-$tmx['m_directory_create_error']='unable to create the requested directory';
-$tmx['w_directory']='directory';
-$tmx['w_table']='table';
-$tmx['w_visual']='visual';
-$tmx['t_select_media_file']='Select Object';
-$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
+$tmx['t_test_list']='Listă Teste';
+$tmx['w_action']='acţiune';
+$tmx['w_hide']='ascunde';
+$tmx['w_change_dir']='schimbă dosarul';
+$tmx['w_size']='mărime';
+$tmx['w_date']='dată';
+$tmx['w_permissions']='permisiuni';
+$tmx['t_filemanager']='Gestionare Fişiere Media';
+$tmx['hp_filemanager']='Cu acest formular puteţi gestiona fişiere multimedia.';
+$tmx['m_used_file']='acest fişier este utilizat în descrierea unei întrebări sau a unui răspuns';
+$tmx['m_delete_file_error']='nu s-a putut şterge fişierul sau dosarul selectat';
+$tmx['w_rename']='redenumeşte';
+$tmx['m_file_renamed']='fişierul a fost redenumit';
+$tmx['m_file_rename_error']='nu s-a putut redenumi fişierul selectat';
+$tmx['m_file_already_exist']='acest nume de fişier sau dosar este deja folosit';
+$tmx['w_file_manager']='gestionare fişiere';
+$tmx['w_new_directory']='dosar nou';
+$tmx['w_create_directory']='creează';
+$tmx['m_directory_created']='dosarul a fost creat';
+$tmx['m_directory_create_error']='nu s-a putut crea dosarul solicitat';
+$tmx['w_directory']='dosar';
+$tmx['w_table']='tabel';
+$tmx['w_visual']='vizual';
+$tmx['t_select_media_file']='Selectează Obiect';
+$tmx['hp_select_media_file']='Această pagină vă permite să introduceţi un fişier multimedia în descrierea curentă. Selectaţi obiectul pe care doriţi să-l introduceţi, completaţi câmpurile descriptive şi daţi clic pe butonul [adaugă].';
 
 // --- EOF ---

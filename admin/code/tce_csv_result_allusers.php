@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2009-09-30
+// Last Update : 2010-10-06
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -59,13 +59,11 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 } else {
 	exit;
 }
-
 if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 	$group_id = intval($_REQUEST['groupid']);
 } else {
 	$group_id = 0;
 }
-
 if(!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
 	$order_field = 'total_score, user_lastname, user_firstname';
 } else {
@@ -106,18 +104,21 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_authorization.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
+	require_once('tce_functions_user_select.php');
 
 	$test_id = intval($test_id);
 	$group_id = intval($group_id);
 	$order_field = F_escape_sql($order_field);
 
-	$csv = ''; // CSV data to be returned
-
 	// check user's authorization
 	if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-		return $csv;
+		return '';
+	}
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		return '';
 	}
 
+	$csv = ''; // CSV data to be returned
 	// print column names
 	$csv .= '#';
 	$csv .= K_TAB.$l['w_score'];
@@ -143,6 +144,9 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 				FROM '.K_TABLE_USERGROUP.'
 				WHERE usrgrp_group_id='.$group_id.'
 			)';
+	}
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		$sqlr .= ' AND (user_level<'.$_SESSION['session_user_level'].' OR user_id='.$_SESSION['session_user_id'].')';
 	}
 	$sqlr .= ' GROUP BY testuser_id, user_id, user_lastname, user_firstname, user_name
 		ORDER BY '.$order_field.'';

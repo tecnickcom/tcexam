@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_allresults_user.php
 // Begin       : 2008-12-26
-// Last Update : 2009-09-30
+// Last Update : 2010-10-06
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -114,11 +114,16 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_authorization.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
+	require_once('tce_functions_user_select.php');
 
 	$user_id = intval($user_id);
 	$startdate = F_escape_sql($startdate);
 	$enddate = F_escape_sql($enddate);
 	$order_field = F_escape_sql($order_field);
+
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		return '';
+	}
 
 	$csv = ''; // CSV data to be returned
 
@@ -142,9 +147,11 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 			AND testuser_creation_time<=\''.$enddate.'\'
 			AND testuser_user_id='.$user_id.'
 			AND testlog_testuser_id=testuser_id
-			AND testuser_test_id=test_id
-		GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status
-		ORDER BY '.$order_field.'';
+			AND testuser_test_id=test_id';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		$sqlr .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+	}
+	$sqlr .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.$order_field.'';
 	if($rr = F_db_query($sqlr, $db)) {
 		$itemcount = 1;
 		while($mr = F_db_fetch_array($rr)) {

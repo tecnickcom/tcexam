@@ -304,13 +304,21 @@
 							<dt><b>F_getMediaDirPathLink</b></dt>
 				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_getMediaDirPathLink">F_getMediaDirPathLink()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get an html string containing active path of the specified directory with links to subdirectories.</dd>
 							<dt><b>F_get_user_groups</b></dt>
-				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_get_user_groups">F_get_user_groups()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing user's groups IDs</dd>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_get_user_groups">F_get_user_groups()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing groups IDs to which the specified user belongs</dd>
 							<dt><b>F_html_color_picker</b></dt>
 				<dd>in file tce_colorpicker.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_colorpicker.php.html#functionF_html_color_picker">F_html_color_picker()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Color Picker</dd>
 							<dt><b>F_import_csv_users</b></dt>
 				<dd>in file tce_import_xml_users.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_import_xml_users.php.html#functionF_import_csv_users">F_import_csv_users()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Import users from CSV file (tab delimited text).</dd>
+							<dt><b>F_isAuthorizedEditorForGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isAuthorizedEditorForGroup">F_isAuthorizedEditorForGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the current user is an administrator or belongs to the group, false otherwise</dd>
+							<dt><b>F_isAuthorizedEditorForUser</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isAuthorizedEditorForUser">F_isAuthorizedEditorForUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the current user is authorized to edit the specified user</dd>
+							<dt><b>F_isTestOnGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isTestOnGroup">F_isTestOnGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the selected test is active for the selected group</dd>
 							<dt><b>F_isUsedMediaFile</b></dt>
 				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_isUsedMediaFile">F_isUsedMediaFile()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the file is used on question or answer descriptions</dd>
+							<dt><b>F_isUserOnGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isUserOnGroup">F_isUserOnGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the selected user belongs to the selected group</dd>
 							<dt><b>F_is_allowed_upload</b></dt>
 				<dd>in file tce_functions_upload.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_upload.php.html#functionF_is_allowed_upload">F_is_allowed_upload()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if the uploaded file extension is allowed.</dd>
 							<dt><b>F_list_online_users</b></dt>
@@ -357,6 +365,8 @@
 				<dd>in file tce_functions_upload.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_upload.php.html#functionF_upload_file">F_upload_file()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Uploads image file to the server.</dd>
 							<dt><b>F_user_group_select</b></dt>
 				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_group_select">F_user_group_select()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display select box for user groups</dd>
+							<dt><b>F_user_group_select_sql</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_group_select_sql">F_user_group_select_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the SQL selection query for user groups</dd>
 							<dt><b>F_user_table_header_element</b></dt>
 				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_table_header_element">F_user_table_header_element()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display table header element with order link.</dd>
 							<dt><b>F_xml_export_questions</b></dt>
@@ -620,7 +630,7 @@
 	<a href="elementindex_com-tecnick-tcexam-admin.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 26 Sep 2010 20:19:25 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 06 Oct 2010 16:47:51 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

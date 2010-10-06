@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2010-05-10
+// Last Update : 2010-10-06
 //
 // Description : Functions to export users' accounts using
 //               XML format.
@@ -55,7 +55,7 @@
 
 // check user's authorization
 require_once('../config/tce_config.php');
-$pagelevel = K_AUTH_ADMIN_USERS;
+$pagelevel = K_AUTH_EXPORT_USERS;
 require_once('../../shared/code/tce_authorization.php');
 
 // send XML headers
@@ -101,9 +101,18 @@ function F_xml_export_users() {
 	$xml .=  K_TAB.'<body>'.K_NEWLINE;
 
 	// add users
-	$sqla = 'SELECT *
-		FROM '.K_TABLE_USERS.'
-		ORDER BY user_lastname,user_firstname,user_name';
+	$sqla = 'SELECT * FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		// filter for level
+		$sqla .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+		// filter for groups
+		$sqla .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+			FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+			WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+				AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+				AND tb.usrgrp_user_id=user_id)';
+	}
+	$sqla .= ' ORDER BY user_lastname,user_firstname,user_name';
 	if($ra = F_db_query($sqla, $db)) {
 		while($ma = F_db_fetch_array($ra)) {
 

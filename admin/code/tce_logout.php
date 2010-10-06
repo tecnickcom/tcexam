@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_logout.php
 // Begin       : 2001-09-28
-// Last Update : 2010-09-23
+// Last Update : 2010-10-04
 //
 // Description : Destroy user's session (logout).
 //
@@ -59,6 +59,8 @@ require_once('../../shared/code/tce_functions_session.php');
 // Destroys all user's session data
 session_unset();
 session_destroy();
+// destroy session ID cookie
+setcookie('PHPSESSID', '', 1, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
 
 if(!isset($current_page)) {
 	$current_page = '../code/index.php?logout=1';

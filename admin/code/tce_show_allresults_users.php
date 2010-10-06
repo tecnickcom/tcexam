@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2009-10-10
+// Last Update : 2010-10-06
 //
 // Description : Display all test results for the selected users.
 //
@@ -59,36 +59,26 @@ require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_all_results_user'];
 $enable_calendar = true;
-require_once('../code/tce_page_header.php');
+require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
-require_once('../code/tce_functions_auth_sql.php');
-require_once('../code/tce_functions_statistics.php');
+require_once('tce_functions_auth_sql.php');
+require_once('tce_functions_statistics.php');
+require_once('tce_functions_user_select.php');
 
 if (isset($_REQUEST['user_id'])) {
 	$user_id = intval($_REQUEST['user_id']);
-	// check user's authorization
-	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$sql = 'SELECT user_id
-			FROM '.K_TABLE_USERS.'
-			WHERE user_id='.$user_id.'
-				AND user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
-		if($r = F_db_query($sql, $db)) {
-			if(!F_db_fetch_array($r)) {
-				F_print_error('ERROR', $l['m_authorization_denied']);
-				exit;
-			}
-		} else {
-			F_display_db_error();
-		}
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
 	}
 }
-
-if (isset($selectcategory)) {
+if (isset($_REQUEST['selectcategory'])) {
 	$changecategory = 1;
 }
+
 if(isset($_POST['lock'])) {
 	$menu_mode = 'lock';
 } elseif(isset($_POST['unlock'])) {
@@ -219,13 +209,20 @@ if($formstatus) {
 <span class="formw">
 <select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_allresultsuser').submit()">
 <?php
-$sql = "SELECT user_id, user_lastname, user_firstname, user_name
-	FROM ".K_TABLE_USERS."
-	WHERE user_level > 0";
-	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$sql .= " AND user_id IN (".F_getAuthorizedUsers($_SESSION['session_user_id']).")";
-	}
-	$sql .= " ORDER BY user_lastname, user_firstname, user_name";
+$sql = 'SELECT user_id, user_lastname, user_firstname, user_name
+	FROM '.K_TABLE_USERS.'
+	WHERE user_id > 1';
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	// filter for level
+	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+	// filter for groups
+	$sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+		FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+		WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+			AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+			AND tb.usrgrp_user_id=user_id)';
+}
+$sql .= ' ORDER BY user_lastname, user_firstname, user_name';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
@@ -320,8 +317,7 @@ $sqlr = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuse
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	$sqlr .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 }
-$sqlr .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status
-		ORDER BY '.$full_order_field.'';
+$sqlr .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.$full_order_field.'';
 if($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 0;
 	$passed = 0;

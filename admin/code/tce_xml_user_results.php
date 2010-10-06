@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2010-05-10
+// Last Update : 2010-10-06
 //
 // Description : Export all user's results in XML.
 //
@@ -103,6 +103,13 @@ header('Content-Type: application/xml', false);
 header('Content-Disposition: attachment; filename=tcexam_user_results_'.$user_id.'_'.date('YmdHis').'.xml;');
 header('Content-Transfer-Encoding: binary');
 
+require_once('../../shared/code/tce_authorization.php');
+require_once('tce_functions_user_select.php');
+
+if (!F_isAuthorizedEditorForUser($user_id)) {
+	exit;
+}
+
 $xml = ''; // XML data to be returned
 
 $xml .= '<'.'?xml version="1.0" encoding="UTF-8" ?'.'>'.K_NEWLINE;
@@ -122,16 +129,17 @@ $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
 $sql = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score
-		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
-		WHERE testuser_status>0
-			AND testuser_creation_time>=\''.$startdate.'\'
-			AND testuser_creation_time<=\''.$enddate.'\'
-			AND testuser_user_id='.$user_id.'
-			AND testlog_testuser_id=testuser_id
-			AND testuser_test_id=test_id
-		GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status
-		ORDER BY '.$order_field.'';
-
+	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
+	WHERE testuser_status>0
+		AND testuser_creation_time>=\''.$startdate.'\'
+		AND testuser_creation_time<=\''.$enddate.'\'
+		AND testuser_user_id='.$user_id.'
+		AND testlog_testuser_id=testuser_id
+		AND testuser_test_id=test_id';
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	$sql .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+}
+$sql .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.$order_field.'';
 if($r = F_db_query($sql, $db)) {
 	$passed = 0;
 	while($m = F_db_fetch_array($r)) {

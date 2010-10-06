@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2009-10-07
+// Last Update : 2010-10-05
 //
 // Description : Display user selection table.
 //
@@ -68,8 +68,16 @@ if(!isset($order_field)) {$order_field="user_lastname,user_firstname";}
 if(!isset($orderdir)) {$orderdir=0;}
 if(!isset($firstrow)) {$firstrow=0;}
 if(!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}
-if(!isset($group_id)) {$group_id=0;}
 if(!isset($searchterms)) {$searchterms='';}
+if(isset($_REQUEST['group_id'])) {
+	$group_id = intval($_REQUEST['group_id']);
+} else {
+	$group_id = 0;
+}
+if (!F_isAuthorizedEditorForGroup($group_id)) {
+	F_print_error('ERROR', $l['m_authorization_denied']);
+	exit;
+}
 ?>
 
 <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_userselect">
@@ -86,9 +94,7 @@ if($group_id == 0) {
 	echo ' selected="selected"';
 }
 echo '>&nbsp;</option>'.K_NEWLINE;
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	ORDER BY group_name';
+$sql = F_user_group_select_sql();
 if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
@@ -156,7 +162,9 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 			$user_id = $$keyname;
 			switch($menu_mode) {
 				case 'delete': {
-					if (($user_id > 1) AND ($user_id != $_SESSION['session_user_id'])) {
+					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) 
+						AND ($user_id > 1) AND ($user_id != $_SESSION['session_user_id'])
+						AND F_isAuthorizedEditorForUser($user_id)) {
 						$sql = 'DELETE FROM '.K_TABLE_USERS.'
 							WHERE user_id='.$user_id.'';
 						if(!$r = F_db_query($sql, $db)) {
@@ -166,7 +174,9 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'addgroup': {
-					if (isset($new_group_id) AND ($new_group_id > 0)) {
+					if (($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS) 
+						AND isset($new_group_id) AND ($new_group_id > 0) 
+						AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$groups = F_get_user_groups($user_id);
 						if (!in_array($new_group_id, $groups)) {
 							$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
@@ -184,7 +194,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'delgroup': {
-					if (isset($new_group_id) AND ($new_group_id > 0)) {
+					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) 
+						AND isset($new_group_id) AND ($new_group_id > 0) AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 							WHERE usrgrp_user_id='.$user_id.'
 								AND usrgrp_group_id='.$new_group_id.'';
@@ -195,7 +206,11 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'move': {
-					if (isset($from_group_id) AND ($from_group_id > 0) AND isset($to_group_id) AND ($to_group_id > 0)) {
+					if (($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS) 
+						AND isset($from_group_id) AND ($from_group_id > 0) 
+						AND F_isAuthorizedEditorForGroup($from_group_id)
+						AND isset($to_group_id) AND ($to_group_id > 0) 
+						AND F_isAuthorizedEditorForGroup($to_group_id)) {
 						$groups = F_get_user_groups($user_id);
 						if (!in_array($to_group_id, $groups)) {
 							$sql = 'UPDATE '.K_TABLE_USERGROUP.' SET

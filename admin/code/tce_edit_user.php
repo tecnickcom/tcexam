@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2009-09-30
+// Last Update : 2010-10-06
 //
 // Description : Edit user data.
 //
@@ -61,28 +61,48 @@ $thispage_title = $l['t_user_editor'];
 require_once('../code/tce_page_header.php');
 
 require_once('../../shared/code/tce_functions_form.php');
+require_once('tce_functions_user_select.php');
 
-if (isset($user_id)) {
-	$user_id = intval($user_id);
+if (isset($_REQUEST['user_id'])) {
+	$user_id = intval($_REQUEST['user_id']);
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 }
-if (isset($group_id)) {
-	$group_id = intval($group_id);
+if (isset($_REQUEST['group_id'])) {
+	$group_id = intval($_REQUEST['group_id']);
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 }
 if (isset($_REQUEST['user_level'])) {
-	// you cannot create a user with a level higher than yours
-	$user_level = min(intval($_SESSION['session_user_level']),intval($_REQUEST['user_level']));
+	$user_level = intval($_REQUEST['user_level']);
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		if ($user_id == $_SESSION['session_user_id']) {
+			// you cannot change your own level
+			$user_level = $_SESSION['session_user_level'];
+		} else {
+			// you cannot create a user with a level equal or higher than yours
+			$user_level = min(max(0, ($_SESSION['session_user_level'] - 1)), $user_level);
+		}
+	}
 }
 
-switch($menu_mode) { // process submited data
+switch($menu_mode) { // process submitted data
 
 	case 'delete':{
 		F_stripslashes_formfields(); // ask confirmation
+		if (($_SESSION['session_user_level'] < K_AUTH_DELETE_USERS) OR ($user_id == $_SESSION['session_user_id']) OR ($user_id == 1)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			break;
+		}
 		F_print_error('WARNING', $l['m_delete_confirm']);
 		?>
 		<div class="confirmbox">
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
-
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
 		<input type="hidden" name="user_name" id="user_name" value="<?php echo stripslashes($user_name); ?>" />
 		<?php
@@ -98,12 +118,16 @@ switch($menu_mode) { // process submited data
 
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete specified user
-		if($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
-			if($user_id==1) { //can't delete anonymous user
+		if (($_SESSION['session_user_level'] < K_AUTH_DELETE_USERS) OR ($user_id == $_SESSION['session_user_id']) OR ($user_id == 1)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			break;
+		}
+		if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
+			if ($user_id==1) { //can't delete anonymous user
 				F_print_error('WARNING', $l['m_delete_anonymous']);
 			} else {
 				$sql = 'DELETE FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id.'';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
 				} else {
 					$user_id=FALSE;
@@ -115,28 +139,28 @@ switch($menu_mode) { // process submited data
 	}
 
 	case 'update':{ // Update user
-		if($formstatus = F_check_form_fields()) {
+		if ($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($user_name).'\'', 'user_id', $user_id)) {
+			if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($user_name).'\'', 'user_id', $user_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check if registration number is unique
-			if(isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\'', 'user_id', $user_id))) {
+			if (isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\'', 'user_id', $user_id))) {
 				F_print_error('WARNING', $l['m_duplicate_regnumber']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check if ssn is unique
-			if(isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\'', 'user_id', $user_id))) {
+			if (isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\'', 'user_id', $user_id))) {
 				F_print_error('WARNING', $l['m_duplicate_ssn']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check password
-			if(!empty($newpassword) OR !empty($newpassword_repeat)) {
-				if($newpassword == $newpassword_repeat) {
+			if (!empty($newpassword) OR !empty($newpassword_repeat)) {
+				if ($newpassword == $newpassword_repeat) {
 					$user_password = md5($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
@@ -144,7 +168,6 @@ switch($menu_mode) { // process submited data
 					break;
 				}
 			}
-
 			$sql = 'UPDATE '.K_TABLE_USERS.' SET
 				user_regdate=\''.F_escape_sql($user_regdate).'\',
 				user_ip=\''.F_escape_sql($user_ip).'\',
@@ -159,29 +182,37 @@ switch($menu_mode) { // process submited data
 				user_ssn='.F_empty_to_null(F_escape_sql($user_ssn)).',
 				user_level=\''.$user_level.'\'
 				WHERE user_id='.$user_id.'';
-			if(!$r = F_db_query($sql, $db)) {
+			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {
 				F_print_error('MESSAGE', $user_name.': '.$l['m_user_updated']);
 			}
-			// delete previous groups
-			$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
-				WHERE usrgrp_user_id='.$user_id.'';
-			if(!$r = F_db_query($sql, $db)) {
-				F_display_db_error(false);
+			// remove old groups
+			$old_user_groups = F_get_user_groups($user_id);
+			foreach ($old_user_groups as $group_id) {
+				if (F_isAuthorizedEditorForGroup($group_id)) {
+					// delete previous groups
+					$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
+						WHERE usrgrp_user_id='.$user_id.' AND usrgrp_group_id='.$group_id.'';
+					if (!$r = F_db_query($sql, $db)) {
+						F_display_db_error(false);
+					}
+				}
 			}
 			// update user's groups
 			if (!empty($user_groups)) {
 				foreach ($user_groups as $group_id) {
-					$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
-						usrgrp_user_id,
-						usrgrp_group_id
-						) VALUES (
-						\''.$user_id.'\',
-						\''.$group_id.'\'
-						)';
-					if(!$r = F_db_query($sql, $db)) {
-						F_display_db_error(false);
+					if (F_isAuthorizedEditorForGroup($group_id)) {
+						$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
+							usrgrp_user_id,
+							usrgrp_group_id
+							) VALUES (
+							\''.$user_id.'\',
+							\''.$group_id.'\'
+							)';
+						if (!$r = F_db_query($sql, $db)) {
+							F_display_db_error(false);
+						}
 					}
 				}
 			}
@@ -190,28 +221,28 @@ switch($menu_mode) { // process submited data
 	}
 
 	case 'add':{ // Add user
-		if($formstatus = F_check_form_fields()) { // check submittef form fields
+		if ($formstatus = F_check_form_fields()) { // check submittef form fields
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_USERS, 'user_name=\''.$user_name.'\'')) {
+			if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.$user_name.'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check if registration number is unique
-			if(isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\''))) {
+			if (isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\''))) {
 				F_print_error('WARNING', $l['m_duplicate_regnumber']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check if ssn is unique
-			if(isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\''))) {
+			if (isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\''))) {
 				F_print_error('WARNING', $l['m_duplicate_ssn']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			// check password
-			if(!empty($newpassword) OR !empty($newpassword_repeat)) {// update password
-				if($newpassword == $newpassword_repeat) {
+			if (!empty($newpassword) OR !empty($newpassword_repeat)) { // update password
+				if ($newpassword == $newpassword_repeat) {
 					$user_password = md5($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
@@ -254,7 +285,7 @@ switch($menu_mode) { // process submited data
 				'.F_empty_to_null(F_escape_sql($user_ssn)).',
 				\''.$user_level.'\'
 				)';
-			if(!$r = F_db_query($sql, $db)) {
+			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {
 				$user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
@@ -262,15 +293,17 @@ switch($menu_mode) { // process submited data
 			// add user's groups
 			if (!empty($user_groups)) {
 				foreach ($user_groups as $group_id) {
-					$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
-						usrgrp_user_id,
-						usrgrp_group_id
-						) VALUES (
-						\''.$user_id.'\',
-						\''.$group_id.'\'
-						)';
-					if(!$r = F_db_query($sql, $db)) {
-						F_display_db_error(false);
+					if (F_isAuthorizedEditorForGroup($group_id)) {
+						$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
+							usrgrp_user_id,
+							usrgrp_group_id
+							) VALUES (
+							\''.$user_id.'\',
+							\''.$group_id.'\'
+							)';
+						if (!$r = F_db_query($sql, $db)) {
+							F_display_db_error(false);
+						}
 					}
 				}
 			}
@@ -301,15 +334,15 @@ switch($menu_mode) { // process submited data
 } //end of switch
 
 // --- Initialize variables
-if($formstatus) {
+if ($formstatus) {
 	if ($menu_mode != 'clear') {
-		if(!isset($user_id) OR empty($user_id)) {
-			$sql = 'SELECT * FROM '.K_TABLE_USERS.' ORDER BY user_name LIMIT 1';
+		if (!isset($user_id) OR empty($user_id)) {
+			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_id='.$_SESSION['session_user_id'].' LIMIT 1';
 		} else {
 			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id.' LIMIT 1';
 		}
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				$user_id = $m['user_id'];
 				$user_regdate = $m['user_regdate'];
 				$user_ip = $m['user_ip'];
@@ -356,14 +389,23 @@ if($formstatus) {
 <span class="formw">
 <select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_usereditor').submit()">
 <?php
-$sql = 'SELECT user_id, user_lastname, user_firstname, user_name
-	FROM '.K_TABLE_USERS.'
-	ORDER BY user_lastname,user_firstname,user_name';
-if($r = F_db_query($sql, $db)) {
+$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	// filter for level
+	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+	// filter for groups
+	$sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+		FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+		WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+			AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+			AND tb.usrgrp_user_id=user_id)';
+}
+$sql .= ' ORDER BY user_lastname, user_firstname, user_name';
+if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['user_id'].'"';
-		if($m['user_id'] == $user_id) {
+		if ($m['user_id'] == $user_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.$countitem.'. '.htmlspecialchars($m['user_lastname'].' '.$m['user_firstname'].' - '.$m['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -456,7 +498,7 @@ else {
 <?php
 for($i=0; $i<=10; $i++) {
 	echo '<option value="'.$i.'"';
-	if($i == $user_level) {
+	if ($i == $user_level) {
 		echo ' selected="selected"';
 	}
 	echo '>'.$i.'</option>'.K_NEWLINE;
@@ -529,19 +571,20 @@ for($i=0; $i<=10; $i++) {
 <span class="formw">
 <select name="user_groups[]" id="user_groups" size="5" multiple="multiple">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	ORDER BY group_name';
-if($r = F_db_query($sql, $db)) {
+$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' ORDER BY group_name';
+if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
-		if(F_count_rows(K_TABLE_USERGROUP, 'WHERE usrgrp_user_id='.$user_id.' AND usrgrp_group_id='.$m['group_id'].'') > 0) {
-			echo ' selected="selected"';
+		if (!F_isAuthorizedEditorForGroup($m['group_id'])) {
+			echo ' style="text-decoration:line-through;"';
+		}
+		if (F_isUserOnGroup($user_id, $m['group_id'])) {
+			echo 'selected="selected"';
+			$m['group_name'] = '* '.$m['group_name'];
 		}
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 	}
-}
-else {
+} else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
@@ -553,10 +596,12 @@ else {
 <div class="row">
 <?php
 // show buttons by case
-if ($user_id) {
-	F_submit_button('update', $l['w_update'], $l['h_update']);
-	if ($user_id != 1) {
-		// anonymous user could not be deleted
+if (isset($user_id) AND ($user_id > 0)) {
+	if (($user_level < $_SESSION['session_user_level']) OR ($user_id == $_SESSION['session_user_id']) OR ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR)) {
+		F_submit_button('update', $l['w_update'], $l['h_update']);
+	}
+	if (($user_id > 1) AND ($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) AND ($user_id != $_SESSION['session_user_id'])) {
+		// your account and anonymous user can't be deleted
 		F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 	}
 }

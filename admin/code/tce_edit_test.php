@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2010-08-17
+// Last Update : 2010-10-05
 // // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -16,20 +16,26 @@
 //               www.tecnick.com
 //               info@tecnick.com
 //
-// License://    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
-//   //    This program is free software: you can redistribute it and/or modify
+// License:
+//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//
+//    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
 //    published by the Free Software Foundation, either version 3 of the
 //    License, or (at your option) any later version.
-//   //    This program is distributed in the hope that it will be useful,
+//
+//    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //    GNU Affero General Public License for more details.
-//   //    You should have received a copy of the GNU Affero General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//    //    Additionally, you can't remove, move or hide the original TCExam logo,
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+//    Additionally, you can't remove, move or hide the original TCExam logo,
 //    copyrights statements and links to Tecnick.com and TCExam websites.
-//   //    See LICENSE.TXT file for more information.
+//
+//    See LICENSE.TXT file for more information.
 //============================================================+
 
 /**
@@ -52,11 +58,12 @@ require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_tests_editor'];
 $enable_calendar = true;
-require_once('../code/tce_page_header.php');
+require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('../code/tce_functions_tcecode_editor.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('tce_functions_tcecode_editor.php');
+require_once('tce_functions_auth_sql.php');
+require_once('tce_functions_user_select.php');
 
 // set default values
 if(!isset($test_results_to_users) OR (empty($test_results_to_users))) {
@@ -95,7 +102,6 @@ if(!isset($tsubset_answers) OR (empty($tsubset_answers))) {
 if (isset($tsubset_id)) {
 	$tsubset_id = intval($tsubset_id);
 }
-
 if (isset($test_duration_time)) {
 	$test_duration_time = intval($test_duration_time);
 }
@@ -402,10 +408,10 @@ switch($menu_mode) {
 		<div class="confirmbox">
 		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
 		<div>
-
 		<input type="hidden" name="test_id" id="test_id" value="<?php echo $test_id; ?>" />
 		<input type="hidden" name="test_name" id="test_name" value="<?php echo $test_name; ?>" />
-		<?php		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
+		<?php
+		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 		F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
 		?>
 		</div>
@@ -876,19 +882,16 @@ else {
 <span class="formw">
 <select name="user_groups[]" id="user_groups" size="5" multiple="multiple">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	ORDER BY group_name';
+$sql = F_user_group_select_sql();
 if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
-		if (isset($test_id) AND ($test_id > 0) AND (F_count_rows(K_TABLE_TEST_GROUPS, 'WHERE tstgrp_test_id='.$test_id.' AND tstgrp_group_id='.$m['group_id'].'') > 0)) {
+		if (isset($test_id) AND ($test_id > 0) AND (F_isTestOnGroup($test_id, $m['group_id']))) {
 			echo ' selected="selected"';
 		}
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 	}
-}
-else {
+} else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }

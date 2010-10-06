@@ -1,7 +1,7 @@
 //============================================================+
 // File name   : timer.js
 // Begin       : 2004-04-29
-// Last Update : 2010-09-22
+// Last Update : 2010-10-05
 //
 // Description : display clock and countdown timer
 //
@@ -42,80 +42,49 @@
 
 var enable_countdown = false;
 var remaining_time = 0; // countdown duration
-var msg_endtime = ""; // message to display at the end of time
-var start_time = 0; // client computer datetime
+var msg_endtime = ''; // message to display at the end of time
+var start_time = 0; // client computer datetime in milliseconds
 var displayendtime = true; // display popup message indicating the end of the time
 var timeout_logout = false; // if true logout user at the end of available time
+var time_diff = 0; // time difference between server and client in milliseconds
 
 /**
- * Display current date-time and remaining time (countdown)
+ * Display current server date-time and remaining time (countdown)
  * on a input text form field (timerform.timer)
  */
 function FJ_timer() {
-	var today = new Date();
-
-	var year = "" + today.getFullYear();
-	var month = "" + (1 + today.getMonth());
-	if(month.length < 2) {
-		month = "0" + month;
-	}
-	var day = "" + today.getDate();
-	if(day.length < 2) {
-		day = "0" + day;
-	}
-	var hour = "" + today.getHours();
-	if(hour.length < 2) {
-		hour = "0" + hour;
-	}
-	var minute = "" + today.getMinutes();
-	if(minute.length < 2) {
-		minute = "0" + minute;
-	}
-	var second = "" + today.getSeconds();
-	if(second.length < 2) {
-		second = "0" + second;
-	}
-	// build clock string
-	var clockstring = year + "-" + month + "-" + day+ " " + hour + ":" + minute + ":" + second;
-	var countdownstring = "";
-
-	if (enable_countdown) {
-
+	if (enable_countdown) { // --- COUNTDOWN MODE ---
+		// get local time
+		var today = new Date();
 		// elapsed time in seconds
-		var diff_seconds = remaining_time + ((today.getTime() / 1000) - start_time);
-
+		var diff_seconds = remaining_time + ((today.getTime() - start_time) / 1000);
 		//get sign
-		var sign = "-";
-
+		var sign = '-';
 		// submit form for the last time to save user input on textbox (if any)
 		if ((diff_seconds >= -2) && (document.getElementById('testform').finish.value == 0)) {
 			document.getElementById('testform').finish.value = 1;
 			document.getElementById('testform').submit();
 		}
-
 		if (diff_seconds >= 0) {
-			sign = "+";
+			sign = '+';
 			if (displayendtime && (msg_endtime.length > 1)) {
 				displayendtime = false;
 				alert(msg_endtime);
 				if (timeout_logout) {
 					// logout
-					window.location.replace("tce_logout.php");
+					window.location.replace('tce_logout.php');
 				} else {
 					// redirect user to index page
-					window.location.replace("index.php");
+					window.location.replace('index.php');
 				}
 			}
 		}
-
 		diff_seconds = Math.abs(diff_seconds); // get absolute value
-
 		// split seconds in HH:mm:ss
 		var diff_hours = Math.floor(diff_seconds / 3600);
 		diff_seconds  = diff_seconds % 3600;
 		var diff_minutes = Math.floor(diff_seconds / 60);
 		diff_seconds  = Math.floor(diff_seconds % 60);
-
 		if(diff_hours < 10) {
 			diff_hours = "0" + diff_hours;
 		}
@@ -125,35 +94,55 @@ function FJ_timer() {
 		if(diff_seconds < 10) {
 			diff_seconds = "0" + diff_seconds;
 		}
-
-		// build time string
-		countdownstring = "" + sign + "" + diff_hours + ":" + diff_minutes + ":" + diff_seconds + " ";
-
-		//display string on form field
-		document.getElementById('timerform').timer.value = countdownstring;
-	} else {
-		//display string on form field
-		document.getElementById('timerform').timer.value = clockstring;
+		// display countdown string on form field
+		document.getElementById('timerform').timer.value = ''+sign+''+diff_hours+':'+diff_minutes+':'+diff_seconds+' ';
+	} else { // --- CLOCK MODE ---
+		var localtime = new Date();
+		var today = new Date((localtime.getTime() + time_diff));
+		var year = ''+today.getFullYear();
+		var month = ''+(1 + today.getMonth());
+		if(month.length < 2) {
+			month = '0'+month;
+		}
+		var day = ''+today.getDate();
+		if(day.length < 2) {
+			day = '0'+day;
+		}
+		var hour = ''+today.getHours();
+		if(hour.length < 2) {
+			hour = '0'+hour;
+		}
+		var minute = ''+today.getMinutes();
+		if(minute.length < 2) {
+			minute = '0'+minute;
+		}
+		var second = ''+today.getSeconds();
+		if(second.length < 2) {
+			second = '0'+second;
+		}
+		// display clock string on form field
+		document.getElementById('timerform').timer.value = ''+year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
 	}
-
 	return;
 }
 
 /**
  * Starts the timer
- * @param countdown boolean if true enable countdown
- * @param remaining int remaining test time in seconds
- * @param msg string message to display at the end of countdown
- * @param logout boolean if true logout user at the end of available time
+ * @param boolean countdown if true enable countdown
+ * @param int remaining remaining test time in seconds
+ * @param string msg  message to display at the end of countdown
+ * @param boolean logout if true logout user at the end of available time
+ * @param int servertime the server time in milliseconds
  */
-function FJ_start_timer(countdown, remaining, msg, logout) {
+function FJ_start_timer(countdown, remaining, msg, logout, servertime) {
+	var startdate = new Date();
+	start_time = startdate.getTime();
+	time_diff = servertime - start_time + 60;
 	enable_countdown = countdown;
 	remaining_time = remaining;
 	msg_endtime = msg;
 	timeout_logout = logout;
-	var startdate = new Date();
-	start_time = (startdate.getTime() / 1000); // local computer time
-	// update clock each second
+	// update clock
 	setInterval('FJ_timer()', 500);
 }
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2010-09-23
+// Last Update : 2010-10-04
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -68,22 +68,19 @@ require_once('../../shared/code/tce_functions_session.php');
 
 $logged = false; // the user is not yet logged in
 
-if (!isset($_SERVER['HTTP_USER_AGENT'])) {
-	$_SERVER['HTTP_USER_AGENT'] = 'unknown';
-}
-
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($PHPSESSID);
+$session_hash = md5($PHPSESSID.getClientFingerprint());
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
 	if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
 		// decode session data
 		session_decode($ms['cpsession_data']);
 		// check for possible session hijacking
-		if ((!isset($_SESSION['session_hash'])) OR ($_SESSION['session_hash'] != md5(K_RANDOM_SECURITY.$_SERVER['HTTP_USER_AGENT'].$PHPSESSID))) {
+		if ((!isset($_SESSION['session_hash'])) OR ($_SESSION['session_hash'] != $session_hash)) {
 			// display login form
 			session_regenerate_id();
-			F_login_form(); 
+			F_login_form();
 			exit();
 		}
 		// update session expiration time
@@ -93,7 +90,7 @@ if ($rs = F_db_query($sqls, $db)) {
 			F_display_db_error();
 		}
 	} else { // session do not exist so, create new anonymous session
-		$_SESSION['session_hash'] = md5(K_RANDOM_SECURITY.$_SERVER['HTTP_USER_AGENT'].$PHPSESSID);
+		$_SESSION['session_hash'] = $session_hash;
 		$_SESSION['session_user_id'] = 1;
 		$_SESSION['session_user_name'] = '- ['.substr($PHPSESSID, 12, 8).']';
 		$_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
@@ -138,7 +135,7 @@ if (K_CAS_ENABLED) {
 $http_basic_auth = false;
 require_once('../../shared/config/tce_httpbasic.php');
 if (K_HTTPBASIC_ENABLED AND (!isset($_SESSION['logout']) OR !$_SESSION['logout'])) {
-	if (isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'Basic') 
+	if (isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'Basic')
 		AND isset($_SERVER['PHP_AUTH_USER']) AND isset($_SERVER['PHP_AUTH_PW'])
 		AND ($_SESSION['session_user_name'] != $_SERVER['PHP_AUTH_USER'])) {
 		$_POST['xuser_name'] = $_SERVER['PHP_AUTH_USER'];

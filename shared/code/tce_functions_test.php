@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-09-26
+// Last Update : 2010-10-04
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -91,7 +91,7 @@ function F_getUserTests() {
 				if (($test_status >= 4) AND F_getBoolean($m['test_results_to_users'])) {
 					$usrtestdata = F_getUserTestStat($m['test_id'], $user_id);
 					$passmsg = '';
-					if ($usrtestdata['score_threshold'] > 0) {
+					if (isset($usrtestdata['score']) AND isset($usrtestdata['score_threshold']) AND ($usrtestdata['score_threshold'] > 0)) {
 						if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
 							$str .= ' style="background-color:#ddffdd;"';
 							$passmsg = ' - '.$l['w_passed'];

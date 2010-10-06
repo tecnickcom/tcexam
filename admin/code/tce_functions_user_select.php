@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2010-10-18
+// Last Update : 2010-10-06
 //
 // Description : Functions to display and select registered user.
 //
@@ -94,16 +94,23 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
 	require_once('../../shared/code/tce_functions_form.php');
+	if ($l['a_meta_dir'] == 'rtl') {
+		$txtalign = 'right';
+		$numalign = 'left';
+	} else {
+		$txtalign = 'left';
+		$numalign = 'right';
+	}
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
-	if($orderdir == 0) {
+	if ($orderdir == 0) {
 		$nextorderdir=1;
 		$full_order_field = $order_field;
 	} else {
 		$nextorderdir=0;
 		$full_order_field = $order_field.' DESC';
 	}
-	if(!F_count_rows(K_TABLE_USERS)) { //if the table is void (no items) display message
+	if (!F_count_rows(K_TABLE_USERS)) { // if the table is void (no items) display message
 		F_print_error('MESSAGE', $l['m_databasempty']);
 		return FALSE;
 	}
@@ -111,26 +118,33 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	if ($group_id > 0) {
 		$wherequery = ', '.K_TABLE_USERGROUP.' WHERE user_id=usrgrp_user_id	AND usrgrp_group_id='.intval($group_id).'';
 	}
-	if (!empty($andwhere)) {
-		if (empty($wherequery)) {
-			$wherequery = ' WHERE '.$andwhere;
-		} else {
-			$wherequery .= ' AND '.$andwhere;
-		}
+	if (empty($wherequery)) {
+		$wherequery = ' WHERE';
+	} else {
+		$wherequery .= ' AND';
 	}
-
-	$sql = 'SELECT *
-		FROM '.K_TABLE_USERS.'
-		'.$wherequery.'
-		ORDER BY '.$full_order_field;
+	$wherequery .= ' (user_id>1)';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		// filter for level
+		$wherequery .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+		// filter for groups
+		$wherequery .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+			FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+			WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+				AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+				AND tb.usrgrp_user_id=user_id)';
+	}
+	if (!empty($andwhere)) {
+		$wherequery .= ' AND ('.$andwhere.')';
+	}
+	$sql = 'SELECT * FROM '.K_TABLE_USERS.$wherequery.' ORDER BY '.$full_order_field;
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql = 'SELECT * FROM ('.$sql.') WHERE rownum BETWEEN '.$firstrow.' AND '.($firstrow + $rowsperpage).'';
 	} else {
 		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
 	}
-
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			// -- Table structure with links:
 			echo '<div class="container">';
 			echo '<table class="userselect">'.K_NEWLINE;
@@ -161,10 +175,10 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 				}
 				echo ' />';
 				echo '</td>'.K_NEWLINE;
-				echo '<td>&nbsp;<a href="tce_edit_user.php?user_id='.$m['user_id'].'" title="'.$l['w_edit'].'">'.htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
-				echo '<td>&nbsp;'.htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
-				echo '<td>&nbsp;'.htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
-				echo '<td>&nbsp;'.htmlspecialchars($m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;<a href="tce_edit_user.php?user_id='.$m['user_id'].'" title="'.$l['w_edit'].'">'.htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
 				echo '<td>&nbsp;'.$m['user_level'].'</td>'.K_NEWLINE;
 				echo '<td>&nbsp;'.htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
 				// comma separated list of user's groups
@@ -174,19 +188,19 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 					WHERE usrgrp_group_id=group_id
 						AND usrgrp_user_id='.$m['user_id'].'
 					ORDER BY group_name';
-				if($rg = F_db_query($sqlg, $db)) {
-					while($mg = F_db_fetch_array($rg)) {
+				if ($rg = F_db_query($sqlg, $db)) {
+					while ($mg = F_db_fetch_array($rg)) {
 						$grp .= $mg['group_name'].', ';
 					}
 				} else {
 					F_display_db_error();
 				}
-				echo '<td>&nbsp;'.htmlspecialchars(substr($grp,0,-2), ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(substr($grp,0,-2), ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
 
 				echo '<td><a href="tce_show_allresults_users.php?user_id='.$m['user_id'].'" class="xmlbutton" title="'.$l['t_all_results_user'].'">...</a></td>'.K_NEWLINE;
 
 				echo '</tr>'.K_NEWLINE;
-			} while($m = F_db_fetch_array($r));
+			} while ($m = F_db_fetch_array($r));
 
 			echo '</table>'.K_NEWLINE;
 
@@ -206,26 +220,38 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '</span>'.K_NEWLINE;
 			echo '<br />'.K_NEWLINE;
 			echo '<strong style="margin:5px">'.$l['m_with_selected'].'</strong>'.K_NEWLINE;
-			echo '<ul style="margin:0"><li>';
-			// delete user
-			F_submit_button('delete', $l['w_delete'], $l['h_delete']);
-			echo "</li>\n<li>";
-			// add/delete group
-			echo F_user_group_select('new_group_id');
-			F_submit_button('addgroup', $l['w_add'], $l['w_add']);
-			F_submit_button('delgroup', $l['w_delete'], $l['h_delete']);
-			echo '</li>'.K_NEWLINE.'<li>';
-			// move group
-			if ($l['a_meta_dir'] == 'rtl') {
-				$arr = '&larr;';
-			} else {
-				$arr = '&rarr;';
+			echo '<ul style="margin:0">';
+			if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) {
+				// delete user
+				echo '<li>';
+				F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+				echo '</li>'.K_NEWLINE;
 			}
-			echo F_user_group_select('from_group_id');
-			echo $arr;
-			echo F_user_group_select('to_group_id');
-			F_submit_button('move', $l['w_move'], $l['w_move']);
-			echo '</li></ul>'.K_NEWLINE;
+			if ($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS) {
+				echo '<li>';
+				// add/delete group
+				echo F_user_group_select('new_group_id');
+				F_submit_button('addgroup', $l['w_add'], $l['w_add']);
+				if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) {
+					F_submit_button('delgroup', $l['w_delete'], $l['h_delete']);
+				}
+				echo '</li>'.K_NEWLINE;
+				if ($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS) {
+					// move group
+					echo '<li>';
+					if ($l['a_meta_dir'] == 'rtl') {
+						$arr = '&larr;';
+					} else {
+						$arr = '&rarr;';
+					}
+					echo F_user_group_select('from_group_id');
+					echo $arr;
+					echo F_user_group_select('to_group_id');
+					F_submit_button('move', $l['w_move'], $l['w_move']);
+					echo '</li>'.K_NEWLINE;
+				}
+			}
+			echo '</ul>'.K_NEWLINE;
 			echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
 			// ---------------------------------------------------------------
@@ -282,6 +308,128 @@ function F_user_table_header_element($order_field, $orderdir, $title, $name, $cu
 }
 
 /**
+ * Return true if the selected test is active for the selected group
+ * @param int $test_id test ID
+ * @param int $group_id group ID
+ * @return boolean true/false
+ * @since 11.1.003 (2010-10-05)
+ */
+function F_isTestOnGroup($test_id, $group_id) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	$sql = 'SELECT tstgrp_test_id FROM '.K_TABLE_TEST_GROUPS.' WHERE tstgrp_test_id='.intval($test_id).' AND tstgrp_group_id='.intval($group_id).' LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Return true if the selected user belongs to the selected group
+ * @param int $user_id user ID
+ * @param int $group_id group ID
+ * @return boolean true/false
+ * @since 11.1.003 (2010-10-05)
+ */
+function F_isUserOnGroup($user_id, $group_id) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	$sql = 'SELECT usrgrp_user_id FROM '.K_TABLE_USERGROUP.' WHERE usrgrp_user_id='.intval($user_id).' AND usrgrp_group_id='.intval($group_id).' LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Return true if the current user is an administrator or belongs to the group, false otherwise
+ * @param int $group_id group ID
+ * @return boolean true/false
+ * @since 11.1.003 (2010-10-05)
+ */
+function F_isAuthorizedEditorForGroup($group_id) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	if (($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) OR empty($group_id)) {
+		// user is an administrator (belongs to all groups) or empty group
+		return true;
+	}
+	return F_isUserOnGroup($_SESSION['session_user_id'], $group_id);
+}
+
+/**
+ * Return true if the current user is authorized to edit the specified user
+ * @param int $user_id user ID
+ * @return boolean true/false
+ * @since 11.1.003 (2010-10-05)
+ */
+function F_isAuthorizedEditorForUser($user_id) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	if (($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) OR empty($user_id)) {
+		// user is an administrator or empty user
+		return true;
+	} else {
+		// non-administrator can access only to users with lower level
+		$sql = 'SELECT user_id,user_level FROM '.K_TABLE_USERS.' WHERE user_id='.intval($user_id).' LIMIT 1';
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
+				if (intval($_SESSION['session_user_id']) == $m['user_id']) {
+					// user can edit his/her own profile
+					return true;
+				}
+				if (intval($_SESSION['session_user_level']) > $m['user_level']) {
+					// non-administrator access only to users on the same group
+					$sqlg = 'SELECT tb.usrgrp_user_id
+						FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+						WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+							AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+							AND tb.usrgrp_user_id='.intval($user_id).'
+						LIMIT 1';
+					if ($rg = F_db_query($sqlg, $db)) {
+						if ($mg = F_db_fetch_array($rg)) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+/**
+ * Return the SQL selection query for user groups
+ * @param string $where filters to add on WHERE clause
+ * @return sql selection string
+ * @since 11.1.003 (2010-10-05)
+ */
+function F_user_group_select_sql($where='') {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+		// administrator access to all groups
+		$sql = 'SELECT * FROM '.K_TABLE_GROUPS.'';
+		if ($where !== '') {
+			$sql .= ' WHERE '.$where;
+		}
+	} else {
+		// non-administrator can access only to his/her groups
+		$sql = 'SELECT group_id,group_name FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'';
+		$sql .= ' WHERE group_id=usrgrp_group_id AND usrgrp_user_id='.$_SESSION['session_user_id'].'';
+		if ($where !== '') {
+			$sql .= ' AND '.$where;
+		}
+	}
+	$sql .= ' ORDER BY group_name';
+	return $sql;
+}
+
+/**
  * Display select box for user groups
  * @param string $name name of the select field
  * @return table header element string
@@ -291,12 +439,10 @@ function F_user_group_select($name='group_id') {
 	require_once('../config/tce_config.php');
 	$str = '';
 	$str .= '<select name="'.$name.'" id="'.$name.'" size="0" title="'.$l['w_group'].'">'.K_NEWLINE;
-	$sql = 'SELECT *
-		FROM '.K_TABLE_GROUPS.'
-		ORDER BY group_name';
-	if($r = F_db_query($sql, $db)) {
+	$sql = F_user_group_select_sql();
+	if ($r = F_db_query($sql, $db)) {
 		$str .= '<option value="0" style="color:gray" selected="selected">'.$l['w_group'].'</option>'.K_NEWLINE;
-		while($m = F_db_fetch_array($r)) {
+		while ($m = F_db_fetch_array($r)) {
 			$str .= '<option value="'.$m['group_id'].'">';
 			$str .= ' '.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'&nbsp;</option>'.K_NEWLINE;
 		}
@@ -308,11 +454,10 @@ function F_user_group_select($name='group_id') {
 	return $str;
 }
 
-
 /**
- * Returns an array containing user's groups IDs
+ * Returns an array containing groups IDs to which the specified user belongs
  * @param int $user_id user ID
- * @return array containing groups IDs
+ * @return array containing user's groups IDs
  */
 function F_get_user_groups($user_id) {
 	global $l, $db;
@@ -322,8 +467,8 @@ function F_get_user_groups($user_id) {
 	$sql = 'SELECT usrgrp_group_id
 		FROM '.K_TABLE_USERGROUP.'
 		WHERE usrgrp_user_id='.$user_id.'';
-	if($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		while ($m = F_db_fetch_array($r)) {
 			$groups[] = $m['usrgrp_group_id'];
 		}
 	} else {

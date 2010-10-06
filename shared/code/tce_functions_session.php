@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2010-09-23
+// Last Update : 2010-10-04
 //
 // Description : User-level session storage functions.
 //
@@ -200,6 +200,51 @@ function F_session_string_to_array($sd) {
 	return $sess_array;
 }
 
+/**
+ * Generate a client fingerprint (unique ID for the client browser)
+ * @author Nicola Asuni
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @link www.tecnick.com
+ * @since 2010-10-04
+ * @return string client ID
+ */
+function getClientFingerprint() {
+	$sid = K_RANDOM_SECURITY;
+	if (isset($_SERVER['REMOTE_ADDR'])) {
+		$sid .= $_SERVER['REMOTE_ADDR'];
+	}
+	if (isset($_SERVER['HTTP_USER_AGENT'])) {
+		$sid .= $_SERVER['HTTP_USER_AGENT'];
+	}
+	if (isset($_SERVER['HTTP_ACCEPT'])) {
+		$sid .= $_SERVER['HTTP_ACCEPT'];
+	}
+	if (isset($_SERVER['HTTP_ACCEPT_ENCODING'])) {
+		$sid .= $_SERVER['HTTP_ACCEPT_ENCODING'];
+	}
+	if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+		$sid .= $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	}
+	if (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
+		$sid .= $_SERVER['HTTP_ACCEPT_CHARSET'];
+	}
+	return $sid;
+}
+
+/**
+ * Generate and return a new session ID.
+ * @author Nicola Asuni
+ * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
+ * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
+ * @link www.tecnick.com
+ * @since 2010-10-04
+ * @return string PHPSESSID
+ */
+function getNewSessionID() {
+	return md5(uniqid(microtime().getmypid(), true).getClientFingerprint().uniqid(session_id().microtime(), true));
+}
+
 // ------------------------------------------------------------
 
 // Sets user-level session storage functions.
@@ -211,11 +256,11 @@ if (isset($_REQUEST['PHPSESSID'])) {
 	$PHPSESSID = preg_replace('/[^0-9a-f]*/', '', $_REQUEST['PHPSESSID']);
 	if (strlen($PHPSESSID) != 32) {
 		// generate new ID
-		$PHPSESSID = md5(uniqid(uniqid('', true), true));
+		$PHPSESSID = getNewSessionID();
 	}
 } else {
-	// create new PHPSESSID	
-	$PHPSESSID = md5(uniqid(uniqid('', true), true));
+	// create new PHPSESSID
+	$PHPSESSID = getNewSessionID();
 }
 
 if ((!isset($_REQUEST['menu_mode'])) OR ($_REQUEST['menu_mode'] != 'startlongprocess')) {

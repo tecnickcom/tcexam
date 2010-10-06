@@ -1,7 +1,7 @@
 //============================================================+
 // File name   : inserttag.js
 // Begin       : 2001-10-25
-// Last Update : 2010-09-22
+// Last Update : 2010-10-05
 //
 // Description : Insert TAGS on Textarea Form (XHTML)
 //

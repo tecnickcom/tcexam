@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2010-09-20
+// Last Update : 2010-10-06
 //
 // Description : Creates a PDF document containing exported questions.
 //
@@ -145,9 +145,10 @@ if (defined('K_DIGSIG_ENABLE') AND K_DIGSIG_ENABLE) {
 }
 
 // calculate some sizes
+$cell_height_ratio = (K_CELL_HEIGHT_RATIO + 0.1);
 $page_width = $pdf->getPageWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;
-$data_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
-$main_cell_height = round((K_CELL_HEIGHT_RATIO * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
+$data_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_DATA) / $pdf->getScaleFactor(), 2);
+$main_cell_height = round(($cell_height_ratio * PDF_FONT_SIZE_MAIN) / $pdf->getScaleFactor(), 2);
 $data_cell_width = round($page_width / $page_elements, 2);
 $data_cell_width_third = round($data_cell_width / 3, 2);
 $data_cell_width_half = round($data_cell_width / 2, 2);

@@ -216,7 +216,7 @@ Functions to display and select registered user.<br /><br /><br /><br />
 <br />
   <hr />
 	<a name="functionF_get_user_groups"></a>
-	<h3>F_get_user_groups <span class="smalllinenumber">[line 317]</span></h3>
+	<h3>F_get_user_groups <span class="smalllinenumber">[line 462]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -225,12 +225,12 @@ int $user_id)</code>
     </td></tr></table>
     </td></tr></table><br />
 
-		Returns an array containing user's groups IDs<br /><br /><br /><br />
+		Returns an array containing groups IDs to which the specified user belongs<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><b>return:</b>&nbsp;&nbsp;</td><td>containing groups IDs</td>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>containing user's groups IDs</td>
   </tr>
 </table>
 </div>
@@ -242,6 +242,156 @@ int $user_id)</code>
         <td class="type">int&nbsp;&nbsp;</td>
         <td><b>$user_id</b>&nbsp;&nbsp;</td>
         <td>user ID</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_isAuthorizedEditorForGroup"></a>
+	<h3>F_isAuthorizedEditorForGroup <span class="smalllinenumber">[line 354]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean F_isAuthorizedEditorForGroup(
+int $group_id)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Return true if the current user is an administrator or belongs to the group, false otherwise<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>true/false</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>11.1.003 (2010-10-05)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$group_id</b>&nbsp;&nbsp;</td>
+        <td>group ID</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_isAuthorizedEditorForUser"></a>
+	<h3>F_isAuthorizedEditorForUser <span class="smalllinenumber">[line 370]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean F_isAuthorizedEditorForUser(
+int $user_id)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Return true if the current user is authorized to edit the specified user<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>true/false</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>11.1.003 (2010-10-05)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$user_id</b>&nbsp;&nbsp;</td>
+        <td>user ID</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_isTestOnGroup"></a>
+	<h3>F_isTestOnGroup <span class="smalllinenumber">[line 317]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean F_isTestOnGroup(
+int $test_id, int $group_id)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Return true if the selected test is active for the selected group<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>true/false</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>11.1.003 (2010-10-05)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$test_id</b>&nbsp;&nbsp;</td>
+        <td>test ID</td>
+      </tr>
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$group_id</b>&nbsp;&nbsp;</td>
+        <td>group ID</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionF_isUserOnGroup"></a>
+	<h3>F_isUserOnGroup <span class="smalllinenumber">[line 336]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>boolean F_isUserOnGroup(
+int $user_id, int $group_id)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Return true if the selected user belongs to the selected group<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>true/false</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>11.1.003 (2010-10-05)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$user_id</b>&nbsp;&nbsp;</td>
+        <td>user ID</td>
+      </tr>
+		      <tr>
+        <td class="type">int&nbsp;&nbsp;</td>
+        <td><b>$group_id</b>&nbsp;&nbsp;</td>
+        <td>group ID</td>
       </tr>
 				</table>
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
@@ -405,7 +555,7 @@ string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group
 	</div>
   <hr />
 	<a name="functionF_user_group_select"></a>
-	<h3>F_user_group_select <span class="smalllinenumber">[line 289]</span></h3>
+	<h3>F_user_group_select <span class="smalllinenumber">[line 437]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -436,8 +586,43 @@ string $order_field, int $orderdir, int $firstrow, int $rowsperpage, [int $group
     	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
 	</div>
   <hr />
+	<a name="functionF_user_group_select_sql"></a>
+	<h3>F_user_group_select_sql <span class="smalllinenumber">[line 411]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>sql F_user_group_select_sql(
+[string $where = &#039;&#039;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		Return the SQL selection query for user groups<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>selection string</td>
+  </tr>
+  <tr>
+    <td><b>since:</b>&nbsp;&nbsp;</td><td>11.1.003 (2010-10-05)</td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$where</b>&nbsp;&nbsp;</td>
+        <td>filters to add on WHERE clause</td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
 	<a name="functionF_user_table_header_element"></a>
-	<h3>F_user_table_header_element <span class="smalllinenumber">[line 269]</span></h3>
+	<h3>F_user_table_header_element <span class="smalllinenumber">[line 295]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -500,7 +685,7 @@ string $order_field, string $orderdir, string $title, string $name, [string $cur
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 26 Sep 2010 20:19:31 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 06 Oct 2010 16:47:57 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

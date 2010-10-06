@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_email_results.php
 // Begin       : 2005-02-24
-// Last Update : 2009-12-31
+// Last Update : 2010-10-06
 //
 // Description : Interface to send test reports to users via
 //               email.
@@ -60,6 +60,7 @@ $pagelevel = K_AUTH_ADMIN_RESULTS;
 $thispage_title = $l['t_email_result'];
 $thispage_description = $l['hp_email_result'];
 require_once('../../shared/code/tce_authorization.php');
+require_once('tce_functions_user_select.php');
 
 require_once('../code/tce_page_header.php');
 
@@ -76,19 +77,24 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
-
 	if (isset($_REQUEST['userid']) AND ($_REQUEST['userid'] > 0)) {
-		$user_id = $_REQUEST['userid'];
+		$user_id = intval($_REQUEST['userid']);
+		if (!F_isAuthorizedEditorForUser($user_id)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			exit;
+		}
 	} else {
 		$user_id = 0; // select all users
 	}
-
 	if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 		$group_id = intval($_REQUEST['groupid']);
+		if (!F_isAuthorizedEditorForGroup($group_id)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			exit;
+		}
 	} else {
 		$group_id = 0;
 	}
-
 	if (isset($_REQUEST['mode']) AND ($_REQUEST['mode'] > 0)) {
 		$mode = intval($_REQUEST['mode']);
 	} else {

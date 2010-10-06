@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_users.php
 // Begin       : 2006-03-30
-// Last Update : 2009-09-30
+// Last Update : 2010-10-06
 //
 // Description : Functions to export users using CSV format.
 //
@@ -55,7 +55,7 @@
 
 // check user's authorization
 require_once('../config/tce_config.php');
-$pagelevel = K_AUTH_ADMIN_USERS;
+$pagelevel = K_AUTH_EXPORT_USERS;
 require_once('../../shared/code/tce_authorization.php');
 
 // send headers
@@ -107,9 +107,18 @@ function F_csv_export_users() {
 	$csv .= K_TAB.'user_verifycode';
 	$csv .= K_TAB.'user_groups';
 
-	$sql = 'SELECT *
-		FROM '.K_TABLE_USERS.'
-		ORDER BY user_lastname,user_firstname,user_name';
+	$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		// filter for level
+		$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+		// filter for groups
+		$sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+			FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+			WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+				AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+				AND tb.usrgrp_user_id=user_id)';
+	}
+	$sql .= ' ORDER BY user_lastname,user_firstname,user_name';
 	if($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) {
 			$csv .= K_NEWLINE.$m['user_id'];

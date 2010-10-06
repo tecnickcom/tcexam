@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2010-09-16
+// Last Update : 2010-10-06
 //
 // Description : Display test results for specified user.
 //
@@ -58,12 +58,13 @@ $pagelevel = K_AUTH_ADMIN_RESULTS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_result_user'];
-require_once('../code/tce_page_header.php');
+require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('tce_functions_auth_sql.php');
+require_once('tce_functions_user_select.php');
 
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
@@ -73,14 +74,17 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		exit;
 	}
 }
-if (isset($testuser_id)) {
-	$testuser_id = intval($testuser_id);
+if (isset($_REQUEST['user_id'])) {
+	$user_id = intval($_REQUEST['user_id']);
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 }
-if (isset($user_id)) {
-	$user_id = intval($user_id);
+if (isset($_REQUEST['testuser_id'])) {
+	$testuser_id = intval($_REQUEST['testuser_id']);
 }
-
-if (isset($selectcategory)) {
+if (isset($_REQUEST['selectcategory'])) {
 	$changecategory = 1;
 }
 
@@ -306,9 +310,18 @@ else {
 <?php
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name
 	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
-	WHERE testuser_user_id=user_id
-	AND testuser_test_id='.$test_id.'
-	ORDER BY user_lastname, user_firstname, user_name';
+	WHERE testuser_user_id=user_id AND testuser_test_id='.$test_id;
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	// filter for level
+	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+	// filter for groups
+	$sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+		FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+		WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+			AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+			AND tb.usrgrp_user_id=user_id)';
+}
+$sql .= ' ORDER BY user_lastname, user_firstname, user_name';
 if($r = F_db_query($sql, $db)) {
 	$usrcount = 1;
 	while($m = F_db_fetch_array($r)) {

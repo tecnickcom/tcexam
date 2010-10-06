@@ -162,6 +162,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodaddTOC">TCPDF::addTOC()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Output a Table of Content Index (TOC).</dd>
 							<dt><b>addTOCPage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodaddTOCPage">TCPDF::addTOCPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adds a new TOC (Table Of Content) page to the document.</dd>
+							<dt><b>adjustCellPadding</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodadjustCellPadding">TCPDF::adjustCellPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Adjust the internal Cell padding array to take account of the line width.</dd>
 							<dt><b>AliasNbPages</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodAliasNbPages">TCPDF::AliasNbPages()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines an alias for the total number of pages.</dd>
 							<dt><b>AliasNumPage</b></dt>
@@ -306,12 +308,14 @@
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$cc">PHPMailer::$cc</a></dd>
 							<dt><b>$cell_height_ratio</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cell_height_ratio">TCPDF::$cell_height_ratio</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default cell height ratio.</dd>
+							<dt><b>$cell_margin</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cell_margin">TCPDF::$cell_margin</a></dd>
+							<dt><b>$cell_padding</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cell_padding">TCPDF::$cell_padding</a></dd>
 							<dt><b>$CharSet</b></dt>
 				<dd>in file class.phpmailer.php, variable <a href="PHPMailer/PHPMailer.html#var$CharSet">PHPMailer::$CharSet</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the CharSet of the message.</dd>
 							<dt><b>$clusters</b></dt>
 				<dd>in file pdf417.php, variable <a href="com-tecnick-tcpdf/PDF417.html#var$clusters">PDF417::$clusters</a></dd>
-							<dt><b>$cMargin</b></dt>
-				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cMargin">TCPDF::$cMargin</a></dd>
 							<dt><b>$cntmrk</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$cntmrk">TCPDF::$cntmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store content positions inside the pages buffer.</dd>
 							<dt><b>$ColorFlag</b></dt>
@@ -712,6 +716,10 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$font_obj_ids">TCPDF::$font_obj_ids</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Store the font object IDs.</dd>
 							<dt><b>$font_size</b></dt>
 				<dd>in file tce_latexrender.php, variable <a href="com-tecnick-tcexam-shared/LatexRender.html#var$font_size">LatexRender::$font_size</a></dd>
+							<dt><b>$font_spacing</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$font_spacing">TCPDF::$font_spacing</a></dd>
+							<dt><b>$font_stretching</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$font_stretching">TCPDF::$font_stretching</a></dd>
 							<dt><b>$font_subsetting</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$font_subsetting">TCPDF::$font_subsetting</a></dd>
 							<dt><b>$footerlen</b></dt>
@@ -853,19 +861,27 @@
 							<dt><b>F_getUTCoffset</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionF_getUTCoffset">F_getUTCoffset()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the UTC time offset in seconds</dd>
 							<dt><b>F_get_user_groups</b></dt>
-				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_get_user_groups">F_get_user_groups()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing user's groups IDs</dd>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_get_user_groups">F_get_user_groups()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing groups IDs to which the specified user belongs</dd>
 							<dt><b>F_html_color_picker</b></dt>
 				<dd>in file tce_colorpicker.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_colorpicker.php.html#functionF_html_color_picker">F_html_color_picker()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display Color Picker</dd>
 							<dt><b>F_html_to_text</b></dt>
 				<dd>in file tce_functions_html2txt.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_html2txt.php.html#functionF_html_to_text">F_html_to_text()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert HTML code to Text string.</dd>
 							<dt><b>F_import_csv_users</b></dt>
 				<dd>in file tce_import_xml_users.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_import_xml_users.php.html#functionF_import_csv_users">F_import_csv_users()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Import users from CSV file (tab delimited text).</dd>
+							<dt><b>F_isAuthorizedEditorForGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isAuthorizedEditorForGroup">F_isAuthorizedEditorForGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the current user is an administrator or belongs to the group, false otherwise</dd>
+							<dt><b>F_isAuthorizedEditorForUser</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isAuthorizedEditorForUser">F_isAuthorizedEditorForUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the current user is authorized to edit the specified user</dd>
 							<dt><b>F_isAuthorizedUser</b></dt>
 				<dd>in file tce_functions_authorization.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_authorization.php.html#functionF_isAuthorizedUser">F_isAuthorizedUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns true if the current user is authorized to update and delete the selected database record.</dd>
 							<dt><b>F_isRightTestlogUser</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isRightTestlogUser">F_isRightTestlogUser()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Checks if the current user is the right testlog_id owner.<br />  This function is used for security reasons.</dd>
+							<dt><b>F_isTestOnGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isTestOnGroup">F_isTestOnGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the selected test is active for the selected group</dd>
 							<dt><b>F_isUsedMediaFile</b></dt>
 				<dd>in file tce_functions_filemanager.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_filemanager.php.html#functionF_isUsedMediaFile">F_isUsedMediaFile()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the file is used on question or answer descriptions</dd>
+							<dt><b>F_isUserOnGroup</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_isUserOnGroup">F_isUserOnGroup()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return true if the selected user belongs to the selected group</dd>
 							<dt><b>F_isValidIP</b></dt>
 				<dd>in file tce_functions_test.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_test.php.html#functionF_isValidIP">F_isValidIP()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Check if user's IP is valid over test IP range</dd>
 							<dt><b>F_isValidTestUser</b></dt>
@@ -998,6 +1014,8 @@
 				<dd>in file tce_functions_upload.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_upload.php.html#functionF_upload_file">F_upload_file()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Uploads image file to the server.</dd>
 							<dt><b>F_user_group_select</b></dt>
 				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_group_select">F_user_group_select()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display select box for user groups</dd>
+							<dt><b>F_user_group_select_sql</b></dt>
+				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_group_select_sql">F_user_group_select_sql()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the SQL selection query for user groups</dd>
 							<dt><b>F_user_table_header_element</b></dt>
 				<dd>in file tce_functions_user_select.php, function <a href="com-tecnick-tcexam-admin/_admin---code---tce_functions_user_select.php.html#functionF_user_table_header_element">F_user_table_header_element()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Display table header element with order link.</dd>
 							<dt><b>F_xml_export_questions</b></dt>
@@ -1066,8 +1084,14 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCellCode">TCPDF::getCellCode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the PDF string code to print a cell (rectangular area) with optional borders, background color and character string. The upper-left corner of the cell corresponds to the current position. The text can be aligned or centered. After the call, the current position moves to the right or to the next line. It is possible to put a link on the text.<br />  If automatic page breaking is enabled and the cell goes beyond the limit, a page break is done before outputting.</dd>
 							<dt><b>getCellHeightRatio</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCellHeightRatio">TCPDF::getCellHeightRatio()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;return the height of cell repect font height.</dd>
+							<dt><b>getCellMargins</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCellMargins">TCPDF::getCellMargins()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the internal Cell margin array.</dd>
+							<dt><b>getCellPaddings</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCellPaddings">TCPDF::getCellPaddings()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the internal Cell padding array.</dd>
 							<dt><b>GetCharWidth</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetCharWidth">TCPDF::GetCharWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the length of the char in user unit for the current font.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetCharWidth">TCPDF::GetCharWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the length of the char in user unit for the current font considering current stretching and kerning.</dd>
+							<dt><b>getClientFingerprint</b></dt>
+				<dd>in file tce_functions_session.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_session.php.html#functiongetClientFingerprint">getClientFingerprint()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate a client fingerprint (unique ID for the client browser)</dd>
 							<dt><b>getCode</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetCode">QRcode::getCode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return Reed-Solomon block code.</dd>
 							<dt><b>getColumn</b></dt>
@@ -1080,6 +1104,14 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSBorderStyle">TCPDF::getCSSBorderStyle()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the border style array from CSS border properties</dd>
 							<dt><b>getCSSBorderWidth</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSBorderWidth">TCPDF::getCSSBorderWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the border width from CSS property</dd>
+							<dt><b>getCSSFontSpacing</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSFontSpacing">TCPDF::getCSSFontSpacing()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the letter-spacing value from CSS value</dd>
+							<dt><b>getCSSFontStretching</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSFontStretching">TCPDF::getCSSFontStretching()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the percentage of font stretching from CSS value</dd>
+							<dt><b>getCSSMargin</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSMargin">TCPDF::getCSSMargin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the internal Cell margin from CSS attribute.</dd>
+							<dt><b>getCSSPadding</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSPadding">TCPDF::getCSSPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the internal Cell padding from CSS attribute.</dd>
 							<dt><b>getDataLength</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetDataLength">QRcode::getDataLength()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return maximum data code length (bytes) for the version.</dd>
 							<dt><b>getDirFiles</b></dt>
@@ -1116,6 +1148,10 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFontSizePt">TCPDF::getFontSizePt()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the current font size in points unit.</dd>
 							<dt><b>getFontsList</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFontsList">TCPDF::getFontsList()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Fill the list of available fonts ($this-&gt;fontlist).</dd>
+							<dt><b>getFontSpacing</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFontSpacing">TCPDF::getFontSpacing()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the amount to increase or decrease the space between characters in a text.</dd>
+							<dt><b>getFontStretching</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFontStretching">TCPDF::getFontStretching()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the percentage of character stretching.</dd>
 							<dt><b>getFontStyle</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetFontStyle">TCPDF::getFontStyle()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the current font style.</dd>
 							<dt><b>getFontSubsetting</b></dt>
@@ -1184,6 +1220,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetMargins">TCPDF::getMargins()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array containing current margins:</dd>
 							<dt><b>getMinimumVersion</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetMinimumVersion">QRcode::getMinimumVersion()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return a version number that satisfies the input code length.</dd>
+							<dt><b>getNewSessionID</b></dt>
+				<dd>in file tce_functions_session.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_session.php.html#functiongetNewSessionID">getNewSessionID()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Generate and return a new session ID.</dd>
 							<dt><b>getNextPosition</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetNextPosition">QRcode::getNextPosition()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the next frame position</dd>
 							<dt><b>getNormalizedIP</b></dt>
@@ -1193,7 +1231,7 @@
 							<dt><b>GetNumChars</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodGetNumChars">TCPDF::GetNumChars()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the numbero of characters in a string.</dd>
 							<dt><b>getNumLines</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetNumLines">TCPDF::getNumLines()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method return the estimated number of lines for print a simple text string in Multicell() method.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetNumLines">TCPDF::getNumLines()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method return the estimated number of lines for print a simple text string using Multicell() method.</dd>
 							<dt><b>getNumPages</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetNumPages">TCPDF::getNumPages()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the total number of insered pages.</dd>
 							<dt><b>getObjFilename</b></dt>
@@ -1220,6 +1258,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPathPaintOperator">TCPDF::getPathPaintOperator()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the Path-Painting Operators.</dd>
 							<dt><b>getPDFData</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetPDFData">TCPDF::getPDFData()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the PDF data.</dd>
+							<dt><b>getRawCharWidth</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetRawCharWidth">TCPDF::getRawCharWidth()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the length of the char in user unit for the current font.</dd>
 							<dt><b>getRemainder</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetRemainder">QRcode::getRemainder()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the numer of remainder bits.</dd>
 							<dt><b>getRemainingWidth</b></dt>
@@ -1468,6 +1508,8 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_DIRS">K_AUTH_ADMIN_DIRS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to create and delete directories.</dd>
 							<dt><b>K_AUTH_ADMIN_FILEMANAGER</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_FILEMANAGER">K_AUTH_ADMIN_FILEMANAGER</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access file manager for multimedia files.</dd>
+							<dt><b>K_AUTH_ADMIN_GROUPS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_GROUPS">K_AUTH_ADMIN_GROUPS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;group editor&quot;.</dd>
 							<dt><b>K_AUTH_ADMIN_IMPORT</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_IMPORT">K_AUTH_ADMIN_IMPORT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
 							<dt><b>K_AUTH_ADMIN_INFO</b></dt>
@@ -1494,10 +1536,20 @@
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_ADMIN_USERS">K_AUTH_ADMIN_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access &quot;user editor&quot;.</dd>
 							<dt><b>K_AUTH_BACKUP</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_BACKUP">K_AUTH_BACKUP</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import questions.</dd>
+							<dt><b>K_AUTH_DELETE_GROUPS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_DELETE_GROUPS">K_AUTH_DELETE_GROUPS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to delete user groups.</dd>
 							<dt><b>K_AUTH_DELETE_MEDIAFILE</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_DELETE_MEDIAFILE">K_AUTH_DELETE_MEDIAFILE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to delete multimedia files.</dd>
+							<dt><b>K_AUTH_DELETE_USERS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_DELETE_USERS">K_AUTH_DELETE_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to delete users.</dd>
+							<dt><b>K_AUTH_EXPORT_USERS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_EXPORT_USERS">K_AUTH_EXPORT_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to export users.</dd>
+							<dt><b>K_AUTH_IMPORT_USERS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_IMPORT_USERS">K_AUTH_IMPORT_USERS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to import users.</dd>
 							<dt><b>K_AUTH_INDEX</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_INDEX">K_AUTH_INDEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access index page.</dd>
+							<dt><b>K_AUTH_MOVE_GROUPS</b></dt>
+				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_auth.php.html#defineK_AUTH_MOVE_GROUPS">K_AUTH_MOVE_GROUPS</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to move users from one group to another.</dd>
 							<dt><b>K_AUTH_PAGE_USER</b></dt>
 				<dd>in file tce_auth.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_auth.php.html#defineK_AUTH_PAGE_USER">K_AUTH_PAGE_USER</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Required user's level to access user page submenu</dd>
 							<dt><b>K_AUTH_PUBLIC_INDEX</b></dt>
@@ -1677,9 +1729,9 @@
 							<dt><b>K_MAX_ROWS_PER_PAGE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_ROWS_PER_PAGE">K_MAX_ROWS_PER_PAGE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max number of rows to display in tables.</dd>
 							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
-				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max size to be uploaded in bytes.</dd>
-							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
 				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-public-cfg/_public---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max file size to be uploaded [bytes].</dd>
+							<dt><b>K_MAX_UPLOAD_SIZE</b></dt>
+				<dd>in file tce_config.php, constant <a href="com-tecnick-tcexam-admin-cfg/_admin---config---tce_config.php.html#defineK_MAX_UPLOAD_SIZE">K_MAX_UPLOAD_SIZE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Max size to be uploaded in bytes.</dd>
 							<dt><b>K_NEWLINE</b></dt>
 				<dd>in file tce_general_constants.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_general_constants.php.html#defineK_NEWLINE">K_NEWLINE</a><br>&nbsp;&nbsp;&nbsp;&nbsp;New line character.</dd>
 							<dt><b>K_PATH_BACKUP</b></dt>
@@ -2384,6 +2436,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodreplaceBuffer">TCPDF::replaceBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Replace the buffer content</dd>
 							<dt><b>Reset</b></dt>
 				<dd>in file class.smtp.php, method <a href="PHPMailer/SMTP.html#methodReset">SMTP::Reset()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sends the RSET command to abort and transaction that is  currently in progress. Returns true if successful false  otherwise.</dd>
+							<dt><b>resetLastH</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodresetLastH">TCPDF::resetLastH()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Reset the last cell height.</dd>
 							<dt><b>revstrpos</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodrevstrpos">TCPDF::revstrpos()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Find position of last occurrence of a substring in a string</dd>
 							<dt><b>RFCDate</b></dt>
@@ -2529,11 +2583,11 @@
 							<dt><b>SecureHeader</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSecureHeader">PHPMailer::SecureHeader()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Strips newlines to prevent header injection.</dd>
 							<dt><b>segContentHandler</b></dt>
+				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
+							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodsegContentHandler">XMLQuestionImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodsegContentHandler">XMLUserImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
-							<dt><b>segContentHandler</b></dt>
-				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>segSVGContentHandler</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsegSVGContentHandler">TCPDF::segSVGContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser.</dd>
 							<dt><b>selectColumn</b></dt>
@@ -2572,8 +2626,12 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBuffer">TCPDF::setBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set buffer content (always append data).</dd>
 							<dt><b>setCellHeightRatio</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetCellHeightRatio">TCPDF::setCellHeightRatio()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the height of the cell (line height) respect the font height.</dd>
+							<dt><b>setCellMargins</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetCellMargins">TCPDF::setCellMargins()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the internal Cell margins.</dd>
 							<dt><b>SetCellPadding</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCellPadding">TCPDF::SetCellPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the internal Cell padding.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetCellPadding">TCPDF::SetCellPadding()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the same internal Cell padding for top, right, bottom, left-</dd>
+							<dt><b>setCellPaddings</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetCellPaddings">TCPDF::setCellPaddings()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the internal Cell paddings.</dd>
 							<dt><b>setColumnsArray</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetColumnsArray">TCPDF::setColumnsArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set columns array.</dd>
 							<dt><b>SetCompression</b></dt>
@@ -2614,10 +2672,14 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFont">TCPDF::SetFont()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the font used to print character strings.</dd>
 							<dt><b>setFontBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontBuffer">TCPDF::setFontBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font buffer content.</dd>
-							<dt><b>SetFontSize</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFontSize">TCPDF::SetFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the size of the current font.</dd>
 							<dt><b>setFontSize</b></dt>
 				<dd>in file tce_latexrender.php, method <a href="com-tecnick-tcexam-shared/LatexRender.html#methodsetFontSize">LatexRender::setFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font size.</dd>
+							<dt><b>SetFontSize</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetFontSize">TCPDF::SetFontSize()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the size of the current font.</dd>
+							<dt><b>setFontSpacing</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontSpacing">TCPDF::setFontSpacing()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the amount to increase or decrease the space between characters in a text.</dd>
+							<dt><b>setFontStretching</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontStretching">TCPDF::setFontStretching()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the percentage of character stretching.</dd>
 							<dt><b>setFontSubBuffer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetFontSubBuffer">TCPDF::setFontSubBuffer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set font buffer content.</dd>
 							<dt><b>setFontSubsetting</b></dt>
@@ -2803,9 +2865,9 @@
 							<dt><b>StarPolygon</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodStarPolygon">TCPDF::StarPolygon()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a star polygon</dd>
 							<dt><b>startElementHandler</b></dt>
-				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodstartElementHandler">XMLQuestionImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
-							<dt><b>startElementHandler</b></dt>
 				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodstartElementHandler">XMLUserImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
+							<dt><b>startElementHandler</b></dt>
+				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodstartElementHandler">XMLQuestionImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startElementHandler</b></dt>
 				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodstartElementHandler">TMXResourceBundle::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startPage</b></dt>
@@ -3537,7 +3599,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Sun, 26 Sep 2010 20:19:25 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 06 Oct 2010 16:47:52 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

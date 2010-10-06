@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2010-06-16
+// Last Update : 2010-10-06
 //
 // Description : Display test results summary for all users.
 //
@@ -58,13 +58,14 @@ $pagelevel = K_AUTH_ADMIN_RESULTS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_result_all_users'];
-require_once('../code/tce_page_header.php');
+require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
-require_once('../code/tce_functions_auth_sql.php');
-require_once('../code/tce_functions_statistics.php');
+require_once('tce_functions_auth_sql.php');
+require_once('tce_functions_statistics.php');
+require_once('tce_functions_user_select.php');
 
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
@@ -74,18 +75,19 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		exit;
 	}
 }
-
-if (isset($selectcategory)) {
+if (isset($_REQUEST['selectcategory'])) {
 	$changecategory = 1;
 }
-if(isset($test_id)) {
-	$test_id = intval($test_id);
-}
-if(!isset($group_id) OR empty($group_id)) {
-	$group_id = 0;
+if (isset($_REQUEST['group_id']) AND !empty($_REQUEST['group_id'])) {
+	$group_id = intval($_REQUEST['group_id']);
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		F_print_error('ERROR', $l['m_authorization_denied']);
+		exit;
+	}
 } else {
-	$group_id = intval($group_id);
+	$group_id = 0;
 }
+
 if(isset($_POST['lock'])) {
 	$menu_mode = 'lock';
 } elseif(isset($_POST['unlock'])) {
@@ -241,14 +243,14 @@ else {
 <span class="formw">
 <select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_resultallusers').submit()">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	WHERE group_id IN (
-		SELECT tstgrp_group_id
-		FROM '.K_TABLE_TEST_GROUPS.'
-		WHERE tstgrp_test_id='.$test_id.'
-	)
-	ORDER BY group_name';
+if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+	$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' WHERE';
+} else {
+	// non-administrator can access only to his/her groups
+	$sql = 'SELECT * FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
+		WHERE group_id=usrgrp_group_id AND usrgrp_user_id='.$_SESSION['session_user_id'].' AND';
+}
+$sql .= ' group_id IN (SELECT tstgrp_group_id FROM '.K_TABLE_TEST_GROUPS.' WHERE tstgrp_test_id='.$test_id.') ORDER BY group_name';
 if($r = F_db_query($sql, $db)) {
 	echo '<option value="0"';
 		if($m['group_id'] == $group_id) {

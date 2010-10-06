@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2009-12-31
+// Last Update : 2010-10-06
 //
 // Description : Sends email test reports to users.
 //
@@ -67,11 +67,22 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0, $mode=0) {
 	require_once('../../shared/code/tce_functions_test.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
 	require_once('../../shared/code/tce_class_mailer.php');
+	require_once('tce_functions_user_select.php');
 
 	$test_id = intval($test_id);
 	$user_id = intval($user_id);
 	$group_id = intval($group_id);
 	$mode = intval($mode);
+
+	if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+		return;
+	}
+	if (!F_isAuthorizedEditorForUser($user_id)) {
+		return;
+	}
+	if (!F_isAuthorizedEditorForGroup($group_id)) {
+		return;
+	}
 
 	// Instantiate C_mailer class
 	$mail = new C_mailer;
@@ -121,11 +132,7 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0, $mode=0) {
 					AND testuser_test_id='.$test_id.'
 					AND testuser_status>0';
 		if ($group_id > 0) {
-			$sql .= ' AND testuser_user_id IN (
-					SELECT usrgrp_user_id
-					FROM '.K_TABLE_USERGROUP.'
-					WHERE usrgrp_group_id='.$group_id.'
-				)';
+			$sql .= ' AND testuser_user_id IN (SELECT usrgrp_user_id FROM '.K_TABLE_USERGROUP.' WHERE usrgrp_group_id='.$group_id.')';
 		}
 	} else {
 		// select only one test of one user
