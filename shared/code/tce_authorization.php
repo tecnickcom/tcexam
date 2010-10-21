@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2010-10-04
+// Last Update : 2010-10-21
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -77,7 +77,7 @@ if ($rs = F_db_query($sqls, $db)) {
 		// decode session data
 		session_decode($ms['cpsession_data']);
 		// check for possible session hijacking
-		if ((!isset($_SESSION['session_hash'])) OR ($_SESSION['session_hash'] != $session_hash)) {
+		if (K_CHECK_SESSION_FINGERPRINT AND ((!isset($_SESSION['session_hash'])) OR ($_SESSION['session_hash'] != $session_hash))) {
 			// display login form
 			session_regenerate_id();
 			F_login_form();

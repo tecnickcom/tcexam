@@ -1,3 +1,7 @@
+11.1.004 (2010-10-21)
+	- The constant K_CHECK_SESSION_FINGERPRINT was added to /shared/config/tce_config.php to check for possible session hijacking (set to false if you have login problems).
+	- TCPDF library was updated to fix alignment problems with RTL languages.
+
 11.1.003 (2010-10-06)
 	- The security and reliability of user sessions was improved.
 	- A minor bug was fixed on shared/code/tce_functions_test.php

@@ -107,9 +107,9 @@ Shared configuration file.<br /><br /><br /><br />
 <h4>Includes:</h4>
 <div class="tags">
 require_once('../../shared/config/tce_general_constants.php') [line 99]<br />
-require_once('../../shared/code/tce_tmx.php') [line 254]<br />
-require_once('../../shared/code/tce_functions_errmsg.php') [line 222]<br />
-Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [line 98]<br />
+require_once('../../shared/config/tce_paths.php') [line 98]<br />
+require_once('../../shared/code/tce_functions_errmsg.php') [line 227]<br />
+Error handlers.<br /><br />require_once('../../shared/code/tce_tmx.php') [line 259]<br />
 </div>
 <br /><br />
 <br /><br />
@@ -153,8 +153,21 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 		</div>
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
+	<a name="defineK_CHECK_SESSION_FINGERPRINT"></a>
+	<h3>K_CHECK_SESSION_FINGERPRINT <span class="smalllinenumber">[line 159]</span></h3>
+	<div class="tags">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>K_CHECK_SESSION_FINGERPRINT = true</code>
+    </td></tr></table>
+    </td></tr></table>
+
+    If true, check for possible session hijacking (set to false if you have login problems).<br /><br />    <br />
+		</div>
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
 	<a name="defineK_COOKIE_DOMAIN"></a>
-	<h3>K_COOKIE_DOMAIN <span class="smalllinenumber">[line 161]</span></h3>
+	<h3>K_COOKIE_DOMAIN <span class="smalllinenumber">[line 166]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -167,7 +180,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_COOKIE_EXPIRE"></a>
-	<h3>K_COOKIE_EXPIRE <span class="smalllinenumber">[line 176]</span></h3>
+	<h3>K_COOKIE_EXPIRE <span class="smalllinenumber">[line 181]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -180,7 +193,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_COOKIE_PATH"></a>
-	<h3>K_COOKIE_PATH <span class="smalllinenumber">[line 166]</span></h3>
+	<h3>K_COOKIE_PATH <span class="smalllinenumber">[line 171]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -193,7 +206,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_COOKIE_SECURE"></a>
-	<h3>K_COOKIE_SECURE <span class="smalllinenumber">[line 171]</span></h3>
+	<h3>K_COOKIE_SECURE <span class="smalllinenumber">[line 176]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -232,7 +245,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_ENABLE_JSERRORS"></a>
-	<h3>K_ENABLE_JSERRORS <span class="smalllinenumber">[line 202]</span></h3>
+	<h3>K_ENABLE_JSERRORS <span class="smalllinenumber">[line 207]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -258,7 +271,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_ERROR_TYPES"></a>
-	<h3>K_ERROR_TYPES <span class="smalllinenumber">[line 192]</span></h3>
+	<h3>K_ERROR_TYPES <span class="smalllinenumber">[line 197]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -271,7 +284,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_EXTEND_TIME_MINUTES"></a>
-	<h3>K_EXTEND_TIME_MINUTES <span class="smalllinenumber">[line 214]</span></h3>
+	<h3>K_EXTEND_TIME_MINUTES <span class="smalllinenumber">[line 219]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -336,7 +349,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_REDIRECT_LOGIN_MODE"></a>
-	<h3>K_REDIRECT_LOGIN_MODE <span class="smalllinenumber">[line 184]</span></h3>
+	<h3>K_REDIRECT_LOGIN_MODE <span class="smalllinenumber">[line 189]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -366,7 +379,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>K_TCEXAM_VERSION = '11.1.003'</code>
+		<code>K_TCEXAM_VERSION = '11.1.004'</code>
     </td></tr></table>
     </td></tr></table>
 
@@ -414,7 +427,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_TIMEZONE"></a>
-	<h3>K_TIMEZONE <span class="smalllinenumber">[line 209]</span></h3>
+	<h3>K_TIMEZONE <span class="smalllinenumber">[line 214]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -427,7 +440,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="defineK_USE_ERROR_LOG"></a>
-	<h3>K_USE_ERROR_LOG <span class="smalllinenumber">[line 197]</span></h3>
+	<h3>K_USE_ERROR_LOG <span class="smalllinenumber">[line 202]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -440,7 +453,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
   <hr />
 	<a name="definePHP_VERSION_ID"></a>
-	<h3>PHP_VERSION_ID <span class="smalllinenumber">[line 261]</span></h3>
+	<h3>PHP_VERSION_ID <span class="smalllinenumber">[line 266]</span></h3>
 	<div class="tags">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -455,7 +468,7 @@ Error handlers.<br /><br />require_once('../../shared/config/tce_paths.php') [li
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 06 Oct 2010 16:47:55 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Thu, 21 Oct 2010 11:53:05 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

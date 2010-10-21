@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2010-09-26
+// Last Update : 2010-10-21
 //
 // Description : Shared configuration file.
 //
@@ -50,7 +50,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.003');
+define ('K_TCEXAM_VERSION', '11.1.004');
 
 /**
  * 2-letters code for default language.
@@ -152,6 +152,11 @@ define ('K_TIMESTAMP_FORMAT', 'Y-m-d H:i:s');
  * Define max line length in chars for question navigator on test execution interface.
  */
 define ('K_QUESTION_LINE_MAX_LENGTH', 70);
+
+/**
+ * If true, check for possible session hijacking (set to false if you have login problems).
+ */
+define ('K_CHECK_SESSION_FINGERPRINT', true);
 
 // Client Cookie settings
 
