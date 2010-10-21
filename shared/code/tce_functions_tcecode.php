@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2010-09-22
+// Last Update : 2010-10-21
 //
 // Description : Functions to translate TCExam code
 //               into XHTML.
@@ -105,6 +105,14 @@ function F_decode_tcecode($text_to_decode) {
 	// [url=http://www.domain.com]linkname[/url]
 	$pattern[++$i] = "#\[url=(.*?)\](.*?)\[/url\]#si";
 	$replacement[++$i] = '<a class="tcecode" href="\1">\2</a>';
+
+	// [dir=ltr]text direction: ltr, rtl[/dir]
+	$pattern[++$i] = "#\[dir=(.*?)\](.*?)\[/dir\]#si";
+	$replacement[++$i] = '<span dir="\1">\2</span>';
+
+	// [align=left]text alignment: left, right, center, justify[/align]
+	$pattern[++$i] = "#\[align=(.*?)\](.*?)\[/align\]#si";
+	$replacement[++$i] = '<span style="text-align:\1;">\2</span>';
 
 	// [code] and [/code] display text as source code
 	$pattern[++$i] = "#\[code\](.*?)\[/code\]#si";

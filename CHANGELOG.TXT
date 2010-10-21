@@ -1,3 +1,7 @@
+11.1.005 (2010-10-21)
+	- On this version the PDF text direction was improved to include the case of RTL text on LTR direction and LTR text on RTL direction.
+	- The tag [dir] and relative buttons were added to fix content direction for PDF ltr=left-to-right, rtl=right-to-left.
+
 11.1.004 (2010-10-21)
 	- The constant K_CHECK_SESSION_FINGERPRINT was added to /shared/config/tce_config.php to check for possible session hijacking (set to false if you have login problems).
 	- TCPDF library was updated to fix alignment problems with RTL languages.

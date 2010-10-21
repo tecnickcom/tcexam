@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2010-09-22
+// Last Update : 2010-10-21
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -90,13 +90,15 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	$buttons .= getImageButton($callingform, $callingfield, 'unordered list', '[ulist]', K_PATH_IMAGES.'buttons/bullist.gif', $onclick, 'l');
 	$buttons .= getImageButton($callingform, $callingfield, 'ordered list', '[olist]', K_PATH_IMAGES.'buttons/numlist.gif', $onclick, 'o');
 	$buttons .= getImageButton($callingform, $callingfield, 'list item', '[li]', K_PATH_IMAGES.'buttons/li.gif', $onclick, 't');
-	
+	$buttons .= getImageButton($callingform, $callingfield, 'LRT', '[dir=ltr]', K_PATH_IMAGES.'buttons/ltrdir.gif', $onclick, '');
+	$buttons .= getImageButton($callingform, $callingfield, 'RTL', '[dir=rtl]', K_PATH_IMAGES.'buttons/rtldir.gif', $onclick, '');
+
 	$onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=bgcolor\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton($callingform, $callingfield, 'background-color', '', K_PATH_IMAGES.'buttons/bgcolor.gif', $onclick, '');
 
 	$onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=color\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton($callingform, $callingfield, 'color', '', K_PATH_IMAGES.'buttons/color.gif', $onclick, '');
-	
+
 	$buttons .= getImageButton($callingform, $callingfield, 'code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
 	$buttons .= getImageButton($callingform, $callingfield, 'latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
 
