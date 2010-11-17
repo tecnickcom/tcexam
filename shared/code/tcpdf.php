@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.009
+// Version     : 5.9.017
 // Begin       : 2002-08-03
-// Last Update : 2010-10-21
+// Last Update : 2010-11-16
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -134,26 +134,29 @@
  * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 5.9.009
+ * @version 5.9.017
  */
 
-
-/**
- * define default PDF document producer
- */
-define('PDF_PRODUCER', 'TCPDF 5.9.009 (http://www.tcpdf.org)');
 
 /**
 * This is a PHP class for generating PDF documents without requiring external extensions.<br>
 * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 * @name TCPDF
 * @package com.tecnick.tcpdf
-* @version 5.9.009
+* @version 5.9.017
 * @author Nicola Asuni - info@tecnick.com
 * @link http://www.tcpdf.org
 * @license http://www.gnu.org/copyleft/lesser.html LGPL
 */
 class TCPDF {
+
+	// private properties
+
+	/**
+	 * @var current TCPDF version
+	 * @access private
+	 */
+	private $tcpdf_version = '5.9.017';
 
 	// Protected properties
 
@@ -1460,7 +1463,7 @@ class TCPDF {
 	 * @access protected
 	 * @since 5.8.000 (2010-08-11)
 	 */
-	protected $colxshift = array('x' => 0, 's' => 0, 'p' => 0);
+	protected $colxshift = array('x' => 0, 's' => array('H' => 0, 'V' => 0), 'p' => array('L' => 0, 'T' => 0, 'R' => 0, 'B' => 0));
 
 	/**
 	 * Text rendering mode: 0 = Fill text; 1 = Stroke text; 2 = Fill, then stroke text; 3 = Neither fill nor stroke text (invisible); 4 = Fill text and add to path for clipping; 5 = Stroke text and add to path for clipping; 6 = Fill, then stroke text and add to path for clipping; 7 = Add text to path for clipping.
@@ -1566,6 +1569,13 @@ class TCPDF {
 	 * @since 5.9.004 (2010-10-18)
 	 */
 	protected $webcolor = array();
+
+	/**
+	 * @var array containing spot color names and values
+	 * @access protected
+	 * @since 5.9.012 (2010-11-11)
+	 */
+	protected $spotcolor = array();
 
 	/**
 	 * @var directory used for the last SVG image
@@ -1751,8 +1761,16 @@ class TCPDF {
 			$this->internal_encoding = mb_internal_encoding();
 			mb_internal_encoding('ASCII');
 		}
+		// get array of HTML colors
 		require(dirname(__FILE__).'/htmlcolors.php');
 		$this->webcolor = $webcolor;
+		// get array of custom spot colors
+		if (file_exists(dirname(__FILE__).'/spotcolors.php')) {
+			require(dirname(__FILE__).'/spotcolors.php');
+			$this->spotcolor = $spotcolor;
+		} else {
+			$this->spotcolor = array();
+		}
 		require_once(dirname(__FILE__).'/unicode_data.php');
 		$this->unicode = new TCPDF_UNICODE_DATA();
 		$this->font_obj_ids = array();
@@ -1892,6 +1910,16 @@ class TCPDF {
 		}
 		// unset all class variables
 		$this->_destroy(true);
+	}
+
+	/**
+	 * Return the current TCPDF version.
+	 * @return TCPDF version string
+	 * @access public
+	 * @since 5.9.012 (2010-11-10)
+	 */
+	public function getTCPDFVersion() {
+		return $this->tcpdf_version;
 	}
 
 	/**
@@ -3597,13 +3625,11 @@ class TCPDF {
 		$this->y = $this->h - (1 / $this->k);
 		$this->lMargin = 0;
 		$this->_out('q');
-		$this->setVisibility('screen');
 		$this->SetFont('helvetica', '', 1);
-		$this->SetTextColor(255, 255, 255);
+		$this->setTextRenderingMode(0, false, false);
 		$msg = "\x50\x6f\x77\x65\x72\x65\x64\x20\x62\x79\x20\x54\x43\x50\x44\x46\x20\x28\x77\x77\x77\x2e\x74\x63\x70\x64\x66\x2e\x6f\x72\x67\x29";
 		$lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x70\x64\x66\x2e\x6f\x72\x67";
 		$this->Cell(0, 0, $msg, 0, 0, 'L', 0, $lnk, 0, false, 'D', 'B');
-		$this->setVisibility('all');
 		$this->_out('Q');
 		// restore graphic settings
 		$this->setGraphicVars($gvars);
@@ -3966,7 +3992,14 @@ class TCPDF {
 		$headerfont = $this->getHeaderFont();
 		$headerdata = $this->getHeaderData();
 		if (($headerdata['logo']) AND ($headerdata['logo'] != K_BLANK_IMAGE)) {
-			$this->Image(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
+			$imgtype = $this->getImageFileType(K_PATH_IMAGES.$headerdata['logo']);
+			if (($imgtype == 'eps') OR ($imgtype == 'ai')) {
+				$this->ImageEps(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
+			} elseif ($imgtype == 'svg') {
+				$this->ImageSVG(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
+			} else {
+				$this->Image(K_PATH_IMAGES.$headerdata['logo'], '', '', $headerdata['logo_width']);
+			}
 			$imgy = $this->getImageRBY();
 		} else {
 			$imgy = $this->GetY();
@@ -4192,10 +4225,10 @@ class TCPDF {
 	 * Defines a new spot color.
 	 * It can be expressed in RGB components or gray scale.
 	 * The method can be called before the first page is created and the value is retained from page to page.
-	 * @param int $c Cyan color for CMYK. Value between 0 and 255
-	 * @param int $m Magenta color for CMYK. Value between 0 and 255
-	 * @param int $y Yellow color for CMYK. Value between 0 and 255
-	 * @param int $k Key (Black) color for CMYK. Value between 0 and 255
+	 * @param int $c Cyan color for CMYK. Value between 0 and 100
+	 * @param int $m Magenta color for CMYK. Value between 0 and 100
+	 * @param int $y Yellow color for CMYK. Value between 0 and 100
+	 * @param int $k Key (Black) color for CMYK. Value between 0 and 100
 	 * @access public
 	 * @since 4.0.024 (2008-09-12)
 	 * @see SetDrawSpotColor(), SetFillSpotColor(), SetTextSpotColor()
@@ -4209,10 +4242,10 @@ class TCPDF {
 
 	/**
 	 * Defines the color used for all drawing operations (lines, rectangles and cell borders).
-	 * It can be expressed in RGB components or gray scale.
+	 * It can be expressed in RGB, CMYK or GRAY SCALE components.
 	 * The method can be called before the first page is created and the value is retained from page to page.
 	 * @param array $color array of colors
-	 * @param boolean $ret if true do not send the command.
+	 * @param boolean $ret if true do not send the PDF command.
 	 * @return string the PDF command
 	 * @access public
 	 * @since 3.1.000 (2008-06-11)
@@ -4225,8 +4258,9 @@ class TCPDF {
 			$g = isset($color[1]) ? $color[1] : -1;
 			$b = isset($color[2]) ? $color[2] : -1;
 			$k = isset($color[3]) ? $color[3] : -1;
+			$name = isset($color[4]) ? $color[4] : ''; // spot color name
 			if ($r >= 0) {
-				return $this->SetDrawColor($r, $g, $b, $k, $ret);
+				return $this->SetDrawColor($r, $g, $b, $k, $ret, $name);
 			}
 		}
 		return '';
@@ -4234,17 +4268,18 @@ class TCPDF {
 
 	/**
 	 * Defines the color used for all drawing operations (lines, rectangles and cell borders). It can be expressed in RGB components or gray scale. The method can be called before the first page is created and the value is retained from page to page.
-	 * @param int $col1 Gray level for single color, or Red color for RGB, or Cyan color for CMYK. Value between 0 and 255
-	 * @param int $col2 Green color for RGB, or Magenta color for CMYK. Value between 0 and 255
-	 * @param int $col3 Blue color for RGB, or Yellow color for CMYK. Value between 0 and 255
-	 * @param int $col4 Key (Black) color for CMYK. Value between 0 and 255
+	 * @param int $col1 GRAY level for single color, or Red color for RGB (0-255), or CYAN color for CMYK (0-100).
+	 * @param int $col2 GREEN color for RGB (0-255), or MAGENTA color for CMYK (0-100).
+	 * @param int $col3 BLUE color for RGB (0-255), or YELLOW color for CMYK (0-100).
+	 * @param int $col4 KEY (BLACK) color for CMYK (0-100).
 	 * @param boolean $ret if true do not send the command.
+	 * @param string $name spot color name (if any)
 	 * @return string the PDF command
 	 * @access public
 	 * @since 1.3
 	 * @see SetDrawColorArray(), SetFillColor(), SetTextColor(), Line(), Rect(), Cell(), MultiCell()
 	 */
-	public function SetDrawColor($col1=0, $col2=-1, $col3=-1, $col4=-1, $ret=false) {
+	public function SetDrawColor($col1=0, $col2=-1, $col3=-1, $col4=-1, $ret=false, $name='') {
 		// set default values
 		if (!is_numeric($col1)) {
 			$col1 = 0;
@@ -4261,16 +4296,21 @@ class TCPDF {
 		//Set color for all stroking operations
 		if (($col2 == -1) AND ($col3 == -1) AND ($col4 == -1)) {
 			// Grey scale
-			$this->DrawColor = sprintf('%.3F G', $col1/255);
+			$this->DrawColor = sprintf('%.3F G', ($col1 / 255));
 			$this->strokecolor = array('G' => $col1);
 		} elseif ($col4 == -1) {
 			// RGB
-			$this->DrawColor = sprintf('%.3F %.3F %.3F RG', $col1/255, $col2/255, $col3/255);
+			$this->DrawColor = sprintf('%.3F %.3F %.3F RG', ($col1 / 255), ($col2 / 255), ($col3 / 255));
 			$this->strokecolor = array('R' => $col1, 'G' => $col2, 'B' => $col3);
-		} else {
+		} elseif (empty($name)) {
 			// CMYK
-			$this->DrawColor = sprintf('%.3F %.3F %.3F %.3F K', $col1/100, $col2/100, $col3/100, $col4/100);
+			$this->DrawColor = sprintf('%.3F %.3F %.3F %.3F K', ($col1 / 100), ($col2 / 100), ($col3 / 100), ($col4 / 100));
 			$this->strokecolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4);
+		} else {
+			// SPOT COLOR
+			$this->AddSpotColor($name, $col1, $col2, $col3, $col4);
+			$this->DrawColor = sprintf('/CS%d CS %.3F SCN', $this->spot_colors[$name]['i'], 1);
+			$this->strokecolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4, 'name' => $name);
 		}
 		if ($this->page > 0) {
 			if (!$ret) {
@@ -4293,7 +4333,7 @@ class TCPDF {
 		if (!isset($this->spot_colors[$name])) {
 			$this->Error('Undefined spot color: '.$name);
 		}
-		$this->DrawColor = sprintf('/CS%d CS %.3F SCN', $this->spot_colors[$name]['i'], $tint/100);
+		$this->DrawColor = sprintf('/CS%d CS %.3F SCN', $this->spot_colors[$name]['i'], ($tint / 100));
 		if ($this->page > 0) {
 			$this->_out($this->DrawColor);
 		}
@@ -4301,37 +4341,42 @@ class TCPDF {
 
 	/**
 	 * Defines the color used for all filling operations (filled rectangles and cell backgrounds).
-	 * It can be expressed in RGB components or gray scale.
+	 * It can be expressed in RGB, CMYK or GRAY SCALE components.
 	 * The method can be called before the first page is created and the value is retained from page to page.
 	 * @param array $color array of colors
+	 * @param boolean $ret if true do not send the PDF command.
 	 * @access public
 	 * @since 3.1.000 (2008-6-11)
 	 * @see SetFillColor()
 	 */
-	public function SetFillColorArray($color) {
+	public function SetFillColorArray($color, $ret=false) {
 		if (is_array($color)) {
 			$color = array_values($color);
 			$r = isset($color[0]) ? $color[0] : -1;
 			$g = isset($color[1]) ? $color[1] : -1;
 			$b = isset($color[2]) ? $color[2] : -1;
 			$k = isset($color[3]) ? $color[3] : -1;
+			$name = isset($color[4]) ? $color[4] : ''; // spot color name
 			if ($r >= 0) {
-				$this->SetFillColor($r, $g, $b, $k);
+				$this->SetFillColor($r, $g, $b, $k, $ret, $name);
 			}
 		}
 	}
 
 	/**
 	 * Defines the color used for all filling operations (filled rectangles and cell backgrounds). It can be expressed in RGB components or gray scale. The method can be called before the first page is created and the value is retained from page to page.
-	 * @param int $col1 Gray level for single color, or Red color for RGB, or Cyan color for CMYK. Value between 0 and 255
-	 * @param int $col2 Green color for RGB, or Magenta color for CMYK. Value between 0 and 255
-	 * @param int $col3 Blue color for RGB, or Yellow color for CMYK. Value between 0 and 255
-	 * @param int $col4 Key (Black) color for CMYK. Value between 0 and 255
+	 * @param int $col1 GRAY level for single color, or Red color for RGB (0-255), or CYAN color for CMYK (0-100).
+	 * @param int $col2 GREEN color for RGB (0-255), or MAGENTA color for CMYK (0-100).
+	 * @param int $col3 BLUE color for RGB (0-255), or YELLOW color for CMYK (0-100).
+	 * @param int $col4 KEY (BLACK) color for CMYK (0-100).
+	 * @param boolean $ret if true do not send the command.
+	 * @param string $name spot color name (if any)
+	 * @return string the PDF command
 	 * @access public
 	 * @since 1.3
 	 * @see SetFillColorArray(), SetDrawColor(), SetTextColor(), Rect(), Cell(), MultiCell()
 	 */
-	public function SetFillColor($col1=0, $col2=-1, $col3=-1, $col4=-1) {
+	public function SetFillColor($col1=0, $col2=-1, $col3=-1, $col4=-1, $ret=false, $name='') {
 		// set default values
 		if (!is_numeric($col1)) {
 			$col1 = 0;
@@ -4348,21 +4393,30 @@ class TCPDF {
 		//Set color for all filling operations
 		if (($col2 == -1) AND ($col3 == -1) AND ($col4 == -1)) {
 			// Grey scale
-			$this->FillColor = sprintf('%.3F g', $col1/255);
+			$this->FillColor = sprintf('%.3F g', ($col1 / 255));
 			$this->bgcolor = array('G' => $col1);
 		} elseif ($col4 == -1) {
 			// RGB
-			$this->FillColor = sprintf('%.3F %.3F %.3F rg', $col1/255, $col2/255, $col3/255);
+			$this->FillColor = sprintf('%.3F %.3F %.3F rg', ($col1 / 255), ($col2 / 255), ($col3 / 255));
 			$this->bgcolor = array('R' => $col1, 'G' => $col2, 'B' => $col3);
-		} else {
+		} elseif (empty($name)) {
 			// CMYK
-			$this->FillColor = sprintf('%.3F %.3F %.3F %.3F k', $col1/100, $col2/100, $col3/100, $col4/100);
+			$this->FillColor = sprintf('%.3F %.3F %.3F %.3F k', ($col1 / 100), ($col2 / 100), ($col3 / 100), ($col4 / 100));
 			$this->bgcolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4);
+		} else {
+			// SPOT COLOR
+			$this->AddSpotColor($name, $col1, $col2, $col3, $col4);
+			$this->FillColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], 1);
+			$this->bgcolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4, 'name' => $name);
 		}
 		$this->ColorFlag = ($this->FillColor != $this->TextColor);
 		if ($this->page > 0) {
-			$this->_out($this->FillColor);
+			if (!$ret) {
+				$this->_out($this->FillColor);
+			}
+			return $this->FillColor;
 		}
+		return '';
 	}
 
 	/**
@@ -4377,7 +4431,7 @@ class TCPDF {
 		if (!isset($this->spot_colors[$name])) {
 			$this->Error('Undefined spot color: '.$name);
 		}
-		$this->FillColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], $tint/100);
+		$this->FillColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], ($tint / 100));
 		$this->ColorFlag = ($this->FillColor != $this->TextColor);
 		if ($this->page > 0) {
 			$this->_out($this->FillColor);
@@ -4388,34 +4442,38 @@ class TCPDF {
 	 * Defines the color used for text. It can be expressed in RGB components or gray scale.
 	 * The method can be called before the first page is created and the value is retained from page to page.
 	 * @param array $color array of colors
+	 * @param boolean $ret if true do not send the PDF command.
 	 * @access public
 	 * @since 3.1.000 (2008-6-11)
 	 * @see SetFillColor()
 	 */
-	public function SetTextColorArray($color) {
+	public function SetTextColorArray($color, $ret=false) {
 		if (is_array($color)) {
 			$color = array_values($color);
 			$r = isset($color[0]) ? $color[0] : -1;
 			$g = isset($color[1]) ? $color[1] : -1;
 			$b = isset($color[2]) ? $color[2] : -1;
 			$k = isset($color[3]) ? $color[3] : -1;
+			$name = isset($color[4]) ? $color[4] : ''; // spot color name
 			if ($r >= 0) {
-				$this->SetTextColor($r, $g, $b, $k);
+				$this->SetTextColor($r, $g, $b, $k, $ret, $name);
 			}
 		}
 	}
 
 	/**
 	 * Defines the color used for text. It can be expressed in RGB components or gray scale. The method can be called before the first page is created and the value is retained from page to page.
-	 * @param int $col1 Gray level for single color, or Red color for RGB, or Cyan color for CMYK. Value between 0 and 255
-	 * @param int $col2 Green color for RGB, or Magenta color for CMYK. Value between 0 and 255
-	 * @param int $col3 Blue color for RGB, or Yellow color for CMYK. Value between 0 and 255
-	 * @param int $col4 Key (Black) color for CMYK. Value between 0 and 255
+	 * @param int $col1 GRAY level for single color, or Red color for RGB (0-255), or CYAN color for CMYK (0-100).
+	 * @param int $col2 GREEN color for RGB (0-255), or MAGENTA color for CMYK (0-100).
+	 * @param int $col3 BLUE color for RGB (0-255), or YELLOW color for CMYK (0-100).
+	 * @param int $col4 KEY (BLACK) color for CMYK (0-100).
+	 * @param boolean $ret if true do not send the command.
+	 * @param string $name spot color name (if any)
 	 * @access public
 	 * @since 1.3
 	 * @see SetTextColorArray(), SetDrawColor(), SetFillColor(), Text(), Cell(), MultiCell()
 	 */
-	public function SetTextColor($col1=0, $col2=-1, $col3=-1, $col4=-1) {
+	public function SetTextColor($col1=0, $col2=-1, $col3=-1, $col4=-1, $ret=false, $name='') {
 		// set default values
 		if (!is_numeric($col1)) {
 			$col1 = 0;
@@ -4432,16 +4490,21 @@ class TCPDF {
 		//Set color for text
 		if (($col2 == -1) AND ($col3 == -1) AND ($col4 == -1)) {
 			// Grey scale
-			$this->TextColor = sprintf('%.3F g', $col1/255);
+			$this->TextColor = sprintf('%.3F g', ($col1 / 255));
 			$this->fgcolor = array('G' => $col1);
 		} elseif ($col4 == -1) {
 			// RGB
-			$this->TextColor = sprintf('%.3F %.3F %.3F rg', $col1/255, $col2/255, $col3/255);
+			$this->TextColor = sprintf('%.3F %.3F %.3F rg', ($col1 / 255), ($col2 / 255), ($col3 / 255));
 			$this->fgcolor = array('R' => $col1, 'G' => $col2, 'B' => $col3);
-		} else {
+		} elseif (empty($name)) {
 			// CMYK
-			$this->TextColor = sprintf('%.3F %.3F %.3F %.3F k', $col1/100, $col2/100, $col3/100, $col4/100);
+			$this->TextColor = sprintf('%.3F %.3F %.3F %.3F k', ($col1 / 100), ($col2 / 100), ($col3 / 100), ($col4 / 100));
 			$this->fgcolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4);
+		} else {
+			// SPOT COLOR
+			$this->AddSpotColor($name, $col1, $col2, $col3, $col4);
+			$this->TextColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], 1);
+			$this->fgcolor = array('C' => $col1, 'M' => $col2, 'Y' => $col3, 'K' => $col4, 'name' => $name);
 		}
 		$this->ColorFlag = ($this->FillColor != $this->TextColor);
 	}
@@ -4458,7 +4521,7 @@ class TCPDF {
 		if (!isset($this->spot_colors[$name])) {
 			$this->Error('Undefined spot color: '.$name);
 		}
-		$this->TextColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], $tint/100);
+		$this->TextColor = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$name]['i'], ($tint / 100));
 		$this->ColorFlag = ($this->FillColor != $this->TextColor);
 		if ($this->page > 0) {
 			$this->_out($this->TextColor);
@@ -5226,12 +5289,10 @@ class TCPDF {
 					}
 				}
 			}
-			$this->newline = true;
 			return true;
 		}
 		if ($current_page != $this->page) {
 			// account for columns mode
-			$this->newline = true;
 			return true;
 		}
 		return false;
@@ -5328,9 +5389,9 @@ class TCPDF {
 				$h = $min_cell_height;
 			}
 		}
-		// check page for no-write regions and adapt page margins if necessary
-		$this->checkPageRegions($h);
 		$k = $this->k;
+		// check page for no-write regions and adapt page margins if necessary
+		$this->checkPageRegions($h, $this->x, $this->y);
 		if ($this->rtl) {
 			$x = $this->x - $this->cell_margin['R'];
 		} else {
@@ -6463,7 +6524,7 @@ class TCPDF {
 	 */
 	public function Write($h, $txt, $link='', $fill=false, $align='', $ln=false, $stretch=0, $firstline=false, $firstblock=false, $maxh=0, $wadj=0, $margin='') {
 		// check page for no-write regions and adapt page margins if necessary
-		$this->checkPageRegions($h);
+		$this->checkPageRegions($h, $this->x, $this->y);
 		if (strlen($txt) == 0) {
 			// fix empty text
 			$txt = ' ';
@@ -6827,7 +6888,7 @@ class TCPDF {
 	 * @access protected
 	 */
 	protected function getRemainingWidth() {
-		$this->checkPageRegions();
+		$this->checkPageRegions(0, $this->x, $this->y);
 		if ($this->rtl) {
 			return ($this->x - $this->lMargin);
 		} else {
@@ -6957,6 +7018,14 @@ class TCPDF {
 	 * @since 5.5.009 (2010-07-05)
 	 */
 	protected function fitBlock(&$w, &$h, &$x, &$y, $fitonpage=false) {
+		if ($w <= 0) {
+			// set maximum width
+			$w = ($this->w - $this->lMargin - $this->rMargin);
+		}
+		if ($h <= 0) {
+			// set maximum height
+			$h = ($this->PageBreakTrigger - $this->tMargin);
+		}
 		// resize the block to be vertically contained on a single page or single column
 		if ($fitonpage OR $this->AutoPageBreak) {
 			$ratio_wh = ($w / $h);
@@ -7012,7 +7081,7 @@ class TCPDF {
 	 * The format can be specified explicitly or inferred from the file extension.<br />
 	 * It is possible to put a link on the image.<br />
 	 * Remark: if an image is used several times, only one copy will be embedded in the file.<br />
-	 * @param string $file Name of the file containing the image.
+	 * @param string $file Name of the file containing the image or a '@' character followed by the image data string.
 	 * @param float $x Abscissa of the upper-left corner (LTR) or upper-right corner (RTL).
 	 * @param float $y Ordinate of the upper-left corner (LTR) or upper-right corner (RTL).
 	 * @param float $w Width of the image in the page. If not specified or equal to zero, it is automatically calculated.
@@ -7043,11 +7112,27 @@ class TCPDF {
 		// check page for no-write regions and adapt page margins if necessary
 		$this->checkPageRegions($h, $x, $y);
 		$cached_file = false; // true when the file is cached
-		// get image dimensions
-		$imsize = @getimagesize($file);
-		if ($imsize === FALSE) {
-			// try to encode spaces on filename
-			$file = str_replace(' ', '%20', $file);
+		// check if we are passing an image as file or string
+		if ($file{0} === '@') { // image from string
+			$imgdata = substr($file, 1);
+			$file = tempnam(K_PATH_CACHE, 'img_');
+			$fp = fopen($file, 'w');
+			fwrite($fp, $imgdata);
+			fclose($fp);
+			unset($imgdata);
+			$cached_file = true;
+			$imsize = @getimagesize($file);
+			if ($imsize === FALSE) {
+				unlink($file);
+				$cached_file = false;
+			}
+		} else { // image file
+			// check if is local file
+			if (!@file_exists($file)) {
+				// encode spaces on filename (file is probably an URL)
+				$file = str_replace(' ', '%20', $file);
+			}
+			// get image dimensions
 			$imsize = @getimagesize($file);
 			if ($imsize === FALSE) {
 				if (function_exists('curl_init')) {
@@ -7389,9 +7474,15 @@ class TCPDF {
 	 * @since 4.9.016 (2010-04-20)
 	 */
 	protected function _toPNG($image) {
+		// set temporary image file name
 		$tempname = tempnam(K_PATH_CACHE, 'jpg_');
+		// turn off interlaced mode
+		imageinterlace($image, 0);
+		// create temporary PNG image
 		imagepng($image, $tempname);
+		// remove image from memory
 		imagedestroy($image);
+		// get PNG image data
 		$retvars = $this->_parsepng($tempname);
 		// tidy up by removing temporary image
 		unlink($tempname);
@@ -7602,12 +7693,12 @@ class TCPDF {
 			// clone image object
 			$imga = $img->clone();
 			// extract alpha channel
-			$img->separateImageChannel(imagick::CHANNEL_ALPHA | imagick::CHANNEL_OPACITY | imagick::CHANNEL_MATTE);
+			$img->separateImageChannel(8); // 8 = (imagick::CHANNEL_ALPHA | imagick::CHANNEL_OPACITY | imagick::CHANNEL_MATTE);
 			$img->negateImage(true);
 			$img->setImageFormat('png');
 			$img->writeImage($tempfile_alpha);
 			// remove alpha channel
-			$imga->separateImageChannel(imagick::CHANNEL_ALL & ~(imagick::CHANNEL_ALPHA | imagick::CHANNEL_OPACITY | imagick::CHANNEL_MATTE));
+			$imga->separateImageChannel(39); // 39 = (imagick::CHANNEL_ALL & ~(imagick::CHANNEL_ALPHA | imagick::CHANNEL_OPACITY | imagick::CHANNEL_MATTE));
 			$imga->setImageFormat('png');
 			$imga->writeImage($tempfile_plain);
 		} else { // GD library
@@ -10220,7 +10311,7 @@ class TCPDF {
 			$out = '[/Separation /'.str_replace(' ', '#20', $name);
 			$out .= ' /DeviceCMYK <<';
 			$out .= ' /Range [0 1 0 1 0 1 0 1] /C0 [0 0 0 0]';
-			$out .= ' '.sprintf('/C1 [%.4F %.4F %.4F %.4F] ', $color['c']/100, $color['m']/100, $color['y']/100, $color['k']/100);
+			$out .= ' '.sprintf('/C1 [%.4F %.4F %.4F %.4F] ', ($color['c'] / 100), ($color['m'] / 100), ($color['y'] / 100), ($color['k'] / 100));
 			$out .= ' /FunctionType 2 /Domain [0 1] /N 1>>]';
 			$out .= "\n".'endobj';
 			$this->_out($out);
@@ -10342,19 +10433,14 @@ class TCPDF {
 		}
 		if (!$this->empty_string($this->keywords)) {
 			// Keywords associated with the document.
-			$out .= ' /Keywords '.$this->_textstring($this->keywords.' TCP'.'DF', $oid);
+			$out .= ' /Keywords '.$this->_textstring($this->keywords.' TCPDF', $oid);
 		}
 		if (!$this->empty_string($this->creator)) {
 			// If the document was converted to PDF from another format, the name of the conforming product that created the original document from which it was converted.
 			$out .= ' /Creator '.$this->_textstring($this->creator, $oid);
 		}
-		if (defined('PDF_PRODUCER')) {
-			// If the document was converted to PDF from another format, the name of the conforming product that converted it to PDF.
-			$out .= ' /Producer '.$this->_textstring(PDF_PRODUCER.' (TCP'.'DF)', $oid);
-		} else {
-			// default producer
-			$out .= ' /Producer '.$this->_textstring('TCP'.'DF', $oid);
-		}
+		// default producer
+		$out .= ' /Producer '.$this->_textstring("\x54\x43\x50\x44\x46\x20".$this->tcpdf_version."\x20\x28\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x70\x64\x66\x2e\x6f\x72\x67\x29", $oid);
 		// The date and time the document was created, in human-readable form
 		$out .= ' /CreationDate '.$this->_datestring();
 		// The date and time the document was most recently modified, in human-readable form
@@ -11319,14 +11405,14 @@ class TCPDF {
 	}
 
 	/**
-	 * Returns an associative array (keys: R,G,B) from an html color name or a six-digit or three-digit hexadecimal color representation (i.e. #3FE5AA or #7FF).
-	 * @param string $color html color
-	 * @return array RGB color or false in case of error.
+	 * Returns an array (RGB or CMYK) from an html color name or a six-digit (i.e. #3FE5AA) or three-digit (i.e. #7FF) hexadecimal color representation.
+	 * @param string $hcolor html color
+	 * @return array RGB or CMYK color, or false in case of error.
 	 * @access public
 	 */
-	public function convertHTMLColorToDec($color='#FFFFFF') {
+	public function convertHTMLColorToDec($hcolor='#FFFFFF') {
 		$returncolor = false;
-		$color = preg_replace('/[\s]*/', '', $color); // remove extra spaces
+		$color = preg_replace('/[\s]*/', '', $hcolor); // remove extra spaces
 		$color = strtolower($color);
 		if (($dotpos = strpos($color, '.')) !== false) {
 			// remove class parent (i.e.: color.red)
@@ -11340,6 +11426,16 @@ class TCPDF {
 			$codes = substr($color, 4);
 			$codes = str_replace(')', '', $codes);
 			$returncolor = explode(',', $codes);
+			foreach ($returncolor as $key => $val) {
+				if (strpos($val, '%') > 0) {
+					// percentage
+					$returncolor[$key] = (255 * intval($val) / 100);
+				} else {
+					$returncolor[$key] = intval($val);
+				}
+				// normalize value
+				$returncolor[$key] = max(0, min(255, $returncolor[$key]));
+			}
 			return $returncolor;
 		}
 		// CMYK ARRAY
@@ -11347,13 +11443,30 @@ class TCPDF {
 			$codes = substr($color, 5);
 			$codes = str_replace(')', '', $codes);
 			$returncolor = explode(',', $codes);
+			foreach ($returncolor as $key => $val) {
+				if (strpos($val, '%') !== false) {
+					// percentage
+					$returncolor[$key] = (100 * intval($val) / 100);
+				} else {
+					$returncolor[$key] = intval($val);
+				}
+				// normalize value
+				$returncolor[$key] = max(0, min(100, $returncolor[$key]));
+			}
 			return $returncolor;
 		}
 		// COLOR NAME
 		if (substr($color, 0, 1) != '#') {
 			// decode color name
 			if (isset($this->webcolor[$color])) {
+				// web color
 				$color_code = $this->webcolor[$color];
+			} elseif (isset($this->spot_colors[$hcolor])) {
+				// custom defined spot color
+				return array($this->spot_colors[$hcolor]['c'], $this->spot_colors[$hcolor]['m'], $this->spot_colors[$hcolor]['y'], $this->spot_colors[$hcolor]['k'], $hcolor);
+			} elseif (isset($this->spotcolor[$color])) {
+				// spot color from configuration file
+				return $this->spotcolor[$color];
 			} else {
 				return false;
 			}
@@ -11367,16 +11480,18 @@ class TCPDF {
 				$r = substr($color_code, 0, 1);
 				$g = substr($color_code, 1, 1);
 				$b = substr($color_code, 2, 1);
-				$returncolor['R'] = hexdec($r.$r);
-				$returncolor['G'] = hexdec($g.$g);
-				$returncolor['B'] = hexdec($b.$b);
+				$returncolor = array();
+				$returncolor['R'] = max(0, min(255, hexdec($r.$r)));
+				$returncolor['G'] = max(0, min(255, hexdec($g.$g)));
+				$returncolor['B'] = max(0, min(255, hexdec($b.$b)));
 				break;
 			}
 			case 6: {
 				// six-digit hexadecimal representation
-				$returncolor['R'] = hexdec(substr($color_code, 0, 2));
-				$returncolor['G'] = hexdec(substr($color_code, 2, 2));
-				$returncolor['B'] = hexdec(substr($color_code, 4, 2));
+				$returncolor = array();
+				$returncolor['R'] = max(0, min(255, hexdec(substr($color_code, 0, 2))));
+				$returncolor['G'] = max(0, min(255, hexdec(substr($color_code, 2, 2))));
+				$returncolor['B'] = max(0, min(255, hexdec(substr($color_code, 4, 2))));
 				break;
 			}
 		}
@@ -12825,6 +12940,7 @@ class TCPDF {
 	 * @param float $angf: Angle finish of draw line. Default value: 360.
 	 * @param boolean $pie if true do not mark the border point (used to draw pie sectors).
 	 * @param integer $nc Number of curves used to draw a 90 degrees portion of ellipse.
+	 * @return array bounding box coordinates (x min, y min, x max, y max)
 	 * @author Nicola Asuni
 	 * @access protected
 	 * @since 4.9.019 (2010-04-26)
@@ -12834,6 +12950,10 @@ class TCPDF {
 		if ($nc < 2) {
 			$nc = 2;
 		}
+		$xmin = 2147483647;
+		$ymin = 2147483647;
+		$xmax = 0;
+		$ymax = 0;
 		if ($pie) {
 			// center of the arc
 			$this->_outPoint($xc, $yc);
@@ -12898,7 +13018,18 @@ class TCPDF {
 			$qx2 = ($alpha * ((-$rx * $cos_xang * $sin_ang) - ($ry * $sin_xang * $cos_ang)));
 			$qy2 = ($alpha * ((-$rx * $sin_xang * $sin_ang) + ($ry * $cos_xang * $cos_ang)));
 			// draw arc
-			$this->_outCurve(($px1 + $qx1), ($this->h - ($py1 + $qy1)), ($px2 - $qx2), ($this->h - ($py2 - $qy2)), $px2, ($this->h - $py2));
+			$cx1 = ($px1 + $qx1);
+			$cy1 = ($this->h - ($py1 + $qy1));
+			$cx2 = ($px2 - $qx2);
+			$cy2 = ($this->h - ($py2 - $qy2));
+			$cx3 = $px2;
+			$cy3 = ($this->h - $py2);
+			$this->_outCurve($cx1, $cy1, $cx2, $cy2, $cx3, $cy3);
+			// get bounding box coordinates
+			$xmin = min($xmin, $cx1, $cx2, $cx3);
+			$ymin = min($ymin, $cy1, $cy2, $cy3);
+			$xmax = max($xmax, $cx1, $cx2, $cx3);
+			$ymax = max($ymax, $cy1, $cy2, $cy3);
 			// move to next point
 			$px1 = $px2;
 			$py1 = $py2;
@@ -12907,7 +13038,13 @@ class TCPDF {
 		}
 		if ($pie) {
 			$this->_outLine($xc, $yc);
+			// get bounding box coordinates
+			$xmin = min($xmin, $xc);
+			$ymin = min($ymin, $yc);
+			$xmax = max($xmax, $xc);
+			$ymax = max($ymax, $yc);
 		}
+		return array($xmin, $ymin, $xmax, $ymax);
 	}
 
 	/**
@@ -16409,8 +16546,20 @@ class TCPDF {
 				continue;
 			}
 			$len = strlen($line);
+			// check for spot color names
+			$color_name = '';
+			if (strcasecmp('x', substr(trim($line), -1)) == 0) {
+				if (preg_match('/\([^\)]*\)/', $line, $matches) > 0) {
+					// extract spot color name
+					$color_name = $matches[0];
+					// remove color name from string
+					$line = str_replace(' '.$color_name, '', $line);
+					// remove pharentesis from color name
+					$color_name = substr($color_name, 1, -1);
+				}
+			}
 			$chunks = explode(' ', $line);
-			$cmd = array_pop($chunks);
+			$cmd = trim(array_pop($chunks));
 			// RGB
 			if (($cmd == 'Xa') OR ($cmd == 'XA')) {
 				$b = array_pop($chunks);
@@ -16441,13 +16590,31 @@ class TCPDF {
 					break;
 				}
 				case 'x': {// custom fill color
-					list($c,$m,$y,$k) = $chunks;
-					$this->_out(''.$c.' '.$m.' '.$y.' '.$k.' k');
+					if (empty($color_name)) {
+						// CMYK color
+						list($col_c, $col_m, $col_y, $col_k) = $chunks;
+						$this->_out(''.$col_c.' '.$col_m.' '.$col_y.' '.$col_k.' k');
+					} else {
+						// Spot Color (CMYK + tint)
+						list($col_c, $col_m, $col_y, $col_k, $col_t) = $chunks;
+						$this->AddSpotColor($color_name, ($col_c * 100), ($col_m * 100), ($col_y * 100), ($col_k * 100));
+						$color_cmd = sprintf('/CS%d cs %.3F scn', $this->spot_colors[$color_name]['i'], (1 - $col_t));
+						$this->_out($color_cmd);
+					}
 					break;
 				}
 				case 'X': { // custom stroke color
-					list($c,$m,$y,$k) = $chunks;
-					$this->_out(''.$c.' '.$m.' '.$y.' '.$k.' K');
+					if (empty($color_name)) {
+						// CMYK color
+						list($col_c, $col_m, $col_y, $col_k) = $chunks;
+						$this->_out(''.$col_c.' '.$col_m.' '.$col_y.' '.$col_k.' K');
+					} else {
+						// Spot Color (CMYK + tint)
+						list($col_c, $col_m, $col_y, $col_k, $col_t) = $chunks;
+						$this->AddSpotColor($color_name, ($col_c * 100), ($col_m * 100), ($col_y * 100), ($col_k * 100));
+						$color_cmd = sprintf('/CS%d CS %.3F SCN', $this->spot_colors[$color_name]['i'], (1 - $col_t));
+						$this->_out($color_cmd);
+					}
 					break;
 				}
 				case 'Y':
@@ -16468,8 +16635,8 @@ class TCPDF {
 				case 'F': {
 					if ($u > 0) {
 						$isU = false;
-						$max = min($i+5, $cnt);
-						for ($j=$i+1; $j < $max; ++$j) {
+						$max = min(($i + 5), $cnt);
+						for ($j = ($i + 1); $j < $max; ++$j) {
 							$isU = ($isU OR (($lines[$j] == 'U') OR ($lines[$j] == '*U')));
 						}
 						if ($isU) {
@@ -17254,6 +17421,71 @@ class TCPDF {
 	}
 
 	/**
+	 * Cleanup HTML code (requires HTML Tidy library).
+	 * @param string $html htmlcode to fix
+	 * @param string $default_css CSS commands to add
+	 * @param array $tagvs parameters for setHtmlVSpace method
+	 * @param array $tidy_options options for tidy_parse_string function
+	 * @return string XHTML code cleaned up
+	 * @author Nicola Asuni
+	 * @access public
+	 * @since 5.9.017 (2010-11-16)
+	 * @see setHtmlVSpace()
+	 */
+	public function fixHTMLCode($html, $default_css='', $tagvs='', $tidy_options='') {
+		// configure parameters for HTML Tidy
+		if ($tidy_options === '') {
+			$tidy_options = array (
+				'clean' => 1,
+				'drop-empty-paras' => 0,
+				'drop-proprietary-attributes' => 1,
+				'fix-backslash' => 1,
+				'hide-comments' => 1,
+				'join-styles' => 1,
+				'lower-literals' => 1,
+				'merge-divs' => 1,
+				'merge-spans' => 1,
+				'output-xhtml' => 1,
+				'word-2000' => 1,
+				'wrap' => 0,
+				'output-bom' => 0,
+				//'char-encoding' => 'utf8',
+				//'input-encoding' => 'utf8',
+				//'output-encoding' => 'utf8'
+			);
+		}
+		// clean up the HTML code
+		$tidy = tidy_parse_string($html, $tidy_options);
+		// fix the HTML
+		$tidy->cleanRepair();
+		// get the CSS part
+		$tidy_head = tidy_get_head($tidy);
+		$css = $tidy_head->value;
+		$css = preg_replace('/<style([^>]+)>/ims', '<style>', $css);
+		$css = preg_replace('/<\/style>(.*)<style>/ims', "\n", $css);
+		$css = str_replace('/*<![CDATA[*/', '', $css);
+		$css = str_replace('/*]]>*/', '', $css);
+		preg_match('/<style>(.*)<\/style>/ims', $css, $matches);
+		$css = strtolower($matches[1]);
+		// include default css
+		$css = '<style>'.$default_css.$css.'</style>';
+		// get the body part
+		$tidy_body = tidy_get_body($tidy);
+		$html = $tidy_body->value;
+		// fix some self-closing tags
+		$html = str_replace('<br>', '<br />', $html);
+		// remove some empty tag blocks
+		$html = preg_replace('/<div([^\>]*)><\/div>/', '', $html);
+		$html = preg_replace('/<p([^\>]*)><\/p>/', '', $html);
+		if ($tagvs !== '') {
+			// set vertical space for some XHTML tags
+			$this->setHtmlVSpace($tagvs);
+		}
+		// return the cleaned XHTML code + CSS
+		return $css.$html;
+	}
+
+	/**
 	 * Extracts the CSS properties from a CSS string.
 	 * @param string $cssdata string containing CSS definitions.
 	 * @return An array where the keys are the CSS selectors and the values are the CSS properties.
@@ -17644,6 +17876,7 @@ class TCPDF {
 	 * Get the internal Cell padding from CSS attribute.
 	 * @param string $csspadding padding properties
 	 * @param float $width width of the containing element
+	 * @return array of cell paddings
 	 * @access public
 	 * @since 5.9.000 (2010-10-04)
 	 */
@@ -17697,6 +17930,7 @@ class TCPDF {
 	 * Get the internal Cell margin from CSS attribute.
 	 * @param string $cssmargin margin properties
 	 * @param float $width width of the containing element
+	 * @return array of cell margins
 	 * @access public
 	 * @since 5.9.000 (2010-10-04)
 	 */
@@ -17744,6 +17978,40 @@ class TCPDF {
 		$cell_margin['B'] = $this->getHTMLUnitToUnits(str_replace('auto', '0', $cell_margin['B']), $width, 'px', false);
 		$cell_margin['L'] = $this->getHTMLUnitToUnits(str_replace('auto', '0', $cell_margin['L']), $width, 'px', false);
 		return $cell_margin;
+	}
+
+	/**
+	 * Get the border-spacing from CSS attribute.
+	 * @param string $cssbspace border-spacing CSS properties
+	 * @param float $width width of the containing element
+	 * @return array of border spacings
+	 * @access public
+	 * @since 5.9.010 (2010-10-27)
+	 */
+	public function getCSSBorderMargin($cssbspace, $width=0) {
+		$space = preg_split('/[\s]+/', trim($cssbspace));
+		$border_spacing = array(); // value to be returned
+		switch (count($space)) {
+			case 2: {
+				$border_spacing['H'] = $space[0];
+				$border_spacing['V'] = $space[1];
+				break;
+			}
+			case 1: {
+				$border_spacing['H'] = $space[0];
+				$border_spacing['V'] = $space[0];
+				break;
+			}
+			default: {
+				return array('H' => 0, 'V' => 0);
+			}
+		}
+		if ($width == 0) {
+			$width = $this->w - $this->lMargin - $this->rMargin;
+		}
+		$border_spacing['H'] = $this->getHTMLUnitToUnits($border_spacing['H'], $width, 'px', false);
+		$border_spacing['V'] = $this->getHTMLUnitToUnits($border_spacing['V'], $width, 'px', false);
+		return $border_spacing;
 	}
 
 	/**
@@ -18081,17 +18349,8 @@ class TCPDF {
 							$dom[($dom[$key]['parent'])]['content'] .= $a[$dom[$i]['elkey']];
 						}
 						$key = $i;
-						$parent_table = $dom[$dom[$dom[($dom[$key]['parent'])]['parent']]['parent']];
-						$parent_padding = 0;
-						$parent_spacing = 0;
-						if (isset($parent_table['attribute']['cellpadding'])) {
-							$parent_padding = $this->getHTMLUnitToUnits($parent_table['attribute']['cellpadding'], 1, 'px');
-						}
-						if (isset($parent_table['attribute']['cellspacing'])) {
-							$parent_spacing = $this->getHTMLUnitToUnits($parent_table['attribute']['cellspacing'], 1, 'px');
-						}
 						// mark nested tables
-						$dom[($dom[$key]['parent'])]['content'] = str_replace('<table', '<table nested="true" pcellpadding="'.$parent_padding.'" pcellspacing="'.$parent_spacing.'"', $dom[($dom[$key]['parent'])]['content']);
+						$dom[($dom[$key]['parent'])]['content'] = str_replace('<table', '<table nested="true"', $dom[($dom[$key]['parent'])]['content']);
 						// remove thead sections from nested tables
 						$dom[($dom[$key]['parent'])]['content'] = str_replace('<thead>', '', $dom[($dom[$key]['parent'])]['content']);
 						$dom[($dom[$key]['parent'])]['content'] = str_replace('</thead>', '', $dom[($dom[$key]['parent'])]['content']);
@@ -18427,6 +18686,10 @@ class TCPDF {
 							if (isset($dom[$key]['style']['margin-'.$psv])) {
 								$dom[$key]['margin'][$psk] = $this->getHTMLUnitToUnits(str_replace('auto', '0', $dom[$key]['style']['margin-'.$psv]), 0, 'px', false);
 							}
+						}
+						// check for CSS border-spacing properties
+						if (isset($dom[$key]['style']['border-spacing'])) {
+							$dom[$key]['border-spacing'] = $this->getCSSBorderMargin($dom[$key]['style']['border-spacing']);
 						}
 						// page-break-inside
 						if (isset($dom[$key]['style']['page-break-inside']) AND ($dom[$key]['style']['page-break-inside'] == 'avoid')) {
@@ -18852,6 +19115,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						// fix table border properties
 						if (isset($dom[$dom[$key]['parent']]['attribute']['cellspacing'])) {
 							$tmp_cellspacing = $this->getHTMLUnitToUnits($dom[$dom[$key]['parent']]['attribute']['cellspacing'], 1, 'px');
+						} elseif (isset($dom[$dom[$key]['parent']]['border-spacing'])) {
+							$tmp_cellspacing = $dom[$dom[$key]['parent']]['border-spacing']['V'];
 						} else {
 							$tmp_cellspacing = 0;
 						}
@@ -18960,10 +19225,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$fontsize = isset($dom[$key]['fontsize']) ? $dom[$key]['fontsize'] : $curfontsize;
 					$fontascent = $this->getFontAscent($fontname, $fontstyle, $fontsize);
 					$fontdescent = $this->getFontDescent($fontname, $fontstyle, $fontsize);
-					if (($fontname != $curfontname) OR ($fontstyle != $curfontstyle) OR ($fontsize != $curfontsize) OR ($this->cell_height_ratio != $dom[$key]['line-height'])) {
+					if ( ($fontname != $curfontname) OR ($fontstyle != $curfontstyle) OR ($fontsize != $curfontsize)
+						OR ($this->cell_height_ratio != $dom[$key]['line-height'])
+						OR ($dom[$key]['tag'] AND $dom[$key]['opening'] AND ($dom[$key]['value'] == 'li')) ) {
 						if ((!$this->newline) AND ($key < ($maxel - 1))
-							AND ((is_numeric($fontsize) AND ($fontsize >= 0) AND is_numeric($curfontsize) AND ($curfontsize >= 0) AND ($fontsize != $curfontsize))
-								OR ($this->cell_height_ratio != $dom[$key]['line-height']))) {
+							AND ( (is_numeric($fontsize) AND ($fontsize >= 0) AND is_numeric($curfontsize) AND ($curfontsize >= 0) AND ($fontsize != $curfontsize))
+								OR ($this->cell_height_ratio != $dom[$key]['line-height']))
+								OR ($dom[$key]['tag'] AND $dom[$key]['opening'] AND ($dom[$key]['value'] == 'li')) ) { //DEBUG
 							if ($this->page > $startlinepage) {
 								// fix lines splitted over two pages
 								if (isset($this->footerlen[$startlinepage])) {
@@ -19507,10 +19775,14 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						} else {
 							$wtmp = $this->w - $this->rMargin - $this->x;
 						}
+						// get cell spacing
 						if (isset($dom[$key]['attribute']['cellspacing'])) {
-							$cellspacing = $this->getHTMLUnitToUnits($dom[$key]['attribute']['cellspacing'], 1, 'px');
+							$clsp = $this->getHTMLUnitToUnits($dom[$key]['attribute']['cellspacing'], 1, 'px');
+							$cellspacing = array('H' => $clsp, 'V' => $clsp);
+						} elseif (isset($dom[$key]['border-spacing'])) {
+							$cellspacing = $dom[$key]['border-spacing'];
 						} else {
-							$cellspacing = 0;
+							$cellspacing = array('H' => 0, 'V' => 0);
 						}
 						// table width
 						if (isset($dom[$key]['width'])) {
@@ -19518,17 +19790,17 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						} else {
 							$table_width = $wtmp;
 						}
-						$table_width -= (2 * $cellspacing);
+						$table_width -= (2 * $cellspacing['H']);
 						if (!$this->inthead) {
-							$this->y += $cellspacing;
+							$this->y += $cellspacing['V'];
 						}
 						if ($this->rtl) {
-							$cellspacingx = -$cellspacing;
+							$cellspacingx = -$cellspacing['H'];
 						} else {
-							$cellspacingx = $cellspacing;
+							$cellspacingx = $cellspacing['H'];
 						}
 						// total table width without cellspaces
-						$table_columns_width = ($table_width - ($cellspacing * ($dom[$key]['cols'] - 1)));
+						$table_columns_width = ($table_width - ($cellspacing['H'] * ($dom[$key]['cols'] - 1)));
 						// minimum column width
 						$table_min_column_width = ($table_columns_width / $dom[$key]['cols']);
 						// array of custom column widths
@@ -19554,11 +19826,14 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						$colspan = $dom[$key]['attribute']['colspan'];
 						$old_cell_padding = $this->cell_padding;
 						if (isset($dom[($dom[$trid]['parent'])]['attribute']['cellpadding'])) {
-							$current_cell_padding = $this->getHTMLUnitToUnits($dom[($dom[$trid]['parent'])]['attribute']['cellpadding'], 1, 'px');
+							$crclpd = $this->getHTMLUnitToUnits($dom[($dom[$trid]['parent'])]['attribute']['cellpadding'], 1, 'px');
+							$current_cell_padding = array('L' => $crclpd, 'T' => $crclpd, 'R' => $crclpd, 'B' => $crclpd);
+						} elseif (isset($dom[($dom[$trid]['parent'])]['padding'])) {
+							$current_cell_padding = $dom[($dom[$trid]['parent'])]['padding'];
 						} else {
-							$current_cell_padding = 0;
+							$current_cell_padding = array('L' => 0, 'T' => 0, 'R' => 0, 'B' => 0);
 						}
-						$this->SetCellPadding($current_cell_padding);
+						$this->cell_padding = $current_cell_padding;
 						if (isset($dom[$key]['height'])) {
 							// minimum cell height
 							$cellh = $this->getHTMLUnitToUnits($dom[$key]['height'], 0, 'px');
@@ -19625,8 +19900,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 									}
 								}
 								if (($trwsp['rowspan'] > 0)
-									AND ($rsstartx > ($this->x - $cellspacing - $current_cell_padding - $this->feps))
-									AND ($rsstartx < ($this->x + $cellspacing + $current_cell_padding + $this->feps))
+									AND ($rsstartx > ($this->x - $cellspacing['H'] - $current_cell_padding['L'] - $this->feps))
+									AND ($rsstartx < ($this->x + $cellspacing['H'] + $current_cell_padding['R'] + $this->feps))
 									AND (($trwsp['starty'] < ($this->y - $this->feps)) OR ($trwsp['startpage'] < $this->page) OR ($trwsp['startcolumn'] < $this->current_column))) {
 									// set the starting X position of the current cell
 									$this->x = $rsendx + $cellspacingx;
@@ -19662,7 +19937,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 								$cellw += $table_colwidths[($colid + $i)];
 							}
 						}
-						$cellw += (($colspan - 1) * $cellspacing);
+						$cellw += (($colspan - 1) * $cellspacing['H']);
 						// increment column indicator
 						$colid += $colspan;
 						// add rowspan information to table element
@@ -19693,7 +19968,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						// ****** write the cell content ******
 						$this->MultiCell($cellw, $cellh, $cell_content, false, $lalign, false, 2, '', '', true, 0, true);
 						// restore some values
-						$this->colxshift = array('x' => 0, 's' => 0, 'p' => 0);
+						$this->colxshift = array('x' => 0, 's' => array('H' => 0, 'V' => 0), 'p' => array('L' => 0, 'T' => 0, 'R' => 0, 'B' => 0));
 						$this->lasth = $prevLastH;
 						$this->cell_padding = $old_cell_padding;
 						$dom[$trid]['cellpos'][($cellid - 1)]['endx'] = $this->x;
@@ -20175,9 +20450,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				if (isset($tag['attribute']['cellpadding'])) {
 					$pad = $this->getHTMLUnitToUnits($tag['attribute']['cellpadding'], 1, 'px');
 					$this->SetCellPadding($pad);
+				} elseif (isset($tag['padding'])) {
+					$this->cell_padding = $tag['padding'];
 				}
 				if (isset($tag['attribute']['cellspacing'])) {
 					$cs = $this->getHTMLUnitToUnits($tag['attribute']['cellspacing'], 1, 'px');
+				} elseif (isset($tag['border-spacing'])) {
+					$cs = $tag['border-spacing']['V'];
 				}
 				$prev_y = $this->y;
 				if ($this->checkPageBreak(((2 * $cp) + (2 * $cs) + $this->lasth), '', false) OR ($this->y < $prev_y)) {
@@ -20816,8 +21095,9 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				}
 				$this->y = $dom[($dom[$key]['parent'])]['endy'];
 				if (isset($dom[$table_el]['attribute']['cellspacing'])) {
-					$cellspacing = $this->getHTMLUnitToUnits($dom[$table_el]['attribute']['cellspacing'], 1, 'px');
-					$this->y += $cellspacing;
+					$this->y += $this->getHTMLUnitToUnits($dom[$table_el]['attribute']['cellspacing'], 1, 'px');
+				} elseif (isset($dom[$table_el]['border-spacing'])) {
+					$this->y += $dom[$table_el]['border-spacing']['V'];
 				}
 				$this->Ln(0, $cell);
 				if ($this->current_column == $parent['startcolumn']) {
@@ -20847,11 +21127,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$border = 0;
 				}
 				$default_border = $border;
-				if (isset($table_el['attribute']['cellspacing'])) {
-					$cellspacing = $this->getHTMLUnitToUnits($table_el['attribute']['cellspacing'], 1, 'px');
-				} else {
-					$cellspacing = 0;
-				}
 				// fix bottom line alignment of last line before page break
 				foreach ($dom[($dom[$key]['parent'])]['trids'] as $j => $trkey) {
 					// update row-spanned cells
@@ -21077,8 +21352,9 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						$border = $default_border;
 					} // end for each cell on the row
 					if (isset($table_el['attribute']['cellspacing'])) {
-						$cellspacing = $this->getHTMLUnitToUnits($table_el['attribute']['cellspacing'], 1, 'px');
-						$this->y += $cellspacing;
+						$this->y += $this->getHTMLUnitToUnits($table_el['attribute']['cellspacing'], 1, 'px');
+					} elseif (isset($table_el['border-spacing'])) {
+						$this->y += $table_el['border-spacing']['V'];
 					}
 					$this->Ln(0, $cell);
 					$this->x = $parent['startx'];
@@ -21316,9 +21592,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			return;
 		}
 		if (isset($tag['attribute']['cellspacing'])) {
-			$cellspacing = $this->getHTMLUnitToUnits($tag['attribute']['cellspacing'], 1, 'px');
+			$clsp = $this->getHTMLUnitToUnits($tag['attribute']['cellspacing'], 1, 'px');
+			$cellspacing = array('H' => $clsp, 'V' => $clsp);
+		} elseif (isset($tag['border-spacing'])) {
+			$cellspacing = $tag['border-spacing'];
 		} else {
-			$cellspacing = 0;
+			$cellspacing = array('H' => 0, 'V' => 0);
 		}
 		if (($tag['value'] != 'table') AND (is_array($border)) AND (!empty($border))) {
 			// draw the border externally respect the sqare edge.
@@ -21338,13 +21617,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		if ($w <= 0) {
 			return;
 		}
-		$w += $cellspacing;
+		$w += $cellspacing['H'];
 		$startpage = $tag['borderposition']['page'];
 		$startcolumn = $tag['borderposition']['column'];
 		$x = $tag['borderposition']['x'];
 		$y = $tag['borderposition']['y'];
 		$endpage = $this->page;
-		$starty = $tag['borderposition']['y'] - $cellspacing;
+		$starty = $tag['borderposition']['y'] - $cellspacing['V'];
 		$currentY = $this->y;
 		$this->x = $x;
 		// get latest column
@@ -21379,7 +21658,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$this->selectColumn($column);
 					if ($startcolumn == $endcolumn) { // single column
 						$cborder = $border;
-						$h = ($currentY - $y) + $cellspacing;
+						$h = ($currentY - $y) + $cellspacing['V'];
 						$this->y = $starty;
 					} elseif ($column == $startcolumn) { // first column
 						$cborder = $border_start;
@@ -21870,6 +22149,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			}
 		}
 		if (!$this->empty_string($textitem)) {
+			// Check whether we need a new page or new column
+			$prev_y = $this->y;
+			$h = ($this->FontSize * $this->cell_height_ratio) + $this->cell_padding['T'] + $this->cell_padding['B'];
+			if ($this->checkPageBreak($h) OR ($this->y < $prev_y)) {
+				$tmpx = $this->x;
+			}
 			// print ordered item
 			if ($this->rtl) {
 				$textitem = '.'.$textitem;
@@ -23114,7 +23399,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			if ($enable_thead) {
 				// print table header
 				$this->writeHTML($this->thead, false, false, false, false, '');
-				$this->y += $xshift['s'];
+				$this->y += $xshift['s']['V'];
 				// store end of header position
 				if (!isset($this->columns[$col]['th'])) {
 					$this->columns[$col]['th'] = array();
@@ -23128,10 +23413,10 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		// account for an html table cell over multiple columns
 		if ($this->rtl) {
 			$this->rMargin += $xshift['x'];
-			$this->x -= ($xshift['x'] + $xshift['p']);
+			$this->x -= ($xshift['x'] + $xshift['p']['R']);
 		} else {
 			$this->lMargin += $xshift['x'];
-			$this->x += $xshift['x'] + $xshift['p'];
+			$this->x += $xshift['x'] + $xshift['p']['L'];
 		}
 	}
 
@@ -23941,7 +24226,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	 * @access protected
 	 * @since 5.9.003 (2010-10-13)
 	 */
-	protected function checkPageRegions($h=0, &$x='', &$y='') {
+	protected function checkPageRegions($h, &$x, &$y) {
 		// set default values
 		if ($x === '') {
 			$x = &$this->x;
@@ -24044,7 +24329,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			$y = $this->y;
 		}
 		// check page for no-write regions and adapt page margins if necessary
-		$this->checkPageRegions($x, $y);
+		$this->checkPageRegions($h, $x, $y);
 		$k = $this->k;
 		$ox = 0;
 		$oy = 0;
@@ -24157,6 +24442,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		if (isset($view_box[2]) AND ($view_box[2] > 0) AND ($view_box[3] > 0)) {
 			$ow = $view_box[2];
 			$oh = $view_box[3];
+		} else {
+			if ($ow <= 0) {
+				$ow = $w;
+			}
+			if ($oh <= 0) {
+				$oh = $h;
+			}
 		}
 		$svgscale_x = $w / $ow;
 		$svgscale_y = $h / $oh;
@@ -24568,6 +24860,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$gradient['coords'][2] += $x;
 					$gradient['coords'][3] += $y;
 				}
+				if ($w <= 0) {
+					$w = 1;
+				}
+				if ($h <= 0) {
+					$h = 1;
+				}
 				// calculate percentages
 				$gradient['coords'][0] = ($gradient['coords'][0] - $x) / $w;
 				$gradient['coords'][1] = ($gradient['coords'][1] - $y) / $h;
@@ -24576,28 +24874,32 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				if (isset($gradient['coords'][4])) {
 					$gradient['coords'][4] /= $w;
 				}
-				// fix values
+			} elseif ($gradient['mode'] == 'percentage') {
 				foreach($gradient['coords'] as $key => $val) {
-					if ($val < 0) {
-						$gradient['coords'][$key] = 0;
-					} elseif ($val > 1) {
-						$gradient['coords'][$key] = 1;
-					}
+					$gradient['coords'][$key] = (intval($val) / 100);
 				}
-				if (($gradient['type'] == 2) AND ($gradient['coords'][0] == $gradient['coords'][2]) AND ($gradient['coords'][1] == $gradient['coords'][3])) {
-					// single color (no shading)
-					$gradient['coords'][0] = 1;
-					$gradient['coords'][1] = 0;
-					$gradient['coords'][2] = 0.999;
-					$gradient['coords'][3] = 0;
+			}
+			// fix values
+			foreach($gradient['coords'] as $key => $val) {
+				if ($val < 0) {
+					$gradient['coords'][$key] = 0;
+				} elseif ($val > 1) {
+					$gradient['coords'][$key] = 1;
 				}
+			}
+			if (($gradient['type'] == 2) AND ($gradient['coords'][0] == $gradient['coords'][2]) AND ($gradient['coords'][1] == $gradient['coords'][3])) {
+				// single color (no shading)
+				$gradient['coords'][0] = 1;
+				$gradient['coords'][1] = 0;
+				$gradient['coords'][2] = 0.999;
+				$gradient['coords'][3] = 0;
 			}
 			// swap Y coordinates
 			$tmp = $gradient['coords'][1];
 			$gradient['coords'][1] = $gradient['coords'][3];
 			$gradient['coords'][3] = $tmp;
 			// set transformation map for gradient
-			if (($gradient['type'] == 3) AND ($gradient['mode'] == 'measure')) {
+			if ($gradient['type'] == 3) {
 				// gradient is always circular
 				$cy = $this->h - $y - ($gradient['coords'][1] * ($w + $h));
 				$this->_out(sprintf('%.3F 0 0 %.3F %.3F %.3F cm', $w*$this->k, $w*$this->k, $x*$this->k, $cy*$this->k));
@@ -24948,10 +25250,10 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							$xb = ($x + (2 * $x1)) / 3;
 							$yb = ($y + (2 * $y1)) / 3;
 							$this->_outCurve($xa, $ya, $xb, $yb, $x, $y);
-							$xmin = min($xmin, $x, $x1, $x2);
-							$ymin = min($ymin, $y, $y1, $y2);
-							$xmax = max($xmax, $x, $x1, $x2);
-							$ymax = max($ymax, $y, $y1, $y2);
+							$xmin = min($xmin, $x, $xa, $xb);
+							$ymin = min($ymin, $y, $ya, $yb);
+							$xmax = max($xmax, $x, $xa, $xb);
+							$ymax = max($ymax, $y, $ya, $yb);
 							if ($relcoord) {
 								$xoffset = $x;
 								$yoffset = $y;
@@ -25025,7 +25327,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							if ((isset($paths[($key + 1)][1])) AND (trim($paths[($key + 1)][1]) == 'z')) {
 								$pie = true;
 							}
-							$this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2);
+							list($xmin, $ymin, $xmax, $ymax) = $this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2);
 							$this->_outPoint($x, $y);
 							$xmin = min($xmin, $x);
 							$ymin = min($ymin, $y);

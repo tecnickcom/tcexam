@@ -1,3 +1,8 @@
+11.1.006 (2010-11-17)
+	- Bug item #3110771 "Undefined variable: user_id" was fixed.
+	- Language file was updated.
+	- TCPDF library was updated.
+
 11.1.005 (2010-10-21)
 	- On this version the PDF text direction was improved to include the case of RTL text on LTR direction and LTR text on RTL direction.
 	- The tag [dir] and relative buttons were added to fix content direction for PDF ltr=left-to-right, rtl=right-to-left.

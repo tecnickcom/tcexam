@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2010-10-06
+// Last Update : 2010-11-17
 //
 // Description : Display test results for specified user.
 //
@@ -232,8 +232,8 @@ if($formstatus) {
 			$test_end_time = $m['test_end_time'];
 		} else {
 			$testuser_id = '';
-			$testlog_test_id = '';
-			$testlog_user_id = '';
+			$test_id = '';
+			$user_id = '';
 			$user_lastname = '';
 			$user_firstname = '';
 			$user_name = '';
@@ -326,7 +326,7 @@ if($r = F_db_query($sql, $db)) {
 	$usrcount = 1;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['user_id'].'"';
-		if($m['user_id'] == $user_id) {
+		if(isset($user_id) AND ($m['user_id'] == $user_id)) {
 			echo ' selected="selected"';
 		}
 		echo '>';

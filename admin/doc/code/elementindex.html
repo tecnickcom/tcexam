@@ -449,7 +449,7 @@
 							<dt><b>convertHexStringToString</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertHexStringToString">TCPDF::convertHexStringToString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert hexadecimal string to string</dd>
 							<dt><b>convertHTMLColorToDec</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertHTMLColorToDec">TCPDF::convertHTMLColorToDec()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an associative array (keys: R,G,B) from an html color name or a six-digit or three-digit hexadecimal color representation (i.e. #3FE5AA or #7FF).</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertHTMLColorToDec">TCPDF::convertHTMLColorToDec()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns an array (RGB or CMYK) from an html color name or a six-digit (i.e. #3FE5AA) or three-digit (i.e. #7FF) hexadecimal color representation.</dd>
 							<dt><b>convertStringToHexString</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodconvertStringToHexString">TCPDF::convertStringToHexString()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Convert string to hexadecimal string (byte string)</dd>
 							<dt><b>convertSVGtMatrix</b></dt>
@@ -760,6 +760,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodfitBlock">TCPDF::fitBlock()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the block dimensions accounting for page breaks and page/column fitting</dd>
 							<dt><b>FixEOL</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodFixEOL">PHPMailer::FixEOL()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Changes every end of line from CR or LF to CRLF.</dd>
+							<dt><b>fixHTMLCode</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodfixHTMLCode">TCPDF::fixHTMLCode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Cleanup HTML code (requires HTML Tidy library).</dd>
 							<dt><b>Footer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodFooter">TCPDF::Footer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the page footer.</dd>
 							<dt><b>formatPageNumber</b></dt>
@@ -1061,13 +1063,13 @@
 							<dt><b>getBarcode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetBarcode">TCPDF::getBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get current barcode.</dd>
 							<dt><b>getBarcodeArray</b></dt>
-				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetBarcodeArray">QRcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a barcode array which is readable by TCPDF</dd>
+				<dd>in file pdf417.php, method <a href="com-tecnick-tcpdf/PDF417.html#methodgetBarcodeArray">PDF417::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a barcode array which is readable by TCPDF</dd>
 							<dt><b>getBarcodeArray</b></dt>
-				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
+				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetBarcodeArray">QRcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a barcode array which is readable by TCPDF</dd>
 							<dt><b>getBarcodeArray</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodgetBarcodeArray">TCPDFBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
 							<dt><b>getBarcodeArray</b></dt>
-				<dd>in file pdf417.php, method <a href="com-tecnick-tcpdf/PDF417.html#methodgetBarcodeArray">PDF417::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a barcode array which is readable by TCPDF</dd>
+				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodgetBarcodeArray">TCPDF2DBarcode::getBarcodeArray()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return an array representations of barcode.</dd>
 							<dt><b>getBitStream</b></dt>
 				<dd>in file qrcode.php, method <a href="com-tecnick-tcpdf/QRcode.html#methodgetBitStream">QRcode::getBitStream()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns a stream of bits.</dd>
 							<dt><b>getBorderMode</b></dt>
@@ -1104,6 +1106,8 @@
 				<dd>in file pdf417.php, method <a href="com-tecnick-tcpdf/PDF417.html#methodgetCompaction">PDF417::getCompaction()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Compact data by mode.</dd>
 							<dt><b>getCSSBorderDashStyle</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSBorderDashStyle">TCPDF::getCSSBorderDashStyle()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the border dash style from CSS property</dd>
+							<dt><b>getCSSBorderMargin</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSBorderMargin">TCPDF::getCSSBorderMargin()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the border-spacing from CSS attribute.</dd>
 							<dt><b>getCSSBorderStyle</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetCSSBorderStyle">TCPDF::getCSSBorderStyle()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the border style array from CSS border properties</dd>
 							<dt><b>getCSSBorderWidth</b></dt>
@@ -1290,6 +1294,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetSVGTransformMatrix">TCPDF::getSVGTransformMatrix()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the tranformation matrix from SVG transform attribute</dd>
 							<dt><b>getTagStyleFromCSS</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetTagStyleFromCSS">TCPDF::getTagStyleFromCSS()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Returns the styles that apply for the selected HTML tag.</dd>
+							<dt><b>getTCPDFVersion</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetTCPDFVersion">TCPDF::getTCPDFVersion()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return the current TCPDF version.</dd>
 							<dt><b>getTransformationMatrixProduct</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodgetTransformationMatrixProduct">TCPDF::getTransformationMatrixProduct()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Get the product of two SVG tranformation matrices</dd>
 							<dt><b>GetTranslations</b></dt>
@@ -2272,8 +2278,6 @@
 				<dd>in file tce_pdf.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_pdf.php.html#definePDF_PAGE_FORMAT">PDF_PAGE_FORMAT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Page format.</dd>
 							<dt><b>PDF_PAGE_ORIENTATION</b></dt>
 				<dd>in file tce_pdf.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_pdf.php.html#definePDF_PAGE_ORIENTATION">PDF_PAGE_ORIENTATION</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Page orientation (P=portrait, L=landscape).</dd>
-							<dt><b>PDF_PRODUCER</b></dt>
-				<dd>in file tcpdf.php, constant <a href="com-tecnick-tcpdf/_shared---code---tcpdf.php.html#definePDF_PRODUCER">PDF_PRODUCER</a><br>&nbsp;&nbsp;&nbsp;&nbsp;define default PDF document producer</dd>
 							<dt><b>PDF_TEXTANSWER_HEIGHT</b></dt>
 				<dd>in file tce_pdf.php, constant <a href="com-tecnick-tcexam-shared-cfg/_shared---config---tce_pdf.php.html#definePDF_TEXTANSWER_HEIGHT">PDF_TEXTANSWER_HEIGHT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Height of area for offline user answer.</dd>
 							<dt><b>PDF_UNIT</b></dt>
@@ -2518,6 +2522,8 @@
 				<dd>in file class.smtp.php, variable <a href="PHPMailer/SMTP.html#var$smtp_conn">SMTP::$smtp_conn</a></dd>
 							<dt><b>$SMTP_PORT</b></dt>
 				<dd>in file class.smtp.php, variable <a href="PHPMailer/SMTP.html#var$SMTP_PORT">SMTP::$SMTP_PORT</a><br>&nbsp;&nbsp;&nbsp;&nbsp;SMTP server port</dd>
+							<dt><b>$spotcolor</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$spotcolor">TCPDF::$spotcolor</a></dd>
 							<dt><b>$spot_colors</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$spot_colors">TCPDF::$spot_colors</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array of Spot colors</dd>
 							<dt><b>$start_pattern</b></dt>
@@ -2579,9 +2585,9 @@
 							<dt><b>SecureHeader</b></dt>
 				<dd>in file class.phpmailer.php, method <a href="PHPMailer/PHPMailer.html#methodSecureHeader">PHPMailer::SecureHeader()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Strips newlines to prevent header injection.</dd>
 							<dt><b>segContentHandler</b></dt>
-				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
-							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodsegContentHandler">XMLQuestionImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
+							<dt><b>segContentHandler</b></dt>
+				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodsegContentHandler">TMXResourceBundle::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>segContentHandler</b></dt>
 				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodsegContentHandler">XMLUserImporter::segContentHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the character data handler function for the XML parser parser.handler.</dd>
 							<dt><b>segSVGContentHandler</b></dt>
@@ -2611,11 +2617,11 @@
 							<dt><b>SetAutoPageBreak</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetAutoPageBreak">TCPDF::SetAutoPageBreak()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Enables or disables the automatic page breaking mode. When enabling, the second parameter is the distance from the bottom of the page that defines the triggering limit. By default, the mode is on and the margin is 2 cm.</dd>
 							<dt><b>setBarcode</b></dt>
-				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
-							<dt><b>setBarcode</b></dt>
 				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>setBarcode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBarcode">TCPDF::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set document barcode.</dd>
+							<dt><b>setBarcode</b></dt>
+				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>SetBooklet</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetBooklet">TCPDF::SetBooklet()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the booklet mode for double-sided pages.</dd>
 							<dt><b>setBuffer</b></dt>
@@ -2840,6 +2846,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetY">TCPDF::SetY()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Moves the current abscissa back to the left margin and sets the ordinate.</dd>
 							<dt><b>set_mqr</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodset_mqr">TCPDF::set_mqr()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the current active configuration setting of magic_quotes_runtime (if the set_magic_quotes_runtime function exist)</dd>
+							<dt><b>spotcolors.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcpdf/_shared---code---spotcolors.php.html">spotcolors.php</a></dd>
 							<dt><b>showRequiredField</b></dt>
 				<dd>in file tce_functions_general.php, function <a href="com-tecnick-tcexam-shared/_shared---code---tce_functions_general.php.html#functionshowRequiredField">showRequiredField()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Return a string containing an HTML acronym for required/not required fields.</dd>
 							<dt><b>Sign</b></dt>
@@ -2863,11 +2871,11 @@
 							<dt><b>StarPolygon</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodStarPolygon">TCPDF::StarPolygon()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Draws a star polygon</dd>
 							<dt><b>startElementHandler</b></dt>
+				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodstartElementHandler">TMXResourceBundle::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
+							<dt><b>startElementHandler</b></dt>
 				<dd>in file tce_class_import_xml.php, method <a href="com-tecnick-tcexam-admin/XMLQuestionImporter.html#methodstartElementHandler">XMLQuestionImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startElementHandler</b></dt>
 				<dd>in file tce_import_xml_users.php, method <a href="com-tecnick-tcexam-admin/XMLUserImporter.html#methodstartElementHandler">XMLUserImporter::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
-							<dt><b>startElementHandler</b></dt>
-				<dd>in file tce_tmx.php, method <a href="com-tecnick-tmxphpbridge/TMXResourceBundle.html#methodstartElementHandler">TMXResourceBundle::startElementHandler()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Sets the start element handler function for the XML parser parser.start_element_handler.</dd>
 							<dt><b>startPage</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodstartPage">TCPDF::startPage()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Starts a new page to the document. The page must be closed using the endPage() function.</dd>
 							<dt><b>startPageGroup</b></dt>
@@ -2918,6 +2926,8 @@
 		<dl>
 							<dt><b>$tagvspaces</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$tagvspaces">TCPDF::$tagvspaces</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used for custom vertical spaces for HTML tags</dd>
+							<dt><b>$tcpdf_version</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$tcpdf_version">TCPDF::$tcpdf_version</a></dd>
 							<dt><b>$tempfontsize</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$tempfontsize">TCPDF::$tempfontsize</a></dd>
 							<dt><b>$TextColor</b></dt>
@@ -3639,7 +3649,7 @@
 	<a href="elementindex.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Thu, 21 Oct 2010 22:58:34 +0200 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Wed, 17 Nov 2010 16:31:07 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>
