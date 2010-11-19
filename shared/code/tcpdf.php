@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.017
+// Version     : 5.9.020
 // Begin       : 2002-08-03
-// Last Update : 2010-11-16
+// Last Update : 2010-11-19
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -134,7 +134,7 @@
  * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @link http://www.tcpdf.org
  * @license http://www.gnu.org/copyleft/lesser.html LGPL
- * @version 5.9.017
+ * @version 5.9.020
  */
 
 
@@ -143,7 +143,7 @@
 * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
 * @name TCPDF
 * @package com.tecnick.tcpdf
-* @version 5.9.017
+* @version 5.9.020
 * @author Nicola Asuni - info@tecnick.com
 * @link http://www.tcpdf.org
 * @license http://www.gnu.org/copyleft/lesser.html LGPL
@@ -156,7 +156,7 @@ class TCPDF {
 	 * @var current TCPDF version
 	 * @access private
 	 */
-	private $tcpdf_version = '5.9.017';
+	private $tcpdf_version = '5.9.020';
 
 	// Protected properties
 
@@ -3619,6 +3619,7 @@ class TCPDF {
 		}
 		// save current graphic settings
 		$gvars = $this->getGraphicVars();
+		$this->setEqualColumns();
 		$this->lastpage(true);
 		$this->SetAutoPageBreak(false);
 		$this->x = 0;
@@ -7904,7 +7905,7 @@ class TCPDF {
 	 * In the last case, the plug-in may be used (if present) or a download ("Save as" dialog box) may be forced.<br />
 	 * The method first calls Close() if necessary to terminate the document.
 	 * @param string $name The name of the file when saved. Note that special characters are removed and blanks characters are replaced with the underscore character.
-	 * @param string $dest Destination where to send the document. It can take one of the following values:<ul><li>I: send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.</li><li>D: send to the browser and force a file download with the name given by name.</li><li>F: save to a local server file with the name given by name.</li><li>S: return the document as a string. name is ignored.</li><li>FI: equivalent to F + I option</li><li>FD: equivalent to F + D option</li></ul>
+	 * @param string $dest Destination where to send the document. It can take one of the following values:<ul><li>I: send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.</li><li>D: send to the browser and force a file download with the name given by name.</li><li>F: save to a local server file with the name given by name.</li><li>S: return the document as a string (name is ignored).</li><li>FI: equivalent to F + I option</li><li>FD: equivalent to F + D option</li><li>E: return the document as base64 mime multi-part email attachment (RFC 2045)</li></ul>
 	 * @access public
 	 * @since 1.0
 	 * @see Close()
@@ -8084,6 +8085,16 @@ class TCPDF {
 					echo file_get_contents($name);
 				}
 				break;
+			}
+			case 'E': {
+				// Return PDF as base64 mime multi-part email attachment (RFC 2045)
+				$retval = 'Content-Type: application/pdf;'."\r\n";
+				$retval .= ' name="'.$name.'"'."\r\n";
+				$retval .= 'Content-Transfer-Encoding: base64'."\r\n";
+				$retval .= 'Content-Disposition: attachment;'."\r\n";
+				$retval .= ' filename="'.$name.'"'."\r\n\r\n";
+				$retval .= chunk_split(base64_encode($this->getBuffer()), 76, "\r\n");
+				return $retval;
 			}
 			case 'S': {
 				// Returns PDF as a string
@@ -12940,12 +12951,14 @@ class TCPDF {
 	 * @param float $angf: Angle finish of draw line. Default value: 360.
 	 * @param boolean $pie if true do not mark the border point (used to draw pie sectors).
 	 * @param integer $nc Number of curves used to draw a 90 degrees portion of ellipse.
+	 * @param boolean $startpoint if true output a starting point
+	 * @param boolean $ccw if true draws in counter-clockwise
 	 * @return array bounding box coordinates (x min, y min, x max, y max)
 	 * @author Nicola Asuni
 	 * @access protected
 	 * @since 4.9.019 (2010-04-26)
 	 */
-	protected function _outellipticalarc($xc, $yc, $rx, $ry, $xang=0, $angs=0, $angf=360, $pie=false, $nc=2) {
+	protected function _outellipticalarc($xc, $yc, $rx, $ry, $xang=0, $angs=0, $angf=360, $pie=false, $nc=2, $startpoint=true, $ccw=true) {
 		$k = $this->k;
 		if ($nc < 2) {
 			$nc = 2;
@@ -12969,9 +12982,12 @@ class TCPDF {
 		if ($af < 0) {
 			$af += (2 * M_PI);
 		}
-		if ($as > $af) {
-			// reverse rotation go clockwise
+		if ($ccw AND ($as > $af)) {
+			// reverse rotation
 			$as -= (2 * M_PI);
+		} elseif (!$ccw AND ($as < $af)) {
+			// reverse rotation
+			$af -= (2 * M_PI);
 		}
 		$total_angle = ($af - $as);
 		if ($nc < 2) {
@@ -12999,8 +13015,10 @@ class TCPDF {
 		$qx1 = ($alpha * ((-$rx * $cos_xang * $sin_ang) - ($ry * $sin_xang * $cos_ang)));
 		$qy1 = ($alpha * ((-$rx * $sin_xang * $sin_ang) + ($ry * $cos_xang * $cos_ang)));
 		if ($pie) {
+			// line from center to arc starting point
 			$this->_outLine($px1, $this->h - $py1);
-		} else {
+		} elseif ($startpoint) {
+			// arc starting point
 			$this->_outPoint($px1, $this->h - $py1);
 		}
 		// draw arcs
@@ -16403,7 +16421,7 @@ class TCPDF {
 	 * NOTE: EPS is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of vector images using ImageMagick library.
 	 * Only vector drawing is supported, not text or bitmap.
 	 * Although the script was successfully tested with various AI format versions, best results are probably achieved with files that were exported in the AI3 format (tested with Illustrator CS2, Freehand MX and Photoshop CS2).
-	 * @param string $file Name of the file containing the image.
+	 * @param string $file Name of the file containing the image or a '@' character followed by the EPS/AI data string.
 	 * @param float $x Abscissa of the upper-left corner.
 	 * @param float $y Ordinate of the upper-left corner.
 	 * @param float $w Width of the image in the page. If not specified or equal to zero, it is automatically calculated.
@@ -16432,7 +16450,11 @@ class TCPDF {
 		// check page for no-write regions and adapt page margins if necessary
 		$this->checkPageRegions($h, $x, $y);
 		$k = $this->k;
-		$data = file_get_contents($file);
+		if ($file{0} === '@') { // image from string
+			$data = substr($file, 1);
+		} else { // EPS/AI file
+			$data = file_get_contents($file);
+		}
 		if ($data === false) {
 			$this->Error('EPS file not found: '.$file);
 		}
@@ -19231,7 +19253,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						if ((!$this->newline) AND ($key < ($maxel - 1))
 							AND ( (is_numeric($fontsize) AND ($fontsize >= 0) AND is_numeric($curfontsize) AND ($curfontsize >= 0) AND ($fontsize != $curfontsize))
 								OR ($this->cell_height_ratio != $dom[$key]['line-height']))
-								OR ($dom[$key]['tag'] AND $dom[$key]['opening'] AND ($dom[$key]['value'] == 'li')) ) { //DEBUG
+								OR ($dom[$key]['tag'] AND $dom[$key]['opening'] AND ($dom[$key]['value'] == 'li')) ) {
 							if ($this->page > $startlinepage) {
 								// fix lines splitted over two pages
 								if (isset($this->footerlen[$startlinepage])) {
@@ -24298,7 +24320,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	/**
 	 * Embedd a Scalable Vector Graphics (SVG) image.
 	 * NOTE: SVG standard is not yet fully implemented, use the setRasterizeVectorImages() method to enable/disable rasterization of vector images using ImageMagick library.
-	 * @param string $file Name of the SVG file.
+	 * @param string $file Name of the SVG file or a '@' character followed by the SVG data string.
 	 * @param float $x Abscissa of the upper-left corner.
 	 * @param float $y Ordinate of the upper-left corner.
 	 * @param float $w Width of the image in the page. If not specified or equal to zero, it is automatically calculated.
@@ -24317,8 +24339,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			// convert SVG to raster image using GD or ImageMagick libraries
 			return $this->Image($file, $x, $y, $w, $h, 'SVG', $link, $align, true, 300, $palign, false, false, $border, false, false, false);
 		}
-		$this->svgdir = dirname($file);
-		$svgdata = file_get_contents($file);
+		if ($file{0} === '@') { // image from string
+			$this->svgdir = '';
+			$svgdata = substr($file, 1);
+		} else { // SVG file
+			$this->svgdir = dirname($file);
+			$svgdata = file_get_contents($file);
+		}
 		if ($svgdata === false) {
 			$this->Error('SVG file not found: '.$file);
 		}
@@ -24842,7 +24869,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$gradient['coords'][1] = $ya;
 					$gradient['coords'][2] = $xb;
 					$gradient['coords'][3] = $yb;
-
 				}
 				// convert SVG coordinates to user units
 				$gradient['coords'][0] = $this->getHTMLUnitToUnits($gradient['coords'][0], 0, $this->svgunit, false);
@@ -25052,7 +25078,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		$paths = array();
 		$d = str_replace('-', ' -', $d);
 		$d = str_replace('+', ' +', $d);
-		preg_match_all('/([a-zA-Z])[\s]*([^a-zA-Z\"]*)/si', $d, $paths, PREG_SET_ORDER);
+		$d = str_replace('e ', 'e', $d);
+		preg_match_all('/([ACHLMQSTVZ])[\s]*([^ACHLMQSTVZ\"]*)/si', $d, $paths, PREG_SET_ORDER);
 		$x = 0;
 		$y = 0;
 		$x1 = 0;
@@ -25316,23 +25343,28 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 								$dang += (2 * M_PI);
 							}
 							$angf = $angs - $dang;
-							if (($fs == 1) AND ($angs > $angf)) {
+							if ((($fs == 0) AND ($angs > $angf)) OR (($fs == 1) AND ($angs < $angf))) {
+								// reverse angles
 								$tmp = $angs;
 								$angs = $angf;
 								$angf = $tmp;
 							}
-							$angs = rad2deg($angs);
-							$angf = rad2deg($angf);
+							$angs = round(rad2deg($angs), 6);
+							$angf = round(rad2deg($angf), 6);
+							// covent angles to positive values
+							if (($angs < 0) AND ($angf < 0)) {
+								$angs += 360;
+								$angf += 360;
+							}
 							$pie = false;
-							if ((isset($paths[($key + 1)][1])) AND (trim($paths[($key + 1)][1]) == 'z')) {
+							if (($key==0) AND (isset($paths[($key + 1)][1])) AND (trim($paths[($key + 1)][1]) == 'z')) {
 								$pie = true;
 							}
-							list($xmin, $ymin, $xmax, $ymax) = $this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2);
-							$this->_outPoint($x, $y);
-							$xmin = min($xmin, $x);
-							$ymin = min($ymin, $y);
-							$xmax = max($xmax, $x);
-							$ymax = max($ymax, $y);
+							list($axmin, $aymin, $axmax, $aymax) = $this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2, false, ($fs == 0));
+							$xmin = min($xmin, $x, $axmin);
+							$ymin = min($ymin, $y, $aymin);
+							$xmax = max($xmax, $x, $axmax);
+							$ymax = max($ymax, $y, $aymax);
 							if ($relcoord) {
 								$xoffset = $x;
 								$yoffset = $y;

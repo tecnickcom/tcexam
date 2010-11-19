@@ -135,7 +135,7 @@ echo '<ul class="credits">'.K_NEWLINE;
 echo '<li>[AR] Arabic : Red Sea</li>'.K_NEWLINE;
 echo '<li>[BG] Bulgarian : Georgi Kostadinov</li>'.K_NEWLINE;
 echo '<li>[BR] Brazilian Portuguese : Carlos Eduardo Vianna, Flávio Veras</li>'.K_NEWLINE;
-echo '<li>[CN] Chinese : Liu Yongxin</li>'.K_NEWLINE;
+echo '<li>[CN] Chinese : Liu Yongxin, Zheng Xiaojing</li>'.K_NEWLINE;
 echo '<li>[DE] German : Oliver Kasch, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[EL] Greek : Kottas Alexandros</li>'.K_NEWLINE;
 echo '<li>[EN] English : Nicola Asuni</li>'.K_NEWLINE;

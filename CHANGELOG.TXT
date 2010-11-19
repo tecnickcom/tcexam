@@ -1,3 +1,7 @@
+11.1.007 (2010-11-19)
+	- Chinese language was updated.
+	- TCPDF library was updated.
+
 11.1.006 (2010-11-17)
 	- Bug item #3110771 "Undefined variable: user_id" was fixed.
 	- Language file was updated.
