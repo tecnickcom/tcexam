@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2010-10-06
+// Last Update : 2010-11-21
 //
 // Description : Sends email test reports to users.
 //
@@ -182,7 +182,7 @@ function F_send_report_emails($test_id, $user_id=0, $group_id=0, $mode=0) {
 
 				if ($mode == 0) {
 					// create PDF doc
-					$pdf_content = file_get_contents (K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&testid='.$test_id.'&groupid=0&userid='.$m['user_id'].'&email=1');
+					$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&testid='.$test_id.'&groupid=0&userid='.$m['user_id'].'&email='.md5(date('Y').K_RANDOM_SECURITY.$test_id.$m['user_id']));
 					// attach doc
 					$doc_name = 'test_'.date('Ymd', strtotime($m['testuser_creation_time'])).'_'.$test_id.'_'.$m['user_id'].'.pdf';
 					$mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');

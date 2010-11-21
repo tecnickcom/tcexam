@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-10-06
+// Last Update : 2010-11-21
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -85,21 +85,30 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 }
 if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 	$group_id = intval($_REQUEST['groupid']);
-	if (!F_isAuthorizedEditorForGroup($group_id)) {
-		F_print_error('ERROR', $l['m_authorization_denied']);
-		exit;
+	if (!isset($_REQUEST['email'])) {
+		if (!F_isAuthorizedEditorForGroup($group_id)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			exit;
+		}
 	}
 } else {
 	$group_id = 0;
 }
 if (isset($_REQUEST['userid']) AND ($_REQUEST['userid'] > 1)) {
 	$user_id = intval($_REQUEST['userid']);
-	if (!F_isAuthorizedEditorForUser($user_id)) {
-		F_print_error('ERROR', $l['m_authorization_denied']);
-		exit;
+	if (!isset($_REQUEST['email'])) {
+		if (!F_isAuthorizedEditorForUser($user_id)) {
+			F_print_error('ERROR', $l['m_authorization_denied']);
+			exit;
+		}
 	}
 } else {
 	$user_id = 0;
+}
+
+if (isset($_REQUEST['email']) AND ($_REQUEST['email'] != md5(date('Y').K_RANDOM_SECURITY.$test_id.$user_id))) {
+	F_print_error('ERROR', $l['m_authorization_denied']);
+	exit;
 }
 
 switch ($_REQUEST['mode']) {
