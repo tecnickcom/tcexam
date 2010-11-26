@@ -1,3 +1,7 @@
+11.1.009 (2010-11-26)
+	- Bulgarian translation was updated.
+	- TCPDF library was updated.
+
 11.1.008 (2010-11-21)
 	- A problem related to sending PDF via email was fixed.
 	- TCPDF library was updated.
