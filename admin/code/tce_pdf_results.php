@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-11-21
+// Last Update : 2010-12-06
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -63,7 +63,7 @@ require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/config/tce_pdf.php');
-require_once('../../shared/code/tcpdf.php');
+require_once('../../shared/code/tcpdfex.php');
 require_once('tce_functions_statistics.php');
 require_once('tce_functions_user_select.php');
 
@@ -173,7 +173,14 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+$pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+
+// Set backlink QR-Code
+if ($_REQUEST['mode'] == 1) {
+	$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_allusers.php?test_id='.$test_id.'&group_id='.$group_id);
+} elseif ($_REQUEST['mode'] == 2) {
+	$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_questions.php?test_id='.$test_id);
+}
 
 // set document information
 $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION.'');
@@ -303,6 +310,8 @@ if($r = F_db_query($sql, $db)) {
 		if ($_REQUEST['mode'] > 2) {
 			$test_start_time = $m['testuser_creation_time'];
 			$test_end_time = $m['test_end_time'];
+			// Set backlink QR-Code
+			$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_user.php?testuser_id='.$testuser_id.'&test_id='.$test_id.'&user_id='.$user_id);
 		}
 		// ------------------------------------------------------------
 		// --- start page data ---

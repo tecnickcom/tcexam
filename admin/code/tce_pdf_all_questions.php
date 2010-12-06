@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2010-10-06
+// Last Update : 2010-12-06
 //
 // Description : Creates a PDF document containing exported questions.
 //
@@ -59,7 +59,7 @@ require_once('../../shared/code/tce_authorization.php');
 require_once('../code/tce_functions_auth_sql.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/config/tce_pdf.php');
-require_once('../../shared/code/tcpdf.php');
+require_once('../../shared/code/tcpdfex.php');
 
 if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	AND (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0))
@@ -105,7 +105,25 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+$pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+
+switch ($expmode) {
+	case 1: {
+		// Set backlink QR-Code
+		$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_all_questions.php?subject_module_id='.$module_id.'&subject_id='.$subject_id);
+		break;
+	}
+	case 2: {
+		// Set backlink QR-Code
+		$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_all_questions.php?subject_module_id='.$module_id);
+		break;
+	}
+	case 3: {
+		// Set backlink QR-Code
+		$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_all_questions.php');
+		break;
+	}
+}
 
 // set document information
 $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION."");

@@ -1,3 +1,9 @@
+11.1.010 (2010-12-06)
+	- Chinese translation was updated.
+	- TCPDF library was updated.
+	- File shared/code/tcpdfex.php was added to set custom header/footer on PDF pages.
+	- QR-Codes are now printed by default on PDF headers to link back the TCExam web pages.
+
 11.1.009 (2010-11-26)
 	- Bulgarian translation was updated.
 	- TCPDF library was updated.

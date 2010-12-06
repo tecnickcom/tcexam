@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2010-10-06
+// Last Update : 2010-12-06
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -59,7 +59,7 @@ require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/config/tce_pdf.php');
-require_once('../../shared/code/tcpdf.php');
+require_once('../../shared/code/tcpdfex.php');
 
 // --- Initialize variables
 
@@ -97,7 +97,10 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+$pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+
+// Set backlink QR-Code
+$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_edit_test.php?test_id='.$test_id);
 
 // set document information
 $pdf->SetCreator('TC'.'Ex'.'am'.' ver.'.K_TCEXAM_VERSION.'');

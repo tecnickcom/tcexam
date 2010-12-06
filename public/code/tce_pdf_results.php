@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-10-06
+// Last Update : 2010-12-06
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -59,7 +59,7 @@ require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/config/tce_pdf.php');
-require_once('../../shared/code/tcpdf.php');
+require_once('../../shared/code/tcpdfex.php');
 
 require_once('../../shared/code/tce_authorization.php');
 
@@ -101,7 +101,10 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+$pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
+
+// Set backlink QR-Code
+$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_user.php?testuser_id='.$testuser_id.'&test_id='.$test_id.'&user_id='.$user_id);
 
 // set document information
 $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION.'');
@@ -216,7 +219,7 @@ if($r = F_db_query($sql, $db)) {
 		// --- start page data ---
 
 		$pdf->AddPage();
-		
+
 		// set barcode
 		$pdf->setBarcode($test_id.':'.$user_id.':'.$test_start_time);
 
@@ -676,7 +679,7 @@ $msg = "\x50\x6f\x77\x65\x72\x65\x64\x20\x62\x79\x20\x54\x43\x45\x78\x61\x6d\x20
 $lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e\x6f\x72\x67";
 $pdf->SetXY(15, $pdf->getPageHeight(), true);
 $pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
-		
+
 // Send PDF output
 $pdf->Output('tcexam_result_'.$user_id.'_'.$test_id.'_'.date('Ymd', strtotime($test_end_time)).'.pdf', 'D');
 

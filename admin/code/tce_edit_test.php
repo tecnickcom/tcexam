@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2010-10-05
+// Last Update : 2010-12-06
 // // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -1385,7 +1385,7 @@ echo '<input type="hidden" name="test_max_score" id="test_max_score" value="'.$t
 <span class="formw">
 <input type="text" name="test_num" id="test_num" value="<?php echo $test_num; ?>" size="4" maxlength="10" title="<?php echo $l['h_pdf_offline_test']; ?>" />
 <?php
-echo '<a href="tce_pdf_testgen.php?testid='.$test_id.'&amp;num='.$test_num.'" title="'.$l['h_pdf_offline_test'].'" class="xmlbutton" onclick="pdfWindow=window.open(\'tce_pdf_testgen.php?testid='.$test_id.'&amp;num=\' + document.getElementById(\'form_testeditor\').test_num.value + \'\',\'pdfWindow\',\'dependent,menubar=yes,resizable=yes,scrollbars=yes,status=yes,toolbar=yes\'); return false;">'.$l['w_generate'].'</a>';
+echo '<a href="tce_pdf_testgen.php?testid='.$test_id.'&amp;num='.$test_num.'" title="'.$l['h_pdf_offline_test'].'" class="xmlbutton">'.$l['w_generate'].'</a>';
 ?>
 </span>
 &nbsp;

@@ -55,6 +55,8 @@
 		</a><br>
 			<a href="com-tecnick-tcpdf/_shared---code---tcpdf.php.html">		tcpdf.php
 		</a><br>
+			<a href="com-tecnick-tcpdf/_shared---code---tcpdfex.php.html">		tcpdfex.php
+		</a><br>
 			<a href="com-tecnick-tcpdf/_shared---code---unicode_data.php.html">		unicode_data.php
 		</a><br>
 	  </div><br />
@@ -67,6 +69,7 @@
 	    		<a href="com-tecnick-tcpdf/TCPDF.html">TCPDF</a><br />
 	    		<a href="com-tecnick-tcpdf/TCPDF2DBarcode.html">TCPDF2DBarcode</a><br />
 	    		<a href="com-tecnick-tcpdf/TCPDFBarcode.html">TCPDFBarcode</a><br />
+	    		<a href="com-tecnick-tcpdf/TCPDFEX.html">TCPDFEX</a><br />
 	    		<a href="com-tecnick-tcpdf/TCPDF_UNICODE_DATA.html">TCPDF_UNICODE_DATA</a><br />
 	  </div>
                 </td>
@@ -585,6 +588,8 @@
 				<dd>in file qrcode.php, variable <a href="com-tecnick-tcpdf/QRcode.html#var$dir">QRcode::$dir</a></dd>
 							<dt><b>$diskcache</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$diskcache">TCPDF::$diskcache</a><br>&nbsp;&nbsp;&nbsp;&nbsp;If true enables disk caching.</dd>
+							<dt><b>$docinfounicode</b></dt>
+				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$docinfounicode">TCPDF::$docinfounicode</a></dd>
 							<dt><b>$dpi</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$dpi">TCPDF::$dpi</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Dot Per Inch Document Resolution (do not change)</dd>
 							<dt><b>$DrawColor</b></dt>
@@ -759,6 +764,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodfitBlock">TCPDF::fitBlock()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the block dimensions accounting for page breaks and page/column fitting</dd>
 							<dt><b>fixHTMLCode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodfixHTMLCode">TCPDF::fixHTMLCode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Cleanup HTML code (requires HTML Tidy library).</dd>
+							<dt><b>Footer</b></dt>
+				<dd>in file tcpdfex.php, method <a href="com-tecnick-tcpdf/TCPDFEX.html#methodFooter">TCPDFEX::Footer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the page footer and overrides the original Footer() method on TCPDF.</dd>
 							<dt><b>Footer</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodFooter">TCPDF::Footer()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the page footer.</dd>
 							<dt><b>formatPageNumber</b></dt>
@@ -1041,6 +1048,8 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$htmlLinkFontStyle">TCPDF::$htmlLinkFontStyle</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Default font style to add to html links</dd>
 							<dt><b>$htmlvspace</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$htmlvspace">TCPDF::$htmlvspace</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Count the latest inserted vertical spaces on HTML</dd>
+							<dt><b>Header</b></dt>
+				<dd>in file tcpdfex.php, method <a href="com-tecnick-tcpdf/TCPDFEX.html#methodHeader">TCPDFEX::Header()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the page header and overrides the original Header() method on TCPDF.</dd>
 							<dt><b>Header</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodHeader">TCPDF::Header()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the page header.</dd>
 							<dt><b>hex_to_dec</b></dt>
@@ -1648,11 +1657,11 @@
 							<dt><b>SetAutoPageBreak</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetAutoPageBreak">TCPDF::SetAutoPageBreak()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Enables or disables the automatic page breaking mode. When enabling, the second parameter is the distance from the bottom of the page that defines the triggering limit. By default, the mode is on and the margin is 2 cm.</dd>
 							<dt><b>setBarcode</b></dt>
-				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBarcode">TCPDF::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set document barcode.</dd>
+				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>setBarcode</b></dt>
 				<dd>in file barcodes.php, method <a href="com-tecnick-tcpdf/TCPDFBarcode.html#methodsetBarcode">TCPDFBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
 							<dt><b>setBarcode</b></dt>
-				<dd>in file 2dbarcodes.php, method <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html#methodsetBarcode">TCPDF2DBarcode::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the barcode.</dd>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetBarcode">TCPDF::setBarcode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set document barcode.</dd>
 							<dt><b>SetBooklet</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetBooklet">TCPDF::SetBooklet()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the booklet mode for double-sided pages.</dd>
 							<dt><b>setBuffer</b></dt>
@@ -1679,6 +1688,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetDefaultTableColumns">TCPDF::setDefaultTableColumns()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set the default number of columns in a row for HTML tables.</dd>
 							<dt><b>SetDisplayMode</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetDisplayMode">TCPDF::SetDisplayMode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the way the document is to be displayed by the viewer.</dd>
+							<dt><b>SetDocInfoUnicode</b></dt>
+				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetDocInfoUnicode">TCPDF::SetDocInfoUnicode()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Turn on/off Unicode mode for document information dictionary (meta tags).</dd>
 							<dt><b>SetDrawColor</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodSetDrawColor">TCPDF::SetDrawColor()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Defines the color used for all drawing operations (lines, rectangles and cell borders). It can be expressed in RGB components or gray scale. The method can be called before the first page is created and the value is retained from page to page.</dd>
 							<dt><b>SetDrawColorArray</b></dt>
@@ -1805,6 +1816,8 @@
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetSVGStyles">TCPDF::setSVGStyles()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Apply the requested SVG styles (*** TO BE COMPLETED ***)</dd>
 							<dt><b>setTableHeader</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetTableHeader">TCPDF::setTableHeader()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This method is used to render the table header on new page (if any).</dd>
+							<dt><b>setTCExamBackLink</b></dt>
+				<dd>in file tcpdfex.php, method <a href="com-tecnick-tcpdf/TCPDFEX.html#methodsetTCExamBackLink">TCPDFEX::setTCExamBackLink()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Set an URL link that points back to TCExam website (this will be printed as QR-Code on header).</dd>
 							<dt><b>setTempRTL</b></dt>
 				<dd>in file tcpdf.php, method <a href="com-tecnick-tcpdf/TCPDF.html#methodsetTempRTL">TCPDF::setTempRTL()</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Force temporary RTL language direction</dd>
 							<dt><b>SetTextColor</b></dt>
@@ -1887,6 +1900,8 @@
 		<dl>
 							<dt><b>$tagvspaces</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$tagvspaces">TCPDF::$tagvspaces</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used for custom vertical spaces for HTML tags</dd>
+							<dt><b>$tcexam_backlink</b></dt>
+				<dd>in file tcpdfex.php, variable <a href="com-tecnick-tcpdf/TCPDFEX.html#var$tcexam_backlink">TCPDFEX::$tcexam_backlink</a></dd>
 							<dt><b>$tcpdf_version</b></dt>
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$tcpdf_version">TCPDF::$tcpdf_version</a></dd>
 							<dt><b>$tempfontsize</b></dt>
@@ -1923,12 +1938,16 @@
 				<dd>in file tcpdf.php, variable <a href="com-tecnick-tcpdf/TCPDF.html#var$transfmrk">TCPDF::$transfmrk</a><br>&nbsp;&nbsp;&nbsp;&nbsp;Array used to store positions of graphics transformation blocks inside the page buffer.</dd>
 							<dt><b>tcpdf.php</b></dt>
 				<dd>procedural page <a href="com-tecnick-tcpdf/_shared---code---tcpdf.php.html">tcpdf.php</a></dd>
+							<dt><b>tcpdfex.php</b></dt>
+				<dd>procedural page <a href="com-tecnick-tcpdf/_shared---code---tcpdfex.php.html">tcpdfex.php</a></dd>
 							<dt><b>TCPDF</b></dt>
 				<dd>in file tcpdf.php, class <a href="com-tecnick-tcpdf/TCPDF.html">TCPDF</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This is a PHP class for generating PDF documents without requiring external extensions.<br /></dd>
 							<dt><b>TCPDF2DBarcode</b></dt>
 				<dd>in file 2dbarcodes.php, class <a href="com-tecnick-tcpdf/TCPDF2DBarcode.html">TCPDF2DBarcode</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHP class to creates array representations for 2D barcodes to be used with TCPDF (http://www.tcpdf.org).<br /></dd>
 							<dt><b>TCPDFBarcode</b></dt>
 				<dd>in file barcodes.php, class <a href="com-tecnick-tcpdf/TCPDFBarcode.html">TCPDFBarcode</a><br>&nbsp;&nbsp;&nbsp;&nbsp;PHP class to creates array representations for common 1D barcodes to be used with TCPDF (http://www.tcpdf.org).<br /></dd>
+							<dt><b>TCPDFEX</b></dt>
+				<dd>in file tcpdfex.php, class <a href="com-tecnick-tcpdf/TCPDFEX.html">TCPDFEX</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This is an extension of the TCPDF class for creating PDF document.</dd>
 							<dt><b>TCPDF_UNICODE_DATA</b></dt>
 				<dd>in file unicode_data.php, class <a href="com-tecnick-tcpdf/TCPDF_UNICODE_DATA.html">TCPDF_UNICODE_DATA</a><br>&nbsp;&nbsp;&nbsp;&nbsp;This is a PHP class containing Unicde data for TCPDF library</dd>
 							<dt><b>Text</b></dt>
@@ -2116,7 +2135,7 @@
 	<a href="elementindex_com-tecnick-tcpdf.html#top">top</a><br>
         <div class="credit">
 		    <hr />
-		    Documentation generated on Fri, 26 Nov 2010 17:05:47 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+		    Documentation generated on Mon, 06 Dec 2010 12:00:20 +0100 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
 	      </div>
       </td></tr></table>
     </td>

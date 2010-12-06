@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-09-20
+// Last Update : 2010-12-06
 //
 // Description : Display test results to the current user.
 //
@@ -69,6 +69,7 @@ $user_id = intval($_SESSION['session_user_id']);
 if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	$test_id = intval($_REQUEST['testid']);
 } else {
+	header('Location: index.php'); //redirect browser to public main page
 	exit;
 }
 
