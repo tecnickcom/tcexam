@@ -40,6 +40,7 @@
 //============================================================+
 
 /**
+ * @file
  * Handle error/warning/system messages.<br>
  * messagetype:
  * <ul>
@@ -49,18 +50,15 @@
  * </ul>
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-17
  */
 
 /**
  * Handle error/warning/system messages.
  * Print a message
- * @param string messagetype:  0=no message, message; warning; error.
- * @param string messagetoprint message to print.
- * @param bool $exit if true output a message and terminate the current script [default = false].
+ * @param $messagetype (string) Type of message:  0=no message, message; warning; error.
+ * @param $messagetoprint (string)  message to print.
+ * @param $exit (bool) if true output a message and terminate the current script [default = false].
  */
 function F_print_error($messagetype='MESSAGE', $messagetoprint='', $exit=false) {
 	require_once(dirname(__FILE__).'/../config/tce_config.php');
@@ -114,8 +112,7 @@ function F_print_error($messagetype='MESSAGE', $messagetoprint='', $exit=false) 
 
 /**
  * Print the database error message.
- * @param bool $exit if true output a message and terminate the current script [default = true].
- * @uses F_print_error
+ * @param $exit (bool) if true output a message and terminate the current script [default = true].
  */
 function F_display_db_error($exit=true) {
 	$messagetype = 'ERROR';
@@ -125,11 +122,10 @@ function F_display_db_error($exit=true) {
 
 /**
  * Custom PHP error handler function.
- * @param int $errno The first parameter, errno, contains the level of the error raised, as an integer.
- * @param string $errstr The second parameter, errstr, contains the error message, as a string.
- * @param string $errfile The third parameter is optional, errfile, which contains the filename that the error was raised in, as a string.
- * @param int $errline The fourth parameter is optional, errline, which contains the line number the error was raised at, as an integer.
- * @uses F_print_error
+ * @param $errno (int) The first parameter, errno, contains the level of the error raised, as an integer.
+ * @param $errstr (string) The second parameter, errstr, contains the error message, as a string.
+ * @param $errfile (string) The third parameter is optional, errfile, which contains the filename that the error was raised in, as a string.
+ * @param $errline (int) The fourth parameter is optional, errline, which contains the line number the error was raised at, as an integer.
  */
 function F_error_handler($errno, $errstr, $errfile, $errline) {
 	$messagetoprint = '['.$errno.'] '.$errstr.' | LINE: '.$errline.' | FILE: '.$errfile.'';

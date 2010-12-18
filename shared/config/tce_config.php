@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2010-10-21
+// Last Update : 2010-12-18
 //
 // Description : Shared configuration file.
 //
@@ -38,19 +38,18 @@
 //============================================================+
 
 /**
+ * @file
  * Shared configuration file.
  * @package com.tecnick.tcexam.shared.cfg
+ * @brief TCExam Main Configuration
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2002-02-24
  */
 
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.010');
+define ('K_TCEXAM_VERSION', '11.1.011');
 
 /**
  * 2-letters code for default language.

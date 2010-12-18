@@ -40,23 +40,18 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to upload files.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-11-19
  */
 
 /**
  * Check if the uploaded file extension is allowed.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-11-19
- * @param string $filename the filename
+ * @param $filename (string) the filename
  * @return true in case of allowed file type, false otherwise
  */
 function F_is_allowed_upload($filename) {
@@ -74,12 +69,9 @@ function F_is_allowed_upload($filename) {
 /**
  * Uploads image file to the server.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-06-12
- * @param string $fieldname form field name containing the source file path
- * @param string $uploaddir upload directory
+ * @param $fieldname (string) form field name containing the source file path
+ * @param $uploaddir (string) upload directory
  * @return mixed file name or false in case of error
  */
 function F_upload_file($fieldname, $uploaddir) {
@@ -100,11 +92,8 @@ function F_upload_file($fieldname, $uploaddir) {
 /**
  * returns the file size in bytes
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-11-19
- * @param string $filetocheck file to check (local path or URL)
+ * @param $filetocheck (string) file to check (local path or URL)
  * @return mixed file size in bytes or false in case of error
  */
 function F_read_file_size($filetocheck) {

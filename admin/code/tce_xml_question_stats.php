@@ -41,12 +41,10 @@
 //============================================================+
 
 /**
+ * @file
  * Export question stats in XML format.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-05-10
  */
 
@@ -93,11 +91,8 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 /**
  * Export all question statistics of the selected test to XML.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-05-10
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @return XML data
  */
 function F_xml_export_question_stats($test_id) {

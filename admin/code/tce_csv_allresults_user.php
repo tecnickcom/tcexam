@@ -41,18 +41,16 @@
 //============================================================+
 
 /**
+ * @file
  * Display all user's results in CSV format.
  * (Tab Delimited Text File)
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-26
- * @param int $_REQUEST['user_id'] user ID
- * @param int $_REQUEST['startdate'] start date
- * @param int $_REQUEST['enddate'] end date
- * @param string $_REQUEST['orderfield'] ORDER BY portion of SQL selection query
+ * @param $_REQUEST['user_id'] (int) user ID
+ * @param $_REQUEST['startdate'] (int) start date
+ * @param $_REQUEST['enddate'] (int) end date
+ * @param $_REQUEST['orderfield'] (string) ORDER BY portion of SQL selection query
  */
 
 /**
@@ -99,14 +97,11 @@ echo F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_field);
 /**
  * Export all user's test results to CSV.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-26
- * @param int $user_id user ID
- * @param string $startdate start date in yyyy-mm-dd hh:mm:ss format
- * @param string $enddate end date in yyyy-mm-dd hh:mm:ss format
- * @param string $order_field ORDER BY portion of the SQL query
+ * @param $user_id (int) user ID
+ * @param $startdate (string) start date in yyyy-mm-dd hh:mm:ss format
+ * @param $enddate (string) end date in yyyy-mm-dd hh:mm:ss format
+ * @param $order_field (string) ORDER BY portion of the SQL query
  * @return CSV data
  */
 function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_field='') {

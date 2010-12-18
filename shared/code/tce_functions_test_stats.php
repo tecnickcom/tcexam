@@ -40,23 +40,20 @@
 //============================================================+
 
 /**
+ * @file
  * Statistical functions for test results.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-06-10
  */
 
 /**
  * Returns an URL to open the PDF generator page.
- * @param string $mode PDF mode (1=all users results, 2=questions stats, 3=detailed report for single user 4=all users details)
- * @param int $test_id test ID
- * @param int $groupid group ID
- * @param int $user_id user ID
- * @param string $orderfield table order field name
- * @param string $orderdir order direction (1, -1)
+ * @param $mode (string) PDF mode (1=all users results, 2=questions stats, 3=detailed report for single user 4=all users details)
+ * @param $test_id (int) test ID
+ * @param $groupid (int) group ID
+ * @param $user_id (int) user ID
+ * @param $orderfield (string) table order field name
  * @return string
  */
 function pdfLink($mode, $test_id, $groupid=0, $user_id=0, $orderfield="") {
@@ -75,8 +72,8 @@ function pdfLink($mode, $test_id, $groupid=0, $user_id=0, $orderfield="") {
 
 /**
  * Lock the user's test.<br>
- * @param int $test_id test ID
- * @param int $user_id user ID
+ * @param $test_id (int) test ID
+ * @param $user_id (int) user ID
  */
 function F_lockUserTest($test_id, $user_id) {
 	require_once('../config/tce_config.php');
@@ -100,8 +97,8 @@ function F_lockUserTest($test_id, $user_id) {
  * <li>$data['unanswered'] = number of unanswered questions</li>
  * <li>$data['undisplayed'] = number of undisplayed questions</li>
  * </ul>
- * @param int $test_id test ID
- * @param int $question_id question ID
+ * @param $test_id (int) test ID
+ * @param $question_id (int) question ID
  * return $data
  */
 function F_getQuestionTestStat($test_id, $question_id) {
@@ -173,8 +170,8 @@ function F_getQuestionTestStat($test_id, $question_id) {
  * <li>$data['comment'] = user's test comment</li>
  * <li>$data['time'] = user's test start time</li>
  * </ul>
- * @param int $test_id test ID
- * @param int $testuser_id user's test ID
+ * @param $test_id (int) test ID
+ * @param $user_id (int) user's test ID
  * return array $data
  */
 function F_getUserTestStat($test_id, $user_id) {

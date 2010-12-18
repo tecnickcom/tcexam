@@ -40,19 +40,17 @@
 //============================================================+
 
 /**
+ * @file
  * General functions.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-08
  */
 
 /**
  * Count rows of the given table.
- * @param string $dbtable database table name
- * @param string $where optional where SQL clause (including the WHERE keyword).
+ * @param $dbtable (string) database table name
+ * @param $where (string) optional where SQL clause (including the WHERE keyword).
  * @return number of rows
  */
 function F_count_rows($dbtable, $where='') {
@@ -73,7 +71,7 @@ function F_count_rows($dbtable, $where='') {
 /**
  * Prepare field value for SQL query.<br>
  * Returns the quoted string if not empty, NULL otherwise.
- * @param string $str string to check.
+ * @param $str (string) string to check.
  * @return string $str quoted if not empty, NULL otherwise
  */
 function F_empty_to_null($str) {
@@ -86,7 +84,7 @@ function F_empty_to_null($str) {
 /**
  * Prepare field value for SQL query.<br>
  * Returns the num if different from zero, NULL otherwise.
- * @param string $num string to check.
+ * @param $num (string) string to check.
  * @return string $num if != 0, NULL otherwise
  */
 function F_zero_to_null($num) {
@@ -99,7 +97,7 @@ function F_zero_to_null($num) {
 /**
  * Returns boolean value from string.<br>
  * This function is needed to get the right boolean value from boolean field returned by PostgreSQL query.
- * @param string $str string to check.
+ * @param $str (string) string to check.
  * @return boolean value.
  */
 function F_getBoolean($str) {
@@ -111,10 +109,10 @@ function F_getBoolean($str) {
 
 /**
  * Check if specified fields are unique on table.
- * @param string $table table name
- * @param string $where SQL where clause
- * @param mixed $fieldname name of table column to check
- * @param mixed $fieldid ID of table row to check
+ * @param $table (string) table name
+ * @param $where (string) SQL where clause
+ * @param $fieldname (mixed) name of table column to check
+ * @param $fieldid (mixed) ID of table row to check
  * @return bool true if unique, false otherwise
  */
 function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
@@ -142,8 +140,8 @@ function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
 
 /**
  * Reverse function for htmlentities.
- * @param string $text_to_convert input string to convert
- * @param boolean $preserve_tagsign if true preserve <> symbols, default=FALSE
+ * @param $text_to_convert (string) input string to convert
+ * @param $preserve_tagsign (boolean) if true preserve <> symbols, default=FALSE
  * @return converted string
  */
 function unhtmlentities($text_to_convert, $preserve_tagsign=FALSE) {
@@ -167,7 +165,7 @@ function unhtmlentities($text_to_convert, $preserve_tagsign=FALSE) {
  * <li>"\0" (ASCII 0 (0x00)), the NUL-byte</li>
  * <li>"\x0B" (ASCII 11 (0x0B)), a vertical tab</li>
  * </ul>
- * @param string $string input string to convert
+ * @param $string (string) input string to convert
  * @return converted string
  */
 function F_compact_string($string) {
@@ -177,7 +175,7 @@ function F_compact_string($string) {
 
 /**
  * Replace angular parenthesis with html equivalents (html entities).
- * @param string $str input string to convert
+ * @param $str (string) input string to convert
  * @return converted string
  */
 function F_replace_angulars($str) {
@@ -187,9 +185,9 @@ function F_replace_angulars($str) {
 
 /**
  * Return part of a string removing remaining non-ASCII characters.
- * @param string $str input string
- * @param int $start substring start index
- * @param int $length substring max lenght
+ * @param $str (string) input string
+ * @param $start (int) substring start index
+ * @param $length (int) substring max lenght
  * @return substring
  */
 function F_substr_utf8($str, $start=0, $length) {
@@ -206,7 +204,7 @@ function F_substr_utf8($str, $start=0, $length) {
 
 /**
  * Escape some special characters (&lt; &gt; &amp;).
- * @param string $str input string to convert
+ * @param $str (string) input string to convert
  * @return converted string
  */
 function F_text_to_xml($str) {
@@ -216,7 +214,7 @@ function F_text_to_xml($str) {
 
 /**
  * Unescape some special characters (&lt; &gt; &amp;).
- * @param string $str input string to convert
+ * @param $str (string) input string to convert
  * @return converted string
  */
 function F_xml_to_text($str) {
@@ -226,7 +224,7 @@ function F_xml_to_text($str) {
 
 /**
  * Return a string containing an HTML acronym for required/not required fields.
- * @param int $mode field mode: 1=not required; 2=required.
+ * @param $mode (int) field mode: 1=not required; 2=required.
  * @return html string
  */
 function showRequiredField($mode=1) {
@@ -241,9 +239,8 @@ function showRequiredField($mode=1) {
 }
 
 /**
- * Strip whitespace (or other characters) from the beginning and end of an UTF-8 string
- * and replace the \xA0 with normal space.
- * @param string $txt The string that will be trimmed.
+ * Strip whitespace (or other characters) from the beginning and end of an UTF-8 string and replace the "\xA0" with normal space.
+ * @param $txt (string) The string that will be trimmed.
  * @return string The trimmed string.
  */
 function utrim($txt) {
@@ -255,7 +252,7 @@ function utrim($txt) {
 
 /**
  * Convert all IP addresses to IPv6 expanded notation.
- * @param string IP address to normalize.
+ * @param $ip (string) IP address to normalize.
  * @return string IPv6 address in expanded notation or false in case of invalid input.
  * @since 7.1.000 (2009-02-13)
  */
@@ -317,7 +314,7 @@ function getNormalizedIP($ip) {
 
 /**
  * Converts a string containing an IP address into its integer value.
- * @param string IP address to convert.
+ * @param $ip (string) IP address to convert.
  * @return int IP address as integer number.
  * @since 7.1.000 (2009-02-13)
  */
@@ -329,7 +326,7 @@ function getIpAsInt($ip) {
 
 /**
  * Converts a string containing an IP address into its integer value and return string representation.
- * @param string IP address to convert.
+ * @param $ip (string) IP address to convert.
  * @return int IP address as string.
  * @since 9.0.033 (2009-11-03)
  */
@@ -340,7 +337,7 @@ function getIpAsString($ip) {
 
 /**
  * Format a percentage number.
- * @param float number to be formatted
+ * @param $num (float) number to be formatted
  * @return formatted string
  */
 function F_formatPercentage($num) {
@@ -349,7 +346,7 @@ function F_formatPercentage($num) {
 
 /**
  * format a percentage number
- * @param float number to be formatted
+ * @param $num (float) number to be formatted
  * @return string
  */
 function F_formatPdfPercentage($num) {
@@ -359,7 +356,7 @@ function F_formatPdfPercentage($num) {
 
 /**
  * format a percentage number for XML
- * @param float number to be formatted
+ * @param $num (float) number to be formatted
  * @return string
  */
 function F_formatXMLPercentage($num) {
@@ -368,7 +365,7 @@ function F_formatXMLPercentage($num) {
 
 /**
  * Returns the UTC time offset in seconds
- * @param string $timezone current user timezone
+ * @param $timezone (string) current user timezone
  * @return int UTC time offset in seconds
  */
 function F_getUTCoffset($timezone) {
@@ -379,7 +376,7 @@ function F_getUTCoffset($timezone) {
 
 /**
  * Returns the UTC time offset yo be used with CONVERT_TZ function
- * @param string $timezone current user timezone
+ * @param $timezone (string) current user timezone
  * @return string UTC time offset (+HH:mm)
  */
 function F_db_getUTCoffset($timezone) {

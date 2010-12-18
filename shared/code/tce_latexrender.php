@@ -18,16 +18,16 @@
 //============================================================+
 
 /**
+ * @file
  * LaTeX Rendering Class.
  * @package com.tecnick.tcexam.shared
  */
 
-/**
- * Includes configuration file.
- */
+// Includes configuration file.
 require_once('../../shared/config/tce_latex.php');
 
 /**
+ * @class LatexRender
  * This is a PHP5 class for generating images from LaTeX Formulas.
  * This class is based on the following:
  * LaTeX Rendering Class v0.8 (Licensed under GPL 2)
@@ -35,141 +35,138 @@ require_once('../../shared/config/tce_latex.php');
  * Currently the project is maintained by Steve Mayer.
  * Please check the following Website to obtain the original
  * source code: http://www.mayer.dial.pipex.com/tex.htm
- * @name LaTeX Render
  * @package com.tecnick.tcexam.shared
- * @abstract Class for generating images from LaTeX Formulas.
- * @author Benjamin Zeiss, Nicola Asuni
- * @license http://www.gnu.org/copyleft/gpl.html GPL
+ * @authors Benjamin Zeiss, Nicola Asuni
  */
 class LatexRender {
 
 	//  ---------- Variable Definitions ---------- * ---------- * ----------
 
 	/**
-	 * @var Absolute path to images directory.
-	 * @access protected
+	 * Absolute path to images directory.
+	 * @protected
 	 */
 	protected $picture_path = K_LATEX_PATH_PICTURE;
 
 	/**
-	 * @var relative path to images directory.
-	 * @access protected
+	 * Relative path to images directory.
+	 * @protected
 	 */
 	protected $picture_path_httpd = K_LATEX_PATH_PICTURE_HTTPD;
 
 	/**
-	 * @var Path to temporary directory.
-	 * @access protected
+	 * Path to temporary directory.
+	 * @protected
 	 */
 	protected $tmp_dir = K_LATEX_TMP_DIR;
 
 	/**
-	 * @var Path to LATEX.
-	 * @access protected
+	 * Path to LATEX.
+	 * @protected
 	 */
 	protected $latex_path = K_LATEX_PATH_LATEX;
 
 	/**
-	 * @var Path to DVIPS.
-	 * @access protected
+	 * Path to DVIPS.
+	 * @protected
 	 */
 	protected $dvips_path = K_LATEX_PATH_DVIPS;
 
 	/**
-	 * @var Path to ImageMagick convert.
-	 * @access protected
+	 * Path to ImageMagick convert.
+	 * @protected
 	 */
 	protected $convert_path = K_LATEX_PATH_CONVERT;
 
 	/**
-	 * @var Path to ImageMagick identify.
-	 * @access protected
+	 * Path to ImageMagick identify.
+	 * @protected
 	 */
 	protected $identify_path = K_LATEX_PATH_IDENTIFY;
 
 	/**
-	 * @var Formula density (used by ImageMagick)
-	 * @access protected
+	 * Formula density (used by ImageMagick)
+	 * @protected
 	 */
 	protected $formula_density = K_LATEX_FORMULA_DENSITY;
 
 	/**
-	 * @var Image width limit in pixels.
-	 * @access protected
+	 * Image width limit in pixels.
+	 * @protected
 	 */
 	protected $width_limit = K_LATEX_MAX_WIDTH;
 
 	/**
-	 * @var Image height limit in pixels.
-	 * @access protected
+	 * Image height limit in pixels.
+	 * @protected
 	 */
 	protected $height_limit = K_LATEX_MAX_HEIGHT;
 
 	/**
-	 * @var Size limit for input string.
-	 * @access protected
+	 * Size limit for input string.
+	 * @protected
 	 */
 	protected $string_length_limit = K_LATEX_MAX_LENGHT;
 
 	/**
-	 * @var Font size.
-	 * @access protected
+	 * Font size.
+	 * @protected
 	 */
 	protected $font_size = K_LATEX_FONT_SIZE;
 
 	/**
-	 * @var LaTeX class.
-	 * @access protected
+	 * LaTeX class.
+	 * @protected
 	*/
 	protected $latexclass = K_LATEX_CLASS;
 
 	/**
-	 * @var Filename prefix for chached images.
-	 * @access protected
+	 * Filename prefix for chached images.
+	 * @protected
 	 */
 	protected $img_prefix = K_LATEX_IMG_PREFIX;
 
 	/**
-	 * @var Image format (default = PNG).
-	 * @access protected
+	 * Image format (default = PNG).
+	 * @protected
 	 */
 	protected $image_format = K_LATEX_IMG_FORMAT;
 
 	/**
-	 * @var list of unauthorized LaTeX commands.
-	 * @access protected
+	 * List of unauthorized LaTeX commands.
+	 * @protected
 	 */
 	protected $latex_tags_blacklist = array('include', 'def', 'command', 'loop', 'repeat', 'open', 'toks', 'output', 'input', 'catcode', 'name', '^^', '\every', '\errhelp', '\errorstopmode', '\scrollmode', '\nonstopmode', '\batchmode', '\read', '\write', 'csname', '\newhelp', '\uppercase', '\lowercase', '\relax', '\aftergroup', '\afterassignment', '\expandafter', '\noexpand', '\special');
 
 	// ------ private ------
 
 	/**
-	 * @var Error code.
-	 * @access private
+	 * Error code.
+	 * @private
 	 */
 	private $errorcode = 0;
 
 	/**
-	 * @var Temporary filename.
-	 * @access private
+	 * Temporary filename.
+	 * @private
 	*/
 	private $tmp_filename = '';
 
 	/**
-	 * @var Latex formula.
-	 * @access private
+	 * Latex formula.
+	 * @private
 	 */
 	private $latex_formula = '';
 
 	/**
-	 * @var Image width.
-	 * @access private
+	 * Image width.
+	 * @private
 	 */
 	private $img_width = 0;
 
 	/**
-	 * @var Image height.
-	 * @access private
+	 * Image height.
+	 * @private
 	 */
 	private $img_height = 0;
 
@@ -197,7 +194,7 @@ class LatexRender {
 
 	/**
 	 * Set the absolute path to images directory.
-	 * @param string $picture_path absolute path to images directory.
+	 * @param $picture_path (string) absolute path to images directory.
 	 */
 	public function setPathToPicturesDir($picture_path) {
 		$this->picture_path = $picture_path;
@@ -205,7 +202,7 @@ class LatexRender {
 
 	/**
 	 * Set relative path to images directory.
-	 * @param string $picture_path_httpd relative path to images directory.
+	 * @param $picture_path_httpd (string) relative path to images directory.
 	 */
 	public function setPathToPicturesDirHttpd($picture_path_httpd) {
 		$this->picture_path_httpd = $picture_path_httpd;
@@ -213,7 +210,7 @@ class LatexRender {
 
 	/**
 	 * Set path to temporary directory.
-	 * @param string $tmp_dir path to temporary directory.
+	 * @param $tmp_dir (string) path to temporary directory.
 	 */
 	public function setPathToTempDir($tmp_dir) {
 		$this->tmp_dir = $tmp_dir;
@@ -221,7 +218,7 @@ class LatexRender {
 
 	/**
 	 * Set path to LATEX.
-	 * @param string $latex_path path to LATEX.
+	 * @param $latex_path (string) path to LATEX.
 	 */
 	public function setPathToLatex($latex_path) {
 		$this->latex_path = $latex_path;
@@ -229,7 +226,7 @@ class LatexRender {
 
 	/**
 	 * Set path to DVIPS.
-	 * @param string $dvips_path path to DVIPS.
+	 * @param $dvips_path (string) path to DVIPS.
 	 */
 	public function setPathToDvips($dvips_path) {
 		$this->dvips_path = $dvips_path;
@@ -237,7 +234,7 @@ class LatexRender {
 
 	/**
 	 * Set path to ImageMagick convert.
-	 * @param string $convert_path path to ImageMagick convert.
+	 * @param $convert_path (string) path to ImageMagick convert.
 	 */
 	public function setPathToImageMagicConvert($convert_path) {
 		$this->convert_path = $convert_path;
@@ -245,7 +242,7 @@ class LatexRender {
 
 	/**
 	 * Set path to ImageMagick identify.
-	 * @param string $identify_path path to ImageMagick identify.
+	 * @param $identify_path (string) path to ImageMagick identify.
 	 */
 	public function setPathToImageMagicIdentify($identify_path) {
 		$this->identify_path = $identify_path;
@@ -253,7 +250,7 @@ class LatexRender {
 
 	/**
 	 * Set formula density (used by ImageMagick)
-	 * @param int $formula_density formula density.
+	 * @param $formula_density (int) formula density.
 	 */
 	public function setFormulaDensity($formula_density) {
 		$this->formula_density = $formula_density;
@@ -261,7 +258,7 @@ class LatexRender {
 
 	/**
 	 * Set image width limit in pixels.
-	 * @param string $width_limit Max image width in pixels.
+	 * @param $width_limit (string) Max image width in pixels.
 	 */
 	public function setMaxWidth($width_limit) {
 		$this->width_limit = $width_limit;
@@ -269,7 +266,7 @@ class LatexRender {
 
 	/**
 	 * Set image height limit in pixels.
-	 * @param string $height_limit Max image height in pixels.
+	 * @param $height_limit (string) Max image height in pixels.
 	 */
 	public function setMaxHeight($height_limit) {
 		$this->height_limit = $height_limit;
@@ -277,7 +274,7 @@ class LatexRender {
 
 	/**
 	 * Set size limit for input string.
-	 * @param string $string_length_limit max lenght for LaTeX string.
+	 * @param $string_length_limit (string) max lenght for LaTeX string.
 	 */
 	public function setMaxLenght($string_length_limit) {
 		$this->string_length_limit = $string_length_limit;
@@ -285,7 +282,7 @@ class LatexRender {
 
 	/**
 	 * Set font size.
-	 * @param int $font_size font size in points.
+	 * @param $font_size (int) font size in points.
 	 */
 	public function setFontSize($font_size) {
 		$this->font_size = $font_size;
@@ -294,7 +291,7 @@ class LatexRender {
 	/**
 	 * Set LaTeX class.
 	 * Install extarticle class if you wish to have smaller font sizes.
-	 * @param string $latexclass LaTeX class.
+	 * @param $latexclass (string) LaTeX class.
 	 */
 	public function setLatexClass($latexclass) {
 		$this->latexclass = $latexclass;
@@ -302,7 +299,7 @@ class LatexRender {
 
 	/**
 	 * Set filename prefix for chached images.
-	 * @param string $img_prefix filename prefix.
+	 * @param $img_prefix (string) filename prefix.
 	 */
 	public function setFilenamePrefix($img_prefix) {
 		$this->img_prefix = $img_prefix;
@@ -310,7 +307,7 @@ class LatexRender {
 
 	/**
 	 * Set the image format (default = PNG).
-	 * @param string $image_format image format(e.g.: png).
+	 * @param $image_format (string) image format(e.g.: png).
 	 */
 	public function setImageFormat($image_format) {
 		$this->image_format = $image_format;
@@ -318,7 +315,7 @@ class LatexRender {
 
 	/**
 	 * Set the list of unauthorized LaTeX commands.
-	 * @param array $latex_tags_blacklist array of blacklisted commands.
+	 * @param $latex_tags_blacklist (array) array of blacklisted commands.
 	 */
 	public function setLatexBlackList($latex_tags_blacklist) {
 		$this->latex_tags_blacklist = $latex_tags_blacklist;
@@ -331,7 +328,7 @@ class LatexRender {
 	 * formula cache. If the picture has not been rendered before, it'll
 	 * try to render the formula and drop it in the picture cache directory.
 	 *
-	 * @param string $latex_formula formula in LaTeX format
+	 * @param $latex_formula (string) formula in LaTeX format
 	 * @returns the webserver based URL to a picture which contains the
 	 * requested LaTeX formula. If anything fails, the result value is false.
 	 */
@@ -402,7 +399,7 @@ class LatexRender {
 	 * containing the whole document as string.
 	 * Customize if you want other fonts for example.
 	 *
-	 * @param string $latex_formula formula in LaTeX format
+	 * @param $latex_formula (string) formula in LaTeX format
 	 * @returns minimalistic LaTeX document containing the given formula
 	 */
 	private function getFilename($latex_formula) {
@@ -415,7 +412,7 @@ class LatexRender {
 	 * containing the whole document as string.
 	 * Customize if you want other fonts for example.
 	 *
-	 * @param string $latex_formula formula in LaTeX format
+	 * @param $latex_formula (string) formula in LaTeX format
 	 * @returns minimalistic LaTeX document containing the given formula
 	 */
 	private function wrapFormula($latex_formula) {
@@ -433,8 +430,8 @@ class LatexRender {
 
 	/**
 	 * Removes temporary files.
-	 * @param string $current_dir current directory.
-	 * @param int $error_code error code.
+	 * @param $current_dir (string) current directory.
+	 * @param $error_code (int) error code.
 	 */
 	private function cleanTemporaryDirectory($current_dir, $error_code=0) {
 		chdir($this->tmp_dir);
@@ -452,7 +449,7 @@ class LatexRender {
 	 * Check the dimensions of a picture file using 'identify' of the
 	 * ImageMagick tools.
 	 *
-	 * @param string $filename path to a picture
+	 * @param $filename (string) path to a picture
 	 * @returns array containing the picture dimensions
 	 */
 	private function checkImageDimensions($filename) {
@@ -482,7 +479,7 @@ class LatexRender {
 	 *    md5 hash as filename. Already rendered formulas can be found directly
 	 *    this way.
 	 *
-	 * @param string $latex_formula LaTeX formula
+	 * @param $latex_formula (string) LaTeX formula
 	 * @returns true if the picture has been successfully saved to the picture
 	 *          cache directory
 	 */

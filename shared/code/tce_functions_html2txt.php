@@ -40,20 +40,19 @@
 //============================================================+
 
 /**
+ * @file
  * Function to convert HTML code to Text string.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2003-03-31
  */
 
 /**
  * Convert HTML code to Text string.
- * @param int $user_id User ID
- * @param string $user_email User email
- * @param string $user_verifycode user verification code
+ * @param $str (string) HTML code string to convert.
+ * @param $preserve_newlines (boolean) If true convert newline characters to HTML line breaks.
+ * @param $display_links (boolean) If true gives a textual representation of links and images.
+ * @return text string
  */
 function F_html_to_text($str, $preserve_newlines=false, $display_links=false) {
 	require_once('../../shared/code/tce_functions_general.php');
@@ -107,7 +106,7 @@ function F_html_to_text($str, $preserve_newlines=false, $display_links=false) {
 
 	$str = preg_replace("'<img[^>]*alt[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>'i", "[IMAGE: \\1]",  $str);
 
-	//give textual representation of links and images
+	// give a textual representation of links and images
 	if ($display_links) {
 		$str = preg_replace("'<a[^>]*href[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si", "\\2 [LINK: \\1]",  $str);
 	}

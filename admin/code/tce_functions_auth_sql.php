@@ -40,23 +40,18 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to select topics.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-11
  */
 
 /**
  * Returns a SQL string to select modules accounting for user authorizations.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-06-16
- * @param string $andwhere additional WHERE statements (e.g.: "module_enabled='1'")
+ * @param $andwhere (string) additional WHERE statements (e.g.: "module_enabled='1'")
  * @return string sql statement
  */
 function F_select_modules_sql($andwhere='') {
@@ -80,11 +75,8 @@ function F_select_modules_sql($andwhere='') {
 /**
  * Returns a SQL string to select subjects accounting for user authorizations.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-12
- * @param string $andwhere additional WHERE statements (e.g.: "subject_enabled='1'")
+ * @param $andwhere (string) additional WHERE statements (e.g.: "subject_enabled='1'")
  * @return string sql statement
  */
 function F_select_subjects_sql($andwhere='') {
@@ -108,11 +100,8 @@ function F_select_subjects_sql($andwhere='') {
 /**
  * Returns a SQL string to select modules and subjects accounting for user authorizations.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-28
- * @param string $andwhere additional WHERE statements (e.g.: "subject_enabled='1'")
+ * @param $andwhere (string) additional WHERE statements (e.g.: "subject_enabled='1'")
  * @return string sql statement
  */
 function F_select_module_subjects_sql($andwhere='') {
@@ -135,9 +124,6 @@ function F_select_module_subjects_sql($andwhere='') {
 /**
  * Returns a SQL string to select tests accounting for user authorizations.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-12
  * @return string sql statement
  */
@@ -155,9 +141,6 @@ function F_select_tests_sql() {
 /**
  * Returns a SQL string to select executed tests accounting for user authorizations.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-06-26
  * @return string sql statement
  */

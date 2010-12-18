@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * output default XHTML header (doctype + head)
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-04-24
  * int $pagelevel page access level (0-10), default 0
  * string $thispage_title page title, default K_TCEXAM_TITLE
@@ -85,7 +83,7 @@ echo '<title>'.htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charse
 echo '<meta http-equiv="Content-Type" content="text/html; charset='.$l['a_meta_charset'].'" />'.K_NEWLINE;
 echo '<meta name="tcexam_level" content="'.$pagelevel.'" />'.K_NEWLINE;
 echo '<meta name="description" content="'.htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset']).' ['.base64_decode(K_KEY_SECURITY).']" />'.K_NEWLINE;
-echo '<meta name="author" content="'.htmlspecialchars($thispage_author, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
+echo '<meta name="author" content="nick"/>'.K_NEWLINE;
 echo '<meta name="reply-to" content="'.htmlspecialchars($thispage_reply, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '<meta name="keywords" content="'.htmlspecialchars($thispage_keywords, ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '<link rel="stylesheet" href="'.$thispage_style.'" type="text/css" />'.K_NEWLINE;

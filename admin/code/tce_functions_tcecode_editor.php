@@ -41,25 +41,20 @@
 //============================================================+
 
 /**
+ * @file
  * Functions for custom mark-up language editor.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2002-02-20
  */
 
 /**
  * Display TCExam Code EDITOR Tag Buttons
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-07
- * @param string $callingform name of calling xhtml form
- * @param string $callingfield name of calling form field (textarea where output code will be sent)
- * @param int $id id appended to input fields names to differentiate from previous buttons.
+ * @param $callingform (string) name of calling xhtml form
+ * @param $callingfield (string) name of calling form field (textarea where output code will be sent)
+ * @param $id (int) id appended to input fields names to differentiate from previous buttons.
  * @return XHTML string
  */
 function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
@@ -110,17 +105,14 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 /**
  * Display one tag button
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-07
- * @param string $callingform name of calling xhtml form
- * @param string $callingfield name of calling form field (textarea where output code will be sent)
- * @param string $name name of the button
- * @param string $tag tag value
- * @param string $image image file of button
- * @param string $onclick default onclick action
- * @param string $accesskey accesskey: character for keyboard shortcut
+ * @param $callingform (string) name of calling xhtml form
+ * @param $callingfield (string) name of calling form field (textarea where output code will be sent)
+ * @param $name (string) name of the button
+ * @param $tag (string) tag value
+ * @param $image (string) image file of button
+ * @param $onclick (string) default onclick action
+ * @param $accesskey (string) accesskey: character for keyboard shortcut
  * @return XHTML string
  */
 function getImageButton($callingform, $callingfield, $name, $tag, $image, $onclick='', $accesskey='') {
@@ -136,12 +128,9 @@ function getImageButton($callingform, $callingfield, $name, $tag, $image, $oncli
 /**
  * returns an array of files contained on the specified folder and subfolders
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2009-10-07
- * @param string $path initial directory path
- * òparam int $baselen string lenght of the base dir path.
+ * @param $path (string) initial directory path
+ * @param $baselen (int) string lenght of the base dir path.
  * @return array
  */
 function getDirFiles($path, $baselen=0) {

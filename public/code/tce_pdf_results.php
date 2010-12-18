@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-12-06
+// Last Update : 2010-12-18
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -41,14 +41,12 @@
 //============================================================+
 
 /**
+ * @file
  * Create PDF document to display users' tests results.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-06-11
- * @param int $_REQUEST['testid'] test ID
+ * @param $_REQUEST['testid'] (int) test ID
  */
 
 /**
@@ -102,9 +100,6 @@ if ($l['a_meta_dir'] == 'rtl') {
 $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
 $pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
-
-// Set backlink QR-Code
-$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_user.php?testuser_id='.$testuser_id.'&test_id='.$test_id.'&user_id='.$user_id);
 
 // set document information
 $pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION.'');
@@ -214,6 +209,9 @@ if($r = F_db_query($sql, $db)) {
 			F_display_db_error();
 		}
 		$test_end_time = $m['test_end_time'];
+
+		// Set backlink QR-Code
+		$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_user.php?testuser_id='.$testuser_id.'&test_id='.$test_id.'&user_id='.$user_id);
 
 		// ------------------------------------------------------------
 		// --- start page data ---

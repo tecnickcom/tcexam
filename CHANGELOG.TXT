@@ -1,3 +1,9 @@
+11.1.011 (2010-12-18)
+	- A problem with public PDF documents was fixed.
+	- Several source code documentation errors were fixed.
+	- Source code style was changed for Doxygen.
+	- Source code documentation was moved online to http://www.tcexam.org
+
 11.1.010 (2010-12-06)
 	- Chinese translation was updated.
 	- TCPDF library was updated.

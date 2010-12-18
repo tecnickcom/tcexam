@@ -40,31 +40,25 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to display and select registered user.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-13
  */
 
 /**
  * Display user selection for using F_show_select_user function.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-13
- * @param string $order_field order by column name
- * @param string $orderdir oreder direction
- * @param string $firstrow number of first row to display
- * @param string $rowsperpage number of rows per page
- * @param int $group_id id of the group (default = 0 = no specific group selected)
- * @param string $andwhere additional SQL WHERE query conditions
- * @param string $searchterms search terms
+ * @param $order_field (string) order by column name
+ * @param $orderdir (string) oreder direction
+ * @param $firstrow (string) number of first row to display
+ * @param $rowsperpage (string) number of rows per page
+ * @param $group_id (int) id of the group (default = 0 = no specific group selected)
+ * @param $andwhere (string) additional SQL WHERE query conditions
+ * @param $searchterms (string) search terms
  * @return true
- * @uses F_show_select_user
  */
 function F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id=0, $andwhere='', $searchterms='') {
 	global $l;
@@ -76,17 +70,14 @@ function F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_
 /**
  * Display user selection XHTML table.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-13
- * @param string $order_field order by column name
- * @param int $orderdir oreder direction
- * @param int $firstrow number of first row to display
- * @param int $rowsperpage number of rows per page
- * @param int $group_id id of the group (default = 0 = no specific group selected)
- * @param string $andwhere additional SQL WHERE query conditions
- * @param string $searchterms search terms
+ * @param $order_field (string) order by column name
+ * @param $orderdir (int) oreder direction
+ * @param $firstrow (int) number of first row to display
+ * @param $rowsperpage (int) number of rows per page
+ * @param $group_id (int) id of the group (default = 0 = no specific group selected)
+ * @param $andwhere (string) additional SQL WHERE query conditions
+ * @param $searchterms (string) search terms
  * @return false in case of empty database, true otherwise
  */
 function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id=0, $andwhere='', $searchterms='') {
@@ -283,13 +274,13 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 
 /**
  * Display table header element with order link.
- * @param string $order_field name of table field
- * @param string $orderdir order direction
- * @param string $title title field of anchor link
- * @param string $name column name
- * @param string $current_order_field current order field name
- * @param int $group_id id of the group (default = 0 = no specific group selected)
- * @param string $filter additional parameters to pass on URL
+ * @param $order_field (string) name of table field
+ * @param $orderdir (string) order direction
+ * @param $title (string) title field of anchor link
+ * @param $name (string) column name
+ * @param $current_order_field (string) current order field name
+ * @param $group_id (int) id of the group (default = 0 = no specific group selected)
+ * @param $filter (string) additional parameters to pass on URL
  * @return table header element string
  */
 function F_user_table_header_element($order_field, $orderdir, $title, $name, $current_order_field='', $group_id=0, $filter='') {
@@ -309,8 +300,8 @@ function F_user_table_header_element($order_field, $orderdir, $title, $name, $cu
 
 /**
  * Return true if the selected test is active for the selected group
- * @param int $test_id test ID
- * @param int $group_id group ID
+ * @param $test_id (int) test ID
+ * @param $group_id (int) group ID
  * @return boolean true/false
  * @since 11.1.003 (2010-10-05)
  */
@@ -328,8 +319,8 @@ function F_isTestOnGroup($test_id, $group_id) {
 
 /**
  * Return true if the selected user belongs to the selected group
- * @param int $user_id user ID
- * @param int $group_id group ID
+ * @param $user_id (int) user ID
+ * @param $group_id (int) group ID
  * @return boolean true/false
  * @since 11.1.003 (2010-10-05)
  */
@@ -347,7 +338,7 @@ function F_isUserOnGroup($user_id, $group_id) {
 
 /**
  * Return true if the current user is an administrator or belongs to the group, false otherwise
- * @param int $group_id group ID
+ * @param $group_id (int) group ID
  * @return boolean true/false
  * @since 11.1.003 (2010-10-05)
  */
@@ -363,7 +354,7 @@ function F_isAuthorizedEditorForGroup($group_id) {
 
 /**
  * Return true if the current user is authorized to edit the specified user
- * @param int $user_id user ID
+ * @param $user_id (int) user ID
  * @return boolean true/false
  * @since 11.1.003 (2010-10-05)
  */
@@ -404,7 +395,7 @@ function F_isAuthorizedEditorForUser($user_id) {
 
 /**
  * Return the SQL selection query for user groups
- * @param string $where filters to add on WHERE clause
+ * @param $where (string) filters to add on WHERE clause
  * @return sql selection string
  * @since 11.1.003 (2010-10-05)
  */
@@ -431,7 +422,7 @@ function F_user_group_select_sql($where='') {
 
 /**
  * Display select box for user groups
- * @param string $name name of the select field
+ * @param $name (string) name of the select field
  * @return table header element string
  */
 function F_user_group_select($name='group_id') {
@@ -456,7 +447,7 @@ function F_user_group_select($name='group_id') {
 
 /**
  * Returns an array containing groups IDs to which the specified user belongs
- * @param int $user_id user ID
+ * @param $user_id (int) user ID
  * @return array containing user's groups IDs
  */
 function F_get_user_groups($user_id) {

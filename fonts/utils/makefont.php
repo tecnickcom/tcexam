@@ -43,19 +43,16 @@
 /**
  * Utility to generate font definition files fot TCPDF.
  * @author Nicola Asuni, Olivier Plathey, Steven Wittens
- * @copyright 2004-2008 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @package com.tecnick.tcpdf
- * @link http://www.tcpdf.org
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
 */
 
 /**
  *
- * @param string $fontfile path to font file (TTF, OTF or PFB).
- * @param string $fmfile font metrics file (UFM or AFM).
- * @param boolean $embedded Set to false to not embed the font, true otherwise (default).
- * @param string $enc Name of the encoding table to use. Omit this parameter for TrueType Unicode, OpenType Unicode and symbolic fonts like Symbol or ZapfDingBats.
- * @param array $patch Optional modification of the encoding
+ * @param $fontfile (string) path to font file (TTF, OTF or PFB).
+ * @param $fmfile (string) font metrics file (UFM or AFM).
+ * @param $embedded (boolean) Set to false to not embed the font, true otherwise (default).
+ * @param $enc (string) Name of the encoding table to use. Omit this parameter for TrueType Unicode, OpenType Unicode and symbolic fonts like Symbol or ZapfDingBats.
+ * @param $patch (array) Optional modification of the encoding
  */
 function MakeFont($fontfile, $fmfile, $embedded=true, $enc='cp1252', $patch=array()) {
 	//Generate a font definition file
@@ -214,7 +211,7 @@ function MakeFont($fontfile, $fmfile, $embedded=true, $enc='cp1252', $patch=arra
 
 /**
  * Read the specified encoding map.
- * @param string $enc map name (see /enc/ folder for valid names).
+ * @param $enc (string) map name (see /enc/ folder for valid names).
  */
 function ReadMap($enc) {
 	//Read a map file

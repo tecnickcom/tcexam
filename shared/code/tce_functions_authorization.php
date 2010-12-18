@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Functions for Authorization / LOGIN
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-26
  */
 
@@ -181,14 +179,11 @@ function F_logout_page() {
 /**
  * Returns true if the current user is authorized to update and delete the selected database record.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-11
- * @param string $table table to be modified
- * @param string $field_id_name name of the main ID field of the table
- * @param int $value_id value of the ID field of the table
- * @param string $field_user_id name of the foreign key to to user_id
+ * @param $table (string) table to be modified
+ * @param $field_id_name (string) name of the main ID field of the table
+ * @param $value_id (int) value of the ID field of the table
+ * @param $field_user_id (string) name of the foreign key to to user_id
  * @return boolean true if the user is authorized, false otherwise
  */
 function F_isAuthorizedUser($table, $field_id_name, $value_id, $field_user_id) {
@@ -232,11 +227,8 @@ function F_isAuthorizedUser($table, $field_id_name, $value_id, $field_user_id) {
 /**
  * Returns a comma separated string of ID of the users that belong to the same groups.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-11
- * @param int $user_id user ID
+ * @param $user_id (int) user ID
  * @return string
  */
 function F_getAuthorizedUsers($user_id) {

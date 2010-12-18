@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Display test results summary for all users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-06-10
  */
 
@@ -524,12 +522,12 @@ require_once('../code/tce_page_footer.php');
 
 /**
  * Display table header element with order link.
- * @param string $test_id test ID
- * @param string $order_field name of table field
- * @param string $orderdir order direction
- * @param string $title title field of anchor link
- * @param string $name column name
- * @param string $current_order_field current order field name
+ * @param $test_id (string) test ID
+ * @param $order_field (string) name of table field
+ * @param $orderdir (string) order direction
+ * @param $title (string) title field of anchor link
+ * @param $name (string) column name
+ * @param $current_order_field (string) current order field name
  * @return table header element string
  */
 function F_result_allusers_table_header_element($test_id, $order_field, $orderdir, $title, $name, $current_order_field="") {

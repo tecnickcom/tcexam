@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to handle XHTML Form Fields.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-11-07
  */
 
@@ -87,7 +85,7 @@ function F_decode_form_fields() {
 /**
  * Check Required Form Fields.<br>
  * Returns a string containing a list of missing fields (comma separated).
- * @param string $formfields input array containing form fields
+ * @param $formfields (string) input array containing form fields
  * @return array containing a list of missing fields (if any)
  */
 function F_check_required_fields($formfields) {
@@ -121,7 +119,7 @@ function F_check_required_fields($formfields) {
  *
  * An example powerful regular expression for email check is:
  *  ^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
- * @param string $formfields input array containing form fields
+ * @param $formfields (string) input array containing form fields
  * @return array containing a list of wrongfields (if any)
  */
 function F_check_fields_format($formfields) {
@@ -190,7 +188,7 @@ function F_stripslashes_formfields() {
 
 /**
  * Returns XHTML code string to display a window close button
- * @param string $onclick additional javascript code to execute before closing the window.
+ * @param $onclick (string) additional javascript code to execute before closing the window.
  * @return XHTML code string
  */
 function F_close_button($onclick='') {
@@ -209,9 +207,9 @@ function F_close_button($onclick='') {
 
 /**
  * Returns XHTML code string to display Form Submit Button.
- * @param string $name button name
- * @param string $value label for button
- * @param string $title button title, default=""
+ * @param $name (string) button name
+ * @param $value (string) label for button
+ * @param $title (string) button title, default=""
  * @return XHTML code string
  */
 function F_submit_button($name, $value, $title="") {

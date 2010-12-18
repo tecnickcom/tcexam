@@ -40,22 +40,20 @@
 //============================================================+
 
 /**
+ * @file
  * Functions for XHTML pages.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2002-03-21
  */
 
 /**
  * Display Pages navigation index.
- * @param string $script_name url of the calling page
- * @param string $sql sql used to select records
- * @param int $firstrow first row number
- * @param int $rowsperpage number of max rows per page
- * @param string $param_array parameters to pass on url via GET
+ * @param $script_name (string) url of the calling page
+ * @param $sql (string) sql used to select records
+ * @param $firstrow (int) first row number
+ * @param $rowsperpage (int) number of max rows per page
+ * @param $param_array (string) parameters to pass on url via GET
  * @return mixed the number of pages in case of success, FALSE otherwise
  */
 function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $param_array) {

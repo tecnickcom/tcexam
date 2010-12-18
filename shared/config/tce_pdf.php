@@ -40,13 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Configuration file for TCPDF.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @package com.tecnick.tcexam.shared.cfg
- * @link http://tcpdf.sourceforge.net
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
  * @since 2004-06-11
  */
 

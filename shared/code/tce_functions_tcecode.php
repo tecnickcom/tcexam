@@ -42,19 +42,17 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to translate TCExam proprietary code into XHTML.
  * The TCExam code is compatible to the common BBCode.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2002-01-09
  */
 
 /**
  * Returns XHTML code from text marked-up with TCExam Code Tags
- * @param string $text_to_decode text to convert
+ * @param $text_to_decode (string) text to convert
  * @return string XHTML code
  */
 function F_decode_tcecode($text_to_decode) {
@@ -203,7 +201,7 @@ function F_decode_tcecode($text_to_decode) {
 /**
  * Callback function for preg_replace_callback (LaTeX replacement).
  * Returns replacement image for LaTeX code.
- * @param string $matches array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' (the LaTeX code)
+ * @param $matches (string) array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' (the LaTeX code)
  * @return string replacement HTML code string to include the equivalent LaTeX image.
  */
 function F_latex_callback($matches) {
@@ -228,7 +226,7 @@ function F_latex_callback($matches) {
 /**
  * Callback function for preg_replace_callback.
  * Returns replacement code by MIME type.
- * @param string $matches array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' and so on
+ * @param $matches (string) array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' and so on
  * @return string replacement string by file extension
  */
 function F_objects_callback($matches) {
@@ -249,13 +247,13 @@ function F_objects_callback($matches) {
 
 /**
  * Returns the xhtml code needed to display the object by MIME type.
- * @param string $name object path excluded extension
- * @param string $extension object extension (e.g.: gif, jpg, swf, ...)
- * @param int $width object width
- * @param int $height object height
- * @param int $maxwidth object max or default width
- * @param int $maxheight object max or default height
- * @param string $alt alternative content
+ * @param $name (string) object path excluded extension
+ * @param $extension (string) object extension (e.g.: gif, jpg, swf, ...)
+ * @param $width (int) object width
+ * @param $height (int) object height
+ * @param $maxwidth (int) object max or default width
+ * @param $maxheight (int) object max or default height
+ * @param $alt (string) alternative content
  * @return string replacement string
  */
 function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='', &$maxwidth=0, &$maxheight=0) {
@@ -362,7 +360,7 @@ function F_objects_replacement($name, $extension, $width=0, $height=0, $alt='', 
 
 /**
  * Returns specified string without tcecode mark-up tags
- * @param string $str text to process
+ * @param $str (string) text to process
  * @return string without tcecode markup tags
  */
 function F_remove_tcecode($str) {
@@ -391,7 +389,7 @@ function F_remove_tcecode($str) {
 
 /**
  * Converts tcecode text to a single XHTML string removing some objects.
- * @param string $str text to process
+ * @param $str (string) text to process
  * return string
  */
 function F_tcecodeToLine($str) {
@@ -415,7 +413,7 @@ function F_tcecodeToLine($str) {
 
 /**
  * Converts tcecode text to simple string for XHTML title attribute.
- * @param string $str text to process
+ * @param $str (string) text to process
  * return string
  */
 function F_tcecodeToTitle($str) {
@@ -431,9 +429,9 @@ function F_tcecodeToTitle($str) {
  * Return a substring of XHTML code while making sure no html tags are chopped.
  * It also prevents chopping while a tag is still open.
  * this function is based on a public-domain script posted on www.php.net by fox@conskript.server and mr@bbp.biz
- * @param string $htmltext
- * @param int $min_length (default=100) the approximate length you want the concatenated text to be
- * @param int $offset_length (default=20) the max variation in how long the text can be
+ * @param $htmltext (string)
+ * @param $min_length (int) (default=100) the approximate length you want the concatenated text to be
+ * @param $offset_length (int) (default=20) the max variation in how long the text can be
  */
 function F_substrHTML($htmltext, $min_length=100, $offset_length=20) {
 	// Reset tag counter and quote checker

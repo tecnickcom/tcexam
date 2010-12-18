@@ -40,23 +40,18 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to calculate descriptive statistics.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-25
  */
 
 /**
  * Return an array containing descriptive statistics for the bidimensional input array.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-25y
- * @param array $data input data as bidimesional array. The first dimension is a set of data, the second contains data.
+ * @param $data (array) input data as bidimesional array. The first dimension is a set of data, the second contains data.
  * @return array of statistical results. The keys of the input data are peserved.
  */
 function F_getArrayStatistics($data) {

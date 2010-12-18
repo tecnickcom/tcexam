@@ -40,15 +40,13 @@
 //============================================================+
 
 /**
+ * @file
  * Configuration file for LDAP
  * LDAP is the Lightweight Directory Access Protocol, and is a protocol used to access "Directory Servers".
  * The Directory is a special kind of database that holds information in a tree structure.
  * Check http://www.php.net/manual/en/ref.ldap.php for requirements and installation.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-03-28
  */
 
@@ -78,7 +76,7 @@ define ('K_LDAP_PROTOCOL_VERSION', 3);
 define ('K_LDAP_BASE_DN', 'ou=users,dc=mydom,dc=example,dc=org');
 
 /**
- * The search filter can be simple or advanced, using boolean operators in the format described in the LDAP documentation. Use #USERNAME# as a placeholder for the username passed by login form. For W2K3 use: "(sAMAccountName=#USERNAME#)"
+ * The search filter can be simple or advanced, using boolean operators in the format described in the LDAP documentation. Use "#USERNAME#" as a placeholder for the username passed by login form. For W2K3 use: "(sAMAccountName=#USERNAME#)"
  */
 define ('K_LDAP_FILTER', 'uid=#USERNAME#');
 

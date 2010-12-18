@@ -39,6 +39,16 @@
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
+/**
+ * @file
+ * Main page of TCExam
+ * Redirects to Public Area index.
+ * @package com.tecnick.tcexam.public
+ * @brief TCExam Public Area
+ * @author Nicola Asuni
+ * @since 2004-04-20
+ */
+
 header('Location: public/code/index.php'); //redirect browser to public main page
 
 //============================================================+

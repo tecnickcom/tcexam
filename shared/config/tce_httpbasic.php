@@ -44,6 +44,7 @@
 //============================================================+
 
 /**
+ * @file
  * Configuration file for HTTP Basic Authentication
  * HTTP Basic Authentication is a procedure handled by the WebServer.
  * The server grants access to the requested resource only if username and password can be verified against a file or a plugin.
@@ -51,8 +52,6 @@
  * WARNING: On logout, TCExam automatically disable the HTTP Basic Authentication. To restore the HTTP Basic Authentication the user must clear the cache of the browser.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Matthias Wolf, Nicola Asuni
- * @copyright Copyright © 2010, Matthias Wolf - Freiwillige Feuerwehr München - m.wolf@ffw-muenchen.de, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
  * @since 2010-09-16
  */
 

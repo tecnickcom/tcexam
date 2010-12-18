@@ -40,16 +40,14 @@
 //============================================================+
 
 /**
+ * @file
  * Export all users' results in XML.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-06-11
- * @param int $_REQUEST['testid'] test ID
- * @param int $_REQUEST['groupid'] group ID
- * @param string $_REQUEST['orderfield'] ORDER BY portion of SQL selection query
+ * @param $_REQUEST['testid'] (int) test ID
+ * @param $_REQUEST['groupid'] (int) group ID
+ * @param $_REQUEST['orderfield'] (string) ORDER BY portion of SQL selection query
  */
 
 /**

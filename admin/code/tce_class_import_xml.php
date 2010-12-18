@@ -40,80 +40,73 @@
 //============================================================+
 
 /**
+ * @file
  * Class to import questions from an XML file.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-12
  */
 
 /**
+ * @class XMLQuestionImporter
  * This PHP Class imports question data directly from an XML file.
  * @package com.tecnick.tcexam.admin
- * @name XMLQuestionImporter
- * @abstract XML question importer
- * @license http://www.gnu.org/copyleft/lesser.html GPL
- * @author Nicola Asuni [www.tecnick.com]
- * @copyright Copyright (c) 2004-2010 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @version 1.1.000
  */
 class XMLQuestionImporter {
 
 	/**
-	 * @var XML file
-	 * @access private
+	 * XML file.
+	 * @private
 	 */
 	private $xmlfile = 0;
 
 	/**
-	 * @var Current level: 'module', 'subject', 'question', 'answer'
-	 * @access private
+	 * Current level: 'module', 'subject', 'question', 'answer'.
+	 * @private
 	 */
 	private $level = '';
 
 	/**
-	 * @var Array to store current level data.
-	 * @access private
+	 * Array to store current level data.
+	 * @private
 	 */
 	private $level_data = Array();
 
 	/**
-	 * @var Current data element.
-	 * @access private
+	 * Current data element.
+	 * @private
 	 */
 	private $current_element = '';
 
 	/**
-	 * @var Current data value.
-	 * @access private
+	 * Current data value.
+	 * @private
 	 */
 	private $current_data = '';
 
 	/**
-	 * @var Boolean values.
-	 * @access private
+	 * Boolean values.
+	 * @private
 	 */
 	private $boolval = Array('false' => '0', 'true' => '1');
 
 	/**
-	 * @var Type of questions.
-	 * @access private
+	 * Type of questions.
+	 * @private
 	 */
 	private $qtype = Array('single' => '1', 'multiple' => '2', 'text' => '3', 'ordering' => '4');
 
 	/**
-	 * @var store hash values of question descriptions.
+	 * Store hash values of question descriptions.
 	 * This is used to avoid the 255 chars limitation for string indexes on MySQL
-	 * @access private
+	 * @private
 	 */
 	private $questionhash = array();
 
 	/**
 	 * Class constructor.
-	 * @param string $xmlfile xml (XML) file name
-	 * @param string $subject_id subject ID
+	 * @param $xmlfile (string) xml (XML) file name
 	 * @return true or die for parsing error
 	 */
 	public function __construct($xmlfile) {
@@ -150,10 +143,10 @@ class XMLQuestionImporter {
 
 	/**
 	 * Sets the start element handler function for the XML parser parser.start_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @param $attribs (array) The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
+	 * @private
 	 */
 	private function startElementHandler($parser, $name, $attribs) {
 		$name = strtolower($name);
@@ -219,9 +212,9 @@ class XMLQuestionImporter {
 
 	/**
 	 * Sets the end element handler function for the XML parser parser.end_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @private
 	 */
 	private function endElementHandler($parser, $name) {
 		global $l, $db;
@@ -260,9 +253,9 @@ class XMLQuestionImporter {
 
 	/**
 	 * Sets the character data handler function for the XML parser parser.handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $data The second parameter, data, contains the character data as a string.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $data (string) The second parameter, data, contains the character data as a string.
+	 * @private
 	 */
 	private function segContentHandler($parser, $data) {
 		if (strlen($this->current_element) > 0) {
@@ -273,7 +266,7 @@ class XMLQuestionImporter {
 
 	/**
 	 * Add a new module if not exist.
-	 * @access private
+	 * @private
 	 */
 	private function addModule() {
 		global $l, $db;
@@ -319,7 +312,7 @@ class XMLQuestionImporter {
 
 	/**
 	 * Add a new subject if not exist.
-	 * @access private
+	 * @private
 	 */
 	private function addSubject() {
 		global $l, $db;
@@ -374,7 +367,7 @@ class XMLQuestionImporter {
 
 	/**
 	 * Add a new question if not exist.
-	 * @access private
+	 * @private
 	 */
 	private function addQuestion() {
 		global $l, $db;
@@ -481,7 +474,7 @@ class XMLQuestionImporter {
 
 	/**
 	 * Add a new answer if not exist.
-	 * @access private
+	 * @private
 	 */
 	private function addAnswer() {
 		global $l, $db;

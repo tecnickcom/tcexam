@@ -38,75 +38,73 @@
 //============================================================+
 
 /**
+ * @file
  * TMX-PHP Bridge Class (TMXResourceBundle).
  * @package com.tecnick.tmxphpbridge
  */
 
 /**
+ * @class TMXResourceBundle
  * This PHP Class reads resource text data directly from a TMX (XML) file.
  * First, the XMLTMXResourceBundle class instantiates itself with two parameters:
  * a TMX file name and a target language name. Then, using an XML parser, it
  * reads all of a translation unit's properties for the key information and
  * specified language data and populates the resource array with them (key -> value).
  *
- * @name TMXResourceBundle
  * @package com.tecnick.tmxphpbridge
- * @abstract TMX-PHP Bridge Class
- * @link http://tmxphpbridge.sourceforge.net
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
+ * @brief TMX-PHP Bridge Class
  * @author Nicola Asuni [www.tecnick.com]
- * @copyright Copyright (c) 2004-2010 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @version 1.1.005
  */
 class TMXResourceBundle {
 
 	/**
-	 * @var array Array used to contain key-translation couples.
-	 * @access private
+	 * Array used to contain key-translation couples.
+	 * @private
 	 */
 	private $resource = array();
 
 	/**
-	 * @var string Current tu -> tuid value.
-	 * @access private
+	 * String Current tu -> tuid value.
+	 * @private
 	 */
 	private $current_key = '';
 
 	/**
-	 * @var string Current data value.
-	 * @access private
+	 * String Current data value.
+	 * @private
 	 */
 	private $current_data = '';
 
 	/**
-	 * @var string Current tuv -> xml:lang value.
-	 * @access private
+	 * String Current tuv -> xml:lang value.
+	 * @private
 	 */
 	private $current_language = '';
 
 	/**
-	 * @var boolean Is TRUE when we are inside a seg element
-	 * @access private
+	 * Boolean value true when we are inside a seg element
+	 * @private
 	 */
 	private $segdata = false;
 
 	/**
-	 * @var string ISO language identifier (a two- or three-letter code)
-	 * @access private
+	 * String ISO language identifier (a two- or three-letter code)
+	 * @private
 	 */
 	private $language = '';
 
 	/**
-	 * @var string filename for cache
-	 * @access private
+	 * String filename for cache
+	 * @private
 	 */
 	private $cachefile = '';
 
 	/**
 	 * Class constructor.
-	 * @param string $tmxfile TMX (XML) file name
-	 * @param string $language ISO language identifier (a two- or three-letter code)
-	 * @param string $cachefile set filename for cache (leave blank to exclude cache)
+	 * @param $tmxfile (string) TMX (XML) file name
+	 * @param $language (string) ISO language identifier (a two- or three-letter code)
+	 * @param $cachefile (string) set filename for cache (leave blank to exclude cache)
 	 */
 	public function __construct($tmxfile, $language, $cachefile='') {
 		// reset array
@@ -163,10 +161,10 @@ class TMXResourceBundle {
 
 	/**
 	 * Sets the start element handler function for the XML parser parser.start_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @param $attribs (array) The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
+	 * @private
 	 */
 	private function startElementHandler($parser, $name, $attribs) {
 		switch(strtolower($name)) {
@@ -198,9 +196,9 @@ class TMXResourceBundle {
 
 	/**
 	 * Sets the end element handler function for the XML parser parser.end_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @private
 	 */
 	private function endElementHandler($parser, $name) {
 		switch(strtolower($name)) {
@@ -234,9 +232,9 @@ class TMXResourceBundle {
 
 	/**
 	 * Sets the character data handler function for the XML parser parser.handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $data The second parameter, data, contains the character data as a string.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $data (string) The second parameter, data, contains the character data as a string.
+	 * @private
 	 */
 	private function segContentHandler($parser, $data) {
 		if ($this->segdata AND (strlen($this->current_key)>0) AND (strlen($this->current_language)>0)) {

@@ -40,22 +40,17 @@
 //============================================================+
 
 /**
+ * @file
  * Functions for TCExam file manager.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-09-20
  */
 
 /**
  * Delete the selected media file
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $filename the file name
+ * @param $filename (string) the file name
  * @return true in case of success, false otherwise
  */
 function F_deleteMediaFile($filename) {
@@ -78,11 +73,8 @@ function F_deleteMediaFile($filename) {
 /**
  * Rename the selected media file
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $filename old file name
- * @param string $newname new file name
+ * @param $filename (string) old file name
+ * @param $newname (string) new file name
  * @return true in case of success, false otherwise
  */
 function F_renameMediaFile($filename, $newname) {
@@ -110,10 +102,7 @@ function F_renameMediaFile($filename, $newname) {
 /**
  * Create a new media directory inside the cache
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dirname the directory name
+ * @param $dirname (string) the directory name
  * @return true in case of success, false otherwise
  */
 function F_createMediaDir($dirname) {
@@ -131,10 +120,7 @@ function F_createMediaDir($dirname) {
 /**
  * Delete the specified media directory
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dirname the directory name
+ * @param $dirname (string) the directory name
  * @return true in case of success, false otherwise
  */
 function F_deleteMediaDir($dirname) {
@@ -152,10 +138,7 @@ function F_deleteMediaDir($dirname) {
 /**
  * Get file information
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $file the file name
+ * @param $file (string) the file name
  * @return associative array containing file info or false in case of error
  */
 function F_getFileInfo($file) {
@@ -195,10 +178,7 @@ function F_getFileInfo($file) {
 /**
  * Return a formatted file size
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param int $size size in bytes
+ * @param $size (int) size in bytes
  * @return string formatted size
  */
 function F_formatFileSize($size) {
@@ -217,11 +197,8 @@ function F_formatFileSize($size) {
 /**
  * Get an html string containing active path of the specified directory with links to subdirectories.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dirpath the directory path
- * @param boolean $viewmode true=table, false=visual
+ * @param $dirpath (string) the directory path
+ * @param $viewmode (boolean) true=table, false=visual
  * @return an html string
  */
 function F_getMediaDirPathLink($dirpath, $viewmode=true) {
@@ -250,10 +227,7 @@ function F_getMediaDirPathLink($dirpath, $viewmode=true) {
 /**
  * Get an associative array of directories and folder inside the specified dir.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dir the starting directory path
+ * @param $dir (string) the starting directory path
  * @return an associative array containing sorted 'dirs' and 'files'
  */
 function F_getDirFiles($dir) {
@@ -283,10 +257,7 @@ function F_getDirFiles($dir) {
 /**
  * Return true if the file is used on question or answer descriptions
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $file the fiel to search
+ * @param $file (string) the fiel to search
  * @return true if the file is used, false otherwise
  */
 function F_isUsedMediaFile($file) {
@@ -318,12 +289,9 @@ function F_isUsedMediaFile($file) {
 /**
  * Get an html table containing files and subdirs
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dir the starting directory path
- * @param string $selected the selected file
- * @param string $params additional parameters to add on links
+ * @param $dir (string) the starting directory path
+ * @param $selected (string) the selected file
+ * @param $params (string) additional parameters to add on links
  * @return html table
  */
 function F_getDirTable($dir, $selected='', $params='') {
@@ -377,12 +345,9 @@ function F_getDirTable($dir, $selected='', $params='') {
 /**
  * Get an html visual list of files and subdirs
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
- * @param string $dir the starting directory path
- * @param string $selected the selected file
- * @param string $params additional parameters to add on links
+ * @param $dir (string) the starting directory path
+ * @param $selected (string) the selected file
+ * @param $params (string) additional parameters to add on links
  * @return html table
  */
 function F_getDirVisualTable($dir, $selected='', $params='') {

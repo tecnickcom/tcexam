@@ -34,39 +34,34 @@
 //============================================================+
 
 /**
+ * @file
  * This is an extension of the TCPDF class for creating PDF document.
  * This extension allows you to define custom Header and Footer for PDF documents.
  * @package com.tecnick.tcpdf
- * @abstract This TCPDF extension allows you to define custom Header and Footer for PDF documents.
  * @author Nicola Asuni
- * @copyright 2002-2010 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
- * @link http://www.tcpdf.org
- * @license http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
  */
 
 require(dirname(__FILE__).'/tcpdf.php');
 
 /**
+ * @class TCPDFEX
  * This is an extension of the TCPDF class for creating PDF document.
  * This extension allows you to define custom Header and Footer for PDF documents.
- * @name TCPDFEX
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni - info@tecnick.com
- * @link http://www.tcpdf.org
- * @license http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
  */
 class TCPDFEX extends TCPDF {
 
 	/**
-	 * @var URL link that points back to TCExam website.
-	 * @access protected
+	 * URL link that points back to TCExam website.
+	 * @protected
 	 */
 	protected $tcexam_backlink = '';
 
 	/**
 	 * Set an URL link that points back to TCExam website (this will be printed as QR-Code on header).
 	 * @param $link URL link.
-	 * @access public
+	 * @public
 	 */
 	public function setTCExamBackLink($link) {
 		$this->tcexam_backlink = $link;
@@ -74,7 +69,7 @@ class TCPDFEX extends TCPDF {
 
 	/**
 	 * This method is used to render the page header and overrides the original Header() method on TCPDF.
-	 * @access public
+	 * @public
 	 */
 	public function Header() {
 		if (!empty($this->tcexam_backlink)) {
@@ -108,7 +103,7 @@ class TCPDFEX extends TCPDF {
 
 	/**
 	 * This method is used to render the page footer and overrides the original Footer() method on TCPDF.
-	 * @access public
+	 * @public
 	 */
 	public function Footer() {
 		parent::Footer();

@@ -40,18 +40,16 @@
 //============================================================+
 
 /**
+ * @file
  * Create PDF document to display user's results.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-26
- * @param int $_REQUEST['mode'] document mode: 1=all users results, 2=questions stats, 3=detailed report for single user; 4=detailed report for all users; 5=detailed report for all users with only TEXT questions.
- * @param int $_REQUEST['user_id'] user ID
- * @param int $_REQUEST['startdate'] start date
- * @param int $_REQUEST['enddate'] end date
- * @param string $_REQUEST['orderfield'] ORDER BY portion of SQL selection query
+ * @param $_REQUEST['mode'] (int) document mode: 1=all users results, 2=questions stats, 3=detailed report for single user; 4=detailed report for all users; 5=detailed report for all users with only TEXT questions.
+ * @param $_REQUEST['user_id'] (int) user ID
+ * @param $_REQUEST['startdate'] (int) start date
+ * @param $_REQUEST['enddate'] (int) end date
+ * @param $_REQUEST['orderfield'] (string) ORDER BY portion of SQL selection query
  */
 
 /**

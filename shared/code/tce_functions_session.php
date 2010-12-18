@@ -40,15 +40,13 @@
 //============================================================+
 
 /**
+ * @file
  * User-level session storage functions.<br>
  * This script uses the session_set_save_handler() function to set the user-level session storage functions which are used for storing and retrieving data associated with a session.<br>
  * The session data is stored on a local database.
  * NOTE: This script automatically starts the user's session.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-26
  */
 
@@ -64,8 +62,8 @@ ini_set('session.use_cookies', TRUE);
 
 /**
  * Open session.
- * @param string $save_path path were to store session data
- * @param string $session_name name of session
+ * @param $save_path (string) path were to store session data
+ * @param $session_name (string) name of session
  * @return bool always TRUE
  */
 function F_session_open($save_path, $session_name) {
@@ -84,7 +82,7 @@ function F_session_close() {
 
 /**
  * Get session data.
- * @param string $key session ID.
+ * @param $key (string) session ID.
  * @return string session data.
  */
 function F_session_read($key) {
@@ -105,8 +103,8 @@ function F_session_read($key) {
 
 /**
  * Insert or Update session.
- * @param string $key session ID.
- * @param string $val session data.
+ * @param $key (string) session ID.
+ * @param $val (string) session data.
  * @return resource database query result.
  */
 function F_session_write($key, $val) {
@@ -151,7 +149,7 @@ function F_session_write($key, $val) {
 
 /**
  * Deletes the specific session.
- * @param string $key session ID of session to destroy.
+ * @param $key (string) session ID of session to destroy.
  * @return resource database query result.
  */
 function F_session_destroy($key) {
@@ -165,7 +163,7 @@ function F_session_destroy($key) {
  * Garbage collector.<br>
  * Deletes expired sessions.<br>
  * NOTE: while time() function returns a 32 bit integer, it works fine until year 2038.
- * @param int $maxlife max session life time in seconds. The default value is defined by K_SESSION_LIFE costant on shared/config/tce_config.php file.
+ * @param $maxlife (int) max session life time in seconds. The default value is defined by K_SESSION_LIFE costant on shared/config/tce_config.php file.
  * @return int number of deleted sessions.
  */
 function F_session_gc($maxlife = K_SESSION_LIFE) {
@@ -181,11 +179,8 @@ function F_session_gc($maxlife = K_SESSION_LIFE) {
 /**
  * Convert encoded session string data to array.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-10-18
- * @param string $sd input data string
+ * @param $sd (string) input data string
  * @return array
  */
 function F_session_string_to_array($sd) {
@@ -203,9 +198,6 @@ function F_session_string_to_array($sd) {
 /**
  * Generate a client fingerprint (unique ID for the client browser)
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-10-04
  * @return string client ID
  */
@@ -235,9 +227,6 @@ function getClientFingerprint() {
 /**
  * Generate and return a new session ID.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2010-10-04
  * @return string PHPSESSID
  */

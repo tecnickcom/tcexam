@@ -41,12 +41,10 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to handle test generation, status and user access.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-05-28
  */
 
@@ -166,7 +164,7 @@ function F_getUserTests() {
 
 /**
  * Remove the specified test results for the current user
- * @param int $test_id Test ID
+ * @param $test_id (int) Test ID
  */
 function F_removeTestResults($test_id) {
 	require_once('../config/tce_config.php');
@@ -194,8 +192,8 @@ function F_removeTestResults($test_id) {
 
 /**
  * Check if user's IP is valid over test IP range
- * @param int $user_ip user's IP address in expanded IPv6 format.
- * @param int $test_ips comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses. Intervals must be specified using the '-' character.
+ * @param $user_ip (int) user's IP address in expanded IPv6 format.
+ * @param $test_ips (int) comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses. Intervals must be specified using the '-' character.
  * @return true if IP is valid, false otherwise
  */
 function F_isValidIP($user_ip, $test_ips) {
@@ -251,9 +249,9 @@ function F_isValidIP($user_ip, $test_ips) {
 }
 /**
  * Check if user is authorized to execute the specified test
- * @param int $test_id ID of the selected test
- * @param int $user_ip user's IP address.
- * @param int $test_ip test IP valid addresses. Various IP addresses may be separated using comma character. The asterisk character may be used to indicate "any number".
+ * @param $test_id (int) ID of the selected test
+ * @param $user_ip (int) user's IP address.
+ * @param $test_ip (int) test IP valid addresses. Various IP addresses may be separated using comma character. The asterisk character may be used to indicate "any number".
  * @return true if is user is authorized, false otherwise
  */
 function F_isValidTestUser($test_id, $user_ip, $test_ip) {
@@ -277,7 +275,7 @@ function F_isValidTestUser($test_id, $user_ip, $test_ip) {
 }
 /**
  * Terminate user's test<br>
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @since 4.0.000 (2006-09-27)
  */
 function F_terminateUserTest($test_id) {
@@ -296,9 +294,9 @@ function F_terminateUserTest($test_id) {
 
 /**
  * Check and returns specific test status for the specified user.<br>
- * @param int $user_id user ID
- * @param int $test_id test ID
- * @param int $duration test duration in seconds
+ * @param $user_id (int) user ID
+ * @param $test_id (int) test ID
+ * @param $duration (int) test duration in seconds
  * @return test status: <ul><li>0 = the test generation process is started but not completed;</li><li>1 = the test has been successfully created;</li><li>2 = all questions have been displayed to the user;</li><li>3 = all questions have been answered;</li><li>4 = test locked (for timeout);</li></ul>
  */
 function F_checkTestStatus($user_id, $test_id, $duration) {
@@ -383,8 +381,8 @@ function F_checkTestStatus($user_id, $test_id, $duration) {
 
 /**
  * Returns XHTML link to open test info popup.
- * @param int $test_id test ID
- * @param string $link_name link caption
+ * @param $test_id (int) test ID
+ * @param $link_name (string) link caption
  * return XHTML code
  */
 function F_testInfoLink($test_id, $link_name='') {
@@ -409,8 +407,8 @@ function F_testInfoLink($test_id, $link_name='') {
 
 /**
  * Returns an XHTML string containing specified test information.
- * @param int $test_id test ID
- * @param boolean $showip if true display enabled users' IP range
+ * @param $test_id (int) test ID
+ * @param $showip (boolean) if true display enabled users' IP range
  * @return string containing an XHTML code
  */
 function F_printTestInfo($test_id, $showip=false) {
@@ -459,7 +457,7 @@ function F_printTestInfo($test_id, $showip=false) {
 
 /**
  * Returns the test data.
- * @param int $test_id test ID.
+ * @param $test_id (int) test ID.
  * @return array containing test data.
  */
 function F_getTestData($test_id) {
@@ -481,7 +479,7 @@ function F_getTestData($test_id) {
 
 /**
  * Returns user data.
- * @param int $test_id test ID.
+ * @param $user_id (int) User ID.
  * @return array containing test data.
  */
 function F_getUserData($user_id) {
@@ -503,7 +501,7 @@ function F_getUserData($user_id) {
 
 /**
  * Returns the test name.
- * @param int $test_id test ID.
+ * @param $test_id (int) test ID.
  * @return string test name or empty string in case of error.
  */
 function F_getTestName($test_id) {
@@ -514,7 +512,7 @@ function F_getTestName($test_id) {
 
 /**
  * Returns the test duration time in seconds.
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @return int test duration time in seconds
  */
 function F_getTestDuration($test_id) {
@@ -526,7 +524,7 @@ function F_getTestDuration($test_id) {
 
 /**
  * Returns the user's test start time in seconds since UNIX epoch (1970-01-01 00:00:00).
- * @param int $testuser_id user's test ID
+ * @param $testuser_id (int) user's test ID
  * @return int start time in seconds
  */
 function F_getTestStartTime($testuser_id) {
@@ -554,9 +552,9 @@ function F_getTestStartTime($testuser_id) {
  * <li>div.row span.label</li>
  * <li>div.row span.formw</li>
  * </ul>
- * @param string $label string to display on the left column
- * @param string $description string to display on the title attribute of the left column field
- * @param string $value string to display on the right column
+ * @param $label (string) string to display on the left column
+ * @param $description (string) string to display on the title attribute of the left column field
+ * @param $value (string) string to display on the right column
  * @return string XHTML code
  */
 function F_twoColRow($label="", $description="", $value="") {
@@ -577,7 +575,7 @@ function F_twoColRow($label="", $description="", $value="") {
 /**
  * Returns true if the current user is authorized to execute the selected test.<br>
  * Generates the test if it's not already generated.
- * @param int $test_id test ID.
+ * @param $test_id (int) test ID.
  * @return true if user is authorized, false otherwise.
  */
 function F_executeTest($test_id) {
@@ -626,8 +624,8 @@ function F_executeTest($test_id) {
 /**
  * Checks if the current user is the right testlog_id owner.<br>
  * This function is used for security reasons.
- * @param int $test_id test ID
- * @param int $testlog_id test log ID
+ * @param $test_id (int) test ID
+ * @param $testlog_id (int) test log ID
  * @return boolean TRUE in case of success, FALSE otherwise
  */
 function F_isRightTestlogUser($test_id, $testlog_id) {
@@ -656,13 +654,12 @@ function F_isRightTestlogUser($test_id, $testlog_id) {
 
 /**
  * Return an array containing answer_id field of selected answers.<br>
- * @param int $question_id question ID
- * @param boolean $checktype if true checks for answer_isright value on WHERE clause
- * @param int $isright value (0 = false, 1 = true), if non-empty checks for answer_isright value on WHERE clause
- * @param int $ordering ordering type question (0 = false, 1 = true)
- * @param int $limit maximum number of IDs to return
- * @param int $startindex array starting index (default = 0)
- * @param boolean $randorder if true user random order
+ * @param $question_id (int) question ID
+ * @param $isright (int) value (0 = false, 1 = true), if non-empty checks for answer_isright value on WHERE clause
+ * @param $ordering (int) ordering type question (0 = false, 1 = true)
+ * @param $limit (int) maximum number of IDs to return
+ * @param $startindex (int) array starting index (default = 0)
+ * @param $randorder (boolean) if true user random order
  * @return array id of selected answers
  */
 function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $startindex=0, $randorder=true) {
@@ -711,8 +708,8 @@ function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $
 
 /**
  * Add specified answers on tce_tests_logs_answer table.
- * @param int $testlog_id testlog ID
- * @param array $answers_ids array of answer IDs to add
+ * @param $testlog_id (int) testlog ID
+ * @param $answers_ids (array) array of answer IDs to add
  * @return boolean true in case of success, false otherwise
  */
 function F_addLogAnswers($testlog_id, $answers_ids) {
@@ -743,7 +740,7 @@ function F_addLogAnswers($testlog_id, $answers_ids) {
 
 /**
  * Returns the ID of the tce_tests_users table corresponding to a complete test of $test_id type.
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @return int testuser ID
  */
 function F_getFirstTestUser($test_id) {
@@ -769,10 +766,11 @@ function F_getFirstTestUser($test_id) {
 
 /**
  * Creates a new tce_tests_logs table entry and returns inserted ID.
- * @param int $testuser_id ID of tce_tests_users
- * @param int $question_id question ID
- * @param int $score score for unanswered questions
- * @param int $order question display order
+ * @param $testuser_id (int) ID of tce_tests_users
+ * @param $question_id (int) question ID
+ * @param $score (int) score for unanswered questions
+ * @param $order (int) question display order
+ * @param $num_answers (int) number of alternative answers
  * @return int testlog ID
  */
 function F_newTestLog($testuser_id, $question_id, $score, $order, $num_answers=0) {
@@ -808,8 +806,8 @@ function F_newTestLog($testuser_id, $question_id, $score, $order, $num_answers=0
 
 /**
  * Create user's test and returns TRUE on success.
- * @param int $test_id test ID.
- * @param int $user_id user ID.
+ * @param $test_id (int) test ID.
+ * @param $user_id (int) user ID.
  * @return boolean TRUE in case of success, FALSE otherwise.
  */
 function F_createTest($test_id, $user_id) {
@@ -1021,12 +1019,12 @@ function F_createTest($test_id, $user_id) {
 
 /**
  * Add answers to selected question.
- * @param int $testlog_id testlog ID.
- * @param int $question_id question ID.
- * @param int $question_type type of question.
- * @param int $tsubset_answers number of alternative answers to display.
- * @param int $firsttest ID of first test testuser_id.
- * @param array $testdata array of test data.
+ * @param $testlog_id (int) testlog ID.
+ * @param $question_id (int) question ID.
+ * @param $question_type (int) type of question.
+ * @param $num_answers (int) number of alternative answers to display.
+ * @param $firsttest (int) ID of first test testuser_id.
+ * @param $testdata (array) array of test data.
  * @return boolean TRUE in case of success, FALSE otherwise.
  */
 function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_answers, $firsttest, $testdata) {
@@ -1097,11 +1095,11 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
 
 /**
  * Updates question log data (register user's answers and calculate scores).
- * @param int $test_id test ID
- * @param int $testlog_id test log ID
- * @param array $answer_id answer_id form field value
- * @param string $answer_text answer text
- * @param int $reaction_time reaction time in milliseconds
+ * @param $test_id (int) test ID
+ * @param $testlog_id (int) test log ID
+ * @param $answer_id (array) answer_id form field value
+ * @param $answer_text (string) answer text
+ * @param $reaction_time (int) reaction time in milliseconds
  * @return boolean TRUE in case of success, FALSE otherwise
  */
 function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='', $reaction_time=0) {
@@ -1323,9 +1321,9 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
  * <li>div.rowl</li>
  * <li>textarea.answertext</li>
  * </ul>
- * @param int $test_id test ID
- * @param int $testlog_id test log ID
- * @param string $formname form name (form ID)
+ * @param $test_id (int) test ID
+ * @param $testlog_id (int) test log ID
+ * @param $formname (string) form name (form ID)
  * @return string XHTML code
  */
 function F_questionForm($test_id, $testlog_id, $formname) {
@@ -1597,9 +1595,10 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 
 /**
  * Returns a questions menu and navigator buttons.
- * @param array $testdata test data
- * @param int $testuser_id user's test ID
- * @param boolean $disable if TRUE disable the questions list.
+ * @param $testdata (array) test data
+ * @param $testuser_id (int) user's test ID
+ * @param $testlog_id (int) test log ID
+ * @param $disable (boolean) if TRUE disable the questions list.
  * @return string XHTML code
  */
 function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false) {
@@ -1724,7 +1723,7 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 
 /**
  * Returns the number of omitted questions (unanswered + undisplayed).
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @return integer number
  */
 function F_getNumOmittedQuestions($test_id) {
@@ -1743,7 +1742,7 @@ function F_getNumOmittedQuestions($test_id) {
 
 /**
  * Display a textarea for user's comment.<br>
- * @param int $test_id test ID
+ * @param $test_id (int) test ID
  * @return string XHTML code
  * @since 4.0.000 (2006-10-01)
  */
@@ -1778,8 +1777,8 @@ function F_testComment($test_id) {
 
 /**
  * Updates user's test comment.<br>
- * @param int $test_id test ID
- * @param string $comment user's comment.
+ * @param $test_id (int) test ID
+ * @param $testcomment (string) user comment.
  * @return string XHTML code
  * @since 4.0.000 (2006-10-01)
  */

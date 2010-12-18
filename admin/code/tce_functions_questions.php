@@ -40,25 +40,20 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to manipulate questions.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
  */
 
 /**
  * Enable/Disable selected question
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
- * @param int $question_id question ID
- * @param int $subject_id subject ID
- * @param boolean $enables if true enables question, false otherwise
+ * @param $question_id (int) question ID
+ * @param $subject_id (int) subject ID
+ * @param $enabled (boolean) if true enables question, false otherwise
  */
 function F_question_set_enabled($question_id, $subject_id, $enabled=true) {
 	global $l, $db;
@@ -78,11 +73,8 @@ function F_question_set_enabled($question_id, $subject_id, $enabled=true) {
 /**
  * Get question position
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
- * @param int $question_id question ID
+ * @param $question_id (int) question ID
  * @return int question position
  */
 function F_question_get_position($question_id) {
@@ -107,11 +99,8 @@ function F_question_get_position($question_id) {
 /**
  * Get question data
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
- * @param int $question_id question ID
+ * @param $question_id (int) question ID
  * @return array containing selected question data, false in case of error
  */
 function F_question_get_data($question_id) {
@@ -136,13 +125,9 @@ function F_question_get_data($question_id) {
 /**
  * Delete selected question (or disable it if used)
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
- * @param int $question_id question ID
- * @param int $subject_id subject ID
- * @param boolean $enables if true enables question, false otherwise
+ * @param $question_id (int) question ID
+ * @param $subject_id (int) subject ID
  */
 function F_question_delete($question_id, $subject_id) {
 	global $l, $db;
@@ -190,13 +175,9 @@ function F_question_delete($question_id, $subject_id) {
 /**
  * Copy selected question to another topic
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-11-26
- * @param int $question_id question ID
- * @param int $new_subject_id new subject ID
- * @param boolean $enables if true enables question, false otherwise
+ * @param $question_id (int) question ID
+ * @param $new_subject_id (int) new subject ID
  */
 function F_question_copy($question_id, $new_subject_id) {
 	global $l, $db;

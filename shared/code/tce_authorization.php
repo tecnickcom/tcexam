@@ -41,6 +41,7 @@
 //============================================================+
 
 /**
+ * @file
  * This script handles user's sessions.
  * Just the registered users granted with a username and a password are entitled to access the restricted areas (level > 0) of TCExam and the public area to perform the tests.
  * The user's level is a numeric value that indicates which resources (pages, modules, services) are accessible by the user.
@@ -52,10 +53,8 @@
  * <li>10 = administrator with full access rights</li>
  * </ul>
  * @package com.tecnick.tcexam.shared
+ * @brief TCExam Shared Area
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-09-26
  */
 

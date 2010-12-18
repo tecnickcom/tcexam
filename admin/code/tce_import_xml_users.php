@@ -41,12 +41,10 @@
 //============================================================+
 
 /**
+ * @file
  * Import users from an XML file or CSV (Tab delimited text file).
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-17
  */
 
@@ -145,57 +143,53 @@ require_once('../code/tce_page_footer.php');
 // ------------------------------------------------------------
 
 /**
+ * @class XMLUserImporter
  * This PHP Class imports users and groups data directly from a XML file.
- *
  * @package com.tecnick.tcexam.admin
- * @name XMLUserImporter
- * @abstract XML users and groups importer
- * @license http://www.gnu.org/copyleft/lesser.html GPL
  * @author Nicola Asuni [www.tecnick.com]
- * @copyright Copyright (c) 2004-2010 - Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) - Via della Pace n.11 - 09044 Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
  * @version 1.0.000
  */
 class XMLUserImporter {
 
 	/**
-	 * @var string Current data element.
-	 * @access private
+	 * String Current data element.
+	 * @private
 	 */
 	private $current_element = '';
 
 	/**
-	 * @var string Current data value.
-	 * @access private
+	 * String Current data value.
+	 * @private
 	 */
 	private $current_data = '';
 
 	/**
-	 * @var array Array for storing user data.
-	 * @access private
+	 * Array Array for storing user data.
+	 * @private
 	 */
 	private $user_data = Array();
 
 	/**
-	 * @var array Array for storing user's group data.
-	 * @access private
+	 * Array for storing user's group data.
+	 * @private
 	 */
 	private $group_data = Array();
 
 	/**
-	 * @var int ID of last inserted user (counter)
-	 * @access private
+	 * Int ID of last inserted user (counter)
+	 * @private
 	 */
 	private $user_id = 0;
 
 	/**
-	 * @var string XML file
-	 * @access private
+	 * String XML file
+	 * @private
 	 */
 	private $xmlfile = '';
 
 	/**
 	 * Class constructor.
-	 * @param string $xmlfile XML file name
+	 * @param $xmlfile (string) XML file name
 	 */
 	public function __construct($xmlfile) {
 		// set xml file
@@ -230,10 +224,10 @@ class XMLUserImporter {
 
 	/**
 	 * Sets the start element handler function for the XML parser parser.start_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @param array $attribs The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @param $attribs (array) The third parameter, attribs, contains an associative array with the element's attributes (if any). The keys of this array are the attribute names, the values are the attribute values. Attribute names are case-folded on the same criteria as element names. Attribute values are not case-folded. The original order of the attributes can be retrieved by walking through attribs the normal way, using each(). The first key in the array was the first attribute, and so on.
+	 * @private
 	 */
 	private function startElementHandler($parser, $name, $attribs) {
 		$name = strtolower($name);
@@ -274,9 +268,9 @@ class XMLUserImporter {
 
 	/**
 	 * Sets the end element handler function for the XML parser parser.end_element_handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $name The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $name (string) The second parameter, name, contains the name of the element for which this handler is called. If case-folding is in effect for this parser, the element name will be in uppercase letters.
+	 * @private
 	 */
 	private function endElementHandler($parser, $name) {
 		global $l, $db;
@@ -480,9 +474,9 @@ class XMLUserImporter {
 
 	/**
 	 * Sets the character data handler function for the XML parser parser.handler.
-	 * @param resource $parser The first parameter, parser, is a reference to the XML parser calling the handler.
-	 * @param string $data The second parameter, data, contains the character data as a string.
-	 * @access private
+	 * @param $parser (resource) The first parameter, parser, is a reference to the XML parser calling the handler.
+	 * @param $data (string) The second parameter, data, contains the character data as a string.
+	 * @private
 	 */
 	private function segContentHandler($parser, $data) {
 		if (strlen($this->current_element) > 0) {
@@ -496,7 +490,7 @@ class XMLUserImporter {
 /**
  * Import users from CSV file (tab delimited text).
  * The format of CSV is the same obtained by exporting data from Users Selection Form.
- * @param string $csvfile CSV (tab delimited text) file name
+ * @param $csvfile (string) CSV (tab delimited text) file name
  * @return boolean TRUE in case of success, FALSE otherwise
  */
 function F_import_csv_users($csvfile) {

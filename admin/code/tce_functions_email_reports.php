@@ -40,26 +40,21 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to send email reports to users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2005-02-24
  */
 
 /**
  * Sends email test reports to users.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2005-02-24
- * @param int $test_id TEST ID
- * @param int $user_id USER ID (0 means all users)
- * @param int $group_id GROUP ID (0 means all groups)
- * @param int $mode type of report to send: 0=detailed report; 1=summary report (without questions)
+ * @param $test_id (int) TEST ID
+ * @param $user_id (int) USER ID (0 means all users)
+ * @param $group_id (int) GROUP ID (0 means all groups)
+ * @param $mode (int) type of report to send: 0=detailed report; 1=summary report (without questions)
  */
 function F_send_report_emails($test_id, $user_id=0, $group_id=0, $mode=0) {
 	global $l, $db;

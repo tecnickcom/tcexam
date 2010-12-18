@@ -40,12 +40,11 @@
 //============================================================+
 
 /**
+ * @file
  * PHPMailer class extension.
  * @package PHPMailer
+ * @brief PHP email transport class 
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2005-02-24
  */
 
@@ -63,27 +62,24 @@ $old_error_handler = set_error_handler('F_error_handler', E_ERROR | E_WARNING | 
 require_once("../../shared/phpmailer/class.phpmailer.php");
 
 /**
- * C_mailer - PHPMailer class extension
+ * @class C_mailer
+ * PHPMailer class extension.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @package PHPMailer
  * @since 2005-02-24
  */
 class C_mailer extends PHPMailer {
 
 	/**
-     * language array
-     * @var string array
-     */
+	 * Language array.
+	 */
 	public $language;
 
 	/**
 	 * Replace the default SetError
-	 * @var string $msg error message
-	 * @access public
-     * @return void
+	 * @param $msg (string) error message
+	 * @public
+	 * @return void
 	 */
 	public function SetError($msg) {
         $this->error_count++;
@@ -95,8 +91,8 @@ class C_mailer extends PHPMailer {
 	/**
      * Returns a message in the appropriate language.
      * (override original Lang method).
-     * @var string $key language key
-     * @access protected
+     * @param $key (string) language key
+     * @protected
      * @return string
      */
     protected function Lang($key) {
@@ -111,11 +107,11 @@ class C_mailer extends PHPMailer {
 	 * Check that a string looks roughly like an email address should
 	 * (override original ValidateAddress method).
 	 * Conforms approximately to RFC2822
-	 * @link http://www.hexillion.com/samples/#Regex Original pattern found here
-	 * @param string $address The email address to check
+	 * Original pattern found at: http://www.hexillion.com/samples/#Regex
+	 * @param $address (string) The email address to check
 	 * @return boolean
 	 * @static
-	 * @access public
+	 * @public
 	*/
 	public static function ValidateAddress($address) {
 		return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);

@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Display all test results for the selected users.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-12-26
  */
 
@@ -490,12 +488,12 @@ require_once('../code/tce_page_footer.php');
 
 /**
  * Display table header element with order link.
- * @param string $user_id user ID
- * @param string $order_field name of table field
- * @param string $orderdir order direction
- * @param string $title title field of anchor link
- * @param string $name column name
- * @param string $current_order_field current order field name
+ * @param $user_id (string) user ID
+ * @param $order_field (string) name of table field
+ * @param $orderdir (string) order direction
+ * @param $title (string) title field of anchor link
+ * @param $name (string) column name
+ * @param $current_order_field (string) current order field name
  * @return table header element string
  */
 function F_allresults_user_table_header_element($user_id, $order_field, $orderdir, $title, $name, $current_order_field="") {
@@ -515,11 +513,10 @@ function F_allresults_user_table_header_element($user_id, $order_field, $orderdi
 
 /**
  * Returns an URL to open the PDF generator page for user's results.
- * @param string $mode PDF mode (1=all users results, 2=questions stats, 3=detailed report for single user 4=all users details)
- * @param int $user_id user ID
- * @param string $startdate start date in yyyy-mm-dd hh:mm:ss format
- * @param string $enddate end date in yyyy-mm-dd hh:mm:ss format
- * @param string $order_field ORDER BY portion of the SQL query
+ * @param $user_id (int) user ID
+ * @param $startdate (string) start date in yyyy-mm-dd hh:mm:ss format
+ * @param $enddate (string) end date in yyyy-mm-dd hh:mm:ss format
+ * @param $order_field (string) ORDER BY portion of the SQL query
  * @return string
  */
 function pdfUserResultsLink($user_id, $startdate, $enddate, $order_field='') {

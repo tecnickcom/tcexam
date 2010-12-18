@@ -40,15 +40,13 @@
 //============================================================+
 
 /**
+ * @file
  * Creates PDF documents for Pen-and-Paper testing.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2004-06-13
- * @param int $_REQUEST['testid'] test ID
- * @param int $_REQUEST['num'] number of tests to generate
+ * @param $_REQUEST['testid'] (int) test ID
+ * @param $_REQUEST['num'] (int) number of tests to generate
  */
 
 /**

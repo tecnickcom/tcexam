@@ -40,10 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Automatic updates.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2008-2009, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
  * @since 2009-09-14
  */
 

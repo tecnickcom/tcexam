@@ -40,14 +40,11 @@
 //============================================================+
 
 /**
+ * @file
  * Outputs default XHTML popup page header.
  * @package com.tecnick.tcexam.public
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-11-01
- * @uses tce_xhtml_header.php
  */
 
 /**

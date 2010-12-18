@@ -40,29 +40,23 @@
 //============================================================+
 
 /**
+ * @file
  * Functions to display online users' data.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-10-18
  */
 
 /**
  * Display online users form using F_list_online_users function.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-10-18
- * @param string $wherequery users selection query
- * @param string $order_field order by column name
- * @param string $orderdir oreder direction
- * @param string $firstrow number of first row to display
- * @param string $rowsperpage number of rows per page
+ * @param $wherequery (string) users selection query
+ * @param $order_field (string) order by column name
+ * @param $orderdir (string) oreder direction
+ * @param $firstrow (string) number of first row to display
+ * @param $rowsperpage (string) number of rows per page
  * @return false in case of empty database, true otherwise
- * @uses F_list_online_users
  */
 function F_show_online_users($wherequery, $order_field, $orderdir, $firstrow, $rowsperpage) {
 	global $l;
@@ -74,15 +68,12 @@ function F_show_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 /**
  * Display online users.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2001-10-18
- * @param string $wherequery users selection query
- * @param string $order_field order by column name
- * @param int $orderdir oreder direction
- * @param int $firstrow number of first row to display
- * @param int $rowsperpage number of rows per page
+ * @param $wherequery (string) users selection query
+ * @param $order_field (string) order by column name
+ * @param $orderdir (int) oreder direction
+ * @param $firstrow (int) number of first row to display
+ * @param $rowsperpage (int) number of rows per page
  * @return false in case of empty database, true otherwise
  */
 function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $rowsperpage) {

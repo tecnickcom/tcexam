@@ -40,12 +40,10 @@
 //============================================================+
 
 /**
+ * @file
  * Display all questions grouped by topic.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2005-07-06
  */
 
@@ -382,18 +380,15 @@ require_once('../code/tce_page_footer.php');
 /**
  * Display a list of selected questions.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2005-07-06
- * @param string $wherequery question selection query
- * @param string $subject_module_id module ID
- * @param string $subject_id topic ID
- * @param string $order_field order by column name
- * @param int $orderdir oreder direction
- * @param int $firstrow number of first row to display
- * @param int $rowsperpage number of rows per page
- * @param boolean $hide_answers if true hide answers
+ * @param $wherequery (string) question selection query
+ * @param $subject_module_id (string) module ID
+ * @param $subject_id (string) topic ID
+ * @param $order_field (string) order by column name
+ * @param $orderdir (int) oreder direction
+ * @param $firstrow (int) number of first row to display
+ * @param $rowsperpage (int) number of rows per page
+ * @param $hide_answers (boolean) if true hide answers
  * @return false in case of empty database, true otherwise
  */
 function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers=false) {

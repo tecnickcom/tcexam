@@ -41,20 +41,18 @@
 //============================================================+
 
 /**
+ * @file
  * Check user authorization against alternative systems (RADIUS, LDAP, CAS, HTTP BASIC, ...)
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2008-03-28
  */
 
 /**
  * Alternate Login.
  * Try to login user using alternative systems (Radius, LDAP, CAS, HTTP BASIC, ...)
- * @param string $username user name
- * @param string $password password
+ * @param $username (string) user name
+ * @param $password (string) password
  * @return array of user's data for successful login, false otherwise
  * @since 2008-03-28
  */

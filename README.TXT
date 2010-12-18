@@ -11,9 +11,9 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.1.010
+Version: 11.1.011
 
-Release date: 2010-12-06
+Release date: 2010-12-18
 
 Author:
 	Nicola Asuni
@@ -128,8 +128,7 @@ Requirements and Install Documentation:
 	Check also the documentation on http://www.tcexam.org
 
 Source Documentation:
-	admin/doc/code/index.html
-	admin/doc/database/index.html
+	http://www.tcexam.org
 
 Support - Help:
 	Please use support forum under http://www.sourceforge.net/projects/tcexam

@@ -40,20 +40,18 @@
 //============================================================+
 
 /**
+ * @file
  * Support functions for user registration.
  * @package com.tecnick.tcexam.shared
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2003-03-31
  */
 
 /**
  * Send a registration verification email to user.
- * @param int $user_id User ID
- * @param string $user_email User email
- * @param string $user_verifycode user verification code
+ * @param $user_id (int) User ID
+ * @param $user_email (string) User email
+ * @param $user_verifycode (string) user verification code
  */
 function F_send_user_reg_email($user_id, $user_email, $user_verifycode) {
 	global $l, $db;

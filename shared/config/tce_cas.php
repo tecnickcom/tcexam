@@ -36,6 +36,7 @@
 //============================================================+
 
 /**
+ * @file
  * Configuration file for CAS (Central Authentication Service)
  * CAS is a centralize authentication service for the web where the user does not need to give their
  * login credentials (password) to the target website. It was developed at Yale and
@@ -45,9 +46,6 @@
  * WARNING: TCExam trusts CAS mechanism and replicates any authenticated user into the TCExam database. Passwords are set to the username string, therefore, TCExam authentication is not secure for replicated users if CAS Authentication is turned off again.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Tim Gebhardt
- * @copyright Copyright © 2009, Tim Gebhardt - DePaul University - tgebhar@cdm.depaul.edu
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.cdm.depaul.edu
  * @since 2009-02-06
  */
 

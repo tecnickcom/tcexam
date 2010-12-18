@@ -41,12 +41,10 @@
 //============================================================+
 
 /**
+ * @file
  * Display all questions grouped by topic in XML format.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-11
  */
 
@@ -103,13 +101,10 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 /**
  * Export all questions of the selected subject to XML.
  * @author Nicola Asuni
- * @copyright Copyright © 2004-2010, Nicola Asuni - Tecnick.com S.r.l. - ITALY - www.tecnick.com - info@tecnick.com
- * @license http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License
- * @link www.tecnick.com
  * @since 2006-03-06
- * @param int $module_id  module ID
- * @param int $subject_id topic ID
- * @param int $expmode export mode: 1 = selected topic; 2 = selected module; 3 = all modules.
+ * @param $module_id (int)  module ID
+ * @param $subject_id (int) topic ID
+ * @param $expmode (int) export mode: 1 = selected topic; 2 = selected module; 3 = all modules.
  * @return XML data
  */
 function F_xml_export_questions($module_id, $subject_id, $expmode) {
