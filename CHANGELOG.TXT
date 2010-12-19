@@ -1,3 +1,8 @@
+11.1.012 (2010-12-19)
+	- Bug item #3140294 "Question move" was fixed.
+	- Fonts for PDF documents were updated.
+	- TCPDF library was updated.
+
 11.1.011 (2010-12-18)
 	- A problem with public PDF documents was fixed.
 	- Several source code documentation errors were fixed.

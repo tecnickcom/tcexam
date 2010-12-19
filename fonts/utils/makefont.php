@@ -41,13 +41,14 @@
 //============================================================+
 
 /**
+ * @file
  * Utility to generate font definition files fot TCPDF.
  * @author Nicola Asuni, Olivier Plathey, Steven Wittens
  * @package com.tecnick.tcpdf
 */
 
 /**
- *
+ * Convert a Font for TCPDF
  * @param $fontfile (string) path to font file (TTF, OTF or PFB).
  * @param $fmfile (string) font metrics file (UFM or AFM).
  * @param $embedded (boolean) Set to false to not embed the font, true otherwise (default).

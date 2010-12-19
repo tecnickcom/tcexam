@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
-// Last Update : 2009-10-10
+// Last Update : 2010-12-19
 //
 // Description : Functions to manipulate questions.
 //
@@ -214,6 +214,7 @@ function F_question_copy($question_id, $new_subject_id) {
 			$sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
 				question_subject_id,
 				question_description,
+				question_explanation,
 				question_type,
 				question_difficulty,
 				question_enabled,
@@ -225,6 +226,7 @@ function F_question_copy($question_id, $new_subject_id) {
 				) VALUES (
 				'.$new_subject_id.',
 				\''.F_escape_sql($q['question_description']).'\',
+				\''.F_escape_sql($q['question_explanation']).'\',
 				\''.$q['question_type'].'\',
 				\''.$q['question_difficulty'].'\',
 				\''.$q['question_enabled'].'\',
@@ -248,6 +250,7 @@ function F_question_copy($question_id, $new_subject_id) {
 					$sqli = 'INSERT INTO '.K_TABLE_ANSWERS.' (
 						answer_question_id,
 						answer_description,
+						answer_explanation,
 						answer_isright,
 						answer_enabled,
 						answer_position,
@@ -255,6 +258,7 @@ function F_question_copy($question_id, $new_subject_id) {
 						) VALUES (
 						'.$new_question_id.',
 						\''.F_escape_sql($m['answer_description']).'\',
+						\''.F_escape_sql($m['answer_explanation']).'\',
 						\''.$m['answer_isright'].'\',
 						\''.$m['answer_enabled'].'\',
 						'.F_zero_to_null($m['answer_position']).',
