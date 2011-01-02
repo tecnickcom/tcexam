@@ -1,3 +1,6 @@
+11.1.013 (2011-01-02)
+	- A problem with [generate] button on tce_edit_test.php file was fixed.
+
 11.1.012 (2010-12-19)
 	- Bug item #3140294 "Question move" was fixed.
 	- Fonts for PDF documents were updated.

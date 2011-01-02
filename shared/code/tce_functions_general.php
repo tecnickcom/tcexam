@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2010-09-06
+// Last Update : 2011-01-02
 //
 // Description : General functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -75,8 +75,9 @@ function F_count_rows($dbtable, $where='') {
  * @return string $str quoted if not empty, NULL otherwise
  */
 function F_empty_to_null($str) {
+	require_once('../../shared/code/tce_db_dal.php');
 	if (strlen($str) > 0) {
-		return '\''.$str.'\'';
+		return '\''.F_escape_sql($str).'\'';
 	}
 	return 'NULL';
 }
@@ -88,10 +89,11 @@ function F_empty_to_null($str) {
  * @return string $num if != 0, NULL otherwise
  */
 function F_zero_to_null($num) {
+	require_once('../../shared/code/tce_db_dal.php');
 	if ($num == 0) {
 		return 'NULL';
 	}
-	return $num;
+	return F_escape_sql($num);
 }
 
 /**

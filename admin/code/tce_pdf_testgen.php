@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2010-12-06
+// Last Update : 2011-01-02
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -49,9 +49,6 @@
  * @param $_REQUEST['num'] (int) number of tests to generate
  */
 
-/**
- */
-
 require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
@@ -71,10 +68,9 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	exit;
 }
 
-if(isset($_REQUEST['num'])) {
+if (isset($_REQUEST['num'])) {
 	$test_num = $_REQUEST['num'];
-}
-else {
+} else {
 	$test_num = 1;
 }
 
