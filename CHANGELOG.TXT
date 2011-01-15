@@ -1,3 +1,6 @@
+11.1.014 (2011-01-15)
+	- TCPDF library and Arabic language were updated. 
+
 11.1.013 (2011-01-02)
 	- A problem with [generate] button on tce_edit_test.php file was fixed.
 

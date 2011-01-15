@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2010-12-06 09:02:19
+// DATE: 2011-01-15 10:42:35
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -337,7 +337,7 @@ $tmx['w_quote']='اقتباس';
 $tmx['w_random_answers']='اجابات عشوائية';
 $tmx['w_random_questions']='اسئلة عشوائية';
 $tmx['w_rating']='التقييم';
-$tmx['w_record_status']='سجل المنزلة';
+$tmx['w_record_status']='سجل الحالة';
 $tmx['w_recurrence']='التكرار';
 $tmx['w_regcode']='رقم التسجيل';
 $tmx['w_regdate']='تاريخ التسجيل';
@@ -394,7 +394,7 @@ $tmx['h_redo']='تكرار آخر عملية';
 $tmx['h_submit_file']='تسليم ملف';
 $tmx['w_questions_for']='اسئلة لـ';
 $tmx['m_unavailable_questions']='اﻻسئلة المحددة غير متاحة في قعاعدة البيانات';
-$tmx['w_status']='المنزلة';
+$tmx['w_status']='الحالة';
 $tmx['w_lock']='مقفل';
 $tmx['w_unlock']='مفتوح';
 $tmx['w_locked']='مغلق';
