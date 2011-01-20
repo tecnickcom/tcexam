@@ -1,3 +1,7 @@
+11.1.015 (2011-01-20)
+	- Scrollbars were added on object window.
+	- TCPDF library was updated. 
+
 11.1.014 (2011-01-15)
 	- TCPDF library and Arabic language were updated. 
 

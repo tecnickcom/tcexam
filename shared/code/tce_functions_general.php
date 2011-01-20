@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2011-01-02
+// Last Update : 2011-01-20
 //
 // Description : General functions.
 //
@@ -103,6 +103,9 @@ function F_zero_to_null($num) {
  * @return boolean value.
  */
 function F_getBoolean($str) {
+	if (is_bool($str)) {
+		return $str;
+	}
 	if (is_string($str) AND ((strncasecmp($str, 't', 1) == 0) OR (strncasecmp($str, '1', 1) == 0))) {
 		return true;
 	}
@@ -385,6 +388,62 @@ function F_db_getUTCoffset($timezone) {
 	$time_offset = F_getUTCoffset($timezone);
 	$sign = ($time_offset >= 0)?'+':'-';
 	return $sign.gmdate('H:i', abs($time_offset));
+}
+
+/**
+ * Get data array in XML format.
+ * @param $data (array) Array of data (key => value).
+ * @param $level (int) Indentation level.
+ * @return string XML data
+ */
+function getDataXML($data, $level=1) {
+	$xml = '';
+	$tb = str_repeat("\t", $level);
+	foreach ($data as $key => $value) {
+		$xml .= $tb.'<'.$key.'>';
+		if (is_array($value)) {
+			$xml .= "\n".getDataXML($value, ($level + 1));
+		} else {
+			$xml .= F_text_to_xml($value);
+		}
+		$xml .= '</'.$key.'>'."\n";
+	}
+	return $xml;
+}
+
+/**
+ * Get data headers (keys) in CSV header (tab separated text values).
+ * @param $data (array) Array of data (key => value).
+ * @param $prefix (string) Prefix to add to keys.
+ * @return string data
+ */
+function getDataCSVHeader($data, $prefix='') {
+	$csv = '';
+	foreach ($data as $key => $value) {
+		if (is_array($value)) {
+			$csv .= getDataCSVHeader($value, $prefix.$key.'_');
+		} else {
+			$csv .= "\t".$prefix.$key;
+		}
+	}
+	return $csv;
+}
+
+/**
+ * Get data in CSV format (tab separated text values).
+ * @param $data (array) Array of data.
+ * @return string XML data
+ */
+function getDataCSV($data) {
+	$csv = '';
+	foreach ($data as $value) {
+		if (is_array($value)) {
+			$csv .= getDataCSV($value);
+		} else {
+			$csv .= "\t".str_replace("\t", ' ', $value);
+		}
+	}
+	return $csv;
 }
 
 //============================================================+

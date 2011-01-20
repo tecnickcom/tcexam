@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2010-10-21
+// Last Update : 2011-01-20
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -97,7 +97,7 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	$buttons .= getImageButton($callingform, $callingfield, 'code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
 	$buttons .= getImageButton($callingform, $callingfield, 'latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
 
-	$onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+	$onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton($callingform, $callingfield, 'object', '', K_PATH_IMAGES.'buttons/image.gif', $onclick, '');
 	return $buttons;
 }

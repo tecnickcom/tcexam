@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2010-08-13
+// Last Update : 2011-01-20
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -155,16 +155,13 @@ function F_check_fields_format($formfields) {
 function F_check_form_fields() {
 	require_once('../config/tce_config.php');
 	global $l;
-
 	$formfields = F_decode_form_fields(); //decode form fields
-
 	//check missing fields
 	if($missing_fields = F_check_required_fields($formfields)) {
 		F_print_error('WARNING', $l['m_form_missing_fields'].': '.$missing_fields);
 		F_stripslashes_formfields();
 		return FALSE;
 	}
-
 	//check fields format
 	if($wrong_fields = F_check_fields_format($formfields)) {
 		F_print_error('WARNING', $l['m_form_wrong_fields'].': '.$wrong_fields);
