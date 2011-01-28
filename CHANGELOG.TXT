@@ -1,3 +1,8 @@
+11.1.016 (2011-01-28)
+	- Hungarian language was updated.
+	- TCPDF library was updated.
+	- IMPORTANT: postgreSQL and MySQL schema were changed to drop ak_question and ak_answer indexes.
+
 11.1.015 (2011-01-20)
 	- Scrollbars were added on object window.
 	- TCPDF library was updated. 

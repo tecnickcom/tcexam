@@ -2,7 +2,7 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2010-06-16
+Last Update : 2011-01-28
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
@@ -221,8 +221,6 @@ ALTER TABLE "tce_users" ADD Constraint "ak_user_regnumber" UNIQUE ("user_regnumb
 ALTER TABLE "tce_users" ADD Constraint "ak_user_ssn" UNIQUE ("user_ssn");
 ALTER TABLE "tce_modules" ADD Constraint "ak_module_name" UNIQUE ("module_name");
 ALTER TABLE "tce_subjects" ADD Constraint "ak_subject_name" UNIQUE ("subject_module_id","subject_name");
-ALTER TABLE "tce_questions" ADD Constraint "ak_question" UNIQUE ("question_subject_id","question_description");
-ALTER TABLE "tce_answers" ADD Constraint "ak_answer" UNIQUE ("answer_question_id","answer_description","answer_position");
 ALTER TABLE "tce_tests" ADD Constraint "ak_test_name" UNIQUE ("test_name");
 ALTER TABLE "tce_tests_users" ADD Constraint "ak_testuser" UNIQUE ("testuser_test_id","testuser_user_id");
 ALTER TABLE "tce_tests_logs" ADD Constraint "ak_testuser_question" UNIQUE ("testlog_testuser_id","testlog_question_id");

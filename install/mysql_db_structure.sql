@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2010-06-16
+Last Update : 2011-01-28
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -238,8 +238,6 @@ ALTER TABLE tce_users ADD UNIQUE ak_user_regnumber (user_regnumber);
 ALTER TABLE tce_users ADD UNIQUE ak_user_ssn (user_ssn);
 ALTER TABLE tce_modules ADD UNIQUE ak_module_name (module_name);
 ALTER TABLE tce_subjects ADD UNIQUE ak_subject_name (subject_module_id,subject_name);
-ALTER TABLE tce_questions ADD UNIQUE ak_question (question_subject_id,question_description(255));
-ALTER TABLE tce_answers ADD UNIQUE ak_answer (answer_question_id,answer_description(255),answer_position);
 ALTER TABLE tce_tests ADD UNIQUE ak_test_name (test_name);
 ALTER TABLE tce_tests_users ADD UNIQUE ak_testuser (testuser_test_id,testuser_user_id);
 ALTER TABLE tce_tests_logs ADD UNIQUE ak_testuser_question (testlog_testuser_id,testlog_question_id);
