@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-01-20
+// Last Update : 2011-02-02
 //
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2010:
+// (c) Copyright 2004-2011:
 //               Nicola Asuni
 //               Tecnick.com S.r.l.
 //               ITALY
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.016');
+define ('K_TCEXAM_VERSION', '11.1.017');
 
 /**
  * 2-letters code for default language.
@@ -180,12 +180,13 @@ define ('K_COOKIE_SECURE', false);
 define ('K_COOKIE_EXPIRE', K_SECONDS_IN_DAY);
 
 /**
- * Various pages redirection modes after login (valid values are 1, 2 and 3).
+ * Various pages redirection modes after login (valid values are 1, 2, 3 and 4).
  * 1 = relative redirect.
  * 2 = absolute redirect.
- * 3 = html redirect (DEFAULT).
+ * 3 = html redirect.
+ * 4 = full redirect (DEFAULT AND MOST COMPATIBLE SETTING).
  */
-define ('K_REDIRECT_LOGIN_MODE', 1);
+define ('K_REDIRECT_LOGIN_MODE', 4);
 
 // Error settings
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2010-10-04
+// Last Update : 2011-02-02
 //
 // Description : User-level session storage functions.
 //
@@ -240,6 +240,10 @@ function getNewSessionID() {
 session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 'F_session_write', 'F_session_destroy', 'F_session_gc');
 
 // start user session
+if (isset($_COOKIE['PHPSESSID'])) {
+	// cookie takes precedence
+	$_REQUEST['PHPSESSID'] = $_COOKIE['PHPSESSID'];
+}
 if (isset($_REQUEST['PHPSESSID'])) {
 	// sanitize $PHPSESSID from get/post/cookie
 	$PHPSESSID = preg_replace('/[^0-9a-f]*/', '', $_REQUEST['PHPSESSID']);
