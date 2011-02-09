@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_page.php
 // Begin       : 2002-03-21
-// Last Update : 2009-10-10
+// Last Update : 2011-02-05
 //
 // Description : Functions for XHTML pages.
 //
@@ -59,18 +59,16 @@
 function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $param_array) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-
 	$max_pages = 4; // max pages to display on page selector
 	$indexbar = ''; // string for selection page html code
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
-
-	if(!$sql) {return FALSE;}
-
-	if(!$r = F_db_query($sql, $db)) {
-		F_display_db_error();
+	if(!$sql OR ($rowsperpage < 1)) {
+		return FALSE;
 	}
-
+	if(!$r = F_db_query($sql, $db)) {
+			F_display_db_error();
+	}
 	// build base url for all links
 	$baseaddress = $script_name;
 	if (empty($param_array)) {
@@ -79,15 +77,11 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 		$param_array = substr($param_array, 5); // remove first "&amp;"
 		$baseaddress .= '?'.$param_array.'&amp;';
 	}
-
 	$count_rows = preg_match('/GROUP BY/i', $sql); //check if query contain a "GROUP BY"
-
 	$all_updates = F_db_num_rows($r);
-
-	if ( ($all_updates == 1) AND (!$count_rows) AND (K_DATABASE_TYPE != 'ORACLE')) {
+	if ( ($all_updates == 1) AND (!$count_rows) ) {
 		list($all_updates) = F_db_fetch_array($r);
 	}
-
 	if(!$all_updates) { //no records
 		F_print_error('MESSAGE', $l['m_search_void']);
 	} else {
@@ -111,19 +105,18 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 			for($x = $rowsperpage; $x < ($all_updates - $rowsperpage); $x += $rowsperpage) {
 				if(($x >= ($firstrow - $page_range)) AND ($x <= ($firstrow + $page_range))) {
 					if($x == $firstrow) {
-						$indexbar .= ''.$count.' | ';
+						$indexbar .= $count.' | ';
 					} else {
 						$indexbar .= '<a href="'.$baseaddress.'firstrow='.$x.'" title="'.$count.'">'.$count.'</a> | ';
 					}
 				}
 				$count++;
 			}
-
 			if (($firstrow + $rowsperpage) < $all_updates) {
 				$indexbar .= '<a href="'.$baseaddress.'firstrow='.($firstrow + $rowsperpage).'" title="'.$l['w_next'].'">&gt;</a> | ';
 				$indexbar .= '<a href="'.$baseaddress.'firstrow='.$x.'" title="'.$count.'">'.$count.'</a>';
 			} else {
-				$indexbar .= '&gt; | '.$count.'';
+				$indexbar .= '&gt; | '.$count;
 			}
 			$indexbar .= '</div>';
 		}

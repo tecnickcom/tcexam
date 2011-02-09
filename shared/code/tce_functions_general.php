@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2011-01-20
+// Last Update : 2011-02-09
 //
 // Description : General functions.
 //
@@ -189,20 +189,44 @@ function F_replace_angulars($str) {
 }
 
 /**
- * Return part of a string removing remaining non-ASCII characters.
+ * Performs a multi-byte safe substr() operation based on number of characters.
  * @param $str (string) input string
  * @param $start (int) substring start index
  * @param $length (int) substring max lenght
  * @return substring
  */
 function F_substr_utf8($str, $start=0, $length) {
-	if (strlen($str) > $length) {
-		$i = $length - 1;
-		// remove non-ASCII characters from the string end
-		while (($i >= 0) AND (ord($str{$i}) > 0x7F)) {
-			$i--;
+	if (function_exists('mb_substr')) { //DEBUG
+		return mb_substr($str, $start, $length);
+	} else {
+		$str .= ''; // force $str to be a string
+		$bytelen = strlen($str);
+		$i = 0;
+		$j = 0;
+		$str_start = 0;
+		$str_end = $bytelen;
+		while ($i < $bytelen) {
+			if ($j == $start) {
+				$str_start = $i;
+			} elseif ($j == $length) {
+				$str_end = $i;
+				break;
+			}
+			$char = ord($str{$i}); // get one string character at time
+			if ($char <= 0x7F) {
+				$i += 1;
+			} elseif (($char >> 0x05) == 0x06) { // 2 bytes character (0x06 = 110 BIN)
+				$i += 2;
+			} elseif (($char >> 0x04) == 0x0E) { // 3 bytes character (0x0E = 1110 BIN)
+				$i += 3;
+			} elseif (($char >> 0x03) == 0x1E) { // 4 bytes character (0x1E = 11110 BIN)
+				$i += 4;
+			} else {
+				$i += 1;
+			}
+			++$j;
 		}
-		$str = substr($str, 0, $i+1);
+		$str = substr($str, $str_start, $str_end);
 	}
 	return $str;
 }

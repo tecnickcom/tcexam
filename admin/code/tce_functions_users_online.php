@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2010-10-05
+// Last Update : 2011-02-05
 //
 // Description : Functions to display online users' data.
 //
@@ -148,11 +148,13 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 
 	// --- ------------------------------------------------------
 	// --- page jump
-	$sql = 'SELECT count(*) AS total FROM '.K_TABLE_SESSIONS.' '.$wherequery.'';
-	if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
-	if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
-	$param_array .= '&amp;submitted=1';
-	F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
+	if ($rowsperpage > 0) {
+		$sql = 'SELECT count(*) AS total FROM '.K_TABLE_SESSIONS.' '.$wherequery.'';
+		if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
+		if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
+		$param_array .= '&amp;submitted=1';
+		F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
+	}
 	echo '<div class="pagehelp">'.$l['hp_online_users'].'</div>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 	return TRUE;

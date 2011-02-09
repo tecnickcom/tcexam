@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2010-11-17
+// Last Update : 2011-02-09
 //
 // Description : Display test results for specified user.
 //
@@ -180,13 +180,12 @@ switch($menu_mode) {
 // --- Initialize variables
 
 if(!isset($test_id) OR empty($test_id)) {
+	$test_id = 0;
 	// select default test ID
 	$sql = F_select_executed_tests_sql().' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$test_id = $m['test_id'];
-		} else {
-			$test_id = 0;
 		}
 	} else {
 		F_display_db_error();
@@ -247,7 +246,7 @@ if($formstatus) {
 
 // get test basic score
 $test_basic_score = 1;
-$sql = 'SELECT test_score_right, test_duration_time	FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+$sql = 'SELECT test_score_right, test_duration_time	FROM '.K_TABLE_TESTS.' WHERE test_id='.intval($test_id).'';
 if($r = F_db_query($sql, $db)) {
 	if($m = F_db_fetch_array($r)) {
 		$test_basic_score = $m['test_score_right'];
@@ -308,7 +307,7 @@ else {
 <?php
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name
 	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
-	WHERE testuser_user_id=user_id AND testuser_test_id='.$test_id;
+	WHERE testuser_user_id=user_id AND testuser_test_id='.intval($test_id);
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	// filter for level
 	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';

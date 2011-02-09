@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2010-10-06
+// Last Update : 2011-02-09
 //
 // Description : Display all test results for the selected users.
 //
@@ -172,6 +172,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 
 if($formstatus) {
 	if(!isset($user_id) OR empty($user_id)) {
+		$user_id = 0;
 		$sql = 'SELECT testuser_user_id
 			FROM '.K_TABLE_TEST_USER.'
 			WHERE testuser_status>0
@@ -185,8 +186,6 @@ if($formstatus) {
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				$user_id = $m['testuser_user_id'];
-			} else {
-				$user_id = 0;
 			}
 		} else {
 			F_display_db_error();
@@ -452,7 +451,7 @@ if ($itemcount > 0) {
 echo '</div>'.K_NEWLINE;
 echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
-if (isset($user_id) AND ($user_id > 0)) {
+if (isset($user_id) AND ($user_id > 0) AND ($itemcount > 0)) {
 	echo '<a href="'.pdfUserResultsLink($user_id, $startdate, $enddate, $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 	echo '<a href="tce_csv_allresults_user.php?user_id='.$user_id.'&amp;startdate='.urlencode($startdate).'&amp;enddate='.urlencode($enddate).'&amp;order_field='.urlencode($full_order_field).'" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a> ';
 	echo '<a href="tce_xml_user_results.php?user_id='.$user_id.'&amp;startdate='.urlencode($startdate).'&amp;enddate='.urlencode($enddate).'&amp;order_field='.urlencode($full_order_field).'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';

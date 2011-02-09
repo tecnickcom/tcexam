@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2010-06-16
+// Last Update : 2011-02-05
 //
 // Description : Display all questions grouped by topic.
 //
@@ -599,14 +599,16 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 
 		// ---------------------------------------------------------------
 		// -- page jumper (menu for successive pages)
-		$sql = 'SELECT count(*) AS total FROM '.K_TABLE_QUESTIONS.' '.$wherequery.'';
-		if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
-		if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
-		if (!empty($hide_answers)) {$param_array .= '&amp;hide_answers='.intval($hide_answers).'';}
-		$param_array .= '&amp;subject_module_id='.$subject_module_id.'';
-		$param_array .= '&amp;subject_id='.$subject_id.'';
-		$param_array .= '&amp;submitted=1';
-		F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
+		if ($rowsperpage > 0) {
+			$sql = 'SELECT count(*) AS total FROM '.K_TABLE_QUESTIONS.' '.$wherequery.'';
+			if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
+			if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
+			if (!empty($hide_answers)) {$param_array .= '&amp;hide_answers='.intval($hide_answers).'';}
+			$param_array .= '&amp;subject_module_id='.$subject_module_id.'';
+			$param_array .= '&amp;subject_id='.$subject_id.'';
+			$param_array .= '&amp;submitted=1';
+			F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
+		}
 	} else {
 		F_display_db_error();
 	}

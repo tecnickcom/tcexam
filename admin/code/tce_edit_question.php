@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2010-09-20
+// Last Update : 2011-02-09
 //
 // Description : Edit questions
 //
@@ -554,6 +554,15 @@ if($formstatus) {
 			F_display_db_error();
 		}
 	}
+}
+
+if (!isset($subject_module_id) OR ($subject_module_id <= 0) OR !isset($question_subject_id) OR ($question_subject_id <= 0)) {
+	echo '<div class="container">'.K_NEWLINE;
+	echo '<p><a href="tce_edit_subject.php" title="'.$l['t_subjects_editor'].'" class="xmlbutton">&lt; '.$l['t_subjects_editor'].'</a></p>'.K_NEWLINE;
+	echo '<div class="pagehelp">'.$l['hp_edit_question'].'</div>'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+	require_once('../code/tce_page_footer.php');
+	exit;
 }
 ?>
 

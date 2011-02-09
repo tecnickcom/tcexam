@@ -47,9 +47,6 @@
  * @since 2004-04-27
  */
 
-/**
- */
-
 require_once('../config/tce_config.php');
 
 $pagelevel = K_AUTH_ADMIN_SUBJECTS;
@@ -294,6 +291,16 @@ if($formstatus) {
 			F_display_db_error();
 		}
 	}
+}
+
+
+if (!isset($subject_module_id) OR ($subject_module_id <= 0)) {
+	echo '<div class="container">'.K_NEWLINE;
+	echo '<p><a href="tce_edit_module.php" title="'.$l['t_modules_editor'].'" class="xmlbutton">&lt; '.$l['t_modules_editor'].'</a></p>'.K_NEWLINE;
+	echo '<div class="pagehelp">'.$l['hp_edit_subject'].'</div>'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+	require_once('../code/tce_page_footer.php');
+	exit;
 }
 ?>
 

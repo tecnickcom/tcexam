@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2010-05-10
+// Last Update : 2011-02-09
 //
 // Description : Display questions statistics for the selected
 //               test.
@@ -96,6 +96,7 @@ else {
 
 if($formstatus) {
 	if(!isset($test_id) OR empty($test_id)) {
+		$test_id = 0;
 		$sql = F_select_executed_tests_sql().' LIMIT 1';
 	} else {
 		$sql = 'SELECT *
@@ -106,8 +107,6 @@ if($formstatus) {
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			$test_id = $m['test_id'];
-		} else {
-			$test_id = 0;
 		}
 	} else {
 		F_display_db_error();
