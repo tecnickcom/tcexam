@@ -674,10 +674,7 @@ if($r = F_db_query($sql, $db)) {
 <input type="hidden" name="changecategory" id="changecategory" value="" />
 <select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById('form_answereditor').changecategory.value=1; document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_QUESTIONS.'
-	WHERE question_subject_id='.$question_subject_id.'
-	ORDER BY question_subject_id,';
+$sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_subject_id,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql .= 'CAST(question_description as varchar2(100))';
 	} else {
@@ -726,10 +723,7 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="answer_id" id="answer_id" size="0" onchange="document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_answer']; ?>">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_ANSWERS.'
-	WHERE answer_question_id='.$answer_question_id.'
-	ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
+$sql = 'SELECT * FROM '.K_TABLE_ANSWERS.' WHERE answer_question_id='.intval($answer_question_id).' ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql .= 'CAST(answer_description as varchar2(100))';
 	} else {

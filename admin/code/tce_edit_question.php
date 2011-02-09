@@ -670,10 +670,7 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="question_id" id="question_id" size="0" onchange="document.getElementById('form_questioneditor').submit()" title="<?php echo $l['h_question']; ?>">
 <?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_QUESTIONS.'
-	WHERE question_subject_id='.$question_subject_id.'
-	ORDER BY question_enabled DESC, question_position,';
+$sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_enabled DESC, question_position,';
 if (K_DATABASE_TYPE == 'ORACLE') {
 	$sql .= 'CAST(question_description as varchar2(100))';
 } else {

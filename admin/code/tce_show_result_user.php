@@ -305,9 +305,7 @@ else {
 <span class="formw">
 <select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_resultuser').submit()" title="<?php echo $l['h_select_user']; ?>">
 <?php
-$sql = 'SELECT user_id, user_lastname, user_firstname, user_name
-	FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
-	WHERE testuser_user_id=user_id AND testuser_test_id='.intval($test_id);
+$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' WHERE testuser_user_id=user_id AND testuser_test_id='.intval($test_id).'';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	// filter for level
 	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';

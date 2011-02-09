@@ -268,16 +268,7 @@ if($r = F_db_query($sql, $db)) {
 <span class="formw">
 <select name="testlog_id" id="testlog_id" size="0" onchange="document.getElementById('form_ratingeditor').submit()" title="<?php echo $l['h_select_answer']; ?>">
 <?php
-$sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description
-	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.'
-	WHERE testlog_testuser_id=testuser_id
-	AND testuser_user_id=user_id
-	AND testlog_question_id=question_id
-	AND testuser_test_id='.$test_id.'
-	AND testuser_status>0
-	AND question_type=3
-	'.$sqlfilter.'
-	'.$sqlorder.'';
+$sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.' WHERE testlog_testuser_id=testuser_id AND testuser_user_id=user_id AND testlog_question_id=question_id AND testuser_test_id='.intval($test_id).' AND testuser_status>0 AND question_type=3 '.$sqlfilter.' '.$sqlorder.'';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
