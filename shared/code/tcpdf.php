@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.049
+// Version     : 5.9.052
 // Begin       : 2002-08-03
-// Last Update : 2011-02-03
+// Last Update : 2011-02-15
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -134,7 +134,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.049
+ * @version 5.9.052
  */
 
 
@@ -144,7 +144,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.049
+ * @version 5.9.052
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -155,7 +155,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.049';
+	private $tcpdf_version = '5.9.052';
 
 	// Protected properties
 
@@ -9213,8 +9213,8 @@ class TCPDF {
 
 	/**
 	 * Returns a subset of the TrueType font data without the unused glyphs.
-	 * @param $font (string) TrueType font data
-	 * @param $subsetchars (array) array of used characters (the glyphs to keep)
+	 * @param $font (string) TrueType font data.
+	 * @param $subsetchars (array) Array of used characters (the glyphs to keep).
 	 * @return string a subset of TrueType font data without the unused glyphs
 	 * @author Nicola Asuni
 	 * @protected
@@ -9466,7 +9466,7 @@ class TCPDF {
 			}
 		}
 		// array of table names to preserve (loca and glyf tables will be added later)
-		//$table_names = array ('cmap', 'head', 'hhea', 'hmtx', 'maxp', 'name', 'OS/2', 'post', 'cvt ', 'fpgm', 'prep');
+		// additional maps includes: 'cmap', 'head', 'name', 'OS/2', 'post';
 		// the cmap table is not needed and shall not be present, since the mapping from character codes to glyph descriptions is provided separately
 		$table_names = array ('head', 'hhea', 'hmtx', 'maxp', 'cvt ', 'fpgm', 'prep'); // minimum required table names
 		// get the tables to preserve
@@ -20284,13 +20284,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						$strrest = $this->addHtmlLink($this->HREF['url'], $dom[$key]['value'], $wfill, true, $hrefcolor, $hrefstyle, true);
 					} else {
 						$wadj = 0; // space to leave for block continuity
-						$adjblks = 0; // number of blocks
 						if ($this->rtl) {
 							$cwa = $this->x - $this->lMargin;
 						} else {
 							$cwa = $this->w - $this->rMargin - $this->x;
 						}
-						if ($strlinelen < $cwa) {
+						if (($strlinelen < $cwa) AND (isset($dom[($key + 1)])) AND ($dom[($key + 1)]['tag']) AND (!$dom[($key + 1)]['block'])) {
 							// check the next text blocks for continuity
 							$nkey = ($key + 1);
 							$write_block = true;
@@ -20310,17 +20309,21 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 									$same_textdir = ($dom[$nkey]['dir'] == $dom[$key]['dir']);
 								} else {
 									$nextstr = preg_split('/'.$this->re_space['p'].'+/'.$this->re_space['m'], $dom[$nkey]['value']);
-									if (isset($nextstr[0])) {
-										if ($same_textdir) {
-											$wadj += $this->GetStringWidth($nextstr[0], $tmp_fontname, $tmp_fontstyle, $tmp_fontsize);
-										}
-										++$adjblks;
+									if (isset($nextstr[0]) AND $same_textdir) {
+										$wadj += $this->GetStringWidth($nextstr[0], $tmp_fontname, $tmp_fontstyle, $tmp_fontsize);
 									}
 									if (isset($nextstr[1])) {
 										$write_block = false;
 									}
 								}
 								++$nkey;
+							}
+						}
+						if (($wadj > 0) AND (($strlinelen + $wadj) >= $cwa)) {
+							$nextstr = preg_split('/'.$this->re_space['p'].'/'.$this->re_space['m'], $dom[$key]['value']);
+							$numblks = count($nextstr);
+							if ($numblks > 1) {
+								$wadj = ($cwa - $strlinelen + $this->GetStringWidth($nextstr[($numblks - 1)]));
 							}
 						}
 						// check for reversed text direction
@@ -25010,6 +25013,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	 */
 	protected function setSVGStyles($svgstyle, $prevsvgstyle, $x=0, $y=0, $w=1, $h=1, $clip_function='', $clip_params=array()) {
 		$objstyle = '';
+		$minlen = (0.01 / $this->k); // minimum acceptable lenght (3 point)
 		if(!isset($svgstyle['opacity'])) {
 			return $objstyle;
 		}
@@ -25105,11 +25109,11 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$gradient['coords'][2] += $x;
 					$gradient['coords'][3] += $y;
 				}
-				if ($w <= 0) {
-					$w = 1;
+				if ($w <= $minlen) {
+					$w = $minlen;
 				}
-				if ($h <= 0) {
-					$h = 1;
+				if ($h <= $minlen) {
+					$h = $minlen;
 				}
 				// calculate percentages
 				$gradient['coords'][0] = ($gradient['coords'][0] - $x) / $w;
@@ -25308,6 +25312,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		$ymin = 2147483647;
 		$ymax = 0;
 		$relcoord = false;
+		$minlen = (0.01 / $this->k); // minimum acceptable lenght (3 point)
 		// draw curve pieces
 		foreach ($paths as $key => $val) {
 			// get curve type
@@ -25329,8 +25334,15 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$params = array();
 				foreach ($rawparams as $ck => $cp) {
 					$params[$ck] = $this->getHTMLUnitToUnits($cp, 0, $this->svgunit, false);
+					if (abs($params[$ck]) < $minlen) {
+						// aproximate little values to zero
+						$params[$ck] = 0;
+					}
 				}
 			}
+			// store current origin point
+			$x0 = $x;
+			$y0 = $y;
 			switch (strtoupper($cmd)) {
 				case 'M': { // moveto
 					foreach ($params as $ck => $cp) {
@@ -25338,10 +25350,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							$x = $cp + $xoffset;
 						} else {
 							$y = $cp + $yoffset;
-							if ($ck == 1) {
-								$this->_outPoint($x, $y);
-							} else {
-								$this->_outLine($x, $y);
+							if ((abs($x0 - $x) >= $minlen) OR (abs($y0 - $y) >= $minlen)) {
+								if ($ck == 1) {
+									$this->_outPoint($x, $y);
+								} else {
+									$this->_outLine($x, $y);
+								}
 							}
 							$xmin = min($xmin, $x);
 							$ymin = min($ymin, $y);
@@ -25361,7 +25375,9 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							$x = $cp + $xoffset;
 						} else {
 							$y = $cp + $yoffset;
-							$this->_outLine($x, $y);
+							if ((abs($x0 - $x) >= $minlen) OR (abs($y0 - $y) >= $minlen)) {
+								$this->_outLine($x, $y);
+							}
 							$xmin = min($xmin, $x);
 							$ymin = min($ymin, $y);
 							$xmax = max($xmax, $x);
@@ -25377,7 +25393,9 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				case 'H': { // horizontal lineto
 					foreach ($params as $ck => $cp) {
 						$x = $cp + $xoffset;
-						$this->_outLine($x, $y);
+						if ((abs($x0 - $x) >= $minlen) OR (abs($y0 - $y) >= $minlen)) {
+							$this->_outLine($x, $y);
+						}
 						$xmin = min($xmin, $x);
 						$xmax = max($xmax, $x);
 						if ($relcoord) {
@@ -25389,7 +25407,9 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				case 'V': { // vertical lineto
 					foreach ($params as $ck => $cp) {
 						$y = $cp + $yoffset;
-						$this->_outLine($x, $y);
+						if ((abs($x0 - $x) >= $minlen) OR (abs($y0 - $y) >= $minlen)) {
+							$this->_outLine($x, $y);
+						}
 						$ymin = min($ymin, $y);
 						$ymax = max($ymax, $y);
 						if ($relcoord) {
@@ -25520,73 +25540,76 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							$fs = $rawparams[($ck - 2)]; // sweep-flag
 							$x = $params[($ck - 1)] + $xoffset;
 							$y = $params[$ck] + $yoffset;
-							$minlen = (0.01 / $this->k); // 3 point
-							if ((abs($x0 - $x) < $minlen) AND (abs($x0 - $x) < $minlen)) {
+							if ((abs($x0 - $x) < $minlen) AND (abs($y0 - $y) < $minlen)) {
 								// endpoints are almost identical
-								break;
-							}
-							$cos_ang = cos($angle);
-							$sin_ang = sin($angle);
-							$a = (($x0 - $x) / 2);
-							$b = (($y0 - $y) / 2);
-							$xa = ($a * $cos_ang) - ($b * $sin_ang);
-							$ya = ($a * $sin_ang) + ($b * $cos_ang);
-							$rx2 = $rx * $rx;
-							$ry2 = $ry * $ry;
-							$xa2 = $xa * $xa;
-							$ya2 = $ya * $ya;
-							$delta = ($xa2 / $rx2) + ($ya2 / $ry2);
-							if ($delta > 1) {
-								$rx *= sqrt($delta);
-								$ry *= sqrt($delta);
+								$xmin = min($xmin, $x);
+								$ymin = min($ymin, $y);
+								$xmax = max($xmax, $x);
+								$ymax = max($ymax, $y);
+							} else {
+								$cos_ang = cos($angle);
+								$sin_ang = sin($angle);
+								$a = (($x0 - $x) / 2);
+								$b = (($y0 - $y) / 2);
+								$xa = ($a * $cos_ang) - ($b * $sin_ang);
+								$ya = ($a * $sin_ang) + ($b * $cos_ang);
 								$rx2 = $rx * $rx;
 								$ry2 = $ry * $ry;
+								$xa2 = $xa * $xa;
+								$ya2 = $ya * $ya;
+								$delta = ($xa2 / $rx2) + ($ya2 / $ry2);
+								if ($delta > 1) {
+									$rx *= sqrt($delta);
+									$ry *= sqrt($delta);
+									$rx2 = $rx * $rx;
+									$ry2 = $ry * $ry;
+								}
+								$numerator = (($rx2 * $ry2) - ($rx2 * $ya2) - ($ry2 * $xa2));
+								if ($numerator < 0) {
+									$root = 0;
+								} else {
+									$root = sqrt($numerator / (($rx2 * $ya2) + ($ry2 * $xa2)));
+								}
+								if ($fa == $fs){
+									$root *= -1;
+								}
+								$cax = $root * (($rx * $ya) / $ry);
+								$cay = -$root * (($ry * $xa) / $rx);
+								// coordinates of ellipse center
+								$cx = ($cax * $cos_ang) - ($cay * $sin_ang) + (($x0 + $x) / 2);
+								$cy = ($cax * $sin_ang) + ($cay * $cos_ang) + (($y0 + $y) / 2);
+								// get angles
+								$angs = $this->getVectorsAngle(1, 0, (($xa - $cax) / $rx), (($cay - $ya) / $ry));
+								$dang = $this->getVectorsAngle((($xa - $cax) / $rx), (($ya - $cay) / $ry), ((-$xa - $cax) / $rx), ((-$ya - $cay) / $ry));
+								if (($fs == 0) AND ($dang > 0)) {
+									$dang -= (2 * M_PI);
+								} elseif (($fs == 1) AND ($dang < 0)) {
+									$dang += (2 * M_PI);
+								}
+								$angf = $angs - $dang;
+								if ((($fs == 0) AND ($angs > $angf)) OR (($fs == 1) AND ($angs < $angf))) {
+									// reverse angles
+									$tmp = $angs;
+									$angs = $angf;
+									$angf = $tmp;
+								}
+								$angs = round(rad2deg($angs), 6);
+								$angf = round(rad2deg($angf), 6);
+								// covent angles to positive values
+								if (($angs < 0) AND ($angf < 0)) {
+									$angs += 360;
+									$angf += 360;
+								}
+								$pie = false;
+								if (($key == 0) AND (isset($paths[($key + 1)][1])) AND (trim($paths[($key + 1)][1]) == 'z')) {
+									$pie = true;
+								}
+								list($axmin, $aymin, $axmax, $aymax) = $this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2, false, ($fs == 0), true);
+								$xmin = min($xmin, $x, $axmin);
+								$ymin = min($ymin, $y, $aymin);
+								$xmax = max($xmax, $x, $axmax);
+								$ymax = max($ymax, $y, $aymax);
 							}
-							$numerator = (($rx2 * $ry2) - ($rx2 * $ya2) - ($ry2 * $xa2));
-							if ($numerator < 0) {
-								$root = 0;
-							} else {
-								$root = sqrt($numerator / (($rx2 * $ya2) + ($ry2 * $xa2)));
-							}
-							if ($fa == $fs){
-								$root *= -1;
-							}
-							$cax = $root * (($rx * $ya) / $ry);
-							$cay = -$root * (($ry * $xa) / $rx);
-							// coordinates of ellipse center
-							$cx = ($cax * $cos_ang) - ($cay * $sin_ang) + (($x0 + $x) / 2);
-							$cy = ($cax * $sin_ang) + ($cay * $cos_ang) + (($y0 + $y) / 2);
-							// get angles
-							$angs = $this->getVectorsAngle(1, 0, (($xa - $cax) / $rx), (($cay - $ya) / $ry));
-							$dang = $this->getVectorsAngle((($xa - $cax) / $rx), (($ya - $cay) / $ry), ((-$xa - $cax) / $rx), ((-$ya - $cay) / $ry));
-							if (($fs == 0) AND ($dang > 0)) {
-								$dang -= (2 * M_PI);
-							} elseif (($fs == 1) AND ($dang < 0)) {
-								$dang += (2 * M_PI);
-							}
-							$angf = $angs - $dang;
-							if ((($fs == 0) AND ($angs > $angf)) OR (($fs == 1) AND ($angs < $angf))) {
-								// reverse angles
-								$tmp = $angs;
-								$angs = $angf;
-								$angf = $tmp;
-							}
-							$angs = round(rad2deg($angs), 6);
-							$angf = round(rad2deg($angf), 6);
-							// covent angles to positive values
-							if (($angs < 0) AND ($angf < 0)) {
-								$angs += 360;
-								$angf += 360;
-							}
-							$pie = false;
-							if (($key == 0) AND (isset($paths[($key + 1)][1])) AND (trim($paths[($key + 1)][1]) == 'z')) {
-								$pie = true;
-							}
-							list($axmin, $aymin, $axmax, $aymax) = $this->_outellipticalarc($cx, $cy, $rx, $ry, $ang, $angs, $angf, $pie, 2, false, ($fs == 0), true);
-							$xmin = min($xmin, $x, $axmin);
-							$ymin = min($ymin, $y, $aymin);
-							$xmax = max($xmax, $x, $axmax);
-							$ymax = max($ymax, $y, $aymax);
 							if ($relcoord) {
 								$xoffset = $x;
 								$yoffset = $y;

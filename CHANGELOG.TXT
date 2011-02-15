@@ -1,3 +1,6 @@
+11.1.019 (2011-02-15)
+	- TCPDF library was updated to fix line break broblems.
+
 11.1.018 (2011-02-09)
 	- A bug related to K_MAX_ROWS_PER_PAGE constant set to zero was fixed.
 	- A bug related to UTF8 substrings was fixed.
