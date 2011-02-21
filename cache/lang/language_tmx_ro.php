@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2011-01-28 00:03:09
+// DATE: 2011-02-21 16:26:34
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -557,5 +557,8 @@ $tmx['w_table']='tabel';
 $tmx['w_visual']='vizual';
 $tmx['t_select_media_file']='Selectează Obiect';
 $tmx['hp_select_media_file']='Această pagină vă permite să introduceţi un fişier multimedia în descrierea curentă. Selectaţi obiectul pe care doriţi să-l introduceţi, completaţi câmpurile descriptive şi daţi clic pe butonul [adaugă].';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---

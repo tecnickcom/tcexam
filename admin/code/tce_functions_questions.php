@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
-// Last Update : 2010-12-19
+// Last Update : 2011-02-21
 //
 // Description : Functions to manipulate questions.
 //
@@ -52,15 +52,11 @@
  * @author Nicola Asuni
  * @since 2008-11-26
  * @param $question_id (int) question ID
- * @param $subject_id (int) subject ID
  * @param $enabled (boolean) if true enables question, false otherwise
  */
-function F_question_set_enabled($question_id, $subject_id, $enabled=true) {
+function F_question_set_enabled($question_id, $enabled=true) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
-		return; // unauthorized user
-	}
 	$question_id = intval($question_id);
 	$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 		question_enabled=\''.intval($enabled).'\'
@@ -134,9 +130,6 @@ function F_question_delete($question_id, $subject_id) {
 	require_once('../config/tce_config.php');
 	$question_id = intval($question_id);
 	$subject_id = intval($subject_id);
-	if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
-		return; // unauthorized user
-	}
 	// check if this record is used (test_log)
 	if(!F_check_unique(K_TABLE_TESTS_LOGS, 'testlog_question_id='.$question_id.'')) {
 		F_question_set_enabled($question_id, false);
@@ -184,8 +177,19 @@ function F_question_copy($question_id, $new_subject_id) {
 	require_once('../config/tce_config.php');
 	$question_id = intval($question_id);
 	$new_subject_id = intval($new_subject_id);
-	if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $new_subject_id, 'subject_user_id')) {
-		return; // unauthorized user
+	// check authorization
+	$sql = 'SELECT subject_module_id FROM '.K_TABLE_SUBJECTS.' WHERE subject_id='.$new_subject_id.' LIMIT 1';
+	if($r = F_db_query($sql, $db)) {
+		if($m = F_db_fetch_array($r)) {
+			$subject_module_id = $m['subject_module_id'];
+			// check user's authorization for parent module
+			if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+				return;
+			}
+		}
+	} else {
+		F_display_db_error();
+		return;
 	}
 	$q = F_question_get_data($question_id);
 	if ($q !== false) {

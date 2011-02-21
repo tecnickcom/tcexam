@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2011-01-28 00:02:58
+// DATE: 2011-02-21 16:26:22
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -560,5 +560,8 @@ $tmx['w_table']='tábla';
 $tmx['w_visual']='vizuális';
 $tmx['t_select_media_file']='Objektum Kiválasztása';
 $tmx['hp_select_media_file']='Ez az oldal lehetővé teszi, hogy az aktuális leíráshoz multimédia fájlt adjon. Válassza ki az objektumot és az [add] gomb segítségével adja hozzá.';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---

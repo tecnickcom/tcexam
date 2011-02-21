@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-02-05
+// Last Update : 2011-02-21
 //
 // Description : Display all questions grouped by topic.
 //
@@ -133,12 +133,6 @@ if ((isset($changemodule) AND ($changemodule > 0))
 	}
 }
 
-// check user's authorization
-if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
-	F_print_error('ERROR', $l['m_authorization_denied']);
-	exit;
-}
-
 if (isset($menu_mode) AND ($menu_mode == 'update') AND isset($menu_action) AND !empty($menu_action)) {
 	$istart = 1 + $firstrow;
 	$iend = $rowsperpage + $firstrow;
@@ -166,11 +160,11 @@ if (isset($menu_mode) AND ($menu_mode == 'update') AND isset($menu_action) AND !
 					break;
 				}
 				case 'disable': {
-					F_question_set_enabled($question_id, $subject_id, false);
+					F_question_set_enabled($question_id, false);
 					break;
 				}
 				case 'enable': {
-					F_question_set_enabled($question_id, $subject_id, true);
+					F_question_set_enabled($question_id, true);
 					break;
 				}
 			} // end of switch
@@ -321,7 +315,7 @@ else {
 }
 
 echo '<div class="rowl">';
-echo ''.$l['w_questions'].': '.$nqsum.' = '.$qstat.'';
+echo '<span>'.$l['w_questions'].': '.$nqsum.' = '.$qstat.'</span><br />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 ?>
 

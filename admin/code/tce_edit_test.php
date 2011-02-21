@@ -1309,7 +1309,7 @@ F_submit_button("addquestion", $l['w_add_questions'], $l['h_add_questions']);
 <div class="preview">
 <?php
 $subjlist = '';
-$sql = 'SELECT *	FROM '.K_TABLE_TEST_SUBJSET.'
+$sql = 'SELECT * FROM '.K_TABLE_TEST_SUBJSET.'
 	WHERE tsubset_test_id=\''.$test_id.'\'
 	ORDER BY tsubset_id';
 if($r = F_db_query($sql, $db)) {

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2011-01-28 00:03:02
+// DATE: 2011-02-21 16:26:26
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -559,5 +559,8 @@ $tmx['w_table']='table';
 $tmx['w_visual']='visual';
 $tmx['t_select_media_file']='Select Object';
 $tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---

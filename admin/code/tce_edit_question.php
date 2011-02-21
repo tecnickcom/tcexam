@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2011-02-09
+// Last Update : 2011-02-21
 //
 // Description : Edit questions
 //
@@ -155,16 +155,10 @@ if (isset($_REQUEST['question_id']) AND ($_REQUEST['question_id'] > 0)) {
 		LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
-			// check user's authorization for parent subject
-			if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $m['question_subject_id'], 'subject_user_id')) {
+			// check user's authorization for parent module
+			if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id')) {
 				F_print_error('ERROR', $l['m_authorization_denied']);
 				exit;
-			} else {
-				// check user's authorization for parent module
-				if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id')) {
-					F_print_error('ERROR', $l['m_authorization_denied']);
-					exit;
-				}
 			}
 		}
 	} else {

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2011-01-28 00:03:01
+// DATE: 2011-02-21 16:26:25
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -560,5 +560,8 @@ $tmx['w_table']='table';
 $tmx['w_visual']='visivo';
 $tmx['t_select_media_file']='Seleziona Oggetto';
 $tmx['hp_select_media_file']='Questa pagina consente di inserire un oggetto multimediale nella descrizione corrente. Seleziona l\'oggetto da inserire, compila i campi di descrizione e premi il pulsante [aggiungi].';
+$tmx['w_owner']='proprietario';
+$tmx['h_module_owner']='proprietario di questo modulo';
+$tmx['h_topic_owner']='proprietario di questo argomento';
 
 // --- EOF ---

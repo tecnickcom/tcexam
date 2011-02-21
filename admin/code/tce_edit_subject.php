@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2010-06-16
+// Last Update : 2011-02-21
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -89,13 +89,9 @@ if (isset($subject_name)) {
 if (isset($subject_description)) {
 	$subject_description = utrim($subject_description);
 }
+
 if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
 	$subject_id = intval($_REQUEST['subject_id']);
-	// check user's authorization for subject
-	if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
-		F_print_error('ERROR', $l['m_authorization_denied']);
-		exit;
-	}
 	if (!isset($changecategory) OR ($changecategory == 0)) {
 		$sql = 'SELECT subject_module_id FROM '.K_TABLE_SUBJECTS.' WHERE subject_id='.$subject_id.' LIMIT 1';
 		if($r = F_db_query($sql, $db)) {
@@ -166,7 +162,7 @@ switch($menu_mode) {
 	case 'update':{ // Update
 		if($formstatus = F_check_form_fields()) {
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
-			if(!F_check_unique(K_TABLE_SUBJECT_SET, "subjset_subject_id=".$subject_id."")) {
+			if(!F_check_unique(K_TABLE_SUBJECT_SET, 'subjset_subject_id='.intval($subject_id).'')) {
 				F_print_error('WARNING', $l['m_update_restrict']);
 				// enable or disable record
 				$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
@@ -227,7 +223,7 @@ switch($menu_mode) {
 				\''.F_escape_sql($subject_name).'\',
 				'.F_empty_to_null(F_escape_sql($subject_description)).',
 				\''.$subject_enabled.'\',
-				\''.$_SESSION['session_user_id'].'\',
+				\''.intval($_SESSION['session_user_id']).'\',
 				'.$subject_module_id.'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
@@ -327,11 +323,11 @@ if($r = F_db_query($sql, $db)) {
 		}
 		echo '>'.$countitem.". ";
 		if (F_getBoolean($m['module_enabled'])) {
-			echo "+";
+			echo '+';
 		} else {
-			echo "-";
+			echo '-';
 		}
-		echo " ".htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset']).'&nbsp;</option>'.K_NEWLINE;
+		echo ' '.htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset']).'&nbsp;</option>'.K_NEWLINE;
 		$countitem++;
 	}
 	if ($countitem == 1) {

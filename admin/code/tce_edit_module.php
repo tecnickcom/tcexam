@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2010-06-16
+// Last Update : 2011-02-21
 //
 // Description : Display form to edit modules.
 //
@@ -69,6 +69,12 @@ if(!isset($module_enabled) OR (empty($module_enabled))) {
 if (isset($module_name)) {
 	$module_name = utrim($module_name);
 }
+if (isset($module_user_id)) {
+	$module_user_id = intval($module_user_id);
+} else {
+	$module_user_id = intval($_SESSION['session_user_id']);
+}
+
 if (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0)) {
 	$module_id = intval($_REQUEST['module_id']);
 	// check user's authorization for module
@@ -160,10 +166,15 @@ switch($menu_mode) {
 				F_stripslashes_formfields();
 				break;
 			}
-
+			if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+				$module_user_id = intval($module_user_id);
+			} else {
+				$module_user_id = intval($_SESSION['session_user_id']);
+			}
 			$sql = 'UPDATE '.K_TABLE_MODULES.' SET
 				module_name=\''.F_escape_sql($module_name).'\',
-				module_enabled=\''.$module_enabled.'\'
+				module_enabled=\''.$module_enabled.'\',
+				module_user_id=\''.$module_user_id.'\'
 				WHERE module_id='.$module_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -182,6 +193,11 @@ switch($menu_mode) {
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
+			if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+				$module_user_id = intval($module_user_id);
+			} else {
+				$module_user_id = intval($_SESSION['session_user_id']);
+			}
 			$sql = 'INSERT INTO '.K_TABLE_MODULES.' (
 				module_name,
 				module_enabled,
@@ -189,7 +205,7 @@ switch($menu_mode) {
 				) VALUES (
 				\''.F_escape_sql($module_name).'\',
 				\''.$module_enabled.'\',
-				\''.$_SESSION['session_user_id'].'\'
+				\''.$module_user_id.'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -203,6 +219,7 @@ switch($menu_mode) {
 	case 'clear':{ // Clear form fields
 		$module_name = '';
 		$module_enabled = true;
+		$module_user_id = intval($_SESSION['session_user_id']);
 		break;
 	}
 
@@ -225,9 +242,11 @@ if($formstatus) {
 				$module_id = $m['module_id'];
 				$module_name = $m['module_name'];
 				$module_enabled = F_getBoolean($m['module_enabled']);
+				$module_user_id = intval($m['module_user_id']);
 			} else {
 				$module_name = '';
 				$module_enabled = true;
+				$module_user_id = intval($_SESSION['session_user_id']);
 			}
 		} else {
 			F_display_db_error();
@@ -294,6 +313,69 @@ if($r = F_db_query($sql, $db)) {
 </span>
 <span class="formw">
 <input type="text" name="module_name" id="module_name" value="<?php echo htmlspecialchars($module_name, ENT_COMPAT, $l['a_meta_charset']); ?>" size="30" maxlength="255" title="<?php echo $l['h_module_name']; ?>" />
+</span>
+</div>
+
+<div class="row">
+<span class="label">
+<label for="module_user_id"><?php echo $l['w_owner']; ?></label>
+</span>
+<span class="formw">
+<?php
+if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+	echo '<select name="module_user_id" id="module_user_id" size="0" title="'.$l['h_module_owner'].'">'.K_NEWLINE;
+	$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_level>5) ORDER BY user_lastname, user_firstname, user_name';
+	if ($r = F_db_query($sql, $db)) {
+		while($m = F_db_fetch_array($r)) {
+			echo '<option value="'.$m['user_id'].'"';
+			if ($m['user_id'] == $module_user_id) {
+				echo ' selected="selected"';
+			}
+			echo '>'.htmlspecialchars('('.$m['user_name'].') '.$m['user_lastname'].' '.$m['user_firstname'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+		}
+	}
+	else {
+		echo '</select></span></div>'.K_NEWLINE;
+		F_display_db_error();
+	}
+	echo '</select>'.K_NEWLINE;
+} else {
+	$userdata = '';
+	$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE user_id='.$module_user_id.'';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			echo '<span style="font-style:italic;color:#333333;">('.$m['user_name'].') '.$m['user_lastname'].' '.$m['user_firstname'].'</span>'.K_NEWLINE;
+		}
+	} else {
+		echo '</select></span></div>'.K_NEWLINE;
+		F_display_db_error();
+	}
+}
+?>
+</span>
+</div>
+
+<div class="row">
+<span class="label">
+<label for="module_user_groups"><?php echo $l['w_groups']; ?></label>
+</span>
+<span class="formw">
+<?php
+$sqlg = 'SELECT *
+	FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
+	WHERE usrgrp_group_id=group_id
+		AND usrgrp_user_id='.$module_user_id.'
+	ORDER BY group_name';
+if ($rg = F_db_query($sqlg, $db)) {
+	echo '<span style="font-style:italic;color#333333;font-size:small;">';
+	while ($mg = F_db_fetch_array($rg)) {
+		echo ' · '.$mg['group_name'].'';
+	}
+	echo '</span>';
+} else {
+	F_display_db_error();
+}
+?>
 </span>
 </div>
 

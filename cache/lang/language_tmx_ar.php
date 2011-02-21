@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2011-01-28 00:02:41
+// DATE: 2011-02-21 16:26:04
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -557,5 +557,8 @@ $tmx['w_table']='جدول';
 $tmx['w_visual']='رموز';
 $tmx['t_select_media_file']='اختر الملف';
 $tmx['hp_select_media_file']='هذه الصفحة تسمح لك بإدراج ملفات الملتميديا التي ترغب بإضافتها للشرح. اختر الملف الذي تريد ادراجه, ثم انقر زر [اضافة] .';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---

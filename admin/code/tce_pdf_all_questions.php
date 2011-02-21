@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2010-12-06
+// Last Update : 2011-02-21
 //
 // Description : Creates a PDF document containing exported questions.
 //
@@ -71,10 +71,6 @@ if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 
 // check user's authorization for module
 if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
-	exit;
-}
-// check user's authorization for subject
-if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')) {
 	exit;
 }
 

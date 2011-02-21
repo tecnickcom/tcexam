@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20110128T000100Z" creationtoolversion="1"
+ <header datatype="PlainText" changedate="20110221T161100Z" creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
            creationid="NicolaAsuni"
@@ -39333,6 +39333,219 @@ A mentés fájl tárolása a "cache/backup" alkönyvtárba kerül a következő 
    </tuv>
    <tuv xml:lang="HU">
     <seg>Ez az oldal lehetővé teszi, hogy az aktuális leíráshoz multimédia fájlt adjon. Válassza ki az objektumot és az [add] gomb segítségével adja hozzá.</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_owner" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>proprietario</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>owner</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>owner</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_module_owner" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>proprietario di questo modulo</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>owner of this module</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>owner of this module</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_topic_owner" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>proprietario di questo argomento</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>owner of this topic</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>owner of this topic</seg>
    </tuv>
   </tu>
  </body>

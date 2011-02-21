@@ -1,3 +1,8 @@
+11.1.020 (2011-02-21)
+	- Question Import module was fixed for missing module owner field.
+	- The owner of a module can now be changed by administrator.
+	- Checks on Topic owner were removed in favor of module owner.
+
 11.1.019 (2011-02-15)
 	- TCPDF library was updated to fix line break broblems.
 

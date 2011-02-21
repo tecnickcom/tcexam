@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2011-01-28 00:02:46
+// DATE: 2011-02-21 16:26:09
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -557,5 +557,8 @@ $tmx['w_table']='列表';
 $tmx['w_visual']='图标';
 $tmx['t_select_media_file']='选定对象';
 $tmx['hp_select_media_file']='此页面允许在当前描述中插入多媒体对象。选定要插入的对象，填写描述字段并点击[添加]按钮。';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2010-06-16
+// Last Update : 2011-02-21
 //
 // Description : Class to import questions from an XML file.
 //
@@ -162,6 +162,7 @@ class XMLQuestionImporter {
 					case 'module': {
 						$this->level_data['module']['module_name'] = 'default';
 						$this->level_data['module']['module_enabled'] = 'false';
+						$this->level_data['module']['module_user_id'] = '1';
 						break;
 					}
 					case 'subject': {
@@ -293,10 +294,12 @@ class XMLQuestionImporter {
 				// insert new module
 				$sql = 'INSERT INTO '.K_TABLE_MODULES.' (
 					module_name,
-					module_enabled
+					module_enabled,
+					module_user_id
 					) VALUES (
 					\''.$this->level_data['module']['module_name'].'\',
-					\''.$this->boolval[$this->level_data['module']['module_enabled']].'\'
+					\''.$this->boolval[$this->level_data['module']['module_enabled']].'\',
+					\''.$_SESSION['session_user_id'].'\'
 					)';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
@@ -329,13 +332,7 @@ class XMLQuestionImporter {
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
 				// get existing subject ID
-				if (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $m['subject_id'], 'subject_user_id')) {
-					// unauthorized user
-					$this->level_data['subject']['subject_id'] = false;
-				} else {
-					$this->level_data['subject']['subject_id'] = $m['subject_id'];
-				}
-				
+				$this->level_data['subject']['subject_id'] = $m['subject_id'];
 			} elseif ($this->level_data['module']['module_id'] !== false) {
 				// insert new subject
 				$sql = 'INSERT INTO '.K_TABLE_SUBJECTS.' (

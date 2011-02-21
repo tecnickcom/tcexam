@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: bg
-// DATE: 2011-01-28 00:02:43
+// DATE: 2011-02-21 16:26:06
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -557,5 +557,8 @@ $tmx['w_table']='таблично';
 $tmx['w_visual']='визуално';
 $tmx['t_select_media_file']='Избери Обект';
 $tmx['hp_select_media_file']='Тази страница позволява да вмъкнете мултимедиен обект в даденото описание. Изберете обекта който искате да вмъкнете, попълнете описателните полета и кликнете върху [add] бутона.';
+$tmx['w_owner']='owner';
+$tmx['h_module_owner']='owner of this module';
+$tmx['h_topic_owner']='owner of this topic';
 
 // --- EOF ---
