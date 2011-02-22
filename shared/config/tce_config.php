@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.020');
+define ('K_TCEXAM_VERSION', '11.1.021');
 
 /**
  * 2-letters code for default language.
