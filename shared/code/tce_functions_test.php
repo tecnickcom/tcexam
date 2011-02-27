@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2010-10-04
+// Last Update : 2011-02-27
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -1114,7 +1114,6 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 	$num_answers = 0; // counts alternative answers
 	$test_id = intval($test_id);
 	$testlog_id = intval($testlog_id);
-	$answer_text = F_escape_sql($answer_text);
 	// get test data
 	$testdata = F_getTestData($test_id);
 	// get question information
@@ -1536,7 +1535,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 								break;
 							}
 						} // end of switch
-						$str .= "</li>\n";
+						$str .= '</li>'.K_NEWLINE;
 					} // end of while
 				} else {
 					F_display_db_error();
@@ -1713,7 +1712,7 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 		//$rstr .= '<legend>';
 		$rstr .= $l['w_questions'];
 		//$rstr .= '</legend>'.K_NEWLINE;
-		$rstr .= '<ol class="qlist">'."\n".$str.'</ol>'.K_NEWLINE;
+		$rstr .= '<ol class="qlist">'.K_NEWLINE.$str.'</ol>'.K_NEWLINE;
 		$rstr .= '</div>'.K_NEWLINE; //fieldset
 		$rstr .= '<br />'.K_NEWLINE;
 	}

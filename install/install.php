@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : install.php
 // Begin       : 2002-05-13
-// Last Update : 2010-02-22
+// Last Update : 2010-02-27
 //
 // Description : TCExam installation script.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -67,7 +67,11 @@ echo '<body>'."\n";
 <h1>TCExam - Installation</h1>
 
 <p>
-<b>This is the <a href="index.htm" title="installation manual">installation</a> script of <a href="http://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></b>
+<strong>This is the <a href="index.htm" title="installation manual">installation</a> script of <a href="http://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></strong>
+</p>
+
+<p>
+<strong>DO NOT USE THIS SCRIPT FOR UPGRADING AN EXISTING INSTALLATION, INSTEAD READ <a href="../UPGRADE.TXT" title="upgrading instructions">UPGRADE.TXT</a></strong>
 </p>
 
 <?php

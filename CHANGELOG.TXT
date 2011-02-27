@@ -1,3 +1,7 @@
+11.1.022 (2011-02-27)
+	- Bug #3193785 "Free text field writing error" was fixed.
+	- TCPDF library was updated.
+
 11.1.021 (2011-02-22)
 	- Romanian language was updated.
 	- TCPDF library was updated to fix automatic line break problem.
