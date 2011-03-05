@@ -1,3 +1,6 @@
+11.1.023 (2011-03-05)
+	- Problem of downloading backups with IE8 was fixed.
+
 11.1.022 (2011-02-27)
 	- Bug #3193785 "Free text field writing error" was fixed.
 	- TCPDF library was updated.

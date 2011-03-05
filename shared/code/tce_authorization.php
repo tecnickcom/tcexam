@@ -69,7 +69,7 @@ $logged = false; // the user is not yet logged in
 
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($PHPSESSID);
-$session_hash = md5($PHPSESSID.getClientFingerprint());
+$session_hash = md5($PHPSESSID.K_RANDOM_SECURITY);//getClientFingerprint());
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
 	if ($ms = F_db_fetch_array($rs)) { // the user's session already exist

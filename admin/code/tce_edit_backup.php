@@ -59,7 +59,7 @@ $pagelevel = K_AUTH_BACKUP;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_backup_editor'];
-require_once('../code/tce_page_header.php');
+
 require_once('../../shared/code/tce_functions_form.php');
 
 if(isset($_POST['backup'])) {
@@ -77,19 +77,15 @@ switch($menu_mode) { // process submited data
 	case 'restore':{
 		if (isset($backup_file) AND !empty($backup_file)) {
 			F_print_error('WARNING', $l['m_restore_confirm'].': '.$backup_file);
-			?>
-			<div class="confirmbox">
-			<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
-			<div>
-			<input type="hidden" name="backup_file" id="backup_file" value="<?php echo stripslashes($backup_file); ?>" />
-			<?php
+			echo '<div class="confirmbox">'.K_NEWLINE;
+			echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_delete">'.K_NEWLINE;
+			echo '<div>'.K_NEWLINE;
+			echo '<input type="hidden" name="backup_file" id="backup_file" value="'.stripslashes($backup_file).'" />'.K_NEWLINE;
 			F_submit_button('forcerestore', $l['w_restore'], $l['h_restore']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
-			?>
-			</div>
-			</form>
-			</div>
-			<?php
+			echo '</div>'.K_NEWLINE;
+			echo '</form>'.K_NEWLINE;
+			echo '</div>'.K_NEWLINE;
 		}
 		break;
 	}
@@ -172,13 +168,26 @@ switch($menu_mode) { // process submited data
 				// ERROR
 				F_print_error('ERROR', 'SECURITY ERROR');
 			} else {
-				// open a new window to send the file (requires JavaScript)
-				echo '<script language="JavaScript" type="text/javascript">'.K_NEWLINE;
-				echo '//<![CDATA['.K_NEWLINE;
-				echo 'dw=window.open(\'tce_download.php?t=b&f='.urlencode($backup_file).'\', \'dw\', \'dependent,height=1,width=1,menubar=no,resizable=no,scrollbars=no,status=no,toolbar=no\');'.K_NEWLINE;
-				echo 'setInterval(\'dw.close()\', 5000);'.K_NEWLINE;
-				echo '//]]>'.K_NEWLINE;
-				echo '</script>'.K_NEWLINE;
+				$file_to_download = K_PATH_BACKUP.$backup_file;
+				// send headers
+				header('Content-Description: File Transfer');
+				header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+				header('Pragma: public');
+				header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+				header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+				// force download dialog
+				header('Content-Type: application/force-download');
+				header('Content-Type: application/octet-stream', false);
+				header('Content-Type: application/download', false);
+				header('Content-Type: application/x-gzip', false);
+				// use the Content-Disposition header to supply a recommended filename
+				header('Content-Disposition: attachment; filename='.$backup_file.';');
+				header('Content-Transfer-Encoding: binary');
+				header('Content-Length: '.filesize($file_to_download));
+				ob_clean();
+				flush();
+				echo file_get_contents($file_to_download);
+				exit;
 			}
 		}
 		break;
@@ -190,6 +199,7 @@ switch($menu_mode) { // process submited data
 
 } //end of switch
 
+require_once('../code/tce_page_header.php');
 ?>
 
 <div class="container">

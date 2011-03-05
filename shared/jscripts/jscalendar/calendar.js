@@ -1397,6 +1397,16 @@ Calendar.prototype.showAtElement = function (el, opts) {
 			br.y += window.scrollY;
 			br.x += window.scrollX;
 		}
+		if (document.documentElement.scrollLeft || document.documentElement.scrollLeft == 0) {
+			br.x += document.documentElement.scrollLeft;
+		} else {
+			br.x += window.scrollX;
+		}
+		if (document.documentElement.scrollTop || document.documentElement.scrollTop == 0) {
+			br.y += document.documentElement.scrollTop;
+		} else {
+			br.y += window.scrollY;
+		}
 		var tmp = box.x + box.width - br.x;
 		if (tmp > 0) box.x -= tmp;
 		tmp = box.y + box.height - br.y;
