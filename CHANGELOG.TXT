@@ -1,3 +1,6 @@
+11.1.024 (2011-03-08)
+	- Login problems were fixed. Please check the new default values of K_CHECK_SESSION_FINGERPRINT and K_REDIRECT_LOGIN_MODE con shared/config/tce_config.php
+
 11.1.023 (2011-03-05)
 	- Problem of downloading backups with IE8 was fixed.
 

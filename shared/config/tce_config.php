@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-02-02
+// Last Update : 2011-03-08
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.023');
+define ('K_TCEXAM_VERSION', '11.1.024');
 
 /**
  * 2-letters code for default language.
@@ -155,7 +155,7 @@ define ('K_QUESTION_LINE_MAX_LENGTH', 70);
 /**
  * If true, check for possible session hijacking (set to false if you have login problems).
  */
-define ('K_CHECK_SESSION_FINGERPRINT', true);
+define ('K_CHECK_SESSION_FINGERPRINT', false);
 
 // Client Cookie settings
 
@@ -184,9 +184,9 @@ define ('K_COOKIE_EXPIRE', K_SECONDS_IN_DAY);
  * 1 = relative redirect.
  * 2 = absolute redirect.
  * 3 = html redirect.
- * 4 = full redirect (DEFAULT AND MOST COMPATIBLE SETTING).
+ * 4 = full redirect.
  */
-define ('K_REDIRECT_LOGIN_MODE', 4);
+define ('K_REDIRECT_LOGIN_MODE', 3);
 
 // Error settings
 
