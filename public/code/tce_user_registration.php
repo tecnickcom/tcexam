@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2010-03-29
+// Last Update : 2011-03-14
 //
 // Description : User registration form.
 //
@@ -67,7 +67,7 @@ $thispage_description = $l['hp_user_registration'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 
-if ($menu_mode == "add") { // process submited data
+if ($menu_mode == 'add') { // process submited data
 
 	foreach ($regfields as $name => $enabled) {
 		// disable unauthorized fields
@@ -285,7 +285,7 @@ if (K_USRREG_EMAIL_CONFIRM) {
 <?php echo showRequiredField(2); ?></span>
 <span class="formw">
 <input type="password" name="newpassword" id="newpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-<input type="hidden" name="user_password" id="user_password" value="<?php echo $user_password; ?>" />
+<input type="hidden" name="user_password" id="user_password" value="" />
 </span>
 </div>
 
