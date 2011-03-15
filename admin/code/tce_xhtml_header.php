@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xhtml_header.php
 // Begin       : 2004-04-24
-// Last Update : 2009-09-30
+// Last Update : 2011-03-15
 //
 // Description : print default XHTML page header
 //
@@ -81,6 +81,7 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language
 echo '<head>'.K_NEWLINE;
 echo '<title>'.htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charset']).'</title>'.K_NEWLINE;
 echo '<meta http-equiv="Content-Type" content="text/html; charset='.$l['a_meta_charset'].'" />'.K_NEWLINE;
+echo '<meta name="language" content="'.$l['a_meta_language'].'" />'.K_NEWLINE;
 echo '<meta name="tcexam_level" content="'.$pagelevel.'" />'.K_NEWLINE;
 echo '<meta name="description" content="'.htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset']).' ['.base64_decode(K_KEY_SECURITY).']" />'.K_NEWLINE;
 echo '<meta name="author" content="nick"/>'.K_NEWLINE;

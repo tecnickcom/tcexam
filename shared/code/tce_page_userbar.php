@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
-// Last Update : 2010-12-06
+// Last Update : 2011-03-15
 //
 // Description : Display user's bar containing copyright
 //               information, user status and language
@@ -53,8 +53,8 @@
 
 // skip links
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
-echo '<a href="#timersection" accesskey="3" title="[3] '.$l['w_jump_timer'].'" class="white">'.$l['w_jump_timer'].'</a> '.K_NEWLINE;
-echo '<a href="#menusection" accesskey="4" title="[4] '.$l['w_jump_menu'].'" class="white">'.$l['w_jump_menu'].'</a> '.K_NEWLINE;
+echo '<a href="#timersection" accesskey="3" title="[3] '.$l['w_jump_timer'].'" class="white">'.$l['w_jump_timer'].'</a> <span style="color:white;">|</span>'.K_NEWLINE;
+echo '<a href="#menusection" accesskey="4" title="[4] '.$l['w_jump_menu'].'" class="white">'.$l['w_jump_menu'].'</a>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo '<div class="userbar">'.K_NEWLINE;
@@ -74,9 +74,11 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 	echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
 	echo '<span class="langselector" title="change language">'.K_NEWLINE;
 	$lang_array = unserialize(K_AVAILABLE_LANGUAGES);
+	$lngstr = '';
 	while (list($lang_code, $lang_name) = each($lang_array)) {
+		$lngstr .= ' | ';
 		if ($lang_code == K_USER_LANG) {
-			echo '<span class="selected" title="'.$lang_name.'">'.strtoupper($lang_code).'</span>'.K_NEWLINE;
+			$lngstr .= '<span class="selected" title="'.$lang_name.'">'.strtoupper($lang_code).'</span>';
 		} else {
 			if (isset($_SERVER['QUERY_STRING']) AND (strlen($_SERVER['QUERY_STRING'])>0)) {
 				$querystr = preg_replace("/([\?|\&]?)lang=([a-z]{2,3})/si", '', $_SERVER['QUERY_STRING']);
@@ -86,9 +88,10 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 			} else {
 				$langlink = $_SERVER['SCRIPT_NAME'].'?lang='.$lang_code;
 			}
-			echo '<a href="'.$langlink.'" class="langselector" title="'.$lang_name.'">'.strtoupper($lang_code).'</a>'.K_NEWLINE;
+			$lngstr .= '<a href="'.$langlink.'" class="langselector" title="'.$lang_name.'">'.strtoupper($lang_code).'</a>';
 		}
 	}
+	echo substr($lngstr, 3);
 	echo '</span>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
@@ -99,8 +102,8 @@ echo '</div>'.K_NEWLINE;
 
 // Display W3C logos
 echo '<div class="minibutton" dir="ltr">'.K_NEWLINE;
-echo '<a href="http://validator.w3.org/check?uri='.K_PATH_HOST.$_SERVER['SCRIPT_NAME'].'" class="minibutton" title="This Page Is Valid XHTML 1.0 Strict!">W3C <span>XHTML 1.0</span></a>'.K_NEWLINE;
-echo '<a href="http://jigsaw.w3.org/css-validator/" class="minibutton" title="This document validates as CSS!">W3C <span>CSS 2.0</span></a>'.K_NEWLINE;
+echo '<a href="http://validator.w3.org/check?uri='.K_PATH_HOST.$_SERVER['SCRIPT_NAME'].'" class="minibutton" title="This Page Is Valid XHTML 1.0 Strict!">W3C <span>XHTML 1.0</span></a> <span style="color:white;">|</span>'.K_NEWLINE;
+echo '<a href="http://jigsaw.w3.org/css-validator/" class="minibutton" title="This document validates as CSS!">W3C <span>CSS 2.0</span></a> <span style="color:white;">|</span>'.K_NEWLINE;
 echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" class="minibutton" title="Explanation of Level Triple-A Conformance">W3C <span>WAI-AAA</span></a>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

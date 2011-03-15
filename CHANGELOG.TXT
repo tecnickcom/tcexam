@@ -1,3 +1,7 @@
+11.1.026 (2011-03-15)
+	- Some Accessibility problems were fixed.
+	- TCPDF library was updated.
+
 11.1.025 (2011-03-14)
 	- "Reflected Cross-site Scripting" security problem was fixed.
 
