@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: bg
-// DATE: 2011-02-22 11:38:53
+// DATE: 2011-04-07 16:18:36
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -129,7 +129,7 @@ $tmx['hp_edit_user']='В тази форма можете да управляв�
 $tmx['hp_email_result']='Изпрати резултатите до потребителите чрез е-майл';
 $tmx['hp_import_xml_questions']='С тази форма можете да импортирате въпроси към избраната тема от XML файл.';
 $tmx['hp_import_xml_users']='С тази форма можете да импортирате потребители и групи от XML файл или CSV (текстов файл разделен с табове). Файловите формати са същите като тези получени при изнасянето на данни от Формата за избор на потребители';
-$tmx['hp_login']='За да достъпите различните секции на TCExam първо трябва да се логнете с потребителското име и парола, които са ви дадени от системния администратор.<br>Публичният адрес на системата, чрез който можете да решавате тестове и извън училище е: <a href="http://blog.hrbotev.eu/exam">http://blog.hrbotev.eu/exam</a> през учебните дни между 8.00 и 16.00 часа.';
+$tmx['hp_login']='За да достъпите различните секции на TCExam първо трябва да се логнете с потребителското име и парола, които са ви дадени от системния администратор.';
 $tmx['hp_online_users']='Тази форма показва потребителите, които в момента са логнати в системата';
 $tmx['hp_public_index']='Това е главната страница на TCExam. От тази страница можете да стартирате или продължите вашите тестове';
 $tmx['hp_result_questions']='Тази страница показва статистически данни за избрания тест. Чрез кликване върху заглавието на колоните можете да променяте подредбата им в таблицата. Чрез кликване върху номера на реда можете да достъпите страницата за промени за избрания въпрос.';
@@ -174,11 +174,11 @@ $tmx['m_mailerror_instantiate']='Не може да инициализира м�
 $tmx['m_mailerror_mailer_not_supported']='Програма за адресиране на писма не се поддържа.';
 $tmx['m_mailerror_provide_address']='Трябва да запишите адреса на поне един е-майл получател.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] Не достигна до следните получатели:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_signing']='Грешка при вписване: ';
+$tmx['m_mailerror_smtp_error']='SMTP сървърна грешка: ';
+$tmx['m_mailerror_empty_message']='Тялото на съобщението е празно';
+$tmx['m_mailerror_invalid_address']='Невалиден адрес';
+$tmx['m_mailerror_variable_set']='Не мога да задам или променя променлива: ';
 $tmx['m_new_window_link']='Скала и критерии за оценяване';
 $tmx['m_no_test_available']='няма налични тестове!';
 $tmx['m_process_completed']='процеса е завършен';
@@ -497,22 +497,22 @@ $tmx['w_mcma_partial_score']='частичен резултат за MCMA';
 $tmx['h_mcma_partial_score']='ако е избрано, използва частичния резултат за MCMA въпросите';
 $tmx['h_logout_on_timeout']='ако е избрано, logoff-ва потребителите когато изтече времето';
 $tmx['w_logout_on_timeout']='logoff когато изтече времето';
-$tmx['t_backup_editor']='Database Backup and Restore';
-$tmx['w_backup']='backup';
-$tmx['w_restore']='restore';
-$tmx['w_backup_file']='backup file';
-$tmx['h_backup']='create a new backup';
-$tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
-$tmx['m_restore_confirm']='confirm restoring';
+$tmx['t_backup_editor']='БД: бекъп и възстановяване';
+$tmx['w_backup']='бекъп';
+$tmx['w_restore']='възстанови';
+$tmx['w_backup_file']='бекъп файл';
+$tmx['h_backup']='създай нов бекъп';
+$tmx['h_restore']='възстанови избрания бекъп';
+$tmx['m_backup_completed']='бъкъпа е създаден успешно';
+$tmx['m_restore_completed']='възстановяването беше извършено успешно';
+$tmx['m_restore_confirm']='потвърди възстановяването';
 $tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
 Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
 To restore an existing backup archive, select it and push the [restore] button.
 Note that before each restore the system automatically execute a new backup, so you can undo the operation.
 Backup files are stored on the "cache/backup" folder using the following syntax: YYYYMMDDhhmmss_tcexam_backup.sql.gz , where YYYYMMDDhhmmss are the digits of year (Y), month (M), day (D), hour (h), minutes (m), seconds (s).';
-$tmx['w_download']='download';
-$tmx['h_download']='download the selected backup file';
+$tmx['w_download']='изтегли';
+$tmx['h_download']='изтегли избраният бекъп файл';
 $tmx['t_user_change_password']='Промени Паролата';
 $tmx['t_user_change_email']='Промени Email';
 $tmx['hp_user_change_password']='Оттук можете да промените вашата парола за достъп.';
@@ -557,8 +557,8 @@ $tmx['w_table']='таблично';
 $tmx['w_visual']='визуално';
 $tmx['t_select_media_file']='Избери Обект';
 $tmx['hp_select_media_file']='Тази страница позволява да вмъкнете мултимедиен обект в даденото описание. Изберете обекта който искате да вмъкнете, попълнете описателните полета и кликнете върху [add] бутона.';
-$tmx['w_owner']='owner';
-$tmx['h_module_owner']='owner of this module';
-$tmx['h_topic_owner']='owner of this topic';
+$tmx['w_owner']='собственик';
+$tmx['h_module_owner']='собственик на този модул';
+$tmx['h_topic_owner']='собственик на тази тема';
 
 // --- EOF ---
