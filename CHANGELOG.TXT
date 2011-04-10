@@ -1,3 +1,6 @@
+11.1.028 (2011-04-10)
+	- TCPDF performances were improved.
+
 11.1.027 (2011-04-07)
 	- Bulgarian language was updated.
 	- TCPDF library was updated.
