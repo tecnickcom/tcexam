@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
-// Last Update : 2011-03-15
+// Last Update : 2011-04-26
 //
 // Description : Display user's bar containing copyright
 //               information, user status and language
@@ -97,7 +97,7 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 }
 
 echo '<div class="minibutton" dir="ltr">';
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2010 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>';
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2011 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>';
 echo '</div>'.K_NEWLINE;
 
 // Display W3C logos

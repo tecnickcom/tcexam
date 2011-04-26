@@ -1,3 +1,7 @@
+11.1.029 (2011-04-26)
+	- Arabic language was updated.
+	- TCPDF library was updated.
+
 11.1.028 (2011-04-10)
 	- TCPDF performances were improved.
 
