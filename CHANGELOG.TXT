@@ -1,3 +1,9 @@
+11.1.030 (2011-05-04)
+	- A bug related to alternative login modes were fixed.
+	- A problem related to 'latex' and 'code' buttons on questions editor was fixed.
+	- A fix for get_magic_quotes_gpc turned off was added (shared/config/tce_config.php was updated).
+	- TCPDF library was updated.
+
 11.1.029 (2011-04-26)
 	- Arabic language was updated.
 	- TCPDF library was updated.

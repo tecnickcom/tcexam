@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-03-08
+// Last Update : 2011-05-04
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -169,7 +169,6 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 				// the user name exist but the password is wrong
 				if ($http_basic_auth) {
 					// update the password in case of HTTP Basic Authentication
-					$xuser_password = md5($_POST['xuser_password']);
 					$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
 						user_password=\''.$xuser_password.'\'
 						WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\'';
@@ -201,7 +200,8 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 			// this user doesn't exist on TCExam database
 			// try to get account information from alternative systems (RADIUS, LDAP, CAS, ...)
 			require_once('../../shared/code/tce_altauth.php');
-			if (($altusr = F_altLogin($_POST['xuser_name'], $_POST['xuser_password'])) !== false) {
+			$altusr = F_altLogin(stripslashes($_POST['xuser_name']), stripslashes($_POST['xuser_password']));
+			if ($altusr !== false) {
 				// replicate user account on TCExam local database
 				$sql = 'INSERT INTO '.K_TABLE_USERS.' (
 					user_regdate,

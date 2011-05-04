@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2011-01-20
+// Last Update : 2011-05-04
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -93,7 +93,8 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 
 	$onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=color\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton($callingform, $callingfield, 'color', '', K_PATH_IMAGES.'buttons/color.gif', $onclick, '');
-
+	
+	$onclick = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
 	$buttons .= getImageButton($callingform, $callingfield, 'code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
 	$buttons .= getImageButton($callingform, $callingfield, 'latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-03-08
+// Last Update : 2011-05-04
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.1.029');
+define ('K_TCEXAM_VERSION', '11.1.030');
 
 /**
  * 2-letters code for default language.
@@ -261,6 +261,9 @@ require_once('../../shared/code/tce_tmx.php');
 $lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php');
 $l = $lang_resources->getResource(); // language array
 
+ini_set('arg_separator.output', '&amp;');
+//date_default_timezone_set(K_TIMEZONE);
+
 if(!defined('PHP_VERSION_ID')) {
 	$version = PHP_VERSION;
 	define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
@@ -273,13 +276,21 @@ if (PHP_VERSION_ID < 50300) {
 	//ini_set('register_globals', 'On');
 }
 
-ini_set('arg_separator.output', '&amp;');
-//date_default_timezone_set(K_TIMEZONE);
-
-// --- get posted and get variables (to be compatible with register_globals off)
+// --- get 'post', 'get' and 'cookie' variables
 foreach ($_REQUEST as $postkey => $postvalue) {
-	if (($postkey{0} != '_') AND
-		(!preg_match("/[A-Z]/", $postkey{0}))) {
+	if (($postkey{0} != '_') AND (!preg_match("/[A-Z]/", $postkey{0}))) {
+		if (!get_magic_quotes_gpc()) {
+			// emulate magic_quotes_gpc
+			$postvalue = addslashes($postvalue);
+			$_REQUEST[$postkey] = $postvalue;
+			if (isset($_GET[$postkey])) {
+				$_GET[$postkey] = $postvalue;
+			} elseif (isset($_POST[$postkey])) {
+				$_POST[$postkey] = $postvalue;
+			} elseif (isset($_COOKIE[$postkey])) {
+				$_COOKIE[$postkey] = $postvalue;
+			}
+		}
 		$$postkey = $postvalue;
 	}
 }

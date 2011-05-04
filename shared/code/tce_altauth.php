@@ -68,13 +68,13 @@ function F_altLogin($username, $password) {
 		require_once('../../shared/radius/radius.class.php');
 		$radius = new Radius(K_RADIUS_SERVER_IP, K_RADIUS_SHARED_SECRET, K_RADIUS_SUFFIX, K_RADIUS_UDP_TIMEOUT, K_RADIUS_AUTHENTICATION_PORT, K_RADIUS_ACCOUNTING_PORT);
 		if (K_RADIUS_UTF8) {
-				$radusername = utf8_encode($username);
-				$radpassword = utf8_encode($password);
-			} else {
-				$radusername = $username;
-				$radpassword = $password;
-			}
-		if($radius->AccessRequest($radusername, $radpassword)) {
+			$radusername = utf8_encode($username);
+			$radpassword = utf8_encode($password);
+		} else {
+			$radusername = $username;
+			$radpassword = $password;
+		}
+		if ($radius->AccessRequest($radusername, $radpassword)) {
 			$usr = array();
 			$usr['user_email'] = '';
 			$usr['user_firstname'] = '';
