@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2010-10-06
+// Last Update : 2011-05-06
 //
 // Description : Display test results summary for all users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -65,6 +65,8 @@ require_once('tce_functions_auth_sql.php');
 require_once('tce_functions_statistics.php');
 require_once('tce_functions_user_select.php');
 
+$filter = '';
+
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
 	// check user's authorization
@@ -82,26 +84,31 @@ if (isset($_REQUEST['group_id']) AND !empty($_REQUEST['group_id'])) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+	$filter .= '&amp;group_id='.$group_id.'';
 } else {
 	$group_id = 0;
 }
 
-if(isset($_POST['lock'])) {
+if (isset($_POST['lock'])) {
 	$menu_mode = 'lock';
-} elseif(isset($_POST['unlock'])) {
+} elseif (isset($_POST['unlock'])) {
 	$menu_mode = 'unlock';
-} elseif(isset($_POST['extendtime'])) {
+} elseif (isset($_POST['extendtime'])) {
 	$menu_mode = 'extendtime';
 }
-if(!isset($order_field) OR empty($order_field)) {
+if (!isset($order_field) OR empty($order_field)) {
 	$order_field = 'total_score, user_lastname, user_firstname';
 } else {
 	$order_field = F_escape_sql($order_field);
 }
-if(!isset($orderdir) OR empty($orderdir)) {
-	$orderdir=0; $nextorderdir=1; $full_order_field = $order_field;
+if (!isset($orderdir) OR empty($orderdir)) {
+	$orderdir = 0;
+	$nextorderdir = 1;
+	$full_order_field = $order_field;
 } else {
-	$orderdir=1; $nextorderdir=0; $full_order_field = $order_field.' DESC';
+	$orderdir = 1;
+	$nextorderdir = 0;
+	$full_order_field = $order_field.' DESC';
 }
 
 if (isset($menu_mode) AND (!empty($menu_mode))) {
@@ -114,7 +121,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				case 'delete':{
 					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'';
-					if(!$r = F_db_query($sql, $db)) {
+					if (!$r = F_db_query($sql, $db)) {
 						echo $sql; //debug
 						F_display_db_error();
 					}
@@ -128,13 +135,13 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 						FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'
 						LIMIT 1';
-					if($rus = F_db_query($sqlus, $db)) {
-						if($mus = F_db_fetch_array($rus)) {
+					if ($rus = F_db_query($sqlus, $db)) {
+						if ($mus = F_db_fetch_array($rus)) {
 							$newstarttime = date(K_TIMESTAMP_FORMAT, strtotime($mus['testuser_creation_time']) + $extseconds);
 							$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 								SET testuser_creation_time=\''.$newstarttime.'\'
 								WHERE testuser_id='.$testuser_id.'';
-							if(!$ru = F_db_query($sqlu, $db)) {
+							if (!$ru = F_db_query($sqlu, $db)) {
 							echo $sqlu; //DEBUG
 								F_display_db_error();
 							}
@@ -149,7 +156,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 						SET testuser_status=4
 						WHERE testuser_id='.$testuser_id.'';
-					if(!$ru = F_db_query($sqlu, $db)) {
+					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
 					}
 					break;
@@ -159,7 +166,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 						SET testuser_status=1
 						WHERE testuser_id='.$testuser_id.'';
-					if(!$ru = F_db_query($sqlu, $db)) {
+					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
 					}
 					break;
@@ -170,20 +177,19 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 	F_print_error('MESSAGE', $l['m_updated']);
 }
 
-
-if($formstatus) {
-	if(!isset($test_id) OR empty($test_id)) {
-		$sql = F_select_executed_tests_sql().' LIMIT 1';
+if ($formstatus) {
+	if (isset($_REQUEST['test_id']) AND !empty($_REQUEST['test_id'])) {
+		$test_id = intval($_REQUEST['test_id']);
+		$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
 	} else {
-		$sql = 'SELECT *
-			FROM '.K_TABLE_TESTS.'
-			WHERE test_id='.$test_id.'
-			LIMIT 1';
+		$test_id = 0;
+		$sql = F_select_executed_tests_sql().' LIMIT 1';
 	}
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$test_id = $m['test_id'];
 			$test_duration_time = ($m['test_duration_time'] * K_SECONDS_IN_MINUTE);
+			$filter .= '&amp;test_id='.$test_id.'';
 		} else {
 			$test_id = 0;
 			$test_duration_time = 0;
@@ -208,10 +214,10 @@ if($formstatus) {
 <select name="test_id" id="test_id" size="0" onchange="document.getElementById('form_resultallusers').changecategory.value=1; document.getElementById('form_resultallusers').submit()" title="<?php echo $l['h_test']; ?>">
 <?php
 $sql = F_select_executed_tests_sql();
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
-		if($m['test_id'] == $test_id) {
+		if ($m['test_id'] == $test_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.substr($m['test_begin_time'], 0, 10).' '.htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -249,15 +255,15 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 		WHERE group_id=usrgrp_group_id AND usrgrp_user_id='.$_SESSION['session_user_id'].' AND';
 }
 $sql .= ' group_id IN (SELECT tstgrp_group_id FROM '.K_TABLE_TEST_GROUPS.' WHERE tstgrp_test_id='.$test_id.') ORDER BY group_name';
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	echo '<option value="0"';
-		if($m['group_id'] == $group_id) {
+		if ($m['group_id'] == $group_id) {
 			echo ' selected="selected"';
 		}
 		echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
-		if($m['group_id'] == $group_id) {
+		if ($m['group_id'] == $group_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -298,10 +304,13 @@ if ($l['a_meta_dir'] == 'rtl') {
 
 echo '<th>&nbsp;</th>'.K_NEWLINE;
 echo '<th>#</th>'.K_NEWLINE;
-echo F_result_allusers_table_header_element($test_id, 'total_score', $nextorderdir, $l['h_score_total'], $l['w_score'], $order_field);
-echo F_result_allusers_table_header_element($test_id, 'user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field);
-echo F_result_allusers_table_header_element($test_id, 'user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field);
-echo F_result_allusers_table_header_element($test_id, 'user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field);
+echo F_select_table_header_element('testuser_creation_time', $nextorderdir, $l['h_time_begin'], $l['w_time_begin'], $order_field, $filter);
+//echo F_select_table_header_element('testuser_end_time', $nextorderdir, $l['h_time_end'], $l['w_time_end'], $order_field, $filter);
+echo '<th title="'.$l['h_test_time'].'">'.$l['w_time'].'</th>'.K_NEWLINE;
+echo F_select_table_header_element('user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field, $filter);
+echo F_select_table_header_element('user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field, $filter);
+echo F_select_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $filter);
+echo F_select_table_header_element('total_score', $nextorderdir, $l['h_score_total'], $l['w_score'], $order_field, $filter);
 echo '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
@@ -313,7 +322,16 @@ echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
 </tr>
 <?php
 // output users stats
-$sqlr = 'SELECT testuser_id, testuser_status, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score
+$sqlr = 'SELECT
+	testuser_id,
+	testuser_creation_time,
+	testuser_status,
+	user_id,
+	user_lastname,
+	user_firstname,
+	user_name,
+	SUM(testlog_score) AS total_score,
+	MAX(testlog_change_time) AS testuser_end_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'';
 if (isset($group_id) AND ($group_id > 0)) {
 	$sqlr .= ','.K_TABLE_USERGROUP.'';
@@ -325,9 +343,9 @@ if (isset($group_id) AND ($group_id > 0)) {
 	$sqlr .= ' AND usrgrp_user_id=user_id
 		AND usrgrp_group_id='.$group_id.'';
 }
-$sqlr .= ' GROUP BY testuser_id, user_id, user_lastname, user_firstname, user_name, testuser_status
+$sqlr .= ' GROUP BY testuser_id, testuser_creation_time, user_id, user_lastname, user_firstname, user_name, testuser_status
 	ORDER BY '.$full_order_field.'';
-if($rr = F_db_query($sqlr, $db)) {
+if ($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 0;
 	$passed = 0;
 	$statsdata = array();
@@ -340,6 +358,7 @@ if($rr = F_db_query($sqlr, $db)) {
 	while($mr = F_db_fetch_array($rr)) {
 		$itemcount++;
 		$usrtestdata = F_getUserTestStat($test_id, $mr['user_id']);
+		$halfscore = ($usrtestdata['max_score'] / 2);
 		echo '<tr>';
 		echo '<td>';
 		echo '<input type="checkbox" name="testuserid'.$itemcount.'" id="testuserid'.$itemcount.'" value="'.$mr['testuser_id'].'" title="'.$l['w_select'].'"';
@@ -350,6 +369,16 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo '</td>'.K_NEWLINE;
 		echo '<td><a href="tce_show_result_user.php?testuser_id='.$mr['testuser_id'].'&amp;test_id='.$test_id.'&amp;user_id='.$mr['user_id'].'" title="'.$l['h_view_details'].'">'.$itemcount.'</a></td>'.K_NEWLINE;
 
+		echo '<td style="text-align:center;">'.$mr['testuser_creation_time'].'</td>'.K_NEWLINE;
+		//echo '<td style="text-align:center;">'.$mr['testuser_end_time'].'</td>'.K_NEWLINE;
+		if (!isset($mr['testuser_end_time']) OR ($mr['testuser_end_time'] <= 0)) {
+			$time_diff =$mr['test_duration_time'] * 60;
+		} else {
+			$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
+		}
+		$time_diff = gmdate('H:i:s', $time_diff);
+		echo '<td style="text-align:center;">'.$time_diff.'</td>'.K_NEWLINE;
+
 		$passmsg = '';
 		if ($usrtestdata['score_threshold'] > 0) {
 			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
@@ -358,16 +387,20 @@ if($rr = F_db_query($sqlr, $db)) {
 			} else {
 				$passmsg = ' title="'.$l['w_not_passed'].'" style="background-color:#FFBBBB;"';
 			}
+		} elseif ($usrtestdata['score'] > $halfscore) {
+			$passed++;
 		}
-		echo '<td'.$passmsg.' class="numeric">'.$mr['total_score'].' '.F_formatPercentage($usrtestdata['score'] / $usrtestdata['max_score']).'</td>'.K_NEWLINE;
+
 		echo '<td style="text-align:'.$tdalign.';"><a href="tce_edit_user.php?user_id='.$mr['user_id'].'">'.$mr['user_name'].'</a></td>'.K_NEWLINE;
 		echo '<td style="text-align:'.$tdalign.';">&nbsp;'.$mr['user_lastname'].'</td>'.K_NEWLINE;
 		echo '<td style="text-align:'.$tdalign.';">&nbsp;'.$mr['user_firstname'].'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['right'].' '.F_formatPercentage($usrtestdata['right'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['wrong'].' '.F_formatPercentage($usrtestdata['wrong'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['unanswered'].' '.F_formatPercentage($usrtestdata['unanswered'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['undisplayed'].' '.F_formatPercentage($usrtestdata['undisplayed'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['unrated'].' '.F_formatPercentage($usrtestdata['unrated'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+
+		echo '<td'.$passmsg.' class="numeric">'.F_formatFloat($mr['total_score']).'&nbsp;'.F_formatPercentage($usrtestdata['score'] / $usrtestdata['max_score']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$usrtestdata['right'].'&nbsp;'.F_formatPercentage($usrtestdata['right'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$usrtestdata['wrong'].'&nbsp;'.F_formatPercentage($usrtestdata['wrong'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$usrtestdata['unanswered'].'&nbsp;'.F_formatPercentage($usrtestdata['unanswered'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$usrtestdata['undisplayed'].'&nbsp;'.F_formatPercentage($usrtestdata['undisplayed'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+		echo '<td class="numeric">'.$usrtestdata['unrated'].'&nbsp;'.F_formatPercentage($usrtestdata['unrated'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
 		if ($mr['testuser_status'] == 4) {
 			echo '<td style="background-color:#FFBBBB;">'.$l['w_locked'];
 		} else {
@@ -397,6 +430,20 @@ if($rr = F_db_query($sqlr, $db)) {
 } else {
 	F_display_db_error();
 }
+
+echo '<tr>';
+echo '<td colspan="7" style="text-align:'.$tdalignr.';">'.$l['w_passed'].'</td>';
+$passed_perc = ($passed / $itemcount);
+echo '<td class="numeric"';
+if ($passed_perc > 0.5) {
+	echo  ' style="background-color:#BBFFBB;"';
+} else {
+	echo  ' style="background-color:#FFBBBB;"';
+}
+echo '><strong>'.$passed.'&nbsp;'.F_formatPercentage($passed_perc).'</strong></td>'.K_NEWLINE;
+echo '<td colspan="7">&nbsp;</td>';
+echo '</tr>';
+
 echo '</table>'.K_NEWLINE;
 
 if ($itemcount > 0) {
@@ -443,32 +490,32 @@ if ($itemcount > 0) {
 		if (!in_array($row, $excludestat)) {
 			echo '<tr>';
 			echo '<td style="text-align:'.$tdalignr.';">'.$l['w_'.$row].'</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['score'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['score']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['score'] / $usrtestdata['max_score']);
 			}
 			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['right'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['right']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['right'] / $usrtestdata['all']);
 			}
 			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['wrong'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['wrong']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['wrong'] / $usrtestdata['all']);
 			}
 			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['unanswered'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['unanswered']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['unanswered'] / $usrtestdata['all']);
 			}
 			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['undisplayed'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['undisplayed']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['undisplayed'] / $usrtestdata['all']);
 			}
 			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.round($columns['unrated'], 3);
+			echo '<td class="numeric">'.F_formatFloat($columns['unrated']);
 			if (in_array($row, $calcpercent)) {
 				echo ' '.F_formatPercentage($columns['unrated'] / $usrtestdata['all']);
 			}
@@ -517,33 +564,6 @@ echo '<div class="pagehelp">'.$l['hp_result_alluser'].'</div>'.K_NEWLINE;
 echo '</div>';
 
 require_once('../code/tce_page_footer.php');
-
-// ------------------------------------------------------------
-
-/**
- * Display table header element with order link.
- * @param $test_id (string) test ID
- * @param $order_field (string) name of table field
- * @param $orderdir (string) order direction
- * @param $title (string) title field of anchor link
- * @param $name (string) column name
- * @param $current_order_field (string) current order field name
- * @return table header element string
- */
-function F_result_allusers_table_header_element($test_id, $order_field, $orderdir, $title, $name, $current_order_field="") {
-	global $l;
-	require_once('../config/tce_config.php');
-	$ord = '';
-	if ($order_field == $current_order_field) {
-		if ($orderdir) {
-			$ord = '<acronym title="'.$l['w_ascent'].'">&gt;</acronym>';
-		} else {
-			$ord = '<acronym title="'.$l['w_descent'].'">&lt;</acronym>';
-		}
-	}
-	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?test_id='.$test_id.'&amp;firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.'" title="'.$title.'">'.$name.'</a> '.$ord.'</th>'.K_NEWLINE;
-	return $str;
-}
 
 //============================================================+
 // END OF FILE

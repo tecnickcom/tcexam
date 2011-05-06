@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
-// Last Update : 2010-06-16
+// Last Update : 2011-05-06
 //
 // Description : Export all users' results in XML.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -103,6 +103,8 @@ $xml .= '<tcexamresults version="'.K_TCEXAM_VERSION.'">'.K_NEWLINE;
 $xml .=  K_TAB.'<header';
 $xml .= ' lang="'.K_USER_LANG.'"';
 $xml .= ' date="'.date(K_TIMESTAMP_FORMAT).'">'.K_NEWLINE;
+$xml .= K_TAB.K_TAB.'<test_id>'.$test_id.'</test_id>'.K_NEWLINE;
+$xml .= K_TAB.K_TAB.'<group_id>'.$test_id.'</group_id>'.K_NEWLINE;
 $xml .= K_TAB.'</header>'.K_NEWLINE;
 $xml .=  K_TAB.'<body>'.K_NEWLINE;
 
@@ -150,7 +152,7 @@ $statsdata['unanswered'] = array();
 $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
-$sql = 'SELECT testuser_id, user_id, SUM(testlog_score) AS total_score, MAX(testlog_change_time) AS test_end_time, testuser_creation_time
+$sql = 'SELECT testuser_id, user_id, SUM(testlog_score) AS total_score, MAX(testlog_change_time) AS testuser_end_time, testuser_creation_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 	WHERE testlog_testuser_id=testuser_id
 		AND testuser_user_id=user_id
@@ -192,8 +194,9 @@ if($r = F_db_query($sql, $db)) {
 			$xml .= K_TAB.K_TAB.K_TAB.'</userdata>'.K_NEWLINE;
 		}
 		$usrtestdata = F_getUserTestStat($test_id, $user_id);
+		$halfscore = ($usrtestdata['max_score'] / 2);
 		$xml .= K_TAB.K_TAB.K_TAB.'<stats>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'],1).'</score>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'], 3).'</score>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right>'.$usrtestdata['right'].'</right>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;
@@ -204,7 +207,10 @@ if($r = F_db_query($sql, $db)) {
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed>'.$usrtestdata['undisplayed'].'</undisplayed>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed_percent>'.round(100 * $usrtestdata['undisplayed'] / $usrtestdata['all']).'</undisplayed_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<start_time>'.$m['testuser_creation_time'].'</start_time>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<end_time>'.$m['test_end_time'].'</end_time>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<end_time>'.$m['testuser_end_time'].'</end_time>'.K_NEWLINE;
+		$time_diff = strtotime($m['testuser_end_time']) - strtotime($m['testuser_creation_time']); //sec
+		$time_diff = gmdate('H:i:s', $time_diff);
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<time>'.$time_diff.'</time>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<comment>'.F_text_to_xml($usrtestdata['comment']).'</comment>'.K_NEWLINE;
 		if ($usrtestdata['score_threshold'] > 0) {
 			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
@@ -213,6 +219,8 @@ if($r = F_db_query($sql, $db)) {
 			} else {
 				$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<passed>false</passed>'.K_NEWLINE;
 			}
+		} elseif ($usrtestdata['score'] > $halfscore) {
+			$passed++;
 		}
 		$xml .= K_TAB.K_TAB.K_TAB.'</stats>'.K_NEWLINE;
 

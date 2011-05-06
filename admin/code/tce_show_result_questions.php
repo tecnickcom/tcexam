@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2011-02-09
+// Last Update : 2011-05-06
 //
 // Description : Display questions statistics for the selected
 //               test.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -65,6 +65,8 @@ require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../code/tce_functions_statistics.php');
 require_once('../code/tce_functions_auth_sql.php');
 
+$filter = '';
+
 if ($l['a_meta_dir'] == 'rtl') {
 	$txtdir = 'right';
 } else {
@@ -81,36 +83,33 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	}
 }
 
-if(!isset($order_field) OR empty($order_field)) {
+if (!isset($order_field) OR empty($order_field)) {
 	$order_field = 'recurrence DESC,average_score DESC';
 }
 else {
 	$order_field = F_escape_sql($order_field);
 }
-if(!isset($orderdir) OR empty($orderdir)) {
+if (!isset($orderdir) OR empty($orderdir)) {
 	$orderdir=0; $nextorderdir=1; $full_order_field = $order_field;
 }
 else {
 	$orderdir=1; $nextorderdir=0; $full_order_field = $order_field.' DESC';
 }
 
-if($formstatus) {
-	if(!isset($test_id) OR empty($test_id)) {
-		$test_id = 0;
-		$sql = F_select_executed_tests_sql().' LIMIT 1';
-	} else {
-		$sql = 'SELECT *
-			FROM '.K_TABLE_TESTS.'
-			WHERE test_id='.$test_id.'
-			LIMIT 1';
+if (isset($_REQUEST['test_id']) AND !empty($_REQUEST['test_id'])) {
+	$test_id = intval($_REQUEST['test_id']);
+	$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
+} else {
+	$test_id = 0;
+	$sql = F_select_executed_tests_sql().' LIMIT 1';
+}
+if ($r = F_db_query($sql, $db)) {
+	if ($m = F_db_fetch_array($r)) {
+		$test_id = $m['test_id'];
+		$filter = '&amp;test_id='.$test_id.'';
 	}
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
-			$test_id = $m['test_id'];
-		}
-	} else {
-		F_display_db_error();
-	}
+} else {
+	F_display_db_error();
 }
 ?>
 
@@ -127,10 +126,10 @@ if($formstatus) {
 <select name="test_id" id="test_id" size="0" onchange="document.getElementById('form_resultquestions').submit()" title="<?php echo $l['h_test']; ?>">
 <?php
 $sql = F_select_executed_tests_sql();
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
-		if($m['test_id'] == $test_id) {
+		if ($m['test_id'] == $test_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.substr($m['test_begin_time'], 0, 10).' '.htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -161,10 +160,9 @@ else {
 <th>#</th>
 <th>#</th>
 <?php
-echo F_stats_table_header_element($test_id, 'recurrence', $nextorderdir, $l['h_question_recurrence'], $l['w_recurrence'], $order_field);
-echo F_stats_table_header_element($test_id, 'average_score', $nextorderdir, $l['h_score_average'], $l['w_score'], $order_field);
-echo F_stats_table_header_element($test_id, 'average_time', $nextorderdir, $l['h_answer_time'], $l['w_answer_time'], $order_field);
-
+echo F_select_table_header_element('recurrence', $nextorderdir, $l['h_question_recurrence'], $l['w_recurrence'], $order_field, $filter);
+echo F_select_table_header_element('average_score', $nextorderdir, $l['h_score_average'], $l['w_score'], $order_field, $filter);
+echo F_select_table_header_element('average_time', $nextorderdir, $l['h_answer_time'], $l['w_answer_time'], $order_field, $filter);
 echo '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
@@ -191,7 +189,7 @@ $sqlr = 'SELECT
 		AND testuser_test_id='.$test_id.'
 	GROUP BY question_id
 	ORDER BY '.$full_order_field.'';
-if($rr = F_db_query($sqlr, $db)) {
+if ($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 1;
 	while($mr = F_db_fetch_array($rr)) {
 		// get the question max score
@@ -216,8 +214,8 @@ if($rr = F_db_query($sqlr, $db)) {
 		echo '<tr>';
 		$question_description = '';
 		$sqlrq = 'SELECT question_description FROM '.K_TABLE_QUESTIONS.' WHERE question_id='.$mr['question_id'].'';
-		if($rrq = F_db_query($sqlrq, $db)) {
-			if($mrq = F_db_fetch_array($rrq)) {
+		if ($rrq = F_db_query($sqlrq, $db)) {
+			if ($mrq = F_db_fetch_array($rrq)) {
 				$question_description = F_decode_tcecode($mrq['question_description']);
 			}
 		} else {
@@ -233,7 +231,7 @@ if($rr = F_db_query($sqlr, $db)) {
 			FROM '.K_TABLE_ANSWERS.'
 			WHERE answer_question_id='.$mr['question_id'].'
 			ORDER BY answer_id';
-		if($ra = F_db_query($sqla, $db)) {
+		if ($ra = F_db_query($sqla, $db)) {
 			$answcount = 1;
 			while($ma = F_db_fetch_array($ra)) {
 				echo '<tr>';
@@ -320,34 +318,6 @@ echo '<div class="pagehelp">'.$l['hp_result_questions'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 require_once('../code/tce_page_footer.php');
-
-// ------------------------------------------------------------
-
-/**
- * Display table header element with order link.
- * @param $test_id (string) test ID
- * @param $order_field (string) name of table field
- * @param $orderdir (string) order direction
- * @param $title (string) title field of anchor link
- * @param $name (string) column name
- * @param $current_order_field (string) current order field name
- * @return table header element string
- */
-function F_stats_table_header_element($test_id, $order_field, $orderdir, $title, $name, $current_order_field="") {
-	global $l;
-	require_once('../config/tce_config.php');
-
-	$ord = '';
-	if ($order_field == $current_order_field) {
-		if ($orderdir) {
-			$ord = '<acronym title="'.$l['w_ascent'].'">&gt;</acronym>';
-		} else {
-			$ord = '<acronym title="'.$l['w_descent'].'">&lt;</acronym>';
-		}
-	}
-	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?test_id='.$test_id.'&amp;firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.'" title="'.$title.'">'.$name.'</a> '.$ord.'</th>'.K_NEWLINE;
-	return $str;
-}
 
 //============================================================+
 // END OF FILE

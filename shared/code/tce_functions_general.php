@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2011-02-09
+// Last Update : 2011-05-06
 //
 // Description : General functions.
 //
@@ -58,8 +58,8 @@ function F_count_rows($dbtable, $where='') {
 	require_once('../config/tce_config.php');
 	$numofrows = 0;
 	$sql = 'SELECT COUNT(*) AS numrows FROM '.$dbtable.' '.$where.'';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$numofrows = $m['numrows'];
 		}
 	} else {
@@ -124,12 +124,12 @@ function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
 	require_once('../config/tce_config.php');
 	global $l, $db;
 	$sqlc = 'SELECT * FROM '.$table.' WHERE '.$where.' LIMIT 1';
-	if($rc = F_db_query($sqlc, $db)) {
+	if ($rc = F_db_query($sqlc, $db)) {
 		if (($fieldname === FALSE) AND ($fieldid === FALSE) AND (F_count_rows($table, 'WHERE '.$where) > 0)) {
 			return FALSE;
 		}
-		if($mc = F_db_fetch_array($rc)) {
-			if($mc[$fieldname] == $fieldid) {
+		if ($mc = F_db_fetch_array($rc)) {
+			if ($mc[$fieldname] == $fieldid) {
 				return TRUE; // the values are unchanged
 			}
 		} else {
@@ -369,6 +369,15 @@ function getIpAsString($ip) {
  * @param $num (float) number to be formatted
  * @return formatted string
  */
+function F_formatFloat($num) {
+	return sprintf('%.03f', round($num, 3));
+}
+
+/**
+ * Format a percentage number.
+ * @param $num (float) number to be formatted
+ * @return formatted string
+ */
 function F_formatPercentage($num) {
 	return '('.str_replace(' ', '&nbsp;', sprintf('% 3d', round(100 * $num))).'%)';
 }
@@ -468,6 +477,31 @@ function getDataCSV($data) {
 		}
 	}
 	return $csv;
+}
+
+/**
+ * Display table header element with order link.
+ * @param $order_field (string) name of table field
+ * @param $orderdir (string) order direction
+ * @param $title title (string) field of anchor link
+ * @param $name column (string) name
+ * @param $current_order_field (string) current order field name
+ * @param $filter (string) additional parameters to pass on URL
+ * @return table header element string
+ */
+function F_select_table_header_element($order_field, $orderdir, $title, $name, $current_order_field='', $filter='') {
+	global $l;
+	require_once('../config/tce_config.php');
+	$ord = '';
+	if ($order_field == $current_order_field) {
+		if ($orderdir == 1) {
+			$ord = ' <acronym title="'.$l['w_ascent'].'">&gt;</acronym>';
+		} else {
+			$ord = ' <acronym title="'.$l['w_descent'].'">&lt;</acronym>';
+		}
+	}
+	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.''.$filter.'" title="'.$title.'">'.$name.'</a>'.$ord.'</th>'."\n";
+	return $str;
 }
 
 //============================================================+

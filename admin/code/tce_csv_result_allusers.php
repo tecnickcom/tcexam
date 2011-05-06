@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2010-10-06
+// Last Update : 2011-05-06
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -62,7 +62,7 @@ if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 } else {
 	$group_id = 0;
 }
-if(!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
+if (!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
 	$order_field = 'total_score, user_lastname, user_firstname';
 } else {
 	$order_field = urldecode($_REQUEST['order_field']);
@@ -100,6 +100,7 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	require_once('../../shared/code/tce_authorization.php');
 	require_once('../../shared/code/tce_functions_test_stats.php');
 	require_once('tce_functions_user_select.php');
+	require_once('../code/tce_functions_statistics.php');
 
 	$test_id = intval($test_id);
 	$group_id = intval($group_id);
@@ -113,13 +114,36 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 		return '';
 	}
 
+	// statistical data
+	$statsdata = array();
+	$statsdata['score'] = array();
+	$statsdata['right'] = array();
+	$statsdata['wrong'] = array();
+	$statsdata['unanswered'] = array();
+	$statsdata['undisplayed'] = array();
+	$statsdata['unrated'] = array();
+
 	$csv = ''; // CSV data to be returned
+
+	// general data
+	$csv .= 'TCExam Results Summary'.K_NEWLINE.K_NEWLINE;
+	$csv .= 'version'.K_TAB.K_TCEXAM_VERSION.K_NEWLINE;
+	$csv .= 'lang'.K_TAB.K_USER_LANG.K_NEWLINE;
+	$csv .= 'date'.K_TAB.date(K_TIMESTAMP_FORMAT).K_NEWLINE;
+	$csv .= 'test_id'.K_TAB.$test_id.K_NEWLINE;
+	$csv .= 'group_id'.K_TAB.$group_id.K_NEWLINE;
+	$csv .= K_NEWLINE.K_NEWLINE; // separator
+
 	// print column names
 	$csv .= '#';
-	$csv .= K_TAB.$l['w_score'];
+	$csv .= K_TAB.$l['w_time_begin'];
+	$csv .= K_TAB.$l['w_time_end'];
+	$csv .= K_TAB.$l['w_time'];
 	$csv .= K_TAB.$l['w_lastname'];
 	$csv .= K_TAB.$l['w_firstname'];
 	$csv .= K_TAB.$l['w_user'];
+	$csv .= K_TAB.$l['w_passed'];
+	$csv .= K_TAB.$l['w_score'];
 	$csv .= K_TAB.$l['w_answers_right'];
 	$csv .= K_TAB.$l['w_answers_wrong'];
 	$csv .= K_TAB.$l['w_questions_unanswered'];
@@ -127,8 +151,18 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	$csv .= K_TAB.$l['w_questions_unrated'];
 	$csv .= K_TAB.$l['w_comment'];
 
+	$passed = 0;
+
 	// output users stats
-	$sqlr = 'SELECT testuser_id, user_id, user_lastname, user_firstname, user_name, SUM(testlog_score) AS total_score
+	$sqlr = 'SELECT
+		testuser_id,
+		testuser_creation_time,
+		user_id,
+		user_lastname,
+		user_firstname,
+		user_name,
+		SUM(testlog_score) AS total_score,
+		MAX(testlog_change_time) AS testuser_end_time
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'
 		WHERE testlog_testuser_id=testuser_id
 			AND testuser_user_id=user_id
@@ -143,27 +177,98 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 		$sqlr .= ' AND (user_level<'.$_SESSION['session_user_level'].' OR user_id='.$_SESSION['session_user_id'].')';
 	}
-	$sqlr .= ' GROUP BY testuser_id, user_id, user_lastname, user_firstname, user_name
+	$sqlr .= ' GROUP BY testuser_id, testuser_creation_time, user_id, user_lastname, user_firstname, user_name
 		ORDER BY '.$order_field.'';
-	if($rr = F_db_query($sqlr, $db)) {
-		$itemcount = 1;
+	if ($rr = F_db_query($sqlr, $db)) {
+		$itemcount = 0;
 		while($mr = F_db_fetch_array($rr)) {
+			$itemcount++;
 			$csv .= K_NEWLINE.$itemcount;
-			$csv .= K_TAB.$mr['total_score'];
+			$csv .= K_TAB.$mr['testuser_creation_time'];
+			$csv .= K_TAB.$mr['testuser_end_time'];
+			$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
+			$time_diff = gmdate('H:i:s', $time_diff);
+			$csv .= K_TAB.$time_diff;
 			$csv .= K_TAB.$mr['user_lastname'];
 			$csv .= K_TAB.$mr['user_firstname'];
 			$csv .= K_TAB.$mr['user_name'];
 			$usrtestdata = F_getUserTestStat($test_id, $mr['user_id']);
+			$halfscore = ($usrtestdata['max_score'] / 2);
+			if ($usrtestdata['score_threshold'] > 0) {
+				if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
+					$csv .= K_TAB.'true';
+					$passed++;
+				} else {
+					$csv .= K_TAB.'false';
+				}
+			} else {
+				$csv .= K_TAB;
+				if ($usrtestdata['score'] > $halfscore) {
+					$passed++;
+				}
+			}
+			$csv .= K_TAB.$mr['total_score'];
 			$csv .= K_TAB.$usrtestdata['right'];
 			$csv .= K_TAB.$usrtestdata['wrong'];
 			$csv .= K_TAB.$usrtestdata['unanswered'];
 			$csv .= K_TAB.$usrtestdata['undisplayed'];
 			$csv .= K_TAB.$usrtestdata['unrated'];
 			$csv .= K_TAB.F_compact_string(htmlspecialchars($usrtestdata['comment'], ENT_NOQUOTES, $l['a_meta_charset']));
-			$itemcount++;
+
+			// collects data for descriptive statistics
+			$statsdata['score'][] = $mr['total_score'] / $usrtestdata['max_score'];
+			$statsdata['right'][] = $usrtestdata['right'] / $usrtestdata['all'];
+			$statsdata['wrong'][] = $usrtestdata['wrong'] / $usrtestdata['all'];
+			$statsdata['unanswered'][] = $usrtestdata['unanswered'] / $usrtestdata['all'];
+			$statsdata['undisplayed'][] = $usrtestdata['undisplayed'] / $usrtestdata['all'];
+			$statsdata['unrated'][] = $usrtestdata['unrated'] / $usrtestdata['all'];
 		}
 	} else {
 		F_display_db_error();
+	}
+
+	$csv .= K_NEWLINE; // separator
+
+	// calculate statistics
+	$stats = F_getArrayStatistics($statsdata);
+	$excludestat = array('sum', 'variance');
+	$calcpercent = array('mean', 'median', 'mode', 'minimum', 'maximum', 'range', 'standard_deviation');
+
+	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'passed_total'.K_TAB.$passed.K_NEWLINE;
+	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'passed_percent [%]'.K_TAB.round(100 * ($passed / $itemcount)).K_NEWLINE;
+
+	$csv .= K_NEWLINE; // separator
+
+	$csv .= 'STATISTICS'.K_NEWLINE; // separator
+
+	// headers
+	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB;
+	$csv .= 'points'.K_TAB;
+	$csv .= 'correct'.K_TAB;
+	$csv .= 'wrong'.K_TAB;
+	$csv .= 'unanswered'.K_TAB;
+	$csv .= 'undisplayed'.K_TAB;
+	$csv .= 'unrated'.K_NEWLINE;
+
+	foreach ($stats as $row => $columns) {
+		if (!in_array($row, $excludestat)) {
+			$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$row.K_TAB;
+			$csv .= round($columns['score'], 3).K_TAB;
+			$csv .= round($columns['right'], 3).K_TAB;
+			$csv .= round($columns['wrong'], 3).K_TAB;
+			$csv .= round($columns['unanswered'], 3).K_TAB;
+			$csv .= round($columns['undisplayed'], 3).K_TAB;
+			$csv .= round($columns['unrated'], 3).K_NEWLINE;
+			if (in_array($row, $calcpercent)) {
+				$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$row.' [%]'.K_TAB;
+				$csv .= round(100 * ($columns['score'] / $usrtestdata['max_score'])).K_TAB;
+				$csv .= round(100 * ($columns['right'] / $usrtestdata['all'])).K_TAB;
+				$csv .= round(100 * ($columns['wrong'] / $usrtestdata['all'])).K_TAB;
+				$csv .= round(100 * ($columns['unanswered'] / $usrtestdata['all'])).K_TAB;
+				$csv .= round(100 * ($columns['undisplayed'] / $usrtestdata['all'])).K_TAB;
+				$csv .= round(100 * ($columns['unrated'] / $usrtestdata['all'])).K_NEWLINE;
+			}
+		}
 	}
 
 	return $csv;

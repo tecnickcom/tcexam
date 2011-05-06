@@ -1,3 +1,8 @@
+11.1.031 (2011-05-06)
+	- A bug related question XML exporter was fixed (on your exported XML questions files you have to replace "key>" with "keyboard_key>").
+	- Test and User results interfaces and export filters (XML, CSV, PDF) were improved.
+	- TCPDF library was updated.
+
 11.1.030 (2011-05-04)
 	- A bug related to alternative login modes were fixed.
 	- A problem related to 'latex' and 'code' buttons on questions editor was fixed.
@@ -60,10 +65,10 @@
 
 11.1.015 (2011-01-20)
 	- Scrollbars were added on object window.
-	- TCPDF library was updated. 
+	- TCPDF library was updated.
 
 11.1.014 (2011-01-15)
-	- TCPDF library and Arabic language were updated. 
+	- TCPDF library and Arabic language were updated.
 
 11.1.013 (2011-01-02)
 	- A problem with [generate] button on tce_edit_test.php file was fixed.

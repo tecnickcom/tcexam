@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2010-06-16
+// Last Update : 2011-05-06
 //
 // Description : Functions to export questions using XML
 //               format.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -241,9 +241,9 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 									$xml .= $ma['answer_position'];
 									$xml .= '</position>'.K_NEWLINE;
 
-									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<key>';
+									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<keyboard_key>';
 									$xml .= F_text_to_xml(chr($ma['answer_keyboard_key']));
-									$xml .= '</key>'.K_NEWLINE;
+									$xml .= '</keyboard_key>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<description>';
 									$xml .=  F_text_to_xml($ma['answer_description']);

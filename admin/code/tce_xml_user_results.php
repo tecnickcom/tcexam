@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2010-10-06
+// Last Update : 2011-05-06
 //
 // Description : Export all user's results in XML.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -115,6 +115,19 @@ $xml .= '<tcexamuserresults version="'.K_TCEXAM_VERSION.'">'.K_NEWLINE;
 $xml .=  K_TAB.'<header';
 $xml .= ' lang="'.K_USER_LANG.'"';
 $xml .= ' date="'.date(K_TIMESTAMP_FORMAT).'">'.K_NEWLINE;
+$xml .= K_TAB.K_TAB.'<user_id>'.$user_id.'</user_id>'.K_NEWLINE;
+$sql = 'SELECT user_name, user_lastname, user_firstname FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id.'';
+if ($r = F_db_query($sql, $db)) {
+	if ($m = F_db_fetch_array($r)) {
+		$xml .= K_TAB.K_TAB.'<user_name>'.$m['user_name'].'</user_name>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.'<user_lastname>'.$m['user_lastname'].'</user_lastname>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.'<user_firstname>'.$m['user_firstname'].'</user_firstname>'.K_NEWLINE;
+	}
+} else {
+	F_display_db_error();
+}
+$xml .= K_TAB.K_TAB.'<date_from>'.$startdate.'</date_from>'.K_NEWLINE;
+$xml .= K_TAB.K_TAB.'<date_to>'.$enddate.'</date_to>'.K_NEWLINE;
 $xml .= K_TAB.'</header>'.K_NEWLINE;
 $xml .=  K_TAB.'<body>'.K_NEWLINE;
 
@@ -126,7 +139,14 @@ $statsdata['unanswered'] = array();
 $statsdata['undisplayed'] = array();
 $statsdata['unrated'] = array();
 
-$sql = 'SELECT testuser_id, test_id, test_name, testuser_creation_time, testuser_status, SUM(testlog_score) AS total_score
+$sql = 'SELECT
+		testuser_id,
+		test_id,
+		test_name,
+		testuser_creation_time,
+		testuser_status,
+		SUM(testlog_score) AS total_score,
+		MAX(testlog_change_time) AS testuser_end_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 	WHERE testuser_status>0
 		AND testuser_creation_time>=\''.$startdate.'\'
@@ -143,10 +163,25 @@ if($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		$testuser_id = $m['testuser_id'];
 		$usrtestdata = F_getUserTestStat($m['test_id'], $user_id);
+		$halfscore = ($usrtestdata['max_score'] / 2);
 		$xml .= K_TAB.K_TAB.'<test id=\''.$m['test_id'].'\'>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<start_time>'.$m['testuser_creation_time'].'</start_time>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.'<end_time>'.$m['testuser_end_time'].'</end_time>'.K_NEWLINE;
+		$time_diff = strtotime($m['testuser_end_time']) - strtotime($m['testuser_creation_time']); //sec
+		$time_diff = gmdate('H:i:s', $time_diff);
+		$xml .= K_TAB.K_TAB.K_TAB.'<time>'.$time_diff.'</time>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<name>'.F_text_to_xml($m['test_name']).'</name>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'], 1).'</score>'.K_NEWLINE;
+		if ($usrtestdata['score_threshold'] > 0) {
+			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
+				$xml .= K_TAB.K_TAB.K_TAB.'<passed>true</passed>'.K_NEWLINE;
+				$passed++;
+			} else {
+				$xml .= K_TAB.K_TAB.K_TAB.'<passed>false</passed>'.K_NEWLINE;
+			}
+		} elseif ($usrtestdata['score'] > $halfscore) {
+			$passed++;
+		}
+		$xml .= K_TAB.K_TAB.K_TAB.'<score>'.round($m['total_score'], 3).'</score>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'</score_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<right>'.$usrtestdata['right'].'</right>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'</right_percent>'.K_NEWLINE;
@@ -156,15 +191,13 @@ if($r = F_db_query($sql, $db)) {
 		$xml .= K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * $usrtestdata['unanswered'] / $usrtestdata['all']).'</unanswered_percent>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<undisplayed>'.$usrtestdata['undisplayed'].'</undisplayed>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.K_TAB.'<undisplayed_percent>'.round(100 * $usrtestdata['undisplayed'] / $usrtestdata['all']).'</undisplayed_percent>'.K_NEWLINE;
-		$xml .= K_TAB.K_TAB.K_TAB.'<comment>'.F_text_to_xml($usrtestdata['comment']).'</comment>'.K_NEWLINE;
-		if ($usrtestdata['score_threshold'] > 0) {
-			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
-				$xml .= K_TAB.K_TAB.K_TAB.'<passed>true</passed>'.K_NEWLINE;
-				$passed++;
-			} else {
-				$xml .= K_TAB.K_TAB.K_TAB.'<passed>false</passed>'.K_NEWLINE;
-			}
+		if ($m['testuser_status'] == 4) {
+			$status = $l['w_locked'];
+		} else {
+			$status = $l['w_unlocked'];
 		}
+		$xml .= K_TAB.K_TAB.K_TAB.'<status>'.$status.'</status>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.'<comment>'.F_text_to_xml($usrtestdata['comment']).'</comment>'.K_NEWLINE;
 		$xml .= K_TAB.K_TAB.'</test>'.K_NEWLINE;
 
 		// collects data for descriptive statistics
@@ -190,6 +223,12 @@ $xml .= K_TAB.K_TAB.K_TAB.'<passed_percent>'.round(100 * ($passed / $stats['numb
 foreach ($stats as $row => $columns) {
 	if (!in_array($row, $excludestat)) {
 		$xml .= K_TAB.K_TAB.K_TAB.'<'.$row.'>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score>'.round($columns['score'], 3).'</score>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right>'.round($columns['right'], 3).'</right>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<wrong>'.round($columns['wrong'], 3).'</wrong>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered>'.round($columns['unanswered'], 3).'</unanswered>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed>'.round($columns['undisplayed'], 3).'</undisplayed>'.K_NEWLINE;
+		$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unrated>'.round($columns['unrated'], 3).'</unrated>'.K_NEWLINE;
 		if (in_array($row, $calcpercent)) {
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score_percent>'.round(100 * ($columns['score'] / $usrtestdata['max_score'])).'</score_percent>'.K_NEWLINE;
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right_percent>'.round(100 * ($columns['right'] / $usrtestdata['all'])).'</right_percent>'.K_NEWLINE;
@@ -197,13 +236,6 @@ foreach ($stats as $row => $columns) {
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered_percent>'.round(100 * ($columns['unanswered'] / $usrtestdata['all'])).'</unanswered_percent>'.K_NEWLINE;
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed_percent>'.round(100 * ($columns['undisplayed'] / $usrtestdata['all'])).'</undisplayed_percent>'.K_NEWLINE;
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unrated_percent>'.round(100 * ($columns['unrated'] / $usrtestdata['all'])).'</unrated_percent>'.K_NEWLINE;
-		} else {
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<score>'.round($columns['score'], 3).'</score>'.K_NEWLINE;
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<right>'.round($columns['right'], 3).'</right>'.K_NEWLINE;
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<wrong>'.round($columns['wrong'], 3).'</wrong>'.K_NEWLINE;
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unanswered>'.round($columns['unanswered'], 3).'</unanswered>'.K_NEWLINE;
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<undisplayed>'.round($columns['undisplayed'], 3).'</undisplayed>'.K_NEWLINE;
-			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<unrated>'.round($columns['unrated'], 3).'</unrated>'.K_NEWLINE;
 		}
 		$xml .= K_TAB.K_TAB.K_TAB.'</'.$row.'>'.K_NEWLINE;
 	}

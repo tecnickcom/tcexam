@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2011-02-05
+// Last Update : 2011-05-06
 //
 // Description : Functions to display and select registered user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -85,6 +85,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
 	require_once('../../shared/code/tce_functions_form.php');
+	$filter = '';
 	if ($l['a_meta_dir'] == 'rtl') {
 		$txtalign = 'right';
 		$numalign = 'left';
@@ -108,6 +109,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	$wherequery = '';
 	if ($group_id > 0) {
 		$wherequery = ', '.K_TABLE_USERGROUP.' WHERE user_id=usrgrp_user_id	AND usrgrp_group_id='.intval($group_id).'';
+		$filter .= '&amp;group_id='.$group_id.'';
 	}
 	if (empty($wherequery)) {
 		$wherequery = ' WHERE';
@@ -142,16 +144,15 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			// table header
 			echo '<tr>'.K_NEWLINE;
 			echo '<th>&nbsp;</th>'.K_NEWLINE;
-			$filter = '';
 			if (strlen($searchterms) > 0) {
-				$filter = '&amp;searchterms='.urlencode($searchterms);
+				$filter .= '&amp;searchterms='.urlencode($searchterms);
 			}
-			echo F_user_table_header_element('user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field, $group_id, $filter);
-			echo F_user_table_header_element('user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field, $group_id, $filter);
-			echo F_user_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $group_id, $filter);
-			echo F_user_table_header_element('user_regnumber', $nextorderdir, $l['h_regcode'], $l['w_regcode'], $order_field, $group_id, $filter);
-			echo F_user_table_header_element('user_level', $nextorderdir, $l['h_level'], $l['w_level'], $order_field, $group_id, $filter);
-			echo F_user_table_header_element('user_regdate', $nextorderdir, $l['h_regdate'], $l['w_regdate'], $order_field, $group_id, $filter);
+			echo F_select_table_header_element('user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field, $filter);
+			echo F_select_table_header_element('user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field, $filter);
+			echo F_select_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $filter);
+			echo F_select_table_header_element('user_regnumber', $nextorderdir, $l['h_regcode'], $l['w_regcode'], $order_field, $filter);
+			echo F_select_table_header_element('user_level', $nextorderdir, $l['h_level'], $l['w_level'], $order_field, $filter);
+			echo F_select_table_header_element('user_regdate', $nextorderdir, $l['h_regdate'], $l['w_regdate'], $order_field, $filter);
 			echo '<th title="'.$l['h_group_name'].'">'.$l['w_groups'].'</th>'.K_NEWLINE;
 			echo '<th title="'.$l['t_all_results_user'].'">'.$l['w_tests'].'</th>'.K_NEWLINE;
 			echo '</tr>'.K_NEWLINE;
@@ -272,32 +273,6 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 		F_display_db_error();
 	}
 	return TRUE;
-}
-
-/**
- * Display table header element with order link.
- * @param $order_field (string) name of table field
- * @param $orderdir (string) order direction
- * @param $title (string) title field of anchor link
- * @param $name (string) column name
- * @param $current_order_field (string) current order field name
- * @param $group_id (int) id of the group (default = 0 = no specific group selected)
- * @param $filter (string) additional parameters to pass on URL
- * @return table header element string
- */
-function F_user_table_header_element($order_field, $orderdir, $title, $name, $current_order_field='', $group_id=0, $filter='') {
-	global $l;
-	require_once('../config/tce_config.php');
-	$ord = '';
-	if ($order_field == $current_order_field) {
-		if ($orderdir) {
-			$ord = '<acronym title="'.$l['w_ascent'].'">&gt;</acronym>';
-		} else {
-			$ord = '<acronym title="'.$l['w_descent'].'">&lt;</acronym>';
-		}
-	}
-	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?group_id='.intval($group_id).'&amp;firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.''.$filter.'" title="'.$title.'">'.$name.'</a> '.$ord.'</th>'.K_NEWLINE;
-	return $str;
 }
 
 /**
