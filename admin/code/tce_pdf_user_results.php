@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-06
+// Last Update : 2011-05-21
 //
 // Description : Create PDF document to display user's results.
 //
@@ -77,18 +77,22 @@ if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 1)) {
 
 if (isset($_REQUEST['startdate']) AND ($_REQUEST['startdate'] > 0)) {
 	$startdate = urldecode($_REQUEST['startdate']);
+	$startdate_time = strtotime($startdate);
+	$startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
 } else {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
 if (isset($_REQUEST['enddate']) AND ($_REQUEST['enddate'] > 0)) {
 	$enddate = urldecode($_REQUEST['enddate']);
+	$enddate_time = strtotime($enddate);
+	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
 } else {
 	$enddate = date('Y').'-01-01 00:00:00';
 }
 if(!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
 	$order_field = 'testuser_creation_time';
 } else {
-	$order_field = urldecode($_REQUEST['order_field']);
+	$order_field = F_escape_sql(urldecode($_REQUEST['order_field']));
 }
 
 $numberfont = 'courier';

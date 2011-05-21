@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_allresults_user.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -55,6 +55,7 @@
 
 /**
  */
+require_once('../config/tce_config.php');
 
 if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 0)) {
 	$user_id = intval($_REQUEST['user_id']);
@@ -63,11 +64,15 @@ if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 0)) {
 }
 if (isset($_REQUEST['startdate']) AND ($_REQUEST['startdate'] > 0)) {
 	$startdate = urldecode($_REQUEST['startdate']);
+	$startdate_time = strtotime($startdate);
+	$startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
 } else {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
 if (isset($_REQUEST['enddate']) AND ($_REQUEST['enddate'] > 0)) {
 	$enddate = urldecode($_REQUEST['enddate']);
+	$enddate_time = strtotime($enddate);
+	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
 } else {
 	$enddate = date('Y').'-01-01 00:00:00';
 }

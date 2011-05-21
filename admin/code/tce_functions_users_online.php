@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2011-02-05
+// Last Update : 2011-05-21
 //
 // Description : Functions to display online users' data.
 //
@@ -85,6 +85,8 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	//initialize variables
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
+	$firstrow = intval($firstrow);
+	$rowsperpage = intval($rowsperpage);
 	if($orderdir == 0) {
 		$nextorderdir = 1;
 		$full_order_field = $order_field;
@@ -101,6 +103,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	if (empty($wherequery)) {
 		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' ORDER BY '.$full_order_field.'';
 	} else {
+		$wherequery = F_escape_sql($wherequery);
 		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' '.$wherequery.' ORDER BY '.$full_order_field.'';
 	}
 	if (K_DATABASE_TYPE == 'ORACLE') {

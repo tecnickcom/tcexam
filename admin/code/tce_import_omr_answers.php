@@ -77,6 +77,8 @@ if (isset($_REQUEST['user_id'])) {
 }
 if (isset($_REQUEST['date'])) {
 	$date = $_REQUEST['date'];
+	$date_time = strtotime($date);
+	$date = date(K_TIMESTAMP_FORMAT, $date_time);
 } else {
 	$date = date(K_TIMESTAMP_FORMAT);
 }

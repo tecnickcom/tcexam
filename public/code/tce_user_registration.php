@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : User registration form.
 //
@@ -138,14 +138,14 @@ if ($menu_mode == 'add') { // process submited data
 				\''.F_escape_sql($user_regdate).'\',
 				\''.F_escape_sql($user_ip).'\',
 				\''.F_escape_sql($user_name).'\',
-				'.F_empty_to_null(F_escape_sql($user_email)).',
+				'.F_empty_to_null($user_email).',
 				\''.F_escape_sql($user_password).'\',
-				'.F_empty_to_null(F_escape_sql($user_regnumber)).',
-				'.F_empty_to_null(F_escape_sql($user_firstname)).',
-				'.F_empty_to_null(F_escape_sql($user_lastname)).',
-				'.F_empty_to_null(F_escape_sql($user_birthdate)).',
-				'.F_empty_to_null(F_escape_sql($user_birthplace)).',
-				'.F_empty_to_null(F_escape_sql($user_ssn)).',
+				'.F_empty_to_null($user_regnumber).',
+				'.F_empty_to_null($user_firstname).',
+				'.F_empty_to_null($user_lastname).',
+				'.F_empty_to_null($user_birthdate).',
+				'.F_empty_to_null($user_birthplace).',
+				'.F_empty_to_null($user_ssn).',
 				\''.$usrlevel.'\',
 				\''.$user_verifycode.'\'
 				)';

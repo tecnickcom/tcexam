@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -206,7 +206,7 @@ switch($menu_mode) {
 
 	case 'lock':{ // lock test by changing end date (subtract 1000 years)
 		$sql = 'UPDATE '.K_TABLE_TESTS.' SET
-			test_end_time='.F_empty_to_null(F_escape_sql(''.(intval(substr($test_end_time, 0, 1)) - 1).substr($test_end_time, 1))).'
+			test_end_time='.F_empty_to_null(''.(intval(substr($test_end_time, 0, 1)) - 1).substr($test_end_time, 1)).'
 			WHERE test_id='.$test_id.'';
 		if (!$r = F_db_query($sql, $db)) {
 			F_display_db_error(false);
@@ -218,7 +218,7 @@ switch($menu_mode) {
 
 	case 'unlock':{ // unlock test by restoring original end date (add 1000 years)
 		$sql = 'UPDATE '.K_TABLE_TESTS.' SET
-			test_end_time='.F_empty_to_null(F_escape_sql(''.(intval(substr($test_end_time, 0, 1)) + 1).substr($test_end_time, 1))).'
+			test_end_time='.F_empty_to_null(''.(intval(substr($test_end_time, 0, 1)) + 1).substr($test_end_time, 1)).'
 			WHERE test_id='.$test_id.'';
 		if (!$r = F_db_query($sql, $db)) {
 			F_display_db_error(false);
@@ -454,8 +454,8 @@ switch($menu_mode) {
 			$sql = 'UPDATE '.K_TABLE_TESTS.' SET
 				test_name=\''.F_escape_sql($test_name).'\',
 				test_description=\''.F_escape_sql($test_description).'\',
-				test_begin_time='.F_empty_to_null(F_escape_sql($test_begin_time)).',
-				test_end_time='.F_empty_to_null(F_escape_sql($test_end_time)).',
+				test_begin_time='.F_empty_to_null($test_begin_time).',
+				test_end_time='.F_empty_to_null($test_end_time).',
 				test_duration_time=\''.$test_duration_time.'\',
 				test_ip_range=\''.F_escape_sql($test_ip_range).'\',
 				test_results_to_users=\''.$test_results_to_users.'\',
@@ -550,8 +550,8 @@ switch($menu_mode) {
 				) VALUES (
 				\''.F_escape_sql($test_name).'\',
 				\''.F_escape_sql($test_description).'\',
-				'.F_empty_to_null(F_escape_sql($test_begin_time)).',
-				'.F_empty_to_null(F_escape_sql($test_end_time)).',
+				'.F_empty_to_null($test_begin_time).',
+				'.F_empty_to_null($test_end_time).',
 				\''.$test_duration_time.'\',
 				\''.F_escape_sql($test_ip_range).'\',
 				\''.$test_results_to_users.'\',

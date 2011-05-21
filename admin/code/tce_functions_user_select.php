@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2011-05-06
+// Last Update : 2011-05-21
 //
 // Description : Functions to display and select registered user.
 //
@@ -95,6 +95,9 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	}
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
+	$firstrow = intval($firstrow);
+	$rowsperpage = intval($rowsperpage);
+	$group_id = intval($group_id);
 	if ($orderdir == 0) {
 		$nextorderdir=1;
 		$full_order_field = $order_field;
@@ -108,7 +111,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	}
 	$wherequery = '';
 	if ($group_id > 0) {
-		$wherequery = ', '.K_TABLE_USERGROUP.' WHERE user_id=usrgrp_user_id	AND usrgrp_group_id='.intval($group_id).'';
+		$wherequery = ', '.K_TABLE_USERGROUP.' WHERE user_id=usrgrp_user_id	AND usrgrp_group_id='.$group_id.'';
 		$filter .= '&amp;group_id='.$group_id.'';
 	}
 	if (empty($wherequery)) {
@@ -252,7 +255,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 				$sql = 'SELECT count(*) AS total FROM '.K_TABLE_USERS.''.$wherequery.'';
 				if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
 				if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
-				if (!empty($group_id)) {$param_array .= '&amp;group_id='.intval($group_id).'';}
+				if (!empty($group_id)) {$param_array .= '&amp;group_id='.$group_id.'';}
 				if (!empty($searchterms)) {$param_array .= '&amp;searchterms='.urlencode($searchterms).'';}
 				$param_array .= '&amp;submitted=1';
 				F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);

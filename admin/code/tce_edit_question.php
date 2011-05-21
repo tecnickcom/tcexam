@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Edit questions
 //
@@ -183,23 +183,19 @@ switch($menu_mode) {
 		} else {
 			// ask confirmation
 			F_print_error('WARNING', $l['m_delete_confirm']);
-			?>
-			<div class="confirmbox">
-			<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
-			<div>
-			<input type="hidden" name="question_id" id="question_id" value="<?php echo $question_id; ?>" />
-			<input type="hidden" name="subject_module_id" id="subject_module_id" value="<?php echo $subject_module_id; ?>" />
-			<input type="hidden" name="question_subject_id" id="question_subject_id" value="<?php echo $question_subject_id; ?>" />
-			<input type="hidden" name="question_description" id="question_description" value="<?php echo $question_description; ?>" />
-			<input type="hidden" name="question_explanation" id="question_explanation" value="<?php echo $question_explanation; ?>" />
-			<?php
+			echo '<div class="confirmbox">'.K_NEWLINE;
+			echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_delete">'.K_NEWLINE;
+			echo '<div>'.K_NEWLINE;
+			echo '<input type="hidden" name="question_id" id="question_id" value="'.$question_id.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="subject_module_id" id="subject_module_id" value="'.$subject_module_id.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="question_subject_id" id="question_subject_id" value="'.$question_subject_id.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="question_description" id="question_description" value="'.$question_description.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="question_explanation" id="question_explanation" value="'.$question_explanation.'" />'.K_NEWLINE;
 			F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 			F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
-			?>
-			</div>
-			</form>
-			</div>
-			<?php
+			echo '</div>'.K_NEWLINE;
+			echo '</form>'.K_NEWLINE;
+			echo '</div>'.K_NEWLINE;
 		}
 		break;
 	}

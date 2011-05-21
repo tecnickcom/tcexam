@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2010-10-06
+// Last Update : 2011-05-21
 //
 // Description : Import users from an XML file or tab-delimited
 //               CSV file.
@@ -539,8 +539,8 @@ function F_import_csv_users($csvfile) {
 		$sql = 'SELECT user_id,user_level
 			FROM '.K_TABLE_USERS.'
 			WHERE user_name=\''.F_escape_sql($userdata[1]).'\'
-				OR user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).'
-				OR user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).'
+				OR user_regnumber='.F_empty_to_null($userdata[10]).'
+				OR user_ssn='.F_empty_to_null($userdata[11]).'
 			LIMIT 1';
 		if ($r = F_db_query($sql, $db)) {
 			if ($m = F_db_fetch_array($r)) {
@@ -555,17 +555,17 @@ function F_import_csv_users($csvfile) {
 						$sqlu .= ' user_password=\''.md5($userdata[2]).'\',';
 					}
 					$sqlu .= '
-						user_email='.F_empty_to_null(F_escape_sql($userdata[3])).',
+						user_email='.F_empty_to_null($userdata[3]).',
 						user_regdate=\''.F_escape_sql($userdata[4]).'\',
 						user_ip=\''.F_escape_sql($userdata[5]).'\',
-						user_firstname='.F_empty_to_null(F_escape_sql($userdata[6])).',
-						user_lastname='.F_empty_to_null(F_escape_sql($userdata[7])).',
-						user_birthdate='.F_empty_to_null(F_escape_sql($userdata[8])).',
-						user_birthplace='.F_empty_to_null(F_escape_sql($userdata[9])).',
-						user_regnumber='.F_empty_to_null(F_escape_sql($userdata[10])).',
-						user_ssn='.F_empty_to_null(F_escape_sql($userdata[11])).',
+						user_firstname='.F_empty_to_null($userdata[6]).',
+						user_lastname='.F_empty_to_null($userdata[7]).',
+						user_birthdate='.F_empty_to_null($userdata[8]).',
+						user_birthplace='.F_empty_to_null($userdata[9]).',
+						user_regnumber='.F_empty_to_null($userdata[10]).',
+						user_ssn='.F_empty_to_null($userdata[11]).',
 						user_level=\''.intval($userdata[12]).'\',
-						user_verifycode='.F_empty_to_null(F_escape_sql($userdata[13])).'
+						user_verifycode='.F_empty_to_null($userdata[13]).'
 						WHERE user_id='.$user_id.'';
 					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error(false);
@@ -594,17 +594,17 @@ function F_import_csv_users($csvfile) {
 					) VALUES (
 					\''.F_escape_sql($userdata[1]).'\',
 					\''.md5($userdata[2]).'\',
-					'.F_empty_to_null(F_escape_sql($userdata[3])).',
+					'.F_empty_to_null($userdata[3]).',
 					\''.F_escape_sql($userdata[4]).'\',
 					\''.F_escape_sql($userdata[5]).'\',
-					'.F_empty_to_null(F_escape_sql($userdata[6])).',
-					'.F_empty_to_null(F_escape_sql($userdata[7])).',
-					'.F_empty_to_null(F_escape_sql($userdata[8])).',
-					'.F_empty_to_null(F_escape_sql($userdata[9])).',
-					'.F_empty_to_null(F_escape_sql($userdata[10])).',
-					'.F_empty_to_null(F_escape_sql($userdata[11])).',
+					'.F_empty_to_null($userdata[6]).',
+					'.F_empty_to_null($userdata[7]).',
+					'.F_empty_to_null($userdata[8]).',
+					'.F_empty_to_null($userdata[9]).',
+					'.F_empty_to_null($userdata[10]).',
+					'.F_empty_to_null($userdata[11]).',
 					\''.intval($userdata[12]).'\',
-					'.F_empty_to_null(F_escape_sql($userdata[13])).'
+					'.F_empty_to_null($userdata[13]).'
 					)';
 				if (!$ru = F_db_query($sqlu, $db)) {
 					F_display_db_error(false);

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -192,7 +192,7 @@ switch($menu_mode) {
 			}
 			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
 				subject_name=\''.F_escape_sql($subject_name).'\',
-				subject_description='.F_empty_to_null(F_escape_sql($subject_description)).',
+				subject_description='.F_empty_to_null($subject_description).',
 				subject_enabled=\''.$subject_enabled.'\',
 				subject_module_id='.$subject_module_id.'
 				WHERE subject_id='.$subject_id.'';
@@ -221,7 +221,7 @@ switch($menu_mode) {
 				subject_module_id
 				) VALUES (
 				\''.F_escape_sql($subject_name).'\',
-				'.F_empty_to_null(F_escape_sql($subject_description)).',
+				'.F_empty_to_null($subject_description).',
 				\''.$subject_enabled.'\',
 				\''.intval($_SESSION['session_user_id']).'\',
 				'.$subject_module_id.'

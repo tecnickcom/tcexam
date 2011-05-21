@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-05-04
+// Last Update : 2011-05-21
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -220,14 +220,14 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 					\''.F_escape_sql(date(K_TIMESTAMP_FORMAT)).'\',
 					\''.F_escape_sql(getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
 					\''.F_escape_sql($_POST['xuser_name']).'\',
-					'.F_empty_to_null(F_escape_sql($altusr['user_email'])).',
+					'.F_empty_to_null($altusr['user_email']).',
 					\''.md5($_POST['xuser_password']).'\',
-					'.F_empty_to_null(F_escape_sql($altusr['user_regnumber'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_firstname'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_lastname'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_birthdate'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_birthplace'])).',
-					'.F_empty_to_null(F_escape_sql($altusr['user_ssn'])).',
+					'.F_empty_to_null($altusr['user_regnumber']).',
+					'.F_empty_to_null($altusr['user_firstname']).',
+					'.F_empty_to_null($altusr['user_lastname']).',
+					'.F_empty_to_null($altusr['user_birthdate']).',
+					'.F_empty_to_null($altusr['user_birthplace']).',
+					'.F_empty_to_null($altusr['user_ssn']).',
 					\''.F_escape_sql($altusr['user_level']).'\'
 					)';
 				if (!$r = F_db_query($sql, $db)) {

@@ -87,15 +87,15 @@ if (isset($selectcategory)) {
 }
 
 if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AND ($changecategory > 0))) {
-	$wherequery='';
+	$wherequery = '';
 	$order_field = 'question_enabled DESC, question_position,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$order_field .= 'CAST(question_description as varchar2(100))';
 	} else {
 		$order_field .= 'question_description';
 	}
-	$firstrow=0;
-	$orderdir=0;
+	$firstrow = 0;
+	$orderdir = 0;
 }
 
 // select default module/subject (if not specified)
@@ -355,8 +355,12 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
 
+	$subject_module_id = intval($subject_module_id);
+	$subject_id = intval($subject_id);
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
+	$firstrow = intval($firstrow);
+	$rowsperpage = intval($rowsperpage);
 	if ($orderdir == 0) {
 		$nextorderdir = 1;
 		$full_order_field = $order_field;
@@ -373,6 +377,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	if (empty($wherequery)) {
 		$wherequery = 'WHERE question_subject_id='.$subject_id.'';
 	} else {
+		$wherequery = F_escape_sql($wherequery);
 		$wherequery .= ' AND question_subject_id='.$subject_id.'';
 	}
 	$sql = 'SELECT *

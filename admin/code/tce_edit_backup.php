@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -119,7 +119,7 @@ switch($menu_mode) { // process submited data
 				// change dir
 				chdir(K_PATH_BACKUP);
 				// uncompress backup archive
-				$command = 'gunzip -c '.$backup_file.' > '.$sql_backup_file_esc.'';
+				$command = 'gunzip -c '.escapeshellarg($backup_file).' > '.$sql_backup_file_esc.'';
 				exec($command);
 				// restore SQL file
 				switch (K_DATABASE_TYPE) {

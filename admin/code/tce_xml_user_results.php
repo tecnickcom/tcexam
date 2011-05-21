@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_user_results.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-06
+// Last Update : 2011-05-21
 //
 // Description : Export all user's results in XML.
 //
@@ -67,18 +67,22 @@ if (isset($_REQUEST['user_id']) AND ($_REQUEST['user_id'] > 0)) {
 }
 if (isset($_REQUEST['startdate']) AND ($_REQUEST['startdate'] > 0)) {
 	$startdate = urldecode($_REQUEST['startdate']);
+	$startdate_time = strtotime($startdate);
+	$startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
 } else {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
 if (isset($_REQUEST['enddate']) AND ($_REQUEST['enddate'] > 0)) {
 	$enddate = urldecode($_REQUEST['enddate']);
+	$enddate_time = strtotime($enddate);
+	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
 } else {
 	$enddate = date('Y').'-01-01 00:00:00';
 }
 if(!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
 	$order_field = 'testuser_creation_time';
 } else {
-	$order_field = urldecode($_REQUEST['order_field']);
+	$order_field = F_escape_sql(urldecode($_REQUEST['order_field']));
 }
 
 // define symbols for answers list
@@ -149,8 +153,8 @@ $sql = 'SELECT
 		MAX(testlog_change_time) AS testuser_end_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 	WHERE testuser_status>0
-		AND testuser_creation_time>=\''.$startdate.'\'
-		AND testuser_creation_time<=\''.$enddate.'\'
+		AND testuser_creation_time>=\''.F_escape_sql($startdate).'\'
+		AND testuser_creation_time<=\''.F_escape_sql($enddate).'\'
 		AND testuser_user_id='.$user_id.'
 		AND testlog_testuser_id=testuser_id
 		AND testuser_test_id=test_id';

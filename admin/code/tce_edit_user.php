@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Edit user data.
 //
@@ -171,14 +171,14 @@ switch($menu_mode) { // process submitted data
 				user_regdate=\''.F_escape_sql($user_regdate).'\',
 				user_ip=\''.F_escape_sql($user_ip).'\',
 				user_name=\''.F_escape_sql($user_name).'\',
-				user_email='.F_empty_to_null(F_escape_sql($user_email)).',
+				user_email='.F_empty_to_null($user_email).',
 				user_password=\''.F_escape_sql($user_password).'\',
-				user_regnumber='.F_empty_to_null(F_escape_sql($user_regnumber)).',
-				user_firstname='.F_empty_to_null(F_escape_sql($user_firstname)).',
-				user_lastname='.F_empty_to_null(F_escape_sql($user_lastname)).',
-				user_birthdate='.F_empty_to_null(F_escape_sql($user_birthdate)).',
-				user_birthplace='.F_empty_to_null(F_escape_sql($user_birthplace)).',
-				user_ssn='.F_empty_to_null(F_escape_sql($user_ssn)).',
+				user_regnumber='.F_empty_to_null($user_regnumber).',
+				user_firstname='.F_empty_to_null($user_firstname).',
+				user_lastname='.F_empty_to_null($user_lastname).',
+				user_birthdate='.F_empty_to_null($user_birthdate).',
+				user_birthplace='.F_empty_to_null($user_birthplace).',
+				user_ssn='.F_empty_to_null($user_ssn).',
 				user_level=\''.$user_level.'\'
 				WHERE user_id='.$user_id.'';
 			if (!$r = F_db_query($sql, $db)) {
@@ -274,14 +274,14 @@ switch($menu_mode) { // process submitted data
 				\''.F_escape_sql($user_regdate).'\',
 				\''.F_escape_sql($user_ip).'\',
 				\''.F_escape_sql($user_name).'\',
-				'.F_empty_to_null(F_escape_sql($user_email)).',
+				'.F_empty_to_null($user_email).',
 				\''.F_escape_sql($user_password).'\',
-				'.F_empty_to_null(F_escape_sql($user_regnumber)).',
-				'.F_empty_to_null(F_escape_sql($user_firstname)).',
-				'.F_empty_to_null(F_escape_sql($user_lastname)).',
-				'.F_empty_to_null(F_escape_sql($user_birthdate)).',
-				'.F_empty_to_null(F_escape_sql($user_birthplace)).',
-				'.F_empty_to_null(F_escape_sql($user_ssn)).',
+				'.F_empty_to_null($user_regnumber).',
+				'.F_empty_to_null($user_firstname).',
+				'.F_empty_to_null($user_lastname).',
+				'.F_empty_to_null($user_birthdate).',
+				'.F_empty_to_null($user_birthplace).',
+				'.F_empty_to_null($user_ssn).',
 				\''.$user_level.'\'
 				)';
 			if (!$r = F_db_query($sql, $db)) {

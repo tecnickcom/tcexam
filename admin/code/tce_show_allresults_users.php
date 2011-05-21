@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-20
+// Last Update : 2011-05-21
 //
 // Description : Display all test results for the selected users.
 //
@@ -70,11 +70,15 @@ require_once('tce_functions_user_select.php');
 // filtering options
 if (isset($_REQUEST['startdate'])) {
 	$startdate = $_REQUEST['startdate'];
+	$startdate_time = strtotime($startdate);
+	$startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
 } else {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
 if (isset($_REQUEST['$enddate'])) {
 	$enddate = $_REQUEST['enddate'];
+	$enddate_time = strtotime($enddate);
+	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
 } else {
 	$enddate = date('Y').'-12-31 23:59:59';
 }
@@ -246,7 +250,12 @@ echo '</div>'.K_NEWLINE;
 echo getFormRowTextInput('startdate', $l['w_time_begin'], $l['w_time_begin'].' '.$l['w_datetime_format'], '', $startdate, '', 19, false, true, false);
 echo getFormRowTextInput('enddate', $l['w_time_end'], $l['w_time_end'].' '.$l['w_datetime_format'], '', $enddate, '', 19, false, true, false);
 
-echo getFormNoscriptSelect('selectcategory');
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="submit" name="selectcategory" id="selectcategory" value="'.$l['w_select'].'" />'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
