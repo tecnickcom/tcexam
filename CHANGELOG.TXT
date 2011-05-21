@@ -1,3 +1,6 @@
+11.2.001 (2011-05-21)
+	- Some security vulnerabilities were fixed.
+
 11.2.000 (2011-05-21)
 	- TCExam now includes Optical Mark Recognition (OMR) system to import users' answers from paper sheets (requires ImageMagick, zlib extesions and zbarimg application http://zbar.sourceforge.net/).
 	- The [generate] button next to "PDF offline test" field on Test Management page now creates extra pages for offline testing with special answer sheets.
