@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_registration.php
 // Begin       : 2008-03-31
-// Last Update : 2010-03-29
+// Last Update : 2011-05-20
 //
 // Description : Support functions for user registration.
 //
@@ -58,6 +58,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode) {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_class_mailer.php');
 	require_once('../../shared/config/tce_email_config.php');
+	require_once('../../shared/config/tce_user_registration.php');
 	require_once('../../shared/code/tce_functions_html2txt.php');
 
 	$user_id = intval($user_id);

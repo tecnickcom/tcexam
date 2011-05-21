@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2010-09-21
+// Last Update : 2011-05-20
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -87,6 +87,7 @@ $menu['tce_menu_modules.php']['sub'] = array(
 
 $menu['tce_menu_tests.php']['sub'] = array(
 	'tce_edit_test.php' => array('link' => 'tce_edit_test.php', 'title' => $l['t_tests_editor'], 'name' => $l['w_tests'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
+	'tce_import_omr_answers.php' => array('link' => 'tce_import_omr_answers.php', 'title' => $l['t_omr_answers_importer'], 'name' => $l['w_import_omr_answers'], 'level' => K_AUTH_ADMIN_OMR_IMPORT, 'key' => '', 'enabled' => true),
 	'tce_edit_rating.php' => array('link' => 'tce_edit_rating.php', 'title' => $l['t_rating_editor'], 'name' => $l['w_rating'], 'level' => K_AUTH_ADMIN_RATING, 'key' => '', 'enabled' => true),
 	'tce_show_result_allusers.php' => array('link' => 'tce_show_result_allusers.php', 'title' => $l['t_result_all_users'], 'name' => $l['w_results'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
 	'tce_show_result_user.php' => array('link' => 'tce_show_result_user.php', 'title' => $l['t_result_user'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),

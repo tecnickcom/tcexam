@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_results.php
 // Begin       : 2004-06-10
-// Last Update : 2010-12-06
+// Last Update : 2011-05-20
 //
 // Description : Display test results to the current user.
 //
@@ -84,82 +84,30 @@ F_lockUserTest($test_id, $_SESSION['session_user_id']);
 // get user's test stats
 $usrtestdata = F_getUserTestStat($test_id, $user_id);
 $userdata = F_getUserData($user_id);
-?>
 
-<div class="container">
 
-<div class="tceformbox">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_id"><?php echo $l['w_user']; ?>:</label>
-</span>
-<span class="formw">
-<?php
-echo ''.htmlspecialchars($userdata['user_lastname'].' '.$userdata['user_firstname'].' - '.$userdata['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']);
-?>
-</span>
-</div>
+echo '<div class="tceformbox">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="test_id"><?php echo $l['w_test']; ?>:</label>
-</span>
-<span class="formw">
-<?php
-//echo substr($testdata['test_begin_time'], 0, 10).' ';
-echo '<strong>'.htmlspecialchars($testdata['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</strong><br />'.K_NEWLINE;
-echo htmlspecialchars($testdata['test_description'], ENT_NOQUOTES, $l['a_meta_charset']);
-?>
-</span>
-</div>
+$usr_all = htmlspecialchars($userdata['user_lastname'].' '.$userdata['user_firstname'].' - '.$userdata['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']);
+echo getFormDescriptionLine($l['w_user'].':', $l['w_user'], $usr_all);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_time_begin']; ?>"><?php echo $l['w_time_begin']; ?>:</span>
-</span>
-<span class="formw">
-<?php
-echo $usrtestdata['test_start_time'];
-?>
-</span>
-</div>
+$test_all = '<strong>'.htmlspecialchars($testdata['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</strong><br />'.K_NEWLINE;
+$test_all .=htmlspecialchars($testdata['test_description'], ENT_NOQUOTES, $l['a_meta_charset']);
+echo getFormDescriptionLine($l['w_test'].':', $l['w_test'], $test_all);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_time_end']; ?>"><?php echo $l['w_time_end']; ?>:</span>
-</span>
-<span class="formw">
-<?php
-echo $usrtestdata['test_end_time'];
-?>
-</span>
-</div>
+echo getFormDescriptionLine($l['w_time_begin'].':', $l['h_time_begin'], $usrtestdata['test_start_time']);
+echo getFormDescriptionLine($l['w_time_end'].':', $l['h_time_end'], $usrtestdata['test_end_time']);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['w_test_time']; ?>"><?php echo $l['w_test_time']; ?>:</span>
-</span>
-<span class="formw">
-<?php
 if (!isset($usrtestdata['test_end_time']) OR ($usrtestdata['test_end_time'] <= 0)) {
 	$time_diff = $testdata['test_duration_time'] * 60;
 } else {
 	$time_diff = strtotime($usrtestdata['test_end_time']) - strtotime($usrtestdata['test_start_time']); //sec
 }
 $time_diff = gmdate('H:i:s', $time_diff);
-echo $time_diff;
-?>
-&nbsp;
-</span>
-</div>
+echo getFormDescriptionLine($l['w_test_time'].':', $l['w_test_time'], $time_diff);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_score_total']; ?>"><?php echo $l['w_score']; ?>:</span>
-</span>
-<span class="formw">
-<?php
 $passmsg = '';
 if ($usrtestdata['score_threshold'] > 0) {
 	if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
@@ -168,37 +116,14 @@ if ($usrtestdata['score_threshold'] > 0) {
 		$passmsg = ' - '.$l['w_not_passed'];
 	}
 }
-echo $usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg.'';
-?>
-&nbsp;
-</span>
-</div>
+$score_all = $usrtestdata['score'].' / '.$usrtestdata['max_score'].' ('.round(100 * $usrtestdata['score'] / $usrtestdata['max_score']).'%)'.$passmsg;
+echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_answers_right']; ?>"><?php echo $l['w_answers_right']; ?>:</span>
-</span>
-<span class="formw">
-<?php
-echo $usrtestdata['right'].' / '.$usrtestdata['all'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)';
-?>
-&nbsp;
-</span>
-</div>
+$score_right_all = $usrtestdata['right'].' / '.$usrtestdata['all'].' ('.round(100 * $usrtestdata['right'] / $usrtestdata['all']).'%)';
+echo getFormDescriptionLine($l['w_answers_right'].':', $l['h_answers_right'], $score_right_all);
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_testcomment']; ?>"><?php echo $l['w_comment']; ?>:</span>
-</span>
-<span class="formw">
-<?php
-echo F_decode_tcecode($usrtestdata['comment']);
-?>
-&nbsp;
-</span>
-</div>
+echo getFormDescriptionLine($l['w_comment'].':', $l['h_testcomment'], F_decode_tcecode($usrtestdata['comment']));
 
-<?php
 if (F_getBoolean($testdata['test_report_to_users'])) {
 
 	echo '<div class="rowl">'.K_NEWLINE;

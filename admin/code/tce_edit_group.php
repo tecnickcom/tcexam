@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2010-10-05
+// Last Update : 2011-05-20
 //
 // Description : Edit users' groups.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -233,33 +233,18 @@ else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="group_name"><?php echo $l['w_name']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="group_name" id="group_name" value="<?php echo htmlspecialchars($group_name, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_group_name']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('group_name', $l['w_name'], $l['h_group_name'], '', $group_name, '', 255, false, false, false, '');
 
-<div class="row">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($group_id) AND ($group_id > 0)) {
 	F_submit_button('update', $l['w_update'], $l['h_update']);
@@ -270,18 +255,15 @@ if (isset($group_id) AND ($group_id > 0)) {
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-?>
 
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="group_name" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="group_name" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
-</div>
+echo '</div>'.K_NEWLINE;
 
-</form>
-</div>
-
-<?php
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_edit_group'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

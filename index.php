@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2002-01-11
-// Last Update : 2009-10-22
+// Last Update : 2011-05-21
 //
 // Description : Redirect browser to main page
 //

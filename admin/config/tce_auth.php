@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2010-10-06
+// Last Update : 2011-05-20
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -62,9 +62,14 @@
 define ('K_AUTH_ADMINISTRATOR', 10);
 
 /**
+ * Operator level.
+ */
+define ('K_AUTH_OPERATOR', 5);
+
+/**
  * Required user's level to access index page.
  */
-define ('K_AUTH_INDEX', 5);
+define ('K_AUTH_INDEX', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "user editor".
@@ -104,32 +109,32 @@ define ('K_AUTH_MOVE_GROUPS', K_AUTH_ADMINISTRATOR);
 /**
  * Required user's level to access "tcecode editor".
  */
-define ('K_AUTH_ADMIN_TCECODE', 5);
+define ('K_AUTH_ADMIN_TCECODE', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "module editor".
  */
-define ('K_AUTH_ADMIN_MODULES', 5);
+define ('K_AUTH_ADMIN_MODULES', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "subject editor".
  */
-define ('K_AUTH_ADMIN_SUBJECTS', 5);
+define ('K_AUTH_ADMIN_SUBJECTS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "question editor".
  */
-define ('K_AUTH_ADMIN_QUESTIONS', 5);
+define ('K_AUTH_ADMIN_QUESTIONS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "answer editor".
  */
-define ('K_AUTH_ADMIN_ANSWERS', 5);
+define ('K_AUTH_ADMIN_ANSWERS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "test editor".
  */
-define ('K_AUTH_ADMIN_TESTS', 5);
+define ('K_AUTH_ADMIN_TESTS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to access "TCExam information".
@@ -139,27 +144,32 @@ define ('K_AUTH_ADMIN_INFO', 0);
 /**
  * Required user's level to display online users.
  */
-define ('K_AUTH_ADMIN_ONLINE_USERS', 5);
+define ('K_AUTH_ADMIN_ONLINE_USERS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to upload images.
  */
-define ('K_AUTH_ADMIN_UPLOAD_IMAGES', 5);
+define ('K_AUTH_ADMIN_UPLOAD_IMAGES', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to manually rate free text answers.
  */
-define ('K_AUTH_ADMIN_RATING', 5);
+define ('K_AUTH_ADMIN_RATING', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to display results.
  */
-define ('K_AUTH_ADMIN_RESULTS', 5);
+define ('K_AUTH_ADMIN_RESULTS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to import questions.
  */
 define ('K_AUTH_ADMIN_IMPORT', K_AUTH_ADMINISTRATOR);
+
+/**
+ * Required user's level to import OMR answers.
+ */
+define ('K_AUTH_ADMIN_OMR_IMPORT', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to import questions.

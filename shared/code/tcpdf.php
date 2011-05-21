@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.076
+// Version     : 5.9.081
 // Begin       : 2002-08-03
-// Last Update : 2011-05-06
+// Last Update : 2011-05-18
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -134,7 +134,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.076
+ * @version 5.9.081
  */
 
 
@@ -144,7 +144,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.076
+ * @version 5.9.081
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -155,7 +155,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.076';
+	private $tcpdf_version = '5.9.081';
 
 	// Protected properties
 
@@ -569,6 +569,12 @@ class TCPDF {
 	 * @protected
 	 */
 	protected $header_xobjid = -1;
+	
+	/**
+	 * If true reset the Header Xobject template at each page
+	 * @protected
+	 */
+	protected $header_xobj_autoreset = false;
 
 	/**
 	 * Minimum distance between header and top page margin.
@@ -1910,6 +1916,7 @@ class TCPDF {
 		$this->file_id = md5($this->getRandomSeed('TCPDF'.$orientation.$unit.$format.$encoding));
 		// get default graphic vars
 		$this->default_graphic_vars = $this->getGraphicVars();
+		$this->header_xobj_autoreset = false;
 	}
 
 	/**
@@ -4002,6 +4009,23 @@ class TCPDF {
 	}
 
 	/**
+	 * Reset the xobject template used by Header() method.
+	 * @public
+	 */
+	public function resetHeaderTemplate() {
+		$this->header_xobjid = -1;
+	}
+
+	/**
+	 * Set a flag to automatically reset the xobject template used by Header() method at each page.
+	 * @param $val (boolean) set to true to reset Header xobject template at each page, false otherwise.
+	 * @public
+	 */
+	public function setHeaderTemplateAutoreset($val=true) {
+		$this->header_xobj_autoreset = $val;
+	}
+
+	/**
 	 * This method is used to render the page header.
 	 * It is automatically called by AddPage() and could be overwritten in your own inherited class.
 	 * @public
@@ -4072,6 +4096,10 @@ class TCPDF {
 			$x = 0 + $dx;
 		}
 		$this->printTemplate($this->header_xobjid, $x, 0, 0, 0, '', '', false);
+		if ($this->header_xobj_autoreset) {
+			// reset header xobject template at each page
+			$this->header_xobjid = -1;
+		}
 	}
 
 	/**
@@ -4102,7 +4130,7 @@ class TCPDF {
 				'bgcolor' => false,
 				'text' => false
 			);
-			$this->write1DBarcode($barcode, 'C128B', '', $cur_y + $line_width, '', (($this->footer_margin / 3) - $line_width), 0.3, $style, '');
+			$this->write1DBarcode($barcode, 'C128', '', $cur_y + $line_width, '', (($this->footer_margin / 3) - $line_width), 0.3, $style, '');
 		}
 		if (empty($this->pagegroups)) {
 			$pagenumtxt = $this->l['w_page'].' '.$this->getAliasNumPage().' / '.$this->getAliasNbPages();
@@ -7259,8 +7287,12 @@ class TCPDF {
 				// encode spaces on filename (file is probably an URL)
 				$file = str_replace(' ', '%20', $file);
 			}
-			// get image dimensions
-			$imsize = @getimagesize($file);
+			if (@file_exists($file)) {
+				// get image dimensions
+				$imsize = @getimagesize($file);
+			} else {
+				$imsize = false;
+			}
 			if ($imsize === FALSE) {
 				if (function_exists('curl_init')) {
 					// try to get remote file data using cURL
@@ -12895,33 +12927,32 @@ class TCPDF {
 		if (!is_array($style)) {
 			return;
 		}
-		extract($style);
-		if (isset($width)) {
-			$this->LineWidth = $width;
-			$this->linestyleWidth = sprintf('%.2F w', ($width * $this->k));
+		if (isset($style['width'])) {
+			$this->LineWidth = $style['width'];
+			$this->linestyleWidth = sprintf('%.2F w', ($style['width'] * $this->k));
 			$s .= $this->linestyleWidth.' ';
 		}
-		if (isset($cap)) {
+		if (isset($style['cap'])) {
 			$ca = array('butt' => 0, 'round'=> 1, 'square' => 2);
-			if (isset($ca[$cap])) {
-				$this->linestyleCap = $ca[$cap].' J';
+			if (isset($ca[$style['cap']])) {
+				$this->linestyleCap = $ca[$style['cap']].' J';
 				$s .= $this->linestyleCap.' ';
 			}
 		}
-		if (isset($join)) {
+		if (isset($style['join'])) {
 			$ja = array('miter' => 0, 'round' => 1, 'bevel' => 2);
-			if (isset($ja[$join])) {
-				$this->linestyleJoin = $ja[$join].' j';
+			if (isset($ja[$style['join']])) {
+				$this->linestyleJoin = $ja[$style['join']].' j';
 				$s .= $this->linestyleJoin.' ';
 			}
 		}
-		if (isset($dash)) {
+		if (isset($style['dash'])) {
 			$dash_string = '';
-			if ($dash) {
-				if (preg_match('/^.+,/', $dash) > 0) {
-					$tab = explode(',', $dash);
+			if ($style['dash']) {
+				if (preg_match('/^.+,/', $style['dash']) > 0) {
+					$tab = explode(',', $style['dash']);
 				} else {
-					$tab = array($dash);
+					$tab = array($style['dash']);
 				}
 				$dash_string = '';
 				foreach ($tab as $i => $v) {
@@ -12931,14 +12962,14 @@ class TCPDF {
 					$dash_string .= sprintf('%.2F', $v);
 				}
 			}
-			if (!isset($phase) OR !$dash) {
-				$phase = 0;
+			if (!isset($style['phase']) OR !$style['dash']) {
+				$style['phase'] = 0;
 			}
-			$this->linestyleDash = sprintf('[%s] %.2F d', $dash_string, $phase);
+			$this->linestyleDash = sprintf('[%s] %.2F d', $dash_string, $style['phase']);
 			$s .= $this->linestyleDash.' ';
 		}
-		if (isset($color)) {
-			$s .= $this->SetDrawColorArray($color, true).' ';
+		if (isset($style['color'])) {
+			$s .= $this->SetDrawColorArray($style['color'], true).' ';
 		}
 		if (!$ret) {
 			$this->_out($s);
@@ -18930,7 +18961,9 @@ class TCPDF {
 						// font style
 						if (isset($dom[$key]['style']['font-weight'])) {
 							if (strtolower($dom[$key]['style']['font-weight']{0}) == 'n') {
-								$dom[$key]['fontstyle'] = '';
+								if (strpos($dom[$key]['fontstyle'], 'B') !== false) {
+									$dom[$key]['fontstyle'] = str_replace('B', '', $dom[$key]['fontstyle']);
+								}
 							} elseif (strtolower($dom[$key]['style']['font-weight']{0}) == 'b') {
 								$dom[$key]['fontstyle'] .= 'B';
 							}
@@ -20964,7 +20997,11 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					if (($tag['attribute']['src'][0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
 						$findroot = strpos($tag['attribute']['src'], $_SERVER['DOCUMENT_ROOT']);
 						if (($findroot === false) OR ($findroot > 1)) {
-							$tag['attribute']['src'] = $_SERVER['DOCUMENT_ROOT'].$tag['attribute']['src'];
+							if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
+								$tag['attribute']['src'] = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$tag['attribute']['src'];
+							} else {
+								$tag['attribute']['src'] = $_SERVER['DOCUMENT_ROOT'].$tag['attribute']['src'];
+							}
 						}
 					}
 					$tag['attribute']['src'] = urldecode($tag['attribute']['src']);
@@ -22546,10 +22583,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				break;
 			}
 			case 'disc': {
-				$fill = 'F';
-			}
-			case 'circle': {
-				$fill .= 'D';
 				$r = $size / 6;
 				$lspace += (2 * $r);
 				if ($this->rtl) {
@@ -22557,7 +22590,21 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				} else {
 					$this->x -= $lspace;
 				}
-				$this->Circle(($this->x + $r), ($this->y + ($this->lasth / 2)), $r, 0, 360, $fill, array('color'=>$color), $color, 8);
+				$this->Circle(($this->x + $r), ($this->y + ($this->lasth / 2)), $r, 0, 360, 'F', array(), $color, 8);
+				break;
+			}
+			case 'circle': {
+				$r = $size / 6;
+				$lspace += (2 * $r);
+				if ($this->rtl) {
+					$this->x += $lspace;
+				} else {
+					$this->x -= $lspace;
+				}
+				$prev_line_style = $this->linestyleWidth.' '.$this->linestyleCap.' '.$this->linestyleJoin.' '.$this->linestyleDash.' '.$this->DrawColor;
+				$new_line_style = array('width' => ($r / 3), 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'phase' => 0, 'color'=>$color);
+				$this->Circle(($this->x + $r), ($this->y + ($this->lasth / 2)), ($r * (1 - (1/6))), 0, 360, 'D', $new_line_style, array(), 8);
+				$this->_out($prev_line_style); // restore line settings
 				break;
 			}
 			case 'square': {
@@ -26358,11 +26405,14 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						// replace relative path with full server path
 						$img = $this->svgdir.'/'.$img;
 					}
-					if (($img{0} == '/') AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
+					if (($img[0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
 						$findroot = strpos($img, $_SERVER['DOCUMENT_ROOT']);
 						if (($findroot === false) OR ($findroot > 1)) {
-							// replace relative path with full server path
-							$img = $_SERVER['DOCUMENT_ROOT'].$img;
+							if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
+								$img = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$img;
+							} else {
+								$img = $_SERVER['DOCUMENT_ROOT'].$img;
+							}
 						}
 					}
 					$img = urldecode($img);

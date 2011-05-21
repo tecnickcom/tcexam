@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2011-02-21
+// Last Update : 2011-05-20
 //
 // Description : Edit answers.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -561,21 +561,19 @@ if (!isset($subject_module_id) OR ($subject_module_id <= 0) OR !isset($question_
 	require_once('../code/tce_page_footer.php');
 	exit;
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_answereditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_answereditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="subject_module_id"><?php echo $l['w_module']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changemodule" id="changemodule" value="" />
-<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById('form_answereditor').changemodule.value=1; document.getElementById('form_answereditor').submit();" title="<?php echo $l['w_module']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_module_id">'.$l['w_module'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changemodule" id="changemodule" value="" />'.K_NEWLINE;
+echo '<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById(\'form_answereditor\').changemodule.value=1; document.getElementById(\'form_answereditor\').submit();" title="'.$l['w_module'].'">'.K_NEWLINE;
 $sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -600,28 +598,19 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectmodule" id="selectmodule" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectmodule');
 
-<div class="row">
-<span class="label">
-<label for="question_subject_id"><?php echo $l['w_subject']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changesubject" id="changesubject" value="" />
-<select name="question_subject_id" id="question_subject_id" size="0" onchange="document.getElementById('form_answereditor').changesubject.value=1; document.getElementById('form_answereditor').submit();" title="<?php echo $l['h_subject']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="question_subject_id">'.$l['w_subject'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changesubject" id="changesubject" value="" />'.K_NEWLINE;
+echo '<select name="question_subject_id" id="question_subject_id" size="0" onchange="document.getElementById(\'form_answereditor\').changesubject.value=1; document.getElementById(\'form_answereditor\').submit();" title="'.$l['h_subject'].'">'.K_NEWLINE;
 $countitem = 1; //number of already inserted answers
 $sql = F_select_subjects_sql('subject_module_id='.$subject_module_id);
 if($r = F_db_query($sql, $db)) {
@@ -646,34 +635,25 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectsubject" id="selectsubject" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectsubject');
 
-<div class="row">
-<span class="label">
-<label for="answer_question_id"><?php echo $l['w_question']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changecategory" id="changecategory" value="" />
-<select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById('form_answereditor').changecategory.value=1; document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_question']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="answer_question_id">'.$l['w_question'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
+echo '<select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById(\'form_answereditor\').changecategory.value=1; document.getElementById(\'form_answereditor\').submit()" title="'.$l['h_question'].'">'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_subject_id,';
-	if (K_DATABASE_TYPE == 'ORACLE') {
-		$sql .= 'CAST(question_description as varchar2(100))';
-	} else {
-		$sql .= 'question_description';
-	}
+if (K_DATABASE_TYPE == 'ORACLE') {
+	$sql .= 'CAST(question_description as varchar2(100))';
+} else {
+	$sql .= 'question_description';
+}
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
@@ -696,27 +676,18 @@ if($r = F_db_query($sql, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">
-<label for="answer_id"><?php echo $l['w_answer']; ?></label>
-</span>
-<span class="formw">
-<select name="answer_id" id="answer_id" size="0" onchange="document.getElementById('form_answereditor').submit()" title="<?php echo $l['h_answer']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="answer_id">'.$l['w_answer'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="answer_id" id="answer_id" size="0" onchange="document.getElementById(\'form_answereditor\').submit()" title="'.$l['h_answer'].'">'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_ANSWERS.' WHERE answer_question_id='.intval($answer_question_id).' ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql .= 'CAST(answer_description as varchar2(100))';
@@ -747,38 +718,29 @@ if($r = F_db_query($sql, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="answer_description"><?php echo $l['w_answer']; ?></label>
-<br />
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="answer_description">'.$l['w_answer'].'</label>'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
+
 echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_answereditor\').answer_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>'.K_NEWLINE;
-?>
-</span>
-<span class="formw" style="border:1px solid #808080;">
-<textarea cols="50" rows="10" name="answer_description" id="answer_description" onselect="FJ_update_selection(document.getElementById('form_answereditor').answer_description)" title="<?php echo $l['h_answer']; ?>"><?php echo htmlspecialchars($answer_description, ENT_NOQUOTES, $l['a_meta_charset']); ?></textarea>
-<br />
-<?php echo tcecodeEditorTagButtons('form_answereditor', 'answer_description', 0); ?>
-</span>
-</div>
 
-<?php
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw" style="border:1px solid #808080;">'.K_NEWLINE;
+echo '<textarea cols="50" rows="10" name="answer_description" id="answer_description" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_description)" title="'.$l['h_answer'].'">'.htmlspecialchars($answer_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
+echo tcecodeEditorTagButtons('form_answereditor', 'answer_description', 0);
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
 if (K_ENABLE_ANSWER_EXPLANATION) {
 	echo '<div class="row">'.K_NEWLINE;
 	echo '<span class="label">'.K_NEWLINE;
@@ -799,48 +761,23 @@ if (K_ENABLE_ANSWER_EXPLANATION) {
 	echo '</span>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
-?>
 
-<div class="row">
-<span class="label">
-<label for="answer_isright"><?php echo $l['w_right']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="answer_isright" id="answer_isright" value="1"';
-if($answer_isright) {echo ' checked="checked"';}
-echo ' title="'.$l['h_answer_isright'].'" />';
-?>
-</span>
-</div>
+echo getFormRowCheckBox('answer_isright', $l['w_right'], $l['h_answer_isright'], '', 1, $answer_isright, false, '');
+echo getFormRowCheckBox('answer_enabled', $l['w_enabled'], $l['h_enabled'], '', 1, $answer_enabled, false, '');
 
-<div class="row">
-<span class="label">
-<label for="answer_enabled"><?php echo $l['w_enabled']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="answer_enabled" id="answer_enabled" value="1"';
-if($answer_enabled) {echo ' checked="checked"';}
-echo ' title="'.$l['h_enabled'].'" />';
-?>
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="answer_position"><?php echo $l['w_position']; ?></label>
-</span>
-<span class="formw">
-<select name="answer_position" id="answer_position" size="0" title="<?php echo $l['h_position']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="answer_position">'.$l['w_position'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="answer_position" id="answer_position" size="0" title="'.$l['h_position'].'">'.K_NEWLINE;
 if (isset($answer_id) AND ($answer_id > 0)) {
-$max_position = (1 + F_count_rows(K_TABLE_ANSWERS, 'WHERE answer_question_id='.$answer_question_id.' AND answer_position>0 AND answer_id<>'.$answer_id.''));
+	$max_position = (1 + F_count_rows(K_TABLE_ANSWERS, 'WHERE answer_question_id='.$answer_question_id.' AND answer_position>0 AND answer_id<>'.$answer_id.''));
 } else {
-$max_position = 0;
+	$max_position = 0;
 }
 echo '<option value="0">&nbsp;</option>'.K_NEWLINE;
-for($pos=1; $pos <= $max_position; $pos++) {
+for ($pos=1; $pos <= $max_position; ++$pos) {
 	echo '<option value="'.$pos.'"';
 	if($pos == $answer_position) {
 		echo ' selected="selected"';
@@ -848,21 +785,19 @@ for($pos=1; $pos <= $max_position; $pos++) {
 	echo '>'.$pos.'</option>'.K_NEWLINE;
 }
 echo '<option value="'.($max_position + 1).'" style="color:#ff0000">'.($max_position + 1).'</option>'.K_NEWLINE;
-?>
-</select>
-<input type="hidden" name="max_position" id="max_position" value="<?php echo $max_position; ?>" />
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '<input type="hidden" name="max_position" id="max_position" value="'.$max_position.'" />'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="answer_keyboard_key"><?php echo $l['w_keyboard_key']; ?></label>
-</span>
-<span class="formw">
-<select name="answer_keyboard_key" id="answer_keyboard_key" size="0" title="<?php echo $l['h_answer_keyboard_key']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="answer_keyboard_key">'.$l['w_keyboard_key'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="answer_keyboard_key" id="answer_keyboard_key" size="0" title="'.$l['h_answer_keyboard_key'].'">'.K_NEWLINE;
 echo '<option value="">&nbsp;</option>'.K_NEWLINE;
-for($ascii = 32; $ascii <= 126; $ascii++) {
+for ($ascii = 32; $ascii <= 126; ++$ascii) {
 	echo '<option value="'.$ascii.'"';
 	if($ascii == $answer_keyboard_key) {
 		echo ' selected="selected"';
@@ -873,16 +808,14 @@ for($ascii = 32; $ascii <= 126; $ascii++) {
 	} else {
 		echo htmlspecialchars(chr($ascii), ENT_NOQUOTES, $l['a_meta_charset']);
 	}
-	echo "</option>\n";
+	echo '</option>'.K_NEWLINE;
 }
-?>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-</select>
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
 
-<div class="row">
-<?php
 // show buttons by case
 if (isset($answer_id) AND ($answer_id > 0)) {
 	F_submit_button('update', $l['w_update'], $l['h_update']);
@@ -890,41 +823,39 @@ if (isset($answer_id) AND ($answer_id > 0)) {
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-?>
-</div>
 
-<div class="row">
-<span class="left">
-&nbsp;
-<?php
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="left">'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+
 if (isset($answer_question_id) AND ($answer_question_id > 0)) {
 	echo '<a href="tce_edit_question.php?subject_module_id='.$subject_module_id.'&amp;question_subject_id='.$question_subject_id.'&amp;question_id='.$answer_question_id.'" title="'.$l['t_questions_editor'].'" class="xmlbutton">&lt; '.$l['t_questions_editor'].'</a>';
 }
-?>
-</span>
-&nbsp;
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="answer_description" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_description'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
 
-</div>
+echo '</span>'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="answer_description" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_description'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
-<div class="row"><hr /></div>
+echo '</div>'.K_NEWLINE;
 
-<div class="rowl" title="<?php echo $l['h_preview']; ?>">
-<?php echo $l['w_preview']; ?>
-<div class="preview">
-<?php
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
+
+echo '<div class="rowl" title="'.$l['h_preview'].'">'.K_NEWLINE;
+echo $l['w_preview'];
+echo '<div class="preview">'.K_NEWLINE;
+
 echo F_decode_tcecode($answer_description);
-?>
-&nbsp;
-</div>
-</div>
 
-</form>
-</div>
+echo '&nbsp;'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_edit_answer'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2011-04-07 16:19:11
+// DATE: 2011-05-21 13:10:32
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -127,7 +127,7 @@ $tmx['hp_edit_tcecode']='Cu acest formular puteţi adăuga imagini şi puteţi s
 $tmx['hp_edit_test']='În acest formular puteţi adăuga, modifica şi şterge testele. În vederea adăugării unui test trebuie ca în prealabil să fi definit cel puţin o temă cu un anumit număr de întrebări şi răspunsuri. Numai utilizatorii cu drepturi suficiente şi o adresa IP validă pot executa testul. Câmpul IP poate conţine o listă de adrese IP diferite care sunt îndreptăţite să efectueze testul, separate prin virgulă. O adresă IP poate conţine, de asemenea, metacaractere (* = orice număr). Testul va fi activ doar în perioada de timp specificată, şi o dată început, va trebui completat în timpul maxim specificat. Testele pot conţine câteva teme cu diferite tipuri de întrebări care vor fi extrase aleator. Puteţi specifica un punctaj de bază pentru fiecare punct de dificultate al întrebărilor. Nu puteţi modifica un test care a fost deja efectuat. Când un test va fi şters vor fi şterse şi toate înregistrările sale. Butonul [generează] vă permite să generaţi un număr arbitrar de teste unice în format PDF care pot fi tipărite şi efectuate fără calculator. Literele şi cifrele din interiorul parantezelor pătrate reprezintă statistici despre întrebări: [ (numărul de întrebări)(tipul întrebării S,M,T,O)(dificultatea):(răspunsuri minime)-(răspunsuri maxime) ].';
 $tmx['hp_edit_user']='În acest formular puteţi gestiona diferiţi utilizatori care au acces la acest sistem. Pentru fiecare utilizator puteţi alege un nume, o parolă şi un nivel de acces. Nivelul 0 indică un utilizator anonim (neînregistrat), nivelul 1 un utilizator de bază (ex.: un student), nivelul 10 indică un administrator cu drepturi de acces depline.';
 $tmx['hp_email_result']='Trimite rezultate către utilizatori prin email';
-$tmx['hp_import_xml_questions']='Cu acest formular puteţi importa întrebări pentru tema selectată dintr-un fişier XML.';
+$tmx['hp_import_xml_questions']='Cu acest formular puteţi importa întrebări dintr-un fişier XML.';
 $tmx['hp_import_xml_users']='Cu acest formular puteţi importa utilizatori şi grupuri dintr-un fişier XML sau CSV (text Tab delimited). Formatul fişierului este acelaşi cu cel obţinut prin exportul datelor din formularul Selectare Utilizatori.';
 $tmx['hp_login']='Pentru a putea accesa diferitele secţiuni ale TCExam trebuie să vă autentificaţi folosind numele şi parola furnizate de administratorul sistemului.';
 $tmx['hp_online_users']='Acest formular afişează utilizatorii care sunt momentan autentificaţi în sistem';
@@ -560,5 +560,15 @@ $tmx['hp_select_media_file']='Această pagină vă permite să introduceţi un f
 $tmx['w_owner']='proprietar';
 $tmx['h_module_owner']='proprietarul acestui modul';
 $tmx['h_topic_owner']='proprietarul acestei teme';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

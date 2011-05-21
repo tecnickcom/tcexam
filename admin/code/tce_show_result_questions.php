@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-06
+// Last Update : 2011-05-20
 //
 // Description : Display questions statistics for the selected
 //               test.
@@ -91,8 +91,7 @@ else {
 }
 if (!isset($orderdir) OR empty($orderdir)) {
 	$orderdir=0; $nextorderdir=1; $full_order_field = $order_field;
-}
-else {
+} else {
 	$orderdir=1; $nextorderdir=0; $full_order_field = $order_field.' DESC';
 }
 
@@ -111,20 +110,18 @@ if ($r = F_db_query($sql, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_resultquestions">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_resultquestions">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="test_id"><?php echo $l['w_test']; ?></label>
-</span>
-<span class="formw">
-<select name="test_id" id="test_id" size="0" onchange="document.getElementById('form_resultquestions').submit()" title="<?php echo $l['h_test']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultquestions\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
@@ -138,28 +135,19 @@ if ($r = F_db_query($sql, $db)) {
 else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="rowl">
-<table class="userselect">
-<tr>
-<th>#</th>
-<th>#</th>
-<?php
+echo '<div class="rowl">'.K_NEWLINE;
+echo '<table class="userselect">'.K_NEWLINE;
+echo '<tr>'.K_NEWLINE;
+echo '<th>#</th>'.K_NEWLINE;
+echo '<th>#</th>'.K_NEWLINE;
 echo F_select_table_header_element('recurrence', $nextorderdir, $l['h_question_recurrence'], $l['w_recurrence'], $order_field, $filter);
 echo F_select_table_header_element('average_score', $nextorderdir, $l['h_score_average'], $l['w_score'], $order_field, $filter);
 echo F_select_table_header_element('average_time', $nextorderdir, $l['h_answer_time'], $l['w_answer_time'], $order_field, $filter);
@@ -187,8 +175,10 @@ $sqlr = 'SELECT
 	WHERE testlog_testuser_id=testuser_id
 		AND testlog_question_id=question_id
 		AND testuser_test_id='.$test_id.'
-	GROUP BY question_id
-	ORDER BY '.$full_order_field.'';
+	GROUP BY question_id';
+if (!empty($full_order_field) AND ($full_order_field != ' DESC')) {
+	$sqlr .= ' ORDER BY '.$full_order_field.'';
+}
 if ($rr = F_db_query($sqlr, $db)) {
 	$itemcount = 1;
 	while($mr = F_db_fetch_array($rr)) {
@@ -288,31 +278,26 @@ if ($rr = F_db_query($sqlr, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</table>
-</div>
+echo '</table>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<?php
+echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0)) {
 	echo '<a href="'.pdfLink(2, $test_id, 0, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 	echo '<a href="tce_xml_question_stats.php?testid='.$test_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 }
-?>
-<input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />
-<input type="hidden" name="orderdir" id="orderdir" value="<?php echo $orderdir; ?>" />
 
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />
+echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
 
-</div>
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
 
-</form>
-
-</div>
-<?php
+echo '</div>'.K_NEWLINE;
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_result_questions'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

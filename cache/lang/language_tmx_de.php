@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: de
-// DATE: 2011-04-07 16:18:42
+// DATE: 2011-05-21 13:10:08
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -148,7 +148,7 @@ $tmx['hp_edit_tcecode']='Mit diesem Formular können dem Text Bilder und Formati
 $tmx['hp_edit_test']='Mit diesem Formular können Tests eingefügt, verändert oder gelöscht werden. Um einen Test anlegen zu können muss vorher mindestens ein Thema definiert und eine gewisse Anzahl an Fragen und Antworten verfügbar sein. Nur Benutzer mit ausreichend Rechten und einer gültigen IP-Adresse können Tests durchführen. Das Feld IP kann eine Liste unterschiedlicher, durch Komata getrennte IP-Adressen enthalten welche den Test durchführen können sollen. IP-Adressen können auch Platzhalter enthalten (* = irgendeine Zahl). Eine Prüfung ist nur während des angegebenen Gültigkeitsdauer verfügbar und muss, einmal gestartet, innerhalb der angegebenen Prüfungsdauer beendet werden. Prüfungen können unterschiedliche Themen mit unterschiedlichen Fragetypen enthalten, welche zufällig ausgewählt werden. Es kann eine Basispunktzahl für jeden Punkt des Schwierigkeitsgrades der Frage angegeben werden. Ein bereits durchgeführte Prüfung kann nicht verändert werden. Wenn eine Prüfung gelöscht wird, werden auch alle damit verbundenen Daten (Prüfungsergebnisse) gelöscht. Der Knopf [Erzeugen] ermöglicht es eine beliebige Anzahl unterschiedlicher Tests im PDF Format zu erstellen die ausgedruckt und ohne Computer benutzt werden können. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='In diesem Formular können die Systembenutzer werden. Für jeden Benutzer kann ein Name, ein Passwort und eine Zugriffsstufe gewählt werden. Stufe 0 für anonyme Benutzer (nicht registriert), Stufe 1 für normale Benutzer (z.B. Prüfungsteilnehmer), Stufe 10 für Administratoren mit vollen Zugriffsrechten';
 $tmx['hp_email_result']='Ergebnisse den Benutzern per email senden';
-$tmx['hp_import_xml_questions']='Mit diesem Formular können Fragen in das ausgewählte Them aus einer XML Datei importiert werden.';
+$tmx['hp_import_xml_questions']='Mit diesem Formular können Fragen aus einer XML Datei importiert werden.';
 $tmx['hp_import_xml_users']='Mit diesem Formular können Benutzer und Gruppen aus XML oder CSV (Tab-getrennter Text) importiert werden. Das Dateiformat gleicht dem Format der Dateien beim Export auf der Benutzerauswahl Seite.';
 $tmx['hp_login']='Um Zugang zum "TCExam" zu erlangen, bitte den Systemadministrator kontaktieren.';
 $tmx['hp_online_users']='Dieses Formular zeigt die momentan angemeltedet Benutzer';
@@ -582,5 +582,15 @@ $tmx['hp_select_media_file']='This page allows you to insert a multimedia file o
 $tmx['w_owner']='owner';
 $tmx['h_module_owner']='owner of this module';
 $tmx['h_topic_owner']='owner of this topic';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

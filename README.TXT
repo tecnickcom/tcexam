@@ -11,9 +11,9 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.1.031
+Version: 11.2.000
 
-Release date: 2011-05-06
+Release date: 2011-05-21
 
 Author:
 	Nicola Asuni
@@ -82,8 +82,10 @@ Description:
 	* Data Import and Export: TCExam uses Open Standard protocols for data
 	filing and interchange: CSV, XML and PDF. Everything is fully documented to
 	be easily extended or used by external applications. Custom filters can be
-	added to import data from other systems. TCExam supports several types of
-	remote authentication and single-sign-on protocols: LDAP, RADIUS, CAS.
+	added to import data from other systems. Include Optical Mark Recognition
+	(OMR) system to import users' answers from paper sheets. TCExam supports
+	several types of remote authentication and single-sign-on protocols: LDAP,
+	RADIUS, CAS.
 
 	* Multimedia Content: TCExam uses a common mark-up language to add text
 	formatting, images, multimedia objects (audio and video) and mathematical
@@ -117,7 +119,7 @@ Software License
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-	Additionally, you can't remove, move or hide the original TCExam 
+	Additionally, you can't remove, move or hide the original TCExam
 	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
 	Please contact info@tecnick.com for commercial usage.
 

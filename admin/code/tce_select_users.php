@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2010-10-05
+// Last Update : 2011-05-20
 //
 // Description : Display user selection table.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -76,17 +76,16 @@ if (!F_isAuthorizedEditorForGroup($group_id)) {
 	F_print_error('ERROR', $l['m_authorization_denied']);
 	exit;
 }
-?>
 
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_userselect">
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_userselect">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="group_id"><?php echo $l['w_group']; ?></label>
-</span>
-<span class="formw">
-<select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_userselect').submit()">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="group_id">'.$l['w_group'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_userselect\').submit()">'.K_NEWLINE;
+
 echo '<option value="0"';
 if($group_id == 0) {
 	echo ' selected="selected"';
@@ -106,10 +105,8 @@ else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
+echo '</select>'.K_NEWLINE;
 
-<?php
 echo '<input type="text" name="searchterms" id="searchterms" value="'.htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset']).'" size="20" maxlength="255" title="'.$l['w_search'].'" />';
 F_submit_button('search', $l['w_search'], $l['w_search']);
 echo '</span></div>'.K_NEWLINE;
@@ -129,20 +126,11 @@ if (strlen($searchterms) > 0) {
 	}
 	$wherequery = '('.substr($wherequery, 5).')';
 }
-?>
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect();
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<?php
 if(isset($_POST['addgroup'])) {
 	$menu_mode = 'addgroup';
 } elseif(isset($_POST['delgroup'])) {
@@ -160,7 +148,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 			$user_id = $$keyname;
 			switch($menu_mode) {
 				case 'delete': {
-					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) 
+					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS)
 						AND ($user_id > 1) AND ($user_id != $_SESSION['session_user_id'])
 						AND F_isAuthorizedEditorForUser($user_id)) {
 						$sql = 'DELETE FROM '.K_TABLE_USERS.'
@@ -172,8 +160,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'addgroup': {
-					if (($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS) 
-						AND isset($new_group_id) AND ($new_group_id > 0) 
+					if (($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS)
+						AND isset($new_group_id) AND ($new_group_id > 0)
 						AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$groups = F_get_user_groups($user_id);
 						if (!in_array($new_group_id, $groups)) {
@@ -192,7 +180,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'delgroup': {
-					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) 
+					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS)
 						AND isset($new_group_id) AND ($new_group_id > 0) AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 							WHERE usrgrp_user_id='.$user_id.'
@@ -204,10 +192,10 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					break;
 				}
 				case 'move': {
-					if (($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS) 
-						AND isset($from_group_id) AND ($from_group_id > 0) 
+					if (($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS)
+						AND isset($from_group_id) AND ($from_group_id > 0)
 						AND F_isAuthorizedEditorForGroup($from_group_id)
-						AND isset($to_group_id) AND ($to_group_id > 0) 
+						AND isset($to_group_id) AND ($to_group_id > 0)
 						AND F_isAuthorizedEditorForGroup($to_group_id)) {
 						$groups = F_get_user_groups($user_id);
 						if (!in_array($to_group_id, $groups)) {

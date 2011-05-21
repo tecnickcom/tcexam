@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_mediafile.php
 // Begin       : 2010-09-20
-// Last Update : 2010-09-22
+// Last Update : 2011-01-20
 //
 // Description : Select media file for questions or answer description
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as

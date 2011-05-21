@@ -1,3 +1,14 @@
+11.2.000 (2011-05-21)
+	- TCExam now includes Optical Mark Recognition (OMR) system to import users' answers from paper sheets (requires ImageMagick, zlib extesions and zbarimg application http://zbar.sourceforge.net/).
+	- The [generate] button next to "PDF offline test" field on Test Management page now creates extra pages for offline testing with special answer sheets.
+	- The constant K_OMR_PATH_ZBARIMG was added to /admin/config/tce_config.php configuration file to set the path to zbarimg application required for OMR feature.
+	- The /admin/config/tce_auth.php configuration file was updated to include new constants.
+	- Labels of CSV export were fixed.
+	- Minor bugs were fixed.
+	- TCPDF library was updated.
+
+------------------------------------------------------------
+
 11.1.031 (2011-05-06)
 	- A bug related question XML exporter was fixed (on your exported XML questions files you have to replace "key>" with "keyboard_key>").
 	- Test and User results interfaces and export filters (XML, CSV, PDF) were improved.

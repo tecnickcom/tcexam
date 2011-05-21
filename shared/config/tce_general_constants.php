@@ -95,7 +95,7 @@ define ('K_KEY_SECURITY', 'VENFeGFtIChjKSAyMDA0LTIwMDggTmljb2xhIEFzdW5pIC0gVGVjb
 /**
  * String used as a seed for some security code generation please change this value and keep it secret.
  */
-define ('K_RANDOM_SECURITY', 'j8sl1a9x');
+define ('K_RANDOM_SECURITY', 'ks2xp97g');
 
 //============================================================+
 // END OF FILE

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2011-05-06
+// Last Update : 2011-05-20
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -239,20 +239,20 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 
 	$csv .= K_NEWLINE; // separator
 
-	$csv .= 'STATISTICS'.K_NEWLINE; // separator
+	$csv .= $l['w_statistics'].K_NEWLINE; // separator
 
 	// headers
 	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB;
-	$csv .= 'points'.K_TAB;
-	$csv .= 'correct'.K_TAB;
-	$csv .= 'wrong'.K_TAB;
-	$csv .= 'unanswered'.K_TAB;
-	$csv .= 'undisplayed'.K_TAB;
-	$csv .= 'unrated'.K_NEWLINE;
+	$csv .= $l['w_score'].K_TAB;
+	$csv .= $l['w_answers_right_th'].K_TAB;
+	$csv .= $l['w_answers_wrong_th'].K_TAB;
+	$csv .= $l['w_questions_unanswered_th'].K_TAB;
+	$csv .= $l['w_questions_undisplayed_th'].K_TAB;
+	$csv .= $l['w_questions_unrated'].K_NEWLINE;
 
 	foreach ($stats as $row => $columns) {
 		if (!in_array($row, $excludestat)) {
-			$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$row.K_TAB;
+			$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$l['w_'.$row].K_TAB;
 			$csv .= round($columns['score'], 3).K_TAB;
 			$csv .= round($columns['right'], 3).K_TAB;
 			$csv .= round($columns['wrong'], 3).K_TAB;

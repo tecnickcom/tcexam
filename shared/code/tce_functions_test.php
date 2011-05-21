@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2011-02-27
+// Last Update : 2011-05-21
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -247,6 +247,7 @@ function F_isValidIP($user_ip, $test_ips) {
 	}
 	return false;
 }
+
 /**
  * Check if user is authorized to execute the specified test
  * @param $test_id (int) ID of the selected test
@@ -273,6 +274,7 @@ function F_isValidTestUser($test_id, $user_ip, $test_ip) {
 	}
 	return false;
 }
+
 /**
  * Terminate user's test<br>
  * @param $test_id (int) test ID
@@ -1114,6 +1116,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 	$num_answers = 0; // counts alternative answers
 	$test_id = intval($test_id);
 	$testlog_id = intval($testlog_id);
+	$unanswered = true;
 	// get test data
 	$testdata = F_getTestData($test_id);
 	// get question information
@@ -1160,6 +1163,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 							}
 							$sqlu .= ' logansw_selected=-1';
 						} elseif ($answer_id == $m['logansw_answer_id']) {
+							$unanswered = false;
 							// selected
 							if (F_getBoolean($m['answer_isright'])) {
 								$answer_score = $question_right_score;
@@ -1171,6 +1175,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 							}
 							$sqlu .= ' logansw_selected=1';
 						} else {
+							$unanswered = false;
 							// unselected
 							if ($m['logansw_selected'] == 1) {
 								$answer_changed = true;
@@ -1189,12 +1194,15 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 								$answer_score += $question_unanswered_score;
 							} elseif (F_getBoolean($m['answer_isright']) AND ($answer_id[$m['logansw_answer_id']] == 1)) {
 								// right (selected)
+								$unanswered = false;
 								$answer_score += $question_right_score;
 							} elseif (!F_getBoolean($m['answer_isright']) AND ($answer_id[$m['logansw_answer_id']] == 0)) {
 								// right (unselected)
+								$unanswered = false;
 								$answer_score += $question_right_score;
 							} else {
 								// wrong
+								$unanswered = false;
 								$answer_score += $question_wrong_score;
 							}
 							if ($m['logansw_selected'] != $answer_id[$m['logansw_answer_id']]) {
@@ -1203,6 +1211,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 							$sqlu .= ' logansw_selected='.$answer_id[$m['logansw_answer_id']].'';
 						} else {
 							// unselected checkbox
+							$unanswered = false;
 							if (F_getBoolean($m['answer_isright'])) {
 								$answer_score += $question_wrong_score;
 							} else {
@@ -1219,6 +1228,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 						// ORDER
 						if (isset($answer_id[$m['logansw_answer_id']]) AND ($answer_id[$m['logansw_answer_id']] > 0)) {
 							// selected
+							$unanswered = false;
 							$answer_id[$m['logansw_answer_id']] = intval($answer_id[$m['logansw_answer_id']]);
 							if ($answer_id[$m['logansw_answer_id']] == $m['answer_position']) {
 								$answer_score += $question_right_score;
@@ -1273,6 +1283,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 	// update log if answer is changed
 	if ($answer_changed OR ($oldtext != $answer_text)) {
 		if (strlen($answer_text) > 0) {
+			$unanswered = false;
 			$answer_score = 'NULL';
 			// check exact answers score
 			$sql = 'SELECT *
@@ -1292,7 +1303,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 				return false;
 			}
 		}
-		if (($question_type == 1) AND ($answer_id == 0)) {
+		if ($unanswered) {
 			$change_time = '';
 		} else {
 			$change_time = date(K_TIMESTAMP_FORMAT);
@@ -1718,7 +1729,6 @@ function F_questionsMenu($testdata, $testuser_id, $testlog_id=0, $disable=false)
 	}
 	return $rstr;
 }
-
 
 /**
  * Returns the number of omitted questions (unanswered + undisplayed).

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2011-01-02
+// Last Update : 2011-05-21
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -53,6 +53,7 @@ require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
+require_once('tce_functions_omr.php');
 require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdfex.php');
 
@@ -69,7 +70,7 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 }
 
 if (isset($_REQUEST['num'])) {
-	$test_num = $_REQUEST['num'];
+	$test_num = intval($_REQUEST['num']);
 } else {
 	$test_num = 1;
 }
@@ -93,8 +94,9 @@ $isunicode = (strcasecmp($l['a_meta_charset'], 'UTF-8') == 0);
 //create new PDF document (document units are set by default to millimeters)
 $pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
 
-// Set backlink QR-Code
-$pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_edit_test.php?test_id='.$test_id);
+// set header backlink QR-Code
+$header_backlink = K_PATH_URL.'admin/code/tce_edit_test.php?test_id='.$test_id;
+$pdf->setTCExamBackLink($header_backlink);
 
 // set document information
 $pdf->SetCreator('TC'.'Ex'.'am'.' ver.'.K_TCEXAM_VERSION.'');
@@ -135,6 +137,48 @@ $data_cell_width = round($page_width / $page_elements, 2);
 $data_cell_width_third = round($data_cell_width / 3, 2);
 $data_cell_width_half = round($data_cell_width / 2, 2);
 
+// set style for QR-Code (used for test data)
+$qrstyle = array(
+	'border' => false,
+	'vpadding' => 0,
+	'hpadding' => 0,
+	'fgcolor' => array(0,0,0),
+	'bgcolor' => false,
+	'position' => 'C',
+	'module_width' => 2,
+	'module_height' => 2
+);
+
+// define some constants used to build the OMR grid
+$grid_color = array(255, 0, 0);
+$grid_bg_color = array(255,205,205);
+$circle_bg_color = array(255,255,255);
+$line_width = 0.177; // about half point
+$circle_radius = ($line_width * 11);
+$circle_width = (2 * $circle_radius) + $line_width;
+$circle_shift = $circle_width + $line_width;
+$circle_half_width = ($circle_width / 2);
+$align_mark_color = array(0,0,0);
+$align_mark_width = ($line_width * 7);
+$align_mark_lenght = ($line_width * 22);
+$align_mark_shift = ($line_width * 8);
+$row_height = $circle_width + (8 * $line_width);
+$line_style = array('width' => $line_width, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'phase' => 0, 'color' => $grid_color);
+// define barcode style
+$bstyle = array(
+	'position' => '',
+	'align' => 'C',
+	'stretch' => false,
+	'fitwidth' => false,
+	'cellfitalign' => '',
+	'border' => false,
+	'hpadding' => 0,
+	'vpadding' => 0,
+	'fgcolor' => array(0,0,0),
+	'bgcolor' => false,
+	'text' => false
+);
+
 // get test data
 $testdata = F_getTestData($test_id);
 
@@ -143,21 +187,33 @@ $testdata = F_getTestData($test_id);
 for ($item = 1; $item <= $test_num; $item++) {
 	// generate $test_num tests
 
+	// data to be printed as QR-Code to be later used as input from scanner/image
+	$barcode_test_data = array();
+	$barcode_test_data[0] = $test_id;
+
 	// --- start page data ---
 	$pdf->AddPage();
 
+	$test_ref = $test_id.':'.$item.':'.date(K_TIMESTAMP_FORMAT);
+
 	// set barcode
-	$pdf->setBarcode(''.$test_id.':'.$item.':'.date(K_TIMESTAMP_FORMAT));
+	$pdf->setBarcode($test_ref);
 
 	$pdf->SetFillColor(204, 204, 204);
 	$pdf->SetLineWidth(0.1);
 	$pdf->SetDrawColor(0, 0, 0);
+	$pdf->SetTextColor(0,0,0);
 
 	// print document name (title)
 	$pdf->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA * K_TITLE_MAGNIFICATION);
 	$pdf->Cell(0, $main_cell_height * K_TITLE_MAGNIFICATION, $doc_title, 1, 1, 'C', 1);
 
-	$pdf->Ln(5);
+	$pdf->SetTextColor(255,0,0);
+	$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
+	$pdf->Cell(0, 5, '['.$test_ref.']', 0, 1, 'C', false, '', 0, false, 'T', 'M');
+	$pdf->SetTextColor(0,0,0);
+
+	//$pdf->Ln(5);
 
 	// display user info input boxes
 
@@ -381,7 +437,10 @@ for ($item = 1; $item <= $test_num; $item++) {
 		// ------------------------------
 		$question_order = 0;
 		foreach ($questions_data as $key => $q) {
-			$question_order++;
+			++$question_order;
+
+			// add question ID to QR-Code data
+			$barcode_test_data[$question_order] = array(0 => $q['id'], 1 => array());
 
 			// start transaction
 			$pdf->startTransaction();
@@ -482,7 +541,11 @@ for ($item = 1; $item <= $test_num; $item++) {
 				$answ_id = 0;
 				// display multiple answers
 				while (list($key, $answer_id) = each($answers_ids)) {
-					$answ_id++;
+					++$answ_id;
+
+					// add answer ID to QR-Code data
+					$barcode_test_data[$question_order][1][$answ_id] = $answer_id;
+
 					// display each answer option
 					$sqla = 'SELECT *
 						FROM '.K_TABLE_ANSWERS.'
@@ -539,6 +602,184 @@ for ($item = 1; $item <= $test_num; $item++) {
 	} else {
 		F_display_db_error();
 	}
+
+	// *** OMR SECTION (Optical Mark Recognition) ******************************
+	// Support up to 30 questions per sheet and up to 12 answers per questions.
+	// Support only MCSA and MCMA questions.
+
+	// remove default barcodes from header and footer to not interfere with data QR-code
+	$pdf->resetHeaderTemplate();
+	$pdf->setTCExamBackLink('');
+	$pdf->AddPage();
+	$pdf->setBarcode('');
+
+	$pdf->SetTextColor(255,0,0);
+	$pdf->SetFont(PDF_FONT_NAME_DATA, '', round(PDF_FONT_SIZE_DATA * 1.5));
+	$pdf->Cell(0, 0, 'OMR DATA', 0, 1, 'C', false, '', 0, false, 'T', 'M');
+	$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
+	$pdf->Cell(0, 0, '['.$test_ref.']', 0, 1, 'C', false, '', 0, false, 'T', 'M');
+	$pdf->SetTextColor(0,0,0);
+
+	// encode data to be printed on QR-Code
+	$qr_test_data = F_encodeOMRTestData($barcode_test_data);
+
+	$pagedim = $pdf->getPageDimensions();
+	$qrw = $pagedim['wk'] - $pagedim['lm'] - $pagedim['rm']; // maximum width
+	$qry = ($pagedim['hk'] - $qrw) / 2; // vertically centered on page
+
+	// QR-CODE mode H (best error correction)
+	// This will be used to create test logs
+	$pdf->write2DBarcode($qr_test_data, 'QRCODE,H', '', $qry, '', '', $qrstyle, 'N');
+
+	// --- OMR ANSWER SHEET ---------------------------------------------------
+
+	// Instructions:
+	// mark the correct/true answers
+	// use blue/black marker
+	// fill the box completely
+	// make no stray marks
+
+	// center the block on the page
+	$start_x = (($pagedim['wk'] - 173.964) / 2);
+	$start_y = (($pagedim['hk'] - 178.062) / 2);
+
+	$pdf->SetLineStyle($line_style);
+	$pdf->SetTextColorArray($grid_color);
+	$pdf->SetCellPadding($line_width);
+
+	// number of required OMR pages
+	$num_questions = count($barcode_test_data) - 1;
+	$num_omr_pages = ceil($num_questions / 30); // max 30 questions per page
+
+	for ($omrpage = 0; $omrpage < $num_omr_pages; ++$omrpage) {
+		$pdf->AddPage();
+
+		$pdf->SetTextColor(255,0,0);
+		$pdf->SetFont(PDF_FONT_NAME_DATA, '', round(PDF_FONT_SIZE_DATA * 1.5));
+		$pdf->Cell(0, 0, 'OMR ANSWER SHEET '.($omrpage + 1), 0, 1, 'C', false, '', 0, false, 'T', 'M');
+		$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
+		$pdf->Cell(0, 0, '['.$test_ref.']', 0, 1, 'C', false, '', 0, false, 'T', 'M');
+		$pdf->SetTextColor(0,0,0);
+
+		// disable RTL mode
+		$rtl = $pdf->getRTL();
+		$pdf->setRTL(false);
+
+		$x = $start_x;
+		$y = $start_y;
+
+		// --------------------
+
+		// set the starting row number (starting question number)
+		$first_question = (1 + (30 * $omrpage));
+		$qnum = sprintf('%04d', $first_question);
+
+		// set footer barcode to identify starting question number
+		$pdf->setBarcode($qnum);
+
+		// --------------------
+
+		// top alignment marks for columns
+		$x = $start_x;
+		$pdf->Rect($x, $y, $align_mark_lenght, $align_mark_lenght, 'F', array(), $align_mark_color);
+		$x += $align_mark_lenght + 9;
+		$pdf->SetFont('helvetica', '', 10);
+		for ($i = 0; $i < 12; ++$i) {
+			// vertical alignment mark
+			$x += $circle_shift;
+			$pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', array(), $align_mark_color);
+			$x += $circle_shift;
+			$pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', array(), $align_mark_color);
+			$x += $circle_shift;
+		}
+		$y += ($row_height + $circle_half_width);
+
+		// --------------------
+
+		for ($r=0; $r < 30; ++$r) {
+			$current_question = ($first_question + $r);
+			// start at left margin
+			$x = $start_x;
+			// center of circles
+			$cy = $y + $circle_half_width;
+			// left alignment mark for row
+			$pdf->Rect($x, $y + $align_mark_shift, $align_mark_lenght, $align_mark_width, 'F', array(), $align_mark_color);
+			$x += $align_mark_lenght;
+			if ($current_question <= $num_questions) {
+				if (($r % 2) != 0) {
+					// row background
+					$pdf->Rect($x, $y - (4 * $line_width), 166.176, $circle_width + (8 * $line_width), 'F', array(), $grid_bg_color);
+				}
+				// print question number
+				$pdf->SetXY($x,$y);
+				$pdf->SetFont('courier', 'B', 10);
+				$pdf->SetTextColorArray($grid_color);
+				$pdf->Cell(8, $circle_width, $current_question, 0, 0, 'R', false, '', 0, true, 'T', 'M');
+				$x += 9;
+				// question type
+				$question_type = $questions_data[($current_question - 1)]['type'];
+				if ($question_type < 3) { // MCSA or MCMA question
+					// number of answers
+					$num_answers = count($barcode_test_data[$current_question][1]);
+					for ($i = 1; $i <= 12; ++$i) { // for each answer
+						if ($i <= $num_answers) {
+							// print answer number
+							$pdf->SetXY($x,$y);
+							$pdf->SetFont('helvetica', '', 8);
+							$pdf->SetTextColorArray($grid_color);
+							$pdf->Cell($circle_shift, $circle_width, $i, 0, 0, 'R', false, '', 0, true, 'T', 'M');
+							$x += $circle_shift;
+							// select circle
+							$pdf->Circle($x + $circle_half_width, $cy, $circle_radius, 0, 360, 'DF', $line_style, $circle_bg_color, 2);
+							$pdf->SetXY($x,$y);
+							$pdf->SetFont('helvetica', '', 6);
+							$pdf->SetTextColorArray($grid_bg_color);
+							$pdf->Cell($circle_width, $circle_width, $l['w_true_acronym'], 0, 0, 'C', false, '', 0, true, 'T', 'M');
+							$x += $circle_shift;
+							if ($question_type == 2) { // MCMA question
+								$pdf->Circle($x + $circle_half_width, $cy, $circle_radius, 0, 360, 'DF', $line_style, $circle_bg_color, 2);
+								$pdf->SetXY($x,$y);
+								$pdf->Cell($circle_width, $circle_width, $l['w_false_acronym'], 0, 0, 'C', false, '', 0, true, 'T', 'M');
+
+							}
+						} else {
+							$x += (2 * $circle_shift);
+						}
+						$x += $circle_shift;
+					}
+				} else {
+					$x += (36 * $circle_shift);
+				}
+			} else {
+				$x += 9 + (36 * $circle_shift);
+			}
+			$x += $circle_shift;
+			// right alignment mark for row
+			$pdf->Rect($x, $y + $align_mark_shift, $align_mark_lenght, $align_mark_width, 'F', array(), $align_mark_color);
+			$y += $row_height;
+		}
+
+		// --------------------
+
+		// top alignment marks for columns
+		$x = $start_x + $align_mark_lenght + 9;
+		$y += $circle_half_width;
+		$pdf->SetFont('helvetica', '', 10);
+		for ($i = 0; $i < 12; ++$i) {
+			// vertical alignment mark
+			$x += $circle_shift;
+			$pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', array(), $align_mark_color);
+			$x += $circle_shift;
+			$pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', array(), $align_mark_color);
+			$x += $circle_shift;
+		}
+
+		// --------------------
+
+		// reset RTL mode
+		$pdf->setRTL($rtl);
+	} // end for each OMR page
+
 } //end for test_num
 
 $pdf->lastpage(true);
@@ -550,7 +791,7 @@ $lnk = "\x68\x74\x74\x70\x3a\x2f\x2f\x77\x77\x77\x2e\x74\x63\x65\x78\x61\x6d\x2e
 $pdf->SetXY(15, $pdf->getPageHeight(), true);
 $pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
 
-//Close and outputs PDF document
+// close and outputs PDF document
 $pdf->Output('tcexam_test_'.$test_id.'_'.date('YmdHis').'.pdf', 'D');
 
 //============================================================+

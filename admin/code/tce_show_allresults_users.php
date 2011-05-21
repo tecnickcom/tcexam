@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-06
+// Last Update : 2011-05-20
 //
 // Description : Display all test results for the selected users.
 //
@@ -199,20 +199,18 @@ if ($formstatus) {
 		}
 	}
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_allresultsuser">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_allresultsuser">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_id"><?php echo $l['w_user']; ?></label>
-</span>
-<span class="formw">
-<select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_allresultsuser').submit()">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_allresultsuser\').submit()">'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name
 	FROM '.K_TABLE_USERS.'
 	WHERE user_id > 1';
@@ -241,48 +239,21 @@ if ($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="startdate"><?php echo $l['w_time_begin'].' '.$l['w_datetime_format']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="startdate" id="startdate" value="<?php echo $startdate; ?>" size="20" maxlength="20" title="<?php echo $l['h_time_begin']; ?>" />
-<button name="startdate_trigger" id="startdate_trigger" title="<?php echo $l['w_calendar']; ?>">...</button>
-<input type="hidden" name="x_startdate" id="x_startdate" value="^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2})\:([0-9]{1,2})\:([0-9]{1,2})$" />
-<input type="hidden" name="xl_startdate" id="xl_startdate" value="<?php echo $l['w_time_begin']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('startdate', $l['w_time_begin'], $l['w_time_begin'].' '.$l['w_datetime_format'], '', $startdate, '', 19, false, true, false);
+echo getFormRowTextInput('enddate', $l['w_time_end'], $l['w_time_end'].' '.$l['w_datetime_format'], '', $enddate, '', 19, false, true, false);
 
-<div class="row">
-<span class="label">
-<label for="enddate"><?php echo $l['w_time_end'].' '.$l['w_datetime_format']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="enddate" id="enddate" value="<?php echo $enddate; ?>" size="20" maxlength="20" title="<?php echo $l['h_time_end']; ?>" />
-<button name="enddate_trigger" id="enddate_trigger" title="<?php echo $l['w_calendar']; ?>">...</button>
-<input type="hidden" name="x_enddate" id="x_enddate" value="^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2}) ([0-9]{1,2})\:([0-9]{1,2})\:([0-9]{1,2})$" />
-<input type="hidden" name="xl_enddate" id="xl_enddate" value="<?php echo $l['w_time_end']; ?>" />
-</span>
-</div>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row"><hr /></div>
+echo '<div class="rowl">'.K_NEWLINE;
+echo '<table class="userselect">'.K_NEWLINE;
+echo '<tr>'.K_NEWLINE;
 
-<div class="rowl">
-<table class="userselect">
-<tr>
-<?php
 if ($l['a_meta_dir'] == 'rtl') {
 	$tdalignr = 'left';
 	$tdalign = 'right';
@@ -309,14 +280,14 @@ echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
 </tr>
 <?php
 // output users stats
-$sqlr = 'SELECT 
-	testuser_id, 
-	test_id, 
-	test_name, 
-	test_duration_time, 
-	testuser_creation_time, 
-	testuser_status, 
-	SUM(testlog_score) AS total_score, 
+$sqlr = 'SELECT
+	testuser_id,
+	test_id,
+	test_name,
+	test_duration_time,
+	testuser_creation_time,
+	testuser_status,
+	SUM(testlog_score) AS total_score,
 	MAX(testlog_change_time) AS testuser_end_time
 	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 	WHERE testuser_status>0
@@ -456,7 +427,7 @@ if ($itemcount > 0) {
 	echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
 	echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
 	echo '</tr>'.K_NEWLINE;
-	
+
 	foreach ($stats as $row => $columns) {
 		if (!in_array($row, $excludestat)) {
 			echo '<tr>';
@@ -508,30 +479,21 @@ if (isset($user_id) AND ($user_id > 0) AND ($itemcount > 0)) {
 	echo '<a href="tce_csv_allresults_user.php?user_id='.$user_id.'&amp;startdate='.urlencode($startdate).'&amp;enddate='.urlencode($enddate).'&amp;order_field='.urlencode($full_order_field).'" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a> ';
 	echo '<a href="tce_xml_user_results.php?user_id='.$user_id.'&amp;startdate='.urlencode($startdate).'&amp;enddate='.urlencode($enddate).'&amp;order_field='.urlencode($full_order_field).'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 }
-?>
-<input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />
-<input type="hidden" name="orderdir" id="orderdir" value="<?php echo $orderdir; ?>" />
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />
-<input type="hidden" name="itemcount" id="itemcount" value="<?php echo $itemcount; ?>" />
-</div>
 
-</form>
+echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
+echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-</div>
-<?php
+echo '</form>'.K_NEWLINE;
+
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_allresults_user'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
-
-// calendar
-echo '<script type="text/javascript">'.K_NEWLINE;
-echo '//<![CDATA['.K_NEWLINE;
-echo 'Calendar.setup({inputField: "startdate", ifFormat: "%Y-%m-%d %H:%M:%S", showsTime: "true", button: "startdate_trigger"});'.K_NEWLINE;
-echo 'Calendar.setup({inputField: "enddate", ifFormat: "%Y-%m-%d %H:%M:%S", showsTime: "true", button: "enddate_trigger"});'.K_NEWLINE;
-echo '//]]>'.K_NEWLINE;
-echo '</script>'.K_NEWLINE;
 
 require_once('../code/tce_page_footer.php');
 

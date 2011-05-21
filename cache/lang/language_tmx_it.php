@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2011-04-07 16:18:58
+// DATE: 2011-05-21 13:10:22
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -127,7 +127,7 @@ $tmx['hp_edit_tcecode']='Attraverso questa maschera è possibile aggiungere dell
 $tmx['hp_edit_test']='Attraverso questa maschera è possibile inserire, modificare o eliminare i test. Prima di inserire un test è necessario aver precedentemente inserito degli argomenti con un numero adeguato di relative domande e risposte. I test sono eseguibili solo dagli utenti abilitati e con un indirizzo IP valido. Il campo IP può contenere una lista separata da virgola degli indirizzi IP abilitati ad eseguire il test. Un indirizzo IP può anche contenere wildcards (* = qualsiasi numero). Il test sarà attivo solo durante l\'intervallo temporale specificato e, una volta generato, dovrà essere completato entro la durata massima. I test possono essere composti da più argomenti con differenti tipi di domande che verranno estratte casualmente tra tutte quelle presenti. È inoltre possibile definire un punteggio base per ogni punto di difficoltà delle domande. Non è possibile modificare un test se questo è stato già eseguito. L\'eliminazione di un test comporterà l\'eliminazione di tutti i log relativi (dati dei test effettuati). Il pulsante [genera] consente la generazione di un numero arbitrario (specificato al lato) di test unici in formato PDF che possono essere stampati ed utilizzati per un esame tradizionale (senza computer). I numeri e lettere all\'interno delle parentesi quadre negli argomenti sono statistiche riassuntive: [ (numero di domande)(tipo di domanda S,M,T,O)(difficoltà):(risposte minime)-(risposte massime) ].';
 $tmx['hp_edit_user']='Attraverso questa maschera è possibile gestire gli utenti che hanno accesso a questo sistema. Per ogni utente è possibile scegliere un nome, una password ed un livello. Il livello 0 indica un utente anonimo (non registrato), il livello 1 indica un semplice utente (es: studente che deve sostenere un test), il livello 10 indica un amministratore che ha accesso a tutte le funzioni del sistema.';
 $tmx['hp_email_result']='Invia i risultati agli utenti via email';
-$tmx['hp_import_xml_questions']='Attraverso questa maschera è possibile importare delle domande nell\'argomento selezionato da un file XML.';
+$tmx['hp_import_xml_questions']='Attraverso questa maschera è possibile importare delle domande da un file XML.';
 $tmx['hp_import_xml_users']='Attraverso questa maschera è possibile importare utenti e gruppi da un file XML o CSV (Testo delimitato da tabulazione). I formati dei file sono gli stessi che si ottengono esportando i dati dalla maschera di Selezione Utenti.';
 $tmx['hp_login']='Per poter accedere alle varie sezioni di TCExam è necessario autenticarsi inserendo il nome e la password che vi sono stati assegnati dall\'amministratore di sistema.';
 $tmx['hp_online_users']='Questa maschera mostra gli utenti attualmente collegati (o quelli a cui non è ancora scaduta la sessione)';
@@ -563,5 +563,15 @@ $tmx['hp_select_media_file']='Questa pagina consente di inserire un oggetto mult
 $tmx['w_owner']='proprietario';
 $tmx['h_module_owner']='proprietario di questo modulo';
 $tmx['h_topic_owner']='proprietario di questo argomento';
+$tmx['t_omr_answers_importer']='Importazione Risposte (OMR)';
+$tmx['hp_omr_answers_importer']='Attraverso questa maschera è possibile importare le risposte dell\'utente dalle immagini scannerizzate dei fogli di risposta. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell\'utente. I dati importati sovrascriveranno i risultati esistenti. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.';
+$tmx['w_import_omr_answers']='importa risposte';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='immagine scansionata della pagina intitolata OMR DATA';
+$tmx['m_omr_wrong_test_data']='l\'immagine della pagina OMR DATA è mancante o illeggibile';
+$tmx['m_omr_wrong_answer_sheet']='l\'immagine della pagina OMR ANSWER SHEET è mancante o illegibile';
+$tmx['m_import_ok']='il processo di importazione è stato completato con successo';
+$tmx['m_import_error']='il processo di importazione è fallito';
 
 // --- EOF ---

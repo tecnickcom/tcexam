@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_questions.php
 // Begin       : 2006-03-12
-// Last Update : 2010-06-16
+// Last Update : 2011-05-20
 //
 // Description : Import questions from an XML file.
 //
@@ -94,24 +94,23 @@ if (isset($menu_mode) AND ($menu_mode == 'upload')) {
 		}
 	}
 }
-?>
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_importquestions">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_importquestions">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="userfile"><?php echo $l['w_upload_file']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="MAX_FILE_SIZE" value="<?php echo K_MAX_UPLOAD_SIZE ?>" />
-<input type="file" name="userfile" id="userfile" size="20" title="<?php echo $l['h_upload_file']; ?>" />
-</span>
-&nbsp;
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="userfile">'.$l['w_upload_file'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="MAX_FILE_SIZE" value="'.K_MAX_UPLOAD_SIZE.'" />'.K_NEWLINE;
+echo '<input type="file" name="userfile" id="userfile" size="20" title="'.$l['h_upload_file'].'" />'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
+
 $custom_import = K_ENABLE_CUSTOM_IMPORT;
 if (!empty($custom_import)) {
 	echo '<div class="row">'.K_NEWLINE;
@@ -131,20 +130,17 @@ if (!empty($custom_import)) {
 	echo '</div>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
-?>
 
-<div class="row">
-<br />
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
+
 // show upload button
 F_submit_button('upload', $l['w_upload'], $l['h_submit_file']);
-?>
-</div>
 
-</form>
+echo '</div>'.K_NEWLINE;
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-</div>
-<?php
 echo '<div class="pagehelp">'.$l['hp_import_xml_questions'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

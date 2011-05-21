@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-06
+// Last Update : 2011-05-21
 //
 // Description : Display test results summary for all users.
 //
@@ -198,21 +198,19 @@ if ($formstatus) {
 		F_display_db_error();
 	}
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_resultallusers">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_resultallusers">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="test_id"><?php echo $l['w_test']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changecategory" id="changecategory" value="" />
-<select name="test_id" id="test_id" size="0" onchange="document.getElementById('form_resultallusers').changecategory.value=1; document.getElementById('form_resultallusers').submit()" title="<?php echo $l['h_test']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
+echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
@@ -226,27 +224,18 @@ if ($r = F_db_query($sql, $db)) {
 else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">
-<label for="group_id"><?php echo $l['w_group']; ?></label>
-</span>
-<span class="formw">
-<select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_resultallusers').submit()">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="group_id">'.$l['w_group'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
 if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 	$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' WHERE';
 } else {
@@ -273,27 +262,17 @@ else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectgroup" id="selectgroup" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectgroup');
 
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row"><hr /></div>
-
-<div class="rowl">
-<table class="userselect">
-<tr>
-<?php
+echo '<div class="rowl">'.K_NEWLINE;
+echo '<table class="userselect">'.K_NEWLINE;
+echo '<tr>'.K_NEWLINE;
 if ($l['a_meta_dir'] == 'rtl') {
 	$tdalignr = 'left';
 	$tdalign = 'right';
@@ -301,7 +280,6 @@ if ($l['a_meta_dir'] == 'rtl') {
 	$tdalignr = 'right';
 	$tdalign = 'left';
 }
-
 echo '<th>&nbsp;</th>'.K_NEWLINE;
 echo '<th>#</th>'.K_NEWLINE;
 echo F_select_table_header_element('testuser_creation_time', $nextorderdir, $l['h_time_begin'], $l['w_time_begin'], $order_field, $filter);
@@ -318,9 +296,8 @@ echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplaye
 echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])">'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
-?>
-</tr>
-<?php
+echo '</tr>'.K_NEWLINE;
+
 // output users stats
 $sqlr = 'SELECT
 	testuser_id,
@@ -372,7 +349,7 @@ if ($rr = F_db_query($sqlr, $db)) {
 		echo '<td style="text-align:center;">'.$mr['testuser_creation_time'].'</td>'.K_NEWLINE;
 		//echo '<td style="text-align:center;">'.$mr['testuser_end_time'].'</td>'.K_NEWLINE;
 		if (!isset($mr['testuser_end_time']) OR ($mr['testuser_end_time'] <= 0)) {
-			$time_diff =$mr['test_duration_time'] * 60;
+			$time_diff = $test_duration_time;
 		} else {
 			$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
 		}
@@ -546,19 +523,18 @@ if (isset($test_id) AND ($test_id > 0)) {
 		echo '<a href="tce_export_custom.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$custom_export.'">'.$custom_export.'</a> ';
 	}
 }
-?>
-<input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />
-<input type="hidden" name="orderdir" id="orderdir" value="<?php echo $orderdir; ?>" />
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />
-<input type="hidden" name="itemcount" id="itemcount" value="<?php echo $itemcount; ?>" />
-</div>
 
-</form>
+echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
+echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'>" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-</div>
-<?php
+echo '</form>'.K_NEWLINE;
+
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_result_alluser'].'</div>'.K_NEWLINE;
 echo '</div>';

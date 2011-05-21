@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2010-10-06
+// Last Update : 2011-05-20
 //
 // Description : Edit user data.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -56,6 +56,7 @@ $pagelevel = K_AUTH_ADMIN_USERS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_user_editor'];
+$enable_calendar = true;
 require_once('../code/tce_page_header.php');
 
 require_once('../../shared/code/tce_functions_form.php');
@@ -373,20 +374,18 @@ if ($formstatus) {
 		}
 	}
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_usereditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_usereditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_id"><?php echo $l['w_user']; ?></label>
-</span>
-<span class="formw">
-<select name="user_id" id="user_id" size="0" onchange="document.getElementById('form_usereditor').submit()">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_usereditor\').submit()">'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	// filter for level
@@ -414,161 +413,34 @@ else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_name"><?php echo $l['w_username']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_name" id="user_name" value="<?php echo htmlspecialchars($user_name, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_login_name']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('user_name', $l['w_username'], $l['h_login_name'], '', $user_name, '', 255, false, false, false);
+echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', $user_email, '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$', 255, false, false, false);
+echo getFormRowTextInput('newpassword', $l['w_password'], $l['h_password'], ' ('.$l['d_password_lenght'].')', '', '^([a-zA-Z0-9]{8,32})$', 255, false, false, true);
+echo getFormRowTextInput('newpassword_repeat', $l['w_password'], $l['h_password_repeat'], ' ('.$l['w_repeat'].')', '', '', 255, false, false, true);
+echo getFormRowFixedValue('user_regdate', $l['w_regdate'], $l['h_regdate'], '', $user_regdate);
+echo getFormRowFixedValue('user_ip', $l['w_ip'], $l['h_ip'], '', $user_ip);
+echo getFormRowSelectBox('user_level', $l['w_level'], $l['h_level'], '', $user_level, array(0,1,2,3,4,5,6,7,8,9,10));
+echo getFormRowTextInput('user_regnumber', $l['w_regcode'], $l['h_regcode'], '', $user_regnumber, '', 255, false, false, false);
+echo getFormRowTextInput('user_firstname', $l['w_firstname'], $l['h_firstname'], '', $user_firstname, '', 255, false, false, false);
+echo getFormRowTextInput('user_lastname', $l['w_lastname'], $l['h_lastname'], '', $user_lastname, '', 255, false, false, false);
+echo getFormRowTextInput('user_birthdate', $l['w_birth_date'], $l['h_birth_date'].' '.$l['w_date_format'], '', $user_birthdate, '', 10, true, false, false);
+echo getFormRowTextInput('user_birthplace', $l['w_birth_place'], $l['h_birth_place'], '', $user_birthplace, '', 255, false, false, false);
+echo getFormRowTextInput('user_ssn', $l['w_fiscal_code'], $l['h_fiscal_code'], '', $user_ssn, '', 255, false, false, false);
 
-<div class="row">
-<span class="label">
-<label for="user_email"><?php echo $l['w_email']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="x_user_email" id="x_user_email" value="^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" />
-<input type="hidden" name="xl_user_email" id="xl_user_email" value="<?php echo $l['w_email']; ?>" />
-<input type="hidden" name="user_password" id="user_password" value="<?php echo $user_password; ?>" />
-<input type="text" name="user_email" id="user_email" value="<?php echo $user_email; ?>" size="20" maxlength="255" title="<?php echo $l['h_usered_email']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="newpassword"><?php echo $l['w_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="newpassword" id="newpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="newpassword_repeat"><?php echo $l['w_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="newpassword_repeat" id="newpassword_repeat" size="20" maxlength="255" title="<?php echo $l['h_password_repeat']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_regdate"><?php echo $l['w_regdate']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_regdate" id="user_regdate" value="<?php echo $user_regdate; ?>" size="20" maxlength="255" readonly="readonly" title="<?php echo $l['h_regdate']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_ip"><?php echo $l['w_ip']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_ip" id="user_ip" value="<?php echo $user_ip; ?>" size="20" maxlength="255" readonly="readonly" title="<?php echo $l['h_ip']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_level"><?php echo $l['w_level']; ?></label>
-</span>
-<span class="formw">
-<select name="user_level" id="user_level" size="0" title="<?php echo $l['h_level']; ?>">
-<?php
-for($i=0; $i<=10; $i++) {
-	echo '<option value="'.$i.'"';
-	if ($i == $user_level) {
-		echo ' selected="selected"';
-	}
-	echo '>'.$i.'</option>'.K_NEWLINE;
-}
-?>
-</select>
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_regnumber"><?php echo $l['w_regcode']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_regnumber" id="user_regnumber" value="<?php echo htmlspecialchars($user_regnumber, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_regcode']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_firstname"><?php echo $l['w_firstname']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_firstname" id="user_firstname" value="<?php echo htmlspecialchars($user_firstname, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_firstname']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_lastname"><?php echo $l['w_lastname']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_lastname" id="user_lastname" value="<?php echo htmlspecialchars($user_lastname, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_lastname']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_birthdate"><?php echo $l['w_birth_date']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="x_user_birthdate" id="x_user_birthdate" value="^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$" />
-<input type="hidden" name="xl_user_birthdate" id="xl_user_birthdate" value="<?php echo $l['w_birth_date']; ?>" />
-<input type="text" name="user_birthdate" id="user_birthdate" value="<?php echo $user_birthdate; ?>" size="20" maxlength="10" title="<?php echo $l['h_birth_date']; ?> <?php echo $l['w_date_format']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_birthplace"><?php echo $l['w_birth_place']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_birthplace" id="user_birthplace" value="<?php echo htmlspecialchars($user_birthplace, ENT_COMPAT, $l['a_meta_charset']); ?>" size="20" maxlength="255" title="<?php echo $l['h_birth_place']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_ssn"><?php echo $l['w_fiscal_code']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_ssn" id="user_ssn" value="<?php echo $user_ssn; ?>" size="20" maxlength="255" title="<?php echo $l['h_fiscal_code']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="user_groups"><?php echo $l['w_groups']; ?></label>
-</span>
-<span class="formw">
-<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="user_groups">'.$l['w_groups'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_GROUPS.' ORDER BY group_name';
 if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
@@ -577,7 +449,7 @@ if ($r = F_db_query($sql, $db)) {
 			echo ' style="text-decoration:line-through;"';
 		}
 		if (F_isUserOnGroup($user_id, $m['group_id'])) {
-			echo 'selected="selected"';
+			echo ' selected="selected"';
 			$m['group_name'] = '* '.$m['group_name'];
 		}
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -586,13 +458,11 @@ if ($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<?php
+echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($user_id) AND ($user_id > 0)) {
 	if (($user_level < $_SESSION['session_user_level']) OR ($user_id == $_SESSION['session_user_id']) OR ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR)) {
@@ -605,16 +475,15 @@ if (isset($user_id) AND ($user_id > 0)) {
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-?>
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="user_name" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
-</div>
 
-</form>
-</div>
+echo '<input type="hidden" name="user_password" id="user_password" value="'.$user_password.'" />'.K_NEWLINE;
 
-<?php
+echo '<input type="hidden" name="ff_required" id="ff_required" value="user_name" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_edit_user'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

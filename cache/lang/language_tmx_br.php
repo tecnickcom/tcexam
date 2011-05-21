@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: br
-// DATE: 2011-04-07 16:18:38
+// DATE: 2011-05-21 13:10:05
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -127,7 +127,7 @@ $tmx['hp_edit_tcecode']='Com este formulário voce pode adicionar imagens e form
 $tmx['hp_edit_test']='Neste formulario voce pode inserir, editar e remover provas. Para inserir uma prova voce precisa definir no minimo um topico que contenha perguntas e respostas. Somente usuarios com permissoes adequeadas e endereco ip valido podem realizar este teste. O campo do endereco IP pode conter uma lista de ips separad por virgula e usar o coringa (*). Testes podem conter diversos topicos com quantidades diferentes de questoes que serao escolhidas aleatoriamente pelo sistema. Voce nao pode modificar um teste ja realizado. Quando remover um teste, o sistema vai remover tambem todas as respostas e resultados associadas a ele. O botao [gerar] permite gerar uma quantidade de provas em formato PDF para realizacao sem computador. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Neste formulario voce pode gerenciar diferentes niveis de acesso e usuarios. Cada usuario deve ter um nome do usuário e senha, bem como um nivel de acesso. 0 é o nivel anonimo (nao registrado), nivel 1 para usuarios basicos (estudante, por exemplo) e nivel 10 para os administradores.';
 $tmx['hp_email_result']='Enviar os resultados por e-mail';
-$tmx['hp_import_xml_questions']='Formulario para importacao de questoes no topico selecionado a partir de um arquivo XML.';
+$tmx['hp_import_xml_questions']='Formulario para importacao de questoes a partir de um arquivo XML.';
 $tmx['hp_import_xml_users']='Formulario para importar usuarios e grupos de um arquivo XML ou CSV. O formato pode ser visto usando a opcao de exportar.';
 $tmx['hp_login']='Para acessar as diferentes interfaces do TCExam voce deve autenticar seu acesso usando o nome de usuário e senha fornecidos pelo administrador';
 $tmx['hp_online_users']='Este formulário mostra os usuários atualmente conectados';
@@ -561,5 +561,15 @@ $tmx['hp_select_media_file']='This page allows you to insert a multimedia file o
 $tmx['w_owner']='owner';
 $tmx['h_module_owner']='owner of this module';
 $tmx['h_topic_owner']='owner of this topic';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

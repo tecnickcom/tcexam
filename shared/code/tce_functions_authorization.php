@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-02-21
+// Last Update : 2011-05-20
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -77,23 +77,9 @@ function F_loginForm($faction, $fid, $fmethod, $fenctype, $username, $password, 
 	$str .= '<div class="tceformbox">'.K_NEWLINE;
 	$str .= '<form action="'.$faction.'" method="'.$fmethod.'" id="'.$fid.'" enctype="'.$fenctype.'">'.K_NEWLINE;
 	// user name
-	$str .= '<div class="row">'.K_NEWLINE;
-	$str .= '<span class="label">'.K_NEWLINE;
-	$str .= '<label for="xuser_name">'.$l['w_username'].'</label>'.K_NEWLINE;
-	$str .= '</span>'.K_NEWLINE;
-	$str .= '<span class="formw">'.K_NEWLINE;
-	$str .= '<input type="text" name="xuser_name" id="xuser_name" value="'.$username.'" size="'.$isize.'" maxlength="255" title="'.$l['h_login_name'].'" />'.K_NEWLINE;
-	$str .= '</span>'.K_NEWLINE;
-	$str .= '</div>'.K_NEWLINE;
+	$str .= getFormRowTextInput('xuser_name', $l['w_username'], $l['h_login_name'], '', $username, '', 255, false, false, false, '');
 	// password
-	$str .= '<div class="row">'.K_NEWLINE;
-	$str .= '<span class="label">'.K_NEWLINE;
-	$str .= '<label for="xuser_password">'.$l['w_password'].'</label>'.K_NEWLINE;
-	$str .= '</span>'.K_NEWLINE;
-	$str .= '<span class="formw">'.K_NEWLINE;
-	$str .= '<input type="password" name="xuser_password" id="xuser_password" value="" size="'.$isize.'" maxlength="255" title="'.$l['h_password'].'" />'.K_NEWLINE;
-	$str .= '</span>'.K_NEWLINE;
-	$str .= '</div>'.K_NEWLINE;
+	$str .= getFormRowTextInput('xuser_password', $l['w_password'], $l['h_password'], '', '', '', 255, false, false, true, '');
 	// buttons
 	$str .= '<div class="row">'.K_NEWLINE;
 	// the following field is used to check if form has been submitted

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: en
-// DATE: 2011-04-07 16:18:26
+// DATE: 2011-05-21 13:10:00
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -127,7 +127,7 @@ $tmx['hp_edit_tcecode']='With this form you can add images and formatting to the
 $tmx['hp_edit_test']='In this form you can insert, modify or delete the tests. In order to insert a test you must have previously defined at least one topic with a number of questions and answers. Only users with sufficient rights and a valid IP address can perform the tests. The field IP may contain also a list of the different IP addresses entitled to perform the test, separated by commas. An IP address can also contain wildcards (* = any number). The test will be active just during the specified time frame and, once started, it will have to be completed within the specified maximum time. Tests can contain several topics with different type of questions that will be randomly extracted. You can also specify a basic score for each point of difficulty level of questions. You cannot modify a test that has already performed. When a test is deleted all of its logs (test data) are also deleted. The [generate] button permits you to generate an arbitrary number of unique tests in PDF format that can be printed and performed without a computer. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='In this form you can manage the different users allowed to access the system. For each user you can choose a name, a password and an access level. Level 0 indicates an anonymous user (not registered), level 1 a basic user (e.g.: a student), level 10 an administrator with full access rights';
 $tmx['hp_email_result']='Send results to users by email';
-$tmx['hp_import_xml_questions']='With this form you can import questions to the selected topic from an XML file.';
+$tmx['hp_import_xml_questions']='With this form you can import questions from an XML file.';
 $tmx['hp_import_xml_users']='With this form you can import users and groups from XML or CSV (tab delimited text) file. The file formats are the same as the ones obtained by exporting data from the Users Selection form.';
 $tmx['hp_login']='In order to access the different sections of TCExam you must log in using the name and password provided to you by the system administrator';
 $tmx['hp_online_users']='This form shows the users currently logged';
@@ -503,8 +503,8 @@ $tmx['w_restore']='restore';
 $tmx['w_backup_file']='backup file';
 $tmx['h_backup']='create a new backup';
 $tmx['h_restore']='restore the selected backup';
-$tmx['m_backup_completed']='backup has been sucessfully created';
-$tmx['m_restore_completed']='restore has been sucessfully created';
+$tmx['m_backup_completed']='backup has been successfully created';
+$tmx['m_restore_completed']='restore has been successfully created';
 $tmx['m_restore_confirm']='confirm restoring';
 $tmx['hp_edit_backups']='This page allows you to make and restore database backups (works only on POSIX systems with MySQL or PostgreSQL).
 Push the [backup] button to create a new TCExam database dump in compressed SQL format (structure and data).
@@ -561,5 +561,15 @@ $tmx['hp_select_media_file']='This page allows you to insert a multimedia file o
 $tmx['w_owner']='owner';
 $tmx['h_module_owner']='owner of this module';
 $tmx['h_topic_owner']='owner of this topic';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

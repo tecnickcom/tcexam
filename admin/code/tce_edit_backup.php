@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2010-07-14
+// Last Update : 2011-05-20
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -21,7 +21,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -113,22 +113,23 @@ switch($menu_mode) { // process submited data
 				$backup_file = substr($backup_file, 0, 35);
 				// uncompressed filename (remove .gz extension)
 				$sql_backup_file = substr($backup_file, 0, -3);
+				$sql_backup_file_esc = escapeshellarg($sql_backup_file);
 				// get current dir
 				$current_dir = getcwd();
 				// change dir
 				chdir(K_PATH_BACKUP);
 				// uncompress backup archive
-				$command = 'gunzip -c '.$backup_file.' > '.$sql_backup_file.'';
+				$command = 'gunzip -c '.$backup_file.' > '.$sql_backup_file_esc.'';
 				exec($command);
 				// restore SQL file
 				switch (K_DATABASE_TYPE) {
 					case 'POSTGRESQL': {
-						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_restore -c -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.' -U'.K_DATABASE_USER_NAME.' -d'.K_DATABASE_NAME.' -Ft '.$sql_backup_file.'';
+						$command = 'export PGUSER="'.addslashes(K_DATABASE_USER_NAME).'"; export PGPASSWORD="'.addslashes(K_DATABASE_USER_PASSWORD).'"; pg_restore -c -h'.K_DATABASE_HOST.' -p'.K_DATABASE_PORT.' -U'.K_DATABASE_USER_NAME.' -d'.K_DATABASE_NAME.' -Ft '.$sql_backup_file_esc.'';
 						break;
 					}
 					case 'MYSQL':
 					default: {
-						$command = 'mysql -h'.K_DATABASE_HOST.' -P'.K_DATABASE_PORT.' -u'.K_DATABASE_USER_NAME.' -p'.K_DATABASE_USER_PASSWORD.' '.K_DATABASE_NAME.' < '.$sql_backup_file.'';
+						$command = 'mysql -h'.K_DATABASE_HOST.' -P'.K_DATABASE_PORT.' -u'.K_DATABASE_USER_NAME.' -p'.K_DATABASE_USER_PASSWORD.' '.K_DATABASE_NAME.' < '.$sql_backup_file_esc.'';
 						break;
 					}
 				}
@@ -200,20 +201,19 @@ switch($menu_mode) { // process submited data
 } //end of switch
 
 require_once('../code/tce_page_header.php');
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_editor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_editor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="backup_file"><?php echo $l['w_backup_file']; ?></label>
-</span>
-<span class="formw">
-<select name="backup_file" id="backup_file" size="0">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="backup_file">'.$l['w_backup_file'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="backup_file" id="backup_file" size="0">'.K_NEWLINE;
+
 // read directory for backup files.
 $handle = opendir(K_PATH_BACKUP);
 echo '<option value="">&nbsp;</option>'.K_NEWLINE;
@@ -231,35 +231,28 @@ $files_list = array_reverse($files_list);
 foreach($files_list as $file) {
 	echo '<option value="'.$file.'">'.$file.'</option>'.K_NEWLINE;
 }
-?>
-</select>
-</span>
-</div>
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row"><hr /></div>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row">
-<?php
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+
 F_submit_button('backup', $l['w_backup'], $l['h_backup']);
 F_submit_button('restore', $l['w_restore'], $l['h_restore']);
 if (K_DOWNLOAD_BACKUPS) {
 	F_submit_button('download', $l['w_download'], $l['h_download']);
 }
-?>
-</div>
 
-</form>
-</div>
-<?php
+echo '</div>'.K_NEWLINE;
+
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
 echo '<div class="pagehelp">'.$l['hp_edit_backups'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_filemanager.php
 // Begin       : 2010-09-20
-// Last Update : 2010-09-22
+// Last Update : 2011-05-20
 //
 // Description : File manager for media files.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -297,7 +297,6 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMIN_DIRS) {
 }
 
 echo '<br />'.K_NEWLINE;
-
 
 // list files
 if ($viewmode) {

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-02-21
+// Last Update : 2011-05-20
 //
 // Description : Display all questions grouped by topic.
 //
@@ -99,10 +99,10 @@ if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AN
 }
 
 // select default module/subject (if not specified)
-if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
+if (!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 	$sql = F_select_modules_sql().' LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$subject_module_id = $m['module_id'];
 		} else {
 			$subject_module_id = 0;
@@ -122,8 +122,8 @@ if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'modul
 if ((isset($changemodule) AND ($changemodule > 0))
 	OR (!(isset($subject_id) AND ($subject_id > 0)))) {
 	$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$subject_id = $m['subject_id'];
 		} else {
 			$subject_id = 0;
@@ -172,27 +172,25 @@ if (isset($menu_mode) AND ($menu_mode == 'update') AND isset($menu_action) AND !
 	}
 	F_print_error('MESSAGE', $l['m_updated']);
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_selectquestions">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_selectquestions">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="subject_module_id"><?php echo $l['w_module']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changemodule" id="changemodule" value="" />
-<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById('form_selectquestions').changemodule.value=1;document.getElementById('form_selectquestions').changecategory.value=1; document.getElementById('form_selectquestions').submit();" title="<?php echo $l['w_module']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_module_id">'.$l['w_module'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changemodule" id="changemodule" value="" />'.K_NEWLINE;
+echo '<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById(\'form_selectquestions\').changemodule.value=1;document.getElementById(\'form_selectquestions\').changecategory.value=1; document.getElementById(\'form_selectquestions\').submit();" title="'.$l['w_module'].'">'.K_NEWLINE;
 $sql = F_select_modules_sql();
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['module_id'].'"';
-		if($m['module_id'] == $subject_module_id) {
+		if ($m['module_id'] == $subject_module_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.$countitem.'. ';
@@ -211,34 +209,25 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectmodule" id="selectmodule" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectmodule');
 
-<div class="row">
-<span class="label">
-<label for="subject_id"><?php echo $l['w_subject']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changecategory" id="changecategory" value="" />
-<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById('form_selectquestions').changecategory.value=1;document.getElementById('form_selectquestions').submit()" title="<?php echo $l['h_subject']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_id">'.$l['w_subject'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
+echo '<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById(\'form_selectquestions\').changecategory.value=1;document.getElementById(\'form_selectquestions\').submit()" title="'.$l['h_subject'].'">'.K_NEWLINE;
 $sql = F_select_subjects_sql('subject_module_id='.$subject_module_id);
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['subject_id'].'"';
-		if($m['subject_id'] == $subject_id) {
+		if ($m['subject_id'] == $subject_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.$countitem.'. ';
@@ -255,46 +244,26 @@ else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">
-&nbsp;
-</span>
-<span class="formw">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="checkbox" name="hide_answers" id="hide_answers" value="1"';
-if($hide_answers) {echo ' checked="checked"';}
+if ($hide_answers) {echo ' checked="checked"';}
 echo ' title="'.$l['w_hide_answers'].'" onclick="document.getElementById(\'form_selectquestions\').submit()" />';
-?>
-<label for="hide_answers"><?php echo $l['w_hide_answers']; ?></label>
-</span>
-</div>
+echo '<label for="hide_answers">'.$l['w_hide_answers'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<?php
 // display questions statistics
 $qtype = array('<acronym class="offbox" title="'.$l['w_single_answer'].'">S</acronym>', '<acronym class="offbox" title="'.$l['w_multiple_answers'].'">M</acronym>', '<acronym class="offbox" title="'.$l['w_free_answer'].'">T</acronym>', '<acronym class="offbox" title="'.$l['w_ordering_answer'].'">O</acronym>'); // question types
 $qstat = '';
@@ -303,36 +272,34 @@ $sql = 'SELECT question_type, COUNT(*) as numquestions
 	FROM '.K_TABLE_QUESTIONS.'
 	WHERE question_subject_id='.$subject_id.'
 	GROUP BY question_type';
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {
 		$nqsum += $m['numquestions'];
 		$qstat .= ' + '.$m['numquestions'].' '.$qtype[($m['question_type']-1)].'';
 	}
-}
-else {
+} else {
 	F_display_db_error();
 }
 
 echo '<div class="rowl">';
 echo '<span>'.$l['w_questions'].': '.$nqsum.' = '.$qstat.'</span><br />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
-?>
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="rowl">
-<?php
+echo '<div class="rowl">'.K_NEWLINE;
+
 if (isset($subject_id) AND ($subject_id > 0)) {
 	F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers);
 }
-?>
-&nbsp;
-</div>
-<div class="row"><hr /></div>
 
-<div class="row">
-<?php
+echo '&nbsp;'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($subject_id) AND ($subject_id > 0)) {
 	$pdflink = 'tce_pdf_all_questions.php';
@@ -349,20 +316,18 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 	echo '<a href="'.$xmllink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_module'].'</a>';
 	echo '<a href="'.$xmllink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_all'].'</a>';
 }
-?>
-&nbsp;
 
-<input type="hidden" name="firstrow" id="firstrow" value="<?php echo $firstrow; ?>" />
-<input type="hidden" name="order_field" id="order_field" value="<?php echo $order_field; ?>" />
-<input type="hidden" name="orderdir" id="orderdir" value="<?php echo $orderdir; ?>" />
-<input type="hidden" name="submitted" id="submitted" value="0" />
-<input type="hidden" name="usersearch" id="usersearch" value="" />
-</div>
+echo '&nbsp;'.K_NEWLINE;
+echo '<input type="hidden" name="firstrow" id="firstrow" value="'.$firstrow.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="submitted" id="submitted" value="0" />'.K_NEWLINE;
+echo '<input type="hidden" name="usersearch" id="usersearch" value="" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-</form>
+echo '</form>'.K_NEWLINE;
 
-</div>
-<?php
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_select_all_questions'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
@@ -392,7 +357,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 
 	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
-	if($orderdir == 0) {
+	if ($orderdir == 0) {
 		$nextorderdir = 1;
 		$full_order_field = $order_field;
 	} else {
@@ -400,12 +365,12 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 		$full_order_field = $order_field.' DESC';
 	}
 
-	if(!F_count_rows(K_TABLE_QUESTIONS)) { //if the table is void (no items) display message
+	if (!F_count_rows(K_TABLE_QUESTIONS)) { //if the table is void (no items) display message
 		F_print_error('MESSAGE', $l['m_databasempty']);
 		return FALSE;
 	}
 
-	if(empty($wherequery)) {
+	if (empty($wherequery)) {
 		$wherequery = 'WHERE question_subject_id='.$subject_id.'';
 	} else {
 		$wherequery .= ' AND question_subject_id='.$subject_id.'';
@@ -419,7 +384,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	} else {
 		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
 	}
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		$questlist = '';
 		$itemcount = $firstrow;
 		while($m = F_db_fetch_array($r)) {
@@ -495,7 +460,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 					FROM '.K_TABLE_ANSWERS.'
 					WHERE answer_question_id=\''.$m['question_id'].'\'
 					ORDER BY answer_enabled DESC,answer_position,answer_isright DESC';
-				if($ra = F_db_query($sqla, $db)) {
+				if ($ra = F_db_query($sqla, $db)) {
 					$answlist = '';
 					while($ma = F_db_fetch_array($ra)) {
 						$answlist .= '<li>';
@@ -572,7 +537,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 			// select new topic (for copy or move action)
 			echo '<select name="new_subject_id" id="new_subject_id" size="0" title="'.$l['h_subject'].'">'.K_NEWLINE;
 			$sql = F_select_module_subjects_sql('module_enabled=\'1\' AND subject_enabled=\'1\'');
-			if($r = F_db_query($sql, $db)) {
+			if ($r = F_db_query($sql, $db)) {
 				echo '<option value="0" style="color:gray">'.$l['w_subject'].'</option>'.K_NEWLINE;
 				$prev_module_id = 0;
 				while($m = F_db_fetch_array($r)) {

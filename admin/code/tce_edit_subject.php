@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2011-02-21
+// Last Update : 2011-05-20
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -298,21 +298,19 @@ if (!isset($subject_module_id) OR ($subject_module_id <= 0)) {
 	require_once('../code/tce_page_footer.php');
 	exit;
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_subjecteditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_subjecteditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="subject_module_id"><?php echo $l['w_module']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changecategory" id="changecategory" value="" />
-<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById('form_subjecteditor').changecategory.value=1; document.getElementById('form_subjecteditor').submit();" title="<?php echo $l['w_module']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_module_id">'.$l['w_module'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
+echo '<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById(\'form_subjecteditor\').changecategory.value=1; document.getElementById(\'form_subjecteditor\').submit();" title="'.$l['w_module'].'">'.K_NEWLINE;
 $sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -337,27 +335,18 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">
-<label for="subject_id"><?php echo $l['w_subject']; ?></label>
-</span>
-<span class="formw">
-<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById('form_subjecteditor').submit()" title="<?php echo $l['h_subject']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_id">'.$l['w_subject'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById(\'form_subjecteditor\').submit()" title="'.$l['h_subject'].'">'.K_NEWLINE;
 $sql = F_select_subjects_sql('subject_module_id='.$subject_module_id);
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -382,61 +371,33 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="subject_name"><?php echo $l['w_name']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="subject_name" id="subject_name" value="<?php echo htmlspecialchars($subject_name, ENT_COMPAT, $l['a_meta_charset']); ?>" size="30" maxlength="255" title="<?php echo $l['h_subject_name']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('subject_name', $l['w_name'], $l['h_subject_name'], '', $subject_name, '', 255, false, false, false, '');
 
-<div class="row">
-<span class="label">
-<label for="subject_description"><?php echo $l['w_description']; ?></label>
-<br />
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="subject_description">'.$l['w_description'].'</label>'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
 echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_subjecteditor\').subject_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>';
-?>
-</span>
-<span class="formw" style="border:1px solid #808080;">
-<textarea cols="50" rows="5" name="subject_description" id="subject_description" onselect="FJ_update_selection(document.getElementById('form_subjecteditor').subject_description)" title="<?php echo $l['h_subject_description']; ?>"><?php echo htmlspecialchars($subject_description, ENT_NOQUOTES, $l['a_meta_charset']); ?></textarea>
-<br />
-<?php echo tcecodeEditorTagButtons('form_subjecteditor', 'subject_description'); ?>
-</span>
-</div>
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw" style="border:1px solid #808080;">'.K_NEWLINE;
+echo '<textarea cols="50" rows="5" name="subject_description" id="subject_description" onselect="FJ_update_selection(document.getElementById(\'form_subjecteditor\').subject_description)" title="'.$l['h_subject_description'].'">'.htmlspecialchars($subject_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
+echo tcecodeEditorTagButtons('form_subjecteditor', 'subject_description');
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="subject_enabled"><?php echo $l['w_enabled']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="subject_enabled" id="subject_enabled" value="1"';
-if($subject_enabled) {echo ' checked="checked"';}
-echo ' title="'.$l['h_enabled'].'" />';
-?>
-</span>
-</div>
+echo getFormRowCheckBox('subject_enabled', $l['w_enabled'], $l['h_enabled'], '', 1, $subject_enabled, false, '');
 
-<div class="row">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($subject_id) AND ($subject_id > 0)) {
 	F_submit_button('update', $l['w_update'], $l['h_update']);
@@ -444,49 +405,48 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-?>
-</div>
 
-<div class="row">
-<span class="left">
-&nbsp;
-<?php
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="left">'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+
 if (isset($subject_module_id) AND ($subject_module_id > 0)) {
 	echo '<a href="tce_edit_module.php?module_id='.$subject_module_id.'" title="'.$l['t_modules_editor'].'" class="xmlbutton">&lt; '.$l['t_modules_editor'].'</a>';
 }
-?>
-</span>
-<span class="right">
-<?php
+
+echo '</span>'.K_NEWLINE;
+echo '<span class="right">'.K_NEWLINE;
+
 if (isset($subject_id) AND ($subject_id > 0)) {
 	echo '<a href="tce_edit_question.php?subject_module_id='.$subject_module_id.'&amp;question_subject_id='.$subject_id.'" title="'.$l['t_questions_editor'].'" class="xmlbutton">'.$l['t_questions_editor'].' &gt;</a>';
 }
-?>
-&nbsp;
-</span>
-&nbsp;
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="subject_name" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
 
-</div>
+echo '&nbsp;'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="subject_name" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
-<div class="row"><hr /></div>
+echo '</div>'.K_NEWLINE;
 
-<div class="rowl" title="<?php echo $l['h_preview']; ?>">
-<?php echo $l['w_preview']; ?>
-<div class="preview">
-<?php
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
+
+echo '<div class="rowl" title="'.$l['h_preview'].'">'.K_NEWLINE;
+echo $l['w_preview'].K_NEWLINE;
+echo '<div class="preview">'.K_NEWLINE;
+
 echo F_decode_tcecode($subject_description);
-?>
-&nbsp;
-</div>
-</div>
 
-</form>
-</div>
+echo '&nbsp;'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
 echo '<div class="pagehelp">'.$l['hp_edit_subject'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

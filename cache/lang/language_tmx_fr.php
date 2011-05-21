@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: fr
-// DATE: 2011-04-07 16:18:49
+// DATE: 2011-05-21 13:10:14
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -148,7 +148,7 @@ $tmx['hp_edit_tcecode']='Avec ce formulaire, vous pouvez ajouter des images et m
 $tmx['hp_edit_test']='Dans ce formulaire, vous pouvez créer, modifier ou supprimer des tests. Pour créer un examen, vous devez avoir déjà défini au moins un thème contenant un certain nombre de questions et de réponses. Uniquement les utilisateurs disposant des droits suffisants et d\'une adresse IP valide peuvent exécuter les tests. Le champ IP peut également contenir une liste des différentes adresses IP autorisées à exécuter l\'examen, séparées par des virgules. Une adresse IP peut également contenir des jokers (* = n\'importe quel nombre). L\'examen restera activé uniquement durant la période de temps spécifiée et une fois commencé, il devra être terminé dans les limites de la durée maximum spécifiée. Les tests peuvent contenir plusieurs thèmes avec différents types de questions, extraites de manière aléatoire. Vous pouvez également spécifier un score de base pour un niveau de difficulté des questions. Vous ne pouvez pas modifier un examen qui a déjà été exécuté. Lorsqu\'un examen est supprimé, toutes les données qui lui sont associées sont également supprimées. Le bouton [générer] permet de générer un nombre quelconque de tests donnés au format PDF, qui peuvent être imprimés et exécutés sans le recours à un ordinateur. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].';
 $tmx['hp_edit_user']='Dans ce formulaire, vous pouvez gérer les différents utilisateurs autorisés à accéder se système. Pour chaque utilisateur, vous pouvez choisir un identifiant, un mot de passe et un niveau d\'accès. Le niveau 0 indique un utilisateur anonyme (non inscrit), le niveau 1 indique un utilisateur de base (p. ex. un étudiant), le niveau 10 indique un administrateur avec tous les droits d\'accès.';
 $tmx['hp_email_result']='Envoyer les résultats aux utilisateurs par email';
-$tmx['hp_import_xml_questions']='Avec ce formulaire, vous pouvez importer des questions dans le thème sélectionné depuis un fichier XML.';
+$tmx['hp_import_xml_questions']='Avec ce formulaire, vous pouvez importer des questions depuis un fichier XML.';
 $tmx['hp_import_xml_users']='Avec ce formulaire, vous pouvez importer des utilisateurs et des groupes depuis un fichier XML ou CSV (texte délimité par tabulation). Les formats des fichiers sont identiques à ceux obtenus en exportant des données depuis le formulaire Sélection d\'utilisateurs.';
 $tmx['hp_login']='Pour accéder au "TCExam", contactez l\'administrateur du système s.v.p.';
 $tmx['hp_online_users']='Ce formulaire affiche les utilisateurs actuellement connectés';
@@ -581,5 +581,15 @@ $tmx['hp_select_media_file']='This page allows you to insert a multimedia file o
 $tmx['w_owner']='owner';
 $tmx['h_module_owner']='owner of this module';
 $tmx['h_topic_owner']='owner of this topic';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

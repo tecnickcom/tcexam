@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_allresults_user.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-06
+// Last Update : 2011-05-20
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -141,15 +141,15 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 	$sql = 'SELECT user_name, user_lastname, user_firstname FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id.'';
 	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
-			$csv .= 'user_name'.K_TAB.$m['user_name'].K_NEWLINE;
-			$csv .= 'user_lastname'.K_TAB.$m['user_lastname'].K_NEWLINE;
-			$csv .= 'user_firstname'.K_TAB.$m['user_firstname'].K_NEWLINE;
+			$csv .= $l['w_user'].K_TAB.$m['user_name'].K_NEWLINE;
+			$csv .= $l['w_lastname'].K_TAB.$m['user_lastname'].K_NEWLINE;
+			$csv .= $l['w_firstname'].K_TAB.$m['user_firstname'].K_NEWLINE;
 		}
 	} else {
 		F_display_db_error();
 	}
-	$csv .= 'date_from'.K_TAB.$startdate.K_NEWLINE;
-	$csv .= 'date_to'.K_TAB.$enddate.K_NEWLINE;
+	$csv .= $l['w_time_begin'].K_TAB.$startdate.K_NEWLINE;
+	$csv .= $l['w_time_end'].K_TAB.$enddate.K_NEWLINE;
 
 	$csv .= K_NEWLINE.K_NEWLINE; // separator
 
@@ -255,20 +255,20 @@ function F_csv_export_allresults_user($user_id, $startdate, $enddate, $order_fie
 
 	$csv .= K_NEWLINE; // separator
 
-	$csv .= 'STATISTICS'.K_NEWLINE; // separator
+	$csv .= $l['w_statistics'].K_NEWLINE; // separator
 
 	// headers
 	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB;
-	$csv .= 'points'.K_TAB;
-	$csv .= 'correct'.K_TAB;
-	$csv .= 'wrong'.K_TAB;
-	$csv .= 'unanswered'.K_TAB;
-	$csv .= 'undisplayed'.K_TAB;
-	$csv .= 'unrated'.K_NEWLINE;
+	$csv .= $l['w_score'].K_TAB;
+	$csv .= $l['w_answers_right_th'].K_TAB;
+	$csv .= $l['w_answers_wrong_th'].K_TAB;
+	$csv .= $l['w_questions_unanswered_th'].K_TAB;
+	$csv .= $l['w_questions_undisplayed_th'].K_TAB;
+	$csv .= $l['w_questions_unrated'].K_NEWLINE;
 
 	foreach ($stats as $row => $columns) {
 		if (!in_array($row, $excludestat)) {
-			$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$row.K_TAB;
+			$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.$l['w_'.$row].K_TAB;
 			$csv .= round($columns['score'], 3).K_TAB;
 			$csv .= round($columns['right'], 3).K_TAB;
 			$csv .= round($columns['wrong'], 3).K_TAB;

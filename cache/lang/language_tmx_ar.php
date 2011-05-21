@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2011-04-07 16:18:33
+// DATE: 2011-05-21 13:10:02
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -557,8 +557,18 @@ $tmx['w_table']='جدول';
 $tmx['w_visual']='رموز';
 $tmx['t_select_media_file']='اختر الملف';
 $tmx['hp_select_media_file']='هذه الصفحة تسمح لك بإدراج ملفات الملتميديا التي ترغب بإضافتها للشرح. اختر الملف الذي تريد ادراجه, ثم انقر زر [اضافة] .';
-$tmx['w_owner']='owner';
-$tmx['h_module_owner']='owner of this module';
-$tmx['h_topic_owner']='owner of this topic';
+$tmx['w_owner']='المدير';
+$tmx['h_module_owner']='مدير هذه الوحدة';
+$tmx['h_topic_owner']='مدير هذا الموضوع';
+$tmx['t_omr_answers_importer']='Import Answers (OMR)';
+$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_import_omr_answers']='import answers';
+$tmx['w_omr_data_page']='OMR DATA';
+$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
+$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
+$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
+$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
+$tmx['m_import_ok']='the import process has been successfully completed';
+$tmx['m_import_error']='the import process has failed';
 
 // --- EOF ---

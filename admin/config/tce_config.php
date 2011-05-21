@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2010-06-17
+// Last Update : 2011-05-18
 //
 // Description : Configuration file for administration section.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -71,7 +71,7 @@ define ('K_MAX_ROWS_PER_PAGE', 50);
 /**
  * Max size to be uploaded in bytes.
  */
-define ('K_MAX_UPLOAD_SIZE', 10000000);
+define ('K_MAX_UPLOAD_SIZE', 25000000);
 
 /**
  * List of allowed file types for upload (remove all extensions to disable upload).
@@ -143,11 +143,13 @@ define ('K_DISPLAY_PDFTEXT_BUTTON', false);
 
 /**
  * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
+ * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
 define ('K_ENABLE_CUSTOM_IMPORT', 'Custom XML format');
 
 /**
  * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
+ * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
 define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
 
@@ -155,6 +157,15 @@ define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
  * If true enable the backup download.
  */
 define ('K_DOWNLOAD_BACKUPS', true);
+
+/**
+ * Path to zbarimg executable (/usr/bin/zbarimg).
+ * This application is required to decode barcodes on scanned offline test pages.
+ * For installation instructions: http://zbar.sourceforge.net/
+ * On Debian/Ubuntu you can easily install zbarimg using the following command:
+ * "sudo apt-get install zbar-tools"
+ */
+define ('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
 
 // --- INCLUDE FILES -----------------------------------------------------------
 

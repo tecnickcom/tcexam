@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_email.php
 // Begin       : 2010-09-17
-// Last Update : 2010-09-20
+// Last Update : 2011-05-20
 //
 // Description : Form to change user email
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -105,57 +105,31 @@ switch($menu_mode) {
 	}
 
 } //end of switch
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="gsoformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_editor">
+echo '<div class="gsoformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_editor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_email"><?php echo $l['w_new_email']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_email" id="user_email" value="" size="20" maxlength="255" title="<?php echo $l['h_email']; ?>" />
-<input type="hidden" name="x_user_email" id="x_user_email" value="^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" />
-<input type="hidden" name="xl_user_email" id="xl_user_email" value="<?php echo $l['w_email']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('user_email', $l['w_new_email'], $l['h_email'], '', '', '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$', 255, false, false, false, '');
+echo getFormRowTextInput('user_email_repeat', $l['w_new_email'], $l['h_email'], ' ('.$l['w_repeat'].')', '', '', 255, false, false, false, '');
+echo getFormRowTextInput('currentpassword', $l['w_password'], $l['h_password'], '', '', '', 255, false, false, true, '');
 
-<div class="row">
-<span class="label">
-<label for="user_email_repeat"><?php echo $l['w_new_email']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="user_email_repeat" id="user_email_repeat" value="" size="20" maxlength="255" title="<?php echo $l['h_email']; ?>" />
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="currentpassword"><?php echo $l['w_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="currentpassword" id="currentpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<?php
 F_submit_button('update', $l['w_update'], $l['h_update']);
-?>
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="user_email,user_email_repeat" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_email'].','.$l['w_email'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
-</div>
 
-</form>
-</div>
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="user_email,user_email_repeat" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_email'].','.$l['w_email'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
-echo '<div class="pagehelp">'.$l['hp_user_change_email'].'</div>';
-echo '</div>';
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+
+echo '<div class="pagehelp">'.$l['hp_user_change_email'].'</div>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 require_once(dirname(__FILE__).'/tce_page_footer.php');
 

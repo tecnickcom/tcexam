@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2011-02-21
+// Last Update : 2011-05-20
 //
 // Description : Display form to edit modules.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -253,20 +253,18 @@ if($formstatus) {
 		}
 	}
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_moduleeditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_moduleeditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="module_id"><?php echo $l['w_module']; ?></label>
-</span>
-<span class="formw">
-<select name="module_id" id="module_id" size="0" onchange="document.getElementById('form_moduleeditor').submit()" title="<?php echo $l['h_module_name']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="module_id">'.$l['w_module'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="module_id" id="module_id" size="0" onchange="document.getElementById(\'form_moduleeditor\').submit()" title="'.$l['h_module_name'].'">'.K_NEWLINE;
 $sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -291,37 +289,21 @@ if($r = F_db_query($sql, $db)) {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row"><hr /></div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="module_name"><?php echo $l['w_name']; ?></label>
-</span>
-<span class="formw">
-<input type="text" name="module_name" id="module_name" value="<?php echo htmlspecialchars($module_name, ENT_COMPAT, $l['a_meta_charset']); ?>" size="30" maxlength="255" title="<?php echo $l['h_module_name']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('module_name', $l['w_name'], $l['h_module_name'], '', $module_name, '', 255, false, false, false, '');
 
-<div class="row">
-<span class="label">
-<label for="module_user_id"><?php echo $l['w_owner']; ?></label>
-</span>
-<span class="formw">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="module_user_id">'.$l['w_owner'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
 if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 	echo '<select name="module_user_id" id="module_user_id" size="0" title="'.$l['h_module_owner'].'">'.K_NEWLINE;
 	$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_level>5) ORDER BY user_lastname, user_firstname, user_name';
@@ -351,16 +333,14 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 		F_display_db_error();
 	}
 }
-?>
-</span>
-</div>
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="module_user_groups"><?php echo $l['w_groups']; ?></label>
-</span>
-<span class="formw">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label>'.$l['w_groups'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
 $sqlg = 'SELECT *
 	FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
 	WHERE usrgrp_group_id=group_id
@@ -375,25 +355,16 @@ if ($rg = F_db_query($sqlg, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</span>
-</div>
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="module_enabled"><?php echo $l['w_enabled']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="module_enabled" id="module_enabled" value="1"';
-if($module_enabled) {echo ' checked="checked"';}
-echo ' title="'.$l['h_enabled'].'" />';
-?>
-</span>
-</div>
 
-<div class="row">
-<?php
+
+
+echo getFormRowCheckBox('module_enabled', $l['w_enabled'], $l['h_enabled'], '', 1, $module_enabled, false, '');
+
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($module_id) AND ($module_id > 0)) {
 	F_submit_button('update', $l['w_update'], $l['h_update']);
@@ -401,28 +372,26 @@ if (isset($module_id) AND ($module_id > 0)) {
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-?>
-</div>
 
-<div class="row">
-<span class="right">
-<?php
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="right">'.K_NEWLINE;
+
 if (isset($module_id) AND ($module_id > 0)) {
 	echo '<a href="tce_edit_subject.php?subject_module_id='.$module_id.'" title="'.$l['t_subjects_editor'].'" class="xmlbutton">'.$l['t_subjects_editor'].' &gt;</a>';
 }
-?>
-&nbsp;
-</span>
-&nbsp;
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="module_name" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
 
-</div>
-</form>
-</div>
+echo '&nbsp;'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '&nbsp;'.K_NEWLINE;
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="module_name" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
-<?php
+echo '</div>'.K_NEWLINE;
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_edit_module'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

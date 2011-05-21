@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_password.php
 // Begin       : 2010-09-17
-// Last Update : 2010-09-20
+// Last Update : 2011-05-20
 //
 // Description : Form to change user password
 //
@@ -86,63 +86,36 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	default :{
 		break;
 	}
 
 } //end of switch
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="gsoformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_editor">
+echo '<div class="gsoformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_editor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="currentpassword"><?php echo $l['w_current_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="currentpassword" id="currentpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-</span>
-</div>
+echo getFormRowTextInput('currentpassword', $l['w_current_password'], $l['h_password'], '', '', '', 255, false, false, true, '');
+echo getFormRowTextInput('newpassword', $l['w_new_password'], $l['h_password'], ' ('.$l['d_password_lenght'].')', '', '^([a-zA-Z0-9]{8,32})$', 255, false, false, true, '');
+echo getFormRowTextInput('newpassword_repeat', $l['w_new_password'], $l['h_password_repeat'], ' ('.$l['w_repeat'].')', '', '', 255, false, false, true, '');
 
-<div class="row">
-<span class="label">
-<label for="newpassword"><?php echo $l['w_new_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="newpassword" id="newpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" /><?php echo ' ('.$l['d_password_lenght'].')'; ?>
-<input type="hidden" name="x_newpassword" id="x_newpassword" value="^([a-zA-Z0-9]{8,32})$" />
-<input type="hidden" name="xl_newpassword" id="xl_newpassword" value="<?php echo $l['w_password'].' ('.$l['d_password_lenght'].')'; ?>" />
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="newpassword_repeat"><?php echo $l['w_new_password']; ?></label>
-</span>
-<span class="formw">
-<input type="password" name="newpassword_repeat" id="newpassword_repeat" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-</span>
-</div>
-
-<div class="row">
-<?php
 F_submit_button('update', $l['w_update'], $l['h_update']);
-?>
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="currentpassword,newpassword,newpassword_repeat" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo htmlspecialchars($l['w_current_password'].','.$l['w_new_password'].','.$l['w_new_password'], ENT_COMPAT, $l['a_meta_charset']); ?>" />
-</div>
 
-</form>
-</div>
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="currentpassword,newpassword,newpassword_repeat" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_current_password'].','.$l['w_new_password'].','.$l['w_new_password'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
-echo '<div class="pagehelp">'.$l['hp_user_change_password'].'</div>';
-echo '</div>';
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="pagehelp">'.$l['hp_user_change_password'].'</div>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 require_once(dirname(__FILE__).'/tce_page_footer.php');
 

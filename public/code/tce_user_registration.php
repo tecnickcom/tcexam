@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2011-03-14
+// Last Update : 2011-05-20
 //
 // Description : User registration form.
 //
@@ -250,165 +250,77 @@ $regfields['newpassword_repeat'] = 2;
 if (K_USRREG_EMAIL_CONFIRM) {
 	$regfields['user_email'] = 2;
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_usereditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_usereditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="user_name"><?php echo $l['w_username']; ?></label>
-<?php echo showRequiredField($regfields['user_name']); ?></span>
-<span class="formw">
-<input type="text" name="user_name" id="user_name" value="<?php echo $user_name; ?>" size="20" maxlength="255" title="<?php echo $l['h_login_name']; ?>" />
-</span>
-</div>
 
-<?php if (K_USRREG_EMAIL_CONFIRM OR $regfields['user_email']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_email"><?php echo $l['w_email']; ?></label>
-<?php echo showRequiredField($regfields['user_email']); ?></span>
-<span class="formw">
-<input type="hidden" name="x_user_email" id="x_user_email" value="^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" />
-<input type="hidden" name="xl_user_email" id="xl_user_email" value="<?php echo $l['w_email']; ?>" />
-<input type="text" name="user_email" id="user_email" value="<?php echo $user_email; ?>" size="20" maxlength="255" title="<?php echo $l['h_usered_email']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<div class="row">
-<span class="label">
-<label for="newpassword"><?php echo $l['w_password']; ?></label>
-<?php echo showRequiredField(2); ?></span>
-<span class="formw">
-<input type="password" name="newpassword" id="newpassword" size="20" maxlength="255" title="<?php echo $l['h_password']; ?>" />
-<input type="hidden" name="user_password" id="user_password" value="" />
-</span>
-</div>
-
-<div class="row">
-<span class="label">
-<label for="newpassword_repeat"><?php echo $l['w_password']; ?></label>
-<?php echo showRequiredField(2); ?></span>
-<span class="formw">
-<input type="password" name="newpassword_repeat" id="newpassword_repeat" size="20" maxlength="255" title="<?php echo $l['h_password_repeat']; ?>" />
-</span>
-</div>
-
-<?php if ($regfields['user_regnumber']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_regnumber"><?php echo $l['w_regcode']; ?></label>
-<?php echo showRequiredField($regfields['user_regnumber']); ?></span>
-<span class="formw">
-<input type="text" name="user_regnumber" id="user_regnumber" value="<?php echo $user_regnumber; ?>" size="20" maxlength="255" title="<?php echo $l['h_regcode']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_firstname']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_firstname"><?php echo $l['w_firstname']; ?></label>
-<?php echo showRequiredField($regfields['user_firstname']); ?></span>
-<span class="formw">
-<input type="text" name="user_firstname" id="user_firstname" value="<?php echo $user_firstname; ?>" size="20" maxlength="255" title="<?php echo $l['h_firstname']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_lastname']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_lastname"><?php echo $l['w_lastname']; ?></label>
-<?php echo showRequiredField($regfields['user_lastname']); ?></span>
-<span class="formw">
-<input type="text" name="user_lastname" id="user_lastname" value="<?php echo $user_lastname; ?>" size="20" maxlength="255" title="<?php echo $l['h_lastname']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_birthdate']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_birthdate"><?php echo $l['w_birth_date']; ?></label>
-<?php echo showRequiredField($regfields['user_birthdate']); ?></span>
-<span class="formw">
-<input type="hidden" name="x_user_birthdate" id="x_user_birthdate" value="^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})$" />
-<input type="hidden" name="xl_user_birthdate" id="xl_user_birthdate" value="<?php echo $l['w_birth_date']; ?>" />
-<input type="text" name="user_birthdate" id="user_birthdate" value="<?php echo $user_birthdate; ?>" size="20" maxlength="10" title="<?php echo $l['h_birth_date']; ?> <?php echo $l['w_date_format']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_birthplace']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_birthplace"><?php echo $l['w_birth_place']; ?></label>
-<?php echo showRequiredField($regfields['user_birthplace']); ?></span>
-<span class="formw">
-<input type="text" name="user_birthplace" id="user_birthplace" value="<?php echo $user_birthplace; ?>" size="20" maxlength="255" title="<?php echo $l['h_birth_place']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_ssn']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_ssn"><?php echo $l['w_fiscal_code']; ?></label>
-<?php echo showRequiredField($regfields['user_ssn']); ?></span>
-<span class="formw">
-<input type="text" name="user_ssn" id="user_ssn" value="<?php echo $user_ssn; ?>" size="20" maxlength="255" title="<?php echo $l['h_fiscal_code']; ?>" />
-</span>
-</div>
-<?php } ?>
-
-<?php if ($regfields['user_groups']) { ?>
-<div class="row">
-<span class="label">
-<label for="user_groups"><?php echo $l['w_groups']; ?></label>
-<?php echo showRequiredField($regfields['user_groups']); ?></span>
-<span class="formw">
-<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">
-<?php
-$sql = 'SELECT *
-	FROM '.K_TABLE_GROUPS.'
-	ORDER BY group_name';
-if($r = F_db_query($sql, $db)) {
-	while($m = F_db_fetch_array($r)) {
-		echo '<option value="'.$m['group_id'].'"';
-		if(in_array($m['group_id'],$user_groups) OR ($m['group_id']==K_USRREG_GROUP)) {
-			echo ' selected="selected"';
+echo getFormRowTextInput('user_name', $l['w_username'], $l['h_login_name'], '', $user_name, '', 255, false, false, false, showRequiredField($regfields['user_name']));
+if (K_USRREG_EMAIL_CONFIRM OR $regfields['user_email']) {
+	echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', $user_email, '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$', 255, false, false, false, showRequiredField($regfields['user_email']));
+}
+echo getFormRowTextInput('newpassword', $l['w_password'], $l['h_password'], ' ('.$l['d_password_lenght'].')', '', '^([a-zA-Z0-9]{8,32})$', 255, false, false, true, showRequiredField(2));
+echo getFormRowTextInput('newpassword_repeat', $l['w_password'], $l['h_password_repeat'], ' ('.$l['w_repeat'].')', '', '', 255, false, false, true, showRequiredField(2));
+if ($regfields['user_regnumber']) {
+	echo getFormRowTextInput('user_regnumber', $l['w_regcode'], $l['h_regcode'], '', $user_regnumber, '', 255, false, false, false, showRequiredField($regfields['user_regnumber']));
+}
+if ($regfields['user_firstname']) {
+	echo getFormRowTextInput('user_firstname', $l['w_firstname'], $l['h_firstname'], '', $user_firstname, '', 255, false, false, false, showRequiredField($regfields['user_firstname']));
+}
+if ($regfields['user_lastname']) {
+	echo getFormRowTextInput('user_lastname', $l['w_lastname'], $l['h_lastname'], '', $user_lastname, '', 255, false, false, false, showRequiredField($regfields['user_lastname']));
+}
+if ($regfields['user_birthdate']) {
+	echo getFormRowTextInput('user_birthdate', $l['w_birth_date'], $l['h_birth_date'].' '.$l['w_date_format'], '', $user_birthdate, '', 10, true, false, false, showRequiredField($regfields['user_birthdate']));
+}
+if ($regfields['user_birthplace']) {
+	echo getFormRowTextInput('user_birthplace', $l['w_birth_place'], $l['h_birth_place'], '', $user_birthplace, '', 255, false, false, false, showRequiredField($regfields['user_birthplace']));
+}
+if ($regfields['user_ssn']) {
+	echo getFormRowTextInput('user_ssn', $l['w_fiscal_code'], $l['h_fiscal_code'], '', $user_ssn, '', 255, false, false, false, showRequiredField($regfields['user_ssn']));
+}
+if ($regfields['user_groups']) {
+	echo '<div class="row">'.K_NEWLINE;
+	echo '<span class="label">'.K_NEWLINE;
+	echo '<label for="user_groups">'.$l['w_groups'].'</label>'.K_NEWLINE;
+	echo showRequiredField($regfields['user_groups']);
+	echo '</span>'.K_NEWLINE;
+	echo '<span class="formw">'.K_NEWLINE;
+	echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">'.K_NEWLINE;
+	$sql = 'SELECT *
+		FROM '.K_TABLE_GROUPS.'
+		ORDER BY group_name';
+	if($r = F_db_query($sql, $db)) {
+		while($m = F_db_fetch_array($r)) {
+			echo '<option value="'.$m['group_id'].'"';
+			if(in_array($m['group_id'], $user_groups) OR ($m['group_id'] == K_USRREG_GROUP)) {
+				echo ' selected="selected"';
+			}
+			echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 		}
-		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 	}
+	else {
+		echo '</select></span></div>'.K_NEWLINE;
+		F_display_db_error();
+	}
+	echo '</select>'.K_NEWLINE;
+	echo '</span>'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
 }
-else {
-	echo '</select></span></div>'.K_NEWLINE;
-	F_display_db_error();
+
+if ($regfields['user_agreement'] > 0) {
+	echo '<div class="row">'.K_NEWLINE;
+	echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+	echo '<span class="formw">'.K_NEWLINE;
+	echo '<input type="checkbox" name="user_agreement" id="user_agreement" value="1" title="..." />'.K_NEWLINE;
+	echo '<label for="user_agreement"><a href="'.K_USRREG_AGREEMENT.'" title="'.$l['m_new_window_link'].'">'.$l['w_i_agree'].'</a></label></span>'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
 }
-?>
-</select>
-</span>
-</div>
-<?php } ?>
 
-<?php if ($regfields['user_agreement'] > 0) { ?>
-<div class="row">
-<span class="label">
-&nbsp;
-</span>
-<span class="formw">
-<input type="checkbox" name="user_agreement" id="user_agreement" value="1" title="<?php echo "..."; ?>" />
-<label for="user_agreement"><?php echo '<a href="'.K_USRREG_AGREEMENT.'" title="'.$l['m_new_window_link'].'">'.$l['w_i_agree'].'</a>'; ?></label></span>
-</div>
-<?php } ?>
+echo '<div class="row">'.K_NEWLINE;
 
-<div class="row">
-<?php
 F_submit_button("add", $l['w_add'], $l['h_add']);
 
 // set fields descriptions for error messages
@@ -436,16 +348,14 @@ foreach ($regfields as $field => $required) {
 }
 $reqfields = substr($reqfields,1);
 $reqdesc = substr($reqdesc,1);
-?>
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="<?php echo $reqfields; ?>" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo $reqdesc; ?>" />
-</div>
 
-</form>
-</div>
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="'.$reqfields.'" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.$reqdesc.'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<?php
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_user_registration'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2009-12-15
+// Last Update : 2011-05-20
 //
 // Description : Editor to manually rate free text answers.
 //
@@ -215,21 +215,18 @@ if($sql) {
 	}
 }
 
-?>
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="container">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_ratingeditor">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_ratingeditor">
-
-<div class="row">
-<span class="label">
-<label for="test_id"><?php echo $l['w_test']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="changecategory" id="changecategory" value="" />
-<select name="test_id" id="test_id" size="0" onchange="document.getElementById('form_ratingeditor').changecategory.value=1;document.getElementById('form_ratingeditor').submit()" title="<?php echo $l['h_test']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
+echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_ratingeditor\').changecategory.value=1;document.getElementById(\'form_ratingeditor\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -247,27 +244,18 @@ if($r = F_db_query($sql, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectcategory" id="selectcategory" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectcategory');
 
-<div class="row">
-<span class="label">
-<label for="testlog_id"><?php echo $l['w_answer']; ?></label>
-</span>
-<span class="formw">
-<select name="testlog_id" id="testlog_id" size="0" onchange="document.getElementById('form_ratingeditor').submit()" title="<?php echo $l['h_select_answer']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="testlog_id">'.$l['w_answer'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="testlog_id" id="testlog_id" size="0" onchange="document.getElementById(\'form_ratingeditor\').submit()" title="'.$l['h_select_answer'].'">'.K_NEWLINE;
 $sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.' WHERE testlog_testuser_id=testuser_id AND testuser_user_id=user_id AND testlog_question_id=question_id AND testuser_test_id='.intval($test_id).' AND testuser_status>0 AND question_type=3 '.$sqlfilter.' '.$sqlorder.'';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -295,94 +283,54 @@ if($r = F_db_query($sql, $db)) {
 } else {
 	F_display_db_error();
 }
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectrecord" id="selectrecord" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectrecord');
 
-<div class="row">
-<span class="label">
-<label for="sqlordermode"><?php echo $l['w_order']; ?></label>
-</span>
-<span class="formw">
-<select name="sqlordermode" id="sqlordermode" size="0" onchange="document.getElementById('form_ratingeditor').submit()" title="<?php echo $l['w_order']; ?>">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="sqlordermode">'.$l['w_order'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="sqlordermode" id="sqlordermode" size="0" onchange="document.getElementById(\'form_ratingeditor\').submit()" title="'.$l['w_order'].'">'.K_NEWLINE;
 echo '<option value="0"';
-if($sqlordermode == 0) {
+if ($sqlordermode == 0) {
 	echo ' selected="selected"';
 }
 echo '>'.$l['w_user'].'</option>'.K_NEWLINE;
 echo '<option value="1"';
-if($sqlordermode == 1) {
+if ($sqlordermode == 1) {
 	echo ' selected="selected"';
 }
 echo '>'.$l['w_question'].'</option>'.K_NEWLINE;
 echo '<option value="2"';
-if($sqlordermode == 2) {
+if ($sqlordermode == 2) {
 	echo ' selected="selected"';
 }
 echo '>'.$l['w_time'].'</option>'.K_NEWLINE;
-?>
-</select>
-</span>
-</div>
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<noscript>
-<div class="row">
-<span class="label">&nbsp;</span>
-<span class="formw">
-<input type="submit" name="selectmode" id="selectmode" value="<?php echo $l['w_select']; ?>" />
-</span>
-</div>
-</noscript>
+echo getFormNoscriptSelect('selectmode');
 
-<div class="row">
-<span class="label">
-<label for="display_user_info"><?php echo $l['w_display_user_info']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="display_user_info" id="display_user_info" value="1"';
-if($display_user_info) {echo ' checked="checked"';}
-echo ' onclick="document.getElementById(\'form_ratingeditor\').submit();" title="'.$l['h_display_user_info'].'" />';
-?>
-</span>
-</div>
+echo getFormRowCheckBox('display_user_info', $l['w_display_user_info'], $l['h_display_user_info'], '', 1, $display_user_info, false, '');
+echo getFormRowCheckBox('display_all', $l['w_display_all'], $l['h_display_all'], '', 1, $display_all, false, '');
 
-<div class="row">
-<span class="label">
-<label for="display_all"><?php echo $l['w_display_all']; ?></label>
-</span>
-<span class="formw">
-<?php
-echo '<input type="checkbox" name="display_all" id="display_all" value="1"';
-if($display_all) {echo ' checked="checked"';}
-echo ' onclick="document.getElementById(\'form_ratingeditor\').submit();" title="'.$l['h_display_all'].'" />';
-?>
-</span>
-</div>
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-<div class="row"><hr /></div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<span title="'.$l['h_question_description'].'">'.$l['w_question'].'</span>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo $question;
+echo '&nbsp;'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_question_description']; ?>"><?php echo $l['w_question']; ?></span>
-</span>
-<span class="formw">
-<?php echo $question; ?>&nbsp;
-</span>
-</div>
-
-<?php
 if (K_ENABLE_QUESTION_EXPLANATION AND !empty($explanation)) {
 	echo '<div class="row">'.K_NEWLINE;
 	echo '<span class="label">'.K_NEWLINE;
@@ -393,83 +341,72 @@ if (K_ENABLE_QUESTION_EXPLANATION AND !empty($explanation)) {
 	echo '</span>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
-?>
 
-<div class="row">
-<span class="label">
-<span title="<?php echo $l['h_answer']; ?>"><?php echo $l['w_answer']; ?></span>
-</span>
-<span class="formw">
-<?php echo $answer; ?>&nbsp;<br />&nbsp;
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<span title="'.$l['h_answer'].'">'.$l['w_answer'].'</span>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo $answer.'&nbsp;<br />&nbsp;'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="testlog_score"><?php echo $l['w_score']; ?></label>
-</span>
-<span class="formw">
-<input type="hidden" name="x_testlog_score" id="x_testlog_score" value="^([0-9\+\-]*)([\.]?)([0-9]*)$" />
-<input type="hidden" name="xl_testlog_score" id="xl_testlog_score" value="<?php echo $l['w_score']; ?>" />
-<input type="text" name="testlog_score" id="testlog_score" value="<?php echo $testlog_score; ?>" size="10" maxlength="20" title="<?php echo $l['h_score']; ?>" />
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="testlog_score">'.$l['w_score'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="x_testlog_score" id="x_testlog_score" value="^([0-9\+\-]*)([\.]?)([0-9]*)$" />'.K_NEWLINE;
+echo '<input type="hidden" name="xl_testlog_score" id="xl_testlog_score" value="'.$l['w_score'].'" />'.K_NEWLINE;
+echo '<input type="text" name="testlog_score" id="testlog_score" value="'.$testlog_score.'" size="10" maxlength="20" title="'.$l['h_score'].'" />'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-&nbsp;
-</span>
-<span class="formw">
-<input type="hidden" name="max_score" id="max_score" value="<?php echo $test_score_right; ?>" />
-<input type="radio" name="default_score" id="default_score_correct" value="0" onclick="document.getElementById('form_ratingeditor').testlog_score.value='<?php echo $test_score_right; ?>'" title="<?php echo $l['h_score_right']; ?>" /><label for="default_score_correct"><?php echo $l['w_score_right']." [".$test_score_right."]"; ?></label>
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="hidden" name="max_score" id="max_score" value="'.$test_score_right.'" />'.K_NEWLINE;
+echo '<input type="radio" name="default_score" id="default_score_correct" value="0" onclick="document.getElementById(\'form_ratingeditor\').testlog_score.value=\''.$test_score_right.'\'" title="'.$l['h_score_right'].'" /><label for="default_score_correct">'.$l['w_score_right'].' ['.$test_score_right.']</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-&nbsp;
-</span>
-<span class="formw">
-<input type="radio" name="default_score" id="default_score_wrong" value="0" onclick="document.getElementById('form_ratingeditor').testlog_score.value='<?php echo $test_score_wrong; ?>'" title="<?php echo $l['h_score_wrong']; ?>" /><label for="default_score_wrong"><?php echo $l['w_score_wrong']." [".$test_score_wrong."]"; ?></label>
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="radio" name="default_score" id="default_score_wrong" value="0" onclick="document.getElementById(\'form_ratingeditor\').testlog_score.value=\''.$test_score_wrong.'\'" title="'.$l['h_score_wrong'].'" /><label for="default_score_wrong">'.$l['w_score_wrong'].' ['.$test_score_wrong.']</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-&nbsp;
-</span>
-<span class="formw">
-<input type="radio" name="default_score" id="default_score_unanswered" value="0" onclick="document.getElementById('form_ratingeditor').testlog_score.value='<?php echo $test_score_unanswered; ?>'" title="<?php echo $l['h_score_unanswered']; ?>" /><label for="default_score_unanswered"><?php echo $l['w_score_unanswered']." [".$test_score_unanswered."]"; ?></label>
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="radio" name="default_score" id="default_score_unanswered" value="0" onclick="document.getElementById(\'form_ratingeditor\').testlog_score.value=\''.$test_score_unanswered.'\'" title="'.$l['h_score_unanswered'].'" /><label for="default_score_unanswered">'.$l['w_score_unanswered'].' ['.$test_score_unanswered.']</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<br />
-<span class="label">
-<label for="testlog_comment"><?php echo $l['w_comment']; ?></label>
-</span>
-<span class="formw">
-<textarea cols="50" rows="5" name="testlog_comment" id="testlog_comment" style="color:#FF0000" title="<?php echo $l['w_comment']; ?>"><?php echo htmlspecialchars($testlog_comment, ENT_NOQUOTES, $l['a_meta_charset']); ?></textarea>
-</span>
-</div>
+echo '<div class="row">'.K_NEWLINE;
+echo '<br />'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="testlog_comment">'.$l['w_comment'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<textarea cols="50" rows="5" name="testlog_comment" id="testlog_comment" style="color:#FF0000" title="'.$l['w_comment'].'">'.htmlspecialchars($testlog_comment, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-<div class="row">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+
 // show buttons by case
 if (isset($testlog_id) AND ($testlog_id > 0)) {
 	F_submit_button("update", $l['w_update'], $l['h_update']);
 }
-?>
-<!-- comma separated list of required fields -->
-<input type="hidden" name="ff_required" id="ff_required" value="testlog_score" />
-<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="<?php echo $l['w_score']; ?>" />
 
-</div>
-
-</form>
-
-</div>
-<?php
+// comma separated list of required fields
+echo '<input type="hidden" name="ff_required" id="ff_required" value="testlog_score" />'.K_NEWLINE;
+echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.$l['w_score'].'" />'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+echo '</form>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
 echo '<div class="pagehelp">'.$l['hp_edit_rating'].'</div>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
