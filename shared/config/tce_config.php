@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-05-04
+// Last Update : 2011-05-22
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.2.001');
+define ('K_TCEXAM_VERSION', '11.2.002');
 
 /**
  * 2-letters code for default language.
@@ -278,8 +278,8 @@ if (PHP_VERSION_ID < 50300) {
 
 // --- get 'post', 'get' and 'cookie' variables
 foreach ($_REQUEST as $postkey => $postvalue) {
-	if (($postkey{0} != '_') AND (!preg_match("/[A-Z]/", $postkey{0}))) {
-		if (!get_magic_quotes_gpc()) {
+	if (($postkey{0} != '_') AND (!preg_match('/[A-Z]/', $postkey{0}))) {
+		if (!get_magic_quotes_gpc() AND !is_array($postvalue)) {
 			// emulate magic_quotes_gpc
 			$postvalue = addslashes($postvalue);
 			$_REQUEST[$postkey] = $postvalue;
