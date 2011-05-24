@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Display user selection table.
 //
@@ -62,7 +62,7 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('tce_functions_user_select.php');
 
 // set default values
-if(!isset($order_field)) {$order_field="user_lastname,user_firstname";}
+if(!isset($order_field)) {$order_field='user_lastname,user_firstname';}
 if(!isset($orderdir)) {$orderdir=0;}
 if(!isset($firstrow)) {$firstrow=0;}
 if(!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}

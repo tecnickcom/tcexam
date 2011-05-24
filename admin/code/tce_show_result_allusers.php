@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-21
+// Last Update : 2011-05-24
 //
 // Description : Display test results summary for all users.
 //
@@ -96,12 +96,13 @@ if (isset($_POST['lock'])) {
 } elseif (isset($_POST['extendtime'])) {
 	$menu_mode = 'extendtime';
 }
-if (!isset($order_field) OR empty($order_field)) {
-	$order_field = 'total_score, user_lastname, user_firstname';
+
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score')))) {
+	$order_field = $_REQUEST['order_field'];
 } else {
-	$order_field = F_escape_sql($order_field);
+	$order_field = 'total_score, user_lastname, user_firstname';
 }
-if (!isset($orderdir) OR empty($orderdir)) {
+if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
 	$orderdir = 0;
 	$nextorderdir = 1;
 	$full_order_field = $order_field;
@@ -509,11 +510,11 @@ echo '</div>'.K_NEWLINE;
 echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0)) {
-	echo '<a href="tce_csv_result_allusers.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;order_field='.urlencode($full_order_field).'" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a> ';
-	echo '<a href="'.pdfLink(1, $test_id, $group_id, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
-	echo '<a href="'.pdfLink(4, $test_id, $group_id, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf_all'].'">'.$l['w_pdf_all'].'</a> ';
+	echo '<a href="tce_csv_result_allusers.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;order_field='.urlencode($order_field).'&amp;orderdir='.$orderdir.'" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a> ';
+	echo '<a href="'.pdfLink(1, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+	echo '<a href="'.pdfLink(4, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf_all'].'">'.$l['w_pdf_all'].'</a> ';
 	if (K_DISPLAY_PDFTEXT_BUTTON) {
-		echo '<a href="'.pdfLink(5, $test_id, $group_id, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf_all'].' - TEXT">'.$l['w_pdf'].' TEXT</a> ';
+		echo '<a href="'.pdfLink(5, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf_all'].' - TEXT">'.$l['w_pdf'].' TEXT</a> ';
 	}
 	echo '<a href="tce_xml_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;mode=1&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].'">'.$l['w_email_all_results'].'</a> ';

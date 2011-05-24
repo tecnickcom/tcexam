@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Display all questions grouped by topic.
 //
@@ -65,14 +65,12 @@ require_once('tce_functions_questions.php');
 // --- Initialize variables
 
 // set default values
-if (!isset($wherequery)) {$wherequery='';}
-if (!isset($order_field)) {
-	$order_field = 'question_enabled DESC, question_position,';
-	if (K_DATABASE_TYPE == 'ORACLE') {
-		$order_field .= 'CAST(question_description as varchar2(100))';
-	} else {
-		$order_field .= 'question_description';
-	}
+$wherequery='';
+$order_field = 'question_enabled DESC, question_position,';
+if (K_DATABASE_TYPE == 'ORACLE') {
+	$order_field .= ' CAST(question_description as varchar2(100))';
+} else {
+	$order_field .= ' question_description';
 }
 if (!isset($orderdir)) {$orderdir=0;}
 if (!isset($firstrow)) {$firstrow=0;}
@@ -85,17 +83,16 @@ if (isset($selectmodule)) {
 if (isset($selectcategory)) {
 	$changecategory = 1;
 }
-
 if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AND ($changecategory > 0))) {
 	$wherequery = '';
-	$order_field = 'question_enabled DESC, question_position,';
-	if (K_DATABASE_TYPE == 'ORACLE') {
-		$order_field .= 'CAST(question_description as varchar2(100))';
-	} else {
-		$order_field .= 'question_description';
-	}
 	$firstrow = 0;
 	$orderdir = 0;
+	$order_field = 'question_enabled DESC, question_position,';
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$order_field .= ' CAST(question_description as varchar2(100))';
+	} else {
+		$order_field .= ' question_description';
+	}
 }
 
 // select default module/subject (if not specified)
@@ -357,10 +354,12 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 
 	$subject_module_id = intval($subject_module_id);
 	$subject_id = intval($subject_id);
-	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
+	if (empty($order_field) OR (!in_array($order_field, array('question_id', 'question_subject_id', 'question_description', 'question_explanation', 'question_type', 'question_difficulty', 'question_enabled', 'question_position', 'question_timer', 'question_fullscreen', 'question_inline_answers', 'question_auto_next', 'question_enabled DESC, question_position, CAST(question_description as varchar2(100))', 'question_enabled DESC, question_position, question_description')))) {
+		$order_field = 'question_description';
+	}
 	if ($orderdir == 0) {
 		$nextorderdir = 1;
 		$full_order_field = $order_field;

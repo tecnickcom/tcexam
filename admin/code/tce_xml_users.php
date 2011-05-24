@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2010-10-06
+// Last Update : 2011-05-24
 //
 // Description : Functions to export users' accounts using
 //               XML format.
@@ -95,7 +95,7 @@ function F_xml_export_users() {
 	$xml .= K_TAB.'</header>'.K_NEWLINE;
 	$xml .=  K_TAB.'<body>'.K_NEWLINE;
 
-	// add users
+	// select users
 	$sqla = 'SELECT * FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 		// filter for level

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Display questions statistics for the selected
 //               test.
@@ -83,16 +83,20 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	}
 }
 
-if (!isset($order_field) OR empty($order_field)) {
-	$order_field = 'recurrence DESC,average_score DESC';
-}
-else {
-	$order_field = F_escape_sql($order_field);
-}
-if (!isset($orderdir) OR empty($orderdir)) {
-	$orderdir=0; $nextorderdir=1; $full_order_field = $order_field;
+// order fields for SQL query
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('recurrence',  'average_score',  'average_time')))) {
+	$order_field = $_REQUEST['order_field'];
 } else {
-	$orderdir=1; $nextorderdir=0; $full_order_field = $order_field.' DESC';
+	$order_field = 'recurrence DESC, average_score DESC';
+}
+if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
+	$orderdir=0;
+	$nextorderdir=1;
+	$full_order_field = $order_field;
+} else {
+	$orderdir=1;
+	$nextorderdir=0;
+	$full_order_field = $order_field.' DESC';
 }
 
 if (isset($_REQUEST['test_id']) AND !empty($_REQUEST['test_id'])) {
@@ -284,7 +288,7 @@ echo '</div>'.K_NEWLINE;
 echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($test_id) AND ($test_id > 0)) {
-	echo '<a href="'.pdfLink(2, $test_id, 0, '', $full_order_field).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+	echo '<a href="'.pdfLink(2, $test_id, 0, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 	echo '<a href="tce_xml_question_stats.php?testid='.$test_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
 }
 

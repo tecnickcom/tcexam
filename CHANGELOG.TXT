@@ -1,3 +1,7 @@
+11.2.003 (2011-05-24)
+	- XML question exporter was fixed to correctly set the keyboard keys.
+	- Selection filters were fixed for PDF, CSV and XML export.
+
 11.2.002 (2011-05-22)
 	- A problem with magic_quotes_gpc was fixed.
 

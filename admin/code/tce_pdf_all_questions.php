@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_all_questions.php
 // Begin       : 2004-06-10
-// Last Update : 2011-02-21
+// Last Update : 2011-02-24
 //
 // Description : Creates a PDF document containing exported questions.
 //
@@ -46,7 +46,6 @@
  * @author Nicola Asuni
  * @since 2005-07-06
  * @param $_REQUEST['subject_id'] (int) topic ID
- * @param $_REQUEST['order_field'] (string) ORDER BY portion of SQL selection query
  */
 
 /**
@@ -82,7 +81,6 @@ if (isset($_REQUEST['hide_answers']) AND ($_REQUEST['hide_answers'] == 1)) {
 $doc_title = unhtmlentities($l['t_questions_list']);
 $doc_description = F_compact_string(unhtmlentities($l['hp_select_all_questions']));
 $page_elements = 6;
-$temp_order_field = 'question_description';
 
 $qtype = array('S', 'M', 'T', '0'); // question types
 $qright = array(' ', '*'); // question types

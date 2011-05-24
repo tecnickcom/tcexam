@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Display test results for specified user.
 //
@@ -612,7 +612,7 @@ if (isset($usrtestdata)) {
 		}
 
 		echo '<br /><br />';
-		echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '').'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+		echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '', 0).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 		echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'&amp;mode=1" class="xmlbutton" title="'.$l['h_email_result'].'">'.$l['w_email_result'].'</a> ';
 		echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;userid='.$user_id.'&amp;mode=0" class="xmlbutton" title="'.$l['h_email_result'].' + PDF">'.$l['w_email_result'].' + PDF</a> ';
 	}

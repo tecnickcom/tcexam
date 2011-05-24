@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-06
+// Last Update : 2011-05-24
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -151,12 +151,16 @@ if ($_REQUEST['mode'] == 4) {
 } else {
 	$sql_limit = ' LIMIT 1';
 }
-
 // order fields for SQL query
-if(isset($_REQUEST['orderfield'])) {
-	$full_order_field = urldecode($_REQUEST['orderfield']);
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'recurrence',  'average_score',  'average_time')))) {
+	$order_field = $_REQUEST['order_field'];
 } else {
-	$full_order_field = $temp_order_field;
+	$order_field = $temp_order_field;
+}
+if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
+	$full_order_field = $order_field;
+} else {
+	$full_order_field = $order_field.' DESC';
 }
 
 // --- create pdf document

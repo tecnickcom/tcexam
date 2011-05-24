@@ -242,7 +242,7 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 									$xml .= '</position>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<keyboard_key>';
-									$xml .= F_text_to_xml(chr($ma['answer_keyboard_key']));
+									$xml .= $ma['answer_keyboard_key'];
 									$xml .= '</keyboard_key>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<description>';

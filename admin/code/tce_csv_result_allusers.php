@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -62,10 +62,15 @@ if (isset($_REQUEST['groupid']) AND ($_REQUEST['groupid'] > 0)) {
 } else {
 	$group_id = 0;
 }
-if (!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
-	$order_field = 'total_score, user_lastname, user_firstname';
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score')))) {
+	$order_field = $_REQUEST['order_field'];
 } else {
-	$order_field = urldecode($_REQUEST['order_field']);
+	$order_field = 'total_score, user_lastname, user_firstname';
+}
+if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
+	$full_order_field = $order_field;
+} else {
+	$full_order_field = $order_field.' DESC';
 }
 
 // send headers
@@ -83,7 +88,7 @@ header('Content-Type: text/csv', false);
 header('Content-Disposition: attachment; filename=tcexam_test_results_'.$test_id.'_'.date('YmdHis').'.txt;');
 header('Content-Transfer-Encoding: binary');
 
-echo F_csv_export_result_allusers($test_id, $group_id, $order_field);
+echo F_csv_export_result_allusers($test_id, $group_id, $full_order_field);
 
 /**
  * Export all test results to CSV.

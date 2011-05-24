@@ -98,6 +98,9 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
 	$group_id = intval($group_id);
+	if (empty($order_field) OR (!in_array($order_field, array('user_id', 'user_name', 'user_password', 'user_email', 'user_regdate', 'user_ip', 'user_firstname', 'user_lastname', 'user_birthdate', 'user_birthplace', 'user_regnumber', 'user_ssn', 'user_level', 'user_verifycode')))) {
+		$order_field = 'user_lastname,user_firstname';
+	}
 	if ($orderdir == 0) {
 		$nextorderdir=1;
 		$full_order_field = $order_field;

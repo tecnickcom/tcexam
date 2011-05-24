@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-21
+// Last Update : 2011-05-24
 //
 // Description : Display all test results for the selected users.
 //
@@ -104,10 +104,10 @@ if (isset($_POST['lock'])) {
 } elseif (isset($_POST['extendtime'])) {
 	$menu_mode = 'extendtime';
 }
-if (!isset($order_field) OR empty($order_field)) {
-	$order_field = 'testuser_creation_time';
+if (isset($order_field) AND !empty($order_field) AND (in_array($order_field, array('testuser_creation_time', 'total_score')))) {
+	$order_field = $order_field;
 } else {
-	$order_field = F_escape_sql($order_field);
+	$order_field = 'testuser_creation_time';
 }
 if (!isset($orderdir) OR empty($orderdir)) {
 	$orderdir=0; $nextorderdir=1; $full_order_field = $order_field;

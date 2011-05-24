@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_results.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-20
+// Last Update : 2011-05-24
 //
 // Description : Display test results to the current user.
 //
@@ -360,7 +360,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
 	if (K_ENABLE_PUBLIC_PDF) {
 		echo '<div class="row">'.K_NEWLINE;
 		// PDF button
-		echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '').'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+		echo '<a href="'.pdfLink(3, $test_id, 0, $user_id, '', 0).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 		echo '</div>'.K_NEWLINE;
 	}
 }

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2010-09-16
+// Last Update : 2011-05-24
 //
 // Description : Statistical functions for test results.
 //
@@ -53,20 +53,22 @@
  * @param $test_id (int) test ID
  * @param $groupid (int) group ID
  * @param $user_id (int) user ID
- * @param $orderfield (string) table order field name
+ * @param $order_field (string) table order field name
+ * @param $orderdir (int) order direction (0 = ASC, 1 = DESC)
  * @return string
  */
-function pdfLink($mode, $test_id, $groupid=0, $user_id=0, $orderfield="") {
+function pdfLink($mode, $test_id, $groupid=0, $user_id=0, $order_field='', $orderdir=0) {
 	$pdflink = 'tce_pdf_results.php?';
-	$pdflink .= 'mode='.$mode.'';
-	$pdflink .= '&amp;testid='.$test_id.'';
-	$pdflink .= '&amp;groupid='.$groupid.'';
-	if ($user_id) {
-		$pdflink .= '&amp;userid='.$user_id.'';
+	$pdflink .= 'mode='.$mode;
+	$pdflink .= '&amp;testid='.$test_id;
+	$pdflink .= '&amp;groupid='.$groupid;
+	if ($user_id > 0) {
+		$pdflink .= '&amp;userid='.$user_id;
 	}
-	if ($orderfield) {
-		$pdflink .= '&amp;orderfield='.urlencode($orderfield).'';
+	if (!empty($order_field)) {
+		$pdflink .= '&amp;order_field='.urlencode($order_field);
 	}
+	$pdflink .= '&amp;orderdir='.$orderdir;
 	return $pdflink;
 }
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2011-05-21
+// Last Update : 2011-05-24
 //
 // Description : Functions to display online users' data.
 //
@@ -83,10 +83,14 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	require_once('tce_functions_user_select.php');
 	
 	//initialize variables
-	$order_field = F_escape_sql($order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
+	
+	// order fields for SQL query
+	if (empty($order_field) OR (!in_array($order_field, array('cpsession_id', 'cpsession_data')))) {
+		$order_field = 'cpsession_expiry';
+	}
 	if($orderdir == 0) {
 		$nextorderdir = 1;
 		$full_order_field = $order_field;

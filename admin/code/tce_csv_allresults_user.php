@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_csv_allresults_user.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-21
+// Last Update : 2011-05-24
 //
 // Description : Functions to export users' results using
 //               CSV file format (tab delimited text).
@@ -76,10 +76,10 @@ if (isset($_REQUEST['enddate']) AND ($_REQUEST['enddate'] > 0)) {
 } else {
 	$enddate = date('Y').'-01-01 00:00:00';
 }
-if(!isset($_REQUEST['order_field']) OR empty($_REQUEST['order_field'])) {
-	$order_field = 'testuser_creation_time';
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'total_score')))) {
+	$order_field = $_REQUEST['order_field'];
 } else {
-	$order_field = urldecode($_REQUEST['order_field']);
+	$order_field = 'testuser_creation_time';
 }
 
 // send headers
