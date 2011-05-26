@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2011-02-21
+// Last Update : 2011-05-26
 //
 // Description : Class to import questions from an XML file.
 //
@@ -417,17 +417,6 @@ class XMLQuestionImporter {
 		if(!$r = F_db_query($sql, $db)) {
 			F_display_db_error();
 		}
-		// adjust questions ordering
-		if (!empty($this->level_data['question']['question_position']) AND ($this->level_data['question']['question_position'] > 0)) {
-			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
-				question_position=question_position+1
-				WHERE question_subject_id='.$this->level_data['subject']['subject_id'].'
-					AND question_position>='.$this->level_data['question']['question_position'].'';
-			if(!$r = F_db_query($sql, $db)) {
-				F_display_db_error(false);
-				F_db_query('ROLLBACK', $db);
-			}
-		}
 		// insert question
 		$sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
 			question_subject_id,
@@ -503,17 +492,6 @@ class XMLQuestionImporter {
 				$sql = 'START TRANSACTION';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
-				}
-				// adjust answers ordering
-				if (!empty($this->level_data['answer']['answer_position']) AND ($this->level_data['answer']['answer_position'] > 0)) {
-					$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
-						answer_position=answer_position+1
-						WHERE answer_question_id='.$this->level_data['question']['question_id'].'
-							AND answer_position>='.$this->level_data['answer']['answer_position'].'';
-					if(!$r = F_db_query($sql, $db)) {
-						F_display_db_error(false);
-						F_db_query('ROLLBACK', $db); // rollback transaction
-					}
 				}
 				$sql = 'INSERT INTO '.K_TABLE_ANSWERS.' (
 					answer_question_id,

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-05-24
+// Last Update : 2011-05-26
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.2.003');
+define ('K_TCEXAM_VERSION', '11.2.004');
 
 /**
  * 2-letters code for default language.

@@ -1,3 +1,6 @@
+11.2.004 (2011-05-26)
+	- Question Importer was fixed to correctly import questions and answers positions.
+
 11.2.003 (2011-05-24)
 	- XML question exporter was fixed to correctly set the keyboard keys.
 	- Selection filters were fixed for PDF, CSV and XML export.
