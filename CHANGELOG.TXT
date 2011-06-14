@@ -1,3 +1,6 @@
+11.2.006 (2011-06-14)
+	- TCPDF library was updated for improvements and bugfixes.
+
 11.2.005 (2011-05-31)
 	- TCPDF library was updated to fix a font subsetting bug.
 	- Font files were updated.

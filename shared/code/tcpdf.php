@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.086
+// Version     : 5.9.090
 // Begin       : 2002-08-03
-// Last Update : 2011-05-31
+// Last Update : 2011-06-14
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -134,7 +134,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.086
+ * @version 5.9.090
  */
 
 
@@ -144,7 +144,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.086
+ * @version 5.9.090
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -155,7 +155,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.086';
+	private $tcpdf_version = '5.9.090';
 
 	// Protected properties
 
@@ -509,13 +509,25 @@ class TCPDF {
 	 * String alias for total number of pages.
 	 * @protected
 	 */
-	protected $AliasNbPages = '{nb}';
+	protected $alias_tot_pages = '{nb}';
 
 	/**
 	 * String alias for page number.
 	 * @protected
 	 */
-	protected $AliasNumPage = '{pnb}';
+	protected $alias_num_page = '{pnb}';
+
+	/**
+	 * String alias for total number of pages in a single group.
+	 * @protected
+	 */
+	protected $alias_group_tot_pages = '{gnb}';
+
+	/**
+	 * String alias for group page number.
+	 * @protected
+	 */
+	protected $alias_group_num_page = '{gpnb}';
 
 	/**
 	 * The right-bottom (or left-bottom for RTL) corner X coordinate of last inserted image.
@@ -861,25 +873,25 @@ class TCPDF {
 	protected $dpi = 72;
 
 	/**
-	 * Array of page numbers were a new page group was started.
+	 * Array of page numbers were a new page group was started (the page numbers are the keys of the array).
 	 * @protected
 	 * @since 3.0.000 (2008-03-27)
 	 */
 	protected $newpagegroup = array();
 
 	/**
-	 * Contains the number of pages of the groups.
+	 * Array that contains the number of pages in each page group.
 	 * @protected
 	 * @since 3.0.000 (2008-03-27)
 	 */
-	protected $pagegroups;
+	protected $pagegroups = array();
 
 	/**
-	 * Contains the alias of the current page group.
+	 * Current page group number.
 	 * @protected
 	 * @since 3.0.000 (2008-03-27)
 	 */
-	protected $currpagegroup;
+	protected $currpagegroup = 0;
 
 	/**
 	 * Restrict the rendering of some elements to screen or printout.
@@ -3441,6 +3453,16 @@ class TCPDF {
 	}
 
 	/**
+	 * Return the auto-page-break mode (true or false).
+	 * @return boolean auto-page-break mode
+	 * @public
+	 * @since 5.9.088
+	 */
+	public function getAutoPageBreak() {
+		return $this->AutoPageBreak;
+	}
+
+	/**
 	 * Defines the way the document is to be displayed by the viewer.
 	 * @param $zoom (mixed) The zoom to use. It can be one of the following string values or a number indicating the zooming factor to use. <ul><li>fullpage: displays the entire page on screen </li><li>fullwidth: uses maximum width of window</li><li>real: uses real size (equivalent to 100% zoom)</li><li>default: uses viewer default mode</li></ul>
 	 * @param $layout (string) The page layout. Possible values are:<ul><li>SinglePage Display one page at a time</li><li>OneColumn Display the pages in one column</li><li>TwoColumnLeft Display the pages in two columns, with odd-numbered pages on the left</li><li>TwoColumnRight Display the pages in two columns, with odd-numbered pages on the right</li><li>TwoPageLeft (PDF 1.5) Display the pages two at a time, with odd-numbered pages on the left</li><li>TwoPageRight (PDF 1.5) Display the pages two at a time, with odd-numbered pages on the right</li></ul>
@@ -4298,7 +4320,7 @@ class TCPDF {
 	 * @return int page number
 	 * @public
 	 * @since 1.0
-	 * @see AliasNbPages(), getAliasNbPages()
+	 * @see alias_tot_pages(), getAliasNbPages()
 	 */
 	public function PageNo() {
 		return $this->page;
@@ -7236,7 +7258,7 @@ class TCPDF {
 	 * The format can be specified explicitly or inferred from the file extension.<br />
 	 * It is possible to put a link on the image.<br />
 	 * Remark: if an image is used several times, only one copy will be embedded in the file.<br />
-	 * @param $file (string) Name of the file containing the image or a '@' character followed by the image data string.
+	 * @param $file (string) Name of the file containing the image or a '@' character followed by the image data string. To link an image without embedding it on the document, set an asterisk character before the URL (i.e.: '*http://www.example.com/image.jpg').
 	 * @param $x (float) Abscissa of the upper-left corner (LTR) or upper-right corner (RTL).
 	 * @param $y (float) Ordinate of the upper-left corner (LTR) or upper-right corner (RTL).
 	 * @param $w (float) Width of the image in the page. If not specified or equal to zero, it is automatically calculated.
@@ -7251,13 +7273,15 @@ class TCPDF {
 	 * @param $imgmask (mixed) image object returned by this function or false
 	 * @param $border (mixed) Indicates if borders must be drawn around the cell. The value can be a number:<ul><li>0: no border (default)</li><li>1: frame</li></ul> or a string containing some or all of the following characters (in any order):<ul><li>L: left</li><li>T: top</li><li>R: right</li><li>B: bottom</li></ul> or an array of line styles for each border group - for example: array('LTRB' => array('width' => 2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)))
 	 * @param $fitbox (mixed) If not false scale image dimensions proportionally to fit within the ($w, $h) box. $fitbox can be true or a 2 characters string indicating the image alignment inside the box. The first character indicate the horizontal alignment (L = left, C = center, R = right) the second character indicate the vertical algnment (T = top, M = middle, B = bottom).
-	 * @param $hidden (boolean) if true do not display the image.
-	 * @param $fitonpage (boolean) if true the image is resized to not exceed page dimensions.
+	 * @param $hidden (boolean) If true do not display the image.
+	 * @param $fitonpage (boolean) If true the image is resized to not exceed page dimensions.
+	 * @param $alt (boolean) If true the image will be added as alternative and not directly printed (the ID of the image will be returned).
+	 * @param $altimgs (array) Array of alternate images IDs. Each alternative image must be an array with two values: an integer representing the image ID (the value returned by the Image method) and a boolean value to indicate if the image is the default for printing.
 	 * @return image information
 	 * @public
 	 * @since 1.1
 	 */
-	public function Image($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false) {
+	public function Image($file, $x='', $y='', $w=0, $h=0, $type='', $link='', $align='', $resize=false, $dpi=300, $palign='', $ismask=false, $imgmask=false, $border=0, $fitbox=false, $hidden=false, $fitonpage=false, $alt=false, $altimgs=array()) {
 		if ($x === '') {
 			$x = $this->x;
 		}
@@ -7267,8 +7291,10 @@ class TCPDF {
 		// check page for no-write regions and adapt page margins if necessary
 		list($x, $y) = $this->checkPageRegions($h, $x, $y);
 		$cached_file = false; // true when the file is cached
+		$exurl = ''; // external streams
 		// check if we are passing an image as file or string
-		if ($file{0} === '@') { // image from string
+		if ($file{0} === '@') {
+			// image from string
 			$imgdata = substr($file, 1);
 			$file = K_PATH_CACHE.'img_'.md5($imgdata);
 			$fp = fopen($file, 'w');
@@ -7282,6 +7308,11 @@ class TCPDF {
 				$cached_file = false;
 			}
 		} else { // image file
+			if ($file{0} === '*') {
+				// image as external stream
+				$file = substr($file, 1);
+				$exurl = $file;
+			}
 			// check if is local file
 			if (!@file_exists($file)) {
 				// encode spaces on filename (file is probably an URL)
@@ -7567,6 +7598,11 @@ class TCPDF {
 			if ($imgmask !== false) {
 				$info['masked'] = $imgmask;
 			}
+			if (!empty($exurl)) {
+				$info['exurl'] = $exurl;
+			}
+			// array of alternative images
+			$info['altimgs'] = $altimgs;
 			// add image to document
 			$this->setImageBuffer($file, $info);
 		}
@@ -7605,7 +7641,10 @@ class TCPDF {
 			return $info['i'];
 		}
 		$xkimg = $ximg * $this->k;
-		$this->_out(sprintf('q %.2F 0 0 %.2F %.2F %.2F cm /I%u Do Q', ($w * $this->k), ($h * $this->k), $xkimg, (($this->h - ($y + $h)) * $this->k), $info['i']));
+		if (!$alt) {
+			// only non-alternative immages will be set
+			$this->_out(sprintf('q %.2F 0 0 %.2F %.2F %.2F cm /I%u Do Q', ($w * $this->k), ($h * $this->k), $xkimg, (($this->h - ($y + $h)) * $this->k), $info['i']));
+		}
 		if (!empty($border)) {
 			$bx = $this->x;
 			$by = $this->y;
@@ -8148,29 +8187,11 @@ class TCPDF {
 	 * @since 5.9.086
 	 */
 	protected function sendOutputData($data, $lenght) {
-		// set no-encoding by default
-		$enc = false;
-		// check for encoding support
-		if (isset($_SERVER['HTTP_ACCEPT_ENCODING'])) {
-			if (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'x-gzip') !== false ) {
-				$enc = 'x-gzip';
-			} elseif (strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false ) {
-				$enc = 'gzip';
-			}
-		}
-		if ($enc === false) {
-			// no compression
+		if (!isset($_SERVER['HTTP_ACCEPT_ENCODING']) OR empty($_SERVER['HTTP_ACCEPT_ENCODING'])) {
+			// the content length may vary if the server is using compression
 			header('Content-Length: '.$lenght);
-			echo $data;
-		} else {
-			if (function_exists('gzencode')) {
-				// send data compressed
-				$data = gzencode($data, 9, FORCE_GZIP);
-				header('Content-Encoding: '.$enc);
-				header('Content-Length: '.strlen($data));
-			}
-			echo $data;
 		}
+		echo $data;
 	}
 
 	/**
@@ -8448,80 +8469,83 @@ class TCPDF {
 	 */
 	protected function _putpages() {
 		$nb = $this->numpages;
-		if (!empty($this->AliasNbPages)) {
+		if (!empty($this->alias_tot_pages)) {
 			$nbs = $this->formatPageNumber($nb);
 			$nbu = $this->UTF8ToUTF16BE($nbs, false); // replacement for unicode font
-			$alias_a = $this->_escape($this->AliasNbPages);
-			$alias_au = $this->_escape('{'.$this->AliasNbPages.'}');
+			$alias_a = $this->_escape($this->alias_tot_pages);
+			$alias_au = $this->_escape('{'.$this->alias_tot_pages.'}');
 			if ($this->isunicode) {
-				$alias_b = $this->_escape($this->UTF8ToLatin1($this->AliasNbPages));
-				$alias_bu = $this->_escape($this->UTF8ToLatin1('{'.$this->AliasNbPages.'}'));
-				$alias_c = $this->_escape($this->utf8StrRev($this->AliasNbPages, false, $this->tmprtl));
-				$alias_cu = $this->_escape($this->utf8StrRev('{'.$this->AliasNbPages.'}', false, $this->tmprtl));
+				$alias_b = $this->_escape($this->UTF8ToLatin1($this->alias_tot_pages));
+				$alias_bu = $this->_escape($this->UTF8ToLatin1('{'.$this->alias_tot_pages.'}'));
+				$alias_c = $this->_escape($this->utf8StrRev($this->alias_tot_pages, false, $this->tmprtl));
+				$alias_cu = $this->_escape($this->utf8StrRev('{'.$this->alias_tot_pages.'}', false, $this->tmprtl));
 			}
 		}
-		if (!empty($this->AliasNumPage)) {
-			$alias_pa = $this->_escape($this->AliasNumPage);
-			$alias_pau = $this->_escape('{'.$this->AliasNumPage.'}');
+		if (!empty($this->alias_num_page)) {
+			$alias_pa = $this->_escape($this->alias_num_page);
+			$alias_pau = $this->_escape('{'.$this->alias_num_page.'}');
 			if ($this->isunicode) {
-				$alias_pb = $this->_escape($this->UTF8ToLatin1($this->AliasNumPage));
-				$alias_pbu = $this->_escape($this->UTF8ToLatin1('{'.$this->AliasNumPage.'}'));
-				$alias_pc = $this->_escape($this->utf8StrRev($this->AliasNumPage, false, $this->tmprtl));
-				$alias_pcu = $this->_escape($this->utf8StrRev('{'.$this->AliasNumPage.'}', false, $this->tmprtl));
+				$alias_pb = $this->_escape($this->UTF8ToLatin1($this->alias_num_page));
+				$alias_pbu = $this->_escape($this->UTF8ToLatin1('{'.$this->alias_num_page.'}'));
+				$alias_pc = $this->_escape($this->utf8StrRev($this->alias_num_page, false, $this->tmprtl));
+				$alias_pcu = $this->_escape($this->utf8StrRev('{'.$this->alias_num_page.'}', false, $this->tmprtl));
 			}
 		}
 		$pagegroupnum = 0;
+		$groupnum = 0;
 		$filter = ($this->compress) ? '/Filter /FlateDecode ' : '';
-		for ($n=1; $n <= $nb; ++$n) {
+		for ($n = 1; $n <= $nb; ++$n) {
 			$temppage = $this->getPageBuffer($n);
 			if (!empty($this->pagegroups)) {
 				if (isset($this->newpagegroup[$n])) {
 					$pagegroupnum = 0;
+					++$groupnum;
 				}
 				++$pagegroupnum;
-				foreach ($this->pagegroups as $k => $v) {
-					// replace total pages group numbers
-					$vs = $this->formatPageNumber($v);
-					$vu = $this->UTF8ToUTF16BE($vs, false);
-					$alias_ga = $this->_escape($k);
-					$alias_gau = $this->_escape('{'.$k.'}');
-					if ($this->isunicode) {
-						$alias_gb = $this->_escape($this->UTF8ToLatin1($k));
-						$alias_gbu = $this->_escape($this->UTF8ToLatin1('{'.$k.'}'));
-						$alias_gc = $this->_escape($this->utf8StrRev($k, false, $this->tmprtl));
-						$alias_gcu = $this->_escape($this->utf8StrRev('{'.$k.'}', false, $this->tmprtl));
-					}
-					$temppage = str_replace($alias_gau, $vu, $temppage);
-					if ($this->isunicode) {
-						$temppage = str_replace($alias_gbu, $vu, $temppage);
-						$temppage = str_replace($alias_gcu, $vu, $temppage);
-						$temppage = str_replace($alias_gb, $vs, $temppage);
-						$temppage = str_replace($alias_gc, $vs, $temppage);
-					}
-					$temppage = str_replace($alias_ga, $vs, $temppage);
-					// replace page group numbers
-					$pvs = $this->formatPageNumber($pagegroupnum);
-					$pvu = $this->UTF8ToUTF16BE($pvs, false);
-					$pk = str_replace('{nb', '{pnb', $k);
-					$alias_pga = $this->_escape($pk);
-					$alias_pgau = $this->_escape('{'.$pk.'}');
-					if ($this->isunicode) {
-						$alias_pgb = $this->_escape($this->UTF8ToLatin1($pk));
-						$alias_pgbu = $this->_escape($this->UTF8ToLatin1('{'.$pk.'}'));
-						$alias_pgc = $this->_escape($this->utf8StrRev($pk, false, $this->tmprtl));
-						$alias_pgcu = $this->_escape($this->utf8StrRev('{'.$pk.'}', false, $this->tmprtl));
-					}
-					$temppage = str_replace($alias_pgau, $pvu, $temppage);
-					if ($this->isunicode) {
-						$temppage = str_replace($alias_pgbu, $pvu, $temppage);
-						$temppage = str_replace($alias_pgcu, $pvu, $temppage);
-						$temppage = str_replace($alias_pgb, $pvs, $temppage);
-						$temppage = str_replace($alias_pgc, $pvs, $temppage);
-					}
-					$temppage = str_replace($alias_pga, $pvs, $temppage);
+				$ka = $this->alias_group_tot_pages;
+				$kb = '{'.$ka.'}';
+				$kpa = $this->alias_group_num_page;
+				$kpb = '{'.$kpa.'}';
+				// replace total pages group numbers
+				$vs = $this->formatPageNumber($this->pagegroups[$groupnum]);
+				$vu = $this->UTF8ToUTF16BE($vs, false);
+				$alias_ga = $this->_escape($ka);
+				$alias_gau = $this->_escape($kb);
+				if ($this->isunicode) {
+					$alias_gb = $this->_escape($this->UTF8ToLatin1($ka));
+					$alias_gbu = $this->_escape($this->UTF8ToLatin1($kb));
+					$alias_gc = $this->_escape($this->utf8StrRev($ka, false, $this->tmprtl));
+					$alias_gcu = $this->_escape($this->utf8StrRev($kb, false, $this->tmprtl));
 				}
+				$temppage = str_replace($alias_gau, $vu, $temppage);
+				if ($this->isunicode) {
+					$temppage = str_replace($alias_gbu, $vu, $temppage);
+					$temppage = str_replace($alias_gcu, $vu, $temppage);
+					$temppage = str_replace($alias_gb, $vs, $temppage);
+					$temppage = str_replace($alias_gc, $vs, $temppage);
+				}
+				$temppage = str_replace($alias_ga, $vs, $temppage);
+				// replace page group numbers
+				$pvs = $this->formatPageNumber($pagegroupnum);
+				$pvu = $this->UTF8ToUTF16BE($pvs, false);
+				$alias_pga = $this->_escape($kpa);
+				$alias_pgau = $this->_escape($kpb);
+				if ($this->isunicode) {
+					$alias_pgb = $this->_escape($this->UTF8ToLatin1($kpa));
+					$alias_pgbu = $this->_escape($this->UTF8ToLatin1($kpb));
+					$alias_pgc = $this->_escape($this->utf8StrRev($kpa, false, $this->tmprtl));
+					$alias_pgcu = $this->_escape($this->utf8StrRev($kpb, false, $this->tmprtl));
+				}
+				$temppage = str_replace($alias_pgau, $pvu, $temppage);
+				if ($this->isunicode) {
+					$temppage = str_replace($alias_pgbu, $pvu, $temppage);
+					$temppage = str_replace($alias_pgcu, $pvu, $temppage);
+					$temppage = str_replace($alias_pgb, $pvs, $temppage);
+					$temppage = str_replace($alias_pgc, $pvs, $temppage);
+				}
+				$temppage = str_replace($alias_pga, $pvs, $temppage);
 			}
-			if (!empty($this->AliasNbPages)) {
+			if (!empty($this->alias_tot_pages)) {
 				// replace total pages number
 				$temppage = str_replace($alias_au, $nbu, $temppage);
 				if ($this->isunicode) {
@@ -8532,7 +8556,7 @@ class TCPDF {
 				}
 				$temppage = str_replace($alias_a, $nbs, $temppage);
 			}
-			if (!empty($this->AliasNumPage)) {
+			if (!empty($this->alias_num_page)) {
 				// replace page number
 				$pnbs = $this->formatPageNumber($n);
 				$pnbu = $this->UTF8ToUTF16BE($pnbs, false); // replacement for unicode font
@@ -10519,6 +10543,27 @@ class TCPDF {
 		$filter = ($this->compress) ? '/Filter /FlateDecode ' : '';
 		foreach ($this->imagekeys as $file) {
 			$info = $this->getImageBuffer($file);
+			// set object for alternate images array
+			if (!empty($info['altimgs'])) {
+				$altoid = $this->_newobj();
+				$out = '[';
+				foreach ($info['altimgs'] as $altimage) {
+					if (isset($this->xobjects['I'.$altimage[0]]['n'])) {
+						$out .= ' << /Image '.$this->xobjects['I'.$altimage[0]]['n'].' 0 R';
+						$out .= ' /DefaultForPrinting';
+						if ($altimage[1] === true) {
+							$out .= ' true';
+						} else {
+							$out .= ' false';
+						}
+						$out .= ' >>';
+					}
+				}
+				$out .= ' ]';
+				$out .= "\n".'endobj';
+				$this->_out($out);
+			}
+			// set image object
 			$oid = $this->_newobj();
 			$this->xobjects['I'.$info['i']] = array('n' => $oid);
 			$this->setImageSubBuffer($file, 'n', $this->n);
@@ -10538,23 +10583,38 @@ class TCPDF {
 				}
 			}
 			$out .= ' /BitsPerComponent '.$info['bpc'];
-			if (isset($info['f'])) {
-				$out .= ' /Filter /'.$info['f'];
+			if (isset($altoid) AND ($altoid > 0)) {
+				// reference to alternate images dictionary
+				$out .= ' /Alternates '.$altoid.' 0 R';
 			}
-			if (isset($info['parms'])) {
-				$out .= ' '.$info['parms'];
-			}
-			if (isset($info['trns']) AND is_array($info['trns'])) {
-				$trns='';
-				$count_info = count($info['trns']);
-				for ($i=0; $i < $count_info; ++$i) {
-					$trns .= $info['trns'][$i].' '.$info['trns'][$i].' ';
+			if (isset($info['exurl']) AND !empty($info['exurl'])) {
+				// external stream
+				$out .= ' /Length 0';
+				$out .= ' /F << /FS /URL /F '.$this->_datastring($info['exurl'], $oid).' >>';
+				if (isset($info['f'])) {
+					$out .= ' /FFilter /'.$info['f'];
 				}
-				$out .= ' /Mask ['.$trns.']';
+				$out .= ' >>';
+				$out .= ' stream'."\n".'endstream';
+			} else {
+				if (isset($info['f'])) {
+					$out .= ' /Filter /'.$info['f'];
+				}
+				if (isset($info['parms'])) {
+					$out .= ' '.$info['parms'];
+				}
+				if (isset($info['trns']) AND is_array($info['trns'])) {
+					$trns='';
+					$count_info = count($info['trns']);
+					for ($i=0; $i < $count_info; ++$i) {
+						$trns .= $info['trns'][$i].' '.$info['trns'][$i].' ';
+					}
+					$out .= ' /Mask ['.$trns.']';
+				}
+				$stream = $this->_getrawstream($info['data']);
+				$out .= ' /Length '.strlen($stream).' >>';
+				$out .= ' stream'."\n".$stream."\n".'endstream';
 			}
-			$stream = $this->_getrawstream($info['data']);
-			$out .= ' /Length '.strlen($stream).' >>';
-			$out .= ' stream'."\n".$stream."\n".'endstream';
 			$out .= "\n".'endobj';
 			$this->_out($out);
 			//Palette
@@ -11072,11 +11132,9 @@ class TCPDF {
 		$this->y = $this->tMargin;
 		if (isset($this->newpagegroup[$this->page])) {
 			// start a new group
-			$n = sizeof($this->pagegroups) + 1;
-			$alias = '{nb'.$n.'}';
-			$this->pagegroups[$alias] = 1;
-			$this->currpagegroup = $alias;
-		} elseif ($this->currpagegroup) {
+			$this->currpagegroup = $this->newpagegroup[$this->page];
+			$this->pagegroups[$this->currpagegroup] = 1;
+		} elseif (isset($this->currpagegroup) AND ($this->currpagegroup > 0)) {
 			++$this->pagegroups[$this->currpagegroup];
 		}
 	}
@@ -11494,7 +11552,7 @@ class TCPDF {
 	 * @see UTF8StringToArray(), arrUTF8ToUTF16BE()
 	 * @protected
 	 */
-	protected function UTF8ToUTF16BE($str, $setbom=true) {
+	protected function UTF8ToUTF16BE($str, $setbom=false) {
 		if (!$this->isunicode) {
 			return $str; // string is not in unicode
 		}
@@ -11597,7 +11655,7 @@ class TCPDF {
 	 * @since 2.1.000 (2008-01-08)
 	 * @see UTF8ToUTF16BE()
 	 */
-	protected function arrUTF8ToUTF16BE($unicode, $setbom=true) {
+	protected function arrUTF8ToUTF16BE($unicode, $setbom=false) {
 		$outstr = ''; // string to be returned
 		if ($setbom) {
 			$outstr .= "\xFE\xFF"; // Byte Order Mark (BOM)
@@ -15601,8 +15659,8 @@ class TCPDF {
 			$out .= ' /TransformMethod /DocMDP';
 			$out .= ' /TransformParams <<';
 			$out .= ' /Type /TransformParams';
-			$out .= ' /V /1.2';
 			$out .= ' /P '.$this->signature_data['cert_type'];
+			$out .= ' /V /1.2';
 		} else {
 			$out .= ' /TransformMethod /UR3';
 			$out .= ' /TransformParams <<';
@@ -15766,44 +15824,40 @@ class TCPDF {
 		if (empty($page)) {
 			$page = $this->page + 1;
 		}
-		$this->newpagegroup[$page] = true;
+		$this->newpagegroup[$page] = sizeof($this->newpagegroup) + 1;
 	}
 
 	/**
-	 * Defines a string alias for the total number of pages. It will be substituted as the document is closed.
-	 * @param $numalias (string) The alias.
-	 * @since 1.4
-	 * @see getAliasNbPages(), PageNo(), Footer()
+	 * This method is DEPRECATED and doesn't have any effect.
+	 * Please remove any reference to this method.
+	 * @param $s (string) Empty parameter.
+	 * @deprecated deprecated since version 5.9.089 (2011-06-13)
 	 * @public
 	 */
-	public function AliasNbPages($numalias="{nb}") {
-		$this->AliasNbPages = $numalias;
-	}
+	public function AliasNbPages($s='') {}
+
+	/**
+	 * This method is DEPRECATED and doesn't have any effect.
+	 * Please remove any reference to this method.
+	 * @param $s (string) Empty parameter.
+	 * @deprecated deprecated since version 5.9.089 (2011-06-13)
+	 * @public
+	 */
+	public function AliasNumPage($s='') {}
 
 	/**
 	 * Returns the string alias used for the total number of pages.
 	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
 	 * @return string
 	 * @since 4.0.018 (2008-08-08)
-	 * @see AliasNbPages(), PageNo(), Footer()
+	 * @see alias_tot_pages(), PageNo(), Footer()
 	 * @public
 	 */
 	public function getAliasNbPages() {
 		if ($this->isUnicodeFont()) {
-			return '{'.$this->AliasNbPages.'}';
+			return '{'.$this->alias_tot_pages.'}';
 		}
-		return $this->AliasNbPages;
-	}
-
-	/**
-	 * Defines a string alias for the page number. It will be substituted as the document is closed.
-	 * @param $numalias (string) The alias.
-	 * @since 4.5.000 (2009-01-02)
-	 * @see getAliasNbPages(), PageNo(), Footer()
-	 * @public
-	 */
-	public function AliasNumPage($numalias="{pnb}") {
-		$this->AliasNumPage = $numalias;
+		return $this->alias_tot_pages;
 	}
 
 	/**
@@ -15811,14 +15865,44 @@ class TCPDF {
 	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
 	 * @return string
 	 * @since 4.5.000 (2009-01-02)
-	 * @see AliasNbPages(), PageNo(), Footer()
+	 * @see alias_tot_pages(), PageNo(), Footer()
 	 * @public
 	 */
 	public function getAliasNumPage() {
 		if ($this->isUnicodeFont()) {
-			return '{'.$this->AliasNumPage.'}';
+			return '{'.$this->alias_num_page.'}';
 		}
-		return $this->AliasNumPage;
+		return $this->alias_num_page;
+	}
+
+	/**
+	 * Return the alias for the total number of pages in the current page group
+	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
+	 * (will be replaced by the total number of pages in this group).
+	 * @return alias of the current page group
+	 * @public
+	 * @since 3.0.000 (2008-03-27)
+	 */
+	public function getPageGroupAlias() {
+		if ($this->isUnicodeFont()) {
+			return '{'.$this->alias_group_tot_pages.'}';
+		}
+		return $this->alias_group_tot_pages;
+	}
+
+	/**
+	 * Return the alias for the page number on the current page group
+	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
+	 * (will be replaced by the total number of pages in this group).
+	 * @return alias of the current page group
+	 * @public
+	 * @since 4.5.000 (2009-01-02)
+	 */
+	public function getPageNumGroupAlias() {
+		if ($this->isUnicodeFont()) {
+			return '{'.$this->alias_group_num_page.'}';
+		}
+		return $this->alias_group_num_page;
 	}
 
 	/**
@@ -15839,36 +15923,6 @@ class TCPDF {
 	 */
 	public function getGroupPageNoFormatted() {
 		return $this->formatPageNumber($this->getGroupPageNo());
-	}
-
-	/**
-	 * Return the alias of the current page group
-	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
-	 * (will be replaced by the total number of pages in this group).
-	 * @return alias of the current page group
-	 * @public
-	 * @since 3.0.000 (2008-03-27)
-	 */
-	public function getPageGroupAlias() {
-		if ($this->isUnicodeFont()) {
-			return '{'.$this->currpagegroup.'}';
-		}
-		return $this->currpagegroup;
-	}
-
-	/**
-	 * Return the alias for the page number on the current page group
-	 * If the current font is unicode type, the returned string is surrounded by additional curly braces.
-	 * (will be replaced by the total number of pages in this group).
-	 * @return alias of the current page group
-	 * @public
-	 * @since 4.5.000 (2009-01-02)
-	 */
-	public function getPageNumGroupAlias() {
-		if ($this->isUnicodeFont()) {
-			return '{'.str_replace('{nb', '{pnb', $this->currpagegroup).'}';
-		}
-		return str_replace('{nb', '{pnb', $this->currpagegroup);
 	}
 
 	/**
@@ -23201,8 +23255,19 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		if (isset($this->PageAnnots[$frompage])) {
 			$tmpannots = $this->PageAnnots[$frompage];
 		}
-		if (isset($this->newpagegroup[$frompage])) {
-			$tmpnewpagegroup = $this->newpagegroup[$frompage];
+		if (isset($this->newpagegroup) AND !empty($this->newpagegroup)) {
+			for ($i = $frompage; $i > $topage; --$i) {
+				if (isset($this->newpagegroup[$i]) AND (($i + $this->pagegroups[$this->newpagegroup[$i]]) > $frompage)) {
+					--$this->pagegroups[$this->newpagegroup[$i]];
+					break;
+				}
+			}
+			for ($i = $topage; $i > 0; --$i) {
+				if (isset($this->newpagegroup[$i]) AND (($i + $this->pagegroups[$this->newpagegroup[$i]]) > $topage)) {
+					++$this->pagegroups[$this->newpagegroup[$i]];
+					break;
+				}
+			}
 		}
 		for ($i = $frompage; $i > $topage; --$i) {
 			$j = $i - 1;
@@ -23235,8 +23300,10 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			}
 			if (isset($this->newpagegroup[$j])) {
 				$this->newpagegroup[$i] = $this->newpagegroup[$j];
-			} elseif (isset($this->newpagegroup[$i])) {
-				unset($this->newpagegroup[$i]);
+				unset($this->newpagegroup[$j]);
+			}
+			if ($this->currpagegroup == $j) {
+				$this->currpagegroup = $i;
 			}
 		}
 		$this->pages[$topage] = $tmppage;
@@ -23264,11 +23331,6 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			$this->PageAnnots[$topage] = $tmpannots;
 		} elseif (isset($this->PageAnnots[$topage])) {
 			unset($this->PageAnnots[$topage]);
-		}
-		if (isset($tmpnewpagegroup)) {
-			$this->newpagegroup[$topage] = $tmpnewpagegroup;
-		} elseif (isset($this->newpagegroup[$topage])) {
-			unset($this->newpagegroup[$topage]);
 		}
 		// adjust outlines
 		$tmpoutlines = $this->outlines;
@@ -23340,8 +23402,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		if (isset($this->PageAnnots[$page])) {
 			unset($this->PageAnnots[$page]);
 		}
-		if (isset($this->newpagegroup[$page])) {
-			unset($this->newpagegroup[$page]);
+		if (isset($this->newpagegroup) AND !empty($this->newpagegroup)) {
+			for ($i = $page; $i > 0; --$i) {
+				if (isset($this->newpagegroup[$i]) AND (($i + $this->pagegroups[$this->newpagegroup[$i]]) > $page)) {
+					--$this->pagegroups[$this->newpagegroup[$i]];
+					break;
+				}
+			}
 		}
 		if (isset($this->pageopen[$page])) {
 			unset($this->pageopen[$page]);
@@ -23379,8 +23446,10 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				}
 				if (isset($this->newpagegroup[$j])) {
 					$this->newpagegroup[$i] = $this->newpagegroup[$j];
-				} elseif (isset($this->newpagegroup[$i])) {
-					unset($this->newpagegroup[$i]);
+					unset($this->newpagegroup[$j]);
+				}
+				if ($this->currpagegroup == $j) {
+					$this->currpagegroup = $i;
 				}
 				if (isset($this->pageopen[$j])) {
 					$this->pageopen[$i] = $this->pageopen[$j];
@@ -23409,6 +23478,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			}
 			if (isset($this->newpagegroup[$this->numpages])) {
 				unset($this->newpagegroup[$this->numpages]);
+			}
+			if ($this->currpagegroup == $this->numpages) {
+				$this->currpagegroup = ($this->numpages - 1);
+			}
+			if (isset($this->pagegroups[$this->numpages])) {
+				unset($this->pagegroups[$this->numpages]);
 			}
 			if (isset($this->pageopen[$this->numpages])) {
 				unset($this->pageopen[$this->numpages]);
@@ -23470,10 +23545,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		if (($page < 1) OR ($page > $this->numpages)) {
 			return false;
 		}
-		if ($page == $this->page) {
-			// close the page before cloning it
-			$this->endPage();
-		}
+		// close the last page
+		$this->endPage();
 		// copy all page-related states
 		++$this->numpages;
 		$this->page = $this->numpages;
@@ -23497,7 +23570,12 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			$this->PageAnnots[$this->page] = $this->PageAnnots[$page];
 		}
 		if (isset($this->newpagegroup[$page])) {
-			$this->newpagegroup[$this->page] = $this->newpagegroup[$page];
+			// start a new group
+			$this->newpagegroup[$this->page] = sizeof($this->newpagegroup) + 1;
+			$this->currpagegroup = $this->newpagegroup[$this->page];
+			$this->pagegroups[$this->currpagegroup] = 1;
+		} elseif (isset($this->currpagegroup) AND ($this->currpagegroup > 0)) {
+			++$this->pagegroups[$this->currpagegroup];
 		}
 		// copy outlines
 		$tmpoutlines = $this->outlines;
