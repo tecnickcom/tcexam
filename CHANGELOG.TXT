@@ -1,3 +1,6 @@
+11.2.007 (2011-06-15)
+	- TCPDF library was updated for improvements and bugfixes.
+
 11.2.006 (2011-06-14)
 	- TCPDF library was updated for improvements and bugfixes.
 
