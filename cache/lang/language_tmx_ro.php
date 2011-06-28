@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2011-05-21 13:10:32
+// DATE: 2011-06-21 17:33:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -560,15 +560,15 @@ $tmx['hp_select_media_file']='Această pagină vă permite să introduceţi un f
 $tmx['w_owner']='proprietar';
 $tmx['h_module_owner']='proprietarul acestui modul';
 $tmx['h_topic_owner']='proprietarul acestei teme';
-$tmx['t_omr_answers_importer']='Import Answers (OMR)';
-$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
-$tmx['w_import_omr_answers']='import answers';
-$tmx['w_omr_data_page']='OMR DATA';
-$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
-$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
-$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
-$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
-$tmx['m_import_ok']='the import process has been successfully completed';
-$tmx['m_import_error']='the import process has failed';
+$tmx['t_omr_answers_importer']='Import Răspunsuri (OMR)';
+$tmx['hp_omr_answers_importer']='Cu acest formular puteţi importa răspunsurile utilizatorilor din imaginile scanate ale fişelor de răspuns. Imaginile vor fi procesate folosind sistemul Optical Mark Recognition (OMR) (Recunoaşterea Optică a Marcărilor) pentru a identifica datele testului şi răspunsurile utilizatorului. Datele importate vor suprascrie rezultatele existente. Fişele OMR trebuie să fie scanate cu întreaga gamă color la o rezoluţie de 200DPI sau mai mult.';
+$tmx['w_import_omr_answers']='import răspunsuri';
+$tmx['w_omr_data_page']='DATE OMR';
+$tmx['w_omr_answer_sheet']='FIŞĂ RĂSPUNSURI OMR';
+$tmx['h_omr_data_page']='imaginea scanată a paginii notată DATE OMR';
+$tmx['m_omr_wrong_test_data']='imaginea paginii DATE OMR lipseşte sau nu poate fi citită';
+$tmx['m_omr_wrong_answer_sheet']='imaginea paginii FIŞĂ RĂSPUNSURI OMR lipseşte sau nu poate fi citită';
+$tmx['m_import_ok']='procesul de import a fost încheiat cu succes';
+$tmx['m_import_error']='procesul de import a eşuat';
 
 // --- EOF ---

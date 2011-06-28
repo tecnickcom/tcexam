@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2011-05-21
+// Last Update : 2011-06-28
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -648,6 +648,28 @@ for ($item = 1; $item <= $test_num; $item++) {
 	$num_questions = count($barcode_test_data) - 1;
 	$num_omr_pages = ceil($num_questions / 30); // max 30 questions per page
 
+	// remove barcode from footer
+	$pdf->setBarcode('');
+
+	// set style for barcodes containing first question number
+	$bcstyle = array(
+		'position' => 'C',
+		'align' => 'C',
+		'stretch' => false,
+		'fitwidth' => false,
+		'cellfitalign' => '',
+		'border' => false,
+		'padding' => 0,
+		'fgcolor' => array(0,0,0),
+		'bgcolor' => false,
+		'text' => false
+	);
+	// barcode y position
+	$bcy = $pagedim['hk'] - $pdf->getFooterMargin() - 12;
+
+	// disable auto-page-break
+	$pdf->SetAutoPageBreak(false, 0);
+
 	for ($omrpage = 0; $omrpage < $num_omr_pages; ++$omrpage) {
 		$pdf->AddPage();
 
@@ -670,9 +692,6 @@ for ($item = 1; $item <= $test_num; $item++) {
 		// set the starting row number (starting question number)
 		$first_question = (1 + (30 * $omrpage));
 		$qnum = sprintf('%04d', $first_question);
-
-		// set footer barcode to identify starting question number
-		$pdf->setBarcode($qnum);
 
 		// --------------------
 
@@ -758,7 +777,7 @@ for ($item = 1; $item <= $test_num; $item++) {
 
 		// --------------------
 
-		// top alignment marks for columns
+		// bottom alignment marks for columns
 		$x = $start_x + $align_mark_lenght + 9;
 		$y += $circle_half_width;
 		$pdf->SetFont('helvetica', '', 10);
@@ -772,6 +791,9 @@ for ($item = 1; $item <= $test_num; $item++) {
 		}
 
 		// --------------------
+
+		// set barcode to identify starting question number
+		$pdf->write1DBarcode($qnum, 'C128C', 0, $bcy, '', 10, 0.8, $bcstyle, '');
 
 		// reset RTL mode
 		$pdf->setRTL($rtl);

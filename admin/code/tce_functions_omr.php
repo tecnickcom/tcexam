@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2011-05-21
+// Last Update : 2011-06-28
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -95,7 +95,7 @@ function F_decodeOMRTestDataQRCode($image) {
 }
 
 /**
- * Decode a signle OMR Page and return data array.
+ * Decode a single OMR Page and return data array.
  * This function requires ImageMagick library and zbarimg (http://zbar.sourceforge.net/).
  * @param $image (string) image file to be decoded (scanned OMR page at 200 DPI with full color range).
  * @return array of answers data or false in case of error.
@@ -141,15 +141,28 @@ function F_decodeOMRPage($image) {
 	$imgtmp->clear();
 	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
 	$img->setImagePage(0, 0, 0, 0);
-	// resize image
-	$img->resizeImage(1028, 1052, Imagick::FILTER_CUBIC, 1);
-	$img->setImagePage(0, 0, 0, 0);
 	// increase contrast
 	$img->normalizeImage(Imagick::CHANNEL_ALL);
 	$img->enhanceImage();
 	$img->despeckleImage();
 	// straighten image
 	$img->deskewImage(40);
+	$img->setImagePage(0, 0, 0, 0);
+	// trim image (remove white border)
+	$imgtmp = $img->clone();
+	$color = '#808080';
+	$img->blackthresholdImage("$color");
+	$img->whitethresholdImage("$color");
+	$img->trimImage(85);
+	$imgpage = $img->getImagePage();
+	$w = $img->getImageWidth();
+	$h = $img->getImageHeight();
+	$img = $imgtmp->clone();
+	$imgtmp->clear();
+	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
+	$img->setImagePage(0, 0, 0, 0);
+	// resize image
+	$img->resizeImage(1028, 1052, Imagick::FILTER_CUBIC, 1);
 	$img->setImagePage(0, 0, 0, 0);
 	// binarize image
 	$color = '#c0c0c0';
@@ -252,7 +265,7 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 	$test_id = intval($omr_testdata[0]);
 	$user_id = intval($user_id);
 	$time = strtotime($date);
-	$date = date(K_TIMESTAMP_FORMAT, $time); 
+	$date = date(K_TIMESTAMP_FORMAT, $time);
 	$dateanswers = date(K_TIMESTAMP_FORMAT, ($time + 1));
 	// check user's group
 	if (F_count_rows(K_TABLE_USERGROUP.', '.K_TABLE_TEST_GROUPS.' WHERE usrgrp_group_id=tstgrp_group_id AND tstgrp_test_id='.$test_id.' AND usrgrp_user_id='.$user_id.' LIMIT 1') == 0) {
@@ -430,7 +443,7 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 					$change_time = $dateanswers;
 				}
 				// update question score
-				$sqll = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET 
+				$sqll = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET
 					testlog_score='.$qscore.',
 					testlog_change_time='.F_empty_to_null($change_time).',
 					testlog_reaction_time=1000

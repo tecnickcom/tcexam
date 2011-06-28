@@ -87,12 +87,12 @@ define ('PDF_PAGE_ORIENTATION', 'P');
 /**
  * Document creator.
  */
-define ('PDF_CREATOR', 'TCExam 10');
+define ('PDF_CREATOR', 'TCExam 11');
 
 /**
  * Document author.
  */
-define ('PDF_AUTHOR', 'TCExam 10');
+define ('PDF_AUTHOR', 'TCExam 11');
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
