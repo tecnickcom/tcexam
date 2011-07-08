@@ -1,3 +1,7 @@
+11.2.010 (2011-06-28)
+	- Arabic language was updated.
+	- TCPDF library was updated.
+
 11.2.009 (2011-06-28)
 	- OMR system (offline testing) was improved.
 	- TCPDF library was updated for improvements and bugfixes.
