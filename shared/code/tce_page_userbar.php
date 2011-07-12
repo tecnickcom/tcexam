@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_userbar.php
 // Begin       : 2004-04-24
-// Last Update : 2011-04-26
+// Last Update : 2011-07-12
 //
 // Description : Display user's bar containing copyright
 //               information, user status and language
@@ -20,7 +20,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -80,14 +80,15 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 		if ($lang_code == K_USER_LANG) {
 			$lngstr .= '<span class="selected" title="'.$lang_name.'">'.strtoupper($lang_code).'</span>';
 		} else {
-			if (isset($_SERVER['QUERY_STRING']) AND (strlen($_SERVER['QUERY_STRING'])>0)) {
-				$querystr = preg_replace("/([\?|\&]?)lang=([a-z]{2,3})/si", '', $_SERVER['QUERY_STRING']);
-			}
-			if (isset($querystr) AND (strlen($querystr)>0)) {
-				$langlink = $_SERVER['SCRIPT_NAME'].'?'.str_replace('&', '&amp;', $querystr).'&amp;lang='.$lang_code;
-			} else {
+			// query string was removed because unnecessary
+			//if (isset($_SERVER['QUERY_STRING']) AND (strlen($_SERVER['QUERY_STRING'])>0)) {
+			//	$querystr = preg_replace("/([\?|\&]?)lang=([a-z]{2,3})/si", '', $_SERVER['QUERY_STRING']);
+			//}
+			//if (isset($querystr) AND (strlen($querystr)>0)) {
+			//	$langlink = $_SERVER['SCRIPT_NAME'].'?'.str_replace('&', '&amp;', $querystr).'&amp;lang='.$lang_code;
+			//} else {
 				$langlink = $_SERVER['SCRIPT_NAME'].'?lang='.$lang_code;
-			}
+			//}
 			$lngstr .= '<a href="'.$langlink.'" class="langselector" title="'.$lang_name.'">'.strtoupper($lang_code).'</a>';
 		}
 	}

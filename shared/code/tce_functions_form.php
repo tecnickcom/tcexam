@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2011-05-20
+// Last Update : 2011-07-12
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -53,24 +53,24 @@
 $formstatus = TRUE; //reset form status
 
 // check buttons actions
-if(isset($_POST['update'])) {
+if (isset($_POST['update'])) {
 	$menu_mode = 'update';
-} elseif(isset($_POST['delete'])) {
+} elseif (isset($_POST['delete'])) {
 	$menu_mode = 'delete';
-} elseif(isset($_POST['forcedelete'])) {
+} elseif (isset($_POST['forcedelete'])) {
 	$menu_mode = 'forcedelete';
-} elseif(isset($_POST['cancel'])) {
+} elseif (isset($_POST['cancel'])) {
 	$menu_mode = 'cancel';
-} elseif(isset($_POST['add'])) {
+} elseif (isset($_POST['add'])) {
 	$menu_mode = 'add';
-} elseif(isset($_POST['clear'])) {
+} elseif (isset($_POST['clear'])) {
 	$menu_mode = 'clear';
-} elseif(isset($_POST['upload'])) {
+} elseif (isset($_POST['upload'])) {
 	$menu_mode = 'upload';
-} elseif(isset($_POST['addquestion'])) {
+} elseif (isset($_POST['addquestion'])) {
 	$menu_mode = 'addquestion';
 }
-if(!isset($menu_mode)) {
+if (!isset($menu_mode)) {
 	$menu_mode = '';
 }
 
@@ -89,7 +89,7 @@ function F_decode_form_fields() {
  * @return array containing a list of missing fields (if any)
  */
 function F_check_required_fields($formfields) {
-	if(empty($formfields) OR !array_key_exists('ff_required', $formfields) OR strlen($formfields['ff_required']) <= 0) {
+	if (empty($formfields) OR !array_key_exists('ff_required', $formfields) OR strlen($formfields['ff_required']) <= 0) {
 		return FALSE;
 	}
 	$missing_fields = '';
@@ -97,14 +97,16 @@ function F_check_required_fields($formfields) {
 	$required_fields_labels = explode(',',$formfields['ff_required_labels']); // form fields labels
 	for($i=0; $i<count($required_fields); $i++) { //for each required field
 		$fieldname = trim($required_fields[$i]);
-		if(!array_key_exists($fieldname, $formfields) OR strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
+		$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
+		if (!array_key_exists($fieldname, $formfields) OR strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
 			if ($required_fields_labels[$i]) { // check if field has label
 				$fieldname = $required_fields_labels[$i];
+				$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 			}
 			$missing_fields .= ', '.stripslashes($fieldname);
 		}
 	}
-	if(strlen($missing_fields)>1) {
+	if (strlen($missing_fields)>1) {
 		$missing_fields = substr($missing_fields, 1); // cuts first comma
 	}
 	return ($missing_fields);
@@ -123,25 +125,27 @@ function F_check_required_fields($formfields) {
  * @return array containing a list of wrongfields (if any)
  */
 function F_check_fields_format($formfields) {
-	if(empty($formfields)) {
+	if (empty($formfields)) {
 		return '';
 	}
 	reset($formfields);
 	$wrongfields = '';
-	while(list($key,$value) = each($formfields)) {
-		if(substr($key,0,2) == 'x_') {
+	while (list($key,$value) = each($formfields)) {
+		if (substr($key,0,2) == 'x_') {
 			$fieldname = substr($key,2);
-			if(array_key_exists($fieldname, $formfields) AND strlen($formfields[$fieldname]) > 0) { //if is not empty
-				if(!preg_match("'".stripslashes($value)."'i", $formfields[$fieldname])) { //check regular expression
-					if ($formfields['xl_'.$fieldname]) { //check if field has label
+			$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
+			if (array_key_exists($fieldname, $formfields) AND strlen($formfields[$fieldname]) > 0) { //if is not empty
+				if (!preg_match("'".stripslashes($value)."'i", $formfields[$fieldname])) { //check regular expression
+					if (isset($formfields['xl_'.$fieldname]) AND !empty($formfields['xl_'.$fieldname])) { //check if field has label
 						$fieldname = $formfields['xl_'.$fieldname];
+						$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 					}
 					$wrongfields .= ', '.stripslashes($fieldname);
 				}
 			}
 		}
 	}
-	if(strlen($wrongfields) > 1) {
+	if (strlen($wrongfields) > 1) {
 		$wrongfields = substr($wrongfields, 2); // cuts first 2 chars
 	}
 	return ($wrongfields);
@@ -157,13 +161,13 @@ function F_check_form_fields() {
 	global $l;
 	$formfields = F_decode_form_fields(); //decode form fields
 	//check missing fields
-	if($missing_fields = F_check_required_fields($formfields)) {
+	if ($missing_fields = F_check_required_fields($formfields)) {
 		F_print_error('WARNING', $l['m_form_missing_fields'].': '.$missing_fields);
 		F_stripslashes_formfields();
 		return FALSE;
 	}
 	//check fields format
-	if($wrong_fields = F_check_fields_format($formfields)) {
+	if ($wrong_fields = F_check_fields_format($formfields)) {
 		F_print_error('WARNING', $l['m_form_wrong_fields'].': '.$wrong_fields);
 		F_stripslashes_formfields();
 		return FALSE;
@@ -177,6 +181,7 @@ function F_check_form_fields() {
 function F_stripslashes_formfields() {
 	foreach ($_POST as $key => $value) {
 		if (($key{0} != '_') AND (is_string($value))) {
+			$key = preg_replace('/[^a-z0-9_\[\]]/i', '', $key);
 			global $$key;
 			$$key = stripslashes($value);
 		}

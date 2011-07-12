@@ -1,3 +1,7 @@
+11.2.011 (2011-07-12)
+	- IMPORTANT: This version includes some security fixes. Thanks to Gjoko Krstic, Zero Science Lab (http://www.zeroscience.mk) for testing and reporting.
+	- Azerbaijani language was added.
+
 11.2.010 (2011-06-28)
 	- Arabic language was updated.
 	- TCPDF library was updated.

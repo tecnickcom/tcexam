@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_mediafile.php
 // Begin       : 2010-09-20
-// Last Update : 2011-01-20
+// Last Update : 2011-07-12
 //
 // Description : Select media file for questions or answer description
 //
@@ -64,11 +64,17 @@ require_once('../code/tce_page_header_popup.php');
 $params = '';
 if (isset($_REQUEST['frm'])) {
 	$callingform = $_REQUEST['frm'];
+	$callingform = preg_replace('/[^a-z0-9_]/', '', $callingform);
 	$params .= '&amp;frm='.$callingform;
+} else {
+	$callingform = '';
 }
 if (isset($_REQUEST['fld'])) {
 	$callingfield = $_REQUEST['fld'];
+	$callingfield = preg_replace('/[^a-z0-9_]/', '', $callingfield);
 	$params .= '&amp;fld='.$callingfield;
+} else {
+	$callingfield = '';	
 }
 
 if (isset($_REQUEST['v'])) {

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-24
+// Last Update : 2011-07-12
 //
 // Description : Display test results for specified user.
 //
@@ -71,6 +71,8 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$test_id = 0;
 }
 if (isset($_REQUEST['user_id'])) {
 	$user_id = intval($_REQUEST['user_id']);
@@ -78,9 +80,13 @@ if (isset($_REQUEST['user_id'])) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$user_id = 0;
 }
 if (isset($_REQUEST['testuser_id'])) {
 	$testuser_id = intval($_REQUEST['testuser_id']);
+} else {
+	$testuser_id = 0;
 }
 if (isset($_REQUEST['selectcategory'])) {
 	$changecategory = 1;

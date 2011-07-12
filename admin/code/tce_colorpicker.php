@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_colorpicker.php
 // Begin       : 2001-11-05
-// Last Update : 2010-09-22
+// Last Update : 2011-07-12
 //
 // Description : HTML Color Picker Functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -69,7 +69,12 @@ function F_html_color_picker($callingform, $callingfield, $tag) {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/htmlcolors.php');
 	require_once('../../shared/code/tce_functions_form.php');
-	
+
+	// sanitize input parameters
+	$callingform = preg_replace('/[^a-z0-9_]/', '', $callingform);
+	$callingfield = preg_replace('/[^a-z0-9_]/', '', $callingfield);
+	$tag = preg_replace('/[^a-z0-9_]/', '', $tag);
+
 	echo '<div style="margin:0;padding:0;">'.K_NEWLINE;
 	echo '<a onclick="FJ_pick_color(0); document.getElementById(\'colorname\').selectedIndex=0;"><img src="'.K_PATH_IMAGES.'buttons/colortable.jpg" alt="" id="colorboard" width="320" height="300" style="margin:0;padding:0;border:none;" /></a>'.K_NEWLINE;
 	echo K_NEWLINE;

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_email.php
 // Begin       : 2010-09-17
-// Last Update : 2011-05-20
+// Last Update : 2011-07-12
 //
 // Description : Form to change user email
 //
@@ -64,9 +64,9 @@ $user_id = intval($_SESSION['session_user_id']);
 switch($menu_mode) {
 
 	case 'update':{ // Update user
-		if($formstatus = F_check_form_fields()) {
+		if ($formstatus = F_check_form_fields()) {
 			// check password
-			if(!empty($user_email) OR !empty($user_email_repeat)) {
+			if (!empty($user_email) OR !empty($user_email_repeat)) {
 				if($user_email != $user_email_repeat) {
 					//print message and exit
 					F_print_error('WARNING', $l['m_different_emails']);
@@ -82,7 +82,7 @@ switch($menu_mode) {
 				user_level=\'0\',
 				user_verifycode=\''.$user_verifycode.'\'
 				WHERE user_id='.$user_id.' AND user_password=\''.md5($currentpassword).'\'';
-			if(!$r = F_db_query($sql, $db)) {
+			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {
 				F_print_error('MESSAGE', $l['m_email_updated']);

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2011-05-20
+// Last Update : 2011-07-12
 //
 // Description : Editor to manually rate free text answers.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -77,6 +77,8 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$test_id = 0;
 }
 
 switch($menu_mode) {

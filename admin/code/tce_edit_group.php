@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2011-05-20
+// Last Update : 2011-07-12
 //
 // Description : Edit users' groups.
 //
@@ -71,9 +71,13 @@ if (isset($_REQUEST['group_id'])) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$group_id = 0;
 }
 if (isset($_REQUEST['group_name'])) {
 	$group_name = $_REQUEST['group_name'];
+} else {
+	$group_name = '';	
 }
 
 switch($menu_mode) { // process submitted data
@@ -228,8 +232,7 @@ if($r = F_db_query($sql, $db)) {
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 		$countitem++;
 	}
-}
-else {
+} else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }

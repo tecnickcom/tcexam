@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2011-05-21
+// Last Update : 2011-07-12
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -107,6 +107,8 @@ if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
 			F_display_db_error();
 		}
 	}
+} else {
+	$subject_id = 0;
 }
 
 switch($menu_mode) {

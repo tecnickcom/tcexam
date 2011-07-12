@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2011-05-21
+// Last Update : 2011-07-12
 // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -194,6 +194,8 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$test_id = 0;
 }
 
 if (isset($_POST['lock'])) {

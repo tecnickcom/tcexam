@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2011-05-20
+// Last Update : 2011-07-12
 //
 // Description : Display form to edit modules.
 //
@@ -82,6 +82,8 @@ if (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+} else {
+	$module_id = 0;
 }
 
 switch($menu_mode) {

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2011-05-21
+// Last Update : 2011-07-12
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -70,6 +70,14 @@ if(isset($_POST['backup'])) {
 	$menu_mode = 'forcerestore';
 } elseif(isset($_POST['download'])) {
 	$menu_mode = 'download';
+}
+
+// check backup filename
+if (isset($backup_file) AND !empty($backup_file)) {
+	if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) OR (strlen($backup_file) != 35) OR (substr($backup_file, -3) != '.gz')) {
+		// ERROR
+		F_print_error('ERROR', 'SECURITY ERROR');
+	}
 }
 
 switch($menu_mode) { // process submited data
@@ -165,31 +173,26 @@ switch($menu_mode) { // process submited data
 
 	case 'download':{
 		if (K_DOWNLOAD_BACKUPS AND isset($backup_file) AND !empty($backup_file)) {
-			if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) OR (strlen($backup_file) != 35) OR (substr($backup_file, -3) != '.gz')) {
-				// ERROR
-				F_print_error('ERROR', 'SECURITY ERROR');
-			} else {
-				$file_to_download = K_PATH_BACKUP.$backup_file;
-				// send headers
-				header('Content-Description: File Transfer');
-				header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-				header('Pragma: public');
-				header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-				header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-				// force download dialog
-				header('Content-Type: application/force-download');
-				header('Content-Type: application/octet-stream', false);
-				header('Content-Type: application/download', false);
-				header('Content-Type: application/x-gzip', false);
-				// use the Content-Disposition header to supply a recommended filename
-				header('Content-Disposition: attachment; filename='.$backup_file.';');
-				header('Content-Transfer-Encoding: binary');
-				header('Content-Length: '.filesize($file_to_download));
-				ob_clean();
-				flush();
-				echo file_get_contents($file_to_download);
-				exit;
-			}
+			$file_to_download = K_PATH_BACKUP.$backup_file;
+			// send headers
+			header('Content-Description: File Transfer');
+			header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+			header('Pragma: public');
+			header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+			// force download dialog
+			header('Content-Type: application/force-download');
+			header('Content-Type: application/octet-stream', false);
+			header('Content-Type: application/download', false);
+			header('Content-Type: application/x-gzip', false);
+			// use the Content-Disposition header to supply a recommended filename
+			header('Content-Disposition: attachment; filename='.$backup_file.';');
+			header('Content-Transfer-Encoding: binary');
+			header('Content-Length: '.filesize($file_to_download));
+			ob_clean();
+			flush();
+			echo file_get_contents($file_to_download);
+			exit;
 		}
 		break;
 	}

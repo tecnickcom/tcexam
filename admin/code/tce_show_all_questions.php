@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-05-24
+// Last Update : 2011-07-12
 //
 // Description : Display all questions grouped by topic.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -95,8 +95,10 @@ if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AN
 	}
 }
 
-// select default module/subject (if not specified)
-if (!(isset($subject_module_id) AND ($subject_module_id > 0))) {
+if (isset($subject_module_id)) {
+	$subject_module_id = intval($subject_module_id);
+} else {
+	// select default module/subject (if not specified)
 	$sql = F_select_modules_sql().' LIMIT 1';
 	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {

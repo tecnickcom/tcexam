@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2011-05-24
+// Last Update : 2011-07-12
 //
 // Description : Display user selection table.
 //
@@ -62,6 +62,11 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('tce_functions_user_select.php');
 
 // set default values
+if (isset($new_group_id)) {
+	$new_group_id = intval($new_group_id);
+} else {
+	$new_group_id = 0;
+}
 if(!isset($order_field)) {$order_field='user_lastname,user_firstname';}
 if(!isset($orderdir)) {$orderdir=0;}
 if(!isset($firstrow)) {$firstrow=0;}
@@ -145,7 +150,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 		// for each selected question
 		$keyname = 'userid'.$i;
 		if (isset($$keyname)) {
-			$user_id = $$keyname;
+			$user_id = intval($$keyname);
 			switch($menu_mode) {
 				case 'delete': {
 					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS)
@@ -161,7 +166,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				}
 				case 'addgroup': {
 					if (($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS)
-						AND isset($new_group_id) AND ($new_group_id > 0)
+						AND ($new_group_id > 0)
 						AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$groups = F_get_user_groups($user_id);
 						if (!in_array($new_group_id, $groups)) {
@@ -181,7 +186,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 				}
 				case 'delgroup': {
 					if (($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS)
-						AND isset($new_group_id) AND ($new_group_id > 0) AND F_isAuthorizedEditorForGroup($new_group_id)) {
+						AND ($new_group_id > 0) AND F_isAuthorizedEditorForGroup($new_group_id)) {
 						$sql = 'DELETE FROM '.K_TABLE_USERGROUP.'
 							WHERE usrgrp_user_id='.$user_id.'
 								AND usrgrp_group_id='.$new_group_id.'';
