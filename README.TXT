@@ -11,9 +11,9 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.2.011
+Version: 11.2.012
 
-Release date: 2011-07-12
+Release date: 2011-07-13
 
 Author:
 	Nicola Asuni
@@ -95,6 +95,11 @@ Description:
 	different users by randomly selecting and sorting questions and alternative
 	answers. This feature drastically reduces or eliminates the chances of
 	cheating on the test.
+
+	* Paper Testing with Optical Character Recognition (OMR): TCExam can
+	generate printable PDF documents for pen-and-paper testing. The OMR answer
+	sheet can be scanned and uploaded to TCExam for automatic test importing,
+	scoring and reporting.
 
 	* Security: TCExam is more secure than traditional Pen-and-Paper testing.
 	It uses SSL (Secure Socket Layer) encryption and includes various

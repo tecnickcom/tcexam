@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2011-07-12
+// Last Update : 2011-07-13
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -183,7 +183,9 @@ function F_stripslashes_formfields() {
 		if (($key{0} != '_') AND (is_string($value))) {
 			$key = preg_replace('/[^a-z0-9_\[\]]/i', '', $key);
 			global $$key;
-			$$key = stripslashes($value);
+			if (!isset($$key)) {
+				$$key = stripslashes($value);
+			}
 		}
 	}
 }

@@ -1,3 +1,7 @@
+11.2.012 (2011-07-13)
+	- IMPORTANT: This version includes some security fixes. Thanks to Gjoko Krstic, Zero Science Lab (http://www.zeroscience.mk) for testing and reporting.
+	- TCPDF library was updated.
+
 11.2.011 (2011-07-12)
 	- IMPORTANT: This version includes some security fixes. Thanks to Gjoko Krstic, Zero Science Lab (http://www.zeroscience.mk) for testing and reporting.
 	- Azerbaijani language was added.

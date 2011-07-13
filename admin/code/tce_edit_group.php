@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2011-07-12
+// Last Update : 2011-07-13
 //
 // Description : Edit users' groups.
 //
@@ -89,20 +89,16 @@ switch($menu_mode) { // process submitted data
 			break;
 		}
 		F_print_error('WARNING', $l['m_delete_confirm']);
-		?>
-		<div class="confirmbox">
-		<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_delete">
-		<div>
-		<input type="hidden" name="group_id" id="group_id" value="<?php echo $group_id; ?>" />
-		<input type="hidden" name="group_name" id="group_name" value="<?php echo stripslashes($group_name); ?>" />
-		<?php
+		echo '<div class="confirmbox">'.K_NEWLINE;
+		echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_delete">'.K_NEWLINE;
+		echo '<div>'.K_NEWLINE;
+		echo '<input type="hidden" name="group_id" id="group_id" value="'.$group_id.'" />'.K_NEWLINE;
+		echo '<input type="hidden" name="group_name" id="group_name" value="'.stripslashes($group_name).'" />'.K_NEWLINE;
 		F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
 		F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
-		?>
-		</div>
-		</form>
-		</div>
-		<?php
+		echo '</div>'.K_NEWLINE;
+		echo '</form>'.K_NEWLINE;
+		echo '</div>'.K_NEWLINE;
 		break;
 	}
 
@@ -207,20 +203,19 @@ if($formstatus) {
 		}
 	}
 }
-?>
 
-<div class="container">
+echo '<div class="container">'.K_NEWLINE;
 
-<div class="tceformbox">
-<form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_groupeditor">
+echo '<div class="tceformbox">'.K_NEWLINE;
+echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_groupeditor">'.K_NEWLINE;
 
-<div class="row">
-<span class="label">
-<label for="group_id"><?php echo $l['w_group']; ?></label>
-</span>
-<span class="formw">
-<select name="group_id" id="group_id" size="0" onchange="document.getElementById('form_groupeditor').submit()">
-<?php
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="group_id">'.$l['w_group'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_groupeditor\').submit()">'.K_NEWLINE;
+
 $sql = F_user_group_select_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
