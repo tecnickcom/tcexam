@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2011-07-11 18:50:04
+// DATE: 2011-08-06 12:11:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -511,65 +511,64 @@ Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump 
 Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
 Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la \'operaciòn de restablecimiento.
 El expediente de cobertura viene registrado en la carpeta "cache/backup" con la siguiente sintaxis: AAAAMMGGhhmmss_tcexam_backup.sql.gz , donde AAAAMMGGhhmmss representa la cifra del\'año (A), mes (M), dia (G), hora (h), minutos (m), segundos (s).';
-$tmx['w_download']='download';
-$tmx['h_download']='download the selected backup file';
-$tmx['t_user_change_password']='Change Password';
-$tmx['t_user_change_email']='Change Email';
-$tmx['hp_user_change_password']='With this form you can change your access password.';
-$tmx['hp_user_change_email']='With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.';
-$tmx['m_password_updated']='the password has been updated';
-$tmx['m_email_updated']='the email has been updated';
-$tmx['m_different_emails']='the emails are different';
-$tmx['w_current_password']='current password';
-$tmx['w_new_password']='new password';
-$tmx['d_password_lenght']='at least 8 alphanumeric characters';
-$tmx['w_new_email']='new email';
-$tmx['h_email']='e-mail address';
-$tmx['h_login_link']='click on this link to access on this system';
-$tmx['w_change_email']='change email';
-$tmx['w_change_password']='change password';
-$tmx['w_admin']='admin';
-$tmx['h_admin_link']='administration area';
-$tmx['h_public_link']='public area';
-$tmx['w_public']='public';
-$tmx['t_test_list']='Test List';
-$tmx['w_action']='action';
-$tmx['w_show']='show';
-$tmx['w_hide']='hide';
-$tmx['w_change_dir']='change directory';
-$tmx['w_size']='size';
-$tmx['w_date']='date';
-$tmx['w_permissions']='permissions';
-$tmx['t_filemanager']='Media File Manager';
-$tmx['hp_filemanager']='With this form you can manage multimedia files.';
-$tmx['m_used_file']='this file is used on question or answer description';
-$tmx['m_delete_file_error']='unable to delete the selected file or directory';
-$tmx['w_rename']='rename';
-$tmx['m_file_renamed']='the file has been renamed';
-$tmx['m_file_rename_error']='unable to rename the selected file';
-$tmx['m_file_already_exist']='this file or directory name is already used';
-$tmx['w_file_manager']='file manager';
-$tmx['w_new_directory']='new directory';
-$tmx['w_create_directory']='create';
-$tmx['m_directory_created']='the directory has been created';
-$tmx['m_directory_create_error']='unable to create the requested directory';
-$tmx['w_directory']='directory';
+$tmx['w_download']='descarga';
+$tmx['h_download']='descarga el archivo de backup seleccionado';
+$tmx['t_user_change_password']='Modifica Password';
+$tmx['t_user_change_email']='Modifica Email';
+$tmx['hp_user_change_password']='Atraves de esta máscara es posible modificar la propia password de acceso.';
+$tmx['hp_user_change_email']='Atraves de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.';
+$tmx['m_password_updated']='la password ha sido actualizada';
+$tmx['m_email_updated']='la password ha sido actualizada';
+$tmx['m_different_emails']='las emails son diferentes';
+$tmx['w_current_password']='password actual';
+$tmx['w_new_password']='nueva password';
+$tmx['d_password_lenght']='almenos 8 caracteres alfanumericos';
+$tmx['w_new_email']='nueva email';
+$tmx['h_email']='dirección e-mail';
+$tmx['h_login_link']='clicar en este link para acceder a este sistema';
+$tmx['w_change_email']='modifica email';
+$tmx['w_change_password']='modifica password';
+$tmx['w_admin']='administración';
+$tmx['h_admin_link']='area de administración';
+$tmx['h_public_link']='área pública';
+$tmx['w_public']='pública';
+$tmx['t_test_list']='Lista Test';
+$tmx['w_action']='acción';
+$tmx['w_hide']='oculta';
+$tmx['w_change_dir']='cambia directorio';
+$tmx['w_size']='dimensión';
+$tmx['w_date']='fecha';
+$tmx['w_permissions']='permisos';
+$tmx['t_filemanager']='Gestión Archivos Multimediales';
+$tmx['hp_filemanager']='Atraves de esta página es posible gestionar los archivos multimediales.';
+$tmx['m_used_file']='este archivo es utilizado en la descripción de una pregunta o respuesta';
+$tmx['m_delete_file_error']='imposible cancelar el archivo o la carpeta seleccionados';
+$tmx['w_rename']='renombra';
+$tmx['m_file_renamed']='el archivo ha sido renombrado';
+$tmx['m_file_rename_error']='impossble renombrar el archivo seleccionado';
+$tmx['m_file_already_exist']='este nombre de archivo o directorio ha sido ya utilizado';
+$tmx['w_file_manager']='gestión archivo';
+$tmx['w_new_directory']='nuevo directorio';
+$tmx['w_create_directory']='crea';
+$tmx['m_directory_created']='el directorio ha sido creado';
+$tmx['m_directory_create_error']='imposible crear el directorio requerido';
+$tmx['w_directory']='directorio';
 $tmx['w_table']='table';
 $tmx['w_visual']='visual';
-$tmx['t_select_media_file']='Select Object';
-$tmx['hp_select_media_file']='This page allows you to insert a multimedia file object in the current description. Select the object you want to insert, fill description fields and click the [add] button.';
-$tmx['w_owner']='owner';
-$tmx['h_module_owner']='owner of this module';
-$tmx['h_topic_owner']='owner of this topic';
-$tmx['t_omr_answers_importer']='Import Answers (OMR)';
-$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
-$tmx['w_import_omr_answers']='import answers';
+$tmx['t_select_media_file']='Selecciona Objeto';
+$tmx['hp_select_media_file']='Esta página consiente de insertar un objeto multimedial en la descripción corriente. Selecciona el objeto a insertar, rellenar los campos de descripción y presione el pulsante [añadir].';
+$tmx['w_owner']='propietario';
+$tmx['h_module_owner']='propietario de este modulo';
+$tmx['h_topic_owner']='poprietario de este argumento';
+$tmx['t_omr_answers_importer']='Importación Respuestas (OMR)';
+$tmx['hp_omr_answers_importer']='Atraves de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a almenos 200DPI.';
+$tmx['w_import_omr_answers']='importar respuestas';
 $tmx['w_omr_data_page']='OMR DATA';
 $tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
-$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
-$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
-$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
-$tmx['m_import_ok']='the import process has been successfully completed';
-$tmx['m_import_error']='the import process has failed';
+$tmx['h_omr_data_page']='imágenes escaneadas desde la página titulada OMR DATA';
+$tmx['m_omr_wrong_test_data']='la imagen de la página OMR DATA falta o es ilegible';
+$tmx['m_omr_wrong_answer_sheet']='la imagen de la página OMR ANSWER SHEET falta o es ilegible';
+$tmx['m_import_ok']='el proceso de importación ha sido completado con éxito';
+$tmx['m_import_error']='el proceso de importación ha fracasado';
 
 // --- EOF ---

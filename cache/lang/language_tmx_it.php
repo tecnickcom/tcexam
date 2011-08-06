@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2011-07-11 18:50:12
+// DATE: 2011-08-06 12:11:37
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -548,7 +548,7 @@ $tmx['m_used_file']='questo file è utilizzato nella descrizione di una domanda 
 $tmx['m_delete_file_error']='impossibile cancellare il file o la cartella selezionati';
 $tmx['w_rename']='rinomina';
 $tmx['m_file_renamed']='il file è stato rinominato';
-$tmx['m_file_rename_error']='impossibile rinominare il file selezonato';
+$tmx['m_file_rename_error']='impossibile rinominare il file selezionato';
 $tmx['m_file_already_exist']='questo nome di file o directory è già utilizzato';
 $tmx['w_file_manager']='gestione file';
 $tmx['w_new_directory']='nuova directory';
