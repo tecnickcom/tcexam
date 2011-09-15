@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2011-05-21
+// Last Update : 2011-09-14
 //
 // Description : Edit user data.
 //
@@ -138,6 +138,12 @@ switch($menu_mode) { // process submitted data
 	}
 
 	case 'update':{ // Update user
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if ($formstatus = F_check_form_fields()) {
 			// check if name is unique
 			if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($user_name).'\'', 'user_id', $user_id)) {
@@ -336,41 +342,53 @@ switch($menu_mode) { // process submitted data
 if ($formstatus) {
 	if ($menu_mode != 'clear') {
 		if (!isset($user_id) OR empty($user_id)) {
-			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_id='.$_SESSION['session_user_id'].' LIMIT 1';
+			$user_id = 0;
+			$user_regdate = '';
+			$user_ip = '';
+			$user_name = '';
+			$user_email = '';
+			$user_password = '';
+			$user_regnumber = '';
+			$user_firstname = '';
+			$user_lastname = '';
+			$user_birthdate = '';
+			$user_birthplace = '';
+			$user_ssn = '';
+			$user_level = '';
 		} else {
 			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id.' LIMIT 1';
-		}
-		if ($r = F_db_query($sql, $db)) {
-			if ($m = F_db_fetch_array($r)) {
-				$user_id = $m['user_id'];
-				$user_regdate = $m['user_regdate'];
-				$user_ip = $m['user_ip'];
-				$user_name = $m['user_name'];
-				$user_email = $m['user_email'];
-				$user_password = $m['user_password'];
-				$user_regnumber = $m['user_regnumber'];
-				$user_firstname = $m['user_firstname'];
-				$user_lastname = $m['user_lastname'];
-				$user_birthdate = substr($m['user_birthdate'],0,10);
-				$user_birthplace = $m['user_birthplace'];
-				$user_ssn = $m['user_ssn'];
-				$user_level = $m['user_level'];
+			if ($r = F_db_query($sql, $db)) {
+				if ($m = F_db_fetch_array($r)) {
+					$user_id = $m['user_id'];
+					$user_regdate = $m['user_regdate'];
+					$user_ip = $m['user_ip'];
+					$user_name = $m['user_name'];
+					$user_email = $m['user_email'];
+					$user_password = $m['user_password'];
+					$user_regnumber = $m['user_regnumber'];
+					$user_firstname = $m['user_firstname'];
+					$user_lastname = $m['user_lastname'];
+					$user_birthdate = substr($m['user_birthdate'],0,10);
+					$user_birthplace = $m['user_birthplace'];
+					$user_ssn = $m['user_ssn'];
+					$user_level = $m['user_level'];
+				} else {
+					$user_regdate = '';
+					$user_ip = '';
+					$user_name = '';
+					$user_email = '';
+					$user_password = '';
+					$user_regnumber = '';
+					$user_firstname = '';
+					$user_lastname = '';
+					$user_birthdate = '';
+					$user_birthplace = '';
+					$user_ssn = '';
+					$user_level = '';
+				}
 			} else {
-				$user_regdate = '';
-				$user_ip = '';
-				$user_name = '';
-				$user_email = '';
-				$user_password = '';
-				$user_regnumber = '';
-				$user_firstname = '';
-				$user_lastname = '';
-				$user_birthdate = '';
-				$user_birthplace = '';
-				$user_ssn = '';
-				$user_level = '';
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -386,6 +404,11 @@ echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_usereditor\').submit()">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($user_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 	// filter for level
@@ -408,8 +431,7 @@ if ($r = F_db_query($sql, $db)) {
 		echo '>'.$countitem.'. '.htmlspecialchars($m['user_lastname'].' '.$m['user_firstname'].' - '.$m['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 		$countitem++;
 	}
-}
-else {
+} else {
 	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
@@ -466,14 +488,18 @@ echo '<div class="row">'.K_NEWLINE;
 // show buttons by case
 if (isset($user_id) AND ($user_id > 0)) {
 	if (($user_level < $_SESSION['session_user_level']) OR ($user_id == $_SESSION['session_user_id']) OR ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR)) {
+		echo '<span style="background-color:#999999;">';
+		echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 		F_submit_button('update', $l['w_update'], $l['h_update']);
+		echo '</span>';
 	}
 	if (($user_id > 1) AND ($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) AND ($user_id != $_SESSION['session_user_id'])) {
 		// your account and anonymous user can't be deleted
 		F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 	}
+} else {
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 }
-F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '<input type="hidden" name="user_password" id="user_password" value="'.$user_password.'" />'.K_NEWLINE;

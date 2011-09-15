@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2011-07-12
+// Last Update : 2011-09-14
 //
 // Description : Display form to edit modules.
 //
@@ -136,6 +136,12 @@ switch($menu_mode) {
 	}
 
 	case 'update':{ // Update
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if($formstatus = F_check_form_fields()) {
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if(!F_check_unique(K_TABLE_SUBJECTS.','.K_TABLE_SUBJECT_SET, 'subjset_subject_id=subject_id AND subject_module_id='.$module_id.'')) {
@@ -235,23 +241,26 @@ switch($menu_mode) {
 if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if(!isset($module_id) OR empty($module_id)) {
-			$sql = F_select_modules_sql().' LIMIT 1';
+			$module_id = 0;
+			$module_name = '';
+			$module_enabled = true;
+			$module_user_id = intval($_SESSION['session_user_id']);
 		} else {
 			$sql = F_select_modules_sql('module_id='.$module_id).' LIMIT 1';
-		}
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
-				$module_id = $m['module_id'];
-				$module_name = $m['module_name'];
-				$module_enabled = F_getBoolean($m['module_enabled']);
-				$module_user_id = intval($m['module_user_id']);
+			if($r = F_db_query($sql, $db)) {
+				if($m = F_db_fetch_array($r)) {
+					$module_id = $m['module_id'];
+					$module_name = $m['module_name'];
+					$module_enabled = F_getBoolean($m['module_enabled']);
+					$module_user_id = intval($m['module_user_id']);
+				} else {
+					$module_name = '';
+					$module_enabled = true;
+					$module_user_id = intval($_SESSION['session_user_id']);
+				}
 			} else {
-				$module_name = '';
-				$module_enabled = true;
-				$module_user_id = intval($_SESSION['session_user_id']);
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -267,6 +276,11 @@ echo '<label for="module_id">'.$l['w_module'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="module_id" id="module_id" size="0" onchange="document.getElementById(\'form_moduleeditor\').submit()" title="'.$l['h_module_name'].'">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($module_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = F_select_modules_sql();
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -360,19 +374,20 @@ if ($rg = F_db_query($sqlg, $db)) {
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
-
-
-
 echo getFormRowCheckBox('module_enabled', $l['w_enabled'], $l['h_enabled'], '', 1, $module_enabled, false, '');
 
 echo '<div class="row">'.K_NEWLINE;
 
 // show buttons by case
 if (isset($module_id) AND ($module_id > 0)) {
+	echo '<span style="background-color:#999999;">';
+	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
+	echo '</span>';
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+} else {
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 }
-F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;

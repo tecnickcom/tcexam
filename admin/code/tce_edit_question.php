@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2011-05-21
+// Last Update : 2011-09-14
 //
 // Description : Edit questions
 //
@@ -252,6 +252,12 @@ switch($menu_mode) {
 	}
 
 	case 'update':{ // Update
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if($formstatus = F_check_form_fields()) {
 			// get previous question position (if defined)
 			$prev_question_position = 0;
@@ -499,49 +505,51 @@ if($formstatus) {
 		if ((isset($changemodule) AND ($changemodule > 0))
 			OR (isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($question_id)) OR empty($question_id)) {
-			$sql = 'SELECT *
-				FROM '.K_TABLE_QUESTIONS.'
-				WHERE question_subject_id='.$question_subject_id.'
-				ORDER BY question_position,';
-			if (K_DATABASE_TYPE == 'ORACLE') {
-				$sql .= 'CAST(question_description as varchar2(100))';
-			} else {
-				$sql .= 'question_description LIMIT 1';
-			}
+			$question_id = 0;
+			$question_description = '';
+			$question_explanation = '';
+			$question_type = 1;
+			$question_difficulty = 1;
+			$question_enabled = true;
+			$question_position = 0;
+			$question_timer = 0;
+			$question_fullscreen = false;
+			$question_inline_answers = false;
+			$question_auto_next = false;
 		} else {
 			$sql = 'SELECT *
 				FROM '.K_TABLE_QUESTIONS.'
 				WHERE question_id='.$question_id.'
 				LIMIT 1';
-		}
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
-				$question_id = $m['question_id'];
-				$question_subject_id = $m['question_subject_id'];
-				$question_description = $m['question_description'];
-				$question_explanation = $m['question_explanation'];
-				$question_type = $m['question_type'];
-				$question_difficulty = $m['question_difficulty'];
-				$question_enabled = F_getBoolean($m['question_enabled']);
-				$question_position = $m['question_position'];
-				$question_timer = $m['question_timer'];
-				$question_fullscreen = F_getBoolean($m['question_fullscreen']);
-				$question_inline_answers = F_getBoolean($m['question_inline_answers']);
-				$question_auto_next = F_getBoolean($m['question_auto_next']);
+			if($r = F_db_query($sql, $db)) {
+				if($m = F_db_fetch_array($r)) {
+					$question_id = $m['question_id'];
+					$question_subject_id = $m['question_subject_id'];
+					$question_description = $m['question_description'];
+					$question_explanation = $m['question_explanation'];
+					$question_type = $m['question_type'];
+					$question_difficulty = $m['question_difficulty'];
+					$question_enabled = F_getBoolean($m['question_enabled']);
+					$question_position = $m['question_position'];
+					$question_timer = $m['question_timer'];
+					$question_fullscreen = F_getBoolean($m['question_fullscreen']);
+					$question_inline_answers = F_getBoolean($m['question_inline_answers']);
+					$question_auto_next = F_getBoolean($m['question_auto_next']);
+				} else {
+					$question_description = '';
+					$question_explanation = '';
+					$question_type = 1;
+					$question_difficulty = 1;
+					$question_enabled = true;
+					$question_position = 0;
+					$question_timer = 0;
+					$question_fullscreen = false;
+					$question_inline_answers = false;
+					$question_auto_next = false;
+				}
 			} else {
-				$question_description = '';
-				$question_explanation = '';
-				$question_type = 1;
-				$question_difficulty = 1;
-				$question_enabled = true;
-				$question_position = 0;
-				$question_timer = 0;
-				$question_fullscreen = false;
-				$question_inline_answers = false;
-				$question_auto_next = false;
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -640,6 +648,11 @@ echo '<label for="question_id">'.$l['w_question'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="question_id" id="question_id" size="0" onchange="document.getElementById(\'form_questioneditor\').submit()" title="'.$l['h_question'].'">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($question_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_enabled DESC, question_position,';
 if (K_DATABASE_TYPE == 'ORACLE') {
 	$sql .= 'CAST(question_description as varchar2(100))';
@@ -791,10 +804,15 @@ echo '<div class="row">'.K_NEWLINE;
 
 // show buttons by case
 if (isset($question_id) AND ($question_id > 0)) {
+	echo '<span style="background-color:#999999;">';
+	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
-	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+	echo '</span>';
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
+if (isset($question_id) AND ($question_id > 0)) {
+	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+}
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;

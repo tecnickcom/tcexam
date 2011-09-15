@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.106
+// Version     : 5.9.116
 // Begin       : 2002-08-03
-// Last Update : 2011-08-04
+// Last Update : 2011-09-14
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -48,7 +48,7 @@
 //  * methods to publish some XHTML + CSS code, Javascript and Forms;
 //  * images, graphic (geometric figures) and transformation methods;
 //  * supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)
-//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code, PDF417;
+//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;
 //  * JPEG and PNG ICC profiles, Grayscale, RGB, CMYK, Spot Colors and Transparencies;
 //  * automatic page header and footer management;
 //  * document encryption up to 256 bit and digital signature certifications;
@@ -114,7 +114,7 @@
  * <li>methods to publish some XHTML + CSS code, Javascript and Forms;</li>
  * <li>images, graphic (geometric figures) and transformation methods;
  * <li>supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)</li>
- * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, QR-Code, PDF417;</li>
+ * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;</li>
  * <li>JPEG and PNG ICC profiles, Grayscale, RGB, CMYK, Spot Colors and Transparencies;</li>
  * <li>automatic page header and footer management;</li>
  * <li>document encryption up to 256 bit and digital signature certifications;</li>
@@ -136,7 +136,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.106
+ * @version 5.9.116
  */
 
 
@@ -146,7 +146,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.106
+ * @version 5.9.116
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -157,7 +157,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.106';
+	private $tcpdf_version = '5.9.116';
 
 	// Protected properties
 
@@ -6142,11 +6142,11 @@ class TCPDF {
 	 * @param $y (float) y position in user units
 	 * @param $reseth (boolean) if true reset the last cell height (default true).
 	 * @param $stretch (int) font stretch mode: <ul><li>0 = disabled</li><li>1 = horizontal scaling only if text is larger than cell width</li><li>2 = forced horizontal scaling to fit cell width</li><li>3 = character spacing only if text is larger than cell width</li><li>4 = forced character spacing to fit cell width</li></ul> General font stretching and scaling values will be preserved when possible.
-	 * @param $ishtml (boolean) set to true if $txt is HTML content (default = false).
+	 * @param $ishtml (boolean) INTERNAL USE ONLY -- set to true if $txt is HTML content (default = false). Never set this parameter to true, use instead writeHTMLCell() or writeHTML() methods.
 	 * @param $autopadding (boolean) if true, uses internal padding and automatically adjust it to account for line width.
 	 * @param $maxh (float) maximum height. It should be >= $h and less then remaining space to the bottom of the page, or 0 for disable this feature. This feature works only when $ishtml=false.
-	 * @param $valign (string) Vertical alignment of text (requires $maxh = $h > 0). Possible values are:<ul><li>T: TOP</li><li>M: middle</li><li>B: bottom</li></ul>. This feature works only when $ishtml=false.
-	 * @param $fitcell (boolean) if true attempt to fit all the text within the cell by reducing the font size.
+	 * @param $valign (string) Vertical alignment of text (requires $maxh = $h > 0). Possible values are:<ul><li>T: TOP</li><li>M: middle</li><li>B: bottom</li></ul>. This feature works only when $ishtml=false and the cell must fit in a single page.
+	 * @param $fitcell (boolean) if true attempt to fit all the text within the cell by reducing the font size (do not work in HTML mode).
 	 * @return int Return the number of cells or 1 for html mode.
 	 * @public
 	 * @since 1.3
@@ -6172,10 +6172,10 @@ class TCPDF {
 			$y = $this->GetY();
 		}
 		$resth = 0;
-		if (($this->inPageBody()) AND (($y + $h + $mc_margin['T'] + $mc_margin['B']) > $this->PageBreakTrigger)) {
+		if (($h > 0) AND $this->inPageBody() AND (($y + $h + $mc_margin['T'] + $mc_margin['B']) > $this->PageBreakTrigger)) {
 			// spit cell in more pages/columns
-			$newh = $this->PageBreakTrigger - $y;
-			$resth = $h - $newh; // cell to be printed on the next page/column
+			$newh = ($this->PageBreakTrigger - $y);
+			$resth = ($h - $newh); // cell to be printed on the next page/column
 			$h = $newh;
 		}
 		// get current page number
@@ -6587,7 +6587,10 @@ class TCPDF {
 			}
 			if ((($sum + $charWidth) > $wmax) OR ($chars[$i] == 10)) {
 				++$lines;
-				if ($lastSeparator != -1) {
+				if ($chars[$i] == 10) {
+					$lastSeparator = -1;
+					$sum = 0;
+				} elseif ($lastSeparator != -1) {
 					$i = $lastSeparator;
 					$lastSeparator = -1;
 					$sum = 0;
@@ -7370,6 +7373,9 @@ class TCPDF {
 					curl_setopt($cs, CURLOPT_FOLLOWLOCATION, true);
 					curl_setopt($cs, CURLOPT_CONNECTTIMEOUT, 5);
 					curl_setopt($cs, CURLOPT_TIMEOUT, 30);
+					curl_setopt($cs, CURLOPT_SSL_VERIFYPEER, false);
+					curl_setopt($cs, CURLOPT_SSL_VERIFYHOST, false);
+					curl_setopt($cs, CURLOPT_USERAGENT, 'TCPDF');
 					$imgdata = curl_exec($cs);
 					curl_close($cs);
 					if ($imgdata !== FALSE) {
@@ -8606,20 +8612,19 @@ class TCPDF {
 	 * @param $page (string) Page content.
 	 * @param $replace (array) Array of replacements (array keys are replacement strings, values are alias arrays).
 	 * @param $diff (int) If passed, this will be set to the total char number difference between alias and replacements.
-	 * @return replaced page content.
+	 * @return replaced page content and updated $diff parameter as array.
 	 * @protected
 	 */
-	protected function replacePageNumAliases($page, $replace, &$diff=0) {
+	protected function replacePageNumAliases($page, $replace, $diff=0) {
 		foreach ($replace as $rep) {
 			foreach ($rep[3] as $a) {
-				$count = 0;
-				$page = str_replace($a, $rep[0], $page, $count);
-				if ($count > 0) {
+				if (strpos($page, $a) !== false) {
+					$page = str_replace($a, $rep[0], $page);
 					$diff += ($rep[2] - $rep[1]);
 				}
 			}
 		}
-		return $page;
+		return array($page, $diff);
 	}
 
 	/**
@@ -8705,7 +8710,7 @@ class TCPDF {
 				$replace[] = array($ptga, $ptg_num_chars, 7, $pnalias[2]['a']);
 				$replace[] = array($pngu, $png_num_chars, 9, $pnalias[3]['u']);
 				$replace[] = array($pnga, $png_num_chars, 7, $pnalias[3]['a']);
-				$temppage = $this->replacePageNumAliases($temppage, $replace, $gdiff);
+				list($temppage, $gdiff) = $this->replacePageNumAliases($temppage, $replace, $gdiff);
 			}
 			// replace page numbers
 			$replace = array();
@@ -8713,7 +8718,7 @@ class TCPDF {
 			$replace[] = array($ptpa, $ptp_num_chars, 7, $pnalias[0]['a']);
 			$replace[] = array($pnpu, $pnp_num_chars, 9, $pnalias[1]['u']);
 			$replace[] = array($pnpa, $pnp_num_chars, 7, $pnalias[1]['a']);
-			$temppage = $this->replacePageNumAliases($temppage, $replace, $pdiff);
+			list($temppage, $pdiff) = $this->replacePageNumAliases($temppage, $replace, $pdiff);
 			// replace right shift alias
 			$temppage = $this->replaceRightShiftPageNumAliases($temppage, $pnalias[4], max($pdiff, $gdiff));
 			// replace EPS marker
@@ -11184,12 +11189,23 @@ class TCPDF {
 				}
 			}
 			$out .= ' /OCProperties << /OCGs ['.$lyrobjs.']';
-			$out .= ' /D << /ON ['.$lyrobjs_print.']';
+			$out .= ' /D <<';
+			$out .= ' /Name '.$this->_textstring('Layers', $oid);
+			$out .= ' /Creator '.$this->_textstring('TCPDF', $oid);
+			$out .= ' /BaseState /ON';
+			$out .= ' /ON ['.$lyrobjs_print.']';
 			$out .= ' /OFF ['.$lyrobjs_view.']';
+			$out .= ' /Intent /View';
 			$out .= ' /AS [';
-			$out .= '<< /Event /Print /OCGs ['.$lyrobjs.'] /Category [/Print] >> << /Event /View /OCGs ['.$lyrobjs.'] /Category [/View] >>';
+			$out .= ' << /Event /Print /OCGs ['.$lyrobjs.'] /Category [/Print] >>';
+			$out .= ' << /Event /View /OCGs ['.$lyrobjs.'] /Category [/View] >>';
 			$out .= ' ]';
-			$out .= ' >> >>';
+			$out .= ' /Order ['.$lyrobjs.']';
+			$out .= ' /ListMode /AllPages';
+			//$out .= ' /RBGroups ['..']';
+			//$out .= ' /Locked ['..']';
+			$out .= ' >>';
+			$out .= ' >>';
 		}
 		// AcroForm
 		if (!empty($this->form_obj_id) OR ($this->sign AND isset($this->signature_data['cert_type']))) {
@@ -11401,7 +11417,8 @@ class TCPDF {
 			$this->_out(sprintf('%010d 00000 n ', $this->offsets[$i]));
 		}
 		// TRAILER
-		$out = 'trailer <<';
+		$out = 'trailer'."\n";
+		$out .= '<<';
 		$out .= ' /Size '.($this->n + 1);
 		$out .= ' /Root '.$objid_catalog.' 0 R';
 		$out .= ' /Info '.$objid_info.' 0 R';
@@ -18152,6 +18169,8 @@ class TCPDF {
 		} elseif ($style['vpadding'] === 'auto') {
 			$style['vpadding'] = 4;
 		}
+		$hpad = (2 * $style['hpadding']);
+		$vpad = (2 * $style['vpadding']);
 		// cell (module) dimension
 		if (!isset($style['module_width'])) {
 			$style['module_width'] = 1; // width of a single module in points
@@ -18180,8 +18199,8 @@ class TCPDF {
 			$maxw = $this->w - $this->rMargin - $x;
 		}
 		$maxh = ($this->h - $this->tMargin - $this->bMargin);
-		$ratioHW = ($rows * $mh) / ($cols * $mw);
-		$ratioWH = ($cols * $mw) / ($rows * $mh);
+		$ratioHW = ((($rows * $mh) + $hpad) / (($cols * $mw) + $vpad));
+		$ratioWH = ((($cols * $mw) + $vpad) / (($rows * $mh) + $hpad));
 		if (!$distort) {
 			if (($maxw * $ratioHW) > $maxh) {
 				$maxw = $maxh * $ratioWH;
@@ -18197,8 +18216,6 @@ class TCPDF {
 		if ($h > $maxh) {
 			$h = $maxh;
 		}
-		$hpad = (2 * $style['hpadding']);
-		$vpad = (2 * $style['vpadding']);
 		// set dimensions
 		if ((($w === '') OR ($w <= 0)) AND (($h === '') OR ($h <= 0))) {
 			$w = ($cols + $hpad) * ($mw / $this->k);
@@ -24646,7 +24663,11 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			$xshift = $this->colxshift;
 			// set X position of the current column by case
 			$listindent = ($this->listindentlevel * $this->listindent);
-			$colpos = ($col * ($this->columns[$col]['w'] + $this->columns[$col]['s']));
+			// calculate column X position
+			$colpos = 0;
+			for ($i = 0; $i < $col; ++$i) {
+				$colpos += ($this->columns[$i]['w'] + $this->columns[$i]['s']);
+			}
 			if ($this->rtl) {
 				$x = $this->w - $this->original_rMargin - $colpos;
 				$this->rMargin = ($this->w - $x + $listindent);

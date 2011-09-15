@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2011-05-20
+// Last Update : 2011-09-14
 //
 // Description : Edit answers.
 //
@@ -246,6 +246,12 @@ switch($menu_mode) {
 	}
 
 	case 'update':{ // Update
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if($formstatus = F_check_form_fields()) {
 			// get previous answer position (if defined)
 			$prev_answer_position = 0;
@@ -514,41 +520,39 @@ if ($formstatus) {
 			OR (isset($changesubject) AND ($changesubject > 0))
 			OR (isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($answer_id)) OR empty($answer_id)) {
-			$sql = 'SELECT *
-				FROM '.K_TABLE_ANSWERS.'
-				WHERE answer_question_id='.$answer_question_id.'
-				ORDER BY answer_enabled DESC, answer_position, answer_isright DESC,';
-			if (K_DATABASE_TYPE == 'ORACLE') {
-				$sql .= 'CAST(answer_description as varchar2(100))';
-			} else {
-				$sql .= 'answer_description LIMIT 1';
-			}
+			$answer_id = 0;
+			$answer_description = '';
+			$answer_explanation = '';
+			$answer_isright = false;
+			$answer_enabled = true;
+			$answer_position = 0;
+			$answer_keyboard_key = '';
 		} else {
 			$sql = 'SELECT *
 				FROM '.K_TABLE_ANSWERS.'
 				WHERE answer_id='.$answer_id.'
 				LIMIT 1';
-		}
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
-				$answer_id = $m['answer_id'];
-				$answer_question_id = $m['answer_question_id'];
-				$answer_description = $m['answer_description'];
-				$answer_explanation = $m['answer_explanation'];
-				$answer_isright = F_getBoolean($m['answer_isright']);
-				$answer_enabled = F_getBoolean($m['answer_enabled']);
-				$answer_position = $m['answer_position'];
-				$answer_keyboard_key = $m['answer_keyboard_key'];
+			if($r = F_db_query($sql, $db)) {
+				if($m = F_db_fetch_array($r)) {
+					$answer_id = $m['answer_id'];
+					$answer_question_id = $m['answer_question_id'];
+					$answer_description = $m['answer_description'];
+					$answer_explanation = $m['answer_explanation'];
+					$answer_isright = F_getBoolean($m['answer_isright']);
+					$answer_enabled = F_getBoolean($m['answer_enabled']);
+					$answer_position = $m['answer_position'];
+					$answer_keyboard_key = $m['answer_keyboard_key'];
+				} else {
+					$answer_description = '';
+					$answer_explanation = '';
+					$answer_isright = false;
+					$answer_enabled = true;
+					$answer_position = 0;
+					$answer_keyboard_key = '';
+				}
 			} else {
-				$answer_description = '';
-				$answer_explanation = '';
-				$answer_isright = false;
-				$answer_enabled = true;
-				$answer_position = 0;
-				$answer_keyboard_key = '';
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -688,6 +692,11 @@ echo '<label for="answer_id">'.$l['w_answer'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="answer_id" id="answer_id" size="0" onchange="document.getElementById(\'form_answereditor\').submit()" title="'.$l['h_answer'].'">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($answer_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_ANSWERS.' WHERE answer_question_id='.intval($answer_question_id).' ORDER BY answer_position, answer_enabled DESC, answer_isright DESC,';
 	if (K_DATABASE_TYPE == 'ORACLE') {
 		$sql .= 'CAST(answer_description as varchar2(100))';
@@ -817,11 +826,17 @@ echo '</div>'.K_NEWLINE;
 echo '<div class="row">'.K_NEWLINE;
 
 // show buttons by case
+
 if (isset($answer_id) AND ($answer_id > 0)) {
+	echo '<span style="background-color:#999999;">';
+	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
-	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+	echo '</span>';
 }
 F_submit_button('add', $l['w_add'], $l['h_add']);
+if (isset($answer_id) AND ($answer_id > 0)) {
+	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+}
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;

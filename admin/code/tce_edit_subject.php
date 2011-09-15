@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2011-07-12
+// Last Update : 2011-09-14
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -162,6 +162,12 @@ switch($menu_mode) {
 	}
 
 	case 'update':{ // Update
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if($formstatus = F_check_form_fields()) {
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if(!F_check_unique(K_TABLE_SUBJECT_SET, 'subjset_subject_id='.intval($subject_id).'')) {
@@ -269,24 +275,27 @@ if($formstatus) {
 	if ($menu_mode != 'clear') {
 		if ((isset($changecategory) AND ($changecategory > 0))
 			OR (!isset($subject_id)) OR empty($subject_id)) {
-			$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id).' LIMIT 1';
+			$subject_id = 0;
+			$subject_name = '';
+			$subject_description = '';
+			$subject_enabled = true;
 		} else {
 			$sql = F_select_subjects_sql('subject_id='.$subject_id.' AND subject_module_id='.$subject_module_id).' LIMIT 1';
-		}
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
-				$subject_id = $m['subject_id'];
-				$subject_name = $m['subject_name'];
-				$subject_description = $m['subject_description'];
-				$subject_enabled = F_getBoolean($m['subject_enabled']);
-				$subject_module_id = $m['subject_module_id'];
+			if($r = F_db_query($sql, $db)) {
+				if($m = F_db_fetch_array($r)) {
+					$subject_id = $m['subject_id'];
+					$subject_name = $m['subject_name'];
+					$subject_description = $m['subject_description'];
+					$subject_enabled = F_getBoolean($m['subject_enabled']);
+					$subject_module_id = $m['subject_module_id'];
+				} else {
+					$subject_name = '';
+					$subject_description = '';
+					$subject_enabled = true;
+				}
 			} else {
-				$subject_name = '';
-				$subject_description = '';
-				$subject_enabled = true;
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -349,6 +358,11 @@ echo '<label for="subject_id">'.$l['w_subject'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById(\'form_subjecteditor\').submit()" title="'.$l['h_subject'].'">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($subject_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = F_select_subjects_sql('subject_module_id='.$subject_module_id);
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -402,10 +416,14 @@ echo '<div class="row">'.K_NEWLINE;
 
 // show buttons by case
 if (isset($subject_id) AND ($subject_id > 0)) {
+	echo '<span style="background-color:#999999;">';
+	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
+	echo '</span>';
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+} else {
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 }
-F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;

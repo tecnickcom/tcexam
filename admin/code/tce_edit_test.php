@@ -2,7 +2,8 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2011-07-12
+// Last Update : 2011-09-14
+//
 // Description : Edit Tests
 //
 // Author: Nicola Asuni
@@ -434,6 +435,12 @@ switch($menu_mode) {
 	}
 
 	case 'update':{ // Update
+		// check if the confirmation chekbox has been selected
+		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
+			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			F_stripslashes_formfields();
+			break;
+		}
 		if ($formstatus = F_check_form_fields()) {
 			// check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
 			if (!F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id='.$test_id.'')) {
@@ -692,65 +699,89 @@ if (!isset($test_num) OR (!empty($test_num))) {
 if ($formstatus) {
 	if ($menu_mode != 'clear') {
 		if (!isset($test_id) OR empty($test_id)) {
-			$sql = F_select_tests_sql().' LIMIT 1';
+			$test_id = 0;
+			$test_name = '';
+			$test_description = '';
+			$test_begin_time = date(K_TIMESTAMP_FORMAT);
+			$test_end_time = date(K_TIMESTAMP_FORMAT, time() + K_SECONDS_IN_DAY);
+			$test_duration_time = 60;
+			$test_ip_range = '*.*.*.*';
+			$test_results_to_users = false;
+			$test_report_to_users = false;
+			$test_score_right = 1;
+			$test_score_wrong = 0;
+			$test_score_unanswered = 0;
+			$test_max_score = 0;
+			$test_score_threshold = 0;
+			$test_random_questions_select = true;
+			$test_random_questions_order = true;
+			$test_random_answers_select = true;
+			$test_random_answers_order = true;
+			$test_comment_enabled = true;
+			$test_menu_enabled = true;
+			$test_noanswer_enabled = true;
+			$test_mcma_radio = true;
+			$test_repeatable = false;
+			$test_mcma_partial_score = true;
+			$test_logout_on_timeout = false;
 		} else {
 			$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
-		}
-		if ($r = F_db_query($sql, $db)) {
-			if ($m = F_db_fetch_array($r)) {
-				$test_id = $m['test_id'];
-				$test_name = $m['test_name'];
-				$test_description = $m['test_description'];
-				$test_begin_time = $m['test_begin_time'];
-				$test_end_time = $m['test_end_time'];
-				$test_duration_time = $m['test_duration_time'];
-				$test_ip_range = $m['test_ip_range'];
-				$test_results_to_users = F_getBoolean($m['test_results_to_users']);
-				$test_report_to_users = F_getBoolean($m['test_report_to_users']);
-				$test_score_right = $m['test_score_right'];
-				$test_score_wrong = $m['test_score_wrong'];
-				$test_score_unanswered = $m['test_score_unanswered'];
-				$test_max_score = $m['test_max_score'];
-				$test_score_threshold = $m['test_score_threshold'];
-				$test_random_questions_select = F_getBoolean($m['test_random_questions_select']);
-				$test_random_questions_order = F_getBoolean($m['test_random_questions_order']);
-				$test_random_answers_select = F_getBoolean($m['test_random_answers_select']);
-				$test_random_answers_order = F_getBoolean($m['test_random_answers_order']);
-				$test_comment_enabled = F_getBoolean($m['test_comment_enabled']);
-				$test_menu_enabled = F_getBoolean($m['test_menu_enabled']);
-				$test_noanswer_enabled = F_getBoolean($m['test_noanswer_enabled']);
-				$test_mcma_radio = F_getBoolean($m['test_mcma_radio']);
-				$test_repeatable = F_getBoolean($m['test_repeatable']);
-				$test_mcma_partial_score = F_getBoolean($m['test_mcma_partial_score']);
-				$test_logout_on_timeout = F_getBoolean($m['test_logout_on_timeout']);
+			if ($r = F_db_query($sql, $db)) {
+				if ($m = F_db_fetch_array($r)) {
+					$test_id = $m['test_id'];
+					$test_name = $m['test_name'];
+					$test_description = $m['test_description'];
+					$test_begin_time = $m['test_begin_time'];
+					$test_end_time = $m['test_end_time'];
+					$test_duration_time = $m['test_duration_time'];
+					$test_ip_range = $m['test_ip_range'];
+					$test_results_to_users = F_getBoolean($m['test_results_to_users']);
+					$test_report_to_users = F_getBoolean($m['test_report_to_users']);
+					$test_score_right = $m['test_score_right'];
+					$test_score_wrong = $m['test_score_wrong'];
+					$test_score_unanswered = $m['test_score_unanswered'];
+					$test_max_score = $m['test_max_score'];
+					$test_score_threshold = $m['test_score_threshold'];
+					$test_random_questions_select = F_getBoolean($m['test_random_questions_select']);
+					$test_random_questions_order = F_getBoolean($m['test_random_questions_order']);
+					$test_random_answers_select = F_getBoolean($m['test_random_answers_select']);
+					$test_random_answers_order = F_getBoolean($m['test_random_answers_order']);
+					$test_comment_enabled = F_getBoolean($m['test_comment_enabled']);
+					$test_menu_enabled = F_getBoolean($m['test_menu_enabled']);
+					$test_noanswer_enabled = F_getBoolean($m['test_noanswer_enabled']);
+					$test_mcma_radio = F_getBoolean($m['test_mcma_radio']);
+					$test_repeatable = F_getBoolean($m['test_repeatable']);
+					$test_mcma_partial_score = F_getBoolean($m['test_mcma_partial_score']);
+					$test_logout_on_timeout = F_getBoolean($m['test_logout_on_timeout']);
+				} else {
+					$test_name = '';
+					$test_description = '';
+					$test_begin_time = date(K_TIMESTAMP_FORMAT);
+					$test_end_time = date(K_TIMESTAMP_FORMAT, time() + K_SECONDS_IN_DAY);
+					$test_duration_time = 60;
+					$test_ip_range = '*.*.*.*';
+					$test_results_to_users = false;
+					$test_report_to_users = false;
+					$test_score_right = 1;
+					$test_score_wrong = 0;
+					$test_score_unanswered = 0;
+					$test_max_score = 0;
+					$test_score_threshold = 0;
+					$test_random_questions_select = true;
+					$test_random_questions_order = true;
+					$test_random_answers_select = true;
+					$test_random_answers_order = true;
+					$test_comment_enabled = true;
+					$test_menu_enabled = true;
+					$test_noanswer_enabled = true;
+					$test_mcma_radio = true;
+					$test_repeatable = false;
+					$test_mcma_partial_score = true;
+					$test_logout_on_timeout = false;
+				}
 			} else {
-				$test_name = '';
-				$test_description = '';
-				$test_begin_time = date(K_TIMESTAMP_FORMAT);
-				$test_end_time = date(K_TIMESTAMP_FORMAT, time() + K_SECONDS_IN_DAY);
-				$test_duration_time = 60;
-				$test_ip_range = '*.*.*.*';
-				$test_results_to_users = false;
-				$test_report_to_users = false;
-				$test_score_right = 1;
-				$test_score_wrong = 0;
-				$test_score_unanswered = 0;
-				$test_max_score = 0;
-				$test_score_threshold = 0;
-				$test_random_questions_select = true;
-				$test_random_questions_order = true;
-				$test_random_answers_select = true;
-				$test_random_answers_order = true;
-				$test_comment_enabled = true;
-				$test_menu_enabled = true;
-				$test_noanswer_enabled = true;
-				$test_mcma_radio = true;
-				$test_repeatable = false;
-				$test_mcma_partial_score = true;
-				$test_logout_on_timeout = false;
+				F_display_db_error();
 			}
-		} else {
-			F_display_db_error();
 		}
 	}
 }
@@ -767,6 +798,11 @@ echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_testeditor\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
+echo '<option value="0" style="background-color:#009900;color:white;"';
+if ($test_id == 0) {
+	echo ' selected="selected"';
+}
+echo '>+</option>'.K_NEWLINE;
 $sql = F_select_tests_sql();
 if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
@@ -885,8 +921,16 @@ echo '<div class="row">'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
 
 // show buttons by case
+
+
 if (isset($test_id) AND ($test_id > 0)) {
+	echo '<span style="background-color:#999999;">';
+	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
+	echo '</span>';
+}
+F_submit_button('add', $l['w_add'], $l['h_add']);
+if (isset($test_id) AND ($test_id > 0)) {
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 	if (substr($test_end_time, 0, 1) < $millennium) {
 		F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
@@ -894,7 +938,6 @@ if (isset($test_id) AND ($test_id > 0)) {
 		F_submit_button('lock', $l['w_lock'], $l['w_lock']);
 	}
 }
-F_submit_button('add', $l['w_add'], $l['h_add']);
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 // comma separated list of required fields

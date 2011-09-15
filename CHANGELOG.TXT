@@ -1,3 +1,8 @@
+11.2.014 (2011-09-14)
+	- Some edit forms on administration area were changed to display the [add] button only when the first empty profile (+) is selected.
+	- All edit forms on the administration area now includes a checkbox next to the update button that must be selected in order to confirm the update.
+	- TCPDF library was updated.
+
 11.2.013 (2011-08-06)
 	- Spanish language was updated.
 	- TCPDF library was updated.
