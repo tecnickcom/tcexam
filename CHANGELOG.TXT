@@ -1,3 +1,6 @@
+11.2.015 (2011-10-12)
+	- TCPDF library and fonts was updated.
+
 11.2.014 (2011-09-14)
 	- Some edit forms on administration area were changed to display the [add] button only when the first empty profile (+) is selected.
 	- All edit forms on the administration area now includes a checkbox next to the update button that must be selected in order to confirm the update.
