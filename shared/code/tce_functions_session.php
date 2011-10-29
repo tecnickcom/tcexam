@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2011-02-02
+// Last Update : 2011-10-29
 //
 // Description : User-level session storage functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -111,14 +111,13 @@ function F_session_write($key, $val) {
 	global $db;
 	if ((!isset($db)) OR (!$db)) {
 		// workaround for PHP bug 41230
-			if(!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
-				return;
-			}
+		if(!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+			return;
+		}
 	}
 	$key = F_escape_sql($key);
 	$val = F_escape_sql($val);
-	//$val = stripslashes($val);
-	$expiry = date(K_TIMESTAMP_FORMAT);
+	$expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
 	// check if this session already exist on database
 	$sql = 'SELECT cpsession_id
 			FROM '.K_TABLE_SESSIONS.'
@@ -163,12 +162,11 @@ function F_session_destroy($key) {
  * Garbage collector.<br>
  * Deletes expired sessions.<br>
  * NOTE: while time() function returns a 32 bit integer, it works fine until year 2038.
- * @param $maxlife (int) max session life time in seconds. The default value is defined by K_SESSION_LIFE costant on shared/config/tce_config.php file.
  * @return int number of deleted sessions.
  */
-function F_session_gc($maxlife = K_SESSION_LIFE) {
+function F_session_gc() {
 	global $db;
-	$expiry_time = date(K_TIMESTAMP_FORMAT, time() - $maxlife);
+	$expiry_time = date(K_TIMESTAMP_FORMAT);
 	$sql = 'DELETE FROM '.K_TABLE_SESSIONS.' WHERE cpsession_expiry<=\''.$expiry_time.'\'';
 	if(!$r = F_db_query($sql, $db)) {
 		return FALSE;

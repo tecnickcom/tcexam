@@ -1,3 +1,7 @@
+11.2.016 (2011-10-29)
+	- Some authentication/sessions problems were fixed.
+	- TCPDF library was updated.
+
 11.2.015 (2011-10-12)
 	- TCPDF library and fonts was updated.
 

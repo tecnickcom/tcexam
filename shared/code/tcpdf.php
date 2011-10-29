@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.130
+// Version     : 5.9.134
 // Begin       : 2002-08-03
-// Last Update : 2011-10-12
+// Last Update : 2011-10-29
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -137,7 +137,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.130
+ * @version 5.9.134
  */
 
 
@@ -147,7 +147,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.130
+ * @version 5.9.134
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -158,7 +158,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.130';
+	private $tcpdf_version = '5.9.134';
 
 	// Protected properties
 
@@ -3447,7 +3447,7 @@ class TCPDF {
 			$slen = strlen($brd);
 			$newbrd = array();
 			for ($i = 0; $i < $slen; ++$i) {
-				$newbrd[$brd{$i}] = true;
+				$newbrd[$brd[$i]] = true;
 			}
 			$brd = $newbrd;
 		} elseif (($brd === 1) OR ($brd === true) OR (is_numeric($brd) AND (intval($brd) > 0))) {
@@ -6100,7 +6100,7 @@ class TCPDF {
 			$slen = strlen($brd);
 			$newbrd = array();
 			for ($i = 0; $i < $slen; ++$i) {
-				$newbrd[$brd{$i}] = array('cap' => 'square', 'join' => 'miter');
+				$newbrd[$brd[$i]] = array('cap' => 'square', 'join' => 'miter');
 			}
 			$brd = $newbrd;
 		}
@@ -6621,7 +6621,7 @@ class TCPDF {
 			$slen = strlen($brd);
 			$newbrd = array();
 			for ($i = 0; $i < $slen; ++$i) {
-				$newbrd[$brd{$i}] = array('cap' => 'square', 'join' => 'miter');
+				$newbrd[$brd[$i]] = array('cap' => 'square', 'join' => 'miter');
 			}
 			$brd = $newbrd;
 		}
@@ -8018,9 +8018,9 @@ class TCPDF {
 			// get ICC sequence length
 			$length = ($this->_getUSHORT($data, ($pos - 2)) - 16);
 			// marker sequence number
-			$msn = max(1, ord($data{($pos + 12)}));
+			$msn = max(1, ord($data[($pos + 12)]));
 			// number of markers (total of APP2 used)
-			$nom = max(1, ord($data{($pos + 13)}));
+			$nom = max(1, ord($data[($pos + 13)]));
 			// get sequence segment
 			$icc[($msn - 1)] = substr($data, ($pos + 14), $length);
 			// move forward to next sequence
@@ -8211,7 +8211,7 @@ class TCPDF {
 		$tempfile_plain = K_PATH_CACHE.'mskp_'.$filehash;
 		// create temp alpha file
 		$tempfile_alpha = K_PATH_CACHE.'mska_'.$filehash;
-		if (extension_loaded('imagick')) { // ImageMagick
+		if (extension_loaded('imagick')) { // ImageMagick extension
 			// ImageMagick library
 			$img = new Imagick();
 			$img->readImage($file);
@@ -8226,7 +8226,7 @@ class TCPDF {
 			$imga->separateImageChannel(39); // 39 = (imagick::CHANNEL_ALL & ~(imagick::CHANNEL_ALPHA | imagick::CHANNEL_OPACITY | imagick::CHANNEL_MATTE));
 			$imga->setImageFormat('png');
 			$imga->writeImage($tempfile_plain);
-		} else { // GD library
+		} elseif (function_exists('imagecreatefrompng')) { // GD extension
 			// generate images
 			$img = imagecreatefrompng($file);
 			$imgalpha = imagecreate($wpx, $hpx);
@@ -8251,6 +8251,8 @@ class TCPDF {
 			imagecopy($imgplain, $img, 0, 0, 0, 0, $wpx, $hpx);
 			imagepng($imgplain, $tempfile_plain);
 			imagedestroy($imgplain);
+		} else {
+			$this->Error('TCPDF requires the Imagick or GD extension to handle PNG images with alpha channel.');
 		}
 		// embed mask image
 		$imgmask = $this->Image($tempfile_alpha, $x, $y, $w, $h, 'PNG', '', '', $resize, $dpi, '', true, false);
@@ -8538,7 +8540,8 @@ class TCPDF {
 					if (headers_sent()) {
 						$this->Error('Some data has already been output to browser, can\'t send PDF file');
 					}
-					header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+					header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
+					//header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
 					header('Pragma: public');
 					header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
@@ -8558,7 +8561,8 @@ class TCPDF {
 				if (headers_sent()) {
 					$this->Error('Some data has already been output to browser, can\'t send PDF file');
 				}
-				header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+				header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
+				//header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
 				header('Pragma: public');
 				header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 				header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
@@ -8594,7 +8598,8 @@ class TCPDF {
 				if ($dest == 'FI') {
 					// send headers to browser
 					header('Content-Type: application/pdf');
-					header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+					header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
+					//header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
 					header('Pragma: public');
 					header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
@@ -8609,7 +8614,7 @@ class TCPDF {
 					if (headers_sent()) {
 						$this->Error('Some data has already been output to browser, can\'t send PDF file');
 					}
-					header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+					header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0, max-age=1');
 					header('Pragma: public');
 					header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 					header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
@@ -9800,8 +9805,8 @@ class TCPDF {
 			if ($gid > 0xFFFF) {
 				$gid -= 0x10000;
 			}
-			$map{($cid * 2)} = chr($gid >> 8);
-			$map{(($cid * 2) + 1)} = chr($gid & 0xFF);
+			$map[($cid * 2)] = chr($gid >> 8);
+			$map[(($cid * 2) + 1)] = chr($gid & 0xFF);
 		}
 		return $map;
 	}
@@ -9969,7 +9974,7 @@ class TCPDF {
 			$elen = strlen($encrypted);
 			$eplain = '';
 			for ($i = 0; $i < $elen; ++$i) {
-				$chr = ord($encrypted{$i});
+				$chr = ord($encrypted[$i]);
 				$eplain .= chr($chr ^ ($r >> 8));
 				$r = ((($chr + $r) * $c1 + $c2) % 65536);
 			}
@@ -10046,7 +10051,7 @@ class TCPDF {
 				$clen = strlen($cd);
 				$ccom = array();
 				for ($i = 0; $i < $clen; ++$i) {
-					$chr = ord($cd{$i});
+					$chr = ord($cd[$i]);
 					$ccom[] = ($chr ^ ($r >> 8));
 					$r = ((($chr + $r) * $c1 + $c2) % 65536);
 				}
@@ -11249,7 +11254,7 @@ class TCPDF {
 						// strip first binary header
 						$font = substr($font, 6);
 					}
-					if ($header AND (ord($font{$info['length1']}) == 128)) {
+					if ($header AND (ord($font[$info['length1']]) == 128)) {
 						// strip second binary header
 						$font = substr($font, 0, $info['length1']).substr($font, ($info['length1'] + 6));
 					}
@@ -13081,7 +13086,7 @@ class TCPDF {
 			$strarr = array();
 			$strlen = strlen($str);
 			for ($i=0; $i < $strlen; ++$i) {
-				$strarr[] = ord($str{$i});
+				$strarr[] = ord($str[$i]);
 			}
 			// insert new value on cache
 			$this->cache_UTF8StringToArray[$strkey]['s'] = $strarr;
@@ -13095,7 +13100,7 @@ class TCPDF {
 		$str .= ''; // force $str to be a string
 		$length = strlen($str);
 		for ($i = 0; $i < $length; ++$i) {
-			$char = ord($str{$i}); // get one string character at time
+			$char = ord($str[$i]); // get one string character at time
 			if (count($bytes) == 0) { // get starting octect
 				if ($char <= 0x7F) {
 					$unichar = $char; // use the character "as is" because is ASCII
@@ -13421,7 +13426,7 @@ class TCPDF {
 	 * @return array RGB or CMYK color, or false in case of error.
 	 * @public
 	 */
-	public function convertHTMLColorToDec($hcolor='#FFFFFF', $defcol=array(128,128,128)) {
+	public function convertHTMLColorToDec($hcolor='#FFFFFF', $defcol=array('R'=>128,'G'=>128,'B'=>128)) {
 		$color = preg_replace('/[\s]*/', '', $hcolor); // remove extra spaces
 		$color = strtolower($color);
 		if (($dotpos = strpos($color, '.')) !== false) {
@@ -13472,10 +13477,11 @@ class TCPDF {
 				$color_code = $this->webcolor[$color];
 			} else {
 				// spot color
-				$returncolor = $this->getSpotColor($name);
+				$returncolor = $this->getSpotColor($color);
 				if ($returncolor === false) {
 					$returncolor = $defcol;
 				}
+				return $returncolor;
 			}
 		} else {
 			$color_code = substr($color, 1);
@@ -13780,7 +13786,7 @@ class TCPDF {
 			$j = 0;
 			for ($i = 0; $i < 256; ++$i) {
 				$t = $rc4[$i];
-				$j = ($j + $t + ord($k{$i})) % 256;
+				$j = ($j + $t + ord($k[$i])) % 256;
 				$rc4[$i] = $rc4[$j];
 				$rc4[$j] = $t;
 			}
@@ -13800,7 +13806,7 @@ class TCPDF {
 			$rc4[$a] = $rc4[$b];
 			$rc4[$b] = $t;
 			$k = $rc4[($rc4[$a] + $rc4[$b]) % 256];
-			$out .= chr(ord($text{$i}) ^ $k);
+			$out .= chr(ord($text[$i]) ^ $k);
 		}
 		return $out;
 	}
@@ -13854,7 +13860,7 @@ class TCPDF {
 			for ($i = 1; $i <= 19; ++$i) {
 				$ek = '';
 				for ($j = 0; $j < $len; ++$j) {
-					$ek .= chr(ord($this->encryptdata['key']{$j}) ^ $i);
+					$ek .= chr(ord($this->encryptdata['key'][$j]) ^ $i);
 				}
 				$enc = $this->_RC4($ek, $enc);
 			}
@@ -13905,7 +13911,7 @@ class TCPDF {
 				for ($i = 1; $i <= 19; ++$i) {
 					$ek = '';
 					for ($j = 0; $j < $len; ++$j) {
-						$ek .= chr(ord($owner_key{$j}) ^ $i);
+						$ek .= chr(ord($owner_key[$j]) ^ $i);
 					}
 					$enc = $this->_RC4($ek, $enc);
 				}
@@ -14224,7 +14230,7 @@ class TCPDF {
 			++$bslength;
 		}
 		for ($i = 0; $i < $bslength; $i += 2) {
-			$string .= chr(hexdec($bs{$i}.$bs{($i + 1)}));
+			$string .= chr(hexdec($bs[$i].$bs[($i + 1)]));
 		}
 		return $string;
 	}
@@ -16082,7 +16088,7 @@ class TCPDF {
 		$escname = '';
 		$length = strlen($name);
 		for ($i = 0; $i < $length; ++$i) {
-			$chr = $name{$i};
+			$chr = $name[$i];
 			if (preg_match('/[0-9a-zA-Z]/', $chr) == 1) {
 				$escname .= $chr;
 			} else {
@@ -19040,7 +19046,7 @@ class TCPDF {
 					if ($skip) {
 						break;
 					}
-					$line{$len-1} = strtolower($cmd);
+					$line[($len - 1)] = strtolower($cmd);
 					$this->_out($line);
 					break;
 				}
@@ -22021,7 +22027,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 									if (($stroffset !== false) AND ($stroffset <= $strpiece[2][1])) {
 										// set offset to the end of string section
 										$offset = strpos($pmid, ')]', $stroffset);
-										while (($offset !== false) AND ($pmid{($offset - 1)} == '\\')) {
+										while (($offset !== false) AND ($pmid[($offset - 1)] == '\\')) {
 											$offset = strpos($pmid, ')]', ($offset + 1));
 										}
 										if ($offset === false) {
@@ -25239,7 +25245,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			$this->endPage();
 		}
 		// move all page-related states
-		$tmppage = $this->pages[$frompage];
+		$tmppage = $this->getPageBuffer($frompage);
 		$tmppagedim = $this->pagedim[$frompage];
 		$tmppagelen = $this->pagelen[$frompage];
 		$tmpintmrk = $this->intmrk[$frompage];
@@ -25274,7 +25280,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		for ($i = $frompage; $i > $topage; --$i) {
 			$j = $i - 1;
 			// shift pages down
-			$this->pages[$i] = $this->pages[$j];
+			$this->setPageBuffer($i, $this->getPageBuffer($j));
 			$this->pagedim[$i] = $this->pagedim[$j];
 			$this->pagelen[$i] = $this->pagelen[$j];
 			$this->intmrk[$i] = $this->intmrk[$j];
@@ -25308,7 +25314,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				$this->currpagegroup = $i;
 			}
 		}
-		$this->pages[$topage] = $tmppage;
+		$this->setPageBuffer($topage, $tmppage);
 		$this->pagedim[$topage] = $tmppagedim;
 		$this->pagelen[$topage] = $tmppagelen;
 		$this->intmrk[$topage] = $tmpintmrk;
@@ -25429,7 +25435,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			for ($i = $page; $i < $this->numpages; ++$i) {
 				$j = $i + 1;
 				// shift pages
-				$this->pages[$i] = $this->pages[$j];
+				$this->setPageBuffer($i, $this->getPageBuffer($j));
 				$this->pagedim[$i] = $this->pagedim[$j];
 				$this->pagelen[$i] = $this->pagelen[$j];
 				$this->intmrk[$i] = $this->intmrk[$j];
@@ -25570,7 +25576,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 		// copy all page-related states
 		++$this->numpages;
 		$this->page = $this->numpages;
-		$this->pages[$this->page] = $this->pages[$page];
+		$this->setPageBuffer($this->page, $this->getPageBuffer($page));
 		$this->pagedim[$this->page] = $this->pagedim[$page];
 		$this->pagelen[$this->page] = $this->pagelen[$page];
 		$this->intmrk[$this->page] = $this->intmrk[$page];

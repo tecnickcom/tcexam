@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-05-21
+// Last Update : 2011-10-29
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -83,7 +83,7 @@ if ($rs = F_db_query($sqls, $db)) {
 			exit();
 		}
 		// update session expiration time
-		$expiry = date(K_TIMESTAMP_FORMAT);
+		$expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
 		$sqlx = 'UPDATE '.K_TABLE_SESSIONS.' SET cpsession_expiry=\''.$expiry.'\' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 		if (!$rx = F_db_query($sqlx, $db)) {
 			F_display_db_error();
