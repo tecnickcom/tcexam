@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2011-08-06 12:11:22
+// DATE: 2011-11-15 19:18:34
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='CN';
-$tmx['d_admin_index']='This is the administration area of <a href="tce_page_info.php" title="about TCExam">TcExam</a>, is a platform and language independent user-friendly software to create, manage and perform online tests.<br /><br />From the menu you can access the different sections of the system:<ul><li><strong>users</strong><br />This sections contains the forms for <a href="tce_edit_user.php" title="User Management">insert and manage</a> users, <a href="tce_select_users.php" title="User Selection"> to select them</a> and to show the list of the ones currently <a href="tce_show_online_users.php" title="Online Users">online</a>.<br />Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.<br />It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).<br />TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.</li><li><strong>modules</strong><br />This section contains the forms to insert and modify test <a href="tce_edit_module.php" title="Modules Management">modules</a>, <a href="tce_edit_subject.php" title="Topic Management">topics</a>, the related <a href="tce_edit_question.php" title="Question Management">questions</a> and <a href="tce_edit_answer.php" title="Multiple-Answer Management">answers</a>.<br />You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.<br />TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form <a href="tce_edit_rating.php" title="Answer evaluation"></a>, while the former will be automatically evaluated.<br />All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.</li><li><strong>test</strong><br />This section includes a form to insert, generate and modify the different <a href="tce_edit_test.php" title="Test Management">tests</a>, a form to <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> the free answers and forms to show or generate PDF versions of the <a href="tce_show_result_allusers.php" title="Test Results Summary">results</a>, a detailed view of the <a href="tce_show_result_user.php" title="Test Results">users\' tests</a> and the <a href="tce_show_result_questions.php" title="Question Statistics">statistics</a> of questions and answers used.<br />TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.<br />It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.</li></ul>';
+$tmx['d_admin_index']='这是 <a href="tce_page_info.php" title="about TCExam">TCExam </a>的管理区域。TCExam 是一个多语言、易用的，用于创建、管理在线测验的软件平台。<br /><br />你可以通过菜单使用系统各种功能：<ul><li><strong>用户</strong><br />本模块包含 <a href="tce_edit_user.php" title="用户管理">增加和管理</a> 用户, <a href="tce_select_users.php" title="用户选择n"> 选择他们</a> 和显示 <a href="tce_show_online_users.php" title="Online Users">当前在线用户</a>。<br />允许注册用户，获取访问系统公共区域权限，进行测试。<br />可以指派不同权限、不同系统功能给用户。<br />可以通过IP来限制非法访问。</li><li><strong>模块</strong><br />本功能包括增加、修改测验 <a href="tce_edit_module.php" title="Modules Management">模块</a>, <a href="tce_edit_subject.php" title="Topic Management">主题</a>，相关的 <a href="tce_edit_question.php" title="Question Management">题目</a> 和 <a href="tce_edit_answer.php" title="Multiple-Answer Management">答案</a>。<br />你可以选择不限数量的主题，以便用于指定的测试。每个主题可以定于不限数量的题目和答案。系统可以随机选择可利用的题目和答案。<br />支持多选题和自由作答题目。后者将通过指定的 <a href="tce_edit_rating.php" title="Answer evaluation"> 评价表单 </a>来进行评价。<br />所有的测试、主题、问题、答案的说明都支持特殊的专有的代码(tcecode)，允许使用图形和字符格式。</li><li><strong>测试</strong><br />本功能包括增加、生成和修改 <a href="tce_edit_test.php" title="Test Management">测验</a>,  <a href="tce_edit_rating.php" title="Answer Evaluation">评估</a> 自由作答并把结果可以生成一个包含 <a href="tce_show_result_allusers.php" title="Test Results Summary">测验结果</a>，<a href="tce_show_result_user.php" title="Risultati test">用户测验</a> 以及 <a href="tce_show_result_questions.php" title="Question Statistics">统计</a> 的PDF文档。<br />支持随机选择题目和答案，不同用户的同一次测验的题目是不一样的。<br />也支持生成多次测验的PDF文档，以便用于传统的测验。</li></ul>';
 $tmx['d_logout_desc']='点击按钮退出系统';
 $tmx['d_tcexam_desc']='TcExam是管理和进行在线测验的软件';
 $tmx['h_add']='添加当前记录到数据库';
@@ -193,7 +193,7 @@ $tmx['m_used_not_update']='由于被测验的成绩表使用，记录不能被�
 $tmx['m_used_not_update_test']='由于被测验成绩表使用，记录不能被更新.';
 $tmx['m_user_deleted']='已从数据库中删除用户';
 $tmx['m_user_updated']='用户数据已更新';
-$tmx['t_answers_editor']='多选题管理';
+$tmx['t_answers_editor']='多答案管理';
 $tmx['t_email_result']='发送成绩';
 $tmx['t_error']='错误';
 $tmx['t_group_editor']='组管理';
@@ -557,18 +557,18 @@ $tmx['w_table']='列表';
 $tmx['w_visual']='图标';
 $tmx['t_select_media_file']='选定对象';
 $tmx['hp_select_media_file']='此页面允许在当前描述中插入多媒体对象。选定要插入的对象，填写描述字段并点击[添加]按钮。';
-$tmx['w_owner']='owner';
-$tmx['h_module_owner']='owner of this module';
-$tmx['h_topic_owner']='owner of this topic';
-$tmx['t_omr_answers_importer']='Import Answers (OMR)';
-$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
-$tmx['w_import_omr_answers']='import answers';
-$tmx['w_omr_data_page']='OMR DATA';
-$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
-$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
-$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
-$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
-$tmx['m_import_ok']='the import process has been successfully completed';
-$tmx['m_import_error']='the import process has failed';
+$tmx['w_owner']='所有者';
+$tmx['h_module_owner']='此模块的所有者';
+$tmx['h_topic_owner']='此主题的所有者';
+$tmx['t_omr_answers_importer']='导入答案(OMR)';
+$tmx['hp_omr_answers_importer']='通过这种形式，你可以导入用户从答卷的扫描图像的答案。这个图片将被用于光学标记识别（OMR）系统进行识别，以便处理测试数据和用户的答案。导入的数据将覆盖现有的结果。 OMR表必须完全使用200DPI或以上的全彩颜色进行扫描。';
+$tmx['w_import_omr_answers']='导入答案';
+$tmx['w_omr_data_page']='OMR 数据';
+$tmx['w_omr_answer_sheet']='OMR 答案表格';
+$tmx['h_omr_data_page']='标有OMR数据页的扫描图像';
+$tmx['m_omr_wrong_test_data']='OMR数据页的图像丢失或不可读';
+$tmx['m_omr_wrong_answer_sheet']='OMR答案纸页的图像丢失或不可读';
+$tmx['m_import_ok']='导入过程已经顺利完成';
+$tmx['m_import_error']='导入过程失败';
 
 // --- EOF ---

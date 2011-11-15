@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: az
-// DATE: 2011-08-06 12:11:17
+// DATE: 2011-11-15 19:18:27
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
