@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 5.9.135
+// Version     : 5.9.140
 // Begin       : 2002-08-03
-// Last Update : 2011-11-04
+// Last Update : 2011-12-13
 // Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -97,6 +97,7 @@
 // Dominik Dzienia for QR-code support.
 // Laurent Minguet for some suggestions.
 // Christian Deligant for some suggestions and fixes.
+// Travis Harris for crop mark suggestion.
 // Anyone that has reported a bug or sent a suggestion.
 //============================================================+
 
@@ -137,7 +138,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 5.9.135
+ * @version 5.9.140
  */
 
 
@@ -147,7 +148,7 @@
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 5.9.135
+ * @version 5.9.140
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -158,7 +159,7 @@ class TCPDF {
 	 * Current TCPDF version.
 	 * @private
 	 */
-	private $tcpdf_version = '5.9.135';
+	private $tcpdf_version = '5.9.140';
 
 	// Protected properties
 
@@ -4458,7 +4459,7 @@ class TCPDF {
 	public function AddSpotColor($name, $c, $m, $y, $k) {
 		if (!isset($this->spot_colors[$name])) {
 			$i = (1 + count($this->spot_colors));
-			$this->spot_colors[$name] = array('i' => $i, 'c' => $c, 'm' => $m, 'y' => $y, 'k' => $k);
+			$this->spot_colors[$name] = array('C' => $c, 'M' => $m, 'Y' => $y, 'K' => $k, 'name' => $name, 'i' => $i);
 		}
 	}
 
@@ -4477,7 +4478,7 @@ class TCPDF {
 		$color = strtolower($color);
 		if (isset($this->spotcolor[$color])) {
 			$this->AddSpotColor($this->spotcolor[$color][4], $this->spotcolor[$color][0], $this->spotcolor[$color][1], $this->spotcolor[$color][2], $this->spotcolor[$color][3]);
-			return $this->spot_colors[$name];
+			return $this->spot_colors[$this->spotcolor[$color][4]];
 		}
 		return false;
 	}
@@ -4497,25 +4498,24 @@ class TCPDF {
 			$this->Error('Undefined spot color: '.$name.', you must add it on the spotcolors.php file.');
 		}
 		$tint = (max(0, min(100, $tint)) / 100);
-		$intcolor = array('C' => $spotcolor['c'], 'M' => $spotcolor['m'], 'Y' => $spotcolor['y'], 'K' => $spotcolor['k'], 'name' => $spotcolor['i']);
 		$pdfcolor = sprintf('/CS%d ', $this->spot_colors[$name]['i']);
 		switch ($type) {
 			case 'draw': {
 				$pdfcolor .= sprintf('CS %.3F SCN', $tint);
 				$this->DrawColor = $pdfcolor;
-				$this->strokecolor = $intcolor;
+				$this->strokecolor = $spotcolor;
 				break;
 			}
 			case 'fill': {
 				$pdfcolor .= sprintf('cs %.3F scn', $tint);
 				$this->FillColor = $pdfcolor;
-				$this->bgcolor = $intcolor;
+				$this->bgcolor = $spotcolor;
 				break;
 			}
 			case 'text': {
 				$pdfcolor .= sprintf('cs %.3F scn', $tint);
 				$this->TextColor = $pdfcolor;
-				$this->fgcolor = $intcolor;
+				$this->fgcolor = $spotcolor;
 				break;
 			}
 		}
@@ -4571,7 +4571,7 @@ class TCPDF {
 	 * It can be expressed in RGB, CMYK or GRAY SCALE components.
 	 * The method can be called before the first page is created and the value is retained from page to page.
 	 * @param $type (string) Type of object affected by this color: ('draw', 'fill', 'text').
-	 * @param $color (array) Array of colors (1, 3 or 4 values).
+	 * @param $color (array) Array of colors (1=gray, 3=RGB, 4=CMYK or 5=spotcolor=CMYK+name values).
 	 * @param $ret (boolean) If true do not send the PDF command.
 	 * @return (string) The PDF command or empty string.
 	 * @public
@@ -4581,18 +4581,16 @@ class TCPDF {
 		if (is_array($color)) {
 			$color = array_values($color);
 			// component: grey, RGB red or CMYK cyan
-			$r = isset($color[0]) ? $color[0] : -1;
+			$c = isset($color[0]) ? $color[0] : -1;
 			// component: RGB green or CMYK magenta
-			$g = isset($color[1]) ? $color[1] : -1;
+			$m = isset($color[1]) ? $color[1] : -1;
 			// component: RGB blue or CMYK yellow
-			$b = isset($color[2]) ? $color[2] : -1;
+			$y = isset($color[2]) ? $color[2] : -1;
 			// component: CMYK black
 			$k = isset($color[3]) ? $color[3] : -1;
-			// spot color name
+			// color name
 			$name = isset($color[4]) ? $color[4] : '';
-			if ($r >= 0) {
-				return $this->setColor($type, $r, $g, $b, $k, $ret, $name);
-			}
+			return $this->setColor($type, $c, $m, $y, $k, $ret, $name);
 		}
 		return '';
 	}
@@ -4727,6 +4725,36 @@ class TCPDF {
 			return $pdfcolor;
 		}
 		return '';
+	}
+
+	/**
+	 * Convert a color array into a string representation.
+	 * @param $c (array) Array of colors.
+	 * @return (string) The color array representation.
+	 * @protected
+	 * @since 5.9.137 (2011-12-01)
+	 */
+	protected function getColorStringFromArray($c) {
+		$color = '[';
+		switch (count($c)) {
+			case 4: {
+				// CMYK
+				$color .= sprintf('%.3F %.3F %.3F %.3F', (max(0, min(100, floatval($c[0]))) / 100), (max(0, min(100, floatval($c[1]))) / 100), (max(0, min(100, floatval($c[2]))) / 100), (max(0, min(100, floatval($c[3]))) / 100));
+				break;
+			}
+			case 3: {
+				// RGB
+				$color .= sprintf('%.3F %.3F %.3F', (max(0, min(255, floatval($c[0]))) / 255), (max(0, min(255, floatval($c[1]))) / 255), (max(0, min(255, floatval($c[2]))) / 255));
+				break;
+			}
+			case 1: {
+				// grayscale
+				$color .= sprintf('%.3F', (max(0, min(255, floatval($c[0]))) / 255));
+				break;
+			}
+		}
+		$color .= ']';
+		return $color;
 	}
 
 	/**
@@ -7468,7 +7496,7 @@ class TCPDF {
 		$cached_file = false; // true when the file is cached
 		$exurl = ''; // external streams
 		// check if we are passing an image as file or string
-		if ($file{0} === '@') {
+		if ($file[0] === '@') {
 			// image from string
 			$imgdata = substr($file, 1);
 			$file = K_PATH_CACHE.'img_'.md5($imgdata);
@@ -9235,13 +9263,7 @@ class TCPDF {
 						$annots .= '>>';
 					}
 					if (isset($pl['opt']['c']) AND (is_array($pl['opt']['c'])) AND !empty($pl['opt']['c'])) {
-						$annots .= ' /C [';
-						foreach ($pl['opt']['c'] as $col) {
-							$col = intval($col);
-							$color = $col <= 0 ? 0 : ($col >= 255 ? 1 : $col / 255);
-							$annots .= sprintf(' %.4F', $color);
-						}
-						$annots .= ']';
+						$annots .= ' /C '.$this->getColorStringFromArray($pl['opt']['c']);
 					}
 					//$annots .= ' /StructParent ';
 					//$annots .= ' /OC ';
@@ -9451,22 +9473,10 @@ class TCPDF {
 									$annots .= ' /R '.$pl['opt']['mk']['r'];
 								}
 								if (isset($pl['opt']['mk']['bc']) AND (is_array($pl['opt']['mk']['bc']))) {
-									$annots .= ' /BC [';
-									foreach($pl['opt']['mk']['bc'] AS $col) {
-										$col = intval($col);
-										$color = $col <= 0 ? 0 : ($col >= 255 ? 1 : $col / 255);
-										$annots .= sprintf(' %.2F', $color);
-									}
-									$annots .= ']';
+									$annots .= ' /BC '.$this->getColorStringFromArray($pl['opt']['mk']['bc']);
 								}
 								if (isset($pl['opt']['mk']['bg']) AND (is_array($pl['opt']['mk']['bg']))) {
-									$annots .= ' /BG [';
-									foreach($pl['opt']['mk']['bg'] AS $col) {
-										$col = intval($col);
-										$color = $col <= 0 ? 0 : ($col >= 255 ? 1 : $col / 255);
-										$annots .= sprintf(' %.2F', $color);
-									}
-									$annots .= ']';
+									$annots .= ' /BG '.$this->getColorStringFromArray($pl['opt']['mk']['bg']);
 								}
 								if (isset($pl['opt']['mk']['ca'])) {
 									$annots .= ' /CA '.$pl['opt']['mk']['ca'];
@@ -12057,7 +12067,7 @@ class TCPDF {
 			$out = '[/Separation /'.str_replace(' ', '#20', $name);
 			$out .= ' /DeviceCMYK <<';
 			$out .= ' /Range [0 1 0 1 0 1 0 1] /C0 [0 0 0 0]';
-			$out .= ' '.sprintf('/C1 [%.4F %.4F %.4F %.4F] ', ($color['c'] / 100), ($color['m'] / 100), ($color['y'] / 100), ($color['k'] / 100));
+			$out .= ' '.sprintf('/C1 [%.4F %.4F %.4F %.4F] ', ($color['C'] / 100), ($color['M'] / 100), ($color['Y'] / 100), ($color['K'] / 100));
 			$out .= ' /FunctionType 2 /Domain [0 1] /N 1>>]';
 			$out .= "\n".'endobj';
 			$this->_out($out);
@@ -13420,7 +13430,7 @@ class TCPDF {
 	}
 
 	/**
-	 * Returns an array (RGB or CMYK) from an html color name or a six-digit (i.e. #3FE5AA) or three-digit (i.e. #7FF) hexadecimal color representation.
+	 * Returns an array (RGB or CMYK) from an html color name, or a six-digit (i.e. #3FE5AA), or three-digit (i.e. #7FF) hexadecimal color, or a javascript color array, or javascript color name.
 	 * @param $hcolor (string) HTML color.
 	 * @param $defcol (array) Color to return in case of error.
 	 * @return array RGB or CMYK color, or false in case of error.
@@ -13429,9 +13439,46 @@ class TCPDF {
 	public function convertHTMLColorToDec($hcolor='#FFFFFF', $defcol=array('R'=>128,'G'=>128,'B'=>128)) {
 		$color = preg_replace('/[\s]*/', '', $hcolor); // remove extra spaces
 		$color = strtolower($color);
-		if (($dotpos = strpos($color, '.')) !== false) {
+		// check for javascript color array syntax
+		if (strpos($color, '[') !== false) {
+			if (preg_match('/[\[][\"\'](t|g|rgb|cmyk)[\"\'][\,]?([0-9\.]*)[\,]?([0-9\.]*)[\,]?([0-9\.]*)[\,]?([0-9\.]*)[\]]/', $color, $m) > 0) {
+				$returncolor = array();
+				switch ($m[1]) {
+					case 'cmyk': {
+						// RGB
+						$returncolor['C'] = max(0, min(100, (floatval($m[2]) * 100)));
+						$returncolor['M'] = max(0, min(100, (floatval($m[3]) * 100)));
+						$returncolor['Y'] = max(0, min(100, (floatval($m[4]) * 100)));
+						$returncolor['K'] = max(0, min(100, (floatval($m[5]) * 100)));
+						break;
+					}
+					case 'rgb': {
+						// RGB
+						$returncolor['R'] = max(0, min(255, (floatval($m[2]) * 255)));
+						$returncolor['G'] = max(0, min(255, (floatval($m[3]) * 255)));
+						$returncolor['B'] = max(0, min(255, (floatval($m[4]) * 255)));
+						break;
+					}
+					case 'g': {
+						// grayscale
+						$returncolor['G'] = max(0, min(255, (floatval($m[2]) * 255)));
+						break;
+					}
+					case 't':
+					default: {
+						// transparent (empty array)
+						break;
+					}
+				}
+				return $returncolor;
+			}
+		} elseif (($dotpos = strpos($color, '.')) !== false) {
 			// remove class parent (i.e.: color.red)
 			$color = substr($color, ($dotpos + 1));
+			if ($color == 'transparent') {
+				// transparent (empty array)
+				return array();
+			}
 		}
 		if (strlen($color) == 0) {
 			return $defcol;
@@ -17265,6 +17312,9 @@ class TCPDF {
 		$opt['Subtype'] = 'Widget';
 		$opt['ft'] = 'Btn';
 		$opt['t'] = $name;
+		if ($this->empty_string($onvalue)) {
+			$onvalue = 'Yes';
+		}
 		$opt['opt'] = array($onvalue);
 		if ($checked) {
 			$opt['v'] = array('/Yes');
@@ -18187,72 +18237,73 @@ class TCPDF {
 	}
 
 	/**
-	 * Paints crop mark
+	 * Paints crop marks.
 	 * @param $x (float) abscissa of the crop mark center.
 	 * @param $y (float) ordinate of the crop mark center.
 	 * @param $w (float) width of the crop mark.
 	 * @param $h (float) height of the crop mark.
-	 * @param $type (string) type of crop mark, one sybol per type separated by comma: A = top left, B = top right, C = bottom left, D = bottom right.
+	 * @param $type (string) type of crop mark, one symbol per type separated by comma: T = TOP, F = BOTTOM, L = LEFT, R = RIGHT, TL = A = TOP-LEFT, TR = B = TOP-RIGHT, BL = C = BOTTOM-LEFT, BR = D = BOTTOM-RIGHT.
 	 * @param $color (array) crop mark color (default black).
 	 * @author Nicola Asuni
 	 * @since 4.9.000 (2010-03-26)
 	 * @public
 	 */
-	public function cropMark($x, $y, $w, $h, $type='A,B,C,D', $color=array(0,0,0)) {
+	public function cropMark($x, $y, $w, $h, $type='T,R,B,L', $color=array(0,0,0)) {
 		$this->SetLineStyle(array('width' => (0.5 / $this->k), 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => $color));
-		$crops = explode(',', $type);
-		$numcrops = count($crops); // number of crop marks to print
-		$dw = $w / 4; // horizontal space to leave before the intersection point
-		$dh = $h / 4; // vertical space to leave before the intersection point
+		$type = strtoupper($type);
+		$type = preg_replace('/[^A-Z\-\,]*/', '', $type);
+		// split type in single components
+		$type = str_replace('-', ',', $type);
+		$type = str_replace('TL', 'T,L', $type);
+		$type = str_replace('TR', 'T,R', $type);
+		$type = str_replace('BL', 'F,L', $type);
+		$type = str_replace('BR', 'F,R', $type);
+		$type = str_replace('A', 'T,L', $type);
+		$type = str_replace('B', 'T,R', $type);
+		$type = str_replace('T,RO', 'BO', $type);
+		$type = str_replace('C', 'F,L', $type);
+		$type = str_replace('D', 'F,R', $type);
+		$crops = explode(',', strtoupper($type));
+		// remove duplicates
+		$crops = array_unique($crops);
+		$dw = ($w / 4); // horizontal space to leave before the intersection point
+		$dh = ($h / 4); // vertical space to leave before the intersection point
 		foreach ($crops as $crop) {
 			switch ($crop) {
-				case 'A': {
+				case 'T':
+				case 'TOP': {
 					$x1 = $x;
-					$y1 = $y - $h;
+					$y1 = ($y - $h);
 					$x2 = $x;
-					$y2 = $y - $dh;
-					$x3 = $x - $w;
-					$y3 = $y;
-					$x4 = $x - $dw;
-					$y4 = $y;
+					$y2 = ($y - $dh);
 					break;
 				}
-				case 'B': {
+				case 'F':
+				case 'BOTTOM': {
 					$x1 = $x;
-					$y1 = $y - $h;
+					$y1 = ($y + $dh);
 					$x2 = $x;
-					$y2 = $y - $dh;
-					$x3 = $x + $dw;
-					$y3 = $y;
-					$x4 = $x + $w;
-					$y4 = $y;
+					$y2 = ($y + $h);
 					break;
 				}
-				case 'C': {
-					$x1 = $x - $w;
+				case 'L':
+				case 'LEFT': {
+					$x1 = ($x - $w);
 					$y1 = $y;
-					$x2 = $x - $dw;
+					$x2 = ($x - $dw);
 					$y2 = $y;
-					$x3 = $x;
-					$y3 = $y + $dh;
-					$x4 = $x;
-					$y4 = $y + $h;
 					break;
 				}
-				case 'D': {
-					$x1 = $x + $dw;
+				case 'R':
+				case 'RIGHT': {
+					$x1 = ($x + $dw);
 					$y1 = $y;
-					$x2 = $x + $w;
+					$x2 = ($x + $w);
 					$y2 = $y;
-					$x3 = $x;
-					$y3 = $y + $dh;
-					$x4 = $x;
-					$y4 = $y + $h;
 					break;
 				}
 			}
 			$this->Line($x1, $y1, $x2, $y2);
-			$this->Line($x3, $y3, $x4, $y4);
 		}
 	}
 
@@ -21544,11 +21595,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				if (($dom[$key]['attribute']['pagebreak'] == 'true') OR ($dom[$key]['attribute']['pagebreak'] == 'left') OR ($dom[$key]['attribute']['pagebreak'] == 'right')) {
 					// add a page (or trig AcceptPageBreak() for multicolumn mode)
 					$this->checkPageBreak($this->PageBreakTrigger + 1);
+					$this->htmlvspace = ($this->PageBreakTrigger + 1);
 				}
 				if ((($dom[$key]['attribute']['pagebreak'] == 'left') AND (((!$this->rtl) AND (($this->page % 2) == 0)) OR (($this->rtl) AND (($this->page % 2) != 0))))
 					OR (($dom[$key]['attribute']['pagebreak'] == 'right') AND (((!$this->rtl) AND (($this->page % 2) != 0)) OR (($this->rtl) AND (($this->page % 2) == 0))))) {
 					// add a page (or trig AcceptPageBreak() for multicolumn mode)
 					$this->checkPageBreak($this->PageBreakTrigger + 1);
+					$this->htmlvspace = ($this->PageBreakTrigger + 1);
 				}
 			}
 			if ($dom[$key]['tag'] AND $dom[$key]['opening'] AND isset($dom[$key]['attribute']['nobr']) AND ($dom[$key]['attribute']['nobr'] == 'true')) {
@@ -28569,26 +28622,31 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$this->StartTransform();
 					$this->SVGTransform($tm);
 					$obstyle = $this->setSVGStyles($svgstyle, $prev_svgstyle, $x, $y, $w, $h);
-					// fix image path
-					if (!$this->empty_string($this->svgdir) AND (($img{0} == '.') OR (basename($img) == $img))) {
-						// replace relative path with full server path
-						$img = $this->svgdir.'/'.$img;
-					}
-					if (($img[0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
-						$findroot = strpos($img, $_SERVER['DOCUMENT_ROOT']);
-						if (($findroot === false) OR ($findroot > 1)) {
-							if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
-								$img = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$img;
-							} else {
-								$img = $_SERVER['DOCUMENT_ROOT'].$img;
+					if (preg_match('/^data:image\/[^;]+;base64,/', $img, $m) > 0) {
+						// embedded image encoded as base64
+						$img = '@'.base64_decode(substr($img, strlen($m[0])));
+					} else {
+						// fix image path
+						if (!$this->empty_string($this->svgdir) AND (($img{0} == '.') OR (basename($img) == $img))) {
+							// replace relative path with full server path
+							$img = $this->svgdir.'/'.$img;
+						}
+						if (($img[0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
+							$findroot = strpos($img, $_SERVER['DOCUMENT_ROOT']);
+							if (($findroot === false) OR ($findroot > 1)) {
+								if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
+									$img = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$img;
+								} else {
+									$img = $_SERVER['DOCUMENT_ROOT'].$img;
+								}
 							}
 						}
-					}
-					$img = urldecode($img);
-					$testscrtype = @parse_url($img);
-					if (!isset($testscrtype['query']) OR empty($testscrtype['query'])) {
-						// convert URL to server path
-						$img = str_replace(K_PATH_URL, K_PATH_MAIN, $img);
+						$img = urldecode($img);
+						$testscrtype = @parse_url($img);
+						if (!isset($testscrtype['query']) OR empty($testscrtype['query'])) {
+							// convert URL to server path
+							$img = str_replace(K_PATH_URL, K_PATH_MAIN, $img);
+						}
 					}
 					$this->Image($img, $x, $y, $w, $h);
 					$this->StopTransform();

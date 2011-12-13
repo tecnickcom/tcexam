@@ -75,7 +75,7 @@ if (isset($_REQUEST['startdate'])) {
 } else {
 	$startdate = date('Y').'-01-01 00:00:00';
 }
-if (isset($_REQUEST['$enddate'])) {
+if (isset($_REQUEST['enddate'])) {
 	$enddate = $_REQUEST['enddate'];
 	$enddate_time = strtotime($enddate);
 	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
