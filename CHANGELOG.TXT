@@ -1,3 +1,6 @@
+11.2.019 (2011-12-14)
+	- TCPDF library was updated.
+
 11.2.018 (2011-12-13)
 	- A bug on tce_show_allresults_users.php file was fixed.
 	- TCPDF library was updated.
