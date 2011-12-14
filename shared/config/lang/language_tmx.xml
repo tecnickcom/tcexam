@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20111115T191700Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
+ <header datatype="PlainText" changedate="20111214T222800Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
  <body>
   <tu tuid="a_meta_charset" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -9069,7 +9069,7 @@ Siz hər sualda yalnızca &lt;b&gt;bir&lt;/b&gt; cavabı seçə bilərsiniz.&lt;
     <seg>En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
    </tuv>
    <tuv xml:lang="CN">
-    <seg>通过此表单插入、修改或删除测验，为了</seg>
+    <seg>您可以通过本表单插入，修改或删除的测验。在添加测验前须先定义至少一个主题，主题要有一些问题和答案。有足够的权利和有效的IP地址的用户才可以进行测试。IP字段是一个有权执行测试不同的IP地址的列表，通过","号分隔。IP地址可以包含通配符（* =任何数字）。在指定的时间测试将被激活，一旦启动，将要指定的最大时间内完成。测试可以包含几个主题，主题支持随机选择有多个不同类型的问题。您还可以为每个不同难度水平的问题指定基本分数。您不能修改一个已经执行的测试。删除测试时所有的日志（测试数据）也将被删除。 [生成]按钮允许您生成任意数量的唯一的PDF格式测验，就算没有电脑，也可以通过打印进行测验。主题方括号内的字母和数字是用于快速统计问题：[ (问题)(问题类型S，M，T，O)(难度):(最小答案)-(最大答案)]。</seg>
    </tuv>
   </tu>
   <tu tuid="hp_edit_user" datatype="plaintext">
@@ -14178,7 +14178,7 @@ Siz hər sualda yalnızca &lt;b&gt;bir&lt;/b&gt; cavabı seçə bilərsiniz.&lt;
     <seg>Administración Respuestas Múltiples</seg>
    </tuv>
    <tuv xml:lang="CN">
-    <seg>多答案管理</seg>
+    <seg>答案管理</seg>
    </tuv>
   </tu>
   <tu tuid="t_email_result" datatype="plaintext">
