@@ -11,10 +11,10 @@
 //
 // (c) Copyright:
 //               Nicola Asuni
-//               Tecnick.com S.r.l.
-//               Via della Pace, 11
-//               09044 Quartucciu (CA)
-//               ITALY
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //============================================================+

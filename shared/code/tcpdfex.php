@@ -3,10 +3,10 @@
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
 // Last Update : 2011-02-27
-// Author      : Nicola Asuni - Tecnick.com S.r.l - Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
+// Author      : Nicola Asuni - Tecnick.com LTD - Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
-// Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com S.r.l.
+// Copyright (C) 2002-2010  Nicola Asuni - Tecnick.com LTD
 //
 // This file is part of TCPDF software library.
 //

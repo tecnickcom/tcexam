@@ -2,7 +2,7 @@
 <attach event="onmouseout" handler="rollOff" />
 <script language="JavaScript" type="text/javascript">
 //<![CDATA[
-//Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com S.r.l.
+//Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
 function rollOver() {
 	//change the colour
 	element.className += (element.className?' ':'') + 'CSStoHighlight';

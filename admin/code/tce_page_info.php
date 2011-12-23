@@ -10,15 +10,15 @@
 //
 // (c) Copyright:
 //               Nicola Asuni
-//               Tecnick.com S.r.l.
-//               Via della Pace, 11
-//               09044 Quartucciu (CA)
-//               ITALY
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -66,8 +66,8 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2011 Nicola Asuni - Tecnick.com s.r.l.<br />'.K_NEWLINE;
-echo 'Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY<br />'.K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2011 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
+echo 'Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
 echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove, move or hide the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />
@@ -111,7 +111,7 @@ Developers: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a
 <a href="http://www.ja-sig.org/wiki/display/~jmarchal">Julien Marchal</a>, University of Nancy 2,
 <a href="http://www.ja-sig.org/wiki/display/~olivierberger">Olivier Berger</a>, Institut TELECOM, SudParis.<br />
 This class includes an integrated copy of <a href="http://alexandre.alapetite.net/doc-alex/domxml-php4-php5/">domxml-php4-php5.php</a>, written by <a href="http://alexandre.alapetite.net/cv/">Alexandre Alapetite</a>, Copyright 2004, <a href="http://creativecommons.org/licenses/by-sa/2.0/fr/">Licence: Creative Commons "Attribution-ShareAlike 2.0 France" BY-SA</a>.<br />
-This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University\'s College of Computing and Digital Media) and Nicola Asuni (Tecnick.com s.r.l.).<br />
+This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University\'s College of Computing and Digital Media) and Nicola Asuni (Tecnick.com LTD).<br />
 Homepage: <a href="http://www.ja-sig.org/wiki/display/CASC/phpCAS">http://www.ja-sig.org/wiki/display/CASC/phpCAS</a><br />
 License: <a href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a>, an <a href="http://www.opensource.org/docs/osd">OSI-certified</a> ("open") and <a href="http://www.gnu.org/licenses/license-list.html">Gnu/FSF-recognized</a> ("free") license.<br />
 Location: /shared/cas/<br /><br />

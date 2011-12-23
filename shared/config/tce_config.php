@@ -10,13 +10,13 @@
 //
 // (c) Copyright 2004-2011:
 //               Nicola Asuni
-//               Tecnick.com S.r.l.
-//               ITALY
+//               Tecnick.com LTD
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.2.020');
+define ('K_TCEXAM_VERSION', '11.2.021');
 
 /**
  * 2-letters code for default language.

@@ -1,3 +1,6 @@
+11.2.021 (2011-12-23)
+	- Source code documentation was updated.
+
 11.2.020 (2011-12-14)
 	- Chinese language was updated.
 

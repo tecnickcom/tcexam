@@ -10,15 +10,15 @@
 //
 // (c) Copyright:
 //               Nicola Asuni
-//               Tecnick.com S.r.l.
-//               Via della Pace, 11
-//               09044 Quartucciu (CA)
-//               ITALY
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -56,7 +56,7 @@ echo '<head>'."\n";
 echo '<title>TCExam - Installation</title>'."\n";
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'."\n";
 echo '<meta name="description" content="Installation Script for TCExam" />'."\n";
-echo '<meta name="author" content="Nicola Asuni - Tecnick.com S.r.l." />'."\n";
+echo '<meta name="author" content="Nicola Asuni - Tecnick.com LTD" />'."\n";
 echo '<meta http-equiv="Pragma" content="no-cache" />'."\n";
 echo '<link rel="stylesheet" href="../admin/styles/default.css" type="text/css" />'."\n";
 echo '</head>'."\n";
@@ -67,7 +67,7 @@ echo '<body>'."\n";
 <h1>TCExam - Installation</h1>
 
 <p>
-<strong>This is the <a href="index.htm" title="installation manual">installation</a> script of <a href="http://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></strong>
+<strong>This is the <a href="index.htm" title="installation manual">installation</a> script of <a href="http://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="http://www.tecnick.com">Tecnick.com LTD</a></strong>
 </p>
 
 <p>

@@ -12,15 +12,15 @@
 //
 // (c) Copyright:
 //               Nicola Asuni
-//               Tecnick.com S.r.l.
-//               Via della Pace, 11
-//               09044 Quartucciu (CA)
-//               ITALY
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com S.r.l.
+//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -98,7 +98,7 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 }
 
 echo '<div class="minibutton" dir="ltr">';
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2011 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com S.r.l.</a></span>';
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2012 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com LTD</a></span>';
 echo '</div>'.K_NEWLINE;
 
 // Display W3C logos

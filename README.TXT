@@ -11,19 +11,19 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.2.020
+Version: 11.2.021
 
-Release date: 2011-12-14
+Release date: 2011-12-23
 
 Author:
 	Nicola Asuni
 
 Copyright (c) 2004-2011:
 	Nicola Asuni
-	Tecnick.com S.r.l.
-	Via Della Pace, 11
-	09044 Quartucciu (CA)
-	ITALY
+	Tecnick.com LTD
+	Manor Coach House, Church Hill
+	Aldershot, Hants, GU12 4RQ
+	UK
 	http://www.tecnick.com
 
 URLs:
@@ -109,7 +109,7 @@ Description:
 	server, leaving no sensitive data in the users’ client computers.
 
 Software License
-	Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com S.r.l.
+	Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
 
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as
