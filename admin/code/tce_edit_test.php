@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2011-09-14
+// Last Update : 2012-01-23
 //
 // Description : Edit Tests
 //
@@ -273,7 +273,7 @@ switch($menu_mode) {
 						$modid = intval(substr($subid, 1));
 						$sqlsm = F_select_subjects_sql('subject_module_id='.$modid.'');
 						if ($rsm = F_db_query($sqlsm, $db)) {
-							while($msm = F_db_fetch_array($rsm)) {
+							while ($msm = F_db_fetch_array($rsm)) {
 								$subjids .= $msm['subject_id'].',';
 							}
 						} else {
@@ -610,7 +610,7 @@ switch($menu_mode) {
 					FROM '.K_TABLE_TEST_SUBJSET.'
 					WHERE tsubset_test_id=\''.$old_test_id.'\'';
 				if ($r = F_db_query($sql, $db)) {
-					while($m = F_db_fetch_array($r)) {
+					while ($m = F_db_fetch_array($r)) {
 						// insert new subject
 						$sqlu = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (
 							tsubset_test_id,
@@ -633,7 +633,7 @@ switch($menu_mode) {
 								FROM '.K_TABLE_SUBJECT_SET.'
 								WHERE subjset_tsubset_id=\''.$m['tsubset_id'].'\'';
 							if ($rs = F_db_query($sqls, $db)) {
-								while($ms = F_db_fetch_array($rs)) {
+								while ($ms = F_db_fetch_array($rs)) {
 									$sqlp = 'INSERT INTO '.K_TABLE_SUBJECT_SET.' (
 										subjset_tsubset_id,
 										subjset_subject_id
@@ -806,7 +806,7 @@ echo '>+</option>'.K_NEWLINE;
 $sql = F_select_tests_sql();
 if ($r = F_db_query($sql, $db)) {
 	$countitem = 1;
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
 		if ($m['test_id'] == $test_id) {
 			echo ' selected="selected"';
@@ -846,9 +846,10 @@ echo '<label for="user_groups">'.$l['w_groups'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">'.K_NEWLINE;
-$sql = F_user_group_select_sql();
+//$sql = F_user_group_select_sql();
+$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' ORDER BY group_name';
 if ($r = F_db_query($sql, $db)) {
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
 		if (isset($test_id) AND ($test_id > 0) AND (F_isTestOnGroup($test_id, $m['group_id']))) {
 			echo ' selected="selected"';
@@ -1105,7 +1106,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 		WHERE tsubset_test_id=\''.$test_id.'\'
 		ORDER BY tsubset_id';
 	if ($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_array($r)) {
+		while ($m = F_db_fetch_array($r)) {
 			$subjlist .= '<li>';
 			$subjects_list = '';
 			$sqls = 'SELECT subject_id,subject_name
@@ -1114,7 +1115,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 					AND subjset_tsubset_id=\''.$m['tsubset_id'].'\'
 				ORDER BY subject_name';
 			if ($rs = F_db_query($sqls, $db)) {
-				while($ms = F_db_fetch_array($rs)) {
+				while ($ms = F_db_fetch_array($rs)) {
 					$subjects_list .= '<a href="tce_edit_subject.php?subject_id='.$ms['subject_id'].'" title="'.$l['t_subjects_editor'].'">'.htmlspecialchars($ms['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a>, ';
 				}
 			} else {

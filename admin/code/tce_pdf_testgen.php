@@ -184,6 +184,8 @@ $testdata = F_getTestData($test_id);
 for ($item = 1; $item <= $test_num; $item++) {
 	// generate $test_num tests
 
+	$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	
 	// data to be printed as QR-Code to be later used as input from scanner/image
 	$barcode_test_data = array();
 	$barcode_test_data[0] = $test_id;
