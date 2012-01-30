@@ -11,14 +11,14 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.2.022
+Version: 11.2.023
 
-Release date: 2012-01-23
+Release date: 2012-01-30
 
 Author:
 	Nicola Asuni
 
-Copyright (c) 2004-2011:
+Copyright (c) 2004-2012:
 	Nicola Asuni
 	Tecnick.com LTD
 	Manor Coach House, Church Hill
@@ -29,6 +29,84 @@ Copyright (c) 2004-2011:
 URLs:
 	http://www.tcexam.org
 	http://www.sourceforge.net/projects/tcexam
+
+Requirements and Install Documentation:
+	[ENG] install/index.htm
+	Check also the documentation on http://www.tcexam.org
+
+Source Documentation:
+	http://www.tcexam.org
+
+Support - Help:
+	Please use support forum under http://www.sourceforge.net/projects/tcexam
+
+Software License
+	Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+	Additionally, you can't remove, move or hide the original TCExam
+	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
+	Please contact info@tecnick.com for commercial usage.
+
+	See LICENSE.TXT file for more information.
+
+Third-party Software
+
+	PHPMailer
+		Full Featured Email Transfer Class for PHP.
+		Author: Brent R. Matzelle (bmatzelle@yahoo.com)
+		Homepage: http://phpmailer.sourceforge.net/
+		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+		Location: /shared/phpmailer/
+
+	LaTeX rendering Class is based on:
+		LaTeX Rendering Class v0.8 by Benjamin Zeiss, currently maintained by Steve Mayer.
+		Homepage: http://www.mayer.dial.pipex.com/tex.htm
+		License: GNU GENERAL PUBLIC LICENSE
+		Location: /shared/code/tce_latexrender.php
+
+	Radius Class
+		Radius client implementation in pure PHP.
+		Author: SysCo/al (developer@sysco.ch)
+		Homepage: http://developer.sysco.ch/php/
+		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+		Location: /shared/radius/
+
+	phpCAS
+		CAS client in PHP.
+		Copyright: Copyright © 2003-2008, The ESUP-Portail consortium & the JA-SIG Collaborative. All rights reserved.
+		Author: Pascal Aubry.
+		Developers: Pascal Aubry, University of Rennes 1, Brett Bieber, University of Nebraska-Lincoln, Julien Marchal, University of Nancy 2, Olivier Berger, Institut TELECOM, SudParis.
+		This class includes an integrated copy of domxml-php4-php5.php, written by Alexandre Alapetite, Copyright 2004, Licence: Creative Commons "Attribution-ShareAlike 2.0 France" BY-SA.
+		This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University's College of Computing and Digital Media) and Nicola Asuni (Tecnick.com LTD).
+		Homepage: http://www.ja-sig.org/wiki/display/CASC/phpCAS
+		License: New BSD License, an OSI-certified ("open") and Gnu/FSF-recognized ("free") license.
+		Location: /shared/cas/
+
+	The DHTML Calendar
+		Calendar widget written in Javascript.
+		Author: Mihai Bazon (mihai_bazon@yahoo.com)
+		Homepage: http://dynarch.com/mishoo/
+		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+		Location: /shared/jscripts/jscalendar/
+
+	Fonts
+		TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:
+			DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33
+			GNU FreeFont (GNU-GPLv3) - Copyright, License and other info: fonts/freefont-20100919
+
 
 Description:
 	TCExam is a technological solution (CBA - Computer-Based Assessment) to
@@ -108,36 +186,4 @@ Description:
 	results, and statistics: every part of the test is managed and stored in the
 	server, leaving no sensitive data in the users’ client computers.
 
-Software License
-	Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
-
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-	Additionally, you can't remove, move or hide the original TCExam
-	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
-	Please contact info@tecnick.com for commercial usage.
-
-	See LICENSE.TXT file for more information.
-
-Requirements and Install Documentation:
-	[ENG] install/index.htm
-	Check also the documentation on http://www.tcexam.org
-
-Source Documentation:
-	http://www.tcexam.org
-
-Support - Help:
-	Please use support forum under http://www.sourceforge.net/projects/tcexam
-
-============================================================
+================================================================================

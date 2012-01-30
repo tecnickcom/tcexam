@@ -1,3 +1,7 @@
+11.2.023 (2012-01-30)
+	- Brazilian language was updated.
+	- TCPDF library was updated.
+
 11.2.022 (2012-01-23)
 	- A problem with generation of multiple offline tests on PDF was fixed.
 	- Test Editor has been changed so a test can be also assigned to groups that do not belongs to the author's groups.
