@@ -1,5 +1,6 @@
 11.2.025 (2012-03-28)
 	- TCPDF library was updated.
+	- Font files were updated.
 
 11.2.024 (2012-03-19)
 	- Hidden answers on PDF tests now support multiple lines.
