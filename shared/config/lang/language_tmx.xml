@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20120130T173300Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
+ <header datatype="PlainText" changedate="20120414T210500Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
  <body>
   <tu tuid="a_meta_charset" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -331,9 +331,7 @@ Statistiques des questions et des réponses peuvent non seulement être consult�
     <seg>هذه منطقة ادارة  &lt;a href="tce_page_info.php" title="حول تكسام"&gt;تكسام&lt;/a&gt;, لجعل المنصة واللغة ممتعه للمستخدم بحيث ينشئ ويدير الاختبارات على النت بيسر وسهوله.&lt;br /&gt;&lt;br /&gt;من القائمة الرئيسية في الاعلى تستطيع الوصول لاقسام النظام المختلفة:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;المستخدمين&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي على نماذج لـ &lt;a href="tce_edit_user.php" title="ادارة المستخدمين"&gt;اضافة وادارة&lt;/a&gt; المستخدمين, &lt;a href="tce_select_users.php" title="اختيار عضو"&gt; لاختيارهم&lt;/a&gt; أو لرؤية قائمة بـ &lt;a href="tce_show_online_users.php" title="الاعضاء المتواجدين"&gt;الموجودين&lt;/a&gt; حالياً.&lt;br /&gt;يحق للمسجلين باسم مستخدم وكلمة مرور صحيحة الدخول للمنطقة العامة للنظام واداء الاختبارات.&lt;br /&gt;ومن الممكن تحديد مستويات وصول مختلفة لكل من المستخدمين إلى اجزاء النظام (الصفحات, النماذج, الاقسام).&lt;br /&gt;يمتلك تكسام أيضاً نظام أمني لمنع الوصول غير المصرح به مبني على عناوين بروتوكول الانترنت.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;المواضيع&lt;/strong&gt;&lt;br /&gt;هذا القسم يحتوي نماذج اضافة وتعديل  &lt;a href="tce_edit_subject.php" title="ادارة المواضيع"&gt;مواضيع &lt;/a&gt;الاختبار, تفاصيل &lt;a href="tce_edit_question.php" title="ادارة الاسئلة"&gt;الاسئلة&lt;/a&gt; و &lt;a href="tce_edit_answer.php" title="ادارة الاجابات المتعددة"&gt;الاجابات&lt;/a&gt;.&lt;br /&gt; يمكنك اختيار اسئلة الاختبار من أي عدد من المواضيع, كما يمكنك اختيار أي عدد من الاسئلة والاجابات لكل موضوع. وسيقوم النظام بالاختيار العشوائي من الأسئلة والاجابات المتاحة.&lt;br /&gt;تكسام يدعم الاسئلة الموضوعية والاسئلة المقالية. وسوف يتم تقييم الاسئلة المقالية من خلال استمارة تقييم خاصة وعملية  &lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;&lt;/a&gt;, كل النماذج تقيم آلياً.&lt;br /&gt;كل انواع الاسئلة والمواضيع والاسئلة والاجابات تدعم كود الملكية الخاصة (tcecode) , باستخدام نموذج خاص, مع استخدام الصور وتنسيق النصوص.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;الاختبارات&lt;/strong&gt;&lt;br /&gt;هذا القسم داخل النموذج لاضافة وانتاج مختلف  &lt;a href="tce_edit_test.php" title="ادارة الاختبار"&gt;الاختبارات&lt;/a&gt;, نموذج لـ&lt;a href="tce_edit_rating.php" title="تقييم الاجابة"&gt;تقييم&lt;/a&gt; الاجابة المقالية ونموذج لعرض أو انتاج ملفات  PDF الخاصة بـ  &lt;a href="tce_show_result_allusers.php" title="تقرير نتائج الاختبار"&gt;النتائج&lt;/a&gt;, عرض وصف لـ &lt;a href="tce_show_result_user.php" title="اختبارات الاعضاء"&gt;اختبارات الاعضاء&lt;/a&gt; و &lt;a href="tce_show_result_questions.php" title="احصاءات الاسئلة"&gt;احصاءات&lt;/a&gt; الاسئلة والاجابات.&lt;br /&gt;تكسام يعمل على الاختيار العشوائي للاسئلة وترتيب الاجوبة لكي يجعل اختبار كل مستخدم مختلف عن اﻵخر.&lt;br /&gt;ومن الممكن ايضاً انشاء أي عدد من الاختبارات العشوائية على شكل ملفات pdf لطباعتها واستخدامها كاختبارات تقليدية.&lt;/li&gt;&lt;/ul&gt;</seg>
    </tuv>
    <tuv xml:lang="AZ">
-    <seg>&lt;strong&gt;Hörmətli namizədlər, &lt;/strong&gt;&lt;br&gt;&lt;br&gt; Biz sizlərə ingilis dilində hazırlanmış &lt;b&gt;80 sual&lt;/b&gt; təqdim edirik. Bu suallar &lt;b&gt;7 müxtəlif sahəni &lt;/b&gt;əhatə edir. Bu suallara cavab vermək üçün sizin &lt;b&gt;80 dəqiqəniz&lt;/b&gt; vardır. &lt;br&gt;&lt;br&gt;İngilis dili sahəsi &lt;b&gt;20 sualdan&lt;/b&gt;, lakin qalan &lt;b&gt;6&lt;/b&gt; sahə &lt;b&gt;10 sualdan&lt;/b&gt; ibarətdir.&lt;br&gt;&lt;br&gt;
-Siz hər sualda yalnızca &lt;b&gt;bir&lt;/b&gt; cavabı seçə bilərsiniz.&lt;br&gt;Test imtahanı zamanı çox diqqətli və səliqəli olun! &lt;br&gt;&lt;br&gt;
-&lt;strong&gt;Sizə uğurlar arzu edirik!&lt;/strong&gt;</seg>
+    <seg>This is the administration area of &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam&lt;/a&gt;, is a platform and language independent user-friendly software to create, manage and perform online tests.&lt;br /&gt;&lt;br /&gt;From the menu you can access the different sections of the system:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;users&lt;/strong&gt;&lt;br /&gt;This sections contains the forms for &lt;a href="tce_edit_user.php" title="User Management"&gt;insert and manage&lt;/a&gt; users, &lt;a href="tce_select_users.php" title="User Selection"&gt; to select them&lt;/a&gt; and to show the list of the ones currently &lt;a href="tce_show_online_users.php" title="Online Users"&gt;online&lt;/a&gt;.&lt;br /&gt;Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.&lt;br /&gt;It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).&lt;br /&gt;TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;modules&lt;/strong&gt;&lt;br /&gt;This section contains the forms to insert and modify test &lt;a href="tce_edit_module.php" title="Modules Management"&gt;modules&lt;/a&gt;, &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;topics&lt;/a&gt;, the related &lt;a href="tce_edit_question.php" title="Question Management"&gt;questions&lt;/a&gt; and &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;answers&lt;/a&gt;.&lt;br /&gt;You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.&lt;br /&gt;TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt;&lt;/a&gt;, while the former will be automatically evaluated.&lt;br /&gt;All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;This section includes a form to insert, generate and modify the different &lt;a href="tce_edit_test.php" title="Test Management"&gt;tests&lt;/a&gt;, a form to &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;evaluate&lt;/a&gt; the free answers and forms to show or generate PDF versions of the &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;results&lt;/a&gt;, a detailed view of the &lt;a href="tce_show_result_user.php" title="Test Results"&gt;users' tests&lt;/a&gt; and the &lt;a href="tce_show_result_questions.php" title="Question Statistics"&gt;statistics&lt;/a&gt; of questions and answers used.&lt;br /&gt;TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.&lt;br /&gt;It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.&lt;/li&gt;&lt;/ul&gt;</seg>
    </tuv>
    <tuv xml:lang="ES">
     <seg>Esta es el área de administración de &lt;a href="tce_page_info.php" title="acerca de TCExam"&gt;TCExam&lt;/a&gt;, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.&lt;br /&gt;&lt;br /&gt;Mediante el menu usted puede acceder a las diferentes secciones del sistema:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;usuarios&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para &lt;a href="tce_edit_user.php" title="Administración de Usuarios"&gt;insertar y modificar&lt;/a&gt; usuarios, &lt;a href="tce_select_users.php" title="Selección Usuarios"&gt; para seleccionarlos&lt;/a&gt; y para mostrar la lista de los que están actualmente &lt;a href="tce_show_online_users.php" title="Usuarios en Línea"&gt;en línea&lt;/a&gt;.&lt;br /&gt;Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.&lt;br /&gt;Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).&lt;br /&gt;TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;tópicos&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para insertar y modificar el test &lt;a href="tce_edit_subject.php" title="Administración Tópicos"&gt;tópicos&lt;/a&gt;, the related &lt;a href="tce_edit_question.php" title="Administración Preguntas"&gt;preguntas&lt;/a&gt; y &lt;a href="tce_edit_answer.php" title="Administración Respuestas Múltiples"&gt;respuestas&lt;/a&gt;.&lt;br /&gt;Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.&lt;br /&gt;TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación &lt;a href="tce_edit_rating.php" title="Evaluación respuesta"&gt;evaluación&lt;/a&gt;, mientras las otras serán evaluadas automaticamente.&lt;br /&gt;Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;Esta sección incluye el formulario para insertar, generar y modificar los diferentes &lt;a href="tce_edit_test.php" title="Administración Test"&gt;tests&lt;/a&gt;, el formulario para &lt;a href="tce_edit_rating.php" title="Evaluación Respuesta"&gt;evaluar&lt;/a&gt; las respuestas libres y los formularios para mostrar o generar versiones PDF de los &lt;a href="tce_show_result_allusers.php" title="Resumen Resultados Test"&gt;resultados&lt;/a&gt;, una vista detallada de los &lt;a href="tce_show_result_user.php" title="Resultados test"&gt;tests de usuarios&lt;/a&gt; y las &lt;a href="tce_show_result_questions.php" title="Estadísticas de las Preguntas"&gt;estadísticas&lt;/a&gt; de preguntas y respuestas utilizadas.&lt;br /&gt;TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.&lt;br /&gt;Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.&lt;/li&gt;&lt;/ul&gt;</seg>
@@ -41934,6 +41932,450 @@ Os arquivos de backup são armazenados na pasta "cache/backup" usando a seguinte
    </tuv>
    <tuv xml:lang="BR">
     <seg>um importante processo falhou</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_forgot_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Ho dimenticato la password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>I forgot my password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>I forgot my password</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_reset_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>reimposta la password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>reset the password</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>reset the password</seg>
+   </tuv>
+  </tu>
+    <tu tuid="d_reset_password" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Inserisci l'indirizzo email che hai utilizzato durante la registrazione, ti verrà inviato il link per reimpostare la password.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+   </tuv>
+  </tu>
+    <tu tuid="t_password_assistance" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Assistenza Password</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>Password Assistance</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>Password Assistance</seg>
+   </tuv>
+  </tu>
+	<tu tuid="w_unknown_email" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>email sconosciuta</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>unknown email</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>unknown email</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_result_graph" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>grafico delle percentuali dei punteggi e delle risposte corrette per ogni test elencato</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>graph of points and correct answers percentage for each listed test</seg>
    </tuv>
   </tu>
  </body>

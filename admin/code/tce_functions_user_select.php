@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2011-05-21
+// Last Update : 2012-04-14
 //
 // Description : Functions to display and select registered user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -71,13 +71,13 @@ function F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_
  * Display user selection XHTML table.
  * @author Nicola Asuni
  * @since 2001-09-13
- * @param $order_field (string) order by column name
- * @param $orderdir (int) oreder direction
- * @param $firstrow (int) number of first row to display
- * @param $rowsperpage (int) number of rows per page
- * @param $group_id (int) id of the group (default = 0 = no specific group selected)
- * @param $andwhere (string) additional SQL WHERE query conditions
- * @param $searchterms (string) search terms
+ * @param $order_field (string) Order by column name.
+ * @param $orderdir (int) Order direction.
+ * @param $firstrow (int) Number of first row to display.
+ * @param $rowsperpage (int) Number of rows per page.
+ * @param $group_id (int) ID of the group (default = 0 = no specific group selected).
+ * @param $andwhere (string) Additional SQL WHERE query conditions.
+ * @param $searchterms (string) Search terms.
  * @return false in case of empty database, true otherwise
  */
 function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id=0, $andwhere='', $searchterms='') {
@@ -271,6 +271,168 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '</div>'.K_NEWLINE;
 
 			echo '<div class="pagehelp">'.$l['hp_select_users'].'</div>'.K_NEWLINE;
+			echo '</div>'.K_NEWLINE;
+		} else {
+			F_print_error('MESSAGE', $l['m_search_void']);
+		}
+	} else {
+		F_display_db_error();
+	}
+	return TRUE;
+}
+
+/**
+ * Display user selection XHTML table (popup mode).
+ * @author Nicola Asuni
+ * @since 2012-04-14
+ * @param $order_field (string) Order by column name.
+ * @param $orderdir (int) Order direction.
+ * @param $firstrow (int) Number of first row to display.
+ * @param $rowsperpage (int) Number of rows per page.
+ * @param $group_id (int) ID of the group (default = 0 = no specific group selected).
+ * @param $andwhere (string) Additional SQL WHERE query conditions.
+ * @param $searchterms (string) Search terms.
+ * @param string $cid ID of the calling form field.
+ * @return false in case of empty database, true otherwise
+ */
+function F_show_select_user_popup($order_field, $orderdir, $firstrow, $rowsperpage, $group_id=0, $andwhere='', $searchterms='', $cid=0) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	require_once('../../shared/code/tce_functions_page.php');
+	require_once('../../shared/code/tce_functions_form.php');
+	$filter = '&amp;cid='.$cid;
+	if ($l['a_meta_dir'] == 'rtl') {
+		$txtalign = 'right';
+		$numalign = 'left';
+	} else {
+		$txtalign = 'left';
+		$numalign = 'right';
+	}
+	$order_field = F_escape_sql($order_field);
+	$orderdir = intval($orderdir);
+	$firstrow = intval($firstrow);
+	$rowsperpage = intval($rowsperpage);
+	$group_id = intval($group_id);
+	if (empty($order_field) OR (!in_array($order_field, array('user_id', 'user_name', 'user_password', 'user_email', 'user_regdate', 'user_ip', 'user_firstname', 'user_lastname', 'user_birthdate', 'user_birthplace', 'user_regnumber', 'user_ssn', 'user_level', 'user_verifycode')))) {
+		$order_field = 'user_lastname,user_firstname';
+	}
+	if ($orderdir == 0) {
+		$nextorderdir=1;
+		$full_order_field = $order_field;
+	} else {
+		$nextorderdir=0;
+		$full_order_field = $order_field.' DESC';
+	}
+	if (!F_count_rows(K_TABLE_USERS)) { // if the table is void (no items) display message
+		F_print_error('MESSAGE', $l['m_databasempty']);
+		return FALSE;
+	}
+	$wherequery = '';
+	if ($group_id > 0) {
+		$wherequery = ', '.K_TABLE_USERGROUP.' WHERE user_id=usrgrp_user_id	AND usrgrp_group_id='.$group_id.'';
+		$filter .= '&amp;group_id='.$group_id.'';
+	}
+	if (empty($wherequery)) {
+		$wherequery = ' WHERE';
+	} else {
+		$wherequery .= ' AND';
+	}
+	$wherequery .= ' (user_id>1)';
+	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+		// filter for level
+		$wherequery .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+		// filter for groups
+		$wherequery .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+			FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
+			WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
+				AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
+				AND tb.usrgrp_user_id=user_id)';
+	}
+	if (!empty($andwhere)) {
+		$wherequery .= ' AND ('.$andwhere.')';
+	}
+	$sql = 'SELECT * FROM '.K_TABLE_USERS.$wherequery.' ORDER BY '.$full_order_field;
+	if (K_DATABASE_TYPE == 'ORACLE') {
+		$sql = 'SELECT * FROM ('.$sql.') WHERE rownum BETWEEN '.$firstrow.' AND '.($firstrow + $rowsperpage).'';
+	} else {
+		$sql .= ' LIMIT '.$rowsperpage.' OFFSET '.$firstrow.'';
+	}
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			// -- Table structure with links:
+			echo '<div class="container">';
+			echo '<table class="userselect" style="font-size:80%;">'.K_NEWLINE;
+			// table header
+			echo '<tr>'.K_NEWLINE;
+			if (strlen($searchterms) > 0) {
+				$filter .= '&amp;searchterms='.urlencode($searchterms);
+			}
+			echo F_select_table_header_element('user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field, $filter);
+			echo F_select_table_header_element('user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field, $filter);
+			echo F_select_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $filter);
+			echo F_select_table_header_element('user_email', $nextorderdir, $l['h_email'], $l['w_email'], $order_field, $filter);
+			echo F_select_table_header_element('user_regnumber', $nextorderdir, $l['h_regcode'], $l['w_regcode'], $order_field, $filter);
+			echo F_select_table_header_element('user_level', $nextorderdir, $l['h_level'], $l['w_level'], $order_field, $filter);
+			echo F_select_table_header_element('user_regdate', $nextorderdir, $l['h_regdate'], $l['w_regdate'], $order_field, $filter);
+			//echo '<th title="'.$l['h_group_name'].'">'.$l['w_groups'].'</th>'.K_NEWLINE;
+			echo '</tr>'.K_NEWLINE;
+			$itemcount = 0;
+			do {
+				$itemcount++;
+				// on click the user ID will be returned on the calling form field
+				$jsaction = 'javascript:window.opener.document.getElementById(\''.$cid.'\').value='.$m['user_id'].';';
+				$jsaction .= 'window.opener.document.getElementById(\''.$cid.'\').onchange();';
+				$jsaction .= 'window.close();';
+				echo '<tr>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;<a href="#" onclick="'.$jsaction.'" title="['.$l['w_select'].']">'.htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_email'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				echo '<td>&nbsp;'.$m['user_level'].'</td>'.K_NEWLINE;
+				echo '<td>&nbsp;'.htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				/*
+				// comma separated list of user's groups
+				$grp = '';
+				$sqlg = 'SELECT *
+					FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
+					WHERE usrgrp_group_id=group_id
+						AND usrgrp_user_id='.$m['user_id'].'
+					ORDER BY group_name';
+				if ($rg = F_db_query($sqlg, $db)) {
+					while ($mg = F_db_fetch_array($rg)) {
+						$grp .= $mg['group_name'].', ';
+					}
+				} else {
+					F_display_db_error();
+				}
+				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(substr($grp,0,-2), ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+				*/
+
+				echo '</tr>'.K_NEWLINE;
+			} while ($m = F_db_fetch_array($r));
+
+			echo '</table>'.K_NEWLINE;
+			echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="firstrow" id="firstrow" value="'.$firstrow.'" />'.K_NEWLINE;
+			echo '<input type="hidden" name="rowsperpage" id="rowsperpage" value="'.$rowsperpage.'" />'.K_NEWLINE;
+
+			echo '<div class="row"><hr /></div>'.K_NEWLINE;
+
+			// ---------------------------------------------------------------
+			// -- page jumper (menu for successive pages)
+			if ($rowsperpage > 0) {
+				$sql = 'SELECT count(*) AS total FROM '.K_TABLE_USERS.''.$wherequery.'';
+				if (!empty($order_field)) {$param_array = '&amp;order_field='.urlencode($order_field).'';}
+				if (!empty($orderdir)) {$param_array .= '&amp;orderdir='.$orderdir.'';}
+				if (!empty($group_id)) {$param_array .= '&amp;group_id='.$group_id.'';}
+				if (!empty($searchterms)) {$param_array .= '&amp;searchterms='.urlencode($searchterms).'';}
+				$param_array .= '&amp;submitted=1';
+				F_show_page_navigator($_SERVER['SCRIPT_NAME'], $sql, $firstrow, $rowsperpage, $param_array);
+			}
+
+			//echo '<div class="pagehelp">'.$l['hp_select_users'].'</div>'.K_NEWLINE;
 			echo '</div>'.K_NEWLINE;
 		} else {
 			F_print_error('MESSAGE', $l['m_search_void']);

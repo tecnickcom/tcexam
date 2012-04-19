@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2012-01-30 17:34:38
+// DATE: 2012-04-15 16:06:23
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -570,5 +570,11 @@ $tmx['m_omr_wrong_test_data']='imaginea paginii DATE OMR lipseşte sau nu poate 
 $tmx['m_omr_wrong_answer_sheet']='imaginea paginii FIŞĂ RĂSPUNSURI OMR lipseşte sau nu poate fi citită';
 $tmx['m_import_ok']='procesul de import a fost încheiat cu succes';
 $tmx['m_import_error']='procesul de import a eşuat';
+$tmx['w_forgot_password']='I forgot my password';
+$tmx['h_reset_password']='reset the password';
+$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
+$tmx['t_password_assistance']='Password Assistance';
+$tmx['w_unknown_email']='unknown email';
+$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
 
 // --- EOF ---

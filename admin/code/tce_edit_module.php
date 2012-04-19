@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2011-09-14
+// Last Update : 2012-04-15
 //
 // Description : Display form to edit modules.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -320,11 +320,13 @@ echo '<span class="label">'.K_NEWLINE;
 echo '<label for="module_user_id">'.$l['w_owner'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
+$userids = array();
 if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
-	echo '<select name="module_user_id" id="module_user_id" size="0" title="'.$l['h_module_owner'].'">'.K_NEWLINE;
+	echo '<select name="module_user_id" id="module_user_id" size="0" title="'.$l['h_module_owner'].'" onchange="">'.K_NEWLINE;
 	$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_level>5) ORDER BY user_lastname, user_firstname, user_name';
 	if ($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_array($r)) {
+			$userids[] = $m['user_id'];
 			echo '<option value="'.$m['user_id'].'"';
 			if ($m['user_id'] == $module_user_id) {
 				echo ' selected="selected"';
@@ -339,6 +341,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 	echo '</select>'.K_NEWLINE;
 } else {
 	$userdata = '';
+	$userids[] = $module_user_id;
 	$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE user_id='.$module_user_id.'';
 	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
@@ -349,6 +352,19 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
 		F_display_db_error();
 	}
 }
+
+// link for user selection popup
+$jslink = 'tce_select_users_popup.php?cid=module_user_id';
+if (!empty($userids)) {
+	$uids = implode('x', $userids);
+	if (strlen(K_PATH_PUBLIC_CODE.$jslink.$uids) < 512) {
+		// add this filter only if the URL is short
+		$jslink .= '&amp;uids='.$uids;
+	}
+}
+$jsaction = 'selectWindow=window.open(\''.$jslink.'\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

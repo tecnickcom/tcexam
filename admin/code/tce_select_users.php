@@ -147,7 +147,7 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 	$istart = 1 + $firstrow;
 	$iend = $rowsperpage + $firstrow;
 	for ($i = $istart; $i <= $iend; $i++) {
-		// for each selected question
+		// for each selected user
 		$keyname = 'userid'.$i;
 		if (isset($$keyname)) {
 			$user_id = intval($$keyname);

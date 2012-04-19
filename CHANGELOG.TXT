@@ -1,3 +1,11 @@
+11.2.027 (2012-04-19)
+	- TCPDF library was updated.
+	- Division by zero problem was fixed on tce_show_allresults_users.php
+	- A user selection/search popup utility was added (click on the [...] button next to each user select box).
+	- Constant K_PASSWORD_RESET was added on shared/config/tce_config.php to enable password reset feature.
+	- A "Password Reset" feature was added on login page.
+	- An SVG graph was added on User's Results page.
+
 11.2.026 (2012-04-02)
 	- TCPDF library was updated.
 	- Font files were updated.

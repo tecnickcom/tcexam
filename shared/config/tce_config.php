@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2011-07-13
+// Last Update : 2012-04-14
 //
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2011:
+// (c) Copyright 2004-2012:
 //               Nicola Asuni
 //               Tecnick.com LTD
 //               UK
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.2.026');
+define ('K_TCEXAM_VERSION', '11.2.027');
 
 /**
  * 2-letters code for default language.
@@ -187,7 +187,13 @@ define ('K_COOKIE_EXPIRE', K_SECONDS_IN_DAY);
  * 3 = html redirect.
  * 4 = full redirect.
  */
-define ('K_REDIRECT_LOGIN_MODE', 3);
+define ('K_REDIRECT_LOGIN_MODE', 4);
+
+/**
+ * If true enable password reset feature.
+ */
+define ('K_PASSWORD_RESET', TRUE);
+
 
 // Error settings
 

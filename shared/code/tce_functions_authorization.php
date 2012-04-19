@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-05-20
+// Last Update : 2012-04-14
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -80,6 +80,12 @@ function F_loginForm($faction, $fid, $fmethod, $fenctype, $username, $password, 
 	$str .= getFormRowTextInput('xuser_name', $l['w_username'], $l['h_login_name'], '', $username, '', 255, false, false, false, '');
 	// password
 	$str .= getFormRowTextInput('xuser_password', $l['w_password'], $l['h_password'], '', '', '', 255, false, false, true, '');
+	if (defined('K_PASSWORD_RESET') AND K_PASSWORD_RESET) {
+		// print a link to password reset page
+		$str .= '<div class="row">'.K_NEWLINE;
+		$str .= '<span class="formw"><a href="../../public/code/tce_password_reset.php" title="'.$l['h_reset_password'].'" style="font-size:90%;">'.$l['w_forgot_password'].'</a></span>'.K_NEWLINE;
+		$str .= '</div>'.K_NEWLINE;
+	}
 	// buttons
 	$str .= '<div class="row">'.K_NEWLINE;
 	// the following field is used to check if form has been submitted

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2011-07-12
+// Last Update : 2012-04-15
 //
 // Description : Display test results for specified user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -296,6 +296,7 @@ echo '<span class="label">'.K_NEWLINE;
 echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
+$userids = array();
 echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_resultuser\').submit()" title="'.$l['h_select_user'].'">'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.' WHERE testuser_user_id=user_id AND testuser_test_id='.intval($test_id).'';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
@@ -312,6 +313,7 @@ $sql .= ' ORDER BY user_lastname, user_firstname, user_name';
 if($r = F_db_query($sql, $db)) {
 	$usrcount = 1;
 	while($m = F_db_fetch_array($r)) {
+		$userids[] = $m['user_id'];
 		echo '<option value="'.$m['user_id'].'"';
 		if(isset($user_id) AND ($m['user_id'] == $user_id)) {
 			echo ' selected="selected"';
@@ -327,6 +329,19 @@ else {
 	F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
+
+// link for user selection popup
+$jslink = 'tce_select_users_popup.php?cid=user_id';
+if (!empty($userids)) {
+	$uids = implode('x', $userids);
+	if (strlen(K_PATH_PUBLIC_CODE.$jslink.$uids) < 512) {
+		// add this filter only if the URL is short
+		$jslink .= '&amp;uids='.$uids;
+	}
+}
+$jsaction = 'selectWindow=window.open(\''.$jslink.'\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

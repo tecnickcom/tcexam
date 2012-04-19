@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2012-01-30 17:34:47
+// DATE: 2012-04-15 16:06:33
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -575,5 +575,11 @@ $tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadab
 $tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
 $tmx['m_import_ok']='the import process has been successfully completed';
 $tmx['m_import_error']='the import process has failed';
+$tmx['w_forgot_password']='I forgot my password';
+$tmx['h_reset_password']='reset the password';
+$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
+$tmx['t_password_assistance']='Password Assistance';
+$tmx['w_unknown_email']='unknown email';
+$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
 
 // --- EOF ---

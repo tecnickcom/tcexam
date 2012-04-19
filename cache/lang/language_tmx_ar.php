@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2012-01-30 17:33:36
+// DATE: 2012-04-15 16:05:09
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -570,5 +570,11 @@ $tmx['m_omr_wrong_test_data']='بيانات الصورة مفقودة أو غي�
 $tmx['m_omr_wrong_answer_sheet']='بيانات ورقة اجابة الطالب مفقودة أو غير قابلة للقراءة';
 $tmx['m_import_ok']='تم استيراد البيانات بنجاح';
 $tmx['m_import_error']='فشل استيراد البيانات';
+$tmx['w_forgot_password']='I forgot my password';
+$tmx['h_reset_password']='reset the password';
+$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
+$tmx['t_password_assistance']='Password Assistance';
+$tmx['w_unknown_email']='unknown email';
+$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
 
 // --- EOF ---

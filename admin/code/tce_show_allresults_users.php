@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_allresults_users.php
 // Begin       : 2008-12-26
-// Last Update : 2011-05-24
+// Last Update : 2012-04-15
 //
 // Description : Display all test results for the selected users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -244,6 +244,11 @@ if ($r = F_db_query($sql, $db)) {
 	F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
+
+// link for user selection popup
+$jsaction = 'selectWindow=window.open(\'tce_select_users_popup.php?cid=user_id\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
@@ -271,6 +276,8 @@ if ($l['a_meta_dir'] == 'rtl') {
 	$tdalign = 'left';
 }
 
+// points for graph
+$points = '';
 echo '<th>&nbsp;</th>'.K_NEWLINE;
 echo '<th>#</th>'.K_NEWLINE;
 echo F_select_table_header_element('testuser_creation_time', $nextorderdir, $l['h_time_begin'], $l['w_time_begin'], $order_field, $filter);
@@ -285,9 +292,8 @@ echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplaye
 echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['w_status'].'">'.$l['w_status'].'</th>'.K_NEWLINE;
 echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
-?>
-</tr>
-<?php
+echo '</tr>'.K_NEWLINE;
+
 // output users stats
 $sqlr = 'SELECT
 	testuser_id,
@@ -351,8 +357,12 @@ if ($rr = F_db_query($sqlr, $db)) {
 		} elseif ($usrtestdata['score'] > $halfscore) {
 			$passed++;
 		}
-		echo '<td'.$passmsg.' class="numeric">'.F_formatFloat($mr['total_score']).'&nbsp;'.F_formatPercentage($usrtestdata['score'] / $usrtestdata['max_score']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['right'].'&nbsp;'.F_formatPercentage($usrtestdata['right'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
+		$tmpscore = ($usrtestdata['score'] / $usrtestdata['max_score']);
+		$points .= 'x'.round($tmpscore * 100);
+		echo '<td'.$passmsg.' class="numeric">'.F_formatFloat($mr['total_score']).'&nbsp;'.F_formatPercentage($tmpscore).'</td>'.K_NEWLINE;
+		$tmpright = ($usrtestdata['right'] / $usrtestdata['all']);
+		$points .= 'v'.round($tmpright * 100);
+		echo '<td class="numeric">'.$usrtestdata['right'].'&nbsp;'.F_formatPercentage($tmpright).'</td>'.K_NEWLINE;
 		echo '<td class="numeric">'.$usrtestdata['wrong'].'&nbsp;'.F_formatPercentage($usrtestdata['wrong'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
 		echo '<td class="numeric">'.$usrtestdata['unanswered'].'&nbsp;'.F_formatPercentage($usrtestdata['unanswered'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
 		echo '<td class="numeric">'.$usrtestdata['undisplayed'].'&nbsp;'.F_formatPercentage($usrtestdata['undisplayed'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
@@ -384,7 +394,10 @@ if ($rr = F_db_query($sqlr, $db)) {
 
 echo '<tr>';
 echo '<td colspan="5" style="text-align:'.$tdalignr.';">'.$l['w_passed'].'</td>';
-$passed_perc = ($passed / $itemcount);
+$passed_perc = 0;
+if ($itemcount > 0) {
+	$passed_perc = ($passed / $itemcount);
+}
 echo '<td class="numeric"';
 if ($passed_perc > 0.5) {
 	echo  ' style="background-color:#BBFFBB;"';
@@ -496,6 +509,18 @@ echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NE
 echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
 echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
+
+// display graph
+if (($itemcount > 1) AND isset($points) AND !empty($points)) {
+	$w = 800;
+	$h = 300;
+	echo '<div class="row">'.K_NEWLINE;
+	echo '<hr />'.K_NEWLINE;
+	// legend
+	echo '<div style="font-size:90%;"><br /><span style="background-color:#ff0000;color:#ffffff;">&nbsp;'.$l['w_score'].'&nbsp;</span> <span style="background-color:#0000ff;color:#ffffff;">&nbsp;'.$l['w_answers_right'].'&nbsp;</span> / <span style="background-color:#dddddd;color:#000000;">&nbsp;'.$l['w_tests'].'&nbsp;</span></div>';
+	echo '<img src="tce_svg_graph.php?w='.$w.'&amp;h='.$h.'&amp;p='.substr($points, 1).'" width="'.$w.'" height="'.$h.'" alt="'.$l['w_result_graph'].'" />'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+}
 
 echo '</form>'.K_NEWLINE;
 

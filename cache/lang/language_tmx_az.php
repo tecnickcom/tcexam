@@ -1,14 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: az
-// DATE: 2012-01-30 17:33:39
+// DATE: 2012-04-15 16:05:13
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='az';
-$tmx['d_admin_index']='<strong>Hörmətli namizədlər, </strong><br><br> Biz sizlərə ingilis dilində hazırlanmış <b>80 sual</b> təqdim edirik. Bu suallar <b>7 müxtəlif sahəni </b>əhatə edir. Bu suallara cavab vermək üçün sizin <b>80 dəqiqəniz</b> vardır. <br><br>İngilis dili sahəsi <b>20 sualdan</b>, lakin qalan <b>6</b> sahə <b>10 sualdan</b> ibarətdir.<br><br>
-Siz hər sualda yalnızca <b>bir</b> cavabı seçə bilərsiniz.<br>Test imtahanı zamanı çox diqqətli və səliqəli olun! <br><br>
-<strong>Sizə uğurlar arzu edirik!</strong>';
+$tmx['d_admin_index']='This is the administration area of <a href="tce_page_info.php" title="about TCExam">TCExam</a>, is a platform and language independent user-friendly software to create, manage and perform online tests.<br /><br />From the menu you can access the different sections of the system:<ul><li><strong>users</strong><br />This sections contains the forms for <a href="tce_edit_user.php" title="User Management">insert and manage</a> users, <a href="tce_select_users.php" title="User Selection"> to select them</a> and to show the list of the ones currently <a href="tce_show_online_users.php" title="Online Users">online</a>.<br />Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.<br />It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).<br />TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.</li><li><strong>modules</strong><br />This section contains the forms to insert and modify test <a href="tce_edit_module.php" title="Modules Management">modules</a>, <a href="tce_edit_subject.php" title="Topic Management">topics</a>, the related <a href="tce_edit_question.php" title="Question Management">questions</a> and <a href="tce_edit_answer.php" title="Multiple-Answer Management">answers</a>.<br />You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.<br />TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form <a href="tce_edit_rating.php" title="Answer evaluation"></a>, while the former will be automatically evaluated.<br />All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.</li><li><strong>test</strong><br />This section includes a form to insert, generate and modify the different <a href="tce_edit_test.php" title="Test Management">tests</a>, a form to <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> the free answers and forms to show or generate PDF versions of the <a href="tce_show_result_allusers.php" title="Test Results Summary">results</a>, a detailed view of the <a href="tce_show_result_user.php" title="Test Results">users\' tests</a> and the <a href="tce_show_result_questions.php" title="Question Statistics">statistics</a> of questions and answers used.<br />TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.<br />It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.</li></ul>';
 $tmx['d_logout_desc']='Sistemdən çıxmaq üçün düymənı basın';
 $tmx['d_tcexam_desc']='TCExam onlayn testlərin idarə edilməsi sistemidir';
 $tmx['h_add']='Bazaya əlavə et';
@@ -568,5 +566,11 @@ $tmx['m_omr_wrong_test_data']='OMR DATA-nın şəkili tapılmadı və ya onu oxu
 $tmx['m_omr_wrong_answer_sheet']='OMR ANSWER SHEET səhifənin şəkili yoxdur və ya onu oxumaq mümkün deyil';
 $tmx['m_import_ok']='import prosesi uğurla başa çatdırıldı';
 $tmx['m_import_error']='import prosesi ugursuz keçdi';
+$tmx['w_forgot_password']='I forgot my password';
+$tmx['h_reset_password']='reset the password';
+$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
+$tmx['t_password_assistance']='Password Assistance';
+$tmx['w_unknown_email']='unknown email';
+$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
 
 // --- EOF ---

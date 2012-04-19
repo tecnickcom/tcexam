@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2011-05-21
+// Last Update : 2012-04-14
 //
 // Description : User registration form.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -321,7 +321,7 @@ if ($regfields['user_agreement'] > 0) {
 
 echo '<div class="row">'.K_NEWLINE;
 
-F_submit_button("add", $l['w_add'], $l['h_add']);
+F_submit_button('add', $l['w_add'], $l['h_add']);
 
 // set fields descriptions for error messages
 $fielddesc = array (

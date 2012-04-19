@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2011-05-20
+// Last Update : 2012-04-14
 //
 // Description : General functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -171,10 +171,14 @@ function unhtmlentities($text_to_convert, $preserve_tagsign=FALSE) {
  * <li>"\x0B" (ASCII 11 (0x0B)), a vertical tab</li>
  * </ul>
  * @param $string (string) input string to convert
+ * @param $dquotes (boolean) If true add slash in fron of double quotes;
  * @return converted string
  */
-function F_compact_string($string) {
-	$repTable = array("\t" => ' ', "\n" => ' ', "\r" => ' ', "\0" => ' ', "\x0B" => ' '); //to escape quotes
+function F_compact_string($string, $dquotes=false) {
+	$repTable = array("\t" => ' ', "\n" => ' ', "\r" => ' ', "\0" => ' ', "\x0B" => ' ');
+	if ($dquotes) {
+		$repTable['"'] = '&quot;';
+	}
 	return strtr($string, $repTable);
 }
 
@@ -429,6 +433,11 @@ function getDataXML($data, $level=1) {
 	$xml = '';
 	$tb = str_repeat("\t", $level);
 	foreach ($data as $key => $value) {
+		$key = strtolower($key);
+		$key = preg_replace('/[^a-z0-9]+/', '_', $key);
+		if (is_numeric($key[0]) OR ($key[0] == '_')) {
+			$key = 'item'.$key;
+		}
 		$xml .= $tb.'<'.$key.'>';
 		if (is_array($value)) {
 			$xml .= "\n".getDataXML($value, ($level + 1));
@@ -469,7 +478,7 @@ function getDataCSV($data) {
 		if (is_array($value)) {
 			$csv .= getDataCSV($value);
 		} else {
-			$csv .= "\t".str_replace("\t", ' ', $value);
+			$csv .= "\t".preg_replace("/[\t\n\r]+/", ' ', $value);
 		}
 	}
 	return $csv;
@@ -498,6 +507,37 @@ function F_select_table_header_element($order_field, $orderdir, $title, $name, $
 	}
 	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.''.$filter.'" title="'.$title.'">'.$name.'</a>'.$ord.'</th>'."\n";
 	return $str;
+}
+
+/**
+ * Get a black or white color that maximize contrast.
+ * @param $color (string) color in HEX format.
+ * @return (string) Color.
+ */
+function getContrastColor($color) {
+	$r = hexdec(substr($color, 0, 2));
+	$g = hexdec(substr($color, 2, 2));
+	$b = hexdec(substr($color, 4, 2));
+	// brightness of the selected color
+	$br = (((299 * $r) + (587 * $g) + (114 * $b)) / 1000);
+	if ($br < 128) {
+		// white
+		return 'ffffff';
+	}
+	// black
+	return '000000';
+}
+
+/**
+ * Returns true if the string is an URL.
+ * @param $str (string) String to check.
+ * @return boolean true or false.
+ */
+function F_isURL($str) {
+	if ((preg_match('/^(ftp|http|https|mail|sftp|ssh|telnet|vnc)[:][\/][\/]/', $str) > 0) AND (parse_url($str) !== false)) {
+		return true;
+	}
+	return false;
 }
 
 //============================================================+

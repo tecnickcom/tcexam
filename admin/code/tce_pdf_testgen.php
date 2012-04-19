@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2011-06-28
+// Last Update : 2012-03-19
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -496,12 +496,12 @@ for ($item = 1; $item <= $test_num; $item++) {
 				   uncheck "Only change the color of black text or line art" */
 				$pdf->SetTextColor(255, 255, 255, false);
 				if ($restspace > PDF_TEXTANSWER_HEIGHT) {
-					$pdf->Cell(0, PDF_TEXTANSWER_HEIGHT, $shortanswers, 1, 1, 'C', 0);
+					$pdf->MultiCell(0, PDF_TEXTANSWER_HEIGHT, $shortanswers, 1, '', false, 1, '', '', true, 0, false, true, 0, 'T', false);
 				} else {
 					// split text area across two pages
 					$pdf->Cell(0, $restspace, '', 'LTR', 1, 'C', 0);
 					$pdf->Cell(2*$data_cell_width_third, $data_cell_height, '', 0, 0, 'R', 0);
-					$pdf->Cell(0, (PDF_TEXTANSWER_HEIGHT - $restspace), $shortanswers, 'LRB', 1, 'C', 0);
+					$pdf->MultiCell(0, (PDF_TEXTANSWER_HEIGHT - $restspace), $shortanswers, 'LRB', '', false, 1, '', '', true, 0, false, true, 0, 'T', false);
 				}
 				$pdf->SetTextColor(0, 0, 0, false);
 				$pdf->Ln($data_cell_height);

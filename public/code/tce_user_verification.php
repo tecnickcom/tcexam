@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_verification.php
 // Begin       : 2008-03-31
-// Last Update : 2009-09-30
+// Last Update : 2012-04-14
 //
 // Description : User verification.
 //
@@ -59,8 +59,8 @@ if (!K_USRREG_ENABLED) {
 	exit;
 }
 
-$email = $_REQUEST['a'];
-$verifycode = $_REQUEST['b'];
+$email = preg_replace('/[^a-zA-Z0-9_\.\-\@]/', '', $_REQUEST['a']);
+$verifycode = preg_replace('/[^A-Fa-f0-9\@]/', '', $_REQUEST['b']);
 $userid = intval($_REQUEST['c']);
 
 $pagelevel = 0;
@@ -76,24 +76,32 @@ $sql = 'SELECT *
 		AND user_id=\''.$userid.'\'
 		AND user_email=\''.F_escape_sql($email).'\')
 		LIMIT 1';
-if($r = F_db_query($sql, $db)) {
-	if($m = F_db_fetch_array($r)) {
+if ($r = F_db_query($sql, $db)) {
+	if ($m = F_db_fetch_array($r)) {
 		// update user level
-		$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-				user_level=\'1\',
-				user_verifycode=NULL
-				WHERE user_id='.$userid.'';
-			if(!$ru = F_db_query($sqlu, $db)) {
-				F_display_db_error(false);
+		if ($verifycode[0] == '@') {
+			// password reset
+			$new_password = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_password=\''.md5($new_password).'\', user_verifycode=NULL WHERE user_id='.$userid.'';
+		} else {
+			// user registration
+			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_level=\'1\', user_verifycode=NULL WHERE user_id='.$userid.'';
+		}
+		if(!$ru = F_db_query($sqlu, $db)) {
+			F_display_db_error(false);
+		} else {
+			if ($verifycode[0] == '@') {
+				F_print_error('MESSAGE', $l['w_new_password'].': '.$new_password);
 			} else {
 				F_print_error('MESSAGE', $l['m_user_registration_ok']);
-				echo K_NEWLINE;
-				echo '<div class="container">'.K_NEWLINE;
-				echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
-				echo '</div>'.K_NEWLINE;
-				require_once('../code/tce_page_footer.php');
-				exit;
 			}
+			echo K_NEWLINE;
+			echo '<div class="container">'.K_NEWLINE;
+			echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
+			echo '</div>'.K_NEWLINE;
+			require_once('../code/tce_page_footer.php');
+			exit;
+		}
 	}
 } else {
 	F_display_db_error(false);
