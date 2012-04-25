@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2012-04-15 16:05:09
+// DATE: 2012-04-25 18:14:50
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -570,11 +570,11 @@ $tmx['m_omr_wrong_test_data']='بيانات الصورة مفقودة أو غي�
 $tmx['m_omr_wrong_answer_sheet']='بيانات ورقة اجابة الطالب مفقودة أو غير قابلة للقراءة';
 $tmx['m_import_ok']='تم استيراد البيانات بنجاح';
 $tmx['m_import_error']='فشل استيراد البيانات';
-$tmx['w_forgot_password']='I forgot my password';
-$tmx['h_reset_password']='reset the password';
-$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
-$tmx['t_password_assistance']='Password Assistance';
-$tmx['w_unknown_email']='unknown email';
-$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
+$tmx['w_forgot_password']='نسيت بريدي الالكتروني';
+$tmx['h_reset_password']='إعادة تعيين كلمة المرور';
+$tmx['d_reset_password']='الرجاء إدخال عنوان البريد الإلكتروني الذي استخدمته لإنشاء حسابك، وسنرسل لك رابطا لإعادة تعيين كلمة المرور.';
+$tmx['t_password_assistance']='كلمة السر المساعدة';
+$tmx['w_unknown_email']='بريد الكتروني مجهول';
+$tmx['w_result_graph']='رسم بياني من النقاط ونسبة الاجابات الصحيحة لكل اختبار مدرج';
 
 // --- EOF ---
