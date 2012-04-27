@@ -223,7 +223,11 @@ $calcpercent = array('mean', 'median', 'mode', 'minimum', 'maximum', 'range', 's
 
 $xml .= K_TAB.K_TAB.'<teststatistics>'.K_NEWLINE;
 $xml .= K_TAB.K_TAB.K_TAB.'<passed>'.$passed.'</passed>'.K_NEWLINE;
-$xml .= K_TAB.K_TAB.K_TAB.'<passed_percent>'.round(100 * ($passed / $stats['number']['score'])).'</passed_percent>'.K_NEWLINE;
+$passed_perc = 0;
+if ($itemcount > 0) {
+	$passed_perc = ($passed / $stats['number']['score']);
+}
+$xml .= K_TAB.K_TAB.K_TAB.'<passed_percent>'.round(100 * $passed_perc).'</passed_percent>'.K_NEWLINE;
 foreach ($stats as $row => $columns) {
 	if (!in_array($row, $excludestat)) {
 		$xml .= K_TAB.K_TAB.K_TAB.'<'.$row.'>'.K_NEWLINE;

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2011-05-24
+// Last Update : 2012-04-27
 //
 // Description : Display test results summary for all users.
 //
@@ -411,7 +411,10 @@ if ($rr = F_db_query($sqlr, $db)) {
 
 echo '<tr>';
 echo '<td colspan="7" style="text-align:'.$tdalignr.';">'.$l['w_passed'].'</td>';
-$passed_perc = ($passed / $itemcount);
+$passed_perc = 0;
+if ($itemcount > 0) {
+	$passed_perc = ($passed / $itemcount);
+}
 echo '<td class="numeric"';
 if ($passed_perc > 0.5) {
 	echo  ' style="background-color:#BBFFBB;"';

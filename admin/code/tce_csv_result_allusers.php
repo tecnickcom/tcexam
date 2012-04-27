@@ -240,7 +240,11 @@ function F_csv_export_result_allusers($test_id, $group_id=0, $order_field="") {
 	$calcpercent = array('mean', 'median', 'mode', 'minimum', 'maximum', 'range', 'standard_deviation');
 
 	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'passed_total'.K_TAB.$passed.K_NEWLINE;
-	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'passed_percent [%]'.K_TAB.round(100 * ($passed / $itemcount)).K_NEWLINE;
+	$passed_perc = 0;
+	if ($itemcount > 0) {
+		$passed_perc = ($passed / $itemcount);
+	}
+	$csv .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'passed_percent [%]'.K_TAB.round(100 * ($passed_perc)).K_NEWLINE;
 
 	$csv .= K_NEWLINE; // separator
 

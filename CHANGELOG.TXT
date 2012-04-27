@@ -1,3 +1,6 @@
+11.2.029 (2012-04-27)
+	- A "division by zero" bug was fixed.
+
 11.2.028 (2012-04-25)
 	- TCPDF library was updated.
 	- Arabic Language was updated.
