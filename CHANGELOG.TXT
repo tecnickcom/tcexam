@@ -1,3 +1,7 @@
+11.2.030 (2012-04-30)
+	- Romanian Language was updated.
+	- TCPDF Library was updated.
+
 11.2.029 (2012-04-27)
 	- A "division by zero" bug was fixed.
 
