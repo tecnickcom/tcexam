@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2011-10-29
+// Last Update : 2012-06-05
 //
 // Description : User-level session storage functions.
 //
@@ -230,6 +230,21 @@ function getClientFingerprint() {
  */
 function getNewSessionID() {
 	return md5(uniqid(microtime().getmypid(), true).getClientFingerprint().uniqid(session_id().microtime(), true));
+}
+
+/**
+ * Hash password for Database storing.
+ * @param $password (string) Password to hash.
+ * @return string password hash
+ */
+function getPasswordHash($password) {
+	$pswlen = strlen($password);
+	$salt = (2 * $pswlen);
+	for ($i = 0; $i < $pswlen; ++$i) {
+		$salt += (($i + 1) * ord($password[$i]));
+	}
+	$hash = '$'.$salt.'#'.strrev($password).'$';
+	return md5($hash);
 }
 
 // ------------------------------------------------------------

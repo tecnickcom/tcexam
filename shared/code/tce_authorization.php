@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2011-10-29
+// Last Update : 2012-06-05
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -116,36 +116,13 @@ if ($rs = F_db_query($sqls, $db)) {
 	F_display_db_error();
 }
 
-// --- check for single-sign-on authentication
-require_once('../../shared/config/tce_cas.php');
-if (K_CAS_ENABLED) {
-	require_once('../../shared/cas/CAS.php');
-	phpCAS::client(K_CAS_VERSION, K_CAS_HOST, K_CAS_PORT, K_CAS_PATH, false);
-	phpCAS::setNoCasServerValidation();
-	phpCAS::forceAuthentication();
-	if ($_SESSION['session_user_name'] != phpCAS::getUser()) {
-		$_POST['xuser_name'] = phpCAS::getUser();
-		$_POST['xuser_password'] = phpCAS::getUser();
-		$_POST['logaction'] = 'login';
-	}
-}
-
-// --- check for HTTP-Basic authentication
-$http_basic_auth = false;
-require_once('../../shared/config/tce_httpbasic.php');
-if (K_HTTPBASIC_ENABLED AND (!isset($_SESSION['logout']) OR !$_SESSION['logout'])) {
-	if (isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'Basic')
-		AND isset($_SERVER['PHP_AUTH_USER']) AND isset($_SERVER['PHP_AUTH_PW'])
-		AND ($_SESSION['session_user_name'] != $_SERVER['PHP_AUTH_USER'])) {
-		$_POST['xuser_name'] = $_SERVER['PHP_AUTH_USER'];
-		$_POST['xuser_password'] = $_SERVER['PHP_AUTH_PW'];
-		$_POST['logaction'] = 'login';
-		$http_basic_auth = true;
-	}
-}
+// try other login systems
+// (HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
+require_once('../../shared/code/tce_altauth.php');
+$altusr = F_altLogin();
 
 // --- check if login information has been submitted
-if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
+if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_POST['xuser_name']) AND isset($_POST['xuser_password'])) {
 	$xuser_password = md5($_POST['xuser_password']); // one-way password encoding
 	// check if submitted login information are correct
 	$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
@@ -167,12 +144,12 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 			$logged = true;
 		} elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($_POST['xuser_name']).'\'')) {
 				// the user name exist but the password is wrong
-				if ($http_basic_auth) {
-					// update the password in case of HTTP Basic Authentication
+				if ($altusr !== false) {
+					// resync the password
 					$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
 						user_password=\''.$xuser_password.'\'
 						WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\'';
-					if(!$ru = F_db_query($sqlu, $db)) {
+					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
 					}
 					// get user data
@@ -198,9 +175,6 @@ if ((isset($_POST['logaction'])) AND ($_POST['logaction'] == 'login')) {
 				}
 		} else {
 			// this user doesn't exist on TCExam database
-			// try to get account information from alternative systems (RADIUS, LDAP, CAS, ...)
-			require_once('../../shared/code/tce_altauth.php');
-			$altusr = F_altLogin(stripslashes($_POST['xuser_name']), stripslashes($_POST['xuser_password']));
 			if ($altusr !== false) {
 				// replicate user account on TCExam local database
 				$sql = 'INSERT INTO '.K_TABLE_USERS.' (
