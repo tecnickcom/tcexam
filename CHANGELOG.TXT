@@ -1,3 +1,6 @@
+11.2.032 (2012-06-06)
+	- TCPDF Library was updated to fix a bug introduced on the previous version.
+
 11.2.031 (2012-06-05)
 	- Support for external authentication systems were improved.
 	- TCPDF Library was updated.
