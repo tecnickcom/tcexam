@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2012-04-14
+// Last Update : 2012-06-07
 //
 // Description : User registration form.
 //
@@ -98,7 +98,7 @@ if ($menu_mode == 'add') { // process submited data
 		// check password
 		if(!empty($newpassword) OR !empty($newpassword_repeat)) {// update password
 			if($newpassword == $newpassword_repeat) {
-				$user_password = md5($newpassword);
+				$user_password = getPasswordHash($newpassword);
 			} else { //print message and exit
 				F_print_error('WARNING', $l['m_different_passwords']);
 				$formstatus = FALSE;

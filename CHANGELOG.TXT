@@ -1,3 +1,11 @@
+11.3.000 (2012-06-07)
+	- The encryption algorithm for passwords was improved and is NOT compatible with the old method.
+	- If you are upgrading and you do not want to manually reset all passwords, set the K_STRONG_PASSWORD_ENCRYPTION constant to FALSE on shared/config/tce_config.php
+	- The default password for admin is 1234 and the correspondent encoding is on install/dbdata.sql file.
+	- TCPDF Library was updated.
+
+------------------------------------------------------------
+
 11.2.032 (2012-06-06)
 	- TCPDF Library was updated to fix a bug introduced on the previous version.
 

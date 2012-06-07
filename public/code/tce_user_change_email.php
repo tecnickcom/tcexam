@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_email.php
 // Begin       : 2010-09-17
-// Last Update : 2011-07-12
+// Last Update : 2012-06-07
 //
 // Description : Form to change user email
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -81,7 +81,7 @@ switch($menu_mode) {
 				user_email=\''.F_escape_sql($user_email).'\',
 				user_level=\'0\',
 				user_verifycode=\''.$user_verifycode.'\'
-				WHERE user_id='.$user_id.' AND user_password=\''.md5($currentpassword).'\'';
+				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
 			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {
@@ -99,7 +99,7 @@ switch($menu_mode) {
 		}
 		break;
 	}
-	
+
 	default :{
 		break;
 	}

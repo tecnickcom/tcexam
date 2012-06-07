@@ -1,5 +1,20 @@
 TCExam - GENERAL UPGRADE PROCESS
 ============================================================
+
+IMPORTANT:
+
+Starting from 11.3.000 version the encryption algorithm for
+passwords was improved and is NOT compatible with the old 
+method.
+
+If you are upgrading and you do not want to manually reset 
+all passwords, set the K_STRONG_PASSWORD_ENCRYPTION constant
+to FALSE on shared/config/tce_config.php
+
+The default password for admin is 1234 and the correspondent
+encoding is on install/dbdata.sql
+
+
 This is the general upgrade process for TCExam.
 -----------------------------------------------------------
 

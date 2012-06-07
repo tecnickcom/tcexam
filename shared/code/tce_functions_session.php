@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2012-06-05
+// Last Update : 2012-06-07
 //
 // Description : User-level session storage functions.
 //
@@ -238,13 +238,16 @@ function getNewSessionID() {
  * @return string password hash
  */
 function getPasswordHash($password) {
-	$pswlen = strlen($password);
-	$salt = (2 * $pswlen);
-	for ($i = 0; $i < $pswlen; ++$i) {
-		$salt += (($i + 1) * ord($password[$i]));
+	if (defined('K_STRONG_PASSWORD_ENCRYPTION') AND K_STRONG_PASSWORD_ENCRYPTION) {
+		$pswlen = strlen($password);
+		$salt = (2 * $pswlen);
+		for ($i = 0; $i < $pswlen; ++$i) {
+			$salt += (($i + 1) * ord($password[$i]));
+		}
+		$hash = '$'.$salt.'#'.strrev($password).'$';
+		return md5($hash);
 	}
-	$hash = '$'.$salt.'#'.strrev($password).'$';
-	return md5($hash);
+	return md5($password);
 }
 
 // ------------------------------------------------------------

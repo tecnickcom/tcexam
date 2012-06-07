@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_password.php
 // Begin       : 2010-09-17
-// Last Update : 2011-05-20
+// Last Update : 2012-06-07
 //
 // Description : Form to change user password
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -68,7 +68,7 @@ switch($menu_mode) {
 			// check password
 			if(!empty($newpassword) OR !empty($newpassword_repeat)) {
 				if($newpassword == $newpassword_repeat) {
-					$user_password = md5($newpassword);
+					$user_password = getPasswordHash($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
 					$formstatus = FALSE; F_stripslashes_formfields();
@@ -77,7 +77,7 @@ switch($menu_mode) {
 			}
 			$sql = 'UPDATE '.K_TABLE_USERS.' SET
 				user_password=\''.F_escape_sql($user_password).'\'
-				WHERE user_id='.$user_id.' AND user_password=\''.md5($currentpassword).'\'';
+				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {

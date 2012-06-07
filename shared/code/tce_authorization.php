@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2012-06-05
+// Last Update : 2012-06-07
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -69,7 +69,7 @@ $logged = false; // the user is not yet logged in
 
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($PHPSESSID);
-$session_hash = md5($PHPSESSID.getClientFingerprint());
+$session_hash = getPasswordHash($PHPSESSID.getClientFingerprint());
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
 	if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
@@ -123,7 +123,8 @@ $altusr = F_altLogin();
 
 // --- check if login information has been submitted
 if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_POST['xuser_name']) AND isset($_POST['xuser_password'])) {
-	$xuser_password = md5($_POST['xuser_password']); // one-way password encoding
+	// encode password
+	$xuser_password = getPasswordHash($_POST['xuser_password']);
 	// check if submitted login information are correct
 	$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
 	if ($r = F_db_query($sql, $db)) {
@@ -195,7 +196,7 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 					\''.F_escape_sql(getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
 					\''.F_escape_sql($_POST['xuser_name']).'\',
 					'.F_empty_to_null($altusr['user_email']).',
-					\''.md5($_POST['xuser_password']).'\',
+					\''.getPasswordHash($_POST['xuser_password']).'\',
 					'.F_empty_to_null($altusr['user_regnumber']).',
 					'.F_empty_to_null($altusr['user_firstname']).',
 					'.F_empty_to_null($altusr['user_lastname']).',

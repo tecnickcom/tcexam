@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_verification.php
 // Begin       : 2008-03-31
-// Last Update : 2012-04-14
+// Last Update : 2012-06-07
 //
 // Description : User verification.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -82,7 +82,7 @@ if ($r = F_db_query($sql, $db)) {
 		if ($verifycode[0] == '@') {
 			// password reset
 			$new_password = substr(md5(uniqid(mt_rand(), true)), 0, 8);
-			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_password=\''.md5($new_password).'\', user_verifycode=NULL WHERE user_id='.$userid.'';
+			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_password=\''.getPasswordHash($new_password).'\', user_verifycode=NULL WHERE user_id='.$userid.'';
 		} else {
 			// user registration
 			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_level=\'1\', user_verifycode=NULL WHERE user_id='.$userid.'';

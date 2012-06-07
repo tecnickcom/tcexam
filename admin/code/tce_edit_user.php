@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2012-04-14
+// Last Update : 2012-06-07
 //
 // Description : Edit user data.
 //
@@ -166,7 +166,7 @@ switch($menu_mode) { // process submitted data
 			// check password
 			if (!empty($newpassword) OR !empty($newpassword_repeat)) {
 				if ($newpassword == $newpassword_repeat) {
-					$user_password = md5($newpassword);
+					$user_password = getPasswordHash($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
 					$formstatus = FALSE; F_stripslashes_formfields();
@@ -248,7 +248,7 @@ switch($menu_mode) { // process submitted data
 			// check password
 			if (!empty($newpassword) OR !empty($newpassword_repeat)) { // update password
 				if ($newpassword == $newpassword_repeat) {
-					$user_password = md5($newpassword);
+					$user_password = getPasswordHash($newpassword);
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
 					$formstatus = FALSE; F_stripslashes_formfields();

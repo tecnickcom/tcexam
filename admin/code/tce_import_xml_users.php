@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2011-05-21
+// Last Update : 2012-06-07
 //
 // Description : Import users from an XML file or tab-delimited
 //               CSV file.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -370,7 +370,7 @@ class XMLUserImporter {
 									user_email='.F_empty_to_null($this->user_data['user_email']).',';
 								// update password only if it is specified
 								if (!empty($this->user_data['user_password'])) {
-									$sqlu .= ' user_password=\''.md5($this->user_data['user_password']).'\',';
+									$sqlu .= ' user_password=\''.getPasswordHash($this->user_data['user_password']).'\',';
 								}
 								$sqlu .= '
 									user_regnumber='.F_empty_to_null($this->user_data['user_regnumber']).',
@@ -411,7 +411,7 @@ class XMLUserImporter {
 								\''.$this->user_data['user_ip'].'\',
 								\''.$this->user_data['user_name'].'\',
 								'.F_empty_to_null($this->user_data['user_email']).',
-								\''.md5($this->user_data['user_password']).'\',
+								\''.getPasswordHash($this->user_data['user_password']).'\',
 								'.F_empty_to_null($this->user_data['user_regnumber']).',
 								'.F_empty_to_null($this->user_data['user_firstname']).',
 								'.F_empty_to_null($this->user_data['user_lastname']).',
@@ -552,7 +552,7 @@ function F_import_csv_users($csvfile) {
 						user_name=\''.F_escape_sql($userdata[1]).'\',';
 					// update password only if it is specified
 					if (!empty($userdata[2])) {
-						$sqlu .= ' user_password=\''.md5($userdata[2]).'\',';
+						$sqlu .= ' user_password=\''.getPasswordHash($userdata[2]).'\',';
 					}
 					$sqlu .= '
 						user_email='.F_empty_to_null($userdata[3]).',
@@ -593,7 +593,7 @@ function F_import_csv_users($csvfile) {
 					user_verifycode
 					) VALUES (
 					\''.F_escape_sql($userdata[1]).'\',
-					\''.md5($userdata[2]).'\',
+					\''.getPasswordHash($userdata[2]).'\',
 					'.F_empty_to_null($userdata[3]).',
 					\''.F_escape_sql($userdata[4]).'\',
 					\''.F_escape_sql($userdata[5]).'\',

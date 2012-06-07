@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2012-04-14
+// Last Update : 2012-06-07
 //
 // Description : Shared configuration file.
 //
@@ -158,6 +158,11 @@ define ('K_QUESTION_LINE_MAX_LENGTH', 70);
  */
 define ('K_CHECK_SESSION_FINGERPRINT', false);
 
+/**
+ * If true uses a strong encryption algorithm for passwords.
+ */
+define ('K_STRONG_PASSWORD_ENCRYPTION', true);
+
 // Client Cookie settings
 
 /**
@@ -200,8 +205,8 @@ define ('K_PASSWORD_RESET', TRUE);
 /**
  * Define error reporting types for debug.
  */
-//define ('K_ERROR_TYPES', E_ALL | E_STRICT);
-define ('K_ERROR_TYPES', E_ERROR | E_WARNING | E_PARSE);
+define ('K_ERROR_TYPES', E_ALL | E_STRICT);
+//define ('K_ERROR_TYPES', E_ERROR | E_WARNING | E_PARSE);
 
 /**
  * Enable error logs (../log/tce_errors.log).
