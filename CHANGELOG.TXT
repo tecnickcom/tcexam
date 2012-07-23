@@ -1,3 +1,8 @@
+11.3.001 (2012-07-23)
+	- On Test Editor is now possible to select all type of questions at once.
+	- The favicon.ico file was updated.
+	- The TCPDF library was updated.
+
 11.3.000 (2012-06-07)
 	- The encryption algorithm for passwords was improved and is NOT compatible with the old method.
 	- If you are upgrading and you do not want to manually reset all passwords, set the K_STRONG_PASSWORD_ENCRYPTION constant to FALSE on shared/config/tce_config.php

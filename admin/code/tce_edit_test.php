@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2012-01-23
+// Last Update : 2012-07-23
 //
 // Description : Edit Tests
 //
@@ -76,7 +76,7 @@ if (!isset($subject_id) OR (empty($subject_id))) {
 	$subject_id = Array();
 }
 if (!isset($tsubset_type) OR (empty($tsubset_type))) {
-	$tsubset_type = 1;
+	$tsubset_type = 0;
 } else {
 	$tsubset_type = intval($tsubset_type);
 }
@@ -91,7 +91,7 @@ if (!isset($tsubset_quantity) OR (empty($tsubset_quantity))) {
 	$tsubset_quantity = intval($tsubset_quantity);
 }
 if (!isset($tsubset_answers) OR (empty($tsubset_answers))) {
-	$tsubset_answers = 3;
+	$tsubset_answers = 2;
 } else {
 	$tsubset_answers = intval($tsubset_answers);
 }
@@ -256,7 +256,8 @@ switch($menu_mode) {
 			break;
 		}
 		if ($formstatus = F_check_form_fields()) {
-			if ((isset($subject_id)) AND (!empty($subject_id)) AND (isset($tsubset_quantity)) AND (isset($tsubset_answers))) {
+			//if ((isset($subject_id)) AND (!empty($subject_id)) AND (isset($tsubset_quantity)) AND (isset($tsubset_answers))) {
+			if ((isset($subject_id)) AND (!empty($subject_id)) AND (isset($tsubset_quantity))) {
 
 				if ($tsubset_type == 3) {
 					// free-text questions do not have alternative answers to display
@@ -292,9 +293,11 @@ switch($menu_mode) {
 				$sqlq = 'SELECT COUNT(*) AS numquestions
 					FROM '.K_TABLE_QUESTIONS.'';
 				$sqlq .= ' WHERE question_subject_id IN '.$subjids.'
-					AND question_type='.$tsubset_type.'
 					AND question_difficulty='.$tsubset_difficulty.'
 					AND question_enabled=\'1\'';
+				if ($tsubset_type > 0) {
+					$sqlq .= ' AND question_type='.$tsubset_type.'';
+				}
 				if ($tsubset_type == 1) {
 					// single question (MCSA)
 					// check if the selected question has enough answers
@@ -315,8 +318,11 @@ switch($menu_mode) {
 					if (F_getBoolean($test_random_answers_order)) {
 						$sqlq .= ' AND answer_position>0';
 					}
-					$sqlq .= ' GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>='.($tsubset_answers-1).'))';
+					$sqlq .= ' GROUP BY answer_question_id';
+					if ($tsubset_answers > 0) {
+						$sqlq .= ' HAVING (COUNT(answer_id)>='.($tsubset_answers-1).')';
+					}
+					$sqlq .= ' )';
 				} elseif ($tsubset_type == 2) {
 					// multiple question (MCMA)
 					// check if the selected question has enough answers
@@ -327,8 +333,11 @@ switch($menu_mode) {
 					if (F_getBoolean($test_random_answers_order)) {
 						$sqlq .= ' AND answer_position>0';
 					}
-					$sqlq .= ' GROUP BY answer_question_id
-							HAVING (COUNT(answer_id)>='.$tsubset_answers.'))';
+					$sqlq .= ' GROUP BY answer_question_id';
+					if ($tsubset_answers > 0) {
+						$sqlq .= ' HAVING (COUNT(answer_id)>='.$tsubset_answers.')';
+					}
+					$sqlq .= ' )';
 				} elseif ($tsubset_type == 4) {
 					// ordering question
 					// check if the selected question has enough answers
@@ -1048,6 +1057,11 @@ if (isset($test_id) AND ($test_id > 0)) {
 	echo '</span>'.K_NEWLINE;
 	echo '<span class="formw">'.K_NEWLINE;
 	echo '<select name="tsubset_type" id="tsubset_type" size="0" title="'.$l['h_question_type'].'">'.K_NEWLINE;
+	echo '<option value="0"';
+	if ($tsubset_type == 0) {
+		echo ' selected="selected"';
+	}
+	echo '>*** '.$l['w_all'].' ***</option>'.K_NEWLINE;
 	echo '<option value="1"';
 	if ($tsubset_type == 1) {
 		echo ' selected="selected"';
@@ -1074,7 +1088,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 
 	echo '<div class="row">'.K_NEWLINE;
 	echo '<span class="label">'.K_NEWLINE;
-	echo '<label for="tsubset_type">'.$l['w_question_difficulty'].'</label>'.K_NEWLINE;
+	echo '<label for="tsubset_difficulty">'.$l['w_question_difficulty'].'</label>'.K_NEWLINE;
 	echo '</span>'.K_NEWLINE;
 	echo '<span class="formw">'.K_NEWLINE;
 	echo '<select name="tsubset_difficulty" id="tsubset_difficulty" size="0" title="'.$l['h_question_difficulty'].'">'.K_NEWLINE;
@@ -1125,7 +1139,14 @@ if (isset($test_id) AND ($test_id > 0)) {
 			$subjlist .= substr($subjects_list,0,-2);
 			$subjlist .= '<br />'.K_NEWLINE;
 			$subjlist .= '<acronym class="offbox" title="'.$l['h_num_questions'].'">'.$m['tsubset_quantity'].'</acronym> ';
-			$subjlist .= '<acronym class="offbox" title="'.$l['h_question_type'].'">'.$qtype[($m['tsubset_type']-1)].'</acronym> ';
+			$subjlist .= '<acronym class="offbox" title="'.$l['h_question_type'].'">';
+			if ($m['tsubset_type'] > 0) {
+				$subjlist .= $qtype[($m['tsubset_type'] - 1)];
+			} else {
+				// all question types
+				$subjlist .= '*';
+			}
+			$subjlist .= '</acronym> ';
 			$subjlist .= '<acronym class="offbox" title="'.$l['h_question_difficulty'].'">'.$m['tsubset_difficulty'].'</acronym> ';
 			$subjlist .= '<acronym class="offbox" title="'.$l['h_num_answers'].'">'.$m['tsubset_answers'].'</acronym> ';
 			$subjlist .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?menu_mode=deletesubject&amp;test_id='.$test_id.'&amp;tsubset_id='.$m['tsubset_id'].'" title="'.$l['h_delete'].'" class="deletebutton">'.$l['w_delete'].'</a>';

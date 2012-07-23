@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2012-03-19
+// Last Update : 2012-07-23
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -333,10 +333,12 @@ for ($item = 1; $item <= $test_num; $item++) {
 					FROM '.K_TABLE_SUBJECT_SET.'
 					WHERE subjset_tsubset_id='.$m['tsubset_id'].'';
 			$sqlq .= ' )
-				AND question_type='.$m['tsubset_type'].'
 				AND question_difficulty='.$m['tsubset_difficulty'].'
 				AND question_enabled=\'1\'
 				AND question_id NOT IN ('.$selected_questions.')';
+			if ($m['tsubset_type'] > 0) {
+				$sqlq .= ' AND question_type='.$m['tsubset_type'];
+			}
 			if ($m['tsubset_type'] == 1) {
 				// single question (MCSA)
 				// get questions with the right number of answers
@@ -361,9 +363,11 @@ for ($item = 1; $item <= $test_num; $item++) {
 				if (!F_getBoolean($testdata['test_random_answers_order'])) {
 					$sqlq .= ' AND answer_position>0';
 				}
-				$sqlq .= ' GROUP BY answer_question_id
-						HAVING (COUNT(answer_id)>='.($m['tsubset_answers']-1).')
-						)';
+				$sqlq .= ' GROUP BY answer_question_id';
+				if ($m['tsubset_answers'] > 0) {
+					$sqlq .= ' HAVING (COUNT(answer_id)>='.($m['tsubset_answers']-1).')';
+				}
+				$sqlq .= ' )';
 			} elseif ($m['tsubset_type'] == 2) {
 				// multiple question (MCMA)
 				// get questions with the right number of answers
@@ -375,9 +379,11 @@ for ($item = 1; $item <= $test_num; $item++) {
 				if (!F_getBoolean($testdata['test_random_answers_order'])) {
 					$sqlq .= ' AND answer_position>0';
 				}
-				$sqlq .= ' GROUP BY answer_question_id
-						HAVING (COUNT(answer_id)>='.$m['tsubset_answers'].')
-						)';
+				$sqlq .= ' GROUP BY answer_question_id';
+				if ($m['tsubset_answers'] > 0) {
+					$sqlq .= ' HAVING (COUNT(answer_id)>='.$m['tsubset_answers'].')';
+				}
+				$sqlq .= ' )';
 			} elseif ($m['tsubset_type'] == 4) {
 				// ordering question
 				// get questions with the right number of answers
