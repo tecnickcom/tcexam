@@ -1,3 +1,6 @@
+11.3.003 (2012-07-25)
+	- The TCPDF library was updated.
+
 11.3.002 (2012-07-25)
 	- The TCPDF library was updated.
 	- A problem related to the QRCode size on offline PDF test was fixed.
