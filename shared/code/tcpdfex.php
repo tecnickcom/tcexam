@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
-// Last Update : 2011-02-27
+// Last Update : 2012-07-25
 // Author      : Nicola Asuni - Tecnick.com LTD - Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -126,7 +126,7 @@ class TCPDFEX extends TCPDF {
 					'module_width' => 1,
 					'module_height' => 1
 				);
-				// QRCODE,H : QR-CODE Best error correction
+				// QRCODE
 				$w = (PDF_MARGIN_TOP - PDF_MARGIN_HEADER - (5.7 / $this->k));
 				$y = (PDF_MARGIN_HEADER);
 				if ($this->rtl) {
@@ -135,7 +135,7 @@ class TCPDFEX extends TCPDF {
 					$x = $this->w - PDF_MARGIN_RIGHT - $w;
 				}
 				// write QR-Code on header
-				$this->write2DBarcode($this->tcexam_backlink, 'QRCODE,M', $x, $y, $w, $w, $style, 'N');
+				$this->write2DBarcode($this->tcexam_backlink, 'QRCODE,L', $x, $y, $w, $w, $style, 'N');
 			}
 			$this->SetY((2.835 / $this->k) + max($imgy, $this->y));
 			if ($this->rtl) {

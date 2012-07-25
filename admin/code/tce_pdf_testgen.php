@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2012-07-23
+// Last Update : 2012-07-25
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -615,7 +615,7 @@ for ($item = 1; $item <= $test_num; $item++) {
 	// remove default barcodes from header and footer to not interfere with data QR-code
 	$pdf->resetHeaderTemplate();
 	$pdf->setTCExamBackLink('');
-	$pdf->AddPage();
+	$pdf->AddPage('P'); // force portrait mode
 	$pdf->setBarcode('');
 
 	$pdf->SetTextColor(255,0,0);
@@ -630,11 +630,11 @@ for ($item = 1; $item <= $test_num; $item++) {
 
 	$pagedim = $pdf->getPageDimensions();
 	$qrw = $pagedim['wk'] - $pagedim['lm'] - $pagedim['rm']; // maximum width
-	$qry = ($pagedim['hk'] - $qrw) / 2; // vertically centered on page
+	$qry = (($pagedim['hk'] - $qrw) / 2); // vertically centered on page
 
 	// QR-CODE mode H (best error correction)
 	// This will be used to create test logs
-	$pdf->write2DBarcode($qr_test_data, 'QRCODE,H', '', $qry, '', '', $qrstyle, 'N');
+	$pdf->write2DBarcode($qr_test_data, 'QRCODE,L', '', $qry, '', '', $qrstyle, 'N');
 
 	// --- OMR ANSWER SHEET ---------------------------------------------------
 
@@ -679,7 +679,7 @@ for ($item = 1; $item <= $test_num; $item++) {
 	$pdf->SetAutoPageBreak(false, 0);
 
 	for ($omrpage = 0; $omrpage < $num_omr_pages; ++$omrpage) {
-		$pdf->AddPage();
+		$pdf->AddPage('P');
 
 		$pdf->SetTextColor(255,0,0);
 		$pdf->SetFont(PDF_FONT_NAME_DATA, '', round(PDF_FONT_SIZE_DATA * 1.5));
