@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.css
 // Begin       : 2004-04-27
-// Last Update : 2011-05-20
+// Last Update : 2012-07-25
 //
 // Description : Default CSS for public area.
 //
@@ -389,6 +389,7 @@ div.tcecodepre{
 
 /* FORM BOX --------------------- */
 div.tceformbox {
+	overflow: hidden;
 	background-color: #F6F6F6;
 	border: 1px solid #808080;
 	margin: 0px 0px 0px 0px;
