@@ -1,3 +1,6 @@
+11.3.004 (2012-07-26)
+	- The TCPDF library was updated.
+
 11.3.003 (2012-07-25)
 	- CSS files were updated.
 	- The TCPDF library was updated.
