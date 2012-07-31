@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2011-06-28
+// Last Update : 2012-07-31
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -129,15 +129,15 @@ function F_decodeOMRPage($image) {
 		$img->setImagePage(0, 0, 0, 0);
 	}
 	// trim image
-	$imgtmp = $img->clone();
-	$color = '#808080';
+	$imgtmp = clone $img;
+	$color = '#606060';
 	$img->blackthresholdImage("$color");
 	$img->whitethresholdImage("$color");
 	$img->trimImage(85);
 	$imgpage = $img->getImagePage();
 	$w = $img->getImageWidth();
 	$h = $img->getImageHeight();
-	$img = $imgtmp->clone();
+	$img = clone $imgtmp;
 	$imgtmp->clear();
 	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
 	$img->setImagePage(0, 0, 0, 0);
@@ -146,18 +146,18 @@ function F_decodeOMRPage($image) {
 	$img->enhanceImage();
 	$img->despeckleImage();
 	// straighten image
-	$img->deskewImage(40);
+	//$img->deskewImage(40);
 	$img->setImagePage(0, 0, 0, 0);
 	// trim image (remove white border)
-	$imgtmp = $img->clone();
-	$color = '#808080';
+	$imgtmp = clone $img;
+	$color = '#606060';
 	$img->blackthresholdImage("$color");
 	$img->whitethresholdImage("$color");
 	$img->trimImage(85);
 	$imgpage = $img->getImagePage();
 	$w = $img->getImageWidth();
 	$h = $img->getImageHeight();
-	$img = $imgtmp->clone();
+	$img = clone $imgtmp;
 	$imgtmp->clear();
 	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
 	$img->setImagePage(0, 0, 0, 0);
@@ -181,7 +181,7 @@ function F_decodeOMRPage($image) {
 	// row distance in pixels between two questions
 	$drow = 32.38;
 	// verify image pattern
-	$imgtmp = $img->clone();
+	$imgtmp = clone $img;
 	$imgtmp->cropImage(1028, 10, 0, 10);
 	$imgtmp->setImagePage(0, 0, 0, 0);
 	// create reference block pattern
@@ -195,8 +195,8 @@ function F_decodeOMRPage($image) {
 		$imreg->setImagePage(0, 0, 0, 0);
 		// get root-mean-square-error with reference image
 		$rmse = $imreg->compareImages($impref, Imagick::METRIC_ROOTMEANSQUAREDERROR);
-		// cont reference blocks
-		$psum += round(1.25 - $rmse[1])."\n";
+		// count reference blocks
+		$psum += round(1.25 - $rmse[1]);
 	}
 	$imreg->clear();
 	$impref->clear();

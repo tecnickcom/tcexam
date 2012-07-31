@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2012-04-30 20:43:54
+// DATE: 2012-07-31 20:46:56
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -576,5 +576,9 @@ $tmx['d_reset_password']='الرجاء إدخال عنوان البريد الإ
 $tmx['t_password_assistance']='كلمة السر المساعدة';
 $tmx['w_unknown_email']='بريد الكتروني مجهول';
 $tmx['w_result_graph']='رسم بياني من النقاط ونسبة الاجابات الصحيحة لكل اختبار مدرج';
+$tmx['h_omr_dir']='OMR Import Directory';
+$tmx['w_omr_dir']='OMR Directory';
+$tmx['t_omr_bulk_importer']='OMR Bulk Importer';
+$tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
 
 // --- EOF ---

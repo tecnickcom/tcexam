@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2012-04-30 20:44:26
+// DATE: 2012-07-31 17:39:40
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -579,5 +579,9 @@ $tmx['d_reset_password']='Inserisci l\'indirizzo email che hai utilizzato durant
 $tmx['t_password_assistance']='Assistenza Password';
 $tmx['w_unknown_email']='email sconosciuta';
 $tmx['w_result_graph']='grafico delle percentuali dei punteggi e delle risposte corrette per ogni test elencato';
+$tmx['h_omr_dir']='Carterlla di importazione OMR';
+$tmx['w_omr_dir']='Carterlla OMR';
+$tmx['t_omr_bulk_importer']='Importazione OMR';
+$tmx['hp_omr_bulk_importer']='Attraverso questa maschera è possibile importare in massa le risposte al test dalle immagini scannerizzate dei fogli di risposta. I file contenenti le immagini vanno posizionate all\'interno di una sottocartella della directory cache/OMR. Le immagini contenenti i codici QR devono essere nominate "OMR_[USRREG]_QR.png" dove [USRREG] è il codice di registrazione dell\'utente. Le immagini contenenti le risposte devono essere nominate "OMR_[USRREG]_A[X].png" dove [X] è il numero del foglio di risposte. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell\'utente. I dati importati sovrascriveranno i risultati esistenti. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.';
 
 // --- EOF ---

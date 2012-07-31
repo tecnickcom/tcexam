@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_answers.php
 // Begin       : 2011-05-20
-// Last Update : 2012-04-14
+// Last Update : 2012-07-31
 //
 // Description : Import test answers using OMR (Optical Mark Recognition)
 //               technique applied to images of scanned answer sheets.
@@ -83,7 +83,7 @@ if (isset($_REQUEST['date'])) {
 	$date = date(K_TIMESTAMP_FORMAT);
 }
 
-// process uploadedd files
+// process uploaded files
 if (isset($menu_mode) AND ($menu_mode == 'upload') AND ($user_id > 0) AND !empty($_FILES)) {
 	// read OMR DATA page
 	$omr_testdata = F_decodeOMRTestDataQRCode($_FILES['omrfile']['tmp_name'][0]);

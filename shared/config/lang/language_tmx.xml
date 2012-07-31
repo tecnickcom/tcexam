@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
- <header datatype="PlainText" changedate="20120430T204300Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
+ <header datatype="PlainText" changedate="20120731T204300Z" creationtoolversion="1" segtype="sentence" creationtool="hand made" creationid="NicolaAsuni" srclang="EN" adminlang="en-us" creationdate="20040427T100100Z" o-tmf="ABCTransMem"/>
  <body>
   <tu tuid="a_meta_charset" datatype="plaintext">
    <tuv xml:lang="NL">
@@ -42376,6 +42376,302 @@ Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoa
    </tuv>
    <tuv xml:lang="RO">
     <seg>Graficul punctelor şi al procentajului răspunsurilor corecte pentru fiecare test listat</seg>
+   </tuv>
+  </tu>
+    <tu tuid="h_omr_dir" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Carterlla di importazione OMR</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>OMR Import Directory</seg>
+   </tuv>
+  </tu>
+    <tu tuid="w_omr_dir" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Carterlla OMR</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>OMR Directory</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>OMR Directory</seg>
+   </tuv>
+  </tu>
+    <tu tuid="t_omr_bulk_importer" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Importazione OMR</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>OMR Bulk Importer</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_omr_bulk_importer" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Attraverso questa maschera è possibile importare in massa le risposte al test dalle immagini scannerizzate dei fogli di risposta. I file contenenti le immagini vanno posizionate all'interno di una sottocartella della directory cache/OMR. Le immagini contenenti i codici QR devono essere nominate "OMR_[USRREG]_QR.png" dove [USRREG] è il codice di registrazione dell'utente. Le immagini contenenti le risposte devono essere nominate "OMR_[USRREG]_A[X].png" dove [X] è il numero del foglio di risposte. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell'utente. I dati importati sovrascriveranno i risultati esistenti. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
    </tuv>
   </tu>
  </body>

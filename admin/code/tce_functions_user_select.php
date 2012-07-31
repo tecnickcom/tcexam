@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2012-04-14
+// Last Update : 2012-07-31
 //
 // Description : Functions to display and select registered user.
 //
@@ -611,6 +611,24 @@ function F_get_user_groups($user_id) {
 		F_display_db_error();
 	}
 	return $groups;
+}
+
+/**
+ * Return the user ID from registration number.
+ * @param $regnumber (int) user registration number.
+ * @return (int) User ID or 0 in case of error.
+ * @since 11.3.005 (2012-07-31)
+ */
+function F_getUIDfromRegnum($regnum) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	$sql = 'SELECT user_id FROM '.K_TABLE_USERS.' WHERE user_regnumber=\''.F_escape_sql($regnum).'\' LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			return $m['user_id'];
+		}
+	}
+	return 0;
 }
 
 //============================================================+

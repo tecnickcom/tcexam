@@ -257,7 +257,7 @@ function F_getDirFiles($dir) {
 /**
  * Return true if the file is used on question or answer descriptions
  * @author Nicola Asuni
- * @param $file (string) the fiel to search
+ * @param $file (string) the file to search
  * @return true if the file is used, false otherwise
  */
 function F_isUsedMediaFile($file) {

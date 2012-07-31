@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2012-01-30
+// Last Update : 2012-07-31
 //
 // Description : Outputs TCExam information page.
 //
@@ -127,7 +127,7 @@ Location: /shared/jscripts/jscalendar/<br /><br />
 
 echo '<li><strong>Fonts</strong><br />
 
-TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:<ul>
+TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as your convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:<ul>
 <li>DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33</li>
 <li>GNU FreeFont (GNU-GPLv3) - Copyright, License and other info: fonts/freefont-20100919</li></ul>
 </li>'.K_NEWLINE;
