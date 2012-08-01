@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_bulk.php
 // Begin       : 2012-07-31
-// Last Update : 2012-07-31
+// Last Update : 2012-08-01
 //
 // Description : Import in bulk test answers using OMR 
 //               (Optical Mark Recognition)
@@ -83,6 +83,8 @@ if (isset($_REQUEST['omrdir']) AND (strpos($_REQUEST['omrdir'], K_PATH_CACHE.'OM
 
 // process OMR files on the specified directory
 if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
+	$logfilename = 'log_import_omr_'.time().'.txt';
+	$logfile = K_PATH_CACHE.'OMR/'.$logfilename;
 	$dirhdl = @opendir($omrdir);
 	if ($dirhdl !== false) {
 		while ($file = readdir($dirhdl)) {
@@ -94,7 +96,9 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 					$omr_testdata = F_decodeOMRTestDataQRCode($filename);
 					if ($omr_testdata === false) {
 						F_print_error('ERROR', $l['m_omr_wrong_test_data']);
+						file_put_contents($logfile, 'ERROR'."\t".$file."\t".'UNABLE TO DECODE'."\n", FILE_APPEND);
 					} else {
+						file_put_contents($logfile, 'OK'."\t".$file."\t".'SUCCESSFULLY DECODED'."\n", FILE_APPEND);
 						// read OMR ANSWER SHEET pages
 						$num_questions = (count($omr_testdata) - 1);
 						$num_pages = ceil($num_questions / 30);
@@ -105,11 +109,14 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 								$answers_page = F_decodeOMRPage($omrdir.$answerfile);
 								if (($answers_page !== false) AND !empty($answers_page)) {
 									$omr_answers += $answers_page;
+									file_put_contents($logfile, 'OK'."\t".$answerfile."\t".'SUCCESSFULLY DECODED'."\n", FILE_APPEND);
 								} else {
 									F_print_error('ERROR', '[ORM ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
+									file_put_contents($logfile, 'ERROR'."\t".$answerfile."\t".'UNABLE TO DECODE'."\n", FILE_APPEND);
 								}
 							} else {
 								F_print_error('ERROR', '[ORM ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
+								file_put_contents($logfile, 'ERROR'."\t".$answerfile."\t".'MISSING IMAGE FILE'."\n", FILE_APPEND);
 							}
 						}
 						// sort answers
@@ -118,14 +125,18 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 						$user_id = F_getUIDfromRegnum($matches[1]);
 						// import answers
 						if (($user_id > 0) AND F_isAuthorizedEditorForUser($user_id) AND F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers)) {
-							F_print_error('MESSAGE', $l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
+							F_print_error('MESSAGE', '['.$matches[1].'] '.$l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
+							file_put_contents($logfile, 'OK'."\t".$matches[1]."\t".'SUCCESSFULLY IMPORTED - UID: '.$user_id."\n", FILE_APPEND);
 						} else {
-							F_print_error('ERROR', $l['m_import_error']);
+							F_print_error('ERROR', '['.$matches[1].'] '.$l['m_import_error']);
+							file_put_contents($logfile, 'ERROR'."\t".$matches[1]."\t".'UNABLE TO IMPORT - UID: '.$user_id."\n", FILE_APPEND);
 						}
 					}
 				} // if QR file
 			}
 		}
+		// print a link to log file
+		F_print_error('MESSAGE', 'LOGFILE: <a href="tce_filemanager.php?d='.urlencode(K_PATH_CACHE.'OMR/').'&f='.urlencode($logfile).'&v=1" title="'.$l['w_select'].'">'.$logfilename.'</a>');
 	}
 }
 
