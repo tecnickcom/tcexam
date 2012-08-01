@@ -1,3 +1,6 @@
+11.3.006 (2012-08-01)
+	- OMR bulk importer now creates a log file on the cache folder.
+
 11.3.005 (2012-07-31)
 	- A bulk importer for OMR data was added.
 	- OMR import algorithm waas fixed and improved.
