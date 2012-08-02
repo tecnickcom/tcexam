@@ -1,3 +1,6 @@
+11.3.007 (2012-08-02)
+	- Arabic language was updated.
+
 11.3.006 (2012-08-01)
 	- OMR bulk importer now creates a log file on the cache folder.
 
