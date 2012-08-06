@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2011-09-14
+// Last Update : 2012-08-06
 //
 // Description : Edit questions
 //
@@ -72,6 +72,11 @@ for ($id = 0; $id < 2; ++$id) {
 }
 
 // set default values
+if (isset($subject_module_id)) {
+	$subject_module_id = intval($subject_module_id);
+} else {
+	$subject_module_id = 0;
+}
 if(!isset($question_id)) {
 	$question_id = 0;
 }

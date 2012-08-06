@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2011-09-14
+// Last Update : 2012-08-06
 //
 // Description : Edit answers.
 //
@@ -72,6 +72,16 @@ for ($id = 0; $id < 2; ++$id) {
 }
 
 // set default values
+if (isset($subject_module_id)) {
+	$subject_module_id = intval($subject_module_id);
+} else {
+	$subject_module_id = 0;
+}
+if (isset($question_subject_id)) {
+	$question_subject_id = intval($question_subject_id);
+} else {
+	$question_subject_id = 0;
+}
 if(!isset($answer_id)) {
 	$answer_id = 0;
 }

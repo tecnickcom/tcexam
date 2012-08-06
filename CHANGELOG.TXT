@@ -1,3 +1,7 @@
+11.3.008 (2012-08-08)
+	- A security vulnerability problem was fixed on tce_edit_answer.php and tce_edit_question.php (thanks to Chris Cooper - Reaction Information Security - www.reactionis.co.uk).
+	- The TCPDF library was updated.
+
 11.3.007 (2012-08-02)
 	- Arabic language was updated.
 	- The TCPDF library was updated.
