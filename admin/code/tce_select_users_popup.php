@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users_popup.php
 // Begin       : 2012-04-14
-// Last Update : 2012-04-15
+// Last Update : 2012-08-22
 //
 // Description : Display user selection table on popup window.
 //
@@ -66,8 +66,8 @@ if(!isset($orderdir)) {$orderdir=0;}
 if(!isset($firstrow)) {$firstrow=0;}
 if(!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}
 if(!isset($searchterms)) {$searchterms='';}
-if(!isset($cid)) {$cid='';} // ID of the calling form field
-if(!isset($uids)) {$uids='';} // ID of the calling form field
+if(!isset($cid)) {$cid='';} else {$cid = preg_replace('/[^a-z0-9_]/', '', $cid);} // ID of the calling form field
+if(!isset($uids)) {$uids='';} else {$uids = preg_replace('/[^x0-9]/', '', $uids);}  // selected user IDs
 if(isset($_REQUEST['group_id'])) {
 	$group_id = intval($_REQUEST['group_id']);
 } else {

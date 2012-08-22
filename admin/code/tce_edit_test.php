@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2012-07-23
+// Last Update : 2012-08-22
 //
 // Description : Edit Tests
 //
@@ -515,7 +515,7 @@ switch($menu_mode) {
 						tstgrp_group_id
 						) VALUES (
 						\''.$test_id.'\',
-						\''.$group_id.'\'
+						\''.intval($group_id).'\'
 						)';
 					if (!$r = F_db_query($sql, $db)) {
 						F_display_db_error(false);
@@ -605,7 +605,7 @@ switch($menu_mode) {
 						tstgrp_group_id
 						) VALUES (
 						\''.$test_id.'\',
-						\''.$group_id.'\'
+						\''.intval($group_id).'\'
 						)';
 					if (!$r = F_db_query($sql, $db)) {
 						F_display_db_error(false);

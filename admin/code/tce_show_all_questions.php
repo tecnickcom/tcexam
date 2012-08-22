@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-07-12
+// Last Update : 2011-08-22
 //
 // Description : Display all questions grouped by topic.
 //
@@ -94,7 +94,6 @@ if ((isset($changemodule) AND ($changemodule > 0)) OR (isset($changecategory) AN
 		$order_field .= ' question_description';
 	}
 }
-
 if (isset($subject_module_id)) {
 	$subject_module_id = intval($subject_module_id);
 } else {
@@ -115,6 +114,10 @@ if (isset($subject_module_id)) {
 if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
 	F_print_error('ERROR', $l['m_authorization_denied']);
 	exit;
+}
+
+if (isset($subject_id)) {
+	$subject_id = intval($subject_id);
 }
 
 // select subject
