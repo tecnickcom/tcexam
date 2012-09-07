@@ -1,5 +1,5 @@
 TCExam - README
-============================================================
+===========================================================
 
 I WISH TO IMPROVE AND EXPAND TCEXAM BUT I NEED YOUR SUPPORT.
 PLEASE MAKE A DONATION:
@@ -11,9 +11,9 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.3.009
+Version: 11.3.010
 
-Release date: 2012-08-22
+Release date: 2012-09-07
 
 Author:
 	Nicola Asuni
