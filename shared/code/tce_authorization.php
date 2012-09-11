@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2012-09-07
+// Last Update : 2012-09-11
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -143,6 +143,10 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 				$_SESSION['session_last_visit'] = 0;
 			}
 			$logged = true;
+			if ($altusr !== false) {
+				// sync user groups
+				F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
+			}
 		} elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($_POST['xuser_name']).'\'')) {
 				// the user name exist but the password is wrong
 				if ($altusr !== false) {
@@ -166,6 +170,8 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 							$_SESSION['session_user_lastname'] = urlencode($md['user_lastname']);
 							$_SESSION['session_last_visit'] = 0;
 							$logged = true;
+							// sync user groups
+							F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
 						}
 					} else {
 						F_display_db_error();
@@ -209,41 +215,6 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 					F_display_db_error();
 				} else {
 					$user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
-					$usrgrps = array();
-					if (is_string($altusr['usrgrp_group_id'])) {
-						// comma separated list of group IDs
-						$usrgrps = explode(',', $altusr['usrgrp_group_id']);
-						array_walk($usrgrps, 'intval');
-						$usrgrps = array_unique($usrgrps, SORT_NUMERIC);
-					} elseif ($altusr['usrgrp_group_id'] == 0) {
-						// all available groups
-						$sqlg = 'SELECT group_id FROM '.K_TABLE_GROUPS.'';
-						if ($rg = F_db_query($sqlg, $db)) {
-							while ($mg = F_db_fetch_array($rg)) {
-								$usrgrps[] = $mg['group_id'];
-							}
-						} else {
-							F_display_db_error();
-						}
-					} elseif ($altusr['usrgrp_group_id'] > 0) {
-						// single default group
-						$usrgrps[] = intval($altusr['usrgrp_group_id']);
-					}
-					foreach ($usrgrps as $grpid) {
-						if ($grpid > 0) {
-							// add user to default user groups
-							$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
-								usrgrp_user_id,
-								usrgrp_group_id
-								) VALUES (
-								\''.$user_id.'\',
-								\''.$grpid.'\'
-								)';
-							if (!$r = F_db_query($sql, $db)) {
-								F_display_db_error();
-							}
-						}
-					}
 					// sets some user's session data
 					$_SESSION['session_user_id'] = $user_id;
 					$_SESSION['session_user_name'] = F_escape_sql($_POST['xuser_name']);
@@ -253,6 +224,8 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 					$_SESSION['session_user_lastname'] = urlencode($altusr['user_lastname']);
 					$_SESSION['session_last_visit'] = 0;
 					$logged = true;
+					// sync user groups
+					F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
 				}
 			} else {
 				//F_print_error('WARNING', $l['m_login_wrong']);

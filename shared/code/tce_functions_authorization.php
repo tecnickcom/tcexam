@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2012-06-05
+// Last Update : 2012-09-11
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -262,6 +262,70 @@ function F_getAuthorizedUsers($user_id) {
 	// add the user
 	$str .= $user_id;
 	return $str;
+}
+
+/**
+ * Sync user groups with the ones specified on the configuration file for alternate authentication.
+ * @param $usrid (int) ID of the user to update.
+ * @param $grpids (mixed) Group ID or comma separated list of group IDs (0=all available groups).
+ * @author Nicola Asuni
+ * @since 2012-09-11
+ */
+function F_syncUserGroups($usrid, $grpids) {
+	global $l,$db;
+	require_once('../config/tce_config.php');
+	// select new group IDs
+	$newgrps = array();
+	if (is_string($grpids)) {
+		// comma separated list of group IDs
+		$newgrps = explode(',', $grpids);
+		array_walk($newgrps, 'intval');
+		$newgrps = array_unique($newgrps, SORT_NUMERIC);
+	} elseif ($grpids == 0) {
+		// all available groups
+		$sqlg = 'SELECT group_id FROM '.K_TABLE_GROUPS.'';
+		if ($rg = F_db_query($sqlg, $db)) {
+			while ($mg = F_db_fetch_array($rg)) {
+				$newgrps[] = $mg['group_id'];
+			}
+		} else {
+			F_display_db_error();
+		}
+	} elseif ($grpids > 0) {
+		// single default group
+		$newgrps[] = intval($grpids);
+	}
+	if (empty($newgrps)) {
+		return;
+	}
+	// select existing group IDs
+	$usrgrps = array();
+	$sqlu = 'SELECT usrgrp_group_id FROM '.K_TABLE_USERGROUP.' WHERE usrgrp_user_id='.$usrid.'';
+	if ($ru = F_db_query($sqlu, $db)) {
+		while ($mu = F_db_fetch_array($ru)) {
+			$usrgrps[] = $mg['usrgrp_group_id'];
+		}
+	} else {
+		F_display_db_error();
+	}
+	// extract missing groups
+	$diffgrps = array_diff($newgrps, $usrgrps);
+	// add missing groups
+	foreach ($diffgrps as $grpid) {
+		if ($grpid > 0) {
+			// add user to default user groups
+			$sql = 'INSERT INTO '.K_TABLE_USERGROUP.' (
+				usrgrp_user_id,
+				usrgrp_group_id
+				) VALUES (
+				\''.$usrid.'\',
+				\''.$grpid.'\'
+				)';
+			if (!$r = F_db_query($sql, $db)) {
+				F_display_db_error();
+			}
+		}
+	}
 }
 
 //============================================================+

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_radius.php
 // Begin       : 2008-01-15
-// Last Update : 2009-11-10
+// Last Update : 2012-09-11
 //
 // Description : Configuration file for RADIUS Render Class.
 //
@@ -93,7 +93,9 @@ define ('K_RADIUS_UTF8', true);
 define ('K_RADIUS_USER_LEVEL', 1);
 
 /**
- * Default user group ID. This is the TCExam group id to which the radius accounts belongs.
+ * Default user group ID.
+ * This is the TCExam group id to which the radius accounts belongs.
+ * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define ('K_RADIUS_USER_GROUP_ID', 1);
 

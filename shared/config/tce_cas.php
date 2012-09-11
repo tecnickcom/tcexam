@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_cas.php
 // Begin       : 2009-02-06
-// Last Update : 2010-09-16
+// Last Update : 2012-09-11
 //
 // Description : Configuration file for CAS
 //
@@ -86,7 +86,8 @@ define ('K_CAS_USER_LEVEL', 1);
 
 /**
  * Default user group ID
- * This is the TCExam group id to which the CAS accounts belongs.
+ * This is the TCExam group ID to which the CAS accounts belongs.
+ * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define ('K_CAS_USER_GROUP_ID', 1);
 
