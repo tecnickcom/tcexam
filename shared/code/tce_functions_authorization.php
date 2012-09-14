@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2012-09-11
+// Last Update : 2012-09-14
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -274,6 +274,7 @@ function F_getAuthorizedUsers($user_id) {
 function F_syncUserGroups($usrid, $grpids) {
 	global $l,$db;
 	require_once('../config/tce_config.php');
+	$usrid = intval($usrid);
 	// select new group IDs
 	$newgrps = array();
 	if (is_string($grpids)) {
@@ -303,13 +304,13 @@ function F_syncUserGroups($usrid, $grpids) {
 	$sqlu = 'SELECT usrgrp_group_id FROM '.K_TABLE_USERGROUP.' WHERE usrgrp_user_id='.$usrid.'';
 	if ($ru = F_db_query($sqlu, $db)) {
 		while ($mu = F_db_fetch_array($ru)) {
-			$usrgrps[] = $mg['usrgrp_group_id'];
+			$usrgrps[] = $mu['usrgrp_group_id'];
 		}
 	} else {
 		F_display_db_error();
 	}
 	// extract missing groups
-	$diffgrps = array_diff($newgrps, $usrgrps);
+	$diffgrps = array_values(array_diff($newgrps, $usrgrps));
 	// add missing groups
 	foreach ($diffgrps as $grpid) {
 		if ($grpid > 0) {
