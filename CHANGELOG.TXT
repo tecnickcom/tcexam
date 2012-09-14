@@ -1,3 +1,7 @@
+11.3.012 (2012-09-14)
+	- The module for alternative authentication methods was fixed.
+	- The TCPDF library was updated.
+
 11.3.011 (2012-09-07)
 	- The module for alternative authentication methods was improved to automatically sync the user groups.
 	- The TCPDF library was updated.
