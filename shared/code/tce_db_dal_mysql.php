@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2011-05-04
+// Last Update : 2012-11-06
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -70,6 +70,9 @@ function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $
 	// set the correct charset encoding
 	mysql_query('SET NAMES \'utf8\'');
 	mysql_query('SET CHARACTER_SET \'utf8\'');
+	mysql_query('SET collation \'utf8_unicode_ci\'');
+	mysql_query('SET collation_server \'utf8_unicode_ci\'');
+	mysql_query('SET collation_database \'utf8_unicode_ci\'');
 	return $db;
 }
 

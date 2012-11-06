@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2012-08-02 10:45:41
+// DATE: 2012-10-29 19:37:02
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -15,7 +15,7 @@ $tmx['h_add_object']='beilleszti a kiválasztott objektumot a szövegbe';
 $tmx['h_add_questions']='beilleszti a kiválasztott típusú kérdéseket';
 $tmx['h_add_subject']='beilleszti a kiválasztott témát ebbe a tesztbe';
 $tmx['h_add_tag']='beilleszti a kiválasztott elemet';
-$tmx['h_allow_no_answer']='ha kiválasztjuk, egy -nincs válasz- opció is megjelenik minden egyes kérdésnél';
+$tmx['h_allow_no_answer']='ha kiválasztjuk, egy -nincs válasz - opció is megjelenik minden egyes kérdésnél';
 $tmx['h_answer']='lehetséges válasz a kiválasztott kérdésre';
 $tmx['h_answer_isright']='válasszuk ezt az opciót ha a válasz helyes';
 $tmx['h_answer_right']='helyes válasz';
@@ -563,25 +563,25 @@ $tmx['hp_select_media_file']='Ez az oldal lehetővé teszi, hogy az aktuális le
 $tmx['w_owner']='tulajdonos';
 $tmx['h_module_owner']='ennek a modulnak a tulajdonosa';
 $tmx['h_topic_owner']='ennek a témának a tulajdonosa';
-$tmx['t_omr_answers_importer']='Import Answers (OMR)';
-$tmx['hp_omr_answers_importer']='With this form you can import user\'s answers from scanned images of answer sheets. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
-$tmx['w_import_omr_answers']='import answers';
-$tmx['w_omr_data_page']='OMR DATA';
-$tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
-$tmx['h_omr_data_page']='scanned image of the page labeled OMR DATA';
-$tmx['m_omr_wrong_test_data']='the image of OMR DATA page is missing or unreadable';
-$tmx['m_omr_wrong_answer_sheet']='the image of OMR ANSWER SHEET page is missing or unreadable';
-$tmx['m_import_ok']='the import process has been successfully completed';
-$tmx['m_import_error']='the import process has failed';
-$tmx['w_forgot_password']='I forgot my password';
-$tmx['h_reset_password']='reset the password';
-$tmx['d_reset_password']='Please enter the email address you used to create your account, and we will send you a link to reset your password.';
-$tmx['t_password_assistance']='Password Assistance';
-$tmx['w_unknown_email']='unknown email';
-$tmx['w_result_graph']='graph of points and correct answers percentage for each listed test';
-$tmx['h_omr_dir']='OMR Import Directory';
-$tmx['w_omr_dir']='OMR Directory';
-$tmx['t_omr_bulk_importer']='OMR Bulk Importer';
-$tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['t_omr_answers_importer']='Válaszok Importálása (OMR)';
+$tmx['hp_omr_answers_importer']='Ezen az oldalon van lehetőságe importálni a válaszokat a beolvasott válasz formanyomtatványból. A képek feldolgozása az Optical Mark Recognition (OMR) segíŧségével történik azonosítva akérdéseket és a rájuk adott válaszokat. Az importált adatok felülírják a meglévő adatokat. Az OMR számára a formanyomtatványokat teljes méretben minimum 200DPI felbontásban kell beolvasni.';
+$tmx['w_import_omr_answers']='válaszok importálása';
+$tmx['w_omr_data_page']='OMR ADAT';
+$tmx['w_omr_answer_sheet']='OMR VÁLASZ FORMANYOMTATVÁNY';
+$tmx['h_omr_data_page']='beolvasott kép OMR ADAT jelöléssel';
+$tmx['m_omr_wrong_test_data']='A kép mint OMR ADAT oldal hibás vagy olvashatatlan';
+$tmx['m_omr_wrong_answer_sheet']='a kép mint OMR VÁLASZ FORMANYOMTATVÁNY hibás vagy olvashatatlan';
+$tmx['m_import_ok']='az imortálás sikeresen befejeződött';
+$tmx['m_import_error']='az import folyamat megszakadt';
+$tmx['w_forgot_password']='Elfelejtettem a jelszavamat';
+$tmx['h_reset_password']='jelszó alaphelyzetbe állítása';
+$tmx['d_reset_password']='Kérem adja meg azz az email címét amit a fiók létrehozásához használt, a rendszer küldeni fogja a linket amelynek segítségével a jelszavát alaphelyzetre tudja állítani.';
+$tmx['t_password_assistance']='Jelszó Kezelés';
+$tmx['w_unknown_email']='ismeretlen email';
+$tmx['w_result_graph']='ábra a pontok és a jó válaszok százaléka minden listázott teszthez';
+$tmx['h_omr_dir']='OMR Import Alkönyvtár';
+$tmx['w_omr_dir']='OMR Alkönyvtár';
+$tmx['t_omr_bulk_importer']='OMR Tömeges Importálás';
+$tmx['hp_omr_bulk_importer']='Ezen ez oldalon lehetősége van több teszt válaszait importálni a beolvasott válasz formanyomtatványokból. A képfájloknak a cache/OMR alkönyvtárban kell lenniük. A képekfájlok tartalmazzák a QR kódot a fájl nevében "OMR_[USRREG]_QR.png", ahol az [USRREG] a regisztrált felhasználó kódja. A fájl nevének "OMR_[USRREG]_A[X].png" formájúnak kell lennie ahol az [X] az oldal sorszáma. A képek feldolgozása az Optical Mark Recognition (OMR) segíŧségével történik azonosítva akérdéseket és a rájuk adott válaszokat. Az importált adatok felülírják a meglévő adatokat. Az OMR számára a formanyomtatványokat teljes méretben minimum 200DPI felbontásban kell beolvasni.';
 
 // --- EOF ---

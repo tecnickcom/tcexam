@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2011-01-28
+Last Update : 2012-11-06
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -94,7 +94,7 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE TABLE tce_questions (
 	question_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
 	question_subject_id Bigint UNSIGNED NOT NULL,
-	question_description Text NOT NULL,
+	question_description Text COLLATE utf8_bin NOT NULL,
 	question_explanation Text NULL,
 	question_type Smallint(3) UNSIGNED NOT NULL DEFAULT 1,
 	question_difficulty Smallint NOT NULL DEFAULT 1,
@@ -111,7 +111,7 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE TABLE tce_answers (
 	answer_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
 	answer_question_id Bigint UNSIGNED NOT NULL,
-	answer_description Text NOT NULL,
+	answer_description Text COLLATE utf8_bin NOT NULL,
 	answer_explanation Text NULL,
 	answer_isright Bool NOT NULL DEFAULT '0',
 	answer_enabled Bool NOT NULL DEFAULT '0',

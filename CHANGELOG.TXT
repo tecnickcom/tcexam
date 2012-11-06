@@ -1,3 +1,8 @@
+11.4.000 (2012-11-06)
+	- The MySQL collation for the questions and answer fields was changed to utf8_bin: check the mysql_db_upgrade_11_3to11_4.sql file to upgrade the database.
+	- The TCPDF library was updated.
+	- Hungarian transation was updated.
+
 11.3.012 (2012-09-14)
 	- The module for alternative authentication methods was fixed.
 	- The TCPDF library was updated.
