@@ -1,5 +1,11 @@
+11.4.001 (2012-11-07)
+	- The MySQL collation for the questions and answer was reverted to utf8_unicode to respect natural ordering.
+	- Constant K_MYSQL_QA_BIN_UNIQUITY was added on configuration file to check the unicity of question and answer descriptions using utf8_bin collation when using MySQL.
+	- To normalize questions and answer unicode representation, please install php5-intl extension for php.
+	- The TCPDF library was updated.
+
 11.4.000 (2012-11-06)
-	- The MySQL collation for the questions and answer fields was changed to utf8_bin: check the mysql_db_upgrade_11_3to11_4.sql file to upgrade the database.
+	- The MySQL collation for the questions and answer fields was changed to utf8_bin.
 	- The TCPDF library was updated.
 	- Hungarian transation was updated.
 
