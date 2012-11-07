@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
-// Last Update : 2011-02-21
+// Last Update : 2012-11-07
 //
 // Description : Functions to manipulate questions.
 //
@@ -195,6 +195,8 @@ function F_question_copy($question_id, $new_subject_id) {
 	if ($q !== false) {
 		if (K_DATABASE_TYPE == 'ORACLE') {
 			$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($q['question_description']).'\',1,1)>0';
+		} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+			$chksql = 'question_description=\''.F_escape_sql($q['question_description']).'\' COLLATE utf8_bin';
 		} else {
 			$chksql = 'question_description=\''.F_escape_sql($q['question_description']).'\'';
 		}

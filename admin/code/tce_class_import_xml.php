@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_class_import_xml.php
 // Begin       : 2006-03-12
-// Last Update : 2011-05-26
+// Last Update : 2012-11-07
 //
 // Description : Class to import questions from an XML file.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -245,7 +245,14 @@ class XMLQuestionImporter {
 			default: {
 				$elname = $this->level.'_'.$name;
 				if ($this->current_element == $elname) {
-					$this->level_data[$this->level][$this->current_element] = F_escape_sql(F_xml_to_text(utrim($this->current_data)), false);
+					// convert XML special chars
+					$this->level_data[$this->level][$this->current_element] = F_xml_to_text(utrim($this->current_data));
+					if (function_exists('normalizer_normalize') AND (($this->current_element == 'question_description') OR ($this->current_element == 'answer_description'))) {
+						// normalize UTF-8 string using Normalizer::FORM_C (requires php5-intl)
+						$this->level_data[$this->level][$this->current_element] = normalizer_normalize($this->level_data[$this->level][$this->current_element]);
+					}
+					// escape for SQL
+					$this->level_data[$this->level][$this->current_element] = F_escape_sql($this->level_data[$this->level][$this->current_element], false);
 				}
 				break;
 			}
@@ -384,6 +391,8 @@ class XMLQuestionImporter {
 			WHERE ';
 		if (K_DATABASE_TYPE == 'ORACLE') {
 			$sql .= 'dbms_lob.instr(question_description,\''.$this->level_data['question']['question_description'].'\',1,1)>0';
+		} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+			$sql .= 'question_description=\''.$this->level_data['question']['question_description'].'\' COLLATE utf8_bin';
 		} else {
 			$sql .= 'question_description=\''.$this->level_data['question']['question_description'].'\'';
 		}
@@ -480,6 +489,8 @@ class XMLQuestionImporter {
 			WHERE ';
 		if (K_DATABASE_TYPE == 'ORACLE') {
 			$sql .= 'dbms_lob.instr(answer_description, \''.$this->level_data['answer']['answer_description'].'\',1,1)>0';
+		} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+			$sql .= 'answer_description=\''.$this->level_data['answer']['answer_description'].'\' COLLATE utf8_bin';
 		} else {
 			$sql .= 'answer_description=\''.$this->level_data['answer']['answer_description'].'\'';
 		}

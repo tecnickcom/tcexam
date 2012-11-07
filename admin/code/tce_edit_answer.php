@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2012-08-06
+// Last Update : 2012-11-07
 //
 // Description : Edit answers.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -133,6 +133,10 @@ if(!isset($answer_keyboard_key) OR (empty($answer_keyboard_key))) {
 }
 if (isset($answer_description)) {
 	$answer_description = utrim($answer_description);
+	if (function_exists('normalizer_normalize')) {
+		// normalize UTF-8 string using Normalizer::FORM_C (requires php5-intl)
+		$answer_description = normalizer_normalize($answer_description);
+	}
 }
 if (isset($answer_explanation)) {
 	$answer_explanation = utrim($answer_explanation);
@@ -309,6 +313,8 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
 			}
@@ -393,6 +399,8 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
 			}

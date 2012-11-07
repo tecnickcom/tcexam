@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2012-08-06
+// Last Update : 2012-11-07
 //
 // Description : Edit questions
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -142,6 +142,10 @@ if(!isset($question_auto_next) OR (empty($question_auto_next))) {
 }
 if (isset($question_description)) {
 	$question_description = utrim($question_description);
+	if (function_exists('normalizer_normalize')) {
+		// normalize UTF-8 string using Normalizer::FORM_C (requires php5-intl)
+		$question_description = normalizer_normalize($question_description);
+	}
 }
 if (isset($question_explanation)) {
 	$question_explanation = utrim($question_explanation);
@@ -310,6 +314,8 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+				$chksql = 'question_description=\''.F_escape_sql($question_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
 			}
@@ -392,6 +398,8 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+				$chksql = 'question_description=\''.F_escape_sql($question_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
 			}
