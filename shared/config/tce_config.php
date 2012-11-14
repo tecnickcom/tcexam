@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.4.001');
+define ('K_TCEXAM_VERSION', '11.4.002');
 
 /**
  * 2-letters code for default language.
@@ -230,10 +230,6 @@ define ('K_TIMEZONE', 'UTC');
  */
 define('K_EXTEND_TIME_MINUTES', 5);
 
-/**
- * If true check the unicity of question and answer descriptions using utf8_bin collation when using MySQL.
- */
-define('K_MYSQL_QA_BIN_UNIQUITY', true);
 
 // ---------- * ---------- * ---------- * ---------- * ----------
 

@@ -540,6 +540,52 @@ function F_isURL($str) {
 	return false;
 }
 
+/**
+ * Normalize the UTF-8 input string.
+ * Modes greater than 0 requires php5-intl module.
+ * Please edit this function to implement your custom normalization method.
+ * @param $str (string) UTF-8 string to normalize.
+ * @param $mode (int) Normalization type: NONE=None; C=Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition; D=Normalization Form D (NFD) - Canonical Decomposition; KC=Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition; KD=Normalization Form KD (NFKD) - Compatibility Decomposition; CUSTOM=Custom normalization using user defined function 'user_utf8_custom_normalizer'.
+ * @return normalized string using the specified algorithm.
+ */
+  function F_utf8_normalizer($str, $mode='NONE') {
+    switch($mode) {
+      case 'CUSTOM': {
+        if (function_exists('user_utf8_custom_normalizer')) {
+          return call_user_func('user_utf8_custom_normalizer', $str);
+        } else {
+          return $str;
+        }
+        break;
+      }
+      case 'C': {
+        // Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition
+        return normalizer_normalize($str, Normalizer::FORM_C);
+        break;
+      }
+      case 'D': {
+        // Normalization Form D (NFD) - Canonical Decomposition
+        return normalizer_normalize($str, Normalizer::FORM_D);
+        break;
+      }
+      case 'KC': {
+        // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition 
+        return normalizer_normalize($str, Normalizer::FORM_KC);
+        break;
+      }
+      case 'KD': {
+        // Normalization Form KD (NFKD) - Compatibility Decomposition 
+        return normalizer_normalize($str, Normalizer::FORM_KD);
+        break;
+      }
+      case 'NONE':
+      default: {
+        return $str;
+        break;
+      }
+    }
+  }
+
 //============================================================+
 // END OF FILE
 //============================================================+

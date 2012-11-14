@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2011-05-18
+// Last Update : 2012-11-14
 //
 // Description : Configuration file for administration section.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -157,6 +157,22 @@ define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
  * If true enable the backup download.
  */
 define ('K_DOWNLOAD_BACKUPS', true);
+
+/**
+ * If true check the unicity of question and answer descriptions using utf8_bin collation when using MySQL.
+ */
+define('K_MYSQL_QA_BIN_UNIQUITY', true);
+
+/**
+ * Set the UTF-8 Normalization mode for question and answer descriptions:
+ * NONE=None;
+ * C=Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition;
+ * D=Normalization Form D (NFD) - Canonical Decomposition;
+ * KC=Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition;
+ * KD=Normalization Form KD (NFKD) - Compatibility Decomposition;
+ * CUSTOM=Custom normalization using user defined function 'user_utf8_custom_normalizer'.
+ */
+define('K_UTF8_NORMALIZATION_MODE', 'NONE');
 
 /**
  * Path to zbarimg executable (/usr/bin/zbarimg).

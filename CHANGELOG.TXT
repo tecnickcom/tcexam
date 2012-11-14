@@ -1,3 +1,8 @@
+11.4.002 (2012-11-14)
+	- Constant K_MYSQL_QA_BIN_UNIQUITY was moved to admin/config/tce_config.php
+	- Constant K_UTF8_NORMALIZATION_MODE was added to admin/config/tce_config.php to set the UTF-8 normalization mode for question and answer descriptions.
+	- The TCPDF library was updated.
+
 11.4.001 (2012-11-07)
 	- The MySQL collation for the questions and answer was reverted to utf8_unicode to respect natural ordering.
 	- Constant K_MYSQL_QA_BIN_UNIQUITY was added on configuration file to check the unicity of question and answer descriptions using utf8_bin collation when using MySQL.

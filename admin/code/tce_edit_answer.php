@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2012-11-07
+// Last Update : 2012-11-14
 //
 // Description : Edit answers.
 //
@@ -134,8 +134,8 @@ if(!isset($answer_keyboard_key) OR (empty($answer_keyboard_key))) {
 if (isset($answer_description)) {
 	$answer_description = utrim($answer_description);
 	if (function_exists('normalizer_normalize')) {
-		// normalize UTF-8 string using Normalizer::FORM_C (requires php5-intl)
-		$answer_description = normalizer_normalize($answer_description);
+    // normalize UTF-8 string based on settings
+		$answer_description = F_utf8_normalizer($answer_description, K_UTF8_NORMALIZATION_MODE);
 	}
 }
 if (isset($answer_explanation)) {
@@ -313,7 +313,7 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
-			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
@@ -399,7 +399,7 @@ switch($menu_mode) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
-			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
+			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
 			} else {
 				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
