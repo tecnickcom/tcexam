@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2012-11-06
+// Last Update : 2012-12-12
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -21,7 +21,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -115,6 +115,16 @@ function F_db_query($query, $link_identifier) {
  */
 function F_db_fetch_array($result) {
 	return mysql_fetch_array($result);
+}
+
+/**
+ * Fetch a result row as an associative array.
+ * Note: This function sets NULL fields to PHP NULL value.
+ * @param $result (resource) result resource to the query result.
+ * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
+ */
+function F_db_fetch_assoc($result) {
+	return mysql_fetch_assoc($result);
 }
 
 /**

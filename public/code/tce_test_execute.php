@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2011-02-27
+// Last Update : 2012-12-04
 //
 // Description : execute a specific test
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -57,6 +57,7 @@ $thispage_title = $l['t_test_execute'];
 $thispage_description = $l['hp_test_execute'];
 require_once('../../shared/code/tce_authorization.php');
 require_once('../../shared/code/tce_functions_form.php');
+require_once('../../shared/code/tce_functions_test.php');
 
 $formname = 'testform';
 
@@ -68,6 +69,10 @@ $test_comment = '';
 
 if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	$test_id = intval($_REQUEST['testid']);
+	if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1)) {
+		// mark previous test attempts as repeated
+		F_repeatTest($test_id);
+	}
 	if (isset($_REQUEST['testlogid']) AND ($_REQUEST['testlogid'] > 0)) {
 		$testlog_id = intval($_REQUEST['testlogid']);
 	}
@@ -82,7 +87,15 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	} else {
 		$reaction_time = 0;
 	}
-	require_once('../../shared/code/tce_functions_test.php');
+	// check for test password
+	$tph = F_getTestPassword($test_id);
+	if (!empty($tph) AND ($_SESSION['session_test_login'] != getPasswordHash($tph.$test_id.$_SESSION['session_user_id'].$_SESSION['session_user_ip']))) {
+		// display login page
+		require_once('../code/tce_page_header.php');
+		echo F_testLoginForm($_SERVER['SCRIPT_NAME'], 'form_test_login', 'post', 'multipart/form-data', $test_id);
+		require_once('../code/tce_page_footer.php');
+		exit(); //break page here
+	}
 
 	if (F_executeTest($test_id)) {
 

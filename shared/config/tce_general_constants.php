@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_general_constants.php
 // Begin       : 2002-03-01
-// Last Update : 2009-11-10
+// Last Update : 2012-12-27
 //
 // Description : Configuration file for general constants.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -46,6 +46,38 @@
  * @author Nicola Asuni
  * @since 2002-03-01
  */
+
+/**
+ * String used as a seed for some security code generation please change this value and keep it secret.
+ */
+define ('K_RANDOM_SECURITY', '3kCWtT57');
+
+/**
+ * Maximum number of tests per year (last 365 days).
+ * false = unlimited
+ */
+define ('K_MAX_TESTS_YEAR', false);
+
+/**
+ * Maximum number of tests per month (last 30 days).
+ * false = unlimited
+ */
+define ('K_MAX_TESTS_MONTH', false);
+
+/**
+ * Maximum number of tests per day (last 24 hours).
+ * false = unlimited
+ */
+define ('K_MAX_TESTS_DAY', false);
+
+/**
+ * Set to false to disable test counting.
+ */
+define ('K_REMAINING_TESTS', false);
+
+// ---------------------------------------------------------------------
+// DO NOT ALTER THE FOLLOWING CONSTANTS
+// ---------------------------------------------------------------------
 
 /**
  * New line character.
@@ -92,10 +124,6 @@ define ('K_SECONDS_IN_YEAR', 365 * K_SECONDS_IN_DAY);
  */
 define ('K_KEY_SECURITY', 'VENFeGFtIChjKSAyMDA0LTIwMDggTmljb2xhIEFzdW5pIC0gVGVjbmljay5jb20gcy5yLmwuIC0gd3d3LnRjZXhhbS5jb20=');
 
-/**
- * String used as a seed for some security code generation please change this value and keep it secret.
- */
-define ('K_RANDOM_SECURITY', 'ks2xp97g');
 
 //============================================================+
 // END OF FILE

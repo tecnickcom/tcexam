@@ -123,7 +123,7 @@ class XMLQuestionImporter {
 		// sets the character data handler function for the XML parser
 		xml_set_character_data_handler($this->parser, 'segContentHandler');
 		// start parsing an XML document
-		if(!xml_parse($this->parser, file_get_contents($xmlfile))) {
+		if (!xml_parse($this->parser, file_get_contents($xmlfile))) {
 			die(sprintf('ERROR xmlResourceBundle :: XML error: %s at line %d',
 				xml_error_string(xml_get_error_code($this->parser)),
 				xml_get_current_line_number($this->parser)));
@@ -279,7 +279,7 @@ class XMLQuestionImporter {
 	private function addModule() {
 		global $l, $db;
 		require_once('../config/tce_config.php');
-		require_once('../code/tce_functions_auth_sql.php');
+		require_once('../../shared/code/tce_functions_auth_sql.php');
 		if (isset($this->level_data['module']['module_id']) AND ($this->level_data['module']['module_id'] > 0)) {
 			return;
 		}
@@ -288,8 +288,8 @@ class XMLQuestionImporter {
 			FROM '.K_TABLE_MODULES.'
 			WHERE module_name=\''.$this->level_data['module']['module_name'].'\'
 			LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				// get existing module ID
 				if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['module_id'], 'module_user_id')) {
 					// unauthorized user
@@ -308,7 +308,7 @@ class XMLQuestionImporter {
 					\''.$this->boolval[$this->level_data['module']['module_enabled']].'\',
 					\''.$_SESSION['session_user_id'].'\'
 					)';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				} else {
 					// get new module ID
@@ -327,6 +327,9 @@ class XMLQuestionImporter {
 	private function addSubject() {
 		global $l, $db;
 		require_once('../config/tce_config.php');
+		if ($this->level_data['module']['module_id'] === false) {
+			return;
+		}
 		if (isset($this->level_data['subject']['subject_id']) AND ($this->level_data['subject']['subject_id'] > 0)) {
 			return;
 		}
@@ -336,8 +339,8 @@ class XMLQuestionImporter {
 			WHERE subject_name=\''.$this->level_data['subject']['subject_name'].'\'
 				AND subject_module_id='.$this->level_data['module']['module_id'].'
 			LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				// get existing subject ID
 				$this->level_data['subject']['subject_id'] = $m['subject_id'];
 			} elseif ($this->level_data['module']['module_id'] !== false) {
@@ -355,7 +358,7 @@ class XMLQuestionImporter {
 					\''.$_SESSION['session_user_id'].'\',
 					'.$this->level_data['module']['module_id'].'
 					)';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				} else {
 					// get new subject ID
@@ -397,8 +400,8 @@ class XMLQuestionImporter {
 			$sql .= 'question_description=\''.$this->level_data['question']['question_description'].'\'';
 		}
 		$sql .= ' AND question_subject_id='.$this->level_data['subject']['subject_id'].' LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				// get existing question ID
 				$this->level_data['question']['question_id'] = $m['question_id'];
 				return;
@@ -423,7 +426,7 @@ class XMLQuestionImporter {
 			}
 		}
 		$sql = 'START TRANSACTION';
-		if(!$r = F_db_query($sql, $db)) {
+		if (!$r = F_db_query($sql, $db)) {
 			F_display_db_error();
 		}
 		// insert question
@@ -452,7 +455,7 @@ class XMLQuestionImporter {
 			\''.$this->boolval[$this->level_data['question']['question_inline_answers']].'\',
 			\''.$this->boolval[$this->level_data['question']['question_auto_next']].'\'
 			)';
-		if(!$r = F_db_query($sql, $db)) {
+		if (!$r = F_db_query($sql, $db)) {
 			F_display_db_error(false);
 		} else {
 			// get new question ID
@@ -462,7 +465,7 @@ class XMLQuestionImporter {
 			}
 		}
 		$sql = 'COMMIT';
-		if(!$r = F_db_query($sql, $db)) {
+		if (!$r = F_db_query($sql, $db)) {
 			F_display_db_error();
 		}
 	}
@@ -495,13 +498,13 @@ class XMLQuestionImporter {
 			$sql .= 'answer_description=\''.$this->level_data['answer']['answer_description'].'\'';
 		}
 		$sql .= ' AND answer_question_id='.$this->level_data['question']['question_id'].' LIMIT 1';
-		if($r = F_db_query($sql, $db)) {
-			if($m = F_db_fetch_array($r)) {
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
 				// get existing subject ID
 				$this->level_data['answer']['answer_id'] = $m['answer_id'];
 			} else {
 				$sql = 'START TRANSACTION';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				}
 				$sql = 'INSERT INTO '.K_TABLE_ANSWERS.' (
@@ -521,7 +524,7 @@ class XMLQuestionImporter {
 					'.F_zero_to_null($this->level_data['answer']['answer_position']).',
 					'.F_empty_to_null($this->level_data['answer']['answer_keyboard_key']).'
 					)';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
 					F_db_query('ROLLBACK', $db);
 				} else {
@@ -529,7 +532,7 @@ class XMLQuestionImporter {
 					$this->level_data['answer']['answer_id'] = F_db_insert_id($db, K_TABLE_ANSWERS, 'answer_id');
 				}
 				$sql = 'COMMIT';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				}
 			}

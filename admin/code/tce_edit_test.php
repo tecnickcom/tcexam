@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2012-08-22
+// Last Update : 2013-01-29
 //
 // Description : Edit Tests
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -58,19 +58,19 @@ require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('tce_functions_tcecode_editor.php');
-require_once('tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
 
 // set default values
 if (!isset($test_results_to_users) OR (empty($test_results_to_users))) {
-	$test_results_to_users = 0;
+	$test_results_to_users = false;
 } else {
-	$test_results_to_users = intval($test_results_to_users);
+	$test_results_to_users = F_getBoolean($test_results_to_users);
 }
 if (!isset($test_report_to_users) OR (empty($test_report_to_users))) {
-	$test_report_to_users = 0;
+	$test_report_to_users = false;
 } else {
-	$test_report_to_users = intval($test_report_to_users);
+	$test_report_to_users = F_getBoolean($test_report_to_users);
 }
 if (!isset($subject_id) OR (empty($subject_id))) {
 	$subject_id = Array();
@@ -125,59 +125,69 @@ if (!isset($test_score_threshold) OR (empty($test_score_threshold))) {
 	$test_score_threshold = floatval($test_score_threshold);
 }
 if (!isset($test_random_questions_select) OR (empty($test_random_questions_select))) {
-	$test_random_questions_select = 0;
+	$test_random_questions_select = false;
 } else {
-	$test_random_questions_select = intval($test_random_questions_select);
+	$test_random_questions_select = F_getBoolean($test_random_questions_select);
 }
 if (!isset($test_random_questions_order) OR (empty($test_random_questions_order))) {
-	$test_random_questions_order = 0;
+	$test_random_questions_order = false;
 } else {
-	$test_random_questions_order = intval($test_random_questions_order);
+	$test_random_questions_order = F_getBoolean($test_random_questions_order);
+}
+if (!isset($test_questions_order_mode) OR (empty($test_questions_order_mode))) {
+	$test_questions_order_mode = 0;
+} else {
+	$test_questions_order_mode = max(0, min(2, intval($test_questions_order_mode)));
 }
 if (!isset($test_random_answers_select) OR (empty($test_random_answers_select))) {
-	$test_random_answers_select = 0;
+	$test_random_answers_select = false;
 } else {
-	$test_random_answers_select = intval($test_random_answers_select);
+	$test_random_answers_select = F_getBoolean($test_random_answers_select);
 }
 if (!isset($test_random_answers_order) OR (empty($test_random_answers_order))) {
-	$test_random_answers_order = 0;
+	$test_random_answers_order = false;
 } else {
-	$test_random_answers_order = intval($test_random_answers_order);
+	$test_random_answers_order = F_getBoolean($test_random_answers_order);
+}
+if (!isset($test_answers_order_mode) OR (empty($test_answers_order_mode))) {
+	$test_answers_order_mode = 0;
+} else {
+	$test_answers_order_mode = max(0, min(2, intval($test_answers_order_mode)));
 }
 if (!isset($test_comment_enabled) OR (empty($test_comment_enabled))) {
-	$test_comment_enabled = 0;
+	$test_comment_enabled = false;
 } else {
-	$test_comment_enabled = intval($test_comment_enabled);
+	$test_comment_enabled = F_getBoolean($test_comment_enabled);
 }
 if (!isset($test_menu_enabled) OR (empty($test_menu_enabled))) {
-	$test_menu_enabled = 0;
+	$test_menu_enabled = false;
 } else {
-	$test_menu_enabled = intval($test_menu_enabled);
+	$test_menu_enabled = F_getBoolean($test_menu_enabled);
 }
 if (!isset($test_noanswer_enabled) OR (empty($test_noanswer_enabled))) {
-	$test_noanswer_enabled = 0;
+	$test_noanswer_enabled = false;
 } else {
-	$test_noanswer_enabled = intval($test_noanswer_enabled);
+	$test_noanswer_enabled = F_getBoolean($test_noanswer_enabled);
 }
 if (!isset($test_mcma_radio) OR (empty($test_mcma_radio))) {
-	$test_mcma_radio = 0;
+	$test_mcma_radio = false;
 } else {
-	$test_mcma_radio = intval($test_mcma_radio);
+	$test_mcma_radio = F_getBoolean($test_mcma_radio);
 }
 if (!isset($test_repeatable) OR (empty($test_repeatable))) {
-	$test_repeatable = 0;
+	$test_repeatable = false;
 } else {
-	$test_repeatable = intval($test_repeatable);
+	$test_repeatable = F_getBoolean($test_repeatable);
 }
 if (!isset($test_mcma_partial_score) OR (empty($test_mcma_partial_score))) {
-	$test_mcma_partial_score = 0;
+	$test_mcma_partial_score = false;
 } else {
-	$test_mcma_partial_score = intval($test_mcma_partial_score);
+	$test_mcma_partial_score = F_getBoolean($test_mcma_partial_score);
 }
 if (!isset($test_logout_on_timeout) OR (empty($test_logout_on_timeout))) {
-	$test_logout_on_timeout = 0;
+	$test_logout_on_timeout = false;
 } else {
-	$test_logout_on_timeout = intval($test_logout_on_timeout);
+	$test_logout_on_timeout = F_getBoolean($test_logout_on_timeout);
 }
 if (!isset($test_max_score)) {
 	$test_max_score = 0;
@@ -185,6 +195,7 @@ if (!isset($test_max_score)) {
 
 $test_max_score_new = 0; // test max score
 $qtype = array('S', 'M', 'T', 'O'); // question types
+$ordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
 
 $test_fieldset_name = '';
 
@@ -256,9 +267,7 @@ switch($menu_mode) {
 			break;
 		}
 		if ($formstatus = F_check_form_fields()) {
-			//if ((isset($subject_id)) AND (!empty($subject_id)) AND (isset($tsubset_quantity)) AND (isset($tsubset_answers))) {
 			if ((isset($subject_id)) AND (!empty($subject_id)) AND (isset($tsubset_quantity))) {
-
 				if ($tsubset_type == 3) {
 					// free-text questions do not have alternative answers to display
 					$tsubset_answers = 0;
@@ -287,11 +296,17 @@ switch($menu_mode) {
 				$subjids = substr($subjids, 0, -1);
 				$subject_id = explode(',', $subjids);
 				$subjids = '('.$subjids.')';
-
+				$sql_answer_position = '';
+				$sql_questions_position = '';
+				if (!$test_random_questions_order AND ($test_questions_order_mode == 0)) {
+					$sql_questions_position = ' AND question_position>0';
+				}
+				if (!$test_random_answers_order AND ($test_answers_order_mode == 0)) {
+					$sql_answer_position = ' AND answer_position>0';
+				}
 				// check here if the selected number of questions are available for the current set
 				// NOTE: if the same subject is used in multiple sets this control may fail.
-				$sqlq = 'SELECT COUNT(*) AS numquestions
-					FROM '.K_TABLE_QUESTIONS.'';
+				$sqlq = 'SELECT COUNT(*) AS numquestions FROM '.K_TABLE_QUESTIONS.'';
 				$sqlq .= ' WHERE question_subject_id IN '.$subjids.'
 					AND question_difficulty='.$tsubset_difficulty.'
 					AND question_enabled=\'1\'';
@@ -305,9 +320,7 @@ switch($menu_mode) {
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
 							WHERE answer_enabled=\'1\' AND answer_isright=\'1\'';
-					if (F_getBoolean($test_random_answers_order)) {
-						$sqlq .= ' AND answer_position>0';
-					}
+					$sqlq .= $sql_answer_position;
 					$sqlq .= ' GROUP BY answer_question_id
 							HAVING (COUNT(answer_id)>0))';
 					$sqlq .= ' AND question_id IN (
@@ -315,9 +328,7 @@ switch($menu_mode) {
 							FROM '.K_TABLE_ANSWERS.'
 							WHERE answer_enabled=\'1\'
 							AND answer_isright=\'0\'';
-					if (F_getBoolean($test_random_answers_order)) {
-						$sqlq .= ' AND answer_position>0';
-					}
+					$sqlq .= $sql_answer_position;
 					$sqlq .= ' GROUP BY answer_question_id';
 					if ($tsubset_answers > 0) {
 						$sqlq .= ' HAVING (COUNT(answer_id)>='.($tsubset_answers-1).')';
@@ -330,9 +341,7 @@ switch($menu_mode) {
 							SELECT answer_question_id
 							FROM '.K_TABLE_ANSWERS.'
 							WHERE answer_enabled=\'1\'';
-					if (F_getBoolean($test_random_answers_order)) {
-						$sqlq .= ' AND answer_position>0';
-					}
+					$sqlq .= $sql_answer_position;
 					$sqlq .= ' GROUP BY answer_question_id';
 					if ($tsubset_answers > 0) {
 						$sqlq .= ' HAVING (COUNT(answer_id)>='.$tsubset_answers.')';
@@ -349,9 +358,7 @@ switch($menu_mode) {
 							GROUP BY answer_question_id
 							HAVING (COUNT(answer_id)>1))';
 				}
-				if (F_getBoolean($test_random_questions_order)) {
-					$sqlq .= ' AND question_position>0';
-				}
+				$sqlq .= $sql_questions_position;
 				if (K_DATABASE_TYPE == 'ORACLE') {
 					$sqlq = 'SELECT * FROM ('.$sqlq.') WHERE rownum <= '.$tsubset_quantity.'';
 				} else {
@@ -369,7 +376,6 @@ switch($menu_mode) {
 					F_print_error('WARNING', $l['m_unavailable_questions']);
 					break;
 				}
-
 				if (!empty($subject_id)) {
 					// insert new subject
 					$sql = 'INSERT INTO '.K_TABLE_TEST_SUBJSET.' (tsubset_test_id,
@@ -447,6 +453,7 @@ switch($menu_mode) {
 		// check if the confirmation chekbox has been selected
 		if (!isset($_REQUEST['confirmupdate']) OR ($_REQUEST['confirmupdate'] != 1)) {
 			F_print_error('WARNING', $l['m_form_missing_fields'].': '.$l['w_confirm'].' &rarr; '.$l['w_update']);
+			$formstatus = FALSE;
 			F_stripslashes_formfields();
 			break;
 		}
@@ -465,7 +472,9 @@ switch($menu_mode) {
 				F_stripslashes_formfields();
 				break;
 			}
-
+			if (!empty($new_test_password)) {
+				$test_password = getPasswordHash($new_test_password);
+			}
 			if ($test_score_threshold > $test_max_score) {
 				$test_score_threshold = 0.6 * $test_max_score;
 			}
@@ -485,15 +494,18 @@ switch($menu_mode) {
 				test_score_threshold=\''.$test_score_threshold.'\',
 				test_random_questions_select=\''.$test_random_questions_select.'\',
 				test_random_questions_order=\''.$test_random_questions_order.'\',
+				test_questions_order_mode=\''.$test_questions_order_mode.'\',
 				test_random_answers_select=\''.$test_random_answers_select.'\',
 				test_random_answers_order=\''.$test_random_answers_order.'\',
+				test_answers_order_mode=\''.$test_answers_order_mode.'\',
 				test_comment_enabled=\''.$test_comment_enabled.'\',
 				test_menu_enabled=\''.$test_menu_enabled.'\',
 				test_noanswer_enabled=\''.$test_noanswer_enabled.'\',
 				test_mcma_radio=\''.$test_mcma_radio.'\',
 				test_repeatable=\''.$test_repeatable.'\',
 				test_mcma_partial_score=\''.$test_mcma_partial_score.'\',
-				test_logout_on_timeout=\''.$test_logout_on_timeout.'\'
+				test_logout_on_timeout=\''.$test_logout_on_timeout.'\',
+				test_password='.F_empty_to_null($test_password).'
 				WHERE test_id='.$test_id.'';
 			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -539,6 +551,9 @@ switch($menu_mode) {
 				// save previous test_id.
 				$old_test_id = $test_id;
 			}
+			if (!empty($new_test_password)) {
+				$test_password = getPasswordHash($new_test_password);
+			}
 			$sql = 'INSERT INTO '.K_TABLE_TESTS.' (
 			test_name,
 				test_description,
@@ -556,15 +571,18 @@ switch($menu_mode) {
 				test_score_threshold,
 				test_random_questions_select,
 				test_random_questions_order,
+				test_questions_order_mode,
 				test_random_answers_select,
 				test_random_answers_order,
+				test_answers_order_mode,
 				test_comment_enabled,
 				test_menu_enabled,
 				test_noanswer_enabled,
 				test_mcma_radio,
 				test_repeatable,
 				test_mcma_partial_score,
-				test_logout_on_timeout
+				test_logout_on_timeout,
+				test_password
 				) VALUES (
 				\''.F_escape_sql($test_name).'\',
 				\''.F_escape_sql($test_description).'\',
@@ -582,15 +600,18 @@ switch($menu_mode) {
 				\''.$test_score_threshold.'\',
 				\''.$test_random_questions_select.'\',
 				\''.$test_random_questions_order.'\',
+				\''.$test_questions_order_mode.'\',
 				\''.$test_random_answers_select.'\',
 				\''.$test_random_answers_order.'\',
+				\''.$test_answers_order_mode.'\',
 				\''.$test_comment_enabled.'\',
 				\''.$test_menu_enabled.'\',
 				\''.$test_noanswer_enabled.'\',
 				\''.$test_mcma_radio.'\',
 				\''.$test_repeatable.'\',
 				\''.$test_mcma_partial_score.'\',
-				\''.$test_logout_on_timeout.'\'
+				\''.$test_logout_on_timeout.'\',
+				'.F_empty_to_null($test_password).'
 				)';
 			if (!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -682,8 +703,10 @@ switch($menu_mode) {
 		$test_score_threshold = 0;
 		$test_random_questions_select = true;
 		$test_random_questions_order = true;
+		$test_questions_order_mode = 0;
 		$test_random_answers_select = true;
 		$test_random_answers_order = true;
+		$test_answers_order_mode = 0;
 		$test_comment_enabled = true;
 		$test_menu_enabled = true;
 		$test_noanswer_enabled = true;
@@ -691,6 +714,7 @@ switch($menu_mode) {
 		$test_repeatable = false;
 		$test_mcma_partial_score = true;
 		$test_logout_on_timeout = false;
+		$test_password = '';
 		break;
 	}
 
@@ -724,8 +748,10 @@ if ($formstatus) {
 			$test_score_threshold = 0;
 			$test_random_questions_select = true;
 			$test_random_questions_order = true;
+			$test_questions_order_mode = 0;
 			$test_random_answers_select = true;
 			$test_random_answers_order = true;
+			$test_answers_order_mode = 0;
 			$test_comment_enabled = true;
 			$test_menu_enabled = true;
 			$test_noanswer_enabled = true;
@@ -733,6 +759,7 @@ if ($formstatus) {
 			$test_repeatable = false;
 			$test_mcma_partial_score = true;
 			$test_logout_on_timeout = false;
+			$test_password = '';
 		} else {
 			$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
 			if ($r = F_db_query($sql, $db)) {
@@ -753,8 +780,10 @@ if ($formstatus) {
 					$test_score_threshold = $m['test_score_threshold'];
 					$test_random_questions_select = F_getBoolean($m['test_random_questions_select']);
 					$test_random_questions_order = F_getBoolean($m['test_random_questions_order']);
+					$test_answers_order_mode = intval($m['test_answers_order_mode']);
 					$test_random_answers_select = F_getBoolean($m['test_random_answers_select']);
 					$test_random_answers_order = F_getBoolean($m['test_random_answers_order']);
+					$test_answers_order_mode = intval($m['test_answers_order_mode']);
 					$test_comment_enabled = F_getBoolean($m['test_comment_enabled']);
 					$test_menu_enabled = F_getBoolean($m['test_menu_enabled']);
 					$test_noanswer_enabled = F_getBoolean($m['test_noanswer_enabled']);
@@ -762,6 +791,7 @@ if ($formstatus) {
 					$test_repeatable = F_getBoolean($m['test_repeatable']);
 					$test_mcma_partial_score = F_getBoolean($m['test_mcma_partial_score']);
 					$test_logout_on_timeout = F_getBoolean($m['test_logout_on_timeout']);
+					$test_password = $m['test_password'];
 				} else {
 					$test_name = '';
 					$test_description = '';
@@ -778,8 +808,10 @@ if ($formstatus) {
 					$test_score_threshold = 0;
 					$test_random_questions_select = true;
 					$test_random_questions_order = true;
+					$test_questions_order_mode = 0;
 					$test_random_answers_select = true;
 					$test_random_answers_order = true;
+					$test_answers_order_mode = 0;
 					$test_comment_enabled = true;
 					$test_menu_enabled = true;
 					$test_noanswer_enabled = true;
@@ -787,6 +819,7 @@ if ($formstatus) {
 					$test_repeatable = false;
 					$test_mcma_partial_score = true;
 					$test_logout_on_timeout = false;
+					$test_password = '';
 				}
 			} else {
 				F_display_db_error();
@@ -833,6 +866,11 @@ if ($r = F_db_query($sql, $db)) {
 	F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
+
+// link for user selection popup
+$jsaction = 'selectWindow=window.open(\'tce_select_tests_popup.php?cid=test_id\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '<br /><br />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
@@ -894,8 +932,23 @@ if ($test_random_questions_order) {echo ' checked="checked"';}
 echo ' onclick="JF_check_random_boxes()"';
 echo ' title="'.$l['w_order'].'" />';
 echo ' <label for="test_random_questions_order">'.$l['w_order'].'</label>'.K_NEWLINE;
+
+echo '<span id="select_questions_order_mode" style="visibility:visible;">'.K_NEWLINE;
+echo ' | <label for="test_questions_order_mode">'.$l['w_order_by'].'</label>'.K_NEWLINE;
+echo ' <select name="test_questions_order_mode" id="test_questions_order_mode" size="1" title="'.$l['h_questions_order_mode'].'">'.K_NEWLINE;
+foreach ($ordmode as $ok => $ov) {
+		echo '<option value="'.$ok.'"';
+		if ($test_questions_order_mode == $ok) {
+			echo ' selected="selected"';
+		}
+		echo '>'.htmlspecialchars($ov, ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+}
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
+
 
 echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">'.K_NEWLINE;
@@ -914,6 +967,19 @@ echo ' onclick="JF_check_random_boxes()"';
 echo ' title="'.$l['w_order'].'" />';
 echo ' <label for="test_random_answers_order">'.$l['w_order'].'</label>'.K_NEWLINE;
 
+echo '<span id="select_answers_order_mode" style="visibility:visible;">'.K_NEWLINE;
+echo ' | <label for="test_answers_order_mode">'.$l['w_order_by'].'</label>'.K_NEWLINE;
+echo ' <select name="test_answers_order_mode" id="test_answers_order_mode" size="1" title="'.$l['h_answers_order_mode'].'">'.K_NEWLINE;
+foreach ($ordmode as $ok => $ov) {
+		echo '<option value="'.$ok.'"';
+		if ($test_answers_order_mode == $ok) {
+			echo ' selected="selected"';
+		}
+		echo '>'.htmlspecialchars($ov, ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+}
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
@@ -927,8 +993,11 @@ echo getFormRowCheckBox('test_report_to_users', $l['w_report_to_users'], '', '',
 echo getFormRowCheckBox('test_repeatable', $l['w_repeatable'], '', '', 1, $test_repeatable, false);
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
+echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' ('.$l['d_password_lenght'].')', '', '^([a-zA-Z0-9]{8,32})$', 255, false, false, true);
+
 echo '<div class="row">'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
+echo '<input type="hidden" name="test_password" id="test_password" value="'.$test_password.'" />'.K_NEWLINE;
 
 // show buttons by case
 
@@ -1190,7 +1259,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 		echo '</span>'.K_NEWLINE;
 		echo '<span class="formw">'.K_NEWLINE;
 		echo '<input type="text" name="test_num" id="test_num" value="'.$test_num.'" size="4" maxlength="10" title="'.$l['h_pdf_offline_test'].'" />'.K_NEWLINE;
-		echo '<a href="tce_pdf_testgen.php?testid='.$test_id.'&amp;num='.$test_num.'" title="'.$l['h_pdf_offline_test'].'" class="xmlbutton" onclick="pdfWindow=window.open(\'tce_pdf_testgen.php?testid='.$test_id.'&amp;num=\' + document.getElementById(\'form_testeditor\').test_num.value + \'\',\'pdfWindow\',\'dependent,menubar=yes,resizable=yes,scrollbars=yes,status=yes,toolbar=yes\'); return false;">'.$l['w_generate'].'</a>';
+		echo '<a href="tce_pdf_testgen.php?test_id='.$test_id.'&amp;num='.$test_num.'" title="'.$l['h_pdf_offline_test'].'" class="xmlbutton" onclick="pdfWindow=window.open(\'tce_pdf_testgen.php?test_id='.$test_id.'&amp;num=\' + document.getElementById(\'form_testeditor\').test_num.value + \'\',\'pdfWindow\',\'dependent,menubar=yes,resizable=yes,scrollbars=yes,status=yes,toolbar=yes\'); return false;">'.$l['w_generate'].'</a>';
 		echo '</span>&nbsp;'.K_NEWLINE;
 		echo '</div>'.K_NEWLINE;
 	}
@@ -1209,9 +1278,12 @@ echo '//<![CDATA['.K_NEWLINE;
 echo 'function JF_check_random_boxes() {'.K_NEWLINE;
 echo ' if (document.getElementById(\'test_random_questions_select\').checked==true){document.getElementById(\'test_random_questions_order\').checked=true;}'.K_NEWLINE;
 echo ' if ((document.getElementById(\'test_random_questions_order\').checked==false)&&(document.getElementById(\'test_random_questions_select\').checked==true)){document.getElementById(\'test_random_questions_order\').checked=true;}'.K_NEWLINE;
+echo ' if (document.getElementById(\'test_random_questions_order\').checked==false){document.getElementById(\'select_questions_order_mode\').style.visibility="visible";}else{document.getElementById(\'select_questions_order_mode\').style.visibility="hidden";}'.K_NEWLINE;
 echo ' if (document.getElementById(\'test_random_answers_select\').checked==true){document.getElementById(\'test_random_answers_order\').checked=true;}'.K_NEWLINE;
 echo ' if ((document.getElementById(\'test_random_answers_order\').checked==false)&&(document.getElementById(\'test_random_answers_select\').checked==true)){document.getElementById(\'test_random_answers_order\').checked=true;}'.K_NEWLINE;
+echo ' if (document.getElementById(\'test_random_answers_order\').checked==false){document.getElementById(\'select_answers_order_mode\').style.visibility="visible";}else{document.getElementById(\'select_answers_order_mode\').style.visibility="hidden";}'.K_NEWLINE;
 echo '}'.K_NEWLINE;
+echo 'JF_check_random_boxes();'.K_NEWLINE;
 echo '//]]>'.K_NEWLINE;
 echo '</script>'.K_NEWLINE;
 

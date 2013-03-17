@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: en
-// DATE: 2012-10-29 19:36:44
+// DATE: 2013-02-21 12:33:54
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='en';
-$tmx['d_admin_index']='This is the administration area of <a href="tce_page_info.php" title="about TCExam">TCExam</a>, is a platform and language independent user-friendly software to create, manage and perform online tests.<br /><br />From the menu you can access the different sections of the system:<ul><li><strong>users</strong><br />This sections contains the forms for <a href="tce_edit_user.php" title="User Management">insert and manage</a> users, <a href="tce_select_users.php" title="User Selection"> to select them</a> and to show the list of the ones currently <a href="tce_show_online_users.php" title="Online Users">online</a>.<br />Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.<br />It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).<br />TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.</li><li><strong>modules</strong><br />This section contains the forms to insert and modify test <a href="tce_edit_module.php" title="Modules Management">modules</a>, <a href="tce_edit_subject.php" title="Topic Management">topics</a>, the related <a href="tce_edit_question.php" title="Question Management">questions</a> and <a href="tce_edit_answer.php" title="Multiple-Answer Management">answers</a>.<br />You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.<br />TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form <a href="tce_edit_rating.php" title="Answer evaluation"></a>, while the former will be automatically evaluated.<br />All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.</li><li><strong>test</strong><br />This section includes a form to insert, generate and modify the different <a href="tce_edit_test.php" title="Test Management">tests</a>, a form to <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> the free answers and forms to show or generate PDF versions of the <a href="tce_show_result_allusers.php" title="Test Results Summary">results</a>, a detailed view of the <a href="tce_show_result_user.php" title="Test Results">users\' tests</a> and the <a href="tce_show_result_questions.php" title="Question Statistics">statistics</a> of questions and answers used.<br />TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.<br />It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.</li></ul>';
+$tmx['d_admin_index']='This is the administration area of <a href="tce_page_info.php" title="about TCExam">TCExam</a>, is a platform and language independent user-friendly software to create, manage and perform online tests.<br /><br />From the menu you can access the different sections of the system:<ul><li><strong>users</strong><br />This sections contains the forms for <a href="tce_edit_user.php" title="User Management">insert and manage</a> users, <a href="tce_select_users.php" title="User Selection"> to select them</a> and to show the list of the ones currently <a href="tce_show_online_users.php" title="Online Users">online</a>.<br />Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.<br />It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).<br />TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.</li><li><strong>modules</strong><br />This section contains the forms to insert and modify test <a href="tce_edit_module.php" title="Modules Management">modules</a>, <a href="tce_edit_subject.php" title="Topic Management">topics</a>, the related <a href="tce_edit_question.php" title="Question Management">questions</a> and <a href="tce_edit_answer.php" title="Multiple-Answer Management">answers</a>.<br />You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.<br />TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form <a href="tce_edit_rating.php" title="Answer evaluation"></a>, while the former will be automatically evaluated.<br />All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.</li><li><strong>test</strong><br />This section includes a form to insert, generate and modify the different <a href="tce_edit_test.php" title="Test Management">tests</a>, a form to <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> the free answers and forms to show or generate PDF versions of the <a href="tce_show_result_allusers.php" title="Test Results Summary">results</a>, a detailed view of the <a href="tce_show_result_user.php" title="Test Results">users\' tests</a> and the <a href="tce_show_result_allusers.php" title="Question Statistics">statistics</a> of questions and answers used.<br />TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.<br />It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.</li></ul>';
 $tmx['d_logout_desc']='click on the button to exit the system';
 $tmx['d_tcexam_desc']='TCExam is software for managing and perform online tests.';
 $tmx['h_add']='add current record to database';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='enable/disable current record';
 $tmx['h_execute']='run test';
 $tmx['h_file_type']='file type';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Tab Delimited Text File';
+$tmx['h_file_type_tsv']='Tab Delimited Text File';
 $tmx['h_firstname']='user\'s first name (e.g.: Michael, John, ...)';
 $tmx['h_fiscal_code']='user\'s social security number';
 $tmx['h_global_score']='if selected, overwrite the answers points with the points below';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='specify the path of the file to be sent to the server';
 $tmx['h_user_info']='show information related to the user connected';
 $tmx['h_usered_email']='user\'s email address (e.g.: name@example.com)';
 $tmx['h_view_details']='show details';
-$tmx['h_csv_export']='export data to CSV (Tab delimited text file)';
+$tmx['h_tsv_export']='export data to TSV (Tab delimited text file)';
 $tmx['h_xml_export']='export data to XML';
 $tmx['hp_edit_answer']='With this form you can manage all possible answers related to the question selected. You can add an arbitrary number of correct and wrong answers for each question; during the test the system will automatically select only one of the correct answers and will show it in the list of possible answers. You cannot modify or delete an answer that is part of a test already performed, in this case you can just disable it by using the [delete] button. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
 $tmx['hp_edit_group']='In this form you can manage the different users\' groups.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='In this form you can insert, modify or delete the tests. I
 $tmx['hp_edit_user']='In this form you can manage the different users allowed to access the system. For each user you can choose a name, a password and an access level. Level 0 indicates an anonymous user (not registered), level 1 a basic user (e.g.: a student), level 10 an administrator with full access rights';
 $tmx['hp_email_result']='Send results to users by email';
 $tmx['hp_import_xml_questions']='With this form you can import questions from an XML file.';
-$tmx['hp_import_xml_users']='With this form you can import users and groups from XML or CSV (tab delimited text) file. The file formats are the same as the ones obtained by exporting data from the Users Selection form.';
+$tmx['hp_import_xml_users']='With this form you can import users and groups from XML or TSV (tab delimited text) file. The file formats are the same as the ones obtained by exporting data from the Users Selection form.';
 $tmx['hp_login']='In order to access the different sections of TCExam you must log in using the name and password provided to you by the system administrator';
 $tmx['hp_online_users']='This form shows the users currently logged';
 $tmx['hp_public_index']='This is the main page of TCExam. From this page you can start or continue your tests';
@@ -581,5 +581,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

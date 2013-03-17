@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2011-09-14
+// Last Update : 2012-12-03
 //
 // Description : Edit users' groups.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -258,6 +258,7 @@ if (isset($group_id) AND ($group_id > 0)) {
 	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
 	echo '</span>';
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 	if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) {
 		// your account and anonymous user can't be deleted
 		F_submit_button('delete', $l['w_delete'], $l['h_delete']);

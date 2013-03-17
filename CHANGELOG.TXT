@@ -1,3 +1,28 @@
+12.0.000 (2013-03-17)
+	- IMPORTANT: the database schema is changed.
+	- Constant K_OTP_LOGIN was added to shared/config/tce_config.php to enable One-Time-Password.
+	- Constant K_LOGOUT_URL was added to shared/config/tce_config.php to customize redirect link after logout.
+	- All test statistics were merged on a single page with more information: tests > results.
+	- Test statistics are now also available on the public page.
+	- The SVG statistic graph is now exported on PDF.
+	- Ordering mode options were added on test editor.
+	- A password-specific test feature was added on test editor.
+	- Some problems on test editor were fixed.
+	- A selector page and popup for tests was added.
+	- The history of repeated tests is now preserved.
+	- Performances of test generation were improved.
+	- Some authorization/permission problems were fixed.
+	- "font" and "size" tags were added on tcecode to set the font family and size.
+	- A virtual keyboard was added on some textarea fields.
+	- Navigation buttons on the public interface now reports the number of questions.
+	- Questions can be exported and imported using a tab-separated values format (TSV).
+	- All CSV formats were changed to TSV (tab-separated-values).
+	- Autosave was added for free answers (only supported by newer web browsers).
+	- Some files were renamed.
+	- TCPDF Library was updated to version 6 ad moved to another folder.
+
+------------------------------------------------------------
+
 11.4.002 (2012-11-14)
 	- Constant K_MYSQL_QA_BIN_UNIQUITY was moved to admin/config/tce_config.php
 	- Constant K_UTF8_NORMALIZATION_MODE was added to admin/config/tce_config.php to set the UTF-8 normalization mode for question and answer descriptions.
@@ -184,7 +209,7 @@
 
 11.2.003 (2011-05-24)
 	- XML question exporter was fixed to correctly set the keyboard keys.
-	- Selection filters were fixed for PDF, CSV and XML export.
+	- Selection filters were fixed for PDF, TSV and XML export.
 
 11.2.002 (2011-05-22)
 	- A problem with magic_quotes_gpc was fixed.
@@ -197,7 +222,7 @@
 	- The [generate] button next to "PDF offline test" field on Test Management page now creates extra pages for offline testing with special answer sheets.
 	- The constant K_OMR_PATH_ZBARIMG was added to /admin/config/tce_config.php configuration file to set the path to zbarimg application required for OMR feature.
 	- The /admin/config/tce_auth.php configuration file was updated to include new constants.
-	- Labels of CSV export were fixed.
+	- Labels of TSV export were fixed.
 	- Minor bugs were fixed.
 	- TCPDF library was updated.
 
@@ -205,7 +230,7 @@
 
 11.1.031 (2011-05-06)
 	- A bug related question XML exporter was fixed (on your exported XML questions files you have to replace "key>" with "keyboard_key>").
-	- Test and User results interfaces and export filters (XML, CSV, PDF) were improved.
+	- Test and User results interfaces and export filters (XML, TSV, PDF) were improved.
 	- TCPDF library was updated.
 
 11.1.030 (2011-05-04)
@@ -821,7 +846,7 @@
 	- language_tmx.xml was fixed.
 
 7.0.013 (2008-12-26)
-	- New User's Results form were added + export in CSV, XML and PDF.
+	- New User's Results form were added + export in TSV, XML and PDF.
 	- Descriptive statistics were improved and added to PDF and XML.
 	- language_tmx.xml contains new terms (please note that all old translations must be checked against new english version).
 
@@ -1066,7 +1091,7 @@
 	- Language selector bug was fixed.
 
 5.0.004 (2007-11-03)
-	- The bug relative to questions importing was fixed (tce_import_xml_questions.php).
+	- The bug relative to questions importing was fixed (tce_import_questions.php).
 	- Marathi language was added.
 	- Copyright information was updated.
 	- "Test Results" interface was improved (tce_show_result_user.php).
@@ -1272,9 +1297,9 @@
 	- documentation were updated.
 	- accessibility were improved.
 	- questions can be exported and imported via XML files.
-	- users and groups can be exported and imported via XML or CSV files.
+	- users and groups can be exported and imported via XML or TSV files.
 	- a chaching mechanism has been introduced to speed up the loading of TMX language files.
-	- users results can be exported in CSV file format (tab delimited text).
+	- users results can be exported in TSV file format (tab delimited text).
 
 --------------------------------------------------------------------------------
 

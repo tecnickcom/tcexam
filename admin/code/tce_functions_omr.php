@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2012-07-31
+// Last Update : 2012-12-26
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -273,9 +273,23 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 	}
 	// get test data
 	$testdata = F_getTestData($test_id);
-	// 1. delete previous test data
-	$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'';
-	if (!$rd = F_db_query($sqld, $db)) {
+	// 1. check if test is repeatable
+	$sqls = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' AND test_repeatable=\'1\' LIMIT 1';
+	if ($rs = F_db_query($sqls, $db)) {
+		if ($ms = F_db_fetch_array($rs)) {
+			// 1a. update previous test data if repeatable
+			$sqld = 'UPDATE '.K_TABLE_TEST_USER.' SET testuser_status=testuser_status+1 WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND test_repeatable=\'1\' AND testuser_status>3';
+			if (!$rd = F_db_query($sqld, $db)) {
+				F_display_db_error();
+			}
+		} else {
+			// 1b. delete previous test data if not repeatable
+			$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'';
+			if (!$rd = F_db_query($sqld, $db)) {
+				F_display_db_error();
+			}
+		}
+	} else {
 		F_display_db_error();
 	}
 	// 2. create new user's test entry
@@ -299,6 +313,7 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 	} else {
 		// get inserted ID
 		$testuser_id = F_db_insert_id($db, K_TABLE_TEST_USER, 'testuser_id');
+		F_updateTestuserStat($date);
 	}
 	// 3. create test log entries
 	$num_questions = count($omr_testdata) - 1;

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_colorpicker.php
 // Begin       : 2001-11-05
-// Last Update : 2011-07-12
+// Last Update : 2013-03-17
 //
 // Description : HTML Color Picker Functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -67,7 +67,7 @@ require_once('../code/tce_page_footer_popup.php');
 function F_html_color_picker($callingform, $callingfield, $tag) {
 	global $l;
 	require_once('../config/tce_config.php');
-	require_once('../../shared/code/htmlcolors.php');
+	require_once('../../shared/tcpdf/include/tcpdf_colors.php');
 	require_once('../../shared/code/tce_functions_form.php');
 
 	// sanitize input parameters
@@ -94,7 +94,7 @@ function F_html_color_picker($callingform, $callingfield, $tag) {
 	// print a table of websafe colors
 	$ck = 1;
 	echo '<div style="width:320px;">';
-	while(list($key, $val) = each($webcolor)) { // for each color in table
+	while(list($key, $val) = each(TCPDF_COLORS::$webcolor)) { // for each color in table
 		echo '<a title="'.$key.'" onclick="document.getElementById(\'CSELECTED\').value=\'#'.$val.'\';FJ_pick_color(1);document.getElementById(\'colorname\').selectedIndex='.$ck.';" style="text-decoration:none;font-size:3px;">';
 		echo '<span style="background-color:#'.$val.';padding:0;margin:0;width:20px;height:10px;float:left;">&nbsp;</span>';
 		echo '</a>';
@@ -106,8 +106,8 @@ function F_html_color_picker($callingform, $callingfield, $tag) {
 	echo '<div>'.K_NEWLINE;
 	echo '<select name="colorname" id="colorname" size="0" onchange="document.getElementById(\'CSELECTED\').value=document.getElementById(\'colorname\').options[document.getElementById(\'colorname\').selectedIndex].value; FJ_pick_color(1);">'.K_NEWLINE;
 	echo '<option value=""></option>'.K_NEWLINE;
-	reset($webcolor);
-	while(list($key, $val) = each($webcolor)) { // for each color in table
+	reset(TCPDF_COLORS::$webcolor);
+	while(list($key, $val) = each(TCPDF_COLORS::$webcolor)) { // for each color in table
 		echo '<option value="#'.$val.'">'.$key.'</option>'.K_NEWLINE;
 	}
 	echo '</select>';

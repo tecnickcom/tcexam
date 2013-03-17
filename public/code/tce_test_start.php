@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_start.php
 // Begin       : 2010-02-06
-// Last Update : 2010-09-17
+// Last Update : 2012-12-04
 //
 // Description : Display selected test description and buttons
 //               to start or cancel the test.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -58,22 +58,22 @@ $pagelevel = K_AUTH_PUBLIC_TEST_EXECUTE;
 $thispage_title = $l['t_test_info'];
 $thispage_description = $l['hp_test_info'];
 require_once('../../shared/code/tce_authorization.php');
-
 require_once('../code/tce_page_header.php');
 
 echo '<div class="popupcontainer">'.K_NEWLINE;
-
 if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
-	$test_id = intval($_REQUEST['testid']);
 	require_once('../../shared/code/tce_functions_test.php');
+	$test_id = intval($_REQUEST['testid']);
 	echo F_printTestInfo($test_id, false);
 	echo '<br />'.K_NEWLINE;
 	echo '<div class="row">'.K_NEWLINE;
-
-	echo '<a href="tce_test_execute.php?testid='.$test_id.'" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a>';
-
-	echo ' <a href="index.php" title="'.$l['h_cancel'].'" class="xmlbutton">'.$l['w_cancel'].'</a>';
-
+	// display execute button
+	echo '<a href="tce_test_execute.php?testid='.$test_id.'';
+	if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1)) {
+		echo '&amp;repeat=1';
+	}
+	echo '" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a> ';
+	echo '<a href="index.php" title="'.$l['h_cancel'].'" class="xmlbutton">'.$l['w_cancel'].'</a>';
 	echo '</div>'.K_NEWLINE;
 }
 echo '</div>'.K_NEWLINE;

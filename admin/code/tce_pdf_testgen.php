@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2012-07-25
+// Last Update : 2012-12-28
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -45,7 +45,7 @@
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
  * @since 2004-06-13
- * @param $_REQUEST['testid'] (int) test ID
+ * @param $_REQUEST['test_id'] (int) test ID
  * @param $_REQUEST['num'] (int) number of tests to generate
  */
 
@@ -58,9 +58,8 @@ require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdfex.php');
 
 // --- Initialize variables
-
-if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
-	$test_id = intval($_REQUEST['testid']);
+if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
+	$test_id = intval($_REQUEST['test_id']);
 	// check user's authorization
 	if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
 		exit;
@@ -178,6 +177,32 @@ $bstyle = array(
 
 // get test data
 $testdata = F_getTestData($test_id);
+$test_random_questions_select = F_getBoolean($testdata['test_random_questions_select']);
+$test_random_questions_order = F_getBoolean($testdata['test_random_questions_order']);
+$test_questions_order_mode = intval($testdata['test_questions_order_mode']);
+$test_random_answers_select = F_getBoolean($testdata['test_random_answers_select']);
+$test_random_answers_order = F_getBoolean($testdata['test_random_answers_order']);
+$test_answers_order_mode = intval($testdata['test_answers_order_mode']);
+$random_questions = ($test_random_questions_select OR $test_random_questions_order);
+$sql_answer_position = '';
+if (!$test_random_answers_order AND ($test_answers_order_mode == 0)) {
+	$sql_answer_position = ' AND answer_position>0';
+}
+$sql_questions_order_by = '';
+switch ($test_questions_order_mode) {
+	case 0: {
+		$sql_questions_order_by = ' AND question_position>0 ORDER BY question_position';
+		break;
+	}
+	case 1: {
+		$sql_questions_order_by = ' ORDER BY question_description';
+		break;
+	}
+	case 2: {
+		$sql_questions_order_by = ' ORDER BY question_id';
+		break;
+	}
+}
 
 // NOTE: PDF tests are always random
 
@@ -309,30 +334,45 @@ for ($item = 1; $item <= $test_num; $item++) {
 	$pdf->Ln($data_cell_height);
 	$pdf->SetFont(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA);
 	*/
+	
+	// IDs of MCSA questions with more than one correct answer
+	$right_answers_mcsa_questions_ids = '';
+	// IDs of MCSA questions with more than one wrong answer
+	$wrong_answers_mcsa_questions_ids = array();
+	// IDs of MCMA questions with more than one answer
+	$answers_mcma_questions_ids = array();
+	// IDs of ORDER questions with more than one ordering answer
+	$answers_order_questions_ids = '';
 
-	$itemcount = 1; // count questions
+	// count questions
+	$itemcount = 1; 
+
+	// *-*-*-*-*
 
 	// selected questions IDs
 	$selected_questions = '0';
-
-	// 1. for each set of subjects
+	// 2. for each set of subjects
 	// ------------------------------
 	$sql = 'SELECT *
 		FROM '.K_TABLE_TEST_SUBJSET.'
 		WHERE tsubset_test_id='.$test_id.'
 		ORDER BY tsubset_type, tsubset_difficulty, tsubset_answers DESC';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		$questions_data = array();
 		while ($m = F_db_fetch_array($r)) {
-			// 2. select questions
+			// 3. select the subjects IDs
+			$selected_subjects = '0';
+			$sqlt = 'SELECT subjset_subject_id FROM '.K_TABLE_SUBJECT_SET.' WHERE subjset_tsubset_id='.$m['tsubset_id'];
+			if ($rt = F_db_query($sqlt, $db)) {
+				while ($mt = F_db_fetch_array($rt)) {
+					$selected_subjects .= ','.$mt['subjset_subject_id'];
+				}
+			}
+			// 4. select questions
 			// ------------------------------
 			$sqlq = 'SELECT question_id, question_type, question_difficulty, question_position, question_description
 				FROM '.K_TABLE_QUESTIONS.'';
-			$sqlq .= ' WHERE question_subject_id IN (
-					SELECT subjset_subject_id
-					FROM '.K_TABLE_SUBJECT_SET.'
-					WHERE subjset_tsubset_id='.$m['tsubset_id'].'';
-			$sqlq .= ' )
+			$sqlq .= ' WHERE question_subject_id IN ('.$selected_subjects.')
 				AND question_difficulty='.$m['tsubset_difficulty'].'
 				AND question_enabled=\'1\'
 				AND question_id NOT IN ('.$selected_questions.')';
@@ -340,85 +380,80 @@ for ($item = 1; $item <= $test_num; $item++) {
 				$sqlq .= ' AND question_type='.$m['tsubset_type'];
 			}
 			if ($m['tsubset_type'] == 1) {
-				// single question (MCSA)
+				// (MCSA : Multiple Choice Single Answer) ----------
 				// get questions with the right number of answers
-				$sqlq .= '
-					AND question_id IN (
-						SELECT answer_question_id
-						FROM '.K_TABLE_ANSWERS.'
-						WHERE answer_enabled=\'1\'
-							AND answer_isright=\'1\'';
-				if (!F_getBoolean($testdata['test_random_answers_order'])) {
-					$sqlq .= ' AND answer_position>0';
+				if (empty($right_answers_mcsa_questions_ids)) {
+					$right_answers_mcsa_questions_ids = '0';
+					$sqlt = 'SELECT DISTINCT answer_question_id FROM '.K_TABLE_ANSWERS.' WHERE answer_enabled=\'1\' AND answer_isright=\'1\''.$sql_answer_position.'';
+					if ($rt = F_db_query($sqlt, $db)) {
+						while ($mt = F_db_fetch_array($rt)) {
+							$right_answers_mcsa_questions_ids .= ','.$mt['answer_question_id'];
+						}
+					}
 				}
-				$sqlq .= ' GROUP BY answer_question_id
-						HAVING (COUNT(answer_id)>0)
-						)';
-				$sqlq .= '
-					AND question_id IN (
-						SELECT answer_question_id
-						FROM '.K_TABLE_ANSWERS.'
-						WHERE answer_enabled=\'1\'
-							AND answer_isright=\'0\'';
-				if (!F_getBoolean($testdata['test_random_answers_order'])) {
-					$sqlq .= ' AND answer_position>0';
-				}
-				$sqlq .= ' GROUP BY answer_question_id';
+				$sqlq .= ' AND question_id IN ('.$right_answers_mcsa_questions_ids.')';
 				if ($m['tsubset_answers'] > 0) {
-					$sqlq .= ' HAVING (COUNT(answer_id)>='.($m['tsubset_answers']-1).')';
+					if (!isset($wrong_answers_mcsa_questions_ids['\''.$m['tsubset_answers'].'\''])) {
+						$wrong_answers_mcsa_questions_ids['\''.$m['tsubset_answers'].'\''] = '0';
+						$sqlt = 'SELECT answer_question_id FROM '.K_TABLE_ANSWERS.' WHERE answer_enabled=\'1\' AND answer_isright=\'0\''.$sql_answer_position.' GROUP BY answer_question_id HAVING (COUNT(answer_id)>='.($m['tsubset_answers']-1).')';
+						if ($rt = F_db_query($sqlt, $db)) {
+							while ($mt = F_db_fetch_array($rt)) {
+								$wrong_answers_mcsa_questions_ids['\''.$m['tsubset_answers'].'\''] .= ','.$mt['answer_question_id'];
+							}
+						}
+					}
+					$sqlq .= ' AND question_id IN ('.$wrong_answers_mcsa_questions_ids['\''.$m['tsubset_answers'].'\''].')';
 				}
-				$sqlq .= ' )';
 			} elseif ($m['tsubset_type'] == 2) {
-				// multiple question (MCMA)
+				// (MCMA : Multiple Choice Multiple Answers) -------
 				// get questions with the right number of answers
-				$sqlq .= '
-					AND question_id IN (
-						SELECT answer_question_id
-						FROM '.K_TABLE_ANSWERS.'
-						WHERE answer_enabled=\'1\'';
-				if (!F_getBoolean($testdata['test_random_answers_order'])) {
-					$sqlq .= ' AND answer_position>0';
-				}
-				$sqlq .= ' GROUP BY answer_question_id';
 				if ($m['tsubset_answers'] > 0) {
-					$sqlq .= ' HAVING (COUNT(answer_id)>='.$m['tsubset_answers'].')';
+					if (!isset($answers_mcma_questions_ids['\''.$m['tsubset_answers'].'\''])) {
+						$answers_mcma_questions_ids['\''.$m['tsubset_answers'].'\''] = '0';
+						$sqlt = 'SELECT answer_question_id FROM '.K_TABLE_ANSWERS.' WHERE answer_enabled=\'1\''.$sql_answer_position.' GROUP BY answer_question_id HAVING (COUNT(answer_id)>='.$m['tsubset_answers'].')';
+						if ($rt = F_db_query($sqlt, $db)) {
+							while ($mt = F_db_fetch_array($rt)) {
+								$answers_mcma_questions_ids['\''.$m['tsubset_answers'].'\''] .= ','.$mt['answer_question_id'];
+							}
+						}
+					}
+					$sqlq .= ' AND question_id IN ('.$answers_mcma_questions_ids['\''.$m['tsubset_answers'].'\''].')';
 				}
-				$sqlq .= ' )';
 			} elseif ($m['tsubset_type'] == 4) {
-				// ordering question
-				// get questions with the right number of answers
-				$sqlq .= '
-					AND question_id IN (
-						SELECT answer_question_id
-						FROM '.K_TABLE_ANSWERS.'
-						WHERE answer_enabled=\'1\'
-						AND answer_position>0
-						GROUP BY answer_question_id
-						HAVING (COUNT(answer_id)>1)
-						)';
+				// ORDERING ----------------------------------------
+				if (empty($answers_order_questions_ids)) {
+					$answers_order_questions_ids = '0';
+					$sqlt = 'SELECT answer_question_id FROM '.K_TABLE_ANSWERS.' WHERE answer_enabled=\'1\' AND answer_position>0 GROUP BY answer_question_id HAVING (COUNT(answer_id)>1)';
+					if ($rt = F_db_query($sqlt, $db)) {
+						while ($mt = F_db_fetch_array($rt)) {
+							$answers_order_questions_ids .= ','.$mt['answer_question_id'];
+						}
+					}
+				}
+				$sqlq .= ' AND question_id IN ('.$answers_order_questions_ids.')';
 			}
-			if (F_getBoolean($testdata['test_random_questions_select']) OR F_getBoolean($testdata['test_random_questions_order'])) {
+			if ($random_questions) {
 				$sqlq .= ' ORDER BY RAND()';
 			} else {
-				$sqlq .= ' AND question_position>0 ORDER BY question_position';
+				$sqlq .= $sql_questions_order_by;
 			}
 			if (K_DATABASE_TYPE == 'ORACLE') {
 				$sqlq = 'SELECT * FROM ('.$sqlq.') WHERE rownum <= '.$m['tsubset_quantity'].'';
 			} else {
 				$sqlq .= ' LIMIT '.$m['tsubset_quantity'].'';
 			}
-			if($rq = F_db_query($sqlq, $db)) {
+			if ($rq = F_db_query($sqlq, $db)) {
 				while ($mq = F_db_fetch_array($rq)) {
 					// store questions data
 					$tmp_data = array(
 						'id' => $mq['question_id'],
 						'type' => $mq['question_type'],
-						'answers' => $m['tsubset_answers'],
-						'score' => ($testdata['test_score_unanswered'] * $mq['question_difficulty']),
 						'difficulty' => $mq['question_difficulty'],
-						'description' => $mq['question_description']
+						'description' => $mq['question_description'],
+						'answers' => $m['tsubset_answers'],
+						'score' => ($testdata['test_score_unanswered'] * $mq['question_difficulty'])
 						);
-					if (F_getBoolean($testdata['test_random_questions_select']) OR F_getBoolean($testdata['test_random_questions_order'])) {
+					if ($random_questions OR ($test_questions_order_mode != 0)) {
 						$questions_data[] = $tmp_data;
 					} else {
 						$questions_data[$mq['question_position']] = $tmp_data;
@@ -428,16 +463,19 @@ for ($item = 1; $item <= $test_num; $item++) {
 			} else {
 				F_display_db_error(false);
 				return false;
-			} // --- end 2
+			} // --- end 3
+
 		} // end while for each set of subjects
-		// 3. SORT QUESTIONS
+		// 5. STORE QUESTIONS AND ANSWERS
 		// ------------------------------
-		if ((!F_getBoolean($testdata['test_random_questions_select'])) AND (!F_getBoolean($testdata['test_random_questions_order']))) {
-			// order questions
-			ksort($questions_data);
-		} else {
+		if ($random_questions) {
 			shuffle($questions_data);
+		} else {
+			ksort($questions_data);
 		}
+
+		// *-*-*-*-*
+
 		// 4. PRINT QUESTIONS
 		// ------------------------------
 		$question_order = 0;
@@ -512,26 +550,26 @@ for ($item = 1; $item <= $test_num; $item++) {
 				$pdf->SetTextColor(0, 0, 0, false);
 				$pdf->Ln($data_cell_height);
 			} else {
-				$randorder = F_getBoolean($testdata['test_random_answers_order']);
 				// for each question
+				$randorder = $test_random_answers_order;
 				$answers_ids = array(); // array used to store answers IDs
 				switch ($q['type']) {
 					case 1: { // MCSA
 						// select first right answer
-						$answers_ids += F_selectAnswers($q['id'], 1, false, 1, 0, $randorder);
+						$answers_ids += F_selectAnswers($q['id'], 1, false, 1, 0, $randorder, $test_answers_order_mode);
 						// select remaining answers
-						$answers_ids += F_selectAnswers($q['id'], 0, false, ($q['answers'] - 1), 1, $randorder);
+						$answers_ids += F_selectAnswers($q['id'], 0, false, ($q['answers'] - 1), 1, $randorder, $test_answers_order_mode);
 						break;
 					}
 					case 2: { // MCMA
 						// select answers
-						$answers_ids += F_selectAnswers($q['id'], '', false, $q['answers'], 0, $randorder);
+						$answers_ids += F_selectAnswers($q['id'], '', false, $q['answers'], 0, $randorder, $test_answers_order_mode);
 						break;
 					}
 					case 4: { // ORDERING
 						// select answers
 						$randorder = true;
-						$answers_ids += F_selectAnswers($q['id'], '', true, 0, 0, $randorder);
+						$answers_ids += F_selectAnswers($q['id'], '', true, 0, 0, $randorder, $test_answers_order_mode);
 						break;
 					}
 				}

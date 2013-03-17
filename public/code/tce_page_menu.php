@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2010-09-16
-// Last Update : 2010-09-20
+// Last Update : 2012-12-19
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -53,11 +53,12 @@
 require_once('../../shared/code/tce_functions_menu.php');
 
 $menu = array(	
-	'index.php' => array('link' => 'index.php', 'title' => $l['h_index'], 'name' => $l['w_index'], 'level' => K_AUTH_PUBLIC_INDEX, 'key' => '', 'enabled' => true),
+	'index.php' => array('link' => 'index.php', 'title' => $l['h_index'], 'name' => $l['w_index'], 'level' => K_AUTH_PUBLIC_INDEX, 'key' => 'i', 'enabled' => true),
+	'tce_test_allresults.php' => array('link' => 'tce_test_allresults.php', 'title' => $l['t_all_results_user'], 'name' => $l['w_results'], 'level' => K_AUTH_PUBLIC_TEST_RESULTS, 'key' => 'r', 'enabled' => ($_SESSION['session_user_level'] > K_AUTH_PUBLIC_TEST_RESULTS)),
 	'tce_page_user.php' => array('link' => 'tce_page_user.php', 'title' => $l['w_user'], 'name' => $l['w_user'], 'level' => K_AUTH_PAGE_USER, 'key' => 'u', 'enabled' => ($_SESSION['session_user_level'] > 0)),
-	'admin' => array('link' => '../../admin/code/index.php', 'title' => $l['h_admin_link'], 'name' => $l['w_admin'], 'level' => K_ADMIN_LINK, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] >= K_ADMIN_LINK)),
-	'tce_logout.php' => array('link' => 'tce_logout.php', 'title' => $l['h_logout_link'], 'name' => $l['w_logout'], 'level' => 1, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] > 0)),
-	'tce_login.php' => array('link' => 'tce_login.php', 'title' => $l['h_login_link'], 'name' => $l['w_login'], 'level' => 0, 'key' => '', 'enabled' => ($_SESSION['session_user_level'] < 1))
+	'admin' => array('link' => '../../admin/code/index.php', 'title' => $l['h_admin_link'], 'name' => $l['w_admin'], 'level' => K_ADMIN_LINK, 'key' => 'a', 'enabled' => ($_SESSION['session_user_level'] >= K_ADMIN_LINK)),
+	'tce_logout.php' => array('link' => 'tce_logout.php', 'title' => $l['h_logout_link'], 'name' => $l['w_logout'], 'level' => 1, 'key' => 'q', 'enabled' => ($_SESSION['session_user_level'] > 0)),
+	'tce_login.php' => array('link' => 'tce_login.php', 'title' => $l['h_login_link'], 'name' => $l['w_login'], 'level' => 0, 'key' => 'l', 'enabled' => ($_SESSION['session_user_level'] < 1))
 );
 
 $menu['tce_page_user.php']['sub'] = array(

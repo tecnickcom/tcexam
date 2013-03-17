@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ms
-// DATE: 2012-10-29 19:37:07
+// DATE: 2013-02-21 12:34:20
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='ms';
-$tmx['d_admin_index']='Ini merupakan kawasan pentadbiran <a href="tce_page_info.php" title="Tentang TCExam ">TCExam</a>, adalah satu platform dan bahasa perisian ramah pengguna bebas bagi mewujudkan, menguruskan dan menjalankan ujian yang dalam talian.<br /><br />Daripada menu untuk sebelah kiri anda boleh mengakses bahagian lain sistem itu:<ul><li><strong>pengguna</strong><br />Bahagian ini mengandungi bentuk untuk <a href="tce_edit_user.php" title="Pengurusan Pengguna">memasukkan dan menguruskan</a> pengguna, <a href="tce_select_users.php" title="Pemilihan Pengguna"> bagi memilih mereka</a> dan bagi menunjukkan senarai seseorang kini <a href="tce_show_online_users.php" title="Pengguna Dalam Talian">dalam talian</a>.<br />Hanya pengguna berdaftar dipenuhi dengan satu nama pengguna dan satu kata laluan adalah berhak untuk mengakses bidang umum bagi sistem dan menjalankan ujian.<br />Ia adalah mungkin bagi menentukan laluan lain tingkat untuk kedua-dua pengguna dan komponen yang lain dan bahagian bagi sistem (halaman, bentuk, bahagian).<br />TCExam menggunakan juga satu lagi sistem keselamatan untuk mencegah akses yang tak sah berdasarkan semakan bagi alamat IP.</li><li><strong>modul</strong><br />Seksyen ini mengandungi bentuk itu untuk menyelit dan mengubah suai ujian <a href="tce_edit_module.php" title="Pengurusan Modul">modul</a>, <a href="tce_edit_subject.php" title="Pengurusan Topik">topik</a>, berkait <a href="tce_edit_question.php" title="Pengurusan Soalan">soalan</a> dan <a href="tce_edit_answer.php" title="Pengurusan Jawapan Berbilang">jawapan</a>.<br />Anda boleh pilih satu jumlah topik tidak terhad yang boleh digunakan bersama-sama untuk satu ujian tertentu, dan bagi setiap topik anda boleh mentakrifkan satu bilangan soalan tidak terhad dan jawapan mungkin. Sistem itu akan secara rawak memilih soal jawab antara yang boleh didapati.<br />Menyokong TCExam kedua-dua berbilang jawapannya soalan dan bebas jawapannya soalan. Latters akan menjadi dinilai melalui satu bentuk penilaian yang khusus<a href="tce_edit_rating.php" title="Penilaian jawapan"></a>, manakala formers akan secara automatik dinilaikan.<br />Semua huraian bagi ujian, topik, soal jawab sokongan satu kod proprietari tertentu (tcecode) yang, dengan menggunakan satu borang tertentu, membenarkan penggunaan imej itu dan pemformatan teks.</li><li><strong>ujian</strong><br />Seksyen ini termasuk bentuk untuk menyelit, menjana dan mengubah suai berbeza <a href="tce_edit_test.php" title="Pengurusan Ujian">ujian</a>, bentuk untuk <a href="tce_edit_rating.php" title="Penilaian Jawapan">evaluate</a> jawapan bebas dan bentuk itu bagi menunjukkan atau menjana versi PDF bagi <a href="tce_show_result_allusers.php" title="Ringkasan Keputusan Ujian">keputusan</a>, satu pandangan mendalam <a href="tce_show_result_user.php" title="Hasil Ujian">ujian pengguna</a> DAN <a href="tce_show_result_questions.php" title="Statistik Soalan">perangkaan</a> soal jawab menggunakan.<br />TCExam memilih pada satu asas rawak beberapa soalan dan jawapan boleh didapati berkait supaya semua ujian untuk pengguna lain akan berlainan daripada satu sama lain.<br />Ia adalah mungkin juga untuk untuk menjana satu jumlah ujian arbitrari dalam format PDF supaya mereka dapat dicetak dan menggunakan untuk satu peperiksaan konvensional.</li></ul>';
+$tmx['d_admin_index']='Ini merupakan kawasan pentadbiran <a href="tce_page_info.php" title="Tentang TCExam ">TCExam</a>, adalah satu platform dan bahasa perisian ramah pengguna bebas bagi mewujudkan, menguruskan dan menjalankan ujian yang dalam talian.<br /><br />Daripada menu untuk sebelah kiri anda boleh mengakses bahagian lain sistem itu:<ul><li><strong>pengguna</strong><br />Bahagian ini mengandungi bentuk untuk <a href="tce_edit_user.php" title="Pengurusan Pengguna">memasukkan dan menguruskan</a> pengguna, <a href="tce_select_users.php" title="Pemilihan Pengguna"> bagi memilih mereka</a> dan bagi menunjukkan senarai seseorang kini <a href="tce_show_online_users.php" title="Pengguna Dalam Talian">dalam talian</a>.<br />Hanya pengguna berdaftar dipenuhi dengan satu nama pengguna dan satu kata laluan adalah berhak untuk mengakses bidang umum bagi sistem dan menjalankan ujian.<br />Ia adalah mungkin bagi menentukan laluan lain tingkat untuk kedua-dua pengguna dan komponen yang lain dan bahagian bagi sistem (halaman, bentuk, bahagian).<br />TCExam menggunakan juga satu lagi sistem keselamatan untuk mencegah akses yang tak sah berdasarkan semakan bagi alamat IP.</li><li><strong>modul</strong><br />Seksyen ini mengandungi bentuk itu untuk menyelit dan mengubah suai ujian <a href="tce_edit_module.php" title="Pengurusan Modul">modul</a>, <a href="tce_edit_subject.php" title="Pengurusan Topik">topik</a>, berkait <a href="tce_edit_question.php" title="Pengurusan Soalan">soalan</a> dan <a href="tce_edit_answer.php" title="Pengurusan Jawapan Berbilang">jawapan</a>.<br />Anda boleh pilih satu jumlah topik tidak terhad yang boleh digunakan bersama-sama untuk satu ujian tertentu, dan bagi setiap topik anda boleh mentakrifkan satu bilangan soalan tidak terhad dan jawapan mungkin. Sistem itu akan secara rawak memilih soal jawab antara yang boleh didapati.<br />Menyokong TCExam kedua-dua berbilang jawapannya soalan dan bebas jawapannya soalan. Latters akan menjadi dinilai melalui satu bentuk penilaian yang khusus<a href="tce_edit_rating.php" title="Penilaian jawapan"></a>, manakala formers akan secara automatik dinilaikan.<br />Semua huraian bagi ujian, topik, soal jawab sokongan satu kod proprietari tertentu (tcecode) yang, dengan menggunakan satu borang tertentu, membenarkan penggunaan imej itu dan pemformatan teks.</li><li><strong>ujian</strong><br />Seksyen ini termasuk bentuk untuk menyelit, menjana dan mengubah suai berbeza <a href="tce_edit_test.php" title="Pengurusan Ujian">ujian</a>, bentuk untuk <a href="tce_edit_rating.php" title="Penilaian Jawapan">evaluate</a> jawapan bebas dan bentuk itu bagi menunjukkan atau menjana versi PDF bagi <a href="tce_show_result_allusers.php" title="Ringkasan Keputusan Ujian">keputusan</a>, satu pandangan mendalam <a href="tce_show_result_user.php" title="Hasil Ujian">ujian pengguna</a> DAN <a href="tce_show_result_allusers.php" title="Statistik Soalan">perangkaan</a> soal jawab menggunakan.<br />TCExam memilih pada satu asas rawak beberapa soalan dan jawapan boleh didapati berkait supaya semua ujian untuk pengguna lain akan berlainan daripada satu sama lain.<br />Ia adalah mungkin juga untuk untuk menjana satu jumlah ujian arbitrari dalam format PDF supaya mereka dapat dicetak dan menggunakan untuk satu peperiksaan konvensional.</li></ul>';
 $tmx['d_logout_desc']='klik butang untuk keluar sistem';
 $tmx['d_tcexam_desc']='TCExam adalah satu perisian untuk penyelenggaran dan menjalankan ujian yang dalam talian.';
 $tmx['h_add']='menambah rekod semasa untuk pangkalan data';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='membolehkan / menjadi cacat rekod semasa';
 $tmx['h_execute']='ujian larian';
 $tmx['h_file_type']='jenis fail';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Tab Delimited Fail Teks';
+$tmx['h_file_type_tsv']='Tab Delimited Fail Teks';
 $tmx['h_firstname']='nama pertama pengguna (e.g.: Michael, John, ...)';
 $tmx['h_fiscal_code']='nombor keselamatan sosial pengguna';
 $tmx['h_global_score']='sekiranya dipilih, overwrites jawapan titik dengan mata di bawah';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='mencirikan laluan itu bagi fail untuk dihantar ke pelayan
 $tmx['h_user_info']='menunjukkan informations berkait untuk pengguna berkait';
 $tmx['h_usered_email']='emel pengguna alamat (e.g.: name@example.com)';
 $tmx['h_view_details']='menunjukkan butiran';
-$tmx['h_csv_export']='data eksport untuk CSV (Tab delimited fail teks)';
+$tmx['h_tsv_export']='data eksport untuk TSV (Tab delimited fail teks)';
 $tmx['h_xml_export']='data eksport kepada XML';
 $tmx['hp_edit_answer']='Dengan bentuk anda boleh mengurus semua jawapan mungkin untuk soalan berkait terpilih. Anda dapat menambah satu jumlah arbitrari betul dan kesilapan menjawab bagi setiap soal; sepanjang ujian sistem itu akan secara automatik memilih hanya satu daripada jawapan betul dan ia akan menunjukkan ia dalam senarai itu jawapan mungkin. Tidak boleh anda mengubah suai atau memadamkan satu jawapan itulah berpisah satu ujian sudah melaksanakan, dalam kes ini anda boleh baru sahaja melumpuhkan ia dengan menggunakan butang [memadamkan]. Legenda: [+] Dibolehkan; [-] Kurang Upaya. Legenda untuk pertanyaan: [S] MCSA - Soalan Choice Single Answer berbilang; [Sistem M] MCMA - Soalan Choice Multiple Answer berbilang; [T] TEKS - Free Fnswer; [O] PERINTAH - Jawapan Pesanan. Legenda untuk jawapan: [T] jawapan benar; [F] palsu anwser.';
 $tmx['hp_edit_group']='Dalam bentuk anda boleh mengurus kumpulan pengguna lain itu.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Dalam bentuk anda boleh memasukkan, mengubah suai atau mem
 $tmx['hp_edit_user']='Dalam bentuk anda boleh mengurus pengguna lain itu dibenarkan memasuki sistem itu. Bagi setiap pengguna anda boleh memilih satu nama, satu kata laluan dan satu tahap akses. Tahap 0 menunjukkan satu pengguna tanpa nama (tidak didaftar), tahap 1 satu orang pengguna asas (e.g.: seorang pelajar), tahap 10 seorang pentadbir dengan penuhi hak-hak laluan ';
 $tmx['hp_email_result']='Menghantar keputusan untuk pengguna oleh emel';
 $tmx['hp_import_xml_questions']='Dengan bentuk anda boleh import soalan untuk topik yang terpilih daripada satu fail XML.';
-$tmx['hp_import_xml_users']='Dengan bentuk anda boleh import pengguna dan kumpulan daripada XML atau CSV (bil dibatasi teks) fail. Fail format-format adalah selaras satuan memperolehi dengan mengeksport data daripada bentuk Users Selection.';
+$tmx['hp_import_xml_users']='Dengan bentuk anda boleh import pengguna dan kumpulan daripada XML atau TSV (bil dibatasi teks) fail. Fail format-format adalah selaras satuan memperolehi dengan mengeksport data daripada bentuk Users Selection.';
 $tmx['hp_login']='Teratur untuk mengakses untuk bahagian lain TCExam anda perlu merekodkan dalam menggunakan nama dan kata laluan yang disediakan untuk anda oleh pentadbir sistem';
 $tmx['hp_online_users']='Bentuk ini menunjukkan pengguna dibalak kini';
 $tmx['hp_public_index']='Ini merupakan halaman utama bagi TCExam. Daripada halaman anda boleh memulakan atau meneruskan anda menguji';
@@ -581,5 +581,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

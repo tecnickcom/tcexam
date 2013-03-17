@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2012-07-31
+// Last Update : 2012-12-29
 //
 // Description : Outputs TCExam information page.
 //
@@ -66,7 +66,7 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2012 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2013 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
 echo 'Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
@@ -123,6 +123,13 @@ Author: Mihai Bazon (<a href="mailto:mihai_bazon@yahoo.com">mihai_bazon@yahoo.co
 Homepage: <a href="http://dynarch.com/mishoo/">http://dynarch.com/mishoo/</a><br />
 License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/jscripts/jscalendar/<br /><br />
+</li>'.K_NEWLINE;
+
+echo '<li><strong>Javascript VirtualKeyboard</strong><br />
+Author: Ilya Lebedev (<a href="mailto:ilya@lebedev.net">ilya@lebedev.net</a>)<br />
+Homepage: <a href="http://debugger.ru/projects/virtualkeyboard">http://debugger.ru/projects/virtualkeyboard</a><br />
+License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+Location: /shared/jscripts/vk/<br /><br />
 </li>'.K_NEWLINE;
 
 echo '<li><strong>Fonts</strong><br />

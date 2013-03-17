@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2011-07-12
+// Last Update : 2012-12-30
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -54,10 +54,9 @@
  * @since 2006-03-07
  * @param $callingform (string) name of calling xhtml form
  * @param $callingfield (string) name of calling form field (textarea where output code will be sent)
- * @param $id (int) DEPRECATED -- id appended to input fields names to differentiate from previous buttons.
  * @return XHTML string
  */
-function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
+function tcecodeEditorTagButtons($callingform, $callingfield) {
 	global $l, $db;
 	global $uploadedfile;
 	require_once('../config/tce_config.php');
@@ -65,10 +64,8 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 	// sanitize input parameters
 	$callingform = preg_replace('/[^a-z0-9_]/', '', $callingform);
 	$callingfield = preg_replace('/[^a-z0-9_]/', '', $callingfield);
-	$id = intval($id);
 
 	$buttons = '';
-	$buttons .= '<script src="'.K_PATH_SHARED_JSCRIPTS.'inserttag.js" type="text/javascript"></script>'.K_NEWLINE;
 
 	// --- buttons
 
@@ -105,6 +102,41 @@ function tcecodeEditorTagButtons($callingform, $callingfield, $id=0) {
 
 	$onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton('object', '', K_PATH_IMAGES.'buttons/image.gif', $onclick, '');
+
+	$buttons .= '<br />'.K_NEWLINE;
+
+	// font size
+	$onselect = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.', ';
+	$onselect .= 'document.getElementById(\'font_size_'.$callingfield.'\').options[document.getElementById(\'font_size_'.$callingfield.'\').selectedIndex].value';
+	$onselect .= ')';
+	$buttons .= '<select name="font_size_'.$callingfield.'" id="font_size_'.$callingfield.'" size="0" title="'.$l['w_font_size'].'" style="margin:0;padding:0;" onchange="'.$onselect.'">';
+	$buttons .= '<option value="" selected="selected" style="background-color:gray;color:white;">'.$l['w_font_size'].'</option>';
+	$buttons .= '<option value="[size=xx-small]">xx-small</option>';
+	$buttons .= '<option value="[size=x-small]">x-small</option>';
+	$buttons .= '<option value="[size=small]">small</option>';
+	$buttons .= '<option value="[size=medium]">medium</option>';
+	$buttons .= '<option value="[size=large]">large</option>';
+	$buttons .= '<option value="[size=x-large]">x-large</option>';
+	$buttons .= '<option value="[size=xx-large]">xx-large</option>';
+	for ($i=10; $i<=400; $i+=10) {
+		$buttons .= '<option value="[size='.$i.'%]">'.$i.'%</option>';
+	}
+	$buttons .= '</select>'.K_NEWLINE;
+
+	// font
+	$tce_fonts = unserialize(K_AVAILABLE_FONTS);
+	if (!empty($tce_fonts)) {
+		$onselect = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.', ';
+		$onselect .= 'document.getElementById(\'font_'.$callingfield.'\').options[document.getElementById(\'font_'.$callingfield.'\').selectedIndex].value';
+		$onselect .= ')';
+		$buttons .= '<select name="font_'.$callingfield.'" id="font_'.$callingfield.'" size="0" title="'.$l['w_font'].'" style="margin:0;padding:0;" onchange="'.$onselect.'">';
+		$buttons .= '<option value="" selected="selected" style="background-color:gray;color:white;">'.$l['w_font'].'</option>';
+		foreach ($tce_fonts as $fname => $font) {
+			$buttons .= '<option value="[font='.$font.']">'.$fname.'</option>';
+		}
+		$buttons .= '</select>'.K_NEWLINE;
+	}
+
 	return $buttons;
 }
 
@@ -124,7 +156,7 @@ function getImageButton($name, $tag, $image, $onclick='', $accesskey='') {
 		$onclick = $onclick.', \''.$tag.'\')';
 	}
 	$str = '<a href="#" onclick="'.$onclick.'" title="'.$name.' ['.$accesskey.']" accesskey="'.$accesskey.'">';
-	$str .= '<img src="'.$image.'" alt="'.$name.' ['.$accesskey.']" class="button" />';
+	$str .= '<img src="'.$image.'" alt="'.$name.' ['.$accesskey.']" class="button" width="23" height="22" />';
 	$str .= '</a>';
 	return $str;
 }

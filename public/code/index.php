@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : index.php
 // Begin       : 2004-04-20
-// Last Update : 2010-09-20
+// Last Update : 2012-12-04
 //
 // Description : main user page - allows test selection
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -64,11 +64,6 @@ echo '<div class="container">'.K_NEWLINE;
 
 echo '<div class="tcecontentbox">'.K_NEWLINE;
 require_once('../../shared/code/tce_functions_test.php');
-
-if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1) AND isset($_REQUEST['testid'])) {
-	// remove the specified test results
-	F_removeTestResults($_REQUEST['testid']);
-}
 
 echo F_getUserTests();
 echo '</div>'.K_NEWLINE;

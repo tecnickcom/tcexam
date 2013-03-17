@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2012-06-07
+// Last Update : 2012-11-22
 //
 // Description : User registration form.
 //
@@ -61,6 +61,7 @@ if (!K_USRREG_ENABLED) {
 
 $pagelevel = 0;
 require_once('../../shared/code/tce_authorization.php');
+require_once('../../shared/code/tce_functions_otp.php');
 
 $thispage_title = $l['t_user_registration'];
 $thispage_description = $l['hp_user_registration'];
@@ -99,6 +100,8 @@ if ($menu_mode == 'add') { // process submited data
 		if(!empty($newpassword) OR !empty($newpassword_repeat)) {// update password
 			if($newpassword == $newpassword_repeat) {
 				$user_password = getPasswordHash($newpassword);
+				// update OTP key
+				$user_otpkey = F_getRandomOTPkey();
 			} else { //print message and exit
 				F_print_error('WARNING', $l['m_different_passwords']);
 				$formstatus = FALSE;
@@ -133,7 +136,8 @@ if ($menu_mode == 'add') { // process submited data
 				user_birthplace,
 				user_ssn,
 				user_level,
-				user_verifycode
+				user_verifycode,
+				user_otpkey
 				) VALUES (
 				\''.F_escape_sql($user_regdate).'\',
 				\''.F_escape_sql($user_ip).'\',
@@ -147,7 +151,8 @@ if ($menu_mode == 'add') { // process submited data
 				'.F_empty_to_null($user_birthplace).',
 				'.F_empty_to_null($user_ssn).',
 				\''.$usrlevel.'\',
-				\''.$user_verifycode.'\'
+				\''.$user_verifycode.'\',
+				'.F_empty_to_null($user_otpkey).'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);

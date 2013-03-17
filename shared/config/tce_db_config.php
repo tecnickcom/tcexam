@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_config.php
 // Begin       : 2001-09-02
-// Last Update : 2009-11-10
+// Last Update : 2012-12-26
 //
 // Description : Database congiguration file.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2009  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -63,12 +63,12 @@ define ('K_DATABASE_HOST', '');
 define ('K_DATABASE_PORT', '');
 
 /**
- * database name (TCExam)
+ * database name (tcexam)
  */
 define ('K_DATABASE_NAME', '');
 
 /**
- * database user name
+ * database user name (root, postgres)
  */
 define ('K_DATABASE_USER_NAME', '');
 
@@ -125,6 +125,11 @@ define ('K_TABLE_TESTS', K_TABLE_PREFIX.'tests');
  * This table contains the list of tests generated for each user.
  */
 define ('K_TABLE_TEST_USER', K_TABLE_PREFIX.'tests_users');
+
+/**
+ * This table counts the number of generated tests.
+ */
+define ('K_TABLE_TESTUSER_STAT', K_TABLE_PREFIX.'testuser_stat');
 
 /**
  * This table lists the type and quantity of the questions associated to each set of subjects selected for a particular test.

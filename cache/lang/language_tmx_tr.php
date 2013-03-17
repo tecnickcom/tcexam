@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: tr
-// DATE: 2012-10-29 19:37:13
+// DATE: 2013-02-21 12:34:26
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='tr';
-$tmx['d_admin_index']='Bu <a href="tce_page_info.php" title="TCExam Hakkinda">TCExam</a>\'in yonetim alanidir, bu bir platform ve dilden bagimsiz dostca kullanici icin online testler olusturan, yoneten ve icra eden bir yazilimdir. <br /><br />Soldaki menuden sistemin farkli kisimlarina girebilirsiniz :<ul><li><strong>Kullanicilar</strong><br />Bu kisim kullanicilari <a href="tce_edit_user.php" title="Kullanici Yonetimi">yerlestirmek ve yonetmek</a>, <a href="tce_select_users.php" title="Kullanici Secenekleri"> onlari secmek</a> ve su an <a href="tce_show_online_users.php" title="Baglantili Kullanicilar">online</a> kullanicilarin listesini gostermek icin bir form icerir.<br />Sadece kayitli kullanicilarin kullanici adi ve sifresi ile sistemin genel alanina giris ve testleri kullanma izni verilir.<br />Farkli giris seviyelerini acikca belirtmekle kullanici icin sistemin degisik parca ve bilesenlerine erismeniz mumkundur (sayfalar, formlar, bolumler).<br />TCExam yetkisiz IP aderslerinin girislerini denetlemek ve kontrol etmek amaci ile diger guvenlik sistemlerinden de faydalanir.</li><li><strong>topics</strong><br /> Bu kisim test<a href="tce_edit_subject.php" title="Konu Yonetimi">konularini</a>, ilgili <a href="tce_edit_question.php" title="Soru Yonetimi">sorulari</a> ve <a href="tce_edit_answer.php" title="Coklu Cevap Yonetimi">cevaplari</a> icine koyan ve degistiren formlar icerir.<br />Ozel testlerle birlikte kullanabilmek amaci ile limitsiz bir konu numarsi tanimlayabilirsiniz, ve her konu icin limitsiz soru ve olasi cevap numaralari tanimlayabilirsiniz. Sistem mevcut bulunan sorular ve cevaplarin her ikisinden rastgele secimler yapar.<br />TCExam serbest cevap ve coklu cevap seceneklerinin her ikisini de destekler. <a href="tce_edit_rating.php" title="Cevap Degerlendirme"></a>Oncekiler otomatik olarak degerlendirilirken< sonrakiler ozel degerlendirme formu ile degerlendirilecektir.<br />Tanimlanan butun testler, konular, sorular ve cevaplar ozel tescilli kod (tcecode) ile desteklenir, bu ozel form kullanirken, resim ve metin bicimlendirmeye izin verilirken de kullanilir.</li><li><strong>test</strong><br />Bu kisim farkli <a href="tce_edit_test.php" title="Test Yonetimi">testler</a> koyan, olusturan ve degistiren bir form icerir, form serbest cevaplari <a href="tce_edit_rating.php" title="Cevap Degerlendirme">degerlendirir</a> ve form <a href="tce_show_result_allusers.php" title="Test Urunlerinin Ozeti">urunleri</a>PDF versiyonunda gosterir ya da olusturur, <a href="tce_show_result_user.php" title="Test Urunleri">kullanicilarin testlerini</a> ve soru cevap <a href="tce_show_result_questions.php" title="Soru Istatistikleri">istatistiklerini</a> ayrintili inecelemede yararlanilir.<br />TCExam rastgele cesitli sorular ve ilgili mevcut cevaplar secer bu farkli kullaniclarin butun testlerinde birbirinde fakli olacaktir.<br />PDF formatinin icinde rastgele bir test numarasi olusturarak printerden cikti almak ve geleneksel sinav olarak kullanmak mumkundur.</li></ul>';
+$tmx['d_admin_index']='Bu <a href="tce_page_info.php" title="TCExam Hakkinda">TCExam</a>\'in yonetim alanidir, bu bir platform ve dilden bagimsiz dostca kullanici icin online testler olusturan, yoneten ve icra eden bir yazilimdir. <br /><br />Soldaki menuden sistemin farkli kisimlarina girebilirsiniz :<ul><li><strong>Kullanicilar</strong><br />Bu kisim kullanicilari <a href="tce_edit_user.php" title="Kullanici Yonetimi">yerlestirmek ve yonetmek</a>, <a href="tce_select_users.php" title="Kullanici Secenekleri"> onlari secmek</a> ve su an <a href="tce_show_online_users.php" title="Baglantili Kullanicilar">online</a> kullanicilarin listesini gostermek icin bir form icerir.<br />Sadece kayitli kullanicilarin kullanici adi ve sifresi ile sistemin genel alanina giris ve testleri kullanma izni verilir.<br />Farkli giris seviyelerini acikca belirtmekle kullanici icin sistemin degisik parca ve bilesenlerine erismeniz mumkundur (sayfalar, formlar, bolumler).<br />TCExam yetkisiz IP aderslerinin girislerini denetlemek ve kontrol etmek amaci ile diger guvenlik sistemlerinden de faydalanir.</li><li><strong>topics</strong><br /> Bu kisim test<a href="tce_edit_subject.php" title="Konu Yonetimi">konularini</a>, ilgili <a href="tce_edit_question.php" title="Soru Yonetimi">sorulari</a> ve <a href="tce_edit_answer.php" title="Coklu Cevap Yonetimi">cevaplari</a> icine koyan ve degistiren formlar icerir.<br />Ozel testlerle birlikte kullanabilmek amaci ile limitsiz bir konu numarsi tanimlayabilirsiniz, ve her konu icin limitsiz soru ve olasi cevap numaralari tanimlayabilirsiniz. Sistem mevcut bulunan sorular ve cevaplarin her ikisinden rastgele secimler yapar.<br />TCExam serbest cevap ve coklu cevap seceneklerinin her ikisini de destekler. <a href="tce_edit_rating.php" title="Cevap Degerlendirme"></a>Oncekiler otomatik olarak degerlendirilirken< sonrakiler ozel degerlendirme formu ile degerlendirilecektir.<br />Tanimlanan butun testler, konular, sorular ve cevaplar ozel tescilli kod (tcecode) ile desteklenir, bu ozel form kullanirken, resim ve metin bicimlendirmeye izin verilirken de kullanilir.</li><li><strong>test</strong><br />Bu kisim farkli <a href="tce_edit_test.php" title="Test Yonetimi">testler</a> koyan, olusturan ve degistiren bir form icerir, form serbest cevaplari <a href="tce_edit_rating.php" title="Cevap Degerlendirme">degerlendirir</a> ve form <a href="tce_show_result_allusers.php" title="Test Urunlerinin Ozeti">urunleri</a>PDF versiyonunda gosterir ya da olusturur, <a href="tce_show_result_user.php" title="Test Urunleri">kullanicilarin testlerini</a> ve soru cevap <a href="tce_show_result_allusers.php" title="Soru Istatistikleri">istatistiklerini</a> ayrintili inecelemede yararlanilir.<br />TCExam rastgele cesitli sorular ve ilgili mevcut cevaplar secer bu farkli kullaniclarin butun testlerinde birbirinde fakli olacaktir.<br />PDF formatinin icinde rastgele bir test numarasi olusturarak printerden cikti almak ve geleneksel sinav olarak kullanmak mumkundur.</li></ul>';
 $tmx['d_logout_desc']='sistemden cikmak icin butona tiklayiniz';
 $tmx['d_tcexam_desc']='TCExam online testler yoneten ve icra eden bir yazilimdir.';
 $tmx['h_add']='guncel eklentileri veritabanina kayder';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='guncel kayda izin verir/vermez';
 $tmx['h_execute']='testi calistirir';
 $tmx['h_file_type']='dosya tipi';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Sinirlandirilmis Etiketli Metin Dosyasi';
+$tmx['h_file_type_tsv']='Sinirlandirilmis Etiketli Metin Dosyasi';
 $tmx['h_firstname']='kullanicinin ilk adi (e.g.: Mehmet, Arif, Ilknur ...)';
 $tmx['h_fiscal_code']='kullanicinin sosyal guvenlik numarasi';
 $tmx['h_global_score']='eger secilecekse, fazladan yazilan cevaplar puani dusuk ayarlanir';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='sunucuya dosya gonderimini tarif eder';
 $tmx['h_user_info']='baglantidaki kullanicilarla ilgili bilgileri gosterir';
 $tmx['h_usered_email']='kullanicinin email adresi (e.g.: isim@example.com)';
 $tmx['h_view_details']='detaylari goster';
-$tmx['h_csv_export']='veriyi CSV\'ye aktar (sinirli etiketli metin dosyasi)';
+$tmx['h_tsv_export']='veriyi TSV\'ye aktar (sinirli etiketli metin dosyasi)';
 $tmx['h_xml_export']='veriyi XML\'e aktar';
 $tmx['hp_edit_answer']='Bu form ile secilmis sorularla ilgili butun olasi cevaplari yonetebilirsiniz. istege gore dogru ve yanlis cevaplari her soru icin ekleyebilirsiniz; test sirasinda sistem otomatik olarak sadece bir dogru cevap secer ve o cevap olasi cevaplar listesinde gosterilir. Zaten icra edilmis testin parcalari olan cevaplari degistiremezsiniz, bu durumda siz sedece buton (delete) kullanarak gecersiz kilabilirsiniz. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
 $tmx['hp_edit_group']='Bu formun icinde farkli kullanicilarin gruplarini yonetebilirsiniz.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Bu form ile testi yerlestirir, degistirir ve silebilirsini
 $tmx['hp_edit_user']='Bu formda farkli kullanicilarin sisteme giris iznini yonetebilirsiniz. her kullanici icin bir isim, sifre ve kullanim seviyesi secebilirsiniz. Seviye (level) 0 bir isimsiz kullaniciyi tanimlar (kayitli degil), seviye (level) 1 bir temel kullaniciyi tanimlar (e.g.: bir ogrenci), seviye (level) 10 tum haklara sahip bir yonetici kullaniciyi tanimlar';
 $tmx['hp_email_result']='Urunleri kullanicilara mail ile gonder';
 $tmx['hp_import_xml_questions']='Bu formda bir XML dosyasindan secilmis konuda sorular getirebilirsiniz';
-$tmx['hp_import_xml_users']='Bu formda bir XML yada CSV (Sinirli etiketli metin) dosyasindan kullanicilar ve gruplar getirebilirsiniz. Dosya formatlari Kullanici secme formunda cikarilip elde edilen veri ile ayni olacaktir.';
+$tmx['hp_import_xml_users']='Bu formda bir XML yada TSV (Sinirli etiketli metin) dosyasindan kullanicilar ve gruplar getirebilirsiniz. Dosya formatlari Kullanici secme formunda cikarilip elde edilen veri ile ayni olacaktir.';
 $tmx['hp_login']='Bu durumda TCExam de farkli kisimlara girmek icin site yonecisinin izni dogrultusunda isminizi ve sifrenizi kullanarak girmelisiniz.';
 $tmx['hp_online_users']='Bu form su anda baglantili kullanicilari gosterir';
 $tmx['hp_public_index']='Burasi TCExam\'in ana sayfasidir. Bu sayfadan testlere devam edebilir ya da baslayabilirsiniz.';
@@ -583,5 +583,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

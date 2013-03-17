@@ -2,7 +2,7 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2011-01-28
+Last Update : 2012-12-26
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
@@ -19,7 +19,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-   Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+   Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -65,6 +65,7 @@ CREATE TABLE "tce_users" (
 	"user_ssn" Varchar(255),
 	"user_level" Smallint NOT NULL Default 1,
 	"user_verifycode" Varchar(32) UNIQUE,
+	"user_otpkey" Varchar(255),
 constraint "PK_tce_users_user_id" primary key ("user_id")
 ) Without Oids;
 
@@ -132,8 +133,10 @@ CREATE TABLE "tce_tests" (
 	"test_score_threshold" Numeric(10,3) Default 0,
 	"test_random_questions_select" Boolean NOT NULL Default '1',
 	"test_random_questions_order" Boolean NOT NULL Default '1',
+	"test_questions_order_mode" Smallint NOT NULL Default 0,
 	"test_random_answers_select" Boolean NOT NULL Default '1',
 	"test_random_answers_order" Boolean NOT NULL Default '1',
+	"test_answers_order_mode" Smallint NOT NULL Default 0,
 	"test_comment_enabled" Boolean NOT NULL Default '1',
 	"test_menu_enabled" Boolean NOT NULL Default '1',
 	"test_noanswer_enabled" Boolean NOT NULL Default '1',
@@ -141,6 +144,7 @@ CREATE TABLE "tce_tests" (
 	"test_repeatable" Boolean NOT NULL Default '0',
 	"test_mcma_partial_score" Boolean NOT NULL Default '1',
 	"test_logout_on_timeout" Boolean NOT NULL Default '0',
+	"test_password" Varchar(255),
 constraint "PK_tce_tests_test_id" primary key ("test_id")
 ) Without Oids;
 
@@ -154,7 +158,7 @@ CREATE TABLE "tce_tests_users" (
 	"testuser_id" BigSerial NOT NULL,
 	"testuser_test_id" Bigint NOT NULL,
 	"testuser_user_id" Bigint NOT NULL,
-	"testuser_status" Smallint NOT NULL Default 0 Check (testuser_status IN (0,1,2,3,4)),
+	"testuser_status" Smallint NOT NULL Default 0,
 	"testuser_creation_time" Timestamp NOT NULL,
 	"testuser_comment" Text,
 constraint "pk_tce_tests_users" primary key ("testuser_id")
@@ -214,36 +218,42 @@ CREATE TABLE "tce_test_subject_set" (
 constraint "pk_tce_test_subject_set" primary key ("tsubset_id")
 ) Without Oids;
 
+CREATE TABLE "tce_testuser_stat" (
+	"tus_id" BigSerial NOT NULL,
+	"tus_date" Timestamp NOT NULL,
+constraint "pk_tce_testuser_stat" primary key ("tus_id")
+) Without Oids;
+
 /* Alternate Keys */
 
-ALTER TABLE "tce_users" ADD Constraint "ak_user_name" UNIQUE ("user_name");
-ALTER TABLE "tce_users" ADD Constraint "ak_user_regnumber" UNIQUE ("user_regnumber");
-ALTER TABLE "tce_users" ADD Constraint "ak_user_ssn" UNIQUE ("user_ssn");
-ALTER TABLE "tce_modules" ADD Constraint "ak_module_name" UNIQUE ("module_name");
-ALTER TABLE "tce_subjects" ADD Constraint "ak_subject_name" UNIQUE ("subject_module_id","subject_name");
-ALTER TABLE "tce_tests" ADD Constraint "ak_test_name" UNIQUE ("test_name");
-ALTER TABLE "tce_tests_users" ADD Constraint "ak_testuser" UNIQUE ("testuser_test_id","testuser_user_id");
-ALTER TABLE "tce_tests_logs" ADD Constraint "ak_testuser_question" UNIQUE ("testlog_testuser_id","testlog_question_id");
+ALTER TABLE "tce_users" ADD CONSTRAINT "ak_user_name" UNIQUE ("user_name");
+ALTER TABLE "tce_users" ADD CONSTRAINT "ak_user_regnumber" UNIQUE ("user_regnumber");
+ALTER TABLE "tce_users" ADD CONSTRAINT "ak_user_ssn" UNIQUE ("user_ssn");
+ALTER TABLE "tce_modules" ADD CONSTRAINT "ak_module_name" UNIQUE ("module_name");
+ALTER TABLE "tce_subjects" ADD CONSTRAINT "ak_subject_name" UNIQUE ("subject_module_id","subject_name");
+ALTER TABLE "tce_tests" ADD CONSTRAINT "ak_test_name" UNIQUE ("test_name");
+ALTER TABLE "tce_tests_users" ADD CONSTRAINT "ak_testuser" UNIQUE ("testuser_test_id","testuser_user_id","testuser_status");
+ALTER TABLE "tce_tests_logs" ADD CONSTRAINT "ak_testuser_question" UNIQUE ("testlog_testuser_id","testlog_question_id");
 
 /*  Foreign Keys */
 
-ALTER TABLE "tce_tests_users" ADD Constraint "rel_user_tests" foreign key ("testuser_user_id") references "tce_users" ("user_id") ON DELETE cascade;
-ALTER TABLE "tce_tests" ADD Constraint "rel_test_author" foreign key ("test_user_id") references "tce_users" ("user_id") ON DELETE cascade;
-ALTER TABLE "tce_modules" ADD Constraint "rel_module_author" foreign key ("module_user_id") references "tce_users" ("user_id") ON DELETE cascade;
-ALTER TABLE "tce_subjects" ADD Constraint "rel_subject_author" foreign key ("subject_user_id") references "tce_users" ("user_id") ON DELETE cascade;
-ALTER TABLE "tce_subjects" ADD Constraint "rel_module_subjects" foreign key ("subject_module_id") references "tce_modules" ("module_id") ON DELETE cascade;
-ALTER TABLE "tce_usrgroups" ADD Constraint "rel_user_group" foreign key ("usrgrp_user_id") references "tce_users" ("user_id") ON DELETE cascade;
-ALTER TABLE "tce_questions" ADD Constraint "rel_subject_questions" foreign key ("question_subject_id") references "tce_subjects" ("subject_id") ON DELETE cascade;
-ALTER TABLE "tce_test_subjects" ADD Constraint "rel_subject_set" foreign key ("subjset_subject_id") references "tce_subjects" ("subject_id") ON DELETE restrict;
-ALTER TABLE "tce_answers" ADD Constraint "rel_question_answers" foreign key ("answer_question_id") references "tce_questions" ("question_id") ON DELETE cascade;
-ALTER TABLE "tce_tests_logs" ADD Constraint "rel_question_logs" foreign key ("testlog_question_id") references "tce_questions" ("question_id") ON DELETE restrict;
-ALTER TABLE "tce_tests_logs_answers" ADD Constraint "rel_answer_logs" foreign key ("logansw_answer_id") references "tce_answers" ("answer_id") ON DELETE restrict;
-ALTER TABLE "tce_tests_users" ADD Constraint "rel_test_users" foreign key ("testuser_test_id") references "tce_tests" ("test_id") ON UPDATE restrict ON DELETE cascade;
-ALTER TABLE "tce_testgroups" ADD Constraint "rel_test_group" foreign key ("tstgrp_test_id") references "tce_tests" ("test_id") ON DELETE cascade;
-ALTER TABLE "tce_test_subject_set" ADD Constraint "rel_test_subjset" foreign key ("tsubset_test_id") references "tce_tests" ("test_id") ON DELETE cascade;
-ALTER TABLE "tce_tests_logs" ADD Constraint "rel_testuser_logs" foreign key ("testlog_testuser_id") references "tce_tests_users" ("testuser_id") ON DELETE cascade;
-ALTER TABLE "tce_tests_logs_answers" ADD Constraint "rel_testlog_answers" foreign key ("logansw_testlog_id") references "tce_tests_logs" ("testlog_id") ON DELETE cascade;
-ALTER TABLE "tce_usrgroups" ADD Constraint "rel_group_user" foreign key ("usrgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
-ALTER TABLE "tce_testgroups" ADD Constraint "rel_group_test" foreign key ("tstgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
-ALTER TABLE "tce_test_subjects" ADD Constraint "rel_set_subjects" foreign key ("subjset_tsubset_id") references "tce_test_subject_set" ("tsubset_id") ON DELETE cascade;
+ALTER TABLE "tce_tests_users" ADD CONSTRAINT "rel_user_tests" foreign key ("testuser_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_tests" ADD CONSTRAINT "rel_test_author" foreign key ("test_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_modules" ADD CONSTRAINT "rel_module_author" foreign key ("module_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_subjects" ADD CONSTRAINT "rel_subject_author" foreign key ("subject_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_subjects" ADD CONSTRAINT "rel_module_subjects" foreign key ("subject_module_id") references "tce_modules" ("module_id") ON DELETE cascade;
+ALTER TABLE "tce_usrgroups" ADD CONSTRAINT "rel_user_group" foreign key ("usrgrp_user_id") references "tce_users" ("user_id") ON DELETE cascade;
+ALTER TABLE "tce_questions" ADD CONSTRAINT "rel_subject_questions" foreign key ("question_subject_id") references "tce_subjects" ("subject_id") ON DELETE cascade;
+ALTER TABLE "tce_test_subjects" ADD CONSTRAINT "rel_subject_set" foreign key ("subjset_subject_id") references "tce_subjects" ("subject_id") ON DELETE restrict;
+ALTER TABLE "tce_answers" ADD CONSTRAINT "rel_question_answers" foreign key ("answer_question_id") references "tce_questions" ("question_id") ON DELETE cascade;
+ALTER TABLE "tce_tests_logs" ADD CONSTRAINT "rel_question_logs" foreign key ("testlog_question_id") references "tce_questions" ("question_id") ON DELETE restrict;
+ALTER TABLE "tce_tests_logs_answers" ADD CONSTRAINT "rel_answer_logs" foreign key ("logansw_answer_id") references "tce_answers" ("answer_id") ON DELETE restrict;
+ALTER TABLE "tce_tests_users" ADD CONSTRAINT "rel_test_users" foreign key ("testuser_test_id") references "tce_tests" ("test_id") ON UPDATE restrict ON DELETE cascade;
+ALTER TABLE "tce_testgroups" ADD CONSTRAINT "rel_test_group" foreign key ("tstgrp_test_id") references "tce_tests" ("test_id") ON DELETE cascade;
+ALTER TABLE "tce_test_subject_set" ADD CONSTRAINT "rel_test_subjset" foreign key ("tsubset_test_id") references "tce_tests" ("test_id") ON DELETE cascade;
+ALTER TABLE "tce_tests_logs" ADD CONSTRAINT "rel_testuser_logs" foreign key ("testlog_testuser_id") references "tce_tests_users" ("testuser_id") ON DELETE cascade;
+ALTER TABLE "tce_tests_logs_answers" ADD CONSTRAINT "rel_testlog_answers" foreign key ("logansw_testlog_id") references "tce_tests_logs" ("testlog_id") ON DELETE cascade;
+ALTER TABLE "tce_usrgroups" ADD CONSTRAINT "rel_group_user" foreign key ("usrgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
+ALTER TABLE "tce_testgroups" ADD CONSTRAINT "rel_group_test" foreign key ("tstgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
+ALTER TABLE "tce_test_subjects" ADD CONSTRAINT "rel_set_subjects" foreign key ("subjset_tsubset_id") references "tce_test_subject_set" ("tsubset_id") ON DELETE cascade;
 

@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2012-10-29 19:36:52
+// DATE: 2013-02-21 12:34:02
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='CN';
-$tmx['d_admin_index']='这是 <a href="tce_page_info.php" title="about TCExam">TCExam </a>的管理区域。TCExam 是一个多语言、易用的，用于创建、管理在线测验的软件平台。<br /><br />你可以通过菜单使用系统各种功能：<ul><li><strong>用户</strong><br />本模块包含 <a href="tce_edit_user.php" title="用户管理">增加和管理</a> 用户, <a href="tce_select_users.php" title="用户选择n"> 选择他们</a> 和显示 <a href="tce_show_online_users.php" title="Online Users">当前在线用户</a>。<br />允许注册用户，获取访问系统公共区域权限，进行测试。<br />可以指派不同权限、不同系统功能给用户。<br />可以通过IP来限制非法访问。</li><li><strong>模块</strong><br />本功能包括增加、修改测验 <a href="tce_edit_module.php" title="Modules Management">模块</a>, <a href="tce_edit_subject.php" title="Topic Management">主题</a>，相关的 <a href="tce_edit_question.php" title="Question Management">题目</a> 和 <a href="tce_edit_answer.php" title="Multiple-Answer Management">答案</a>。<br />你可以选择不限数量的主题，以便用于指定的测试。每个主题可以定于不限数量的题目和答案。系统可以随机选择可利用的题目和答案。<br />支持多选题和自由作答题目。后者将通过指定的 <a href="tce_edit_rating.php" title="Answer evaluation"> 评价表单 </a>来进行评价。<br />所有的测试、主题、问题、答案的说明都支持特殊的专有的代码(tcecode)，允许使用图形和字符格式。</li><li><strong>测试</strong><br />本功能包括增加、生成和修改 <a href="tce_edit_test.php" title="Test Management">测验</a>,  <a href="tce_edit_rating.php" title="Answer Evaluation">评估</a> 自由作答并把结果可以生成一个包含 <a href="tce_show_result_allusers.php" title="Test Results Summary">测验结果</a>，<a href="tce_show_result_user.php" title="Risultati test">用户测验</a> 以及 <a href="tce_show_result_questions.php" title="Question Statistics">统计</a> 的PDF文档。<br />支持随机选择题目和答案，不同用户的同一次测验的题目是不一样的。<br />也支持生成多次测验的PDF文档，以便用于传统的测验。</li></ul>';
+$tmx['d_admin_index']='这是 <a href="tce_page_info.php" title="about TCExam">TCExam </a>的管理区域。TCExam 是一个多语言、易用的，用于创建、管理在线测验的软件平台。<br /><br />你可以通过菜单使用系统各种功能：<ul><li><strong>用户</strong><br />本模块包含 <a href="tce_edit_user.php" title="用户管理">增加和管理</a> 用户, <a href="tce_select_users.php" title="用户选择n"> 选择他们</a> 和显示 <a href="tce_show_online_users.php" title="Online Users">当前在线用户</a>。<br />允许注册用户，获取访问系统公共区域权限，进行测试。<br />可以指派不同权限、不同系统功能给用户。<br />可以通过IP来限制非法访问。</li><li><strong>模块</strong><br />本功能包括增加、修改测验 <a href="tce_edit_module.php" title="Modules Management">模块</a>, <a href="tce_edit_subject.php" title="Topic Management">主题</a>，相关的 <a href="tce_edit_question.php" title="Question Management">题目</a> 和 <a href="tce_edit_answer.php" title="Multiple-Answer Management">答案</a>。<br />你可以选择不限数量的主题，以便用于指定的测试。每个主题可以定于不限数量的题目和答案。系统可以随机选择可利用的题目和答案。<br />支持多选题和自由作答题目。后者将通过指定的 <a href="tce_edit_rating.php" title="Answer evaluation"> 评价表单 </a>来进行评价。<br />所有的测试、主题、问题、答案的说明都支持特殊的专有的代码(tcecode)，允许使用图形和字符格式。</li><li><strong>测试</strong><br />本功能包括增加、生成和修改 <a href="tce_edit_test.php" title="Test Management">测验</a>,  <a href="tce_edit_rating.php" title="Answer Evaluation">评估</a> 自由作答并把结果可以生成一个包含 <a href="tce_show_result_allusers.php" title="Test Results Summary">测验结果</a>，<a href="tce_show_result_user.php" title="Risultati test">用户测验</a> 以及 <a href="tce_show_result_allusers.php" title="Question Statistics">统计</a> 的PDF文档。<br />支持随机选择题目和答案，不同用户的同一次测验的题目是不一样的。<br />也支持生成多次测验的PDF文档，以便用于传统的测验。</li></ul>';
 $tmx['d_logout_desc']='点击按钮退出系统';
 $tmx['d_tcexam_desc']='TcExam是管理和进行在线测验的软件';
 $tmx['h_add']='添加当前记录到数据库';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='启用/禁用 当前记录';
 $tmx['h_execute']='开始答题';
 $tmx['h_file_type']='文件类型';
 $tmx['h_file_type_xml']='可扩展的标记语言（XML）';
-$tmx['h_file_type_csv']='TAB分隔的文本文件';
+$tmx['h_file_type_tsv']='TAB分隔的文本文件';
 $tmx['h_firstname']='用户名字(例如:志强,淑娴)';
 $tmx['h_fiscal_code']='用户的社会保险号';
 $tmx['h_global_score']='如果选择，下面的分值会覆盖答案分值';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='指定要发送到服务器的文件路径';
 $tmx['h_user_info']='显示已连接用户的相关信息';
 $tmx['h_usered_email']='用户的电子邮件地址(如name@example.com)';
 $tmx['h_view_details']='显示详情';
-$tmx['h_csv_export']='数据导出为CSV (Tab分隔的文本文件)';
+$tmx['h_tsv_export']='数据导出为TSV (Tab分隔的文本文件)';
 $tmx['h_xml_export']='数据导出为XML';
 $tmx['hp_edit_answer']='通过此表单管理选定题目的所有可能的答案。你能为每道题目加入任意数量的正确和错误答案，测验时系统会自动选择唯一的正确答案并且把它显示在可能答案的列表中，你不能修改或删除已进行过的测验的答案，这种情况下，你只能通过使用[删除]按钮禁用它。图例：[+] 启用; [-] 禁用。试题图例：[S] MCSA - 单选题； [M] MCMA - 多选题； [T] TEXT - 自由回答题； [O] ORDER - 排序题。答题图例: [T] 正确; [F] 错误';
 $tmx['hp_edit_group']='通过本表单管理不同用户组';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='您可以通过本表单插入，修改或删除的测验�
 $tmx['hp_edit_user']='通过此表单中可以管理允许访问系统的不同用户。对于每个用户你能选择名字，密码和访问级别。0表示匿名用户(未注册的)，1表示基本用户(比如：学生)，级别10是拥有完全访问权限的管理员。';
 $tmx['hp_email_result']='通过电子邮件向用户发送成绩';
 $tmx['hp_import_xml_questions']='通过此表单可从XML中导入选定主题的题目';
-$tmx['hp_import_xml_users']='通过此表单从XML或CSV文件中导入用户和组。文件格式与从用户选择表单中获取的格式相同。';
+$tmx['hp_import_xml_users']='通过此表单从XML或TSV文件中导入用户和组。文件格式与从用户选择表单中获取的格式相同。';
 $tmx['hp_login']='为了能正确访问TcExam，必须使用系统管理员提供的用户名和密码登录。';
 $tmx['hp_online_users']='此表单显示当前登录的用户';
 $tmx['hp_public_index']='这是考试系统的主页，从这个页面你可以开始或继续你的测验';
@@ -580,5 +580,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

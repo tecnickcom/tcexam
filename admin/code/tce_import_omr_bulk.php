@@ -63,7 +63,7 @@ $thispage_title = $l['t_omr_bulk_importer'];
 require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_omr.php');
 require_once('tce_functions_user_select.php');
 

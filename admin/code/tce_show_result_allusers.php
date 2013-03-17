@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2012-04-27
+// Last Update : 2013-01-20
 //
 // Description : Display test results summary for all users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -56,17 +56,21 @@ $pagelevel = K_AUTH_ADMIN_RESULTS;
 require_once('../../shared/code/tce_authorization.php');
 
 $thispage_title = $l['t_result_all_users'];
+$enable_calendar = true;
 require_once('tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
-require_once('tce_functions_auth_sql.php');
-require_once('tce_functions_statistics.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_statistics.php');
 require_once('tce_functions_user_select.php');
 
-$filter = '';
+$filter = 'sel=1';
 
+if (isset($_REQUEST['selectcategory'])) {
+	$changecategory = 1;
+}
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
 	// check user's authorization
@@ -74,20 +78,48 @@ if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 		F_print_error('ERROR', $l['m_authorization_denied']);
 		exit;
 	}
+	$filter .= '&amp;test_id='.$test_id.'';
+	$test_group_ids = F_getTestGroups($test_id);
+} else {
+	$test_id = 0;
 }
-if (isset($_REQUEST['selectcategory'])) {
-	$changecategory = 1;
+if (isset($_REQUEST['user_id'])) {
+	$user_id = intval($_REQUEST['user_id']);
+	$filter .= '&amp;user_id='.$user_id;
+} else {
+	$user_id = 0;
 }
 if (isset($_REQUEST['group_id']) AND !empty($_REQUEST['group_id'])) {
 	$group_id = intval($_REQUEST['group_id']);
-	if (!F_isAuthorizedEditorForGroup($group_id)) {
-		F_print_error('ERROR', $l['m_authorization_denied']);
-		exit;
-	}
 	$filter .= '&amp;group_id='.$group_id.'';
 } else {
 	$group_id = 0;
 }
+// filtering options
+if (isset($_REQUEST['startdate'])) {
+	$startdate = $_REQUEST['startdate'];
+	$startdate_time = strtotime($startdate);
+	$startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
+} else {
+	$startdate = date('Y').'-01-01 00:00:00';
+}
+$filter .= '&amp;startdate='.urlencode($startdate);
+if (isset($_REQUEST['enddate'])) {
+	$enddate = $_REQUEST['enddate'];
+	$enddate_time = strtotime($enddate);
+	$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
+} else {
+	$enddate = date('Y').'-12-31 23:59:59';
+}
+$filter .= '&amp;enddate='.urlencode($enddate).'';
+
+$detail_modes = array($l['w_module'], $l['w_subject'], $l['w_question'], $l['w_answer']);
+if (isset($_REQUEST['display_mode'])) {
+	$display_mode = max(0, min(3, intval($_REQUEST['display_mode'])));
+} else {
+	$display_mode = 0;
+}
+$filter .= '&amp;display_mode='.$display_mode;
 
 if (isset($_POST['lock'])) {
 	$menu_mode = 'lock';
@@ -97,11 +129,12 @@ if (isset($_POST['lock'])) {
 	$menu_mode = 'extendtime';
 }
 
-if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score')))) {
+if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'testuser_test_id')))) {
 	$order_field = $_REQUEST['order_field'];
 } else {
 	$order_field = 'total_score, user_lastname, user_firstname';
 }
+$filter .= '&amp;order_field='.urlencode($order_field).'';
 if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
 	$orderdir = 0;
 	$nextorderdir = 1;
@@ -111,6 +144,7 @@ if (!isset($_REQUEST['orderdir']) OR empty($_REQUEST['orderdir'])) {
 	$nextorderdir = 0;
 	$full_order_field = $order_field.' DESC';
 }
+$filter .= '&amp;orderdir='.$orderdir.'';
 
 if (isset($menu_mode) AND (!empty($menu_mode))) {
 	for ($i = 1; $i <= $itemcount; $i++) {
@@ -123,7 +157,6 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 						WHERE testuser_id='.$testuser_id.'';
 					if (!$r = F_db_query($sql, $db)) {
-						echo $sql; //debug
 						F_display_db_error();
 					}
 					break;
@@ -143,7 +176,6 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 								SET testuser_creation_time=\''.$newstarttime.'\'
 								WHERE testuser_id='.$testuser_id.'';
 							if (!$ru = F_db_query($sqlu, $db)) {
-							echo $sqlu; //DEBUG
 								F_display_db_error();
 							}
 						}
@@ -156,7 +188,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					// update test mode to 4 = test locked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 						SET testuser_status=4
-						WHERE testuser_id='.$testuser_id.'';
+						WHERE testuser_id='.$testuser_id.'
+						AND testuser_status<4';
 					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
 					}
@@ -166,7 +199,8 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 					// update test mode to 1 = test unlocked
 					$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 						SET testuser_status=1
-						WHERE testuser_id='.$testuser_id.'';
+						WHERE testuser_id='.$testuser_id.'
+						AND testuser_status<5';
 					if (!$ru = F_db_query($sqlu, $db)) {
 						F_display_db_error();
 					}
@@ -176,28 +210,6 @@ if (isset($menu_mode) AND (!empty($menu_mode))) {
 		}
 	}
 	F_print_error('MESSAGE', $l['m_updated']);
-}
-
-if ($formstatus) {
-	if (isset($_REQUEST['test_id']) AND !empty($_REQUEST['test_id'])) {
-		$test_id = intval($_REQUEST['test_id']);
-		$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
-	} else {
-		$test_id = 0;
-		$sql = F_select_executed_tests_sql().' LIMIT 1';
-	}
-	if ($r = F_db_query($sql, $db)) {
-		if ($m = F_db_fetch_array($r)) {
-			$test_id = $m['test_id'];
-			$test_duration_time = ($m['test_duration_time'] * K_SECONDS_IN_MINUTE);
-			$filter .= '&amp;test_id='.$test_id.'';
-		} else {
-			$test_id = 0;
-			$test_duration_time = 0;
-		}
-	} else {
-		F_display_db_error();
-	}
 }
 
 echo '<div class="container">'.K_NEWLINE;
@@ -214,6 +226,11 @@ echo '<input type="hidden" name="changecategory" id="changecategory" value="" />
 echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
+	echo '<option value="0"';
+	if ($test_id == 0) {
+		echo ' selected="selected"';
+	}
+	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
 		if ($m['test_id'] == $test_id) {
@@ -226,10 +243,18 @@ else {
 	F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
+
+// link for user selection popup
+$jsaction = 'selectWindow=window.open(\'tce_select_tests_popup.php?cid=test_id\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo getFormNoscriptSelect('selectcategory');
+
+echo getFormRowTextInput('startdate', $l['w_time_begin'], $l['w_time_begin'].' '.$l['w_datetime_format'], '', $startdate, '', 19, false, true, false);
+echo getFormRowTextInput('enddate', $l['w_time_end'], $l['w_time_end'].' '.$l['w_datetime_format'], '', $enddate, '', 19, false, true, false);
 
 echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">'.K_NEWLINE;
@@ -237,20 +262,17 @@ echo '<label for="group_id">'.$l['w_group'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
-if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
-	$sql = 'SELECT * FROM '.K_TABLE_GROUPS.' WHERE';
-} else {
-	// non-administrator can access only to his/her groups
-	$sql = 'SELECT * FROM '.K_TABLE_GROUPS.', '.K_TABLE_USERGROUP.'
-		WHERE group_id=usrgrp_group_id AND usrgrp_user_id='.$_SESSION['session_user_id'].' AND';
+$sql = 'SELECT * FROM '.K_TABLE_GROUPS.'';
+if ($test_id > 0) {
+	$sql .= ' WHERE group_id IN ('.$test_group_ids.')';
 }
-$sql .= ' group_id IN (SELECT tstgrp_group_id FROM '.K_TABLE_TEST_GROUPS.' WHERE tstgrp_test_id='.$test_id.') ORDER BY group_name';
+$sql .= ' ORDER BY group_name';
 if ($r = F_db_query($sql, $db)) {
 	echo '<option value="0"';
-		if ($m['group_id'] == $group_id) {
-			echo ' selected="selected"';
-		}
-		echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
+	if ($group_id == 0) {
+		echo ' selected="selected"';
+	}
+	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
 		if ($m['group_id'] == $group_id) {
@@ -269,265 +291,147 @@ echo '</div>'.K_NEWLINE;
 
 echo getFormNoscriptSelect('selectgroup');
 
-echo '<div class="row"><hr /></div>'.K_NEWLINE;
-
-echo '<div class="rowl">'.K_NEWLINE;
-echo '<table class="userselect">'.K_NEWLINE;
-echo '<tr>'.K_NEWLINE;
-if ($l['a_meta_dir'] == 'rtl') {
-	$tdalignr = 'left';
-	$tdalign = 'right';
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
+$sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.'';
+if ($test_id > 0) {
+	$sql .= ', '.K_TABLE_TEST_USER.' WHERE testuser_user_id=user_id AND testuser_test_id='.$test_id.'';
+} elseif ($group_id > 0) {
+	$sql .= ', '.K_TABLE_USERGROUP.' WHERE usrgrp_user_id=user_id AND usrgrp_group_id='.$group_id.' AND user_id>1';
 } else {
-	$tdalignr = 'right';
-	$tdalign = 'left';
+	$sql .= ' WHERE user_id>1';
 }
-echo '<th>&nbsp;</th>'.K_NEWLINE;
-echo '<th>#</th>'.K_NEWLINE;
-echo F_select_table_header_element('testuser_creation_time', $nextorderdir, $l['h_time_begin'], $l['w_time_begin'], $order_field, $filter);
-//echo F_select_table_header_element('testuser_end_time', $nextorderdir, $l['h_time_end'], $l['w_time_end'], $order_field, $filter);
-echo '<th title="'.$l['h_test_time'].'">'.$l['w_time'].'</th>'.K_NEWLINE;
-echo F_select_table_header_element('user_name', $nextorderdir, $l['h_login_name'], $l['w_user'], $order_field, $filter);
-echo F_select_table_header_element('user_lastname', $nextorderdir, $l['h_lastname'], $l['w_lastname'], $order_field, $filter);
-echo F_select_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $filter);
-echo F_select_table_header_element('total_score', $nextorderdir, $l['h_score_total'], $l['w_score'], $order_field, $filter);
-echo '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
-echo '<th title="'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])">'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])</th>'.K_NEWLINE;
-echo '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
-echo '</tr>'.K_NEWLINE;
-
-// output users stats
-$sqlr = 'SELECT
-	testuser_id,
-	testuser_creation_time,
-	testuser_status,
-	user_id,
-	user_lastname,
-	user_firstname,
-	user_name,
-	SUM(testlog_score) AS total_score,
-	MAX(testlog_change_time) AS testuser_end_time
-	FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.'';
-if (isset($group_id) AND ($group_id > 0)) {
-	$sqlr .= ','.K_TABLE_USERGROUP.'';
-}
-$sqlr .= ' WHERE testlog_testuser_id=testuser_id
-		AND testuser_user_id=user_id
-		AND testuser_test_id='.$test_id.'';
-if (isset($group_id) AND ($group_id > 0)) {
-	$sqlr .= ' AND usrgrp_user_id=user_id
-		AND usrgrp_group_id='.$group_id.'';
-}
-$sqlr .= ' GROUP BY testuser_id, testuser_creation_time, user_id, user_lastname, user_firstname, user_name, testuser_status
-	ORDER BY '.$full_order_field.'';
-if ($rr = F_db_query($sqlr, $db)) {
-	$itemcount = 0;
-	$passed = 0;
-	$statsdata = array();
-	$statsdata['score'] = array();
-	$statsdata['right'] = array();
-	$statsdata['wrong'] = array();
-	$statsdata['unanswered'] = array();
-	$statsdata['undisplayed'] = array();
-	$statsdata['unrated'] = array();
-	while($mr = F_db_fetch_array($rr)) {
-		$itemcount++;
-		$usrtestdata = F_getUserTestStat($test_id, $mr['user_id']);
-		$halfscore = ($usrtestdata['max_score'] / 2);
-		echo '<tr>';
-		echo '<td>';
-		echo '<input type="checkbox" name="testuserid'.$itemcount.'" id="testuserid'.$itemcount.'" value="'.$mr['testuser_id'].'" title="'.$l['w_select'].'"';
-		if (isset($_REQUEST['checkall']) AND ($_REQUEST['checkall'] == 1)) {
-			echo ' checked="checked"';
+$sql .= ' GROUP BY user_id, user_lastname, user_firstname, user_name ORDER BY user_lastname, user_firstname, user_name';
+if ($r = F_db_query($sql, $db)) {
+	$countitem = 1;
+	echo '<option value="0"';
+	if ($user_id == 0) {
+		echo ' selected="selected"';
+	}
+	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
+	while($m = F_db_fetch_array($r)) {
+		echo '<option value="'.$m['user_id'].'"';
+		if ($m['user_id'] == $user_id) {
+			echo ' selected="selected"';
 		}
-		echo ' />';
-		echo '</td>'.K_NEWLINE;
-		echo '<td><a href="tce_show_result_user.php?testuser_id='.$mr['testuser_id'].'&amp;test_id='.$test_id.'&amp;user_id='.$mr['user_id'].'" title="'.$l['h_view_details'].'">'.$itemcount.'</a></td>'.K_NEWLINE;
-
-		echo '<td style="text-align:center;">'.$mr['testuser_creation_time'].'</td>'.K_NEWLINE;
-		//echo '<td style="text-align:center;">'.$mr['testuser_end_time'].'</td>'.K_NEWLINE;
-		if (!isset($mr['testuser_end_time']) OR ($mr['testuser_end_time'] <= 0)) {
-			$time_diff = $test_duration_time;
-		} else {
-			$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
-		}
-		$time_diff = gmdate('H:i:s', $time_diff);
-		echo '<td style="text-align:center;">'.$time_diff.'</td>'.K_NEWLINE;
-
-		$passmsg = '';
-		if ($usrtestdata['score_threshold'] > 0) {
-			if ($usrtestdata['score'] >= $usrtestdata['score_threshold']) {
-				$passmsg = ' title="'.$l['w_passed'].'" style="background-color:#BBFFBB;"';
-				$passed++;
-			} else {
-				$passmsg = ' title="'.$l['w_not_passed'].'" style="background-color:#FFBBBB;"';
-			}
-		} elseif ($usrtestdata['score'] > $halfscore) {
-			$passed++;
-		}
-
-		echo '<td style="text-align:'.$tdalign.';"><a href="tce_edit_user.php?user_id='.$mr['user_id'].'">'.$mr['user_name'].'</a></td>'.K_NEWLINE;
-		echo '<td style="text-align:'.$tdalign.';">&nbsp;'.$mr['user_lastname'].'</td>'.K_NEWLINE;
-		echo '<td style="text-align:'.$tdalign.';">&nbsp;'.$mr['user_firstname'].'</td>'.K_NEWLINE;
-
-		echo '<td'.$passmsg.' class="numeric">'.F_formatFloat($mr['total_score']).'&nbsp;'.F_formatPercentage($usrtestdata['score'] / $usrtestdata['max_score']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['right'].'&nbsp;'.F_formatPercentage($usrtestdata['right'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['wrong'].'&nbsp;'.F_formatPercentage($usrtestdata['wrong'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['unanswered'].'&nbsp;'.F_formatPercentage($usrtestdata['unanswered'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['undisplayed'].'&nbsp;'.F_formatPercentage($usrtestdata['undisplayed'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		echo '<td class="numeric">'.$usrtestdata['unrated'].'&nbsp;'.F_formatPercentage($usrtestdata['unrated'] / $usrtestdata['all']).'</td>'.K_NEWLINE;
-		if ($mr['testuser_status'] == 4) {
-			echo '<td style="background-color:#FFBBBB;">'.$l['w_locked'];
-		} else {
-			echo '<td style="background-color:#BBFFBB;">'.$l['w_unlocked'];
-		}
-		// remaining user time in minutes
-		$remaining_time = round(((time() - strtotime($usrtestdata['time'])) - $test_duration_time) / K_SECONDS_IN_MINUTE);
-		if ($remaining_time < 0) {
-			echo ' ('.$remaining_time.')';
-		}
-		echo '</td>'.K_NEWLINE;
-		if (!empty($usrtestdata['comment'])) {
-			echo '<td title="'.substr(F_compact_string(htmlspecialchars($usrtestdata['comment'], ENT_NOQUOTES, $l['a_meta_charset'])), 0, 255).'">'.$l['w_yes'].'</td>'.K_NEWLINE;
-		} else {
-			echo '<td>&nbsp;</td>'.K_NEWLINE;
-		}
-		echo '</tr>'.K_NEWLINE;
-
-		// collects data for descriptive statistics
-		$statsdata['score'][] = $mr['total_score'];
-		$statsdata['right'][] = $usrtestdata['right'];
-		$statsdata['wrong'][] = $usrtestdata['wrong'];
-		$statsdata['unanswered'][] = $usrtestdata['unanswered'];
-		$statsdata['undisplayed'][] = $usrtestdata['undisplayed'];
-		$statsdata['unrated'][] = $usrtestdata['unrated'];
+		echo '>'.$countitem.'. '.htmlspecialchars($m['user_lastname'].' '.$m['user_firstname'].' - '.$m['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+		$countitem++;
 	}
 } else {
+	echo '</select></span></div>'.K_NEWLINE;
 	F_display_db_error();
 }
+echo '</select>'.K_NEWLINE;
 
-echo '<tr>';
-echo '<td colspan="7" style="text-align:'.$tdalignr.';">'.$l['w_passed'].'</td>';
-$passed_perc = 0;
-if ($itemcount > 0) {
-	$passed_perc = ($passed / $itemcount);
+// link for user selection popup
+$jsaction = 'selectWindow=window.open(\'tce_select_users_popup.php?cid=user_id\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="display_mode">'.$l['w_mode'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="display_mode" id="display_mode" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()" title="'.$l['w_mode'].'">'.K_NEWLINE;
+foreach($detail_modes as $key => $dmode) {
+	echo '<option value="'.$key.'"';
+	if ($key == $display_mode) {
+		echo ' selected="selected"';
+	}
+	echo '>'.htmlspecialchars($dmode, ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 }
-echo '<td class="numeric"';
-if ($passed_perc > 0.5) {
-	echo  ' style="background-color:#BBFFBB;"';
-} else {
-	echo  ' style="background-color:#FFBBBB;"';
-}
-echo '><strong>'.$passed.'&nbsp;'.F_formatPercentage($passed_perc).'</strong></td>'.K_NEWLINE;
-echo '<td colspan="7">&nbsp;</td>';
-echo '</tr>';
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-echo '</table>'.K_NEWLINE;
+echo getFormNoscriptSelect('display_mode');
 
-if ($itemcount > 0) {
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<input type="submit" name="selectcategory" id="selectcategory" value="'.$l['w_select'].'" />'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
 
-	// check/uncheck all options
-	echo '<span dir="ltr">';
-	echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_resultallusers\').submit()" />';
-	echo '<label for="checkall1">'.$l['w_check_all'].'</label> ';
-	echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_resultallusers\').submit()" />';
-	echo '<label for="checkall0">'.$l['w_uncheck_all'].'</label>';
-	echo '</span>'.K_NEWLINE;
-	echo '<br /><strong style="margin:5px">'.$l['m_with_selected'].'</strong><br />'.K_NEWLINE;
-	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
-	F_submit_button('lock', $l['w_lock'], $l['w_lock']);
-	F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
-	F_submit_button('extendtime', '+'.K_EXTEND_TIME_MINUTES.' min', $l['h_add_five_minutes']);
+echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
-	echo '<br /><br />'.K_NEWLINE;
+// ---------------------------------------------------------------------
+$itemcount = 0;
+if (isset($_REQUEST['sel'])) {
 
-	// calculate statistics
-	$stats = F_getArrayStatistics($statsdata);
-	$excludestat = array('sum', 'variance');
-	$calcpercent = array('mean', 'median', 'mode', 'minimum', 'maximum', 'range', 'standard_deviation');
-
-	echo '<table class="userselect">'.K_NEWLINE;
-	echo '<tr><td colspan="13" style="background-color:#DDDDDD;"><strong>'.$l['w_statistics'].'</strong></td></tr>'.K_NEWLINE;
-
-	// print statistics (one line for each statistic data).
-	if (($usrtestdata['score_threshold'] > 0) AND ($stats['number']['score'] > 0)) {
-		echo '<tr><td style="text-align:'.$tdalignr.';">'.$l['w_passed'].'</td><td class="numeric">'.$passed.' '.F_formatPercentage($passed / $stats['number']['score']).'</td><td colspan="5">&nbsp;</td></tr>'.K_NEWLINE;
+	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field);
+	if (isset($data['num_records'])) {
+		$itemcount = $data['num_records'];
 	}
 
-	echo '<tr>'.K_NEWLINE;
-	echo '<th>&nbsp;</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_score'].'">'.$l['w_score'].'</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
-	echo '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
-	echo '</tr>'.K_NEWLINE;
+	echo '<div class="rowl">'.K_NEWLINE;
 
-	foreach ($stats as $row => $columns) {
-		if (!in_array($row, $excludestat)) {
-			echo '<tr>';
-			echo '<td style="text-align:'.$tdalignr.';">'.$l['w_'.$row].'</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['score']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['score'] / $usrtestdata['max_score']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['right']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['right'] / $usrtestdata['all']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['wrong']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['wrong'] / $usrtestdata['all']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['unanswered']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['unanswered'] / $usrtestdata['all']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['undisplayed']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['undisplayed'] / $usrtestdata['all']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '<td class="numeric">'.F_formatFloat($columns['unrated']);
-			if (in_array($row, $calcpercent)) {
-				echo ' '.F_formatPercentage($columns['unrated'] / $usrtestdata['all']);
-			}
-			echo '</td>'.K_NEWLINE;
-			echo '</tr>';
+	echo F_printTestResultStat($data, $nextorderdir, $order_field, $filter);
+
+	if (!empty($data['testuser'])) {
+		// check/uncheck all options
+		echo '<span dir="ltr">';
+		echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_resultallusers\').submit()" />';
+		echo '<label for="checkall1">'.$l['w_check_all'].'</label> ';
+		echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_resultallusers\').submit()" />';
+		echo '<label for="checkall0">'.$l['w_uncheck_all'].'</label>';
+		echo '</span>'.K_NEWLINE;
+		echo '<br /><strong style="margin:5px">'.$l['m_with_selected'].'</strong><br />'.K_NEWLINE;
+		F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+		F_submit_button('lock', $l['w_lock'], $l['w_lock']);
+		F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
+		F_submit_button('extendtime', '+'.K_EXTEND_TIME_MINUTES.' min', $l['h_add_five_minutes']);
+		echo '<br /><br />'.K_NEWLINE;
+	}
+
+	echo '</div>'.K_NEWLINE;
+
+	// display svg graph
+	if (isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $match) > 1)) {
+		$w = 800;
+		$h = 300;
+		echo '<div class="row">'.K_NEWLINE;
+		echo '<hr />'.K_NEWLINE;
+		// legend
+		echo '<div style="font-size:90%;"><br /><span style="background-color:#ff0000;color:#ffffff;">&nbsp;'.$l['w_score'].'&nbsp;</span> <span style="background-color:#0000ff;color:#ffffff;">&nbsp;'.$l['w_answers_right'].'&nbsp;</span> / <span style="background-color:#dddddd;color:#000000;">&nbsp;'.$l['w_tests'].'&nbsp;</span></div>';
+		echo '<img src="../../shared/code/tce_svg_graph.php?w='.$w.'&amp;h='.$h.'&amp;p='.substr($data['svgpoints'], 1).'" width="'.$w.'" height="'.$h.'" alt="'.$l['w_result_graph'].'" />'.K_NEWLINE;
+		echo '</div>'.K_NEWLINE;
+	}
+
+	// display statistics for modules, subjects, questions and answers
+	echo '<div class="rowl">'.K_NEWLINE;
+	echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode);
+	echo '<br />'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+ 
+	if ($itemcount > 0) {
+		echo '<div class="row">'.K_NEWLINE;
+		// show buttons by case
+		echo '<a href="tce_xml_results.php?menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
+		echo '<a href="tce_tsv_result_allusers.php?'.$filter.'&amp;order_field='.urlencode($order_field).'&amp;orderdir='.$orderdir.'" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV</a> ';
+		echo '<a href="tce_pdf_results.php?mode=1'.$filter.'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+		echo '<a href="tce_pdf_results.php?mode=4'.$filter.'" class="xmlbutton" title="'.$l['h_pdf_all'].'">'.$l['w_pdf_all'].'</a> ';
+		if (K_DISPLAY_PDFTEXT_BUTTON) {
+			echo '<a href="tce_pdf_results.php?mode=5'.$filter.'" class="xmlbutton" title="'.$l['h_pdf_all'].' - TEXT">'.$l['w_pdf'].' TEXT</a> ';
+		}
+		echo '<a href="tce_email_results.php?mode=1&amp;menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$l['h_email_all_results'].'">'.$l['w_email_all_results'].'</a> ';
+		echo '<a href="tce_email_results.php?mode=0&amp;menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$l['h_email_all_results'].' + PDF">'.$l['w_email_all_results'].' + PDF</a> ';
+		$custom_export = K_ENABLE_CUSTOM_EXPORT;
+		if (!empty($custom_export)) {
+			echo '<a href="tce_export_custom.php?menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$custom_export.'">'.$custom_export.'</a> ';
 		}
 	}
-	echo '</table>'.K_NEWLINE;
 
-	echo '<br />'.K_NEWLINE;
 }
 
-echo '</div>'.K_NEWLINE;
-echo '<div class="row">'.K_NEWLINE;
-// show buttons by case
-if (isset($test_id) AND ($test_id > 0)) {
-	echo '<a href="tce_csv_result_allusers.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;order_field='.urlencode($order_field).'&amp;orderdir='.$orderdir.'" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a> ';
-	echo '<a href="'.pdfLink(1, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
-	echo '<a href="'.pdfLink(4, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf_all'].'">'.$l['w_pdf_all'].'</a> ';
-	if (K_DISPLAY_PDFTEXT_BUTTON) {
-		echo '<a href="'.pdfLink(5, $test_id, $group_id, '', $order_field, $orderdir).'" class="xmlbutton" title="'.$l['h_pdf_all'].' - TEXT">'.$l['w_pdf'].' TEXT</a> ';
-	}
-	echo '<a href="tce_xml_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
-	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;mode=1&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].'">'.$l['w_email_all_results'].'</a> ';
-	echo '<a href="tce_email_results.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;userid=0&amp;mode=0&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$l['h_email_all_results'].' + PDF">'.$l['w_email_all_results'].' + PDF</a> ';
-	$custom_export = K_ENABLE_CUSTOM_EXPORT;
-	if (!empty($custom_export)) {
-		echo '<a href="tce_export_custom.php?testid='.$test_id.'&amp;groupid='.$group_id.'&amp;menu_mode=startlongprocess" class="xmlbutton" title="'.$custom_export.'">'.$custom_export.'</a> ';
-	}
-}
-
+echo '<input type="hidden" name="sel" id="sel" value="1" />'.K_NEWLINE;
 echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
 echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
 // comma separated list of required fields

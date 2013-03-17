@@ -2,10 +2,9 @@
 //============================================================+
 // File name   : tce_xml_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2011-05-06
+// Last Update : 2012-12-31
 //
-// Description : Functions to export questions using XML
-//               format.
+// Description : Functions to export questions using XML format.
 //
 // Author: Nicola Asuni
 //
@@ -19,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -111,7 +110,7 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_authorization.php');
-	require_once('../code/tce_functions_auth_sql.php');
+	require_once('../../shared/code/tce_functions_auth_sql.php');
 	$module_id = intval($module_id);
 	$subject_id = intval($subject_id);
 	$expmode = intval($expmode);
@@ -140,7 +139,7 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 			$xml .= K_TAB.K_TAB.'<module>'.K_NEWLINE;
 
 			$xml .= K_TAB.K_TAB.K_TAB.'<name>';
-			$xml .=  F_text_to_xml($mm['module_name']);
+			$xml .= F_text_to_xml($mm['module_name']);
 			$xml .= '</name>'.K_NEWLINE;
 
 			$xml .= K_TAB.K_TAB.K_TAB.'<enabled>';
@@ -170,10 +169,10 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 					$xml .= '</enabled>'.K_NEWLINE;
 
 					// ---- questions
-					$sql = "SELECT *
-						FROM ".K_TABLE_QUESTIONS."
-						WHERE question_subject_id=".$ms['subject_id']."
-						ORDER BY question_enabled DESC, question_position, question_description";
+					$sql = 'SELECT *
+						FROM '.K_TABLE_QUESTIONS.'
+						WHERE question_subject_id='.$ms['subject_id'].'
+						ORDER BY question_enabled DESC, question_position, question_description';
 					if($r = F_db_query($sql, $db)) {
 						while($m = F_db_fetch_array($r)) {
 
@@ -212,11 +211,11 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 							$xml .= '</auto_next>'.K_NEWLINE;
 
 							$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<description>';
-							$xml .=  F_text_to_xml($m['question_description']);
+							$xml .= F_text_to_xml($m['question_description']);
 							$xml .= '</description>'.K_NEWLINE;
 
 							$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<explanation>';
-							$xml .=  F_text_to_xml($m['question_explanation']);
+							$xml .= F_text_to_xml($m['question_explanation']);
 							$xml .= '</explanation>'.K_NEWLINE;
 
 							// display alternative answers
@@ -246,11 +245,11 @@ function F_xml_export_questions($module_id, $subject_id, $expmode) {
 									$xml .= '</keyboard_key>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<description>';
-									$xml .=  F_text_to_xml($ma['answer_description']);
+									$xml .= F_text_to_xml($ma['answer_description']);
 									$xml .= '</description>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'<explanation>';
-									$xml .=  F_text_to_xml($ma['answer_explanation']);
+									$xml .= F_text_to_xml($ma['answer_explanation']);
 									$xml .= '</explanation>'.K_NEWLINE;
 
 									$xml .= K_TAB.K_TAB.K_TAB.K_TAB.K_TAB.'</answer>'.K_NEWLINE;

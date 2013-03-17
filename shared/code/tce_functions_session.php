@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2012-06-07
+// Last Update : 2012-12-20
 //
 // Description : User-level session storage functions.
 //
@@ -235,9 +235,10 @@ function getNewSessionID() {
 /**
  * Hash password for Database storing.
  * @param $password (string) Password to hash.
+ * @param $force (boolean) If true always use strong encryption.
  * @return string password hash
  */
-function getPasswordHash($password) {
+function getPasswordHash($password, $force=false) {
 	if (defined('K_STRONG_PASSWORD_ENCRYPTION') AND K_STRONG_PASSWORD_ENCRYPTION) {
 		$pswlen = strlen($password);
 		$salt = (2 * $pswlen);

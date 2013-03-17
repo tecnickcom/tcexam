@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2011-05-24
+// Last Update : 2012-12-31
 //
 // Description : Functions to export users' accounts using
 //               XML format.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -165,6 +165,10 @@ function F_xml_export_users() {
 			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<verifycode>';
 			$xml .= $ma['user_verifycode'];
 			$xml .= '</verifycode>'.K_NEWLINE;
+
+			$xml .= K_TAB.K_TAB.K_TAB.K_TAB.'<otpkey>';
+			$xml .= $ma['user_otpkey'];
+			$xml .= '</otpkey>'.K_NEWLINE;
 
 			// add user's groups
 			$sqlg = 'SELECT *

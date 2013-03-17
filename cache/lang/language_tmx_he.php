@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2012-10-29 19:37:00
+// DATE: 2013-02-21 12:34:11
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='rtl';
 $tmx['a_meta_language']='he';
-$tmx['d_admin_index']='זהו איזור הניהול של <a href="tce_page_info.php" title="אודות TCExam">TCExam</a>, תכנה ידידותית למשתמש, ניטרלית לשפה ולפלטפורמה ליצירת, ניהול וביצוע מבחנים מקוונים.<br /><br /> בתפריט מימין ניתן לגשת לאיזורים השונים של המערכת: <ul><li><strong>משתמשים</strong><br />איזור זה מכיל טפסים עבור <a href="tce_edit_user.php" title="ניהול משתמשים">הוספה וניהול של</a> משתמשים, <a href="tce_select_users.php" title="בחירת משתמשים"> בחירתם</a> והצגת אלו הנמצאים כרגע במצב <a href="tce_show_online_users.php" title="משתמשים מקוונים">מקוון</a>.<br />רק משתמשים רשומים בעלי שם וססמה זכאים לגשת לשטח הציבורי של המערכת ולבצע את המבחנים.<br />ניתן להגדיר רמות גישה שונות הן למשתמשים והן למרכיבים שונים במערכת (דפים, טפסים, אזורים).<br />מנגנון אבטחה נוסף למניעת גישה לא מורשית מבוסס על בדיקת כתובות הרשת.</li><li><strong>יחידות לימוד</strong><br />אזור זה מכיל להזנה ועדכון של <a href="tce_edit_module.php" title="ניהול יחידות לימוד">יחידות לימוד</a>, <a href="tce_edit_subject.php" title="ניהול נושאים">נושאים</a>, כמו כן <a href="tce_edit_question.php" title="ניהול שאלות">שאלות</a> וגם <a href="tce_edit_answer.php" title="ניהול רב-תשובות">תשובות</a>.<br />ניתן לבחור מספר בלתי מוגבל של נושאים לצורך הרכבת מבחן אחד, עבור כל נושא ניתן להגדיר מספר בלתי מוגבל של שאלות ותשובות אפשריות. המערכת תבחר אקראית שאלות ותשובות מתוך המבחר הזמין.<br />TCExam תומכת הן בשאלות מרובות ברירה והן בשאלות פתוחות. השאלות הפתוחות יוערכו בעזרת טופס הערכה מיוחד <a href="tce_edit_rating.php" title="הערכת תשובות"></a>, ואילו השאלות מרובות הברירה יוערכו אוטומטית.<br />התיאור של המבחנים, הנושאים, השאלות והתשובות  תומכים בתוסף קוד (tcecode) אשר, באמצעות תבנית מיוחדת, מאפשר שימוש בתמונות ועיצוב מלל.</li><li><strong>מבחן</strong><br />איזור זה כולל טופס להזנת, יצירה ועדכון <a href="tce_edit_test.php" title="ניהול מבחנים">המבחנים</a>השונים, טופס עבור <a href="tce_edit_rating.php" title="הערכת תשובות">הערכת</a> התשובות לשאלות הפתוחות וטפסים להצגת ויצירת גרסות PDF של <a href="tce_show_result_allusers.php" title="סיכום תוצאות המבחן">התוצאות</a>, תצוגה מפורטת של <a href="tce_show_result_user.php" title="תוצאות המבחן">תוצאות הנבחנים</a> וכמו כן <a href="tce_show_result_questions.php" title="סטטיסטיקת השאלות">סטטיסטיקה</a> של השאלות והתשובות שהיו בשימוש.<br />המערכת בוחרת באופן אקראי את השאלות השונות והתשובות המתייחסות אליהן כך שנבחנים שונים יקבלו מבחנים שונים.<br />בנוסף, ניתן ליצור מספר שרירותי של מבחנים בפורמט PDF כך שניתן להדפיסם עבור בחינות בכתב.</li></ul>';
+$tmx['d_admin_index']='זהו איזור הניהול של <a href="tce_page_info.php" title="אודות TCExam">TCExam</a>, תכנה ידידותית למשתמש, ניטרלית לשפה ולפלטפורמה ליצירת, ניהול וביצוע מבחנים מקוונים.<br /><br /> בתפריט מימין ניתן לגשת לאיזורים השונים של המערכת: <ul><li><strong>משתמשים</strong><br />איזור זה מכיל טפסים עבור <a href="tce_edit_user.php" title="ניהול משתמשים">הוספה וניהול של</a> משתמשים, <a href="tce_select_users.php" title="בחירת משתמשים"> בחירתם</a> והצגת אלו הנמצאים כרגע במצב <a href="tce_show_online_users.php" title="משתמשים מקוונים">מקוון</a>.<br />רק משתמשים רשומים בעלי שם וססמה זכאים לגשת לשטח הציבורי של המערכת ולבצע את המבחנים.<br />ניתן להגדיר רמות גישה שונות הן למשתמשים והן למרכיבים שונים במערכת (דפים, טפסים, אזורים).<br />מנגנון אבטחה נוסף למניעת גישה לא מורשית מבוסס על בדיקת כתובות הרשת.</li><li><strong>יחידות לימוד</strong><br />אזור זה מכיל להזנה ועדכון של <a href="tce_edit_module.php" title="ניהול יחידות לימוד">יחידות לימוד</a>, <a href="tce_edit_subject.php" title="ניהול נושאים">נושאים</a>, כמו כן <a href="tce_edit_question.php" title="ניהול שאלות">שאלות</a> וגם <a href="tce_edit_answer.php" title="ניהול רב-תשובות">תשובות</a>.<br />ניתן לבחור מספר בלתי מוגבל של נושאים לצורך הרכבת מבחן אחד, עבור כל נושא ניתן להגדיר מספר בלתי מוגבל של שאלות ותשובות אפשריות. המערכת תבחר אקראית שאלות ותשובות מתוך המבחר הזמין.<br />TCExam תומכת הן בשאלות מרובות ברירה והן בשאלות פתוחות. השאלות הפתוחות יוערכו בעזרת טופס הערכה מיוחד <a href="tce_edit_rating.php" title="הערכת תשובות"></a>, ואילו השאלות מרובות הברירה יוערכו אוטומטית.<br />התיאור של המבחנים, הנושאים, השאלות והתשובות  תומכים בתוסף קוד (tcecode) אשר, באמצעות תבנית מיוחדת, מאפשר שימוש בתמונות ועיצוב מלל.</li><li><strong>מבחן</strong><br />איזור זה כולל טופס להזנת, יצירה ועדכון <a href="tce_edit_test.php" title="ניהול מבחנים">המבחנים</a>השונים, טופס עבור <a href="tce_edit_rating.php" title="הערכת תשובות">הערכת</a> התשובות לשאלות הפתוחות וטפסים להצגת ויצירת גרסות PDF של <a href="tce_show_result_allusers.php" title="סיכום תוצאות המבחן">התוצאות</a>, תצוגה מפורטת של <a href="tce_show_result_user.php" title="תוצאות המבחן">תוצאות הנבחנים</a> וכמו כן <a href="tce_show_result_allusers.php" title="סטטיסטיקת השאלות">סטטיסטיקה</a> של השאלות והתשובות שהיו בשימוש.<br />המערכת בוחרת באופן אקראי את השאלות השונות והתשובות המתייחסות אליהן כך שנבחנים שונים יקבלו מבחנים שונים.<br />בנוסף, ניתן ליצור מספר שרירותי של מבחנים בפורמט PDF כך שניתן להדפיסם עבור בחינות בכתב.</li></ul>';
 $tmx['d_logout_desc']='ליציאה מהמערכת נא ללחוץ על הכפתור';
 $tmx['d_tcexam_desc']='TCExam הינה תכנה לניהול וביצוע מבחנים מקוונים';
 $tmx['h_add']='הוספת רשומה לבסיס הנתונים';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='מאפשר או אוסר רשומה הנוכחית';
 $tmx['h_execute']='להריץ את המבחן';
 $tmx['h_file_type']='סוג קובץ';
 $tmx['h_file_type_xml']='‏(XML) שפת סימונים ניתנת להרחבה';
-$tmx['h_file_type_csv']='קובץ טקסט מופרד בטאבים';
+$tmx['h_file_type_tsv']='קובץ טקסט מופרד בטאבים';
 $tmx['h_firstname']='שם פרטי של המשתמש (כמו: מיכאל,רון...)';
 $tmx['h_fiscal_code']='מספר ת"ז';
 $tmx['h_global_score']=' אם נבחר, רשום את ניקוד התשובות עם התשובות למטה';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='מציין את מסלול הקובץ המיועד למש
 $tmx['h_user_info']='מציג מידע המתיחס לחיבור המשתמש';
 $tmx['h_usered_email']='name@example.com כתובת דואר של משתמש למשל';
 $tmx['h_view_details']='מציג פרטים';
-$tmx['h_csv_export']='יצוא נתונים בפורמט CSV (קובץ מופרד טאבים)';
+$tmx['h_tsv_export']='יצוא נתונים בפורמט TSV (קובץ מופרד טאבים)';
 $tmx['h_xml_export']='XML יצוא נתונים בפורמט';
 $tmx['hp_edit_answer']='בעזרת טופס זה ניתן לנהל את כל התשובות האפשריות לשאלה הנבחרת. ניתן להוסיף מספר שרירותי של תשובות נכונות ושגויות. במהלך המבחן המערכת תבחר באופן אוטומטי רק תשובה נכונה אחת שתוצג ברשימת התשובות האפשריות. לא ניתן לשנות או למחוק תשובה הנמצאת בשימוש במבחן שבוצע כבר, במקרה כזה ניתן רק לנטרל אותה על ידי שימוש בכפתור [delete]. מקרא: [+] מופעל, [-] מנוטרל. מקרא לשאלות: [S] - שאלות מרובות ברירה, תשובה אחת. [M] - שאלות מרובות ברירה, תשובות מרובות. [T] - תשובה חופשית. [O] - מיון תשובות. מקרא לתשובות: [T] - תשובה נכונה, [F] - תשובה שגויה.';
 $tmx['hp_edit_group']='בטופס זה ניתן לנהל את קבוצות המשתמשים.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='בטופס זה ניתן ליצור, לעדכן או למ�
 $tmx['hp_edit_user']='בטופס זה ניתן לנהל את המשתמשים בעלי זכות הגישה למערכת. עבור כל משתמש ניתן לבחור שם, ססמה ורמת גישה. רמה 0 מציינת משתמש אנונימי (לא רשום למערכת), רמה 1 מציינת משתמש רגיל (למשל תלמיד), רמה 10 מציינת מנהל מערכת בעל זכויות גישה מלאות';
 $tmx['hp_email_result']='שלח לנבחנים תשובות בדואר';
 $tmx['hp_import_xml_questions']='בעזרת טופס זה ניתן לייבא מקובץ XML שאלות עבור הנושא הנבחר.';
-$tmx['hp_import_xml_users']='בעזרת טופס זה ניתן לייבא משתמשים וקבוצות מקובץ XML או CSV (מידע מופרד בטאבים). מבנה הקבצים זהה למבנה המתקבל על ידי יצוא מידע מטופס בחירת משתמשים.';
+$tmx['hp_import_xml_users']='בעזרת טופס זה ניתן לייבא משתמשים וקבוצות מקובץ XML או TSV (מידע מופרד בטאבים). מבנה הקבצים זהה למבנה המתקבל על ידי יצוא מידע מטופס בחירת משתמשים.';
 $tmx['hp_login']='לצורך גישה לחלקים השונים של התכנה יש להכנס למערכת בעזרת שם וססמה שסופקו על ידי מנהל המערכת';
 $tmx['hp_online_users']='טופס זה מציג את המשתמשים המחוברים כעת';
 $tmx['hp_public_index']='זהו הדף הראשי של תכנת TCExam. מדף זה ניתן להתחיל או להמשיך במבחנים שלך';
@@ -582,5 +582,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

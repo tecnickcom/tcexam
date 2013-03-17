@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2012-07-31
+// Last Update : 2013-01-20
 //
 // Description : Functions to display and select registered user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -267,7 +267,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '<div class="row">'.K_NEWLINE;
 			echo '<br />';
 			echo '<a href="tce_xml_users.php" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
-			echo '<a href="tce_csv_users.php" class="xmlbutton" title="'.$l['h_csv_export'].'">CSV</a>';
+			echo '<a href="tce_tsv_users.php" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV</a>';
 			echo '</div>'.K_NEWLINE;
 
 			echo '<div class="pagehelp">'.$l['hp_select_users'].'</div>'.K_NEWLINE;
@@ -300,7 +300,7 @@ function F_show_select_user_popup($order_field, $orderdir, $firstrow, $rowsperpa
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_page.php');
 	require_once('../../shared/code/tce_functions_form.php');
-	$filter = '&amp;cid='.$cid;
+	$filter = 'cid='.$cid;
 	if ($l['a_meta_dir'] == 'rtl') {
 		$txtalign = 'right';
 		$numalign = 'left';

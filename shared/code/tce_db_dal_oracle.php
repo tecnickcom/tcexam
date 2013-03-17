@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_oracle.php
 // Begin       : 2009-10-09
-// Last Update : 2011-05-04
+// Last Update : 2012-12-12
 //
 // Description : Oracle driver for TCExam Database
 //               Abstraction Layer (DAL).
@@ -21,7 +21,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -125,6 +125,21 @@ function F_db_query($query, $link_identifier) {
  */
 function F_db_fetch_array($result) {
 	$arr = oci_fetch_array($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
+	if ($arr !== false) {
+		$arr = array_change_key_case($arr, CASE_LOWER);
+		$arr = array_map('stripslashes', $arr);
+	}
+	return $arr;
+}
+
+/**
+ * Fetch a result row as an associative array.
+ * Note: This function sets NULL fields to PHP NULL value.
+ * @param $result (resource) result resource to the query result.
+ * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
+ */
+function F_db_fetch_assoc($result) {
+	$arr = oci_fetch_assoc($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
 	if ($arr !== false) {
 		$arr = array_change_key_case($arr, CASE_LOWER);
 		$arr = array_map('stripslashes', $arr);

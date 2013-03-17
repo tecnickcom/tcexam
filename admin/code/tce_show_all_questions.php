@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2011-08-22
+// Last Update : 2012-12-31
 //
 // Description : Display all questions grouped by topic.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -59,7 +59,7 @@ $thispage_title = $l['t_questions_list'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_questions.php');
 
 // --- Initialize variables
@@ -310,13 +310,19 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 	$pdflink .= '&amp;hide_answers='.intval($hide_answers); // hide answers option
 	echo '<a href="'.$pdflink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_pdf'].'">PDF</a>';
 	echo '<a href="'.$pdflink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_pdf'].'">PDF '.$l['w_module'].'</a>';
-	echo '<a href="'.$pdflink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_pdf'].'">PDF '.$l['w_all'].'</a> ';
+	echo '<a href="'.$pdflink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_pdf'].'">PDF '.$l['w_all'].'</a>';
 	$xmllink = 'tce_xml_questions.php';
 	$xmllink .= '?module_id='.$subject_module_id;
 	$xmllink .= '&amp;subject_id='.$subject_id;
-	echo '<a href="'.$xmllink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a>';
+	echo ' <a href="'.$xmllink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a>';
 	echo '<a href="'.$xmllink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_module'].'</a>';
 	echo '<a href="'.$xmllink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_all'].'</a>';
+	$tsvlink = 'tce_tsv_questions.php';
+	$tsvlink .= '?module_id='.$subject_module_id;
+	$tsvlink .= '&amp;subject_id='.$subject_id;
+	echo ' <a href="'.$tsvlink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV</a>';
+	echo '<a href="'.$tsvlink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV '.$l['w_module'].'</a>';
+	echo '<a href="'.$tsvlink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV '.$l['w_all'].'</a>';
 }
 
 echo '&nbsp;'.K_NEWLINE;

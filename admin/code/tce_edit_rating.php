@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2011-07-12
+// Last Update : 2012-12-03
 //
 // Description : Editor to manually rate free text answers.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -59,7 +59,7 @@ $thispage_title = $l['t_rating_editor'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 
 if (isset($selectcategory)) {
 	$changecategory = 1;
@@ -174,6 +174,7 @@ if ((isset($changecategory) AND ($changecategory > 0)) OR (!isset($testlog_id)) 
 			AND testlog_question_id=question_id
 			AND testuser_test_id='.$test_id.'
 			AND testuser_status>0
+			AND testuser_status<5
 			AND question_type=3
 			'.$sqlfilter.'
 		'.$sqlorder.'
@@ -247,6 +248,11 @@ if($r = F_db_query($sql, $db)) {
 	F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
+
+// link for user selection popup
+$jsaction = 'selectWindow=window.open(\'tce_select_tests_popup.php?cid=test_id\', \'selectWindow\', \'dependent, height=600, width=800, menubar=no, resizable=yes, scrollbars=yes, status=no, toolbar=no\');return false;';
+echo '<a href="#" onclick="'.$jsaction.'" class="xmlbutton" title="'.$l['w_select'].'">...</a>';
+
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
@@ -258,7 +264,7 @@ echo '<label for="testlog_id">'.$l['w_answer'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="testlog_id" id="testlog_id" size="0" onchange="document.getElementById(\'form_ratingeditor\').submit()" title="'.$l['h_select_answer'].'">'.K_NEWLINE;
-$sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.' WHERE testlog_testuser_id=testuser_id AND testuser_user_id=user_id AND testlog_question_id=question_id AND testuser_test_id='.intval($test_id).' AND testuser_status>0 AND question_type=3 '.$sqlfilter.' '.$sqlorder.'';
+$sql = 'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_USERS.', '.K_TABLE_QUESTIONS.' WHERE testlog_testuser_id=testuser_id AND testuser_user_id=user_id AND testlog_question_id=question_id AND testuser_test_id='.intval($test_id).' AND testuser_status>0 AND testuser_status<5 AND question_type=3 '.$sqlfilter.' '.$sqlorder.'';
 if($r = F_db_query($sql, $db)) {
 	$countitem = 1;
 	while($m = F_db_fetch_array($r)) {

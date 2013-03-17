@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2010-05-28
+// Last Update : 2013-03-17
 //
 // Description : Configuration file for pdf documents.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -190,6 +190,11 @@ define('K_THAI_TOPCHARS', false);
  */
 define('K_TCPDF_CALLS_IN_HTML', false);
 
+/**
+ * if true adn PHP version is greater than 5, then the Error() method throw new exception instead of terminating the execution.
+ */
+define('K_TCPDF_THROW_EXCEPTION_ERROR', false);
+
 
 // --- DATA FOR DIGITAL SIGNATURE ----------------------------------------------
 
@@ -247,6 +252,11 @@ define('K_DIGSIG_REASON', 'Certification');
  * Information provided by the signer to enable a recipient to contact the signer to verify the signature; for example, a phone number or email address.
  */
 define('K_DIGSIG_CONTACT', 'you@example.com');
+
+/**
+ * Do not change the value of this define.
+ */
+define('K_TCPDF_EXTERNAL_CONFIG', true);
 
 //============================================================+
 // END OF FILE

@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2012-10-29 19:37:03
+// DATE: 2013-02-21 12:34:17
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='it';
-$tmx['d_admin_index']='Questa è l\'area di amministrazione di <a href="tce_page_info.php" title="informazioni su TCExam">TCExam</a>, un software accessibile, indipendente dalla piattaforma e dalla lingua, per la creazione e gestione online di test (esami).<br /><br />Attraverso il menù è possibile accedere alle varie sezioni del sistema:<ul><li><strong>utenti</strong><br />Questa sezione comprende le maschere per <a href="tce_edit_user.php" title="Gestione Utenti">inserire e modificare</a> gli utenti, per <a href="tce_select_users.php" title="Selezione Utenti">selezionarli</a> e per mostrare l\'elenco di quelli che sono attualmente <a href="tce_show_online_users.php" title="Utenti Online">collegati</a>.<br />Solo gli utenti registrati a cui è stata assegnata una user/password potranno accedere all\'area pubblica del sistema ed eseguire i test.<br />È possibile assegnare diversi livelli di accesso sia agli utenti che alle risorse (pagine, maschere, sezioni) del sistema.<br />TCExam contiene un ulteriore sistema di sicurezza per l\'accesso ai test basato sul controllo degli indirizzi IP.</li><li><strong>moduli</strong><br />Questa sezione comprende le maschere per l\'inserimento e la modifica di <a href="tce_edit_module.php" title="Gestione Moduli">moduli</a>, <a href="tce_edit_subject.php" title="Gestione Argomenti">argomenti</a>, delle relative <a href="tce_edit_question.php" title="Gestione Domande">domande</a> e <a href="tce_edit_answer.php" title="Gestione Risposte Multiple">risposte</a>.<br />È possibile inserire un numero illimitato di argomenti che potranno essere arbitrariamente raggruppati per essere oggetto d\'esame in un test specifico. Sono illimitati anche i quesiti che si possono associare ad ogni argomento e le risposte alternative da associare ai quesiti a risposta multipla. Sarà cura del sistema scegliere casualmente le domande e le risposte tra tutte quelle disponibili.<br />TCExam supporta sia domande a risposta multipla che a risposta aperta. Queste ultime andranno valutate attraverso un\'apposita maschera di <a href="tce_edit_rating.php" title="Valutazione risposte">valutazione</a>, mentre le altre verranno valutate automaticamente.<br />Le descrizioni dei test, degli argomenti, dei quesiti e delle risposte, supportano un particolare codice proprietario (tcecode) che, con l\'ausilio di una apposita maschera, consente la formattazione del testo e l\'inserimento di immagini.</li><li><strong>test</strong><br />Questa sezione comprende la maschera per l\'inserimento, la generazione e la modifica dei <a href="tce_edit_test.php" title="Gestione Test">test</a>, la maschera per la <a href="tce_edit_rating.php" title="Valutazione risposte">valutazione</a> delle risposte aperte e le maschere per la visualizzazione o generazione di documenti PDF dei <a href="tce_show_result_allusers.php" title="Riepilogo risultati test">risultati</a>, del dettaglio dei compiti degli <a href="tce_show_result_user.php" title="Risultati test">utenti</a> e le <a href="tce_show_result_questions.php" title="Statistiche sui quesiti">statistiche</a> sui quesiti impiegati nei test.<br />TCExam provvede a selezionare casualmente i quesiti e le risposte in modo tale che per ogni utente venga generato un test unico.<br />È anche possibile generare un numero arbitrario di test in formato PDF affinché possano essere stampati su carta ed impiegati in un esame tradizionale.</li></ul>';
+$tmx['d_admin_index']='Questa è l\'area di amministrazione di <a href="tce_page_info.php" title="informazioni su TCExam">TCExam</a>, un software accessibile, indipendente dalla piattaforma e dalla lingua, per la creazione e gestione online di test (esami).<br /><br />Attraverso il menù è possibile accedere alle varie sezioni del sistema:<ul><li><strong>utenti</strong><br />Questa sezione comprende le maschere per <a href="tce_edit_user.php" title="Gestione Utenti">inserire e modificare</a> gli utenti, per <a href="tce_select_users.php" title="Selezione Utenti">selezionarli</a> e per mostrare l\'elenco di quelli che sono attualmente <a href="tce_show_online_users.php" title="Utenti Online">collegati</a>.<br />Solo gli utenti registrati a cui è stata assegnata una user/password potranno accedere all\'area pubblica del sistema ed eseguire i test.<br />È possibile assegnare diversi livelli di accesso sia agli utenti che alle risorse (pagine, maschere, sezioni) del sistema.<br />TCExam contiene un ulteriore sistema di sicurezza per l\'accesso ai test basato sul controllo degli indirizzi IP.</li><li><strong>moduli</strong><br />Questa sezione comprende le maschere per l\'inserimento e la modifica di <a href="tce_edit_module.php" title="Gestione Moduli">moduli</a>, <a href="tce_edit_subject.php" title="Gestione Argomenti">argomenti</a>, delle relative <a href="tce_edit_question.php" title="Gestione Domande">domande</a> e <a href="tce_edit_answer.php" title="Gestione Risposte Multiple">risposte</a>.<br />È possibile inserire un numero illimitato di argomenti che potranno essere arbitrariamente raggruppati per essere oggetto d\'esame in un test specifico. Sono illimitati anche i quesiti che si possono associare ad ogni argomento e le risposte alternative da associare ai quesiti a risposta multipla. Sarà cura del sistema scegliere casualmente le domande e le risposte tra tutte quelle disponibili.<br />TCExam supporta sia domande a risposta multipla che a risposta aperta. Queste ultime andranno valutate attraverso un\'apposita maschera di <a href="tce_edit_rating.php" title="Valutazione risposte">valutazione</a>, mentre le altre verranno valutate automaticamente.<br />Le descrizioni dei test, degli argomenti, dei quesiti e delle risposte, supportano un particolare codice proprietario (tcecode) che, con l\'ausilio di una apposita maschera, consente la formattazione del testo e l\'inserimento di immagini.</li><li><strong>test</strong><br />Questa sezione comprende la maschera per l\'inserimento, la generazione e la modifica dei <a href="tce_edit_test.php" title="Gestione Test">test</a>, la maschera per la <a href="tce_edit_rating.php" title="Valutazione risposte">valutazione</a> delle risposte aperte e le maschere per la visualizzazione o generazione di documenti PDF dei <a href="tce_show_result_allusers.php" title="Riepilogo risultati test">risultati</a>, del dettaglio dei compiti degli <a href="tce_show_result_user.php" title="Risultati test">utenti</a> e le <a href="tce_show_result_allusers.php" title="Statistiche sui quesiti">statistiche</a> sui quesiti impiegati nei test.<br />TCExam provvede a selezionare casualmente i quesiti e le risposte in modo tale che per ogni utente venga generato un test unico.<br />È anche possibile generare un numero arbitrario di test in formato PDF affinché possano essere stampati su carta ed impiegati in un esame tradizionale.</li></ul>';
 $tmx['d_logout_desc']='clicca sul pulsante per uscire dal sistema';
 $tmx['d_tcexam_desc']='TCExam è un software per la gestione e l\'esecuzione e gestione di esami online.';
 $tmx['h_add']='aggiunge il record corrente al database';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='abilita/disabilita il record corrente';
 $tmx['h_execute']='esegue il test';
 $tmx['h_file_type']='tipo di file';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='File di testo delimitato da Tabulazione';
+$tmx['h_file_type_tsv']='File di testo delimitato da Tabulazione';
 $tmx['h_firstname']='primo nome dell\'utente (es: Nicola, Maria, Francesco, ...)';
 $tmx['h_fiscal_code']='codice fiscale dell\'utente';
 $tmx['h_global_score']='se selezionata, sovrascrive i punti delle risposte con i punti globali sottostanti';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='specifica il percorso del file da inviare al server';
 $tmx['h_user_info']='mostra le informazioni relative all\'utente connesso';
 $tmx['h_usered_email']='indirizzo email dell\'utente (es: nome@example.com)';
 $tmx['h_view_details']='mostra dettagli';
-$tmx['h_csv_export']='esporta i dati in CSV (testo delimitato da tabulazione)';
+$tmx['h_tsv_export']='esporta i dati in TSV (testo delimitato da tabulazione)';
 $tmx['h_xml_export']='esporta i dati in XML';
 $tmx['hp_edit_answer']='Attraverso questa maschera è possibile gestire le risposte possibili per la domanda selezionata. Ad ogni domanda è possibile associare un numero arbitrario di risposte esatte e sbagliate, durante i test il sistema provvederà automaticamente a scegliere un\'unica risposta esatta da inserire nell\'insieme di possibili risposte. Non è possibile modificare o eliminare una risposta se questa è presente tra i test eseguiti, in tal caso potrà essere solo disabilitata utilizzando sempre il pulsante [elimina]. Legenda: [+] Abilitato; [-] Disabilitato. Legenda per domande: [S] MCSA - domanda a scelta multipla e risposta singola; [M] MCMA - domanda a scelta multipla e risposta multipla; [T] TEXT - Domanda a risposta libera; [O] ORDER -Domanda ad ordinamento. Legenda per risposte: [T] risposta esatta; [F] risposta errata.';
 $tmx['hp_edit_group']='Attraverso questa maschera è possibile gestire i gruppi di utenti.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Attraverso questa maschera è possibile inserire, modifica
 $tmx['hp_edit_user']='Attraverso questa maschera è possibile gestire gli utenti che hanno accesso a questo sistema. Per ogni utente è possibile scegliere un nome, una password ed un livello. Il livello 0 indica un utente anonimo (non registrato), il livello 1 indica un semplice utente (es: studente che deve sostenere un test), il livello 10 indica un amministratore che ha accesso a tutte le funzioni del sistema.';
 $tmx['hp_email_result']='Invia i risultati agli utenti via email';
 $tmx['hp_import_xml_questions']='Attraverso questa maschera è possibile importare delle domande da un file XML.';
-$tmx['hp_import_xml_users']='Attraverso questa maschera è possibile importare utenti e gruppi da un file XML o CSV (Testo delimitato da tabulazione). I formati dei file sono gli stessi che si ottengono esportando i dati dalla maschera di Selezione Utenti.';
+$tmx['hp_import_xml_users']='Attraverso questa maschera è possibile importare utenti e gruppi da un file XML o TSV (Testo delimitato da tabulazione). I formati dei file sono gli stessi che si ottengono esportando i dati dalla maschera di Selezione Utenti.';
 $tmx['hp_login']='Per poter accedere alle varie sezioni di TCExam è necessario autenticarsi inserendo il nome e la password che vi sono stati assegnati dall\'amministratore di sistema.';
 $tmx['hp_online_users']='Questa maschera mostra gli utenti attualmente collegati (o quelli a cui non è ancora scaduta la sessione)';
 $tmx['hp_public_index']='Questa è la pagina principale di TCExam. Da questa pagina potete iniziare o continuare l\'esecuzione di uno dei test per i quali siete abilitati.';
@@ -583,5 +583,45 @@ $tmx['h_omr_dir']='Carterlla di importazione OMR';
 $tmx['w_omr_dir']='Carterlla OMR';
 $tmx['t_omr_bulk_importer']='Importazione OMR';
 $tmx['hp_omr_bulk_importer']='Attraverso questa maschera è possibile importare in massa le risposte al test dalle immagini scannerizzate dei fogli di risposta. I file contenenti le immagini vanno posizionate all\'interno di una sottocartella della directory cache/OMR. Le immagini contenenti i codici QR devono essere nominate "OMR_[USRREG]_QR.png" dove [USRREG] è il codice di registrazione dell\'utente. Le immagini contenenti le risposte devono essere nominate "OMR_[USRREG]_A[X].png" dove [X] è il numero del foglio di risposte. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell\'utente. I dati importati sovrascriveranno i risultati esistenti. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.';
+$tmx['w_alphabetic']='alfabetico';
+$tmx['w_id']='id';
+$tmx['w_database_id']='ID database';
+$tmx['w_order_by']='ordina per';
+$tmx['w_questions_order_mode']='ordinamento domande';
+$tmx['h_questions_order_mode']='modalità di ordinamento per le domande';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='modilatità di ordinamento delle risposte';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='codice segreto One Time Password';
+$tmx['w_otp_qrcode']='QR-Code OTP';
+$tmx['m_otp_qrcode']='TCExam utilizza un sistema di verifica a due fasi che richiede l\'inserimento di due diversi codici per accedere al sistema. Il primo codice è la password standard di TCExam, il secondo è un codice generato dal tuo smartphone. Questo sistema previene l\'accesso al tuo account da coloro che conoscono solo la password o dispongono unicamente del tuo smartphone. Questo sistema richiede l\'utilizzo dello smartphone ogni qual volta si vuole accedere al proprio account TCExam.<br /><br />Per utilizzare questo sistema è necessario scaricare ed installare sul proprio smartphone l\'applicazione <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a>. Quando l\'applicazione è stata installata potete utilizzare il codice seguente o scansionare il QR-Code:';
+$tmx['w_otpcode']='codice OTP';
+$tmx['h_otpcode']='One Time Password : codice generato utlizzando l\'applicazione del vostro smartphone';
+$tmx['m_login_brute_force']='Stai tentando di accedere troppe volte e troppo velocemente, attendi il seguente numero di secondi prima di ritentare:';
+$tmx['w_test_password']='password per il test';
+$tmx['h_test_password']='password, codice alfanumerico richiesto per eseguire questo test';
+$tmx['hp_test_password']='Per eseguire questo test occorre inserire la password del test';
+$tmx['m_wrong_test_password']='la password del test è sbagliata';
+$tmx['t_test_select']='Selezione Test';
+$tmx['h_select_test']='apre la pagina di selezione del test';
+$tmx['hp_select_tests']='Questa maschera consente di visualizzare e selezionare i test. È possibile ordinare i test secondo vari criteri cliccando sui nomi delle colonne.';
+$tmx['w_limit']='limite';
+$tmx['w_total']='totale';
+$tmx['w_day']='giorno';
+$tmx['w_month']='mese';
+$tmx['w_year']='anno';
+$tmx['w_remaining_tests']='test rimanenti';
+$tmx['h_remaining_tests']='numero di test rimanenti che possono essere eseguiti';
+$tmx['m_reached_test_limit']='il numero massimo di test è stato raggiunto';
+$tmx['w_under_limit']='sotto il limite';
+$tmx['w_over_limit']='oltre il limite';
+$tmx['w_font']='font';
+$tmx['w_font_size']='dimensione font';
+$tmx['w_keyboard']='tastiera';
+$tmx['w_layout']='schema';
+$tmx['w_language']='lingua';
+$tmx['w_max']='max';
+$tmx['w_remaining']='rimanenti';
+$tmx['w_executed']='eseguiti';
 
 // --- EOF ---

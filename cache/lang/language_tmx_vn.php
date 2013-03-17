@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2012-10-29 19:37:14
+// DATE: 2013-02-21 12:34:27
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='vn';
-$tmx['d_admin_index']='Đây là phần quản trị của <a href="tce_page_info.php" title="thông tin về TCExam">TCExam</a>, là một phần mềm thân thiện với người dùng và độc lập với ngôn ngữ để tạo, quản lý và thực hiện các bài kiểm tra trực tuyến.<br /><br />Từ danh mục bên trái bạn có thể truy cập vào các phần khác nhau của hệ thống:<ul><li><strong>Người dùng</strong><br />Phần này chứa các mẫu để <a href="tce_edit_user.php" title="Quản lý">chèn và quản lý</a> người dùng, <a href="tce_select_users.php" title="Lựa chọn người dùng"> để chọn</a> và hiển thị danh sách người dùng đang truy cập <a href="tce_show_online_users.php" title="Người dùng trực tuyến">trực tuyến</a>.<br />Chỉ những cá nhân được quản trị viên của hệ thống cung cấp tên và mật khẩu truy cập mới có quyền truy cập vào phần dùng chung và thực hiện các bài kiểm tra.<br />Chương trình có khả năng xác định các cấp độ truy cập khác nhau cho cả người dùng lẫn các phần và công cụ của hệ thống(ví dụ: các trang, các phần, các mẫu...).<br />TCExam cũng sử dụng hệ thống bảo mật khác để ngăn chặn truy cập không được phép dựa trên việc kiểm tra địa chỉ IP.</li><li><strong>các chủ đề</strong><br />Phần này bao gồm các mẫu chèn và sửa bài kiểm tra <a href="tce_edit_subject.php" title="Quản lý chủ đề">các chủ đề</a>, các câu hỏi <a href="tce_edit_question.php" title="Quản lý câu hỏi">liên quan</a> và <a href="tce_edit_answer.php" title="Quản lý đáp án">đáp án </a>.<br />Bạn có thể chọn 1 số lượng chủ đề không giới hạn trong bài kiểm tra, và với mỗi một chủ đề bạn có thể định ra 1 số lượng không giới hạn các câu hỏi và đáp án có thể có. Hệ thống sẽ chọn các câu hỏi và đáp án một cách ngẫu nhiên.<br />TCExam hỗ trợ cả những câu hỏi có đáp án tự luận và câu hỏi có nhiều đáp án. Cuối cùng sẽ được đánh giá qua mẫu đánh giá đặc trưng <a href="tce_edit_rating.php" title="Đánh giá câu trả lời"></a>, trong khi các mẫu khác sẽ tự động đánh giá.<br />Tất cả nội dung của bài kiểm tra, chủ đề, câu hỏi và câu trả lời đều được hỗ trợ mã riêng biệt, với việc dùng 1 mẫu đặc trưng cho phép ta sử dụng hình ảnh và các định dạng văn bản.</li><li><strong>bài kiểm tra</strong><br />Phần này bao gồm mẫu để chèn, tạo và sửa các bài kiểm tra <a href="tce_edit_test.php" title="Quản lý bài kiểm tra">khác nhau</a>, mẫu dùng để <a href="tce_edit_rating.php" title="Đánh giá đáp án">đánh giá</a> câu trả lời tự luận và các mẫu để hiển thị hoặc tạo các bản kết quả <a href="tce_show_result_allusers.php" title="Tổng hợp kết quả">dạng PDF</a>, một bản chi tiết về <a href="tce_show_result_user.php" title="kết quả kiểm tra">các bài kiểm tra của người dùng</a> và <a href="tce_show_result_questions.php" title="Thống kê câu hỏi">thống kê</a> câu hỏi và đáp án được dùng.<br />TCExam chọn câu hỏi và các đáp án liên quan dựa trên cơ sở ngẫy nhiên do vậy tất cả các bài kiểm tra của mỗi người dùng đều khác nhau.<br />Chương trình cũng có khả năng tạo ra 1 lượng bài kiểm tra nhất định ở dạng PDF và có thể được in ra giấy phục vụ cho 1 kì thi truyền thống.</li></ul>';
+$tmx['d_admin_index']='Đây là phần quản trị của <a href="tce_page_info.php" title="thông tin về TCExam">TCExam</a>, là một phần mềm thân thiện với người dùng và độc lập với ngôn ngữ để tạo, quản lý và thực hiện các bài kiểm tra trực tuyến.<br /><br />Từ danh mục bên trái bạn có thể truy cập vào các phần khác nhau của hệ thống:<ul><li><strong>Người dùng</strong><br />Phần này chứa các mẫu để <a href="tce_edit_user.php" title="Quản lý">chèn và quản lý</a> người dùng, <a href="tce_select_users.php" title="Lựa chọn người dùng"> để chọn</a> và hiển thị danh sách người dùng đang truy cập <a href="tce_show_online_users.php" title="Người dùng trực tuyến">trực tuyến</a>.<br />Chỉ những cá nhân được quản trị viên của hệ thống cung cấp tên và mật khẩu truy cập mới có quyền truy cập vào phần dùng chung và thực hiện các bài kiểm tra.<br />Chương trình có khả năng xác định các cấp độ truy cập khác nhau cho cả người dùng lẫn các phần và công cụ của hệ thống(ví dụ: các trang, các phần, các mẫu...).<br />TCExam cũng sử dụng hệ thống bảo mật khác để ngăn chặn truy cập không được phép dựa trên việc kiểm tra địa chỉ IP.</li><li><strong>các chủ đề</strong><br />Phần này bao gồm các mẫu chèn và sửa bài kiểm tra <a href="tce_edit_subject.php" title="Quản lý chủ đề">các chủ đề</a>, các câu hỏi <a href="tce_edit_question.php" title="Quản lý câu hỏi">liên quan</a> và <a href="tce_edit_answer.php" title="Quản lý đáp án">đáp án </a>.<br />Bạn có thể chọn 1 số lượng chủ đề không giới hạn trong bài kiểm tra, và với mỗi một chủ đề bạn có thể định ra 1 số lượng không giới hạn các câu hỏi và đáp án có thể có. Hệ thống sẽ chọn các câu hỏi và đáp án một cách ngẫu nhiên.<br />TCExam hỗ trợ cả những câu hỏi có đáp án tự luận và câu hỏi có nhiều đáp án. Cuối cùng sẽ được đánh giá qua mẫu đánh giá đặc trưng <a href="tce_edit_rating.php" title="Đánh giá câu trả lời"></a>, trong khi các mẫu khác sẽ tự động đánh giá.<br />Tất cả nội dung của bài kiểm tra, chủ đề, câu hỏi và câu trả lời đều được hỗ trợ mã riêng biệt, với việc dùng 1 mẫu đặc trưng cho phép ta sử dụng hình ảnh và các định dạng văn bản.</li><li><strong>bài kiểm tra</strong><br />Phần này bao gồm mẫu để chèn, tạo và sửa các bài kiểm tra <a href="tce_edit_test.php" title="Quản lý bài kiểm tra">khác nhau</a>, mẫu dùng để <a href="tce_edit_rating.php" title="Đánh giá đáp án">đánh giá</a> câu trả lời tự luận và các mẫu để hiển thị hoặc tạo các bản kết quả <a href="tce_show_result_allusers.php" title="Tổng hợp kết quả">dạng PDF</a>, một bản chi tiết về <a href="tce_show_result_user.php" title="kết quả kiểm tra">các bài kiểm tra của người dùng</a> và <a href="tce_show_result_allusers.php" title="Thống kê câu hỏi">thống kê</a> câu hỏi và đáp án được dùng.<br />TCExam chọn câu hỏi và các đáp án liên quan dựa trên cơ sở ngẫy nhiên do vậy tất cả các bài kiểm tra của mỗi người dùng đều khác nhau.<br />Chương trình cũng có khả năng tạo ra 1 lượng bài kiểm tra nhất định ở dạng PDF và có thể được in ra giấy phục vụ cho 1 kì thi truyền thống.</li></ul>';
 $tmx['d_logout_desc']='nhấn vào nút này để thoát khỏi hệ thống';
 $tmx['d_tcexam_desc']='TCExam là một phần mềm dùng để quản lý và thực hiện các bài kiểm tra trực tuyến.';
 $tmx['h_add']='thêm bản ghi hiện hành vào cơ sở dữ liệu';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='hiện/ ấn bản ghi hiện hành';
 $tmx['h_execute']='kiểm tra';
 $tmx['h_file_type']='dạng tệp';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Tab Delimited Text File';
+$tmx['h_file_type_tsv']='Tab Delimited Text File';
 $tmx['h_firstname']='tên (ví dụ: Nga, Lương, Mai, Huyền ...)';
 $tmx['h_fiscal_code']='số bảo mật cá nhân';
 $tmx['h_global_score']='nếu được chọn, ghi đè điểm đáp án với điểm dưới';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='xác định đường dẫn của tệp gửi lên máy 
 $tmx['h_user_info']='hiển thị thông tin liên quan với người dùng đang kết nối';
 $tmx['h_usered_email']='địa chỉ email người dùng(ví dụ: name@example.com)';
 $tmx['h_view_details']='hiển thị chi tiết';
-$tmx['h_csv_export']='xuất dữ liệu dạng CSV (Tab delimited text file)';
+$tmx['h_tsv_export']='xuất dữ liệu dạng TSV (Tab delimited text file)';
 $tmx['h_xml_export']='xuất dữ liệu dạng XML';
 $tmx['hp_edit_answer']='Với mẫu này bạn có thể quản lý tất cả các câu trả lời liên quan đếnn câu hỏi được chọn. Bạn có thể thêm 1 số câu trả lời đúng và sai và nó sẽ được hiện trong danh sách các câu trả lời có thể xảy ra. Bạn không thể sửa hoặc xóa 1 câu trả lời nằm trong 1 bài kiểm tra đã được hiển thị, trong trường hợp này bạn chỉ có thể ẩn nó đi bằng cách sử dụng nút [Xóa]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
 $tmx['hp_edit_group']='Trong mẫu này bạn có thể quản các nhóm người dùng khác nhau.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Trong mẫu này bạn có thể chèn, sửa hay xóa cá
 $tmx['hp_edit_user']='Trong mẫu này bạn có thể quản lý những người sử dụng khác nhau được phép truy cập hệ thống. Với mỗi người dùng bạn có thể chọn tên, mật khẩu và một 1 mức độ truy cập. Mức 0 cho biết người dùng giấu tên (không đăng ký), mức 1 cho biết người dùng thông thường (ví dụ : sinh viên), mức 10 dành cho quản trị viên với đủ các quyền truy cập.';
 $tmx['hp_email_result']='Gửi kết quả cho người dùng bằng email';
 $tmx['hp_import_xml_questions']='Với mẫu này bạn có thể nhập các câu hỏi cho chủ đề được chọn từ 1 tệp XML.';
-$tmx['hp_import_xml_users']='Với mẫu này bạn có thể nhập người dùng và nhóm từ tệp XML hoặc CSV. Các định dạng tệp này cũng tương tự như những cái thu được trong việc xuất dữ liệu từ mẫu lựa chọn người dùng.';
+$tmx['hp_import_xml_users']='Với mẫu này bạn có thể nhập người dùng và nhóm từ tệp XML hoặc TSV. Các định dạng tệp này cũng tương tự như những cái thu được trong việc xuất dữ liệu từ mẫu lựa chọn người dùng.';
 $tmx['hp_login']='Để truy cập vào các phần khác nhau của TCExam bạn phải đăng nhập với đúng tên và mật khẩu truy cập được quản trị viên hệ thống cấp.';
 $tmx['hp_online_users']='Mẫu này hiển thị những người dùng trực tuyến';
 $tmx['hp_public_index']='Đây là trang chủ của TCExam. Từ trang này bạn có thể bắt đầu hoặc tiếp tục làm bài kiểm tra';
@@ -585,5 +585,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

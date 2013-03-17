@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_update.php
 // Begin       : 2009-09-14
-// Last Update : 2010-05-19
+// Last Update : 2012-12-20
 //
 // Description : Automatic updates for linux systems.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -60,7 +60,7 @@ require_once('../code/tce_page_header.php');
 /**
  * Updating server
  */
-define ('K_UPDATE_SERVER', 'http://updates.tecnick.com');
+define ('K_UPDATE_SERVER', 'http://updates.tcexam.com');
 
 /**
  * UPDATES PASSKEY

@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2012-10-29 19:37:11
+// DATE: 2013-02-21 12:34:24
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='ro';
-$tmx['d_admin_index']='Aceasta este zona administrativă a <a href="tce_page_info.php" title="despre TCExam">TCExam</a>. Este un program prietenos, independent de platformă şi limbă, folosit pentru crearea, gestionarea şi executarea testelor online.<br /><br />Din meniul din partea stângă puteţi accesa diferite secţiuni ale sistemului:<ul><li><strong>utilizatori</strong><br />Această secţiune conţine formulare pentru <a href="tce_edit_user.php" title="Gestionare Utilizatori">introducerea şi gestionarea</a> utilizatorilor, pentru <a href="tce_select_users.php" title="Selectare Utilizatori">selectarea</a> acestora şi vizualizarea listei cu utilizatorii <a href="tce_show_online_users.php" title="Utilizatori Online">online</a>.<br />Numai utilizatorii înregistraţi printr-un nume de utilizator şi o parolă sunt împuterniciţi să acceseze zona publică a sistemului şi să execute teste.<br />Este posibil a se specifica diferite nivele de acces atât pentru utilizatori cât şi pentru diferitele componente şi părţi ale sistemului (pagini, formulare, secţiuni).<br />TCExam foloseşte, de asemenea, un alt sistem de securitate pentru a preveni accesul neautorizat, bazat pe verificarea adreselor IP.</li><li><strong>module</strong><br />Această secţiune conţine formulare necesare pentru adăugarea şi modificarea de <a href="tce_edit_module.php" title="Gestionare Module">module</a> test, <a href="tce_edit_subject.php" title="Gestionare Teme">teme</a>, <a href="tce_edit_question.php" title="Gestionare Întrebări">întrebări</a> şi <a href="tce_edit_answer.php" title="Gestionare Răspunsuri-Multiple">răspunsuri</a> înrudite.<br />Puteţi selecta un număr nelimitat de teme care pot fi folosite împreună pentru un anumit test, şi pentru fiecare temă puteţi defini un număr nelimitat de întrebări şi răspunsuri posibile. În funcţie de selectarea sau nu a întrebărilor aleatorii şi răspunsurilor aleatorii, sistemul poate selecta aleator întrebări şi răspunsuri dintre cele disponibile.<br />TCExam suportă atât întrebări cu răspunsuri multiple cât şi întrebări cu răspuns liber. Acestea din urmă vor fi evaluate printr-un <a href="tce_edit_rating.php" title="Evaluare Răspunsuri">formular special</a>, în timp ce primele vor fi evaluate automat.<br />Toate descrierile testelor, temele, întrebările şi răspunsurile suportă un cod proprietar particular (tcecode) care, prin folosirea unei forme specifice, permite utilizarea imaginilor şi a diferitelor formate de text.</li><li><strong>teste</strong><br />Această secţiune include un formular pentru adăugarea, generarea şi modificarea diferitelor <a href="tce_edit_test.php" title="Gestionare Teste">teste</a>, un formular pentru <a href="tce_edit_rating.php" title="Evaluare Răspunsuri">evaluarea</a> răspunsurilor libere şi formulare pentru a vizualiza şi genera versiuni PDF ale <a href="tce_show_result_allusers.php" title="Sumar Rezultate Teste">rezultatelor</a>,  o vizualizare detaliată a <a href="tce_show_result_user.php" title="Rezultate Test">testelor utilizatorilor</a> şi a <a href="tce_show_result_questions.php" title="Statistici Întrebări">statisticilor</a> întrebărilor şi răspunsurilor folosite.<br />TCExam poate fi îndrumat pentru a selecta, printr-un temei aleator, diversele întrebări şi răspunsuri înrudite disponibile, astfel încât toate testele pentru diverşi utilizatori vor fi diferite unul faţă de altul.<br />Este, de asemenea, posibil a genera un număr arbitrar de teste în format PDF astfel încât acestea pot fi printate şi folosite pentru un examen convenţional.</li></ul>';
+$tmx['d_admin_index']='Aceasta este zona administrativă a <a href="tce_page_info.php" title="despre TCExam">TCExam</a>. Este un program prietenos, independent de platformă şi limbă, folosit pentru crearea, gestionarea şi executarea testelor online.<br /><br />Din meniul din partea stângă puteţi accesa diferite secţiuni ale sistemului:<ul><li><strong>utilizatori</strong><br />Această secţiune conţine formulare pentru <a href="tce_edit_user.php" title="Gestionare Utilizatori">introducerea şi gestionarea</a> utilizatorilor, pentru <a href="tce_select_users.php" title="Selectare Utilizatori">selectarea</a> acestora şi vizualizarea listei cu utilizatorii <a href="tce_show_online_users.php" title="Utilizatori Online">online</a>.<br />Numai utilizatorii înregistraţi printr-un nume de utilizator şi o parolă sunt împuterniciţi să acceseze zona publică a sistemului şi să execute teste.<br />Este posibil a se specifica diferite nivele de acces atât pentru utilizatori cât şi pentru diferitele componente şi părţi ale sistemului (pagini, formulare, secţiuni).<br />TCExam foloseşte, de asemenea, un alt sistem de securitate pentru a preveni accesul neautorizat, bazat pe verificarea adreselor IP.</li><li><strong>module</strong><br />Această secţiune conţine formulare necesare pentru adăugarea şi modificarea de <a href="tce_edit_module.php" title="Gestionare Module">module</a> test, <a href="tce_edit_subject.php" title="Gestionare Teme">teme</a>, <a href="tce_edit_question.php" title="Gestionare Întrebări">întrebări</a> şi <a href="tce_edit_answer.php" title="Gestionare Răspunsuri-Multiple">răspunsuri</a> înrudite.<br />Puteţi selecta un număr nelimitat de teme care pot fi folosite împreună pentru un anumit test, şi pentru fiecare temă puteţi defini un număr nelimitat de întrebări şi răspunsuri posibile. În funcţie de selectarea sau nu a întrebărilor aleatorii şi răspunsurilor aleatorii, sistemul poate selecta aleator întrebări şi răspunsuri dintre cele disponibile.<br />TCExam suportă atât întrebări cu răspunsuri multiple cât şi întrebări cu răspuns liber. Acestea din urmă vor fi evaluate printr-un <a href="tce_edit_rating.php" title="Evaluare Răspunsuri">formular special</a>, în timp ce primele vor fi evaluate automat.<br />Toate descrierile testelor, temele, întrebările şi răspunsurile suportă un cod proprietar particular (tcecode) care, prin folosirea unei forme specifice, permite utilizarea imaginilor şi a diferitelor formate de text.</li><li><strong>teste</strong><br />Această secţiune include un formular pentru adăugarea, generarea şi modificarea diferitelor <a href="tce_edit_test.php" title="Gestionare Teste">teste</a>, un formular pentru <a href="tce_edit_rating.php" title="Evaluare Răspunsuri">evaluarea</a> răspunsurilor libere şi formulare pentru a vizualiza şi genera versiuni PDF ale <a href="tce_show_result_allusers.php" title="Sumar Rezultate Teste">rezultatelor</a>,  o vizualizare detaliată a <a href="tce_show_result_user.php" title="Rezultate Test">testelor utilizatorilor</a> şi a <a href="tce_show_result_allusers.php" title="Statistici Întrebări">statisticilor</a> întrebărilor şi răspunsurilor folosite.<br />TCExam poate fi îndrumat pentru a selecta, printr-un temei aleator, diversele întrebări şi răspunsuri înrudite disponibile, astfel încât toate testele pentru diverşi utilizatori vor fi diferite unul faţă de altul.<br />Este, de asemenea, posibil a genera un număr arbitrar de teste în format PDF astfel încât acestea pot fi printate şi folosite pentru un examen convenţional.</li></ul>';
 $tmx['d_logout_desc']='clic pe buton pentru a ieşi din sistem';
 $tmx['d_tcexam_desc']='TCExam este un program pentru gestionare şi testare online.';
 $tmx['h_add']='adaugă înregistrarea curentă bazei de date';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='activaţi/dezactivaţi înregistrarea curentă';
 $tmx['h_execute']='executaţi testul';
 $tmx['h_file_type']='tipul de fişier';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='Tab Delimited Text File';
+$tmx['h_file_type_tsv']='Tab Delimited Text File';
 $tmx['h_firstname']='Prenumele utilizatorului (ex.: Mihai, Ion, ...)';
 $tmx['h_fiscal_code']='numărul asigurării sociale al utilizatorului';
 $tmx['h_global_score']='dacă selectaţi, suprascrieţi punctele răspunsurilor cu punctele de mai jos';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='specificaţi calea către fişierul care urmează să fie
 $tmx['h_user_info']='arată utilizatorul conectat';
 $tmx['h_usered_email']='adresa de email a utilizatorului (ex.: nume@domeniu.com)';
 $tmx['h_view_details']='arată detalii';
-$tmx['h_csv_export']='exportaţi datele în format CSV (text Tab delimited)';
+$tmx['h_tsv_export']='exportaţi datele în format TSV (text Tab delimited)';
 $tmx['h_xml_export']='exportaţi datele în format XML';
 $tmx['hp_edit_answer']='Cu acest formular puteţi gestiona toate răspunsurile posibile asociate cu întrebarea selectată. Puteţi adăuga un număr oarecare de răspunsuri corecte şi greşite pentru fiecare întrebare; în timpul testului sistemul va selecta automat numai unul din răspunsurile corecte şi îl va afişa în lista cu variantele de răspuns. Nu puteţi modifica sau şterge un răspuns care a fost folosit într-un test deja efectuat; în acest caz puteţi doar să-l inactivaţi. Legenda: [+] Activ; [-] Inactiv. Legenda pentru întrebări: [S] MCSA - întrebare Multiple Variante Singur Răspuns; [M] MCMA - întrebare Multiple Variante Multiple Răspunsuri; [T] TEXT - Răspuns Liber; [O] ORDONARE - Ordonare Răspuns. Legenda pentru răspunsuri: [T] răspuns adevărat; [F] răspuns fals.';
 $tmx['hp_edit_group']='În acest formular puteţi gestiona diferitele grupuri ale utilizatorilor.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='În acest formular puteţi adăuga, modifica şi şterge t
 $tmx['hp_edit_user']='În acest formular puteţi gestiona diferiţi utilizatori care au acces la acest sistem. Pentru fiecare utilizator puteţi alege un nume, o parolă şi un nivel de acces. Nivelul 0 indică un utilizator anonim (neînregistrat), nivelul 1 un utilizator de bază (ex.: un student), nivelul 10 indică un administrator cu drepturi de acces depline.';
 $tmx['hp_email_result']='Trimite rezultate către utilizatori prin email';
 $tmx['hp_import_xml_questions']='Cu acest formular puteţi importa întrebări dintr-un fişier XML.';
-$tmx['hp_import_xml_users']='Cu acest formular puteţi importa utilizatori şi grupuri dintr-un fişier XML sau CSV (text Tab delimited). Formatul fişierului este acelaşi cu cel obţinut prin exportul datelor din formularul Selectare Utilizatori.';
+$tmx['hp_import_xml_users']='Cu acest formular puteţi importa utilizatori şi grupuri dintr-un fişier XML sau TSV (text Tab delimited). Formatul fişierului este acelaşi cu cel obţinut prin exportul datelor din formularul Selectare Utilizatori.';
 $tmx['hp_login']='Pentru a putea accesa diferitele secţiuni ale TCExam trebuie să vă autentificaţi folosind numele şi parola furnizate de administratorul sistemului.';
 $tmx['hp_online_users']='Acest formular afişează utilizatorii care sunt momentan autentificaţi în sistem';
 $tmx['hp_public_index']='Aceasta este pagina principală a TCExam. De la această pagină puteţi porni sau continua testele dumneavoastră';
@@ -576,9 +576,49 @@ $tmx['d_reset_password']='Vă rog să introduceţi adresa de email pe care aţi 
 $tmx['t_password_assistance']='Asistenţă Parolă';
 $tmx['w_unknown_email']='email necunoscut';
 $tmx['w_result_graph']='Graficul punctelor şi al procentajului răspunsurilor corecte pentru fiecare test listat';
-$tmx['h_omr_dir']='OMR Import Directory';
-$tmx['w_omr_dir']='OMR Directory';
-$tmx['t_omr_bulk_importer']='OMR Bulk Importer';
-$tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['h_omr_dir']='Director Import OMR';
+$tmx['w_omr_dir']='Director OMR';
+$tmx['t_omr_bulk_importer']='Import vrac OMR';
+$tmx['hp_omr_bulk_importer']='Cu acest formular puteți importa răspunsurile testelor din imaginile scanate ale fișelor de răspuns. Imaginile trebuie să fie localizate în directorul cache/OMR. Imaginile ce conțin codul QR trebuie să fie denumite în formatul "OMR_[USRREG]_QR.png" unde [USRREG] este numărul de înregistrare al utilizatorului. Imaginile ce conțin răspunsurile trebuie să fie denumite în formatul "OMR_[USRREG]_A[X].png" unde [X] este numărul fișei de răspuns. Imaginile vor fi procesate folosind sistemul Optical Mark Recognition (OMR) (Recunoaşterea Optică a Marcărilor) pentru a identifica datele testului şi răspunsurile utilizatorilor. Datele importate vor suprascrie rezultatele existente. Fişele OMR trebuie să fie scanate cu întreaga gamă color la o rezoluţie de 200DPI sau mai mult.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

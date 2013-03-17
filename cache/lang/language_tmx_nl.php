@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: nl
-// DATE: 2012-10-29 19:37:08
+// DATE: 2013-02-21 12:34:22
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='nl';
-$tmx['d_admin_index']='Adminstratie van <a href="tce_page_info.php" title="about TCExam">TCExam</a>, een programma om een on-line test te maken, te beheren en uit te voeren.<br /><br />Via het linkermenu bereikt u de onderdelen van het systeem :<ul><li><strong>gebruikers</strong><br />Hier kunt u <a href="tce_edit_user.php" title="User Management"> </a> gebruikers beheren, <a href="tce_select_users.php" title="User Selection"> selecteren </a> en de nu  <a href="tce_show_online_users.php" title="Online Users">actieve</a> zien.<br />Alleen een geregistreerde gebruiker kan een test uitvoeren en behaalde resultaten zien (indien resultaten naar gebruikers (bij het menu tests) is aangevinkt).<br />  U kunt toegangsniveaus bepalen voor gebruikers en de onderdelen van het programma (paginas, overzichten, secties).<br />TCExam gebruikt ook IP-adres controle.</li><li><strong>topics</strong><br />Hier kunt u testen toevoegen en wijzigen, maar ook<a href="tce_edit_subject.php" title="Topic Management"> topics</a>, en gerelateerde <a href="tce_edit_question.php" title="Question Management"> vragen</a> en <a href="tce_edit_answer.php" title="Multiple-Answer Management">antwoorden.</a>.<br />U kunt talloze topics  kiezen die benut kunnen worden in een test. Voor elke topic kunt u talloze vragen en mogelijke antwoorden bepalen. <br />TCExam kiest random vragen en antwoorden uit de beschikbare.<br />TCExam ondersteunt open-antwoordvragen en meerkeuzevragen. <br />Meerkeuzevragen worden ge-evalueerd m.b.v. een speciale  <a href="tce_edit_rating.php" title="Answer evaluation">evaluatie</a>, open-vragen worden automatisch ge-evalueerd.<br />Alle beschrijvingen van testen, topics, vragen en antwoorden ondersteunen eigen formatcodes (tcecode) waarmee beeldmateriaal en tekstbewerking mogelijk zijn.</li><li><strong>test</strong><br />Hier heeft u toegang tot het maken, toevoegen, genereren en wijzigen van <a href="tce_edit_test.php" title="Test Management">een test</a>, tot <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> van open-vragen en tot het tonen of genereren van PDF versies van de <a href="tce_show_result_allusers.php" title="Test Results Summary">resultaten</a>, een gedetailleerd overzicht van <a href="tce_show_result_user.php" title="Risultati test">een test door een  gebruiker</a> en de <a href="tce_show_result_questions.php" title="Question Statistics">statistieken</a> van vragen en toegepaste beantwoordingen.<br /> <br />Om een test te maken moet u topic(s) selecteren en dan klikken op herzien. Een venster met topic(s) om te selecteren staat lager in de pagina !<br /><br />TCExam kiest desgewenst random de vragen en bijbehorende, beschikbare antwoorden opdat alle testen voor de gebruikers verschillend zijn .<br />U kunt ook een willekeurig aantal testen in PDf format genereren voor afdruk en normale examinering zonder computer.</li></ul>';
+$tmx['d_admin_index']='Adminstratie van <a href="tce_page_info.php" title="about TCExam">TCExam</a>, een programma om een on-line test te maken, te beheren en uit te voeren.<br /><br />Via het linkermenu bereikt u de onderdelen van het systeem :<ul><li><strong>gebruikers</strong><br />Hier kunt u <a href="tce_edit_user.php" title="User Management"> </a> gebruikers beheren, <a href="tce_select_users.php" title="User Selection"> selecteren </a> en de nu  <a href="tce_show_online_users.php" title="Online Users">actieve</a> zien.<br />Alleen een geregistreerde gebruiker kan een test uitvoeren en behaalde resultaten zien (indien resultaten naar gebruikers (bij het menu tests) is aangevinkt).<br />  U kunt toegangsniveaus bepalen voor gebruikers en de onderdelen van het programma (paginas, overzichten, secties).<br />TCExam gebruikt ook IP-adres controle.</li><li><strong>topics</strong><br />Hier kunt u testen toevoegen en wijzigen, maar ook<a href="tce_edit_subject.php" title="Topic Management"> topics</a>, en gerelateerde <a href="tce_edit_question.php" title="Question Management"> vragen</a> en <a href="tce_edit_answer.php" title="Multiple-Answer Management">antwoorden.</a>.<br />U kunt talloze topics  kiezen die benut kunnen worden in een test. Voor elke topic kunt u talloze vragen en mogelijke antwoorden bepalen. <br />TCExam kiest random vragen en antwoorden uit de beschikbare.<br />TCExam ondersteunt open-antwoordvragen en meerkeuzevragen. <br />Meerkeuzevragen worden ge-evalueerd m.b.v. een speciale  <a href="tce_edit_rating.php" title="Answer evaluation">evaluatie</a>, open-vragen worden automatisch ge-evalueerd.<br />Alle beschrijvingen van testen, topics, vragen en antwoorden ondersteunen eigen formatcodes (tcecode) waarmee beeldmateriaal en tekstbewerking mogelijk zijn.</li><li><strong>test</strong><br />Hier heeft u toegang tot het maken, toevoegen, genereren en wijzigen van <a href="tce_edit_test.php" title="Test Management">een test</a>, tot <a href="tce_edit_rating.php" title="Answer Evaluation">evaluate</a> van open-vragen en tot het tonen of genereren van PDF versies van de <a href="tce_show_result_allusers.php" title="Test Results Summary">resultaten</a>, een gedetailleerd overzicht van <a href="tce_show_result_user.php" title="Risultati test">een test door een  gebruiker</a> en de <a href="tce_show_result_allusers.php" title="Question Statistics">statistieken</a> van vragen en toegepaste beantwoordingen.<br /> <br />Om een test te maken moet u topic(s) selecteren en dan klikken op herzien. Een venster met topic(s) om te selecteren staat lager in de pagina !<br /><br />TCExam kiest desgewenst random de vragen en bijbehorende, beschikbare antwoorden opdat alle testen voor de gebruikers verschillend zijn .<br />U kunt ook een willekeurig aantal testen in PDf format genereren voor afdruk en normale examinering zonder computer.</li></ul>';
 $tmx['d_logout_desc']='klik om te sluiten';
 $tmx['d_tcexam_desc']='TCExam voor beheren en uitvoeren van online tests.';
 $tmx['h_add']='voegt huidig record toe aan database';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='in-/uitschakelen huidig record';
 $tmx['h_execute']='voer test uit';
 $tmx['h_file_type']='bestands-type';
 $tmx['h_file_type_xml']='eXtensible Markup Language';
-$tmx['h_file_type_csv']='TAB/komma gescheiden tekstbestand';
+$tmx['h_file_type_tsv']='TAB/komma gescheiden tekstbestand';
 $tmx['h_firstname']='voornaam van gebruiker';
 $tmx['h_fiscal_code']='SID van gebruiker';
 $tmx['h_global_score']='als gekozen, vervangt antwoordpunten door onderstaande punten';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='in welke directory staat het bestand';
 $tmx['h_user_info']='toont info over de gebruiker';
 $tmx['h_usered_email']='gebruikers e-mailadres (bijv.: name@example.com)';
 $tmx['h_view_details']='toont details';
-$tmx['h_csv_export']='export data naar CSV (TAB /komma gescheiden tekstbestand)';
+$tmx['h_tsv_export']='export data naar TSV (TAB /komma gescheiden tekstbestand)';
 $tmx['h_xml_export']='export data naar XML';
 $tmx['hp_edit_answer']='Hier kunt u alle mogelijke antwoorden voor een vraag beheren. U kunt elk aantal juiste of foute antwoorden toevoegen voor elke vraag; tijdens een test wordt automatisch slechts een van de juiste antwoorden in de lijst van mogelijke antwoorden getoond. U kunt geen antwoord wijzigen of weghalen die bij een reeds gedane test hoort. U kunt het wel uitschakelen met [verwijder]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
 $tmx['hp_edit_group']='Hier kunt de gebruikersgroepen beheren.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Hier kunt u een test toevoegen, wijzigen of weghalen. Maak
 $tmx['hp_edit_user']='Hier kunt u toegang aan gebruikers beheren. U kiest voor elke gebruiker een naam, wachtwoord en toegangsniveau. 0 voor een anonieme gebruiker (ongeregistreed),  1 voor een normale gebruiker (bijv.: een student), 10 voor de administrator met alle rechten';
 $tmx['hp_email_result']='Zend resultaten per e-mail naar gebruiker';
 $tmx['hp_import_xml_questions']='Hier kunt u vragen importeren voor de topic uit een XML-bestand.';
-$tmx['hp_import_xml_users']='Hier kunt u  gebruikers en groepen importeren uit een XML- of CSV (tab/komma gescheiden tekst-) bestand. Zo\'n bestand moet overeenkomen met een ge-exporteerd bestand !';
+$tmx['hp_import_xml_users']='Hier kunt u  gebruikers en groepen importeren uit een XML- of TSV (tab/komma gescheiden tekst-) bestand. Zo\'n bestand moet overeenkomen met een ge-exporteerd bestand !';
 $tmx['hp_login']='U moet inloggen met geregisteerde naam en wachtwoord';
 $tmx['hp_online_users']='Hier staan de nu ingelogde gebruikers';
 $tmx['hp_public_index']='Hoofdpagina van TCExam. Van hieruit kunt u een test maken,voortzetten dan wel score inzien';
@@ -582,5 +582,45 @@ $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
 $tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

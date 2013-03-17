@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2010-10-21
+// Last Update : 2012-12-29
 //
 // Description : Functions to translate TCExam code
 //               into XHTML.
@@ -20,7 +20,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -180,9 +180,15 @@ function F_decode_tcecode($text_to_decode) {
 	$pattern[++$i] = "#\[bgcolor=(.*?)\](.*?)\[/bgcolor\]#si";
 	$replacement[++$i] = '<span style="background-color:\1">\2</span>';
 
-	// [size=percent] and [/size]
-	$pattern[++$i] = "#\[size=(.*?)\](.*?)\[/size\]#si";
-	$replacement[++$i] = '<span style="font-size:\1%">\2</span>';
+	// [font=value] and [/font]
+	$pattern[++$i] = "#\[font=(.*?)\](.*?)\[/font\]#si";
+	$replacement[++$i] = '<span style="font-family:\1">\2</span>';
+
+	// [size=value] and [/size]
+	// [size=+value] and [/size]
+	// [size=value%] and [/size]
+	$pattern[++$i] = "#\[size=([+\-]?[0-9a-z\-]+[%]?)\](.*?)\[/size\]#si";
+	$replacement[++$i] = '<span style="font-size:\1">\2</span>';
 
 	$newtext = preg_replace($pattern, $replacement, $newtext);
 
@@ -374,6 +380,7 @@ function F_remove_tcecode($str) {
 	$str = preg_replace("'\[o\](.*?)\[/o\]'si", '\1',  $str);
 	$str = preg_replace("'\[color([^\]]*?)\](.*?)\[/color\]'si", '\2',  $str);
 	$str = preg_replace("'\[bgcolor([^\]]*?)\](.*?)\[/bgcolor\]'si", '\2',  $str);
+	$str = preg_replace("'\[font([^\]]*?)\](.*?)\[/font\]'si", '\2',  $str);
 	$str = preg_replace("'\[size([^\]]*?)\](.*?)\[/size\]'si", '\2',  $str);
 	$str = preg_replace("'\[small\](.*?)\[/small\]'si", '\1',  $str);
 	$str = preg_replace("'\[sub\](.*?)\[/sub\]'si", '\1',  $str);

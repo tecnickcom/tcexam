@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2012-11-14
+// Last Update : 2012-12-30
 //
 // Description : Edit answers.
 //
@@ -60,7 +60,7 @@ require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../code/tce_functions_tcecode_editor.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 
 // upload multimedia files
 $uploadedfile = array();
@@ -157,7 +157,8 @@ if (isset($_REQUEST['answer_id']) AND ($_REQUEST['answer_id'] > 0)) {
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
 			// check user's authorization for parent module
-			if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id')) {
+			if ((!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id'))
+				AND (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $m['question_subject_id'], 'subject_user_id'))) {
 				F_print_error('ERROR', $l['m_authorization_denied']);
 					exit;
 			}
@@ -584,6 +585,11 @@ if (!isset($subject_module_id) OR ($subject_module_id <= 0) OR !isset($question_
 	exit;
 }
 
+echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'inserttag.js" type="text/javascript"></script>'.K_NEWLINE;
+if (K_ENABLE_VIRTUAL_KEYBOARD) {
+	echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'vk/vk_easy.js?vk_skin=default" type="text/javascript"></script>'.K_NEWLINE;
+}
+
 echo '<div class="container">'.K_NEWLINE;
 
 echo '<div class="tceformbox">'.K_NEWLINE;
@@ -762,9 +768,13 @@ echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="preview
 
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw" style="border:1px solid #808080;">'.K_NEWLINE;
-echo '<textarea cols="50" rows="10" name="answer_description" id="answer_description" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_description)" title="'.$l['h_answer'].'">'.htmlspecialchars($answer_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+echo '<textarea cols="50" rows="10" name="answer_description" id="answer_description" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_description)" title="'.$l['h_answer'].'"';
+if (K_ENABLE_VIRTUAL_KEYBOARD) {
+	echo ' class="keyboardInput"';
+}
+echo '>'.htmlspecialchars($answer_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
-echo tcecodeEditorTagButtons('form_answereditor', 'answer_description', 0);
+echo tcecodeEditorTagButtons('form_answereditor', 'answer_description');
 echo '</span>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
@@ -782,9 +792,13 @@ if (K_ENABLE_ANSWER_EXPLANATION) {
 	echo '</span>';
 	echo '</span>'.K_NEWLINE;
 	echo '<span id="explanationarea" class="formw" style="display:none;border:1px solid #808080;">'.K_NEWLINE;
-	echo '<textarea cols="50" rows="10" name="answer_explanation" id="answer_explanation" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_explanation)" title="'.$l['h_explanation'].'">'.htmlspecialchars($answer_explanation, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+	echo '<textarea cols="50" rows="10" name="answer_explanation" id="answer_explanation" onselect="FJ_update_selection(document.getElementById(\'form_answereditor\').answer_explanation)" title="'.$l['h_explanation'].'"';
+	if (K_ENABLE_VIRTUAL_KEYBOARD) {
+		echo ' class="keyboardInput"';
+	}
+	echo '>'.htmlspecialchars($answer_explanation, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
 	echo '<br />'.K_NEWLINE;
-	echo tcecodeEditorTagButtons('form_answereditor', 'answer_explanation', 1);
+	echo tcecodeEditorTagButtons('form_answereditor', 'answer_explanation');
 	echo '</span>'.K_NEWLINE;
 	echo '</div>'.K_NEWLINE;
 }
@@ -850,10 +864,10 @@ if (isset($answer_id) AND ($answer_id > 0)) {
 	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
 	echo '</span>';
-}
-F_submit_button('add', $l['w_add'], $l['h_add']);
-if (isset($answer_id) AND ($answer_id > 0)) {
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+} else {
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 }
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 

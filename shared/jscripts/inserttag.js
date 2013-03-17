@@ -1,7 +1,7 @@
 //============================================================+
 // File name   : inserttag.js
 // Begin       : 2001-10-25
-// Last Update : 2010-10-05
+// Last Update : 2012-12-29
 //
 // Description : Insert TAGS on Textarea Form (XHTML)
 //
@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -77,6 +77,9 @@ var posEnd;
 function FJ_insert_tag(editText, tag) {
 	var opentag = tag;
 	var closetag = '';
+	if (opentag.length <= 0) {
+		return;
+	}
 	tmpstr = opentag.split(' ');
 	if (tag.charAt(opentag.length-2) != '/') {
 		if (opentag.charAt(0) == '<') {

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_verification.php
 // Begin       : 2008-03-31
-// Last Update : 2012-06-07
+// Last Update : 2012-11-22
 //
 // Description : User verification.
 //
@@ -97,6 +97,16 @@ if ($r = F_db_query($sql, $db)) {
 			}
 			echo K_NEWLINE;
 			echo '<div class="container">'.K_NEWLINE;
+			if (K_OTP_LOGIN) {
+				require_once('../../shared/tcpdf/tcpdf_barcodes_2d.php');
+				$host = preg_replace('/[h][t][t][p][s]?[:][\/][\/]/', '', K_PATH_HOST);
+				$qrcode = new TCPDF2DBarcode('otpauth://totp/'.$m['user_name'].'@'.$host.'?secret='.$m['user_otpkey'], 'QRCODE,H');
+				echo '<p>'.$l['m_otp_qrcode'].'</p>'.K_NEWLINE;
+				echo '<h2>'.$m['user_otpkey'].'</h2>'.K_NEWLINE;
+				echo '<div style="margin:40px 40px 40px 40px;">'.K_NEWLINE;
+				echo $qrcode->getBarcodeHTML(6, 6, 'black');
+				echo '</div>'.K_NEWLINE;
+			}
 			echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
 			echo '</div>'.K_NEWLINE;
 			require_once('../code/tce_page_footer.php');

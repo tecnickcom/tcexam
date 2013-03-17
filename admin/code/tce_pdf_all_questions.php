@@ -53,7 +53,7 @@
 
 require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_authorization.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdfex.php');

@@ -732,6 +732,11 @@ acronym.onbox {
 	text-decoration: none;
 }
 
+td.numeric {
+	font-family: "courier New", courier, monospace;
+	text-align: right;
+}
+
 /* MENU ------------ */
 
 div.scrollmenu {

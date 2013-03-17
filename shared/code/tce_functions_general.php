@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2012-04-14
+// Last Update : 2013-01-20
 //
 // Description : General functions.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -97,7 +97,7 @@ function F_zero_to_null($num) {
 }
 
 /**
- * Returns boolean value from string.<br>
+ * Returns boolean value from string or integer.<br>
  * This function is needed to get the right boolean value from boolean field returned by PostgreSQL query.
  * @param $str (string) string to check.
  * @return boolean value.
@@ -107,6 +107,9 @@ function F_getBoolean($str) {
 		return $str;
 	}
 	if (is_string($str) AND ((strncasecmp($str, 't', 1) == 0) OR (strncasecmp($str, '1', 1) == 0))) {
+		return true;
+	}
+	if (is_int($str) AND ($str == 1)) {
 		return true;
 	}
 	return false;
@@ -252,6 +255,26 @@ function F_xml_to_text($str) {
 }
 
 /**
+ * Escape some special characters for TSV output.
+ * @param $str (string) input string to convert
+ * @return converted string
+ */
+function F_text_to_tsv($str) {
+	$replaceTable = array("\0" => '', "\t" => '\t', "\n" => '\n', "\r" => '\r');
+	return strtr($str, $replaceTable);
+}
+
+/**
+ * Unescape some special characters from TSV format.
+ * @param $str (string) input string to convert
+ * @return converted string
+ */
+function F_tsv_to_text($str) {
+	$replaceTable = array('\t' => "\t", '\n' => "\n", '\r' => "\r");
+	return strtr($str, $replaceTable);
+}
+
+/**
  * Return a string containing an HTML acronym for required/not required fields.
  * @param $mode (int) field mode: 1=not required; 2=required.
  * @return html string
@@ -375,30 +398,42 @@ function F_formatFloat($num) {
 
 /**
  * Format a percentage number.
- * @param $num (float) number to be formatted
+ * @param $num (float) Number to be formatted.
+ * @param $ratio (boolean) Set to true if the number is a ratio between 0 and 1, false if is a percentage number between 0 an 100.
  * @return formatted string
  */
-function F_formatPercentage($num) {
-	return '('.str_replace(' ', '&nbsp;', sprintf('% 3d', round(100 * $num))).'%)';
+function F_formatPercentage($num, $ratio=true) {
+	if ($ratio) {
+		$num = (100 * $num);
+	}
+	return '('.str_replace(' ', '&nbsp;', sprintf('% 3d', round($num))).'%)';
 }
 
 /**
  * format a percentage number
  * @param $num (float) number to be formatted
+ * @param $ratio (boolean) Set to true if the number is a ratio between 0 and 1, false if is a percentage number between 0 an 100.
  * @return string
  */
-function F_formatPdfPercentage($num) {
-	return '('.sprintf('% 3d', round(100 * $num)).'%)';
+function F_formatPdfPercentage($num, $ratio=true) {
+	if ($ratio) {
+		$num = (100 * $num);
+	}
+	return '('.sprintf('% 3d', round($num)).'%)';
 }
 
 
 /**
  * format a percentage number for XML
  * @param $num (float) number to be formatted
+ * @param $ratio (boolean) Set to true if the number is a ratio between 0 and 1, false if is a percentage number between 0 an 100.
  * @return string
  */
-function F_formatXMLPercentage($num) {
-	return sprintf('%3d', round(100 * $num));
+function F_formatXMLPercentage($num, $ratio=true) {
+	if ($ratio) {
+		$num = (100 * $num);
+	}
+	return sprintf('%3d', round($num));
 }
 
 /**
@@ -450,38 +485,78 @@ function getDataXML($data, $level=1) {
 }
 
 /**
- * Get data headers (keys) in CSV header (tab separated text values).
+ * Get data headers (keys) in TSV header (tab separated text values).
  * @param $data (array) Array of data (key => value).
  * @param $prefix (string) Prefix to add to keys.
  * @return string data
  */
-function getDataCSVHeader($data, $prefix='') {
-	$csv = '';
+function getDataTSVHeader($data, $prefix='') {
+	$tsv = '';
 	foreach ($data as $key => $value) {
 		if (is_array($value)) {
-			$csv .= getDataCSVHeader($value, $prefix.$key.'_');
+			$tsv .= getDataTSVHeader($value, $prefix.$key.'_');
 		} else {
-			$csv .= "\t".$prefix.$key;
+			$tsv .= "\t".$prefix.$key;
 		}
 	}
-	return $csv;
+	return $tsv;
 }
 
 /**
- * Get data in CSV format (tab separated text values).
+ * Get data in TSV format (tab separated text values).
  * @param $data (array) Array of data.
  * @return string XML data
  */
-function getDataCSV($data) {
-	$csv = '';
+function getDataTSV($data) {
+	$tsv = '';
 	foreach ($data as $value) {
 		if (is_array($value)) {
-			$csv .= getDataCSV($value);
+			$tsv .= getDataTSV($value);
 		} else {
-			$csv .= "\t".preg_replace("/[\t\n\r]+/", ' ', $value);
+			$tsv .= "\t".F_text_to_tsv($value);
 		}
 	}
-	return $csv;
+	return $tsv;
+}
+
+/**
+ * Convert HTML code to TSV string.
+ * @param $str (string) HTML string to convert.
+ * @return string TSV
+ */
+function F_html_to_TSV($str) {
+	$dollar_replacement = ":.dlr.:"; //string replacement for dollar symbol
+	//tags conversion table
+	$tags2textTable = array (
+		"'<br[^>]*?>'i" => ' ',
+		"'<table[^>]*?>'i" => "\n",
+		"'</table>'i" => "\n",
+		"'<tr[^>]*?>'i" => "\n",
+		"'<th[^>]*?>'i" => "\t",
+		"'<td[^>]*?>'i" => "\t",
+		"'<h[0-9][^>]*?>'i" => "\n\n",
+		"'</h[0-9]>'i" => "\n"
+	);
+	$str = str_replace('&nbsp;', ' ',  $str);
+	$str = str_replace('&rarr;', '-',  $str);
+	$str = str_replace('&darr;', '',  $str);
+	$str = str_replace("\t", ' ',  $str);
+	$str = preg_replace_callback('/colspan="([0-9]*)"/x', create_function('$matches', 'if ($matches[1] > 1) {return str_repeat("></td><td", ($matches[1] - 1));} return "";'), $str);
+	$str = str_replace("\r\n", "\n",  $str);
+	$str = str_replace("\$", $dollar_replacement,  $str); //replace special character
+	//remove newlines
+	$str = str_replace("\n", '',  $str);
+	$str = preg_replace(array_keys($tags2textTable), array_values($tags2textTable), $str);
+	$str = preg_replace("'<[^>]*?>'si", '', $str); //strip out remaining tags
+	//remove some newlines in excess
+	$str = preg_replace("'[ \t\f]+[\r\n]'si", "\n",  $str);
+	$str = preg_replace("'[\r\n][\r\n]+'si", "\n\n",  $str);
+	$str = unhtmlentities($str, FALSE);
+	$str = str_replace($dollar_replacement, "\$",  $str); //restore special character
+	$str = rtrim($str);
+	$str = ltrim($str, " \r\n\0\x0B");
+	$str = stripslashes($str);
+	return $str;
 }
 
 /**
@@ -505,7 +580,7 @@ function F_select_table_header_element($order_field, $orderdir, $title, $name, $
 			$ord = ' <acronym title="'.$l['w_descent'].'">&lt;</acronym>';
 		}
 	}
-	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.''.$filter.'" title="'.$title.'">'.$name.'</a>'.$ord.'</th>'."\n";
+	$str = '<th><a href="'.$_SERVER['SCRIPT_NAME'].'?'.$filter.'&amp;firstrow=0&amp;order_field='.$order_field.'&amp;orderdir='.$orderdir.'" title="'.$title.'">'.$name.'</a>'.$ord.'</th>'."\n";
 	return $str;
 }
 
@@ -569,12 +644,12 @@ function F_isURL($str) {
         break;
       }
       case 'KC': {
-        // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition 
+        // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition
         return normalizer_normalize($str, Normalizer::FORM_KC);
         break;
       }
       case 'KD': {
-        // Normalization Form KD (NFKD) - Compatibility Decomposition 
+        // Normalization Form KD (NFKD) - Compatibility Decomposition
         return normalizer_normalize($str, Normalizer::FORM_KD);
         break;
       }

@@ -145,13 +145,13 @@ define ('K_DISPLAY_PDFTEXT_BUTTON', false);
  * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
  * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
-define ('K_ENABLE_CUSTOM_IMPORT', 'Custom XML format');
+define ('K_ENABLE_CUSTOM_IMPORT', '');
 
 /**
  * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
  * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
-define ('K_ENABLE_CUSTOM_EXPORT', 'CUSTOM');
+define ('K_ENABLE_CUSTOM_EXPORT', '');
 
 /**
  * If true enable the backup download.
@@ -182,6 +182,26 @@ define('K_UTF8_NORMALIZATION_MODE', 'NONE');
  * "sudo apt-get install zbar-tools"
  */
 define ('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
+
+/**
+ * Defines a serialized array of available languages.
+ * Each language is indexed using a 2-letters code (ISO 639).
+ */
+define ('K_AVAILABLE_FONTS', serialize(array(
+	'courier' => 'courier',
+	'helvetica' => 'helvetica',
+	'times' => 'times',
+	'symbol' => 'symbol',
+	'zapfdingbats' => 'zapfdingbats',
+	'DejaVuSans' => 'dejavusans,sans',
+	'DejaVuSansCondensed' => 'dejavusanscondensed,sans',
+	'DejaVuSansMono' => 'dejavusansmono,monospace',
+	'DejaVuSerif' => 'dejavuserif,serif',
+	'DejaVuSerifCondensed' => 'dejavuserifcondensed,serif',
+	'FreeMono' => 'freemono,monospace',
+	'FreeSans' => 'freesans,sans',
+	'FreeSerif' => 'freeserif,serif'
+)));
 
 // --- INCLUDE FILES -----------------------------------------------------------
 

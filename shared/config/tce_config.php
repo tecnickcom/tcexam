@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2012-08-06
+// Last Update : 2012-12-30
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '11.4.002');
+define ('K_TCEXAM_VERSION', '12.0.000');
 
 /**
  * 2-letters code for default language.
@@ -99,9 +99,19 @@ require_once('../../shared/config/tce_paths.php');
 require_once('../../shared/config/tce_general_constants.php');
 
 /**
+ * If true enable One-Time-Password authentication on login.
+ */
+define ('K_OTP_LOGIN', false);
+
+/**
  * Number of difficulty levels for questions.
  */
 define ('K_QUESTION_DIFFICULTY_LEVELS', 10);
+
+/**
+ * If true enable virtual keyboard on some textarea fields.
+ */
+define('K_ENABLE_VIRTUAL_KEYBOARD', true);
 
 /**
  * Popup window height in pixels for test info.
@@ -137,6 +147,11 @@ define ('K_ENABLE_ANSWER_EXPLANATION', true);
  * If true display test description before executing the test.
  */
 define ('K_DISPLAY_TEST_DESCRIPTION', true);
+
+/**
+ * If true compare short answers in binary mode.
+ */
+define ('K_SHORT_ANSWERS_BINARY', false);
 
 /**
  * User's session life time in seconds.
@@ -198,6 +213,11 @@ define ('K_REDIRECT_LOGIN_MODE', 4);
  * If true enable password reset feature.
  */
 define ('K_PASSWORD_RESET', TRUE);
+
+/**
+ * URL to be redirected at logout (leave empty for default).
+ */
+define ('K_LOGOUT_URL', '');
 
 
 // Error settings

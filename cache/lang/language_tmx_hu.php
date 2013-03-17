@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2012-10-29 19:37:02
+// DATE: 2013-02-21 12:34:12
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='hu';
-$tmx['d_admin_index']='Ez a <a href="tce_page_info.php" title="about TCExam">TCExam</a> adminisztrátori felülete. TCExam egy platform és nyelv független, felhasználó barát szoftver, aminek segítségével online teszteket lehet készíteni és felügyelni.<br /><br />A felül található menüből a rendszer különböző részeit lehet elérni:<ul><li><strong>felhasználok</strong><br />Ez a szekció tartalmaz oldalakat a felhasználók <a href="tce_edit_user.php" title="User Management">létrehozására, felügyeletére</a>, <a href="tce_select_users.php" title="User Selection"> a felhasználok listázására</a> és a <a href="tce_show_online_users.php" title="Online Users">bejelentkezett</a> felhasználók listázására.<br />Csak a regisztrált felhasználóknak, akiknek van felhasználói nevük és jelszavuk, jelentkezhetnek be a rendszerbe és tölthetnek ki teszteket.<br />Különböző hozzáférési szinteket lehet hozzárendelni a felhasználókhoz és a rendszer különböző részeihez (oldalak, kérdőívek, szekciók).<br />TCExam még egy biztonsági rendszert használ hogy meggátolja az illetéktelen hozzáférést, ugyanis a hozzáférést IP cím alapján is szűri.</li><li><strong>témák</strong><br />Ez a szekcio tartalmaz oldalakat <a href="tce_edit_subject.php" title="Topic Management">témák</a>, <a href="tce_edit_question.php" title="Question Management">kérdések</a> és <a href="tce_edit_answer.php" title="Multiple-Answer Management">válaszok</a> beillesztésére, módosítására és kezelésére.<br />Korlátlan számu témát lehet használni egy tesztben és minden egyes témához korlátlan számú kérdést és választ lehet definiálni. A rendszer véletlenszerűen fog kérdéseket és válaszokat adni.<br />TCExam támogatja mind a szabad, szöveges és a felelet-választos kérdéseket. A szöveges kérdéseket egy külön oldalon lehet <a href="tce_edit_rating.php" title="Answer evaluation">kiértékelni</a> míg a felelet-választós kérdésekre adott válaszokat a rendszer automatikusan értékeli ki.<br />A tesztek, témák, kérdések és válaszok egy speciális kód (tcecode) segítségével szerkeszthetők. A kód támogatja a szövegek formázását és a képek beillesztését.</li><li><strong>teszt</strong><br />Ez a szekció tartalmaz oldalakat a <a href="tce_edit_test.php" title="Test Management">tesztek</a> generálására és módosítására, a szöveges válaszok <a href="tce_edit_rating.php" title="Answer Evaluation">kiértékelésére</a>, az <a href="tce_show_result_allusers.php" title="Test Results Summary">eredmények</a> megmutatására vagy az eredmények PDF file-ba mentésére, az eredmények <a href="tce_show_result_user.php" title="User\'s tests">felhasználonkénti</a> megjelenítésére és <a href="tce_show_result_questions.php" title="Question Statistics">statisztikák</a> készítésére.<br />TCExam véletlenszerűen választja ki a kérdéseket és a kapcsolódó válaszokat így a különböző felhasználók különböző teszteket fognak látni.<br />Lehetőseg van tetszőleges számú teszt generálására PDF formátumban, amelyeket ki lehet nyomtatni és felhasználni mint hagyományos papír alapú tesztet.</li></ul>';
+$tmx['d_admin_index']='Ez a <a href="tce_page_info.php" title="about TCExam">TCExam</a> adminisztrátori felülete. TCExam egy platform és nyelv független, felhasználó barát szoftver, aminek segítségével online teszteket lehet készíteni és felügyelni.<br /><br />A felül található menüből a rendszer különböző részeit lehet elérni:<ul><li><strong>felhasználok</strong><br />Ez a szekció tartalmaz oldalakat a felhasználók <a href="tce_edit_user.php" title="User Management">létrehozására, felügyeletére</a>, <a href="tce_select_users.php" title="User Selection"> a felhasználok listázására</a> és a <a href="tce_show_online_users.php" title="Online Users">bejelentkezett</a> felhasználók listázására.<br />Csak a regisztrált felhasználóknak, akiknek van felhasználói nevük és jelszavuk, jelentkezhetnek be a rendszerbe és tölthetnek ki teszteket.<br />Különböző hozzáférési szinteket lehet hozzárendelni a felhasználókhoz és a rendszer különböző részeihez (oldalak, kérdőívek, szekciók).<br />TCExam még egy biztonsági rendszert használ hogy meggátolja az illetéktelen hozzáférést, ugyanis a hozzáférést IP cím alapján is szűri.</li><li><strong>témák</strong><br />Ez a szekcio tartalmaz oldalakat <a href="tce_edit_subject.php" title="Topic Management">témák</a>, <a href="tce_edit_question.php" title="Question Management">kérdések</a> és <a href="tce_edit_answer.php" title="Multiple-Answer Management">válaszok</a> beillesztésére, módosítására és kezelésére.<br />Korlátlan számu témát lehet használni egy tesztben és minden egyes témához korlátlan számú kérdést és választ lehet definiálni. A rendszer véletlenszerűen fog kérdéseket és válaszokat adni.<br />TCExam támogatja mind a szabad, szöveges és a felelet-választos kérdéseket. A szöveges kérdéseket egy külön oldalon lehet <a href="tce_edit_rating.php" title="Answer evaluation">kiértékelni</a> míg a felelet-választós kérdésekre adott válaszokat a rendszer automatikusan értékeli ki.<br />A tesztek, témák, kérdések és válaszok egy speciális kód (tcecode) segítségével szerkeszthetők. A kód támogatja a szövegek formázását és a képek beillesztését.</li><li><strong>teszt</strong><br />Ez a szekció tartalmaz oldalakat a <a href="tce_edit_test.php" title="Test Management">tesztek</a> generálására és módosítására, a szöveges válaszok <a href="tce_edit_rating.php" title="Answer Evaluation">kiértékelésére</a>, az <a href="tce_show_result_allusers.php" title="Test Results Summary">eredmények</a> megmutatására vagy az eredmények PDF file-ba mentésére, az eredmények <a href="tce_show_result_user.php" title="User\'s tests">felhasználonkénti</a> megjelenítésére és <a href="tce_show_result_allusers.php" title="Question Statistics">statisztikák</a> készítésére.<br />TCExam véletlenszerűen választja ki a kérdéseket és a kapcsolódó válaszokat így a különböző felhasználók különböző teszteket fognak látni.<br />Lehetőseg van tetszőleges számú teszt generálására PDF formátumban, amelyeket ki lehet nyomtatni és felhasználni mint hagyományos papír alapú tesztet.</li></ul>';
 $tmx['d_logout_desc']='kijelentkezéshez kattintson a gombra';
 $tmx['d_tcexam_desc']='TCExam egy online teszteket kezelő szoftver.';
 $tmx['h_add']='hozzáadja az aktuális rekordot az adatbázishoz';
@@ -45,7 +45,7 @@ $tmx['h_enabled']='aktuális rekord ki- és bekapcsolása';
 $tmx['h_execute']='teszt kitöltése';
 $tmx['h_file_type']='fájl típus';
 $tmx['h_file_type_xml']='eXtensible Markup Language (kiterjesztett leíró nyelv)';
-$tmx['h_file_type_csv']='Tabbal Elválasztott Szöveges Fájl';
+$tmx['h_file_type_tsv']='Tabbal Elválasztott Szöveges Fájl';
 $tmx['h_firstname']='keresztnév (pl.: Éva, Ádám, ...)';
 $tmx['h_fiscal_code']='társadalom biztosítási szám';
 $tmx['h_global_score']='ha kiválasztjuk, akkor felülírjuk a válaszra kapható pontokat az alábbi pontokkal';
@@ -116,7 +116,7 @@ $tmx['h_upload_file']='a feltöltésre szánt fájl útvonalának megadása';
 $tmx['h_user_info']='a jelenlévő felhasználók adatai';
 $tmx['h_usered_email']='e-mail cím (pl.: nev@pelda.com)';
 $tmx['h_view_details']='részletek megmutatása';
-$tmx['h_csv_export']='adatok exportálása CSV formátumba';
+$tmx['h_tsv_export']='adatok exportálása TSV formátumba';
 $tmx['h_xml_export']='adatok exportálása XML formátumba';
 $tmx['hp_edit_answer']='Ezen az oldalon lehet kezelni a kérdésekra adható összes választ. Tetszőleges számú helyes és helytelen válasz adható meg minden kérdésre. A teszt során a rendszer automatikusan fogja kiválasztani az egy vagy több helyes választ a kérdéstől függően. Nem lehet módosítani vagy törölni egy választ amelyik egy már kitöltött teszt része. Ebben az esetben a rendszer csak kikapcsolja a választ a [töröl] gomb megnyomása után. Jelmagyarázat: [+] Bekapcsolt; [-] Kikapcsolt. Kérdések jelölése: [S] Több lehetőség de csak egy jó válaszos kérdés; [M] Több lehetőség, több jó válaszos kérdés; [T] Szabad, szöveges válaszos kérdés; [O] ORDER - Sorbarendezős kérdés. Válaszok jelölése: [I] igaz válasz; [H] hamis válasz.';
 $tmx['hp_edit_group']='Felhasználói csoportokat adminisztrálása.';
@@ -128,7 +128,7 @@ $tmx['hp_edit_test']='Ezen az oldalon lehet létrehozni, módosítani vagy tör�
 $tmx['hp_edit_user']='Regisztrált felhasználók adminisztrálása. Minden felhasználónak meg kell adni egy nevet, egy jelszót és egy elérési szintet. A 0. szint anonymous felhasználót jelent (nincs regisztrálva), 1. szint az alap felhasználó (pl. hallgató) és a 10. szint az adminisztrátor szint teljes jogkörrel.';
 $tmx['hp_email_result']='Eredmények elküldése a felhasználóknak e-mail -ben';
 $tmx['hp_import_xml_questions']='Kérdések betöltése egy XML file-ból a kiválasztott témához.';
-$tmx['hp_import_xml_users']='Felhasználók és csoportok adatainak betöltése fájlból. A fájl kiterjesztése XML vagy CSV lehet. A fájl formátuma megegyezik a Felhasználói lista oldalon kiírható fájlok formátumával.';
+$tmx['hp_import_xml_users']='Felhasználók és csoportok adatainak betöltése fájlból. A fájl kiterjesztése XML vagy TSV lehet. A fájl formátuma megegyezik a Felhasználói lista oldalon kiírható fájlok formátumával.';
 $tmx['hp_login']='A TCExam különböző részeihez csak a megfelelő felhasználói név és jelszó megadásával lehet hozzáférni.';
 $tmx['hp_online_users']='A jelenleg bejelentkezett felhasznalók listázása';
 $tmx['hp_public_index']='A TCExam fő oldala, innen lehet elérni a teszteket';
@@ -583,5 +583,45 @@ $tmx['h_omr_dir']='OMR Import Alkönyvtár';
 $tmx['w_omr_dir']='OMR Alkönyvtár';
 $tmx['t_omr_bulk_importer']='OMR Tömeges Importálás';
 $tmx['hp_omr_bulk_importer']='Ezen ez oldalon lehetősége van több teszt válaszait importálni a beolvasott válasz formanyomtatványokból. A képfájloknak a cache/OMR alkönyvtárban kell lenniük. A képekfájlok tartalmazzák a QR kódot a fájl nevében "OMR_[USRREG]_QR.png", ahol az [USRREG] a regisztrált felhasználó kódja. A fájl nevének "OMR_[USRREG]_A[X].png" formájúnak kell lennie ahol az [X] az oldal sorszáma. A képek feldolgozása az Optical Mark Recognition (OMR) segíŧségével történik azonosítva akérdéseket és a rájuk adott válaszokat. Az importált adatok felülírják a meglévő adatokat. Az OMR számára a formanyomtatványokat teljes méretben minimum 200DPI felbontásban kell beolvasni.';
+$tmx['w_alphabetic']='alphabetic';
+$tmx['w_id']='id';
+$tmx['w_database_id']='database ID';
+$tmx['w_order_by']='order by';
+$tmx['w_questions_order_mode']='questions order';
+$tmx['h_questions_order_mode']='ordering mode for questions';
+$tmx['w_answers_order_mode']='answers order';
+$tmx['h_answers_order_mode']='ordering mode for answers';
+$tmx['w_otpkey']='OTP key';
+$tmx['h_otpkey']='One Time Password secret key';
+$tmx['w_otp_qrcode']='OTP QR-Code';
+$tmx['m_otp_qrcode']='TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.<br /><br />You must download and install the <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a> app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:';
+$tmx['w_otpcode']='OTP code';
+$tmx['h_otpcode']='One Time Password code generated using your smartphone application';
+$tmx['m_login_brute_force']='You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:';
+$tmx['w_test_password']='test password';
+$tmx['h_test_password']='password, alphanumeric code required to execute this test';
+$tmx['hp_test_password']='In order to execute this test you must provide the test password';
+$tmx['m_wrong_test_password']='wrong test password';
+$tmx['t_test_select']='Test Selection';
+$tmx['h_select_test']='open a test selection page';
+$tmx['hp_select_tests']='In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.';
+$tmx['w_limit']='limit';
+$tmx['w_total']='total';
+$tmx['w_day']='day';
+$tmx['w_month']='month';
+$tmx['w_year']='year';
+$tmx['w_remaining_tests']='remaining tests';
+$tmx['h_remaining_tests']='remaining number of tests that can be executed';
+$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
+$tmx['w_under_limit']='under limit';
+$tmx['w_over_limit']='over limit';
+$tmx['w_font']='font';
+$tmx['w_font_size']='font size';
+$tmx['w_keyboard']='keyboard';
+$tmx['w_layout']='layout';
+$tmx['w_language']='language';
+$tmx['w_max']='max';
+$tmx['w_remaining']='remaining';
+$tmx['w_executed']='executed';
 
 // --- EOF ---

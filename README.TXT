@@ -11,14 +11,14 @@ FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 11.4.002
+Version: 12.0.000
 
-Release date: 2012-11-14
+Release date: 2013-03-17
 
 Author:
 	Nicola Asuni
 
-Copyright (c) 2004-2012:
+Copyright (c) 2004-2013:
 	Nicola Asuni
 	Tecnick.com LTD
 	Manor Coach House, Church Hill
@@ -102,6 +102,12 @@ Third-party Software
 		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
 		Location: /shared/jscripts/jscalendar/
 
+	Javascript VirtualKeyboard
+		Author: Ilya Lebedev (ilya@lebedev.net)
+		Homepage: http://debugger.ru/projects/virtualkeyboard
+		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+		Location: /shared/jscripts/vk/
+
 	Fonts
 		TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:
 			DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33
@@ -158,7 +164,7 @@ Description:
 	their test, or have it delivered via email.
 
 	* Data Import and Export: TCExam uses Open Standard protocols for data
-	filing and interchange: CSV, XML and PDF. Everything is fully documented to
+	filing and interchange: TSV, XML and PDF. Everything is fully documented to
 	be easily extended or used by external applications. Custom filters can be
 	added to import data from other systems. Include Optical Mark Recognition
 	(OMR) system to import users' answers from paper sheets. TCExam supports

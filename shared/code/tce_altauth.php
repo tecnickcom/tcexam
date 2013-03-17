@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2012-06-05
+// Last Update : 2012-11-27
 //
 // Description : Check user authorization against alternative
 //               systems (HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
@@ -116,18 +116,29 @@ function F_altLogin() {
 		if (isset($_SERVER['AUTH_TYPE']) AND ($_SERVER['AUTH_TYPE'] == 'shibboleth')
 			AND ((isset($_SERVER['Shib_Session_ID']) AND !empty($_SERVER['Shib_Session_ID']))
 				OR (isset($_SERVER['HTTP_SHIB_IDENTITY_PROVIDER']) AND !empty($_SERVER['HTTP_SHIB_IDENTITY_PROVIDER'])))
-			AND isset($_SERVER['PHP_AUTH_USER'])
-			AND ($_SESSION['session_user_name'] != $_SERVER['PHP_AUTH_USER'])) {
-			$_POST['xuser_name'] = $_SERVER['PHP_AUTH_USER'];
+			AND isset($_SERVER['eppn']) AND ($_SESSION['session_user_name'] != $_SERVER['eppn'])) {
+			$_POST['xuser_name'] = $_SERVER['eppn'];
 			$_POST['xuser_password'] = getPasswordHash($_POST['xuser_name'].K_RANDOM_SECURITY);
 			$_POST['logaction'] = 'login';
 			$usr = array();
-			$usr['user_email'] = '';
-			$usr['user_firstname'] = '';
-			$usr['user_lastname'] = '';
+			$usr['user_email'] = $_SERVER['eppn'];
+			if (isset($_SERVER['givenName'])) {
+				$usr['user_firstname'] = $_SERVER['givenName'];
+			} else {
+				$usr['user_firstname'] = '';
+			}
+			if (isset($_SERVER['sn'])) {
+				$usr['user_lastname'] = $_SERVER['sn'];
+			} else {
+				$usr['user_lastname'] = '';
+			}
 			$usr['user_birthdate'] = '';
 			$usr['user_birthplace'] = '';
-			$usr['user_regnumber'] = '';
+			if (isset($_SERVER['employeeNumber'])) {
+				$usr['user_regnumber'] = $_SERVER['employeeNumber'];
+			} else {
+				$usr['user_regnumber'] = '';
+			}
 			$usr['user_ssn'] = '';
 			$usr['user_level'] = K_SHIBBOLETH_USER_LEVEL;
 			$usr['usrgrp_group_id'] = K_SHIBBOLETH_USER_GROUP_ID;

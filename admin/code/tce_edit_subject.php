@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2011-09-14
+// Last Update : 2012-12-30
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -57,7 +57,7 @@ require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('../code/tce_functions_tcecode_editor.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 
 // upload multimedia files
 $uploadedfile = array();
@@ -98,7 +98,8 @@ if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
 			if($m = F_db_fetch_array($r)) {
 				$subject_module_id = $m['subject_module_id'];
 				// check user's authorization for parent module
-				if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+				if ((!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id'))
+					AND (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id'))) {
 					F_print_error('ERROR', $l['m_authorization_denied']);
 					exit;
 				}
@@ -310,6 +311,11 @@ if (!isset($subject_module_id) OR ($subject_module_id <= 0)) {
 	exit;
 }
 
+echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'inserttag.js" type="text/javascript"></script>'.K_NEWLINE;
+if (K_ENABLE_VIRTUAL_KEYBOARD) {
+	echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'vk/vk_easy.js?vk_skin=default" type="text/javascript"></script>'.K_NEWLINE;
+}
+
 echo '<div class="container">'.K_NEWLINE;
 
 echo '<div class="tceformbox">'.K_NEWLINE;
@@ -401,10 +407,15 @@ echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">'.K_NEWLINE;
 echo '<label for="subject_description">'.$l['w_description'].'</label>'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
-echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_subjecteditor\').subject_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>';
+echo '<a href="#" title="'.$l['h_preview'].'" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_subjecteditor\').subject_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'.$l['w_preview'].'</a>'.K_NEWLINE;
+
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw" style="border:1px solid #808080;">'.K_NEWLINE;
-echo '<textarea cols="50" rows="5" name="subject_description" id="subject_description" onselect="FJ_update_selection(document.getElementById(\'form_subjecteditor\').subject_description)" title="'.$l['h_subject_description'].'">'.htmlspecialchars($subject_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
+echo '<textarea cols="50" rows="5" name="subject_description" id="subject_description" onselect="FJ_update_selection(document.getElementById(\'form_subjecteditor\').subject_description)" title="'.$l['h_subject_description'].'"';
+if (K_ENABLE_VIRTUAL_KEYBOARD) {
+	echo ' class="keyboardInput"';
+}
+echo '>'.htmlspecialchars($subject_description, ENT_NOQUOTES, $l['a_meta_charset']).'</textarea>'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
 echo tcecodeEditorTagButtons('form_subjecteditor', 'subject_description');
 echo '</span>'.K_NEWLINE;
@@ -420,6 +431,7 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
 	echo '</span>';
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 } else {
 	F_submit_button('add', $l['w_add'], $l['h_add']);

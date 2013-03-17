@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2012-11-07
+Last Update : 2012-12-26
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -19,7 +19,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-   Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+   Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -66,6 +66,7 @@ CREATE TABLE tce_users (
 	user_ssn Varchar(255),
 	user_level Smallint(3) UNSIGNED NOT NULL DEFAULT 1,
 	user_verifycode Varchar(32),
+	user_otpkey Varchar(255),
 	UNIQUE (user_verifycode),
  Primary Key (user_id)
 ) ENGINE = InnoDB
@@ -139,8 +140,10 @@ CREATE TABLE tce_tests (
 	test_score_threshold Decimal(10,3) Default 0,
 	test_random_questions_select Bool NOT NULL Default '1',
 	test_random_questions_order Bool NOT NULL Default '1',
+	test_questions_order_mode Smallint(3) UNSIGNED NOT NULL DEFAULT 0,
 	test_random_answers_select Bool NOT NULL Default '1',
 	test_random_answers_order Bool NOT NULL Default '1',
+	test_answers_order_mode Smallint(3) UNSIGNED NOT NULL DEFAULT 0,
 	test_comment_enabled Bool NOT NULL Default '1',
 	test_menu_enabled Bool NOT NULL Default '1',
 	test_noanswer_enabled Bool NOT NULL Default '1',
@@ -148,6 +151,7 @@ CREATE TABLE tce_tests (
 	test_repeatable Bool NOT NULL Default '0',
 	test_mcma_partial_score Bool NOT NULL Default '1',
 	test_logout_on_timeout Bool NOT NULL Default '0',
+	test_password Varchar(255),
  Primary Key (test_id)
 ) ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
@@ -231,6 +235,13 @@ CREATE TABLE tce_test_subject_set (
 ) ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS tce_testuser_stat (
+	tus_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+	tus_date Datetime NOT NULL,
+ PRIMARY KEY (tus_id)
+) ENGINE = InnoDB
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 /* Alternate Keys */
 
 ALTER TABLE tce_users ADD UNIQUE ak_user_name (user_name);
@@ -239,7 +250,7 @@ ALTER TABLE tce_users ADD UNIQUE ak_user_ssn (user_ssn);
 ALTER TABLE tce_modules ADD UNIQUE ak_module_name (module_name);
 ALTER TABLE tce_subjects ADD UNIQUE ak_subject_name (subject_module_id,subject_name);
 ALTER TABLE tce_tests ADD UNIQUE ak_test_name (test_name);
-ALTER TABLE tce_tests_users ADD UNIQUE ak_testuser (testuser_test_id,testuser_user_id);
+ALTER TABLE tce_tests_users ADD UNIQUE ak_testuser (testuser_test_id,testuser_user_id,testuser_status);
 ALTER TABLE tce_tests_logs ADD UNIQUE ak_testuser_question (testlog_testuser_id,testlog_question_id);
 
 /* Indexes */

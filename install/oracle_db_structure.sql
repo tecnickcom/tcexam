@@ -2,7 +2,7 @@
 ============================================================
 File name   : oracle_db_structure.sql
 Begin       : 2009-10-09
-Last Update : 2010-06-16
+Last Update : 2012-12-26
 
 Description : TCExam database structure.
 Database    : Oracle
@@ -19,7 +19,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-   Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+   Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -65,6 +65,7 @@ CREATE TABLE tce_users (
 	user_ssn VARCHAR2(255),
 	user_level NUMBER(5,0) DEFAULT 1 NOT NULL,
 	user_verifycode VARCHAR2(32) UNIQUE,
+	user_otpkey VARCHAR2(255),
 constraint PK_tce_users_user_id primary key (user_id)
 );
 CREATE SEQUENCE tce_users_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;
@@ -143,8 +144,10 @@ CREATE TABLE tce_tests (
 	test_score_threshold NUMBER(10,3) DEFAULT 0,
 	test_random_questions_select NUMBER(1) DEFAULT '1' NOT NULL,
 	test_random_questions_order NUMBER(1) DEFAULT '1' NOT NULL,
+	test_questions_order_mode NUMBER(5,0) DEFAULT 0 NOT NULL,
 	test_random_answers_select NUMBER(1) DEFAULT '1' NOT NULL,
 	test_random_answers_order NUMBER(1) DEFAULT '1' NOT NULL,
+	test_answers_order_mode NUMBER(5,0) DEFAULT 0 NOT NULL,
 	test_comment_enabled NUMBER(1) DEFAULT '1' NOT NULL,
 	test_menu_enabled NUMBER(1) DEFAULT '1' NOT NULL,
 	test_noanswer_enabled NUMBER(1) DEFAULT '1' NOT NULL,
@@ -152,6 +155,7 @@ CREATE TABLE tce_tests (
 	test_repeatable NUMBER(1) DEFAULT '0' NOT NULL,
 	test_mcma_partial_score NUMBER(1) DEFAULT '1' NOT NULL,
 	test_logout_on_timeout Boolean NUMBER(1) DEFAULT '0' NOT NULL,
+	test_password VARCHAR2(255),
 constraint PK_tce_tests_test_id primary key (test_id)
 );
 CREATE SEQUENCE tce_tests_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;
@@ -235,6 +239,14 @@ constraint pk_tce_test_subject_set primary key (tsubset_id)
 CREATE SEQUENCE tce_test_subject_set_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;
 CREATE OR REPLACE TRIGGER tce_test_subject_set_trigger BEFORE INSERT ON tce_test_subject_set FOR EACH ROW BEGIN SELECT tce_test_subject_set_seq.nextval INTO :new.tsubset_id FROM DUAL; END;;
 
+CREATE TABLE tce_testuser_stat (
+	tus_id NUMBER(19,0) NOT NULL,
+	tus_date DATE NOT NULL,
+constraint pk_tce_testuser_stat primary key (tus_id)
+);
+CREATE SEQUENCE tce_testuser_stat_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;
+CREATE OR REPLACE TRIGGER tce_testuser_stat_trigger BEFORE INSERT ON tce_testuser_stat FOR EACH ROW BEGIN SELECT tce_testuser_stat_seq.nextval INTO :new.tus_id FROM DUAL; END;;
+
 /* Alternate Keys */
 
 ALTER TABLE tce_users ADD Constraint ak_user_name UNIQUE (user_name);
@@ -243,7 +255,7 @@ ALTER TABLE tce_users ADD Constraint ak_user_ssn UNIQUE (user_ssn);
 ALTER TABLE tce_modules ADD Constraint ak_module_name UNIQUE (module_name);
 ALTER TABLE tce_subjects ADD Constraint ak_subject_name UNIQUE (subject_module_id,subject_name);
 ALTER TABLE tce_tests ADD Constraint ak_test_name UNIQUE (test_name);
-ALTER TABLE tce_tests_users ADD Constraint ak_testuser UNIQUE (testuser_test_id,testuser_user_id);
+ALTER TABLE tce_tests_users ADD Constraint ak_testuser UNIQUE (testuser_test_id,testuser_user_id,testuser_status);
 ALTER TABLE tce_tests_logs ADD Constraint ak_testuser_question UNIQUE (testlog_testuser_id,testlog_question_id);
 
 /*  Foreign Keys */

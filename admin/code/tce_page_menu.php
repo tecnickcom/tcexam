@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2012-07-31
+// Last Update : 2012-12-16
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -71,8 +71,7 @@ $menu['tce_menu_users.php']['sub'] = array(
 	'tce_edit_group.php' => array('link' => 'tce_edit_group.php', 'title' => $l['t_group_editor'], 'name' => $l['w_groups'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
 	'tce_select_users.php' => array('link' => 'tce_select_users.php', 'title' => $l['t_user_select'], 'name' => $l['w_select'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
 	'tce_show_online_users.php' => array('link' => 'tce_show_online_users.php', 'title' => $l['t_online_users'], 'name' => $l['w_online'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
-	'tce_import_xml_users.php' => array('link' => 'tce_import_xml_users.php', 'title' => $l['t_user_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true),
-	'tce_show_allresults_users.php' => array('link' => 'tce_show_allresults_users.php', 'title' => $l['t_all_results_user'], 'name' => $l['w_results'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true)
+	'tce_import_users.php' => array('link' => 'tce_import_users.php', 'title' => $l['t_user_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_USERS, 'key' => '', 'enabled' => true)
 );
 
 $menu['tce_menu_modules.php']['sub'] = array(
@@ -81,18 +80,18 @@ $menu['tce_menu_modules.php']['sub'] = array(
 	'tce_edit_question.php' => array('link' => 'tce_edit_question.php', 'title' => $l['t_questions_editor'], 'name' => $l['w_questions'], 'level' => K_AUTH_ADMIN_QUESTIONS, 'key' => '', 'enabled' => true),
 	'tce_edit_answer.php' => array('link' => 'tce_edit_answer.php', 'title' => $l['t_answers_editor'], 'name' => $l['w_answers'], 'level' => K_AUTH_ADMIN_ANSWERS, 'key' => '', 'enabled' => true),
 	'tce_show_all_questions.php' => array('link' => 'tce_show_all_questions.php', 'title' => $l['t_questions_list'], 'name' => $l['w_list'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
-	'tce_import_xml_questions.php' => array('link' => 'tce_import_xml_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true),
+	'tce_import_questions.php' => array('link' => 'tce_import_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true),
 	'tce_filemanager.php' => array('link' => 'tce_filemanager.php', 'title' => $l['t_filemanager'], 'name' => $l['w_file_manager'], 'level' => K_AUTH_ADMIN_FILEMANAGER, 'key' => '', 'enabled' => true)
 );
 
 $menu['tce_menu_tests.php']['sub'] = array(
 	'tce_edit_test.php' => array('link' => 'tce_edit_test.php', 'title' => $l['t_tests_editor'], 'name' => $l['w_tests'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
+	'tce_select_tests.php' => array('link' => 'tce_select_tests.php', 'title' => $l['t_test_select'], 'name' => $l['w_select'], 'level' => K_AUTH_ADMIN_TESTS, 'key' => '', 'enabled' => true),
 	'tce_import_omr_answers.php' => array('link' => 'tce_import_omr_answers.php', 'title' => $l['t_omr_answers_importer'], 'name' => $l['w_import_omr_answers'], 'level' => K_AUTH_ADMIN_OMR_IMPORT, 'key' => '', 'enabled' => true),
 	'tce_import_omr_bulk.php' => array('link' => 'tce_import_omr_bulk.php', 'title' => $l['t_omr_bulk_importer'], 'name' => $l['t_omr_bulk_importer'], 'level' => K_AUTH_ADMIN_OMR_IMPORT, 'key' => '', 'enabled' => true),
 	'tce_edit_rating.php' => array('link' => 'tce_edit_rating.php', 'title' => $l['t_rating_editor'], 'name' => $l['w_rating'], 'level' => K_AUTH_ADMIN_RATING, 'key' => '', 'enabled' => true),
 	'tce_show_result_allusers.php' => array('link' => 'tce_show_result_allusers.php', 'title' => $l['t_result_all_users'], 'name' => $l['w_results'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
-	'tce_show_result_user.php' => array('link' => 'tce_show_result_user.php', 'title' => $l['t_result_user'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
-	'tce_show_result_questions.php' => array('link' => 'tce_show_result_questions.php', 'title' => $l['t_result_questions'], 'name' => $l['w_stats'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true)
+	'tce_show_result_user.php' => array('link' => 'tce_show_result_user.php', 'title' => $l['t_result_user'], 'name' => $l['w_users'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true)
 );
 
 echo '<a name="menusection" id="menusection"></a>'.K_NEWLINE;

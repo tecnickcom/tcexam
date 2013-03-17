@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2012-04-15
+// Last Update : 2012-12-03
 //
 // Description : Display form to edit modules.
 //
@@ -58,7 +58,7 @@ require_once('../../shared/code/tce_authorization.php');
 $thispage_title = $l['t_modules_editor'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
-require_once('../code/tce_functions_auth_sql.php');
+require_once('../../shared/code/tce_functions_auth_sql.php');
 
 // set default values
 if(!isset($module_enabled) OR (empty($module_enabled))) {
@@ -400,6 +400,7 @@ if (isset($module_id) AND ($module_id > 0)) {
 	echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
 	F_submit_button('update', $l['w_update'], $l['h_update']);
 	echo '</span>';
+	F_submit_button('add', $l['w_add'], $l['h_add']);
 	F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 } else {
 	F_submit_button('add', $l['w_add'], $l['h_add']);
