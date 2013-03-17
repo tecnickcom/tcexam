@@ -1,0 +1,1 @@
+﻿VirtualKeyboard.addLayout({code:'EN-IPA',name:'IPA Phonetic',normal:'`1234567890-͡\\qwertyuiop[]asdfghjklΑΒzxcvbnm,.?',shift:{0:'~!‖↗↘ꜛꜜ&*()_+|',24:'{}',35:':"',44:'ʘ˧/'},'cbk':VirtualKeyboard.Langs.IPA.charProcessor});

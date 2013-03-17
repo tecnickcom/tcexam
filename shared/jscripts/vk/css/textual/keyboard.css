@@ -1,0 +1,464 @@
+html.VirtualKeyboardPopup, body.VirtualKeyboardPopup {
+        padding: 0;
+        margin: 0;
+}
+
+#virtualKeyboard {
+        border: 1px solid #686888;
+        background: #ECE9D8;
+        height: 173px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        visibility: visible !important;
+        width: 428px;
+}
+/*
+*  global overrides
+*/
+#virtualKeyboard * {
+        border: 0;
+        color: black; 
+        cursor: default;
+        margin: 0;
+        padding: 0;
+}
+#virtualKeyboard #kbDesk {
+        display: block;
+        margin: 4px 2px 0 4px;
+        padding: 0;
+        position: relative;
+        font-size: 1px;
+        overflow: hidden;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+}
+
+#kbDesk div.kbButton {
+        float: left;
+        height: 25px;
+        overflow: hidden;
+        padding: 1px 2px 2px 1px;
+        position: relative;
+        width: 25px;
+        z-index: 2;
+}
+#kbDesk div.kbButton a {
+        background: #cfccbe;
+        border: 1px outset #eee;
+        display: block;
+        height: 100%;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+}
+
+#kbDesk div.kbButtonHover a {
+        background: #f0eddd;
+        border-color: #000;
+}
+#kbDesk div.kbButtonDown a {
+        border-style: inset;
+}
+#kbDesk div.kbButton span {
+        display: block;
+        font-family: Verdana;
+        font-size: 10pt;
+        font-weight: normal;
+        overflow: visible;
+        text-align: center;
+        text-indent: 0;
+        white-space: pre;
+}
+
+#kbDesk div.kbButton span.title {
+        display: block !important;
+        font-size: 8pt !important;
+        font-family: Tahoma !important;
+        line-height: 22px;
+        text-transform: capitalize;
+}
+#kbDesk div#kb_btab span.title,
+#kbDesk div#kb_bcaps span.title,
+#kbDesk div#kb_bshift_left span.title,
+#kbDesk div#kb_bctrl_left span.title {
+        padding-left: 7pt;
+        text-align: left;
+}
+
+/**
+ *  General definitions for the characters
+ */
+#kbDesk.modeAlt span.charAlt,
+#kbDesk.modeCaps span.charCaps,
+#kbDesk.modeNormal span.charNormal,
+#kbDesk.modeShift span.charShift,
+#kbDesk.modeShiftAlt span.charShiftAlt,
+#kbDesk.modeShiftCaps span.charShiftCaps {
+        color: black;
+        bottom: 1px;
+        left: -2px;
+        position: absolute;
+        right: 0;
+}
+#kbDesk.modeAlt span.charShiftAlt,
+#kbDesk.modeCaps span.charShiftCaps,
+#kbDesk.modeNormal span.charAlt,
+#kbDesk.modeNormal span.charShift,
+#kbDesk.modeShift span.charShiftAlt,
+#kbDesk.modeShift span.charShiftCaps {
+        color: green;
+        font-size: 7pt;
+        line-height: 1.1;
+        position: absolute;
+        left: 7px;
+        top: 0;
+        vertical-align: bottom;
+        width: 100%;
+        z-index: 1;
+}
+#kbDesk.modeNormal span.charAlt,
+#kbDesk.modeShift span.charShiftAlt {
+        color: blue;
+        left: -7px;
+}
+
+/**
+ *  When each char class should be visible
+ */
+#kbDesk.modeAlt span.hiddenAlt,
+#kbDesk.modeAlt span.charCaps,
+#kbDesk.modeAlt span.charNormal,
+#kbDesk.modeAlt span.charShift,
+#kbDesk.modeAlt span.charShiftCaps,
+#kbDesk.modeNormal span.charCaps,
+#kbDesk.modeNormal span.charShiftAlt,
+#kbDesk.modeNormal span.charShiftCaps, 
+#kbDesk.modeNormal span.hiddenShift,
+#kbDesk.modeShift span.hiddenShift,
+#kbDesk.modeShift span.charAlt,
+#kbDesk.modeShift span.charCaps,
+#kbDesk.modeShift span.charNormal,
+#kbDesk.modeShift span.charShiftCaps,
+#kbDesk.modeShiftAlt span.charAlt,
+#kbDesk.modeShiftAlt span.charCaps,
+#kbDesk.modeShiftAlt span.charNormal,
+#kbDesk.modeShiftAlt span.charShift,
+#kbDesk.modeShiftAlt span.charShiftCaps,
+#kbDesk.modeShiftAltCaps span.charAlt,
+#kbDesk.modeShiftAltCaps span.charCaps,
+#kbDesk.modeShiftAltCaps span.charNormal,
+#kbDesk.modeShiftAltCaps span.charShift,
+#kbDesk.modeShiftAltCaps span.charShiftAlt,
+#kbDesk.modeShiftAltCaps span.charShiftCaps,
+#kbDesk.modeShiftCaps span.charAlt,
+#kbDesk.modeShiftCaps span.charCaps,
+#kbDesk.modeShiftCaps span.charNormal,
+#kbDesk.modeShiftCaps span.charShift,
+#kbDesk.modeShiftCaps span.charShiftAlt,
+#kbDesk.modeCaps span.hiddenCaps,
+#kbDesk.modeCaps span.charAlt,
+#kbDesk.modeCaps span.charNormal,
+#kbDesk.modeCaps span.charShift,
+#kbDesk.modeCaps span.charShiftAlt {
+        display: none;
+}
+#kbDesk.modeAlt span.charAlt,
+#kbDesk.modeCaps span.charCaps,
+#kbDesk.modeNormal span.charNormal,
+#kbDesk.modeShift span.charShift,
+#kbDesk.modeShiftAlt span.charShiftAlt,
+#kbDesk.modeShiftCaps span.charShiftCaps {
+        display: block !important;
+}
+
+#kbDesk.hoverAlt span.charAlt,
+#kbDesk.hoverAlt span.charAltShift,
+#kbDesk.hoverShift span.charShift,
+#kbDesk.hoverShift span.charShiftCaps {
+        font-weight: bold;
+}
+
+#kbDesk span.deadKey {
+        color: red !important;
+}
+
+#kbDesk div#kb_b13 {
+        float: right;
+        left: -2px;
+        top: 28px;
+        width: 37px;
+}
+
+#kbDesk div#kb_benter {
+        float: right;
+        left: -2px;
+        width: 58px;
+}
+
+#kbDesk div#kb_benter[id] {
+        z-index: 0;
+}
+
+#kbDesk div#kb_bbackspace {
+        width: 53px;
+        float: right;
+        margin-top: -28px;
+        left: -2px
+}
+
+#kbDesk div#kb_btab {
+        width: 41px;
+}
+
+#kbDesk div#kb_bcaps {
+        width: 48px;
+}
+
+#kbDesk div#kb_bshift_left,
+#kbDesk div#kb_bshift_right {
+        width: 52px;
+}
+
+#kbDesk div#kb_balt_left,
+#kbDesk div#kb_balt_right {
+        width: 32px;
+}
+
+#kbDesk div#kb_balt_left {
+        left: 53px;
+        margin-right: 53px;
+}
+
+#kbDesk div#kb_bctrl_left,
+#kbDesk div#kb_bctrl_right {
+        float: left;
+        width: 32px;
+}
+#kbDesk div#kb_bctrl_right {
+        float: right;
+        left: -2px;
+}
+#kbDesk div#kb_bdel {
+        width: 27px;
+}
+#kbDesk div#kb_bspace {
+        width: 166px;
+}
+
+#virtualKeyboard select#kb_langselector,
+#virtualKeyboard select#kb_mappingselector {
+        border: 1px solid black;
+        bottom: 2px;
+        position: absolute;
+        left: 301px;
+        width: 125px;
+}
+#virtualKeyboard select#kb_mappingselector {
+        left: 173px;
+}
+#virtualKeyboard select,
+#virtualKeyboard select option {
+        background: #fff;
+        font-family: Arial, Tahoma, Verdana sans-serif;
+        font-size: 11px;
+}
+#virtualKeyboard select optgroup option {
+        padding-left: 20px;
+}
+
+#virtualKeyboard #copyrights {
+        bottom: 4px;
+        color: blue;
+        font-family: tahoma, verdana, arial;
+        font-size: 9px;
+        left: 2px;
+        line-height: normal;
+        position: absolute;
+}
+#virtualKeyboard #copyrights a {
+        font-size: 9px;
+        color: blue;
+        cursor: default;
+        outline: 0;
+}
+
+/**
+ *
+ *  Styles for the IME field
+ *
+ */
+#VirtualKeyboardIME {
+   background: #ECE9D8;
+   border: 1px outset #eee;
+   position: absolute;
+   z-index: 2;
+}
+#VirtualKeyboardIME div {
+   font-size: 11px;
+}
+#VirtualKeyboardIME table,
+#VirtualKeyboardIME table td {
+   border-collapse: collapse;
+   margin: 0;
+   padding: 0;
+   text-align: right;
+   white-space: nowrap;
+}
+#VirtualKeyboardIME table td.IMEControl {
+   padding: 1px;
+   vertical-align: middle;
+}
+
+#VirtualKeyboardIME td.IMEContent {
+   border-top: 0;
+   border-bottom: 0;
+   margin: 0 12px;
+   overflow: auto;
+   white-space: nowrap;
+}
+#VirtualKeyboardIME td.IMEContent a {
+   background: #cfccbe;
+   border: 1px outset #eee;
+   color: #000;
+   display: block;
+   margin: 0 1px 1px 0;
+   padding: 0;
+   text-decoration: none;
+}
+#VirtualKeyboardIME td.IMEContent a:hover {
+   background: #f0eddd;
+   border-style: inset;
+}
+#VirtualKeyboardIME div.left,
+#VirtualKeyboardIME div.right {
+   border-bottom: 10px solid #ECE9D8;
+   border-top: 10px solid #ECE9D8;
+   font-size: 1px;
+   overflow: hidden;
+}
+#VirtualKeyboardIME div.left {
+   border-left: 0px solid #000;
+   border-right: 10px solid #000;
+}
+#VirtualKeyboardIME div.right {
+   border-left: 10px solid #000;
+   border-right: 0px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo {
+   height: 13px;
+   vertical-align: middle;
+}
+#VirtualKeyboardIME td.IMEInfo div {
+   position: relative;
+   width: 100%;
+}
+#VirtualKeyboardIME td.IMEInfo div.showAll div.arrow,
+#VirtualKeyboardIME td.IMEInfo div.showPage div.arrow {
+   border-left: 10px solid #ECE9D8;
+   border-right: 10px solid #ECE9D8;
+   top: 2px;
+   left: 50%;
+   margin-left: -10px;
+   overflow: hidden;
+   position: absolute;
+   height: 0;
+   width: 0;
+}
+
+#VirtualKeyboardIME td.IMEInfo div.showAll div.arrow {
+   border-bottom: 0px solid #000;
+   border-top: 10px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo div.showPage div.arrow {
+   border-bottom: 10px solid #000;
+   border-top: 0px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo div.IMEPageCounter {
+   float: left;
+   width: auto;
+}
+
+/************************************
+* Progressbar styling
+*/
+#virtualKeyboard div.progressbar {
+        color: #666;
+        font-family: Verdana, Tahoma;
+        font-size: 100px;
+        font-weight: bold;
+        position: relative;
+        text-align: center;
+        top: 10	%;
+        width: 100%;
+}
+
+#virtualKeyboard div.loaderror {
+        color: #a22 !important;
+}
+
+/************************************
+* Place for the locale-dependent styles
+* overload fonts here
+*
+* Language-dependend class name is equal to uppercased language domain code (ZH in zh-CN)
+*/
+#virtualKeyboard.ZH div.kbButton span {
+        font-family: MingLiU, SimSun, "Arial Unicode MS";
+        font-size: 13px;
+}
+#virtualKeyboard.ZH span.charAlt,
+#virtualKeyboard.ZH span.charShift {
+        font-size: 9px;
+}
+#VirtualKeyboardIME.ZH td.IMEContent {
+        font-family: SimSun, "Arial Unicode MS";
+        font-size: 16px;
+}
+
+/**
+ *  Settings for Tamil group
+ */
+#virtualKeyboard.TA #kbDesk div.kbButton span {
+/*        bottom: 3px !important;*/
+        font-size: 7pt;
+        left: -1px !important;
+}
+#virtualKeyboard.TA #kbDesk.modeAlt span.charShiftAlt,
+#virtualKeyboard.TA #kbDesk.modeCaps span.charShiftCaps,
+#virtualKeyboard.TA #kbDesk.modeNormal span.charAlt,
+#virtualKeyboard.TA #kbDesk.modeNormal span.charShift,
+#virtualKeyboard.TA #kbDesk.modeShift span.charShiftAlt,
+#virtualKeyboard.TA #kbDesk.modeShift span.charShiftCaps {
+        font-size: 6pt !important;
+        left: 3px !important;
+}
+#virtualKeyboard.TA #kbDesk.modeNormal span.charAlt,
+#virtualKeyboard.TA #kbDesk.modeShift span.charShiftAlt {
+        left: -7px !important;
+}
+
+/**
+ *  Settings for Khmer group
+ */
+#virtualKeyboard.KM #kbDesk div.kbButton span {
+        bottom: -3px !important;
+        font-family: Code2000,"Arial Unicode MS";
+        font-size: 14pt;
+        left: -5px !important;
+        top: auto !important;
+}
+#virtualKeyboard.KM #kbDesk.modeAlt span.charShiftAlt,
+#virtualKeyboard.KM #kbDesk.modeCaps span.charShiftCaps,
+#virtualKeyboard.KM #kbDesk.modeNormal span.charAlt,
+#virtualKeyboard.KM #kbDesk.modeNormal span.charShift,
+#virtualKeyboard.KM #kbDesk.modeShift span.charShiftAlt,
+#virtualKeyboard.KM #kbDesk.modeShift span.charShiftCaps {
+        bottom: 15px !important;
+        font-size: 8pt !important;
+        left: 3px !important;
+}
+#virtualKeyboard.KM #kbDesk.modeNormal span.charAlt,
+#virtualKeyboard.KM #kbDesk.modeShift span.charShiftAlt {
+        left: -6px !important;
+}

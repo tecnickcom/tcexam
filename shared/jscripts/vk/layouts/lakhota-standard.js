@@ -1,0 +1,1 @@
+﻿VirtualKeyboard.addLayout({code:'LA',name:'Lakhota Standard',normal:'`1234567890-=\\ǧweštyuiop[]asdŋghȟkl;\'zžčvbnm,./',shift:{0:'~!@#$%^&*()_+|',24:'{}',32:'Ȟ',35:':"',44:'<>?'},caps:{14:'Q',17:'R',32:'J',38:'XC'},'cbk':VirtualKeyboard.Langs.LA.charProcessor});
