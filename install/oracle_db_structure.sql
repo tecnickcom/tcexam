@@ -2,7 +2,7 @@
 ============================================================
 File name   : oracle_db_structure.sql
 Begin       : 2009-10-09
-Last Update : 2012-12-26
+Last Update : 2013-03-18
 
 Description : TCExam database structure.
 Database    : Oracle
@@ -19,7 +19,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-   Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+   Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as
@@ -84,11 +84,11 @@ CREATE OR REPLACE TRIGGER tce_modules_trigger BEFORE INSERT ON tce_modules FOR E
 
 CREATE TABLE tce_subjects (
 	subject_id NUMBER(19,0) NOT NULL,
+	subject_module_id NUMBER(19,0) DEFAULT 1 NOT NULL,
 	subject_name VARCHAR2(255) NOT NULL,
 	subject_description NCLOB,
 	subject_enabled NUMBER(1) DEFAULT '0' NOT NULL,
 	subject_user_id NUMBER(19,0) DEFAULT 1 NOT NULL,
-	subject_module_id NUMBER(19,0) DEFAULT 1 NOT NULL,
 constraint PK_tce_subjects_subject_id primary key (subject_id)
 );
 CREATE SEQUENCE tce_subjects_seq MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 3;

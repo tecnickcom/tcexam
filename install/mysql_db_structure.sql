@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2012-12-26
+Last Update : 2013-03-18
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -83,11 +83,11 @@ CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 CREATE TABLE tce_subjects (
 	subject_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+	subject_module_id Bigint UNSIGNED NOT NULL DEFAULT 1,
 	subject_name Varchar(255) NOT NULL,
 	subject_description Text,
 	subject_enabled Bool NOT NULL DEFAULT '0',
 	subject_user_id Bigint UNSIGNED NOT NULL DEFAULT 1,
-	subject_module_id Bigint UNSIGNED NOT NULL DEFAULT 1,
  Primary Key (subject_id)
 ) ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
