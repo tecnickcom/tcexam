@@ -82,7 +82,12 @@ function F_getUserTests() {
 					$datestyle = '';
 				}
 				$str .= '<tr>'.K_NEWLINE;
-				$str .= '<td><strong>'.F_testInfoLink($m['test_id'], $m['test_name']).'</strong></td>'.K_NEWLINE;
+				if (strlen($m['test_password']) > 0) {
+					$str .= '<td style="background-color:#ffffcc;">';
+				} else {
+					$str .= '<td>';
+				}
+				$str .= '<strong>'.F_testInfoLink($m['test_id'], $m['test_name']).'</strong></td>'.K_NEWLINE;
 				$str .= '<td'.$datestyle.'>'.$m['test_begin_time'].'</td>'.K_NEWLINE;
 				$str .= '<td'.$datestyle.'>'.$m['test_end_time'].'</td>'.K_NEWLINE;
 				// status
@@ -110,7 +115,7 @@ function F_getUserTests() {
 				}
 				$str .= '</td>'.K_NEWLINE;
 				// display various action links by status case
-				$str .= '<td>';
+				$str .= '<td style="text-align:center;">';
 				if (!$expired) {
 					switch ($test_status) {
 						case 0: { // 0 = the test generation process is started but not completed
@@ -144,7 +149,7 @@ function F_getUserTests() {
 									// directly execute test
 									$str .= 'tce_test_execute.php';
 								}
-								$str .= '?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'" class="buttonred">'.$l['w_repeat'].'</a>';
+								$str .= '?testid='.$m['test_id'].'&amp;repeat=1" title="'.$l['h_repeat_test'].'" class="buttonblue">'.$l['w_repeat'].'</a>';
 							}
 							break;
 						}

@@ -944,6 +944,21 @@ a.buttonred:hover {
 	background-color: #ffdddd;
 }
 
+a.buttonblue:link, a.buttonblue:visited {
+	background-color: #aaccff;
+	border: 1px solid;
+	border-color: #FFFFFF #696969 #696969 #FFFFFF;
+	color: #000000;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 4px 2px 4px;
+	text-decoration: none;
+}
+
+a.buttonblue:hover {
+	background-color: #bbddff;
+}
+
 span.labeldesc {
 	font-size: 80%;
 	color: #333333;

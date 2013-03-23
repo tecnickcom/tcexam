@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2012-12-30
+// Last Update : 2013-03-23
 //
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2012:
+// (c) Copyright 2004-2013:
 //               Nicola Asuni
 //               Tecnick.com LTD
 //               UK
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -102,6 +102,11 @@ require_once('../../shared/config/tce_general_constants.php');
  * If true enable One-Time-Password authentication on login.
  */
 define ('K_OTP_LOGIN', false);
+
+/**
+ * Ratio at which the delay will be increased after every failed login attempt.
+ */
+define ('K_BRUTE_FORCE_DELAY_RATIO', 2);
 
 /**
  * Number of difficulty levels for questions.
