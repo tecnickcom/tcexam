@@ -1,11 +1,10 @@
 TCExam - README
 ===========================================================
 
-I WISH TO IMPROVE AND EXPAND TCEXAM BUT I NEED YOUR SUPPORT.
-PLEASE MAKE A DONATION:
+TO SUPPORT THE TCEXAM PROJECT PLEASE MAKE A DONATION:
 http://sourceforge.net/donate/index.php?group_id=159398
 
-FOR COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
+FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 ------------------------------------------------------------
 
@@ -13,7 +12,7 @@ Name: TCExam
 
 Version: 12.0.000
 
-Release date: 2013-03-17
+Release date: 2013-03-27
 
 Author:
 	Nicola Asuni
@@ -41,12 +40,12 @@ Support - Help:
 	Please use support forum under http://www.sourceforge.net/projects/tcexam
 
 Software License
-	Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+	Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 
-	This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as
-    published by the Free Software Foundation, either version 3 of the
-    License, or (at your option) any later version.
+	This program is free software for non-commercial usage: 
+	you can redistribute it and/or modify it under the terms of the 
+	GNU Affero General Public License as published by the Free Software 
+	Foundation, either version 3 of the License, or (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -58,7 +57,8 @@ Software License
 
 	Additionally, you can't remove, move or hide the original TCExam
 	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
-	Please contact info@tecnick.com for commercial usage.
+	
+	For any commercial usage please contact info@tecnick.com.
 
 	See LICENSE.TXT file for more information.
 
@@ -186,7 +186,7 @@ Description:
 	scoring and reporting.
 
 	* Security: TCExam is more secure than traditional Pen-and-Paper testing.
-	It uses SSL (Secure Socket Layer) encryption and includes various
+	It supports SSL (Secure Socket Layer) encryption and includes various
 	authentication levels to discriminate the access to the various sections
 	(user/password, access level, group, IP address). Test time, test activity,
 	results, and statistics: every part of the test is managed and stored in the

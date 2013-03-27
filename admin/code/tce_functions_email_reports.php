@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2012-12-20
+// Last Update : 2013-03-27
 //
 // Description : Sends email test reports to users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -175,7 +175,7 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 				// create PDF doc
 				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
 				// attach doc
-				$doc_name = 'test_'.date('Ymd', strtotime($tu['testuser_creation_time'])).'_'.$tu['test']['test_id'].'_'.$tu['user_id'].'_'.$tu['id'].'.pdf';
+				$doc_name = 'tcexam_test_'.date('Ymd', strtotime($tu['testuser_creation_time'])).'_'.$tu['test']['test_id'].'_'.$tu['user_id'].'_'.$tu['id'].'.pdf';
 				$mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
 				$mail->AltBody .= K_NEWLINE.$l['w_attachment'].': '.$doc_name.K_NEWLINE;
 			}

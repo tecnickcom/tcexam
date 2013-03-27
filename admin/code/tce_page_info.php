@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2012-12-29
+// Last Update : 2013-03-27
 //
 // Description : Outputs TCExam information page.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -70,8 +70,8 @@ echo '<li><strong>Copyright:</strong><br /> (c) 2004-2013 Nicola Asuni - Tecnick
 echo 'Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
-echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove, move or hide the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />
-For commercial usage please contact <a href="info@tecnick.com" title="Mail Tecnick.com">info@tecnick.com</a><br />
+echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software for non-commercial use: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove, move or hide the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />
+For any commercial usage please contact <a href="info@tecnick.com" title="Mail Tecnick.com">info@tecnick.com</a><br />
 See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a> file for more information.</li>'.K_NEWLINE;
 echo '</ul>'.K_NEWLINE;
 

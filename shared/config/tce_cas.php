@@ -2,19 +2,27 @@
 //============================================================+
 // File name   : tce_cas.php
 // Begin       : 2009-02-06
-// Last Update : 2012-09-11
+// Last Update : 2013-03-27
 //
 // Description : Configuration file for CAS
 //
-// Author: Tim Gebhardt
+// Author: Tim Gebhardt, Nicola Asuni
 //
 // (c) Copyright:
 //               Tim Gebhardt
 //               DePaul University
 //               tgebhar@cdm.depaul.edu
 //
+//               Nicola Asuni
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
+//               www.tecnick.com
+//               info@tecnick.com
+//
 // License:
-//    Copyright (C) 2009   Tim Gebhardt - DePaul University
+//    Copyright (C) 2009 Tim Gebhardt - DePaul University, Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as

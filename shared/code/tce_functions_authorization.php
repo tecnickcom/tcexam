@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2012-12-19
+// Last Update : 2013-03-27
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -329,6 +329,27 @@ function F_syncUserGroups($usrid, $grpids) {
 			}
 		}
 	}
+}
+
+/**
+ * Check if the client has a valid SSL certificate.
+ * @return true if the client has a valid SSL certificate, false otherwise.
+ * @author Nicola Asuni
+ * @since 2013-03-26
+ */
+function F_isSslCertificateValid() {
+	if (!isset($_SERVER['SSL_CLIENT_M_SERIAL']) // The serial of the client certificate
+		OR !isset($_SERVER['SSL_CLIENT_I_DN']) // Issuer DN of client's certificate
+		OR !isset($_SERVER['SSL_CLIENT_V_END']) // Validity of server's certificate (end time)
+		OR !isset($_SERVER['SSL_CLIENT_VERIFY']) // NONE, SUCCESS, GENEROUS or FAILED:reason
+		OR ($_SERVER['SSL_CLIENT_VERIFY'] !== 'SUCCESS')
+		OR !isset($_SERVER['SSL_CLIENT_V_REMAIN']) // Number of days until client's certificate expires
+		OR ($_SERVER['SSL_CLIENT_V_REMAIN'] <= 0)) {
+		// invalid certificate
+		return false;
+	}
+	// valid certificate
+	return true;
 }
 
 //============================================================+

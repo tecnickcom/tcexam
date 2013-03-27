@@ -1,10 +1,10 @@
 <?php
 //============================================================+
-// File name   : tce_shibboleth.php
-// Begin       : 2012-05-25
-// Last Update : 2013-01-20
+// File name   : tce_ssl.php
+// Begin       : 2013-03-27
+// Last Update : 2013-03-27
 //
-// Description : Configuration file for Shibboleth Single-Sign-On Authentication
+// Description : Configuration file for SSL Authentication
 //
 // Author: Nicola Asuni
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2012-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2013-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -41,34 +41,29 @@
 
 /**
  * @file
- * Configuration file for Shibboleth Single-Sign-On Authentication
- * If support for Shibboleth Authentication is enabled, TCExam trusts this mechanism and replicates any authenticated user into the TCExam database.
+ * Configuration file for SSL Authentication
+ * If support for SSL Authentication is enabled, TCExam trusts this mechanism and replicates any authenticated user into the TCExam database.
  * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
- * @since 2012-05-25
+ * @since 2013-03-27
  */
 
 /**
- * If true trust Shibboleth Auth
+ * If true trust SSL Auth
  */
-define ('K_SHIBBOLETH_ENABLED', false);
+define ('K_SSL_ENABLED', false);
 
 /**
  * Default user level
  */
-define ('K_SHIBBOLETH_USER_LEVEL', 1);
+define ('K_SSL_USER_LEVEL', 1);
 
 /**
  * Default user group ID
  * This is the TCExam group id to which the accounts belong.
  * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
-define ('K_SHIBBOLETH_USER_GROUP_ID', 1);
-
-/**
- * URL of the Shibboleth login page
- */
-define ('K_SHIBBOLETH_LOGIN', '');
+define ('K_SSL_USER_GROUP_ID', 1);
 
 //============================================================+
 // END OF FILE

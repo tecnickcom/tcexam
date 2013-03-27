@@ -2,6 +2,7 @@
 	- IMPORTANT: the database schema is changed.
 	- Constant K_OTP_LOGIN was added to shared/config/tce_config.php to enable One-Time-Password.
 	- Constant K_LOGOUT_URL was added to shared/config/tce_config.php to customize redirect link after logout.
+	- SSL certificate login support.
 	- All test statistics were merged on a single page with more information: tests > results.
 	- Test statistics are now also available on the public page.
 	- The SVG statistic graph is now exported on PDF.
@@ -17,7 +18,7 @@
 	- Navigation buttons on the public interface now reports the number of questions.
 	- Questions can be exported and imported using a tab-separated values format (TSV).
 	- All CSV formats were changed to TSV (tab-separated-values).
-	- Autosave was added for free answers (only supported by newer web browsers).
+	- Local autosave was added for free answers (only supported by newer web browsers).
 	- Some files were renamed.
 	- TCPDF Library was updated to version 6 ad moved to another folder.
 

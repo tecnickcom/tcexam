@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2013-01-20
+// Last Update : 2013-03-27
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -265,8 +265,13 @@ $pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
 // set PDF file name
 $pdf_filename = 'tcexam_report_'.date('YmdHi').'_'.$mode.'_'.$test_id.'_'.$group_id.'_'.$user_id.'_'.$testuser_id.'.pdf';
 
+if (isset($_REQUEST['email'])) {
+	$outmode = 'S';
+} else {
+	$outmode = 'D';
+}
 // Send PDF output
-$pdf->Output($pdf_filename, 'D');
+$pdf->Output($pdf_filename, $outmode);
 
 //============================================================+
 // END OF FILE

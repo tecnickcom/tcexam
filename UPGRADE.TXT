@@ -25,9 +25,9 @@ This is the general upgrade process for TCExam.
 	your installed main version number (X), execute one of 
 	the following SQL files to upgrade your TCExam database
 	schema:
-		install/mysql_db_upgrade_XtoY.sql
-		install/postgresql_db_upgrade_XtoY.sql
-		install/oracle_db_upgrade_XtoY.sql
+		install/upgrade/mysql/mysql_db_upgrade_XtoY.sql
+		install/upgrade/postgresql/postgresql_db_upgrade_XtoY.sql
+		install/upgrade/oracle/oracle_db_upgrade_XtoY.sql
  
 3.	Rename the current TCExam folder
 	(eg: from /var/www/tcexam to /var/www/tcexam.old).  
