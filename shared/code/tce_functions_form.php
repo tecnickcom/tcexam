@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2011-07-13
+// Last Update : 2013-03-31
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -275,7 +275,11 @@ function getFormRowTextInput($field_name, $name, $description='', $tip='', $valu
 	} else {
 		$str .= 'text';
 	}
-	$str .= '" name="'.$field_name.'" id="'.$field_name.'" value="'.htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']).'" size="20" maxlength="'.$maxlen.'" title="'.$description.'" />';
+	$str .= '"';
+	if ($date OR $datetime) {
+		$str .= ' style="direction:ltr;text-align:right;"';
+	}
+	$str .= ' name="'.$field_name.'" id="'.$field_name.'" value="'.htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']).'" size="20" maxlength="'.$maxlen.'" title="'.$description.'" />';
 	$str .= $button;
 	if (strlen($tip) > 0) {
 		$str .= ' <span class="labeldesc">'.$tip.'</span>';

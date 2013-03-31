@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
-// Last Update : 2013-03-17
+// Last Update : 2013-03-31
 // Author      : Nicola Asuni - Tecnick.com LTD - Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -251,7 +251,7 @@ class TCPDFEX extends TCPDF {
 				}
 			}
 		}
-		$title .= ']'.K_NEWLINE;
+		$title .= ']';
 		$this->Cell(0, $this->tce_data_cell_height, $title, 'T', 1, 'C', 0);
 		$this->Ln(1);
 
@@ -271,8 +271,8 @@ class TCPDFEX extends TCPDF {
 
 		// print table rows
 		$this->SetFillColor(255, 238, 238);
-		$this->SetFont($numberfont, 'B', $fontdatasize);
 		$this->Cell($tce_data_cell_width, $this->tce_data_cell_height, $l['w_all'], 1, 0, 'L', true, '', 1);
+		$this->SetFont($numberfont, 'B', $fontdatasize);
 		$this->Cell($tce_data_cell_width, $this->tce_data_cell_height, $stats['recurrence'].' '.F_formatPdfPercentage($stats['recurrence_perc'], false), 1, 0, 'R', true);
 		$this->Cell($tce_data_cell_width, $this->tce_data_cell_height, number_format($stats['average_score'], 3, '.', '').' '.F_formatPdfPercentage($stats['average_score_perc'], false), 1, 0, 'R', true);
 		$this->Cell($tce_data_cell_width, $this->tce_data_cell_height, date('i:s', $stats['average_time']), 1, 0, 'R', true);

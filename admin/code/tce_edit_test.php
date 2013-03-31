@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-01-29
+// Last Update : 2013-03-31
 //
 // Description : Edit Tests
 //
@@ -137,7 +137,7 @@ if (!isset($test_random_questions_order) OR (empty($test_random_questions_order)
 if (!isset($test_questions_order_mode) OR (empty($test_questions_order_mode))) {
 	$test_questions_order_mode = 0;
 } else {
-	$test_questions_order_mode = max(0, min(2, intval($test_questions_order_mode)));
+	$test_questions_order_mode = max(0, min(3, intval($test_questions_order_mode)));
 }
 if (!isset($test_random_answers_select) OR (empty($test_random_answers_select))) {
 	$test_random_answers_select = false;
@@ -195,7 +195,8 @@ if (!isset($test_max_score)) {
 
 $test_max_score_new = 0; // test max score
 $qtype = array('S', 'M', 'T', 'O'); // question types
-$ordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
+$qordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id'], $l['w_type']);
+$aordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
 
 $test_fieldset_name = '';
 
@@ -936,7 +937,7 @@ echo ' <label for="test_random_questions_order">'.$l['w_order'].'</label>'.K_NEW
 echo '<span id="select_questions_order_mode" style="visibility:visible;">'.K_NEWLINE;
 echo ' | <label for="test_questions_order_mode">'.$l['w_order_by'].'</label>'.K_NEWLINE;
 echo ' <select name="test_questions_order_mode" id="test_questions_order_mode" size="1" title="'.$l['h_questions_order_mode'].'">'.K_NEWLINE;
-foreach ($ordmode as $ok => $ov) {
+foreach ($qordmode as $ok => $ov) {
 		echo '<option value="'.$ok.'"';
 		if ($test_questions_order_mode == $ok) {
 			echo ' selected="selected"';
@@ -970,7 +971,7 @@ echo ' <label for="test_random_answers_order">'.$l['w_order'].'</label>'.K_NEWLI
 echo '<span id="select_answers_order_mode" style="visibility:visible;">'.K_NEWLINE;
 echo ' | <label for="test_answers_order_mode">'.$l['w_order_by'].'</label>'.K_NEWLINE;
 echo ' <select name="test_answers_order_mode" id="test_answers_order_mode" size="1" title="'.$l['h_answers_order_mode'].'">'.K_NEWLINE;
-foreach ($ordmode as $ok => $ov) {
+foreach ($aordmode as $ok => $ov) {
 		echo '<option value="'.$ok.'"';
 		if ($test_answers_order_mode == $ok) {
 			echo ' selected="selected"';

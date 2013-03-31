@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2013-01-29
+// Last Update : 2013-03-31
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -974,6 +974,10 @@ function F_createTest($test_id, $user_id) {
 		}
 		case 2: {
 			$sql_questions_order_by = ' ORDER BY question_id';
+			break;
+		}
+		case 3: {
+			$sql_questions_order_by = ' ORDER BY question_type';
 			break;
 		}
 	}
