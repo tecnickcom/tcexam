@@ -10,7 +10,7 @@ FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 12.0.002
+Version: 12.0.003
 
 Release date: 2013-04-02
 
