@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2012-12-30
+// Last Update : 2013-04-02
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -70,9 +70,9 @@ for ($id = 0; $id < 2; ++$id) {
 
 // set default values
 if(!isset($subject_enabled) OR (empty($subject_enabled))) {
-	$subject_enabled = 0;
+	$subject_enabled = false;
 } else {
-	$subject_enabled = intval($subject_enabled);
+	$subject_enabled = F_getBoolean($subject_enabled);
 }
 if (isset($subject_id)) {
 	$subject_id = intval($subject_id);
@@ -175,7 +175,7 @@ switch($menu_mode) {
 				F_print_error('WARNING', $l['m_update_restrict']);
 				// enable or disable record
 				$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
-					subject_enabled=\''.$subject_enabled.'\'
+					subject_enabled=\''.intval($subject_enabled).'\'
 					WHERE subject_id='.$subject_id.'';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
@@ -202,7 +202,7 @@ switch($menu_mode) {
 			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
 				subject_name=\''.F_escape_sql($subject_name).'\',
 				subject_description='.F_empty_to_null($subject_description).',
-				subject_enabled=\''.$subject_enabled.'\',
+				subject_enabled=\''.intval($subject_enabled).'\',
 				subject_module_id='.$subject_module_id.'
 				WHERE subject_id='.$subject_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -231,7 +231,7 @@ switch($menu_mode) {
 				) VALUES (
 				\''.F_escape_sql($subject_name).'\',
 				'.F_empty_to_null($subject_description).',
-				\''.$subject_enabled.'\',
+				\''.intval($subject_enabled).'\',
 				\''.intval($_SESSION['session_user_id']).'\',
 				'.$subject_module_id.'
 				)';

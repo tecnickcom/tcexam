@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_question.php
 // Begin       : 2004-04-27
-// Last Update : 2012-12-30
+// Last Update : 2013-04-02
 //
 // Description : Edit questions
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -91,9 +91,9 @@ if(!isset($question_difficulty)) {
 	$question_difficulty = intval($question_difficulty);
 }
 if(!isset($question_enabled) OR (empty($question_enabled))) {
-	$question_enabled = 0;
+	$question_enabled = false;
 } else {
-	$question_enabled = intval($question_enabled);
+	$question_enabled = F_getBoolean($question_enabled);
 }
 if (isset($selectmodule)) {
 	$changemodule = 1;
@@ -126,19 +126,19 @@ if(!isset($question_timer) OR (empty($question_timer))) {
 	$question_timer = intval($question_timer);
 }
 if(!isset($question_fullscreen) OR (empty($question_fullscreen))) {
-	$question_fullscreen = 0;
+	$question_fullscreen = false;
 } else {
-	$question_fullscreen = intval($question_fullscreen);
+	$question_fullscreen = F_getBoolean($question_fullscreen);
 }
 if(!isset($question_inline_answers) OR (empty($question_inline_answers))) {
-	$question_inline_answers = 0;
+	$question_inline_answers = false;
 } else {
-	$question_inline_answers = intval($question_inline_answers);
+	$question_inline_answers = F_getBoolean($question_inline_answers);
 }
 if(!isset($question_auto_next) OR (empty($question_auto_next))) {
-	$question_auto_next = 0;
+	$question_auto_next = false;
 } else {
-	$question_auto_next = intval($question_auto_next);
+	$question_auto_next = F_getBoolean($question_auto_next);
 }
 if (isset($question_description)) {
 	$question_description = utrim($question_description);
@@ -294,7 +294,7 @@ switch($menu_mode) {
 				}
 				// enable or disable record
 				$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
-					question_enabled=\''.$question_enabled.'\',
+					question_enabled=\''.intval($question_enabled).'\',
 					question_position='.F_zero_to_null($question_position).'
 					WHERE question_id='.$question_id.'';
 				if(!$r = F_db_query($sql, $db)) {
@@ -372,12 +372,12 @@ switch($menu_mode) {
 				question_explanation='.F_empty_to_null($question_explanation).',
 				question_type=\''.$question_type.'\',
 				question_difficulty=\''.$question_difficulty.'\',
-				question_enabled=\''.$question_enabled.'\',
+				question_enabled=\''.intval($question_enabled).'\',
 				question_position='.F_zero_to_null($question_position).',
 				question_timer=\''.$question_timer.'\',
-				question_fullscreen=\''.$question_fullscreen.'\',
-				question_inline_answers=\''.$question_inline_answers.'\',
-				question_auto_next=\''.$question_auto_next.'\'
+				question_fullscreen=\''.intval($question_fullscreen).'\',
+				question_inline_answers=\''.intval($question_inline_answers).'\',
+				question_auto_next=\''.intval($question_auto_next).'\'
 				WHERE question_id='.$question_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -443,12 +443,12 @@ switch($menu_mode) {
 				'.F_empty_to_null($question_explanation).',
 				\''.$question_type.'\',
 				\''.$question_difficulty.'\',
-				\''.$question_enabled.'\',
+				\''.intval($question_enabled).'\',
 				'.F_zero_to_null($question_position).',
 				\''.$question_timer.'\',
-				\''.$question_fullscreen.'\',
-				\''.$question_inline_answers.'\',
-				\''.$question_auto_next.'\'
+				\''.intval($question_fullscreen).'\',
+				\''.intval($question_inline_answers).'\',
+				\''.intval($question_auto_next).'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);

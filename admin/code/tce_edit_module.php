@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2012-12-03
+// Last Update : 2013-04-02
 //
 // Description : Display form to edit modules.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -62,9 +62,9 @@ require_once('../../shared/code/tce_functions_auth_sql.php');
 
 // set default values
 if(!isset($module_enabled) OR (empty($module_enabled))) {
-	$module_enabled = 0;
+	$module_enabled = false;
 } else {
-	$module_enabled = intval($module_enabled);
+	$module_enabled = F_getBoolean($module_enabled);
 }
 if (isset($module_name)) {
 	$module_name = utrim($module_name);
@@ -149,7 +149,7 @@ switch($menu_mode) {
 
 				// enable or disable record
 				$sql = 'UPDATE '.K_TABLE_MODULES.' SET
-					module_enabled=\''.$module_enabled.'\'
+					module_enabled=\''.intval($module_enabled).'\'
 					WHERE module_id='.$module_id.'';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);
@@ -181,7 +181,7 @@ switch($menu_mode) {
 			}
 			$sql = 'UPDATE '.K_TABLE_MODULES.' SET
 				module_name=\''.F_escape_sql($module_name).'\',
-				module_enabled=\''.$module_enabled.'\',
+				module_enabled=\''.intval($module_enabled).'\',
 				module_user_id=\''.$module_user_id.'\'
 				WHERE module_id='.$module_id.'';
 			if(!$r = F_db_query($sql, $db)) {
@@ -212,7 +212,7 @@ switch($menu_mode) {
 				module_user_id
 				) VALUES (
 				\''.F_escape_sql($module_name).'\',
-				\''.$module_enabled.'\',
+				\''.intval($module_enabled).'\',
 				\''.$module_user_id.'\'
 				)';
 			if(!$r = F_db_query($sql, $db)) {

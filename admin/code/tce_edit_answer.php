@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2012-12-30
+// Last Update : 2014-04-02
 //
 // Description : Edit answers.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -86,14 +86,14 @@ if(!isset($answer_id)) {
 	$answer_id = 0;
 }
 if(!isset($answer_isright) OR (empty($answer_isright))) {
-	$answer_isright = 0;
+	$answer_isright = false;
 } else {
-	$answer_isright = intval($answer_isright);
+	$answer_isright = F_getBoolean($answer_isright);
 }
 if(!isset($answer_enabled) OR (empty($answer_enabled))) {
-	$answer_enabled = 0;
+	$answer_enabled = false;
 } else {
-	$answer_enabled = intval($answer_enabled);
+	$answer_enabled = F_getBoolean($answer_enabled);
 }
 if (isset($selectmodule)) {
 	$changemodule = 1;
@@ -374,8 +374,8 @@ switch($menu_mode) {
 				answer_question_id='.$answer_question_id.',
 				answer_description=\''.F_escape_sql($answer_description).'\',
 				answer_explanation='.F_empty_to_null($answer_explanation).',
-				answer_isright=\''.$answer_isright.'\',
-				answer_enabled=\''.$answer_enabled.'\',
+				answer_isright=\''.intval($answer_isright).'\',
+				answer_enabled=\''.intval($answer_enabled).'\',
 				answer_position='.F_zero_to_null($answer_position).',
 				answer_keyboard_key='.F_empty_to_null($answer_keyboard_key).'
 				WHERE answer_id='.$answer_id.'';
@@ -443,8 +443,8 @@ switch($menu_mode) {
 				'.$answer_question_id.',
 				\''.F_escape_sql($answer_description).'\',
 				'.F_empty_to_null($answer_explanation).',
-				\''.$answer_isright.'\',
-				\''.$answer_enabled.'\',
+				\''.intval($answer_isright).'\',
+				\''.intval($answer_enabled).'\',
 				'.F_zero_to_null($answer_position).',
 				'.F_empty_to_null($answer_keyboard_key).'
 				)';

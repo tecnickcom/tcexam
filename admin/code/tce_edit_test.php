@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-03-31
+// Last Update : 2013-04-02
 //
 // Description : Edit Tests
 //
@@ -486,26 +486,26 @@ switch($menu_mode) {
 				test_end_time='.F_empty_to_null($test_end_time).',
 				test_duration_time=\''.$test_duration_time.'\',
 				test_ip_range=\''.F_escape_sql($test_ip_range).'\',
-				test_results_to_users=\''.$test_results_to_users.'\',
-				test_report_to_users=\''.$test_report_to_users.'\',
+				test_results_to_users=\''.intval($test_results_to_users).'\',
+				test_report_to_users=\''.intval($test_report_to_users).'\',
 				test_score_right=\''.$test_score_right.'\',
 				test_score_wrong=\''.$test_score_wrong.'\',
 				test_score_unanswered=\''.$test_score_unanswered.'\',
 				test_max_score=\''.$test_max_score.'\',
 				test_score_threshold=\''.$test_score_threshold.'\',
-				test_random_questions_select=\''.$test_random_questions_select.'\',
-				test_random_questions_order=\''.$test_random_questions_order.'\',
+				test_random_questions_select=\''.intval($test_random_questions_select).'\',
+				test_random_questions_order=\''.intval($test_random_questions_order).'\',
 				test_questions_order_mode=\''.$test_questions_order_mode.'\',
-				test_random_answers_select=\''.$test_random_answers_select.'\',
-				test_random_answers_order=\''.$test_random_answers_order.'\',
+				test_random_answers_select=\''.intval($test_random_answers_select).'\',
+				test_random_answers_order=\''.intval($test_random_answers_order).'\',
 				test_answers_order_mode=\''.$test_answers_order_mode.'\',
-				test_comment_enabled=\''.$test_comment_enabled.'\',
-				test_menu_enabled=\''.$test_menu_enabled.'\',
-				test_noanswer_enabled=\''.$test_noanswer_enabled.'\',
-				test_mcma_radio=\''.$test_mcma_radio.'\',
-				test_repeatable=\''.$test_repeatable.'\',
-				test_mcma_partial_score=\''.$test_mcma_partial_score.'\',
-				test_logout_on_timeout=\''.$test_logout_on_timeout.'\',
+				test_comment_enabled=\''.intval($test_comment_enabled).'\',
+				test_menu_enabled=\''.intval($test_menu_enabled).'\',
+				test_noanswer_enabled=\''.intval($test_noanswer_enabled).'\',
+				test_mcma_radio=\''.intval($test_mcma_radio).'\',
+				test_repeatable=\''.intval($test_repeatable).'\',
+				test_mcma_partial_score=\''.intval($test_mcma_partial_score).'\',
+				test_logout_on_timeout=\''.intval($test_logout_on_timeout).'\',
 				test_password='.F_empty_to_null($test_password).'
 				WHERE test_id='.$test_id.'';
 			if (!$r = F_db_query($sql, $db)) {
@@ -591,27 +591,27 @@ switch($menu_mode) {
 				'.F_empty_to_null($test_end_time).',
 				\''.$test_duration_time.'\',
 				\''.F_escape_sql($test_ip_range).'\',
-				\''.$test_results_to_users.'\',
-				\''.$test_report_to_users.'\',
+				\''.intval($test_results_to_users).'\',
+				\''.intval($test_report_to_users).'\',
 				\''.$test_score_right.'\',
 				\''.$test_score_wrong.'\',
 				\''.$test_score_unanswered.'\',
 				\''.$test_max_score.'\',
 				\''.intval($_SESSION['session_user_id']).'\',
 				\''.$test_score_threshold.'\',
-				\''.$test_random_questions_select.'\',
-				\''.$test_random_questions_order.'\',
+				\''.intval($test_random_questions_select).'\',
+				\''.intval($test_random_questions_order).'\',
 				\''.$test_questions_order_mode.'\',
-				\''.$test_random_answers_select.'\',
-				\''.$test_random_answers_order.'\',
+				\''.intval($test_random_answers_select).'\',
+				\''.intval($test_random_answers_order).'\',
 				\''.$test_answers_order_mode.'\',
-				\''.$test_comment_enabled.'\',
-				\''.$test_menu_enabled.'\',
-				\''.$test_noanswer_enabled.'\',
-				\''.$test_mcma_radio.'\',
-				\''.$test_repeatable.'\',
-				\''.$test_mcma_partial_score.'\',
-				\''.$test_logout_on_timeout.'\',
+				\''.intval($test_comment_enabled).'\',
+				\''.intval($test_menu_enabled).'\',
+				\''.intval($test_noanswer_enabled).'\',
+				\''.intval($test_mcma_radio).'\',
+				\''.intval($test_repeatable).'\',
+				\''.intval($test_mcma_partial_score).'\',
+				\''.intval($test_logout_on_timeout).'\',
 				'.F_empty_to_null($test_password).'
 				)';
 			if (!$r = F_db_query($sql, $db)) {
@@ -701,6 +701,7 @@ switch($menu_mode) {
 		$test_score_right = 1;
 		$test_score_wrong = 0;
 		$test_score_unanswered = 0;
+		$test_max_score = 0;
 		$test_score_threshold = 0;
 		$test_random_questions_select = true;
 		$test_random_questions_order = true;
@@ -719,7 +720,8 @@ switch($menu_mode) {
 		break;
 	}
 
-	default :{		break;
+	default :{
+		break;
 	}
 
 } //end of switch
@@ -781,7 +783,7 @@ if ($formstatus) {
 					$test_score_threshold = $m['test_score_threshold'];
 					$test_random_questions_select = F_getBoolean($m['test_random_questions_select']);
 					$test_random_questions_order = F_getBoolean($m['test_random_questions_order']);
-					$test_answers_order_mode = intval($m['test_answers_order_mode']);
+					$test_questions_order_mode = intval($m['test_questions_order_mode']);
 					$test_random_answers_select = F_getBoolean($m['test_random_answers_select']);
 					$test_random_answers_order = F_getBoolean($m['test_random_answers_order']);
 					$test_answers_order_mode = intval($m['test_answers_order_mode']);
