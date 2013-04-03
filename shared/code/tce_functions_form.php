@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -99,9 +99,8 @@ function F_check_required_fields($formfields) {
 		$fieldname = trim($required_fields[$i]);
 		$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 		if (!array_key_exists($fieldname, $formfields) OR strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
-			if ($required_fields_labels[$i]) { // check if field has label
+			if ($required_fields_labels[$i]) { // check if the field has a label
 				$fieldname = $required_fields_labels[$i];
-				$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 			}
 			$missing_fields .= ', '.stripslashes($fieldname);
 		}
@@ -130,15 +129,14 @@ function F_check_fields_format($formfields) {
 	}
 	reset($formfields);
 	$wrongfields = '';
-	while (list($key,$value) = each($formfields)) {
-		if (substr($key,0,2) == 'x_') {
-			$fieldname = substr($key,2);
+	while (list($key, $value) = each($formfields)) {
+		if (substr($key, 0, 2) == 'x_') {
+			$fieldname = substr($key, 2);
 			$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 			if (array_key_exists($fieldname, $formfields) AND strlen($formfields[$fieldname]) > 0) { //if is not empty
 				if (!preg_match("'".stripslashes($value)."'i", $formfields[$fieldname])) { //check regular expression
 					if (isset($formfields['xl_'.$fieldname]) AND !empty($formfields['xl_'.$fieldname])) { //check if field has label
 						$fieldname = $formfields['xl_'.$fieldname];
-						$fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
 					}
 					$wrongfields .= ', '.stripslashes($fieldname);
 				}

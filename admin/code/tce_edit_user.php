@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2012-11-22
+// Last Update : 2013-04-03
 //
 // Description : Edit user data.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -149,19 +149,22 @@ switch($menu_mode) { // process submitted data
 			// check if name is unique
 			if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($user_name).'\'', 'user_id', $user_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
-				$formstatus = FALSE; F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 			// check if registration number is unique
 			if (isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\'', 'user_id', $user_id))) {
 				F_print_error('WARNING', $l['m_duplicate_regnumber']);
-				$formstatus = FALSE; F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 			// check if ssn is unique
 			if (isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\'', 'user_id', $user_id))) {
 				F_print_error('WARNING', $l['m_duplicate_ssn']);
-				$formstatus = FALSE; F_stripslashes_formfields();
+				$formstatus = FALSE;
+				F_stripslashes_formfields();
 				break;
 			}
 			// check password
@@ -172,7 +175,8 @@ switch($menu_mode) { // process submitted data
 					$user_otpkey = F_getRandomOTPkey();
 				} else { //print message and exit
 					F_print_error('WARNING', $l['m_different_passwords']);
-					$formstatus = FALSE; F_stripslashes_formfields();
+					$formstatus = FALSE;
+					F_stripslashes_formfields();
 					break;
 				}
 			}

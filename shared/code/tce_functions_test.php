@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2013-03-31
+// Last Update : 2013-04-03
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -749,7 +749,13 @@ function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $
 	if ($r = F_db_query($sql, $db)) {
 		while ($m = F_db_fetch_array($r)) {
 			if ($randorder OR ($ordmode != 0)) {
-				$answers_ids[$startindex++] = $m['answer_id'];
+				if ($ordmode == 2) {
+					// order by ID
+					$answers_ids[$m['answer_id']] = $m['answer_id'];
+				} else {
+					// default
+					$answers_ids[$startindex++] = $m['answer_id'];
+				}
 			} else {
 				$answers_ids[$m['answer_position']] = $m['answer_id'];
 			}
@@ -1221,6 +1227,19 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
 					$answers_ids += F_selectAnswers($question_id, 1, false, 1, 0, $randorder, $ordmode);
 					// select remaining answers
 					$answers_ids += F_selectAnswers($question_id, 0, false, ($num_answers - 1), 1, $randorder, $ordmode);
+					if ($ordmode == 1) {
+						// reorder answers alphabetically
+						$sql = 'SELECT answer_id FROM '.K_TABLE_ANSWERS.' WHERE answer_id IN ('.implode(',', $answers_ids).') ORDER BY answer_description';
+						$answers_ids = array();
+						if ($r = F_db_query($sql, $db)) {
+							while ($m = F_db_fetch_array($r)) {
+								$answers_ids[] = $m['answer_id'];
+							}
+						} else {
+							F_display_db_error(false);
+							return false;
+						}
+					}
 					break;
 				}
 				case 2: { // MCMA
