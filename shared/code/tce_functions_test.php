@@ -191,9 +191,15 @@ function F_repeatTest($test_id) {
 	$sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' AND test_repeatable=\'1\' LIMIT 1';
 	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
-			// a status code greater than 4 means repeated test
-			$sqld = 'UPDATE '.K_TABLE_TEST_USER.' SET testuser_status=testuser_status+1 WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status>3 ORDER BY testuser_status DESC';
-			if (!$rd = F_db_query($sqld, $db)) {
+			$sqls = 'SELECT testuser_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status>3 ORDER BY testuser_status DESC';
+			if ($rs = F_db_query($sqls, $db)) {
+				while ($ms = F_db_fetch_array($rs)) {
+					$sqld = 'UPDATE '.K_TABLE_TEST_USER.' SET testuser_status=testuser_status+1 WHERE testuser_id='.$ms['testuser_id'].'';
+					if (!$rd = F_db_query($sqld, $db)) {
+						F_display_db_error();
+					}
+				}
+			} else {
 				F_display_db_error();
 			}
 		}

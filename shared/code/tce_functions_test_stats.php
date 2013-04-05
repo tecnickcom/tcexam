@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2013-01-29
+// Last Update : 2013-04-05
 //
 // Description : Statistical functions for test results.
 //
@@ -93,7 +93,7 @@ function F_getUserTestTotals($test_id, $user_id=0, $testuser_id=0) {
 			AND testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'
 			AND testuser_status>0
-		GROUP BY testuser_id, testuser_creation_time, testuser_status, testuser_comment
+		GROUP BY testlog_id, testuser_id, testuser_creation_time, testuser_status, testuser_comment
 		ORDER BY testlog_id
 		LIMIT 1';
 		if($ru = F_db_query($sqlu, $db)) {
@@ -283,7 +283,7 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 	}
 	$sql .= ' GROUP BY module_id, subject_id, question_id, module_name, subject_name, subject_description, question_description';
 	if (($user_id > 0) AND ($testuser_id > 0)) {
-		$sql .= ', testlog_score, testlog_user_ip, testlog_display_time, testlog_change_time, testlog_reaction_time, testlog_answer_text, question_type, question_explanation';
+		$sql .= ', testlog_score, testlog_user_ip, testlog_display_time, testlog_change_time, testlog_reaction_time, testlog_answer_text, question_type, question_explanation, testlog_id';
 		$sql .= ' ORDER BY testlog_id';
 	} else {
 		$sql .= ' ORDER BY module_name, subject_name, question_description';
