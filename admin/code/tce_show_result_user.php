@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2012-12-18
+// Last Update : 2013-04-08
 //
 // Description : Display test results for specified user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -97,11 +97,11 @@ if (isset($_REQUEST['selectcategory'])) {
 	$changecategory = 1;
 }
 
-if(isset($_POST['lock'])) {
+if (isset($_POST['lock'])) {
 	$menu_mode = 'lock';
-} elseif(isset($_POST['unlock'])) {
+} elseif (isset($_POST['unlock'])) {
 	$menu_mode = 'unlock';
-} elseif(isset($_POST['extendtime'])) {
+} elseif (isset($_POST['extendtime'])) {
 	$menu_mode = 'extendtime';
 }
 
@@ -125,10 +125,10 @@ switch($menu_mode) {
 
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete
-		if($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
+		if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
 				$sql = 'DELETE FROM '.K_TABLE_TEST_USER.'
 					WHERE testuser_id='.$testuser_id.'';
-				if(!$r = F_db_query($sql, $db)) {
+				if (!$r = F_db_query($sql, $db)) {
 					F_display_db_error();
 				} else {
 					$testuser_id = false;
@@ -144,7 +144,7 @@ switch($menu_mode) {
 		$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 			SET testuser_creation_time=\''.date(K_TIMESTAMP_FORMAT, F_getTestStartTime($testuser_id) + (K_EXTEND_TIME_MINUTES * K_SECONDS_IN_MINUTE)).'\'
 			WHERE testuser_id='.$testuser_id.'';
-		if(!$ru = F_db_query($sqlu, $db)) {
+		if (!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
 		} else {
 			F_print_error('MESSAGE', $l['m_updated']);
@@ -157,7 +157,7 @@ switch($menu_mode) {
 		$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 			SET testuser_status=4
 			WHERE testuser_id='.$testuser_id.'';
-		if(!$ru = F_db_query($sqlu, $db)) {
+		if (!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
 		} else {
 			F_print_error('MESSAGE', $l['m_updated']);
@@ -170,7 +170,7 @@ switch($menu_mode) {
 		$sqlu = 'UPDATE '.K_TABLE_TEST_USER.'
 			SET testuser_status=1
 			WHERE testuser_id='.$testuser_id.'';
-		if(!$ru = F_db_query($sqlu, $db)) {
+		if (!$ru = F_db_query($sqlu, $db)) {
 			F_display_db_error();
 		} else {
 			F_print_error('MESSAGE', $l['m_updated']);
@@ -189,8 +189,8 @@ switch($menu_mode) {
 if (($test_id == 0) AND ($testuser_id == 0)) {
 	// select default test ID
 	$sql = F_select_executed_tests_sql().' LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			$test_id = $m['test_id'];
 		}
 	} else {
@@ -198,7 +198,7 @@ if (($test_id == 0) AND ($testuser_id == 0)) {
 	}
 }
 
-if($formstatus) {
+if ($formstatus) {
 	if ((isset($changecategory) AND ($changecategory > 0)) OR empty($testuser_id)) {
 			$sql = 'SELECT testuser_id, testuser_test_id, testuser_user_id, testuser_creation_time, testuser_status, SUM(testlog_score) AS test_score, MAX(testlog_change_time) AS test_end_time
 				FROM '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS_LOGS.'
@@ -242,8 +242,8 @@ if($formstatus) {
 // get test basic score
 $test_basic_score = 1;
 $sql = 'SELECT test_score_right, test_duration_time	FROM '.K_TABLE_TESTS.' WHERE test_id='.intval($test_id).'';
-if($r = F_db_query($sql, $db)) {
-	if($m = F_db_fetch_array($r)) {
+if ($r = F_db_query($sql, $db)) {
+	if ($m = F_db_fetch_array($r)) {
 		$test_basic_score = $m['test_score_right'];
 		$test_duration_time = $m['test_duration_time'];
 	}
@@ -265,10 +265,10 @@ echo '<input type="hidden" name="testuser_id" id="testuser_id" value="'.$testuse
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
 echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultuser\').changecategory.value=1;document.getElementById(\'form_resultuser\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
-if($r = F_db_query($sql, $db)) {
+if ($r = F_db_query($sql, $db)) {
 	while($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
-		if($m['test_id'] == $test_id) {
+		if ($m['test_id'] == $test_id) {
 			echo ' selected="selected"';
 		}
 		echo '>'.substr($m['test_begin_time'], 0, 10).' '.htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
@@ -345,16 +345,15 @@ if (isset($teststat) AND !empty($teststat)) {
 	}
 	$time_diff = gmdate('H:i:s', $time_diff);
 	echo getFormDescriptionLine($l['w_test_time'].':', $l['w_test_time'], $time_diff);
-
 	$passmsg = '';
 	if ($teststat['testinfo']['test_score_threshold'] > 0) {
-		if ($teststat['user_score'] >= $teststat['testinfo']['test_score_threshold']) {
+		if (isset($teststat['testinfo']['user_score']) AND ($teststat['testinfo']['user_score'] >= $teststat['testinfo']['test_score_threshold'])) {
 			$passmsg = ' - '.$l['w_passed'];
 		} else {
 			$passmsg = ' - '.$l['w_not_passed'];
 		}
 	}
-	$score_all = $teststat['qstats']['average_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['qstats']['average_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+	$score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
 	echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
 
 	$score_right_all = $teststat['qstats']['right'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['right_perc'].'%)';
@@ -381,7 +380,7 @@ if (isset($teststat) AND !empty($teststat)) {
 	if (($test_id > 0) AND ($user_id > 0) AND ($testuser_id > 0)) {
 		F_submit_button('delete', $l['w_delete'], $l['h_delete']);
 
-		if($testuser_status < 4) {
+		if ($testuser_status < 4) {
 			// lock test button
 			F_submit_button('lock', $l['w_lock'], $l['w_lock']);
 		} else {

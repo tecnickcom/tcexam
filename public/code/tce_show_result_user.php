@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2012-12-30
+// Last Update : 2013-04-08
 //
 // Description : Display test results to the current user.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -87,7 +87,7 @@ if ($rt = F_db_query($sqlt, $db)) {
 } else {
 	F_display_db_error();
 }
-if ($user_id != $checkid) {echo "HUUUU DEBUG"; exit;//DEBUG
+if ($user_id != $checkid) {
 	header('Location: index.php'); //redirect browser to public main page
 	exit;
 }
@@ -129,13 +129,13 @@ echo getFormDescriptionLine($l['w_test_time'].':', $l['w_test_time'], $time_diff
 
 $passmsg = '';
 if ($teststat['testinfo']['test_score_threshold'] > 0) {
-	if (isset($teststat['user_score']) AND ($teststat['user_score'] >= $teststat['testinfo']['test_score_threshold'])) {
+	if (isset($teststat['testinfo']['user_score']) AND ($teststat['testinfo']['user_score'] >= $teststat['testinfo']['test_score_threshold'])) {
 		$passmsg = ' - '.$l['w_passed'];
 	} else {
 		$passmsg = ' - '.$l['w_not_passed'];
 	}
 }
-$score_all = $teststat['qstats']['average_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['qstats']['average_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+$score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
 echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
 
 $score_right_all = $teststat['qstats']['right'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['right_perc'].'%)';

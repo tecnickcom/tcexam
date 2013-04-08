@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2013-04-05
+// Last Update : 2013-04-08
 //
 // Description : Statistical functions for test results.
 //
@@ -93,11 +93,9 @@ function F_getUserTestTotals($test_id, $user_id=0, $testuser_id=0) {
 			AND testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'
 			AND testuser_status>0
-		GROUP BY testlog_id, testuser_id, testuser_creation_time, testuser_status, testuser_comment
-		ORDER BY testlog_id
-		LIMIT 1';
-		if($ru = F_db_query($sqlu, $db)) {
-			if($mu = F_db_fetch_array($ru)) {
+		GROUP BY testuser_id, testuser_creation_time, testuser_status, testuser_comment';
+		if ($ru = F_db_query($sqlu, $db)) {
+			if ($mu = F_db_fetch_array($ru)) {
 				$data['testuser_id'] = $mu['testuser_id'];
 				$data['user_score'] = $mu['total_score'];
 				$data['user_test_start_time'] = $mu['testuser_creation_time'];
@@ -283,8 +281,7 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 	}
 	$sql .= ' GROUP BY module_id, subject_id, question_id, module_name, subject_name, subject_description, question_description';
 	if (($user_id > 0) AND ($testuser_id > 0)) {
-		$sql .= ', testlog_score, testlog_user_ip, testlog_display_time, testlog_change_time, testlog_reaction_time, testlog_answer_text, question_type, question_explanation, testlog_id';
-		$sql .= ' ORDER BY testlog_id';
+		$sql .= ', testlog_score, testlog_user_ip, testlog_display_time, testlog_change_time, testlog_reaction_time, testlog_answer_text, question_type, question_explanation';
 	} else {
 		$sql .= ' ORDER BY module_name, subject_name, question_description';
 	}
@@ -797,9 +794,10 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
 		$ret .= '<td style="text-align:center;">'.$tu['testuser_creation_time'].'</td>'.K_NEWLINE;
 		//$ret .= '<td style="text-align:center;">'.$tu['testuser_end_time'].'</td>'.K_NEWLINE;
 		$ret .= '<td style="text-align:center;">'.$tu['time_diff'].'</td>'.K_NEWLINE;
-		if($tu['passmsg']) {
+		$passmsg = '';
+		if ($tu['passmsg'] === true) {
 			$passmsg = ' title="'.$l['w_passed'].'" style="background-color:#BBFFBB;"';
-		} else {
+		} elseif ($tu['passmsg'] === false) {
 			$passmsg = ' title="'.$l['w_not_passed'].'" style="background-color:#FFBBBB;"';
 		}
 		if ($pubmode) {
@@ -902,7 +900,7 @@ function F_printUserTestStat($testuser_id) {
 			AND question_subject_id=subject_id
 			AND subject_module_id=module_id
 		ORDER BY testlog_id';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		$ret .= '<ol class="question">'.K_NEWLINE;
 		while($m = F_db_fetch_array($r)) {
 			$ret .= '<li>'.K_NEWLINE;
@@ -950,7 +948,7 @@ function F_printUserTestStat($testuser_id) {
 					WHERE logansw_answer_id=answer_id
 						AND logansw_testlog_id=\''.$m['testlog_id'].'\'
 					ORDER BY logansw_order';
-				if($ra = F_db_query($sqla, $db)) {
+				if ($ra = F_db_query($sqla, $db)) {
 					while($ma = F_db_fetch_array($ra)) {
 						$ret .= '<li>';
 						if ($m['question_type'] == 4) {
@@ -1113,14 +1111,11 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 				$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
 			}
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['time_diff'] = gmdate('H:i:s', $time_diff);
-
-			$passmsg = '';
+			$passmsg = false;
 			if ($usrtestdata['test_score_threshold'] > 0) {
 				if ($usrtestdata['user_score'] >= $usrtestdata['test_score_threshold']) {
 					$passmsg = true;
 					$passed++;
-				} else {
-					$passmsg = false;
 				}
 			} elseif ($usrtestdata['user_score'] > $halfscore) {
 				$passmsg = true;
@@ -1200,7 +1195,7 @@ function F_lockUserTest($test_id, $user_id) {
 			WHERE testuser_test_id='.$test_id.'
 				AND testuser_user_id='.$user_id.'
 				AND testuser_status<4';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		F_display_db_error();
 	}
 }
@@ -1235,7 +1230,7 @@ function F_getTestIDs($test_id, $user_id, $filter='test_results_to_users') {
 	$test_id = intval($test_id);
 	$user_id = intval($user_id);
 	$sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id IN (SELECT DISTINCT testuser_test_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_user_id='.intval($user_id).' AND testuser_status>0) AND '.$filter.'=1';
-	if($r = F_db_query($sql, $db)) {
+	if ($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_assoc($r)) {
 			$str .= ','.$m['test_id'];
 		}
