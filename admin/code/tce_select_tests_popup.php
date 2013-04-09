@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_tests_popup.php
 // Begin       : 2012-12-02
-// Last Update : 2012-12-02
+// Last Update : 2013-04-09
 //
 // Description : Display user selection table on popup window.
 //
@@ -86,10 +86,14 @@ if (strlen($searchterms) > 0) {
 	$terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
 	foreach ($terms as $word) {
 		$word = F_escape_sql($word);
-		$wherequery .= ' AND ((test_name LIKE \'%'.$word.'%\')';
-		$wherequery .= ' OR (test_begin_time LIKE \'%'.$word.'%\')';
-		$wherequery .= ' OR (test_end_time LIKE \'%'.$word.'%\')';
-		$wherequery .= ' OR (test_description LIKE \'%'.$word.'%\'))';
+		$wherequery .= ' AND (';
+		$wherequery .= ' (test_name LIKE \'%'.$word.'%\')';
+		$wherequery .= ' OR (test_description LIKE \'%'.$word.'%\')';
+		if ((preg_match('/^([0-9]{4})[\-]([0-9]{2})[\-]([0-9]{2})$/', $word, $wd) == 1) AND (checkdate($wd[2], $wd[3], $wd[1]))) {
+			$wherequery .= ' OR ((test_begin_time <= \''.$word.'\')';
+			$wherequery .= ' AND (test_end_time >= \''.$word.'\'))';
+		}
+		$wherequery .= ')';
 	}
 	$wherequery = '('.substr($wherequery, 5).')';
 }

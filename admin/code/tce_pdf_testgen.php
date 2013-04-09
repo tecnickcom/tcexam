@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2012-12-28
+// Last Update : 2013-04-09
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -794,14 +794,14 @@ for ($item = 1; $item <= $test_num; $item++) {
 							// select circle
 							$pdf->Circle($x + $circle_half_width, $cy, $circle_radius, 0, 360, 'DF', $line_style, $circle_bg_color, 2);
 							$pdf->SetXY($x,$y);
-							$pdf->SetFont('helvetica', '', 6);
+							$pdf->SetFont(PDF_FONT_NAME_DATA, '', 6);
 							$pdf->SetTextColorArray($grid_bg_color);
-							$pdf->Cell($circle_width, $circle_width, $l['w_true_acronym'], 0, 0, 'C', false, '', 0, true, 'T', 'M');
+							$pdf->Cell($circle_width, $circle_width, $l['w_true_acronym'], 0, 0, 'C', false, '', 1, true, 'T', 'M');
 							$x += $circle_shift;
 							if ($question_type == 2) { // MCMA question
 								$pdf->Circle($x + $circle_half_width, $cy, $circle_radius, 0, 360, 'DF', $line_style, $circle_bg_color, 2);
 								$pdf->SetXY($x,$y);
-								$pdf->Cell($circle_width, $circle_width, $l['w_false_acronym'], 0, 0, 'C', false, '', 0, true, 'T', 'M');
+								$pdf->Cell($circle_width, $circle_width, $l['w_false_acronym'], 0, 0, 'C', false, '', 1, true, 'T', 'M');
 
 							}
 						} else {

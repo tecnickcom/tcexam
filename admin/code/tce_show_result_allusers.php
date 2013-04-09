@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2013-01-20
+// Last Update : 2013-04-09
 //
 // Description : Display test results summary for all users.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -223,7 +223,8 @@ echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
-echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
+//echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
+echo '<select name="test_id" id="test_id" size="0" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
 	echo '<option value="0"';
@@ -261,7 +262,8 @@ echo '<span class="label">'.K_NEWLINE;
 echo '<label for="group_id">'.$l['w_group'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
-echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
+//echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
+echo '<select name="group_id" id="group_id" size="0">'.K_NEWLINE;
 $sql = 'SELECT * FROM '.K_TABLE_GROUPS.'';
 if ($test_id > 0) {
 	$sql .= ' WHERE group_id IN ('.$test_group_ids.')';
@@ -296,7 +298,8 @@ echo '<span class="label">'.K_NEWLINE;
 echo '<label for="user_id">'.$l['w_user'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
-echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
+//echo '<select name="user_id" id="user_id" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()">'.K_NEWLINE;
+echo '<select name="user_id" id="user_id" size="0">'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.'';
 if ($test_id > 0) {
 	$sql .= ', '.K_TABLE_TEST_USER.' WHERE testuser_user_id=user_id AND testuser_test_id='.$test_id.'';
@@ -339,7 +342,8 @@ echo '<span class="label">'.K_NEWLINE;
 echo '<label for="display_mode">'.$l['w_mode'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
-echo '<select name="display_mode" id="display_mode" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()" title="'.$l['w_mode'].'">'.K_NEWLINE;
+//echo '<select name="display_mode" id="display_mode" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()" title="'.$l['w_mode'].'">'.K_NEWLINE;
+echo '<select name="display_mode" id="display_mode" size="0" title="'.$l['w_mode'].'">'.K_NEWLINE;
 foreach($detail_modes as $key => $dmode) {
 	echo '<option value="'.$key.'"';
 	if ($key == $display_mode) {
