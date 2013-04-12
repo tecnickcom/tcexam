@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_questions.php
 // Begin       : 2006-03-12
-// Last Update : 2012-12-31
+// Last Update : 2013-04-12
 //
 // Description : Import questions from an XML file.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -172,7 +172,7 @@ function F_TSVQuestionImporter($tsvfile) {
 	require_once('../../shared/code/tce_functions_auth_sql.php');
 	$qtype = array('S' => 1, 'M' => 2, 'T' => 3, 'O' => 4);
 	// get file content as array
-	$tsvrows = file($tsvfile); // array of TSV lines
+	$tsvrows = file($tsvfile, FILE_IGNORE_NEW_LINES); // array of TSV lines
 	if ($tsvrows === FALSE) {
 		return FALSE;
 	}
@@ -294,25 +294,30 @@ function F_TSVQuestionImporter($tsvfile) {
 				$question_explanation = F_empty_to_null(F_tsv_to_text($qdata[3]));
 				$question_type = $qtype[$qdata[4]];
 				$question_difficulty = intval($qdata[5]);
-				$question_position = F_zero_to_null(0);
 				if (isset($qdata[6])) {
 					$question_position = F_zero_to_null($qdata[6]);
+				} else {
+					$question_position = F_zero_to_null(0);
 				}
-				$question_timer = 0;
 				if (isset($qdata[7])) {
 					$question_timer = intval($qdata[7]);
+				} else {
+					$question_timer = 0;
 				}
-				$question_fullscreen = 0;
 				if (isset($qdata[8])) {
 					$question_fullscreen = intval($qdata[8]);
+				} else {
+					$question_fullscreen = 0;
 				}
-				$question_inline_answers = 0;
 				if (isset($qdata[9])) {
 					$question_inline_answers = intval($qdata[9]);
+				} else {
+					$question_inline_answers = 0;
 				}
-				$question_auto_next = 0;
 				if (isset($qdata[10])) {
 					$question_auto_next = intval($qdata[10]);
+				} else {
+					$question_auto_next = 0;
 				}
 				// check if this question already exist
 				$sql = 'SELECT question_id
@@ -409,13 +414,15 @@ function F_TSVQuestionImporter($tsvfile) {
 				$answer_description = F_escape_sql(F_tsv_to_text($qdata[2]), false);
 				$answer_explanation = F_empty_to_null(F_tsv_to_text($qdata[3]));
 				$answer_isright = intval($qdata[4]);
-				$answer_position = F_zero_to_null(0);
 				if (isset($qdata[5])) {
-					$question_position = F_zero_to_null($qdata[5]);
+					$answer_position = F_zero_to_null($qdata[5]);
+				} else {
+					$answer_position = F_zero_to_null(0);
 				}
-				$answer_keyboard_key = F_empty_to_null('');
 				if (isset($qdata[6])) {
 					$answer_keyboard_key = F_empty_to_null(F_tsv_to_text($qdata[6]));
+				} else {
+					$answer_keyboard_key = F_empty_to_null('');
 				}
 				// check if this answer already exist
 				$sql = 'SELECT answer_id

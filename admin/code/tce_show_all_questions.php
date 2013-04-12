@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2012-12-31
+// Last Update : 2013-04-12
 //
 // Description : Display all questions grouped by topic.
 //
@@ -113,6 +113,7 @@ if (isset($subject_module_id)) {
 // check user's authorization
 if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
 	F_print_error('ERROR', $l['m_authorization_denied']);
+	require_once('../code/tce_page_footer.php');
 	exit;
 }
 

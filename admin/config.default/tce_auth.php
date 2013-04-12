@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2011-05-20
+// Last Update : 2013-04-12
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -22,7 +22,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -179,22 +179,22 @@ define ('K_AUTH_BACKUP', K_AUTH_ADMINISTRATOR);
 /**
  * Required user's level to access file manager for multimedia files.
  */
-define ('K_AUTH_ADMIN_FILEMANAGER', K_AUTH_ADMINISTRATOR);
+define ('K_AUTH_ADMIN_FILEMANAGER', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to create and delete directories.
  */
-define ('K_AUTH_ADMIN_DIRS', K_AUTH_ADMINISTRATOR);
+define ('K_AUTH_ADMIN_DIRS', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to delete multimedia files.
  */
-define ('K_AUTH_DELETE_MEDIAFILE', K_AUTH_ADMINISTRATOR);
+define ('K_AUTH_DELETE_MEDIAFILE', K_AUTH_OPERATOR);
 
 /**
  * Required user's level to rename multimedia files.
  */
-define ('K_AUTH_RENAME_MEDIAFILE', K_AUTH_ADMINISTRATOR);
+define ('K_AUTH_RENAME_MEDIAFILE', K_AUTH_OPERATOR);
 
 //============================================================+
 // END OF FILE

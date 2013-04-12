@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_filemanager.php
 // Begin       : 2010-09-20
-// Last Update : 2011-05-20
+// Last Update : 2013-04-12
 //
 // Description : File manager for media files.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -61,6 +61,23 @@ require_once('tce_functions_filemanager.php');
 $thispage_title = $l['t_filemanager'];
 require_once('../code/tce_page_header.php');
 
+// Non-administrators may access to their cache folder or the cache folders of the users in their groups
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+	$root_dir = K_PATH_CACHE.'uid/';
+	$usr_dir = $root_dir.$_SESSION['session_user_id'].'/';
+	// create user directory if missing
+	if (!file_exists($usr_dir)) {
+		$oldumask = @umask(0);
+		if (!@mkdir($usr_dir, 0744, true)) {
+			F_print_error('ERROR', $l['m_directory_create_error']);
+		}
+		@umask($oldumask);
+	}
+} else {
+	$root_dir = K_PATH_CACHE;
+	$usr_dir = $root_dir;
+}
+
 if (isset($_REQUEST['v'])) {
 	$viewmode = $_REQUEST['v'];
 } elseif (isset($_REQUEST['viewmodet'])) {
@@ -75,37 +92,37 @@ if (isset($_REQUEST['v'])) {
 // select current dir
 if (isset($_REQUEST['d'])) {
 	$dir = urldecode($_REQUEST['d']);
-	if (strpos($dir.'/', K_PATH_CACHE) !== 0) {
-		$dir = K_PATH_CACHE;
-	}
 } elseif (isset($_REQUEST['dir'])) {
 	$dir = $_REQUEST['dir'];
-	if (strpos($dir.'/', K_PATH_CACHE) !== 0) {
-		$dir = K_PATH_CACHE;
-	}
 } else {
-	$dir = K_PATH_CACHE;
+	$dir = $usr_dir;
+}
+// get the authorized dirs
+$authdirs = F_getAuthorizedDirs();
+// check if the user is authorized to use this directory
+if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
+	$dir = $root_dir;
 }
 
 // select file
-
 if (isset($_REQUEST['f'])) {
 	$file = urldecode($_REQUEST['f']);
-	if (strpos($file.'/', K_PATH_CACHE) !== 0) {
-		$file = '';
-	}
 } elseif (isset($_REQUEST['file'])) {
 	$file = $_REQUEST['file'];
-	if (strpos($file.'/', K_PATH_CACHE) !== 0) {
-		$file = '';
-	}
 } else {
+	$file = '';
+}
+// check if the user is authorized to use this file
+if (!F_isAuthorizedDir($file.'/', $root_dir, $authdirs)) {
 	$file = '';
 }
 
 // upload multimedia file
 if(isset($_POST['sendfile']) AND ($_FILES['userfile']['name'])) {
 	require_once('../code/tce_functions_upload.php');
+	if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
+		$dir = $usr_dir;
+	}
 	$file = F_upload_file('userfile', $dir);
 	if (!empty($file)) {
 		$file = $dir.$file;
@@ -128,7 +145,10 @@ switch($menu_mode) {
 			F_print_error('WARNING', $l['m_authorization_denied']);
 			break;
 		}
-
+		if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
+			F_print_error('WARNING', $l['m_authorization_denied']);
+			break;
+		}
 		// ask confirmation
 		F_print_error('WARNING', $l['m_delete_confirm'].' [ '.basename($file).' ]');
 		echo '<div class="confirmbox">'.K_NEWLINE;
@@ -147,6 +167,10 @@ switch($menu_mode) {
 	case 'forcedelete':{
 		F_stripslashes_formfields(); // Delete
 		if ($_SESSION['session_user_level'] < K_AUTH_DELETE_MEDIAFILE) {
+			F_print_error('WARNING', $l['m_authorization_denied']);
+			break;
+		}
+		if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
 			F_print_error('WARNING', $l['m_authorization_denied']);
 			break;
 		}
@@ -172,6 +196,10 @@ switch($menu_mode) {
 			F_print_error('WARNING', $l['m_authorization_denied']);
 			break;
 		}
+		if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
+			F_print_error('WARNING', $l['m_authorization_denied']);
+			break;
+		}
 		// check if this record is used (test_log)
 		if (file_exists($dir.$_REQUEST['newname'])) {
 			F_print_error('WARNING', $l['m_file_already_exist']);
@@ -191,6 +219,10 @@ switch($menu_mode) {
 	case 'newdir':{
 		F_stripslashes_formfields();
 		if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
+			F_print_error('WARNING', $l['m_authorization_denied']);
+			break;
+		}
+		if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
 			F_print_error('WARNING', $l['m_authorization_denied']);
 			break;
 		}
@@ -214,8 +246,12 @@ switch($menu_mode) {
 			F_print_error('WARNING', $l['m_authorization_denied']);
 			break;
 		}
+		if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
+			F_print_error('WARNING', $l['m_authorization_denied']);
+			break;
+		}
 		if (F_deleteMediaDir($dir)) {
-			$dir = K_PATH_CACHE;
+			$dir = $root_dir;
 			F_print_error('MESSAGE', $l['m_deleted']);
 		} else {
 			F_print_error('ERROR', $l['m_delete_file_error']);
@@ -301,10 +337,10 @@ echo '<br />'.K_NEWLINE;
 // list files
 if ($viewmode) {
 	// table mode
-	echo F_getDirTable($dir, basename($file));
+	echo F_getDirTable($dir, basename($file), '', $root_dir, $authdirs);
 } else {
 	// visual mode
-	echo F_getDirVisualTable($dir, basename($file));
+	echo F_getDirVisualTable($dir, basename($file), '', $root_dir, $authdirs);
 }
 
 echo '</div>'.K_NEWLINE;

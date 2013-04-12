@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_filemanager.php
 // Begin       : 2010-09-20
-// Last Update : 2010-09-22
+// Last Update : 2013-04-12
 //
 // Description : Functions for TCExam file manager.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -112,7 +112,10 @@ function F_createMediaDir($dirname) {
 		return false;
 	}
 	if (strpos($dirname.'/', K_PATH_CACHE) !== false) {
-		return mkdir($dirname);
+		$oldumask = @umask(0);
+		$ret = @mkdir($dirname, 0744, false);
+		@umask($oldumask);
+		return $ret;
 	}
 	return false;
 }
@@ -130,7 +133,7 @@ function F_deleteMediaDir($dirname) {
 		return false;
 	}
 	if ((strpos($dirname.'/', K_PATH_CACHE) !== false) AND (count(scandir($dirname)) <= 2)) {
-		return rmdir($dirname);
+		return @rmdir($dirname);
 	}
 	return false;
 }
@@ -183,7 +186,7 @@ function F_getFileInfo($file) {
  */
 function F_formatFileSize($size) {
 	$out = ''; // string to be returned
-	$mult = array('B ', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'); //multipliers
+	$mult = array('B ', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'); // multipliers
 	if ($size == 0) {
 		$out = '0';
 	} else {
@@ -228,9 +231,11 @@ function F_getMediaDirPathLink($dirpath, $viewmode=true) {
  * Get an associative array of directories and folder inside the specified dir.
  * @author Nicola Asuni
  * @param $dir (string) the starting directory path
+ * @param $rootdir (string) the user root dir.
+ * @param $authdirs (string) regular expression containing the authorized dirs.
  * @return an associative array containing sorted 'dirs' and 'files'
  */
-function F_getDirFiles($dir) {
+function F_getDirFiles($dir, $rootdir=K_PATH_CACHE, $authdirs='') {
 	$data['dirs'] = array();
 	$data['files'] = array();
 	// open dir
@@ -241,10 +246,14 @@ function F_getDirFiles($dir) {
 	while ($file = readdir($dirhdl)) {
 		if (($file != '.') AND ($file != '..')) {
 			$filename = $dir.$file;
-			if (is_dir($filename) AND (strpos($filename.'/', K_PATH_LANG_CACHE) === false) AND (strpos($filename.'/', K_PATH_BACKUP) === false)) {
-				$data['dirs'][] = $filename;
-			} else {
-				$data['files'][] = $filename;
+			if (F_isAuthorizedDir($filename.'/', $rootdir, $authdirs)) {
+				if (is_dir($filename)) {
+					if ((strpos($filename.'/', K_PATH_LANG_CACHE) === false) AND (strpos($filename.'/', K_PATH_BACKUP) === false)) {
+						$data['dirs'][] = $filename;
+					}
+				} else {
+					$data['files'][] = $filename;
+				}
 			}
 		}
 	}
@@ -292,9 +301,11 @@ function F_isUsedMediaFile($file) {
  * @param $dir (string) the starting directory path
  * @param $selected (string) the selected file
  * @param $params (string) additional parameters to add on links
+ * @param $rootdir (string) the user root dir.
+ * @param $authdirs (string) regular expression containing the authorized dirs.
  * @return html table
  */
-function F_getDirTable($dir, $selected='', $params='') {
+function F_getDirTable($dir, $selected='', $params='', $rootdir=K_PATH_CACHE, $authdirs='') {
 	global $l;
 	require_once('../config/tce_config.php');
 	$allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
@@ -307,12 +318,17 @@ function F_getDirTable($dir, $selected='', $params='') {
 	$out .= '<th title="'.$l['w_datetime_format'].'">'.$l['w_date'].'</th>';
 	$out .= '<th>'.$l['w_permissions'].'</th>';
 	$out .= '</tr>'.K_NEWLINE;
-	$data = F_getDirFiles($dir);
+	$data = F_getDirFiles($dir, $rootdir, $authdirs);
+	$usrdir = $rootdir.$_SESSION['session_user_id'];
 	// dirs
 	foreach ($data['dirs'] as $file) {
 		$info = F_getFileInfo($file);
 		$current_dir = urlencode($dir.$info['basename'].'/');
-		$out .= '<tr style="background-color:#dddddd;font-family:monospace;color:#660000;">';
+		if ($file == $usrdir) {
+			$out .= '<tr style="background-color:#ddffdd;font-family:monospace;color:#660000;">';
+		} else {
+			$out .= '<tr style="background-color:#dddddd;font-family:monospace;color:#660000;">';
+		}
 		$out .= '<td><strong><a href="'.$_SERVER['SCRIPT_NAME'].'?d='.$current_dir.'&amp;v=1'.$params.'" title="'.$l['w_change_dir'].'" style="text-decoration:underline;">'.$info['basename'].'</a></strong></td>';
 		$out .= '<td style="text-align:right;">'.F_formatFileSize($info['size']).'</td>';
 		$out .= '<td>'.$info['lastmod'].'</td>';
@@ -348,15 +364,17 @@ function F_getDirTable($dir, $selected='', $params='') {
  * @param $dir (string) the starting directory path
  * @param $selected (string) the selected file
  * @param $params (string) additional parameters to add on links
+ * @param $rootdir (string) the user root dir.
+ * @param $authdirs (string) regular expression containing the authorized dirs.
  * @return html table
  */
-function F_getDirVisualTable($dir, $selected='', $params='') {
+function F_getDirVisualTable($dir, $selected='', $params='', $rootdir=K_PATH_CACHE, $authdirs='') {
 	global $l;
 	require_once('../config/tce_config.php');
 	$imgformats = array('gif', 'jpg', 'jpeg', 'png', 'svg');
 	$allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
 	$out = ''; // html string to be returned
-	$data = F_getDirFiles($dir);
+	$data = F_getDirFiles($dir, $rootdir, $authdirs);
 	// dirs
 	foreach ($data['dirs'] as $file) {
 		$info = F_getFileInfo($file);
@@ -408,6 +426,41 @@ function F_getDirVisualTable($dir, $selected='', $params='') {
 	}
 	$out .= '<br style="clear:both;" />';
 	return $out;
+}
+
+/**
+ * Returns a regular expression to match authorised directories.
+ * @return a regular expression to match authorised directories.
+ */
+function F_getAuthorizedDirs() {
+	require_once('../config/tce_config.php');
+	require_once('../../shared/code/tce_functions_authorization.php');
+	if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+		return '[^/]*';
+	}
+	$reg = F_getAuthorizedUsers($_SESSION['session_user_id']);
+	return str_replace (',', '|', $reg);
+}
+
+/**
+ * Returns true if the user is authorized to use the specified directory, false otherwise.
+ * @param $dir (string) the directory to check.
+ * @param $rootdir (string) the user root dir.
+ * @param $authdirs (string) regular expression containing the authorized dirs.
+ * @return true if the user is authorized to use the specified directory, false otherwise.
+ */
+function F_isAuthorizedDir($dir, $rootdir, $authdirs='') {
+	require_once('../config/tce_config.php');
+	if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
+		return true;
+	}
+	if (empty($authdirs)) {
+		$authdirs = F_getAuthorizedDirs();
+	}
+	if (preg_match('#^'.$rootdir.'('.$authdirs.')/#', $dir) > 0) {
+		return true;
+	}
+	return false;
 }
 
 //============================================================+

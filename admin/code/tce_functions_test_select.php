@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_select.php
 // Begin       : 2012-12-02
-// Last Update : 2013-01-20
+// Last Update : 2013-04-12
 //
 // Description : Functions to display and select tests.
 //
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -115,7 +115,7 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
 	}
 	$wherequery .= ' (test_id>0)';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$wherequery .= ' test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+		$wherequery .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 	}
 	if (!empty($andwhere)) {
 		$wherequery .= ' AND ('.$andwhere.')';
@@ -263,7 +263,7 @@ function F_show_select_test_popup($order_field, $orderdir, $firstrow, $rowsperpa
 	}
 	$wherequery .= ' (test_id>0)';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-		$wherequery .= ' test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
+		$wherequery .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 	}
 	if (!empty($andwhere)) {
 		$wherequery .= ' AND ('.$andwhere.')';

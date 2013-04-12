@@ -1,3 +1,9 @@
+12.0.008 (2013-04-12)
+	- A bug on test selection form was fixed.
+	- Default permissions for file manager were lowered to the operator level.
+	- Non-administrators may now access to their cache folder or the ones of the users in their groups.
+	- Some bugs on TSV question importer were fixed.
+
 12.0.007 (2013-04-09)
 	- Automatic "onchange" update on Test Results Summary form was disabled - now you have to press the select button to update results.
 	- Test selection queries were fixed for postgresql.
