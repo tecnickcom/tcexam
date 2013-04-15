@@ -1,9 +1,6 @@
 TCExam - README
 ===========================================================
 
-TO SUPPORT THE TCEXAM PROJECT PLEASE MAKE A DONATION:
-http://sourceforge.net/donate/index.php?group_id=159398
-
 FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 ------------------------------------------------------------
@@ -27,7 +24,7 @@ Copyright (c) 2004-2013:
 
 URLs:
 	http://www.tcexam.org
-	http://www.sourceforge.net/projects/tcexam
+	https://github.com/tecnickcom/tcexam
 
 Requirements and Install Documentation:
 	[ENG] install/index.htm
