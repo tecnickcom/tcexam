@@ -7,9 +7,9 @@ FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 12.0.008
+Version: 12.0.009
 
-Release date: 2013-04-12
+Release date: 2013-04-15
 
 Author:
 	Nicola Asuni
@@ -34,7 +34,7 @@ Source Documentation:
 	http://www.tcexam.org
 
 Support - Help:
-	Please use support forum under http://www.sourceforge.net/projects/tcexam
+	Please use support Issues at https://github.com/tecnickcom/tcexam
 
 Software License
 	Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
