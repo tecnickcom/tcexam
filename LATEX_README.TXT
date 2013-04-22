@@ -22,7 +22,6 @@ The LaTeX rendering requires the following additional software:
 
  - LaTeX (http://www.latex-project.org/ or http://www.tug.org/teTeX/), for Windows I suggest to use MiKTeX (http://miktex.org/);
  - ImageMagick (http://www.imagemagick.org/);
- - Ghostscript (http://sourceforge.net/projects/ghostscript/).
 
 Then you have to edit the file /shared/config/tce_latex.php to match your system settings.
 

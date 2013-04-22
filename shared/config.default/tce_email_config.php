@@ -1,6 +1,6 @@
 <?php
 //============================================================+
-// File name   : cp_email_config.php
+// File name   : tce_email_config.php
 // Begin       : 2001-10-20
 // Last Update : 2009-11-05
 //
@@ -12,9 +12,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //============================================================+

@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -41,16 +38,16 @@
 
 /**
  * Install TCExam database.
- * @param $db_type (string) database type (MySQL)
- * @param $db_host (string) database host
- * @param $db_port (string) database port number
- * @param $db_user (string) database user
- * @param $db_password (string) database password
- * @param $database_name (string) database name
- * @param $table_prefix (string) prefix for tables
- * @param $drop_database (boolean) if true drop existing database
- * @param $create_new (boolean) if true creates new database
- * @param $progress_log (string) log file name
+ * @param string $db_type database type (MySQL)
+ * @param string $db_host database host
+ * @param string $db_port database port number
+ * @param string $db_user database user
+ * @param string $db_password database password
+ * @param string $database_name database name
+ * @param string $table_prefix prefix for tables
+ * @param boolean $drop_database if true drop existing database
+ * @param boolean $create_new if true creates new database
+ * @param string $progress_log log file name
  * @return boolean True in case of success, False otherwise.
  */
 function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password, $database_name, $table_prefix, $drop_database, $create_new, $progress_log) {
@@ -112,11 +109,11 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 
 /**
  * Parses an SQL file and execute queries.
- * @param $db (string) database connector
- * @param $sql_file (string) file to parse
- * @param $search (string) string to replace
- * @param $replace (string) replace string
- * @param $progress_log (string) log file name
+ * @param string $db database connector
+ * @param string $sql_file file to parse
+ * @param string $search string to replace
+ * @param string $replace replace string
+ * @param string $progress_log log file name
  * @return boolean true in case of success, false otherwise.
  */
 function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log) {
@@ -152,16 +149,16 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 /**
  * Create new database. Existing database will be dropped.
  * Oracle databases must be created manually (create the tcexam user and set the database name equal to user name)
- * @param $host (string) Database server path. It can also include a port number. e.g. "hostname:port" or a path to a local socket e.g. ":/path/to/socket" for the localhost. Note: Whenever you specify "localhost" or "localhost:port" as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use "127.0.0.1" instead of "localhost". If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.
- * @param $dbtype (string) database type ('MYSQL' or 'POSTGREQL')
- * @param $host (string) database host
- * @param $port (string) database port
- * @param $user (string) Name of the user that owns the server process.
- * @param $password (string) Password of the user that owns the server process.
- * @param $database (string) Database name.
- * @param $table_prefix (string) prefix for tables
- * @param $drop (boolean) if true drop existing database
- * @param $create (boolean) if true creates new database
+ * @param string $host Database server path. It can also include a port number. e.g. "hostname:port" or a path to a local socket e.g. ":/path/to/socket" for the localhost. Note: Whenever you specify "localhost" or "localhost:port" as server, the MySQL client library will override this and try to connect to a local socket (named pipe on Windows). If you want to use TCP/IP, use "127.0.0.1" instead of "localhost". If the MySQL client library tries to connect to the wrong local socket, you should set the correct path as mysql.default_host in your PHP configuration and leave the server field blank.
+ * @param string $dbtype database type ('MYSQL' or 'POSTGREQL')
+ * @param string $host database host
+ * @param string $port database port
+ * @param string $user Name of the user that owns the server process.
+ * @param string $password Password of the user that owns the server process.
+ * @param string $database Database name.
+ * @param string $table_prefix prefix for tables
+ * @param boolean $drop if true drop existing database
+ * @param boolean $create if true creates new database
  * @return database link identifier on success, FALSE otherwise.
  */
 function F_create_database($dbtype, $host, $port, $user, $password, $database, $table_prefix, $drop, $create) {
@@ -235,18 +232,18 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 
 /**
  * Update some configuration files.
- * @param $db_type (string) database type (MySQL)
- * @param $db_host (string) database host
- * @param $db_port (string) database port number
- * @param $db_user (string) database user
- * @param $db_password (string) database password
- * @param $database_name (string) database name
- * @param $table_prefix (string) table prefix
- * @param $path_host (string) host URL
- * @param $path_tcexam (string) relative URL where this program is installed
- * @param $path_main (string) real full server path where this program is installed
- * @param $standard_port (string) standard http web port
- * @param $progress_log (string) log file name
+ * @param string $db_type database type (MySQL)
+ * @param string $db_host database host
+ * @param string $db_port database port number
+ * @param string $db_user database user
+ * @param string $db_password database password
+ * @param string $database_name database name
+ * @param string $table_prefix table prefix
+ * @param string $path_host host URL
+ * @param string $path_tcexam relative URL where this program is installed
+ * @param string $path_main real full server path where this program is installed
+ * @param string $standard_port standard http web port
+ * @param string $progress_log log file name
  * @return boolean true in case of success, false otherwise
  */
 function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_password, $database_name, $table_prefix, $path_host, $path_tcexam, $path_main, $standard_port, $progress_log) {

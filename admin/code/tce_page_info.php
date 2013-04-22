@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2013-03-27
+// Last Update : 2013-04-21
 //
 // Description : Outputs TCExam information page.
 //
@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -67,7 +64,6 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
 echo '<li><strong>Copyright:</strong><br /> (c) 2004-2013 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
-echo 'Manor Coach House, Church Hill, Aldershot, Hants, GU12 4RQ, UK<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
 echo '<li><strong>'.$l['w_license'].':</strong><br />This program is free software for non-commercial use: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br />This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.<br />You should have received a copy of the GNU Affero General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/" title="GNU Licenses">http://www.gnu.org/licenses/</a>.<br />Additionally, you can\'t remove, move or hide the original TCExam logo, copyrights statements and links to Tecnick.com and TCExam Websites.<br />
@@ -76,6 +72,8 @@ See <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT<
 echo '</ul>'.K_NEWLINE;
 
 echo '<h2>'.$l['t_third_parties'].'</h2>'.K_NEWLINE;
+
+echo '<p>TCExam includes some third-party software components that are not striclty required but have been included as you convenience, and if used are subject to their respective licenses.</p>'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 
@@ -87,49 +85,35 @@ License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser Gen
 Location: /shared/phpmailer/<br /><br />
 </li>'.K_NEWLINE;
 
-echo '<li><strong>LaTeX rendering Class</strong> is based on:<br />
-LaTeX Rendering Class v0.8 by Benjamin Zeiss, currently maintained by Steve Mayer.<br />
-Homepage: <a href="http://www.mayer.dial.pipex.com/tex.htm">http://www.mayer.dial.pipex.com/tex.htm</a><br />
-License: <a href="http://www.gnu.org/copyleft/gpl.html" title="GNU GENERAL PUBLIC LICENSE">GNU GENERAL PUBLIC LICENSE</a><br/>
-Location: /shared/code/tce_latexrender.php<br /><br />
-</li>'.K_NEWLINE;
-
-echo '<li><strong>Radius Class</strong><br />
-Radius client implementation in pure PHP.<br />
-Author: SysCo/al (<a href="mailto:developer@sysco.ch">developer@sysco.ch</a>)<br />
-Homepage: <a href="http://developer.sysco.ch/php/">http://developer.sysco.ch/php/</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
-Location: /shared/radius/<br /><br />
-</li>'.K_NEWLINE;
-
-echo '<li><strong>phpCAS</strong><br />
-CAS client in PHP.<br />
-Copyright: Copyright &copy; 2003-2008, The ESUP-Portail consortium &amp; the JA-SIG Collaborative. All rights reserved.<br />
-Author: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a>.<br />
-Developers: <a href="http://www.ja-sig.org/wiki/display/~paubry">Pascal Aubry</a>, University of Rennes 1,
-<a href="http://www.ja-sig.org/wiki/display/~saltybeagle">Brett Bieber</a>, University of Nebraska-Lincoln,
-<a href="http://www.ja-sig.org/wiki/display/~jmarchal">Julien Marchal</a>, University of Nancy 2,
-<a href="http://www.ja-sig.org/wiki/display/~olivierberger">Olivier Berger</a>, Institut TELECOM, SudParis.<br />
-This class includes an integrated copy of <a href="http://alexandre.alapetite.net/doc-alex/domxml-php4-php5/">domxml-php4-php5.php</a>, written by <a href="http://alexandre.alapetite.net/cv/">Alexandre Alapetite</a>, Copyright 2004, <a href="http://creativecommons.org/licenses/by-sa/2.0/fr/">Licence: Creative Commons "Attribution-ShareAlike 2.0 France" BY-SA</a>.<br />
-This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University\'s College of Computing and Digital Media) and Nicola Asuni (Tecnick.com LTD).<br />
-Homepage: <a href="http://www.ja-sig.org/wiki/display/CASC/phpCAS">http://www.ja-sig.org/wiki/display/CASC/phpCAS</a><br />
-License: <a href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a>, an <a href="http://www.opensource.org/docs/osd">OSI-certified</a> ("open") and <a href="http://www.gnu.org/licenses/license-list.html">Gnu/FSF-recognized</a> ("free") license.<br />
-Location: /shared/cas/<br /><br />
-</li>'.K_NEWLINE;
-
 echo '<li><strong>The DHTML Calendar</strong><br />
 Calendar widget written in Javascript.<br />
 Author: Mihai Bazon (<a href="mailto:mihai_bazon@yahoo.com">mihai_bazon@yahoo.com</a>)<br />
-Homepage: <a href="http://dynarch.com/mishoo/">http://dynarch.com/mishoo/</a><br />
+Homepage: <a href="http://dynarch.com/mishoo/" title="mishoo">http://dynarch.com/mishoo/</a><br />
 License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/jscripts/jscalendar/<br /><br />
 </li>'.K_NEWLINE;
 
 echo '<li><strong>Javascript VirtualKeyboard</strong><br />
 Author: Ilya Lebedev (<a href="mailto:ilya@lebedev.net">ilya@lebedev.net</a>)<br />
-Homepage: <a href="http://debugger.ru/projects/virtualkeyboard">http://debugger.ru/projects/virtualkeyboard</a><br />
+Homepage: <a href="http://debugger.ru/projects/virtualkeyboard" title="VirtualKeyboard">http://debugger.ru/projects/virtualkeyboard</a><br />
 License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/jscripts/vk/<br /><br />
+</li>'.K_NEWLINE;
+
+echo '<li><strong>Radius Class</strong><br />
+Radius client implementation in pure PHP.<br />
+Author: SysCo/al (<a href="mailto:developer@sysco.ch">developer@sysco.ch</a>)<br />
+Homepage: <a href="http://developer.sysco.ch/php/" title="sysco">http://developer.sysco.ch/php/</a><br />
+License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+Location: /shared/radius/<br /><br />
+</li>'.K_NEWLINE;
+
+echo '<li><strong>phpCAS</strong><br />
+CAS client in PHP.<br />
+Copyright: 2007-2011, JA-SIG, Inc. <a href="http://www.jasig.org" title="Jasig Website">http://www.jasig.org</a><br />
+Homepage: <a href="https://wiki.jasig.org/display/CASC/phpCAS" title="phpCAS">https://wiki.jasig.org/display/CASC/phpCAS</a><br />
+License: <a href="http://www.apache.org/licenses/LICENSE-2.0" title="Apache License, Version 2.0">Apache License, Version 2.0</a><br />
+Location: /shared/cas/<br /><br />
 </li>'.K_NEWLINE;
 
 echo '<li><strong>Fonts</strong><br />

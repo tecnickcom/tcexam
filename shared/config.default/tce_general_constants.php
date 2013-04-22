@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -50,7 +47,7 @@
 /**
  * String used as a seed for some security code generation please change this value and keep it secret.
  */
-define ('K_RANDOM_SECURITY', '3kCWtT57');
+define ('K_RANDOM_SECURITY', '4kCHtQ53');
 
 /**
  * Maximum number of tests per year (last 365 days).

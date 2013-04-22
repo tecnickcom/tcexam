@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -142,7 +139,7 @@ define ('PDF_FONT_SIZE_MAIN', 9);
 /**
  * Data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'helvetica');
+define ('PDF_FONT_NAME_DATA', 'arialuni');
 
 /**
  * Data font size.

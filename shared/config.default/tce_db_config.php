@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -63,12 +60,12 @@ define ('K_DATABASE_HOST', '');
 define ('K_DATABASE_PORT', '');
 
 /**
- * database name (tcexam)
+ * database name (TCExam)
  */
 define ('K_DATABASE_NAME', '');
 
 /**
- * database user name (root, postgres)
+ * database user name
  */
 define ('K_DATABASE_USER_NAME', '');
 

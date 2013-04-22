@@ -7,9 +7,9 @@ FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 12.0.009
+Version: 12.0.010
 
-Release date: 2013-04-15
+Release date: 2013-04-22
 
 Author:
 	Nicola Asuni
@@ -17,9 +17,6 @@ Author:
 Copyright (c) 2004-2013:
 	Nicola Asuni
 	Tecnick.com LTD
-	Manor Coach House, Church Hill
-	Aldershot, Hants, GU12 4RQ
-	UK
 	http://www.tecnick.com
 
 URLs:
@@ -60,6 +57,9 @@ Software License
 	See LICENSE.TXT file for more information.
 
 Third-party Software
+--------------------
+	
+	TCExam includes some third-party software components that are not striclty required but have been included as you convenience, and if used are subject to their respective licenses.
 
 	PHPMailer
 		Full Featured Email Transfer Class for PHP.
@@ -67,30 +67,6 @@ Third-party Software
 		Homepage: http://phpmailer.sourceforge.net/
 		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
 		Location: /shared/phpmailer/
-
-	LaTeX rendering Class is based on:
-		LaTeX Rendering Class v0.8 by Benjamin Zeiss, currently maintained by Steve Mayer.
-		Homepage: http://www.mayer.dial.pipex.com/tex.htm
-		License: GNU GENERAL PUBLIC LICENSE
-		Location: /shared/code/tce_latexrender.php
-
-	Radius Class
-		Radius client implementation in pure PHP.
-		Author: SysCo/al (developer@sysco.ch)
-		Homepage: http://developer.sysco.ch/php/
-		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-		Location: /shared/radius/
-
-	phpCAS
-		CAS client in PHP.
-		Copyright: Copyright © 2003-2008, The ESUP-Portail consortium & the JA-SIG Collaborative. All rights reserved.
-		Author: Pascal Aubry.
-		Developers: Pascal Aubry, University of Rennes 1, Brett Bieber, University of Nebraska-Lincoln, Julien Marchal, University of Nancy 2, Olivier Berger, Institut TELECOM, SudParis.
-		This class includes an integrated copy of domxml-php4-php5.php, written by Alexandre Alapetite, Copyright 2004, Licence: Creative Commons "Attribution-ShareAlike 2.0 France" BY-SA.
-		This class has been changed and fixed for better PHP5 compatibility by: Tim Gebhardt (DePaul University's College of Computing and Digital Media) and Nicola Asuni (Tecnick.com LTD).
-		Homepage: http://www.ja-sig.org/wiki/display/CASC/phpCAS
-		License: New BSD License, an OSI-certified ("open") and Gnu/FSF-recognized ("free") license.
-		Location: /shared/cas/
 
 	The DHTML Calendar
 		Calendar widget written in Javascript.
@@ -105,14 +81,31 @@ Third-party Software
 		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
 		Location: /shared/jscripts/vk/
 
+	Radius Class
+		Radius client implementation in pure PHP.
+		Author: SysCo/al (developer@sysco.ch)
+		Homepage: http://developer.sysco.ch/php/
+		License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+		Location: /shared/radius/
+
+	phpCAS
+		Central Authentication Service (CAS) client in PHP.
+		Copyright 2007-2011, JA-SIG, Inc. http://www.jasig.org/
+		Homepage: https://wiki.jasig.org/display/CASC/phpCAS
+		License: Apache License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0
+		Location: /shared/cas/
+
 	Fonts
-		TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:
+		TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience.
+		The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
+		To get the original distribution archives please check the information on fonts subfolders:
 			DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33
 			GNU FreeFont (GNU-GPLv3) - Copyright, License and other info: fonts/freefont-20100919
 
 
 Description:
-	TCExam is a technological solution (CBA - Computer-Based Assessment) to
+
+	TCExam is a software solution (CBA - Computer-Based Assessment) to
 	drastically simplify the evaluation process for schools, universities,
 	recruiting firms as well as private and public companies, allowing
 	professors, teachers and examiners to create, distribute and manage exams,

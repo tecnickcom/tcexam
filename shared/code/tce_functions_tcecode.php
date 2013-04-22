@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2012-12-29
+// Last Update : 2013-04-22
 //
 // Description : Functions to translate TCExam code
 //               into XHTML.
@@ -13,14 +13,11 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -211,20 +208,86 @@ function F_decode_tcecode($text_to_decode) {
  * @return string replacement HTML code string to include the equivalent LaTeX image.
  */
 function F_latex_callback($matches) {
-	require_once('../../shared/code/tce_latexrender.php');
-	$latex = new LatexRender();
-	$latex_code = unhtmlentities($matches[1]);
-	// get image URL
-	$imgurl = $latex->getFormulaURL($latex_code);
-	if ($imgurl) {
-		// alternative text to image
-		$alt_latex = '[LaTeX]'."\n".htmlentities($latex_code, ENT_QUOTES);
-		$alt_latex = str_replace("\r", '&#13;', $alt_latex);
-		$alt_latex = str_replace("\n", '&#10;', $alt_latex);
-		// XHTML code for image
-		$newtext = '<img src="'.$imgurl.'" alt="'.$alt_latex.'" class="tcecode" />';
+	require_once('../../shared/config/tce_latex.php');
+	// extract latex code and convert some entities
+	$latex = unhtmlentities($matches[1]);
+	$latex = preg_replace("/&gt;/i", '>', $latex);
+	$latex = preg_replace("/&lt;/i", '<', $latex);
+	$dr = 3; // density ratio
+	// generate file name
+	$filename = K_LATEX_IMG_PREFIX.md5($latex);
+	$imgpath = K_LATEX_PATH_PICTURE.$filename;
+	$imgurl = false;
+	$error = '';
+	// check if file is already cached
+	if (is_file($imgpath.'.'.K_LATEX_IMG_FORMAT)) {
+		$imgurl = K_LATEX_PATH_PICTURE_HTTPD.$filename.'.'.K_LATEX_IMG_FORMAT;
 	} else {
-		$newtext = '[LaTeX: ERROR '.$latex->getErrorCode().']';
+		// check if the formula
+		if (strlen($latex) > K_LATEX_MAX_LENGHT) {
+			$error = 'the formula is too long';
+		} elseif (preg_match('/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i', $latex) > 0) {
+			$error = 'invalid command';
+		} else {
+			// wrap the formula
+			$ltx = '\nonstopmode'."\n";
+			$ltx .= '\documentclass{'.K_LATEX_CLASS.'}'."\n";
+			$ltx .= '\usepackage[T1]{fontenc}'."\n";
+			$ltx .= '\usepackage{amsmath,amsfonts,amssymb,wasysym,latexsym,marvosym,txfonts}'."\n";
+			$ltx .= '\usepackage[pdftex]{color}'."\n";
+			$ltx .= '\pagestyle{empty}'."\n";
+			$ltx .= '\begin{document}'."\n";
+			$ltx .= '\fontsize{'.K_LATEX_FONT_SIZE.'}{'.(2 * K_LATEX_FONT_SIZE).'}'."\n";
+			$ltx .= '\selectfont'."\n";
+			$ltx .= '\color{black}'."\n";
+			$ltx .= '\pagecolor{white}'."\n";
+			$ltx .= '$'.$latex.'$'."\n";
+			$ltx .= '\end{document}'."\n";
+			if (file_put_contents($imgpath.'.tex', $ltx) === false) {
+				$error = 'unable to write on the cache folder';
+			} else {
+				$cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PDFLATEX.' '.$imgpath.'.tex';
+				$sts = exec($cmd, $out, $ret);
+				if (!$sts) {
+					$error = implode("\n", $out);
+				} else {
+					// convert code using ImageMagick
+					$cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PATH_CONVERT.' -density '.(K_LATEX_FORMULA_DENSITY * $dr).' -trim +repage '.$imgpath.'.pdf -depth 8 -quality 100 '.$imgpath.'.'.K_LATEX_IMG_FORMAT;
+					unset($out);
+					$sts = exec($cmd, $out, $ret);
+					if ($ret != 0) {
+						$error = implode("\n", $out);
+					} else {
+						$imsize = @getimagesize($imgpath.'.'.K_LATEX_IMG_FORMAT);
+						list($w, $h) = $imsize;
+						if ((($w / $dr) > K_LATEX_MAX_WIDTH) OR (($h / $dr) > K_LATEX_MAX_HEIGHT)) {
+							$error = 'image size exceed limits';
+						} else {
+							$imgurl = K_LATEX_PATH_PICTURE_HTTPD.$filename.'.'.K_LATEX_IMG_FORMAT;
+						}
+					}
+				}
+			}
+			// remove temporary files (if any)
+			$tmpext = array('tex', 'aux', 'log', 'pdf');
+			foreach ($tmpext as $ext) {
+				if (file_exists($imgpath.'.'.$ext)) {
+					@unlink($imgpath.'.'.$ext);
+				}
+			}
+		}
+	}
+	if ($imgurl === false) {
+		$newtext = '[LaTeX: ERROR '.$error.']';
+	} else {
+		// alternative text to image
+		$alt_latex = '[LaTeX]'."\n".htmlentities($latex, ENT_QUOTES);
+		$replaceTable = array("\r" => '&#13;', "\n" => '&#10;');
+		$alt_latex = strtr($alt_latex , $replaceTable);
+		// XHTML code for image
+		$imsize = @getimagesize($imgpath.'.'.K_LATEX_IMG_FORMAT);
+		list($w, $h) = $imsize;
+		$newtext = '<img src="'.$imgurl.'" alt="'.$alt_latex.'" class="tcecode" width="'.round($w / $dr).'" height="'.round($h / $dr).'" />';
 	}
 	return $newtext;
 }

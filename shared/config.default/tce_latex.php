@@ -11,9 +11,6 @@
 // (c) Copyright:
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               Manor Coach House, Church Hill
-//               Aldershot, Hants, GU12 4RQ
-//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //
@@ -88,29 +85,14 @@ define ('K_LATEX_PATH_PICTURE', K_PATH_CACHE);
 define ('K_LATEX_PATH_PICTURE_HTTPD', K_PATH_URL_CACHE);
 
 /**
- * Path to temporary directory.
+ * Path to PDFLATEX (/usr/bin/pdflatex).
  */
-define ('K_LATEX_TMP_DIR', K_PATH_CACHE);
-
-/**
- * Path to LATEX (/usr/bin/latex).
- */
-define ('K_LATEX_PATH_LATEX', '/usr/bin/latex');
-
-/**
- * Path to DVIPS (/usr/bin/dvips).
- */
-define ('K_LATEX_PATH_DVIPS', '/usr/bin/dvips');
+define ('K_LATEX_PDFLATEX', '/usr/bin/pdflatex');
 
 /**
  * Path to ImageMagick convert (/usr/bin/convert).
  */
 define ('K_LATEX_PATH_CONVERT', '/usr/bin/convert');
-
-/**
- * Path to ImageMagick identify (/usr/bin/identify).
- */
-define ('K_LATEX_PATH_IDENTIFY', '/usr/bin/identify');
 
 /**
  * Formula density used by ImageMagick (120).
@@ -120,12 +102,12 @@ define ('K_LATEX_FORMULA_DENSITY', 120);
 /**
  * Image width limit in pixels (500).
  */
-define ('K_LATEX_MAX_WIDTH', 500);
+define ('K_LATEX_MAX_WIDTH', 800);
 
 /**
  * Image height limit in pixels (500).
  */
-define ('K_LATEX_MAX_HEIGHT', 500);
+define ('K_LATEX_MAX_HEIGHT', 800);
 
 /**
  * Size limit for input string (500).
