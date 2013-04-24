@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2010-02-08
+// Last Update : 2013-04-24
 //
 // Description : Installation functions for TCExam.
 //
@@ -255,6 +255,12 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	if (PHP_VERSION_ID < 50300) {
 		@set_magic_quotes_runtime(0);
 	}
+
+	// initialize configuration directories with default values
+	
+	rename('../shared/config.default', '../shared/config');
+	rename('../admin/config.default', '../admin/config');
+	rename('../public/config.default', '../public/config');
 
 	$config_file = array(); // configuration files
 
