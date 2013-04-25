@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2012-12-26
+// Last Update : 2013-04-25
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -358,7 +358,8 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 					$qscore = 0;
 				}
 				$unanswered = true;
-				// for each question on array
+				$numselected = 0; // count the number of MCSA selected answers
+				// for each answer on array
 				for ($a = 1; $a <= $num_answers; ++$a) {
 					$answer_id = intval($omr_testdata[$q][1][$a]);
 					if (isset($omr_answers[$q][$a])) {
@@ -393,11 +394,18 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 								switch ($mq['question_type']) {
 									case 1: { // MCSA - Multiple Choice Single Answer
 										if ($answer_selected == 1) {
-											$unanswered = false;
-											if ($answer_isright) {
-												$qscore = $question_right_score;
+											++$numselected;
+											if ($numselected == 1) {
+												$unanswered = false;
+												if ($answer_isright) {
+													$qscore = $question_right_score;
+												} else {
+													$qscore = $question_wrong_score;
+												}
 											} else {
-												$qscore = $question_wrong_score;
+												// multiple answer selected
+												$unanswered = true;
+												$qscore = $question_unanswered_score;
 											}
 										}
 										break;
