@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2013-03-23
+// Last Update : 2013-05-02
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -233,7 +233,7 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 						$_SESSION['session_last_visit'] = 0;
 					}
 					$logged = true;
-					if ($altusr !== false) {
+					if (K_USER_GROUP_RSYNC AND ($altusr !== false)) {
 						// sync user groups
 						F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
 					}
@@ -261,8 +261,10 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 									$_SESSION['session_last_visit'] = 0;
 									$_SESSION['session_test_login'] = '';
 									$logged = true;
-									// sync user groups
-									F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
+									if (K_USER_GROUP_RSYNC) {
+										// sync user groups
+										F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
+									}
 								}
 							} else {
 								F_display_db_error();
@@ -272,7 +274,7 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 							F_print_error('WARNING', $l['m_login_wrong']);
 						}
 				} else {
-					// this user doesn't exist on TCExam database
+					// this user do not exist on TCExam database
 					if ($altusr !== false) {
 						// replicate external user account on TCExam local database
 						$sql = 'INSERT INTO '.K_TABLE_USERS.' (

@@ -139,7 +139,7 @@ define ('PDF_FONT_SIZE_MAIN', 9);
 /**
  * Data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'arialuni');
+define ('PDF_FONT_NAME_DATA', 'helvetica');
 
 /**
  * Data font size.

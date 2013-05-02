@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2013-04-02
+// Last Update : 2013-05-02
 //
 // Description : Shared configuration file.
 //
@@ -49,7 +49,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '12.0.011');
+define ('K_TCEXAM_VERSION', '12.0.012');
 
 /**
  * 2-letters code for default language.
@@ -162,6 +162,13 @@ define ('K_SHORT_ANSWERS_BINARY', false);
  * User's session life time in seconds.
  */
 define ('K_SESSION_LIFE', K_SECONDS_IN_HOUR);
+
+/**
+ * When an alternate authentication method is used, 
+ * if this constant is true the default user groups for the selected
+ * authentication method are always added to the user.
+ */
+define ('K_USER_GROUP_RSYNC', false);
 
 /**
  * Define timestamp format using PHP notation (do not change).
