@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_answers.php
 // Begin       : 2011-05-20
-// Last Update : 2012-07-31
+// Last Update : 2013-05-21
 //
 // Description : Import test answers using OMR (Optical Mark Recognition)
 //               technique applied to images of scanned answer sheets.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -80,6 +80,12 @@ if (isset($_REQUEST['date'])) {
 	$date = date(K_TIMESTAMP_FORMAT);
 }
 
+if (!isset($_REQUEST['overwrite']) OR (empty($_REQUEST['overwrite']))) {
+	$overwrite = false;
+} else {
+	$overwrite = F_getBoolean($_REQUEST['overwrite']);
+}
+
 // process uploaded files
 if (isset($menu_mode) AND ($menu_mode == 'upload') AND ($user_id > 0) AND !empty($_FILES)) {
 	// read OMR DATA page
@@ -106,7 +112,7 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND ($user_id > 0) AND !empty
 		// sort answers
 		ksort($omr_answers);
 		// import answers
-		if (F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers)) {
+		if (F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)) {
 			F_print_error('MESSAGE', $l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
 		} else {
 			F_print_error('ERROR', $l['m_import_error']);
@@ -182,6 +188,8 @@ for ($i = 1; $i < $max_omr_sheets; ++$i) {
 	echo getFormUploadFile('omrfile[]', 'omrsheet'.$i, $l['w_omr_answer_sheet'].' '.$i, '', 'document.getElementById(\'divomrsheet'.($i+1).'\').style.display=\'block\';');
 }
 echo getFormUploadFile('omrfile[]', 'omrsheet'.$max_omr_sheets, $l['w_omr_answer_sheet'].' '.$max_omr_sheets, '', '');
+
+echo getFormRowCheckBox('overwrite', $l['w_overwrite'], $l['h_omr_overwrite'], '', 1, $overwrite, false, '');
 
 // -----------------------------------------------------------------------------
 

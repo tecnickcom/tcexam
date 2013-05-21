@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2013-04-25
+// Last Update : 2013-05-21
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -248,9 +248,10 @@ function F_decodeOMRPage($image) {
  * @param $date (string) date-time field.
  * @param $omr_testdata (array) Array containing test data.
  * @param $omr_answers (array) Array containing test answers (from OMR).
+ * @param $overwrite (boolean) If true overwrites the previous answers on non-repeatable tests.
  * @return boolean TRUE in case of success, FALSE otherwise.
  */
-function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
+function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite=false) {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_test.php');
 	global $db, $l;
@@ -275,15 +276,22 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers) {
 	if ($rs = F_db_query($sqls, $db)) {
 		if ($ms = F_db_fetch_array($rs)) {
 			// 1a. update previous test data if repeatable
-			$sqld = 'UPDATE '.K_TABLE_TEST_USER.' SET testuser_status=testuser_status+1 WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND test_repeatable=\'1\' AND testuser_status>3';
+			$sqld = 'UPDATE '.K_TABLE_TEST_USER.' SET testuser_status=testuser_status+1 WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status>3';
 			if (!$rd = F_db_query($sqld, $db)) {
 				F_display_db_error();
 			}
 		} else {
-			// 1b. delete previous test data if not repeatable
-			$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'';
-			if (!$rd = F_db_query($sqld, $db)) {
-				F_display_db_error();
+			if ($overwrite) {
+				// 1b. delete previous test data if not repeatable
+				$sqld = 'DELETE FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'';
+				if (!$rd = F_db_query($sqld, $db)) {
+					F_display_db_error();
+				}
+			} else {
+				// 1c. check if this data already exist
+				if (F_count_rows(K_TABLE_TEST_USER, 'WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.'') > 0) {
+					return false;
+				}
 			}
 		}
 	} else {

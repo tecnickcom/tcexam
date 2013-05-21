@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_bulk.php
 // Begin       : 2012-07-31
-// Last Update : 2012-08-01
+// Last Update : 2013-05-21
 //
 // Description : Import in bulk test answers using OMR 
 //               (Optical Mark Recognition)
@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -78,6 +78,12 @@ if (isset($_REQUEST['omrdir']) AND (strpos($_REQUEST['omrdir'], K_PATH_CACHE.'OM
 	$omrdir = K_PATH_CACHE.'OMR/';
 }
 
+if (!isset($_REQUEST['overwrite']) OR (empty($_REQUEST['overwrite']))) {
+	$overwrite = false;
+} else {
+	$overwrite = F_getBoolean($_REQUEST['overwrite']);
+}
+
 // process OMR files on the specified directory
 if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 	$logfilename = 'log_import_omr_'.time().'.txt';
@@ -121,7 +127,7 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 						// get user ID from user registration code
 						$user_id = F_getUIDfromRegnum($matches[1]);
 						// import answers
-						if (($user_id > 0) AND F_isAuthorizedEditorForUser($user_id) AND F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers)) {
+						if (($user_id > 0) AND F_isAuthorizedEditorForUser($user_id) AND F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)) {
 							F_print_error('MESSAGE', '['.$matches[1].'] '.$l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
 							file_put_contents($logfile, 'OK'."\t".$matches[1]."\t".'SUCCESSFULLY IMPORTED - UID: '.$user_id."\n", FILE_APPEND);
 						} else {
@@ -166,6 +172,8 @@ if (file_exists(K_PATH_CACHE.'OMR')) {
 		echo getFormRowSelectBox('omrdir', $l['w_omr_dir'], $l['h_omr_dir'], '', $omrdir, $dirs, '');
 	}
 }
+
+echo getFormRowCheckBox('overwrite', $l['w_overwrite'], $l['h_omr_overwrite'], '', 1, $overwrite, false, '');
 
 // -----------------------------------------------------------------------------
 

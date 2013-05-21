@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2013-02-21 12:34:17
+// DATE: 2013-05-21 10:44:57
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -564,7 +564,7 @@ $tmx['w_owner']='proprietario';
 $tmx['h_module_owner']='proprietario di questo modulo';
 $tmx['h_topic_owner']='proprietario di questo argomento';
 $tmx['t_omr_answers_importer']='Importazione Risposte (OMR)';
-$tmx['hp_omr_answers_importer']='Attraverso questa maschera è possibile importare le risposte dell\'utente dalle immagini scannerizzate dei fogli di risposta. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell\'utente. I dati importati sovrascriveranno i risultati esistenti. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.';
+$tmx['hp_omr_answers_importer']='Attraverso questa maschera è possibile importare le risposte dell\'utente dalle immagini scannerizzate dei fogli di risposta. Le immagini verranno elaborate utilizzando un sistema di Optical Mark Recognition (OMR) per identificate i dati del test e le risposte dell\'utente. I fogli ORM devono essere interamente scannerizzati a colori ad almeno 200DPI.';
 $tmx['w_import_omr_answers']='importa risposte';
 $tmx['w_omr_data_page']='OMR DATA';
 $tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';
@@ -623,5 +623,7 @@ $tmx['w_language']='lingua';
 $tmx['w_max']='max';
 $tmx['w_remaining']='rimanenti';
 $tmx['w_executed']='eseguiti';
+$tmx['w_overwrite']='sovrascrivi';
+$tmx['h_omr_overwrite']='seleziona questa opzione per sovrascrivere i risultati nei test non ripetibili';
 
 // --- EOF ---

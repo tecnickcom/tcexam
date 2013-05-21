@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2013-02-21 12:34:08
+// DATE: 2013-05-21 10:44:44
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -579,7 +579,7 @@ $tmx['w_result_graph']='graph of points and correct answers percentage for each 
 $tmx['h_omr_dir']='OMR Import Directory';
 $tmx['w_omr_dir']='OMR Directory';
 $tmx['t_omr_bulk_importer']='OMR Bulk Importer';
-$tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. Imported data will overwrite existing results. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
+$tmx['hp_omr_bulk_importer']='With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user\'s answers. The OMR sheets must be fully scanned with full color range at 200DPI or more.';
 $tmx['w_alphabetic']='alphabetic';
 $tmx['w_id']='id';
 $tmx['w_database_id']='database ID';
@@ -620,5 +620,7 @@ $tmx['w_language']='language';
 $tmx['w_max']='max';
 $tmx['w_remaining']='remaining';
 $tmx['w_executed']='executed';
+$tmx['w_overwrite']='overwrite';
+$tmx['h_omr_overwrite']='select this option to overwrite existing results on non-repeatable test';
 
 // --- EOF ---

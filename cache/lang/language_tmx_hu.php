@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2013-02-21 12:34:12
+// DATE: 2013-05-21 10:44:51
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -623,5 +623,7 @@ $tmx['w_language']='language';
 $tmx['w_max']='max';
 $tmx['w_remaining']='remaining';
 $tmx['w_executed']='executed';
+$tmx['w_overwrite']='overwrite';
+$tmx['h_omr_overwrite']='select this option to overwrite existing results on non-repeatable test';
 
 // --- EOF ---

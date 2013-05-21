@@ -1,3 +1,32 @@
+6.0.018 (2013-05-19)
+	- The barcode examples were changed to automatically search for the barcode class path (in case the examples directory is not installed under the TCPDF root).
+
+6.0.017 (2013-05-16)
+	- The command line tool tcpdf_addfont.php was improved.
+	- The php logic was removed from configuration files that now contains only constant defines.
+	- The tcpdf_autoconfig.php file was added to automatically set missing configuration values.
+
+6.0.016 (2013-05-15)
+	- The tcpdf_addfont.php tool was improved (thanks to Remi Collet).
+	- Constant K_PATH_IMAGES is now automatically set in configuration file.
+
+6.0.015 (2013-05-14)
+	- Some unused vars were removed from AddFont() method.
+	- Some directories were moved inside the examples directory.
+	- All examples were updated to reflect the new default structure.
+	- Source code were clean-up up to be more compatible with system packaging.
+	- Files encodings and permissions were reset.
+	- The command line tool tcpdf_addfont.php was added on the tools directory.
+
+6.0.014 (2013-04-13)
+	- The signature of addTTFfont() method includes a new parameter to link existing fonts instead of copying and compressing them.
+
+6.0.013 (2013-04-10)
+	- Add support for SVG dx and dy text/tspan attributes.
+	- replace require() with require_once().
+	- fix some minor typos on documentation.
+	- fix a problem when deleting all pages.
+
 6.0.012 (2013-04-24)
 	- An error condition in addHtmlLink() method was fixed (bug #799).
 
