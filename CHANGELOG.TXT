@@ -1,3 +1,7 @@
+12.0.014 (2013-05-31)
+	- TCPDF library was updated.
+	- An additional ordering option for questions was added on the test editor.
+
 12.0.013 (2013-05-21)
 	- TCPDF library was updated.
 	- An error on a SQL query when importing OMR answers was fixed.

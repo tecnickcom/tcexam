@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_testgen.php
 // Begin       : 2004-06-13
-// Last Update : 2013-04-09
+// Last Update : 2013-05-31
 //
 // Description : Creates PDF documents for offline testing.
 //
@@ -187,16 +187,24 @@ if (!$test_random_answers_order AND ($test_answers_order_mode == 0)) {
 }
 $sql_questions_order_by = '';
 switch ($test_questions_order_mode) {
-	case 0: {
+	case 0: { // position
 		$sql_questions_order_by = ' AND question_position>0 ORDER BY question_position';
 		break;
 	}
-	case 1: {
+	case 1: { // alphabetic
 		$sql_questions_order_by = ' ORDER BY question_description';
 		break;
 	}
-	case 2: {
+	case 2: { // ID
 		$sql_questions_order_by = ' ORDER BY question_id';
+		break;
+	}
+	case 3: { // type
+		$sql_questions_order_by = ' ORDER BY question_type';
+		break;
+	}
+	case 4: { // subject ID
+		$sql_questions_order_by = ' ORDER BY question_subject_id';
 		break;
 	}
 }

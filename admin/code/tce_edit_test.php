@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-04-02
+// Last Update : 2013-05-31
 //
 // Description : Edit Tests
 //
@@ -192,7 +192,7 @@ if (!isset($test_max_score)) {
 
 $test_max_score_new = 0; // test max score
 $qtype = array('S', 'M', 'T', 'O'); // question types
-$qordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id'], $l['w_type']);
+$qordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id'], $l['w_type'], $l['w_subject']);
 $aordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
 
 $test_fieldset_name = '';
