@@ -192,7 +192,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 				}
 				echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(substr($grp,0,-2), ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
 
-				echo '<td><a href="tce_show_allresults_users.php?user_id='.$m['user_id'].'" class="xmlbutton" title="'.$l['t_all_results_user'].'">...</a></td>'.K_NEWLINE;
+				echo '<td><a href="tce_show_result_allusers.php?user_id='.$m['user_id'].'" class="xmlbutton" title="'.$l['t_all_results_user'].'">...</a></td>'.K_NEWLINE;
 
 				echo '</tr>'.K_NEWLINE;
 			} while ($m = F_db_fetch_array($r));
