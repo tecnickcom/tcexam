@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_svg_graph.php
 // Begin       : 2012-04-15
-// Last Update : 2012-04-15
+// Last Update : 2012-07-01
 //
 // Description : Create an SVG graph for user results.
 //
@@ -99,13 +99,23 @@ $vh = ($height - $label_space);
 $textpos = $vh + ($label_space * 0.5);
 $svg .= '<g stroke="#cccccc" fill="#666666" stroke-width="1" text-anchor="end" font-family="Arial,Verdana" font-size="'.$fontsize.'">'."\n";
 $graph = array('', '');
+$step = 1;
+if ($numpoints > 30) {
+	$step = 5;
+} elseif ($numpoints > 100) {
+	$step = 10;
+} 
+
 for ($i = 0; $i < $numpoints; ++$i) {
 	$point = explode('v', $points[$i]);
 	$x = (($i * $hstep) + $label_space);
 	// line
 	$svg .= "\t".'<line x1="'.$x.'" y1="'.$vstep.'" x2="'.$x.'" y2="'.$vh.'" />'."\n";
-	// text
-	$svg .= "\t".'<text x="'.$x.'" y="'.$textpos.'" stroke-width="0">'.($i + 1).'</text>'."\n";
+	$xi = ($i + 1);
+	if (($xi == 1) OR (($xi % $step) == 0)) {
+		// text
+		$svg .= "\t".'<text x="'.$x.'" y="'.$textpos.'" stroke-width="0">'.($xi).'</text>'."\n";
+	}
 	for ($k = 0; $k <= 1; ++$k) {
 		// graph path
 		$y = sprintf('%.3F', (11 * $vstep) - (intval($point[$k]) * $pstep));
@@ -132,7 +142,7 @@ header('Pragma: public');
 header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
 header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
 header('Content-Type: image/svg+xml');
-header('Content-Disposition: inline; filename="srvusg.svg";');
+header('Content-Disposition: inline; filename="tce_svg_graph_'.md5($points.''.$width).'.svg";');
 // Turn on output buffering with the gzhandler
 //ob_start('ob_gzhandler');
 // output SVG code
