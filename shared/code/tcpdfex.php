@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
-// Last Update : 2013-06-06
+// Last Update : 2013-07-02
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -386,7 +386,7 @@ class TCPDFEX extends TCPDF {
 			$w = $this->tce_page_width * $this->imgscale * $this->k;
 			$h = round($this->tce_page_width * 9 / 16);
 			$svg = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'shared/code/tce_svg_graph.php?w='.$w.'&h='.$h.'&p='.substr($svgdata, 1));
-			if ($svg[0] == '<') {
+			if (isset($svg[0]) AND ($svg[0] == '<')) {
 				$this->ImageSVG('@'.$svg, '', '', $this->tce_page_width, 0, '', 'N', 'C', 0, false);
 			}
 		}
