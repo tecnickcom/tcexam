@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2012-11-14
+// Last Update : 2013-07-05
 //
 // Description : Configuration file for administration section.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -74,7 +74,7 @@ define ('K_MAX_UPLOAD_SIZE', 25000000);
  * List of allowed file types for upload (remove all extensions to disable upload).
  * FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE
  */
-define ('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid')));
+define ('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid', 'pfx', 'pem', 'crt')));
 
 // -- DEFAULT META and BODY Tags --
 
@@ -181,8 +181,7 @@ define('K_UTF8_NORMALIZATION_MODE', 'NONE');
 define ('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
 
 /**
- * Defines a serialized array of available languages.
- * Each language is indexed using a 2-letters code (ISO 639).
+ * Defines a serialized array of available fonts for PDF.
  */
 define ('K_AVAILABLE_FONTS', serialize(array(
 	'courier' => 'courier',

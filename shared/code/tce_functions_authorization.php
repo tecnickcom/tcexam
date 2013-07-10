@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2013-03-27
+// Last Update : 2013-07-02
 //
 // Description : Functions for Authorization / LOGIN
 //
@@ -347,6 +347,69 @@ function F_isSslCertificateValid() {
 	}
 	// valid certificate
 	return true;
+}
+
+/**
+ * Get the hash code of the specified SSL certificate
+ * @param string $cert String containing the certificate data.
+ * @param boolean $pkcs12 Set this variable to true if the certificate is in PKCS12 format.
+ * @return array containing the hash code and the validity end date in unix epoch.
+ * @author Nicola Asuni
+ * @since 2013-07-01
+ */
+function F_getSSLCertificateHash($cert, $pkcs12=false) {
+	if ($pkcs12) {
+		$certs = array();
+		openssl_pkcs12_read($cert, $certs, '');
+		$cert = $certs['cert'];
+	}
+	$ssldata = openssl_x509_parse($cert);
+	$sslhash = '';
+	$sslhash .= isset($ssldata['serialNumber'])?bcdechex($ssldata['serialNumber']):'';
+	$sslhash .= isset($ssldata['issuer']['C'])?$ssldata['issuer']['C']:'';
+	$sslhash .= isset($ssldata['issuer']['ST'])?$ssldata['issuer']['ST']:'';
+	$sslhash .= isset($ssldata['issuer']['O'])?$ssldata['issuer']['O']:'';
+	$sslhash .= isset($ssldata['issuer']['OU'])?$ssldata['issuer']['OU']:'';
+	$sslhash .= isset($ssldata['issuer']['CN'])?$ssldata['issuer']['CN']:'';
+	$sslhash .= isset($ssldata['issuer']['emailAddress'])?$ssldata['issuer']['emailAddress']:'';
+	$sslhash .= isset($ssldata['subject']['C'])?$ssldata['subject']['C']:'';
+	$sslhash .= isset($ssldata['subject']['ST'])?$ssldata['subject']['ST']:'';
+	$sslhash .= isset($ssldata['subject']['O'])?$ssldata['subject']['O']:'';
+	$sslhash .= isset($ssldata['subject']['OU'])?$ssldata['subject']['OU']:'';
+	$sslhash .= isset($ssldata['subject']['CN'])?$ssldata['subject']['CN']:'';
+	$sslhash .= isset($ssldata['subject']['emailAddress'])?$ssldata['subject']['emailAddress']:'';
+	if (isset($ssldata['validTo_time_t'])) {
+		$endtime = $ssldata['validTo_time_t'];
+	} else {
+		$endtime = time();
+	}
+	$sslhash .= $endtime;
+	return array(md5($sslhash), date(K_TIMESTAMP_FORMAT, $endtime));
+}
+
+/**
+ * Get the hash code for the client certificate
+ * @return string containing the hash code.
+ * @author Nicola Asuni
+ * @since 2013-07-01
+ */
+function F_getSSLClientHash() {
+	$crthash = '';
+	$crthash .= isset($_SERVER['SSL_CLIENT_M_SERIAL'])?strtoupper($_SERVER['SSL_CLIENT_M_SERIAL']):'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_C'])?$_SERVER['SSL_CLIENT_I_DN_C']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_ST'])?$_SERVER['SSL_CLIENT_I_DN_ST']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_O'])?$_SERVER['SSL_CLIENT_I_DN_O']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_OU'])?$_SERVER['SSL_CLIENT_I_DN_OU']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_CN'])?$_SERVER['SSL_CLIENT_I_DN_CN']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_I_DN_Email'])?$_SERVER['SSL_CLIENT_I_DN_Email']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_C'])?$_SERVER['SSL_CLIENT_S_DN_C']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_ST'])?$_SERVER['SSL_CLIENT_S_DN_ST']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_O'])?$_SERVER['SSL_CLIENT_S_DN_O']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_OU'])?$_SERVER['SSL_CLIENT_S_DN_OU']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_CN'])?$_SERVER['SSL_CLIENT_S_DN_CN']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_S_DN_Email'])?$_SERVER['SSL_CLIENT_S_DN_Email']:'';
+	$crthash .= isset($_SERVER['SSL_CLIENT_V_END'])?strtotime($_SERVER['SSL_CLIENT_V_END']):'';
+	return md5($crthash);
 }
 
 //============================================================+

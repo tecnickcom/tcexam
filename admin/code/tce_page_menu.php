@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_menu.php
 // Begin       : 2004-04-20
-// Last Update : 2012-12-16
+// Last Update : 2013-07-04
 //
 // Description : Output XHTML unordered list menu.
 //
@@ -78,7 +78,8 @@ $menu['tce_menu_modules.php']['sub'] = array(
 	'tce_edit_answer.php' => array('link' => 'tce_edit_answer.php', 'title' => $l['t_answers_editor'], 'name' => $l['w_answers'], 'level' => K_AUTH_ADMIN_ANSWERS, 'key' => '', 'enabled' => true),
 	'tce_show_all_questions.php' => array('link' => 'tce_show_all_questions.php', 'title' => $l['t_questions_list'], 'name' => $l['w_list'], 'level' => K_AUTH_ADMIN_RESULTS, 'key' => '', 'enabled' => true),
 	'tce_import_questions.php' => array('link' => 'tce_import_questions.php', 'title' => $l['t_question_importer'], 'name' => $l['w_import'], 'level' => K_AUTH_ADMIN_IMPORT, 'key' => '', 'enabled' => true),
-	'tce_filemanager.php' => array('link' => 'tce_filemanager.php', 'title' => $l['t_filemanager'], 'name' => $l['w_file_manager'], 'level' => K_AUTH_ADMIN_FILEMANAGER, 'key' => '', 'enabled' => true)
+	'tce_filemanager.php' => array('link' => 'tce_filemanager.php', 'title' => $l['t_filemanager'], 'name' => $l['w_file_manager'], 'level' => K_AUTH_ADMIN_FILEMANAGER, 'key' => '', 'enabled' => true),
+	'tce_edit_sslcerts.php' => array('link' => 'tce_edit_sslcerts.php', 'title' => $l['t_sslcerts'], 'name' => $l['w_sslcerts'], 'level' => K_AUTH_ADMIN_SSLCERT, 'key' => '', 'enabled' => true)
 );
 
 $menu['tce_menu_tests.php']['sub'] = array(

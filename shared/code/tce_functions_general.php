@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2013-01-20
+// Last Update : 2013-07-02
 //
 // Description : General functions.
 //
@@ -620,43 +620,60 @@ function F_isURL($str) {
  * @param $mode (int) Normalization type: NONE=None; C=Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition; D=Normalization Form D (NFD) - Canonical Decomposition; KC=Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition; KD=Normalization Form KD (NFKD) - Compatibility Decomposition; CUSTOM=Custom normalization using user defined function 'user_utf8_custom_normalizer'.
  * @return normalized string using the specified algorithm.
  */
-  function F_utf8_normalizer($str, $mode='NONE') {
-    switch($mode) {
-      case 'CUSTOM': {
-        if (function_exists('user_utf8_custom_normalizer')) {
-          return call_user_func('user_utf8_custom_normalizer', $str);
-        } else {
-          return $str;
-        }
-        break;
-      }
-      case 'C': {
-        // Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition
-        return normalizer_normalize($str, Normalizer::FORM_C);
-        break;
-      }
-      case 'D': {
-        // Normalization Form D (NFD) - Canonical Decomposition
-        return normalizer_normalize($str, Normalizer::FORM_D);
-        break;
-      }
-      case 'KC': {
-        // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition
-        return normalizer_normalize($str, Normalizer::FORM_KC);
-        break;
-      }
-      case 'KD': {
-        // Normalization Form KD (NFKD) - Compatibility Decomposition
-        return normalizer_normalize($str, Normalizer::FORM_KD);
-        break;
-      }
-      case 'NONE':
-      default: {
-        return $str;
-        break;
-      }
-    }
-  }
+function F_utf8_normalizer($str, $mode='NONE') {
+	switch($mode) {
+		case 'CUSTOM': {
+			if (function_exists('user_utf8_custom_normalizer')) {
+				return call_user_func('user_utf8_custom_normalizer', $str);
+			} else {
+				return $str;
+			}
+			break;
+		}
+		case 'C': {
+			// Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition
+			return normalizer_normalize($str, Normalizer::FORM_C);
+			break;
+		}
+		case 'D': {
+			// Normalization Form D (NFD) - Canonical Decomposition
+			return normalizer_normalize($str, Normalizer::FORM_D);
+			break;
+		}
+		case 'KC': {
+			// Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition
+			return normalizer_normalize($str, Normalizer::FORM_KC);
+			break;
+		}
+		case 'KD': {
+			// Normalization Form KD (NFKD) - Compatibility Decomposition
+			return normalizer_normalize($str, Normalizer::FORM_KD);
+			break;
+		}
+		case 'NONE':
+		default: {
+			return $str;
+			break;
+		}
+	}
+}
+
+/**
+ * Convert an long integer number to a Hexadecimal representation
+ * @param string|int $dec Decimal number to convert.
+ * @return string containing the HEX representation in uppercase.
+ * @author Nicola Asuni
+ * @since 2013-07-02
+ */
+function bcdechex($dec) {
+	$last = bcmod($dec, 16);
+	$remain = bcdiv(bcsub($dec, $last), 16);
+	if ($remain == 0) {
+		return strtoupper(dechex($last));
+	} else {
+		return bcdechex($remain).strtoupper(dechex($last));
+	}
+}
 
 //============================================================+
 // END OF FILE

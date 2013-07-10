@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
  <header datatype="PlainText"
-           changedate="20130521T133000Z"
+           changedate="20130603T133000Z"
            creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
@@ -45715,7 +45715,7 @@ Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoa
     <seg>overwrite</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>overwrite</seg>
+    <seg>استبدال</seg>
    </tuv>
   </tu>
   <tu tuid="h_omr_overwrite" datatype="plaintext">
@@ -45789,7 +45789,377 @@ Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoa
     <seg>select this option to overwrite existing results on non-repeatable test</seg>
    </tuv>
    <tuv xml:lang="AR">
-    <seg>select this option to overwrite existing results on non-repeatable test</seg>
+    <seg>اختر هذا الخيار لاستبدال النتائج الموجودة مسبقا</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_sslcerts" datatype="plaintext">
+   <tuv xml:lang="AZ">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>certificati SSL</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="NL">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>SSL certificates</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>SSL certificates</seg>
+   </tuv>
+  </tu>
+    <tu tuid="t_sslcerts" datatype="plaintext">
+   <tuv xml:lang="AZ">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="NL">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>SSL Certificates</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>SSL Certificates</seg>
+   </tuv>
+  </tu>
+  <tu tuid="w_sslcert" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>certificato SSL</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>SSL certificate</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>SSL certificate</seg>
+   </tuv>
+  </tu>
+  <tu tuid="hp_import_ssl_certificates" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Con questa maschera è possibile importare certificati client SSL (pfx, pem, crt). Questi certificati possono essere utilizzati per limitare l'accesso a determinati test o aree.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+   </tuv>
+  </tu>
+  <tu tuid="m_ssl_certificate_required" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>Per accedere a quest'area occorre un certificato client SSL valido.</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>To acccess this page you need a valid SSL certificate client.</seg>
    </tuv>
   </tu>
  </body>

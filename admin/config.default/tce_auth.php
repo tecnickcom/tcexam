@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2002-09-02
-// Last Update : 2013-04-12
+// Last Update : 2013-07-05
 //
 // Description : Define access levels for each admin page
 //               Note:
@@ -192,6 +192,25 @@ define ('K_AUTH_DELETE_MEDIAFILE', K_AUTH_OPERATOR);
  * Required user's level to rename multimedia files.
  */
 define ('K_AUTH_RENAME_MEDIAFILE', K_AUTH_OPERATOR);
+
+/**
+ * Required user's level to edit SSL certificates.
+ */
+define ('K_AUTH_ADMIN_SSLCERT', K_AUTH_OPERATOR);
+
+/**
+ * Minimum page level for which a valid client SSL certificate is required.
+ * Use false or a level above 10 to disable the control.
+ * Use 0 to enable for all area.
+ * Use 10 to enable just for the ADMIN pages.
+ */
+define ('K_AUTH_SSL_LEVEL', false);
+
+/**
+ * Comma separated lit of SSL certificates IDs required to
+ * access pages with K_AUTH_SSL_LEVEL level or more.
+ */
+define ('K_AUTH_SSLIDS', '');
 
 //============================================================+
 // END OF FILE

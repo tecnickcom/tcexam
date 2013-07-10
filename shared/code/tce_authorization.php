@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2013-05-02
+// Last Update : 2013-07-05
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -337,6 +337,22 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 if (!isset($pagelevel)) {
 	// set default page level
 	$pagelevel = 0;
+}
+
+// check client SSL certificate if required
+if ((K_AUTH_SSL_LEVEL !== false) AND (K_AUTH_SSL_LEVEL <= $pagelevel)) {
+	$sslids = preg_replace('/[^0-9,]*/', '', K_AUTH_SSLIDS);
+	if (!empty($sslids)) {
+		$client_hash = F_getSSLClientHash();
+		$valid_ssl = F_count_rows(K_TABLE_SSLCERTS, 'WHERE ssl_hash=\''.$client_hash.'\' AND ssl_id IN ('.$sslids.')');
+		if ($valid_ssl == 0) {
+			$thispage_title = $l['t_login_form']; //set page title
+			require_once('../code/tce_page_header.php');
+			F_print_error('ERROR', $l['m_ssl_certificate_required']);
+			require_once('../code/tce_page_footer.php');
+			exit(); //break page here
+		}
+	}
 }
 
 // check user's level

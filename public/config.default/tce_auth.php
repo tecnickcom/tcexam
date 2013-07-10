@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2010-09-17
-// Last Update : 2010-09-20
+// Last Update : 2013-07-05
 //
 // Description : Define access levels for each public page
 //               Note:
@@ -93,6 +93,20 @@ define ('K_AUTH_USER_CHANGE_PASSWORD', 1);
  * Required user's level to display a link for administration area
  */
 define ('K_ADMIN_LINK', 5);
+
+/**
+ * Minimum page level for which a valid client SSL certificate is required.
+ * Use false or a level above 10 to disable the control.
+ * Use 0 to enable for all area.
+ * Use 10 to enable just for the ADMIN pages.
+ */
+define ('K_AUTH_SSL_LEVEL', false);
+
+/**
+ * Comma separated lit of SSL certificates IDs required to
+ * access pages with K_AUTH_SSL_LEVEL level or more.
+ */
+define ('K_AUTH_SSLIDS', '');
 
 //============================================================+
 // END OF FILE

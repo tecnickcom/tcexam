@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2013-06-03 11:45:48
+// DATE: 2013-07-09 20:57:28
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -625,5 +625,10 @@ $tmx['w_remaining']='rimanenti';
 $tmx['w_executed']='eseguiti';
 $tmx['w_overwrite']='sovrascrivi';
 $tmx['h_omr_overwrite']='seleziona questa opzione per sovrascrivere i risultati nei test non ripetibili';
+$tmx['w_sslcerts']='certificati SSL';
+$tmx['t_sslcerts']='SSL Certificates';
+$tmx['w_sslcert']='certificato SSL';
+$tmx['hp_import_ssl_certificates']='Con questa maschera è possibile importare certificati client SSL (pfx, pem, crt). Questi certificati possono essere utilizzati per limitare l\'accesso a determinati test o aree.';
+$tmx['m_ssl_certificate_required']='Per accedere a quest\'area occorre un certificato client SSL valido.';
 
 // --- EOF ---

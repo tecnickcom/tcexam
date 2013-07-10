@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2013-05-31
+// Last Update : 2013-07-09
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -263,6 +263,34 @@ function F_isValidIP($user_ip, $test_ips) {
 	return false;
 }
 
+
+/**
+ * Check if user's IP is valid over test IP range
+ * @param $test_id (int) Test ID
+ * @return true if the client certifiate is valid, false otherwise
+ */
+function F_isValidSSLCert($test_id) {
+	require_once('../config/tce_config.php');
+	require_once('../../shared/code/tce_functions_authorization.php');
+	global $db, $l;
+	$test_id = intval($test_id);
+	if (F_count_rows(K_TABLE_TEST_SSLCERTS, 'WHERE tstssl_test_id='.$test_id) == 0) {
+		// no certificates were selected for this test
+		return true;
+	}
+	// get the hash code for the client SSl certificate
+	$client_ssl_hash = F_getSSLClientHash();
+	// check if the client certificate is enabled for this test
+	if (F_count_rows(K_TABLE_TEST_SSLCERTS.', '.K_TABLE_SSLCERTS,
+		'WHERE tstssl_ssl_id=ssl_id
+			AND tstssl_test_id='.$test_id.'
+			AND ssl_hash=\''.$client_ssl_hash.'\'
+			LIMIT 1') > 0) {
+		return true;
+	}
+	return false;
+}
+
 /**
  * Check if user is authorized to execute the specified test
  * @param $test_id (int) ID of the selected test
@@ -279,9 +307,13 @@ function F_isValidTestUser($test_id, $user_ip, $test_ip) {
 	if (!F_isValidIP($user_ip, $test_ip)) {
 		return false;
 	}
+	// check user's SSL certificate
+	if (!F_isValidSSLCert($test_id)) {
+		return false;
+	}
 	// check user's group
-	if (F_count_rows(K_TABLE_USERGROUP.', '.K_TABLE_TEST_GROUPS.'
-		WHERE usrgrp_group_id=tstgrp_group_id
+	if (F_count_rows(K_TABLE_USERGROUP.', '.K_TABLE_TEST_GROUPS,
+		'WHERE usrgrp_group_id=tstgrp_group_id
 			AND tstgrp_test_id='.$test_id.'
 			AND usrgrp_user_id='.$user_id.'
 			LIMIT 1') > 0) {
@@ -1797,7 +1829,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 				// function to save the text answer locally
 				$str .= 'function saveAnswer(){if(enable_storage){localStorage.answertext'.$testlog_id.'=document.getElementById("answertext").value;}}'.K_NEWLINE;
 				// initialize the text answer with the saved value
-				$str .= 'if(enable_storage && localStorage.answertext'.$testlog_id.'){document.getElementById("answertext").value=localStorage.answertext'.$testlog_id.';}'.K_NEWLINE;	
+				$str .= 'if(enable_storage && localStorage.answertext'.$testlog_id.'){document.getElementById("answertext").value=localStorage.answertext'.$testlog_id.';}'.K_NEWLINE;
 			}
 			// script for autonext
 			if ($m['question_timer'] > 0) {
@@ -2081,7 +2113,7 @@ function F_testLoginForm($faction, $fid, $fmethod, $fenctype, $test_id) {
 }
 
 /**
- * Get a comma separated list of valig group IDs for the selected test.
+ * Get a comma separated list of valid group IDs for the selected test.
  * @param $test_id (int) ID of the selected test
  * @return string containing a comma separated list fo group IDs.
  */
@@ -2095,6 +2127,28 @@ function F_getTestGroups($test_id) {
 	if ($r = F_db_query($sql, $db)) {
 		while($m = F_db_fetch_assoc($r)) {
 			$ids .= ','.$m['tstgrp_group_id'];
+		}
+	} else {
+		F_display_db_error();
+	}
+	return $ids;
+}
+
+/**
+ * Get a comma separated list of valid SSL certificates IDs for the selected test.
+ * @param $test_id (int) ID of the selected test
+ * @return string containing a comma separated list SSL certificates IDs.
+ */
+function F_getTestSSLCerts($test_id) {
+	require_once('../config/tce_config.php');
+	global $db, $l;
+	$test_id = intval($test_id);
+	$ids = '0';
+	// select SSL certificates in this test
+	$sql = 'SELECT tstssl_ssl_id FROM '.K_TABLE_TEST_SSLCERTS.' WHERE tstssl_test_id='.$test_id.' ORDER BY tstssl_ssl_id';
+	if ($r = F_db_query($sql, $db)) {
+		while($m = F_db_fetch_assoc($r)) {
+			$ids .= ','.$m['tstssl_ssl_id'];
 		}
 	} else {
 		F_display_db_error();

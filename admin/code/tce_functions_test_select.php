@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_select.php
 // Begin       : 2012-12-02
-// Last Update : 2013-04-12
+// Last Update : 2013-07-09
 //
 // Description : Functions to display and select tests.
 //
@@ -327,6 +327,25 @@ function F_show_select_test_popup($order_field, $orderdir, $firstrow, $rowsperpa
 		F_display_db_error();
 	}
 	return TRUE;
+}
+
+/**
+ * Return true if the selected test is active for the selected SSL Certificate
+ * @param $test_id (int) test ID
+ * @param $ssl_id (int) SSL Certificate ID
+ * @return boolean true/false
+ * @since 12.1.000 (2013-07-09)
+ */
+function F_isTestOnSSLCerts($test_id, $ssl_id) {
+	global $l, $db;
+	require_once('../config/tce_config.php');
+	$sql = 'SELECT tstssl_test_id FROM '.K_TABLE_TEST_SSLCERTS.' WHERE tstssl_test_id='.intval($test_id).' AND tstssl_ssl_id='.intval($ssl_id).' LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 //============================================================+

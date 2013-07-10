@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_config.php
 // Begin       : 2001-09-02
-// Last Update : 2012-12-26
+// Last Update : 2013-07-05
 //
 // Description : Database congiguration file.
 //
@@ -162,6 +162,16 @@ define ('K_TABLE_USERGROUP', K_TABLE_PREFIX.'usrgroups');
  * This table contains the list of groups enabled for a selected test.
  */
 define ('K_TABLE_TEST_GROUPS', K_TABLE_PREFIX.'testgroups');
+
+/**
+ * This table contains the SSL certificates.
+ */
+define ('K_TABLE_SSLCERTS', K_TABLE_PREFIX.'sslcerts');
+
+/**
+ * This table contains the list of SSL certificates enabled for a selected test.
+ */
+define ('K_TABLE_TEST_SSLCERTS', K_TABLE_PREFIX.'testsslcerts');
 
 //============================================================+
 // END OF FILE

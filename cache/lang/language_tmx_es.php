@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2013-06-03 11:45:41
+// DATE: 2013-07-09 20:57:22
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -622,5 +622,10 @@ $tmx['w_remaining']='remaining';
 $tmx['w_executed']='executed';
 $tmx['w_overwrite']='overwrite';
 $tmx['h_omr_overwrite']='select this option to overwrite existing results on non-repeatable test';
+$tmx['w_sslcerts']='SSL certificates';
+$tmx['t_sslcerts']='SSL Certificates';
+$tmx['w_sslcert']='SSL certificate';
+$tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
+$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
 
 // --- EOF ---

@@ -62,7 +62,7 @@ function F_altLogin() {
 	if (K_SSL_ENABLED AND (!isset($_SESSION['logout']) OR !$_SESSION['logout'])) {
 		if (isset($_SERVER['SSL_CLIENT_M_SERIAL']) // The serial of the client certificate
 				AND isset($_SERVER['SSL_CLIENT_I_DN']) // Issuer DN of client's certificate
-				AND isset($_SERVER['SSL_CLIENT_V_END']) // Validity of server's certificate (end time)
+				AND isset($_SERVER['SSL_CLIENT_V_END']) // Validity of client's certificate (end time)
 				AND isset($_SERVER['SSL_CLIENT_VERIFY']) // NONE, SUCCESS, GENEROUS or FAILED:reason
 				AND  ($_SERVER['SSL_CLIENT_VERIFY'] === 'SUCCESS')
 				AND isset($_SERVER['SSL_CLIENT_V_REMAIN']) // Number of days until client's certificate expires

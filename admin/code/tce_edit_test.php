@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-05-31
+// Last Update : 2013-07-09
 //
 // Description : Edit Tests
 //
@@ -57,6 +57,7 @@ require_once('../../shared/code/tce_functions_tcecode.php');
 require_once('tce_functions_tcecode_editor.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
+require_once('tce_functions_test_select.php');
 
 // set default values
 if (!isset($test_results_to_users) OR (empty($test_results_to_users))) {
@@ -532,6 +533,29 @@ switch($menu_mode) {
 					}
 				}
 			}
+
+			// delete previous SSL certificates
+			$sql = 'DELETE FROM '.K_TABLE_TEST_SSLCERTS.'
+				WHERE tstssl_test_id='.$test_id.'';
+			if (!$r = F_db_query($sql, $db)) {
+				F_display_db_error(false);
+			}
+			// update authorized SSL certificates
+			if (!empty($sslcerts)) {
+				foreach ($sslcerts as $ssl_id) {
+					$sql = 'INSERT INTO '.K_TABLE_TEST_SSLCERTS.' (
+						tstssl_test_id,
+						tstssl_ssl_id
+						) VALUES (
+						\''.$test_id.'\',
+						\''.intval($ssl_id).'\'
+						)';
+					if (!$r = F_db_query($sql, $db)) {
+						F_display_db_error(false);
+					}
+				}
+			}
+
 		}
 		break;
 	}
@@ -625,6 +649,22 @@ switch($menu_mode) {
 						) VALUES (
 						\''.$test_id.'\',
 						\''.intval($group_id).'\'
+						)';
+					if (!$r = F_db_query($sql, $db)) {
+						F_display_db_error(false);
+					}
+				}
+			}
+
+			// update authorized SSL certificates
+			if (!empty($sslcerts)) {
+				foreach ($sslcerts as $ssl_id) {
+					$sql = 'INSERT INTO '.K_TABLE_TEST_SSLCERTS.' (
+						tstssl_test_id,
+						tstssl_ssl_id
+						) VALUES (
+						\''.$test_id.'\',
+						\''.intval($ssl_id).'\'
 						)';
 					if (!$r = F_db_query($sql, $db)) {
 						F_display_db_error(false);
@@ -902,6 +942,29 @@ if ($r = F_db_query($sql, $db)) {
 			echo ' selected="selected"';
 		}
 		echo '>'.htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+	}
+} else {
+	echo '</select></span></div>'.K_NEWLINE;
+	F_display_db_error();
+}
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="sslcerts">'.$l['w_sslcerts'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="sslcerts[]" id="sslcerts" size="5" multiple="multiple">'.K_NEWLINE;
+$sql = 'SELECT * FROM '.K_TABLE_SSLCERTS.' ORDER BY ssl_name';
+if ($r = F_db_query($sql, $db)) {
+	while ($m = F_db_fetch_array($r)) {
+		echo '<option value="'.$m['ssl_id'].'"';
+		if (isset($test_id) AND ($test_id > 0) AND (F_isTestOnSSLCerts($test_id, $m['ssl_id']))) {
+			echo ' selected="selected"';
+		}
+		echo '>'.htmlspecialchars($m['ssl_name'].' ('.substr($m['ssl_end_date'],0,10).')', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
 	}
 } else {
 	echo '</select></span></div>'.K_NEWLINE;

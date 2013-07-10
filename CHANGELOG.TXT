@@ -1,3 +1,12 @@
+12.1.001 (2013-07-10)
+	- IMPORTANT: the database schema is changed please use the upgrading SQL files in case of upgrade.
+	- This version includes a new feature that allows to restrict test access based on client SSL certificate.
+	- It is now possible to restrict the admin and/or public area access only to clients with valid SSL certificate (check the new options on the admin and public configuration files).
+	- TCPDF Library was updated.
+
+------------------------------------------------------------
+
+
 12.0.014 (2013-05-31)
 	- TCPDF library was updated.
 	- An additional ordering option for questions was added on the test editor.
