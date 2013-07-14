@@ -1,3 +1,6 @@
+12.1.001 (2013-07-14)
+	- A problem related to SVG graphs on PDF export was fixed.
+
 12.1.000 (2013-07-10)
 	- IMPORTANT: the database schema is changed please use the upgrading SQL files in case of upgrade.
 	- This version includes a new feature that allows to restrict test access based on client SSL certificate.

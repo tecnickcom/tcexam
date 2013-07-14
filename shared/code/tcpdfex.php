@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
-// Last Update : 2013-07-02
+// Last Update : 2013-07-14
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
@@ -375,6 +375,7 @@ class TCPDFEX extends TCPDF {
 	 */
 	public function printSVGStatsGraph($svgdata) {
 		require_once('../config/tce_config.php');
+		require_once('../../shared/code/tce_functions_svg_graph.php');
 		global $l;
 		// display svg graph
 		if (preg_match_all('/[x]/', $svgdata, $match) > 1) {
@@ -385,7 +386,7 @@ class TCPDFEX extends TCPDF {
 			$this->SetFont(PDF_FONT_NAME_DATA, '', 6);
 			$w = $this->tce_page_width * $this->imgscale * $this->k;
 			$h = round($this->tce_page_width * 9 / 16);
-			$svg = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'shared/code/tce_svg_graph.php?w='.$w.'&h='.$h.'&p='.substr($svgdata, 1));
+			$svg = F_getSVGGraphCode(substr($svgdata, 1), $w, $h);
 			if (isset($svg[0]) AND ($svg[0] == '<')) {
 				$this->ImageSVG('@'.$svg, '', '', $this->tce_page_width, 0, '', 'N', 'C', 0, false);
 			}
