@@ -1,3 +1,6 @@
+12.1.002 (2013-07-16)
+	- Missing SQL files were added - please ugrade your existing DB.
+
 12.1.001 (2013-07-14)
 	- A problem related to SVG graphs on PDF export was fixed.
 

@@ -2,7 +2,7 @@
 ============================================================
 File name   : postgresql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2013-03-18
+Last Update : 2013-07-02
 
 Description : TCExam database structure.
 Database    : PostgreSQL 8+
@@ -215,6 +215,22 @@ CREATE TABLE "tce_test_subject_set" (
 constraint "pk_tce_test_subject_set" primary key ("tsubset_id")
 ) Without Oids;
 
+CREATE TABLE "tce_sslcerts" (
+	"ssl_id" BigSerial NOT NULL,
+	"ssl_name" Varchar(255) NOT NULL,
+	"ssl_hash" Varchar(32) NOT NULL,
+	"ssl_end_date" Timestamp NOT NULL,
+	"ssl_enabled" Boolean NOT NULL Default '0',
+	"ssl_user_id" Bigint NOT NULL Default 1,
+constraint "pk_tce_sslcerts" primary key ("ssl_id")
+) Without Oids;
+
+CREATE TABLE "tce_testsslcerts" (
+	"tstssl_test_id" Bigint NOT NULL,
+	"tstssl_ssl_id" Bigint NOT NULL,
+constraint "pk_tce_testsslcerts" primary key ("tstssl_test_id", "tstssl_ssl_id")
+) Without Oids;
+
 CREATE TABLE "tce_testuser_stat" (
 	"tus_id" BigSerial NOT NULL,
 	"tus_date" Timestamp NOT NULL,
@@ -253,4 +269,5 @@ ALTER TABLE "tce_tests_logs_answers" ADD CONSTRAINT "rel_testlog_answers" foreig
 ALTER TABLE "tce_usrgroups" ADD CONSTRAINT "rel_group_user" foreign key ("usrgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
 ALTER TABLE "tce_testgroups" ADD CONSTRAINT "rel_group_test" foreign key ("tstgrp_group_id") references "tce_user_groups" ("group_id") ON DELETE cascade;
 ALTER TABLE "tce_test_subjects" ADD CONSTRAINT "rel_set_subjects" foreign key ("subjset_tsubset_id") references "tce_test_subject_set" ("tsubset_id") ON DELETE cascade;
-
+ALTER TABLE "tce_testsslcerts" ADD CONSTRAINT "rel_test_ssl" foreign key ("tstssl_test_id") references "tce_tests" ("test_id") ON DELETE cascade;
+ALTER TABLE "tce_testsslcerts" ADD CONSTRAINT "rel_ssl_test" foreign key ("tstssl_ssl_id") references "tce_sslcerts" ("ssl_id") ON DELETE cascade;

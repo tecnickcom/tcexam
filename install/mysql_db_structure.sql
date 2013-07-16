@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2013-03-18
+Last Update : 2013-07-02
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -232,7 +232,25 @@ CREATE TABLE tce_test_subject_set (
 ) ENGINE = InnoDB
 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS tce_testuser_stat (
+CREATE TABLE tce_sslcerts (
+	ssl_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	ssl_name VARCHAR(255) NOT NULL,
+	ssl_hash VARCHAR(32) NOT NULL,
+	ssl_end_date DATETIME NOT NULL,
+	ssl_enabled Bool NOT NULL DEFAULT '0',
+	ssl_user_id BIGINT UNSIGNED NOT NULL DEFAULT 1,
+ Primary Key (ssl_id)
+) ENGINE = InnoDB
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE tce_testsslcerts (
+	tstssl_test_id BIGINT UNSIGNED NOT NULL,
+	tstssl_ssl_id BIGINT UNSIGNED NOT NULL,
+ Primary Key (tstssl_test_id, tstssl_ssl_id)
+) ENGINE = InnoDB
+CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE TABLE tce_testuser_stat (
 	tus_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
 	tus_date Datetime NOT NULL,
  PRIMARY KEY (tus_id)
@@ -270,6 +288,8 @@ ALTER TABLE tce_tests_logs_answers ADD INDEX p_logansw_testlog_id (logansw_testl
 ALTER TABLE tce_usrgroups ADD INDEX p_usrgrp_group_id (usrgrp_group_id);
 ALTER TABLE tce_testgroups ADD INDEX p_tstgrp_group_id (tstgrp_group_id);
 ALTER TABLE tce_test_subjects ADD INDEX p_subjset_tsubset_id (subjset_tsubset_id);
+ALTER TABLE tce_testsslcerts ADD INDEX p_tstssl_test_id (tstssl_test_id);
+ALTER TABLE tce_testsslcerts ADD INDEX p_tstssl_ssl_id (tstssl_ssl_id);
 
 /*  Foreign Keys */
 
@@ -292,4 +312,6 @@ ALTER TABLE tce_tests_logs_answers ADD Foreign Key (logansw_testlog_id) referenc
 ALTER TABLE tce_usrgroups ADD Foreign Key (usrgrp_group_id) references tce_user_groups (group_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_testgroups ADD Foreign Key (tstgrp_group_id) references tce_user_groups (group_id) ON DELETE cascade ON UPDATE no action;
 ALTER TABLE tce_test_subjects ADD Foreign Key (subjset_tsubset_id) references tce_test_subject_set (tsubset_id) ON DELETE cascade ON UPDATE no action;
+ALTER TABLE tce_testsslcerts ADD Foreign Key (tstssl_test_id) references tce_tests (test_id) ON DELETE cascade ON UPDATE no action;
+ALTER TABLE tce_testsslcerts ADD Foreign Key (tstssl_ssl_id) references tce_sslcerts (ssl_id) ON DELETE cascade ON UPDATE no action;
 
