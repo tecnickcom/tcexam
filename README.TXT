@@ -7,9 +7,9 @@ FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
 
 Name: TCExam
 
-Version: 12.1.002
+Version: 12.1.003
 
-Release date: 2013-07-16
+Release date: 2013-08-05
 Author:
 	Nicola Asuni
 
@@ -96,10 +96,24 @@ Third-party Software
 
 	Fonts
 		TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience.
-		The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
-		To get the original distribution archives please check the information on fonts subfolders:
-			DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33
-			GNU FreeFont (GNU-GPLv3) - Copyright, License and other info: fonts/freefont-20100919
+
+		All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
+		they do not contain any binary data but just a description of the general properties of a particular font.
+		These files can be also generated on the fly using the font utilities and TCPDF methods.
+
+		All the original binary TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
+
+		The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
+		The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
+		For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919
+		Link : http://www.gnu.org/software/freefont/
+
+		The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
+		For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33
+		Link : http://dejavu-fonts.org
+
+		The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).
+		Link : http://projects.arabeyes.org/
 
 
 Description:

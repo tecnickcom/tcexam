@@ -1,3 +1,6 @@
+12.1.003 (2013-08=05)
+	- TCPDF Library was updated.
+
 12.1.002 (2013-07-16)
 	- Missing SQL files were added - please ugrade your existing DB.
 

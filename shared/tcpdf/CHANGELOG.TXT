@@ -1,3 +1,14 @@
+6.0.023 (2013-08-05)
+	- GNU Freefont fonts were updated.
+	- Licensing and copyright information about fonts were improved.
+	- PNG image support was improved.
+
+6.0.022 (2013-08-02)
+	- fixing initialization problem for signature_appearance property.
+
+6.0.021 (2013-07-18)
+	- The bug caused by the preg_split function on some PHP 5.2.x versions was fixed.
+
 6.0.020 (2013-06-04)
 	- The method addTTFfont() was fixed (Bug item #813 Undefined offset).
 
