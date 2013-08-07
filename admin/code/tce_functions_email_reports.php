@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2013-03-27
+// Last Update : 2013-08-07
 //
 // Description : Sends email test reports to users.
 //
@@ -170,9 +170,20 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 			if ($mode == 0) {
 				$pdfkey = getPasswordHash(date('Y').$tu['id'].K_RANDOM_SECURITY.$tu['test']['test_id'].date('m').$tu['user_id'], true);
 				// create PDF doc
-				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode=3&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
-				// attach doc
-				$doc_name = 'tcexam_test_'.date('Ymd', strtotime($tu['testuser_creation_time'])).'_'.$tu['test']['test_id'].'_'.$tu['user_id'].'_'.$tu['id'].'.pdf';
+				$mode = 3;
+				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode='.$mode.'&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
+
+				// set PDF document file name
+				$doc_name = 'tcexam_report';
+				$doc_name .= '_'.$mode;
+				$doc_name .= '_0';
+				$doc_name .= '_'.$tu['test']['test_id'];
+				$doc_name .= '_0';
+				$doc_name .= '_'.$tu['user_id'];
+				$doc_name .= '_'.$tu['id'];
+				$doc_name .= '.pdf';
+
+				// attach document
 				$mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
 				$mail->AltBody .= K_NEWLINE.$l['w_attachment'].': '.$doc_name.K_NEWLINE;
 			}

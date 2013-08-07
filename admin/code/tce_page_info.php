@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2013-04-21
+// Last Update : 2013-08-07
 //
 // Description : Outputs TCExam information page.
 //
@@ -118,9 +118,28 @@ Location: /shared/cas/<br /><br />
 
 echo '<li><strong>Fonts</strong><br />
 
-TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as your convenience. The original TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files). To get the original distribution archives please check the information on fonts subfolders:<ul>
-<li>DejaVu fonts 2.33 (Bitstream) - Copyright, License and other info: fonts/dejavu-fonts-ttf-2.33</li>
-<li>GNU FreeFont (GNU-GPLv3) - Copyright, License and other info: fonts/freefont-20100919</li></ul>
+TCExam includes fonts for the <a href="http://www.tcpdf.org" title="TCPDF - PHP class for PDF">TCPDF</a> library, they are not striclty required but have been included as you convenience.<br />
+<br />
+All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3), they do not contain any binary data but just a description of the general properties of a particular font. These files can be also generated on the fly using the font utilities and TCPDF methods.
+<br />
+All the original binary TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).<br />
+<br />
+The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).<br />
+The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.<br />
+For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919<br />
+Homepage: <a href="http://www.gnu.org/software/freefont/" title="GNU FreeFont">http://www.gnu.org/software/freefont/</a><br />
+License: <a href="http://www.gnu.org/licenses/gpl.html" title="GNU General Public License, version 3">GNU-GPLv3</a><br />
+<br />
+The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.<br />
+For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33<br />
+Homepage: <a href="http://dejavu-fonts.org" title="DejaVu fonts">http://dejavu-fonts.org</a><br />
+License: <a href="http://dejavu-fonts.org/wiki/License" title="Bitstream License">DejaVu changes are in public domain</a><br />
+<br />
+The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).<br />
+Homepage: <a href="http://projects.arabeyes.org" title="Arabeyes.org">http://projects.arabeyes.org</a><br />
+License: <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="GNU General Public License, version 2">GNU-GPLv2</a><br />
+
+
 </li>'.K_NEWLINE;
 
 echo '</ul>'.K_NEWLINE;

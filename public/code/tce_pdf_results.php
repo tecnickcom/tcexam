@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2012-12-23
+// Last Update : 2013-08-07
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -253,7 +253,16 @@ $pdf->SetXY(15, $pdf->getPageHeight(), true);
 $pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
 
 // set PDF file name
-$pdf_filename = 'tcexam_report_'.date('YmdHi').'_'.$mode.'_'.$test_id.'_'.$group_id.'_'.$user_id.'_'.$testuser_id.'.pdf';
+$pdf_filename = 'tcexam_report';
+$pdf_filename .= empty($startdate) ? '' : '_'.date('YmdHis', $startdate_time);
+$pdf_filename .= empty($enddate) ? '' : '_'.date('YmdHis', $enddate_time);
+$pdf_filename .= '_'.$mode;
+$pdf_filename .= '_'.$display_mode;
+$pdf_filename .= '_'.$test_id;
+$pdf_filename .= '_'.$group_id;
+$pdf_filename .= '_'.$user_id;
+$pdf_filename .= '_'.$testuser_id;
+$pdf_filename .= '.pdf';
 
 // Send PDF output
 $pdf->Output($pdf_filename, 'D');

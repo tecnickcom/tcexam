@@ -1,4 +1,7 @@
-12.1.003 (2013-08=05)
+12.1.004 (2013-08-07)
+	- A probelm with email reports was fixed.
+
+12.1.003 (2013-08-05)
 	- TCPDF Library was updated.
 
 12.1.002 (2013-07-16)
