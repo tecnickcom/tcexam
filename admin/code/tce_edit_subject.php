@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2013-04-02
+// Last Update : 2013-08-23
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -66,30 +66,41 @@ for ($id = 0; $id < 2; ++$id) {
 }
 
 // set default values
-if(!isset($subject_enabled) OR (empty($subject_enabled))) {
+if(!isset($_REQUEST['subject_enabled']) OR (empty($_REQUEST['subject_enabled']))) {
 	$subject_enabled = false;
 } else {
-	$subject_enabled = F_getBoolean($subject_enabled);
+	$subject_enabled = F_getBoolean($_REQUEST['subject_enabled']);
 }
-if (isset($subject_id)) {
-	$subject_id = intval($subject_id);
+if (isset($_REQUEST['subject_id'])) {
+	$subject_id = intval($_REQUEST['subject_id']);
+} else {
+	$subject_id = 0;
 }
-if (isset($subject_module_id)) {
-	$subject_module_id = intval($subject_module_id);
+if (isset($_REQUEST['subject_module_id'])) {
+	$subject_module_id = intval($_REQUEST['subject_module_id']);
+} else {
+	$subject_module_id = 0;
 }
-if (isset($selectcategory)) {
+if (isset($_REQUEST['changecategory']) AND ($_REQUEST['changecategory'] > 0)) {
 	$changecategory = 1;
+} elseif (isset($_REQUEST['selectcategory'])) {
+	$changecategory = 1;
+} else {
+	$changecategory = 0;
 }
-if (isset($subject_name)) {
-	$subject_name = utrim($subject_name);
+if (isset($_REQUEST['subject_name'])) {
+	$subject_name = utrim($_REQUEST['subject_name']);
+} else {
+	$subject_name = '';
 }
-if (isset($subject_description)) {
-	$subject_description = utrim($subject_description);
+if (isset($_REQUEST['subject_description'])) {
+	$subject_description = utrim($_REQUEST['subject_description']);
+} else {
+	$subject_description = '';
 }
 
-if (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0)) {
-	$subject_id = intval($_REQUEST['subject_id']);
-	if (!isset($changecategory) OR ($changecategory == 0)) {
+if ($subject_id > 0) {
+	if ($changecategory == 0) {
 		$sql = 'SELECT subject_module_id FROM '.K_TABLE_SUBJECTS.' WHERE subject_id='.$subject_id.' LIMIT 1';
 		if($r = F_db_query($sql, $db)) {
 			if($m = F_db_fetch_array($r)) {
@@ -255,7 +266,7 @@ switch($menu_mode) {
 } //end of switch
 
 // select default module (if not specified)
-if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
+if ($subject_module_id <= 0) {
 	$sql = F_select_modules_sql().' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -271,8 +282,7 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 // --- Initialize variables
 if($formstatus) {
 	if ($menu_mode != 'clear') {
-		if ((isset($changecategory) AND ($changecategory > 0))
-			OR (!isset($subject_id)) OR empty($subject_id)) {
+		if (($changecategory > 0) OR empty($subject_id)) {
 			$subject_id = 0;
 			$subject_name = '';
 			$subject_description = '';
@@ -299,7 +309,7 @@ if($formstatus) {
 }
 
 
-if (!isset($subject_module_id) OR ($subject_module_id <= 0)) {
+if ($subject_module_id <= 0) {
 	echo '<div class="container">'.K_NEWLINE;
 	echo '<p><a href="tce_edit_module.php" title="'.$l['t_modules_editor'].'" class="xmlbutton">&lt; '.$l['t_modules_editor'].'</a></p>'.K_NEWLINE;
 	echo '<div class="pagehelp">'.$l['hp_edit_subject'].'</div>'.K_NEWLINE;
@@ -441,7 +451,7 @@ echo '<div class="row">'.K_NEWLINE;
 echo '<span class="left">'.K_NEWLINE;
 echo '&nbsp;'.K_NEWLINE;
 
-if (isset($subject_module_id) AND ($subject_module_id > 0)) {
+if ($subject_module_id > 0) {
 	echo '<a href="tce_edit_module.php?module_id='.$subject_module_id.'" title="'.$l['t_modules_editor'].'" class="xmlbutton">&lt; '.$l['t_modules_editor'].'</a>';
 }
 

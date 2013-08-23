@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2013-04-08
+// Last Update : 2013-08-23
 //
 // Description : Statistical functions for test results.
 //
@@ -368,7 +368,11 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 			}
 
 			// average score ratio
-			$average_score_perc = ($m['average_score'] / $question_max_score);
+			if ($question_max_score > 0) {
+				$average_score_perc = ($m['average_score'] / $question_max_score);
+			} else {
+				$average_score_perc = 0;
+			}
 
 			// sum values for questions
 			$data['qstats']['module']['\''.$m['module_id'].'\'']['subject']['\''.$m['subject_id'].'\'']['question']['\''.$m['question_id'].'\'']['qnum'] += 1;
@@ -1118,7 +1122,11 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 				$passmsg = true;
 				$passed++;
 			}
-			$total_score_perc = round(100 * $mr['total_score'] / $usrtestdata['test_max_score']);
+			if ($usrtestdata['test_max_score'] > 0) {
+				$total_score_perc = round(100 * $mr['total_score'] / $usrtestdata['test_max_score']);
+			} else {
+				$total_score_perc = 0;
+			}
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['passmsg'] = $passmsg;
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['user_name'] = $mr['user_name'];
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['user_email'] = $mr['user_email'];

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2013-04-02
+// Last Update : 2013-08-23
 //
 // Description : Display form to edit modules.
 //
@@ -58,16 +58,18 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 
 // set default values
-if(!isset($module_enabled) OR (empty($module_enabled))) {
+if(!isset($_REQUEST['module_enabled']) OR (empty($_REQUEST['module_enabled']))) {
 	$module_enabled = false;
 } else {
-	$module_enabled = F_getBoolean($module_enabled);
+	$module_enabled = F_getBoolean($_REQUEST['module_enabled']);
 }
-if (isset($module_name)) {
-	$module_name = utrim($module_name);
+if (isset($_REQUEST['module_name'])) {
+	$module_name = utrim($_REQUEST['module_name']);
+} else {
+	$module_name = '';
 }
-if (isset($module_user_id)) {
-	$module_user_id = intval($module_user_id);
+if (isset($_REQUEST['module_user_id'])) {
+	$module_user_id = intval($_REQUEST['module_user_id']);
 } else {
 	$module_user_id = intval($_SESSION['session_user_id']);
 }
@@ -237,7 +239,7 @@ switch($menu_mode) {
 // --- Initialize variables
 if($formstatus) {
 	if ($menu_mode != 'clear') {
-		if(!isset($module_id) OR empty($module_id)) {
+		if(empty($module_id)) {
 			$module_id = 0;
 			$module_name = '';
 			$module_enabled = true;

@@ -1,5 +1,8 @@
+12.1.005 (2013-08-23)
+	- Support for 0-difficulty questions was added.
+
 12.1.004 (2013-08-07)
-	- A probelm with email reports was fixed.
+	- A problem with email reports was fixed.
 
 12.1.003 (2013-08-05)
 	- TCPDF Library was updated.

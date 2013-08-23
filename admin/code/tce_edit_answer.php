@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2014-04-02
+// Last Update : 2014-08-23
 //
 // Description : Edit answers.
 //
@@ -69,82 +69,98 @@ for ($id = 0; $id < 2; ++$id) {
 }
 
 // set default values
-if (isset($subject_module_id)) {
-	$subject_module_id = intval($subject_module_id);
+if (isset($_REQUEST['subject_module_id'])) {
+	$subject_module_id = intval($_REQUEST['subject_module_id']);
 } else {
 	$subject_module_id = 0;
 }
-if (isset($question_subject_id)) {
-	$question_subject_id = intval($question_subject_id);
+if (isset($_REQUEST['question_subject_id'])) {
+	$question_subject_id = intval($_REQUEST['question_subject_id']);
 } else {
 	$question_subject_id = 0;
 }
-if(!isset($answer_id)) {
+if(!isset($_REQUEST['answer_id'])) {
 	$answer_id = 0;
+} else {
+	$answer_id = intval($_REQUEST['answer_id']);
 }
-if(!isset($answer_isright) OR (empty($answer_isright))) {
+if(!isset($_REQUEST['answer_isright']) OR (empty($_REQUEST['answer_isright']))) {
 	$answer_isright = false;
 } else {
-	$answer_isright = F_getBoolean($answer_isright);
+	$answer_isright = F_getBoolean($_REQUEST['answer_isright']);
 }
-if(!isset($answer_enabled) OR (empty($answer_enabled))) {
+if(!isset($_REQUEST['answer_enabled']) OR (empty($_REQUEST['answer_enabled']))) {
 	$answer_enabled = false;
 } else {
-	$answer_enabled = F_getBoolean($answer_enabled);
+	$answer_enabled = F_getBoolean($_REQUEST['answer_enabled']);
 }
-if (isset($selectmodule)) {
+if (isset($_REQUEST['changemodule']) AND ($_REQUEST['changemodule'] > 0)) {
 	$changemodule = 1;
+} elseif (isset($_REQUEST['selectmodule'])) {
+	$changemodule = 1;
+} else {
+	$changemodule = 0;
 }
-if (isset($selectsubject)) {
+if (isset($_REQUEST['changesubject']) AND ($_REQUEST['changesubject'] > 0)) {
 	$changesubject = 1;
+} elseif (isset($_REQUEST['selectsubject'])) {
+	$changesubject = 1;
+} else {
+	$changesubject = 0;
 }
-if (isset($selectcategory)) {
+if (isset($_REQUEST['changecategory']) AND ($_REQUEST['changecategory'] > 0)) {
 	$changecategory = 1;
+} elseif (isset($_REQUEST['selectcategory'])) {
+	$changecategory = 1;
+} else {
+	$changecategory = 0;
 }
-if (!isset($answer_position) OR empty($answer_position)) {
+if (!isset($_REQUEST['answer_position']) OR empty($_REQUEST['answer_position'])) {
 	$answer_position = 0;
 } else {
-	$answer_position = intval($answer_position);
+	$answer_position = intval($_REQUEST['answer_position']);
 }
-if (!isset($max_position) OR empty($max_position)) {
+if (!isset($_REQUEST['max_position']) OR empty($_REQUEST['max_position'])) {
 	$max_position = 0;
 } else {
-	$max_position = intval($max_position);
+	$max_position = intval($_REQUEST['max_position']);
 }
-if (isset($prev_answer_position)) {
-	$prev_answer_position = intval($prev_answer_position);
+if (isset($_REQUEST['prev_answer_position'])) {
+	$prev_answer_position = intval($_REQUEST['prev_answer_position']);
+} else {
+	$prev_answer_position = 0;
 }
-if (isset($subject_id)) {
-	$subject_id = intval($subject_id);
+if (isset($_REQUEST['subject_id'])) {
+	$subject_id = intval($_REQUEST['subject_id']);
+} else {
+	$subject_id = 0;
 }
-if (isset($answer_id)) {
-	$answer_id = intval($answer_id);
-}
-if (isset($answer_question_id)) {
-	$answer_question_id = intval($answer_question_id);
+if (isset($_REQUEST['answer_question_id'])) {
+	$answer_question_id = intval($_REQUEST['answer_question_id']);
+} else {
+	$answer_question_id =  0;
 }
 if(!isset($answer_keyboard_key) OR (empty($answer_keyboard_key))) {
 	$answer_keyboard_key = '';
 } else {
 	$answer_keyboard_key = intval($answer_keyboard_key);
 }
-if (isset($answer_description)) {
-	$answer_description = utrim($answer_description);
+if (isset($_REQUEST['answer_description'])) {
+	$answer_description = utrim($_REQUEST['answer_description']);
 	if (function_exists('normalizer_normalize')) {
     // normalize UTF-8 string based on settings
 		$answer_description = F_utf8_normalizer($answer_description, K_UTF8_NORMALIZATION_MODE);
 	}
 }
-if (isset($answer_explanation)) {
-	$answer_explanation = utrim($answer_explanation);
+if (isset($_REQUEST['answer_explanation'])) {
+	$answer_explanation = utrim($_REQUEST['answer_explanation']);
 } else {
 	$answer_explanation = '';
 }
 $qtype = array('S', 'M', 'T', 'O'); // question types
 
 // check user's authorization
-if (isset($_REQUEST['answer_id']) AND ($_REQUEST['answer_id'] > 0)) {
-	$answer_id = intval($_REQUEST['answer_id']);
+if ($answer_id > 0) {
 	$sql = 'SELECT subject_module_id,question_subject_id,answer_question_id
 		FROM '.K_TABLE_SUBJECTS.', '.K_TABLE_QUESTIONS.', '.K_TABLE_ANSWERS.'
 		WHERE subject_id=question_subject_id
@@ -477,7 +493,7 @@ switch($menu_mode) {
 } //end of switch
 
 // select default module/subject (if not specified)
-if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
+if ($subject_module_id <= 0) {
 	$sql = F_select_modules_sql().' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -491,8 +507,7 @@ if(!(isset($subject_module_id) AND ($subject_module_id > 0))) {
 }
 
 // select default subject
-if ((isset($changemodule) AND ($changemodule > 0))
-	OR (!(isset($question_subject_id) AND ($question_subject_id > 0)))) {
+if (($changemodule > 0) OR ($question_subject_id <= 0)) {
 	$sql = F_select_subjects_sql('subject_module_id='.$subject_module_id.'').' LIMIT 1';
 	if($r = F_db_query($sql, $db)) {
 		if($m = F_db_fetch_array($r)) {
@@ -506,9 +521,7 @@ if ((isset($changemodule) AND ($changemodule > 0))
 }
 
 // select default question
-if ((isset($changesubject) AND ($changesubject > 0))
-	OR (isset($changemodule) AND ($changemodule > 0))
-	OR (!(isset($answer_question_id) AND ($answer_question_id > 0)))) {
+if (($changesubject > 0) OR ($changemodule > 0)	OR ($answer_question_id <= 0)) {
 	$sql = 'SELECT question_id
 		FROM '.K_TABLE_QUESTIONS.'
 		WHERE question_subject_id='.$question_subject_id.'
@@ -532,10 +545,7 @@ if ((isset($changesubject) AND ($changesubject > 0))
 // --- Initialize variables
 if ($formstatus) {
 	if ($menu_mode != 'clear') {
-		if ((isset($changemodule) AND ($changemodule > 0))
-			OR (isset($changesubject) AND ($changesubject > 0))
-			OR (isset($changecategory) AND ($changecategory > 0))
-			OR (!isset($answer_id)) OR empty($answer_id)) {
+		if (($changemodule > 0) OR ($changesubject > 0) OR ($changecategory > 0) OR empty($answer_id)) {
 			$answer_id = 0;
 			$answer_description = '';
 			$answer_explanation = '';
@@ -573,7 +583,7 @@ if ($formstatus) {
 	}
 }
 
-if (!isset($subject_module_id) OR ($subject_module_id <= 0) OR !isset($question_subject_id) OR ($question_subject_id <= 0) OR !isset($answer_question_id) OR ($answer_question_id <= 0)) {
+if (($subject_module_id <= 0) OR ($question_subject_id <= 0) OR ($answer_question_id <= 0)) {
 	echo '<div class="container">'.K_NEWLINE;
 	echo '<p><a href="tce_edit_question.php" title="'.$l['t_questions_editor'].'" class="xmlbutton">&lt; '.$l['t_questions_editor'].'</a></p>'.K_NEWLINE;
 	echo '<div class="pagehelp">'.$l['hp_edit_answer'].'</div>'.K_NEWLINE;

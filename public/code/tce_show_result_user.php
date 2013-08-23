@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2013-04-08
+// Last Update : 2013-08-23
 //
 // Description : Display test results to the current user.
 //
@@ -132,7 +132,11 @@ if ($teststat['testinfo']['test_score_threshold'] > 0) {
 		$passmsg = ' - '.$l['w_not_passed'];
 	}
 }
-$score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+if ($teststat['testinfo']['test_max_score'] > 0) {
+	$score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+} else {
+	$score_all = $teststat['testinfo']['user_score'].$passmsg;
+}
 echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
 
 $score_right_all = $teststat['qstats']['right'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['right_perc'].'%)';

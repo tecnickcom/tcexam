@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-07-09
+// Last Update : 2013-08-23
 //
 // Description : Edit Tests
 //
@@ -60,135 +60,139 @@ require_once('tce_functions_user_select.php');
 require_once('tce_functions_test_select.php');
 
 // set default values
-if (!isset($test_results_to_users) OR (empty($test_results_to_users))) {
+if (!isset($_REQUEST['test_results_to_users']) OR (empty($_REQUEST['test_results_to_users']))) {
 	$test_results_to_users = false;
 } else {
-	$test_results_to_users = F_getBoolean($test_results_to_users);
+	$test_results_to_users = F_getBoolean($_REQUEST['test_results_to_users']);
 }
-if (!isset($test_report_to_users) OR (empty($test_report_to_users))) {
+if (!isset($_REQUEST['test_report_to_users']) OR (empty($_REQUEST['test_report_to_users']))) {
 	$test_report_to_users = false;
 } else {
-	$test_report_to_users = F_getBoolean($test_report_to_users);
+	$test_report_to_users = F_getBoolean($_REQUEST['test_report_to_users']);
 }
-if (!isset($subject_id) OR (empty($subject_id))) {
+if (!isset($_REQUEST['subject_id']) OR (empty($_REQUEST['subject_id']))) {
 	$subject_id = Array();
+} else {
+	$subject_id = $_REQUEST['subject_id'];
 }
-if (!isset($tsubset_type) OR (empty($tsubset_type))) {
+if (!isset($_REQUEST['tsubset_type']) OR (empty($_REQUEST['tsubset_type']))) {
 	$tsubset_type = 0;
 } else {
-	$tsubset_type = intval($tsubset_type);
+	$tsubset_type = intval($_REQUEST['tsubset_type']);
 }
-if (!isset($tsubset_difficulty) OR (empty($tsubset_difficulty))) {
+if (!isset($_REQUEST['tsubset_difficulty'])) {
 	$tsubset_difficulty = 1;
 } else {
-	$tsubset_difficulty = intval($tsubset_difficulty);
+	$tsubset_difficulty = intval($_REQUEST['tsubset_difficulty']);
 }
-if (!isset($tsubset_quantity) OR (empty($tsubset_quantity))) {
+if (!isset($_REQUEST['tsubset_quantity']) OR (empty($_REQUEST['tsubset_quantity']))) {
 	$tsubset_quantity = 1;
 } else {
-	$tsubset_quantity = intval($tsubset_quantity);
+	$tsubset_quantity = intval($_REQUEST['tsubset_quantity']);
 }
-if (!isset($tsubset_answers) OR (empty($tsubset_answers))) {
+if (!isset($_REQUEST['tsubset_answers']) OR (empty($_REQUEST['tsubset_answers']))) {
 	$tsubset_answers = 2;
 } else {
-	$tsubset_answers = intval($tsubset_answers);
+	$tsubset_answers = intval($_REQUEST['tsubset_answers']);
 }
-if (isset($tsubset_id)) {
-	$tsubset_id = intval($tsubset_id);
+if (isset($_REQUEST['tsubset_id'])) {
+	$tsubset_id = intval($_REQUEST['tsubset_id']);
 }
-if (isset($test_duration_time)) {
-	$test_duration_time = intval($test_duration_time);
+if (isset($_REQUEST['test_duration_time'])) {
+	$test_duration_time = intval($_REQUEST['test_duration_time']);
 }
-if (isset($group_id)) {
-	$group_id = intval($group_id);
+if (isset($_REQUEST['group_id'])) {
+	$group_id = intval($_REQUEST['group_id']);
 }
-if (!isset($test_score_right) OR (empty($test_score_right))) {
+if (!isset($_REQUEST['test_score_right']) OR (empty($_REQUEST['test_score_right']))) {
 	$test_score_right = 0;
 } else {
-	$test_score_right = floatval($test_score_right);
+	$test_score_right = floatval($_REQUEST['test_score_right']);
 }
-if (!isset($test_score_wrong) OR (empty($test_score_wrong))) {
+if (!isset($_REQUEST['test_score_wrong']) OR (empty($_REQUEST['test_score_wrong']))) {
 	$test_score_wrong = 0;
 } else {
-	$test_score_wrong = floatval($test_score_wrong);
+	$test_score_wrong = floatval($_REQUEST['test_score_wrong']);
 }
-if (!isset($test_score_unanswered) OR (empty($test_score_unanswered))) {
+if (!isset($_REQUEST['test_score_unanswered']) OR (empty($_REQUEST['test_score_unanswered']))) {
 	$test_score_unanswered = 0;
 } else {
-	$test_score_unanswered = floatval($test_score_unanswered);
+	$test_score_unanswered = floatval($_REQUEST['test_score_unanswered']);
 }
-if (!isset($test_score_threshold) OR (empty($test_score_threshold))) {
+if (!isset($_REQUEST['test_score_threshold']) OR (empty($_REQUEST['test_score_threshold']))) {
 	$test_score_threshold = 0;
 } else {
-	$test_score_threshold = floatval($test_score_threshold);
+	$test_score_threshold = floatval($_REQUEST['test_score_threshold']);
 }
-if (!isset($test_random_questions_select) OR (empty($test_random_questions_select))) {
+if (!isset($_REQUEST['test_random_questions_select']) OR (empty($_REQUEST['test_random_questions_select']))) {
 	$test_random_questions_select = false;
 } else {
-	$test_random_questions_select = F_getBoolean($test_random_questions_select);
+	$test_random_questions_select = F_getBoolean($_REQUEST['test_random_questions_select']);
 }
-if (!isset($test_random_questions_order) OR (empty($test_random_questions_order))) {
+if (!isset($_REQUEST['test_random_questions_order']) OR (empty($_REQUEST['test_random_questions_order']))) {
 	$test_random_questions_order = false;
 } else {
-	$test_random_questions_order = F_getBoolean($test_random_questions_order);
+	$test_random_questions_order = F_getBoolean($_REQUEST['test_random_questions_order']);
 }
-if (!isset($test_questions_order_mode) OR (empty($test_questions_order_mode))) {
+if (!isset($_REQUEST['test_questions_order_mode']) OR (empty($_REQUEST['test_questions_order_mode']))) {
 	$test_questions_order_mode = 0;
 } else {
-	$test_questions_order_mode = max(0, min(3, intval($test_questions_order_mode)));
+	$test_questions_order_mode = max(0, min(3, intval($_REQUEST['test_questions_order_mode'])));
 }
-if (!isset($test_random_answers_select) OR (empty($test_random_answers_select))) {
+if (!isset($_REQUEST['test_random_answers_select']) OR (empty($_REQUEST['test_random_answers_select']))) {
 	$test_random_answers_select = false;
 } else {
-	$test_random_answers_select = F_getBoolean($test_random_answers_select);
+	$test_random_answers_select = F_getBoolean($_REQUEST['test_random_answers_select']);
 }
-if (!isset($test_random_answers_order) OR (empty($test_random_answers_order))) {
+if (!isset($_REQUEST['test_random_answers_order']) OR (empty($_REQUEST['test_random_answers_order']))) {
 	$test_random_answers_order = false;
 } else {
-	$test_random_answers_order = F_getBoolean($test_random_answers_order);
+	$test_random_answers_order = F_getBoolean($_REQUEST['test_random_answers_order']);
 }
-if (!isset($test_answers_order_mode) OR (empty($test_answers_order_mode))) {
+if (!isset($_REQUEST['test_answers_order_mode']) OR (empty($_REQUEST['test_answers_order_mode']))) {
 	$test_answers_order_mode = 0;
 } else {
-	$test_answers_order_mode = max(0, min(2, intval($test_answers_order_mode)));
+	$test_answers_order_mode = max(0, min(2, intval($_REQUEST['test_answers_order_mode'])));
 }
-if (!isset($test_comment_enabled) OR (empty($test_comment_enabled))) {
+if (!isset($_REQUEST['test_comment_enabled']) OR (empty($_REQUEST['test_comment_enabled']))) {
 	$test_comment_enabled = false;
 } else {
-	$test_comment_enabled = F_getBoolean($test_comment_enabled);
+	$test_comment_enabled = F_getBoolean($_REQUEST['test_comment_enabled']);
 }
-if (!isset($test_menu_enabled) OR (empty($test_menu_enabled))) {
+if (!isset($_REQUEST['test_menu_enabled']) OR (empty($_REQUEST['test_menu_enabled']))) {
 	$test_menu_enabled = false;
 } else {
-	$test_menu_enabled = F_getBoolean($test_menu_enabled);
+	$test_menu_enabled = F_getBoolean($_REQUEST['test_menu_enabled']);
 }
-if (!isset($test_noanswer_enabled) OR (empty($test_noanswer_enabled))) {
+if (!isset($_REQUEST['test_noanswer_enabled']) OR (empty($_REQUEST['test_noanswer_enabled']))) {
 	$test_noanswer_enabled = false;
 } else {
-	$test_noanswer_enabled = F_getBoolean($test_noanswer_enabled);
+	$test_noanswer_enabled = F_getBoolean($_REQUEST['test_noanswer_enabled']);
 }
-if (!isset($test_mcma_radio) OR (empty($test_mcma_radio))) {
+if (!isset($_REQUEST['test_mcma_radio']) OR (empty($_REQUEST['test_mcma_radio']))) {
 	$test_mcma_radio = false;
 } else {
-	$test_mcma_radio = F_getBoolean($test_mcma_radio);
+	$test_mcma_radio = F_getBoolean($_REQUEST['test_mcma_radio']);
 }
-if (!isset($test_repeatable) OR (empty($test_repeatable))) {
+if (!isset($_REQUEST['test_repeatable']) OR (empty($_REQUEST['test_repeatable']))) {
 	$test_repeatable = false;
 } else {
-	$test_repeatable = F_getBoolean($test_repeatable);
+	$test_repeatable = F_getBoolean($_REQUEST['test_repeatable']);
 }
-if (!isset($test_mcma_partial_score) OR (empty($test_mcma_partial_score))) {
+if (!isset($_REQUEST['test_mcma_partial_score']) OR (empty($_REQUEST['test_mcma_partial_score']))) {
 	$test_mcma_partial_score = false;
 } else {
-	$test_mcma_partial_score = F_getBoolean($test_mcma_partial_score);
+	$test_mcma_partial_score = F_getBoolean($_REQUEST['test_mcma_partial_score']);
 }
-if (!isset($test_logout_on_timeout) OR (empty($test_logout_on_timeout))) {
+if (!isset($_REQUEST['test_logout_on_timeout']) OR (empty($_REQUEST['test_logout_on_timeout']))) {
 	$test_logout_on_timeout = false;
 } else {
-	$test_logout_on_timeout = F_getBoolean($test_logout_on_timeout);
+	$test_logout_on_timeout = F_getBoolean($_REQUEST['test_logout_on_timeout']);
 }
-if (!isset($test_max_score)) {
+if (!isset($_REQUEST['test_max_score'])) {
 	$test_max_score = 0;
+} else {
+	$test_max_score = floatval($_REQUEST['test_max_score']);
 }
 
 $test_max_score_new = 0; // test max score
@@ -1224,7 +1228,7 @@ if (isset($test_id) AND ($test_id > 0)) {
 	echo '</span>'.K_NEWLINE;
 	echo '<span class="formw">'.K_NEWLINE;
 	echo '<select name="tsubset_difficulty" id="tsubset_difficulty" size="0" title="'.$l['h_question_difficulty'].'">'.K_NEWLINE;
-	for ($i = 1; $i <= K_QUESTION_DIFFICULTY_LEVELS; ++$i) {
+	for ($i = 0; $i <= K_QUESTION_DIFFICULTY_LEVELS; ++$i) {
 		echo '<option value="'.$i.'"';
 		if ($i == $tsubset_difficulty) {
 			echo ' selected="selected"';

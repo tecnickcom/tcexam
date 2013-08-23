@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2013-07-09
+// Last Update : 2013-08-23
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -102,8 +102,12 @@ function F_getUserTests() {
 						}
 					}
 					$str .= '>';
-					if (isset($usrtestdata['user_score']) AND strlen(''.$usrtestdata['user_score']) > 0) {
-						$str .= '<a href="tce_show_result_user.php?testuser_id='.$testuser_id.'&amp;test_id='.$m['test_id'].'" title="'.$l['h_result'].'">'.$usrtestdata['user_score'].' / '.$usrtestdata['test_max_score'].' ('.round(100 * $usrtestdata['user_score'] / $usrtestdata['test_max_score']).'%)'.$passmsg.'</a>';
+					if (isset($usrtestdata['user_score']) AND (strlen(''.$usrtestdata['user_score']) > 0)) {
+						if ($usrtestdata['test_max_score'] > 0) {
+							$str .= '<a href="tce_show_result_user.php?testuser_id='.$testuser_id.'&amp;test_id='.$m['test_id'].'" title="'.$l['h_result'].'">'.$usrtestdata['user_score'].' / '.$usrtestdata['test_max_score'].' ('.round(100 * $usrtestdata['user_score'] / $usrtestdata['test_max_score']).'%)'.$passmsg.'</a>';
+						} else {
+							$str .= '<a href="tce_show_result_user.php?testuser_id='.$testuser_id.'&amp;test_id='.$m['test_id'].'" title="'.$l['h_result'].'">'.$usrtestdata['user_score'].$passmsg.'</a>';
+						}
 					} else {
 						$str .= '&nbsp;';
 					}
