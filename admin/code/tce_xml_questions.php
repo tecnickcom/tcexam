@@ -2,9 +2,9 @@
 //============================================================+
 // File name   : tce_xml_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2012-12-31
+// Last Update : 2013-09-05
 //
-// Description : Functions to export questions using XML format.
+// Description : Functions to export questions using XML or JSON format.
 //
 // Author: Nicola Asuni
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -38,7 +38,7 @@
 
 /**
  * @file
- * Display all questions grouped by topic in XML format.
+ * Display all questions grouped by topic in XML or JSON format.
  * @package com.tecnick.tcexam.admin
  * @author Nicola Asuni
  * @since 2006-03-11
@@ -50,46 +50,75 @@
 if ((isset($_REQUEST['expmode']) AND ($_REQUEST['expmode'] > 0))
 	AND (isset($_REQUEST['module_id']) AND ($_REQUEST['module_id'] > 0))
 	AND (isset($_REQUEST['subject_id']) AND ($_REQUEST['subject_id'] > 0))) {
+
 	$expmode = intval($_REQUEST['expmode']);
 	$module_id = intval($_REQUEST['module_id']);
 	$subject_id = intval($_REQUEST['subject_id']);
+	$output_format = isset($_REQUEST['format']) ? strtoupper($_REQUEST['format']) : 'XML';
 
 	// set XML file name
 	switch ($expmode) {
 		case 1: {
-			$xml_filename = 'tcexam_subject_'.$subject_id.'_'.date('YmdHi').'.xml';
+			$out_filename = 'tcexam_subject_'.$subject_id;
 			break;
 		}
 		case 2: {
-			$xml_filename = 'tcexam_module_'.$module_id.'_'.date('YmdHi').'.xml';
+			$out_filename = 'tcexam_module_'.$module_id;
 			break;
 		}
 		case 3: {
-			$xml_filename = 'tcexam_all_modules_'.date('YmdHi').'.xml';
+			$out_filename = 'tcexam_all_modules';
 			break;
 		}
 		default: {
-			$xml_filename = 'tcexam_export_'.date('YmdHi').'.xml';
+			$out_filename = 'tcexam_export';
+			break;
+		}
+	}
+	$out_filename .= '_'.date('YmdHi');
+
+	// get the XML code
+	$xml = F_xml_export_questions($module_id, $subject_id, $expmode);
+
+	switch($output_format) {
+		case 'JSON': {
+			header('Content-Description: JSON File Transfer');
+			header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+			header('Pragma: public');
+			header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+			// force download dialog
+			header('Content-Type: application/force-download');
+			header('Content-Type: application/octet-stream', false);
+			header('Content-Type: application/download', false);
+			header('Content-Type: application/json', false);
+			// use the Content-Disposition header to supply a recommended filename
+			header('Content-Disposition: attachment; filename='.$out_filename.'.json;');
+			header('Content-Transfer-Encoding: binary');
+			$xmlobj = new SimpleXMLElement($xml);
+			echo json_encode($xmlobj);
+			break;
+		}
+		case 'XML':
+		default: {
+			header('Content-Description: XML File Transfer');
+			header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+			header('Pragma: public');
+			header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+			header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+			// force download dialog
+			header('Content-Type: application/force-download');
+			header('Content-Type: application/octet-stream', false);
+			header('Content-Type: application/download', false);
+			header('Content-Type: application/xml', false);
+			// use the Content-Disposition header to supply a recommended filename
+			header('Content-Disposition: attachment; filename='.$out_filename.'.xml;');
+			header('Content-Transfer-Encoding: binary');
+			echo $xml;
 			break;
 		}
 	}
 
-	// send XML headers
-	header('Content-Description: XML File Transfer');
-	header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-	header('Pragma: public');
-	header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-	header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
-	// force download dialog
-	header('Content-Type: application/force-download');
-	header('Content-Type: application/octet-stream', false);
-	header('Content-Type: application/download', false);
-	header('Content-Type: application/xml', false);
-	// use the Content-Disposition header to supply a recommended filename
-	header('Content-Disposition: attachment; filename='.$xml_filename.';');
-	header('Content-Transfer-Encoding: binary');
-
-	echo F_xml_export_questions($module_id, $subject_id, $expmode);
 } else {
 	exit;
 }

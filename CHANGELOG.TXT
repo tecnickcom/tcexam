@@ -1,3 +1,7 @@
+12.1.006 (2013-09-05)
+	- New JSON export format.
+	- TSV report now includes the details for each user.
+
 12.1.005 (2013-08-23)
 	- Support for 0-difficulty questions was added.
 

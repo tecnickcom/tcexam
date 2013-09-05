@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2013-01-20
+// Last Update : 2013-09-05
 //
 // Description : Functions to display and select registered user.
 //
@@ -264,6 +264,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '<div class="row">'.K_NEWLINE;
 			echo '<br />';
 			echo '<a href="tce_xml_users.php" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
+			echo '<a href="tce_xml_users.php?format=JSON" class="xmlbutton" title="JSON">JSON</a> ';
 			echo '<a href="tce_tsv_users.php" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV</a>';
 			echo '</div>'.K_NEWLINE;
 

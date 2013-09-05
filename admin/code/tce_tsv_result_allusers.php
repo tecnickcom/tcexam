@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tsv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2012-12-31
+// Last Update : 2013-09-05
 //
 // Description : Functions to export users' results using
 //               TSV file format (tab delimited text).
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -119,13 +119,28 @@ header('Content-Type: text/tab-separated-values', false);
 header('Content-Disposition: attachment; filename=tcexam_test_results_'.$test_id.'_'.date('YmdHis').'.tsv;');
 header('Content-Transfer-Encoding: binary');
 
+// get data
 $data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field);
-
+// format data as HTML table
 $table = F_printTestResultStat($data, 1, $order_field, '');
 $table .= F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode);
-
+// convert HTML table to TSV
 echo F_html_to_TSV($table);
 
+if (($user_id == 0) AND (count($data['testuser']) > 1)) {
+	echo K_NEWLINE.K_NEWLINE.K_NEWLINE.'<<< DETAILS >>>'.K_NEWLINE;
+	// display detailed stats for each user
+	foreach ($data['testuser'] as $tu) {
+		echo K_NEWLINE.K_NEWLINE.'### USER'.K_TAB.$tu['user_id'].K_NEWLINE.K_NEWLINE;
+		// get data
+		$usrdata = F_getAllUsersTestStat($test_id, $group_id, $tu['user_id'], $startdate, $enddate, $full_order_field);
+		// format data as HTML table
+		$table = F_printTestResultStat($usrdata, 1, $order_field, '');
+		$table .= F_printTestStat($test_id, $group_id, $tu['user_id'], $startdate, $enddate, 0, $data, $display_mode);
+		// convert HTML table to TSV
+		echo F_html_to_TSV($table);
+	}
+}
 
 //============================================================+
 // END OF FILE

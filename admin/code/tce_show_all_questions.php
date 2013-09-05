@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2013-04-12
+// Last Update : 2013-09-05
 //
 // Description : Display all questions grouped by topic.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as
@@ -315,6 +315,9 @@ if (isset($subject_id) AND ($subject_id > 0)) {
 	echo ' <a href="'.$xmllink.'&amp;expmode=1" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a>';
 	echo '<a href="'.$xmllink.'&amp;expmode=2" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_module'].'</a>';
 	echo '<a href="'.$xmllink.'&amp;expmode=3" class="xmlbutton" title="'.$l['h_xml_export'].'">XML '.$l['w_all'].'</a>';
+	echo ' <a href="'.$xmllink.'&amp;expmode=1&amp;format=JSON" class="xmlbutton" title="JSON">JSON</a>';
+	echo '<a href="'.$xmllink.'&amp;expmode=2&amp;format=JSON" class="xmlbutton" title="JSON">JSON '.$l['w_module'].'</a>';
+	echo '<a href="'.$xmllink.'&amp;expmode=3&amp;format=JSON" class="xmlbutton" title="JSON">JSON '.$l['w_all'].'</a>';
 	$tsvlink = 'tce_tsv_questions.php';
 	$tsvlink .= '?module_id='.$subject_module_id;
 	$tsvlink .= '&amp;subject_id='.$subject_id;

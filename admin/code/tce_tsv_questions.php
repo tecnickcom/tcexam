@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tsv_questions.php
 // Begin       : 2006-03-06
-// Last Update : 2012-12-31
+// Last Update : 2013-09-05
 //
 // Description : Functions to export questions using CVS format.
 //               (tab-separated values)
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as

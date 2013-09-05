@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2013-08-23
+// Last Update : 2013-09-05
 //
 // Description : Statistical functions for test results.
 //
@@ -1025,8 +1025,8 @@ function F_printUserTestStat($testuser_id) {
 * @param $test_id (int) test ID.
 * @param $group_id (int) group ID - if greater than zero, filter stats for the specified user group.
 * @param $user_id (int) user ID - if greater than zero, filter stats for the specified user.
-* @param $startdate (int) start date ID - if greater than zero, filter stats for the specified starting date
-* @param $enddate (int) end date ID - if greater than zero, filter stats for the specified ending date
+* @param $startdate (string) start date ID - if greater than zero, filter stats for the specified starting date
+* @param $enddate (string) end date ID - if greater than zero, filter stats for the specified ending date
 * @param $full_order_field (string) Ordering fields for SQL query.
 * @param $pubmode (boolean) If true filter the results for the public interface.
 * return $data array containing test statistics.

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2013-04-09
+// Last Update : 2013-09-05
 //
 // Description : Display test results summary for all users.
 //
@@ -416,6 +416,7 @@ if (isset($_REQUEST['sel'])) {
 		echo '<div class="row">'.K_NEWLINE;
 		// show buttons by case
 		echo '<a href="tce_xml_results.php?menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$l['h_xml_export'].'">XML</a> ';
+		echo '<a href="tce_xml_results.php?format=JSON&amp;menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="JSON">JSON</a> ';
 		echo '<a href="tce_tsv_result_allusers.php?'.$filter.'&amp;order_field='.urlencode($order_field).'&amp;orderdir='.$orderdir.'" class="xmlbutton" title="'.$l['h_tsv_export'].'">TSV</a> ';
 		echo '<a href="tce_pdf_results.php?mode=1'.$filter.'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
 		echo '<a href="tce_pdf_results.php?mode=4'.$filter.'" class="xmlbutton" title="'.$l['h_pdf_all'].'">'.$l['w_pdf_all'].'</a> ';
