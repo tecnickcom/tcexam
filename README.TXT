@@ -1,15 +1,17 @@
 TCExam - README
 ===========================================================
 
-FOR ANY COMMERCIAL USAGE PLEASE CONTACT: info@tecnick.com
+FOR ANY COMMERCIAL USAGE, INCLUDING WHEN A NON-PROFIT
+ORGANIZATION IS ASKING ANY FEE TO ITS MEMBERS/USERS,
+YOU MUST CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ------------------------------------------------------------
 
 Name: TCExam
 
-Version: 12.1.006
+Version: 12.1.007
 
-Release date: 2013-09-05
+Release date: 2013-09-14
 Author:
 	Nicola Asuni
 
@@ -34,25 +36,6 @@ Support - Help:
 
 Software License
 	Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
-
-	This program is free software for non-commercial usage: 
-	you can redistribute it and/or modify it under the terms of the 
-	GNU Affero General Public License as published by the Free Software 
-	Foundation, either version 3 of the License, or (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-	Additionally, you can't remove, move or hide the original TCExam
-	logo, copyrights statements and links to Tecnick.com and TCExam Websites.
-	
-	For any commercial usage please contact info@tecnick.com.
-
 	See LICENSE.TXT file for more information.
 
 Third-party Software

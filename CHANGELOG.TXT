@@ -1,3 +1,6 @@
+12.1.007 (2013-09-14)
+	- TCPDF Library was updated.
+
 12.1.006 (2013-09-05)
 	- New JSON export format.
 	- TSV report now includes the details for each user.

@@ -4,7 +4,7 @@
 // Begin       : 2004-04-27
 // Last Update : 2012-07-25
 //
-// Description : Default CSS for admin area.
+// Description : Default CSS for public area.
 //
 // Author: Nicola Asuni
 //
@@ -16,6 +16,23 @@
 //
 // License:
 //    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 */
@@ -35,20 +52,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-/* delete link ------------ */
-a.deletebutton:link, a.deletebutton:visited {
-	border: 1px solid #000000;
-	color: #003399;
-	font-size: 75%;
-	padding: 0px 3px 0px 3px;
-	text-decoration: none;
-}
-
-a.deletebutton:hover {
-	background-color: #B22222;
-	color: #FFFFFF;
-}
-
 a.minibutton span {
 	background-color: #FFCC66;
 	color: #000000;
@@ -63,7 +66,7 @@ a.minibutton:link, a.minibutton:visited, a.minibutton:hover {
 	color: #000000;
 	font-family: Arial,FreeSans,sans-serif;
 	font-size: 9px;
-	padding: 0px 3px 0px 3px;
+	padding: 0px 0px 0px 3px;
 	text-decoration: none;
 }
 
@@ -89,47 +92,8 @@ a.white:hover {
 	color: #FFFFFF;
 }
 
-a.xmlbutton:link, a.xmlbutton:visited {
-	background-color: #D3D3D3;
-	border: 1px solid;
-	border-color: #FFFFFF #696969 #696969 #FFFFFF;
-	color: #000000;
-	font-size: 95%;
-	margin: 0px 0px 0px 0px;
-	padding: 2px 4px 2px 4px;
-	text-decoration: none;
-}
-
-a.xmlbutton:hover {
-	background-color: #DDEEFF;
-}
-
-acronym.nobox {
-	background-color: #F08080;
-	border: 1px solid;
-	border-color: #000000;
-	color: #000000;
-	font-family: monospace;
-	font-size: 95%;
-	margin: 0px 0px 0px 0px;
-	padding: 0px 4px 0px 4px;
-	text-decoration: none;
-}
-
 acronym.offbox {
 	background-color: #EEEEEE;
-	border: 1px solid;
-	border-color: #000000;
-	color: #000000;
-	font-family: monospace;
-	font-size: 95%;
-	margin: 0px 0px 0px 0px;
-	padding: 0px 4px 0px 4px;
-	text-decoration: none;
-}
-
-acronym.okbox {
-	background-color: #90EE90;
 	border: 1px solid;
 	border-color: #000000;
 	color: #000000;
@@ -145,6 +109,30 @@ acronym.onbox {
 	border: 1px solid;
 	border-color: #000000;
 	color: #000000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
+}
+
+acronym.requiredonbox {
+	background-color: #FFFFCC;
+	border: 1px solid;
+	border-color: #CCCCCC;
+	color: #FF0000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
+}
+
+acronym.requiredoffbox {
+	background-color: #FFFFFF;
+	border: 1px solid;
+	border-color: #CCCCCC;
+	color: #0000FF;
 	font-family: monospace;
 	font-size: 95%;
 	margin: 0px 0px 0px 0px;
@@ -173,7 +161,7 @@ body {
 	padding-top: 0px;
 }
 
-/* BODY (main) ------------ */
+/* BODY (menu + main) ------------ */
 div.body {
 	clear: both;
 	margin: 0px 0px 0px 0px;
@@ -195,15 +183,15 @@ contains form box and help box */
 div.container {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
-	width: 99%;
+	width: 98%;
 }
 
 div.content {
 	float: right;
 	margin: 0px 0px 0px 0px;
-	padding: 5px 15px 5px 15px;
+	padding: 5px 5px 5px 5px;
 	text-align: right;
-	width: 98%;
+	width: 84%;
 }
 
 /* ---------- */
@@ -341,24 +329,10 @@ div.popuptitle {
 	width: 100%;
 }
 
-div.preview {
-	background-color: #FFFFFF;
-	border: 1px solid #808080;
-	padding: 5px 5px 5px 5px;
-}
-
 div.row {
 	clear: both;
 	padding: 1px 1px 1px 1px;
 	text-align: center;
-}
-
-div.row div.formw {
-	display: inline;
-	float: left;
-	font-size: 95%;
-	text-align: right;
-	width: 69%;
 }
 
 div.row span.formw {
@@ -401,29 +375,6 @@ div.rowl {
 	text-align: right;
 }
 
-div.row fieldset {
-	display:inline;
-	position:relative;
-    border:none;
-    margin:0;
-    padding:0;
-    width: 100%;
-}
-
-div.row fieldset span.label {
-	float: right;
-	text-align: left;
-	width: 30%;
-	font-size: 95%;
-}
-
-div.row fieldset span.formw {
-	float: left;
-	font-size: 95%;
-	text-align: right;
-	width: 69%;
-}
-
 div.spacer {
 	clear: both;
 }
@@ -431,15 +382,6 @@ div.spacer {
 div.tcecodepre{
 	display: block;
 	white-space: pre;
-}
-
-div.tcecontentbox {
-	background-color: #F6F6F6;
-	border: 1px solid #808080;
-	margin: 0px 0px 0px 0px;
-	padding: 5px 5px 5px 5px;
-	text-align: right;
-	width: 100%;
 }
 
 /* FORM BOX --------------------- */
@@ -450,14 +392,6 @@ div.tceformbox {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	text-align: center;
-	width: 100%;
-}
-
-div.contentbox {
-	background-color: #F6F6F6;
-	border: 1px solid #808080;
-	margin: 0px 0px 0px 0px;
-	padding: 5px 5px 5px 5px;
 	width: 100%;
 }
 
@@ -522,7 +456,6 @@ div.warning {
 
 fieldset.noborder {
 	border: none;
-	display: inline;
 }
 
 h1 {
@@ -549,22 +482,17 @@ html {
 i.tcecode{
 }
 
-img.button {
-	border: 1px solid #808080;
-	margin: 0px 0px 0px 0px;
-}
-
 img.tcecode{
 	border: 0px none #FFFFFF;
 }
 
 input {
 	font-size: 95%;
+	font-style: normal;
 }
 
 label {
 	cursor: pointer;
-	font-size: 95%;
 }
 
 label.timerlabel {
@@ -583,8 +511,24 @@ ol.answer li {
 	padding: 0px 0px 0px 0px;
 }
 
+ol.answer_inline {
+	list-style-type: none;
+	display: inline;
+}
+
+ol.answer_inline li {
+	display: inline;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
 /* ----- */
 ol.qlist li {
+	font-size: 95%;
+}
+
+ol.qlist li.selected {
+	background-color: #FFFFCC;
 	font-size: 95%;
 }
 
@@ -653,10 +597,6 @@ table.userselect tr{
 	font-size: 95%;
 }
 
-td.questionid {
-	background-color: #FFFACD;
-}
-
 textarea {
 	font-size: 95%;
 }
@@ -672,11 +612,6 @@ ul.answer {
 ul.answer li {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-}
-
-ul.answer li.comment {
-	color: #FF0000;
-	font-style: italic;
 }
 
 ul.credits {
@@ -704,10 +639,6 @@ ul.question li {
 	padding: 0px 0px 0px 0px;
 }
 
-ul.question li div.paddingleft {
-	padding-right: 30px;
-}
-
 ul.tcecode{
 }
 
@@ -715,23 +646,90 @@ ul.tcecode{
 	display: none;
 }
 
-div.smalldigit input {
-	background-color: #FFFFFF;
-	border: 0px none;
-	color: #333333;
+.tcecontentbox {
+	background-color: #F6F6F6;
+	border: 1px solid #808080;
+	margin: 0px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
 	text-align: right;
-	width: 30px;
+	width: 100%;
+}
+a.xmlbutton:link, a.xmlbutton:visited {
+	background-color: #D3D3D3;
+	border: 1px solid;
+	border-color: #FFFFFF #696969 #696969 #FFFFFF;
+	color: #000000;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 4px 2px 4px;
+	text-decoration: none;
+}
+
+a.xmlbutton:hover {
+	background-color: #DDEEFF;
+}
+
+ol.testlist li {
+	margin: 0px 0px 10px 0px;
+}
+
+.infolink{
+}
+
+.testcomment{
+}
+
+acronym.nobox {
+	background-color: #F08080;
+	border: 1px solid;
+	border-color: #000000;
+	color: #000000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
+}
+
+acronym.offbox {
+	background-color: #EEEEEE;
+	border: 1px solid;
+	border-color: #000000;
+	color: #000000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
+}
+
+acronym.okbox {
+	background-color: #90EE90;
+	border: 1px solid;
+	border-color: #000000;
+	color: #000000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
+}
+
+acronym.onbox {
+	background-color: #ADD8E6;
+	border: 1px solid;
+	border-color: #000000;
+	color: #000000;
+	font-family: monospace;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	text-decoration: none;
 }
 
 td.numeric {
 	font-family: "courier New", courier, monospace;
 	text-align: right;
-}
-
-.explanation {
-	color: #990000;
-	font-style: italic;
-	text-decoration: underline;
 }
 
 /* MENU ------------ */
@@ -836,7 +834,7 @@ ul.menu ul li:hover > ul, ul.menu ul *:focus + ul {
 	top: 0px;
 	margin: 0;
 	padding: 0;
-	background-color: #003399;	
+	background-color: #003399;
 	z-index: 1;
 }
 
@@ -888,26 +886,72 @@ iframe.menu {
 	z-index:-1;
 }
 
-table.filemanager {
+table.testlist {
 	background-color: #F6F6F6;
 	border: 1px solid #808080;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 }
 
-table.filemanager td {
+table.testlist td {
 	border: 1px solid #808080;
 	padding: 4px 4px 4px 4px;
 }
 
-table.filemanager th {
+table.testlist th {
 	border: 1px solid #808080;
 	padding: 4px 4px 4px 4px;
 	background-color: #ddeeff;
 }
 
-table.filemanager tr{
+table.testlist tr{
 	border: 1px solid #808080;
+	font-size: 95%;
+}
+
+a.buttongreen:link, a.buttongreen:visited {
+	background-color: #aaffaa;
+	border: 1px solid;
+	border-color: #FFFFFF #696969 #696969 #FFFFFF;
+	color: #000000;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 4px 2px 4px;
+	text-decoration: none;
+}
+
+a.buttongreen:hover {
+	background-color: #ddffdd;
+}
+
+a.buttonred:link, a.buttonred:visited {
+	background-color: #ffaaaa;
+	border: 1px solid;
+	border-color: #FFFFFF #696969 #696969 #FFFFFF;
+	color: #000000;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 4px 2px 4px;
+	text-decoration: none;
+}
+
+a.buttonred:hover {
+	background-color: #ffdddd;
+}
+
+a.buttonblue:link, a.buttonblue:visited {
+	background-color: #aaccff;
+	border: 1px solid;
+	border-color: #FFFFFF #696969 #696969 #FFFFFF;
+	color: #000000;
+	font-size: 95%;
+	margin: 0px 0px 0px 0px;
+	padding: 2px 4px 2px 4px;
+	text-decoration: none;
+}
+
+a.buttonblue:hover {
+	background-color: #bbddff;
 }
 
 span.labeldesc {
@@ -957,3 +1001,4 @@ span.accesskey {
 	color:#006000 !important;
 	text-align:right !important;
 }
+

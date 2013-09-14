@@ -16,6 +16,23 @@
 //
 // License:
 //    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as
+//    published by the Free Software Foundation, either version 3 of the
+//    License, or (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+//    Additionally, you can't remove, move or hide the original TCExam logo,
+//    copyrights statements and links to Tecnick.com and TCExam websites.
+//
 //    See LICENSE.TXT file for more information.
 //============================================================+
 */
@@ -63,7 +80,7 @@ a.minibutton:link, a.minibutton:visited, a.minibutton:hover {
 	color: #000000;
 	font-family: Arial,FreeSans,sans-serif;
 	font-size: 9px;
-	padding: 0px 3px 0px 3px;
+	padding: 0px 0px 0px 3px;
 	text-decoration: none;
 }
 
@@ -173,7 +190,7 @@ body {
 	padding-top: 0px;
 }
 
-/* BODY (main) ------------ */
+/* BODY ------------ */
 div.body {
 	clear: both;
 	margin: 0px 0px 0px 0px;
@@ -199,10 +216,10 @@ div.container {
 }
 
 div.content {
-	float: right;
+	float: left;
 	margin: 0px 0px 0px 0px;
 	padding: 5px 15px 5px 15px;
-	text-align: right;
+	text-align: left;
 	width: 98%;
 }
 
@@ -222,7 +239,7 @@ div.error {
 }
 
 div.float {
-	float: right;
+	float: left;
 	padding-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -246,11 +263,11 @@ div.header div.left {
 	background-position: top;
 	background-repeat: no-repeat;
 	border: 0px none;
-	float: right;
+	float: left;
 	height: 25px;
 	margin: 4px 0px 0px 4px;
 	padding: 0px 0px 0px 0px;
-	text-align: right;
+	text-align: left;
 	width: 118px;
 }
 
@@ -258,11 +275,11 @@ div.header div.left {
 div.header div.right {
 	background-color: #003399;
 	border: 0px none;
-	float: left;
+	float: right;
 	height: 25px;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
-	text-align: left;
+	text-align: right;
 	width: 400px;
 }
 
@@ -272,7 +289,7 @@ div.header div.right input{
 	color: #FFFFFF;
 	font-size: 100%;
 	font-weight: bold;
-	text-align: left;
+	text-align: right;
 }
 
 div.message {
@@ -355,50 +372,50 @@ div.row {
 
 div.row div.formw {
 	display: inline;
-	float: left;
+	float: right;
 	font-size: 95%;
-	text-align: right;
+	text-align: left;
 	width: 69%;
 }
 
 div.row span.formw {
-	float: left;
+	float: right;
 	font-size: 95%;
-	text-align: right;
+	text-align: left;
 	width: 69%;
 }
 
 div.row span.label {
-	float: right;
-	text-align: left;
+	float: left;
+	text-align: right;
 	width: 30%;
 }
 
 div.row span.left {
-	float: right;
-	font-size: 95%;
-	text-align: right;
-	width: 49%;
-}
-
-div.row span.right {
 	float: left;
 	font-size: 95%;
 	text-align: left;
 	width: 49%;
 }
 
-div.row span.value {
-	float: left;
-	font-weight: bold;
+div.row span.right {
+	float: right;
+	font-size: 95%;
 	text-align: right;
+	width: 49%;
+}
+
+div.row span.value {
+	float: right;
+	font-weight: bold;
+	text-align: left;
 	width: 69%;
 }
 
 div.rowl {
 	clear: both;
 	padding: 1px 1px 1px 1px;
-	text-align: right;
+	text-align: left;
 }
 
 div.row fieldset {
@@ -411,16 +428,16 @@ div.row fieldset {
 }
 
 div.row fieldset span.label {
-	float: right;
-	text-align: left;
+	float: left;
+	text-align: right;
 	width: 30%;
 	font-size: 95%;
 }
 
 div.row fieldset span.formw {
-	float: left;
+	float: right;
 	font-size: 95%;
-	text-align: right;
+	text-align: left;
 	width: 69%;
 }
 
@@ -438,7 +455,7 @@ div.tcecontentbox {
 	border: 1px solid #808080;
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
-	text-align: right;
+	text-align: left;
 	width: 100%;
 }
 
@@ -479,7 +496,7 @@ div.userbar {
 	font-size: 95%;
 	margin: 5px 0px 5px 0px;
 	padding: 2px 10px 2px 10px;
-	text-align: left;
+	text-align: right;
 	white-space: nowrap;
 }
 
@@ -642,6 +659,7 @@ table.userselect {
 
 table.userselect td {
 	border: 1px solid #808080;
+
 }
 
 table.userselect th {
@@ -684,7 +702,7 @@ ul.credits {
 	font-size: 95%;
 	margin: 5px 5px 5px 5px;
 	padding: 5px 5px 5px 5px;
-	text-align: right;
+	text-align: left;
 }
 
 ul.log {
@@ -705,7 +723,7 @@ ul.question li {
 }
 
 ul.question li div.paddingleft {
-	padding-right: 30px;
+	padding-left: 30px;
 }
 
 ul.tcecode{
@@ -737,7 +755,7 @@ td.numeric {
 /* MENU ------------ */
 
 div.scrollmenu {
-	float: right;
+	float: left;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 22px;
 	margin: 0 auto;
@@ -758,7 +776,7 @@ div.scrollmenu ul {
 }
 
 div.scrollmenu ul li {
-	float: right;
+	float: left;
 	height: 20px;
 	line-height: 20px;
 	margin: 0;
@@ -803,7 +821,7 @@ ul.menu li:hover > ul, ul.menu *:focus + ul {
 	display: block;
 	position: absolute;
 	visibility: visible;
-	right: 0px;
+	left: 0px;
 	top: 20px;
 	width: 150px;
 	margin: 0;
@@ -820,7 +838,7 @@ ul.menu li:hover, ul.menu li.CSStoHighlight {
 
 ul.menu ul li {
 	background-color: #003399;
-	float: right;
+	float: left;
 	list-style-type: none;
 	margin-bottom: 2px;
 	padding: 0;
