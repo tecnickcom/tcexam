@@ -1,3 +1,10 @@
+6.0.031 (2013-09-18)
+	- Bug #836 "Optional EOL marker before endstream" was fixed.
+	- Some additional controls were added to avoid "division by zero" error with badly formatted input.
+
+6.0.030 (2013-09-17)
+	- Bug #835 "PDF417 and Cyrilic simbols" was fixed.
+
 6.0.029 (2013-09-15)
 	- Constants K_TCPDF_PARSER_THROW_EXCEPTION_ERROR and K_TCPDF_PARSER_IGNORE_DECODING_ERRORS where removed in favor of a new configuration array in the TCPDF_PARSER class.
 	- The TCPDF_PARSER class can now be configured using the new $cfg parameter.
