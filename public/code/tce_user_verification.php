@@ -52,9 +52,9 @@ require_once('../code/tce_page_header.php');
 
 $sql = 'SELECT *
 	FROM '.K_TABLE_USERS.'
-	WHERE (user_verifycode=\''.F_escape_sql($verifycode).'\'
+	WHERE (user_verifycode=\''.F_escape_sql($db, $verifycode).'\'
 		AND user_id=\''.$userid.'\'
-		AND user_email=\''.F_escape_sql($email).'\')
+		AND user_email=\''.F_escape_sql($db, $email).'\')
 		LIMIT 1';
 if ($r = F_db_query($sql, $db)) {
 	if ($m = F_db_fetch_array($r)) {

@@ -150,7 +150,7 @@ switch($menu_mode) {
 				break;
 			}
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_MODULES, 'module_name=\''.F_escape_sql($module_name).'\'', 'module_id', $module_id)) {
+			if(!F_check_unique(K_TABLE_MODULES, 'module_name=\''.F_escape_sql($db, $module_name).'\'', 'module_id', $module_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
@@ -162,7 +162,7 @@ switch($menu_mode) {
 				$module_user_id = intval($_SESSION['session_user_id']);
 			}
 			$sql = 'UPDATE '.K_TABLE_MODULES.' SET
-				module_name=\''.F_escape_sql($module_name).'\',
+				module_name=\''.F_escape_sql($db, $module_name).'\',
 				module_enabled=\''.intval($module_enabled).'\',
 				module_user_id=\''.$module_user_id.'\'
 				WHERE module_id='.$module_id.'';
@@ -178,7 +178,7 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_MODULES, 'module_name=\''.F_escape_sql($module_name).'\'')) {
+			if(!F_check_unique(K_TABLE_MODULES, 'module_name=\''.F_escape_sql($db, $module_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -193,7 +193,7 @@ switch($menu_mode) {
 				module_enabled,
 				module_user_id
 				) VALUES (
-				\''.F_escape_sql($module_name).'\',
+				\''.F_escape_sql($db, $module_name).'\',
 				\''.intval($module_enabled).'\',
 				\''.$module_user_id.'\'
 				)';

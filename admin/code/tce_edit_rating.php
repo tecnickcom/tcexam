@@ -74,7 +74,7 @@ switch($menu_mode) {
 				}
 				$sql = 'UPDATE '.K_TABLE_TESTS_LOGS.' SET
 					testlog_score='.$testlog_score.',
-					testlog_comment=\''.F_escape_sql($testlog_comment).'\'
+					testlog_comment=\''.F_escape_sql($db, $testlog_comment).'\'
 					WHERE testlog_id='.$testlog_id.'';
 				if(!$r = F_db_query($sql, $db)) {
 					F_display_db_error(false);

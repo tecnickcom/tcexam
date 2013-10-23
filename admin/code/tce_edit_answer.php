@@ -309,11 +309,11 @@ switch($menu_mode) {
 			}
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
-				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($db, $answer_description).'\',1,1)>0';
 			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
-				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
+				$chksql = 'answer_description=\''.F_escape_sql($db, $answer_description).'\' COLLATE utf8_bin';
 			} else {
-				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
+				$chksql = 'answer_description=\''.F_escape_sql($db, $answer_description).'\'';
 			}
 			if ($answer_position > 0) {
 				$chksql .= ' AND answer_position='.$answer_position;
@@ -368,7 +368,7 @@ switch($menu_mode) {
 			// update field
 			$sql = 'UPDATE '.K_TABLE_ANSWERS.' SET
 				answer_question_id='.$answer_question_id.',
-				answer_description=\''.F_escape_sql($answer_description).'\',
+				answer_description=\''.F_escape_sql($db, $answer_description).'\',
 				answer_explanation='.F_empty_to_null($answer_explanation).',
 				answer_isright=\''.intval($answer_isright).'\',
 				answer_enabled=\''.intval($answer_enabled).'\',
@@ -395,11 +395,11 @@ switch($menu_mode) {
 		if($formstatus = F_check_form_fields()) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
-				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($answer_description).'\',1,1)>0';
+				$chksql = 'dbms_lob.instr(answer_description,\''.F_escape_sql($db, $answer_description).'\',1,1)>0';
 			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
-				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\' COLLATE utf8_bin';
+				$chksql = 'answer_description=\''.F_escape_sql($db, $answer_description).'\' COLLATE utf8_bin';
 			} else {
-				$chksql = 'answer_description=\''.F_escape_sql($answer_description).'\'';
+				$chksql = 'answer_description=\''.F_escape_sql($db, $answer_description).'\'';
 			}
 			if ($answer_position > 0) {
 				$chksql .= ' AND answer_position='.$answer_position;
@@ -437,7 +437,7 @@ switch($menu_mode) {
 				answer_keyboard_key
 				) VALUES (
 				'.$answer_question_id.',
-				\''.F_escape_sql($answer_description).'\',
+				\''.F_escape_sql($db, $answer_description).'\',
 				'.F_empty_to_null($answer_explanation).',
 				\''.intval($answer_isright).'\',
 				\''.intval($answer_enabled).'\',

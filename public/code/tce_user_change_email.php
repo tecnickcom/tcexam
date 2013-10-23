@@ -58,7 +58,7 @@ switch($menu_mode) {
 			mt_srand((double) microtime() * 1000000);
 			$user_verifycode = md5(uniqid(mt_rand(), true)); // verification code
 			$sql = 'UPDATE '.K_TABLE_USERS.' SET
-				user_email=\''.F_escape_sql($user_email).'\',
+				user_email=\''.F_escape_sql($db, $user_email).'\',
 				user_level=\'0\',
 				user_verifycode=\''.$user_verifycode.'\'
 				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';

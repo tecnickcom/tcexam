@@ -184,14 +184,14 @@ switch($menu_mode) {
 				break;
 			}
 			// check if name is unique for selected module
-			if(!F_check_unique(K_TABLE_SUBJECTS, 'subject_name=\''.F_escape_sql($subject_name).'\' AND subject_module_id='.$subject_module_id.'', 'subject_id', $subject_id)) {
+			if(!F_check_unique(K_TABLE_SUBJECTS, 'subject_name=\''.F_escape_sql($db, $subject_name).'\' AND subject_module_id='.$subject_module_id.'', 'subject_id', $subject_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
 				break;
 			}
 			$sql = 'UPDATE '.K_TABLE_SUBJECTS.' SET
-				subject_name=\''.F_escape_sql($subject_name).'\',
+				subject_name=\''.F_escape_sql($db, $subject_name).'\',
 				subject_description='.F_empty_to_null($subject_description).',
 				subject_enabled=\''.intval($subject_enabled).'\',
 				subject_module_id='.$subject_module_id.'
@@ -208,7 +208,7 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_SUBJECTS, 'subject_name=\''.F_escape_sql($subject_name).'\' AND subject_module_id='.$subject_module_id.'')) {
+			if(!F_check_unique(K_TABLE_SUBJECTS, 'subject_name=\''.F_escape_sql($db, $subject_name).'\' AND subject_module_id='.$subject_module_id.'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -220,7 +220,7 @@ switch($menu_mode) {
 				subject_user_id,
 				subject_module_id
 				) VALUES (
-				\''.F_escape_sql($subject_name).'\',
+				\''.F_escape_sql($db, $subject_name).'\',
 				'.F_empty_to_null($subject_description).',
 				\''.intval($subject_enabled).'\',
 				\''.intval($_SESSION['session_user_id']).'\',

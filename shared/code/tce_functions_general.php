@@ -57,7 +57,7 @@ function F_count_rows($dbtable, $where='') {
 function F_empty_to_null($str) {
 	require_once('../../shared/code/tce_db_dal.php');
 	if (strlen($str) > 0) {
-		return '\''.F_escape_sql($str).'\'';
+		return '\''.F_escape_sql($db, $str).'\'';
 	}
 	return 'NULL';
 }
@@ -73,7 +73,7 @@ function F_zero_to_null($num) {
 	if ($num == 0) {
 		return 'NULL';
 	}
-	return F_escape_sql($num);
+	return F_escape_sql($db, $num);
 }
 
 /**

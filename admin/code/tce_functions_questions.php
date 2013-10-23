@@ -174,11 +174,11 @@ function F_question_copy($question_id, $new_subject_id) {
 	$q = F_question_get_data($question_id);
 	if ($q !== false) {
 		if (K_DATABASE_TYPE == 'ORACLE') {
-			$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($q['question_description']).'\',1,1)>0';
+			$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($db, $q['question_description']).'\',1,1)>0';
 		} elseif ((K_DATABASE_TYPE == 'MYSQL') AND defined('K_MYSQL_QA_BIN_UNIQUITY') AND K_MYSQL_QA_BIN_UNIQUITY) {
-			$chksql = 'question_description=\''.F_escape_sql($q['question_description']).'\' COLLATE utf8_bin';
+			$chksql = 'question_description=\''.F_escape_sql($db, $q['question_description']).'\' COLLATE utf8_bin';
 		} else {
-			$chksql = 'question_description=\''.F_escape_sql($q['question_description']).'\'';
+			$chksql = 'question_description=\''.F_escape_sql($db, $q['question_description']).'\'';
 		}
 		if(F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$new_subject_id.'')) {
 			$sql = 'START TRANSACTION';
@@ -211,8 +211,8 @@ function F_question_copy($question_id, $new_subject_id) {
 				question_auto_next
 				) VALUES (
 				'.$new_subject_id.',
-				\''.F_escape_sql($q['question_description']).'\',
-				\''.F_escape_sql($q['question_explanation']).'\',
+				\''.F_escape_sql($db, $q['question_description']).'\',
+				\''.F_escape_sql($db, $q['question_explanation']).'\',
 				\''.$q['question_type'].'\',
 				\''.$q['question_difficulty'].'\',
 				\''.$q['question_enabled'].'\',
@@ -243,8 +243,8 @@ function F_question_copy($question_id, $new_subject_id) {
 						answer_keyboard_key
 						) VALUES (
 						'.$new_question_id.',
-						\''.F_escape_sql($m['answer_description']).'\',
-						\''.F_escape_sql($m['answer_explanation']).'\',
+						\''.F_escape_sql($db, $m['answer_description']).'\',
+						\''.F_escape_sql($db, $m['answer_explanation']).'\',
 						\''.$m['answer_isright'].'\',
 						\''.$m['answer_enabled'].'\',
 						'.F_zero_to_null($m['answer_position']).',

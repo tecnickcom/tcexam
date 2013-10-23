@@ -183,10 +183,10 @@ function F_logout_page() {
 function F_isAuthorizedUser($table, $field_id_name, $value_id, $field_user_id) {
 	global $l,$db;
 	require_once('../config/tce_config.php');
-	$table = F_escape_sql($table);
-	$field_id_name = F_escape_sql($field_id_name);
+	$table = F_escape_sql($db, $table);
+	$field_id_name = F_escape_sql($db, $field_id_name);
 	$value_id = intval($value_id);
-	$field_user_id = F_escape_sql($field_user_id);
+	$field_user_id = F_escape_sql($db, $field_user_id);
 	$user_id = intval($_SESSION['session_user_id']);
 	// check for administrator
 	if (defined('K_AUTH_ADMINISTRATOR') AND ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR)) {

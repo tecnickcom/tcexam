@@ -109,13 +109,13 @@ switch($menu_mode) { // process submitted data
 		}
 		if($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_GROUPS, 'group_name=\''.F_escape_sql($group_name).'\'', 'group_id', $group_id)) {
+			if(!F_check_unique(K_TABLE_GROUPS, 'group_name=\''.F_escape_sql($db, $group_name).'\'', 'group_id', $group_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
 			}
 			$sql = 'UPDATE '.K_TABLE_GROUPS.' SET
-				group_name=\''.F_escape_sql($group_name).'\'
+				group_name=\''.F_escape_sql($db, $group_name).'\'
 				WHERE group_id='.$group_id.'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
@@ -129,7 +129,7 @@ switch($menu_mode) { // process submitted data
 	case 'add':{ // Add user
 		if($formstatus = F_check_form_fields()) { // check submitted form fields
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_GROUPS, 'group_name=\''.F_escape_sql($group_name).'\'')) {
+			if(!F_check_unique(K_TABLE_GROUPS, 'group_name=\''.F_escape_sql($db, $group_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE; F_stripslashes_formfields();
 				break;
@@ -137,7 +137,7 @@ switch($menu_mode) { // process submitted data
 			$sql = 'INSERT INTO '.K_TABLE_GROUPS.' (
 				group_name
 				) VALUES (
-				\''.F_escape_sql($group_name).'\')';
+				\''.F_escape_sql($db, $group_name).'\')';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);
 			} else {

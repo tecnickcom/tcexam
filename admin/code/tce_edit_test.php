@@ -465,12 +465,12 @@ switch($menu_mode) {
 				$test_score_threshold = 0.6 * $test_max_score;
 			}
 			$sql = 'UPDATE '.K_TABLE_TESTS.' SET
-				test_name=\''.F_escape_sql($test_name).'\',
-				test_description=\''.F_escape_sql($test_description).'\',
+				test_name=\''.F_escape_sql($db, $test_name).'\',
+				test_description=\''.F_escape_sql($db, $test_description).'\',
 				test_begin_time='.F_empty_to_null($test_begin_time).',
 				test_end_time='.F_empty_to_null($test_end_time).',
 				test_duration_time=\''.$test_duration_time.'\',
-				test_ip_range=\''.F_escape_sql($test_ip_range).'\',
+				test_ip_range=\''.F_escape_sql($db, $test_ip_range).'\',
 				test_results_to_users=\''.intval($test_results_to_users).'\',
 				test_report_to_users=\''.intval($test_report_to_users).'\',
 				test_score_right=\''.$test_score_right.'\',
@@ -550,7 +550,7 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if ($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if (!F_check_unique(K_TABLE_TESTS, 'test_name=\''.F_escape_sql($test_name).'\'')) {
+			if (!F_check_unique(K_TABLE_TESTS, 'test_name=\''.F_escape_sql($db, $test_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
@@ -593,12 +593,12 @@ switch($menu_mode) {
 				test_logout_on_timeout,
 				test_password
 				) VALUES (
-				\''.F_escape_sql($test_name).'\',
-				\''.F_escape_sql($test_description).'\',
+				\''.F_escape_sql($db, $test_name).'\',
+				\''.F_escape_sql($db, $test_description).'\',
 				'.F_empty_to_null($test_begin_time).',
 				'.F_empty_to_null($test_end_time).',
 				\''.$test_duration_time.'\',
-				\''.F_escape_sql($test_ip_range).'\',
+				\''.F_escape_sql($db, $test_ip_range).'\',
 				\''.intval($test_results_to_users).'\',
 				\''.intval($test_report_to_users).'\',
 				\''.$test_score_right.'\',

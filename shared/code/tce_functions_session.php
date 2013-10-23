@@ -67,7 +67,7 @@ function F_session_close() {
  */
 function F_session_read($key) {
 	global $db;
-	$key = F_escape_sql($key);
+	$key = F_escape_sql($db, $key);
 	$sql = 'SELECT cpsession_data
 			FROM '.K_TABLE_SESSIONS.'
 			WHERE cpsession_id=\''.$key.'\'
@@ -95,8 +95,8 @@ function F_session_write($key, $val) {
 			return;
 		}
 	}
-	$key = F_escape_sql($key);
-	$val = F_escape_sql($val);
+	$key = F_escape_sql($db, $key);
+	$val = F_escape_sql($db, $val);
 	$expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
 	// check if this session already exist on database
 	$sql = 'SELECT cpsession_id
@@ -133,7 +133,7 @@ function F_session_write($key, $val) {
  */
 function F_session_destroy($key) {
 	global $db;
-	$key = F_escape_sql($key);
+	$key = F_escape_sql($db, $key);
 	$sql = 'DELETE FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$key.'\'';
 	return F_db_query($sql, $db);
 }

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2013-04-24
+// Last Update : 2013-10-23
 //
 // Description : Installation functions for TCExam.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -47,6 +47,10 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 			break;
 		}
 		case 'MYSQL': {
+			require_once('../shared/code/tce_db_dal_mysqli.php');
+			break;
+		}
+		case 'MYSQLDEPRECATED': {
 			require_once('../shared/code/tce_db_dal_mysql.php');
 			break;
 		}

@@ -49,7 +49,7 @@ require_once('../../shared/code/tce_functions_otp.php');
 $logged = false; // the user is not yet logged in
 
 // --- read existing user's session data from database
-$PHPSESSIDSQL = F_escape_sql($PHPSESSID);
+$PHPSESSIDSQL = F_escape_sql($db, $PHPSESSID);
 $session_hash = getPasswordHash($PHPSESSID.getClientFingerprint());
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
@@ -198,7 +198,7 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 		}
 		if (!K_OTP_LOGIN OR $otp) {
 			// check if submitted login information are correct
-			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
+			$sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
 			if ($r = F_db_query($sql, $db)) {
 				if ($m = F_db_fetch_array($r)) {
 					// sets some user's session data
@@ -220,18 +220,18 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 						// sync user groups
 						F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
 					}
-				} elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($_POST['xuser_name']).'\'')) {
+				} elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'')) {
 						// the user name exist but the password is wrong
 						if ($altusr !== false) {
 							// resync the password
 							$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
 								user_password=\''.$xuser_password.'\'
-								WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\'';
+								WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'';
 							if (!$ru = F_db_query($sqlu, $db)) {
 								F_display_db_error();
 							}
 							// get user data
-							$sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
+							$sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
 							if ($rd = F_db_query($sqld, $db)) {
 								if ($md = F_db_fetch_array($rd)) {
 									// sets some user's session data
@@ -274,9 +274,9 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 							user_ssn,
 							user_level
 							) VALUES (
-							\''.F_escape_sql(date(K_TIMESTAMP_FORMAT)).'\',
-							\''.F_escape_sql(getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
-							\''.F_escape_sql($_POST['xuser_name']).'\',
+							\''.F_escape_sql($db, date(K_TIMESTAMP_FORMAT)).'\',
+							\''.F_escape_sql($db, getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
+							\''.F_escape_sql($db, $_POST['xuser_name']).'\',
 							'.F_empty_to_null($altusr['user_email']).',
 							\''.getPasswordHash($_POST['xuser_password']).'\',
 							'.F_empty_to_null($altusr['user_regnumber']).',
@@ -293,7 +293,7 @@ if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_
 							$user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
 							// sets some user's session data
 							$_SESSION['session_user_id'] = $user_id;
-							$_SESSION['session_user_name'] = F_escape_sql($_POST['xuser_name']);
+							$_SESSION['session_user_name'] = F_escape_sql($db, $_POST['xuser_name']);
 							$_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
 							$_SESSION['session_user_level'] = intval($altusr['user_level']);
 							$_SESSION['session_user_firstname'] = urlencode($altusr['user_firstname']);

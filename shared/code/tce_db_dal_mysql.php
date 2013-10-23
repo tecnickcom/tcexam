@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2012-12-12
+// Last Update : 2013-10-23
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -41,10 +41,10 @@
  * @return MySQL link identifier on success, or FALSE on failure.
  */
 function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '') {
-	if(!$db = @mysql_connect($host.':'.$port, $username, $password)) {
+	if (!$db = @mysql_connect($host.':'.$port, $username, $password)) {
 		return FALSE;
 	}
-	if((strlen($database) > 0) AND (!@mysql_select_db($database, $db))) {
+	if ((strlen($database) > 0) AND (!@mysql_select_db($database, $db))) {
 		return FALSE;
 	}
 	// set the correct charset encoding
@@ -143,7 +143,7 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
 	 */
 	 //return mysql_insert_id($link_identifier);
 	if ($r = mysql_query('SELECT LAST_INSERT_ID() FROM '.$tablename.'', $link_identifier)) {
-		if($m = mysql_fetch_row($r)) {
+		if ($m = mysql_fetch_row($r)) {
 			return $m[0];
 		}
 	}
@@ -152,17 +152,18 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
 
 /**
  * Escape a string for insertion into a SQL text field (avoiding SQL injection).
+ * @param $link_identifier (resource) database link identifier.
  * @param $str (string) The string that is to be escaped.
  * @param $stripslashes (boolean) if true strip slashes from string
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
  */
-function F_escape_sql($str, $stripslashes=true) {
+function F_escape_sql($link_identifier, $str, $stripslashes=true) {
 	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
 	if ($stripslashes) {
 		$str = stripslashes($str);
 	}
-	return mysql_real_escape_string($str);
+	return mysql_real_escape_string($str, $link_identifier);
 }
 
 //============================================================+

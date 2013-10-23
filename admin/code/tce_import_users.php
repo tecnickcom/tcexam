@@ -273,14 +273,14 @@ class XMLUserImporter {
 			case 'level':
 			case 'verifycode':
 			case 'otpkey': {
-				$this->current_data = F_escape_sql(F_xml_to_text($this->current_data));
+				$this->current_data = F_escape_sql($db, F_xml_to_text($this->current_data));
 				$this->user_data[$this->current_element] = $this->current_data;
 				$this->current_element = '';
 				$this->current_data = '';
 				break;
 			}
 			case 'group': {
-				$group_name = F_escape_sql(F_xml_to_text($this->current_data));
+				$group_name = F_escape_sql($db, F_xml_to_text($this->current_data));
 				// check if group already exist
 				$sql = 'SELECT group_id
 					FROM '.K_TABLE_GROUPS.'
@@ -523,7 +523,7 @@ function F_import_tsv_users($tsvfile) {
 		// check if user already exist
 		$sql = 'SELECT user_id,user_level
 			FROM '.K_TABLE_USERS.'
-			WHERE user_name=\''.F_escape_sql($userdata[1]).'\'
+			WHERE user_name=\''.F_escape_sql($db, $userdata[1]).'\'
 				OR user_regnumber='.F_empty_to_null($userdata[10]).'
 				OR user_ssn='.F_empty_to_null($userdata[11]).'
 			LIMIT 1';
@@ -534,15 +534,15 @@ function F_import_tsv_users($tsvfile) {
 				if (($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) OR ($_SESSION['session_user_level'] > $m['user_level'])) {
 					//update user data
 					$sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-						user_name=\''.F_escape_sql($userdata[1]).'\',';
+						user_name=\''.F_escape_sql($db, $userdata[1]).'\',';
 					// update password only if it is specified
 					if (!empty($userdata[2])) {
 						$sqlu .= ' user_password=\''.getPasswordHash($userdata[2]).'\',';
 					}
 					$sqlu .= '
 						user_email='.F_empty_to_null($userdata[3]).',
-						user_regdate=\''.F_escape_sql($userdata[4]).'\',
-						user_ip=\''.F_escape_sql($userdata[5]).'\',
+						user_regdate=\''.F_escape_sql($db, $userdata[4]).'\',
+						user_ip=\''.F_escape_sql($db, $userdata[5]).'\',
 						user_firstname='.F_empty_to_null($userdata[6]).',
 						user_lastname='.F_empty_to_null($userdata[7]).',
 						user_birthdate='.F_empty_to_null($userdata[8]).',
@@ -579,11 +579,11 @@ function F_import_tsv_users($tsvfile) {
 					user_verifycode,
 					user_otpkey
 					) VALUES (
-					\''.F_escape_sql($userdata[1]).'\',
+					\''.F_escape_sql($db, $userdata[1]).'\',
 					\''.getPasswordHash($userdata[2]).'\',
 					'.F_empty_to_null($userdata[3]).',
-					\''.F_escape_sql($userdata[4]).'\',
-					\''.F_escape_sql($userdata[5]).'\',
+					\''.F_escape_sql($db, $userdata[4]).'\',
+					\''.F_escape_sql($db, $userdata[5]).'\',
 					'.F_empty_to_null($userdata[6]).',
 					'.F_empty_to_null($userdata[7]).',
 					'.F_empty_to_null($userdata[8]).',
@@ -611,7 +611,7 @@ function F_import_tsv_users($tsvfile) {
 			$groups = preg_replace("/[\r\n]+/", '', $userdata[15]);
 			$groups = explode(',', addslashes($groups));
 			while(list($key,$group_name)=each($groups)) {
-				$group_name = F_escape_sql($group_name);
+				$group_name = F_escape_sql($db, $group_name);
 				// check if group already exist
 				$sql = 'SELECT group_id
 					FROM '.K_TABLE_GROUPS.'

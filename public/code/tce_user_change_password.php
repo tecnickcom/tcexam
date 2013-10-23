@@ -56,7 +56,7 @@ switch($menu_mode) {
 				}
 			}
 			$sql = 'UPDATE '.K_TABLE_USERS.' SET
-				user_password=\''.F_escape_sql($user_password).'\'
+				user_password=\''.F_escape_sql($db, $user_password).'\'
 				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
 			if(!$r = F_db_query($sql, $db)) {
 				F_display_db_error(false);

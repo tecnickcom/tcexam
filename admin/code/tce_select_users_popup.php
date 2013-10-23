@@ -99,7 +99,7 @@ $wherequery = '';
 if (strlen($searchterms) > 0) {
 	$terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
 	foreach ($terms as $word) {
-		$word = F_escape_sql($word);
+		$word = F_escape_sql($db, $word);
 		$wherequery .= ' AND ((user_name LIKE \'%'.$word.'%\')';
 		$wherequery .= ' OR (user_email LIKE \'%'.$word.'%\')';
 		$wherequery .= ' OR (user_firstname LIKE \'%'.$word.'%\')';

@@ -87,7 +87,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 	if (empty($wherequery)) {
 		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' ORDER BY '.$full_order_field.'';
 	} else {
-		$wherequery = F_escape_sql($wherequery);
+		$wherequery = F_escape_sql($db, $wherequery);
 		$sql = 'SELECT * FROM '.K_TABLE_SESSIONS.' '.$wherequery.' ORDER BY '.$full_order_field.'';
 	}
 	if (K_DATABASE_TYPE == 'ORACLE') {

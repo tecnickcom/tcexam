@@ -137,7 +137,7 @@ switch($menu_mode) {
 		}
 		if($formstatus = F_check_form_fields()) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_SSLCERTS, 'ssl_name=\''.F_escape_sql($ssl_name).'\'', 'ssl_id', $ssl_id)) {
+			if(!F_check_unique(K_TABLE_SSLCERTS, 'ssl_name=\''.F_escape_sql($db, $ssl_name).'\'', 'ssl_id', $ssl_id)) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
@@ -149,7 +149,7 @@ switch($menu_mode) {
 				$ssl_user_id = intval($_SESSION['session_user_id']);
 			}
 			$sql = 'UPDATE '.K_TABLE_SSLCERTS.' SET
-				ssl_name=\''.F_escape_sql($ssl_name).'\',
+				ssl_name=\''.F_escape_sql($db, $ssl_name).'\',
 				ssl_enabled=\''.intval($ssl_enabled).'\',
 				ssl_user_id=\''.$ssl_user_id.'\'
 				WHERE ssl_id='.$ssl_id.'';
@@ -165,7 +165,7 @@ switch($menu_mode) {
 	case 'add':{ // Add
 		if (($formstatus = F_check_form_fields()) AND (strlen($ssl_hash) == 32)) {
 			// check if name is unique
-			if(!F_check_unique(K_TABLE_SSLCERTS, 'ssl_name=\''.F_escape_sql($ssl_name).'\'')) {
+			if(!F_check_unique(K_TABLE_SSLCERTS, 'ssl_name=\''.F_escape_sql($db, $ssl_name).'\'')) {
 				F_print_error('WARNING', $l['m_duplicate_name']);
 				$formstatus = FALSE;
 				F_stripslashes_formfields();
@@ -183,7 +183,7 @@ switch($menu_mode) {
 				ssl_enabled,
 				ssl_user_id
 				) VALUES (
-				\''.F_escape_sql($ssl_name).'\',
+				\''.F_escape_sql($db, $ssl_name).'\',
 				\''.$ssl_hash.'\',
 				\''.$ssl_end_date.'\',
 				\''.intval($ssl_enabled).'\',

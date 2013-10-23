@@ -65,13 +65,13 @@ if ($menu_mode == 'add') { // process submited data
 			F_stripslashes_formfields();
 		}
 		// check if registration number is unique
-		if(isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($user_regnumber).'\''))) {
+		if(isset($user_regnumber) AND (strlen($user_regnumber) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_regnumber=\''.F_escape_sql($db, $user_regnumber).'\''))) {
 			F_print_error('WARNING', $l['m_duplicate_regnumber']);
 			$formstatus = FALSE;
 			 F_stripslashes_formfields();
 		}
 		// check if ssn is unique
-		if(isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($user_ssn).'\''))) {
+		if(isset($user_ssn) AND (strlen($user_ssn) > 0) AND (!F_check_unique(K_TABLE_USERS, 'user_ssn=\''.F_escape_sql($db, $user_ssn).'\''))) {
 			F_print_error('WARNING', $l['m_duplicate_ssn']);
 			$formstatus = FALSE;
 			F_stripslashes_formfields();
@@ -119,11 +119,11 @@ if ($menu_mode == 'add') { // process submited data
 				user_verifycode,
 				user_otpkey
 				) VALUES (
-				\''.F_escape_sql($user_regdate).'\',
-				\''.F_escape_sql($user_ip).'\',
-				\''.F_escape_sql($user_name).'\',
+				\''.F_escape_sql($db, $user_regdate).'\',
+				\''.F_escape_sql($db, $user_ip).'\',
+				\''.F_escape_sql($db, $user_name).'\',
 				'.F_empty_to_null($user_email).',
-				\''.F_escape_sql($user_password).'\',
+				\''.F_escape_sql($db, $user_password).'\',
 				'.F_empty_to_null($user_regnumber).',
 				'.F_empty_to_null($user_firstname).',
 				'.F_empty_to_null($user_lastname).',

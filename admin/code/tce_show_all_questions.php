@@ -371,7 +371,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 	if (empty($wherequery)) {
 		$wherequery = 'WHERE question_subject_id='.$subject_id.'';
 	} else {
-		$wherequery = F_escape_sql($wherequery);
+		$wherequery = F_escape_sql($db, $wherequery);
 		$wherequery .= ' AND question_subject_id='.$subject_id.'';
 	}
 	$sql = 'SELECT *

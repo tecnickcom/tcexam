@@ -175,15 +175,15 @@ function F_xml_export_user_results($user_id, $startdate, $enddate, $order_field)
 			MAX(testlog_change_time) AS testuser_end_time
 		FROM '.K_TABLE_TESTS_LOGS.', '.K_TABLE_TEST_USER.', '.K_TABLE_TESTS.'
 		WHERE testuser_status>0
-			AND testuser_creation_time>=\''.F_escape_sql($startdate).'\'
-			AND testuser_creation_time<=\''.F_escape_sql($enddate).'\'
+			AND testuser_creation_time>=\''.F_escape_sql($db, $startdate).'\'
+			AND testuser_creation_time<=\''.F_escape_sql($db, $enddate).'\'
 			AND testuser_user_id='.$user_id.'
 			AND testlog_testuser_id=testuser_id
 			AND testuser_test_id=test_id';
 	if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 		$sql .= ' AND test_user_id IN ('.F_getAuthorizedUsers($_SESSION['session_user_id']).')';
 	}
-	$sql .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.F_escape_sql($order_field).'';
+	$sql .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY '.F_escape_sql($db, $order_field).'';
 	if($r = F_db_query($sql, $db)) {
 		$passed = 0;
 		while($m = F_db_fetch_array($r)) {

@@ -172,7 +172,7 @@ function F_TSVQuestionImporter($tsvfile) {
 					break;
 				}
 				$module_enabled = intval($qdata[1]);
-				$module_name = F_escape_sql(F_tsv_to_text($qdata[2]), false);
+				$module_name = F_escape_sql($db, F_tsv_to_text($qdata[2]), false);
 				// check if this module already exist
 				$sql = 'SELECT module_id
 					FROM '.K_TABLE_MODULES.'
@@ -219,7 +219,7 @@ function F_TSVQuestionImporter($tsvfile) {
 					break;
 				}
 				$subject_enabled = intval($qdata[1]);
-				$subject_name = F_escape_sql(F_tsv_to_text($qdata[2]), false);
+				$subject_name = F_escape_sql($db, F_tsv_to_text($qdata[2]), false);
 				$subject_description = '';
 				if (isset($qdata[3])) {
 					$subject_description = F_empty_to_null(F_tsv_to_text($qdata[3]));
@@ -270,7 +270,7 @@ function F_TSVQuestionImporter($tsvfile) {
 					break;
 				}
 				$question_enabled = intval($qdata[1]);
-				$question_description = F_escape_sql(F_tsv_to_text($qdata[2]), false);
+				$question_description = F_escape_sql($db, F_tsv_to_text($qdata[2]), false);
 				$question_explanation = F_empty_to_null(F_tsv_to_text($qdata[3]));
 				$question_type = $qtype[$qdata[4]];
 				$question_difficulty = intval($qdata[5]);
@@ -391,7 +391,7 @@ function F_TSVQuestionImporter($tsvfile) {
 					break;
 				}
 				$answer_enabled = intval($qdata[1]);
-				$answer_description = F_escape_sql(F_tsv_to_text($qdata[2]), false);
+				$answer_description = F_escape_sql($db, F_tsv_to_text($qdata[2]), false);
 				$answer_explanation = F_empty_to_null(F_tsv_to_text($qdata[3]));
 				$answer_isright = intval($qdata[4]);
 				if (isset($qdata[5])) {

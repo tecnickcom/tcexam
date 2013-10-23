@@ -725,7 +725,7 @@ function F_selectAnswers($question_id, $isright='', $ordering=false, $limit=0, $
 	require_once('../config/tce_config.php');
 	global $db, $l;
 	$question_id = intval($question_id);
-	$isright = F_escape_sql($isright);
+	$isright = F_escape_sql($db, $isright);
 	$limit = intval($limit);
 	$answers_ids = array(); // stores answers IDs
 	if ($ordering) {
@@ -2048,7 +2048,7 @@ function F_updateTestComment($test_id, $testcomment) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
 	$test_id = intval($test_id);
-	$testcomment = F_escape_sql($testcomment);
+	$testcomment = F_escape_sql($db, $testcomment);
 	$user_id = intval($_SESSION['session_user_id']);
 	$sql = 'UPDATE '.K_TABLE_TEST_USER.'
 		SET testuser_comment=\''.$testcomment.'\'

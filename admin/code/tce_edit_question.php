@@ -304,11 +304,11 @@ switch($menu_mode) {
 			}
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
-				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($db, $question_description).'\',1,1)>0';
 			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
-				$chksql = 'question_description=\''.F_escape_sql($question_description).'\' COLLATE utf8_bin';
+				$chksql = 'question_description=\''.F_escape_sql($db, $question_description).'\' COLLATE utf8_bin';
 			} else {
-				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
+				$chksql = 'question_description=\''.F_escape_sql($db, $question_description).'\'';
 			}
 			if(!F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$question_subject_id.'', 'question_id', $question_id)) {
 				F_print_error('WARNING', $l['m_duplicate_question']);
@@ -358,7 +358,7 @@ switch($menu_mode) {
 			}
 			$sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
 				question_subject_id='.$question_subject_id.',
-				question_description=\''.F_escape_sql($question_description).'\',
+				question_description=\''.F_escape_sql($db, $question_description).'\',
 				question_explanation='.F_empty_to_null($question_explanation).',
 				question_type=\''.$question_type.'\',
 				question_difficulty=\''.$question_difficulty.'\',
@@ -388,11 +388,11 @@ switch($menu_mode) {
 		if($formstatus = F_check_form_fields()) {
 			// check if alternate key is unique
 			if (K_DATABASE_TYPE == 'ORACLE') {
-				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($question_description).'\',1,1)>0';
+				$chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($db, $question_description).'\',1,1)>0';
 			} elseif ((K_DATABASE_TYPE == 'MYSQL') AND K_MYSQL_QA_BIN_UNIQUITY) {
-				$chksql = 'question_description=\''.F_escape_sql($question_description).'\' COLLATE utf8_bin';
+				$chksql = 'question_description=\''.F_escape_sql($db, $question_description).'\' COLLATE utf8_bin';
 			} else {
-				$chksql = 'question_description=\''.F_escape_sql($question_description).'\'';
+				$chksql = 'question_description=\''.F_escape_sql($db, $question_description).'\'';
 			}
 			if(!F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$question_subject_id.'')) {
 				F_print_error('WARNING', $l['m_duplicate_question']);
@@ -429,7 +429,7 @@ switch($menu_mode) {
 				question_auto_next
 				) VALUES (
 				'.$question_subject_id.',
-				\''.F_escape_sql($question_description).'\',
+				\''.F_escape_sql($db, $question_description).'\',
 				'.F_empty_to_null($question_explanation).',
 				\''.$question_type.'\',
 				\''.$question_difficulty.'\',

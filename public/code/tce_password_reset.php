@@ -55,7 +55,7 @@ if (isset($_POST['resetpassword'])) { // process submited data
 		$user_verifycode[0] = '@';
 		// get user ID
 		$user_id = 0;
-		$sql = 'SELECT user_id FROM '.K_TABLE_USERS.' WHERE user_email=\''.F_escape_sql($user_email).'\'';
+		$sql = 'SELECT user_id FROM '.K_TABLE_USERS.' WHERE user_email=\''.F_escape_sql($db, $user_email).'\'';
 		if ($r = F_db_query($sql, $db)) {
 			if ($m = F_db_fetch_array($r)) {
 				$user_id = $m['user_id'];
@@ -65,7 +65,7 @@ if (isset($_POST['resetpassword'])) { // process submited data
 		}
 		if ($user_id > 0) {
 			// update verification code
-			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_verifycode=\''.F_escape_sql($user_verifycode).'\' WHERE user_id='.$user_id.'';
+			$sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_verifycode=\''.F_escape_sql($db, $user_verifycode).'\' WHERE user_id='.$user_id.'';
 			if (!$ru = F_db_query($sqlu, $db)) {
 				F_display_db_error();
 			}

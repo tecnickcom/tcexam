@@ -66,7 +66,7 @@ if (strlen($searchterms) > 0) {
 	$wherequery = '';
 	$terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
 	foreach ($terms as $word) {
-		$word = F_escape_sql($word);
+		$word = F_escape_sql($db, $word);
 		$wherequery .= ' AND (';
 		$wherequery .= ' (test_name LIKE \'%'.$word.'%\')';
 		$wherequery .= ' OR (test_description LIKE \'%'.$word.'%\')';

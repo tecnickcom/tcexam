@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : install.php
 // Begin       : 2002-05-13
-// Last Update : 2010-02-27
+// Last Update : 2013-10-23
 //
 // Description : TCExam installation script.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -23,7 +23,7 @@ $progress_log = 'install.log'; //installation log file
 $start_installation = FALSE; // becomes true on form submission
 
 // define supported databases
-$dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE');
+$dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
 
 require_once('tce_functions_install.php');
 

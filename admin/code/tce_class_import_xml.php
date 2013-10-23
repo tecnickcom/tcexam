@@ -232,7 +232,7 @@ class XMLQuestionImporter {
 						$this->level_data[$this->level][$this->current_element] = F_utf8_normalizer($this->level_data[$this->level][$this->current_element], K_UTF8_NORMALIZATION_MODE);
 					}
 					// escape for SQL
-					$this->level_data[$this->level][$this->current_element] = F_escape_sql($this->level_data[$this->level][$this->current_element], false);
+					$this->level_data[$this->level][$this->current_element] = F_escape_sql($db, $this->level_data[$this->level][$this->current_element], false);
 				}
 				break;
 			}

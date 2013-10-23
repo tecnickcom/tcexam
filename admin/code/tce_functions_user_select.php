@@ -73,7 +73,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 		$txtalign = 'left';
 		$numalign = 'right';
 	}
-	$order_field = F_escape_sql($order_field);
+	$order_field = F_escape_sql($db, $order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
@@ -289,7 +289,7 @@ function F_show_select_user_popup($order_field, $orderdir, $firstrow, $rowsperpa
 		$txtalign = 'left';
 		$numalign = 'right';
 	}
-	$order_field = F_escape_sql($order_field);
+	$order_field = F_escape_sql($db, $order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
@@ -603,7 +603,7 @@ function F_get_user_groups($user_id) {
 function F_getUIDfromRegnum($regnum) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
-	$sql = 'SELECT user_id FROM '.K_TABLE_USERS.' WHERE user_regnumber=\''.F_escape_sql($regnum).'\' LIMIT 1';
+	$sql = 'SELECT user_id FROM '.K_TABLE_USERS.' WHERE user_regnumber=\''.F_escape_sql($db, $regnum).'\' LIMIT 1';
 	if ($r = F_db_query($sql, $db)) {
 		if ($m = F_db_fetch_array($r)) {
 			return $m['user_id'];

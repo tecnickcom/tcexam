@@ -69,7 +69,7 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
 		$txtalign = 'left';
 		$numalign = 'right';
 	}
-	$order_field = F_escape_sql($order_field);
+	$order_field = F_escape_sql($db, $order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
@@ -217,7 +217,7 @@ function F_show_select_test_popup($order_field, $orderdir, $firstrow, $rowsperpa
 		$txtalign = 'left';
 		$numalign = 'right';
 	}
-	$order_field = F_escape_sql($order_field);
+	$order_field = F_escape_sql($db, $order_field);
 	$orderdir = intval($orderdir);
 	$firstrow = intval($firstrow);
 	$rowsperpage = intval($rowsperpage);
