@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2013-07-02
+// Last Update : 2013-10-24
 //
 // Description : General functions.
 //
@@ -55,6 +55,7 @@ function F_count_rows($dbtable, $where='') {
  * @return string $str quoted if not empty, NULL otherwise
  */
 function F_empty_to_null($str) {
+	global $db;
 	require_once('../../shared/code/tce_db_dal.php');
 	if (strlen($str) > 0) {
 		return '\''.F_escape_sql($db, $str).'\'';
@@ -69,6 +70,7 @@ function F_empty_to_null($str) {
  * @return string $num if != 0, NULL otherwise
  */
 function F_zero_to_null($num) {
+	global $db;
 	require_once('../../shared/code/tce_db_dal.php');
 	if ($num == 0) {
 		return 'NULL';

@@ -1,3 +1,6 @@
+12.1.009 (2013-10-24)
+	- Bug fix related to the new F_escape_sql function signature.
+
 12.1.008 (2013-10-23)
 	- The signature of the F_escape_sql function was changed to add the database link identifier.
 	- The MySQL Database Abstraction Layer now uses the MySQLi extension by default (you can set the 'K_DATABASE_TYPE' constant to 'MYSQLDEPRECATED' to use the old extension). 
