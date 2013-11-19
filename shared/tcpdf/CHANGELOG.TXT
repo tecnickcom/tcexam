@@ -1,3 +1,12 @@
+6.0.047 (2013-11-19)
+	- SVG support was extended to support some nested defs.
+
+6.0.046 (2013-11-17)
+	- preg_replace_callback functions were replaced to improve memory performances.
+
+6.0.045 (2013-11-17)
+	- Bug #862 "Parsing error on flate filter" was fixed.
+
 6.0.044 (2013-11-10)
 	- Bug #857 "Undefined offset error" was fixed.
 	- The uniord method now uses a static cache to improve performances (thanks to Mathieu Masseboeuf for the sugegstion).
