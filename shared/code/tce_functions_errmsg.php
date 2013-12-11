@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_errmsg.php
 // Begin       : 2001-09-17
-// Last Update : 2009-09-30
+// Last Update : 2013-12-11
 //
 // Description : handle error messages
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -108,6 +108,10 @@ function F_display_db_error($exit=true) {
  * @param $errline (int) The fourth parameter is optional, errline, which contains the line number the error was raised at, as an integer.
  */
 function F_error_handler($errno, $errstr, $errfile, $errline) {
+	if (ini_get('error_reporting') == 0) {
+		// this is required to ignore supressed error messages with '@'
+		return;
+	}
 	$messagetoprint = '['.$errno.'] '.$errstr.' | LINE: '.$errline.' | FILE: '.$errfile.'';
 	switch ($errno) {
 		case E_ERROR:

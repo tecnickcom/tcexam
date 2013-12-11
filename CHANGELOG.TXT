@@ -1,3 +1,6 @@
+12.1.011 (2013-12-11)
+	- A problem related to custom error messages and TCPDF library was fixed.
+
 12.1.010 (2013-12-01)
 	- TCPDF library was updated.
 
