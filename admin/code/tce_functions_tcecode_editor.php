@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode_editor.php
 // Begin       : 2002-02-20
-// Last Update : 2012-12-30
+// Last Update : 2013-12-24
 //
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -79,6 +79,8 @@ function tcecodeEditorTagButtons($callingform, $callingfield) {
 	$onclick = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
 	$buttons .= getImageButton('code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
 	$buttons .= getImageButton('latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
+	
+	$buttons .= getImageButton('mathml', '[mathml]', K_PATH_IMAGES.'buttons/mathml.gif', $onclick, 'h');
 
 	$onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\');';
 	$buttons .= getImageButton('object', '', K_PATH_IMAGES.'buttons/image.gif', $onclick, '');

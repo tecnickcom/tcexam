@@ -9,9 +9,9 @@ YOU MUST CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 Name: TCExam
 
-Version: 12.1.011
+Version: 12.1.012
 
-Release date: 2013-12-11
+Release date: 2013-12-24
 Author:
 	Nicola Asuni
 
@@ -159,7 +159,7 @@ Description:
 
 	* Multimedia Content: TCExam uses a common mark-up language to add text
 	formatting, images, multimedia objects (audio and video) and mathematical
-	formulas (supports LaTeX).
+	formulas (supports LaTeX and MathML).
 
 	* Unique Tests: TCExam can simultaneously generate unique tests for
 	different users by randomly selecting and sorting questions and alternative

@@ -2,11 +2,11 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2013-04-22
+// Last Update : 2013-12-24
 //
-// Description : Functions to translate TCExam code
-//               into XHTML.
+// Description : Functions to translate TCExam code into XHTML.
 //               The TCExam code is compatible to the common BBCode.
+//               Supports LaTeX and MathML.
 //
 // Author: Nicola Asuni
 //
@@ -44,7 +44,8 @@ function F_decode_tcecode($text_to_decode) {
 	$replacement = array();
 	$i=0;
 
-	$newtext = htmlspecialchars($text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']); // escape some special HTML characters
+	// escape some special HTML characters
+	$newtext = htmlspecialchars($text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']); 
 
 	// --- convert some BBCode to TCECode: ---
 	// [*]list item - convert to new [li] tag
@@ -57,6 +58,9 @@ function F_decode_tcecode($text_to_decode) {
 
 	// [tex]LaTeX_code[/tex]
 	$newtext = preg_replace_callback("#\[tex\](.*?)\[/tex\]#si", 'F_latex_callback', $newtext);
+
+	// [mathml]MathML_code[/mathml]
+	$newtext = preg_replace_callback("#\[mathml\](.*?)\[/mathml\]#si", 'F_mathml_callback', $newtext);
 
 	// [object]object_url[/object:width:height:alt]
 	$newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\:(.*?)\]#si", 'F_objects_callback', $newtext);
@@ -194,8 +198,8 @@ function F_latex_callback($matches) {
 	require_once('../../shared/config/tce_latex.php');
 	// extract latex code and convert some entities
 	$latex = unhtmlentities($matches[1]);
-	$latex = preg_replace("/&gt;/i", '>', $latex);
-	$latex = preg_replace("/&lt;/i", '<', $latex);
+	$latex = str_replace("&gt;", '>', $latex);
+	$latex = str_replace("&lt;", '<', $latex);
 	$dr = 3; // density ratio
 	// generate file name
 	$filename = K_LATEX_IMG_PREFIX.md5($latex);
@@ -276,6 +280,29 @@ function F_latex_callback($matches) {
 }
 
 /**
+ * Callback function for preg_replace_callback (MathML replacement).
+ * Returns replacement code for MathML code.
+ * @param $matches (string) array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' (the MathML code)
+ * @return string MathML code.
+ */
+function F_mathml_callback($matches) {
+	$mathml_tags = '<abs><and><annotation><annotation-xml><apply><approx><arccos><arccosh><arccot><arccoth><arccsc><arccsch><arcsec><arcsech><arcsin><arcsinh><arctan><arctanh><arg><bind><bvar><card><cartesianproduct><cbytes><ceiling><cerror><ci><cn><codomain><complexes><compose><condition><conjugate><cos><cosh><cot><coth><cs><csc><csch><csymbol><curl><declare><degree><determinant><diff><divergence><divide><domain><domainofapplication><el><emptyset><eq><equivalent><eulergamma><exists><exp><exponentiale><factorial><factorof><false><floor><fn><forall><gcd><geq><grad><gt><ident><image><imaginary><imaginaryi><implies><in><infinity><int><integers><intersect><interval><inverse><lambda><laplacian><lcm><leq><limit><list><ln><log><logbase><lowlimit><lt><maction><malign><maligngroup><malignmark><malignscope><math><matrix><matrixrow><max><mean><median><menclose><merror><mfenced><mfrac><mfraction><mglyph><mi><min><minus><mlabeledtr><mlongdiv><mmultiscripts><mn><mo><mode><moment><momentabout><mover><mpadded><mphantom><mprescripts><mroot><mrow><ms><mscarries><mscarry><msgroup><msline><mspace><msqrt><msrow><mstack><mstyle><msub><msubsup><msup><mtable><mtd><mtext><mtr><munder><munderover><naturalnumbers><neq><none><not><notanumber><note><notin><notprsubset><notsubset><or><otherwise><outerproduct><partialdiff><pi><piece><piecewise><plus><power><primes><product><prsubset><quotient><rationals><real><reals><reln><rem><root><scalarproduct><sdev><sec><sech><selector><semantics><sep><set><setdiff><share><sin><sinh><subset><sum><tan><tanh><tendsto><times><transpose><true><union><uplimit><variance><vector><vectorproduct><xor>';
+	// extract latex code and convert some entities
+	$mathml = unhtmlentities($matches[1]);
+	$mathml = str_replace("&gt;", '>', $mathml);
+	$mathml = str_replace("&lt;", '<', $mathml);
+	// remove all non-MathML tags
+	$mathml = strip_tags($mathml, $mathml_tags);
+	$mathml = preg_replace("/[\n\r\s]+/", ' ', $mathml);
+	$mathml = trim($mathml);
+	if (strpos($mathml, '<math') !== 0) {
+		// add default math parent tag
+		$mathml = '<math xmlns="http://www.w3.org/1998/Math/MathML">'.$mathml.'</math>';
+	}
+	return $mathml;
+}
+
+/**
  * Callback function for preg_replace_callback.
  * Returns replacement code by MIME type.
  * @param $matches (string) array containing matches: $matches[0] is the complete match, $matches[1] the match for the first subpattern enclosed in '(...)' and so on
@@ -285,13 +312,13 @@ function F_objects_callback($matches) {
 	$width = 0;
 	$height = 0;
 	$alt = '';
-	if(isset($matches[3]) AND ($matches[3] > 0)) {
+	if (isset($matches[3]) AND ($matches[3] > 0)) {
 		$width = $matches[3];
 	}
-	if(isset($matches[4]) AND ($matches[4] > 0)) {
+	if (isset($matches[4]) AND ($matches[4] > 0)) {
 		$height = $matches[4];
 	}
-	if(isset($matches[5]) AND (!empty($matches[5]))) {
+	if (isset($matches[5]) AND (!empty($matches[5]))) {
 		$alt = F_tcecodeToTitle($matches[5]);
 	}
 	return F_objects_replacement($matches[1], $matches[2], $width, $height, $alt);
@@ -531,7 +558,7 @@ function F_substrHTML($htmltext, $min_length=100, $offset_length=20) {
 				}
 			}
 			// Count only the chars outside html tags
-			if(($tag_counter == 2) OR ($tag_counter == 0)){
+			if (($tag_counter == 2) OR ($tag_counter == 0)){
 				$c++;
 			}
 			// Check if the counter has reached the minimum length yet,
