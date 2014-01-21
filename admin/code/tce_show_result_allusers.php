@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2013-09-05
+// Last Update : 2014-01-21
 //
 // Description : Display test results summary for all users.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -93,13 +93,24 @@ if (isset($_REQUEST['enddate'])) {
 }
 $filter .= '&amp;enddate='.urlencode($enddate).'';
 
-$detail_modes = array($l['w_module'], $l['w_subject'], $l['w_question'], $l['w_answer']);
+$detail_modes = array($l['w_disabled'], $l['w_minimum'], $l['w_module'], $l['w_subject'], $l['w_question'], $l['w_answer']);
 if (isset($_REQUEST['display_mode'])) {
-	$display_mode = max(0, min(3, intval($_REQUEST['display_mode'])));
+	$display_mode = max(0, min(4, intval($_REQUEST['display_mode'])));
+	$filter .= '&amp;display_mode='.$display_mode;
 } else {
 	$display_mode = 0;
 }
 $filter .= '&amp;display_mode='.$display_mode;
+
+if (isset($_REQUEST['show_graph'])) {
+	$show_graph = intval($_REQUEST['show_graph']);
+	$filter .= '&amp;show_graph='.$show_graph;
+	if ($show_graph AND ($display_mode == 0)) {
+		$display_mode = 1;
+	}
+} else {
+	$show_graph = 0;
+}
 
 if (isset($_POST['lock'])) {
 	$menu_mode = 'lock';
@@ -319,10 +330,9 @@ echo '</div>'.K_NEWLINE;
 
 echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">'.K_NEWLINE;
-echo '<label for="display_mode">'.$l['w_mode'].'</label>'.K_NEWLINE;
+echo '<label for="display_mode">'.$l['w_stats'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
-//echo '<select name="display_mode" id="display_mode" size="0" onchange="document.getElementById(\'form_resultallusers\').submit()" title="'.$l['w_mode'].'">'.K_NEWLINE;
 echo '<select name="display_mode" id="display_mode" size="0" title="'.$l['w_mode'].'">'.K_NEWLINE;
 foreach($detail_modes as $key => $dmode) {
 	echo '<option value="'.$key.'"';
@@ -337,6 +347,8 @@ echo '</div>'.K_NEWLINE;
 
 echo getFormNoscriptSelect('display_mode');
 
+echo getFormRowCheckBox('show_graph', $l['w_graph'], $l['w_result_graph'], '', 1, $show_graph, false, '');
+
 echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
@@ -350,14 +362,14 @@ echo '<div class="row"><hr /></div>'.K_NEWLINE;
 $itemcount = 0;
 if (isset($_REQUEST['sel'])) {
 
-	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field);
+	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, false, $display_mode);
 	if (isset($data['num_records'])) {
 		$itemcount = $data['num_records'];
 	}
 
 	echo '<div class="rowl">'.K_NEWLINE;
 
-	echo F_printTestResultStat($data, $nextorderdir, $order_field, $filter);
+	echo F_printTestResultStat($data, $nextorderdir, $order_field, $filter, false, $display_mode);
 
 	if (!empty($data['testuser'])) {
 		// check/uncheck all options
@@ -378,7 +390,7 @@ if (isset($_REQUEST['sel'])) {
 	echo '</div>'.K_NEWLINE;
 
 	// display svg graph
-	if (isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $match) > 1)) {
+	if ($show_graph AND isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $match) > 1)) {
 		$w = 800;
 		$h = 300;
 		echo '<div class="row">'.K_NEWLINE;
@@ -389,12 +401,14 @@ if (isset($_REQUEST['sel'])) {
 		echo '</div>'.K_NEWLINE;
 	}
 
-	// display statistics for modules, subjects, questions and answers
-	echo '<div class="rowl">'.K_NEWLINE;
-	echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode);
-	echo '<br />'.K_NEWLINE;
-	echo '</div>'.K_NEWLINE;
- 
+	if ($display_mode > 0) {
+		// display statistics for modules, subjects, questions and answers
+		echo '<div class="rowl">'.K_NEWLINE;
+		echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, ($display_mode - 2));
+		echo '<br />'.K_NEWLINE;
+		echo '</div>'.K_NEWLINE;
+	}
+
 	if ($itemcount > 0) {
 		echo '<div class="row">'.K_NEWLINE;
 		// show buttons by case

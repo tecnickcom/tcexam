@@ -9,13 +9,13 @@ YOU MUST CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 Name: TCExam
 
-Version: 12.1.012
+Version: 12.1.013
 
-Release date: 2013-12-24
+Release date: 2014-01-21
 Author:
 	Nicola Asuni
 
-Copyright (c) 2004-2013:
+Copyright (c) 2004-2014:
 	Nicola Asuni
 	Tecnick.com LTD
 	http://www.tecnick.com
@@ -35,7 +35,7 @@ Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 
 Software License
-	Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+	Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 	See LICENSE.TXT file for more information.
 
 Third-party Software

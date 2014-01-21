@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_tsv_result_allusers.php
 // Begin       : 2006-03-30
-// Last Update : 2013-09-05
+// Last Update : 2014-01-21
 //
 // Description : Functions to export users' results using
 //               TSV file format (tab delimited text).
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -110,18 +110,24 @@ $table .= F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0
 // convert HTML table to TSV
 echo F_html_to_TSV($table);
 
-if (($user_id == 0) AND (count($data['testuser']) > 1)) {
-	echo K_NEWLINE.K_NEWLINE.K_NEWLINE.'<<< DETAILS >>>'.K_NEWLINE;
-	// display detailed stats for each user
+if ($user_id == 0) {
+	$users = array();
 	foreach ($data['testuser'] as $tu) {
-		echo K_NEWLINE.K_NEWLINE.'### USER'.K_TAB.$tu['user_id'].K_NEWLINE.K_NEWLINE;
-		// get data
-		$usrdata = F_getAllUsersTestStat($test_id, $group_id, $tu['user_id'], $startdate, $enddate, $full_order_field);
-		// format data as HTML table
-		$table = F_printTestResultStat($usrdata, 1, $order_field, '');
-		$table .= F_printTestStat($test_id, $group_id, $tu['user_id'], $startdate, $enddate, 0, $data, $display_mode);
-		// convert HTML table to TSV
-		echo F_html_to_TSV($table);
+		$users[$tu['user_id']] = $tu['user_id'];
+	}
+	if (count($users) > 1) {
+		echo K_NEWLINE.K_NEWLINE.K_NEWLINE.'<<< DETAILS >>>'.K_NEWLINE;
+		// display detailed stats for each user
+		foreach ($users as $uid) {
+			echo K_NEWLINE.K_NEWLINE.'### USER'.K_TAB.$uid.K_NEWLINE.K_NEWLINE;
+			// get data
+			$usrdata = F_getAllUsersTestStat($test_id, $group_id, $uid, $startdate, $enddate, $full_order_field);
+			// format data as HTML table
+			$table = F_printTestResultStat($usrdata, 1, $order_field, '');
+			$table .= F_printTestStat($test_id, $group_id, $uid, $startdate, $enddate, 0, $usrdata, $display_mode);
+			// convert HTML table to TSV
+			echo F_html_to_TSV($table);
+		}
 	}
 }
 

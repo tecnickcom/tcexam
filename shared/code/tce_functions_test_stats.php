@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2013-09-05
+// Last Update : 2014-01-21
 //
 // Description : Statistical functions for test results.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -179,12 +179,12 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 		$test_ids = array();
 		$sqlt = 'SELECT testuser_test_id FROM '.$sqltot.' '.$sqlw.' GROUP BY testuser_test_id ORDER BY testuser_test_id';
 		if ($rt = F_db_query($sqlt, $db)) {
-				while($mt = F_db_fetch_assoc($rt)) {
-					// check user's authorization
-					if (F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $mt['testuser_test_id'], 'test_user_id')) {
-						$test_ids[] = $mt['testuser_test_id'];
-					}
+			while($mt = F_db_fetch_assoc($rt)) {
+				// check user's authorization
+				if (F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $mt['testuser_test_id'], 'test_user_id')) {
+					$test_ids[] = $mt['testuser_test_id'];
 				}
+			}
 		} else {
 			F_display_db_error();
 		}
@@ -723,9 +723,10 @@ function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endda
 * @param $order_field (string) order fields.
 * @param $filter (string) filter string for URLs.
 * @param $pubmode (boolean) If true filter the results for the public interface.
+* @param $stats (int) 2 = full stats; 1 = user stats; 0 = disabled stats;
 * return HTML table string.
 */
-function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pubmode=false) {
+function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pubmode=false, $stats=1) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
 	if (empty($data['num_records'])) {
@@ -753,11 +754,13 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
 		$ret .= F_select_table_header_element('user_firstname', $nextorderdir, $l['h_firstname'], $l['w_firstname'], $order_field, $filter);
 	}
 	$ret .= F_select_table_header_element('total_score', $nextorderdir, $l['h_score_total'], $l['w_score'], $order_field, $filter);
-	$ret .= '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
-	$ret .= '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
-	$ret .= '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
-	$ret .= '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
-	$ret .= '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
+	if ($stats > 0) {
+		$ret .= '<th title="'.$l['h_answers_right'].'">'.$l['w_answers_right'].'</th>'.K_NEWLINE;
+		$ret .= '<th title="'.$l['h_answers_wrong'].'">'.$l['w_answers_wrong'].'</th>'.K_NEWLINE;
+		$ret .= '<th title="'.$l['h_questions_unanswered'].'">'.$l['w_questions_unanswered'].'</th>'.K_NEWLINE;
+		$ret .= '<th title="'.$l['h_questions_undisplayed'].'">'.$l['w_questions_undisplayed'].'</th>'.K_NEWLINE;
+		$ret .= '<th title="'.$l['h_questions_unrated'].'">'.$l['w_questions_unrated'].'</th>'.K_NEWLINE;
+	}
 	$ret .= '<th title="'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])">'.$l['w_status'].' ('.$l['w_time'].' ['.$l['w_minutes'].'])</th>'.K_NEWLINE;
 	$ret .= '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
 	$ret .= '</tr>'.K_NEWLINE;
@@ -793,11 +796,13 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
 			$ret .= '<td style="text-align:'.$tdalign.';">&nbsp;'.$tu['user_firstname'].'</td>'.K_NEWLINE;
 		}
 		$ret .= '<td'.$passmsg.' class="numeric">'.F_formatFloat($tu['total_score']).'&nbsp;'.F_formatPercentage($tu['total_score_perc'], false).'</td>'.K_NEWLINE;
-		$ret .= '<td class="numeric">'.$tu['right'].'&nbsp;'.F_formatPercentage($tu['right_perc'], false).'</td>'.K_NEWLINE;
-		$ret .= '<td class="numeric">'.$tu['wrong'].'&nbsp;'.F_formatPercentage($tu['wrong_perc'], false).'</td>'.K_NEWLINE;
-		$ret .= '<td class="numeric">'.$tu['unanswered'].'&nbsp;'.F_formatPercentage($tu['unanswered_perc'], false).'</td>'.K_NEWLINE;
-		$ret .= '<td class="numeric">'.$tu['undisplayed'].'&nbsp;'.F_formatPercentage($tu['undisplayed_perc'], false).'</td>'.K_NEWLINE;
-		$ret .= '<td class="numeric">'.$tu['unrated'].'&nbsp;'.F_formatPercentage($tu['unrated_perc'], false).'</td>'.K_NEWLINE;
+		if ($stats > 0) {
+			$ret .= '<td class="numeric">'.$tu['right'].'&nbsp;'.F_formatPercentage($tu['right_perc'], false).'</td>'.K_NEWLINE;
+			$ret .= '<td class="numeric">'.$tu['wrong'].'&nbsp;'.F_formatPercentage($tu['wrong_perc'], false).'</td>'.K_NEWLINE;
+			$ret .= '<td class="numeric">'.$tu['unanswered'].'&nbsp;'.F_formatPercentage($tu['unanswered_perc'], false).'</td>'.K_NEWLINE;
+			$ret .= '<td class="numeric">'.$tu['undisplayed'].'&nbsp;'.F_formatPercentage($tu['undisplayed_perc'], false).'</td>'.K_NEWLINE;
+			$ret .= '<td class="numeric">'.$tu['unrated'].'&nbsp;'.F_formatPercentage($tu['unrated_perc'], false).'</td>'.K_NEWLINE;
+		}
 		if ($tu['locked']) {
 			$ret .= '<td style="background-color:#FFBBBB;">'.$l['w_locked'];
 		} else {
@@ -815,12 +820,14 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
 		$ret .= '</tr>'.K_NEWLINE;
 	}
 	$ret .= '<tr>';
+	$colspan = 16;
 	if ($pubmode) {
-		$ret .= '<td colspan="13"';
-	} else {
-		$ret .= '<td colspan="16"';
+		$colspan -= 3;
 	}
-	$ret .= ' style="text-align:'.$tdalign.';font-weight:bold;padding-right:10px;padding-left:10px;';
+	if ($stats == 0) {
+		$colspan -= 5;
+	}
+	$ret .= '<td colspan="'.$colspan.'" style="text-align:'.$tdalign.';font-weight:bold;padding-right:10px;padding-left:10px;';
 	if ($data['passed_perc'] > 50) {
 		$ret .= ' background-color:#BBFFBB;"';
 	} else {
@@ -834,26 +841,29 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
 	foreach ($data['statistics'] as $row => $col) {
 		if (in_array($row, $printstat)) {
 			$ret .= '<tr>';
+			$scolspan = 8;
 			if ($pubmode) {
-				$ret .= '<th colspan="5"';
-			} else {
-				$ret .= '<th colspan="8"';
+				$scolspan -= 3;
 			}
-			$ret .= ' style="text-align:'.$tdalignr.';">'.$l['w_'.$row].'</th>'.K_NEWLINE;
+			$ret .= '<th colspan="'.$scolspan.'" style="text-align:'.$tdalignr.';">'.$l['w_'.$row].'</th>'.K_NEWLINE;
 			if (in_array($row, $noperc)) {
 				$ret .= '<td class="numeric">'.F_formatFloat($col['score_perc']).'</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.F_formatFloat($col['right_perc']).'</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.F_formatFloat($col['wrong_perc']).'</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.F_formatFloat($col['unanswered_perc']).'</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.F_formatFloat($col['undisplayed_perc']).'</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.F_formatFloat($col['unrated_perc']).'</td>'.K_NEWLINE;
+				if ($stats > 0) {
+					$ret .= '<td class="numeric">'.F_formatFloat($col['right_perc']).'</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.F_formatFloat($col['wrong_perc']).'</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.F_formatFloat($col['unanswered_perc']).'</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.F_formatFloat($col['undisplayed_perc']).'</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.F_formatFloat($col['unrated_perc']).'</td>'.K_NEWLINE;
+				}
 			} else {
 				$ret .= '<td class="numeric">'.round($col['score_perc']).'%</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.round($col['right_perc']).'%</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.round($col['wrong_perc']).'%</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.round($col['unanswered_perc']).'%</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.round($col['undisplayed_perc']).'%</td>'.K_NEWLINE;
-				$ret .= '<td class="numeric">'.round($col['unrated_perc']).'%</td>'.K_NEWLINE;
+				if ($stats > 0) {
+					$ret .= '<td class="numeric">'.round($col['right_perc']).'%</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.round($col['wrong_perc']).'%</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.round($col['unanswered_perc']).'%</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.round($col['undisplayed_perc']).'%</td>'.K_NEWLINE;
+					$ret .= '<td class="numeric">'.round($col['unrated_perc']).'%</td>'.K_NEWLINE;
+				}
 			}
 			$ret .= '<td colspan="2">&nbsp;</td>'.K_NEWLINE;
 			$ret .= '</tr>';
@@ -1012,9 +1022,10 @@ function F_printUserTestStat($testuser_id) {
 * @param $enddate (string) end date ID - if greater than zero, filter stats for the specified ending date
 * @param $full_order_field (string) Ordering fields for SQL query.
 * @param $pubmode (boolean) If true filter the results for the public interface.
+* @param $stats (int) 2 = full stats; 1 = user stats; 0 = disabled stats;
 * return $data array containing test statistics.
 */
-function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0, $full_order_field='total_score', $pubmode=false) {
+function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0, $full_order_field='total_score', $pubmode=false, $stats=2) {
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_test.php');
 	require_once('../../shared/code/tce_functions_statistics.php');
@@ -1063,8 +1074,10 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 		$enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
 		$sqlr .= ' AND testuser_creation_time<=\''.$enddate.'\'';
 	}
-	// get stats
-	$data += F_getTestStat($test_id, $group_id, $user_id, $startdate, $enddate);
+	if ($stats > 1) {
+		// get stats
+		$data += F_getTestStat($test_id, $group_id, $user_id, $startdate, $enddate);
+	}
 	$sqlr .= ' GROUP BY testuser_id, testuser_test_id, testuser_creation_time, user_id, user_lastname, user_firstname, user_name, user_email, testuser_status
 		ORDER BY '.$full_order_field.'';
 	if ($rr = F_db_query($sqlr, $db)) {
@@ -1080,7 +1093,9 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 		while($mr = F_db_fetch_array($rr)) {
 			$itemcount++;
 			$usrtestdata = F_getUserTestStat($mr['testuser_test_id'], $mr['user_id'], $mr['testuser_id']);
-			$teststat = F_getTestStat($mr['testuser_test_id'], $group_id, $mr['user_id'], $startdate, $enddate, $mr['testuser_id']);
+			if ($stats > 0) {
+				$teststat = F_getTestStat($mr['testuser_test_id'], $group_id, $mr['user_id'], $startdate, $enddate, $mr['testuser_id']);
+			}
 			$data['testuser']['\''.$mr['testuser_id'].'\''] = array();
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['test'] = $usrtestdata;
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['num'] = $itemcount;
@@ -1117,16 +1132,29 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['user_firstname'] = $mr['user_firstname'];
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['total_score'] = $mr['total_score'];
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['total_score_perc'] = $total_score_perc;
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = $teststat['qstats']['right'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = $teststat['qstats']['right_perc'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = $teststat['qstats']['wrong'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong_perc'] = $teststat['qstats']['wrong_perc'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered'] = $teststat['qstats']['unanswered'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered_perc'] = $teststat['qstats']['unanswered_perc'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed'] = $teststat['qstats']['undisplayed'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed_perc'] = $teststat['qstats']['undisplayed_perc'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated'] = $teststat['qstats']['unrated'];
-			$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated_perc'] = $teststat['qstats']['unrated_perc'];
+			if ($stats > 0) {
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = $teststat['qstats']['right'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = $teststat['qstats']['right_perc'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = $teststat['qstats']['wrong'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong_perc'] = $teststat['qstats']['wrong_perc'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered'] = $teststat['qstats']['unanswered'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered_perc'] = $teststat['qstats']['unanswered_perc'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed'] = $teststat['qstats']['undisplayed'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed_perc'] = $teststat['qstats']['undisplayed_perc'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated'] = $teststat['qstats']['unrated'];
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated_perc'] = $teststat['qstats']['unrated_perc'];
+			} else {
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['wrong_perc'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unanswered_perc'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['undisplayed_perc'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated'] = '';
+				$data['testuser']['\''.$mr['testuser_id'].'\'']['unrated_perc'] = '';
+			}
 			if ($mr['testuser_status'] > 3) {
 				$data['testuser']['\''.$mr['testuser_id'].'\'']['locked'] = true;
 			} else {
@@ -1140,16 +1168,29 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 			// collects data for descriptive statistics
 			$statsdata['score'][] = $mr['total_score'];
 			$statsdata['score_perc'][] = $total_score_perc;
-			$statsdata['right'][] = $teststat['qstats']['right'];
-			$statsdata['right_perc'][] = $teststat['qstats']['right_perc'];
-			$statsdata['wrong'][] = $teststat['qstats']['wrong'];
-			$statsdata['wrong_perc'][] = $teststat['qstats']['wrong_perc'];
-			$statsdata['unanswered'][] = $teststat['qstats']['unanswered'];
-			$statsdata['unanswered_perc'][] = $teststat['qstats']['unanswered_perc'];
-			$statsdata['undisplayed'][] = $teststat['qstats']['undisplayed'];
-			$statsdata['undisplayed_perc'][] = $teststat['qstats']['undisplayed_perc'];
-			$statsdata['unrated'][] = $teststat['qstats']['unrated'];
-			$statsdata['unrated_perc'][] = $teststat['qstats']['unrated_perc'];
+			if ($stats > 0) {
+				$statsdata['right'][] = $teststat['qstats']['right'];
+				$statsdata['right_perc'][] = $teststat['qstats']['right_perc'];
+				$statsdata['wrong'][] = $teststat['qstats']['wrong'];
+				$statsdata['wrong_perc'][] = $teststat['qstats']['wrong_perc'];
+				$statsdata['unanswered'][] = $teststat['qstats']['unanswered'];
+				$statsdata['unanswered_perc'][] = $teststat['qstats']['unanswered_perc'];
+				$statsdata['undisplayed'][] = $teststat['qstats']['undisplayed'];
+				$statsdata['undisplayed_perc'][] = $teststat['qstats']['undisplayed_perc'];
+				$statsdata['unrated'][] = $teststat['qstats']['unrated'];
+				$statsdata['unrated_perc'][] = $teststat['qstats']['unrated_perc'];
+			} else {
+				$statsdata['right'][] = '';
+				$statsdata['right_perc'][] = '';
+				$statsdata['wrong'][] = '';
+				$statsdata['wrong_perc'][] = '';
+				$statsdata['unanswered'][] = '';
+				$statsdata['unanswered_perc'][] = '';
+				$statsdata['undisplayed'][] = '';
+				$statsdata['undisplayed_perc'][] = '';
+				$statsdata['unrated'][] = '';
+				$statsdata['unrated_perc'][] = '';
+			}
 		}
 	} else {
 		F_display_db_error();

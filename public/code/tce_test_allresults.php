@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_allresults.php
 // Begin       : 2004-06-10
-// Last Update : 2013-01-20
+// Last Update : 2014-01-21
 //
 // Description : Display test results summary.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,8 +46,7 @@ require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('../../shared/code/tce_functions_statistics.php');
 
 $user_id = intval($_SESSION['session_user_id']);
-$display_mode = 1;
-$filter = 'user_id='.$user_id.'&amp;display_mode='.$display_mode;
+$filter = 'user_id='.$user_id;
 if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
 	$test_id = intval($_REQUEST['test_id']);
 	// check user's authorization
@@ -86,6 +85,26 @@ if (isset($_REQUEST['enddate'])) {
 	$enddate = date('Y').'-12-31 23:59:59';
 }
 $filter .= '&amp;enddate='.urlencode($enddate).'';
+
+$detail_modes = array($l['w_disabled'], $l['w_minimum'], $l['w_module'], $l['w_subject'], $l['w_question'], $l['w_answer']);
+if (isset($_REQUEST['display_mode'])) {
+	$display_mode = max(0, min(4, intval($_REQUEST['display_mode'])));
+	$filter .= '&amp;display_mode='.$display_mode;
+} else {
+	$display_mode = 0;
+}
+$filter .= '&amp;display_mode='.$display_mode;
+
+if (isset($_REQUEST['show_graph'])) {
+	$show_graph = intval($_REQUEST['show_graph']);
+	$filter .= '&amp;show_graph='.$show_graph;
+	if ($show_graph AND ($display_mode == 0)) {
+		$display_mode = 1;
+	}
+} else {
+	$show_graph = 0;
+}
+
 
 if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'testuser_test_id')))) {
 	$order_field = $_REQUEST['order_field'];
@@ -180,6 +199,27 @@ echo '</div>'.K_NEWLINE;
 echo getFormNoscriptSelect('selectgroup');
 
 echo '<div class="row">'.K_NEWLINE;
+echo '<span class="label">'.K_NEWLINE;
+echo '<label for="display_mode">'.$l['w_stats'].'</label>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '<span class="formw">'.K_NEWLINE;
+echo '<select name="display_mode" id="display_mode" size="0" title="'.$l['w_mode'].'">'.K_NEWLINE;
+foreach($detail_modes as $key => $dmode) {
+	echo '<option value="'.$key.'"';
+	if ($key == $display_mode) {
+		echo ' selected="selected"';
+	}
+	echo '>'.htmlspecialchars($dmode, ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+}
+echo '</select>'.K_NEWLINE;
+echo '</span>'.K_NEWLINE;
+echo '</div>'.K_NEWLINE;
+
+echo getFormNoscriptSelect('display_mode');
+
+echo getFormRowCheckBox('show_graph', $l['w_graph'], $l['w_result_graph'], '', 1, $show_graph, false, '');
+
+echo '<div class="row">'.K_NEWLINE;
 echo '<span class="label">&nbsp;</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="submit" name="selectcategory" id="selectcategory" value="'.$l['w_select'].'" />'.K_NEWLINE;
@@ -191,17 +231,17 @@ echo '<div class="row"><hr /></div>'.K_NEWLINE;
 // ---------------------------------------------------------------------
 $itemcount = 0;
 
-$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, true);
+$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, true, $display_mode);
 if (isset($data['num_records'])) {
 	$itemcount = $data['num_records'];
 }
 
 echo '<div class="rowl">'.K_NEWLINE;
-echo F_printTestResultStat($data, $nextorderdir, $order_field, $filter, true);
+echo F_printTestResultStat($data, $nextorderdir, $order_field, $filter, true, $display_mode);
 echo '</div>'.K_NEWLINE;
 
 // display svg graph
-if (isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $match) > 1)) {
+if ($show_graph AND isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $match) > 1)) {
 	$w = 800;
 	$h = 300;
 	echo '<div class="row">'.K_NEWLINE;
@@ -212,11 +252,13 @@ if (isset($data['svgpoints']) AND (preg_match_all('/[x]/', $data['svgpoints'], $
 	echo '</div>'.K_NEWLINE;
 }
 
-// display statistics for modules and subjects
-echo '<div class="rowl">'.K_NEWLINE;
-echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode, true);
-echo '<br />'.K_NEWLINE;
-echo '</div>'.K_NEWLINE;
+if ($display_mode > 0) {
+	// display statistics for modules and subjects
+	echo '<div class="rowl">'.K_NEWLINE;
+	echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, ($display_mode - 2), true);
+	echo '<br />'.K_NEWLINE;
+	echo '</div>'.K_NEWLINE;
+}
 
 if ($itemcount > 0) {
 	echo '<div class="row">'.K_NEWLINE;

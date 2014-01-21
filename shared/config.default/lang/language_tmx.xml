@@ -46162,5 +46162,79 @@ Fişierele de rezervă sunt stocate în dosarul "cache/backup" folosind următoa
     <seg>To acccess this page you need a valid SSL certificate client.</seg>
    </tuv>
   </tu>
+  <tu tuid="w_graph" datatype="plaintext">
+   <tuv xml:lang="NL">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="MR">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="IT">
+    <seg>grafico</seg>
+   </tuv>
+   <tuv xml:lang="TR">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="JP">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="VN">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="HI">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="MS">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="PL">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="EN">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="HE">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="EL">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="RU">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="ID">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="DE">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="FR">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="BG">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="AZ">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="ES">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="CN">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="HU">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="BR">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="RO">
+    <seg>graph</seg>
+   </tuv>
+   <tuv xml:lang="AR">
+    <seg>graph</seg>
+   </tuv>
+  </tu>
  </body>
 </tmx>

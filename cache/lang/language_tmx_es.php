@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2013-07-09 20:57:22
+// DATE: 2014-01-21 22:17:42
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -627,5 +627,6 @@ $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
 $tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['w_graph']='graph';
 
 // --- EOF ---
