@@ -318,7 +318,7 @@ if (isset($teststat) AND !empty($teststat)) {
 
 	echo getFormDescriptionLine($l['w_time_end'].':', $l['h_time_end'], $test_end_time);
 
-	if (!isset($test_end_time) OR ($test_end_time <= 0)) {
+	if (!isset($test_end_time) OR ($test_end_time <= 0) OR (strtotime($test_end_time) < strtotime($test_start_time))) {
 		$time_diff = $test_duration_time * 60;
 	} else {
 		$time_diff = strtotime($test_end_time) - strtotime($test_start_time); //sec

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2013-08-23
+// Last Update : 2014-01-23
 //
 // Description : Display test results to the current user.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -99,10 +99,10 @@ echo getFormDescriptionLine($l['w_test'].':', $l['w_test'], $test_all);
 echo getFormDescriptionLine($l['w_time_begin'].':', $l['h_time_begin'], $teststat['testinfo']['user_test_start_time']);
 echo getFormDescriptionLine($l['w_time_end'].':', $l['h_time_end'], $teststat['testinfo']['user_test_end_time']);
 
-if (!isset($teststat['user_test_end_time']) OR ($teststat['user_test_end_time'] <= 0)) {
+if (!isset($teststat['testinfo']['user_test_end_time']) OR ($teststat['testinfo']['user_test_end_time'] <= 0) OR (strtotime($teststat['testinfo']['user_test_end_time']) < strtotime($teststat['testinfo']['user_test_start_time']))) {
 	$time_diff = $teststat['testinfo']['test_duration_time'] * 60;
 } else {
-	$time_diff = strtotime($teststat['user_test_end_time']) - strtotime($teststat['user_test_start_time']); //sec
+	$time_diff = strtotime($teststat['testinfo']['user_test_end_time']) - strtotime($teststat['testinfo']['user_test_start_time']); //sec
 }
 $time_diff = gmdate('H:i:s', $time_diff);
 echo getFormDescriptionLine($l['w_test_time'].':', $l['w_test_time'], $time_diff);

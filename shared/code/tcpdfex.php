@@ -2,11 +2,11 @@
 //============================================================+
 // File name   : tcpdfex.php
 // Begin       : 2010-12-06
-// Last Update : 2013-07-14
+// Last Update : 2014-01-23
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : http://www.tecnick.com/pagefiles/tcpdf/LICENSE.TXT GNU-LGPLv3 + YOU CAN'T REMOVE ANY TCPDF COPYRIGHT NOTICE OR LINK FROM THE GENERATED PDF DOCUMENTS.
 // -------------------------------------------------------------------
-// Copyright (C) 2002-2013 Nicola Asuni - Tecnick.com LTD
+// Copyright (C) 2002-2014 Nicola Asuni - Tecnick.com LTD
 //
 // This file is part of TCPDF software library.
 //
@@ -572,7 +572,7 @@ class TCPDFEX extends TCPDF {
 		//$this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_test_time'].' ['.$l['w_minutes'].']: ', 0, 0, $dirlabel, 0, '', 1);
 		//$this->Cell($info_cell_width, $this->tce_data_cell_height, $data['test']['test_duration_time'], 0, 1, $dirvalue, 0, '', 1);
 
-		if (!isset($data['test']['user_test_end_time']) OR ($data['test']['user_test_end_time'] <= 0)) {
+		if (!isset($data['test']['user_test_end_time']) OR ($data['test']['user_test_end_time'] <= 0) OR (strtotime($data['test']['user_test_end_time']) < strtotime($data['test']['user_test_start_time']))) {
 			$time_diff = $data['test']['test_duration_time'] * 60;
 		} else {
 			$time_diff = strtotime($data['test']['user_test_end_time']) - strtotime($data['test']['user_test_start_time']); //sec

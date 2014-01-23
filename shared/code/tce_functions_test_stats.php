@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-21
+// Last Update : 2014-01-23
 //
 // Description : Statistical functions for test results.
 //
@@ -1104,7 +1104,7 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 			$halfscore = ($usrtestdata['test_max_score'] / 2);
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['testuser_creation_time'] = $mr['testuser_creation_time'];
 			$data['testuser']['\''.$mr['testuser_id'].'\'']['testuser_end_time'] = $mr['testuser_end_time'];
-			if ($mr['testuser_end_time'] <= 0) {
+			if (($mr['testuser_end_time'] <= 0) OR (strtotime($mr['testuser_end_time']) < strtotime($mr['testuser_creation_time']))) {
 				$time_diff =  ($usrtestdata['test_duration_time'] * K_SECONDS_IN_MINUTE);
 			} else {
 				$time_diff = strtotime($mr['testuser_end_time']) - strtotime($mr['testuser_creation_time']); //sec
