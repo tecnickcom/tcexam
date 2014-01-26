@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2012-12-20
+// Last Update : 2014-01-26
 //
 // Description : User-level session storage functions.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2011  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -73,8 +73,8 @@ function F_session_read($key) {
 			WHERE cpsession_id=\''.$key.'\'
 				AND cpsession_expiry>=\''.date(K_TIMESTAMP_FORMAT).'\'
 			LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			return $m['cpsession_data'];
 		} else return('');
 	}
@@ -91,7 +91,7 @@ function F_session_write($key, $val) {
 	global $db;
 	if ((!isset($db)) OR (!$db)) {
 		// workaround for PHP bug 41230
-		if(!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+		if (!$db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT,  K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
 			return;
 		}
 	}
@@ -103,8 +103,8 @@ function F_session_write($key, $val) {
 			FROM '.K_TABLE_SESSIONS.'
 			WHERE cpsession_id=\''.$key.'\'
 			LIMIT 1';
-	if($r = F_db_query($sql, $db)) {
-		if($m = F_db_fetch_array($r)) {
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
 			// SQL to update existing session
 			$sqlup = 'UPDATE '.K_TABLE_SESSIONS.' SET
 				cpsession_expiry=\''.$expiry.'\',
@@ -122,8 +122,9 @@ function F_session_write($key, $val) {
 				\''.$val.'\'
 				)';
 		}
+		return F_db_query($sqlup, $db);
 	}
-	return F_db_query($sqlup, $db);
+	return FALSE;
 }
 
 /**
@@ -148,7 +149,7 @@ function F_session_gc() {
 	global $db;
 	$expiry_time = date(K_TIMESTAMP_FORMAT);
 	$sql = 'DELETE FROM '.K_TABLE_SESSIONS.' WHERE cpsession_expiry<=\''.$expiry_time.'\'';
-	if(!$r = F_db_query($sql, $db)) {
+	if (!$r = F_db_query($sql, $db)) {
 		return FALSE;
 	}
 	return F_db_affected_rows($db, $r);

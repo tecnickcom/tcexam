@@ -1,3 +1,7 @@
+12.1.015 (2014-01-26)
+	- A bug on session function was fixed.
+	- A bug on mysql error reporting was fixed.
+
 12.1.014 (2014-01-23)
 	- Test user time was fixed in public reports.
 

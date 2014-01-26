@@ -75,18 +75,18 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 				echo '<span style="color:#008000">[OK]</span></li>';
 				error_log('  [END:OK] fill tables with default data'."\n", 3, $progress_log); //log info
 			} else {
-				echo '<span style="color:#CC0000">[ERROR '.F_db_error().']</span></li>';
-				error_log('  [END:ERROR] fill tables with default data: '.F_db_error()."\n", 3, $progress_log); //log info
+				echo '<span style="color:#CC0000">[ERROR '.F_db_error($db).']</span></li>';
+				error_log('  [END:ERROR] fill tables with default data: '.F_db_error($db)."\n", 3, $progress_log); //log info
 				return false;
 			}
 		} else {
-			echo '<span style="color:#CC0000">[ERROR '.F_db_error().']</span></li>';
-			error_log('  [END:ERROR] create database tables: '.F_db_error()."\n", 3, $progress_log); //log info
+			echo '<span style="color:#CC0000">[ERROR '.F_db_error($db).']</span></li>';
+			error_log('  [END:ERROR] create database tables: '.F_db_error($db)."\n", 3, $progress_log); //log info
 			return false;
 		}
 	} else {
-		echo '<span style="color:#CC0000">[ERROR: '.F_db_error().']</span></li>';
-		error_log('  [END:ERROR] could not connect to database: '.F_db_error()."\n", 3, $progress_log); //log info
+		echo '<span style="color:#CC0000">[ERROR: '.F_db_error($db).']</span></li>';
+		error_log('  [END:ERROR] could not connect to database: '.F_db_error($db)."\n", 3, $progress_log); //log info
 		return false;
 	}
 	flush();

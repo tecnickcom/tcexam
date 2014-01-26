@@ -95,8 +95,9 @@ function F_print_error($messagetype='MESSAGE', $messagetoprint='', $exit=false) 
  * @param $exit (bool) if true output a message and terminate the current script [default = true].
  */
 function F_display_db_error($exit=true) {
+	global $db;
 	$messagetype = 'ERROR';
-	$messagetoprint = F_db_error();
+	$messagetoprint = F_db_error($db);
 	F_print_error($messagetype, $messagetoprint, $exit);
 }
 

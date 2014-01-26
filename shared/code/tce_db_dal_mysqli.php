@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysqli.php
 // Begin       : 2003-10-12
-// Last Update : 2013-10-23
+// Last Update : 2014-01-26
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -66,8 +66,8 @@ function F_db_close($link_identifier) {
  * Returns the text of the error message from previous database operation
  * @return string error message.
  */
-function F_db_error() {
-	return '['.mysqli_errno().']: '.mysqli_error().'';
+function F_db_error($link_identifier) {
+	return '['.mysqli_errno($link_identifier).']: '.mysqli_error($link_identifier).'';
 
 }
 
