@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2013-08-07
+// Last Update : 2014-01-27
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -53,6 +53,7 @@ if (isset($_REQUEST['mode']) AND ($_REQUEST['mode'] > 0)) {
 } else {
 	$mode = 0;
 }
+$onlytext = ($mode == 5);
 if (isset($_REQUEST['email']) AND ($_REQUEST['email'] != getPasswordHash(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id, true))) {
 	F_print_error('ERROR', $l['m_authorization_denied']);
 	exit;
@@ -104,12 +105,22 @@ if (isset($_REQUEST['enddate'])) {
 	$enddate = '';
 }
 if (isset($_REQUEST['display_mode'])) {
-	$display_mode = max(0, min(3, intval($_REQUEST['display_mode'])));
+	$display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
 	$filter .= '&amp;display_mode='.$display_mode;
 } else {
 	$display_mode = 0;
 }
-$onlytext = ($display_mode == 5);
+
+if (isset($_REQUEST['show_graph'])) {
+	$show_graph = intval($_REQUEST['show_graph']);
+	$filter .= '&amp;show_graph='.$show_graph;
+	if ($show_graph AND ($display_mode == 0)) {
+		$display_mode = 1;
+	}
+} else {
+	$show_graph = 0;
+}
+
 if (isset($_REQUEST['order_field']) AND !empty($_REQUEST['order_field']) AND (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'testuser_test_id')))) {
 	$order_field = $_REQUEST['order_field'];
 } else {
@@ -130,7 +141,7 @@ $filter .= '&amp;orderdir='.$orderdir.'';
 $pubmode = false;
 
 // get the data to print
-$ts = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, $pubmode);
+$ts = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, $pubmode, $display_mode);
 
 if (empty($ts['num_records'])) {
 	return;
@@ -211,13 +222,18 @@ if ($mode != 3) {
 	$pdf->Cell(0, 0, $doc_title, 1, 1, 'C', 1);
 	$pdf->Ln(5);
 	// print test stats table
-	$pdf->printTestResultStat($ts, $pubmode);
-	// display graph
-	$pdf->Ln(5);
-	$pdf->printSVGStatsGraph($ts['svgpoints']);
-	// print question
-	$pdf->Bookmark($l['w_statistics']);
-	$pdf->printQuestionStats($ts['qstats'], $display_mode);
+	$pdf->printTestResultStat($ts, $pubmode, $display_mode);
+
+	if ($show_graph) {
+		// display graph
+		$pdf->Ln(5);
+		$pdf->printSVGStatsGraph($ts['svgpoints']);
+	}
+	if ($display_mode > 1) {
+		// print question
+		$pdf->Bookmark($l['w_statistics']);
+		$pdf->printQuestionStats($ts['qstats'], $display_mode);
+	}
 }
 
 if ($mode > 2) {

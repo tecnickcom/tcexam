@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_results.php
 // Begin       : 2008-06-06
-// Last Update : 2013-09-05
+// Last Update : 2014-01-27
 //
 // Description : Export all users' results in XML or JSON format.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -67,10 +67,15 @@ if (isset($_REQUEST['enddate'])) {
 } else {
 	$enddate = 0;
 }
+if (isset($_REQUEST['display_mode'])) {
+	$display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
+} else {
+	$display_mode = 0;
+}
 
 $output_format = isset($_REQUEST['format']) ? strtoupper($_REQUEST['format']) : 'XML';
 $out_filename = 'tcexam_results_'.date('YmdHis').'_test_'.$test_id;
-$xml = F_xml_export_results($test_id, $group_id, $user_id, $startdate, $enddate);
+$xml = F_xml_export_results($test_id, $group_id, $user_id, $startdate, $enddate, $display_mode);
 
 switch($output_format) {
 	case 'JSON': {
@@ -118,10 +123,11 @@ switch($output_format) {
  * @param $user_id (int) user ID - if greater than zero, filter stats for the specified user.
  * @param $startdate (int) start date ID - if greater than zero, filter stats for the specified starting date
  * @param $enddate (int) end date ID - if greater than zero, filter stats for the specified ending date
+ * @param $display_mode (int) display mode: 0 = disabled; 1 = minimum; 2 = module; 3 = subject; 4 = question; 5 = answer.
  * @author Nicola Asuni
  * @return XML data
  */
-function F_xml_export_results($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0) {
+function F_xml_export_results($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0, $display_mode=1) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	
@@ -140,7 +146,7 @@ function F_xml_export_results($test_id, $group_id=0, $user_id=0, $startdate=0, $
 	$xml .= K_TAB.'</header>'.K_NEWLINE;
 	$xml .= K_TAB.'<body>'.K_NEWLINE;
 
-	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate);
+	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 'total_score', false, $display_mode);
 	$xml .= getDataXML($data);
 
 	$xml .= K_TAB.'</body>'.K_NEWLINE;

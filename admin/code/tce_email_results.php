@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_email_results.php
 // Begin       : 2005-02-24
-// Last Update : 2012-12-20
+// Last Update : 2014-01-27
 //
 // Description : Interface to send test reports to users via
 //               email.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -91,10 +91,24 @@ if (isset($_REQUEST['mode']) AND ($_REQUEST['mode'] > 0)) {
 	$mode = 0;
 }
 
+if (isset($_REQUEST['display_mode'])) {
+	$display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
+} else {
+	$display_mode = 0;
+}
+if (isset($_REQUEST['show_graph'])) {
+	$show_graph = intval($_REQUEST['show_graph']);
+	if ($show_graph AND ($display_mode == 0)) {
+		$display_mode = 1;
+	}
+} else {
+	$show_graph = 0;
+}
+
 require_once('tce_functions_email_reports.php');
 echo '<div class="pagehelp">'.$l['hp_sending_in_progress'].'</div>'.K_NEWLINE;
 flush(); // force browser output
-F_send_report_emails($test_id, $user_id, $testuser_id, $group_id, $startdate, $enddate, $mode);
+F_send_report_emails($test_id, $user_id, $testuser_id, $group_id, $startdate, $enddate, $mode, $display_mode, $show_graph);
 F_print_error('MESSAGE', $l['m_process_completed']);
 
 echo '</div>'.K_NEWLINE;

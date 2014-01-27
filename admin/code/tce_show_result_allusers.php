@@ -95,7 +95,7 @@ $filter .= '&amp;enddate='.urlencode($enddate).'';
 
 $detail_modes = array($l['w_disabled'], $l['w_minimum'], $l['w_module'], $l['w_subject'], $l['w_question'], $l['w_answer']);
 if (isset($_REQUEST['display_mode'])) {
-	$display_mode = max(0, min(4, intval($_REQUEST['display_mode'])));
+	$display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
 	$filter .= '&amp;display_mode='.$display_mode;
 } else {
 	$display_mode = 0;
@@ -223,7 +223,7 @@ if ($r = F_db_query($sql, $db)) {
 		echo ' selected="selected"';
 	}
 	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['test_id'].'"';
 		if ($m['test_id'] == $test_id) {
 			echo ' selected="selected"';
@@ -266,7 +266,7 @@ if ($r = F_db_query($sql, $db)) {
 		echo ' selected="selected"';
 	}
 	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['group_id'].'"';
 		if ($m['group_id'] == $group_id) {
 			echo ' selected="selected"';
@@ -307,7 +307,7 @@ if ($r = F_db_query($sql, $db)) {
 		echo ' selected="selected"';
 	}
 	echo '>&nbsp;-&nbsp;</option>'.K_NEWLINE;
-	while($m = F_db_fetch_array($r)) {
+	while ($m = F_db_fetch_array($r)) {
 		echo '<option value="'.$m['user_id'].'"';
 		if ($m['user_id'] == $user_id) {
 			echo ' selected="selected"';
@@ -401,10 +401,10 @@ if (isset($_REQUEST['sel'])) {
 		echo '</div>'.K_NEWLINE;
 	}
 
-	if ($display_mode > 0) {
+	if ($display_mode > 1) {
 		// display statistics for modules, subjects, questions and answers
 		echo '<div class="rowl">'.K_NEWLINE;
-		echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, ($display_mode - 2));
+		echo F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode);
 		echo '<br />'.K_NEWLINE;
 		echo '</div>'.K_NEWLINE;
 	}

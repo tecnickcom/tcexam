@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-23
+// Last Update : 2014-01-27
 //
 // Description : Statistical functions for test results.
 //
@@ -179,7 +179,7 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 		$test_ids = array();
 		$sqlt = 'SELECT testuser_test_id FROM '.$sqltot.' '.$sqlw.' GROUP BY testuser_test_id ORDER BY testuser_test_id';
 		if ($rt = F_db_query($sqlt, $db)) {
-			while($mt = F_db_fetch_assoc($rt)) {
+			while ($mt = F_db_fetch_assoc($rt)) {
 				// check user's authorization
 				if (F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $mt['testuser_test_id'], 'test_user_id')) {
 					$test_ids[] = $mt['testuser_test_id'];
@@ -266,7 +266,7 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 		$sql .= ' ORDER BY module_name, subject_name, question_description';
 	}
 	if ($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_array($r)) {
+		while ($m = F_db_fetch_array($r)) {
 			if (!isset($data['qstats']['module']['\''.$m['module_id'].'\''])) {
 				$data['qstats']['module']['\''.$m['module_id'].'\''] = array(
 					'id' => $m['module_id'],
@@ -444,7 +444,7 @@ function F_getRawTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endd
 			$sqlab .= ' ORDER BY answer_description';
 			$sqla = $sqlaa.$sqlaw.$sqlab;
 			if ($ra = F_db_query($sqla, $db)) {
-				while($ma = F_db_fetch_array($ra)) {
+				while ($ma = F_db_fetch_array($ra)) {
 
 					$aright = F_count_rows($sqltb, $sqlaw.' AND answer_id='.$ma['answer_id'].' AND ((answer_isright=\'0\' AND logansw_selected=0) OR (answer_isright=\'1\' AND logansw_selected=1) OR (answer_position IS NOT NULL AND logansw_position IS NOT NULL AND answer_position=logansw_position))');
 					$awrong = F_count_rows($sqltb, $sqlaw.' AND answer_id='.$ma['answer_id'].' AND ((answer_isright=\'0\' AND logansw_selected=1) OR (answer_isright=\'1\' AND logansw_selected=0) OR (answer_position IS NOT NULL AND answer_position!=logansw_position))');
@@ -548,11 +548,14 @@ function F_normalizeTestStatAverages($data) {
 * @param $enddate (int) end date ID - if greater than zero, filter stats for the specified ending date
 * @param $testuser_id (int) test-user ID - if greater than zero, filter stats for the specified test-user.
 * @param $ts (array) array of stats to print (leave empty to automatically generate new data).
-* @param $display_mode display mode: 0 = module; 1 = subject; 2 = question; 3 = answer.
+* @param $display_mode display (int) mode: 0 = disabled; 1 = minimum; 2 = module; 3 = subject; 4 = question; 5 = answer.
 * @param $pubmode (boolean) If true filter the results for the public interface.
 * return $data string containing HTML table.
 */
-function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0, $testuser_id=0, $ts=array(), $display_mode=0, $pubmode=false) {
+function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $enddate=0, $testuser_id=0, $ts=array(), $display_mode=2, $pubmode=false) {
+	if ($display_mode < 2) {
+		return;
+	}
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_tcecode.php');
 	global $db, $l;
@@ -574,11 +577,11 @@ function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endda
 	$ret = '';
 	$ret .= '<table class="userselect">'.K_NEWLINE;
 	$ret .= '<tr><td colspan="12" style="background-color:#DDDDDD;"><strong>'.$l['w_statistics'].' ['.$l['w_all'].' + '.$l['w_module'].'';
-	if ($display_mode > 0) {
+	if ($display_mode > 2) {
 		$ret .= ' + '.$l['w_subject'].'';
-		if ($display_mode > 1) {
+		if ($display_mode > 3) {
 			$ret .= ' + '.$l['w_question'].'';
-			if ($display_mode > 2) {
+			if ($display_mode > 4) {
 				$ret .= ' + '.$l['w_answer'].'';
 			}
 		}
@@ -631,7 +634,7 @@ function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endda
 		$ret .= '<tr>';
 		$ret .= '<td colspan="8" align="'.$txtdir.'" style="background-color:white;">'.F_decode_tcecode($module['name']).'</td>';
 		$ret .= '</tr>'.K_NEWLINE;
-		if ($display_mode > 0) {
+		if ($display_mode > 2) {
 			$num_subject = 0;
 			foreach ($module['subject'] as $subject) {
 				$num_subject++;
@@ -655,7 +658,7 @@ function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endda
 				$ret .= '<tr>';
 				$ret .= '<td colspan="8" align="'.$txtdir.'" style="background-color:white;">'.F_decode_tcecode($subject['name']).'</td>';
 				$ret .= '</tr>'.K_NEWLINE;
-				if ($display_mode > 1) {
+				if ($display_mode > 3) {
 					$num_question = 0;
 					foreach ($subject['question'] as $question) {
 						$num_question++;
@@ -680,7 +683,7 @@ function F_printTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, $endda
 						$ret .= '<tr>';
 						$ret .= '<td colspan="8" align="'.$txtdir.'" style="background-color:white;">'.F_decode_tcecode($question['description']).'</td>';
 						$ret .= '</tr>'.K_NEWLINE;
-						if ($display_mode > 2) {
+						if ($display_mode > 4) {
 							$num_answer = 0;
 							foreach ($question['answer'] as $answer) {
 								$num_answer++;
@@ -896,7 +899,7 @@ function F_printUserTestStat($testuser_id) {
 		ORDER BY testlog_id';
 	if ($r = F_db_query($sql, $db)) {
 		$ret .= '<ol class="question">'.K_NEWLINE;
-		while($m = F_db_fetch_array($r)) {
+		while ($m = F_db_fetch_array($r)) {
 			$ret .= '<li>'.K_NEWLINE;
 			// display question stats
 			$ret .= '<strong>['.$m['testlog_score'].']'.K_NEWLINE;
@@ -943,7 +946,7 @@ function F_printUserTestStat($testuser_id) {
 						AND logansw_testlog_id=\''.$m['testlog_id'].'\'
 					ORDER BY logansw_order';
 				if ($ra = F_db_query($sqla, $db)) {
-					while($ma = F_db_fetch_array($ra)) {
+					while ($ma = F_db_fetch_array($ra)) {
 						$ret .= '<li>';
 						if ($m['question_type'] == 4) {
 							// ORDER
@@ -1090,7 +1093,7 @@ function F_getAllUsersTestStat($test_id, $group_id=0, $user_id=0, $startdate=0, 
 		$statsdata['unanswered'] = array();
 		$statsdata['undisplayed'] = array();
 		$statsdata['unrated'] = array();
-		while($mr = F_db_fetch_array($rr)) {
+		while ($mr = F_db_fetch_array($rr)) {
 			$itemcount++;
 			$usrtestdata = F_getUserTestStat($mr['testuser_test_id'], $mr['user_id'], $mr['testuser_id']);
 			if ($stats > 0) {
@@ -1260,7 +1263,7 @@ function F_getTestIDs($test_id, $user_id, $filter='test_results_to_users') {
 	$user_id = intval($user_id);
 	$sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id IN (SELECT DISTINCT testuser_test_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_user_id='.intval($user_id).' AND testuser_status>0) AND '.$filter.'=1';
 	if ($r = F_db_query($sql, $db)) {
-		while($m = F_db_fetch_assoc($r)) {
+		while ($m = F_db_fetch_assoc($r)) {
 			$str .= ','.$m['test_id'];
 		}
 	} else {

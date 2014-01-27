@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2013-08-07
+// Last Update : 2014-01-27
 //
 // Description : Sends email test reports to users.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -38,8 +38,10 @@
  * @param $startdate (int) start date ID - if greater than zero, filter stats for the specified starting date
  * @param $enddate (int) end date ID - if greater than zero, filter stats for the specified ending date
  * @param $mode (int) type of report to send: 0=detailed report; 1=summary report (without questions)
+ * @param $display_mode display (int) mode: 0 = disabled; 1 = minimum; 2 = module; 3 = subject; 4 = question; 5 = answer.
+ * @param $show_graph (boolean) If true display the score graph.
  */
-function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0, $startdate=0, $enddate=0, $mode=0) {
+function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0, $startdate=0, $enddate=0, $mode=0, $display_mode=1, $show_graph=false) {
 	global $l, $db;
 	require_once('../config/tce_config.php');
 	require_once('../../shared/code/tce_functions_test.php');
@@ -113,7 +115,7 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 		$mail->AddReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
 	}
 	$mail->CharSet = $l['a_meta_charset'];
-	if(!$mail->CharSet) {
+	if (!$mail->CharSet) {
 		$mail->CharSet = $emailcfg['CharSet'];
 	}
 	$mail->Subject = $l['t_result_user'];
@@ -122,7 +124,7 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 	$email_num = 0; // count emails;
 	
 	// get all data
-	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate);
+	$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 'total_score', false, $display_mode);
 
 	foreach ($data['testuser'] as $tu) {
 		if (strlen($tu['user_email']) > 3) {
@@ -144,18 +146,19 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 				$mail->AltBody .= K_NEWLINE;
 			}
 
-			$mail->AltBody .= $l['w_score'].': '.F_formatFloat($tu['total_score']).' '.F_formatPercentage($tu['total_score_perc'], false).$passmsg.K_NEWLINE;	
-			$mail->AltBody .= $l['w_answers_right'].': '.$tu['right'].'&nbsp;'.F_formatPercentage($tu['right_perc'], false).K_NEWLINE;
-			$mail->AltBody .= $l['w_answers_wrong'].': '.$tu['wrong'].'&nbsp;'.F_formatPercentage($tu['wrong_perc'], false).K_NEWLINE;
-			$mail->AltBody .= $l['w_questions_unanswered'].': '.$tu['unanswered'].'&nbsp;'.F_formatPercentage($tu['unanswered_perc'], false).K_NEWLINE;
-			$mail->AltBody .= $l['w_questions_undisplayed'].': '.$tu['undisplayed'].'&nbsp;'.F_formatPercentage($tu['undisplayed_perc'], false).K_NEWLINE;
+			$mail->AltBody .= $l['w_score'].': '.F_formatFloat($tu['total_score']).' '.F_formatPercentage($tu['total_score_perc'], false).$passmsg.K_NEWLINE;
+			if ($display_mode > 0) {	
+				$mail->AltBody .= $l['w_answers_right'].': '.$tu['right'].'&nbsp;'.F_formatPercentage($tu['right_perc'], false).K_NEWLINE;
+				$mail->AltBody .= $l['w_answers_wrong'].': '.$tu['wrong'].'&nbsp;'.F_formatPercentage($tu['wrong_perc'], false).K_NEWLINE;
+				$mail->AltBody .= $l['w_questions_unanswered'].': '.$tu['unanswered'].'&nbsp;'.F_formatPercentage($tu['unanswered_perc'], false).K_NEWLINE;
+				$mail->AltBody .= $l['w_questions_undisplayed'].': '.$tu['undisplayed'].'&nbsp;'.F_formatPercentage($tu['undisplayed_perc'], false).K_NEWLINE;
+			}
 
 			if ($mode == 0) {
 				$pdfkey = getPasswordHash(date('Y').$tu['id'].K_RANDOM_SECURITY.$tu['test']['test_id'].date('m').$tu['user_id'], true);
 				// create PDF doc
 				$mode = 3;
-				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode='.$mode.'&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
-
+				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode='.$mode.'&diplay_mode='.$display_mode.'&show_graph='.$show_graph.'&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
 				// set PDF document file name
 				$doc_name = 'tcexam_report';
 				$doc_name .= '_'.$mode;
@@ -192,8 +195,8 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 			$email_num++;
 			$progresslog = ''.$email_num.'. '.$tu['user_email'].' ['.$tu['user_name'].']'; //output user data
 
-			if(!$mail->Send()) { //send email to user
-					$progresslog .= ' ['.$l['t_error'].']'; //display error message
+			if (!$mail->Send()) { //send email to user
+				$progresslog .= ' ['.$l['t_error'].']'; //display error message
 			}
 
 			$mail->ClearAddresses(); // Clear all addresses for next loop

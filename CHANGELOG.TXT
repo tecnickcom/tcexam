@@ -1,3 +1,6 @@
+12.1.016 (2014-01-27)
+	- Statistics options are now enforced also in various export formats.
+
 12.1.015 (2014-01-26)
 	- A bug on session function was fixed.
 	- A bug on mysql error reporting was fixed.
