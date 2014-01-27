@@ -169,8 +169,6 @@ switch($menu_mode) { // process submited data
 			header('Content-Disposition: attachment; filename='.$backup_file.';');
 			header('Content-Transfer-Encoding: binary');
 			header('Content-Length: '.filesize($file_to_download));
-			ob_clean();
-			flush();
 			echo file_get_contents($file_to_download);
 			exit;
 		}
