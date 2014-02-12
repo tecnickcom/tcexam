@@ -666,7 +666,7 @@ echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
 echo '<select name="answer_question_id" id="answer_question_id" size="0" onchange="document.getElementById(\'form_answereditor\').changecategory.value=1; document.getElementById(\'form_answereditor\').submit()" title="'.$l['h_question'].'">'.K_NEWLINE;
-$sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_subject_id,';
+$sql = 'SELECT * FROM '.K_TABLE_QUESTIONS.' WHERE question_subject_id='.intval($question_subject_id).' ORDER BY question_enabled DESC, question_position,';
 if (K_DATABASE_TYPE == 'ORACLE') {
 	$sql .= 'CAST(question_description as varchar2(100))';
 } else {
