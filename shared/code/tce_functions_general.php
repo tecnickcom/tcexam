@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2013-10-24
+// Last Update : 2014-02-03
 //
 // Description : General functions.
 //
@@ -135,15 +135,10 @@ function F_check_unique($table, $where, $fieldname=FALSE, $fieldid=FALSE) {
  * @return converted string
  */
 function unhtmlentities($text_to_convert, $preserve_tagsign=FALSE) {
-	$trans_tbl = get_html_translation_table(HTML_ENTITIES);
-	$trans_tbl = array_flip($trans_tbl);
 	if ($preserve_tagsign) {
-		$trans_tbl['&lt;'] = '&lt;'; //do not convert '<' equivalent
-		$trans_tbl['&gt;'] = '&gt;'; //do not convert '>' equivalent
+		$text_to_convert = preg_replace('/\&([gl])t;/', '&amp;\\1t;', $text_to_convert);
 	}
-	$return_text = strtr($text_to_convert, $trans_tbl);
-	$return_text = preg_replace('/\&\#([0-9]+)\;/me', "chr('\\1')", $return_text);
-	return $return_text;
+	return @html_entity_decode($text_to_convert, ENT_NOQUOTES | ENT_XHTML, 'UTF-8');
 }
 
 /**

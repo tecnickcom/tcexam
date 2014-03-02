@@ -1,3 +1,13 @@
+6.0.062 (2014-03-02)
+	- The method startLayer() now accepts the NULL value for the $print parameter to not set the print layer option.
+
+6.0.061 (2014-02-18)
+	- Bug #893 "Parsing error on streamed xref for secured pdf" was fixed.
+
+6.0.060 (2014-02-16)
+	- Bug #891 "Error on parsing hexa fields" was fixed.
+	- Bug #892 "Parsing pdf with trailing space at start" was fixed.
+
 6.0.059 (2014-02-03)
 	- SVG 'use' support was imporved.
 
