@@ -9,9 +9,9 @@ YOU MUST CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 Name: TCExam
 
-Version: 12.1.017
+Version: 12.1.018
 
-Release date: 2014-03-02
+Release date: 2014-03-04
 Author:
 	Nicola Asuni
 
@@ -135,7 +135,7 @@ Description:
 
 	* Internationalization (I18N): TCExam is language-independent through the
 	adoption of the UTF-8, Unicode and  TMX standards. It supports the
-	Right-To-Left mode and currently includes translations in 23 different
+	Right-To-Left mode and currently includes translations in 25 different
 	languages.
 
 	* Accessibility and Usability: TCExam Web interface conforms to the XHTML

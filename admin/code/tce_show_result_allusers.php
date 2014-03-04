@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-21
+// Last Update : 2014-03-04
 //
 // Description : Display test results summary for all users.
 //
@@ -373,7 +373,7 @@ if (isset($_REQUEST['sel'])) {
 
 	if (!empty($data['testuser'])) {
 		// check/uncheck all options
-		echo '<span dir="ltr">';
+		echo '<span dir="'.$l['a_meta_dir'].'">';
 		echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_resultallusers\').submit()" />';
 		echo '<label for="checkall1">'.$l['w_check_all'].'</label> ';
 		echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_resultallusers\').submit()" />';

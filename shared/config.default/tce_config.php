@@ -8,7 +8,7 @@
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2013:
+// (c) Copyright 2004-2014:
 //               Nicola Asuni
 //               Tecnick.com LTD
 //               UK
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '12.1.017');
+define ('K_TCEXAM_VERSION', '12.1.018');
 
 /**
  * 2-letters code for default language.
@@ -58,6 +58,7 @@ define ('K_AVAILABLE_LANGUAGES', serialize(array(
 	'el' => 'Greek',
 	'en' => 'English',
 	'es' => 'Spanish',
+	'fa' => 'Farsi',
 	'fr' => 'French',
 	'hi' => 'Hindi',
 	'he' => 'Hebrew',

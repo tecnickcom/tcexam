@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2013-09-05
+// Last Update : 2014-03-04
 //
 // Description : Functions to display and select registered user.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -190,7 +190,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
 			echo '<input type="hidden" name="rowsperpage" id="rowsperpage" value="'.$rowsperpage.'" />'.K_NEWLINE;
 
 			// check/uncheck all options
-			echo '<span dir="ltr">';
+			echo '<span dir="'.$l['a_meta_dir'].'">';
 			echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_userselect\').submit()" />';
 			echo '<label for="checkall1">'.$l['w_check_all'].'</label> ';
 			echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_userselect\').submit()" />';

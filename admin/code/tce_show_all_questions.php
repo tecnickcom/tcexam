@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2013-09-05
+// Last Update : 2014-03-04
 //
 // Description : Display all questions grouped by topic.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -512,7 +512,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 			echo '</ul>'.K_NEWLINE;
 			echo '<div class="row"><hr /></div>'.K_NEWLINE;
 			// check/uncheck all options
-			echo '<span dir="ltr">';
+			echo '<span dir="'.$l['a_meta_dir'].'">';
 			echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_selectquestions\').submit()" />';
 			echo '<label for="checkall1">'.$l['w_check_all'].'</label> ';
 			echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_selectquestions\').submit()" />';

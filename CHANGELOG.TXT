@@ -1,3 +1,7 @@
+12.1.018 (2014-03-04)
+	- New Farsi (Persian) language translation.
+	- Some LTR direction settings were fixed.
+
 12.1.017 (2014-03-02)
 	- The unhtmlentities function was changed for performances and PHP 5.5 compatibility.
 	- TCPDF library was updated.

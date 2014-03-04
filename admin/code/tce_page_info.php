@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2013-09-14
+// Last Update : 2014-03-04
 //
 // Description : Outputs TCExam information page.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -137,6 +137,7 @@ echo '<li>[DE] German : Oliver Kasch, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[EL] Greek : Kottas Alexandros</li>'.K_NEWLINE;
 echo '<li>[EN] English : Nicola Asuni</li>'.K_NEWLINE;
 echo '<li>[ES] Spanish : Carlos Alarcon, Maria del Rocio Peñas Serrano, Alejandra Ruiz</li>'.K_NEWLINE;
+echo '<li>[FA] Farsi (Persian): Mahmoud Saghaei</li>'.K_NEWLINE;
 echo '<li>[FR] French : Roger Koukerjinian, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[HI] Hindi : Mahesh K Bhandari, Shekhar K Maravi, Pradeep K Nayak</li>'.K_NEWLINE;
 echo '<li>[HE] Hebrew : Oron Peled</li>'.K_NEWLINE;
