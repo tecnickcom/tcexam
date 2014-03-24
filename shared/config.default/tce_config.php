@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2013-05-02
+// Last Update : 2014-03-24
 //
 // Description : Shared configuration file.
 //
@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '12.1.018');
+define ('K_TCEXAM_VERSION', '12.1.019');
 
 /**
  * 2-letters code for default language.
@@ -308,9 +308,8 @@ if (PHP_VERSION_ID < 50300) {
 // --- get 'post', 'get' and 'cookie' variables
 foreach ($_REQUEST as $postkey => $postvalue) {
 	if (($postkey{0} != '_') AND (!preg_match('/[A-Z]/', $postkey{0}))) {
-		if (!get_magic_quotes_gpc() AND !is_array($postvalue)) {
-			// emulate magic_quotes_gpc
-			$postvalue = addslashes($postvalue);
+		if (!function_exists('get_magic_quotes_gpc') OR !get_magic_quotes_gpc()) {
+			$postvalue = addSlashesArray($postvalue);
 			$_REQUEST[$postkey] = $postvalue;
 			if (isset($_GET[$postkey])) {
 				$_GET[$postkey] = $postvalue;
@@ -324,6 +323,21 @@ foreach ($_REQUEST as $postkey => $postvalue) {
 	}
 }
 
+/**
+ * Escape strings with backslashes before characters that need to be escaped.
+ * These characters are single quote ('), double quote ("), backslash (\) and NUL (the NULL byte). 
+ * @param $data (array|string) String or array to escape
+ * @return array|string
+ */
+function addSlashesArray($data) {
+	if (is_array($data)) {
+		return array_map('addSlashesArray', $data);
+	}
+	if (is_string($data)) {
+		return addslashes($data);
+	}
+	return $data;
+}
 //============================================================+
 // END OF FILE
 //============================================================+
