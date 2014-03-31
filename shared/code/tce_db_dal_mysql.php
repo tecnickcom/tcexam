@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2014-01-26
+// Last Update : 2014-03-31
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -69,7 +69,10 @@ function F_db_close($link_identifier) {
  * Returns the text of the error message from previous database operation
  * @return string error message.
  */
-function F_db_error($link_identifier=NULL) {
+function F_db_error($link_identifier = null) {
+	if (empty($link_identifier)) {
+		return '';
+	}
 	return '['.mysql_errno($link_identifier).']: '.mysql_error($link_identifier).'';
 
 }
