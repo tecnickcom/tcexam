@@ -1,3 +1,6 @@
+12.1.020 (2014-04-15)
+	- TCPDF library was updated.
+
 12.1.019 (2014-03-24)
 	- Emulating magic_quotes_gpc for PHP 5.5 compatibility.
 
