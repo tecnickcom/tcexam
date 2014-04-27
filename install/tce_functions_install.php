@@ -237,7 +237,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 
 	if(!defined('PHP_VERSION_ID')) {
 		$version = PHP_VERSION;
-		define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
+		define('PHP_VERSION_ID', (($version[0] * 10000) + ($version[2] * 100) + $version[4]));
 	}
 	if (PHP_VERSION_ID < 50300) {
 		@set_magic_quotes_runtime(0);

@@ -264,7 +264,7 @@ switch($menu_mode) {
 				// create a comma separated list of subjects IDs
 				$subjids = '';
 				foreach ($subject_id as $subid) {
-					if ($subid{0} == '#') {
+					if ($subid[0] == '#') {
 						// module ID
 						$modid = intval(substr($subid, 1));
 						$sqlsm = F_select_subjects_sql('subject_module_id='.$modid.'');

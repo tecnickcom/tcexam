@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', '12.1.020');
+define ('K_TCEXAM_VERSION', '12.1.021');
 
 /**
  * 2-letters code for default language.
@@ -295,7 +295,7 @@ ini_set('arg_separator.output', '&amp;');
 
 if(!defined('PHP_VERSION_ID')) {
 	$version = PHP_VERSION;
-	define('PHP_VERSION_ID', (($version{0} * 10000) + ($version{2} * 100) + $version{4}));
+	define('PHP_VERSION_ID', (($version[0] * 10000) + ($version[2] * 100) + $version[4]));
 }
 if (PHP_VERSION_ID < 50300) {
 	@set_magic_quotes_runtime(false); //disable magic quotes
@@ -307,7 +307,7 @@ if (PHP_VERSION_ID < 50300) {
 
 // --- get 'post', 'get' and 'cookie' variables
 foreach ($_REQUEST as $postkey => $postvalue) {
-	if (($postkey{0} != '_') AND (!preg_match('/[A-Z]/', $postkey{0}))) {
+	if (($postkey[0] != '_') AND (!preg_match('/[A-Z]/', $postkey[0]))) {
 		if (!function_exists('get_magic_quotes_gpc') OR !get_magic_quotes_gpc()) {
 			$postvalue = addSlashesArray($postvalue);
 			$_REQUEST[$postkey] = $postvalue;

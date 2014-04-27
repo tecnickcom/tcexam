@@ -158,7 +158,7 @@ function F_check_form_fields() {
  */
 function F_stripslashes_formfields() {
 	foreach ($_POST as $key => $value) {
-		if (($key{0} != '_') AND (is_string($value))) {
+		if (($key[0] != '_') AND (is_string($value))) {
 			$key = preg_replace('/[^a-z0-9_\[\]]/i', '', $key);
 			global $$key;
 			if (!isset($$key)) {
