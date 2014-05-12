@@ -1,3 +1,6 @@
+12.1.022 (2014-05-12)
+	- TCPDF library and fonts were updated.
+
 12.1.021 (2014-04-27)
 	- Deprecated curly braces substring syntax was replaced with square braces.
 	- TCPDF library was updated.
