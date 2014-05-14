@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hu
-// DATE: 2014-03-06 20:13:33
+// DATE: 2014-05-14 20:20:09
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -370,7 +370,7 @@ $tmx['w_tests_available']='elérhető tesztek';
 $tmx['w_max_score']='max pontszám';
 $tmx['w_text']='szöveg';
 $tmx['w_time']='idő';
-$tmx['w_time_begin']='kezdés idje';
+$tmx['w_time_begin']='kezdés ideje';
 $tmx['w_time_end']='befejezés ideje';
 $tmx['w_time_hhmmss']='hh:mm:ss';
 $tmx['w_time_mmss']='mm:ss';

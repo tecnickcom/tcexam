@@ -1,3 +1,6 @@
+12.1.023 (2014-05-14)
+	- Some language typos were fixed.
+
 12.1.022 (2014-05-12)
 	- TCPDF library and fonts were updated.
 

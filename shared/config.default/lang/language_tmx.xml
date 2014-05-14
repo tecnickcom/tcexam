@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
  <header datatype="PlainText"
-           changedate="20140306T201100Z"
+           changedate="20140514T202700Z"
            creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
@@ -28330,7 +28330,7 @@ Statistiques des questions et des réponses peuvent non seulement être consult�
     <seg>开始时间</seg>
    </tuv>
    <tuv xml:lang="HU">
-    <seg>kezdés idje</seg>
+    <seg>kezdés ideje</seg>
    </tuv>
    <tuv xml:lang="BR">
     <seg>Abertura</seg>

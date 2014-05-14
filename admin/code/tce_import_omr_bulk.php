@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_bulk.php
 // Begin       : 2012-07-31
-// Last Update : 2013-05-21
+// Last Update : 2014-05-14
 //
 // Description : Import in bulk test answers using OMR 
 //               (Optical Mark Recognition)
@@ -97,11 +97,11 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND file_exists($omrdir)) {
 									$omr_answers += $answers_page;
 									file_put_contents($logfile, 'OK'."\t".$answerfile."\t".'SUCCESSFULLY DECODED'."\n", FILE_APPEND);
 								} else {
-									F_print_error('ERROR', '[ORM ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
+									F_print_error('ERROR', '[OMR ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
 									file_put_contents($logfile, 'ERROR'."\t".$answerfile."\t".'UNABLE TO DECODE'."\n", FILE_APPEND);
 								}
 							} else {
-								F_print_error('ERROR', '[ORM ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
+								F_print_error('ERROR', '[OMR ANSWER SHEET '.$answerfile.'] '.$l['m_omr_wrong_answer_sheet']);
 								file_put_contents($logfile, 'ERROR'."\t".$answerfile."\t".'MISSING IMAGE FILE'."\n", FILE_APPEND);
 							}
 						}

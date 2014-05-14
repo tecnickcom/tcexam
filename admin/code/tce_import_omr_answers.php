@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_omr_answers.php
 // Begin       : 2011-05-20
-// Last Update : 2013-05-21
+// Last Update : 2014-05-14
 //
 // Description : Import test answers using OMR (Optical Mark Recognition)
 //               technique applied to images of scanned answer sheets.
@@ -86,10 +86,10 @@ if (isset($menu_mode) AND ($menu_mode == 'upload') AND ($user_id > 0) AND !empty
 				if (($answers_page !== false) AND !empty($answers_page)) {
 					$omr_answers += $answers_page;
 				} else {
-					F_print_error('ERROR', '[ORM ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
+					F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
 				}
 			} else {
-				F_print_error('ERROR', '[ORM ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
+				F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
 			}
 		}
 		// sort answers
