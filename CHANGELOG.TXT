@@ -1,3 +1,8 @@
+12.1.024 (2014-06-11)
+	- An unused paramer was removed.
+	- OMR scan was improved.
+	- TCPDF library was updated.
+
 12.1.023 (2014-05-14)
 	- Some language typos were fixed.
 

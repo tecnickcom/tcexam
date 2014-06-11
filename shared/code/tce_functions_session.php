@@ -216,10 +216,9 @@ function getNewSessionID() {
 /**
  * Hash password for Database storing.
  * @param $password (string) Password to hash.
- * @param $force (boolean) If true always use strong encryption.
  * @return string password hash
  */
-function getPasswordHash($password, $force=false) {
+function getPasswordHash($password) {
 	if (defined('K_STRONG_PASSWORD_ENCRYPTION') AND K_STRONG_PASSWORD_ENCRYPTION) {
 		$pswlen = strlen($password);
 		$salt = (2 * $pswlen);

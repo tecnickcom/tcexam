@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_omr.php
 // Begin       : 2011-05-17
-// Last Update : 2013-05-21
+// Last Update : 2014-06-11
 //
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -108,46 +108,17 @@ function F_decodeOMRPage($image) {
 		$img->cropImage($w, $w, 0, $y);
 		$img->setImagePage(0, 0, 0, 0);
 	}
-	// trim image
-	$imgtmp = clone $img;
-	$color = '#606060';
-	$img->blackthresholdImage("$color");
-	$img->whitethresholdImage("$color");
-	$img->trimImage(85);
-	$imgpage = $img->getImagePage();
-	$w = $img->getImageWidth();
-	$h = $img->getImageHeight();
-	$img = clone $imgtmp;
-	$imgtmp->clear();
-	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
-	$img->setImagePage(0, 0, 0, 0);
-	// increase contrast
 	$img->normalizeImage(Imagick::CHANNEL_ALL);
 	$img->enhanceImage();
 	$img->despeckleImage();
-	// straighten image
-	//$img->deskewImage(40);
-	$img->setImagePage(0, 0, 0, 0);
-	// trim image (remove white border)
-	$imgtmp = clone $img;
-	$color = '#606060';
-	$img->blackthresholdImage("$color");
-	$img->whitethresholdImage("$color");
+	$img->blackthresholdImage('#808080');
+	$img->whitethresholdImage('#808080');
 	$img->trimImage(85);
-	$imgpage = $img->getImagePage();
-	$w = $img->getImageWidth();
-	$h = $img->getImageHeight();
-	$img = clone $imgtmp;
-	$imgtmp->clear();
-	$img->cropImage($w, $h, $imgpage['x'], $imgpage['y']);
-	$img->setImagePage(0, 0, 0, 0);
-	// resize image
+	$img->deskewImage(15);
+	$img->trimImage(85);
 	$img->resizeImage(1028, 1052, Imagick::FILTER_CUBIC, 1);
 	$img->setImagePage(0, 0, 0, 0);
-	// binarize image
-	$color = '#c0c0c0';
-	$img->blackthresholdImage("$color");
-	$img->whitethresholdImage("$color");
+	//$img->writeImage(K_PATH_CACHE.'_DEBUG_OMR_.PNG'); // DEBUG
 	// scan block width
 	$blkw = 16;
 	// starting column in pixels

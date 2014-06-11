@@ -55,7 +55,7 @@ if (isset($_REQUEST['mode']) AND ($_REQUEST['mode'] > 0)) {
 	$mode = 0;
 }
 $onlytext = ($mode == 5);
-if (isset($_REQUEST['email']) AND ($_REQUEST['email'] != getPasswordHash(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id, true))) {
+if (isset($_REQUEST['email']) AND ($_REQUEST['email'] != getPasswordHash(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id))) {
 	F_print_error('ERROR', $l['m_authorization_denied']);
 	exit;
 }

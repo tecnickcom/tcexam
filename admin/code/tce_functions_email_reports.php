@@ -155,7 +155,7 @@ function F_send_report_emails($test_id, $user_id=0, $testuser_id=0, $group_id=0,
 			}
 
 			if ($mode == 0) {
-				$pdfkey = getPasswordHash(date('Y').$tu['id'].K_RANDOM_SECURITY.$tu['test']['test_id'].date('m').$tu['user_id'], true);
+				$pdfkey = getPasswordHash(date('Y').$tu['id'].K_RANDOM_SECURITY.$tu['test']['test_id'].date('m').$tu['user_id']);
 				// create PDF doc
 				$mode = 3;
 				$pdf_content = file_get_contents(K_PATH_HOST.K_PATH_TCEXAM.'admin/code/tce_pdf_results.php?mode='.$mode.'&diplay_mode='.$display_mode.'&show_graph='.$show_graph.'&test_id='.$tu['test']['test_id'].'&user_id='.$tu['user_id'].'&testuser_id='.$tu['id'].'&email='.$pdfkey);
