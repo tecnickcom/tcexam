@@ -1,4 +1,7 @@
-112.1.025 (2014-11-08)
+2.1.026 (2014-11-15)
+	- TCPDF library was updated.
+
+2.1.025 (2014-11-08)
 	- TCPDF library and fonts were updated.
 
 2.1.024 (2014-06-11)
