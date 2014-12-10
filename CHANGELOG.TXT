@@ -1,3 +1,6 @@
+2.1.29 (2014-12-10)
+	- TCPDF library was updated.
+
 2.1.28 (2014-12-09)
 	- TCPDF library was updated.
 
