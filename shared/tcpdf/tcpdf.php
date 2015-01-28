@@ -1,13 +1,13 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 6.2.0
+// Version     : 6.2.6
 // Begin       : 2002-08-03
-// Last Update : 2014-12-10
+// Last Update : 2015-01-28
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
-// Copyright (C) 2002-2014 Nicola Asuni - Tecnick.com LTD
+// Copyright (C) 2002-2015 Nicola Asuni - Tecnick.com LTD
 //
 // This file is part of TCPDF software library.
 //
@@ -46,7 +46,7 @@
 //  * methods to publish some XHTML + CSS code, Javascript and Forms;
 //  * images, graphic (geometric figures) and transformation methods;
 //  * supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)
-//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;
+//  * 1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extension, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;
 //  * JPEG and PNG ICC profiles, Grayscale, RGB, CMYK, Spot Colors and Transparencies;
 //  * automatic page header and footer management;
 //  * document encryption up to 256 bit and digital signature certifications;
@@ -81,7 +81,7 @@
  * <li>methods to publish some XHTML + CSS code, Javascript and Forms;</li>
  * <li>images, graphic (geometric figures) and transformation methods;
  * <li>supports JPEG, PNG and SVG images natively, all images supported by GD (GD, GD2, GD2PART, GIF, JPEG, PNG, BMP, XBM, XPM) and all images supported via ImagMagick (http://www.imagemagick.org/www/formats.html)</li>
- * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extention, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;</li>
+ * <li>1D and 2D barcodes: CODE 39, ANSI MH10.8M-1983, USD-3, 3 of 9, CODE 93, USS-93, Standard 2 of 5, Interleaved 2 of 5, CODE 128 A/B/C, 2 and 5 Digits UPC-Based Extension, EAN 8, EAN 13, UPC-A, UPC-E, MSI, POSTNET, PLANET, RMS4CC (Royal Mail 4-state Customer Code), CBC (Customer Bar Code), KIX (Klant index - Customer index), Intelligent Mail Barcode, Onecode, USPS-B-3200, CODABAR, CODE 11, PHARMACODE, PHARMACODE TWO-TRACKS, Datamatrix, QR-Code, PDF417;</li>
  * <li>JPEG and PNG ICC profiles, Grayscale, RGB, CMYK, Spot Colors and Transparencies;</li>
  * <li>automatic page header and footer management;</li>
  * <li>document encryption up to 256 bit and digital signature certifications;</li>
@@ -104,7 +104,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 6.2.0
+ * @version 6.2.6
  */
 
 // TCPDF configuration
@@ -128,7 +128,7 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 6.2.0
+ * @version 6.2.6
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF {
@@ -6384,7 +6384,7 @@ class TCPDF {
 				if ($firstblock AND $this->isRTLTextDir()) {
 					$tmpstr = $this->stringRightTrim($tmpstr);
 				}
-				// Skip newlines at the begining of a page or column
+				// Skip newlines at the beginning of a page or column
 				if (!empty($tmpstr) OR ($this->y < ($this->PageBreakTrigger - $row_height))) {
 					$this->Cell($w, $h, $tmpstr, 0, 1, $talign, $fill, $link, $stretch);
 				}
@@ -6819,10 +6819,10 @@ class TCPDF {
 		if ($this->state != 2) {
 			return;
 		}
-		if ($x === '') {
+		if (strcmp($x, '') === 0) {
 			$x = $this->x;
 		}
-		if ($y === '') {
+		if (strcmp($y, '') === 0) {
 			$y = $this->y;
 		}
 		// check page for no-write regions and adapt page margins if necessary
@@ -7540,6 +7540,7 @@ class TCPDF {
 	 * The method first calls Close() if necessary to terminate the document.
 	 * @param $name (string) The name of the file when saved. Note that special characters are removed and blanks characters are replaced with the underscore character.
 	 * @param $dest (string) Destination where to send the document. It can take one of the following values:<ul><li>I: send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.</li><li>D: send to the browser and force a file download with the name given by name.</li><li>F: save to a local server file with the name given by name.</li><li>S: return the document as a string (name is ignored).</li><li>FI: equivalent to F + I option</li><li>FD: equivalent to F + D option</li><li>E: return the document as base64 mime multi-part email attachment (RFC 2045)</li></ul>
+	 * @return string
 	 * @public
 	 * @since 1.0
 	 * @see Close()
@@ -7745,7 +7746,10 @@ class TCPDF {
 	public function _destroy($destroyall=false, $preserve_objcopy=false) {
 		if ($destroyall AND !$preserve_objcopy) {
 			// remove all temporary files
-			array_map('unlink', glob(K_PATH_CACHE.'__tcpdf_'.$this->file_id.'_*'));
+			$tmpfiles = glob(K_PATH_CACHE.'__tcpdf_'.$this->file_id.'_*');
+			if (!empty($tmpfiles)) {
+				array_map('unlink', $tmpfiles);
+			}
 		}
 		$preserve = array(
 			'file_id',
@@ -9533,13 +9537,13 @@ class TCPDF {
 		$dcdate = TCPDF_STATIC::getFormattedDate($this->doc_creation_timestamp);
 		$doccreationdate = substr($dcdate, 0, 4).'-'.substr($dcdate, 4, 2).'-'.substr($dcdate, 6, 2);
 		$doccreationdate .= 'T'.substr($dcdate, 8, 2).':'.substr($dcdate, 10, 2).':'.substr($dcdate, 12, 2);
-		$doccreationdate .= '+'.substr($dcdate, 15, 2).':'.substr($dcdate, 18, 2);
+		$doccreationdate .= substr($dcdate, 14, 3).':'.substr($dcdate, 18, 2);
 		$doccreationdate = TCPDF_STATIC::_escapeXML($doccreationdate);
 		// convert doc modification date format
 		$dmdate = TCPDF_STATIC::getFormattedDate($this->doc_modification_timestamp);
 		$docmoddate = substr($dmdate, 0, 4).'-'.substr($dmdate, 4, 2).'-'.substr($dmdate, 6, 2);
 		$docmoddate .= 'T'.substr($dmdate, 8, 2).':'.substr($dmdate, 10, 2).':'.substr($dmdate, 12, 2);
-		$docmoddate .= '+'.substr($dmdate, 15, 2).':'.substr($dmdate, 18, 2);
+		$docmoddate .= substr($dmdate, 14, 3).':'.substr($dmdate, 18, 2);
 		$docmoddate = TCPDF_STATIC::_escapeXML($docmoddate);
 		$xmp .= "\t\t".'<rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">'."\n";
 		$xmp .= "\t\t\t".'<xmp:CreateDate>'.$doccreationdate.'</xmp:CreateDate>'."\n";
@@ -10841,7 +10845,7 @@ class TCPDF {
 			if (!function_exists('openssl_pkcs7_encrypt')) {
 				$this->Error('Public-Key Security requires openssl library.');
 			}
-			// Set Public-Key filter (availabe are: Entrust.PPKEF, Adobe.PPKLite, Adobe.PubSec)
+			// Set Public-Key filter (available are: Entrust.PPKEF, Adobe.PPKLite, Adobe.PubSec)
 			$this->encryptdata['pubkey'] = true;
 			$this->encryptdata['Filter'] = 'Adobe.PubSec';
 			$this->encryptdata['StmF'] = 'DefaultCryptFilter';
@@ -14602,7 +14606,7 @@ class TCPDF {
 					$out .= "\n".'endobj';
 					$this->_out($out);
 				}
-				// set transparency fuctions
+				// set transparency functions
 				if ($grad['transparency']) {
 					$ft = $this->_newobj();
 					$out = '<<';
@@ -15587,7 +15591,7 @@ class TCPDF {
 				$maxh = $maxw * $ratioHW;
 			}
 		}
-		// set maximum dimesions
+		// set maximum dimensions
 		if ($w > $maxw) {
 			$w = $maxw;
 		}
@@ -18171,7 +18175,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 							// inherit column width
 							$cellw = 0;
 							for ($i = 0; $i < $colspan; ++$i) {
-								$cellw += $table_colwidths[($colid + $i)];
+								$cellw += (isset($table_colwidths[($colid + $i)]) ? $table_colwidths[($colid + $i)] : 0);
 							}
 						}
 						$cellw += (($colspan - 1) * $cellspacing['H']);
@@ -23359,7 +23363,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				foreach ($rawparams as $ck => $cp) {
 					$params[$ck] = $this->getHTMLUnitToUnits($cp, 0, $this->svgunit, false);
 					if (abs($params[$ck]) < $minlen) {
-						// aproximate little values to zero
+						// approximate little values to zero
 						$params[$ck] = 0;
 					}
 				}

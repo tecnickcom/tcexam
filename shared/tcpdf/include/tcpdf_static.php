@@ -1,13 +1,13 @@
 <?php
 //============================================================+
 // File name   : tcpdf_static.php
-// Version     : 1.1.0
+// Version     : 1.1.2
 // Begin       : 2002-08-03
-// Last Update : 2014-12-10
+// Last Update : 2015-01-24
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
-// Copyright (C) 2002-2014 Nicola Asuni - Tecnick.com LTD
+// Copyright (C) 2002-2015 Nicola Asuni - Tecnick.com LTD
 //
 // This file is part of TCPDF software library.
 //
@@ -38,7 +38,7 @@
  * This is a PHP class that contains static methods for the TCPDF class.<br>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 1.1.0
+ * @version 1.1.2
  */
 
 /**
@@ -46,7 +46,7 @@
  * Static methods used by the TCPDF class.
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 1.1.0
+ * @version 1.1.1
  * @author Nicola Asuni - info@tecnick.com
  */
 class TCPDF_STATIC {
@@ -55,7 +55,7 @@ class TCPDF_STATIC {
 	 * Current TCPDF version.
 	 * @private static
 	 */
-	private static $tcpdf_version = '6.1.2';
+	private static $tcpdf_version = '6.2.6';
 
 	/**
 	 * String alias for total number of pages.
@@ -844,7 +844,7 @@ class TCPDF_STATIC {
 	}
 
 	/**
-	 * Ouput input data and compress it if possible.
+	 * Output input data and compress it if possible.
 	 * @param $data (string) Data to output.
 	 * @param $length (int) Data length in bytes.
 	 * @since 5.9.086
@@ -1145,7 +1145,7 @@ class TCPDF_STATIC {
 	}
 
 	/**
-	 * Return the premission code used on encryption (P value).
+	 * Return the permission code used on encryption (P value).
 	 * @param $permissions (Array) the set of permissions (specify the ones you want to block).
 	 * @param $mode (int) encryption strength: 0 = RC4 40 bit; 1 = RC4 128 bit; 2 = AES 128 bit; 3 = AES 256 bit.
 	 * @since 5.0.005 (2010-05-12)
@@ -2435,7 +2435,7 @@ class TCPDF_STATIC {
 		if (strpos($filename, '://') === false) {
 			$filename = 'file://'.$filename;
 		} elseif (strpos($filename, 'file://') !== 0) {
-			$this->Error('Unsupported file protocol');
+			return false;
 		}
 		return fopen($filename, $mode);
 	}
@@ -2480,7 +2480,7 @@ class TCPDF_STATIC {
 		}
 		$urldata = @parse_url($url);
 		if (!isset($urldata['query']) OR (strlen($urldata['query']) <= 0)) {
-			if (strpos($url, K_PATH_URL) === 0) {
+			if (K_PATH_URL AND (strpos($url, K_PATH_URL) === 0)) {
 				// convert URL to full server path
 				$tmp = str_replace(K_PATH_URL, K_PATH_MAIN, $url);
 				$tmp = htmlspecialchars_decode(urldecode($tmp));

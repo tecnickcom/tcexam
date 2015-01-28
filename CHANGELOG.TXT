@@ -1,19 +1,22 @@
-2.1.29 (2014-12-10)
+12.1.30 (2015-01-28)
 	- TCPDF library was updated.
 
-2.1.28 (2014-12-09)
+12.1.29 (2014-12-10)
 	- TCPDF library was updated.
 
-2.1.027 (2014-12-07)
+12.1.28 (2014-12-09)
 	- TCPDF library was updated.
 
-2.1.026 (2014-11-15)
+12.1.027 (2014-12-07)
 	- TCPDF library was updated.
 
-2.1.025 (2014-11-08)
+12.1.026 (2014-11-15)
+	- TCPDF library was updated.
+
+12.1.025 (2014-11-08)
 	- TCPDF library and fonts were updated.
 
-2.1.024 (2014-06-11)
+12.1.024 (2014-06-11)
 	- An unused paramer was removed.
 	- OMR scan was improved.
 	- TCPDF library was updated.
