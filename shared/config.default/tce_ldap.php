@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_ldap.php
 // Begin       : 2008-03-28
-// Last Update : 2012-09-11
+// Last Update : 2015-03-27
 //
 // Description : Configuration file for LDAP
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2015  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -49,6 +49,18 @@ define ('K_LDAP_PORT', 389);
  * LDAP protocol version.
  */
 define ('K_LDAP_PROTOCOL_VERSION', 3);
+
+/**
+ * The DN for the ROOT Account
+ * Set to null for anonymous LDAP binding
+ */
+define ('K_LDAP_ROOT_DN', null);
+
+/**
+ * The password for the ROOT Account
+ * Set to null for anonymous LDAP binding
+ */
+define ('K_LDAP_ROOT_PASS', null);
 
 /**
  * The base DN for the directory.

@@ -9,9 +9,9 @@ YOU MUST CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 Name: TCExam
 
-Version: 12.1.30
+Version: 12.2.0
 
-Release date: 2015-01-28
+Release date: 2015-03-27
 Author:
 	Nicola Asuni
 
