@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2013-07-05
+// Last Update : 2015-03-27
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -50,7 +50,7 @@ $logged = false; // the user is not yet logged in
 
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($db, $PHPSESSID);
-$session_hash = getPasswordHash($PHPSESSID.getClientFingerprint());
+$session_hash = getPasswordHash($PHPSESSID);
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
 	if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
@@ -121,44 +121,48 @@ $altusr = F_altLogin();
 
 // --- check if login information has been submitted
 if (isset($_POST['logaction']) AND ($_POST['logaction'] == 'login') AND isset($_POST['xuser_name']) AND isset($_POST['xuser_password'])) {
-	// check login attempt from the current client device to avoid brute force attack
-	$bruteforce = true;
-	$fingerprintkey = md5(getClientFingerprint());
-	$sqlt = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$fingerprintkey.'\' LIMIT 1';
-	if ($rt = F_db_query($sqlt, $db)) {
-		if ($mt = F_db_fetch_array($rt)) {
-			// check the expiration time
-			if (strtotime($mt['cpsession_expiry']) < time()) {
+	$bruteforce = false;
+	if (K_BRUTE_FORCE_DELAY_RATIO > 0) {
+		// check login attempt from the current client device to avoid brute force attack
+		$bruteforce = true;
+		$fingerprintkey = md5(getClientFingerprint());
+		// we are using another entry in the session table to keep track of the login attempts
+		$sqlt = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$fingerprintkey.'\' LIMIT 1';
+		if ($rt = F_db_query($sqlt, $db)) {
+			if ($mt = F_db_fetch_array($rt)) {
+				// check the expiration time
+				if (strtotime($mt['cpsession_expiry']) < time()) {
+					$bruteforce = false;
+				}
+				// update wait time
+				$wait = intval($mt['cpsession_data']);
+				if ($wait < K_SECONDS_IN_HOUR) {
+					$wait *= K_BRUTE_FORCE_DELAY_RATIO;
+				}
+				$sqlup = 'UPDATE '.K_TABLE_SESSIONS.' SET
+					cpsession_expiry=\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
+					cpsession_data=\''.$wait.'\'
+					WHERE cpsession_id=\''.$fingerprintkey.'\'';
+				if (!F_db_query($sqlup, $db)) {
+					F_display_db_error();
+				}
+			} else {
+				// add new record
+				$wait = 1; // number of seconds to wait for the second attempt
+				$sqls = 'INSERT INTO '.K_TABLE_SESSIONS.' (
+					cpsession_id,
+					cpsession_expiry,
+					cpsession_data
+					) VALUES (
+					\''.$fingerprintkey.'\',
+					\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
+					\''.$wait.'\'
+					)';
+				if (!F_db_query($sqls, $db)) {
+					F_display_db_error();
+				}
 				$bruteforce = false;
 			}
-			// update wait time
-			$wait = intval($mt['cpsession_data']);
-			if ($wait < K_SECONDS_IN_HOUR) {
-				$wait *= K_BRUTE_FORCE_DELAY_RATIO;
-			}
-			$sqlup = 'UPDATE '.K_TABLE_SESSIONS.' SET
-				cpsession_expiry=\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
-				cpsession_data=\''.$wait.'\'
-				WHERE cpsession_id=\''.$fingerprintkey.'\'';
-			if (!F_db_query($sqlup, $db)) {
-				F_display_db_error();
-			}
-		} else {
-			// add new record
-			$wait = 1; // number of seconds to wait for the second attempt
-			$sqls = 'INSERT INTO '.K_TABLE_SESSIONS.' (
-				cpsession_id,
-				cpsession_expiry,
-				cpsession_data
-				) VALUES (
-				\''.$fingerprintkey.'\',
-				\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
-				\''.$wait.'\'
-				)';
-			if (!F_db_query($sqls, $db)) {
-				F_display_db_error();
-			}
-			$bruteforce = false;
 		}
 	}
 	if ($bruteforce) {

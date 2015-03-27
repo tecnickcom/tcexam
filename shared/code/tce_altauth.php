@@ -208,13 +208,13 @@ function F_altLogin() {
 				$ldapusername = $_POST['xuser_name'];
 				$ldappassword = $_POST['xuser_password'];
 			}
-			if ($lbind = ldap_bind($ldapconn, $ldapusername, $ldappassword)) {
+			if ($lbind = ldap_bind($ldapconn, K_LDAP_ROOT_DN, K_LDAP_ROOT_PASS)) {
 				// Search user on LDAP tree
 				sort($ldap_attr);
 				$ldap_filter = str_replace('#USERNAME#', $ldapusername, K_LDAP_FILTER);
 				if ($search = @ldap_search($ldapconn, K_LDAP_BASE_DN, $ldap_filter, $ldap_attr)) {
 					if ($rdn = @ldap_get_entries($ldapconn, $search)) {
-						if (@ldap_bind($ldapconn, $rdn['dn'], $_POST['xuser_password'])) {
+						if (@ldap_bind($ldapconn, $rdn[0]['dn'], $ldappassword)) {
 							@ldap_unbind($ldapconn);
 							$usr = array();
 							foreach ($ldap_attr as $k => $v) {
