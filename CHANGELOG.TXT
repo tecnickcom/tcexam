@@ -1,3 +1,6 @@
+12.2.2 (2015-03-29)
+	- LDAP Authentication bug was fixed.
+
 12.2.1 (2015-03-27)
 	- Do not check for brute-forcing login attempts if K_BRUTE_FORCE_DELAY_RATIO is set to zero.
 	- The LDAP config now conains 2 new settings for the root DN and password used during binding.

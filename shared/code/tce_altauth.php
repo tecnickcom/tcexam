@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2013-03-27
+// Last Update : 2015-03-29
 //
 // Description : Check user authorization against alternative
 //               systems (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -210,16 +210,23 @@ function F_altLogin() {
 			}
 			if ($lbind = ldap_bind($ldapconn, K_LDAP_ROOT_DN, K_LDAP_ROOT_PASS)) {
 				// Search user on LDAP tree
-				sort($ldap_attr);
 				$ldap_filter = str_replace('#USERNAME#', $ldapusername, K_LDAP_FILTER);
-				if ($search = @ldap_search($ldapconn, K_LDAP_BASE_DN, $ldap_filter, $ldap_attr)) {
+				$sorted_ldap_attr = $ldap_attr;
+				sort($sorted_ldap_attr);
+				if ($search = @ldap_search($ldapconn, K_LDAP_BASE_DN, $ldap_filter, $sorted_ldap_attr)) {
 					if ($rdn = @ldap_get_entries($ldapconn, $search)) {
-						if (@ldap_bind($ldapconn, $rdn[0]['dn'], $ldappassword)) {
+						//var_export($rdn); // uncomment this to see the structure of the entries
+						if (!empty($rdn[0]['dn']) && @ldap_bind($ldapconn, $rdn[0]['dn'], $ldappassword)) {
 							@ldap_unbind($ldapconn);
 							$usr = array();
 							foreach ($ldap_attr as $k => $v) {
-								if ((!empty($v)) AND isset($rdn[$v])) {
-									$usr[$k] = $rdn[$v];
+								if ((!empty($v)) AND isset($rdn[0][$v])) {
+									if (is_array($rdn[0][$v])) {
+										// get the first entry in the array
+										$usr[$k] = $rdn[0][$v][0];
+									} else {
+										$usr[$k] = $rdn[0][$v];
+									}
 								} else {
 									$usr[$k] = '';
 								}
