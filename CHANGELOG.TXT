@@ -1,3 +1,6 @@
+12.2.3 (2015-04-28)
+	- TCPDF Library was updated.
+
 12.2.2 (2015-03-29)
 	- LDAP Authentication bug was fixed.
 
