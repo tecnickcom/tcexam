@@ -1,3 +1,6 @@
+12.2.4 (2015-04-29)
+	- TCPDF Library was updated.
+
 12.2.3 (2015-04-28)
 	- TCPDF Library was updated.
 
