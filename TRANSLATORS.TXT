@@ -5,20 +5,20 @@ We are looking for volunteer translators to help translate TCExam from English t
 
 The TCExam translation process is the following:
 
-1. download TCExam from http://www.sourceforge.net/projects/tcexam
+1. download TCExam from https://github.com/tecnickcom/tcexam
 
 2. uncompress the downloaded archive on your web root if you want install it or wherever you want if you only want to translate.
 
-3. locate the following file: /shared/config/lang/language_tmx.xml
+3. locate the following file: /shared/config.default/lang/language_tmx.xml
 
-4. the "language_tmx.xml" is an XML file in TMX standard and could be edited either manually or using a compatible CAT Software (Computer Aided Translation, check http://www.lisa.org/standards/tmx/ for more information).
+4. the "language_tmx.xml" is an XML file in TMX standard and could be edited either manually or using a compatible CAT Software (Computer Aided Translation, check http://en.wikipedia.org/wiki/Translation_Memory_eXchange for more information).
 
 5. As a simpler alternative you can directly translate one of the language files located on "/cache/lang" folder.
 
 
 --- NOTES ---
 
-Please respect the original uppercase/lowercase and the lenght of the sentences.
+Please respect the original uppercase/lowercase and the length of the sentences.
 
 TUID IDENTIFIERS PREFIXES:
 
@@ -42,12 +42,12 @@ a_meta_language is the HTML code of the selected language (en=english, it=italia
 
 XHTML CODE:
 
-Some fields includes XHTML code. The "<" and ">" symbols are escaped using "&lg;" and "&gt;".
+Some fields include XHTML code. The "<" and ">" symbols are escaped using "&lg;" and "&gt;".
 
 
 TESTING:
 
-If you wish to test your genereted XML file, you must install TCExam and delete the language_tmx_XX.php files on "/cache/lang" folder.
+If you wish to test your generated XML file, you must install TCExam and delete the language_tmx_XX.php files on "/cache/lang" folder.
 
 ----------
 
