@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: it
-// DATE: 2014-05-14 20:20:10
+// DATE: 2015-06-19 16:46:40
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -594,7 +594,7 @@ $tmx['h_answers_order_mode']='modilatità di ordinamento delle risposte';
 $tmx['w_otpkey']='OTP key';
 $tmx['h_otpkey']='codice segreto One Time Password';
 $tmx['w_otp_qrcode']='QR-Code OTP';
-$tmx['m_otp_qrcode']='TCExam utilizza un sistema di verifica a due fasi che richiede l\'inserimento di due diversi codici per accedere al sistema. Il primo codice è la password standard di TCExam, il secondo è un codice generato dal tuo smartphone. Questo sistema previene l\'accesso al tuo account da coloro che conoscono solo la password o dispongono unicamente del tuo smartphone. Questo sistema richiede l\'utilizzo dello smartphone ogni qual volta si vuole accedere al proprio account TCExam.<br /><br />Per utilizzare questo sistema è necessario scaricare ed installare sul proprio smartphone l\'applicazione <a href="https://support.google.com/a/bin/answer.py?hl=en&hlrm=en&answer=1037451">Google Authenticator</a>. Quando l\'applicazione è stata installata potete utilizzare il codice seguente o scansionare il QR-Code:';
+$tmx['m_otp_qrcode']='TCExam utilizza un sistema di verifica a due fasi che richiede l\'inserimento di due diversi codici per accedere al sistema. Il primo codice è la password standard di TCExam, il secondo è un codice generato dal tuo smartphone. Questo sistema previene l\'accesso al tuo account da coloro che conoscono solo la password o dispongono unicamente del tuo smartphone. Questo sistema richiede l\'utilizzo dello smartphone ogni qual volta si vuole accedere al proprio account TCExam.<br /><br />Per utilizzare questo sistema è necessario scaricare ed installare sul proprio smartphone l\'applicazione <a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator">Google Authenticator</a>. Quando l\'applicazione è stata installata potete utilizzare il codice seguente o scansionare il QR-Code:';
 $tmx['w_otpcode']='codice OTP';
 $tmx['h_otpcode']='One Time Password : codice generato utlizzando l\'applicazione del vostro smartphone';
 $tmx['m_login_brute_force']='Stai tentando di accedere troppe volte e troppo velocemente, attendi il seguente numero di secondi prima di ritentare:';

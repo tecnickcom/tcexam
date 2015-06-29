@@ -1,3 +1,7 @@
+12.2.5 (2015-06-18)
+	- TCPDF Library was updated.
+	- German translation was updated.
+
 12.2.4 (2015-04-29)
 	- TCPDF Library was updated.
 
