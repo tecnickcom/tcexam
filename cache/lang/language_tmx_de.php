@@ -376,11 +376,7 @@ $tmx['w_score_wrong']='Punkte für falsche Antwort';
 $tmx['w_search']='suchen';
 $tmx['w_select']='auswählen';
 $tmx['w_selection']='Auswahl';
-<<<<<<< HEAD
-$tmx['w_show']='zeigt an';
-=======
 $tmx['w_show']='anzeigen';
->>>>>>> upstream/master
 $tmx['w_start']='Anfang';
 $tmx['w_stats']='Statistiken';
 $tmx['w_street']='Adresse';
@@ -448,10 +444,6 @@ $tmx['w_fullscreen']='Vollbild';
 $tmx['h_question_fullscreen']='Vollbildanzeige für diese Frage aktivieren/deaktivieren';
 $tmx['h_position']='richtige Anzeigefolge';
 $tmx['w_order']='Reihenfolge';
-<<<<<<< HEAD
-$tmx['w_selection']='Auswahl';
-=======
->>>>>>> upstream/master
 $tmx['w_test_score_threshold']='erforderliche Punktzahl';
 $tmx['h_test_score_threshold']='minimal erforderliche Punktzahl zum Bestehen der Prüfung';
 $tmx['w_mcma_radio']='Radiobuttons für MCMA';
@@ -562,10 +554,6 @@ $tmx['h_public_link']='Öffentlicher Bereich';
 $tmx['w_public']='Öffentlich';
 $tmx['t_test_list']='Test-Liste';
 $tmx['w_action']='Aktion';
-<<<<<<< HEAD
-$tmx['w_show']='anzeigen';
-=======
->>>>>>> upstream/master
 $tmx['w_hide']='verbergen';
 $tmx['w_change_dir']='Ordner wechseln';
 $tmx['w_size']='Größe';
@@ -623,11 +611,7 @@ $tmx['h_answers_order_mode']='Sortiermethode für Antworten';
 $tmx['w_otpkey']='OTP-Schlüssel';
 $tmx['h_otpkey']='»One Time Password« geheimer Schlüssel';
 $tmx['w_otp_qrcode']='OTP QR-Code';
-<<<<<<< HEAD
-$tmx['m_otp_qrcode']='TCExam benutzt einen zweistufigen Verifizierungsprozess, der die Eingabe von zwei Teilen an Information benötigt, bevor Sie auf das System zugreifen können. Die benötigte Information besteht aus dem Standardpasswort von TCExam und dem Verifizierungscode, der von Ihrem Smartphone generiert wird. Auf diese Weise besteht kein Zugriff auf Ihr Benutzerkonto für Hacker, die entweder nur in den Besitz des Passworts oder nur des Telefons gelangt sind. Allerdings bedeutet dies auch, dass Sie Ihr Telefon immer dabei haben müssen, wenn Sie sich über Ihr TCExam-Konto anmelden wollen.<br /><br />Sie müssen dazu den <a href="https://support.google.com/a/bin/answer.py?hl=de&hlrm=en&answer=1037451">Google Authenticator</a> herunterladen und auf Ihrem Smartphone installieren. Sobald Sie die App heruntergeladen und installiert haben, können Sie folgenden Code verwenden, oder den QR-Code scannen:';
-=======
 $tmx['m_otp_qrcode']='TCExam benutzt einen zweistufigen Verifizierungsprozess, der die Eingabe von zwei Teilen an Information benötigt, bevor Sie auf das System zugreifen können. Die benötigte Information besteht aus dem Standardpasswort von TCExam und dem Verifizierungscode, der von Ihrem Smartphone generiert wird. Auf diese Weise besteht kein Zugriff auf Ihr Benutzerkonto für Hacker, die entweder nur in den Besitz des Passworts oder nur des Telefons gelangt sind. Allerdings bedeutet dies auch, dass Sie Ihr Telefon immer dabei haben müssen, wenn Sie sich über Ihr TCExam-Konto anmelden wollen.<br /><br />Sie müssen dazu den <a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator">Google Authenticator</a> herunterladen und auf Ihrem Smartphone installieren. Sobald Sie die App heruntergeladen und installiert haben, können Sie folgenden Code verwenden, oder den QR-Code scannen:';
->>>>>>> upstream/master
 $tmx['w_otpcode']='OTP-Code';
 $tmx['h_otpcode']='Mittels Smartphone-Applikation generierter »One Time Password«-Code';
 $tmx['m_login_brute_force']='Sie haben zu oft und zu schnell versucht, sich anzumelden. Bitte warten Sie folgende Anzahl an Sekunden bis zum nächsten Versuch:';
