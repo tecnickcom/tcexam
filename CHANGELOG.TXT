@@ -1,3 +1,7 @@
+12.2.6 (2015-10-26)
+	- README in markdown format.
+	- Updated license terms.
+
 12.2.5 (2015-06-18)
 	- TCPDF Library was updated.
 	- German translation was updated.
