@@ -8,8 +8,8 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 ------------------------------------------------------
 
 * Name: TCExam
-* Version: 12.2.6
-* Release date: 2015-10-26
+* Version: 13.0.0
+* Release date: 2015-12-12
 * Author: Nicola Asuni
 * Copyright (c) 2004-2015:
 	* Nicola Asuni
@@ -28,6 +28,10 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 * Software License:
 	* Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
+
+
+[![Donate via PayPal](https://img.shields.io/badge/donate-paypal-87ceeb.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20tcexam%20project)
+*Please consider supporting this project by making a donation via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20tcexam%20project)*
 
 
 ## Third-party Software

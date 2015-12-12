@@ -78,7 +78,7 @@ if (K_LANGUAGE_SELECTOR AND (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
 }
 
 echo '<div class="minibutton" dir="ltr">';
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2014 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com LTD</a></span>';
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. '.K_TCEXAM_VERSION.' - Copyright &copy; 2004-2015 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com LTD</a></span>';
 echo '</div>'.K_NEWLINE;
 
 // Display W3C logos
@@ -87,8 +87,6 @@ echo '<a href="http://validator.w3.org/check?uri='.K_PATH_HOST.$_SERVER['SCRIPT_
 echo '<a href="http://jigsaw.w3.org/css-validator/" class="minibutton" title="This document validates as CSS!">W3C <span>CSS 2.0</span></a> <span style="color:white;">|</span>'.K_NEWLINE;
 echo '<a href="http://www.w3.org/WAI/WCAG1AAA-Conformance" class="minibutton" title="Explanation of Level Triple-A Conformance">W3C <span>WAI-AAA</span></a>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
-
-
 
 //============================================================+
 // END OF FILE

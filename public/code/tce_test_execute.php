@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2012-12-04
+// Last Update : 2015-12-12
 //
 // Description : execute a specific test
 //
@@ -43,30 +43,13 @@ $formname = 'testform';
 
 $test_id = 0;
 $testlog_id = 0;
-$answer_id = 0;
+$answpos = 0;
 $answer_text = '';
 $test_comment = '';
+$reaction_time = 0;
 
 if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 	$test_id = intval($_REQUEST['testid']);
-	if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1)) {
-		// mark previous test attempts as repeated
-		F_repeatTest($test_id);
-	}
-	if (isset($_REQUEST['testlogid']) AND ($_REQUEST['testlogid'] > 0)) {
-		$testlog_id = intval($_REQUEST['testlogid']);
-	}
-	if (isset($_REQUEST['answerid']) AND ($_REQUEST['answerid'] > 0)) {
-		$answer_id = $_REQUEST['answerid'];
-	}
-	if (isset($_REQUEST['answertext']) AND (!empty($_REQUEST['answertext']))) {
-		$answer_text = $_REQUEST['answertext'];
-	}
-	if (isset($_REQUEST['reaction_time']) AND ($_REQUEST['reaction_time'] > 0)) {
-		$reaction_time = intval($_REQUEST['reaction_time']);
-	} else {
-		$reaction_time = 0;
-	}
 	// check for test password
 	$tph = F_getTestPassword($test_id);
 	if (!empty($tph) AND ($_SESSION['session_test_login'] != getPasswordHash($tph.$test_id.$_SESSION['session_user_id'].$_SESSION['session_user_ip']))) {
@@ -76,13 +59,30 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		require_once('../code/tce_page_footer.php');
 		exit(); //break page here
 	}
+	if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1)) {
+		// mark previous test attempts as repeated
+		F_repeatTest($test_id);
+	}
 
 	if (F_executeTest($test_id)) {
 
-		if (isset($_REQUEST['forceterminate']) AND (!empty($_REQUEST['forceterminate']))) {
+		if (!empty($_REQUEST['testlogid'])) {
+			$testlog_id = intval($_REQUEST['testlogid']);
+		}
+		if (!empty($_REQUEST['answpos'])) {
+			$answpos = intval($_REQUEST['answpos']);
+		}
+		if (!empty($_REQUEST['answertext'])) {
+			$answer_text = $_REQUEST['answertext'];
+		}
+		if (!empty($_REQUEST['reaction_time'])) {
+			$reaction_time = intval($_REQUEST['reaction_time']);
+		}
+
+		if (!empty($_REQUEST['forceterminate']) && F_isRightTestlogUser($test_id, $testlog_id)) {
 			if ($_REQUEST['forceterminate'] == 'lasttimedquestion') {
 				// update last question
-				F_updateQuestionLog($test_id, $testlog_id, $answer_id, $answer_text, $reaction_time);
+				F_updateQuestionLog($test_id, $testlog_id, $answpos, $answer_text, $reaction_time);
 			}
 			// terminate the test (lock the test to status=4)
 			F_terminateUserTest($test_id);
@@ -113,7 +113,7 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 		if (!isset($_REQUEST['terminationform'])) {
 			if (F_isRightTestlogUser($test_id, $testlog_id)) {
 				// the form has been submitted, update testlogid data
-				F_updateQuestionLog($test_id, $testlog_id, $answer_id, $answer_text, $reaction_time);
+				F_updateQuestionLog($test_id, $testlog_id, $answpos, $answer_text, $reaction_time);
 
 				// update user's test comment
 				if (isset($_REQUEST['testcomment']) AND (!empty($_REQUEST['testcomment']))) {

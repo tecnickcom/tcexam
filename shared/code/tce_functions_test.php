@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2013-08-23
+// Last Update : 2015-12-12
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -1319,12 +1319,12 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
  * Updates question log data (register user's answers and calculate scores).
  * @param $test_id (int) test ID
  * @param $testlog_id (int) test log ID
- * @param $answer_id (array) answer_id form field value
+ * @param $answpos int Answer position
  * @param $answer_text (string) answer text
  * @param $reaction_time (int) reaction time in milliseconds
  * @return boolean TRUE in case of success, FALSE otherwise
  */
-function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='', $reaction_time=0) {
+function F_updateQuestionLog($test_id, $testlog_id, $answpos=0, $answer_text='', $reaction_time=0) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
 	$question_id = 0; // question ID
@@ -1337,6 +1337,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 	$test_id = intval($test_id);
 	$testlog_id = intval($testlog_id);
 	$unanswered = true;
+	$answer_id = F_getAnswerIdFromPosition($testlog_id, $answpos);
 	// get test data
 	$testdata = F_getTestData($test_id);
 	// get question information
@@ -1446,7 +1447,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 					}
 					case 4: {
 						// ORDER
-						if (isset($answer_id[$m['logansw_answer_id']]) AND ($answer_id[$m['logansw_answer_id']] > 0)) {
+						if (!empty($answer_id[$m['logansw_answer_id']])) {
 							// selected
 							$unanswered = false;
 							$answer_id[$m['logansw_answer_id']] = intval($answer_id[$m['logansw_answer_id']]);
@@ -1542,6 +1543,33 @@ function F_updateQuestionLog($test_id, $testlog_id, $answer_id=0, $answer_text='
 		}
 	}
 	return true;
+}
+
+/**
+ * Returns the answer ID from position
+ * @param $testlog_id (int) Test Log ID
+ * @param $answpos (int) Answer position (order in wich it is displayed)
+ * @return int answer ID
+ */
+function F_getAnswerIdFromPosition($testlog_id, $answpos) {
+	require_once('../config/tce_config.php');
+	global $db, $l;
+	if ($answpos == 0) {
+		return 0;
+	}
+	$sql = 'SELECT logansw_answer_id'
+		.' FROM '.K_TABLE_LOG_ANSWER
+		.' WHERE logansw_testlog_id='.intval($testlog_id)
+		.' AND logansw_order='.intval($answpos)
+		.' LIMIT 1';
+	if ($r = F_db_query($sql, $db)) {
+		if ($m = F_db_fetch_array($r)) {
+			return intval($m['logansw_answer_id']);
+		}
+	} else {
+		F_display_db_error();
+	}
+	return 0;
 }
 
 /**
@@ -1681,11 +1709,12 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 					ORDER BY logansw_order';
 				if ($ra = F_db_query($sqla, $db)) {
 					while ($ma = F_db_fetch_array($ra)) {
-						$str .= "<li>";
+						$anspos = $ma['logansw_order'];
+						$str .= '<li>';
 						switch ($m['question_type']) {
 							case 1: {
 								// MCSA - single-answer question
-								$str .= '<input type="radio" name="answerid" id="answerid_'.$ma['answer_id'].'" value="'.$ma['answer_id'].'"';
+								$str .= '<input type="radio" name="answpos" id="answpos_'.$anspos.'" value="'.$anspos.'"';
 								if (intval($ma['logansw_selected']) == 1) {
 									$str .= ' checked="checked"';
 									$checked = true;
@@ -1694,11 +1723,11 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 									$str .= " onclick=\"var submittime=new Date();document.getElementById('reaction_time').value=submittime.getTime()-document.getElementById('display_time').value;document.getElementById('autonext').value=1;document.getElementById('".$formname."').submit();\"";
 								}
 								$str .= ' />&nbsp;';
-								$str .= '<label for="answerid_'.$ma['answer_id'].'">';
+								$str .= '<label for="answpos_'.$anspos.'">';
 								$str .= F_decode_tcecode($ma['answer_description']);
 								$str .= '</label>';
 								if ($ma['answer_keyboard_key'] > 0) {
-									$aswkeys[$ma['answer_keyboard_key']] = 'answerid_'.$ma['answer_id'];
+									$aswkeys[$ma['answer_keyboard_key']] = 'answpos_'.$anspos;
 								}
 								break;
 							}
@@ -1709,8 +1738,8 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 
 									// no-answer option
 									$str .= '<span style="background-color:#DDDDDD;"'.$noanswer_hidden.'>&nbsp;';
-									$str .= '<label for="answerid_'.$ma['answer_id'].'u" title="'.$l['m_unanswered'].'">'.$l['w_unanswered_acronym'].'</label>';
-									$str .= '<input type="radio"'.$noanswer_disabled.' name="answerid['.$ma['answer_id'].']" id="answerid_'.$ma['answer_id'].'u" value="-1" title="'.$l['m_unanswered'].'"';
+									$str .= '<label for="answpos_'.$anspos.'u" title="'.$l['m_unanswered'].'">'.$l['w_unanswered_acronym'].'</label>';
+									$str .= '<input type="radio"'.$noanswer_disabled.' name="answpos['.$anspos.']" id="answpos_'.$anspos.'u" value="-1" title="'.$l['m_unanswered'].'"';
 									if (intval($ma['logansw_selected']) == -1) {
 										$str .= ' checked="checked"';
 									}
@@ -1719,8 +1748,8 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 
 									// false option
 									$str .= '<span style="background-color:#FFBBBB;">&nbsp;';
-									$str .= '<label for="answerid_'.$ma['answer_id'].'f" title="'.$l['w_false'].'">'.$l['w_false_acronym'].'</label>';
-									$str .= '<input type="radio" name="answerid['.$ma['answer_id'].']" id="answerid_'.$ma['answer_id'].'f" value="0"';
+									$str .= '<label for="answpos_'.$anspos.'f" title="'.$l['w_false'].'">'.$l['w_false_acronym'].'</label>';
+									$str .= '<input type="radio" name="answpos['.$anspos.']" id="answpos_'.$anspos.'f" value="0"';
 									if (intval($ma['logansw_selected']) == 0) {
 										$str .= ' checked="checked"';
 									}
@@ -1729,27 +1758,27 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 
 									// true option
 									$str .= '<span style="background-color:#BBFFBB;">&nbsp;';
-									$str .= '<label for="answerid_'.$ma['answer_id'].'t" title="'.$l['w_true'].'">'.$l['w_true_acronym'].'</label>';
-									$str .= '<input type="radio" name="answerid['.$ma['answer_id'].']" id="answerid_'.$ma['answer_id'].'t" value="1"';
+									$str .= '<label for="answpos_'.$anspos.'t" title="'.$l['w_true'].'">'.$l['w_true_acronym'].'</label>';
+									$str .= '<input type="radio" name="answpos['.$anspos.']" id="answpos_'.$anspos.'t" value="1"';
 									if (intval($ma['logansw_selected']) == 1) {
 										$str .= ' checked="checked"';
 									}
 									$str .= ' />';
 									$str .= '</span>&nbsp;';
 									if ($ma['answer_keyboard_key'] > 0) {
-										$aswkeys[] = array($ma['answer_keyboard_key'] => 'answerid_'.$ma['answer_id'].'t');
+										$aswkeys[] = array($ma['answer_keyboard_key'] => 'answpos_'.$anspos.'t');
 									}
 
 									$str .= F_decode_tcecode($ma['answer_description']);
 								} else {
 									// checkbox
-									$str .= '<input type="checkbox" name="answerid['.$ma['answer_id'].']" id="answerid_'.$ma['answer_id'].'" value="1"';
+									$str .= '<input type="checkbox" name="answpos['.$anspos.']" id="answpos_'.$anspos.'" value="1"';
 									if (intval($ma['logansw_selected']) == 1) {
 										$str .= ' checked="checked"';
 										$checked = true;
 									}
 									$str .= ' />&nbsp;';
-									$str .= '<label for="answerid_'.$ma['answer_id'].'">';
+									$str .= '<label for="answpos_'.$anspos.'">';
 									$str .= F_decode_tcecode($ma['answer_description']);
 									$str .= '</label>';
 								}
@@ -1757,7 +1786,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 							}
 							case 4: {
 								// ORDER - ordering questions
-								$str .= '<select name="answerid['.$ma['answer_id'].']" id="answerid_'.$ma['answer_id'].'" size="0">'.K_NEWLINE;
+								$str .= '<select name="answpos['.$anspos.']" id="answpos_'.$anspos.'" size="0">'.K_NEWLINE;
 								if (F_getBoolean($testdata['test_noanswer_enabled'])) {
 									$str .= '<option value="0">&nbsp;</option>'.K_NEWLINE;
 								}
@@ -1769,7 +1798,7 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 									$str .= '>'.$pos.'</option>'.K_NEWLINE;
 								}
 								$str .= '</select>'.K_NEWLINE;
-								$str .= '<label for="answerid_'.$ma['answer_id'].'">';
+								$str .= '<label for="answpos_'.$anspos.'">';
 								$str .= F_decode_tcecode($ma['answer_description']);
 								$str .= '</label>';
 								break;
@@ -1783,12 +1812,12 @@ function F_questionForm($test_id, $testlog_id, $formname) {
 				if ($m['question_type'] == 1) {
 					// display default "unanswered" option for MCSA
 					$str .= '<li'.$noanswer_hidden.'>';
-					$str .= '<input type="radio"'.$noanswer_disabled.' name="answerid" id="answerid_0" value="0"';
+					$str .= '<input type="radio"'.$noanswer_disabled.' name="answpos" id="answpos_0" value="0"';
 					if (!$checked) {
 						$str .= ' checked="checked"';
 					}
 					$str .= ' />&nbsp;';
-					$str .= '<label for="answerid_0">';
+					$str .= '<label for="answpos_0">';
 					$str .= $l['m_unanswered'];
 					$str .= '</label>';
 					$str .= '</li>'.K_NEWLINE;

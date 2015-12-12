@@ -79,7 +79,6 @@ function F_db_error($link_identifier = null) {
 
 /**
  * Sends a query to the currently active database on the server that's associated with the specified link identifier.<br>
- * NOTE: Convert PostgreSQL RANDOM() function to MySQL RAND() on ORDER BY clause of selection queries.
  * @param $query (string) The query tosend. The query string should not end with a semicolon.
  * @param $link_identifier (resource) database link identifier.
  * @return FALSE in case of error, TRUE or resource-identifier in case of success.

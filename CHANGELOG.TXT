@@ -1,3 +1,6 @@
+13.0.0 (2015-12-12)
+	- Hide internal answer IDs during test execution.
+
 12.2.6 (2015-10-26)
 	- README in markdown format.
 	- Updated license terms.
