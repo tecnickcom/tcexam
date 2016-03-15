@@ -1,4 +1,4 @@
-13.1.0 (2016-03-15)
+13.1.1 (2016-03-15)
 	- Fix a critical bug introcuced in version 13.0.0 that prevent storing the correct answers.
 
 13.0.1 (2015-12-12)
