@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
-// Last Update : 2015-12-12
+// Last Update : 2016-03-15
 //
 // Description : execute a specific test
 //
@@ -43,7 +43,7 @@ $formname = 'testform';
 
 $test_id = 0;
 $testlog_id = 0;
-$answpos = 0;
+$answpos = array();
 $answer_text = '';
 $test_comment = '';
 $reaction_time = 0;
@@ -70,7 +70,11 @@ if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
 			$testlog_id = intval($_REQUEST['testlogid']);
 		}
 		if (!empty($_REQUEST['answpos'])) {
-			$answpos = intval($_REQUEST['answpos']);
+			if (is_numeric($_REQUEST['answpos'])) {
+				$answpos = array($_REQUEST['answpos'] => 1);
+			} else {
+				$answpos = (array) $_REQUEST['answpos'];
+			}
 		}
 		if (!empty($_REQUEST['answertext'])) {
 			$answer_text = $_REQUEST['answertext'];

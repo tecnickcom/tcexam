@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2014-03-04
+// Last Update : 2016-03-15
 //
 // Description : Outputs TCExam information page.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2016 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,7 +46,7 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2015 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2016 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
 echo '<li><strong>'.$l['w_license'].':</strong> <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a></li>'.K_NEWLINE;

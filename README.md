@@ -8,10 +8,10 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 ------------------------------------------------------
 
 * Name: TCExam
-* Version: 13.0.1
-* Release date: 2015-12-12
+* Version: 13.0.2
+* Release date: 2016-03-15
 * Author: Nicola Asuni
-* Copyright (c) 2004-2015:
+* Copyright (c) 2004-2016:
 	* Nicola Asuni
 	* Tecnick.com LTD
 	* http://www.tecnick.com

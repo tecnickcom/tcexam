@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2015-12-12
+// Last Update : 2016-03-15
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -1319,12 +1319,12 @@ function F_addQuestionAnswers($testlog_id, $question_id, $question_type, $num_an
  * Updates question log data (register user's answers and calculate scores).
  * @param $test_id (int) test ID
  * @param $testlog_id (int) test log ID
- * @param $answpos int Answer position
+ * @param $answpos (array) Array of answer positions
  * @param $answer_text (string) answer text
  * @param $reaction_time (int) reaction time in milliseconds
  * @return boolean TRUE in case of success, FALSE otherwise
  */
-function F_updateQuestionLog($test_id, $testlog_id, $answpos=0, $answer_text='', $reaction_time=0) {
+function F_updateQuestionLog($test_id, $testlog_id, $answpos=array(), $answer_text='', $reaction_time=0) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
 	$question_id = 0; // question ID
@@ -1376,14 +1376,14 @@ function F_updateQuestionLog($test_id, $testlog_id, $answpos=0, $answer_text='',
 				switch ($question_type) {
 					case 1: {
 						// MCSA - Multiple Choice Single Answer
-						if ($answer_id == 0) {
+						if (empty($answer_id)) {
 							// unanswered
 							$answer_score = $question_unanswered_score;
 							if ($m['logansw_selected'] != -1) {
 								$answer_changed = true;
 							}
 							$sqlu .= ' logansw_selected=-1';
-						} elseif ($answer_id == $m['logansw_answer_id']) {
+						} elseif (!empty($answer_id[$m['logansw_answer_id']])) {
 							$unanswered = false;
 							// selected
 							if (F_getBoolean($m['answer_isright'])) {
@@ -1548,28 +1548,28 @@ function F_updateQuestionLog($test_id, $testlog_id, $answpos=0, $answer_text='',
 /**
  * Returns the answer ID from position
  * @param $testlog_id (int) Test Log ID
- * @param $answpos (int) Answer position (order in wich it is displayed)
+ * @param $answpos (array) Answer positions (order in wich they are displayed)
  * @return int answer ID
  */
 function F_getAnswerIdFromPosition($testlog_id, $answpos) {
 	require_once('../config/tce_config.php');
 	global $db, $l;
-	if ($answpos == 0) {
-		return 0;
-	}
-	$sql = 'SELECT logansw_answer_id'
-		.' FROM '.K_TABLE_LOG_ANSWER
-		.' WHERE logansw_testlog_id='.intval($testlog_id)
-		.' AND logansw_order='.intval($answpos)
-		.' LIMIT 1';
-	if ($r = F_db_query($sql, $db)) {
-		if ($m = F_db_fetch_array($r)) {
-			return intval($m['logansw_answer_id']);
+	$answer_id = array();
+	foreach ($answpos as $pos => $val) {
+		$sql = 'SELECT logansw_answer_id'
+			.' FROM '.K_TABLE_LOG_ANSWER
+			.' WHERE logansw_testlog_id='.intval($testlog_id)
+			.' AND logansw_order='.intval($pos)
+			.' LIMIT 1';
+		if ($r = F_db_query($sql, $db)) {
+			if ($m = F_db_fetch_array($r)) {
+				$answer_id[intval($m['logansw_answer_id'])] = $val;
+			}
+		} else {
+			F_display_db_error();
 		}
-	} else {
-		F_display_db_error();
 	}
-	return 0;
+	return $answer_id;
 }
 
 /**
