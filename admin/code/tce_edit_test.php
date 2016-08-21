@@ -1043,7 +1043,7 @@ echo getFormRowCheckBox('test_report_to_users', $l['w_report_to_users'], '', '',
 echo getFormRowCheckBox('test_repeatable', $l['w_repeatable'], '', '', 1, $test_repeatable, false);
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
-echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' ('.$l['d_password_lenght'].')', '', '^([a-zA-Z0-9]{8,32})$', 255, false, false, true);
+echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' ('.$l['d_password_lenght'].')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
 
 echo '<div class="row">'.K_NEWLINE;
 echo '<br />'.K_NEWLINE;
