@@ -34,24 +34,24 @@
  */
 
 switch (K_DATABASE_TYPE) {
-	case 'MYSQL':
-	default: {
-		require_once('../../shared/code/tce_db_dal_mysqli.php');
-		break;
-	}
-	case 'POSTGRESQL': {
-		require_once('../../shared/code/tce_db_dal_postgresql.php');
-		break;
-	}
-	case 'ORACLE': {
-		require_once('../../shared/code/tce_db_dal_oracle.php');
-		break;
-	}
-	case 'MYSQLDEPRECATED':
-	default: {
-		require_once('../../shared/code/tce_db_dal_mysql.php');
-		break;
-	}
+    case 'MYSQL':
+    default: {
+        require_once('../../shared/code/tce_db_dal_mysqli.php');
+        break;
+    }
+    case 'POSTGRESQL': {
+        require_once('../../shared/code/tce_db_dal_postgresql.php');
+        break;
+    }
+    case 'ORACLE': {
+        require_once('../../shared/code/tce_db_dal_oracle.php');
+        break;
+    }
+    case 'MYSQLDEPRECATED':
+    default: {
+        require_once('../../shared/code/tce_db_dal_mysql.php');
+        break;
+    }
 }
 
 //============================================================+

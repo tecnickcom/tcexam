@@ -41,17 +41,18 @@
  * @param $database (string) Database name.
  * @return Oracle link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '1521', $username = 'root', $password = '', $database = '') {
-	$dbstring = '//'.$host.':'.$port;
-	if (!empty($database)) {
-		$dbstring .= '/'.$database;
-	}
-	if (!$db = @oci_connect($username, $password, $dbstring, 'UTF8')) {
-		return FALSE;
-	}
-	// change date format
-	@F_db_query('ALTER SESSION SET NLS_DATE_FORMAT=\'YYYY-MM-DD HH24:MI:SS\'', $db);
-	return $db;
+function F_db_connect($host = 'localhost', $port = '1521', $username = 'root', $password = '', $database = '')
+{
+    $dbstring = '//'.$host.':'.$port;
+    if (!empty($database)) {
+        $dbstring .= '/'.$database;
+    }
+    if (!$db = @oci_connect($username, $password, $dbstring, 'UTF8')) {
+        return false;
+    }
+    // change date format
+    @F_db_query('ALTER SESSION SET NLS_DATE_FORMAT=\'YYYY-MM-DD HH24:MI:SS\'', $db);
+    return $db;
 }
 
 /**
@@ -59,17 +60,19 @@ function F_db_connect($host = 'localhost', $port = '1521', $username = 'root', $
  * @param $link_identifier (resource) database link identifier.
  * @return bool TRUE on success or FALSE on failure
  */
-function F_db_close($link_identifier) {
-	return oci_close($link_identifier);
+function F_db_close($link_identifier)
+{
+    return oci_close($link_identifier);
 }
 
 /**
  * Returns the text of the error message from previous database operation
  * @return string error message.
  */
-function F_db_error($link_identifier=NULL) {
-	$e = oci_error();
-	return '['.$e['code'].']: '.$e['message'].'';
+function F_db_error($link_identifier = null)
+{
+    $e = oci_error();
+    return '['.$e['code'].']: '.$e['message'].'';
 }
 
 /**
@@ -79,22 +82,23 @@ function F_db_error($link_identifier=NULL) {
  * @param $link_identifier (resource) database link identifier.
  * @return FALSE in case of error, TRUE or resource-identifier in case of success.
  */
-function F_db_query($query, $link_identifier) {
-	if ($query == 'START TRANSACTION') {
-		return true;
-	}
-	// convert MySQL RAND() function to Oracle dbms_random.random
-	$query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY dbms_random.random', $query);
-	// remove last limit clause
-	$query = preg_replace("/LIMIT 1([\s]*)$/si", '', $query);
-	$stid = @oci_parse($link_identifier, $query);
-	if (!$stid) {
-		return false;
-	}
-	if (@oci_execute($stid)) {
-		return $stid;
-	}
-	return false;
+function F_db_query($query, $link_identifier)
+{
+    if ($query == 'START TRANSACTION') {
+        return true;
+    }
+    // convert MySQL RAND() function to Oracle dbms_random.random
+    $query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY dbms_random.random', $query);
+    // remove last limit clause
+    $query = preg_replace("/LIMIT 1([\s]*)$/si", '', $query);
+    $stid = @oci_parse($link_identifier, $query);
+    if (!$stid) {
+        return false;
+    }
+    if (@oci_execute($stid)) {
+        return $stid;
+    }
+    return false;
 }
 
 /**
@@ -103,13 +107,14 @@ function F_db_query($query, $link_identifier) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_array($result) {
-	$arr = oci_fetch_array($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
-	if ($arr !== false) {
-		$arr = array_change_key_case($arr, CASE_LOWER);
-		$arr = array_map('stripslashes', $arr);
-	}
-	return $arr;
+function F_db_fetch_array($result)
+{
+    $arr = oci_fetch_array($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
+    if ($arr !== false) {
+        $arr = array_change_key_case($arr, CASE_LOWER);
+        $arr = array_map('stripslashes', $arr);
+    }
+    return $arr;
 }
 
 /**
@@ -118,13 +123,14 @@ function F_db_fetch_array($result) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_assoc($result) {
-	$arr = oci_fetch_assoc($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
-	if ($arr !== false) {
-		$arr = array_change_key_case($arr, CASE_LOWER);
-		$arr = array_map('stripslashes', $arr);
-	}
-	return $arr;
+function F_db_fetch_assoc($result)
+{
+    $arr = oci_fetch_assoc($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
+    if ($arr !== false) {
+        $arr = array_change_key_case($arr, CASE_LOWER);
+        $arr = array_map('stripslashes', $arr);
+    }
+    return $arr;
 }
 
 /**
@@ -133,8 +139,9 @@ function F_db_fetch_assoc($result) {
  * @param $result (resource) result resource to the query result.
  * @return Number of rows.
  */
-function F_db_affected_rows($link_identifier, $result) {
-	return oci_num_rows($result);
+function F_db_affected_rows($link_identifier, $result)
+{
+    return oci_num_rows($result);
 }
 
 /**
@@ -142,13 +149,14 @@ function F_db_affected_rows($link_identifier, $result) {
  * @param $result (resource) result resource to the query result.
  * @return Number of affected rows.
  */
-function F_db_num_rows($result) {
-	$output = array();
-	@oci_fetch_all($result, $output);
-	if (isset($output['TOTAL'][0])) {
-		return $output['TOTAL'][0];
-	}
-	return oci_num_rows($result);
+function F_db_num_rows($result)
+{
+    $output = array();
+    @oci_fetch_all($result, $output);
+    if (isset($output['TOTAL'][0])) {
+        return $output['TOTAL'][0];
+    }
+    return oci_num_rows($result);
 }
 
 /**
@@ -158,14 +166,15 @@ function F_db_num_rows($result) {
  * @param $fieldname (string) Field name (column name).
  * @return int ID generated from the last INSERT operation.
  */
-function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
-	$query = 'SELECT '.$tablename.'_seq.currval FROM dual';
-	if ($r = @F_db_query($query, $link_identifier)) {
-		if ($m = oci_fetch_array($r, OCI_NUM)) {
-			return $m[0];
-		}
-	}
-	return 0;
+function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
+{
+    $query = 'SELECT '.$tablename.'_seq.currval FROM dual';
+    if ($r = @F_db_query($query, $link_identifier)) {
+        if ($m = oci_fetch_array($r, OCI_NUM)) {
+            return $m[0];
+        }
+    }
+    return 0;
 }
 
 /**
@@ -176,12 +185,13 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
  */
-function F_escape_sql($link_identifier, $str, $stripslashes=true) {
-	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
-	if ($stripslashes) {
-		$str = stripslashes($str);
-	}
-	return pg_escape_string($str);
+function F_escape_sql($link_identifier, $str, $stripslashes = true)
+{
+    // Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
+    if ($stripslashes) {
+        $str = stripslashes($str);
+    }
+    return pg_escape_string($str);
 }
 
 //============================================================+

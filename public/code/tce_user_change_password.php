@@ -41,36 +41,35 @@ require_once('../code/tce_page_header.php');
 $user_id = intval($_SESSION['session_user_id']);
 
 // process submited data
-switch($menu_mode) {
-
-	case 'update':{ // Update user
-		if($formstatus = F_check_form_fields()) {
-			// check password
-			if(!empty($newpassword) OR !empty($newpassword_repeat)) {
-				if($newpassword == $newpassword_repeat) {
-					$user_password = getPasswordHash($newpassword);
-				} else { //print message and exit
-					F_print_error('WARNING', $l['m_different_passwords']);
-					$formstatus = FALSE; F_stripslashes_formfields();
-					break;
-				}
-			}
-			$sql = 'UPDATE '.K_TABLE_USERS.' SET
+switch ($menu_mode) {
+    case 'update':{ // Update user
+        if ($formstatus = F_check_form_fields()) {
+            // check password
+            if (!empty($newpassword) or !empty($newpassword_repeat)) {
+                if ($newpassword == $newpassword_repeat) {
+                    $user_password = getPasswordHash($newpassword);
+                } else { //print message and exit
+                    F_print_error('WARNING', $l['m_different_passwords']);
+                    $formstatus = false;
+                    F_stripslashes_formfields();
+                    break;
+                }
+            }
+            $sql = 'UPDATE '.K_TABLE_USERS.' SET
 				user_password=\''.F_escape_sql($db, $user_password).'\'
 				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
-			if(!$r = F_db_query($sql, $db)) {
-				F_display_db_error(false);
-			} else {
-				F_print_error('MESSAGE', $l['m_password_updated']);
-			}
-		}
-		break;
-	}
+            if (!$r = F_db_query($sql, $db)) {
+                F_display_db_error(false);
+            } else {
+                F_print_error('MESSAGE', $l['m_password_updated']);
+            }
+        }
+        break;
+    }
 
-	default :{
-		break;
-	}
-
+    default :{
+        break;
+    }
 } //end of switch
 
 echo '<div class="container">'.K_NEWLINE;

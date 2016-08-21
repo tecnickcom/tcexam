@@ -40,17 +40,18 @@
  * @param $database (string) Database name.
  * @return MySQL link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '') {
-	if (!$db = @mysqli_connect($host, $username, $password, $database, $port)) {
-		return FALSE;
-	}
-	// set the correct charset encoding
-	mysqli_query($db, 'SET NAMES \'utf8\'');
-	mysqli_query($db, 'SET CHARACTER_SET \'utf8\'');
-	mysqli_query($db, 'SET collation \'utf8_unicode_ci\'');
-	mysqli_query($db, 'SET collation_server \'utf8_unicode_ci\'');
-	mysqli_query($db, 'SET collation_database \'utf8_unicode_ci\'');
-	return $db;
+function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '')
+{
+    if (!$db = @mysqli_connect($host, $username, $password, $database, $port)) {
+        return false;
+    }
+    // set the correct charset encoding
+    mysqli_query($db, 'SET NAMES \'utf8\'');
+    mysqli_query($db, 'SET CHARACTER_SET \'utf8\'');
+    mysqli_query($db, 'SET collation \'utf8_unicode_ci\'');
+    mysqli_query($db, 'SET collation_server \'utf8_unicode_ci\'');
+    mysqli_query($db, 'SET collation_database \'utf8_unicode_ci\'');
+    return $db;
 }
 
 /**
@@ -58,19 +59,21 @@ function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $
  * @param $link_identifier (resource) database link identifier.
  * @return bool TRUE on success or FALSE on failure
  */
-function F_db_close($link_identifier) {
-	return mysqli_close($link_identifier);
+function F_db_close($link_identifier)
+{
+    return mysqli_close($link_identifier);
 }
 
 /**
  * Returns the text of the error message from previous database operation
  * @return string error message.
  */
-function F_db_error($link_identifier = null) {
-	if (empty($link_identifier)) {
-		return '';
-	}
-	return '['.mysqli_errno($link_identifier).']: '.mysqli_error($link_identifier).'';
+function F_db_error($link_identifier = null)
+{
+    if (empty($link_identifier)) {
+        return '';
+    }
+    return '['.mysqli_errno($link_identifier).']: '.mysqli_error($link_identifier).'';
 
 }
 
@@ -80,10 +83,11 @@ function F_db_error($link_identifier = null) {
  * @param $link_identifier (resource) database link identifier.
  * @return FALSE in case of error, TRUE or resource-identifier in case of success.
  */
-function F_db_query($query, $link_identifier) {
-	// convert PostgreSQL RANDOM() function to MySQL RAND()
-	//$query = preg_replace("/ORDER BY RANDOM\(\)/i", "ORDER BY RAND()", $query);
-	return mysqli_query($link_identifier, $query);
+function F_db_query($query, $link_identifier)
+{
+    // convert PostgreSQL RANDOM() function to MySQL RAND()
+    //$query = preg_replace("/ORDER BY RANDOM\(\)/i", "ORDER BY RAND()", $query);
+    return mysqli_query($link_identifier, $query);
 }
 
 /**
@@ -92,8 +96,9 @@ function F_db_query($query, $link_identifier) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_array($result) {
-	return mysqli_fetch_array($result);
+function F_db_fetch_array($result)
+{
+    return mysqli_fetch_array($result);
 }
 
 /**
@@ -102,8 +107,9 @@ function F_db_fetch_array($result) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_assoc($result) {
-	return mysqli_fetch_assoc($result);
+function F_db_fetch_assoc($result)
+{
+    return mysqli_fetch_assoc($result);
 }
 
 /**
@@ -112,8 +118,9 @@ function F_db_fetch_assoc($result) {
  * @param $result (resource) result resource to the query result [UNUSED].
  * @return Number of rows.
  */
-function F_db_affected_rows($link_identifier, $result) {
-	return mysqli_affected_rows($link_identifier);
+function F_db_affected_rows($link_identifier, $result)
+{
+    return mysqli_affected_rows($link_identifier);
 }
 
 /**
@@ -121,8 +128,9 @@ function F_db_affected_rows($link_identifier, $result) {
  * @param $result (resource) result resource to the query result.
  * @return Number of affected rows.
  */
-function F_db_num_rows($result) {
-	return mysqli_num_rows($result);
+function F_db_num_rows($result)
+{
+    return mysqli_num_rows($result);
 }
 
 /**
@@ -132,8 +140,9 @@ function F_db_num_rows($result) {
  * @param $fieldname (string) Field name (column name). (unused here but required for other DAL).
  * @return int ID generated from the last INSERT operation.
  */
-function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
-	return mysqli_insert_id($link_identifier);
+function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
+{
+    return mysqli_insert_id($link_identifier);
 }
 
 /**
@@ -144,12 +153,13 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
  */
-function F_escape_sql($link_identifier, $str, $stripslashes=true) {
-	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
-	if ($stripslashes) {
-		$str = stripslashes($str);
-	}
-	return mysqli_real_escape_string($link_identifier, $str);
+function F_escape_sql($link_identifier, $str, $stripslashes = true)
+{
+    // Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
+    if ($stripslashes) {
+        $str = stripslashes($str);
+    }
+    return mysqli_real_escape_string($link_identifier, $str);
 }
 
 //============================================================+

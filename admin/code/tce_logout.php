@@ -39,12 +39,12 @@ session_destroy();
 // destroy session ID cookie
 setcookie('PHPSESSID', '', 1, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
 
-if(!isset($current_page)) {
-	$current_page = '../code/index.php?logout=1';
+if (!isset($current_page)) {
+    $current_page = '../code/index.php?logout=1';
 } elseif (strpos($current_page, '?') === false) {
-	$current_page .= '?logout=1';
+    $current_page .= '?logout=1';
 } else {
-	$current_page .= '&amp;logout=1';
+    $current_page .= '&amp;logout=1';
 }
 
 echo '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;

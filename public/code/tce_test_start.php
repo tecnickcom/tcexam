@@ -41,20 +41,20 @@ require_once('../../shared/code/tce_authorization.php');
 require_once('../code/tce_page_header.php');
 
 echo '<div class="popupcontainer">'.K_NEWLINE;
-if (isset($_REQUEST['testid']) AND ($_REQUEST['testid'] > 0)) {
-	require_once('../../shared/code/tce_functions_test.php');
-	$test_id = intval($_REQUEST['testid']);
-	echo F_printTestInfo($test_id, false);
-	echo '<br />'.K_NEWLINE;
-	echo '<div class="row">'.K_NEWLINE;
-	// display execute button
-	echo '<a href="tce_test_execute.php?testid='.$test_id.'';
-	if (isset($_REQUEST['repeat']) AND ($_REQUEST['repeat'] == 1)) {
-		echo '&amp;repeat=1';
-	}
-	echo '" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a> ';
-	echo '<a href="index.php" title="'.$l['h_cancel'].'" class="xmlbutton">'.$l['w_cancel'].'</a>';
-	echo '</div>'.K_NEWLINE;
+if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
+    require_once('../../shared/code/tce_functions_test.php');
+    $test_id = intval($_REQUEST['testid']);
+    echo F_printTestInfo($test_id, false);
+    echo '<br />'.K_NEWLINE;
+    echo '<div class="row">'.K_NEWLINE;
+    // display execute button
+    echo '<a href="tce_test_execute.php?testid='.$test_id.'';
+    if (isset($_REQUEST['repeat']) and ($_REQUEST['repeat'] == 1)) {
+        echo '&amp;repeat=1';
+    }
+    echo '" title="'.$l['h_execute'].'" class="xmlbutton">'.$l['w_execute'].'</a> ';
+    echo '<a href="index.php" title="'.$l['h_cancel'].'" class="xmlbutton">'.$l['w_cancel'].'</a>';
+    echo '</div>'.K_NEWLINE;
 }
 echo '</div>'.K_NEWLINE;
 

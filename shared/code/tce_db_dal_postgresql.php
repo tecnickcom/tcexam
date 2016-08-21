@@ -41,12 +41,13 @@
  * @param $database (string) Database name.
  * @return PostgreSQL link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '5432', $username = 'postgres', $password = '', $database = 'template1') {
-	$connection_string = 'host=\''.$host.'\' port=\''.$port.'\' dbname=\''.$database.'\' user=\''.$username.'\' password=\''.$password.'\'';
-	if (!$db = @pg_connect($connection_string)) {
-		return FALSE;
-	}
-	return $db;
+function F_db_connect($host = 'localhost', $port = '5432', $username = 'postgres', $password = '', $database = 'template1')
+{
+    $connection_string = 'host=\''.$host.'\' port=\''.$port.'\' dbname=\''.$database.'\' user=\''.$username.'\' password=\''.$password.'\'';
+    if (!$db = @pg_connect($connection_string)) {
+        return false;
+    }
+    return $db;
 }
 
 /**
@@ -54,16 +55,18 @@ function F_db_connect($host = 'localhost', $port = '5432', $username = 'postgres
  * @param $link_identifier (resource) database link identifier.
  * @return bool TRUE on success or FALSE on failure
  */
-function F_db_close($link_identifier) {
-	return pg_close($link_identifier);
+function F_db_close($link_identifier)
+{
+    return pg_close($link_identifier);
 }
 
 /**
  * Returns the text of the error message from previous database operation
  * @return string error message.
  */
-function F_db_error($link_identifier=NULL) {
-	return pg_last_error();
+function F_db_error($link_identifier = null)
+{
+    return pg_last_error();
 }
 
 /**
@@ -73,10 +76,11 @@ function F_db_error($link_identifier=NULL) {
  * @param $link_identifier (resource) database link identifier.
  * @return FALSE in case of error, TRUE or resource-identifier in case of success.
  */
-function F_db_query($query, $link_identifier) {
-	// convert MySQL RAND() function to PostgreSQL RANDOM()
-	$query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY RANDOM()', $query);
-	return pg_query($link_identifier, $query);
+function F_db_query($query, $link_identifier)
+{
+    // convert MySQL RAND() function to PostgreSQL RANDOM()
+    $query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY RANDOM()', $query);
+    return pg_query($link_identifier, $query);
 }
 
 /**
@@ -85,8 +89,9 @@ function F_db_query($query, $link_identifier) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_array($result) {
-	return pg_fetch_array($result);
+function F_db_fetch_array($result)
+{
+    return pg_fetch_array($result);
 }
 
 /**
@@ -95,8 +100,9 @@ function F_db_fetch_array($result) {
  * @param $result (resource) result resource to the query result.
  * @return Returns an array that corresponds to the fetched row, or FALSE if there are no more rows.
  */
-function F_db_fetch_assoc($result) {
-	return pg_fetch_assoc($result);
+function F_db_fetch_assoc($result)
+{
+    return pg_fetch_assoc($result);
 }
 
 /**
@@ -105,8 +111,9 @@ function F_db_fetch_assoc($result) {
  * @param $result (resource) result resource to the query result.
  * @return Number of rows.
  */
-function F_db_affected_rows($link_identifier, $result) {
-	return pg_affected_rows($result);
+function F_db_affected_rows($link_identifier, $result)
+{
+    return pg_affected_rows($result);
 }
 
 /**
@@ -114,8 +121,9 @@ function F_db_affected_rows($link_identifier, $result) {
  * @param $result (resource) result resource to the query result.
  * @return Number of affected rows.
  */
-function F_db_num_rows($result) {
-	return pg_num_rows($result);
+function F_db_num_rows($result)
+{
+    return pg_num_rows($result);
 }
 
 /**
@@ -125,13 +133,14 @@ function F_db_num_rows($result) {
  * @param $fieldname (string) Field name (column name).
  * @return int ID generated from the last INSERT operation.
  */
-function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
-	if ($r = @pg_query($link_identifier, 'SELECT CURRVAL(\''.$tablename.'_'.$fieldname.'_seq\')')) {
-		if ($m = pg_fetch_row($r, 0)) {
-			return $m[0];
-		}
-	}
-	return 0;
+function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
+{
+    if ($r = @pg_query($link_identifier, 'SELECT CURRVAL(\''.$tablename.'_'.$fieldname.'_seq\')')) {
+        if ($m = pg_fetch_row($r, 0)) {
+            return $m[0];
+        }
+    }
+    return 0;
 }
 
 /**
@@ -142,12 +151,13 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '') {
  * @return string Returns the escaped string, or FALSE on error.
  * @since 5.0.005 2007-12-05
  */
-function F_escape_sql($link_identifier, $str, $stripslashes=true) {
-	// Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
-	if ($stripslashes) {
-		$str = stripslashes($str);
-	}
-	return pg_escape_string($link_identifier, $str);
+function F_escape_sql($link_identifier, $str, $stripslashes = true)
+{
+    // Reverse magic_quotes_gpc/magic_quotes_sybase effects if ON.
+    if ($stripslashes) {
+        $str = stripslashes($str);
+    }
+    return pg_escape_string($link_identifier, $str);
 }
 
 //============================================================+

@@ -41,13 +41,31 @@ require_once('../code/tce_page_header_popup.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('tce_functions_test_select.php');
 
-if(!isset($order_field)) {$order_field='test_begin_time DESC,test_name';}
-if(!isset($orderdir)) {$orderdir=0;}
-if(!isset($firstrow)) {$firstrow=0;}
-if(!isset($rowsperpage)) {$rowsperpage=K_MAX_ROWS_PER_PAGE;}
-if(!isset($searchterms)) {$searchterms='';}
-if(!isset($cid)) {$cid='';} else {$cid = preg_replace('/[^a-z0-9_]/', '', $cid);} // ID of the calling form field
-if(!isset($tids)) {$tids='';} else {$tids = preg_replace('/[^x0-9]/', '', $tids);}  // selected test IDs
+if (!isset($order_field)) {
+    $order_field='test_begin_time DESC,test_name';
+}
+if (!isset($orderdir)) {
+    $orderdir=0;
+}
+if (!isset($firstrow)) {
+    $firstrow=0;
+}
+if (!isset($rowsperpage)) {
+    $rowsperpage=K_MAX_ROWS_PER_PAGE;
+}
+if (!isset($searchterms)) {
+    $searchterms='';
+}
+if (!isset($cid)) {
+    $cid='';
+} else {
+    $cid = preg_replace('/[^a-z0-9_]/', '', $cid);
+} // ID of the calling form field
+if (!isset($tids)) {
+    $tids='';
+} else {
+    $tids = preg_replace('/[^x0-9]/', '', $tids);
+}  // selected test IDs
 
 echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_testselect">'.K_NEWLINE;
 
@@ -63,34 +81,34 @@ echo '</span></div>'.K_NEWLINE;
 // build a search query
 $wherequery = '';
 if (strlen($searchterms) > 0) {
-	$terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
-	foreach ($terms as $word) {
-		$word = F_escape_sql($db, $word);
-		$wherequery .= ' AND (';
-		$wherequery .= ' (test_name LIKE \'%'.$word.'%\')';
-		$wherequery .= ' OR (test_description LIKE \'%'.$word.'%\')';
-		if ((preg_match('/^([0-9]{4})[\-]([0-9]{2})[\-]([0-9]{2})$/', $word, $wd) == 1) AND (checkdate($wd[2], $wd[3], $wd[1]))) {
-			$wherequery .= ' OR ((test_begin_time <= \''.$word.'\')';
-			$wherequery .= ' AND (test_end_time >= \''.$word.'\'))';
-		}
-		$wherequery .= ')';
-	}
-	$wherequery = '('.substr($wherequery, 5).')';
+    $terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
+    foreach ($terms as $word) {
+        $word = F_escape_sql($db, $word);
+        $wherequery .= ' AND (';
+        $wherequery .= ' (test_name LIKE \'%'.$word.'%\')';
+        $wherequery .= ' OR (test_description LIKE \'%'.$word.'%\')';
+        if ((preg_match('/^([0-9]{4})[\-]([0-9]{2})[\-]([0-9]{2})$/', $word, $wd) == 1) and (checkdate($wd[2], $wd[3], $wd[1]))) {
+            $wherequery .= ' OR ((test_begin_time <= \''.$word.'\')';
+            $wherequery .= ' AND (test_end_time >= \''.$word.'\'))';
+        }
+        $wherequery .= ')';
+    }
+    $wherequery = '('.substr($wherequery, 5).')';
 }
 
 // select only specified test IDs
-if (isset($tids) AND !empty($tids)) {
-	$tid_list = '';
-	$tids = explode('x', $tids);
-	foreach ($tids as $id) {
-		$tid_list .= ','.intval($id);
-	}
-	if (!empty($tid_list)) {
-		if (!empty($wherequery)) {
-			$wherequery .= ' AND ';
-		}
-		$wherequery .= '(test_id IN ('.substr($tid_list, 1).'))';
-	}
+if (isset($tids) and !empty($tids)) {
+    $tid_list = '';
+    $tids = explode('x', $tids);
+    foreach ($tids as $id) {
+        $tid_list .= ','.intval($id);
+    }
+    if (!empty($tid_list)) {
+        if (!empty($wherequery)) {
+            $wherequery .= ' AND ';
+        }
+        $wherequery .= '(test_id IN ('.substr($tid_list, 1).'))';
+    }
 }
 
 echo getFormNoscriptSelect();

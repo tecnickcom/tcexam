@@ -60,62 +60,62 @@ require_once('../../shared/config/tce_paths.php');
 /**
  * Absolute path to images directory.
  */
-define ('K_LATEX_PATH_PICTURE', K_PATH_CACHE);
+define('K_LATEX_PATH_PICTURE', K_PATH_CACHE);
 
 /**
  * relative path to images directory.
  */
-define ('K_LATEX_PATH_PICTURE_HTTPD', K_PATH_URL_CACHE);
+define('K_LATEX_PATH_PICTURE_HTTPD', K_PATH_URL_CACHE);
 
 /**
  * Path to PDFLATEX (/usr/bin/pdflatex).
  */
-define ('K_LATEX_PDFLATEX', '/usr/bin/pdflatex');
+define('K_LATEX_PDFLATEX', '/usr/bin/pdflatex');
 
 /**
  * Path to ImageMagick convert (/usr/bin/convert).
  */
-define ('K_LATEX_PATH_CONVERT', '/usr/bin/convert');
+define('K_LATEX_PATH_CONVERT', '/usr/bin/convert');
 
 /**
  * Formula density used by ImageMagick (120).
  */
-define ('K_LATEX_FORMULA_DENSITY', 120);
+define('K_LATEX_FORMULA_DENSITY', 120);
 
 /**
  * Image width limit in pixels (500).
  */
-define ('K_LATEX_MAX_WIDTH', 800);
+define('K_LATEX_MAX_WIDTH', 800);
 
 /**
  * Image height limit in pixels (500).
  */
-define ('K_LATEX_MAX_HEIGHT', 800);
+define('K_LATEX_MAX_HEIGHT', 800);
 
 /**
  * Size limit for input string (500).
  */
-define ('K_LATEX_MAX_LENGHT', 500);
+define('K_LATEX_MAX_LENGHT', 500);
 
 /**
  * Font size (10).
  */
-define ('K_LATEX_FONT_SIZE', 10);
+define('K_LATEX_FONT_SIZE', 10);
 
 /**
  * LaTeX class (article).
  */
-define ('K_LATEX_CLASS', 'article');
+define('K_LATEX_CLASS', 'article');
 
 /**
  * Filename prefix for chached images (latex_).
  */
-define ('K_LATEX_IMG_PREFIX', 'latex_');
+define('K_LATEX_IMG_PREFIX', 'latex_');
 
 /**
  * Image format (png).
  */
-define ('K_LATEX_IMG_FORMAT', 'png');
+define('K_LATEX_IMG_FORMAT', 'png');
 
 //============================================================+
 // END OF FILE

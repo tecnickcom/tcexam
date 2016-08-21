@@ -41,49 +41,47 @@ require_once('../code/tce_page_header.php');
 $user_id = intval($_SESSION['session_user_id']);
 
 // process submited data
-switch($menu_mode) {
-
-	case 'update':{ // Update user
-		if ($formstatus = F_check_form_fields()) {
-			// check password
-			if (!empty($user_email) OR !empty($user_email_repeat)) {
-				if($user_email != $user_email_repeat) {
-					//print message and exit
-					F_print_error('WARNING', $l['m_different_emails']);
-					$formstatus = FALSE;
-					F_stripslashes_formfields();
-					break;
-				}
-			}
-			mt_srand((double) microtime() * 1000000);
-			$user_verifycode = md5(uniqid(mt_rand(), true)); // verification code
-			$sql = 'UPDATE '.K_TABLE_USERS.' SET
+switch ($menu_mode) {
+    case 'update':{ // Update user
+        if ($formstatus = F_check_form_fields()) {
+            // check password
+            if (!empty($user_email) or !empty($user_email_repeat)) {
+                if ($user_email != $user_email_repeat) {
+                    //print message and exit
+                    F_print_error('WARNING', $l['m_different_emails']);
+                    $formstatus = false;
+                    F_stripslashes_formfields();
+                    break;
+                }
+            }
+            mt_srand((double) microtime() * 1000000);
+            $user_verifycode = md5(uniqid(mt_rand(), true)); // verification code
+            $sql = 'UPDATE '.K_TABLE_USERS.' SET
 				user_email=\''.F_escape_sql($db, $user_email).'\',
 				user_level=\'0\',
 				user_verifycode=\''.$user_verifycode.'\'
 				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
-			if (!$r = F_db_query($sql, $db)) {
-				F_display_db_error(false);
-			} else {
-				F_print_error('MESSAGE', $l['m_email_updated']);
-				// require email confirmation
-				require_once('../../shared/code/tce_functions_user_registration.php');
-				F_send_user_reg_email($user_id, $user_email, $user_verifycode);
-				F_print_error('MESSAGE', $user_email.': '.$l['m_user_verification_sent']);
-				echo '<div class="container">'.K_NEWLINE;
-				echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
-				echo '</div>'.K_NEWLINE;
-				require_once('tce_page_footer.php');
-				exit;
-			}
-		}
-		break;
-	}
+            if (!$r = F_db_query($sql, $db)) {
+                F_display_db_error(false);
+            } else {
+                F_print_error('MESSAGE', $l['m_email_updated']);
+                // require email confirmation
+                require_once('../../shared/code/tce_functions_user_registration.php');
+                F_send_user_reg_email($user_id, $user_email, $user_verifycode);
+                F_print_error('MESSAGE', $user_email.': '.$l['m_user_verification_sent']);
+                echo '<div class="container">'.K_NEWLINE;
+                echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
+                echo '</div>'.K_NEWLINE;
+                require_once('tce_page_footer.php');
+                exit;
+            }
+        }
+        break;
+    }
 
-	default :{
-		break;
-	}
-
+    default :{
+        break;
+    }
 } //end of switch
 
 echo '<div class="container">'.K_NEWLINE;

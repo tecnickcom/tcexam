@@ -47,66 +47,66 @@ require_once('tce_functions_omr.php');
 require_once('tce_functions_user_select.php');
 
 if (isset($_REQUEST['user_id'])) {
-	$user_id = intval($_REQUEST['user_id']);
-	if (!F_isAuthorizedEditorForUser($user_id)) {
-		F_print_error('ERROR', $l['m_authorization_denied']);
-		exit;
-	}
+    $user_id = intval($_REQUEST['user_id']);
+    if (!F_isAuthorizedEditorForUser($user_id)) {
+        F_print_error('ERROR', $l['m_authorization_denied']);
+        exit;
+    }
 } else {
-	$user_id = 0;
+    $user_id = 0;
 }
 if (isset($_REQUEST['date'])) {
-	$date = $_REQUEST['date'];
-	$date_time = strtotime($date);
-	$date = date(K_TIMESTAMP_FORMAT, $date_time);
+    $date = $_REQUEST['date'];
+    $date_time = strtotime($date);
+    $date = date(K_TIMESTAMP_FORMAT, $date_time);
 } else {
-	$date = date(K_TIMESTAMP_FORMAT);
+    $date = date(K_TIMESTAMP_FORMAT);
 }
 
-if (!isset($_REQUEST['overwrite']) OR (empty($_REQUEST['overwrite']))) {
-	$overwrite = false;
+if (!isset($_REQUEST['overwrite']) or (empty($_REQUEST['overwrite']))) {
+    $overwrite = false;
 } else {
-	$overwrite = F_getBoolean($_REQUEST['overwrite']);
+    $overwrite = F_getBoolean($_REQUEST['overwrite']);
 }
 
 // process uploaded files
-if (isset($menu_mode) AND ($menu_mode == 'upload') AND ($user_id > 0) AND !empty($_FILES)) {
-	// read OMR DATA page
-	$omr_testdata = F_decodeOMRTestDataQRCode($_FILES['omrfile']['tmp_name'][0]);
-	if ($omr_testdata === false) {
-		F_print_error('ERROR', $l['m_omr_wrong_test_data']);
-	} else {
-		// read OMR ANSWER SHEET pages
-		$num_questions = (count($omr_testdata) - 1);
-		$num_pages = ceil($num_questions / 30);
-		$omr_answers = array();
-		for ($i = 1; $i <= $num_pages; ++$i) {
-			if ($_FILES['omrfile']['error'][$i] == 0) {
-				$answers_page = F_decodeOMRPage($_FILES['omrfile']['tmp_name'][$i]);
-				if (($answers_page !== false) AND !empty($answers_page)) {
-					$omr_answers += $answers_page;
-				} else {
-					F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
-				}
-			} else {
-				F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
-			}
-		}
-		// sort answers
-		ksort($omr_answers);
-		// import answers
-		if (F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)) {
-			F_print_error('MESSAGE', $l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
-		} else {
-			F_print_error('ERROR', $l['m_import_error']);
-		}
-	}
-	// remove uploaded files
-	for ($i = 0; $i <= $max_omr_sheets; ++$i) {
-		if ($_FILES['omrfile']['error'][$i] == 0) {
-			@unlink($_FILES['omrfile']['tmp_name'][$i]);
-		}
-	}
+if (isset($menu_mode) and ($menu_mode == 'upload') and ($user_id > 0) and !empty($_FILES)) {
+    // read OMR DATA page
+    $omr_testdata = F_decodeOMRTestDataQRCode($_FILES['omrfile']['tmp_name'][0]);
+    if ($omr_testdata === false) {
+        F_print_error('ERROR', $l['m_omr_wrong_test_data']);
+    } else {
+        // read OMR ANSWER SHEET pages
+        $num_questions = (count($omr_testdata) - 1);
+        $num_pages = ceil($num_questions / 30);
+        $omr_answers = array();
+        for ($i = 1; $i <= $num_pages; ++$i) {
+            if ($_FILES['omrfile']['error'][$i] == 0) {
+                $answers_page = F_decodeOMRPage($_FILES['omrfile']['tmp_name'][$i]);
+                if (($answers_page !== false) and !empty($answers_page)) {
+                    $omr_answers += $answers_page;
+                } else {
+                    F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
+                }
+            } else {
+                F_print_error('ERROR', '[OMR ANSWER SHEET '.$i.'] '.$l['m_omr_wrong_answer_sheet']);
+            }
+        }
+        // sort answers
+        ksort($omr_answers);
+        // import answers
+        if (F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)) {
+            F_print_error('MESSAGE', $l['m_import_ok'].': <a href="tce_show_result_user.php?testuser_id=32&test_id='.$omr_testdata[0].'&user_id='.$user_id.'" title="'.$l['t_result_user'].'" style="text-decoration:underline;color:#0000ff;">'.$l['w_results'].'</a>');
+        } else {
+            F_print_error('ERROR', $l['m_import_error']);
+        }
+    }
+    // remove uploaded files
+    for ($i = 0; $i <= $max_omr_sheets; ++$i) {
+        if ($_FILES['omrfile']['error'][$i] == 0) {
+            @unlink($_FILES['omrfile']['tmp_name'][$i]);
+        }
+    }
 }
 
 // -----------------------------------------------------------------------------
@@ -125,10 +125,10 @@ echo '<span class="formw">'.K_NEWLINE;
 echo '<select name="user_id" id="user_id" size="0" onchange="">'.K_NEWLINE;
 $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE (user_id>1)';
 if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
-	// filter for level
-	$sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
-	// filter for groups
-	$sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
+    // filter for level
+    $sql .= ' AND ((user_level<'.$_SESSION['session_user_level'].') OR (user_id='.$_SESSION['session_user_id'].'))';
+    // filter for groups
+    $sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
 		FROM '.K_TABLE_USERGROUP.' AS ta, '.K_TABLE_USERGROUP.' AS tb
 		WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
 			AND ta.usrgrp_user_id='.intval($_SESSION['session_user_id']).'
@@ -136,19 +136,19 @@ if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
 }
 $sql .= ' ORDER BY user_lastname, user_firstname, user_name';
 if ($r = F_db_query($sql, $db)) {
-	$countitem = 1;
-	echo '<option value="0">&nbsp;</option>'.K_NEWLINE;
-	while($m = F_db_fetch_array($r)) {
-		echo '<option value="'.$m['user_id'].'"';
-		//if ($m['user_id'] == $user_id) {
-		//	echo ' selected="selected"';
-		//}
-		echo '>'.$countitem.'. '.htmlspecialchars($m['user_lastname'].' '.$m['user_firstname'].' - '.$m['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
-		$countitem++;
-	}
+    $countitem = 1;
+    echo '<option value="0">&nbsp;</option>'.K_NEWLINE;
+    while ($m = F_db_fetch_array($r)) {
+        echo '<option value="'.$m['user_id'].'"';
+        //if ($m['user_id'] == $user_id) {
+        //	echo ' selected="selected"';
+        //}
+        echo '>'.$countitem.'. '.htmlspecialchars($m['user_lastname'].' '.$m['user_firstname'].' - '.$m['user_name'].'', ENT_NOQUOTES, $l['a_meta_charset']).'</option>'.K_NEWLINE;
+        $countitem++;
+    }
 } else {
-	echo '</select></span></div>'.K_NEWLINE;
-	F_display_db_error();
+    echo '</select></span></div>'.K_NEWLINE;
+    F_display_db_error();
 }
 echo '</select>'.K_NEWLINE;
 
@@ -168,7 +168,7 @@ echo getFormUploadFile('omrfile[]', 'omrdata', $l['w_omr_data_page'], $l['h_omr_
 
 // OMR ANSWER SHEET pages
 for ($i = 1; $i < $max_omr_sheets; ++$i) {
-	echo getFormUploadFile('omrfile[]', 'omrsheet'.$i, $l['w_omr_answer_sheet'].' '.$i, '', 'document.getElementById(\'divomrsheet'.($i+1).'\').style.display=\'block\';');
+    echo getFormUploadFile('omrfile[]', 'omrsheet'.$i, $l['w_omr_answer_sheet'].' '.$i, '', 'document.getElementById(\'divomrsheet'.($i+1).'\').style.display=\'block\';');
 }
 echo getFormUploadFile('omrfile[]', 'omrsheet'.$max_omr_sheets, $l['w_omr_answer_sheet'].' '.$max_omr_sheets, '', '');
 

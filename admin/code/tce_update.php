@@ -40,12 +40,12 @@ require_once('../code/tce_page_header.php');
 /**
  * Updating server
  */
-define ('K_UPDATE_SERVER', 'http://updates.tcexam.com');
+define('K_UPDATE_SERVER', 'http://updates.tcexam.com');
 
 /**
  * UPDATES PASSKEY
  */
-define ('K_UPDATE_PASSKEY', '0');
+define('K_UPDATE_PASSKEY', '0');
 
 echo '<div class="container">';
 
@@ -53,57 +53,56 @@ $continue = true;
 
 // install all updates
 while ($continue) {
+    // get current version date
+    $vdate = file_get_contents(K_PATH_CACHE.'date.txt');
 
-	// get current version date
-	$vdate = file_get_contents(K_PATH_CACHE.'date.txt');
+    // get remote update
+    $update = file_get_contents(K_UPDATE_SERVER.'?k='.K_UPDATE_PASSKEY.'&d='.urlencode($vdate));
 
-	// get remote update
-	$update = file_get_contents(K_UPDATE_SERVER.'?k='.K_UPDATE_PASSKEY.'&d='.urlencode($vdate));
+    if ($update === false) {
+        echo '<h2>Connection error to update server, retry later.</h2>';
+        $continue = false;
+        break;
+    }
 
-	if ($update === false) {
-		echo '<h2>Connection error to update server, retry later.</h2>';
-		$continue = false;
-		break;
-	}
+    if (substr($update, 0, 7) == 'MESSAGE') {
+        echo '<h2>'.substr($update, 8).'</h2>';
+        $continue = false;
+        break;
+    }
 
-	if (substr($update, 0, 7) == 'MESSAGE') {
-		echo '<h2>'.substr($update, 8).'</h2>';
-		$continue = false;
-		break;
-	}
+    // save updating file
+    $f = fopen(K_PATH_CACHE.'update.tar.gz', 'wb');
+    if ($f) {
+        fwrite($f, $update, strlen($update));
+    }
+    fclose($f);
 
-	// save updating file
-	$f = fopen(K_PATH_CACHE.'update.tar.gz', 'wb');
-	if ($f) {
-		fwrite($f, $update, strlen($update));
-	}
-	fclose($f);
+    // *** start installation procedure ***
 
-	// *** start installation procedure ***
+    chdir(K_PATH_CACHE);
 
-	chdir(K_PATH_CACHE);
+    // extract files
+    exec('gzip -dc update.tar.gz | tar xf -');
+    exec('rm update.tar.gz');
 
-	// extract files
-	exec('gzip -dc update.tar.gz | tar xf -');
-	exec('rm update.tar.gz');
+    $version = file_get_contents(K_PATH_CACHE.'version.txt');
 
-	$version = file_get_contents(K_PATH_CACHE.'version.txt');
+    if (file_exists(K_PATH_CACHE.'patch.sql')) {
+        // update database
+        $command = 'mysql -h'.K_DATABASE_HOST.' -u'.K_DATABASE_USER_NAME.' -p'.K_DATABASE_USER_PASSWORD.' '.K_DATABASE_NAME.' < '.K_PATH_CACHE.'patch.sql';
+        exec($command);
+        echo exec('rm patch.sql');
+    }
 
-	if (file_exists(K_PATH_CACHE.'patch.sql')) {
-		// update database
-		$command = 'mysql -h'.K_DATABASE_HOST.' -u'.K_DATABASE_USER_NAME.' -p'.K_DATABASE_USER_PASSWORD.' '.K_DATABASE_NAME.' < '.K_PATH_CACHE.'patch.sql';
-		exec($command);
-		echo exec('rm patch.sql');
-	}
+    // apply patch
+    chdir(K_PATH_MAIN);
+    exec('patch < '.K_PATH_CACHE.'patch.diff');
+    echo '<h2>'.$version.': update completed.</h2>';
+    exec('rm '.K_PATH_CACHE.'patch.diff');
 
-	// apply patch
-	chdir(K_PATH_MAIN);
-	exec('patch < '.K_PATH_CACHE.'patch.diff');
-	echo '<h2>'.$version.': update completed.</h2>';
-	exec('rm '.K_PATH_CACHE.'patch.diff');
-
-	// restore current dir
-	chdir(K_PATH_MAIN.'code/');
+    // restore current dir
+    chdir(K_PATH_MAIN.'code/');
 }
 
 echo '</div>'.K_NEWLINE;

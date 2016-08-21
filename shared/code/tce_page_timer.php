@@ -28,17 +28,17 @@
  */
 
 if (!isset($_REQUEST['examtime'])) {
-	$examtime = 0; // remaining exam time in seconds
-	$enable_countdown = 'false';
-	$timeout_logout = 'false';
+    $examtime = 0; // remaining exam time in seconds
+    $enable_countdown = 'false';
+    $timeout_logout = 'false';
 } else {
-	$examtime = floatval($_REQUEST['examtime']);
-	$enable_countdown = 'true';
-	if (isset($_REQUEST['timeout_logout']) AND ($_REQUEST['timeout_logout'])) {
-		$timeout_logout = 'true';
-	} else {
-		$timeout_logout = 'false';
-	}
+    $examtime = floatval($_REQUEST['examtime']);
+    $enable_countdown = 'true';
+    if (isset($_REQUEST['timeout_logout']) and ($_REQUEST['timeout_logout'])) {
+        $timeout_logout = 'true';
+    } else {
+        $timeout_logout = 'false';
+    }
 }
 
 echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" id="timerform">'.K_NEWLINE;

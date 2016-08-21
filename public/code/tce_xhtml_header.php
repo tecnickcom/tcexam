@@ -39,19 +39,33 @@
  */
 
 // if necessary load default values
-if(!isset($pagelevel) OR empty($pagelevel)) {$pagelevel = 0;}
-if(!isset($thispage_title) OR empty($thispage_title)) {$thispage_title = K_SITE_TITLE;}
-if(!isset($thispage_description) OR empty($thispage_description)) {$thispage_description = K_SITE_DESCRIPTION;}
-if(!isset($thispage_author) OR empty($thispage_author)) {$thispage_author = K_SITE_AUTHOR;}
-if(!isset($thispage_reply) OR empty($thispage_reply)) {$thispage_reply = K_SITE_REPLY;}
-if(!isset($thispage_keywords) OR empty($thispage_keywords)) {$thispage_keywords = K_SITE_KEYWORDS;}
-if(!isset($thispage_icon) OR empty($thispage_icon)) {$thispage_icon = K_SITE_ICON;}
-if(!isset($thispage_style) OR empty($thispage_style)) {
-	if(strcasecmp($l['a_meta_dir'], 'rtl') == 0) {
-		$thispage_style = K_SITE_STYLE_RTL;
-	} else {
-		$thispage_style = K_SITE_STYLE;
-	}
+if (!isset($pagelevel) or empty($pagelevel)) {
+    $pagelevel = 0;
+}
+if (!isset($thispage_title) or empty($thispage_title)) {
+    $thispage_title = K_SITE_TITLE;
+}
+if (!isset($thispage_description) or empty($thispage_description)) {
+    $thispage_description = K_SITE_DESCRIPTION;
+}
+if (!isset($thispage_author) or empty($thispage_author)) {
+    $thispage_author = K_SITE_AUTHOR;
+}
+if (!isset($thispage_reply) or empty($thispage_reply)) {
+    $thispage_reply = K_SITE_REPLY;
+}
+if (!isset($thispage_keywords) or empty($thispage_keywords)) {
+    $thispage_keywords = K_SITE_KEYWORDS;
+}
+if (!isset($thispage_icon) or empty($thispage_icon)) {
+    $thispage_icon = K_SITE_ICON;
+}
+if (!isset($thispage_style) or empty($thispage_style)) {
+    if (strcasecmp($l['a_meta_dir'], 'rtl') == 0) {
+        $thispage_style = K_SITE_STYLE_RTL;
+    } else {
+        $thispage_style = K_SITE_STYLE;
+    }
 }
 
 echo '<'.'?'.'xml version="1.0" encoding="'.$l['a_meta_charset'].'" '.'?'.'>'.K_NEWLINE;
@@ -70,15 +84,15 @@ echo '<meta name="keywords" content="'.htmlspecialchars($thispage_keywords, ENT_
 echo '<link rel="stylesheet" href="'.$thispage_style.'" type="text/css" />'.K_NEWLINE;
 echo '<link rel="shortcut icon" href="'.$thispage_icon.'" />'.K_NEWLINE;
 // calendar
-if (isset($enable_calendar) AND $enable_calendar) {
-	echo '<style type="text/css">@import url('.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar-blue.css);</style>'.K_NEWLINE;
-	echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar.js"></script>'.K_NEWLINE;
-	if (file_exists(''.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-'.$l['a_meta_language'].'.js')) {
-		echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-'.$l['a_meta_language'].'.js"></script>'.K_NEWLINE;
-	} else {
-		echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-en.js"></script>'.K_NEWLINE;
-	}
-	echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar-setup.js"></script>'.K_NEWLINE;
+if (isset($enable_calendar) and $enable_calendar) {
+    echo '<style type="text/css">@import url('.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar-blue.css);</style>'.K_NEWLINE;
+    echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar.js"></script>'.K_NEWLINE;
+    if (file_exists(''.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-'.$l['a_meta_language'].'.js')) {
+        echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-'.$l['a_meta_language'].'.js"></script>'.K_NEWLINE;
+    } else {
+        echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/lang/calendar-en.js"></script>'.K_NEWLINE;
+    }
+    echo '<script type="text/javascript" src="'.K_PATH_SHARED_JSCRIPTS.'jscalendar/calendar-setup.js"></script>'.K_NEWLINE;
 }
 echo '<!-- '.'T'.'C'.'E'.'x'.'a'.'m'.'19'.'73'.'01'.'04'.' -->'.K_NEWLINE;
 echo '</head>'.K_NEWLINE;
@@ -86,8 +100,8 @@ echo '</head>'.K_NEWLINE;
 echo '<body>'.K_NEWLINE;
 
 global $login_error;
-if (isset($login_error) AND $login_error) {
-	F_print_error('WARNING', $l['m_login_wrong']);
+if (isset($login_error) and $login_error) {
+    F_print_error('WARNING', $l['m_login_wrong']);
 }
 
 //============================================================+

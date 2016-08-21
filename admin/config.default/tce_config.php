@@ -41,102 +41,102 @@ require_once('../../shared/config/tce_config.php');
 /**
  * Max memory limit.
  */
-define ('K_MAX_MEMORY_LIMIT', '512M');
+define('K_MAX_MEMORY_LIMIT', '512M');
 
 /**
  * Max number of rows to display in tables.
  */
-define ('K_MAX_ROWS_PER_PAGE', 50);
+define('K_MAX_ROWS_PER_PAGE', 50);
 
 /**
  * Max size to be uploaded in bytes.
  */
-define ('K_MAX_UPLOAD_SIZE', 25000000);
+define('K_MAX_UPLOAD_SIZE', 25000000);
 
 /**
  * List of allowed file types for upload (remove all extensions to disable upload).
  * FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE
  */
-define ('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid', 'pfx', 'pem', 'crt')));
+define('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid', 'pfx', 'pem', 'crt')));
 
 // -- DEFAULT META and BODY Tags --
 
 /**
  * TCExam title.
  */
-define ('K_TCEXAM_TITLE', 'TCExam');
+define('K_TCEXAM_TITLE', 'TCExam');
 
 /**
  * TCExam description.
  */
-define ('K_TCEXAM_DESCRIPTION', 'TCExam by Tecnick.com');
+define('K_TCEXAM_DESCRIPTION', 'TCExam by Tecnick.com');
 
 /**
  * TCExam Author.
  */
-define ('K_TCEXAM_AUTHOR', 'Nicola Asuni - Tecnick.com LTD');
+define('K_TCEXAM_AUTHOR', 'Nicola Asuni - Tecnick.com LTD');
 
 /**
  * Reply-to meta tag.
  */
-define ('K_TCEXAM_REPLY_TO', '');
+define('K_TCEXAM_REPLY_TO', '');
 
 /**
  * Default html meta keywords.
  */
-define ('K_TCEXAM_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
+define('K_TCEXAM_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
 
 /**
  * Relative path to html icon.
  */
-define ('K_TCEXAM_ICON', '../../favicon.ico');
+define('K_TCEXAM_ICON', '../../favicon.ico');
 
 /**
  * Full path to CSS stylesheet.
  */
-define ('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.'default.css');
+define('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.'default.css');
 
 /**
  * Full path to CSS stylesheet for RTL languages.
  */
-define ('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
+define('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
 
 /**
  * Full path to CSS stylesheet for help file.
  */
-define ('K_TCEXAM_HELP_STYLE', K_PATH_STYLE_SHEETS.'help.css');
+define('K_TCEXAM_HELP_STYLE', K_PATH_STYLE_SHEETS.'help.css');
 
 /**
  * If true display admin clock in UTC (GMT).
  */
-define ('K_CLOCK_IN_UTC', false);
+define('K_CLOCK_IN_UTC', false);
 
 /**
  * Max number of chars to display on a selection box.
  */
-define ('K_SELECT_SUBSTRING', 40);
+define('K_SELECT_SUBSTRING', 40);
 
 /**
  * If true display an additional button to print only the TEXT answers on all users' results.
  */
-define ('K_DISPLAY_PDFTEXT_BUTTON', false);
+define('K_DISPLAY_PDFTEXT_BUTTON', false);
 
 /**
  * Name of the option to import questions using a custom format (file: admin/code/tce_import_custom.php).
  * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
-define ('K_ENABLE_CUSTOM_IMPORT', '');
+define('K_ENABLE_CUSTOM_IMPORT', '');
 
 /**
  * Name of the button to export results in custom format (file: admin/code/tce_export_custom.php).
  * Set this constant to empty to disable this feature (or if you haven't set tce_import_custom.php)
  */
-define ('K_ENABLE_CUSTOM_EXPORT', '');
+define('K_ENABLE_CUSTOM_EXPORT', '');
 
 /**
  * If true enable the backup download.
  */
-define ('K_DOWNLOAD_BACKUPS', true);
+define('K_DOWNLOAD_BACKUPS', true);
 
 /**
  * If true check the unicity of question and answer descriptions using utf8_bin collation when using MySQL.
@@ -161,25 +161,25 @@ define('K_UTF8_NORMALIZATION_MODE', 'NONE');
  * On Debian/Ubuntu you can easily install zbarimg using the following command:
  * "sudo apt-get install zbar-tools"
  */
-define ('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
+define('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
 
 /**
  * Defines a serialized array of available fonts for PDF.
  */
-define ('K_AVAILABLE_FONTS', serialize(array(
-	'courier' => 'courier',
-	'helvetica' => 'helvetica',
-	'times' => 'times',
-	'symbol' => 'symbol',
-	'zapfdingbats' => 'zapfdingbats',
-	'DejaVuSans' => 'dejavusans,sans',
-	'DejaVuSansCondensed' => 'dejavusanscondensed,sans',
-	'DejaVuSansMono' => 'dejavusansmono,monospace',
-	'DejaVuSerif' => 'dejavuserif,serif',
-	'DejaVuSerifCondensed' => 'dejavuserifcondensed,serif',
-	'FreeMono' => 'freemono,monospace',
-	'FreeSans' => 'freesans,sans',
-	'FreeSerif' => 'freeserif,serif'
+define('K_AVAILABLE_FONTS', serialize(array(
+    'courier' => 'courier',
+    'helvetica' => 'helvetica',
+    'times' => 'times',
+    'symbol' => 'symbol',
+    'zapfdingbats' => 'zapfdingbats',
+    'DejaVuSans' => 'dejavusans,sans',
+    'DejaVuSansCondensed' => 'dejavusanscondensed,sans',
+    'DejaVuSansMono' => 'dejavusansmono,monospace',
+    'DejaVuSerif' => 'dejavuserif,serif',
+    'DejaVuSerifCondensed' => 'dejavuserifcondensed,serif',
+    'FreeMono' => 'freemono,monospace',
+    'FreeSans' => 'freesans,sans',
+    'FreeSerif' => 'freeserif,serif'
 )));
 
 // --- INCLUDE FILES -----------------------------------------------------------

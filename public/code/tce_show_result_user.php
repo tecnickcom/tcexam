@@ -44,32 +44,32 @@ require_once('../../shared/code/tce_functions_test_stats.php');
 
 $user_id = intval($_SESSION['session_user_id']);
 
-if (isset($_REQUEST['testuser_id']) AND ($_REQUEST['testuser_id'] > 0)) {
-	$testuser_id = intval($_REQUEST['testuser_id']);
+if (isset($_REQUEST['testuser_id']) and ($_REQUEST['testuser_id'] > 0)) {
+    $testuser_id = intval($_REQUEST['testuser_id']);
 } else {
-	header('Location: index.php'); //redirect browser to public main page
-	exit;
+    header('Location: index.php'); //redirect browser to public main page
+    exit;
 }
-if (isset($_REQUEST['test_id']) AND ($_REQUEST['test_id'] > 0)) {
-	$test_id = intval($_REQUEST['test_id']);
+if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
+    $test_id = intval($_REQUEST['test_id']);
 } else {
-	header('Location: index.php'); //redirect browser to public main page
-	exit;
+    header('Location: index.php'); //redirect browser to public main page
+    exit;
 }
 
 // security check
 $checkid = 0;
 $sqlt = 'SELECT testuser_user_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_id='.$testuser_id.'';
 if ($rt = F_db_query($sqlt, $db)) {
-	if ($mt = F_db_fetch_assoc($rt)) {
-		$checkid = $mt['testuser_user_id'];
-	}
+    if ($mt = F_db_fetch_assoc($rt)) {
+        $checkid = $mt['testuser_user_id'];
+    }
 } else {
-	F_display_db_error();
+    F_display_db_error();
 }
 if ($user_id != $checkid) {
-	header('Location: index.php'); //redirect browser to public main page
-	exit;
+    header('Location: index.php'); //redirect browser to public main page
+    exit;
 }
 
 // get user's test stats
@@ -79,8 +79,8 @@ $teststat['testinfo'] = F_getUserTestStat($test_id, $user_id, $testuser_id);
 $test_id = $teststat['testinfo']['test_id'];
 
 if (!F_getBoolean($teststat['testinfo']['test_results_to_users'])) {
-	header('Location: index.php'); //redirect browser to public main page
-	exit;
+    header('Location: index.php'); //redirect browser to public main page
+    exit;
 }
 //lock user's test
 F_lockUserTest($test_id, $_SESSION['session_user_id']);
@@ -99,26 +99,26 @@ echo getFormDescriptionLine($l['w_test'].':', $l['w_test'], $test_all);
 echo getFormDescriptionLine($l['w_time_begin'].':', $l['h_time_begin'], $teststat['testinfo']['user_test_start_time']);
 echo getFormDescriptionLine($l['w_time_end'].':', $l['h_time_end'], $teststat['testinfo']['user_test_end_time']);
 
-if (!isset($teststat['testinfo']['user_test_end_time']) OR ($teststat['testinfo']['user_test_end_time'] <= 0) OR (strtotime($teststat['testinfo']['user_test_end_time']) < strtotime($teststat['testinfo']['user_test_start_time']))) {
-	$time_diff = $teststat['testinfo']['test_duration_time'] * 60;
+if (!isset($teststat['testinfo']['user_test_end_time']) or ($teststat['testinfo']['user_test_end_time'] <= 0) or (strtotime($teststat['testinfo']['user_test_end_time']) < strtotime($teststat['testinfo']['user_test_start_time']))) {
+    $time_diff = $teststat['testinfo']['test_duration_time'] * 60;
 } else {
-	$time_diff = strtotime($teststat['testinfo']['user_test_end_time']) - strtotime($teststat['testinfo']['user_test_start_time']); //sec
+    $time_diff = strtotime($teststat['testinfo']['user_test_end_time']) - strtotime($teststat['testinfo']['user_test_start_time']); //sec
 }
 $time_diff = gmdate('H:i:s', $time_diff);
 echo getFormDescriptionLine($l['w_test_time'].':', $l['w_test_time'], $time_diff);
 
 $passmsg = '';
 if ($teststat['testinfo']['test_score_threshold'] > 0) {
-	if (isset($teststat['testinfo']['user_score']) AND ($teststat['testinfo']['user_score'] >= $teststat['testinfo']['test_score_threshold'])) {
-		$passmsg = ' - '.$l['w_passed'];
-	} else {
-		$passmsg = ' - '.$l['w_not_passed'];
-	}
+    if (isset($teststat['testinfo']['user_score']) and ($teststat['testinfo']['user_score'] >= $teststat['testinfo']['test_score_threshold'])) {
+        $passmsg = ' - '.$l['w_passed'];
+    } else {
+        $passmsg = ' - '.$l['w_not_passed'];
+    }
 }
 if ($teststat['testinfo']['test_max_score'] > 0) {
-	$score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+    $score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
 } else {
-	$score_all = $teststat['testinfo']['user_score'].$passmsg;
+    $score_all = $teststat['testinfo']['user_score'].$passmsg;
 }
 echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
 
@@ -127,24 +127,24 @@ echo getFormDescriptionLine($l['w_answers_right'].':', $l['h_answers_right'], $s
 echo getFormDescriptionLine($l['w_comment'].':', $l['h_testcomment'], F_decode_tcecode($teststat['testinfo']['user_comment']));
 
 if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {
-	echo '<div class="rowl">'.K_NEWLINE;
-	echo F_printUserTestStat($testuser_id);
-	echo '</div>'.K_NEWLINE;
+    echo '<div class="rowl">'.K_NEWLINE;
+    echo F_printUserTestStat($testuser_id);
+    echo '</div>'.K_NEWLINE;
 
-	// print statistics for modules and subjects
-	echo '<div class="rowl">'.K_NEWLINE;
-	echo '<hr />'.K_NEWLINE;
-	echo '<h2>'.$l['w_stats'].'</h2>';
-	echo F_printTestStat($test_id, 0, $user_id, 0, 0, $testuser_id, $teststat, 1, true);
-	echo '<hr />'.K_NEWLINE;
-	echo '</div>'.K_NEWLINE;
+    // print statistics for modules and subjects
+    echo '<div class="rowl">'.K_NEWLINE;
+    echo '<hr />'.K_NEWLINE;
+    echo '<h2>'.$l['w_stats'].'</h2>';
+    echo F_printTestStat($test_id, 0, $user_id, 0, 0, $testuser_id, $teststat, 1, true);
+    echo '<hr />'.K_NEWLINE;
+    echo '</div>'.K_NEWLINE;
 
-	if (K_ENABLE_PUBLIC_PDF) {
-		echo '<div class="row">'.K_NEWLINE;
-		// PDF button
-		echo '<a href="tce_pdf_results.php?mode=3&amp;test_id='.$test_id.'&amp;user_id='.$user_id.'&amp;testuser_id='.$testuser_id.'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
-		echo '</div>'.K_NEWLINE;
-	}
+    if (K_ENABLE_PUBLIC_PDF) {
+        echo '<div class="row">'.K_NEWLINE;
+        // PDF button
+        echo '<a href="tce_pdf_results.php?mode=3&amp;test_id='.$test_id.'&amp;user_id='.$user_id.'&amp;testuser_id='.$testuser_id.'" class="xmlbutton" title="'.$l['h_pdf'].'">'.$l['w_pdf'].'</a> ';
+        echo '</div>'.K_NEWLINE;
+    }
 }
 
 echo '</div>'.K_NEWLINE;

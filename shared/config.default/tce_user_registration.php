@@ -32,32 +32,32 @@
 /**
  * If true enable USER REGISTRATION.
  */
-define ('K_USRREG_ENABLED', true);
+define('K_USRREG_ENABLED', true);
 
 /**
  * If true requires email confirmation.
  */
-define ('K_USRREG_EMAIL_CONFIRM', true);
+define('K_USRREG_EMAIL_CONFIRM', true);
 
 /**
  * Default user group ID for registered user.
  */
-define ('K_USRREG_GROUP', 1);
+define('K_USRREG_GROUP', 1);
 
 /**
  * URL of an HTML page containing the registration agreement (i.e.: "http://www.yoursite.com/agreement.html").
  */
-define ('K_USRREG_AGREEMENT', '');
+define('K_USRREG_AGREEMENT', '');
 
 /**
  * The following email will receive copies of verification messages.
  */
-define ('K_USRREG_ADMIN_EMAIL', '');
+define('K_USRREG_ADMIN_EMAIL', '');
 
 /**
  * Regular expression defining the allowed characters for a password
  */
-define ('K_USRREG_PASSWORD_RE', '^([a-zA-Z0-9]{8,32})$');
+define('K_USRREG_PASSWORD_RE', '^([a-zA-Z0-9]{8,32})$');
 
 /**
  * Additional fields to display on registration form.
@@ -67,15 +67,15 @@ define ('K_USRREG_PASSWORD_RE', '^([a-zA-Z0-9]{8,32})$');
  * 2 = required field;
  */
 $regfields = array(
-	'user_email' => 2,
-	'user_regnumber' => 1,
-	'user_firstname' => 2,
-	'user_lastname' => 2,
-	'user_birthdate' => 1,
-	'user_birthplace' => 1,
-	'user_ssn' => 1,
-	'user_groups' => 1,
-	'user_agreement' => 2
+    'user_email' => 2,
+    'user_regnumber' => 1,
+    'user_firstname' => 2,
+    'user_lastname' => 2,
+    'user_birthdate' => 1,
+    'user_birthplace' => 1,
+    'user_ssn' => 1,
+    'user_groups' => 1,
+    'user_agreement' => 2
 );
 
 //============================================================+

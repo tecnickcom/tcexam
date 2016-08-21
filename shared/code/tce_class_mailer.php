@@ -23,7 +23,7 @@
  * @file
  * PHPMailer class extension.
  * @package PHPMailer
- * @brief PHP email transport class 
+ * @brief PHP email transport class
  * @author Nicola Asuni
  * @since 2005-02-24
  */
@@ -48,23 +48,25 @@ require_once("../../shared/phpmailer/class.phpmailer.php");
  * @package PHPMailer
  * @since 2005-02-24
  */
-class C_mailer extends PHPMailer {
+class C_mailer extends PHPMailer
+{
 
-	/**
-	 * Language array.
-	 */
-	public $language;
+    /**
+     * Language array.
+     */
+    public $language;
 
-	/**
-	 * Replace the default SetError
-	 * @param $msg (string) error message
-	 * @public
-	 * @return void
-	 */
-	public function SetError($msg) {
+    /**
+     * Replace the default SetError
+     * @param $msg (string) error message
+     * @public
+     * @return void
+     */
+    public function SetError($msg)
+    {
         parent::SetError($msg);
         F_print_error('ERROR', $this->ErrorInfo);
-	exit;
+        exit;
     }
 
     /**
@@ -74,28 +76,29 @@ class C_mailer extends PHPMailer {
      * @protected
      * @return string
      */
-    protected function Lang($key) {
-        if(isset($this->language['m_mailerror_'.$key])) {
+    protected function Lang($key)
+    {
+        if (isset($this->language['m_mailerror_'.$key])) {
             return $this->language['m_mailerror_'.$key];
         } else {
             return 'UNKNOW ERROR: ['.$key.']';
         }
     }
 
-	/**
-	 * Check that a string looks roughly like an email address should
-	 * (override original ValidateAddress method).
-	 * Conforms approximately to RFC2822
-	 * Original pattern found at: http://www.hexillion.com/samples/#Regex
-	 * @param $address (string) The email address to check
-	 * @return boolean
-	 * @static
-	 * @public
-	*/
-	public static function ValidateAddress($address) {
-		return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
-	}
-
+    /**
+     * Check that a string looks roughly like an email address should
+     * (override original ValidateAddress method).
+     * Conforms approximately to RFC2822
+     * Original pattern found at: http://www.hexillion.com/samples/#Regex
+     * @param $address (string) The email address to check
+     * @return boolean
+     * @static
+     * @public
+    */
+    public static function ValidateAddress($address)
+    {
+        return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
+    }
 } //end of class
 
 //============================================================+

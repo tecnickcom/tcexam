@@ -43,7 +43,7 @@ echo '<div class="container">'.K_NEWLINE;
 // print submenu
 echo '<ul>'.K_NEWLINE;
 foreach ($menu['tce_menu_modules.php']['sub'] as $link => $data) {
-	echo F_menu_link($link, $data, 1);
+    echo F_menu_link($link, $data, 1);
 }
 echo '</ul>'.K_NEWLINE;
 
