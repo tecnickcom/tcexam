@@ -62,13 +62,12 @@ class C_mailer extends PHPMailer {
 	 * @return void
 	 */
 	public function SetError($msg) {
-        $this->error_count++;
-        $this->ErrorInfo = $msg;
-        F_print_error('ERROR', $msg);
-		exit;
+        parent::SetError($msg);
+        F_print_error('ERROR', $this->ErrorInfo);
+	exit;
     }
 
-	/**
+    /**
      * Returns a message in the appropriate language.
      * (override original Lang method).
      * @param $key (string) language key
