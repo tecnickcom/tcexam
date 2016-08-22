@@ -1,3 +1,6 @@
+13.2.1 (2016-08-22)
+	- Fix fatal error in tce_db_dal.php.
+
 13.2.0 (2016-08-21)
 	- The K_USRREG_PASSWORD_RE constant was added in shared/config/tce_user_registration.php to set the regular expression used to filter input passwords.
 	- An error with the C_mailer class was fixed.

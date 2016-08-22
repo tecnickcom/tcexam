@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_dal.php
 // Begin       : 2003-10-12
-// Last Update : 2013-10-23
+// Last Update : 2016-08-22
 //
 // Description : Load the functions for the selected database
 //               type (Database Abstraction Layer).
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2016  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -34,8 +34,7 @@
  */
 
 switch (K_DATABASE_TYPE) {
-    case 'MYSQL':
-    default: {
+    case 'MYSQL': {
         require_once('../../shared/code/tce_db_dal_mysqli.php');
         break;
     }
@@ -47,10 +46,12 @@ switch (K_DATABASE_TYPE) {
         require_once('../../shared/code/tce_db_dal_oracle.php');
         break;
     }
-    case 'MYSQLDEPRECATED':
-    default: {
+    case 'MYSQLDEPRECATED': {
         require_once('../../shared/code/tce_db_dal_mysql.php');
         break;
+    }
+    default: {
+        F_print_error('ERROR', 'K_DATABASE_TYPE is not set!');
     }
 }
 
