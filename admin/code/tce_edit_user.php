@@ -34,6 +34,7 @@ require_once('../config/tce_config.php');
 
 $pagelevel = K_AUTH_ADMIN_USERS;
 require_once('../../shared/code/tce_authorization.php');
+require_once('../../shared/config/tce_user_registration.php');
 
 $thispage_title = $l['t_user_editor'];
 $enable_calendar = true;

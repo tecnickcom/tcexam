@@ -1,3 +1,6 @@
+13.3.0 (2016-09-06)
+	- Fix undefined K_USRREG_PASSWORD_RE issue.
+
 13.2.1 (2016-08-22)
 	- Fix fatal error in tce_db_dal.php.
 

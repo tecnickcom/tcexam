@@ -35,6 +35,7 @@ require_once('../config/tce_config.php');
 $pagelevel = K_AUTH_USER_CHANGE_PASSWORD;
 $thispage_title = $l['t_user_change_password'];
 require_once('../../shared/code/tce_authorization.php');
+require_once('../../shared/config/tce_user_registration.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('../code/tce_page_header.php');
 
