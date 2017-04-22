@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_password.php
 // Begin       : 2010-09-17
-// Last Update : 2012-06-07
+// Last Update : 2017-04-22
 //
 // Description : Form to change user password
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -41,24 +41,33 @@ require_once('../code/tce_page_header.php');
 
 $user_id = intval($_SESSION['session_user_id']);
 
-// process submited data
+// process submitted data
 switch ($menu_mode) {
     case 'update':{ // Update user
         if ($formstatus = F_check_form_fields()) {
             // check password
-            if (!empty($newpassword) or !empty($newpassword_repeat)) {
-                if ($newpassword == $newpassword_repeat) {
-                    $user_password = getPasswordHash($newpassword);
-                } else { //print message and exit
-                    F_print_error('WARNING', $l['m_different_passwords']);
+            if (empty($newpassword) or empty($newpassword_repeat) or ($newpassword != $newpassword_repeat)) {
+                //print message and exit
+                F_print_error('WARNING', $l['m_different_passwords']);
+                $formstatus = false;
+                F_stripslashes_formfields();
+                break;
+            }
+            $sql = 'SELECT user_password FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id;
+            if ($r = F_db_query($sql, $db)) {
+                if (!($m = F_db_fetch_array($r)) or !checkPassword($currentpassword, $m['user_password'])) {
+                    F_print_error('WARNING', $l['m_login_wrong']);
                     $formstatus = false;
                     F_stripslashes_formfields();
                     break;
                 }
+            } else {
+                F_display_db_error(false);
+                break;
             }
             $sql = 'UPDATE '.K_TABLE_USERS.' SET
-				user_password=\''.F_escape_sql($db, $user_password).'\'
-				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
+				user_password=\''.F_escape_sql($db, getPasswordHash($newpassword)).'\'
+				WHERE user_id='.$user_id;
             if (!$r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {

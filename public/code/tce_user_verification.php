@@ -62,7 +62,7 @@ if ($r = F_db_query($sql, $db)) {
         if ($verifycode[0] == '@') {
             // password reset
             $new_password = substr(md5(uniqid(mt_rand(), true)), 0, 8);
-            $sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_password=\''.getPasswordHash($new_password).'\', user_verifycode=NULL WHERE user_id='.$userid.'';
+            $sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_password=\''.F_escape_sql($db, getPasswordHash($new_password)).'\', user_verifycode=NULL WHERE user_id='.$userid.'';
         } else {
             // user registration
             $sqlu = 'UPDATE '.K_TABLE_USERS.' SET user_level=\'1\', user_verifycode=NULL WHERE user_id='.$userid.'';

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2016-08-21
+// Last Update : 2017-04-01
 //
 // Description : Configuration file for user registration.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2016  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -45,7 +45,7 @@ define('K_USRREG_EMAIL_CONFIRM', true);
 define('K_USRREG_GROUP', 1);
 
 /**
- * URL of an HTML page containing the registration agreement (i.e.: "http://www.yoursite.com/agreement.html").
+ * URL of an HTML page containing the registration agreement (i.e.: "http://www.example.com/agreement.html").
  */
 define('K_USRREG_AGREEMENT', '');
 
@@ -57,7 +57,7 @@ define('K_USRREG_ADMIN_EMAIL', '');
 /**
  * Regular expression defining the allowed characters for a password
  */
-define('K_USRREG_PASSWORD_RE', '^([a-zA-Z0-9]{8,32})$');
+define('K_USRREG_PASSWORD_RE', '^(.{8,})$');
 
 /**
  * Additional fields to display on registration form.

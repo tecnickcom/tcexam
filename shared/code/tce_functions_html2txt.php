@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_html2txt.php
 // Begin       : 2001-10-21
-// Last Update : 2009-09-30
+// Last Update : 2017-04-22
 //
 // Description : Function to convert HTML code to Text string.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -68,20 +68,41 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
     $str = preg_replace("/(\?|\&|%3F|%26|\&amp;|%26amp%3B)PHPSESSID(=|%3D)[a-z0-9]{32,32}/i", "", $str);
 
     //remove applet and get alternative content
-    $str = preg_replace("/<applet[^>]*?>(.*?)<\/applet>/esi", "preg_replace(\"/<param[^>]*>/i\", \"\", \"\\1\")", $str);
+    $str = preg_replace_callback(
+        "/<applet[^>]*?>(.*?)<\/applet>/si",
+        function($subs) {
+            return preg_replace("/<param[^>]*>/i", "", $subs[1]);
+        },
+        $str
+    );
 
     //remove object and get alternative content
-    $str = preg_replace("/<object[^>]*?>(.*?)<\/object>/esi", "preg_replace(\"/<param[^>]*>/i\", \"\", \"\\1\")", $str);
+    $str = preg_replace_callback(
+        "/<object[^>]*?>(.*?)<\/object>/si",
+        function($subs) {
+            return preg_replace("/<param[^>]*>/i", "", $subs[1]);
+        },
+        $str);
 
     //indent list elements
     $firstposition = 0;
     while (($pos=strpos($str, "<ul")) > $firstposition) {
-        $str = preg_replace("/<ul[^>]*?>(.*?)<\/ul>/esi", "preg_replace(\"/<li[^>]*>/i\", \"<li>\t\", \"\\1\")", $str);
+        $str = preg_replace_callback(
+            "/<ul[^>]*?>(.*?)<\/ul>/si",
+            function($subs) {
+                return preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]);
+            },
+            $str);
         $firstposition = $pos;
     }
     $firstposition = 0;
     while (($pos=strpos($str, "<ol")) > $firstposition) {
-        $str = preg_replace("/<ol[^>]*?>(.*?)<\/ol>/esi", "preg_replace(\"/<li[^>]*>/i\", \"<li>\t\", \"\\1\")", $str);
+        $str = preg_replace_callback(
+            "/<ol[^>]*?>(.*?)<\/ol>/si",
+            function($subs) {
+                return preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]);
+            },
+            $str);
         $firstposition = $pos;
     }
 

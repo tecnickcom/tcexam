@@ -357,7 +357,7 @@ class XMLUserImporter
 									user_email='.F_empty_to_null($this->user_data['user_email']).',';
                                 // update password only if it is specified
                                 if (!empty($this->user_data['user_password'])) {
-                                    $sqlu .= ' user_password=\''.getPasswordHash($this->user_data['user_password']).'\',';
+                                    $sqlu .= ' user_password=\''.F_escape_sql($db, getPasswordHash($this->user_data['user_password'])).'\',';
                                 }
                                 $sqlu .= '
 									user_regnumber='.F_empty_to_null($this->user_data['user_regnumber']).',
@@ -400,7 +400,7 @@ class XMLUserImporter
 								\''.$this->user_data['user_ip'].'\',
 								\''.$this->user_data['user_name'].'\',
 								'.F_empty_to_null($this->user_data['user_email']).',
-								\''.getPasswordHash($this->user_data['user_password']).'\',
+								\''.F_escape_sql($db, getPasswordHash($this->user_data['user_password'])).'\',
 								'.F_empty_to_null($this->user_data['user_regnumber']).',
 								'.F_empty_to_null($this->user_data['user_firstname']).',
 								'.F_empty_to_null($this->user_data['user_lastname']).',
@@ -543,7 +543,7 @@ function F_import_tsv_users($tsvfile)
 						user_name=\''.F_escape_sql($db, $userdata[1]).'\',';
                     // update password only if it is specified
                     if (!empty($userdata[2])) {
-                        $sqlu .= ' user_password=\''.getPasswordHash($userdata[2]).'\',';
+                        $sqlu .= ' user_password=\''.F_escape_sql($db, getPasswordHash($userdata[2])).'\',';
                     }
                     $sqlu .= '
 						user_email='.F_empty_to_null($userdata[3]).',
@@ -586,7 +586,7 @@ function F_import_tsv_users($tsvfile)
 					user_otpkey
 					) VALUES (
 					\''.F_escape_sql($db, $userdata[1]).'\',
-					\''.getPasswordHash($userdata[2]).'\',
+					\''.F_escape_sql($db, getPasswordHash($userdata[2])).'\',
 					'.F_empty_to_null($userdata[3]).',
 					\''.F_escape_sql($db, $userdata[4]).'\',
 					\''.F_escape_sql($db, $userdata[5]).'\',

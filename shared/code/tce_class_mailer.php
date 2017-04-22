@@ -39,7 +39,8 @@ require_once('../../shared/config/tce_email_config.php'); //Include default publ
 // This suppress the warnings due to the fact that phpmailer class is written in PHP4
 $old_error_handler = set_error_handler('F_error_handler', E_ERROR | E_WARNING | E_PARSE);
 // include the phpmailer class
-require_once("../../shared/phpmailer/class.phpmailer.php");
+require_once('../../shared/phpmailer/PHPMailerAutoload.php');
+require_once('../../shared/phpmailer/class.phpmailer.php');
 
 /**
  * @class C_mailer
@@ -50,12 +51,6 @@ require_once("../../shared/phpmailer/class.phpmailer.php");
  */
 class C_mailer extends PHPMailer
 {
-
-    /**
-     * Language array.
-     */
-    public $language;
-
     /**
      * Replace the default SetError
      * @param $msg (string) error message
@@ -67,6 +62,17 @@ class C_mailer extends PHPMailer
         parent::SetError($msg);
         F_print_error('ERROR', $this->ErrorInfo);
         exit;
+    }
+
+    /**
+     * Set the language array
+     * @param $lang (array) Language array
+     * @public
+     * @return void
+     */
+    public function setLanguageData($lang)
+    {
+        $this->language = $lang;
     }
 
     /**
@@ -85,20 +91,6 @@ class C_mailer extends PHPMailer
         }
     }
 
-    /**
-     * Check that a string looks roughly like an email address should
-     * (override original ValidateAddress method).
-     * Conforms approximately to RFC2822
-     * Original pattern found at: http://www.hexillion.com/samples/#Regex
-     * @param $address (string) The email address to check
-     * @return boolean
-     * @static
-     * @public
-    */
-    public static function ValidateAddress($address)
-    {
-        return preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', $address);
-    }
 } //end of class
 
 //============================================================+

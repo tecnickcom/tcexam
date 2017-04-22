@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-27
+// Last Update : 2017-04-22
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -55,7 +55,7 @@ if (isset($_REQUEST['mode']) and ($_REQUEST['mode'] > 0)) {
     $mode = 0;
 }
 $onlytext = ($mode == 5);
-if (isset($_REQUEST['email']) and ($_REQUEST['email'] != getPasswordHash(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id))) {
+if (isset($_REQUEST['email']) and !checkPassword(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id, $_REQUEST['email'])) {
     F_print_error('ERROR', $l['m_authorization_denied']);
     exit;
 }

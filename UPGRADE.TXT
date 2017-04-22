@@ -3,16 +3,13 @@ TCExam - GENERAL UPGRADE PROCESS
 
 IMPORTANT:
 
-Starting from 11.3.000 version the encryption algorithm for
-passwords was improved and is NOT compatible with the old 
-method.
-
-If you are upgrading and you do not want to manually reset 
-all passwords, set the K_STRONG_PASSWORD_ENCRYPTION constant
-to FALSE on shared/config/tce_config.php
+Starting from 14.0.0 version the encryption algorithm for
+passwords has changed and all passwords have to be reset.
 
 The default password for admin is 1234 and the correspondent
 encoding is on install/dbdata.sql
+Please create a new admin user (level 10) and delete the
+"admin" one as soon as possible.
 
 
 This is the general upgrade process for TCExam.
@@ -73,77 +70,3 @@ This is the general upgrade process for TCExam.
 	(tcexam.old).
 
 ------------------------------------------------------------
-
-------------------------------------------------------------
-UPGRADE FROM OBSOLETE VERSIONS
-------------------------------------------------------------
-
-TCExam - UPGRADE FROM VERSION 4 to 5
-============================================================
-
-On TCExam 5 the database schema is changed, so you need to 
-alter your existing database installation.
-
-1. Backup you entire existing database data and 
-   TCExam Folder before any change.
-
-2. From your favourite database management application (e.g.
-   phpMyAdmin, phpPgAdmin, ...), use one of the following 
-   file to upgrade your TCExam database schema:
-       install/mysql_db_upgrade_4to5.sql
-       install/postgresql_db_upgrade_4to5.sql
-
-3. Replace the following directories and files with the new 
-   files on TCExam 5:
-       admin/code
-       admin/doc
-       shared/code/tce_functions_test.php
-       shared/config/lang
-
-4. delete the cache/language_tmx_**.php files.
-
-5. edit the shared/config/tce_config.php file and change the
-   value of K_TCEXAM_VERSION constant:
-       define ("K_TCEXAM_VERSION", "5.0.004");
-
-------------------------------------------------------------
-
-TCExam - UPGRADE FROM VERSION 3 to 4
-============================================================
-
-TCExam 4 has a new database schema and other improvements 
-that requires a new installation.
-
-To import your questions and users database from version 3 
-to 4, try the following:
-
-1. Backup you entire existing database data (this is not 
-   necessary for upgrading but it's a good thing to do).
-
-2. Use the phpPgAdmin or phpMyAdmin application to export 
-   the following tables from the old database in SQL format:
-   
-   tce_subjects
-   tce_questions
-   tce_answers
-   tce_users 
-   	(remove "admin" and "anonymous" users from this dump 
-   	because they will be recreated)
-   
-   Note that on tce_users table the user_group_id field has 
-   been removed and the user_verifycode field has been 
-   introduced. So, when exporting this table exclude the 
-   user_group_id field and use complete SQL inserts.
-   Users' groups must be created manually from TCExam 
-   interface.
-
-3. Install TCExam 4 on a new directory and with a new 
-   database name.
-   
-4. Use a DBMS manager application (pgAdmin3, phpPgAdmin, 
-   phpMyAdmin, ...) to import the SQL previously saved.
-   
-5. If you are using the PostgreSQL database please update 
-   also the sequences for the imported data.
-
-============================================================

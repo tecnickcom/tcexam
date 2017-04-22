@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_email.php
 // Begin       : 2010-09-17
-// Last Update : 2012-06-07
+// Last Update : 2017-04-22
 //
 // Description : Form to change user email
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -40,27 +40,36 @@ require_once('../code/tce_page_header.php');
 
 $user_id = intval($_SESSION['session_user_id']);
 
-// process submited data
+// process submitted data
 switch ($menu_mode) {
     case 'update':{ // Update user
         if ($formstatus = F_check_form_fields()) {
             // check password
-            if (!empty($user_email) or !empty($user_email_repeat)) {
-                if ($user_email != $user_email_repeat) {
-                    //print message and exit
-                    F_print_error('WARNING', $l['m_different_emails']);
+            if (empty($user_email) or empty($user_email_repeat) or ($user_email != $user_email_repeat)) {
+                //print message and exit
+                F_print_error('WARNING', $l['m_different_emails']);
+                $formstatus = false;
+                F_stripslashes_formfields();
+                break;
+            }
+            $sql = 'SELECT user_password FROM '.K_TABLE_USERS.' WHERE user_id='.$user_id;
+            if ($r = F_db_query($sql, $db)) {
+                if (!($m = F_db_fetch_array($r)) or !checkPassword($currentpassword, $m['user_password'])) {
+                    F_print_error('WARNING', $l['m_login_wrong']);
                     $formstatus = false;
                     F_stripslashes_formfields();
                     break;
                 }
+            } else {
+                F_display_db_error(false);
+                break;
             }
-            mt_srand((double) microtime() * 1000000);
-            $user_verifycode = md5(uniqid(mt_rand(), true)); // verification code
+            $user_verifycode = getNewSessionID(); // verification code
             $sql = 'UPDATE '.K_TABLE_USERS.' SET
 				user_email=\''.F_escape_sql($db, $user_email).'\',
 				user_level=\'0\',
 				user_verifycode=\''.$user_verifycode.'\'
-				WHERE user_id='.$user_id.' AND user_password=\''.getPasswordHash($currentpassword).'\'';
+				WHERE user_id='.$user_id;
             if (!$r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {

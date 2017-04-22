@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2016-03-15
+// Last Update : 2017-04-22
 //
 // Description : Outputs TCExam information page.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2016 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,7 +46,7 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2016 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2017 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
 echo '<li><strong>'.$l['w_license'].':</strong> <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a></li>'.K_NEWLINE;
@@ -60,8 +60,13 @@ echo '<ul class="credits">'.K_NEWLINE;
 
 echo '<li><strong>PHPMailer</strong><br />
 Full Featured Email Transfer Class for PHP.<br />
-Author: Brent R. Matzelle (<a href="mailto:bmatzelle@yahoo.com">bmatzelle@yahoo.com</a>)<br />
-Homepage: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
+Authors:<ul>
+<li>Brent R. Matzelle (original founder)</li>
+<li>2014 Marcus Bointon
+<li>2010 - 2012 Jim Jagielski
+<li>2004 - 2009 Andy Prevost
+</ul>
+Homepage: <a href="https://github.com/PHPMailer/PHPMailer/">https://github.com/PHPMailer/PHPMailer</a><br />
 License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/phpmailer/<br /><br />
 </li>'.K_NEWLINE;
@@ -91,7 +96,7 @@ Location: /shared/radius/<br /><br />
 
 echo '<li><strong>phpCAS</strong><br />
 CAS client in PHP.<br />
-Copyright: 2007-2011, JA-SIG, Inc. <a href="http://www.jasig.org" title="Jasig Website">http://www.jasig.org</a><br />
+Copyright: 2007-2015, JA-SIG, Inc. <a href="http://www.jasig.org" title="Jasig Website">http://www.jasig.org</a><br />
 Homepage: <a href="https://wiki.jasig.org/display/CASC/phpCAS" title="phpCAS">https://wiki.jasig.org/display/CASC/phpCAS</a><br />
 License: <a href="http://www.apache.org/licenses/LICENSE-2.0" title="Apache License, Version 2.0">Apache License, Version 2.0</a><br />
 Location: /shared/cas/<br /><br />

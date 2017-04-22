@@ -48,7 +48,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     $mail = new C_mailer;
 
     //Load default values
-    $mail->language = $l;
+    $mail->setLanguageData($l);
     $mail->Priority = $emailcfg['Priority'];
     $mail->ContentType = $emailcfg['ContentType'];
     $mail->Encoding = $emailcfg['Encoding'];

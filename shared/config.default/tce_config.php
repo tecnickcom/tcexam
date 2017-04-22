@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define('K_TCEXAM_VERSION', '13.3.0');
+define('K_TCEXAM_VERSION', '14.0.0');
 
 /**
  * 2-letters code for default language.
@@ -167,12 +167,7 @@ define('K_QUESTION_LINE_MAX_LENGTH', 70);
 /**
  * If true, check for possible session hijacking (set to false if you have login problems).
  */
-define('K_CHECK_SESSION_FINGERPRINT', false);
-
-/**
- * If true uses a strong encryption algorithm for passwords.
- */
-define('K_STRONG_PASSWORD_ENCRYPTION', true);
+define('K_CHECK_SESSION_FINGERPRINT', true);
 
 // Client Cookie settings
 

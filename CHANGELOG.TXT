@@ -1,3 +1,7 @@
+14.0.0 (2017-04-22)
+	- Change password hashing algorithm.
+	- NOTE: all passwords have to be reset!
+
 13.3.0 (2016-09-06)
 	- Fix undefined K_USRREG_PASSWORD_RE issue.
 

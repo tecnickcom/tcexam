@@ -189,7 +189,7 @@ function F_question_copy($question_id, $new_subject_id)
             $sql = 'START TRANSACTION';
             if (!$r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
-                break;
+                return;
             }
             // adjust questions ordering
             if ($q['question_position'] > 0) {
@@ -266,7 +266,7 @@ function F_question_copy($question_id, $new_subject_id)
             $sql = 'COMMIT';
             if (!$r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
-                break;
+                return;
             }
         }
     }

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_general_constants.php
 // Begin       : 2002-03-01
-// Last Update : 2012-12-27
+// Last Update : 2017-04-22
 //
 // Description : Configuration file for general constants.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -30,7 +30,7 @@
 /**
  * String used as a seed for some security code generation please change this value and keep it secret.
  */
-define('K_RANDOM_SECURITY', '4kCHtQ53');
+define('K_RANDOM_SECURITY', 'DsjM5AY5CCYRrtPn');
 
 /**
  * Maximum number of tests per year (last 365 days).

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2014-01-26
+// Last Update : 2017-04-22
 //
 // Description : User-level session storage functions.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -192,9 +192,6 @@ function F_session_string_to_array($sd)
 function getClientFingerprint()
 {
     $sid = K_RANDOM_SECURITY;
-    if (isset($_SERVER['REMOTE_ADDR'])) {
-        $sid .= $_SERVER['REMOTE_ADDR'];
-    }
     if (isset($_SERVER['HTTP_USER_AGENT'])) {
         $sid .= $_SERVER['HTTP_USER_AGENT'];
     }
@@ -207,10 +204,13 @@ function getClientFingerprint()
     if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         $sid .= $_SERVER['HTTP_ACCEPT_LANGUAGE'];
     }
-    if (isset($_SERVER['HTTP_ACCEPT_CHARSET'])) {
-        $sid .= $_SERVER['HTTP_ACCEPT_CHARSET'];
+    if (isset($_SERVER['HTTP_DNT'])) {
+        $sid .= $_SERVER['HTTP_DNT'];
     }
-    return $sid;
+    if (isset($_SERVER['HTTP_UPGRADE_INSECURE_REQUESTS'])) {
+        $sid .= $_SERVER['HTTP_UPGRADE_INSECURE_REQUESTS'];
+    }
+    return md5($sid);
 }
 
 /**
@@ -221,7 +221,7 @@ function getClientFingerprint()
  */
 function getNewSessionID()
 {
-    return md5(uniqid(microtime().getmypid(), true).getClientFingerprint().uniqid(session_id().microtime(), true));
+    return md5(getPasswordHash(uniqid(microtime().getmypid().getClientFingerprint().K_RANDOM_SECURITY.session_id(), true)));
 }
 
 /**
@@ -231,16 +231,19 @@ function getNewSessionID()
  */
 function getPasswordHash($password)
 {
-    if (defined('K_STRONG_PASSWORD_ENCRYPTION') and K_STRONG_PASSWORD_ENCRYPTION) {
-        $pswlen = strlen($password);
-        $salt = (2 * $pswlen);
-        for ($i = 0; $i < $pswlen; ++$i) {
-            $salt += (($i + 1) * ord($password[$i]));
-        }
-        $hash = '$'.$salt.'#'.strrev($password).'$';
-        return md5($hash);
-    }
-    return md5($password);
+    return password_hash($password, PASSWORD_DEFAULT);
+}
+
+/**
+ * Verifies that a password matches a hash
+ * @param $password (string) The password to verify
+ * @param $hash (string) Password hash
+ * 
+ * @return boolean
+ */
+function checkPassword($password, $hash)
+{
+    return password_verify($password, $hash);
 }
 
 // ------------------------------------------------------------

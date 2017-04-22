@@ -52,7 +52,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
     $test_id = intval($_REQUEST['testid']);
     // check for test password
     $tph = F_getTestPassword($test_id);
-    if (!empty($tph) and ($_SESSION['session_test_login'] != getPasswordHash($tph.$test_id.$_SESSION['session_user_id'].$_SESSION['session_user_ip']))) {
+    if (!empty($tph) and !checkPassword($tph.$test_id.$_SESSION['session_user_id'].$_SESSION['session_user_ip'], $_SESSION['session_test_login'])) {
         // display login page
         require_once('../code/tce_page_header.php');
         echo F_testLoginForm($_SERVER['SCRIPT_NAME'], 'form_test_login', 'post', 'multipart/form-data', $test_id);

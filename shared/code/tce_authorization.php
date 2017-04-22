@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2015-03-27
+// Last Update : 2017-04-22
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -50,16 +50,16 @@ $logged = false; // the user is not yet logged in
 
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($db, $PHPSESSID);
-$session_hash = getPasswordHash($PHPSESSID);
+$fingerprintkey = getClientFingerprint();
 $sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
 if ($rs = F_db_query($sqls, $db)) {
     if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
         // decode session data
         session_decode($ms['cpsession_data']);
         // check for possible session hijacking
-        if (K_CHECK_SESSION_FINGERPRINT and ((!isset($_SESSION['session_hash'])) or ($_SESSION['session_hash'] != $session_hash))) {
+        if (K_CHECK_SESSION_FINGERPRINT and ((!isset($_SESSION['session_hash'])) or ($fingerprintkey != $_SESSION['session_hash']))) {
             // display login form
-            session_regenerate_id();
+            session_regenerate_id(true);
             F_login_form();
             exit();
         }
@@ -70,7 +70,7 @@ if ($rs = F_db_query($sqls, $db)) {
             F_display_db_error();
         }
     } else { // session do not exist so, create new anonymous session
-        $_SESSION['session_hash'] = $session_hash;
+        $_SESSION['session_hash'] = $fingerprintkey;
         $_SESSION['session_user_id'] = 1;
         $_SESSION['session_user_name'] = '- ['.substr($PHPSESSID, 12, 8).']';
         $_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
@@ -125,7 +125,6 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
     if (K_BRUTE_FORCE_DELAY_RATIO > 0) {
         // check login attempt from the current client device to avoid brute force attack
         $bruteforce = true;
-        $fingerprintkey = md5(getClientFingerprint());
         // we are using another entry in the session table to keep track of the login attempts
         $sqlt = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$fingerprintkey.'\' LIMIT 1';
         if ($rt = F_db_query($sqlt, $db)) {
@@ -202,9 +201,9 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
         }
         if (!K_OTP_LOGIN or $otp) {
             // check if submitted login information are correct
-            $sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
+            $sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'';
             if ($r = F_db_query($sql, $db)) {
-                if ($m = F_db_fetch_array($r)) {
+                if (($m = F_db_fetch_array($r)) and checkPassword($_POST['xuser_password'], $m['user_password'])) {
                     // sets some user's session data
                     $_SESSION['session_user_id'] = $m['user_id'];
                     $_SESSION['session_user_name'] = $m['user_name'];
@@ -229,13 +228,13 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
                     if ($altusr !== false) {
                         // resync the password
                         $sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-								user_password=\''.$xuser_password.'\'
+								user_password=\''.F_escape_sql($db, $xuser_password).'\'
 								WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'';
                         if (!$ru = F_db_query($sqlu, $db)) {
                             F_display_db_error();
                         }
                         // get user data
-                        $sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.$xuser_password.'\'';
+                        $sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.F_escape_sql($db, $xuser_password).'\'';
                         if ($rd = F_db_query($sqld, $db)) {
                             if ($md = F_db_fetch_array($rd)) {
                                 // sets some user's session data
@@ -282,7 +281,7 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
 							\''.F_escape_sql($db, getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
 							\''.F_escape_sql($db, $_POST['xuser_name']).'\',
 							'.F_empty_to_null($altusr['user_email']).',
-							\''.getPasswordHash($_POST['xuser_password']).'\',
+							\''.F_escape_sql($db, $xuser_password).'\',
 							'.F_empty_to_null($altusr['user_regnumber']).',
 							'.F_empty_to_null($altusr['user_firstname']).',
 							'.F_empty_to_null($altusr['user_lastname']).',

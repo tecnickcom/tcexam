@@ -39,6 +39,10 @@ define('K_DATABASE_HOST', '');
 
 /**
  * database port (eg: 3306, 5432, 1521)
+ * 
+ * NOTE: For MYSQL database type, set this constant to NULL to be able to use the MySQL socket path defined by the
+ * mysqli.default_socket PHP value. For example, in Apache:
+ * php_value mysqli.default_socket "/path/to/mysql.sock"
  */
 define('K_DATABASE_PORT', '');
 

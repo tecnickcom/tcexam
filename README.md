@@ -9,10 +9,6 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 * Name: TCExam
 * Author: Nicola Asuni
-* Copyright (c) 2004-2016:
-	* Nicola Asuni
-	* Tecnick.com LTD
-	* http://www.tecnick.com
 * URLs:
 	* http://www.tcexam.org
 	* https://github.com/tecnickcom/tcexam
@@ -24,7 +20,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 * Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 * Software License:
-	* Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
+	* Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
 
 
