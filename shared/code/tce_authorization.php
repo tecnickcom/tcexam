@@ -394,7 +394,7 @@ if ($logged) { //if user is just logged in: reloads page
 if (isset($_POST['testpswaction']) and ($_POST['testpswaction'] == 'login') and isset($_POST['xtest_password']) and isset($_POST['testid'])) {
     require_once('../../shared/code/tce_functions_test.php');
     $tph = F_getTestPassword($_POST['testid']);
-    if (getPasswordHash($_POST['xtest_password']) == $tph) {
+    if (checkPassword($_POST['xtest_password'], $tph)) {
         // test password is correct, save status on a session variable
         $_SESSION['session_test_login'] = getPasswordHash($tph.$_POST['testid'].$_SESSION['session_user_id'].$_SESSION['session_user_ip']);
     } else {
