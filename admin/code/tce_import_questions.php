@@ -159,7 +159,9 @@ function F_TSVQuestionImporter($tsvfile)
     require_once('../../shared/code/tce_functions_auth_sql.php');
     $qtype = array('S' => 1, 'M' => 2, 'T' => 3, 'O' => 4);
     // get file content as array
-    $tsvrows = file($tsvfile, FILE_IGNORE_NEW_LINES); // array of TSV lines
+    //Original changed on 05/09/2017
+	//$tsvrows = file($tsvfile, FILE_IGNORE_NEW_LINES); // array of TSV lines
+	$tsvrows = fopen($tsvfile,"r");
     if ($tsvrows === false) {
         return false;
     }
@@ -169,9 +171,13 @@ function F_TSVQuestionImporter($tsvfile)
     $current_answer_id = 0;
     $questionhash = array();
     // for each row
-    while (list($item, $rowdata) = each($tsvrows)) {
-        // get user data into array
-        $qdata = explode("\t", $rowdata);
+	//Changed 05/09/2017
+    //while (list($item, $rowdata) = each($tsvrows)) {
+	while($qdata=fgetcsv($tsvrows,0,"\t",'"')) {
+		// get user data into array
+        //$qdata = $rowdata;//explode("\t", $rowdata);
+		if($qdata==null) continue;
+		//print_r($qdata);
         switch ($qdata[0]) {
             case 'M': { // MODULE
                 $current_module_id = 0;
@@ -269,6 +275,7 @@ function F_TSVQuestionImporter($tsvfile)
                 break;
             }
             case 'Q': { // QUESTION
+			
                 $current_question_id = 0;
                 if (($current_module_id == 0) or ($current_subject_id == 0)) {
                     return;
@@ -276,6 +283,7 @@ function F_TSVQuestionImporter($tsvfile)
                 if (!isset($qdata[5])) {
                     break;
                 }
+				
                 $question_enabled = intval($qdata[1]);
                 $question_description = F_escape_sql($db, F_tsv_to_text($qdata[2]), false);
                 $question_explanation = F_empty_to_null(F_tsv_to_text($qdata[3]));
@@ -306,6 +314,7 @@ function F_TSVQuestionImporter($tsvfile)
                 } else {
                     $question_auto_next = 0;
                 }
+				
                 // check if this question already exist
                 $sql = 'SELECT question_id
 					FROM '.K_TABLE_QUESTIONS.'
@@ -322,7 +331,9 @@ function F_TSVQuestionImporter($tsvfile)
                     if ($m = F_db_fetch_array($r)) {
                         // get existing question ID
                         $current_question_id = $m['question_id'];
-                        return;
+                        continue;
+						//Changed 05092017 due to lost processing
+						//return;
                     }
                 } else {
                     F_display_db_error();
@@ -343,6 +354,7 @@ function F_TSVQuestionImporter($tsvfile)
                         return;
                     }
                 }
+				
                 $sql = 'START TRANSACTION';
                 if (!$r = F_db_query($sql, $db)) {
                     F_display_db_error();
