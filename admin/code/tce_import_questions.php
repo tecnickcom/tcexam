@@ -158,9 +158,8 @@ function F_TSVQuestionImporter($tsvfile)
     require_once('../config/tce_config.php');
     require_once('../../shared/code/tce_functions_auth_sql.php');
     $qtype = array('S' => 1, 'M' => 2, 'T' => 3, 'O' => 4);
-    // get file content as array
-    $tsvrows = file($tsvfile, FILE_IGNORE_NEW_LINES); // array of TSV lines
-    if ($tsvrows === false) {
+    $tsvfp = fopen($tsvfile, 'r');
+    if ($tsvfp === false) {
         return false;
     }
     $current_module_id = 0;
@@ -169,9 +168,11 @@ function F_TSVQuestionImporter($tsvfile)
     $current_answer_id = 0;
     $questionhash = array();
     // for each row
-    while (list($item, $rowdata) = each($tsvrows)) {
+    while ($qdata=fgetcsv($tsvfp, 0, "\t", '"')) {
+        if ($qdata === null) {
+            continue;
+        }
         // get user data into array
-        $qdata = explode("\t", $rowdata);
         switch ($qdata[0]) {
             case 'M': { // MODULE
                 $current_module_id = 0;
@@ -322,7 +323,7 @@ function F_TSVQuestionImporter($tsvfile)
                     if ($m = F_db_fetch_array($r)) {
                         // get existing question ID
                         $current_question_id = $m['question_id'];
-                        return;
+                        continue;
                     }
                 } else {
                     F_display_db_error();
