@@ -71,6 +71,7 @@ function F_decode_form_fields()
  */
 function F_check_required_fields($formfields)
 {
+    global $l;
     if (empty($formfields) or !array_key_exists('ff_required', $formfields) or strlen($formfields['ff_required']) <= 0) {
         return false;
     }
@@ -107,6 +108,7 @@ function F_check_required_fields($formfields)
  */
 function F_check_fields_format($formfields)
 {
+    global $l;
     if (empty($formfields)) {
         return '';
     }
