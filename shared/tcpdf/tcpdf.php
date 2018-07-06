@@ -18891,7 +18891,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					if (isset($tag['height'])) {
 						$ih = $this->getHTMLUnitToUnits($tag['height'], ($tag['fontsize'] / $this->k), 'px', false);
 					}
-					$filepath=K_PATH_CACHE . end(explode($tag['attribute']['src'],'/'));
+					$filename = explode('/', $tag['attribute']['src']);
+					$filepath = K_PATH_CACHE . end($filename);
 					if (($type == 'eps') OR ($type == 'ai')) {
 						$this->ImageEps($filepath, $xpos, $this->y, $iw, $ih, $imglink, true, $align, '', $border, true);
 					} elseif ($type == 'svg') {
