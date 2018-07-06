@@ -55,7 +55,7 @@ if (K_LANGUAGE_SELECTOR and (stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.
     echo '<span class="langselector" title="change language">'.K_NEWLINE;
     $lang_array = unserialize(K_AVAILABLE_LANGUAGES);
     $lngstr = '';
-    while (list($lang_code, $lang_name) = each($lang_array)) {
+    foreach ($lang_array as $lang_code => $lang_name) {
         $lngstr .= ' | ';
         if ($lang_code == K_USER_LANG) {
             $lngstr .= '<span class="selected" title="'.$lang_name.'">'.strtoupper($lang_code).'</span>';

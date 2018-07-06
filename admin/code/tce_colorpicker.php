@@ -75,7 +75,7 @@ function F_html_color_picker($callingform, $callingfield, $tag)
     // print a table of websafe colors
     $ck = 1;
     echo '<div style="width:320px;">';
-    while (list($key, $val) = each(TCPDF_COLORS::$webcolor)) { // for each color in table
+    foreach (TCPDF_COLORS::$webcolor as $key => $val) { // for each color in table
         echo '<a title="'.$key.'" onclick="document.getElementById(\'CSELECTED\').value=\'#'.$val.'\';FJ_pick_color(1);document.getElementById(\'colorname\').selectedIndex='.$ck.';" style="text-decoration:none;font-size:3px;">';
         echo '<span style="background-color:#'.$val.';padding:0;margin:0;width:20px;height:10px;float:left;">&nbsp;</span>';
         echo '</a>';
@@ -88,7 +88,7 @@ function F_html_color_picker($callingform, $callingfield, $tag)
     echo '<select name="colorname" id="colorname" size="0" onchange="document.getElementById(\'CSELECTED\').value=document.getElementById(\'colorname\').options[document.getElementById(\'colorname\').selectedIndex].value; FJ_pick_color(1);">'.K_NEWLINE;
     echo '<option value=""></option>'.K_NEWLINE;
     reset(TCPDF_COLORS::$webcolor);
-    while (list($key, $val) = each(TCPDF_COLORS::$webcolor)) { // for each color in table
+    foreach (TCPDF_COLORS::$webcolor as $key => $val) { // for each color in table
         echo '<option value="#'.$val.'">'.$key.'</option>'.K_NEWLINE;
     }
     echo '</select>';

@@ -132,7 +132,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
                     $testlog_id = intval($_REQUEST['prevquestionid']);
                 } else {
                     // go to selected question
-                    while (list($key,$value) = each($_POST)) {
+                    foreach ($_POST as $key => $value) {
                         if (preg_match('/jumpquestion_([0-9]+)/', $key, $matches) > 0) {
                             $testlog_id = intval($matches[1]);
                             break;

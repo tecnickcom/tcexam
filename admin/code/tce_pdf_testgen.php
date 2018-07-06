@@ -569,7 +569,7 @@ for ($item = 1; $item <= $test_num; $item++) {
                 // add answers
                 $answ_id = 0;
                 // display multiple answers
-                while (list($key, $answer_id) = each($answers_ids)) {
+                foreach ($answers_ids as $key => $answer_id) {
                     ++$answ_id;
 
                     // add answer ID to QR-Code data

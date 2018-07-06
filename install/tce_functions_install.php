@@ -120,7 +120,7 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 	$sql_data = preg_replace("/(;\r)$/si", '', $sql_data); // remove last ";\r"
 	$sql_query = explode(";\r", trim($sql_data)); // split sql string into SQL statements
 	//execute queries
-	while(list($key, $sql) = each($sql_query)) { //for query on sql file
+        foreach ($sql_query as $key => $sql) { //for query on sql file
 		error_log('    [SQL] '.$key."\n", 3, $progress_log); //create progress log file
 		echo ' '; //print something to keep browser live
 		if (($key % 300) == 0) { //force flush output every 300 processed queries
@@ -275,7 +275,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		'3'  => array ('0' => "K_STANDARD_PORT', ([^\)]*)", '1' => "K_STANDARD_PORT', ".$standard_port."")
 	);
 
-	while(list($key, $file_name) = each($config_file)) { //for each configuration file
+	foreach ($config_file as $key => $file_name) { //for each configuration file
 
 		error_log('  [START] process file: '.basename($file_name)."\n", 3, $progress_log); //log info
 		echo "\n".'<li>start process <i>'.basename($file_name).'</i> file:';
@@ -305,7 +305,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 				error_log(' [OK]'."\n", 3, $progress_log); //log info
 
 				//change cfg file values
-				while(list($pkey, $pval) = each($parameter[$key])) { //for each file parameter
+                                foreach ($parameter[$key] as $pkey => $pval) { //for each file parameter
 					echo "\n".'<li>update value '.$pkey.' ...........';
 					error_log('      update value '.$pkey.'', 3, $progress_log); //log info
 					$file_data = preg_replace('#'.$pval[0].'#', $pval[1], $file_data); //update cfg parameters
