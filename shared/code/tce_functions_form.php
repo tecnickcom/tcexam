@@ -116,7 +116,7 @@ function F_check_fields_format($formfields)
     }
     reset($formfields);
     $wrongfields = '';
-    while (list($key, $value) = each($formfields)) {
+    foreach ($formfields as $key => $value) {
         if (substr($key, 0, 2) == 'x_') {
             $fieldname = substr($key, 2);
             $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);

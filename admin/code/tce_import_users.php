@@ -425,7 +425,7 @@ class XMLUserImporter
 
                     // user's groups
                     if (!empty($this->group_data)) {
-                        while (list($key,$group_id) = each($this->group_data)) {
+                        foreach ($this->group_data as $key => $group_id) {
                             // check if user-group already exist
                             $sqls = 'SELECT *
 								FROM '.K_TABLE_USERGROUP.'
@@ -498,7 +498,7 @@ function F_import_tsv_users($tsvfile)
     next($tsvrows);
 
     // for each row
-    while (list($item, $rowdata) = each($tsvrows)) {
+    foreach ($tsvrows as $item => $rowdata) {
         // get user data into array
         $userdata = explode("\t", $rowdata);
 

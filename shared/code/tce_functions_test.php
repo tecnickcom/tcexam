@@ -210,7 +210,7 @@ function F_isValidIP($user_ip, $test_ips)
     // build array of valid IP masks
     $test_ip = explode(',', $test_ips);
     // check user IP against test IP masks
-    while (list($key, $ipmask) = each($test_ip)) {
+    foreach ($test_ip as $key => $ipmask) {
         if (strrpos($ipmask, '*') !== false) {
             // old range notation using IPv4 addresses and '*' character.
             $ipv4 = explode('.', $ipmask);
@@ -824,7 +824,7 @@ function F_addLogAnswers($testlog_id, $answers_ids)
     global $db, $l;
     $testlog_id = intval($testlog_id);
     $i = 0;
-    while (list($key, $answid) = each($answers_ids)) {
+    foreach ($answers_ids as $key => $answid) {
         $i++;
         $sqli = 'INSERT INTO '.K_TABLE_LOG_ANSWER.' (
 			logansw_testlog_id,

@@ -192,8 +192,8 @@ To start installation fill the form below and click the INSTALL button.<br />
 </span>
 <span class="formw">
 <select name="db_type" id="db_type" size="0">
-<?PHP
-	while(list($key, $val) = each($dbtypes)) { //for each file on list
+<?php
+        foreach ($dbtypes as $key => $val) { //for each file on list
 		echo '<option value="'.$val.'"';
 		if( (isset($_REQUEST['db_type'])) AND ($val == $_REQUEST['db_type']) ) {
 			echo ' selected="selected"';
