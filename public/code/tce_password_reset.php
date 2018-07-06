@@ -96,7 +96,7 @@ echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipar
 
 echo '<p>'.$l['d_reset_password'].'</p>'.K_NEWLINE;
 
-echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', '', '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$', 255, false, false, false, '');
+echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', '', K_EMAIL_RE_PATTERN, 255, false, false, false, '');
 
 echo '<div class="row">'.K_NEWLINE;
 

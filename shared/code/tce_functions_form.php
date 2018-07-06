@@ -54,6 +54,8 @@ if (!isset($menu_mode)) {
     $menu_mode = '';
 }
 
+define('K_EMAIL_RE_PATTERN', '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$');
+
 /**
  * Returns an array containing form fields.
  * @return array containing form fields
