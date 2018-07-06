@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2012-12-03
+// Last Update : 2018-07-06
 //
 // Description : Edit users' groups.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -59,6 +59,10 @@ if (isset($_REQUEST['group_name'])) {
 } else {
     $group_name = '';
 }
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'group_name';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']);
 
 switch ($menu_mode) { // process submitted data
 
@@ -248,10 +252,6 @@ if (isset($group_id) and ($group_id > 0)) {
     F_submit_button('add', $l['w_add'], $l['h_add']);
 }
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="group_name" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
 echo '</div>'.K_NEWLINE;
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_change_password.php
 // Begin       : 2010-09-17
-// Last Update : 2017-04-22
+// Last Update : 2018-07-06
 //
 // Description : Form to change user password
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -40,6 +40,10 @@ require_once('../../shared/code/tce_functions_form.php');
 require_once('../code/tce_page_header.php');
 
 $user_id = intval($_SESSION['session_user_id']);
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'currentpassword,newpassword,newpassword_repeat';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_current_password'].','.$l['w_new_password'].','.$l['w_new_password'], ENT_COMPAT, $l['a_meta_charset']);
 
 // process submitted data
 switch ($menu_mode) {
@@ -95,9 +99,6 @@ echo '<div class="row">'.K_NEWLINE;
 
 F_submit_button('update', $l['w_update'], $l['h_update']);
 
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="currentpassword,newpassword,newpassword_repeat" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_current_password'].','.$l['w_new_password'].','.$l['w_new_password'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo '</form>'.K_NEWLINE;

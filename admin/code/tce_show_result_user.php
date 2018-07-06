@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2013-08-23
+// Last Update : 2018-07-06
 //
 // Description : Display test results for specified user.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -43,6 +43,10 @@ require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = '';
+$_REQUEST['ff_required_labels'] = '';
 
 $filter = '';
 
@@ -376,9 +380,6 @@ if (isset($teststat) and !empty($teststat)) {
         echo '<a href="tce_email_results.php?mode=0&amp;menu_mode=startlongprocess'.$filter.'" class="xmlbutton" title="'.$l['h_email_result'].' + PDF">'.$l['w_email_result'].' + PDF</a> ';
     }
 
-    // comma separated list of required fields
-    echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NEWLINE;
-    echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
 }
 

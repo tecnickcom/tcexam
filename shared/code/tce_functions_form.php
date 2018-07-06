@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2013-04-02
+// Last Update : 2018-07-06
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -54,6 +54,8 @@ if (!isset($menu_mode)) {
     $menu_mode = '';
 }
 
+define('K_EMAIL_RE_PATTERN', '^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$');
+
 /**
  * Returns an array containing form fields.
  * @return array containing form fields
@@ -71,6 +73,7 @@ function F_decode_form_fields()
  */
 function F_check_required_fields($formfields)
 {
+    global $l;
     if (empty($formfields) or !array_key_exists('ff_required', $formfields) or strlen($formfields['ff_required']) <= 0) {
         return false;
     }
@@ -82,7 +85,7 @@ function F_check_required_fields($formfields)
         $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
         if (!array_key_exists($fieldname, $formfields) or strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
             if ($required_fields_labels[$i]) { // check if the field has a label
-                $fieldname = $required_fields_labels[$i];
+                $fieldname = htmlspecialchars($required_fields_labels[$i], ENT_NOQUOTES, $l['a_meta_charset']);
             }
             $missing_fields .= ', '.stripslashes($fieldname);
         }
@@ -107,6 +110,7 @@ function F_check_required_fields($formfields)
  */
 function F_check_fields_format($formfields)
 {
+    global $l;
     if (empty($formfields)) {
         return '';
     }
@@ -119,7 +123,7 @@ function F_check_fields_format($formfields)
             if (array_key_exists($fieldname, $formfields) and strlen($formfields[$fieldname]) > 0) { //if is not empty
                 if (!preg_match("'".stripslashes($value)."'i", $formfields[$fieldname])) { //check regular expression
                     if (isset($formfields['xl_'.$fieldname]) and !empty($formfields['xl_'.$fieldname])) { //check if field has label
-                        $fieldname = $formfields['xl_'.$fieldname];
+                        $fieldname = htmlspecialchars($formfields['xl_'.$fieldname], ENT_NOQUOTES, $l['a_meta_charset']);
                     }
                     $wrongfields .= ', '.stripslashes($fieldname);
                 }

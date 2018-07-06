@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2013-08-23
+// Last Update : 2018-07-06
 //
 // Description : Edit Tests
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -42,6 +42,11 @@ require_once('tce_functions_tcecode_editor.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
 require_once('tce_functions_test_select.php');
+
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'test_name,test_description,test_ip_range,test_duration_time,test_score_right';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'].','.$l['w_description'].','.$l['w_ip_range'].','.$l['w_test_time'].','.$l['w_score_right'], ENT_COMPAT, $l['a_meta_charset']);
 
 // set default values
 if (!isset($_REQUEST['test_results_to_users']) or (empty($_REQUEST['test_results_to_users']))) {
@@ -1074,10 +1079,6 @@ if (isset($test_id) and ($test_id > 0)) {
     }
 }
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
-
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="test_name,test_description,test_ip_range,test_duration_time,test_score_right" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'].','.$l['w_description'].','.$l['w_ip_range'].','.$l['w_test_time'].','.$l['w_score_right'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 
 echo '<br /><br />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
