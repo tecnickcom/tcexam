@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2013-04-03
+// Last Update : 2018-07-06
 //
 // Description : Edit user data.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -70,6 +70,10 @@ if (isset($_REQUEST['user_level'])) {
         }
     }
 }
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'user_name';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']);
 
 switch ($menu_mode) { // process submitted data
 
@@ -524,9 +528,6 @@ if (isset($user_id) and ($user_id > 0)) {
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '<input type="hidden" name="user_password" id="user_password" value="'.$user_password.'" />'.K_NEWLINE;
-
-echo '<input type="hidden" name="ff_required" id="ff_required" value="user_name" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo '</form>'.K_NEWLINE;

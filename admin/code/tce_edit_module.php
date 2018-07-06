@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_module.php
 // Begin       : 2008-11-28
-// Last Update : 2013-08-23
+// Last Update : 2018-07-06
 //
 // Description : Display form to edit modules.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -67,6 +67,10 @@ if (isset($_REQUEST['module_id']) and ($_REQUEST['module_id'] > 0)) {
 } else {
     $module_id = 0;
 }
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'module_name';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']);
 
 switch ($menu_mode) {
     case 'delete':{
@@ -399,10 +403,6 @@ if (isset($module_id) and ($module_id > 0)) {
 echo '&nbsp;'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '&nbsp;'.K_NEWLINE;
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="module_name" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
-
 echo '</div>'.K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

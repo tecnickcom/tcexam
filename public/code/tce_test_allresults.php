@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_allresults.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-21
+// Last Update : 2018-07-06
 //
 // Description : Display test results summary.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -44,6 +44,10 @@ require_once('../../shared/code/tce_functions_test.php');
 require_once('../../shared/code/tce_functions_test_stats.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('../../shared/code/tce_functions_statistics.php');
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = '';
+$_REQUEST['ff_required_labels'] = '';
 
 $user_id = intval($_SESSION['session_user_id']);
 $filter = 'user_id='.$user_id;
@@ -267,9 +271,6 @@ if ($itemcount > 0) {
 
     echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_field.'" />'.K_NEWLINE;
     echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
-    // comma separated list of required fields
-    echo '<input type="hidden" name="ff_required" id="ff_required" value="" />'.K_NEWLINE;
-    echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="" />'.K_NEWLINE;
     echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'>" />'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
 }

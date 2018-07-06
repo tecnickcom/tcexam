@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_answer.php
 // Begin       : 2004-04-27
-// Last Update : 2014-08-23
+// Last Update : 2018-07-06
 //
 // Description : Edit answers.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -50,6 +50,10 @@ for ($id = 0; $id < 2; ++$id) {
         $uploadedfile['\''.$id.'\''] = F_upload_file('userfile'.$id, K_PATH_CACHE);
     }
 }
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'answer_description';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_description'], ENT_COMPAT, $l['a_meta_charset']);
 
 // set default values
 if (isset($_REQUEST['subject_module_id'])) {
@@ -873,10 +877,6 @@ if (isset($answer_question_id) and ($answer_question_id > 0)) {
 
 echo '</span>'.K_NEWLINE;
 echo '&nbsp;'.K_NEWLINE;
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="answer_description" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.htmlspecialchars($l['w_description'], ENT_COMPAT, $l['a_meta_charset']).'" />'.K_NEWLINE;
-
 echo '</div>'.K_NEWLINE;
 
 echo '<div class="row"><hr /></div>'.K_NEWLINE;

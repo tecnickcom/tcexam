@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_password_reset.php
 // Begin       : 2012-04-14
-// Last Update : 2012-04-14
+// Last Update : 2018-07-06
 //
 // Description : Password Reset form.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -44,6 +44,11 @@ require_once('../../shared/code/tce_authorization.php');
 $thispage_title = $l['t_password_assistance'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'user_email';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_email'], ENT_COMPAT, $l['a_meta_charset']);;
+
 
 if (isset($_POST['resetpassword'])) { // process submited data
 
@@ -97,9 +102,6 @@ echo '<div class="row">'.K_NEWLINE;
 
 F_submit_button('resetpassword', $l['w_submit'], $l['h_submit']);
 
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="user_email" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.$l['w_email'].'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo '</form>'.K_NEWLINE;

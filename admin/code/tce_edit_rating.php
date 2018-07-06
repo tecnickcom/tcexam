@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2012-12-03
+// Last Update : 2018-07-06
 //
 // Description : Editor to manually rate free text answers.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -60,6 +60,10 @@ if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
 } else {
     $test_id = 0;
 }
+
+// comma separated list of required fields
+$_REQUEST['ff_required'] = 'testlog_score';
+$_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_score'], ENT_COMPAT, $l['a_meta_charset']);
 
 switch ($menu_mode) {
     case 'update': { // Update
@@ -389,9 +393,6 @@ if (isset($testlog_id) and ($testlog_id > 0)) {
     F_submit_button("update", $l['w_update'], $l['h_update']);
 }
 
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="testlog_score" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.$l['w_score'].'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;

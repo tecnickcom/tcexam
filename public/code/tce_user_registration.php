@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2012-11-22
+// Last Update : 2018-07-06
 //
 // Description : User registration form.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -47,6 +47,32 @@ $thispage_title = $l['t_user_registration'];
 $thispage_description = $l['hp_user_registration'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
+
+// set fields descriptions for error messages
+$fielddesc = array (
+    'user_name' => $l['w_name'],
+    'newpassword' => $l['w_password'],
+    'newpassword_repeat' => $l['w_password'],
+    'user_email' => $l['w_email'],
+    'user_regnumber' => $l['w_regcode'],
+    'user_firstname' => $l['w_firstname'],
+    'user_lastname' => $l['w_lastname'],
+    'user_birthdate' => $l['w_birth_date'],
+    'user_birthplace' => $l['w_birth_place'],
+    'user_ssn' => $l['w_fiscal_code'],
+    'user_groups' => $l['w_groups'],
+    'user_agreement' => $l['w_i_agree']
+);
+$reqfields = array();
+$reqdesc = array();
+foreach ($regfields as $field => $required) {
+    if ($required == 2) {
+        $reqfields[] = $field;
+        $reqdesc[] = htmlspecialchars($fielddesc[$field], ENT_COMPAT, $l['a_meta_charset']);
+    }
+}
+$_REQUEST['ff_required'] = implode(',', $reqfields);
+$_REQUEST['ff_required_labels'] = implode(',', $reqdesc);
 
 if ($menu_mode == 'add') { // process submited data
 
@@ -307,35 +333,6 @@ echo '<div class="row">'.K_NEWLINE;
 
 F_submit_button('add', $l['w_add'], $l['h_add']);
 
-// set fields descriptions for error messages
-$fielddesc = array (
-    'user_name' => $l['w_name'],
-    'newpassword' => $l['w_password'],
-    'newpassword_repeat' => $l['w_password'],
-    'user_email' => $l['w_email'],
-    'user_regnumber' => $l['w_regcode'],
-    'user_firstname' => $l['w_firstname'],
-    'user_lastname' => $l['w_lastname'],
-    'user_birthdate' => $l['w_birth_date'],
-    'user_birthplace' => $l['w_birth_place'],
-    'user_ssn' => $l['w_fiscal_code'],
-    'user_groups' => $l['w_groups'],
-    'user_agreement' => $l['w_i_agree']
-);
-$reqfields = '';
-$reqdesc = '';
-foreach ($regfields as $field => $required) {
-    if ($required == 2) {
-        $reqfields .= ','.$field;
-        $reqdesc .= ','.htmlspecialchars($fielddesc[$field], ENT_COMPAT, $l['a_meta_charset']);
-    }
-}
-$reqfields = substr($reqfields, 1);
-$reqdesc = substr($reqdesc, 1);
-
-// comma separated list of required fields
-echo '<input type="hidden" name="ff_required" id="ff_required" value="'.$reqfields.'" />'.K_NEWLINE;
-echo '<input type="hidden" name="ff_required_labels" id="ff_required_labels" value="'.$reqdesc.'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
 echo '</form>'.K_NEWLINE;
