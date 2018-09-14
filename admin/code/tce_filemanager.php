@@ -46,7 +46,7 @@ if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
     $root_dir = K_PATH_CACHE.'uid/';
     $usr_dir = $root_dir.$_SESSION['session_user_id'].'/';
     // create user directory if missing
-    if (!file_exists($usr_dir)) {
+    if (!safe_file_exists($usr_dir)) {
         $oldumask = @umask(0);
         if (!@mkdir($usr_dir, 0744, true)) {
             F_print_error('ERROR', $l['m_directory_create_error']);
@@ -181,7 +181,7 @@ switch ($menu_mode) {
             break;
         }
         // check if this record is used (test_log)
-        if (file_exists($dir.$_REQUEST['newname'])) {
+        if (safe_file_exists($dir.$_REQUEST['newname'])) {
             F_print_error('WARNING', $l['m_file_already_exist']);
         } elseif (F_isUsedMediaFile($file)) {
             F_print_error('WARNING', $l['m_used_file']);
@@ -207,7 +207,7 @@ switch ($menu_mode) {
             break;
         }
         // check if this record is used (test_log)
-        if (file_exists($dir.$_REQUEST['newdirname'])) {
+        if (safe_file_exists($dir.$_REQUEST['newdirname'])) {
             F_print_error('WARNING', $l['m_file_already_exist']);
         } elseif (isset($_REQUEST['newdirname'])) {
             if (F_createMediaDir($dir.$_REQUEST['newdirname'])) {

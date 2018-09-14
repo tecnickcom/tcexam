@@ -88,7 +88,7 @@ while ($continue) {
 
     $version = file_get_contents(K_PATH_CACHE.'version.txt');
 
-    if (file_exists(K_PATH_CACHE.'patch.sql')) {
+    if (safe_file_exists(K_PATH_CACHE.'patch.sql')) {
         // update database
         $command = 'mysql -h'.K_DATABASE_HOST.' -u'.K_DATABASE_USER_NAME.' -p'.K_DATABASE_USER_PASSWORD.' '.K_DATABASE_NAME.' < '.K_PATH_CACHE.'patch.sql';
         exec($command);

@@ -260,7 +260,7 @@ function F_latex_callback($matches)
             // remove temporary files (if any)
             $tmpext = array('tex', 'aux', 'log', 'pdf');
             foreach ($tmpext as $ext) {
-                if (file_exists($imgpath.'.'.$ext)) {
+                if (safe_file_exists($imgpath.'.'.$ext)) {
                     @unlink($imgpath.'.'.$ext);
                 }
             }
