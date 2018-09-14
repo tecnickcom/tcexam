@@ -57,6 +57,9 @@ if (isset($_REQUEST['date'])) {
 
 if (isset($_REQUEST['omrdir']) and (strpos($_REQUEST['omrdir'], K_PATH_CACHE.'OMR') == 0)) {
     $omrdir = $_REQUEST['omrdir'];
+    if (strpos($omrdir, '://') !== false) {
+        F_print_error('ERROR', 'Invalid omrdir!', true);
+    }
 } else {
     $omrdir = K_PATH_CACHE.'OMR/';
 }
