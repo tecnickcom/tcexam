@@ -140,6 +140,29 @@ function F_error_handler($errno, $errstr, $errfile, $errline)
 // Set the custom error handler function
 $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
 
+/**
+ * Wrapper for file_exists.
+ * Checks whether a file or directory exists.
+ * Only allows some protocols and local files.
+ * @param filename (string) Path to the file or directory. 
+ * @return Returns TRUE if the file or directory specified by filename exists; FALSE otherwise.  
+ * @public static
+ */
+function safe_file_exists($filename) {
+    if (strpos($filename, '://') > 0) {
+        $wrappers = stream_get_wrappers();
+        foreach ($wrappers as $wrapper) {
+            if (($wrapper === 'http') || ($wrapper === 'https')) {
+                continue;
+            }
+            if (stripos($filename, $wrapper.'://') === 0) {
+                return false;
+            }
+        }
+    }
+    return @file_exists($filename);
+}
+
 //============================================================+
 // END OF FILE
 //============================================================+
