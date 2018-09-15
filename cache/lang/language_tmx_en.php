@@ -118,7 +118,7 @@ $tmx['h_usered_email']='user\'s email address (e.g.: name@example.com)';
 $tmx['h_view_details']='show details';
 $tmx['h_tsv_export']='export data to TSV (Tab delimited text file)';
 $tmx['h_xml_export']='export data to XML';
-$tmx['hp_edit_answer']='With this form you can manage all possible answers related to the question selected. You can add an arbitrary number of correct and wrong answers for each question; during the test the system will automatically select only one of the correct answers and will show it in the list of possible answers. You cannot modify or delete an answer that is part of a test already performed, in this case you can just disable it by using the [delete] button. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='With this form you can manage all possible answers related to the question selected. You can add an arbitrary number of correct and wrong answers for each question; during the test the system will automatically select only one of the correct answers and will show it in the list of possible answers. You cannot modify or delete an answer that is part of a test already performed, in this case you can just disable it by using the [delete] button. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='In this form you can manage the different users\' groups.';
 $tmx['hp_edit_question']='With this form you can manage the different questions related to the topic selected. You cannot modify or delete a question that is part of a test already performed. In this case you can disable it by using the [delete] button. Legend: [+] Enabled; [-] Disabled; [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='In this form you can specify the points for the free answers. You can see the user\'s data by selecting the field \'user data\'. The field \'shows all\' enables you to see and also to correct the answers already evaluated';
@@ -627,7 +627,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

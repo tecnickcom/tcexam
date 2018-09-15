@@ -67,7 +67,7 @@ if (isset($_REQUEST['ssl_id']) and ($_REQUEST['ssl_id'] > 0)) {
     $ssl_id = 0;
 }
 
-// extact hash and end date from uploaded file
+// extract hash and end date from uploaded file
 $ssl_hash = '';
 $ssl_end_date = '';
 if (isset($_FILES['userfile']['name']) and (!empty($_FILES['userfile']['name']))) {
