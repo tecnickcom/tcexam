@@ -141,6 +141,31 @@ function F_error_handler($errno, $errstr, $errfile, $errline)
 $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
 
 /**
+ * Check if the URL exist.
+ * @param url (string) URL to check.
+ * @return Returns TRUE if the URL exists; FALSE otherwise.
+ * @public static
+ */
+function url_exists($url) {
+    $crs = curl_init();
+    curl_setopt($crs, CURLOPT_URL, $url);
+    curl_setopt($crs, CURLOPT_NOBODY, true);
+    curl_setopt($crs, CURLOPT_FAILONERROR, true);
+    if ((ini_get('open_basedir') == '') && (!ini_get('safe_mode'))) {
+        curl_setopt($crs, CURLOPT_FOLLOWLOCATION, true);
+    }
+    curl_setopt($crs, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt($crs, CURLOPT_TIMEOUT, 30);
+    curl_setopt($crs, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($crs, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($crs, CURLOPT_USERAGENT, 'tc-lib-file');
+    curl_exec($crs);
+    $code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
+    curl_close($crs);
+    return ($code == 200);
+}
+
+/**
  * Wrapper for file_exists.
  * Checks whether a file or directory exists.
  * Only allows some protocols and local files.
@@ -149,10 +174,14 @@ $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
  * @public static
  */
 function safe_file_exists($filename) {
-    if (strpos($filename, '://') && (preg_match('|^https?://|', $filename) !== 1)) {
-        return false;
+    $httpmode = (preg_match('|^https?://|', $filename) == 1);
+    if (!$httpmode && strpos($filename, '://')) {
+        return false; // only support http and https wrappers for security reasons
     }
-    return @file_exists($filename);
+    if (@file_exists($filename) || ($httpmode && url_exists($filename))) {
+        return true;
+    }
+    return false;
 }
 
 //============================================================+
