@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,7 +46,7 @@ echo ''.$l['d_tcexam_desc'].'<br />'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 echo '<li><strong>'.$l['w_author'].':</strong> Nicola Asuni</li>'.K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2017 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2018 Nicola Asuni - Tecnick.com LTD<br />'.K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - '.K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="'.$l['m_new_window_link'].'">www.tecnick.com</a></li>'.K_NEWLINE;
 echo '<li><strong>'.$l['w_license'].':</strong> <a href="../../LICENSE.TXT" title="'.$l['m_new_window_link'].'">LICENSE.TXT</a></li>'.K_NEWLINE;
@@ -54,7 +54,7 @@ echo '</ul>'.K_NEWLINE;
 
 echo '<h2>'.$l['t_third_parties'].'</h2>'.K_NEWLINE;
 
-echo '<p>TCExam includes some third-party software components that are not striclty required but have been included as you convenience, and if used are subject to their respective licenses.</p>'.K_NEWLINE;
+echo '<p>TCExam includes some third-party software components that are not strictly required but have been included as you convenience, and if used are subject to their respective licenses.</p>'.K_NEWLINE;
 
 echo '<ul class="credits">'.K_NEWLINE;
 
@@ -104,7 +104,7 @@ Location: /shared/cas/<br /><br />
 
 echo '<li><strong>Fonts</strong><br />
 
-TCExam includes fonts for the <a href="http://www.tcpdf.org" title="TCPDF - PHP class for PDF">TCPDF</a> library, they are not striclty required but have been included as you convenience.<br />
+TCExam includes fonts for the <a href="http://www.tcpdf.org" title="TCPDF - PHP class for PDF">TCPDF</a> library, they are not strictly required but have been included as you convenience.<br />
 <br />
 All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3), they do not contain any binary data but just a description of the general properties of a particular font. These files can be also generated on the fly using the font utilities and TCPDF methods.
 <br />

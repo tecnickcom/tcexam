@@ -41,7 +41,7 @@
 
 12.2.1 (2015-03-27)
 	- Do not check for brute-forcing login attempts if K_BRUTE_FORCE_DELAY_RATIO is set to zero.
-	- The LDAP config now conains 2 new settings for the root DN and password used during binding.
+	- The LDAP config now contains 2 new settings for the root DN and password used during binding.
 	- A LDAP authentication bug was fixed.
 
 12.1.30 (2015-01-28)
@@ -165,7 +165,7 @@
 	- An option was added to overwrite non-repeatable test answers when importing via OMR.
 
 12.0.012 (2013-05-02)
-	- The constant K_USER_GROUP_RSYNC was added on the configuration file /shared/config/tce_config.php to enable or disable the the users groups syncronization when an alternate authentication method is used.
+	- The constant K_USER_GROUP_RSYNC was added on the configuration file /shared/config/tce_config.php to enable or disable the the users groups synchronization when an alternate authentication method is used.
 
 12.0.011 (2013-04-25)
 	- OMR import was improved : MCSA with multiple answers are now set as unanswered.
@@ -253,7 +253,7 @@
 11.4.000 (2012-11-06)
 	- The MySQL collation for the questions and answer fields was changed to utf8_bin.
 	- The TCPDF library was updated.
-	- Hungarian transation was updated.
+	- Hungarian translation was updated.
 
 11.3.012 (2012-09-14)
 	- The module for alternative authentication methods was fixed.
@@ -434,7 +434,7 @@
 	- Some security vulnerabilities were fixed.
 
 11.2.000 (2011-05-21)
-	- TCExam now includes Optical Mark Recognition (OMR) system to import users' answers from paper sheets (requires ImageMagick, zlib extesions and zbarimg application http://zbar.sourceforge.net/).
+	- TCExam now includes Optical Mark Recognition (OMR) system to import users' answers from paper sheets (requires ImageMagick, zlib extensions and zbarimg application http://zbar.sourceforge.net/).
 	- The [generate] button next to "PDF offline test" field on Test Management page now creates extra pages for offline testing with special answer sheets.
 	- The constant K_OMR_PATH_ZBARIMG was added to /admin/config/tce_config.php configuration file to set the path to zbarimg application required for OMR feature.
 	- The /admin/config/tce_auth.php configuration file was updated to include new constants.
@@ -673,7 +673,7 @@
 	- TCPDF library was updated.
 
 10.1.008 (2010-06-07)
-	- TCPDF library was updated (now uses font subsetting by deafult).
+	- TCPDF library was updated (now uses font subsetting by default).
 
 10.1.007 (2010-05-28)
 	- A button to lock/unlock a test was added on Test Management.

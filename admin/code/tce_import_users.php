@@ -628,7 +628,7 @@ function F_import_tsv_users($tsvfile)
                         // the group already exist
                         $group_id = $m['group_id'];
                     } else {
-                        // creat a new group
+                        // create a new group
                         $sqli = 'INSERT INTO '.K_TABLE_GROUPS.' (
 							group_name
 							) VALUES (

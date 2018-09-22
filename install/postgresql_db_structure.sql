@@ -16,7 +16,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-Copyright (C) 2004-2017 Nicola Asuni - Tecnick.com LTD
+Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
    See LICENSE.TXT file for more information.
 //============================================================+
 */

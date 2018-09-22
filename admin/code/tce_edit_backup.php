@@ -60,7 +60,7 @@ if (isset($backup_file) and !empty($backup_file)) {
     }
 }
 
-switch ($menu_mode) { // process submited data
+switch ($menu_mode) { // process submitted data
 
     case 'restore':{
         if (isset($backup_file) and !empty($backup_file)) {
