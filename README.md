@@ -30,7 +30,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
-TCExam includes some third-party software components that are not striclty required but have been included as you convenience, and if used are subject to their respective licenses.
+TCExam includes some third-party software components that are not strictly required but have been included as you convenience, and if used are subject to their respective licenses.
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
@@ -68,7 +68,7 @@ TCExam includes some third-party software components that are not striclty requi
 
 * **Fonts**
 
-    TCExam includes fonts for the TCPDF library, they are not striclty required but have been included as you convenience.
+    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included as you convenience.
 
     All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
     they do not contain any binary data but just a description of the general properties of a particular font.

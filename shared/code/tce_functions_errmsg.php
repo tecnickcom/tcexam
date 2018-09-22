@@ -149,16 +149,8 @@ $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
  * @public static
  */
 function safe_file_exists($filename) {
-    if (strpos($filename, '://') > 0) {
-        $wrappers = stream_get_wrappers();
-        foreach ($wrappers as $wrapper) {
-            if (($wrapper === 'http') || ($wrapper === 'https')) {
-                continue;
-            }
-            if (stripos($filename, $wrapper.'://') === 0) {
-                return false;
-            }
-        }
+    if (strpos($filename, '://') && (preg_match('|^https?://|', $filename) !== 1)) {
+        return false;
     }
     return @file_exists($filename);
 }

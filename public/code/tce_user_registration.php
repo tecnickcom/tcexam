@@ -74,7 +74,7 @@ foreach ($regfields as $field => $required) {
 $_REQUEST['ff_required'] = implode(',', $reqfields);
 $_REQUEST['ff_required_labels'] = implode(',', $reqdesc);
 
-if ($menu_mode == 'add') { // process submited data
+if ($menu_mode == 'add') { // process submitted data
 
     foreach ($regfields as $name => $enabled) {
         // disable unauthorized fields

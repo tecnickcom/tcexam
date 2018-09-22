@@ -50,7 +50,7 @@ $_REQUEST['ff_required'] = 'user_email';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_email'], ENT_COMPAT, $l['a_meta_charset']);;
 
 
-if (isset($_POST['resetpassword'])) { // process submited data
+if (isset($_POST['resetpassword'])) { // process submitted data
 
     if ($formstatus = F_check_form_fields()) { // check submitted form fields
 
