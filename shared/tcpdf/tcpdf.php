@@ -18891,12 +18891,14 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					if (isset($tag['height'])) {
 						$ih = $this->getHTMLUnitToUnits($tag['height'], ($tag['fontsize'] / $this->k), 'px', false);
 					}
+					$filename = explode('/', $tag['attribute']['src']);
+					$filepath = K_PATH_CACHE . end($filename);
 					if (($type == 'eps') OR ($type == 'ai')) {
-						$this->ImageEps($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, $imglink, true, $align, '', $border, true);
+						$this->ImageEps($filepath, $xpos, $this->y, $iw, $ih, $imglink, true, $align, '', $border, true);
 					} elseif ($type == 'svg') {
-						$this->ImageSVG($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, $imglink, $align, '', $border, true);
+						$this->ImageSVG($filepath, $xpos, $this->y, $iw, $ih, $imglink, $align, '', $border, true);
 					} else {
-						$this->Image($tag['attribute']['src'], $xpos, $this->y, $iw, $ih, '', $imglink, $align, false, 300, '', false, false, $border, false, false, true);
+						$this->Image($filepath, $xpos, $this->y, $iw, $ih, '', $imglink, $align, false, 300, '', false, false, $border, false, false, true);
 					}
 					switch($align) {
 						case 'T': {
