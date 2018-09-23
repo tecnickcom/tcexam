@@ -144,9 +144,8 @@ $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
  * Check if the URL exist.
  * @param url (string) URL to check.
  * @return Returns TRUE if the URL exists; FALSE otherwise.
- * @public static
  */
-function url_exists($url) {
+function F_url_exists($url) {
     $crs = curl_init();
     curl_setopt($crs, CURLOPT_URL, $url);
     curl_setopt($crs, CURLOPT_NOBODY, true);
@@ -171,17 +170,15 @@ function url_exists($url) {
  * Only allows some protocols and local files.
  * @param filename (string) Path to the file or directory. 
  * @return Returns TRUE if the file or directory specified by filename exists; FALSE otherwise.  
- * @public static
  */
-function safe_file_exists($filename) {
-    $httpmode = (preg_match('|^https?://|', $filename) == 1);
-    if (!$httpmode && strpos($filename, '://')) {
+function F_file_exists($filename) {
+    if (preg_match('|^https?://|', $filename) == 1) {
+        return F_url_exists($filename);
+    }
+    if (strpos($filename, '://')) {
         return false; // only support http and https wrappers for security reasons
     }
-    if (@file_exists($filename) || ($httpmode && url_exists($filename))) {
-        return true;
-    }
-    return false;
+    return @file_exists($filename);
 }
 
 //============================================================+

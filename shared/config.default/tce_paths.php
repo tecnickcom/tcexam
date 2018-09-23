@@ -75,7 +75,7 @@ define('K_PATH_CACHE', K_PATH_MAIN.'cache/');
 /**
  * URL path to to cache directory.
  */
-define('K_PATH_URL_CACHE', K_PATH_HOST.K_PATH_TCEXAM.'cache/');
+define('K_PATH_URL_CACHE', K_PATH_TCEXAM.'cache/');
 
 /**
  * Full path to cache directory used for language files.
