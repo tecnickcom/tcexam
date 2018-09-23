@@ -113,7 +113,7 @@ class TMXResourceBundle
         // set filename for cache
         $this->cachefile = $cachefile;
 
-        if (safe_file_exists($this->cachefile)) {
+        if (F_file_exists($this->cachefile)) {
             // read data from cache
             require_once($this->cachefile);
             $this->resource = $tmx;
