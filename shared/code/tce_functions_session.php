@@ -34,6 +34,7 @@
  */
 
 // PHP session settings
+error_reporting(0);
 ini_set('session.save_handler', 'user');
 ini_set('session.name', 'PHPSESSID');
 //ini_set('session.gc_maxlifetime', K_SESSION_LIFE);
@@ -238,7 +239,7 @@ function getPasswordHash($password)
  * Verifies that a password matches a hash
  * @param $password (string) The password to verify
  * @param $hash (string) Password hash
- * 
+ *
  * @return boolean
  */
 function checkPassword($password, $hash)
