@@ -34,7 +34,7 @@
  */
 
 // PHP session settings
-ini_set('session.save_handler', 'user');
+//ini_set('session.save_handler', 'user');
 ini_set('session.name', 'PHPSESSID');
 //ini_set('session.gc_maxlifetime', K_SESSION_LIFE);
 //ini_set('session.cookie_lifetime', K_COOKIE_EXPIRE);
