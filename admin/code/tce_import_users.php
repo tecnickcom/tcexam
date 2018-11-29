@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_import_users.php
 // Begin       : 2006-03-17
-// Last Update : 2012-12-31
+// Last Update : 2018-11-29
 //
 // Description : Import users from an XML file or tab-delimited
 //               TSV file.
@@ -494,11 +494,10 @@ function F_import_tsv_users($tsvfile)
         return false;
     }
 
-    // move pointer to second line (discard headers)
-    next($tsvrows);
+    $nrows = count($tsvrows);
+    for ($i = 1; $i < $nrows; $i++) {
+        $rowdata = $tsvrows[$i];
 
-    // for each row
-    foreach ($tsvrows as $item => $rowdata) {
         // get user data into array
         $userdata = explode("\t", $rowdata);
 
@@ -616,7 +615,7 @@ function F_import_tsv_users($tsvfile)
         if (!empty($userdata[15])) {
             $groups = preg_replace("/[\r\n]+/", '', $userdata[15]);
             $groups = explode(',', addslashes($groups));
-            while (list($key,$group_name)=each($groups)) {
+            foreach ($groups as $key => $group_name) {
                 $group_name = F_escape_sql($db, $group_name);
                 // check if group already exist
                 $sql = 'SELECT group_id
