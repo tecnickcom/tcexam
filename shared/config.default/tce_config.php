@@ -281,7 +281,7 @@ if (isset($_REQUEST['lang'])
 
 // TMX class
 require_once('../../shared/code/tce_tmx.php');
-// istantiate new TMXResourceBundle object
+// instantiate new TMXResourceBundle object
 $lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php');
 $l = $lang_resources->getResource(); // language array
 
