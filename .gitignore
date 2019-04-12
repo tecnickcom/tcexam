@@ -1,3 +1,5 @@
 admin/config/
 shared/config/
 public/config/
+cache/jobs
+cache/logs
