@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2014-03-24
+// Last Update : 2019-04-30
 //
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2014:
+// (c) Copyright 2004-2019:
 //               Nicola Asuni
 //               Tecnick.com LTD
 //               UK
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define('K_TCEXAM_VERSION', '14.1.9');
+define('K_TCEXAM_VERSION', '14.1.10');
 
 /**
  * 2-letters code for default language.

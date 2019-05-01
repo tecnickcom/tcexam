@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_session.php
 // Begin       : 2001-09-26
-// Last Update : 2017-04-22
+// Last Update : 2019-04-30
 //
 // Description : User-level session storage functions.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -221,7 +221,7 @@ function getClientFingerprint()
  */
 function getNewSessionID()
 {
-    return md5(getPasswordHash(uniqid(microtime().getmypid().getClientFingerprint().K_RANDOM_SECURITY.session_id(), true)));
+    return md5(getPasswordHash(uniqid(microtime().getClientFingerprint().K_RANDOM_SECURITY.session_id(), true)));
 }
 
 /**

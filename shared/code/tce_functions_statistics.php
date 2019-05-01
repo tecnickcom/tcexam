@@ -57,12 +57,12 @@ function F_getArrayStatistics($data)
         $datastr = array();
         foreach ($dataset as $num => $value) {
             $stats['number'][$set]++;
-            $stats['sum'][$set] += $value;
+            $stats['sum'][$set] += (float)$value;
             $datastr[] = ''.$value.''; // convert value to string
         }
         if ($stats['number'][$set] > 0) {
             $stats['maximum'][$set] = $dataset[($stats['number'][$set] - 1)];
-            $stats['range'][$set] = $stats['maximum'][$set] - $stats['minimum'][$set];
+            $stats['range'][$set] = (float)$stats['maximum'][$set] - (float)$stats['minimum'][$set];
             $stats['mean'][$set] = $stats['sum'][$set] / $stats['number'][$set];
             if (($stats['number'][$set] % 2) == 0) {
                 $stats['median'][$set] = ($dataset[($stats['number'][$set] / 2)] + $dataset[(($stats['number'][$set] / 2) - 1)]) / 2 ;
@@ -76,7 +76,7 @@ function F_getArrayStatistics($data)
             $dev = 0;
             foreach ($dataset as $num => $value) {
                 // deviance
-                $dev += pow(($value - $stats['mean'][$set]), 2);
+                $dev += pow(((float)$value - (float)$stats['mean'][$set]), 2);
             }
             $stats['variance'][$set] = $dev / $stats['number'][$set];
             $stats['standard_deviation'][$set] = sqrt($stats['variance'][$set]);
