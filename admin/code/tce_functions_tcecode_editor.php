@@ -80,7 +80,7 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
     $onclick = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
     $buttons .= getImageButton('code', '[code]', K_PATH_IMAGES.'buttons/code.gif', $onclick, 'c');
     $buttons .= getImageButton('latex', '[tex]', K_PATH_IMAGES.'buttons/latex.gif', $onclick, 'm');
-    
+
     $buttons .= getImageButton('mathml', '[mathml]', K_PATH_IMAGES.'buttons/mathml.gif', $onclick, 'h');
 
     $onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\');';
@@ -139,7 +139,7 @@ function getImageButton($name, $tag, $image, $onclick = '', $accesskey = '')
     if (strlen($tag) > 0) {
         $onclick = $onclick.', \''.$tag.'\')';
     }
-    $str = '<a href="#" onclick="'.$onclick.'" title="'.$name.' ['.$accesskey.']" accesskey="'.$accesskey.'">';
+    $str = '<a href="javascript:void(0);" onclick="'.$onclick.'" title="'.$name.' ['.$accesskey.']" accesskey="'.$accesskey.'">';
     $str .= '<img src="'.$image.'" alt="'.$name.' ['.$accesskey.']" class="button" width="23" height="22" />';
     $str .= '</a>';
     return $str;

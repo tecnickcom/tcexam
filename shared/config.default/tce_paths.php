@@ -53,7 +53,7 @@ define('K_PATH_TCEXAM', $path_exam);
  */
 
 //make path settings relative, so that we can copy path settings accross hosts
-//define('K_PATH_MAIN', '/media/deo/windowsbase/xampp/htdocs/tcexam-develop/');
+//define('K_PATH_MAIN', '');
 define('K_PATH_MAIN', realpath(__DIR__ . '/../../') . '/');
 
 /**
