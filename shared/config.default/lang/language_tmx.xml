@@ -6317,10 +6317,10 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
     <seg>sekiranya dipilih, ekstrak secara rawak jawapan itu berkaitan untuk topik terpilih setiap</seg>
    </tuv>
    <tuv xml:lang="PL">
-    <seg>if selected, extracts randomly the answers related to each selected topic</seg>
+    <seg>if selected, extracts randomly the questions related to each selected topic</seg>
    </tuv>
    <tuv xml:lang="EN">
-    <seg>if selected, extract randomly the answers related to each selected topic</seg>
+    <seg>if selected, extract randomly the questions related to each selected topic</seg>
    </tuv>
    <tuv xml:lang="HE">
     <seg>אם נבחר, מגריל תשובה באפן אקראי לכל נושא</seg>
@@ -6335,7 +6335,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
     <seg>jika dipilih, mengacak jawaban yang berkaitan dengan topik yang dipilih</seg>
    </tuv>
    <tuv xml:lang="FR">
-    <seg>si sélectionné, extrait de manière aléatoire les réponses possibles pour chaque thème sélectionné</seg>
+    <seg>si sélectionné, extrait de manière aléatoire les questions possibles pour chaque thème sélectionné</seg>
    </tuv>
    <tuv xml:lang="BG">
     <seg>ако е избрано, произволно извлича отговорите свързани с всяка избрана тема</seg>
@@ -6353,10 +6353,10 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
     <seg>ha kiválasztjuk, akkor a témakörökhöz tartozó válaszok véletlenszerűen lesznek megadva</seg>
    </tuv>
    <tuv xml:lang="BR">
-    <seg>se selecionada, extrei aleatóriamente as respostas realcionads com cada tópico escolhido</seg>
+    <seg>se selecionada, extrei aleatóriamente as preguntas realcionads com cada tópico escolhido</seg>
    </tuv>
    <tuv xml:lang="RO">
-    <seg>dacă selectaţi, se vor extrage aleator răspunsurile fiecărei teme selectate</seg>
+    <seg>dacă selectaţi, se vor extrage aleator răspunsurile întrebări teme selectate</seg>
    </tuv>
    <tuv xml:lang="FA">
     <seg>در صورت انتخاب, پاسخ های مربوط به هر موضوع انتخاب شده را به طور تصادفی استخراج میکند</seg>
