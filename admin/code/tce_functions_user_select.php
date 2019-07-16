@@ -374,7 +374,7 @@ function F_show_select_user_popup($order_field, $orderdir, $firstrow, $rowsperpa
                 // on click the user ID will be returned on the calling form field
                 $jsaction = 'javascript:window.opener.document.getElementById(\''.$cid.'\').value='.$m['user_id'].';';
                 $jsaction .= 'window.opener.document.getElementById(\''.$cid.'\').onchange();';
-                $jsaction .= 'window.close();';
+                $jsaction .= 'window.close(); return false;';
                 echo '<tr>'.K_NEWLINE;
                 echo '<td style="text-align:'.$txtalign.';">&nbsp;<a href="#" onclick="'.$jsaction.'" title="['.$l['w_select'].']">'.htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
                 echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;

@@ -93,7 +93,7 @@ abstract class CAS_PGTStorage_AbstractStorage
     }
 
     /**
-     * This virtual method returns an informational string giving informations on the
+     * This virtual method returns an informational string giving information on the
      * parameters of the storage.(used for debugging purposes).
      *
      * @return void

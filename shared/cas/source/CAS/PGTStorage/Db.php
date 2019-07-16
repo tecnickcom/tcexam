@@ -104,7 +104,7 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
     }
 
     /**
-     * This method returns an informational string giving informations on the
+     * This method returns an informational string giving information on the
      * parameters of the storage.(used for debugging purposes).
      *
      * @return an informational string.

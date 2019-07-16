@@ -71,10 +71,10 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
     $buttons .= getImageButton('LRT', '[dir=ltr]', K_PATH_IMAGES.'buttons/ltrdir.gif', $onclick, '');
     $buttons .= getImageButton('RTL', '[dir=rtl]', K_PATH_IMAGES.'buttons/rtldir.gif', $onclick, '');
 
-    $onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=bgcolor\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+    $onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=bgcolor\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\')';
     $buttons .= getImageButton('background-color', '', K_PATH_IMAGES.'buttons/bgcolor.gif', $onclick, '');
 
-    $onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=color\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\');';
+    $onclick = 'window.open(\'tce_colorpicker.php?frm='.$callingform.'&amp;fld='.$callingfield.'&amp;tag=color\',\'colorpicker\',\'height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes\')';
     $buttons .= getImageButton('color', '', K_PATH_IMAGES.'buttons/color.gif', $onclick, '');
 
     $onclick = 'FJ_insert_tag(document.getElementById(\''.$callingform.'\').'.$callingfield.'';
@@ -83,7 +83,7 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
     
     $buttons .= getImageButton('mathml', '[mathml]', K_PATH_IMAGES.'buttons/mathml.gif', $onclick, 'h');
 
-    $onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\');';
+    $onclick = 'window.open(\'tce_select_mediafile.php?frm='.$callingform.'&amp;fld='.$callingfield.'\',\'mediaselect\',\'height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes\')';
     $buttons .= getImageButton('object', '', K_PATH_IMAGES.'buttons/image.gif', $onclick, '');
 
     $buttons .= '<br />'.K_NEWLINE;
@@ -139,7 +139,7 @@ function getImageButton($name, $tag, $image, $onclick = '', $accesskey = '')
     if (strlen($tag) > 0) {
         $onclick = $onclick.', \''.$tag.'\')';
     }
-    $str = '<a href="#" onclick="'.$onclick.'" title="'.$name.' ['.$accesskey.']" accesskey="'.$accesskey.'">';
+    $str = '<a href="#" onclick="'.$onclick.'; return false;" title="'.$name.' ['.$accesskey.']" accesskey="'.$accesskey.'">';
     $str .= '<img src="'.$image.'" alt="'.$name.' ['.$accesskey.']" class="button" width="23" height="22" />';
     $str .= '</a>';
     return $str;

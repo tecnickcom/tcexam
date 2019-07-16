@@ -284,7 +284,7 @@ function F_show_select_test_popup($order_field, $orderdir, $firstrow, $rowsperpa
                 // on click the user ID will be returned on the calling form field
                 $jsaction = 'javascript:window.opener.document.getElementById(\''.$cid.'\').value='.$m['test_id'].';';
                 $jsaction .= 'window.opener.document.getElementById(\''.$cid.'\').onchange();';
-                $jsaction .= 'window.close();';
+                $jsaction .= 'window.close(); return false;';
                 echo '<tr>'.K_NEWLINE;
                 echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['test_begin_time'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
                 echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['test_end_time'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
