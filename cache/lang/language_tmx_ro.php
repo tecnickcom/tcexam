@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2015-06-19 16:46:48
+// DATE: 2019-07-31 14:03:47
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -84,7 +84,7 @@ $tmx['h_questions_unanswered']='întrebări fără răspuns';
 $tmx['h_questions_undisplayed']='întrebări neafişate';
 $tmx['h_questions_unrated']='întrebări neevaluate';
 $tmx['h_random_answers']='dacă selectaţi, se vor extrage aleator răspunsurile multiple ale fiecărei întrebări';
-$tmx['h_random_questions']='dacă selectaţi, se vor extrage aleator întrebări fiecărei teme selectate';
+$tmx['h_random_questions']='dacă selectaţi, se vor extrage aleator răspunsurile întrebări teme selectate';
 $tmx['h_regcode']='numărul de înregistrare, numărul de înregistrare al utilizatorului';
 $tmx['h_regdate']='data înregistrării utilizatorului';
 $tmx['h_result']='arată rezultatele testului';
@@ -626,7 +626,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

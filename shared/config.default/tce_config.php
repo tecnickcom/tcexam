@@ -32,7 +32,7 @@
 /**
  * TCExam version (do not change).
  */
-define('K_TCEXAM_VERSION', '14.1.11');
+define('K_TCEXAM_VERSION', '14.1.12');
 
 /**
  * 2-letters code for default language.
@@ -73,6 +73,7 @@ define('K_AVAILABLE_LANGUAGES', serialize(array(
     'ro' => 'Romanian',
     'ru' => 'Russian',
     'tr' => 'Turkish',
+    'ur' => 'Urdu',
     'vn' => 'Vietnamese'
 )));
 

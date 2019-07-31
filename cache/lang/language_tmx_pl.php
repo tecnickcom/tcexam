@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: pl
-// DATE: 2015-06-19 16:46:46
+// DATE: 2019-07-31 14:03:46
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='adres e-mail użytkownika (np.: nazwa@example.com)';
 $tmx['h_view_details']='pokazuje szczegóły';
 $tmx['h_tsv_export']='eksportuje dane do TSV (Tab delimited text file)';
 $tmx['h_xml_export']='eksportuje dane do XML';
-$tmx['hp_edit_answer']='With this form you can manage all possible answers related to the question selected. You can add an arbitrary number of correct and wrong answers for each question; during the test the system will automatically select only one of the correct answers and it will show it in the list of possible answers. You cannot modify or delete an answer that is part of a test already performed, in this case you can just disable it by using the button [delete]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='With this form you can manage all possible answers related to the question selected. You can add an arbitrary number of correct and wrong answers for each question; during the test the system will automatically select only one of the correct answers and it will show it in the list of possible answers. You cannot modify or delete an answer that is part of a test already performed, in this case you can just disable it by using the button [delete]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Answer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='Na tej formie możesz zarządzać grupami użytkowników.';
 $tmx['hp_edit_question']='With this form you can manage the different questions related to the topic selected. You cannot modify or delete a question that is part of a test already performed, in this case you can just disable it by using the button [delete]. Legend: [+] Enabled; [-] Disabled; [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='In this form you can specify the points for the free answers. You can see the user\'s data by selecting the field \'user data\'. The field \'shows all\' enables you to see and correct also the answers already evaluated';
@@ -627,7 +627,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

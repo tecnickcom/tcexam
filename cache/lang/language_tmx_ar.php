@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2015-06-19 16:46:22
+// DATE: 2019-07-31 14:03:17
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -626,7 +626,7 @@ $tmx['w_sslcerts']='SSL شهادات';
 $tmx['t_sslcerts']='SSL شهادات';
 $tmx['w_sslcert']='SSL شهادات';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='الرسم البياني';
 
 // --- EOF ---

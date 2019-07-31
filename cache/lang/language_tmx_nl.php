@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: nl
-// DATE: 2015-06-19 16:46:46
+// DATE: 2019-07-31 14:03:44
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='gebruikers e-mailadres (bijv.: name@example.com)';
 $tmx['h_view_details']='toont details';
 $tmx['h_tsv_export']='export data naar TSV (TAB /komma gescheiden tekstbestand)';
 $tmx['h_xml_export']='export data naar XML';
-$tmx['hp_edit_answer']='Hier kunt u alle mogelijke antwoorden voor een vraag beheren. U kunt elk aantal juiste of foute antwoorden toevoegen voor elke vraag; tijdens een test wordt automatisch slechts een van de juiste antwoorden in de lijst van mogelijke antwoorden getoond. U kunt geen antwoord wijzigen of weghalen die bij een reeds gedane test hoort. U kunt het wel uitschakelen met [verwijder]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='Hier kunt u alle mogelijke antwoorden voor een vraag beheren. U kunt elk aantal juiste of foute antwoorden toevoegen voor elke vraag; tijdens een test wordt automatisch slechts een van de juiste antwoorden in de lijst van mogelijke antwoorden getoond. U kunt geen antwoord wijzigen of weghalen die bij een reeds gedane test hoort. U kunt het wel uitschakelen met [verwijder]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Answer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='Hier kunt de gebruikersgroepen beheren.';
 $tmx['hp_edit_question']='Hier kunt u vragen van een topic beheren. U kunt geen vraag wijzigen of weghalen van een reeds gedane test, u kunt het uitschakelen met [verwijder]. Legenda: [+] (voor de naam) Ingeschakeld; [-] Uitgeschakeld; [S] MCSA - Meerkeuze -een goed antwoord vraag; [M] MCMA - Meerkeuze - meerdere antwoorden goed vraag; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='Hier kunt u punten voor open antwoorden toekennen. Bekijk gegevens van een gebruiker met \'gebruikers data\'. Met \'shows all\' kunt u reeds ge-evalueerde antwoorden bekijken en corrigeren';
@@ -628,7 +628,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---
