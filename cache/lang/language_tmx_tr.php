@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: tr
-// DATE: 2015-06-19 16:46:50
+// DATE: 2019-07-31 14:17:34
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='kullanicinin email adresi (e.g.: isim@example.com)';
 $tmx['h_view_details']='detaylari goster';
 $tmx['h_tsv_export']='veriyi TSV\'ye aktar (sinirli etiketli metin dosyasi)';
 $tmx['h_xml_export']='veriyi XML\'e aktar';
-$tmx['hp_edit_answer']='Bu form ile secilmis sorularla ilgili butun olasi cevaplari yonetebilirsiniz. istege gore dogru ve yanlis cevaplari her soru icin ekleyebilirsiniz; test sirasinda sistem otomatik olarak sadece bir dogru cevap secer ve o cevap olasi cevaplar listesinde gosterilir. Zaten icra edilmis testin parcalari olan cevaplari degistiremezsiniz, bu durumda siz sedece buton (delete) kullanarak gecersiz kilabilirsiniz. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='Bu form ile secilmis sorularla ilgili butun olasi cevaplari yonetebilirsiniz. istege gore dogru ve yanlis cevaplari her soru icin ekleyebilirsiniz; test sirasinda sistem otomatik olarak sadece bir dogru cevap secer ve o cevap olasi cevaplar listesinde gosterilir. Zaten icra edilmis testin parcalari olan cevaplari degistiremezsiniz, bu durumda siz sedece buton (delete) kullanarak gecersiz kilabilirsiniz. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Answer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='Bu formun icinde farkli kullanicilarin gruplarini yonetebilirsiniz.';
 $tmx['hp_edit_question']='Bu formda farkli sorularla ilgili konu secimini yonetebilirsiniz. Zaten icra edilen testin parcasi olan testin sorusunu degistiremez ya da silemzsiniz, bu durumda siz sadece butona (delete) basarak gecersiz kilabilirsiniz. Aciklayici bilgiler: [+] Gecerli; [-] Gecersiz; [S] CSTC - Coklu Secenek Tekli Cevap sorulari; [M] CSCC - Coklu Secenek Coklu Cevap sorulari; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='Bu formda serbest cevaplandirilabilinen sorularin puanlarini acikca belirleyebilirsiniz. \'user data\' (kullanici verisi) alanindan secilen kullanicilarin verisini gorebilirsiniz. \'shows all\' (hepsini goster) alani zaten degerlendirilmis cevaplari gorebilmenize ve duzeltmenize olanak saglar.';
@@ -629,7 +629,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

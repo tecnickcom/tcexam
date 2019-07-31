@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2015-06-19 16:46:50
+// DATE: 2019-07-31 14:17:37
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='địa chỉ email người dùng(ví dụ: name@example
 $tmx['h_view_details']='hiển thị chi tiết';
 $tmx['h_tsv_export']='xuất dữ liệu dạng TSV (Tab delimited text file)';
 $tmx['h_xml_export']='xuất dữ liệu dạng XML';
-$tmx['hp_edit_answer']='Với mẫu này bạn có thể quản lý tất cả các câu trả lời liên quan đếnn câu hỏi được chọn. Bạn có thể thêm 1 số câu trả lời đúng và sai và nó sẽ được hiện trong danh sách các câu trả lời có thể xảy ra. Bạn không thể sửa hoặc xóa 1 câu trả lời nằm trong 1 bài kiểm tra đã được hiển thị, trong trường hợp này bạn chỉ có thể ẩn nó đi bằng cách sử dụng nút [Xóa]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='Với mẫu này bạn có thể quản lý tất cả các câu trả lời liên quan đếnn câu hỏi được chọn. Bạn có thể thêm 1 số câu trả lời đúng và sai và nó sẽ được hiện trong danh sách các câu trả lời có thể xảy ra. Bạn không thể sửa hoặc xóa 1 câu trả lời nằm trong 1 bài kiểm tra đã được hiển thị, trong trường hợp này bạn chỉ có thể ẩn nó đi bằng cách sử dụng nút [Xóa]. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Answer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='Trong mẫu này bạn có thể quản các nhóm người dùng khác nhau.';
 $tmx['hp_edit_question']='Với mẫu này, bạn có thể quản lý các câu hỏi khác nhau có liên quan đến một chủ đề được lựa chọn. Trong trường hợp này, bạn không thể sử dụng nút [delete]. Ghi chú: [+] Cho phép; [-] Không cho phép; [S] MCSA - Các câu hỏi chỉ có một phương án trả lời; [M] MCMA - Các câu hỏi có nhiều phương án trả lời; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='Trong mẫu này bạn có thể đặt điểm cho câu trả lời tự luận. Bạn có thể xem dữ liệu người dùng bằng cách chọn ô \'user data\'. Trường \'shows all\' cho phép bạn xem và đánh đúng cho các câu hỏi được đánh giá.';
@@ -631,7 +631,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

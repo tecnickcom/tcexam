@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: mr
-// DATE: 2015-06-19 16:46:43
+// DATE: 2019-07-31 14:17:25
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='उपयोगकर्त्याचा इमेल 
 $tmx['h_view_details']='सक्षिप्त माहिती दर्शविने.';
 $tmx['h_tsv_export']='सी एस व्ही चे घटक निर्यात करणे. (Tab delimited text file)';
 $tmx['h_xml_export']='एक्स एम एल चे घटक निर्यात करणे.';
-$tmx['hp_edit_answer']='जो प्रश्न तुम्ही निवडलेला आहे त्या प्रश्नाचे योग्य उत्तर ही रचना वापरून मिळवू शकता.तुम्ही प्रत्येक प्रश्नाकरीता स्वछंदीपणे योग्य आकडे आणि चुकीचे उत्तर टाकू शकता,दरम्यान परीक्षेची स्वयंचलित पद्घत निवडून केवळ एक योग्य उत्तर आणि यादितिल योग्य उत्तर दाखवू शकता. तूम्ही उत्तरातिल नाविन्य किंवा उत्तर दाखवू शकत नाहि. कारण या परीक्षेचा भाग प्रत्यक्ष पूर्ण झालेला आहे. ह्या स्थितीमध्ये तूम्ही डिलीट बटनाचा उपयोग करण्यास असमर्थ आहे.बटनावरील  कोरीव शब्द असमर्थ करणे. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Fnswer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false anwser.';
+$tmx['hp_edit_answer']='जो प्रश्न तुम्ही निवडलेला आहे त्या प्रश्नाचे योग्य उत्तर ही रचना वापरून मिळवू शकता.तुम्ही प्रत्येक प्रश्नाकरीता स्वछंदीपणे योग्य आकडे आणि चुकीचे उत्तर टाकू शकता,दरम्यान परीक्षेची स्वयंचलित पद्घत निवडून केवळ एक योग्य उत्तर आणि यादितिल योग्य उत्तर दाखवू शकता. तूम्ही उत्तरातिल नाविन्य किंवा उत्तर दाखवू शकत नाहि. कारण या परीक्षेचा भाग प्रत्यक्ष पूर्ण झालेला आहे. ह्या स्थितीमध्ये तूम्ही डिलीट बटनाचा उपयोग करण्यास असमर्थ आहे.बटनावरील  कोरीव शब्द असमर्थ करणे. Legend: [+] Enabled; [-] Disabled. Legend for questions: [S] MCSA - Multiple Choice Single Answer question; [M] MCMA - Multiple Choice Multiple Answer question; [T] TEXT - Free Answer; [O] ORDER - Ordering Answer. Legend for answers: [T] true answer; [F] false answer.';
 $tmx['hp_edit_group']='वेगवेगळ्या उपयोगकर्त्याच्या समूहा मधून तुम्ही जूळवाजूळव करा.';
 $tmx['hp_edit_question']='या रचनेमधून तूम्ही वेगवेगळ्या प्रश्नासंबधी प्रकरण तयार करू शकता.ह्या प्रश्नाकरीता अनेक उत्तराचा किंवा मुक्त उत्तराचा उपयोग पाठ्यपुस्तकाच्या विषयासंबधी राहिल.तुम्ही प्रश्नामध्ये बदल करू शकत नाहि किंवा वगळू शकत नाही. कारण परीक्षेचा भाग प्रत्यक्ष कार्यान्वित झालेला आहे.अशा परिस्थितीमध्ये तूम्ही डीलिट बटनचा उपयोग करून त्याला असमर्थ करू शकता. [delete]. बटणवरील कोरिव शब्द: [+] समर्थ असणे; [-] असमर्थ; [S] MCSA - अनेकातून एक उत्तर निवडणे; [M] MCMA - अनेकातून बहूत्तरीय प्रश्न निवडणे; [T] TEXT - Free answer; [O] ORDER - Ordering Answers.';
 $tmx['hp_edit_rating']='या रचनेमधून तूम्ही खास नमूद केलेल्या मूद्तिल मूक्त उत्तर निवडू शकता. तूम्ही उपयोगकर्याच्या घटकाचा विभाग निवडण्या करीता उपयोग कर्याचा घटक पहा. तूम्ही प्रत्यक्षात टाकलेले उत्तर ,संपूर्ण दाखवा, हा विभाग त्या उत्तराला दाखविते व बरोबर करते.';
@@ -629,7 +629,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

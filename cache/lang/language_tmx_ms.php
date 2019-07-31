@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ms
-// DATE: 2015-06-19 16:46:45
+// DATE: 2019-07-31 14:17:26
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -118,7 +118,7 @@ $tmx['h_usered_email']='emel pengguna alamat (e.g.: name@example.com)';
 $tmx['h_view_details']='menunjukkan butiran';
 $tmx['h_tsv_export']='data eksport untuk TSV (Tab delimited fail teks)';
 $tmx['h_xml_export']='data eksport kepada XML';
-$tmx['hp_edit_answer']='Dengan bentuk anda boleh mengurus semua jawapan mungkin untuk soalan berkait terpilih. Anda dapat menambah satu jumlah arbitrari betul dan kesilapan menjawab bagi setiap soal; sepanjang ujian sistem itu akan secara automatik memilih hanya satu daripada jawapan betul dan ia akan menunjukkan ia dalam senarai itu jawapan mungkin. Tidak boleh anda mengubah suai atau memadamkan satu jawapan itulah berpisah satu ujian sudah melaksanakan, dalam kes ini anda boleh baru sahaja melumpuhkan ia dengan menggunakan butang [memadamkan]. Legenda: [+] Dibolehkan; [-] Kurang Upaya. Legenda untuk pertanyaan: [S] MCSA - Soalan Choice Single Answer berbilang; [Sistem M] MCMA - Soalan Choice Multiple Answer berbilang; [T] TEKS - Free Fnswer; [O] PERINTAH - Jawapan Pesanan. Legenda untuk jawapan: [T] jawapan benar; [F] palsu anwser.';
+$tmx['hp_edit_answer']='Dengan bentuk anda boleh mengurus semua jawapan mungkin untuk soalan berkait terpilih. Anda dapat menambah satu jumlah arbitrari betul dan kesilapan menjawab bagi setiap soal; sepanjang ujian sistem itu akan secara automatik memilih hanya satu daripada jawapan betul dan ia akan menunjukkan ia dalam senarai itu jawapan mungkin. Tidak boleh anda mengubah suai atau memadamkan satu jawapan itulah berpisah satu ujian sudah melaksanakan, dalam kes ini anda boleh baru sahaja melumpuhkan ia dengan menggunakan butang [memadamkan]. Legenda: [+] Dibolehkan; [-] Kurang Upaya. Legenda untuk pertanyaan: [S] MCSA - Soalan Choice Single Answer berbilang; [Sistem M] MCMA - Soalan Choice Multiple Answer berbilang; [T] TEKS - Free Answer; [O] PERINTAH - Jawapan Pesanan. Legenda untuk jawapan: [T] jawapan benar; [F] palsu answer.';
 $tmx['hp_edit_group']='Dalam bentuk anda boleh mengurus kumpulan pengguna lain itu.';
 $tmx['hp_edit_question']='Dengan bentuk anda boleh mengurus soalan lain itu berkaitan ke tajuk itu terpilih. Tidak boleh anda mengubah suai atau memadamkan satu soalan itulah berpisah satu ujian sudah melaksanakan, dalam kes ini anda boleh baru sahaja melumpuhkan ia dengan menggunakan butang [memadamkan]. Legenda: [ ] Dibolehkan; [-] Kurang Upaya; [S] MCSA - Soalan Choice Single Answer berbilang; [Sistem M] MCMA - Soalan Choice Multiple Answer berbilang; [T] TEKS - Jawapan bebas; [O] PERINTAH - Jawapan Pesanan.';
 $tmx['hp_edit_rating']='Dalam bentuk anda dapat menentukan titik-titik untuk bebas jawapan-jawapan. Anda dapat melihat data pengguna dengan pemilihan bidang \'data pengguna\'. Bidang \'menunjukkan semua\' membolehkan anda bagi melihat dan betul juga jawapan telah dinilaikan ';
@@ -627,7 +627,7 @@ $tmx['w_sslcerts']='SSL certificates';
 $tmx['t_sslcerts']='SSL Certificates';
 $tmx['w_sslcert']='SSL certificate';
 $tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To acccess this page you need a valid SSL certificate client.';
+$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
 $tmx['w_graph']='graph';
 
 // --- EOF ---

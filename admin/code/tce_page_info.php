@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_info.php
 // Begin       : 2004-05-21
-// Last Update : 2017-04-22
+// Last Update : 2019-07-31
 //
 // Description : Outputs TCExam information page.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -157,6 +157,7 @@ echo '<li>[PL] Polish : Tomasz Parol</li>'.K_NEWLINE;
 echo '<li>[RO] Romanian : Ovidiu Dragomir</li>'.K_NEWLINE;
 echo '<li>[RU] Russian : Andrey, Sergey C.</li>'.K_NEWLINE;
 echo '<li>[TR] Turkish : Mehmet Arif Icir</li>'.K_NEWLINE;
+echo '<li>[UR] Urdu : Ghulam Abbas</li>'.K_NEWLINE;
 echo '<li>[VN] Vietnamese : Nguyen Quynh Nga</li>'.K_NEWLINE;
 echo '</ul>'.K_NEWLINE;
 
