@@ -1664,6 +1664,7 @@ class TCPDF_FONTS {
 	 * @public static
 	 */
 	public static function unichr($c, $unicode=true) {
+		$c = intval($c);
 		if (!$unicode) {
 			return chr($c);
 		} elseif ($c <= 0x7F) {
@@ -2003,7 +2004,11 @@ class TCPDF_FONTS {
 			$chars = str_split($str);
 			$carr = array_map('ord', $chars);
 		}
-		$currentfont['subsetchars'] += array_fill_keys($carr, true);
+		if (is_array($currentfont['subsetchars']) && is_array($carr)) {
+			$currentfont['subsetchars'] += array_fill_keys($carr, true);
+		} else {
+			$currentfont['subsetchars'] = array_merge($currentfont['subsetchars'], $carr);
+		}
 		return $carr;
 	}
 
