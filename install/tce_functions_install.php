@@ -215,6 +215,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
+		echo "<span style='color:#000080'>[could not access post-installation database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
 		return FALSE;
 	}
 }
