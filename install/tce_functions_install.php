@@ -119,8 +119,17 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 	$sql_data = str_replace("\n", " ", $sql_data); // remove carriage returns
 	$sql_data = preg_replace("/(;\r)$/si", '', $sql_data); // remove last ";\r"
 	$sql_query = explode(";\r", trim($sql_data)); // split sql string into SQL statements
+
+	//see if we can leverage on transactions
+	$transaction_started = false;
+	if (K_DATABASE_TYPE == 'MYSQL'){
+		$db->autocommit(false);
+		$db->begin_transaction();
+		$transaction_started = true;
+	}
+
 	//execute queries
-        foreach ($sql_query as $key => $sql) { //for query on sql file
+    foreach ($sql_query as $key => $sql) { //for query on sql file
 		error_log('    [SQL] '.$key."\n", 3, $progress_log); //create progress log file
 		echo ' '; //print something to keep browser live
 		if (($key % 300) == 0) { //force flush output every 300 processed queries
@@ -130,6 +139,13 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 			return FALSE;
 		}
 	}
+
+	//end any existing transaction
+	if ($transaction_started){
+		$db->commit();
+		$db->autocommit(true);
+	}
+
 	return TRUE;
 }
 
@@ -244,7 +260,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-	
+
 	rename('../shared/config.default', '../shared/config');
 	rename('../admin/config.default', '../admin/config');
 	rename('../public/config.default', '../public/config');
