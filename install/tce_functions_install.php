@@ -197,6 +197,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
+						echo "<span style='color:#000080'>[could not create database:]" . F_db_error($db) . "</span>";
 						return FALSE;
 					}
 				} else {
