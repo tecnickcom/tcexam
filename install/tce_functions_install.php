@@ -244,7 +244,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-	
+
 	rename('../shared/config.default', '../shared/config');
 	rename('../admin/config.default', '../admin/config');
 	rename('../public/config.default', '../public/config');
@@ -253,6 +253,12 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
+
+	if (PHP_OS_FAMILY === "Linux") {
+		foreach ($config_file as $file) {
+			F_ensure_permissions_ok($file);
+		}
+	}
 
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
 	$parameter = array();
@@ -353,6 +359,24 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 	flush(); // force browser output
 	return TRUE;
+}
+
+/**
+ * Zip download/git clone of TCExam source code usually
+ * results in files/folders to be owned by current user.
+ * Hence, most of the time on Linux permission issues arise.
+ *
+ * @param string $file
+ *
+ * @return void
+ */
+function F_ensure_permissions_ok($file){
+	if (PHP_OS_FAMILY === "Linux") {
+		if (!posix_access(realpath($file), POSIX_R_OK | POSIX_W_OK)) {
+			$error = posix_get_last_error();
+			exit("<p>Cannot read/write file <i>" . realpath($file) . "</i> (error $error): " . posix_strerror($error) . "</p>");
+		}
+	}
 }
 
 //============================================================+

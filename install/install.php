@@ -20,12 +20,15 @@
 //============================================================+
 
 $progress_log = 'install.log'; //installation log file
+
 $start_installation = FALSE; // becomes true on form submission
 
 // define supported databases
 $dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
 
 require_once('tce_functions_install.php');
+
+F_ensure_permissions_ok($progress_log);
 
 //send XHTML headers
 echo '<'.'?'.'xml version="1.0" encoding="UTF-8" '.'?'.'>'."\n";
