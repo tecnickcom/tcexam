@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2013-10-23
+// Last Update : 2019-12-23
 //
 // Description : Installation functions for TCExam.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -271,10 +271,8 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
 
-	if (PHP_OS_FAMILY === "Linux") {
-		foreach ($config_file as $file) {
-			F_ensure_permissions_ok($file);
-		}
+	if (!F_are_files_writable($config_file)) {
+		return false;
 	}
 
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
@@ -379,22 +377,25 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 }
 
 /**
- * Zip download/git clone of TCExam source code usually
- * results in files/folders to be owned by current user.
- * Hence, most of the time on Linux permission issues arise.
- *
- * @param string $file
- *
- * @return void
+ * Check if the files are writable by the current user.
+ * NOTE: only works on linux-like OSs.
+ * @param string $files flies to check
+ * @return boolean true in case of success, false otherwise
  */
-function F_ensure_permissions_ok($file){
+function F_are_files_writable($files){
 	if (PHP_OS_FAMILY !== "Linux") {
-    return;
-  }
-  if (!posix_access(realpath($file), POSIX_R_OK | POSIX_W_OK)) {
-	  $error = posix_get_last_error();
-	  exit("<p>Cannot read/write file <i>" . realpath($file) . "</i> (error $error): " . posix_strerror($error) . "</p>");
-  }
+		return true;
+	}
+	foreach ($files as $file) {
+		$filepath = realpath($file);
+		if (!posix_access($filepath, POSIX_R_OK | POSIX_W_OK)) {
+			$error = posix_get_last_error();
+			error_log('  [ERROR] unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error)."\n", 3, $progress_log); //log info
+			echo "\n".'  [ERROR] unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error);
+			return false;
+		}
+	}
+	return true;
 }
 
 /**
@@ -408,18 +409,18 @@ function F_ensure_permissions_ok($file){
 function F_move_dir_if_not_exists($source, $destination)
 {
 	if (is_dir(realpath($destination))) {
-		echo "\n<li>the folder <i>{$destination}</i> already exists from a prior installation attempt. (if upgrading, <a href='../UPGRADE.TXT'>follow this instructions instead</a>)...........<span style='color:#008000'>[OK]</span></li>";
-	} else {
-		if (is_dir(realpath($source))) {
-			rename($source, $destination);
-		}else{
-			if (is_dir(realpath($destination))) {
-				echo "\n<li>not overwriting the folder <i>{$destination}</i> because already exists from a prior installation attempt. (if upgrading, <a href='../UPGRADE.TXT'>follow this instructions instead</a>)...........<span style='color:#008000'>[OK]</span></li>";
-			}else{
-				echo "\n<li>there seems to be an error in the files you downloaded because the folder <i>{$source}</i> is not found............<span style='color:#CC0000'>[ERROR]</span></li>";
-			}
-		}
+		echo "\n<li>".'the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#008000">[OK]</span></li>';
+		return;
 	}
+	if (is_dir(realpath($source))) {
+		rename($source, $destination);
+		return;
+	}
+	if (is_dir(realpath($destination))) {
+		echo "\n".'<li>not overwriting the folder <i>'.$destination.'</i> because already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#008000">[OK]</span></li>';
+		return;
+	}
+	echo "\n".'<li>there seems to be an error in the files you downloaded because the folder <i>'.$source.'</i> is not found............<span style="color:#CC0000">[ERROR]</span></li>';
 }
 
 //============================================================+
