@@ -271,9 +271,12 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
 
+	echo "\n".'<li>Check config files permissions:';
 	if (!F_are_files_writable($config_file)) {
+		echo '</li>';
 		return false;
 	}
+	echo '</li>';
 
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
 	$parameter = array();
@@ -382,20 +385,22 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
  * @param string $files flies to check
  * @return boolean true in case of success, false otherwise
  */
-function F_are_files_writable($files){
+function F_are_files_writable($files) {
+	$ok = true;
 	if (PHP_OS_FAMILY !== "Linux") {
-		return true;
+		return $ok;
 	}
+	echo "\n".'<ul>';
 	foreach ($files as $file) {
 		$filepath = realpath($file);
 		if (!posix_access($filepath, POSIX_R_OK | POSIX_W_OK)) {
 			$error = posix_get_last_error();
-			error_log('  [ERROR] unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error)."\n", 3, $progress_log); //log info
-			echo "\n".'  [ERROR] unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error);
-			return false;
+			echo "\n".'<li><span style="color:#CC0000">[ERROR]</span> unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error).'</li>';
+			$ok = false;
 		}
 	}
-	return true;
+	echo "\n".'</ul>';
+	return $ok;
 }
 
 /**
@@ -406,8 +411,7 @@ function F_are_files_writable($files){
  *
  * @return void
  */
-function F_move_dir_if_not_exists($source, $destination)
-{
+function F_move_dir_if_not_exists($source, $destination) {
 	if (is_dir(realpath($destination))) {
 		echo "\n<li>".'the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#008000">[OK]</span></li>';
 		return;

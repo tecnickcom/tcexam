@@ -15,9 +15,11 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
+
+error_reporting(E_ALL);
 
 $progress_log = 'install.log'; //installation log file
 
@@ -27,8 +29,6 @@ $start_installation = FALSE; // becomes true on form submission
 $dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
 
 require_once('tce_functions_install.php');
-
-F_ensure_permissions_ok($progress_log);
 
 //send XHTML headers
 echo '<'.'?'.'xml version="1.0" encoding="UTF-8" '.'?'.'>'."\n";
@@ -45,6 +45,10 @@ echo '<link rel="stylesheet" href="../admin/styles/default.css" type="text/css" 
 echo '</head>'."\n";
 
 echo '<body>'."\n";
+if (!F_are_files_writable(array($progress_log))) {
+	echo '</body></html>'."\n";
+	exit();
+}
 ?>
 
 <h1>TCExam - Installation</h1>
