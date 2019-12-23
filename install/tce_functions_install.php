@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_install.php
 // Begin       : 2002-05-13
-// Last Update : 2013-10-23
+// Last Update : 2019-12-23
 //
 // Description : Installation functions for TCExam.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2019  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -119,8 +119,17 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 	$sql_data = str_replace("\n", " ", $sql_data); // remove carriage returns
 	$sql_data = preg_replace("/(;\r)$/si", '', $sql_data); // remove last ";\r"
 	$sql_query = explode(";\r", trim($sql_data)); // split sql string into SQL statements
+
+	//see if we can leverage on transactions
+	$transaction_started = false;
+	if (K_DATABASE_TYPE == 'MYSQL'){
+		$db->autocommit(false);
+		$db->begin_transaction();
+		$transaction_started = true;
+	}
+
 	//execute queries
-        foreach ($sql_query as $key => $sql) { //for query on sql file
+    foreach ($sql_query as $key => $sql) { //for query on sql file
 		error_log('    [SQL] '.$key."\n", 3, $progress_log); //create progress log file
 		echo ' '; //print something to keep browser live
 		if (($key % 300) == 0) { //force flush output every 300 processed queries
@@ -130,6 +139,13 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 			return FALSE;
 		}
 	}
+
+	//end any existing transaction
+	if ($transaction_started){
+		$db->commit();
+		$db->autocommit(true);
+	}
+
 	return TRUE;
 }
 
@@ -197,6 +213,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
+						echo '<span style="color:#800000">[ERROR: could not create database] '.F_db_error($db).'</span>';
 						return FALSE;
 					}
 				} else {
@@ -205,6 +222,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 			}
 			@F_db_close($db);
 		} else {
+			echo '<span style="color:#800000">[ERROR: could not connect to database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
 			return FALSE;
 		}
 	} else {
@@ -213,6 +231,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
+		echo '<span style="color:#800000">[ERROR: could not access post-installation database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
 		return FALSE;
 	}
 }
@@ -244,15 +263,20 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-	
-	rename('../shared/config.default', '../shared/config');
-	rename('../admin/config.default', '../admin/config');
-	rename('../public/config.default', '../public/config');
+	F_move_dir_if_not_exists('../shared/config.default', '../shared/config');
+	F_move_dir_if_not_exists('../admin/config.default', '../admin/config');
+	F_move_dir_if_not_exists('../public/config.default', '../public/config');
 
 	$config_file = array(); // configuration files
-
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
+
+	echo "\n".'<li>Check config files permissions:';
+	if (!F_are_files_writable($config_file)) {
+		echo '</li>';
+		return false;
+	}
+	echo '</li>';
 
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
 	$parameter = array();
@@ -263,8 +287,8 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		'1'  => array ('0' => "K_DATABASE_HOST', '([^\']*)'", '1' => "K_DATABASE_HOST', '".$db_host."'"),
 		'2'  => array ('0' => "K_DATABASE_PORT', '([^\']*)'", '1' => "K_DATABASE_PORT', '".$db_port."'"),
 		'3'  => array ('0' => "K_DATABASE_NAME', '([^\']*)'", '1' => "K_DATABASE_NAME', '".$database_name."'"),
-		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".$db_user."'"),
-		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".$db_password."'"),
+		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".preg_quote($db_user)."'"),
+		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".preg_quote($db_password)."'"),
 		'6'  => array ('0' => "K_TABLE_PREFIX', '([^\']*)'", '1' => "K_TABLE_PREFIX', '".$table_prefix."'")
 	);
 
@@ -353,6 +377,54 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 	flush(); // force browser output
 	return TRUE;
+}
+
+/**
+ * Check if the files are writable by the current user.
+ * NOTE: only works on linux-like OSs.
+ * @param string $files flies to check
+ * @return boolean true in case of success, false otherwise
+ */
+function F_are_files_writable($files) {
+	$ok = true;
+	if (PHP_OS_FAMILY !== "Linux") {
+		return $ok;
+	}
+	echo "\n".'<ul>';
+	foreach ($files as $file) {
+		$filepath = realpath($file);
+		if (!posix_access($filepath, POSIX_R_OK | POSIX_W_OK)) {
+			$error = posix_get_last_error();
+			echo "\n".'<li><span style="color:#CC0000">[ERROR]</span> unable to write: <i>'.$filepath.'</i> (error '.$error.'): '.posix_strerror($error).'</li>';
+			$ok = false;
+		}
+	}
+	echo "\n".'</ul>';
+	return $ok;
+}
+
+/**
+ * renames a folder in a user-friendly way
+ *
+ * @param string $source
+ * @param string $destination
+ *
+ * @return void
+ */
+function F_move_dir_if_not_exists($source, $destination) {
+	if (is_dir(realpath($destination))) {
+		echo "\n".'<li>the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
+		return;
+	}
+	if (is_dir(realpath($source))) {
+		rename($source, $destination);
+		return;
+	}
+	if (is_dir(realpath($destination))) {
+		echo "\n".'<li>not overwriting the folder <i>'.$destination.'</i> because already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
+		return;
+	}
+	echo "\n".'<li>there seems to be an error in the files you downloaded because the folder <i>'.$source.'</i> is not found............<span style="color:#CC0000">[ERROR]</span></li>';
 }
 
 //============================================================+
