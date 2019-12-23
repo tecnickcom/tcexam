@@ -263,10 +263,9 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-
-	rename('../shared/config.default', '../shared/config');
-	rename('../admin/config.default', '../admin/config');
-	rename('../public/config.default', '../public/config');
+	F_move_dir_if_not_exists('../shared/config.default', '../shared/config');
+	F_move_dir_if_not_exists('../admin/config.default', '../admin/config');
+	F_move_dir_if_not_exists('../public/config.default', '../public/config');
 
 	$config_file = array(); // configuration files
 
@@ -372,6 +371,31 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 	flush(); // force browser output
 	return TRUE;
+}
+
+/**
+ * renames a folder in a user-friendly way
+ *
+ * @param string $source
+ * @param string $destination
+ *
+ * @return void
+ */
+function F_move_dir_if_not_exists($source, $destination)
+{
+	if (is_dir(realpath($destination))) {
+		echo "\n<li>the folder <i>{$destination}</i> already exists from a prior installation attempt. (if upgrading, <a href='../UPGRADE.TXT'>follow this instructions instead</a>)...........<span style='color:#008000'>[OK]</span></li>";
+	} else {
+		if (is_dir(realpath($source))) {
+			rename($source, $destination);
+		}else{
+			if (is_dir(realpath($destination))) {
+				echo "\n<li>not overwriting the folder <i>{$destination}</i> because already exists from a prior installation attempt. (if upgrading, <a href='../UPGRADE.TXT'>follow this instructions instead</a>)...........<span style='color:#008000'>[OK]</span></li>";
+			}else{
+				echo "\n<li>there seems to be an error in the files you downloaded because the folder <i>{$source}</i> is not found............<span style='color:#CC0000'>[ERROR]</span></li>";
+			}
+		}
+	}
 }
 
 //============================================================+
