@@ -119,8 +119,17 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 	$sql_data = str_replace("\n", " ", $sql_data); // remove carriage returns
 	$sql_data = preg_replace("/(;\r)$/si", '', $sql_data); // remove last ";\r"
 	$sql_query = explode(";\r", trim($sql_data)); // split sql string into SQL statements
+
+	//see if we can leverage on transactions
+	$transaction_started = false;
+	if (K_DATABASE_TYPE == 'MYSQL'){
+		$db->autocommit(false);
+		$db->begin_transaction();
+		$transaction_started = true;
+	}
+
 	//execute queries
-        foreach ($sql_query as $key => $sql) { //for query on sql file
+    foreach ($sql_query as $key => $sql) { //for query on sql file
 		error_log('    [SQL] '.$key."\n", 3, $progress_log); //create progress log file
 		echo ' '; //print something to keep browser live
 		if (($key % 300) == 0) { //force flush output every 300 processed queries
@@ -130,6 +139,13 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 			return FALSE;
 		}
 	}
+
+	//end any existing transaction
+	if ($transaction_started){
+		$db->commit();
+		$db->autocommit(true);
+	}
+
 	return TRUE;
 }
 
@@ -197,6 +213,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
+						echo "<span style='color:#000080'>[could not create database:]" . F_db_error($db) . "</span>";
 						return FALSE;
 					}
 				} else {
@@ -205,6 +222,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 			}
 			@F_db_close($db);
 		} else {
+			echo "<span style='color:#000080'>[could not connect to database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
 			return FALSE;
 		}
 	} else {
@@ -213,6 +231,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
+		echo "<span style='color:#000080'>[could not access post-installation database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
 		return FALSE;
 	}
 }
@@ -244,7 +263,6 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-
 	F_move_dir_if_not_exists('../shared/config.default', '../shared/config');
 	F_move_dir_if_not_exists('../admin/config.default', '../admin/config');
 	F_move_dir_if_not_exists('../public/config.default', '../public/config');
@@ -263,8 +281,8 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		'1'  => array ('0' => "K_DATABASE_HOST', '([^\']*)'", '1' => "K_DATABASE_HOST', '".$db_host."'"),
 		'2'  => array ('0' => "K_DATABASE_PORT', '([^\']*)'", '1' => "K_DATABASE_PORT', '".$db_port."'"),
 		'3'  => array ('0' => "K_DATABASE_NAME', '([^\']*)'", '1' => "K_DATABASE_NAME', '".$database_name."'"),
-		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".$db_user."'"),
-		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".$db_password."'"),
+		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".preg_quote($db_user)."'"),
+		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".preg_quote($db_password)."'"),
 		'6'  => array ('0' => "K_TABLE_PREFIX', '([^\']*)'", '1' => "K_TABLE_PREFIX', '".$table_prefix."'")
 	);
 
