@@ -282,8 +282,8 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		'1'  => array ('0' => "K_DATABASE_HOST', '([^\']*)'", '1' => "K_DATABASE_HOST', '".$db_host."'"),
 		'2'  => array ('0' => "K_DATABASE_PORT', '([^\']*)'", '1' => "K_DATABASE_PORT', '".$db_port."'"),
 		'3'  => array ('0' => "K_DATABASE_NAME', '([^\']*)'", '1' => "K_DATABASE_NAME', '".$database_name."'"),
-		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".$db_user."'"),
-		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".$db_password."'"),
+		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".preg_quote($db_user)."'"),
+		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".preg_quote($db_password)."'"),
 		'6'  => array ('0' => "K_TABLE_PREFIX', '([^\']*)'", '1' => "K_TABLE_PREFIX', '".$table_prefix."'")
 	);
 
