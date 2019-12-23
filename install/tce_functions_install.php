@@ -197,6 +197,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
+						echo "<span style='color:#000080'>[could not create database:]" . F_db_error($db) . "</span>";
 						return FALSE;
 					}
 				} else {
@@ -205,6 +206,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 			}
 			@F_db_close($db);
 		} else {
+			echo "<span style='color:#000080'>[could not connect to database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
 			return FALSE;
 		}
 	} else {
@@ -213,6 +215,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
+		echo "<span style='color:#000080'>[could not access post-installation database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
 		return FALSE;
 	}
 }
@@ -244,7 +247,7 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	}
 
 	// initialize configuration directories with default values
-	
+
 	rename('../shared/config.default', '../shared/config');
 	rename('../admin/config.default', '../admin/config');
 	rename('../public/config.default', '../public/config');
