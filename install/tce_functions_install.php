@@ -213,7 +213,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
-						echo "<span style='color:#000080'>[could not create database:]" . F_db_error($db) . "</span>";
+						echo '<span style="color:#800000">[ERROR: could not create database] '.F_db_error($db).'</span>';
 						return FALSE;
 					}
 				} else {
@@ -222,7 +222,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 			}
 			@F_db_close($db);
 		} else {
-			echo "<span style='color:#000080'>[could not connect to database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
+			echo '<span style="color:#800000">[ERROR: could not connect to database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
 			return FALSE;
 		}
 	} else {
@@ -231,7 +231,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
-		echo "<span style='color:#000080'>[could not access post-installation database: (host:{$host}, port:{$port}, user:{$user}, password:{$password}, database:{$database})]" . F_db_error($db) . "</span>";
+		echo '<span style="color:#800000">[ERROR: could not access post-installation database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
 		return FALSE;
 	}
 }
@@ -413,7 +413,7 @@ function F_are_files_writable($files) {
  */
 function F_move_dir_if_not_exists($source, $destination) {
 	if (is_dir(realpath($destination))) {
-		echo "\n<li>".'the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#008000">[OK]</span></li>';
+		echo "\n".'<li>the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
 		return;
 	}
 	if (is_dir(realpath($source))) {
@@ -421,7 +421,7 @@ function F_move_dir_if_not_exists($source, $destination) {
 		return;
 	}
 	if (is_dir(realpath($destination))) {
-		echo "\n".'<li>not overwriting the folder <i>'.$destination.'</i> because already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#008000">[OK]</span></li>';
+		echo "\n".'<li>not overwriting the folder <i>'.$destination.'</i> because already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
 		return;
 	}
 	echo "\n".'<li>there seems to be an error in the files you downloaded because the folder <i>'.$source.'</i> is not found............<span style="color:#CC0000">[ERROR]</span></li>';
