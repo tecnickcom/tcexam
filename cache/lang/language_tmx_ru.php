@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ru
-// DATE: 2019-07-31 14:17:33
+// DATE: 2020-01-03 12:05:29
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='группа была удалена из базы да
 $tmx['m_group_updated']='данные пользователя были обновлены';
 $tmx['m_importing_complete']='импортирование в XML формате завершено';
 $tmx['m_login_wrong']='неверное имя пользователя или пароль';
-$tmx['m_mailerror_authenticate']='[SMTP] Невозможно подтвердить подлинность.';
-$tmx['m_mailerror_connect_host']='[SMTP] Невозможно соединиться с SMTP узлом.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Данные не были приняты.';
-$tmx['m_mailerror_encoding']='Неизвестная кодировка:';
-$tmx['m_mailerror_execute']='Невозможно выполнить:';
-$tmx['m_mailerror_file_access']='Нет доступа к файлу:';
-$tmx['m_mailerror_file_open']='Невозможно открыть файл:';
-$tmx['m_mailerror_from_failed']='Следующие обратные адреса повреждены:';
-$tmx['m_mailerror_instantiate']='Не возможно проиллюстрировать почтовую функцию.';
-$tmx['m_mailerror_mailer_not_supported']='Программа электронной почты не поддерживается.';
-$tmx['m_mailerror_provide_address']='Вы должны предоставить по крайней мере один адрес эл. почты получателя.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Следующие входящие соединения не удались:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Ошибка SMTP: ошибка авторизации.';
+$tmx['m_mailerror_connect_host']='Ошибка SMTP: не удается подключиться к SMTP-серверу.';
+$tmx['m_mailerror_data_not_accepted']='Ошибка SMTP: данные не приняты.';
+$tmx['m_mailerror_empty_message']='Пустое сообщение';
+$tmx['m_mailerror_encoding']='Неизвестная кодировка: ';
+$tmx['m_mailerror_execute']='Невозможно выполнить команду: ';
+$tmx['m_mailerror_file_access']='Нет доступа к файлу: ';
+$tmx['m_mailerror_file_open']='Файловая ошибка: не удаётся открыть файл: ';
+$tmx['m_mailerror_from_failed']='Неверный адрес отправителя: ';
+$tmx['m_mailerror_instantiate']='Невозможно запустить функцию mail().';
+$tmx['m_mailerror_invalid_address']='Не отправлено из-за неправильного формата email-адреса: ';
+$tmx['m_mailerror_mailer_not_supported']=' — почтовый сервер не поддерживается.';
+$tmx['m_mailerror_provide_address']='Пожалуйста, введите хотя бы один email-адрес получателя.';
+$tmx['m_mailerror_recipients_failed']='Ошибка SMTP: не удалась отправка таким адресатам: ';
+$tmx['m_mailerror_signing']='Ошибка подписи: ';
+$tmx['m_mailerror_smtp_connect_failed']='Ошибка соединения с SMTP-сервером';
+$tmx['m_mailerror_smtp_error']='Ошибка SMTP-сервера: ';
+$tmx['m_mailerror_variable_set']='Невозможно установить или сбросить переменную: ';
+$tmx['m_mailerror_extension_missing']='Расширение отсутствует: ';
 $tmx['m_new_window_link']='данная ссылка откроет новое окно браузера';
 $tmx['m_no_test_available']='нет никаких доступных тестов!';
 $tmx['m_process_completed']='процесс завершен';

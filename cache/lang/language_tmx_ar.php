@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ar
-// DATE: 2019-07-31 14:16:51
+// DATE: 2020-01-03 12:04:42
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='المجموعة تم حذفها من قاعدة الب
 $tmx['m_group_updated']='تم تحديث بيانات المستخدم';
 $tmx['m_importing_complete']='اكسمل اكتمل استيراد';
 $tmx['m_login_wrong']='خطأ في المستخدم / كلمة المرور';
-$tmx['m_mailerror_authenticate']='[SMTP] غير مصدق.';
-$tmx['m_mailerror_connect_host']='[SMTP] عدم الاتصال بمضيف SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] بيانات غير مقبولة.';
-$tmx['m_mailerror_encoding']='تشفير غير معروف:';
-$tmx['m_mailerror_execute']='غير منفذ:';
-$tmx['m_mailerror_file_access']='لم يتمكن من الوصول الى الملف:';
-$tmx['m_mailerror_file_open']='لم يتم فتح الملف:';
-$tmx['m_mailerror_from_failed']='فشل في العناوين التالية:';
-$tmx['m_mailerror_instantiate']='لا يمكن تنفيذ مهمة البريد الآن.';
-$tmx['m_mailerror_mailer_not_supported']='الارسال غير مدعوم.';
-$tmx['m_mailerror_provide_address']='يجب عليك ادراج عنوان البريد الكتروني لمستلم واحد على الاقل.';
-$tmx['m_mailerror_recipients_failed']='[بروتوكول نقل البريد الالكتروني] فشل المستفيدين التاليين:';
-$tmx['m_mailerror_signing']='توقيع الخطأ: ';
-$tmx['m_mailerror_smtp_error']='SMTP خطأ في خادم: ';
+$tmx['m_mailerror_authenticate']='خطأ SMTP : لا يمكن تأكيد الهوية.';
+$tmx['m_mailerror_connect_host']='خطأ SMTP: لا يمكن الاتصال بالخادم SMTP.';
+$tmx['m_mailerror_data_not_accepted']='خطأ SMTP: لم يتم قبول المعلومات .';
 $tmx['m_mailerror_empty_message']='نص الرسالة فارغ';
-$tmx['m_mailerror_invalid_address']='عنوان غير صالح';
-$tmx['m_mailerror_variable_set']='لا يمكن تعيين أو اعادة تعيين المتغير: ';
+$tmx['m_mailerror_encoding']='ترميز غير معروف: ';
+$tmx['m_mailerror_execute']='لا يمكن تنفيذ : ';
+$tmx['m_mailerror_file_access']='لا يمكن الوصول للملف: ';
+$tmx['m_mailerror_file_open']='خطأ في الملف: لا يمكن فتحه: ';
+$tmx['m_mailerror_from_failed']='خطأ على مستوى عنوان المرسل : ';
+$tmx['m_mailerror_instantiate']='لا يمكن توفير خدمة البريد.';
+$tmx['m_mailerror_invalid_address']='الإرسال غير ممكن لأن عنوان البريد الإلكتروني غير صالح: ';
+$tmx['m_mailerror_mailer_not_supported']=' برنامج الإرسال غير مدعوم.';
+$tmx['m_mailerror_provide_address']='يجب توفير عنوان البريد الإلكتروني لمستلم واحد على الأقل.';
+$tmx['m_mailerror_recipients_failed']='خطأ SMTP: الأخطاء التالية فشل في الارسال لكل من : ';
+$tmx['m_mailerror_signing']='خطأ في التوقيع: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() غير ممكن.';
+$tmx['m_mailerror_smtp_error']='خطأ على مستوى الخادم SMTP: ';
+$tmx['m_mailerror_variable_set']='لا يمكن تعيين أو إعادة تعيين متغير: ';
+$tmx['m_mailerror_extension_missing']='الإضافة غير موجودة: ';
 $tmx['m_new_window_link']='هذا الرابط يفتح نافذة متصفح جديدة';
 $tmx['m_no_test_available']='ﻻ توجد اختبارات متاحة!';
 $tmx['m_process_completed']='اكتمات العملية';

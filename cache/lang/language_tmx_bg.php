@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: bg
-// DATE: 2019-07-31 14:16:55
+// DATE: 2020-01-03 12:04:46
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='групата беше преместена от ба�
 $tmx['m_group_updated']='данните на потребителя бяха обновени';
 $tmx['m_importing_complete']='импортирането от XML завършено';
 $tmx['m_login_wrong']='грешен потребител / парола';
-$tmx['m_mailerror_authenticate']='[SMTP] Не може да удостовери.';
-$tmx['m_mailerror_connect_host']='[SMTP] Не може да се свърже с SMTP хост.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Данните не са приети.';
-$tmx['m_mailerror_encoding']='Непознат шифър:';
-$tmx['m_mailerror_execute']='Не може да изпълни:';
-$tmx['m_mailerror_file_access']='Не може да достъпи файла:';
-$tmx['m_mailerror_file_open']='Не може да отвори файла:';
-$tmx['m_mailerror_from_failed']='Следния от адресите не успя:';
-$tmx['m_mailerror_instantiate']='Не може да инициализира майл функция.';
-$tmx['m_mailerror_mailer_not_supported']='Програма за адресиране на писма не се поддържа.';
-$tmx['m_mailerror_provide_address']='Трябва да запишите адреса на поне един е-майл получател.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Не достигна до следните получатели:';
-$tmx['m_mailerror_signing']='Грешка при вписване: ';
+$tmx['m_mailerror_authenticate']='SMTP грешка: Не може да се удостовери пред сървъра.';
+$tmx['m_mailerror_connect_host']='SMTP грешка: Не може да се свърже с SMTP хоста.';
+$tmx['m_mailerror_data_not_accepted']='SMTP грешка: данните не са приети.';
+$tmx['m_mailerror_empty_message']='Съдържанието на съобщението е празно';
+$tmx['m_mailerror_encoding']='Неизвестно кодиране: ';
+$tmx['m_mailerror_execute']='Не може да се изпълни: ';
+$tmx['m_mailerror_file_access']='Няма достъп до файл: ';
+$tmx['m_mailerror_file_open']='Файлова грешка: Не може да се отвори файл: ';
+$tmx['m_mailerror_from_failed']='Следните адреси за подател са невалидни: ';
+$tmx['m_mailerror_instantiate']='Не може да се инстанцира функцията mail.';
+$tmx['m_mailerror_invalid_address']='Невалиден адрес: ';
+$tmx['m_mailerror_mailer_not_supported']=' - пощенски сървър не се поддържа.';
+$tmx['m_mailerror_provide_address']='Трябва да предоставите поне един email адрес за получател.';
+$tmx['m_mailerror_recipients_failed']='SMTP грешка: Следните адреси за Получател са невалидни: ';
+$tmx['m_mailerror_signing']='Грешка при подписване: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP провален connect().';
 $tmx['m_mailerror_smtp_error']='SMTP сървърна грешка: ';
-$tmx['m_mailerror_empty_message']='Тялото на съобщението е празно';
-$tmx['m_mailerror_invalid_address']='Невалиден адрес';
-$tmx['m_mailerror_variable_set']='Не мога да задам или променя променлива: ';
+$tmx['m_mailerror_variable_set']='Не може да се установи или възстанови променлива: ';
+$tmx['m_mailerror_extension_missing']='Липсва разширение: ';
 $tmx['m_new_window_link']='Скала и критерии за оценяване';
 $tmx['m_no_test_available']='няма налични тестове!';
 $tmx['m_process_completed']='процеса е завършен';

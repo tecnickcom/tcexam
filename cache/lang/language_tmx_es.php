@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2019-07-31 14:17:06
+// DATE: 2020-01-03 12:04:56
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='el grupo ha sido eliminado de la base de datos';
 $tmx['m_group_updated']='los datos de usuario han sido actualizados';
 $tmx['m_importing_complete']='importación XML completada';
 $tmx['m_login_wrong']='usuario / clave errónea';
-$tmx['m_mailerror_authenticate']='[SMTP] Imposible autenticarse.';
-$tmx['m_mailerror_connect_host']='[SMTP] Imposible conectarse al host SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Datos no aceptados.';
-$tmx['m_mailerror_encoding']='Codificación desconocida:';
-$tmx['m_mailerror_execute']='Imposible ejecutar:';
-$tmx['m_mailerror_file_access']='Imposible acceder al archivo:';
-$tmx['m_mailerror_file_open']='Imposible abrir el archivo:';
-$tmx['m_mailerror_from_failed']='La dirección del remitente ha generado un error:';
-$tmx['m_mailerror_instantiate']='Imposible instanciar la función mail.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer no es soportado.';
-$tmx['m_mailerror_provide_address']='Se debe proveer por lo menos una dirección email receptora.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Los siguientes destinatarios han generado error:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Error SMTP: Imposible autentificar.';
+$tmx['m_mailerror_connect_host']='Error SMTP: Imposible conectar al servidor SMTP.';
+$tmx['m_mailerror_data_not_accepted']='Error SMTP: Datos no aceptados.';
+$tmx['m_mailerror_empty_message']='El cuerpo del mensaje está vacío.';
+$tmx['m_mailerror_encoding']='Codificación desconocida: ';
+$tmx['m_mailerror_execute']='Imposible ejecutar: ';
+$tmx['m_mailerror_file_access']='Imposible acceder al archivo: ';
+$tmx['m_mailerror_file_open']='Error de Archivo: Imposible abrir el archivo: ';
+$tmx['m_mailerror_from_failed']='La(s) siguiente(s) direcciones de remitente fallaron: ';
+$tmx['m_mailerror_instantiate']='Imposible crear una instancia de la función Mail.';
+$tmx['m_mailerror_invalid_address']='Imposible enviar: dirección de email inválido: ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer no está soportado.';
+$tmx['m_mailerror_provide_address']='Debe proporcionar al menos una dirección de email de destino.';
+$tmx['m_mailerror_recipients_failed']='Error SMTP: Los siguientes destinos fallaron: ';
+$tmx['m_mailerror_signing']='Error al firmar: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() falló.';
+$tmx['m_mailerror_smtp_error']='Error del servidor SMTP: ';
+$tmx['m_mailerror_variable_set']='No se pudo configurar la variable: ';
+$tmx['m_mailerror_extension_missing']='Extensión faltante: ';
 $tmx['m_new_window_link']='este enlace abrirá una nueva ventana del browser';
 $tmx['m_no_test_available']='¡no hay tests disponibles!';
 $tmx['m_process_completed']='proceso completado';

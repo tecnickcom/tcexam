@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: en
-// DATE: 2019-07-31 14:17:03
+// DATE: 2020-01-03 12:04:35
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='the group has been removed from database';
 $tmx['m_group_updated']='the user data have been updated';
 $tmx['m_importing_complete']='XML importing completed';
 $tmx['m_login_wrong']='wrong user / password';
-$tmx['m_mailerror_authenticate']='[SMTP] Could not authenticate.';
-$tmx['m_mailerror_connect_host']='[SMTP] Could not connect to SMTP host.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Data not accepted.';
-$tmx['m_mailerror_encoding']='Unknown encoding:';
-$tmx['m_mailerror_execute']='Could not execute:';
-$tmx['m_mailerror_file_access']='Could not access file:';
-$tmx['m_mailerror_file_open']='Could not open file:';
-$tmx['m_mailerror_from_failed']='The following From addresses failed:';
-$tmx['m_mailerror_instantiate']='Could not start mail function.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer is not supported.';
-$tmx['m_mailerror_provide_address']='You must provide at least one recipient email address.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] The following recipients failed:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_authenticate']='SMTP Error: Could not authenticate.';
+$tmx['m_mailerror_connect_host']='SMTP Error: Could not connect to SMTP host.';
+$tmx['m_mailerror_data_not_accepted']='SMTP Error: data not accepted.';
 $tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_encoding']='Unknown encoding: ';
+$tmx['m_mailerror_execute']='Could not execute: ';
+$tmx['m_mailerror_file_access']='Could not access file: ';
+$tmx['m_mailerror_file_open']='File Error: Could not open file: ';
+$tmx['m_mailerror_from_failed']='The following From address failed: ';
+$tmx['m_mailerror_instantiate']='Could not instantiate mail function.';
+$tmx['m_mailerror_invalid_address']='Invalid address: ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer is not supported.';
+$tmx['m_mailerror_provide_address']='You must provide at least one recipient email address.';
+$tmx['m_mailerror_recipients_failed']='SMTP Error: The following recipients failed: ';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP connect() failed.';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='this link will open a new browser window';
 $tmx['m_no_test_available']='there are no available tests!';
 $tmx['m_process_completed']='process completed';

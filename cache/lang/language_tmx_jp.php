@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2019-07-31 14:17:23
+// DATE: 2020-01-03 12:05:14
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='グループがデータベースから削除されま�
 $tmx['m_group_updated']='情報が更新されました';
 $tmx['m_importing_complete']='XML ファイルの生成に成功';
 $tmx['m_login_wrong']='ユーザー名かパスワードが誤っています';
-$tmx['m_mailerror_authenticate']='[SMTP] 認証できません。';
-$tmx['m_mailerror_connect_host']='[SMTP] SMTP ホストに接続できません。';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] データは受け入れられません。';
-$tmx['m_mailerror_encoding']=' 未知のエンコードです：';
-$tmx['m_mailerror_execute']=' 実行できません：';
-$tmx['m_mailerror_file_access']=' file: にアクセスできません';
-$tmx['m_mailerror_file_open']=' file: を開けません';
-$tmx['m_mailerror_from_failed']=' From addresses は失敗しました';
-$tmx['m_mailerror_instantiate']=' メール機能を instantiate できません';
-$tmx['m_mailerror_mailer_not_supported']='メーラーがサポートされていません。';
-$tmx['m_mailerror_provide_address']=' 少なくとも一つの recipient の電子メールアドレスが必要です。';
-$tmx['m_mailerror_recipients_failed']='[SMTP] 次の recipients は失敗しました：';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
+$tmx['m_mailerror_authenticate']='SMTPエラー: 認証できませんでした。';
+$tmx['m_mailerror_connect_host']='SMTPエラー: SMTPホストに接続できませんでした。';
+$tmx['m_mailerror_data_not_accepted']='SMTPエラー: データが受け付けられませんでした。';
 $tmx['m_mailerror_empty_message']='Message body empty';
+$tmx['m_mailerror_encoding']='不明なエンコーディング: ';
+$tmx['m_mailerror_execute']='実行できませんでした: ';
+$tmx['m_mailerror_file_access']='ファイルにアクセスできません: ';
+$tmx['m_mailerror_file_open']='ファイルエラー: ファイルを開けません: ';
+$tmx['m_mailerror_from_failed']='Fromアドレスを登録する際にエラーが発生しました: ';
+$tmx['m_mailerror_instantiate']='メール関数が正常に動作しませんでした。';
 $tmx['m_mailerror_invalid_address']='Invalid address';
+$tmx['m_mailerror_mailer_not_supported']=' メーラーがサポートされていません。';
+$tmx['m_mailerror_provide_address']='少なくとも1つメールアドレスを 指定する必要があります。';
+$tmx['m_mailerror_recipients_failed']='SMTPエラー: 次の受信者アドレスに 間違いがあります: ';
+$tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP connect() failed.';
+$tmx['m_mailerror_smtp_error']='SMTP server error: ';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='クリックすると新しいウィンドウが開きます';
 $tmx['m_no_test_available']='受験可能なテストがありません！';
 $tmx['m_process_completed']='プロセス完了';

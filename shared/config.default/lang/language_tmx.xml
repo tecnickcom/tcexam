@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
    <header datatype="PlainText"
-           changedate="20150618T173400Z"
-           creationtoolversion="1"
-           segtype="sentence"
-           creationtool="hand made"
-           creationid="NicolaAsuni"
-           srclang="EN"
-           adminlang="en-us"
-           creationdate="20040427T100100Z"
-           o-tmf="ABCTransMem"/>
-   <header datatype="PlainText"
-           changedate="20190731T134100Z"
+           changedate="20200103T120400Z"
            creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
@@ -12782,1363 +12772,1523 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
          </tuv>
       </tu>
       <tu tuid="m_mailerror_authenticate" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>[SMTP] Inlog foutief.</seg>
+         <tuv xml:lang="EN">
+            <seg>SMTP Error: Could not authenticate.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ SMTP : لا يمكن تأكيد الهوية.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP xətası: Giriş uğursuz oldu.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP грешка: Не може да се удостовери пред сървъра.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de SMTP: Não foi possível autenticar.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP 错误：登录失败。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>SMTP-Fehler: Authentifizierung fehlgeschlagen.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>SMTP Σφάλμα: Αδυναμία πιστοποίησης (authentication).</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error SMTP: Imposible autentificar.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطای SMTP: احراز هویت با شکست مواجه شد.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur SMTP : échec de l'authentification.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת SMTP: פעולת האימות נכשלה.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP त्रुटि: प्रामाणिकता की जांच नहीं हो सका। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>SMTP hiba: az azonosítás sikertelen.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan SMTP: Tidak dapat mengotentikasi.</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>SMTP Error: Impossibile autenticarsi.</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTPエラー: 認証できませんでした。</seg>
          </tuv>
          <tuv xml:lang="MR">
             <seg>[SMTP] प्रमाणित केलेला नाही.</seg>
          </tuv>
-         <tuv xml:lang="IT">
-            <seg>[SMTP] Impossibile autenticarsi.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>[SMTP] Kimlik doğrulama yapılamadı.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>[SMTP] 認証できません。</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>[SMTP] Không thể được cho phép.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>[SMTP] प्रमाणित नहीं कर सका.</seg>
-         </tuv>
          <tuv xml:lang="MS">
-            <seg>[SMTP] Tidak dapat mengesahkan.</seg>
+            <seg>Ralat SMTP: Tidak dapat pengesahan.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP-fout: authenticatie mislukt.</seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>[SMTP] nie mogę się autentykować.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>[SMTP] Could not authenticate.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>[SMTP] אימות נכשל.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>[SMTP] Δεν γίνεται η επικύρωση</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>[SMTP] Невозможно подтвердить подлинность.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>[SMTP] Tidak mendapat pengabsahan.</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>[SMTP] Identification impossible.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>[SMTP] Не може да удостовери.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>[SMTP] yoxlama zamanı səhv!</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>[SMTP] Imposible autenticarse.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>[SMTP]邮件发送服务器无法通过认证</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>[SMTP] Nem lehet azonosítani.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>[SMTP] Impossível Autenticar.</seg>
+            <seg>Błąd SMTP: Nie można przeprowadzić uwierzytelnienia.</seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>[SMTP] Nu s-a realizat autentificarea.</seg>
+            <seg>Eroare SMTP: Autentificarea a eșuat.</seg>
          </tuv>
-         <tuv xml:lang="FA">
-            <seg>[SMTP] نتوانست تایید کند.</seg>
+         <tuv xml:lang="RU">
+            <seg>Ошибка SMTP: ошибка авторизации.</seg>
          </tuv>
-         <tuv xml:lang="AR">
-            <seg>[SMTP] غير مصدق.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>[SMTP] Authentifikation nicht möglich.</seg>
+         <tuv xml:lang="TR">
+            <seg>SMTP Hatası: Oturum açılamadı.</seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>[SMTP] کی توثیق نہیں کی جا سکی</seg>
          </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi SMTP: Không thể xác thực.</seg>
+         </tuv>
       </tu>
       <tu tuid="m_mailerror_connect_host" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>[SMTP] SMTP host onbereikbaar.</seg>
+         <tuv xml:lang="EN">
+            <seg>SMTP Error: Could not connect to SMTP host.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ SMTP: لا يمكن الاتصال بالخادم SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP xətası: SMTP serverinə qoşulma uğursuz oldu.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP грешка: Не може да се свърже с SMTP хоста.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de SMTP: Não foi possível conectar ao servidor SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP 错误：无法连接到 SMTP 主机。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>SMTP-Fehler: Konnte keine Verbindung zum SMTP-Host herstellen.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>SMTP Σφάλμα: Αδυναμία σύνδεσης στον SMTP-Host.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error SMTP: Imposible conectar al servidor SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطای SMTP: اتصال به سرور SMTP برقرار نشد.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur SMTP : impossible de se connecter au serveur SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת SMTP: לא הצלחתי להתחבר לשרת SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP त्रुटि: SMTP सर्वर से कनेक्ट नहीं हो सका। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>SMTP hiba: nem lehet kapcsolódni az SMTP-szerverhez.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan SMTP: Tidak dapat terhubung ke host SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>SMTP Error: Impossibile connettersi all'host SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTPエラー: SMTPホストに接続できませんでした。</seg>
          </tuv>
          <tuv xml:lang="MR">
             <seg>[SMTP]सदर करणार्याशी संबंधित नाही.</seg>
          </tuv>
-         <tuv xml:lang="IT">
-            <seg>[SMTP] Impossibile connettersi all'host SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>[SMTP] SMTP sunucusuna baglanilamadi.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>[SMTP] SMTP ホストに接続できません。</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>[SMTP] Không thể kết nối tới máy chủ SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>[SMTP] SMTP  मेजबान को कनेक्ट नहीं कर सका.</seg>
-         </tuv>
          <tuv xml:lang="MS">
-            <seg>[SMTP] Tidak dapat disambungkan kepada tuan rumah SMTP.</seg>
+            <seg>Ralat SMTP: Tidak dapat menghubungi hos pelayan SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP-fout: kon niet verbinden met SMTP-host.</seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>[SMTP] nie mogę się połączyć z serwerem SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>[SMTP] Could not connect to SMTP host.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>[SMTP] לא ניתן להתחבר לשרת.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>[SMTP] Δεν μπόρεσα να συνδεθώ στον  SMTP host.</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>[SMTP] Невозможно соединиться с SMTP узлом.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>[SMTP] Tidak dapat menyambung ke Host SMTP</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>[SMTP] Impossible de se connecter à l'hôte SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>[SMTP] Не може да се свърже с SMTP хост.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>[SMTP] SMTP-yə qoşulma zamanı səhv!</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>[SMTP] Imposible conectarse al host SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>[SMTP]不能连接到SMTP主机</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>[SMTP] Nem lehet kapcsolódni az SMTP szerverhez.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>[SMTP] Impossível conectar-se ao servidor SMTP.</seg>
+            <seg>Błąd SMTP: Nie można połączyć się z wybranym hostem.</seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>[SMTP] Nu s-a realizat conectarea la gazda SMTP.</seg>
+            <seg>Eroare SMTP: Conectarea la serverul SMTP a eșuat.</seg>
          </tuv>
-         <tuv xml:lang="FA">
-            <seg>[SMTP] نتوانست به میزبان SMTP متصل شود.</seg>
+         <tuv xml:lang="RU">
+            <seg>Ошибка SMTP: не удается подключиться к SMTP-серверу.</seg>
          </tuv>
-         <tuv xml:lang="AR">
-            <seg>[SMTP] عدم الاتصال بمضيف SMTP.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>[SMTP] Keine Verbindung zum SMTP-Server.</seg>
+         <tuv xml:lang="TR">
+            <seg>SMTP Hatası: SMTP sunucusuna bağlanılamadı.</seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>[SMTP] SMTP میزبان سے منسلک نہیں ہوسکتا۔</seg>
          </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi SMTP: Không thể kết nối máy chủ SMTP.</seg>
+         </tuv>
       </tu>
       <tu tuid="m_mailerror_data_not_accepted" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>[SMTP] Data niet aanvaard.</seg>
+         <tuv xml:lang="EN">
+            <seg>SMTP Error: data not accepted.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ SMTP: لم يتم قبول المعلومات .</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP xətası: Verilənlər qəbul edilməyib.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP грешка: данните не са приети.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de SMTP: Dados rejeitados.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP 错误：数据不被接受。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>SMTP-Fehler: Daten werden nicht akzeptiert.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>SMTP Σφάλμα: Τα δεδομένα δεν έγιναν αποδεκτά.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error SMTP: Datos no aceptados.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطای SMTP: داده‌ها نا‌درست هستند.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur SMTP : données incorrectes.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת SMTP: מידע לא התקבל.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP त्रुटि: डेटा स्वीकार नहीं किया जाता है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>SMTP hiba: adatok visszautasítva.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan SMTP: Data tidak diterima.</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>SMTP Error: Dati non accettati dal server.</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTPエラー: データが受け付けられませんでした。</seg>
          </tuv>
          <tuv xml:lang="MR">
             <seg>[SMTP] घटक स्विकारले नाही.</seg>
          </tuv>
-         <tuv xml:lang="IT">
-            <seg>[SMTP] Dati non accettati dal server.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>[SMTP] veri kabul edilmedi.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>[SMTP] データは受け入れられません。</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>[SMTP] Dữ liệu không được chấp nhận.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>[SMTP] डाटा स्वीकार नहीं किया हैं.</seg>
-         </tuv>
          <tuv xml:lang="MS">
-            <seg>[SMTP] Data tidak menerima pakai.</seg>
+            <seg>Ralat SMTP: Data tidak diterima oleh pelayan.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP-fout: data niet geaccepteerd.</seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>[SMTP] Dane nie zaakceptowane.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>[SMTP] Data not accepted.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>[SMTP] לא התקבלו נתונים.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>[SMTP] Μη αποδεκτά δεδομένα.</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>[SMTP] Данные не были приняты.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Data tidak diterima.</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>[SMTP] Données non acceptées.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>[SMTP] Данните не са приети.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>[SMTP] [SMTP] Data qəbul edilməmişdir</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>[SMTP] Datos no aceptados.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>[SMTP]数据未接受</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>[SMTP] Adat elutasítva.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>[SMTP] Dados não aceitos.</seg>
+            <seg>Błąd SMTP: Dane nie zostały przyjęte.</seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>[SMTP] Datele nu au fost acceptate.</seg>
+            <seg>Eroare SMTP: Datele nu au fost acceptate.</seg>
          </tuv>
-         <tuv xml:lang="FA">
-            <seg>داده های [SMTP] مورد قبول واقع نشد.</seg>
+         <tuv xml:lang="RU">
+            <seg>Ошибка SMTP: данные не приняты.</seg>
          </tuv>
-         <tuv xml:lang="AR">
-            <seg>[SMTP] بيانات غير مقبولة.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>[SMTP] Daten nicht akzeptiert.</seg>
+         <tuv xml:lang="TR">
+            <seg>SMTP Hatası: Veri kabul edilmedi.</seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>[SMTP] ڈیٹا قبول نہیں کیا گیا۔</seg>
          </tuv>
-      </tu>
-      <tu tuid="m_mailerror_encoding" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>onbekende code:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>अपरीचीत संकेत दर्शविणे:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Codifica caratteri sconosciuta:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Bilinmeyen kodlama:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> 未知のエンコードです：</seg>
-         </tuv>
          <tuv xml:lang="VN">
-            <seg>Mã sai:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>अज्ञात कूटबन्धन:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Tidak diketahui pengekodan:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Nieznane kodowanie:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Unknown encoding:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>קידוד לא מוכר:</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Αγνωστοι κωδικοποίηση χαρακτήρων</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Неизвестная кодировка:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Encoding tidak ditemukan</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Encodage inconnu:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Непознат шифър:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Naməlum kodlaşma</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Codificación desconocida:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>未知编码:</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Ismeretlen kódolás:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Codificação desconhecida:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Codificare necunoscută:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>کدگذاری ناشناخته:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>تشفير غير معروف:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Unbekannte Kodierung:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>نامعلوم انکوڈنگ:</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_execute" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>onuitvoerbaar:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>अमलात न आनणे:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Impossibile eseguire:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Uygulanamiyor:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> 実行できません：</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Không thể thực thi:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>निष्पादित नहीं कर सका:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Tidak dapat melaksanakan:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Nie mogę wykonać:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Could not execute:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>נכשלה הרצת:</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>δεν μπορούσε να εκτελεστεί:</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Невозможно выполнить:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Tidak dapat melaksanakan:</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Impossible d'exécuter:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Не може да изпълни:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>İcra etmək mümkün deyil</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Imposible ejecutar:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不能执行：</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Nem lehet végrehajtani:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Impossível Executar:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Nu s-a putut executa:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>نتوانست اجرا کندCould not execute:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>غير منفذ:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Ausführung nicht möglich:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>عملدرآمد نہیں کر سکا:</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_file_access" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>bestand niet toegankelijk:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>दस्ताऐवजाला प्रवेश नाही:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Impossibile accedere al file:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Girilemeyen dosya:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> file: にアクセスできません</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Không thể truy cập tệp:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>फ़ाइल तक नहीं पहुँच सका:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Tidak dapat fail capaian:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Nie mam dostępu do pliku:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Could not access file:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>גישה לקובץ נכשלה:</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Δεν υπάρχει πρόσβαση στο φάκελο:</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Нет доступа к файлу:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Tidak dapat mengakses file</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Impossible d'accéder au fichier:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Не може да достъпи файла:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Fayla çıxış yoxdur</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Imposible acceder al archivo:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不能访问文件:</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Nem lehet elérni a fájlt:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Impossível acessar o arquivo:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Nu s-a accesat fişierul:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>به فایل دست نیافت:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>لم يتمكن من الوصول الى الملف:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Dateizugriff nicht möglich:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>فائل تک رسائی نہیں مل سکی:</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_file_open" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>bestand niet te openen:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>दस्ताऐवजाला उघड करू नये:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Impossibile aprire il file:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Acilamayan dosya:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> file: を開けません</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Không thể mở tệp:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>फ़ाइल नहीं खोल सकता है:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Tidak dapat fail terbuka:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Nie mogę otworzyć pliku:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Could not open file:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>פתיחת הקובץ נכשלה:</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Αδυναμία ανοίγματος φακέλου:</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Невозможно открыть файл:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Tidak dapat membuka file</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Impossible d'ouvrir le fichier:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Не може да отвори файла:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Faylı açmaq mümkün deyil</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Imposible abrir el archivo:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不能打开文件：</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Nem lehet megnyitni a fájlt:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Impossível abrir o arquivo:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Nu s-a deschis fişierul:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>نتوانست فایل را بازکند:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>لم يتم فتح الملف:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Öffnen der Datei nicht möglich:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>فائل نہیں کھول سکی:</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_from_failed" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>adres foutief:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>खालील माहिती रदद करणे.:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>I seguenti indirizzi mittenti hanno generato un errore:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>gelecek adersler iptal edildi:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> From addresses は失敗しました</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Địa chỉ dưới đây sai:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg> निम्नलिखित पते से विफल:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Ekoran alamat From gagal:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>The following From addresses failed:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>The following From addresses failed:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>כתובת השולח להלן נכשלה:</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Οι ακόλουθες από διευθύνσεις απέτυχαν :</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Следующие обратные адреса повреждены:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Alamat pengirim email salah</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Les adresses De suivantes ont échoué:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Следния от адресите не успя:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Bu ünvanlar zədələnib</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>La dirección del remitente ha generado un error:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>下面的发件地址出错：</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>A következő From címek nem működtek:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>O seguinte endereço de Origem falhou:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Următoarele adrese DE LA au eşuat:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>عدم موفقیت مربوط به آدرس فرستنده:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>فشل في العناوين التالية:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Die folgende Absenderadresse schlug fehl:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>پتے سےیہ  ناکام ہوگئی:</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_instantiate" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>e-mailfunctie onbruikbaar</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>मेल चे कार्य ताबडतोब होवू शकत नाही.</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Impossibile istanziare la funzione mail.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>E-posta fonksiyonu kullanılamıyor.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> メール機能を instantiate できません</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Không thể thực hiện hàm email.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>मेल समारोह instantiate  नहीं कर सका.</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Tidak dapat instantiate fungsi mel.</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Could not instantiate mail function.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Could not start mail function.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>לא ניתן להפעיל את פונקצית הדואר.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Δεν μπορεί να ξεκινήσει η mail function.</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Не возможно проиллюстрировать почтовую функцию.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Tidak dapat menginstan fungsi email</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Impossible d'instancier la fonction mail.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Не може да инициализира майл функция.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Bu poçt göstərmək mümkün deyil.</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Imposible instanciar la función mail.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不能启动邮件功能</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Nem lehet használni a levélküldési funkciót.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Impossível iniciar a função de e-mail.</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Nu s-a pornit funcţia mail.</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>عملکرد پست را نتوانست شروع کند.</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>لا يمكن تنفيذ مهمة البريد الآن.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Mailversand-Funktion konnte nicht gestartet werden.</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>میل فنکشن شروع نہیں کیا جا سکا۔</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_mailer_not_supported" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>e-Mailer niet geschikt.</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>मेल करणारा सहका्र्य करित नाही.</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Mailer non supportato.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Mail kaldirilamadi.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>メーラーがサポートされていません。</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Không hỗ trợ gửi email.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>मेलर समर्थित नहीं है.</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Mailer sedang tak tersokong.</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Mailer is not supported.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Mailer is not supported.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>תוכנת הדואר האלקטרוני לא נתמכת.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Ο διακομιστής δεν υποστηρίζεται.</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Программа электронной почты не поддерживается.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Mailer tidak mendukung</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Mailer n'est pas supporté.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Програма за адресиране на писма не се поддържа.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>E-poçt proqramı deyil.</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Mailer no es soportado.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不支持邮件功能</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>A levelezés nem támogatott.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Envio de e-mail não suportado.</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Mailer-ul nu este suportat.</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>برنامه پست الکترونیکی مورد حمایت نیست.</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>الارسال غير مدعوم.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Mailversand nicht unterstützt.</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>میلر معاون نہیں ہے۔</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_provide_address" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>Tenminste 1 ontvanger-e-mailadres.</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>प्राप्त कर्त्याला इमेल पत्याची माहिती दिलीच पाहिजे.</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Deve essere fornito almeno un indirizzo ricevente.</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Mutlaka en az birtani alici email adres edinmelisiniz.</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg> 少なくとも一つの recipient の電子メールアドレスが必要です。</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Bạn phải cung cấp ít nhất 1 địa chỉ email của người nhận.</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>आपको कम से कम एक प्राप्तकर्ता ईमेल पता प्रदान करना होगा.</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Anda harus memberi sekurang-kurangnya satu penerima emel alamat.</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>You must provide at least one recipient email address.</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>You must provide at least one recipient email address.</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>עליך לספק לפחות כתובת נמען אחת.</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Πρέπει να δώσετε τουλάχιστον μια ηλεκτρονική διεύθυνση παραλήπτη.</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Вы должны предоставить по крайней мере один адрес эл. почты получателя.</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Anda harus menunjuk sedikitnya satu penerima email</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Vous devez fournir au moins une adresse email destinataire.</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Трябва да запишите адреса на поне един е-майл получател.</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Sizin ən azı bir e-mail olmalıdır.</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Se debe proveer por lo menos una dirección email receptora.</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>你必须至少提供一个接收者的邮件地址</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Legalább egy e-mail címet meg kell adni.</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Você deve informar pelo menos um destinatário.</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Trebuie să specificaţi cel puţin o adresă de email a destinatarului.</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>حداقل یک آدرس گیرنده را باید وارد کنید.</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>يجب عليك ادراج عنوان البريد الكتروني لمستلم واحد على الاقل.</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Es muss mindestens ein Empfänger angegeben werden.</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>آپ کو کم سے کم ایک وصول کنندہ ای میل ایڈریس فراہم کرنا لازمی ہے۔</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_recipients_failed" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>[SMTP] ontvangers onbruikbaar:</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>[SMTP] खालील प्राप्तकर्ता अयशस्वी ठरला:</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>[SMTP] I seguenti indirizzi destinatari hanno generato un errore:</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>[SMTP] Gelecek alicilar basarisiz oldu:</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>[SMTP] 次の recipients は失敗しました：</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>[SMTP] Những người nhận sau không gửi được:</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>[SMTP] निम्नलिखित प्राप्तकर्ताओं विफल:</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>[SMTP] Ekoran penerima gagal:</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>[SMTP] The following recipients failed:</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>[SMTP] The following recipients failed:</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>[SMTP] משלוח לנמענים הבאים נכשל</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>[SMTP] Οι ακόλουθοι παραλήπτες απέτυχαν:</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>[SMTP] Следующие входящие соединения не удались:</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>[SMTP] Penerimaan email telah gagal</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>[SMTP] Les destinataires suivants ont échoué:</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>[SMTP] Не достигна до следните получатели:</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>[SMTP] Növbəti daxil olan əlaqə uğursuz oldu:</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>[SMTP] Los siguientes destinatarios han generado error:</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>[SMTP]下列接收者出错：</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>[SMTP] A következő e-mail címek tévesek, hibásak:</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>[SMTP] Os seguintes destinatários geraram erro:</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>[SMTP] Următorii destinatari au eşuat:</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>[SMTP] عدم موفقیت در ارسال برای گیرنده های زیر:</seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>[بروتوكول نقل البريد الالكتروني] فشل المستفيدين التاليين:</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>[SMTP] Die folgenden Empfänger schlugen fehl:</seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>[SMTP] مندرجہ ذیل وصول کنندہ ناکام ہوگئے</seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_signing" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Errore di firma: </seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Грешка при вписване: </seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Signing Error: </seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>签名错误: </seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Aláírás Hiba: </seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Erro de Assinatura: </seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Eroare înregistrare: </seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>خطای شناسائی: </seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>توقيع الخطأ: </seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Fehler beim Signieren: </seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>سائننگ ایرر: </seg>
-         </tuv>
-      </tu>
-      <tu tuid="m_mailerror_smtp_error" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Errore Server SMTP: </seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>SMTP сървърна грешка: </seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>SMTP server error:</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>SMTP server error: </seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>SMTP 服务器错误: </seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>SMTP szerver hiba: </seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>erro no servidor SMTP: </seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Eroare server SMTP: </seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>خطای سرور SMTP: </seg>
-         </tuv>
-         <tuv xml:lang="AR">
-            <seg>SMTP خطأ في خادم: </seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>SMTP-Server Fehler: </seg>
-         </tuv>
-         <tuv xml:lang="UR">
-            <seg>SMTP سرور کی خرابی: </seg>
+            <seg>Lỗi SMTP: Dữ liệu không được chấp nhận.</seg>
          </tuv>
       </tu>
       <tu tuid="m_mailerror_empty_message" datatype="plaintext">
-         <tuv xml:lang="NL">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="MR">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="IT">
-            <seg>Il contenuto del messaggio è vuoto</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="MS">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="PL">
-            <seg>Message body empty</seg>
-         </tuv>
          <tuv xml:lang="EN">
             <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Тялото на съобщението е празно</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Message body empty</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>邮件内容为空</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Üres levéltörzs</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Corpo da mensagem em branco</seg>
-         </tuv>
-         <tuv xml:lang="RO">
-            <seg>Corpul mesajului este gol</seg>
-         </tuv>
-         <tuv xml:lang="FA">
-            <seg>فیلد پیغام تهی است</seg>
          </tuv>
          <tuv xml:lang="AR">
             <seg>نص الرسالة فارغ</seg>
          </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Boş mesaj göndərilə bilməz.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Съдържанието на съобщението е празно</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Mensagem vazia</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>邮件正文为空。</seg>
+         </tuv>
          <tuv xml:lang="DE">
-            <seg>Nachrichtentext leer</seg>
+            <seg>E-Mail-Inhalt ist leer.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Το E-Mail δεν έχει περιεχόμενο .</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>El cuerpo del mensaje está vacío.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>بخش متن پیام خالی است.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Corps du message vide.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>גוף ההודעה ריק</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>संदेश खाली है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Üres az üzenettörzs.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Isi pesan kosong</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Il corpo del messaggio è vuoto</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Message body empty</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Message body empty</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Tiada isi untuk mesej</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Berichttekst is leeg</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Wiadomość jest pusta.</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Mesajul este gol.</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Пустое сообщение</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Mesajın içeriği boş</seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>پیغام کی باڈی خالی ہے</seg>
          </tuv>
+         <tuv xml:lang="VN">
+            <seg>Không có nội dung</seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_encoding" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Unknown encoding: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>ترميز غير معروف: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Qeyri-müəyyən kodlaşdırma: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Неизвестно кодиране: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Codificação desconhecida: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>未知编码：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Unbekannte Kodierung: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αγνωστο Encoding-Format: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Codificación desconocida: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>کد‌گذاری نا‌شناخته: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Encodage inconnu : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>קידוד לא מוכר: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>अज्ञात एन्कोडिंग प्रकार। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Ismeretlen kódolás: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Pengkodean karakter tidak dikenali: </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Codifica dei caratteri sconosciuta: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>不明なエンコーディング: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>अपरीचीत संकेत दर्शविणे:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Pengekodan tidak diketahui: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Onbekende codering: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Nieznany sposób kodowania znaków: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Encodare necunoscută: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Неизвестная кодировка: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Bilinmeyen karakter kodlama: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>نامعلوم انکوڈنگ:</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Mã hóa không xác định: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_execute" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Could not execute: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>لا يمكن تنفيذ : </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Əmr yerinə yetirilmədi: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Не може да се изпълни: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Não foi possível executar: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>无法执行：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Konnte folgenden Befehl nicht ausführen: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αδυναμία εκτέλεσης ακόλουθης εντολής: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Imposible ejecutar: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>امکان اجرا وجود ندارد: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Impossible de lancer l'exécution : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>לא הצלחתי להפעיל את: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>आदेश को निष्पादित करने में विफल। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Nem lehet végrehajtani: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Tidak dapat menjalankan proses : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Impossibile eseguire l'operazione: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>実行できませんでした: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>अमलात न आनणे:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Tidak dapat melaksanakan: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Kon niet uitvoeren: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Nie można uruchomić: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Nu se poate executa următoarea comandă:  </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Невозможно выполнить команду: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Çalıştırılamadı: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>عملدرآمد نہیں کر سکا:</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Không thực hiện được: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_file_access" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Could not access file: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>لا يمكن الوصول للملف: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Fayla giriş yoxdur: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Няма достъп до файл: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Não foi possível acessar o arquivo: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>无法访问文件：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Zugriff auf folgende Datei fehlgeschlagen: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αδυναμία προσπέλασης του αρχείου: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Imposible acceder al archivo: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>امکان دسترسی به فایل وجود ندارد: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Impossible d'accéder au fichier : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>לא ניתן לגשת לקובץ: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>फ़ाइल उपलब्ध नहीं है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>A következő fájl nem elérhető: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Tidak dapat mengakses berkas : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Impossibile accedere al file: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>ファイルにアクセスできません: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>दस्ताऐवजाला प्रवेश नाही:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Tidak dapat mengakses fail: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Kreeg geen toegang tot bestand: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Brak dostępu do pliku: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Nu se poate accesa următorul fișier: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Нет доступа к файлу: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Dosyaya erişilemedi: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>فائل تک رسائی نہیں مل سکی:</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Không thể truy cập tệp tin </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_file_open" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>File Error: Could not open file: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ في الملف: لا يمكن فتحه: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Fayl xətası: Fayl açıla bilmədi: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Файлова грешка: Не може да се отвори файл: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de Arquivo: Não foi possível abrir o arquivo: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>文件错误：无法打开文件：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Dateifehler: Konnte folgende Datei nicht öffnen: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Σφάλμα Αρχείου: Δεν είναι δυνατό το άνοιγμα του ακόλουθου αρχείου: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error de Archivo: Imposible abrir el archivo: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطای File: امکان بازکردن فایل وجود ندارد: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Ouverture du fichier impossible : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת קובץ: לא ניתן לגשת לקובץ: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>फ़ाइल त्रुटि: फाइल को खोला नहीं जा सका। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Fájl hiba: a következő fájlt nem lehet megnyitni: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan File: Berkas tidak dapat dibuka : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>File Error: Impossibile aprire il file: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>ファイルエラー: ファイルを開けません: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>दस्ताऐवजाला उघड करू नये:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Ralat Fail: Tidak dapat membuka fail: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Bestandsfout: kon bestand niet openen: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Nie można otworzyć pliku: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Eroare fișier: Nu se poate deschide următorul fișier: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Файловая ошибка: не удаётся открыть файл: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Dosya Hatası: Dosya açılamadı: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>فائل نہیں کھول سکی:</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi Tập tin: Không thể mở tệp tin: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_from_failed" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>The following From address failed: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ على مستوى عنوان المرسل : </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Göstərilən poçtlara göndərmə uğursuz oldu: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Следните адреси за подател са невалидни: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Os seguintes remetentes falharam: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>发送地址错误：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Die folgende Absenderadresse ist nicht korrekt: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Η παρακάτω διεύθυνση αποστολέα δεν είναι σωστή: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>La(s) siguiente(s) direcciones de remitente fallaron: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>آدرس فرستنده اشتباه است: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>L'adresse d'expéditeur suivante a échoué : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>כתובות הנמענים הבאות נכשלו: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>प्रेषक का पता गलत है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>A feladóként megadott következő cím hibás: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Alamat pengirim berikut mengakibatkan kesalahan : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>I seguenti indirizzi mittenti hanno generato errore: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Fromアドレスを登録する際にエラーが発生しました: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>खालील माहिती रदद करणे.:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Berikut merupakan ralat dari alamat e-mel: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Het volgende afzendersadres is mislukt: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Następujący adres Nadawcy jest nieprawidłowy: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Următoarele adrese From au dat eroare: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Неверный адрес отправителя: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Belirtilen adreslere gönderme başarısız: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>پتے سےیہ  ناکام ہوگئی:</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi địa chỉ gửi đi: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_instantiate" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Could not instantiate mail function.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>لا يمكن توفير خدمة البريد.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Mail funksiyası işə salına bilmədi.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Не може да се инстанцира функцията mail.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Não foi possível instanciar a função mail.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>未知函数调用。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Mail-Funktion konnte nicht initialisiert werden.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αδυναμία εκκίνησης Mail function.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Imposible crear una instancia de la función Mail.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>امکان معرفی تابع ایمیل وجود ندارد.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Impossible d'instancier la fonction mail.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>לא הצלחתי להפעיל את פונקציית המייל.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>मेल फ़ंक्शन कॉल नहीं कर सकता है।</seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>A PHP mail() függvényt nem sikerült végrehajtani.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Tidak dapat menginisialisasi fungsi surel</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Impossibile istanziare la funzione mail</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>メール関数が正常に動作しませんでした。</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>मेल चे कार्य ताबडतोब होवू शकत नाही.</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Tidak dapat memberi contoh fungsi e-mel.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Kon mailfunctie niet initialiseren.</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Nie można wywołać funkcji mail(). Sprawdź konfigurację serwera.</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Funcția mail nu a putut fi inițializată.</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Невозможно запустить функцию mail().</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Örnek e-posta fonksiyonu oluşturulamadı.</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>میل فنکشن شروع نہیں کیا جا سکا۔</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Không dùng được các hàm gửi thư.</seg>
+         </tuv>
       </tu>
       <tu tuid="m_mailerror_invalid_address" datatype="plaintext">
-         <tuv xml:lang="NL">
+         <tuv xml:lang="EN">
+            <seg>Invalid address: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>الإرسال غير ممكن لأن عنوان البريد الإلكتروني غير صالح: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Düzgün olmayan e-mail adresi: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Невалиден адрес: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Endereço de e-mail inválido: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>发送失败，电子邮箱地址是无效的：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Die Adresse ist ungültig: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Το μήνυμα δεν εστάλη, η διεύθυνση δεν είναι έγκυρη: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Imposible enviar: dirección de email inválido: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>آدرس ایمیل معتبر نیست: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>L'adresse courriel n'est pas valide : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>כתובת שגויה: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>पता गलत है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Érvénytelen cím: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Gagal terkirim, alamat surel tidak benar : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Impossibile inviare, l'indirizzo email non è valido: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
             <seg>Invalid address</seg>
          </tuv>
          <tuv xml:lang="MR">
             <seg>Invalid address</seg>
          </tuv>
-         <tuv xml:lang="IT">
-            <seg>Indirizzo non valido</seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>Invalid address</seg>
-         </tuv>
          <tuv xml:lang="MS">
-            <seg>Invalid address</seg>
+            <seg>Alamat emel tidak sah: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Ongeldig adres: </seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Невалиден адрес</seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Invalid address</seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>非法地址</seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Valótlan cím</seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Endereço inválido</seg>
+            <seg>Nie można wysłać wiadomości, następujący adres Odbiorcy jest nieprawidłowy: </seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>Adresă invalidă</seg>
+            <seg>Adresa de email nu este validă: </seg>
          </tuv>
-         <tuv xml:lang="FA">
-            <seg>آدرس بی اعتبار</seg>
+         <tuv xml:lang="RU">
+            <seg>Не отправлено из-за неправильного формата email-адреса: </seg>
          </tuv>
-         <tuv xml:lang="AR">
-            <seg>عنوان غير صالح</seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Ungültige Adresse</seg>
+         <tuv xml:lang="TR">
+            <seg>Geçersiz e-posta adresi: </seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>غلط پتہ</seg>
          </tuv>
+         <tuv xml:lang="VN">
+            <seg>Đại chỉ emai không đúng: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_mailer_not_supported" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg> mailer is not supported.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg> برنامج الإرسال غير مدعوم.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg> - e-mail kitabxanası dəstəklənmir.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg> - пощенски сървър не се поддържа.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg> mailer não é suportado.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>发信客户端不被支持。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg> mailer wird nicht unterstützt.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg> mailer δεν υποστηρίζεται.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg> mailer no está soportado.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg> mailer پشتیبانی نمی‌شود.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg> client de messagerie non supporté.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg> אינה נתמכת.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>मेल सर्वर के साथ काम नहीं करता है। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg> a mailer-osztály nem támogatott.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg> mailer tidak didukung</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Mailer non supportato</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg> メーラーがサポートされていません。</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>मेल करणारा सहका्र्य करित नाही.</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg> jenis penghantar emel tidak disokong.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg> mailer wordt niet ondersteund.</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Wybrana metoda wysyłki wiadomości nie jest obsługiwana.</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg> mailer nu este suportat.</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg> — почтовый сервер не поддерживается.</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg> e-posta kütüphanesi desteklenmiyor.</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>میلر معاون نہیں ہے۔</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg> trình gửi thư không được hỗ trợ.</seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_provide_address" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>You must provide at least one recipient email address.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>يجب توفير عنوان البريد الإلكتروني لمستلم واحد على الأقل.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Ən azı bir e-mail adresi daxil edilməlidir.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Трябва да предоставите поне един email адрес за получател.</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Você deve informar pelo menos um destinatário.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>必须提供至少一个收件人地址。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Bitte geben Sie mindestens eine Empfängeradresse an.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Παρακαλούμε δώστε τουλάχιστον μια e-mail διεύθυνση παραλήπτη.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Debe proporcionar al menos una dirección de email de destino.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>باید حداقل یک آدرس گیرنده وارد کنید.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Vous devez fournir au moins une adresse de destinataire.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>חובה לספק לפחות כתובת אחת של מקבל המייל.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>आपको कम से कम एक प्राप्तकर्ता का ई-मेल पता प्रदान करना होगा।</seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Legalább egy címzettet fel kell tüntetni.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Harus disediakan minimal satu alamat tujuan</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Deve essere fornito almeno un indirizzo ricevente</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>少なくとも1つメールアドレスを 指定する必要があります。</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>प्राप्त कर्त्याला इमेल पत्याची माहिती दिलीच पाहिजे.</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Anda perlu menyediakan sekurang-kurangnya satu alamat e-mel penerima.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Er moet minstens één ontvanger worden opgegeven.</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Należy podać prawidłowy adres email Odbiorcy.</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Trebuie să adăugați cel puțin o adresă de email.</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Пожалуйста, введите хотя бы один email-адрес получателя.</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>En az bir alıcı e-posta adresi belirtmelisiniz.</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>آپ کو کم سے کم ایک وصول کنندہ ای میل ایڈریس فراہم کرنا لازمی ہے۔</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Bạn phải cung cấp ít nhất một địa chỉ người nhận.</seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_recipients_failed" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>SMTP Error: The following recipients failed: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ SMTP: الأخطاء التالية فشل في الارسال لكل من : </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP xətası: Aşağıdakı ünvanlar üzrə alıcılara göndərmə uğursuzdur: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP грешка: Следните адреси за Получател са невалидни: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de SMTP: Os seguintes destinatários falharam: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP 错误：收件人地址错误：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>SMTP-Fehler: Die folgenden Empfänger sind nicht korrekt: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>SMTP Σφάλμα: Οι παρακάτω διευθύνσεις παραλήπτη δεν είναι έγκυρες: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error SMTP: Los siguientes destinos fallaron: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطای SMTP: ارسال به آدرس گیرنده با خطا مواجه شد: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur SMTP : les destinataires suivants sont en erreur : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת SMTP: הנמענים הבאים נכשלו: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP त्रुटि: निम्न प्राप्तकर्ताओं को पते भेजने में विफल। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>SMTP hiba: a címzettként megadott következő címek hibásak: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan SMTP: Alamat tujuan berikut menghasilkan kesalahan : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>SMTP Error: I seguenti indirizzi destinatari hanno generato un errore: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTPエラー: 次の受信者アドレスに 間違いがあります: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>[SMTP] खालील प्राप्तकर्ता अयशस्वी ठरला:</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Ralat SMTP: Penerima e-mel berikut telah gagal: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP-fout: de volgende ontvangers zijn mislukt: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Błąd SMTP: Następujący odbiorcy są nieprawidłowi: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Eroare SMTP: Următoarele adrese de email au eșuat: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Ошибка SMTP: не удалась отправка таким адресатам: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>SMTP Hatası: Belirtilen alıcılara ulaşılamadı: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>[SMTP] مندرجہ ذیل وصول کنندہ ناکام ہوگئے</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi SMTP: lỗi địa chỉ người nhận: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_signing" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Signing Error: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ في التوقيع: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>İmzalama xətası: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Грешка при подписване: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de Assinatura: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>登录失败：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Fehler beim Signieren: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Σφάλμα υπογραφής: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error al firmar: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطا در امضا: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur de signature : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת חתימה: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>साइनअप त्रुटि:। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Hibás aláírás: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan dalam tanda tangan : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Errore nella firma: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Signing Error: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Signing Error: </seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Ralat pada tanda tangan: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Signeerfout: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Błąd podpisywania wiadomości: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>A aparut o problemă la semnarea emailului. </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Ошибка подписи: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>İmzalama hatası: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>سائننگ ایرر: </seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi đăng nhập: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_smtp_connect_failed" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>SMTP connect() failed.</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>SMTP Connect() غير ممكن.</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP serverinə qoşulma uğursuz oldu.</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP провален connect().</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>SMTP Connect() falhou.</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP服务器连接失败。</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Verbindung zum SMTP-Server fehlgeschlagen.</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αποτυχία σύνδεσης στον SMTP Server.</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>SMTP Connect() falló.</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطا در اتصال به SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Échec de la connexion SMTP.</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>SMTP Connect() failed.</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP का connect () फ़ंक्शन विफल हुआ। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Hiba az SMTP-kapcsolatban.</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>SMTP Connect() gagal.</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>SMTP Connect() fallita.</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTP connect() failed.</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>SMTP connect() failed.</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>SMTP Connect() telah gagal.</seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP Verbinding mislukt.</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>SMTP Connect() zakończone niepowodzeniem.</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Conectarea la serverul SMTP a eșuat.</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Ошибка соединения с SMTP-сервером</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>SMTP connect() fonksiyonu başarısız.</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>SMTP connect() failed.</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi kết nối với SMTP</seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_smtp_error" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>SMTP server error: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>خطأ على مستوى الخادم SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>SMTP serveri xətası: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>SMTP сървърна грешка: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Erro de servidor SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>SMTP服务器出错：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Fehler vom SMTP-Server: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Σφάλμα από τον SMTP Server: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Error del servidor SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>خطا در SMTP Server: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Erreur du serveur SMTP : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>שגיאת שרת SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>SMTP सर्वर त्रुटि। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>SMTP-szerver hiba: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Kesalahan pada pelayan SMTP : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Errore del server SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>SMTP server error: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>SMTP server error: </seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Ralat pada pelayan SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>SMTP-serverfout: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Błąd SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Eroare server SMTP: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Ошибка SMTP-сервера: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>SMTP sunucu hatası: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>SMTP سرور کی خرابی: </seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Lỗi máy chủ smtp </seg>
+         </tuv>
       </tu>
       <tu tuid="m_mailerror_variable_set" datatype="plaintext">
-         <tuv xml:lang="NL">
+         <tuv xml:lang="EN">
+            <seg>Cannot set or reset variable: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>لا يمكن تعيين أو إعادة تعيين متغير: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Dəyişənin quraşdırılması uğursuz oldu: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Не може да се установи или възстанови променлива: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Não foi possível definir ou redefinir a variável: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>无法设置或重置变量：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Kann Variable nicht setzen oder zurücksetzen: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Αδυναμία ορισμού ή αρχικοποίησης μεταβλητής: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>No se pudo configurar la variable: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>امکان ارسال یا ارسال مجدد متغیر‌ها وجود ندارد: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Impossible d'initialiser ou de réinitialiser une variable : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>לא ניתן לקבוע או לשנות את המשתנה: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>चर को बना या संशोधित नहीं किया जा सकता। </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>A következő változók beállítása nem sikerült: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Tidak dapat mengatur atau mengatur ulang variable : </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Impossibile impostare o resettare la variabile: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
             <seg>Cannot set or reset variable: </seg>
          </tuv>
          <tuv xml:lang="MR">
             <seg>Cannot set or reset variable: </seg>
          </tuv>
-         <tuv xml:lang="IT">
-            <seg>Impossibile impostare o resettare la variabile: </seg>
-         </tuv>
-         <tuv xml:lang="TR">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="JP">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="VN">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="HI">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
          <tuv xml:lang="MS">
-            <seg>Cannot set or reset variable: </seg>
+            <seg>Tidak boleh menetapkan atau menetapkan semula pembolehubah: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Kan de volgende variabele niet instellen of resetten: </seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="EN">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="HE">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="EL">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="RU">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="ID">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="FR">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="BG">
-            <seg>Не мога да задам или променя променлива: </seg>
-         </tuv>
-         <tuv xml:lang="AZ">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="ES">
-            <seg>Cannot set or reset variable: </seg>
-         </tuv>
-         <tuv xml:lang="CN">
-            <seg>不能设置或重置变量: </seg>
-         </tuv>
-         <tuv xml:lang="HU">
-            <seg>Változó beállítása vagy visszaállítása nem lehetséges: </seg>
-         </tuv>
-         <tuv xml:lang="BR">
-            <seg>Não é possível definir ou redefinir variável: </seg>
+            <seg>Nie można ustawić lub zmodyfikować zmiennej: </seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>Nu s-a putut seta sau reseta variabila: </seg>
+            <seg>Nu se poate seta/reseta variabila. </seg>
          </tuv>
-         <tuv xml:lang="FA">
-            <seg>مقداردهی و یا برگداندن به مقدار اولیه متغییر مقدور نیست: </seg>
+         <tuv xml:lang="RU">
+            <seg>Невозможно установить или сбросить переменную: </seg>
          </tuv>
-         <tuv xml:lang="AR">
-            <seg>لا يمكن تعيين أو اعادة تعيين المتغير: </seg>
-         </tuv>
-         <tuv xml:lang="DE">
-            <seg>Variable kann nicht gesetzt oder zurückgesetzt werden: </seg>
+         <tuv xml:lang="TR">
+            <seg>Değişken ayarlanamadı ya da sıfırlanamadı: </seg>
          </tuv>
          <tuv xml:lang="UR">
             <seg>متغیر سیٹ یا ری سیٹ نہیں کر سکتے ہیں: </seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Không thể thiết lập hoặc thiết lập lại biến: </seg>
+         </tuv>
+      </tu>
+      <tu tuid="m_mailerror_extension_missing" datatype="plaintext">
+         <tuv xml:lang="EN">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>الإضافة غير موجودة: </seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Липсва разширение: </seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Extensão não existe: </seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>丢失模块 Extension：</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Fehlende Erweiterung: </seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Extensión faltante: </seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>افزونه موجود نیست: </seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Extension manquante : </seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>एक्सटेन्षन गायब है: </seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Bővítmény hiányzik: </seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Ekstensi hilang: </seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Estensione mancante: </seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Sambungan hilang: </seg>
+         </tuv>
+         <tuv xml:lang="NL">
+            <seg>Extensie afwezig: </seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Brakujące rozszerzenie: </seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Lipsește extensia: </seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Расширение отсутствует: </seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Eklenti bulunamadı: </seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>Extension missing: </seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Extension missing: </seg>
          </tuv>
       </tu>
       <tu tuid="m_new_window_link" datatype="plaintext">

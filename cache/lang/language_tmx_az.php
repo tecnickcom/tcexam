@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: az
-// DATE: 2019-07-31 14:16:53
+// DATE: 2020-01-03 12:04:44
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='qrup bazası silindi';
 $tmx['m_group_updated']='data yeniləndi';
 $tmx['m_importing_complete']='XML formatda import başa çatmışdır';
 $tmx['m_login_wrong']='İstifadəçinin adı və ya parolu səhvdir';
-$tmx['m_mailerror_authenticate']='[SMTP] yoxlama zamanı səhv!';
-$tmx['m_mailerror_connect_host']='[SMTP] SMTP-yə qoşulma zamanı səhv!';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] [SMTP] Data qəbul edilməmişdir';
-$tmx['m_mailerror_encoding']='Naməlum kodlaşma';
-$tmx['m_mailerror_execute']='İcra etmək mümkün deyil';
-$tmx['m_mailerror_file_access']='Fayla çıxış yoxdur';
-$tmx['m_mailerror_file_open']='Faylı açmaq mümkün deyil';
-$tmx['m_mailerror_from_failed']='Bu ünvanlar zədələnib';
-$tmx['m_mailerror_instantiate']='Bu poçt göstərmək mümkün deyil.';
-$tmx['m_mailerror_mailer_not_supported']='E-poçt proqramı deyil.';
-$tmx['m_mailerror_provide_address']='Sizin ən azı bir e-mail olmalıdır.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Növbəti daxil olan əlaqə uğursuz oldu:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error:';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='SMTP xətası: Giriş uğursuz oldu.';
+$tmx['m_mailerror_connect_host']='SMTP xətası: SMTP serverinə qoşulma uğursuz oldu.';
+$tmx['m_mailerror_data_not_accepted']='SMTP xətası: Verilənlər qəbul edilməyib.';
+$tmx['m_mailerror_empty_message']='Boş mesaj göndərilə bilməz.';
+$tmx['m_mailerror_encoding']='Qeyri-müəyyən kodlaşdırma: ';
+$tmx['m_mailerror_execute']='Əmr yerinə yetirilmədi: ';
+$tmx['m_mailerror_file_access']='Fayla giriş yoxdur: ';
+$tmx['m_mailerror_file_open']='Fayl xətası: Fayl açıla bilmədi: ';
+$tmx['m_mailerror_from_failed']='Göstərilən poçtlara göndərmə uğursuz oldu: ';
+$tmx['m_mailerror_instantiate']='Mail funksiyası işə salına bilmədi.';
+$tmx['m_mailerror_invalid_address']='Düzgün olmayan e-mail adresi: ';
+$tmx['m_mailerror_mailer_not_supported']=' - e-mail kitabxanası dəstəklənmir.';
+$tmx['m_mailerror_provide_address']='Ən azı bir e-mail adresi daxil edilməlidir.';
+$tmx['m_mailerror_recipients_failed']='SMTP xətası: Aşağıdakı ünvanlar üzrə alıcılara göndərmə uğursuzdur: ';
+$tmx['m_mailerror_signing']='İmzalama xətası: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP serverinə qoşulma uğursuz oldu.';
+$tmx['m_mailerror_smtp_error']='SMTP serveri xətası: ';
+$tmx['m_mailerror_variable_set']='Dəyişənin quraşdırılması uğursuz oldu: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='Bu linki yeni brauzer pəncərəsində açılacaq';
 $tmx['m_no_test_available']='Test yoxdur!';
 $tmx['m_process_completed']='proses tamamlandı';

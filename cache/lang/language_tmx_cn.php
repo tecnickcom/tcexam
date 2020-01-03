@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: cn
-// DATE: 2019-07-31 14:16:58
+// DATE: 2020-01-03 12:04:48
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='已从数据库中删除组';
 $tmx['m_group_updated']='用户数据已更新';
 $tmx['m_importing_complete']='XML导入结束';
 $tmx['m_login_wrong']='错误的用户名/密码';
-$tmx['m_mailerror_authenticate']='[SMTP]邮件发送服务器无法通过认证';
-$tmx['m_mailerror_connect_host']='[SMTP]不能连接到SMTP主机';
-$tmx['m_mailerror_data_not_accepted']='[SMTP]数据未接受';
-$tmx['m_mailerror_encoding']='未知编码:';
-$tmx['m_mailerror_execute']='不能执行：';
-$tmx['m_mailerror_file_access']='不能访问文件:';
-$tmx['m_mailerror_file_open']='不能打开文件：';
-$tmx['m_mailerror_from_failed']='下面的发件地址出错：';
-$tmx['m_mailerror_instantiate']='不能启动邮件功能';
-$tmx['m_mailerror_mailer_not_supported']='不支持邮件功能';
-$tmx['m_mailerror_provide_address']='你必须至少提供一个接收者的邮件地址';
-$tmx['m_mailerror_recipients_failed']='[SMTP]下列接收者出错：';
-$tmx['m_mailerror_signing']='签名错误: ';
-$tmx['m_mailerror_smtp_error']='SMTP 服务器错误: ';
-$tmx['m_mailerror_empty_message']='邮件内容为空';
-$tmx['m_mailerror_invalid_address']='非法地址';
-$tmx['m_mailerror_variable_set']='不能设置或重置变量: ';
+$tmx['m_mailerror_authenticate']='SMTP 错误：登录失败。';
+$tmx['m_mailerror_connect_host']='SMTP 错误：无法连接到 SMTP 主机。';
+$tmx['m_mailerror_data_not_accepted']='SMTP 错误：数据不被接受。';
+$tmx['m_mailerror_empty_message']='邮件正文为空。';
+$tmx['m_mailerror_encoding']='未知编码：';
+$tmx['m_mailerror_execute']='无法执行：';
+$tmx['m_mailerror_file_access']='无法访问文件：';
+$tmx['m_mailerror_file_open']='文件错误：无法打开文件：';
+$tmx['m_mailerror_from_failed']='发送地址错误：';
+$tmx['m_mailerror_instantiate']='未知函数调用。';
+$tmx['m_mailerror_invalid_address']='发送失败，电子邮箱地址是无效的：';
+$tmx['m_mailerror_mailer_not_supported']='发信客户端不被支持。';
+$tmx['m_mailerror_provide_address']='必须提供至少一个收件人地址。';
+$tmx['m_mailerror_recipients_failed']='SMTP 错误：收件人地址错误：';
+$tmx['m_mailerror_signing']='登录失败：';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP服务器连接失败。';
+$tmx['m_mailerror_smtp_error']='SMTP服务器出错：';
+$tmx['m_mailerror_variable_set']='无法设置或重置变量：';
+$tmx['m_mailerror_extension_missing']='丢失模块 Extension：';
 $tmx['m_new_window_link']='本链接将会打开一个新的浏览器窗口';
 $tmx['m_no_test_available']='没有可用的测验！';
 $tmx['m_process_completed']='处理完成';
