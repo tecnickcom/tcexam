@@ -35,7 +35,7 @@ TCExam includes some third-party software components that are not strictly requi
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
     * Author: Brent R. Matzelle (bmatzelle@yahoo.com)
-    * Homepage: http://phpmailer.sourceforge.net/
+    * Homepage: https://github.com/PHPMailer/PHPMailer
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
     * Location: /shared/phpmailer/
 
