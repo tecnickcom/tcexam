@@ -64,10 +64,11 @@ function F_getArrayStatistics($data)
             $stats['maximum'][$set] = $dataset[($stats['number'][$set] - 1)];
             $stats['range'][$set] = (float)$stats['maximum'][$set] - (float)$stats['minimum'][$set];
             $stats['mean'][$set] = $stats['sum'][$set] / $stats['number'][$set];
-            if (($stats['number'][$set] % 2) == 0) {
-                $stats['median'][$set] = ($dataset[($stats['number'][$set] / 2)] + $dataset[(($stats['number'][$set] / 2) - 1)]) / 2 ;
+            $nsdiv = (int)($stats['number'][$set] / 2);
+            if (($nsdiv > 0) && (($stats['number'][$set] % 2) == 0)) {
+                $stats['median'][$set] = (((float)$dataset[$nsdiv] + (float)$dataset[($nsdiv - 1)]) / 2);
             } else {
-                $stats['median'][$set] = $dataset[(($stats['number'][$set] - 1) / 2)];
+                $stats['median'][$set] = (float)$dataset[(($stats['number'][$set] - 1) / 2)];
             }
             $freq = array_count_values($datastr);
             arsort($freq, SORT_NUMERIC);

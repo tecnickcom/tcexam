@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : cp_class_mailer.php
 // Begin       : 2001-10-20
-// Last Update : 2010-03-10
+// Last Update : 2020-01-03
 //
 // Description : Extend PHPMailer class with inheritance
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -33,14 +33,15 @@
 
 require_once('../config/tce_config.php');
 
-require_once('../../shared/config/tce_email_config.php'); //Include default public variables
+require_once('../../shared/config/tce_email_config.php'); // Include default public variables
 
 // Set the custom error handler function
-// This suppress the warnings due to the fact that phpmailer class is written in PHP4
-$old_error_handler = set_error_handler('F_error_handler', E_ERROR | E_WARNING | E_PARSE);
+// This suppress the warnings
+//$old_error_handler = set_error_handler('F_error_handler', E_ERROR | E_WARNING | E_PARSE);
+
 // include the phpmailer class
-require_once('../../shared/phpmailer/PHPMailerAutoload.php');
-require_once('../../shared/phpmailer/class.phpmailer.php');
+require_once('../../shared/phpmailer/src/autoload.php');
+require_once('../../shared/phpmailer/src/PHPMailer.php');
 
 /**
  * @class C_mailer
@@ -49,7 +50,7 @@ require_once('../../shared/phpmailer/class.phpmailer.php');
  * @package PHPMailer
  * @since 2005-02-24
  */
-class C_mailer extends PHPMailer
+class C_mailer extends PHPMailer\PHPMailer\PHPMailer
 {
     /**
      * Replace the default SetError
@@ -57,9 +58,9 @@ class C_mailer extends PHPMailer
      * @public
      * @return void
      */
-    public function SetError($msg)
+    public function setError($msg)
     {
-        parent::SetError($msg);
+        parent::setError($msg);
         F_print_error('ERROR', $this->ErrorInfo);
         exit;
     }
@@ -77,12 +78,12 @@ class C_mailer extends PHPMailer
 
     /**
      * Returns a message in the appropriate language.
-     * (override original Lang method).
+     * (override original lang() method).
      * @param $key (string) language key
      * @protected
      * @return string
      */
-    protected function Lang($key)
+    protected function lang($key)
     {
         if (isset($this->language['m_mailerror_'.$key])) {
             return $this->language['m_mailerror_'.$key];

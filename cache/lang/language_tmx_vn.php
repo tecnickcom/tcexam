@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: vn
-// DATE: 2019-07-31 14:17:37
+// DATE: 2020-01-03 12:05:37
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='nhóm đã được gỡ ra khỏi cơ sở dữ liệu
 $tmx['m_group_updated']='thông tin người dùng đã được cập nhật';
 $tmx['m_importing_complete']='quá trình nhập XML thành công';
 $tmx['m_login_wrong']='sai tên truy cập/ mật khẩu';
-$tmx['m_mailerror_authenticate']='[SMTP] Không thể được cho phép.';
-$tmx['m_mailerror_connect_host']='[SMTP] Không thể kết nối tới máy chủ SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Dữ liệu không được chấp nhận.';
-$tmx['m_mailerror_encoding']='Mã sai:';
-$tmx['m_mailerror_execute']='Không thể thực thi:';
-$tmx['m_mailerror_file_access']='Không thể truy cập tệp:';
-$tmx['m_mailerror_file_open']='Không thể mở tệp:';
-$tmx['m_mailerror_from_failed']='Địa chỉ dưới đây sai:';
-$tmx['m_mailerror_instantiate']='Không thể thực hiện hàm email.';
-$tmx['m_mailerror_mailer_not_supported']='Không hỗ trợ gửi email.';
-$tmx['m_mailerror_provide_address']='Bạn phải cung cấp ít nhất 1 địa chỉ email của người nhận.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Những người nhận sau không gửi được:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Lỗi SMTP: Không thể xác thực.';
+$tmx['m_mailerror_connect_host']='Lỗi SMTP: Không thể kết nối máy chủ SMTP.';
+$tmx['m_mailerror_data_not_accepted']='Lỗi SMTP: Dữ liệu không được chấp nhận.';
+$tmx['m_mailerror_empty_message']='Không có nội dung';
+$tmx['m_mailerror_encoding']='Mã hóa không xác định: ';
+$tmx['m_mailerror_execute']='Không thực hiện được: ';
+$tmx['m_mailerror_file_access']='Không thể truy cập tệp tin ';
+$tmx['m_mailerror_file_open']='Lỗi Tập tin: Không thể mở tệp tin: ';
+$tmx['m_mailerror_from_failed']='Lỗi địa chỉ gửi đi: ';
+$tmx['m_mailerror_instantiate']='Không dùng được các hàm gửi thư.';
+$tmx['m_mailerror_invalid_address']='Đại chỉ emai không đúng: ';
+$tmx['m_mailerror_mailer_not_supported']=' trình gửi thư không được hỗ trợ.';
+$tmx['m_mailerror_provide_address']='Bạn phải cung cấp ít nhất một địa chỉ người nhận.';
+$tmx['m_mailerror_recipients_failed']='Lỗi SMTP: lỗi địa chỉ người nhận: ';
+$tmx['m_mailerror_signing']='Lỗi đăng nhập: ';
+$tmx['m_mailerror_smtp_connect_failed']='Lỗi kết nối với SMTP';
+$tmx['m_mailerror_smtp_error']='Lỗi máy chủ smtp ';
+$tmx['m_mailerror_variable_set']='Không thể thiết lập hoặc thiết lập lại biến: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='đường dẫn này mở 1 cửa sổ mới';
 $tmx['m_no_test_available']='không có bài kiểm tra nào!';
 $tmx['m_process_completed']='xử lý thành công';

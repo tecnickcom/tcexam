@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: pl
-// DATE: 2019-07-31 14:17:30
+// DATE: 2020-01-03 12:05:23
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='grupa została usunięta';
 $tmx['m_group_updated']='zaktualizowano';
 $tmx['m_importing_complete']='importowanie XML zakończone';
 $tmx['m_login_wrong']='zła nazwa użytkownika / hasło';
-$tmx['m_mailerror_authenticate']='[SMTP] nie mogę się autentykować.';
-$tmx['m_mailerror_connect_host']='[SMTP] nie mogę się połączyć z serwerem SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Dane nie zaakceptowane.';
-$tmx['m_mailerror_encoding']='Nieznane kodowanie:';
-$tmx['m_mailerror_execute']='Nie mogę wykonać:';
-$tmx['m_mailerror_file_access']='Nie mam dostępu do pliku:';
-$tmx['m_mailerror_file_open']='Nie mogę otworzyć pliku:';
-$tmx['m_mailerror_from_failed']='The following From addresses failed:';
-$tmx['m_mailerror_instantiate']='Could not instantiate mail function.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer is not supported.';
-$tmx['m_mailerror_provide_address']='You must provide at least one recipient email address.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] The following recipients failed:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Błąd SMTP: Nie można przeprowadzić uwierzytelnienia.';
+$tmx['m_mailerror_connect_host']='Błąd SMTP: Nie można połączyć się z wybranym hostem.';
+$tmx['m_mailerror_data_not_accepted']='Błąd SMTP: Dane nie zostały przyjęte.';
+$tmx['m_mailerror_empty_message']='Wiadomość jest pusta.';
+$tmx['m_mailerror_encoding']='Nieznany sposób kodowania znaków: ';
+$tmx['m_mailerror_execute']='Nie można uruchomić: ';
+$tmx['m_mailerror_file_access']='Brak dostępu do pliku: ';
+$tmx['m_mailerror_file_open']='Nie można otworzyć pliku: ';
+$tmx['m_mailerror_from_failed']='Następujący adres Nadawcy jest nieprawidłowy: ';
+$tmx['m_mailerror_instantiate']='Nie można wywołać funkcji mail(). Sprawdź konfigurację serwera.';
+$tmx['m_mailerror_invalid_address']='Nie można wysłać wiadomości, następujący adres Odbiorcy jest nieprawidłowy: ';
+$tmx['m_mailerror_mailer_not_supported']='Wybrana metoda wysyłki wiadomości nie jest obsługiwana.';
+$tmx['m_mailerror_provide_address']='Należy podać prawidłowy adres email Odbiorcy.';
+$tmx['m_mailerror_recipients_failed']='Błąd SMTP: Następujący odbiorcy są nieprawidłowi: ';
+$tmx['m_mailerror_signing']='Błąd podpisywania wiadomości: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() zakończone niepowodzeniem.';
+$tmx['m_mailerror_smtp_error']='Błąd SMTP: ';
+$tmx['m_mailerror_variable_set']='Nie można ustawić lub zmodyfikować zmiennej: ';
+$tmx['m_mailerror_extension_missing']='Brakujące rozszerzenie: ';
 $tmx['m_new_window_link']='ten link otwiera nowe okno przeglądarki';
 $tmx['m_no_test_available']='aktualnie nie ma żadnych aktywnych testów!';
 $tmx['m_process_completed']='proces zakończony';

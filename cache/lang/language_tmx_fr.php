@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: fr
-// DATE: 2019-07-31 14:17:09
+// DATE: 2020-01-03 12:04:59
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -183,23 +183,25 @@ $tmx['m_group_deleted']='le groupe a été retiré de la base de données';
 $tmx['m_group_updated']='les informations utilisateur ont été actualisées';
 $tmx['m_importing_complete']='importation XML terminée';
 $tmx['m_login_wrong']='identifiant / mot de passe non valide';
-$tmx['m_mailerror_authenticate']='[SMTP] Identification impossible.';
-$tmx['m_mailerror_connect_host']='[SMTP] Impossible de se connecter à l\'hôte SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Données non acceptées.';
-$tmx['m_mailerror_encoding']='Encodage inconnu:';
-$tmx['m_mailerror_execute']='Impossible d\'exécuter:';
-$tmx['m_mailerror_file_access']='Impossible d\'accéder au fichier:';
-$tmx['m_mailerror_file_open']='Impossible d\'ouvrir le fichier:';
-$tmx['m_mailerror_from_failed']='Les adresses De suivantes ont échoué:';
+$tmx['m_mailerror_authenticate']='Erreur SMTP : échec de l\'authentification.';
+$tmx['m_mailerror_connect_host']='Erreur SMTP : impossible de se connecter au serveur SMTP.';
+$tmx['m_mailerror_data_not_accepted']='Erreur SMTP : données incorrectes.';
+$tmx['m_mailerror_empty_message']='Corps du message vide.';
+$tmx['m_mailerror_encoding']='Encodage inconnu : ';
+$tmx['m_mailerror_execute']='Impossible de lancer l\'exécution : ';
+$tmx['m_mailerror_file_access']='Impossible d\'accéder au fichier : ';
+$tmx['m_mailerror_file_open']='Ouverture du fichier impossible : ';
+$tmx['m_mailerror_from_failed']='L\'adresse d\'expéditeur suivante a échoué : ';
 $tmx['m_mailerror_instantiate']='Impossible d\'instancier la fonction mail.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer n\'est pas supporté.';
-$tmx['m_mailerror_provide_address']='Vous devez fournir au moins une adresse email destinataire.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Les destinataires suivants ont échoué:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_invalid_address']='L\'adresse courriel n\'est pas valide : ';
+$tmx['m_mailerror_mailer_not_supported']=' client de messagerie non supporté.';
+$tmx['m_mailerror_provide_address']='Vous devez fournir au moins une adresse de destinataire.';
+$tmx['m_mailerror_recipients_failed']='Erreur SMTP : les destinataires suivants sont en erreur : ';
+$tmx['m_mailerror_signing']='Erreur de signature : ';
+$tmx['m_mailerror_smtp_connect_failed']='Échec de la connexion SMTP.';
+$tmx['m_mailerror_smtp_error']='Erreur du serveur SMTP : ';
+$tmx['m_mailerror_variable_set']='Impossible d\'initialiser ou de réinitialiser une variable : ';
+$tmx['m_mailerror_extension_missing']='Extension manquante : ';
 $tmx['m_new_window_link']='ce lien ouvrira une nouvelle fenêtre de navigateur';
 $tmx['m_no_test_available']='il n\'y a aucun test disponible !';
 $tmx['m_process_completed']='processus terminé';

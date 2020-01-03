@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: he
-// DATE: 2019-07-31 14:17:14
+// DATE: 2020-01-03 12:05:01
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='הקבוצה נמחקה מבסיס הנתונים';
 $tmx['m_group_updated']='נתוני המשתמש עודכנו';
 $tmx['m_importing_complete']='יבוא XML הסתיים';
 $tmx['m_login_wrong']='משתמש / ססמה שגויים';
-$tmx['m_mailerror_authenticate']='[SMTP] אימות נכשל.';
-$tmx['m_mailerror_connect_host']='[SMTP] לא ניתן להתחבר לשרת.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] לא התקבלו נתונים.';
-$tmx['m_mailerror_encoding']='קידוד לא מוכר:';
-$tmx['m_mailerror_execute']='נכשלה הרצת:';
-$tmx['m_mailerror_file_access']='גישה לקובץ נכשלה:';
-$tmx['m_mailerror_file_open']='פתיחת הקובץ נכשלה:';
-$tmx['m_mailerror_from_failed']='כתובת השולח להלן נכשלה:';
-$tmx['m_mailerror_instantiate']='לא ניתן להפעיל את פונקצית הדואר.';
-$tmx['m_mailerror_mailer_not_supported']='תוכנת הדואר האלקטרוני לא נתמכת.';
-$tmx['m_mailerror_provide_address']='עליך לספק לפחות כתובת נמען אחת.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] משלוח לנמענים הבאים נכשל';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='שגיאת SMTP: פעולת האימות נכשלה.';
+$tmx['m_mailerror_connect_host']='שגיאת SMTP: לא הצלחתי להתחבר לשרת SMTP.';
+$tmx['m_mailerror_data_not_accepted']='שגיאת SMTP: מידע לא התקבל.';
+$tmx['m_mailerror_empty_message']='גוף ההודעה ריק';
+$tmx['m_mailerror_encoding']='קידוד לא מוכר: ';
+$tmx['m_mailerror_execute']='לא הצלחתי להפעיל את: ';
+$tmx['m_mailerror_file_access']='לא ניתן לגשת לקובץ: ';
+$tmx['m_mailerror_file_open']='שגיאת קובץ: לא ניתן לגשת לקובץ: ';
+$tmx['m_mailerror_from_failed']='כתובות הנמענים הבאות נכשלו: ';
+$tmx['m_mailerror_instantiate']='לא הצלחתי להפעיל את פונקציית המייל.';
+$tmx['m_mailerror_invalid_address']='כתובת שגויה: ';
+$tmx['m_mailerror_mailer_not_supported']=' אינה נתמכת.';
+$tmx['m_mailerror_provide_address']='חובה לספק לפחות כתובת אחת של מקבל המייל.';
+$tmx['m_mailerror_recipients_failed']='שגיאת SMTP: הנמענים הבאים נכשלו: ';
+$tmx['m_mailerror_signing']='שגיאת חתימה: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() failed.';
+$tmx['m_mailerror_smtp_error']='שגיאת שרת SMTP: ';
+$tmx['m_mailerror_variable_set']='לא ניתן לקבוע או לשנות את המשתנה: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='קישור זה יפתח חלון דפדפן חדש';
 $tmx['m_no_test_available']='אין מבחנים זמינים !';
 $tmx['m_process_completed']='תהליך הושלם';

@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: hi
-// DATE: 2019-07-31 14:17:11
+// DATE: 2020-01-03 12:05:03
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='समूह डेटाबेस से हटा द
 $tmx['m_group_updated']='उपयोगकर्ता  के डेटा को अपडेट  किया गया है .';
 $tmx['m_importing_complete']='XML आयात पूरा हुआ.';
 $tmx['m_login_wrong']='गलत उपयोगकर्ता  / कूटशब्द .';
-$tmx['m_mailerror_authenticate']='[SMTP] प्रमाणित नहीं कर सका.';
-$tmx['m_mailerror_connect_host']='[SMTP] SMTP  मेजबान को कनेक्ट नहीं कर सका.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] डाटा स्वीकार नहीं किया हैं.';
-$tmx['m_mailerror_encoding']='अज्ञात कूटबन्धन:';
-$tmx['m_mailerror_execute']='निष्पादित नहीं कर सका:';
-$tmx['m_mailerror_file_access']='फ़ाइल तक नहीं पहुँच सका:';
-$tmx['m_mailerror_file_open']='फ़ाइल नहीं खोल सकता है:';
-$tmx['m_mailerror_from_failed']=' निम्नलिखित पते से विफल:';
-$tmx['m_mailerror_instantiate']='मेल समारोह instantiate  नहीं कर सका.';
-$tmx['m_mailerror_mailer_not_supported']='मेलर समर्थित नहीं है.';
-$tmx['m_mailerror_provide_address']='आपको कम से कम एक प्राप्तकर्ता ईमेल पता प्रदान करना होगा.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] निम्नलिखित प्राप्तकर्ताओं विफल:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='SMTP त्रुटि: प्रामाणिकता की जांच नहीं हो सका। ';
+$tmx['m_mailerror_connect_host']='SMTP त्रुटि: SMTP सर्वर से कनेक्ट नहीं हो सका। ';
+$tmx['m_mailerror_data_not_accepted']='SMTP त्रुटि: डेटा स्वीकार नहीं किया जाता है। ';
+$tmx['m_mailerror_empty_message']='संदेश खाली है। ';
+$tmx['m_mailerror_encoding']='अज्ञात एन्कोडिंग प्रकार। ';
+$tmx['m_mailerror_execute']='आदेश को निष्पादित करने में विफल। ';
+$tmx['m_mailerror_file_access']='फ़ाइल उपलब्ध नहीं है। ';
+$tmx['m_mailerror_file_open']='फ़ाइल त्रुटि: फाइल को खोला नहीं जा सका। ';
+$tmx['m_mailerror_from_failed']='प्रेषक का पता गलत है। ';
+$tmx['m_mailerror_instantiate']='मेल फ़ंक्शन कॉल नहीं कर सकता है।';
+$tmx['m_mailerror_invalid_address']='पता गलत है। ';
+$tmx['m_mailerror_mailer_not_supported']='मेल सर्वर के साथ काम नहीं करता है। ';
+$tmx['m_mailerror_provide_address']='आपको कम से कम एक प्राप्तकर्ता का ई-मेल पता प्रदान करना होगा।';
+$tmx['m_mailerror_recipients_failed']='SMTP त्रुटि: निम्न प्राप्तकर्ताओं को पते भेजने में विफल। ';
+$tmx['m_mailerror_signing']='साइनअप त्रुटि:। ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP का connect () फ़ंक्शन विफल हुआ। ';
+$tmx['m_mailerror_smtp_error']='SMTP सर्वर त्रुटि। ';
+$tmx['m_mailerror_variable_set']='चर को बना या संशोधित नहीं किया जा सकता। ';
+$tmx['m_mailerror_extension_missing']='एक्सटेन्षन गायब है: ';
 $tmx['m_new_window_link']='इस लिंक से एक नई ब्राउज़र विंडो खुल जाएगा.';
 $tmx['m_no_test_available']='यहाँ कोई उपलब्ध परीक्षा नही हैं!';
 $tmx['m_process_completed']='प्रक्रिया पूरी की.';

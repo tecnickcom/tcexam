@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: el
-// DATE: 2019-07-31 14:17:02
+// DATE: 2020-01-03 12:04:53
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='η ομάδα έχει διαγραφεί από τη �
 $tmx['m_group_updated']='τα δεδομένα του χρήστη ανανεώθηκαν';
 $tmx['m_importing_complete']='η εισαγωγή του XML ολοκληρώθηκε';
 $tmx['m_login_wrong']='Λάθος όνομα / κωδικός';
-$tmx['m_mailerror_authenticate']='[SMTP] Δεν γίνεται η επικύρωση';
-$tmx['m_mailerror_connect_host']='[SMTP] Δεν μπόρεσα να συνδεθώ στον  SMTP host.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Μη αποδεκτά δεδομένα.';
-$tmx['m_mailerror_encoding']='Αγνωστοι κωδικοποίηση χαρακτήρων';
-$tmx['m_mailerror_execute']='δεν μπορούσε να εκτελεστεί:';
-$tmx['m_mailerror_file_access']='Δεν υπάρχει πρόσβαση στο φάκελο:';
-$tmx['m_mailerror_file_open']='Αδυναμία ανοίγματος φακέλου:';
-$tmx['m_mailerror_from_failed']='Οι ακόλουθες από διευθύνσεις απέτυχαν :';
-$tmx['m_mailerror_instantiate']='Δεν μπορεί να ξεκινήσει η mail function.';
-$tmx['m_mailerror_mailer_not_supported']='Ο διακομιστής δεν υποστηρίζεται.';
-$tmx['m_mailerror_provide_address']='Πρέπει να δώσετε τουλάχιστον μια ηλεκτρονική διεύθυνση παραλήπτη.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Οι ακόλουθοι παραλήπτες απέτυχαν:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='SMTP Σφάλμα: Αδυναμία πιστοποίησης (authentication).';
+$tmx['m_mailerror_connect_host']='SMTP Σφάλμα: Αδυναμία σύνδεσης στον SMTP-Host.';
+$tmx['m_mailerror_data_not_accepted']='SMTP Σφάλμα: Τα δεδομένα δεν έγιναν αποδεκτά.';
+$tmx['m_mailerror_empty_message']='Το E-Mail δεν έχει περιεχόμενο .';
+$tmx['m_mailerror_encoding']='Αγνωστο Encoding-Format: ';
+$tmx['m_mailerror_execute']='Αδυναμία εκτέλεσης ακόλουθης εντολής: ';
+$tmx['m_mailerror_file_access']='Αδυναμία προσπέλασης του αρχείου: ';
+$tmx['m_mailerror_file_open']='Σφάλμα Αρχείου: Δεν είναι δυνατό το άνοιγμα του ακόλουθου αρχείου: ';
+$tmx['m_mailerror_from_failed']='Η παρακάτω διεύθυνση αποστολέα δεν είναι σωστή: ';
+$tmx['m_mailerror_instantiate']='Αδυναμία εκκίνησης Mail function.';
+$tmx['m_mailerror_invalid_address']='Το μήνυμα δεν εστάλη, η διεύθυνση δεν είναι έγκυρη: ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer δεν υποστηρίζεται.';
+$tmx['m_mailerror_provide_address']='Παρακαλούμε δώστε τουλάχιστον μια e-mail διεύθυνση παραλήπτη.';
+$tmx['m_mailerror_recipients_failed']='SMTP Σφάλμα: Οι παρακάτω διευθύνσεις παραλήπτη δεν είναι έγκυρες: ';
+$tmx['m_mailerror_signing']='Σφάλμα υπογραφής: ';
+$tmx['m_mailerror_smtp_connect_failed']='Αποτυχία σύνδεσης στον SMTP Server.';
+$tmx['m_mailerror_smtp_error']='Σφάλμα από τον SMTP Server: ';
+$tmx['m_mailerror_variable_set']='Αδυναμία ορισμού ή αρχικοποίησης μεταβλητής: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='αυτός ο σύνδεσμος θα ανοίξει σε καινούριο παράθυρο';
 $tmx['m_no_test_available']='δεν υπάρχουν διαθέσιμα διαγωνίσματα!';
 $tmx['m_process_completed']='η διαδικασία ολοκληρώθηκε';

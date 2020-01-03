@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2019-07-31 14:17:21
+// DATE: 2020-01-03 12:05:09
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='group telah dihapus dari database';
 $tmx['m_group_updated']='data user telah diperbaharui';
 $tmx['m_importing_complete']='XML importing komplit';
 $tmx['m_login_wrong']='user atau èassword salah';
-$tmx['m_mailerror_authenticate']='[SMTP] Tidak mendapat pengabsahan.';
-$tmx['m_mailerror_connect_host']='[SMTP] Tidak dapat menyambung ke Host SMTP';
-$tmx['m_mailerror_data_not_accepted']='Data tidak diterima.';
-$tmx['m_mailerror_encoding']='Encoding tidak ditemukan';
-$tmx['m_mailerror_execute']='Tidak dapat melaksanakan:';
-$tmx['m_mailerror_file_access']='Tidak dapat mengakses file';
-$tmx['m_mailerror_file_open']='Tidak dapat membuka file';
-$tmx['m_mailerror_from_failed']='Alamat pengirim email salah';
-$tmx['m_mailerror_instantiate']='Tidak dapat menginstan fungsi email';
-$tmx['m_mailerror_mailer_not_supported']='Mailer tidak mendukung';
-$tmx['m_mailerror_provide_address']='Anda harus menunjuk sedikitnya satu penerima email';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Penerimaan email telah gagal';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Kesalahan SMTP: Tidak dapat mengotentikasi.';
+$tmx['m_mailerror_connect_host']='Kesalahan SMTP: Tidak dapat terhubung ke host SMTP.';
+$tmx['m_mailerror_data_not_accepted']='Kesalahan SMTP: Data tidak diterima.';
+$tmx['m_mailerror_empty_message']='Isi pesan kosong';
+$tmx['m_mailerror_encoding']='Pengkodean karakter tidak dikenali: ';
+$tmx['m_mailerror_execute']='Tidak dapat menjalankan proses : ';
+$tmx['m_mailerror_file_access']='Tidak dapat mengakses berkas : ';
+$tmx['m_mailerror_file_open']='Kesalahan File: Berkas tidak dapat dibuka : ';
+$tmx['m_mailerror_from_failed']='Alamat pengirim berikut mengakibatkan kesalahan : ';
+$tmx['m_mailerror_instantiate']='Tidak dapat menginisialisasi fungsi surel';
+$tmx['m_mailerror_invalid_address']='Gagal terkirim, alamat surel tidak benar : ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer tidak didukung';
+$tmx['m_mailerror_provide_address']='Harus disediakan minimal satu alamat tujuan';
+$tmx['m_mailerror_recipients_failed']='Kesalahan SMTP: Alamat tujuan berikut menghasilkan kesalahan : ';
+$tmx['m_mailerror_signing']='Kesalahan dalam tanda tangan : ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() gagal.';
+$tmx['m_mailerror_smtp_error']='Kesalahan pada pelayan SMTP : ';
+$tmx['m_mailerror_variable_set']='Tidak dapat mengatur atau mengatur ulang variable : ';
+$tmx['m_mailerror_extension_missing']='Ekstensi hilang: ';
 $tmx['m_new_window_link']='link ini akan membuka window browser yang baru';
 $tmx['m_no_test_available']='tidak ada test yang tersedia!';
 $tmx['m_process_completed']='proses Komplit';

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_registration.php
 // Begin       : 2008-03-31
-// Last Update : 2011-05-20
+// Last Update : 2020-01-03
 //
 // Description : Support functions for user registration.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -65,12 +65,11 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     $mail->Password = $emailcfg['Password'];
     $mail->Timeout = $emailcfg['Timeout'];
     $mail->SMTPDebug = $emailcfg['SMTPDebug'];
-    $mail->PluginDir = $emailcfg['PluginDir'];
     $mail->Sender = $emailcfg['Sender'];
     $mail->From = $emailcfg['From'];
     $mail->FromName = $emailcfg['FromName'];
     if ($emailcfg['Reply']) {
-        $mail->AddReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
+        $mail->addReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
     }
 
     $mail->CharSet = $l['a_meta_charset'];
@@ -81,9 +80,8 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     $mail->Subject = $l['w_registration_verification'];
     $mail->Body = $l['m_email_registration'];
 
-    $mail->IsHTML(true); // Sets message type to HTML.
+    $mail->isHTML(true); // Sets message type to HTML.
 
-    //$userverifycode
     //compose confirmation URL
     $subscribe_url = ''.K_PATH_PUBLIC_CODE.'tce_user_verification.php?a='.$user_email.'&amp;b='.$user_verifycode.'&amp;c='.$user_id.'';
 
@@ -96,20 +94,20 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     //compose alternative TEXT message body
     $mail->AltBody = F_html_to_text($mail->Body, false, true);
 
-    $mail->AddAddress($user_email, ''); //Adds a "To" address
+    $mail->addAddress($user_email, ''); //Adds a "To" address
     if (strlen(K_USRREG_ADMIN_EMAIL) > 0) {
         // add administrator to BCC field
-        $mail->AddBCC(K_USRREG_ADMIN_EMAIL);
+        $mail->addBCC(K_USRREG_ADMIN_EMAIL);
     }
-    if (!$mail->Send()) { //send email to user
+    if (!$mail->send()) { //send email to user
         F_print_error('ERROR', 'EMAIL ERROR');
     }
 
-    $mail->ClearAddresses(); // Clear all addresses for next loop
-    $mail->ClearCustomHeaders(); // Clears all custom headers
-    $mail->ClearAllRecipients(); // Clears all recipients assigned in the TO, CC and BCC
-    $mail->ClearAttachments(); // Clears all previously set filesystem, string, and binary attachments
-    $mail->ClearReplyTos(); // Clears all recipients assigned in the ReplyTo array
+    $mail->clearAddresses(); // Clear all addresses for next loop
+    $mail->clearCustomHeaders(); // Clears all custom headers
+    $mail->clearAllRecipients(); // Clears all recipients assigned in the TO, CC and BCC
+    $mail->clearAttachments(); // Clears all previously set filesystem, string, and binary attachments
+    $mail->clearReplyTos(); // Clears all recipients assigned in the ReplyTo array
 }
 
 //============================================================+

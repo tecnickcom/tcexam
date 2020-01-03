@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ro
-// DATE: 2019-07-31 14:17:31
+// DATE: 2020-01-03 12:05:27
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='grupul a fost şters din baza de date';
 $tmx['m_group_updated']='datele utilizatorului au fost actualizate';
 $tmx['m_importing_complete']='importul XML complet';
 $tmx['m_login_wrong']='utilizator / parolă greşite';
-$tmx['m_mailerror_authenticate']='[SMTP] Nu s-a realizat autentificarea.';
-$tmx['m_mailerror_connect_host']='[SMTP] Nu s-a realizat conectarea la gazda SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Datele nu au fost acceptate.';
-$tmx['m_mailerror_encoding']='Codificare necunoscută:';
-$tmx['m_mailerror_execute']='Nu s-a putut executa:';
-$tmx['m_mailerror_file_access']='Nu s-a accesat fişierul:';
-$tmx['m_mailerror_file_open']='Nu s-a deschis fişierul:';
-$tmx['m_mailerror_from_failed']='Următoarele adrese DE LA au eşuat:';
-$tmx['m_mailerror_instantiate']='Nu s-a pornit funcţia mail.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer-ul nu este suportat.';
-$tmx['m_mailerror_provide_address']='Trebuie să specificaţi cel puţin o adresă de email a destinatarului.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Următorii destinatari au eşuat:';
-$tmx['m_mailerror_signing']='Eroare înregistrare: ';
+$tmx['m_mailerror_authenticate']='Eroare SMTP: Autentificarea a eșuat.';
+$tmx['m_mailerror_connect_host']='Eroare SMTP: Conectarea la serverul SMTP a eșuat.';
+$tmx['m_mailerror_data_not_accepted']='Eroare SMTP: Datele nu au fost acceptate.';
+$tmx['m_mailerror_empty_message']='Mesajul este gol.';
+$tmx['m_mailerror_encoding']='Encodare necunoscută: ';
+$tmx['m_mailerror_execute']='Nu se poate executa următoarea comandă:  ';
+$tmx['m_mailerror_file_access']='Nu se poate accesa următorul fișier: ';
+$tmx['m_mailerror_file_open']='Eroare fișier: Nu se poate deschide următorul fișier: ';
+$tmx['m_mailerror_from_failed']='Următoarele adrese From au dat eroare: ';
+$tmx['m_mailerror_instantiate']='Funcția mail nu a putut fi inițializată.';
+$tmx['m_mailerror_invalid_address']='Adresa de email nu este validă: ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer nu este suportat.';
+$tmx['m_mailerror_provide_address']='Trebuie să adăugați cel puțin o adresă de email.';
+$tmx['m_mailerror_recipients_failed']='Eroare SMTP: Următoarele adrese de email au eșuat: ';
+$tmx['m_mailerror_signing']='A aparut o problemă la semnarea emailului. ';
+$tmx['m_mailerror_smtp_connect_failed']='Conectarea la serverul SMTP a eșuat.';
 $tmx['m_mailerror_smtp_error']='Eroare server SMTP: ';
-$tmx['m_mailerror_empty_message']='Corpul mesajului este gol';
-$tmx['m_mailerror_invalid_address']='Adresă invalidă';
-$tmx['m_mailerror_variable_set']='Nu s-a putut seta sau reseta variabila: ';
+$tmx['m_mailerror_variable_set']='Nu se poate seta/reseta variabila. ';
+$tmx['m_mailerror_extension_missing']='Lipsește extensia: ';
 $tmx['m_new_window_link']='acest link va deschide o nouă fereastră în browser';
 $tmx['m_no_test_available']='Nu sunt teste disponibile!';
 $tmx['m_process_completed']='proces complet';

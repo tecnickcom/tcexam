@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: mr
-// DATE: 2019-07-31 14:17:25
+// DATE: 2020-01-03 12:05:17
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -165,20 +165,22 @@ $tmx['m_login_wrong']='चूकिचा उपयोगकर्ता । ग
 $tmx['m_mailerror_authenticate']='[SMTP] प्रमाणित केलेला नाही.';
 $tmx['m_mailerror_connect_host']='[SMTP]सदर करणार्याशी संबंधित नाही.';
 $tmx['m_mailerror_data_not_accepted']='[SMTP] घटक स्विकारले नाही.';
+$tmx['m_mailerror_empty_message']='Message body empty';
 $tmx['m_mailerror_encoding']='अपरीचीत संकेत दर्शविणे:';
 $tmx['m_mailerror_execute']='अमलात न आनणे:';
 $tmx['m_mailerror_file_access']='दस्ताऐवजाला प्रवेश नाही:';
 $tmx['m_mailerror_file_open']='दस्ताऐवजाला उघड करू नये:';
 $tmx['m_mailerror_from_failed']='खालील माहिती रदद करणे.:';
 $tmx['m_mailerror_instantiate']='मेल चे कार्य ताबडतोब होवू शकत नाही.';
+$tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_mailer_not_supported']='मेल करणारा सहका्र्य करित नाही.';
 $tmx['m_mailerror_provide_address']='प्राप्त कर्त्याला इमेल पत्याची माहिती दिलीच पाहिजे.';
 $tmx['m_mailerror_recipients_failed']='[SMTP] खालील प्राप्तकर्ता अयशस्वी ठरला:';
 $tmx['m_mailerror_signing']='Signing Error: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP connect() failed.';
 $tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
 $tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='ही साखळी नवीन मनोरंजनाच्या चौकटीकरीता उघडेल.';
 $tmx['m_no_test_available']='येथे परीक्षा उपलब्ध नाही!';
 $tmx['m_process_completed']='प्रक्रिया पूर्ण झाली.';

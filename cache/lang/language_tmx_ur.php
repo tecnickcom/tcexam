@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ur
-// DATE: 2019-07-31 14:17:36
+// DATE: 2020-01-03 12:05:34
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -165,20 +165,22 @@ $tmx['m_login_wrong']='غلط صارف / پاس ورڈ';
 $tmx['m_mailerror_authenticate']='[SMTP] کی توثیق نہیں کی جا سکی';
 $tmx['m_mailerror_connect_host']='[SMTP] SMTP میزبان سے منسلک نہیں ہوسکتا۔';
 $tmx['m_mailerror_data_not_accepted']='[SMTP] ڈیٹا قبول نہیں کیا گیا۔';
+$tmx['m_mailerror_empty_message']='پیغام کی باڈی خالی ہے';
 $tmx['m_mailerror_encoding']='نامعلوم انکوڈنگ:';
 $tmx['m_mailerror_execute']='عملدرآمد نہیں کر سکا:';
 $tmx['m_mailerror_file_access']='فائل تک رسائی نہیں مل سکی:';
 $tmx['m_mailerror_file_open']='فائل نہیں کھول سکی:';
 $tmx['m_mailerror_from_failed']='پتے سےیہ  ناکام ہوگئی:';
 $tmx['m_mailerror_instantiate']='میل فنکشن شروع نہیں کیا جا سکا۔';
+$tmx['m_mailerror_invalid_address']='غلط پتہ';
 $tmx['m_mailerror_mailer_not_supported']='میلر معاون نہیں ہے۔';
 $tmx['m_mailerror_provide_address']='آپ کو کم سے کم ایک وصول کنندہ ای میل ایڈریس فراہم کرنا لازمی ہے۔';
 $tmx['m_mailerror_recipients_failed']='[SMTP] مندرجہ ذیل وصول کنندہ ناکام ہوگئے';
 $tmx['m_mailerror_signing']='سائننگ ایرر: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP connect() failed.';
 $tmx['m_mailerror_smtp_error']='SMTP سرور کی خرابی: ';
-$tmx['m_mailerror_empty_message']='پیغام کی باڈی خالی ہے';
-$tmx['m_mailerror_invalid_address']='غلط پتہ';
 $tmx['m_mailerror_variable_set']='متغیر سیٹ یا ری سیٹ نہیں کر سکتے ہیں: ';
+$tmx['m_mailerror_extension_missing']='Extension missing: ';
 $tmx['m_new_window_link']='یہ لنک ایک نیا براؤزر ونڈو کھول جائے گا';
 $tmx['m_no_test_available']='دستیاب ٹیسٹ نہیں ہیں!';
 $tmx['m_process_completed']='عمل مکمل ہوگیا';

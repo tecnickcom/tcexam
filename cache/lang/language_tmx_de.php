@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: de
-// DATE: 2019-07-31 14:17:00
+// DATE: 2020-01-03 12:04:51
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -183,23 +183,25 @@ $tmx['m_group_deleted']='die Gruppe wurde aus der Datenbank entfernt';
 $tmx['m_group_updated']='die Benutzerdaten wurden aktualisiert';
 $tmx['m_importing_complete']='XML-Import abgeschlossen';
 $tmx['m_login_wrong']='falscher Benutzer / falsches Passwort';
-$tmx['m_mailerror_authenticate']='[SMTP] Authentifikation nicht möglich.';
-$tmx['m_mailerror_connect_host']='[SMTP] Keine Verbindung zum SMTP-Server.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Daten nicht akzeptiert.';
-$tmx['m_mailerror_encoding']='Unbekannte Kodierung:';
-$tmx['m_mailerror_execute']='Ausführung nicht möglich:';
-$tmx['m_mailerror_file_access']='Dateizugriff nicht möglich:';
-$tmx['m_mailerror_file_open']='Öffnen der Datei nicht möglich:';
-$tmx['m_mailerror_from_failed']='Die folgende Absenderadresse schlug fehl:';
-$tmx['m_mailerror_instantiate']='Mailversand-Funktion konnte nicht gestartet werden.';
-$tmx['m_mailerror_mailer_not_supported']='Mailversand nicht unterstützt.';
-$tmx['m_mailerror_provide_address']='Es muss mindestens ein Empfänger angegeben werden.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Die folgenden Empfänger schlugen fehl:';
+$tmx['m_mailerror_authenticate']='SMTP-Fehler: Authentifizierung fehlgeschlagen.';
+$tmx['m_mailerror_connect_host']='SMTP-Fehler: Konnte keine Verbindung zum SMTP-Host herstellen.';
+$tmx['m_mailerror_data_not_accepted']='SMTP-Fehler: Daten werden nicht akzeptiert.';
+$tmx['m_mailerror_empty_message']='E-Mail-Inhalt ist leer.';
+$tmx['m_mailerror_encoding']='Unbekannte Kodierung: ';
+$tmx['m_mailerror_execute']='Konnte folgenden Befehl nicht ausführen: ';
+$tmx['m_mailerror_file_access']='Zugriff auf folgende Datei fehlgeschlagen: ';
+$tmx['m_mailerror_file_open']='Dateifehler: Konnte folgende Datei nicht öffnen: ';
+$tmx['m_mailerror_from_failed']='Die folgende Absenderadresse ist nicht korrekt: ';
+$tmx['m_mailerror_instantiate']='Mail-Funktion konnte nicht initialisiert werden.';
+$tmx['m_mailerror_invalid_address']='Die Adresse ist ungültig: ';
+$tmx['m_mailerror_mailer_not_supported']=' mailer wird nicht unterstützt.';
+$tmx['m_mailerror_provide_address']='Bitte geben Sie mindestens eine Empfängeradresse an.';
+$tmx['m_mailerror_recipients_failed']='SMTP-Fehler: Die folgenden Empfänger sind nicht korrekt: ';
 $tmx['m_mailerror_signing']='Fehler beim Signieren: ';
-$tmx['m_mailerror_smtp_error']='SMTP-Server Fehler: ';
-$tmx['m_mailerror_empty_message']='Nachrichtentext leer';
-$tmx['m_mailerror_invalid_address']='Ungültige Adresse';
-$tmx['m_mailerror_variable_set']='Variable kann nicht gesetzt oder zurückgesetzt werden: ';
+$tmx['m_mailerror_smtp_connect_failed']='Verbindung zum SMTP-Server fehlgeschlagen.';
+$tmx['m_mailerror_smtp_error']='Fehler vom SMTP-Server: ';
+$tmx['m_mailerror_variable_set']='Kann Variable nicht setzen oder zurücksetzen: ';
+$tmx['m_mailerror_extension_missing']='Fehlende Erweiterung: ';
 $tmx['m_new_window_link']='dieser Link öffnet ein neues Browser-Fenster';
 $tmx['m_no_test_available']='keine verfügbaren Tests!';
 $tmx['m_process_completed']='Vorgang abgeschlossen';

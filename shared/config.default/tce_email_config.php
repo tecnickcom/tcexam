@@ -5,7 +5,7 @@
 // Last Update : 2009-11-05
 //
 // Description : Default values for public variables of
-//				 C_mailer class
+//               C_mailer class
 //
 // Author: Nicola Asuni
 //
@@ -113,9 +113,6 @@ $emailcfg['Timeout'] = 10;
 
 // Sets SMTP class debugging on or off. Default value is false (off).
 $emailcfg['SMTPDebug'] = false;
-
-// Sets plugins directory path
-$emailcfg['PluginDir'] = '../../shared/phpmailer/';
 
 //============================================================+
 // END OF FILE

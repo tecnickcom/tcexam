@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ms
-// DATE: 2019-07-31 14:17:26
+// DATE: 2020-01-03 12:05:20
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -162,23 +162,25 @@ $tmx['m_group_deleted']='kumpulan telah disingkirkan dari pangkalan data';
 $tmx['m_group_updated']='pengguna data telah dikemaskinikan';
 $tmx['m_importing_complete']='XML mengimport siap';
 $tmx['m_login_wrong']='pengguna salah / kata laluan';
-$tmx['m_mailerror_authenticate']='[SMTP] Tidak dapat mengesahkan.';
-$tmx['m_mailerror_connect_host']='[SMTP] Tidak dapat disambungkan kepada tuan rumah SMTP.';
-$tmx['m_mailerror_data_not_accepted']='[SMTP] Data tidak menerima pakai.';
-$tmx['m_mailerror_encoding']='Tidak diketahui pengekodan:';
-$tmx['m_mailerror_execute']='Tidak dapat melaksanakan:';
-$tmx['m_mailerror_file_access']='Tidak dapat fail capaian:';
-$tmx['m_mailerror_file_open']='Tidak dapat fail terbuka:';
-$tmx['m_mailerror_from_failed']='Ekoran alamat From gagal:';
-$tmx['m_mailerror_instantiate']='Tidak dapat instantiate fungsi mel.';
-$tmx['m_mailerror_mailer_not_supported']='Mailer sedang tak tersokong.';
-$tmx['m_mailerror_provide_address']='Anda harus memberi sekurang-kurangnya satu penerima emel alamat.';
-$tmx['m_mailerror_recipients_failed']='[SMTP] Ekoran penerima gagal:';
-$tmx['m_mailerror_signing']='Signing Error: ';
-$tmx['m_mailerror_smtp_error']='SMTP server error: ';
-$tmx['m_mailerror_empty_message']='Message body empty';
-$tmx['m_mailerror_invalid_address']='Invalid address';
-$tmx['m_mailerror_variable_set']='Cannot set or reset variable: ';
+$tmx['m_mailerror_authenticate']='Ralat SMTP: Tidak dapat pengesahan.';
+$tmx['m_mailerror_connect_host']='Ralat SMTP: Tidak dapat menghubungi hos pelayan SMTP.';
+$tmx['m_mailerror_data_not_accepted']='Ralat SMTP: Data tidak diterima oleh pelayan.';
+$tmx['m_mailerror_empty_message']='Tiada isi untuk mesej';
+$tmx['m_mailerror_encoding']='Pengekodan tidak diketahui: ';
+$tmx['m_mailerror_execute']='Tidak dapat melaksanakan: ';
+$tmx['m_mailerror_file_access']='Tidak dapat mengakses fail: ';
+$tmx['m_mailerror_file_open']='Ralat Fail: Tidak dapat membuka fail: ';
+$tmx['m_mailerror_from_failed']='Berikut merupakan ralat dari alamat e-mel: ';
+$tmx['m_mailerror_instantiate']='Tidak dapat memberi contoh fungsi e-mel.';
+$tmx['m_mailerror_invalid_address']='Alamat emel tidak sah: ';
+$tmx['m_mailerror_mailer_not_supported']=' jenis penghantar emel tidak disokong.';
+$tmx['m_mailerror_provide_address']='Anda perlu menyediakan sekurang-kurangnya satu alamat e-mel penerima.';
+$tmx['m_mailerror_recipients_failed']='Ralat SMTP: Penerima e-mel berikut telah gagal: ';
+$tmx['m_mailerror_signing']='Ralat pada tanda tangan: ';
+$tmx['m_mailerror_smtp_connect_failed']='SMTP Connect() telah gagal.';
+$tmx['m_mailerror_smtp_error']='Ralat pada pelayan SMTP: ';
+$tmx['m_mailerror_variable_set']='Tidak boleh menetapkan atau menetapkan semula pembolehubah: ';
+$tmx['m_mailerror_extension_missing']='Sambungan hilang: ';
 $tmx['m_new_window_link']='hubungan akan membuka satu tingkap penyemak imbas baru';
 $tmx['m_no_test_available']='terdapat tidak ujian boleh didapati!';
 $tmx['m_process_completed']='proses menamatkan';

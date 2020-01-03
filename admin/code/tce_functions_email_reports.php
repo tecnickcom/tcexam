@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_email_reports.php
 // Begin       : 2005-02-24
-// Last Update : 2017-04-22
+// Last Update : 2020-01-03
 //
 // Description : Sends email test reports to users.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -108,19 +108,18 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
     $mail->Password = $emailcfg['Password'];
     $mail->Timeout = $emailcfg['Timeout'];
     $mail->SMTPDebug = $emailcfg['SMTPDebug'];
-    $mail->PluginDir = $emailcfg['PluginDir'];
     $mail->Sender = $emailcfg['Sender'];
     $mail->From = $emailcfg['From'];
     $mail->FromName = $emailcfg['FromName'];
     if ($emailcfg['Reply']) {
-        $mail->AddReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
+        $mail->addReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
     }
     $mail->CharSet = $l['a_meta_charset'];
     if (!$mail->CharSet) {
         $mail->CharSet = $emailcfg['CharSet'];
     }
     $mail->Subject = $l['t_result_user'];
-    $mail->IsHTML(true); // Set message type to HTML.
+    $mail->isHTML(true); // Set message type to HTML.
 
     $email_num = 0; // count emails;
     
@@ -169,7 +168,7 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
                 $doc_name .= '.pdf';
 
                 // attach document
-                $mail->AddStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
+                $mail->addStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
                 $mail->AltBody .= K_NEWLINE.$l['w_attachment'].': '.$doc_name.K_NEWLINE;
             }
 
@@ -189,17 +188,17 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
             $mail->Body = str_replace('#USERLASTNAME#', htmlspecialchars($tu['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
 
             // add a "To" address
-            $mail->AddAddress($tu['user_email'], $tu['user_name']);
+            $mail->addAddress($tu['user_email'], $tu['user_name']);
 
             $email_num++;
             $progresslog = ''.$email_num.'. '.$tu['user_email'].' ['.$tu['user_name'].']'; //output user data
 
-            if (!$mail->Send()) { //send email to user
+            if (!$mail->send()) { //send email to user
                 $progresslog .= ' ['.$l['t_error'].']'; //display error message
             }
 
-            $mail->ClearAddresses(); // Clear all addresses for next loop
-            $mail->ClearAttachments(); // Clears all previously set filesystem, string, and binary attachments
+            $mail->clearAddresses(); // Clear all addresses for next loop
+            $mail->clearAttachments(); // Clears all previously set filesystem, string, and binary attachments
         } else {
             $progresslog = '['.$l['t_error'].'] '.$tu['user_name'].': '.$l['m_unknown_email'].''; //output user data
         }
@@ -207,11 +206,11 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
         flush(); // force browser output
     }
 
-    $mail->ClearAddresses(); // Clear all addresses for next loop
-    $mail->ClearCustomHeaders(); // Clears all custom headers
-    $mail->ClearAllRecipients(); // Clears all recipients assigned in the TO, CC and BCC
-    $mail->ClearAttachments(); // Clears all previously set filesystem, string, and binary attachments
-    $mail->ClearReplyTos(); // Clears all recipients assigned in the ReplyTo array
+    $mail->clearAddresses(); // Clear all addresses for next loop
+    $mail->clearCustomHeaders(); // Clears all custom headers
+    $mail->clearAllRecipients(); // Clears all recipients assigned in the TO, CC and BCC
+    $mail->clearAttachments(); // Clears all previously set filesystem, string, and binary attachments
+    $mail->clearReplyTos(); // Clears all recipients assigned in the ReplyTo array
     return;
 }
 
