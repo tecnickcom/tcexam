@@ -546,7 +546,12 @@ function F_html_to_TSV($str)
     $str = str_replace('&rarr;', '-', $str);
     $str = str_replace('&darr;', '', $str);
     $str = str_replace("\t", ' ', $str);
-    $str = preg_replace_callback('/colspan="([0-9]*)"/x', create_function('$matches', 'if ($matches[1] > 1) {return str_repeat("></td><td", ($matches[1] - 1));} return "";'), $str);
+    $str = preg_replace_callback('/colspan="([0-9]*)"/x', function($match) {
+        if ($match[1] > 1) {
+            return str_repeat('></td><td', ($match[1] - 1));
+        }
+        return '';
+    }, $str);
     $str = str_replace("\r\n", "\n", $str);
     $str = str_replace("\$", $dollar_replacement, $str); //replace special character
     //remove newlines
