@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_user.php
 // Begin       : 2002-02-08
-// Last Update : 2018-07-06
+// Last Update : 2020-05-06
 //
 // Description : Edit user data.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -47,15 +47,13 @@ require_once('tce_functions_user_select.php');
 if (isset($_REQUEST['user_id'])) {
     $user_id = intval($_REQUEST['user_id']);
     if (!F_isAuthorizedEditorForUser($user_id)) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 }
 if (isset($_REQUEST['group_id'])) {
     $group_id = intval($_REQUEST['group_id']);
     if (!F_isAuthorizedEditorForGroup($group_id)) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 }
 if (isset($_REQUEST['user_level'])) {

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2018-07-06
+// Last Update : 2020-05-06
 //
 // Description : Display test results summary for all users.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -59,8 +59,7 @@ if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
     $test_id = intval($_REQUEST['test_id']);
     // check user's authorization
     if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
     $filter .= '&amp;test_id='.$test_id.'';
     $test_group_ids = F_getTestGroups($test_id);

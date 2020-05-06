@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_subject.php
 // Begin       : 2004-04-26
-// Last Update : 2018-07-06
+// Last Update : 2020-05-06
 //
 // Description : Display form to edit exam subject_id (topics).
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -95,8 +95,7 @@ if ($subject_id > 0) {
                 // check user's authorization for parent module
                 if ((!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id'))
                     and (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id'))) {
-                    F_print_error('ERROR', $l['m_authorization_denied']);
-                    exit;
+                    F_print_error('ERROR', $l['m_authorization_denied'], true);
                 }
             }
         } else {
