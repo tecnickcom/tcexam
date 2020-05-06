@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2014-01-27
+// Last Update : 2020-05-06
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -56,7 +56,7 @@ if (isset($_POST['backup'])) {
 if (isset($backup_file) and !empty($backup_file)) {
     if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) or (strlen($backup_file) != 35) or (substr($backup_file, -3) != '.gz')) {
         // ERROR
-        F_print_error('ERROR', 'SECURITY ERROR');
+        F_print_error('ERROR', 'SECURITY ERROR', true);
     }
 }
 
