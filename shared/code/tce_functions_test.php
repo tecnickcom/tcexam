@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test.php
 // Begin       : 2004-05-28
-// Last Update : 2016-03-15
+// Last Update : 2020-05-06
 //
 // Description : Functions to handle test generation, status
 //               and user access.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -471,9 +471,12 @@ function F_printTestInfo($test_id, $showip = false)
     $str = ''; //string to return
     $boolval = array($l['w_no'], $l['w_yes']);
     //$ordmode = Array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
-    $sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.'';
+    $sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
+            if (!F_isValidTestUser($test_id, $_SESSION['session_user_ip'], $m['test_ip_range'])) {
+                return '';
+            }
             $str .= '<h1>'.htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</h1>'.K_NEWLINE;
             $str .= '<div class="tcecontentbox">'.F_decode_tcecode($m['test_description']).'<br /><br /></div>'.K_NEWLINE;
             $str .= '<div class="tceformbox">'.K_NEWLINE;
