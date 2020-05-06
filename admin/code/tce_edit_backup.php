@@ -52,13 +52,16 @@ if (isset($_POST['backup'])) {
     $menu_mode = 'download';
 }
 
-// check backup filename
-if (isset($backup_file) and !empty($backup_file)) {
-    if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) or (strlen($backup_file) != 35) or (substr($backup_file, -3) != '.gz')) {
-        // ERROR
-        F_print_error('ERROR', 'SECURITY ERROR', true);
-    }
+function F_isValidbackupFile($file)
+{
+    return ((strlen($file) === 35) and (substr($file, -3) === '.gz') and (preg_match('|\.\./|i', $file) === 0) and (preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $file) === 0));
 }
+
+// check backup filename
+if (!empty($backup_file) and !F_isValidbackupFile($backup_file)) {
+	F_print_error('ERROR', 'SECURITY ERROR', true);
+}
+
 
 switch ($menu_mode) { // process submitted data
 
@@ -200,7 +203,7 @@ echo '<option value="">&nbsp;</option>'.K_NEWLINE;
 // get backup files
 $files_list = array();
 while (false !== ($file = readdir($handle))) {
-    if (is_file(K_PATH_BACKUP.$file)) {
+    if (F_isValidbackupFile($file) and is_file(K_PATH_BACKUP.$file)) {
         $files_list[] = $file;
     }
 }
