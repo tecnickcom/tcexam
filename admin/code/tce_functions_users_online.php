@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_levels.php
 // Begin       : 2001-10-18
-// Last Update : 2011-05-24
+// Last Update : 2020-05-06
 //
 // Description : Functions to display online users' data.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -119,6 +119,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
                 $user_str .= urldecode($this_session['session_user_firstname']).'';
             }
             $user_str .= ' ('.urldecode($this_session['session_user_name']).')';
+            $user_str = unhtmlentities(strip_tags($user_str));
             if (F_isAuthorizedEditorForUser($this_session['session_user_id'])) {
                 echo '<a href="tce_edit_user.php?user_id='.$this_session['session_user_id'].'">'.$user_str.'</a>';
             } else {

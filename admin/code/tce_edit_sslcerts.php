@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_sslcerts.php
 // Begin       : 2013-07-04
-// Last Update : 2013-07-09
+// Last Update : 2020-05-06
 //
 // Description : Upload and edit SSL certificates.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -60,8 +60,7 @@ if (isset($_REQUEST['ssl_id']) and ($_REQUEST['ssl_id'] > 0)) {
     $ssl_id = intval($_REQUEST['ssl_id']);
     // check user's authorization for this certificate
     if (!F_isAuthorizedUser(K_TABLE_SSLCERTS, 'ssl_id', $ssl_id, 'ssl_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 } else {
     $ssl_id = 0;
@@ -107,6 +106,7 @@ switch ($menu_mode) {
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>'.K_NEWLINE;
+            echo F_getCSRFTokenField().K_NEWLINE;
             echo '</form>'.K_NEWLINE;
             echo '</div>'.K_NEWLINE;
         }
@@ -324,7 +324,7 @@ if (isset($ssl_id) and ($ssl_id > 0)) {
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

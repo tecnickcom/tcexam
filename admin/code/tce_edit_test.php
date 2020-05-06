@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2018-07-06
+// Last Update : 2020-05-06
 //
 // Description : Edit Tests
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -195,8 +195,7 @@ if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
     $test_id = intval($_REQUEST['test_id']);
     // check user's authorization
     if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 } else {
     $test_id = 0;
@@ -417,6 +416,7 @@ switch ($menu_mode) {
         <?php
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
         F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
+        echo F_getCSRFTokenField().K_NEWLINE;
         ?>
         </div>
         </form>
@@ -1320,7 +1320,7 @@ if (isset($test_id) and ($test_id > 0)) {
         echo '</div>'.K_NEWLINE;
     }
 }
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 
 echo '</div>'.K_NEWLINE;

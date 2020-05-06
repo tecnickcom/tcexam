@@ -96,6 +96,7 @@ function F_html_color_picker($callingform, $callingfield, $tag)
     $onclick = 'FJ_insert_tag(window.opener.document.getElementById(\''.$callingform.'\').'.$callingfield.', \'['.$tag.'=\'+document.getElementById(\'CSELECTED\').value+\']\');';
     echo '<input type="button" name="wclose" id="wclose" value="'.$l['w_close'].'" title="'.$l['h_close_window'].'" onclick="'.$onclick.'self.close();" />'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
+    echo F_getCSRFTokenField().K_NEWLINE;
     echo '</form>'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
 ?>

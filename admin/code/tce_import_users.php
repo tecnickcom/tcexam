@@ -105,6 +105,7 @@ switch ($menu_mode) {
 <?php
 // show buttons by case
 F_submit_button("upload", $l['w_upload'], $l['h_submit_file']);
+echo F_getCSRFTokenField().K_NEWLINE;
 ?>
 </div>
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_xml_question_stats.php
 // Begin       : 2010-05-10
-// Last Update : 2013-09-05
+// Last Update : 2020-05-06
 //
 // Description : Functions to export question stats using XML
 //               or JSON format.
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -47,8 +47,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
     $test_id = intval($_REQUEST['testid']);
     // check user's authorization
     if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 
     $output_format = isset($_REQUEST['format']) ? strtoupper($_REQUEST['format']) : 'XML';

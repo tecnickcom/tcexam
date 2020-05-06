@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_users_popup.php
 // Begin       : 2012-04-14
-// Last Update : 2012-08-22
+// Last Update : 2020-05-06
 //
 // Description : Display user selection table on popup window.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -72,8 +72,7 @@ if (isset($_REQUEST['group_id'])) {
     $group_id = 0;
 }
 if (!F_isAuthorizedEditorForGroup($group_id)) {
-    F_print_error('ERROR', $l['m_authorization_denied']);
-    exit;
+    F_print_error('ERROR', $l['m_authorization_denied'], true);
 }
 
 echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_userselect">'.K_NEWLINE;
@@ -147,7 +146,7 @@ echo getFormNoscriptSelect();
 echo '<div class="row"><hr /></div>'.K_NEWLINE;
 
 F_show_select_user_popup($order_field, $orderdir, $firstrow, $rowsperpage, $group_id, $wherequery, $searchterms, $cid);
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 
 require_once('../code/tce_page_footer_popup.php');

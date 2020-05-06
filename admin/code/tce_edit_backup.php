@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_backup.php
 // Begin       : 2009-04-06
-// Last Update : 2014-01-27
+// Last Update : 2020-05-06
 //
 // Description : Backup and Restore TCExam Database.
 //               ONLY FOR POSIX SYSTEMS
@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -52,13 +52,16 @@ if (isset($_POST['backup'])) {
     $menu_mode = 'download';
 }
 
-// check backup filename
-if (isset($backup_file) and !empty($backup_file)) {
-    if ((preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $backup_file) > 0) or (strlen($backup_file) != 35) or (substr($backup_file, -3) != '.gz')) {
-        // ERROR
-        F_print_error('ERROR', 'SECURITY ERROR');
-    }
+function F_isValidbackupFile($file)
+{
+    return ((strlen($file) === 35) and (substr($file, -3) === '.gz') and (preg_match('|\.\./|i', $file) === 0) and (preg_match('/[^a-zA-Z0-9\_\-\.]+/i', $file) === 0));
 }
+
+// check backup filename
+if (!empty($backup_file) and !F_isValidbackupFile($backup_file)) {
+	F_print_error('ERROR', 'SECURITY ERROR', true);
+}
+
 
 switch ($menu_mode) { // process submitted data
 
@@ -72,6 +75,7 @@ switch ($menu_mode) { // process submitted data
             F_submit_button('forcerestore', $l['w_restore'], $l['h_restore']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>'.K_NEWLINE;
+            echo F_getCSRFTokenField().K_NEWLINE;
             echo '</form>'.K_NEWLINE;
             echo '</div>'.K_NEWLINE;
         }
@@ -200,7 +204,7 @@ echo '<option value="">&nbsp;</option>'.K_NEWLINE;
 // get backup files
 $files_list = array();
 while (false !== ($file = readdir($handle))) {
-    if (is_file(K_PATH_BACKUP.$file)) {
+    if (F_isValidbackupFile($file) and is_file(K_PATH_BACKUP.$file)) {
         $files_list[] = $file;
     }
 }
@@ -229,7 +233,7 @@ if (K_DOWNLOAD_BACKUPS) {
 }
 
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_popup_test_info.php
 // Begin       : 2004-05-28
-// Last Update : 2009-09-30
+// Last Update : 2020-05-06
 //
 // Description : Outputs test information using popup page
 //               headers.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,8 +46,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
     $test_id = intval($_REQUEST['testid']);
     // check user's authorization
     if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
     require_once('../../shared/code/tce_functions_test.php');
     echo F_printTestInfo($test_id, true);

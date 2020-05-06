@@ -45,6 +45,8 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
     require_once(dirname(__FILE__).'/../config/tce_config.php');
     global $l;
     $messagetype = strtolower($messagetype);
+    $messagetoprint = unhtmlentities(strip_tags($messagetoprint));
+    $messagetoprint = str_replace("'", "\'", $messagetoprint);
     //message is appended to the log file
     if (K_USE_ERROR_LOG and (!strcmp($messagetype, 'error'))) {
         $logsttring = date(K_TIMESTAMP_FORMAT).K_TAB;
@@ -79,8 +81,6 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
             //display message on JavaScript Alert Window.
             echo '<script type="text/javascript">'.K_NEWLINE;
             echo '//<![CDATA['.K_NEWLINE;
-            $messagetoprint = unhtmlentities(strip_tags($messagetoprint));
-            $messagetoprint = str_replace("'", "\'", $messagetoprint);
             echo 'alert(\'['.$msgtitle.']: '.$messagetoprint.'\');'.K_NEWLINE;
             echo '//]]>'.K_NEWLINE;
             echo '</script>'.K_NEWLINE;

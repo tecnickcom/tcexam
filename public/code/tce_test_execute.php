@@ -162,6 +162,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
             <?php
             F_submit_button('forceterminate', $l['w_terminate'], $l['w_terminate_exam']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
+            echo F_getCSRFTokenField().K_NEWLINE;
             ?>
             </div>
             </form>
@@ -195,6 +196,7 @@ if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
 
             echo K_NEWLINE;
             echo '</div>'.K_NEWLINE;
+            echo F_getCSRFTokenField().K_NEWLINE;
             echo '</form>'.K_NEWLINE;
         }
 

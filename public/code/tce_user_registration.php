@@ -85,7 +85,7 @@ if ($menu_mode == 'add') { // process submitted data
 
     if ($formstatus = F_check_form_fields()) { // check submitted form fields
         // check if name is unique
-        if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.$user_name.'\'')) {
+        if (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($db, $user_name).'\'')) {
             F_print_error('WARNING', $l['m_duplicate_name']);
             $formstatus = false;
             F_stripslashes_formfields();
@@ -334,7 +334,7 @@ echo '<div class="row">'.K_NEWLINE;
 F_submit_button('add', $l['w_add'], $l['h_add']);
 
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 
