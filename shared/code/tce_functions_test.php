@@ -449,7 +449,7 @@ function F_testInfoLink($test_id, $link_name = '')
     $onclickinfo .= 'return false;';
     $str .= '<a href="tce_popup_test_info.php?testid='.$test_id.'" onclick="'.$onclickinfo.'" title="'.$l['m_new_window_link'].'">';
     if (strlen($link_name) > 0) {
-        $str .= $link_name;
+        $str .= unhtmlentities(strip_tags($link_name));
     } else {
         $str .= $l['w_info'];
     }
@@ -2151,6 +2151,7 @@ function F_testLoginForm($faction, $fid, $fmethod, $fenctype, $test_id)
 {
     global $l;
     require_once('../config/tce_config.php');
+    require_once('../../shared/code/tce_functions_form.php');
     $str = '';
     $str .= '<div class="container">'.K_NEWLINE;
     $str .= '<div class="tceformbox">'.K_NEWLINE;
@@ -2164,6 +2165,7 @@ function F_testLoginForm($faction, $fid, $fmethod, $fenctype, $test_id)
     $str .= '<input type="hidden" name="testpswaction" id="testpswaction" value="login" />'.K_NEWLINE;
     $str .= '<input type="hidden" name="testid" id="testid" value="'.intval($test_id).'" />'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
+    $str .= F_getCSRFTokenField().K_NEWLINE;
     $str .= '</form>'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
     $str .= '<div class="pagehelp">'.$l['hp_test_password'].'</div>'.K_NEWLINE;

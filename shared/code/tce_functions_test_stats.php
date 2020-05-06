@@ -774,6 +774,7 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
     $ret .= '<th title="'.$l['h_testcomment'].'">'.$l['w_comment'].'</th>'.K_NEWLINE;
     $ret .= '</tr>'.K_NEWLINE;
     foreach ($data['testuser'] as $tu) {
+        $tu['test']['test_name'] = unhtmlentities(strip_tags($tu['test']['test_name']));
         $ret .= '<tr>';
         $ret .= '<td>';
         $ret .= '<input type="checkbox" name="testuserid'.$tu['num'].'" id="testuserid'.$tu['num'].'" value="'.$tu['id'].'" title="'.$l['w_select'].'"';

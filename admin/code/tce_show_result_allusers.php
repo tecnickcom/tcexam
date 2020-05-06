@@ -434,7 +434,7 @@ echo '<input type="hidden" name="order_field" id="order_field" value="'.$order_f
 echo '<input type="hidden" name="orderdir" id="orderdir" value="'.$orderdir.'" />'.K_NEWLINE;
 echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'>" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 
 echo '</div>'.K_NEWLINE;

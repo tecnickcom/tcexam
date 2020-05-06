@@ -60,7 +60,7 @@ if (isset($_REQUEST['ssl_id']) and ($_REQUEST['ssl_id'] > 0)) {
     $ssl_id = intval($_REQUEST['ssl_id']);
     // check user's authorization for this certificate
     if (!F_isAuthorizedUser(K_TABLE_SSLCERTS, 'ssl_id', $ssl_id, 'ssl_user_id')) {
-        F_print_error('ERROR', $l['m_authorization_denied', true);
+        F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
 } else {
     $ssl_id = 0;
@@ -106,6 +106,7 @@ switch ($menu_mode) {
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>'.K_NEWLINE;
+            echo F_getCSRFTokenField().K_NEWLINE;
             echo '</form>'.K_NEWLINE;
             echo '</div>'.K_NEWLINE;
         }
@@ -323,7 +324,7 @@ if (isset($ssl_id) and ($ssl_id > 0)) {
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_online_users.php
 // Begin       : 2001-10-18
-// Last Update :2009-09-30
+// Last Update : 2020-05-06
 //
 // Description : Display online user's data.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

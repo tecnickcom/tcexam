@@ -48,6 +48,7 @@ function F_loginForm($faction, $fid, $fmethod, $fenctype, $username)
     global $l;
     require_once('../config/tce_config.php');
     require_once('../../shared/config/tce_user_registration.php');
+     require_once('../../shared/code/tce_functions_form.php');
     $str = '';
     $str .= '<div class="container">'.K_NEWLINE;
     if (K_USRREG_ENABLED) {
@@ -75,6 +76,7 @@ function F_loginForm($faction, $fid, $fmethod, $fenctype, $username)
     // the following field is used to check if the form has been submitted
     $str .= '<input type="hidden" name="logaction" id="logaction" value="login" />'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
+    $str .= F_getCSRFTokenField().K_NEWLINE;
     $str .= '</form>'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
     $str .= '<div class="pagehelp">'.$l['hp_login'].'</div>'.K_NEWLINE;
@@ -154,6 +156,7 @@ function F_logout_form()
     $str .= '<input type="hidden" name="logaction" id="logaction" value="" />'.K_NEWLINE;
     $str .= '<input type="submit" name="login" id="login" value="'.$l['w_logout'].'" />'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
+    $str .= F_getCSRFTokenField().K_NEWLINE;
     $str .= '</form>'.K_NEWLINE;
     $str .= '</div>'.K_NEWLINE;
     return $str;

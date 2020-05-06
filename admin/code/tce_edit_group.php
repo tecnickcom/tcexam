@@ -81,6 +81,7 @@ switch ($menu_mode) { // process submitted data
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
         F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
         echo '</div>'.K_NEWLINE;
+        echo F_getCSRFTokenField().K_NEWLINE;
         echo '</form>'.K_NEWLINE;
         echo '</div>'.K_NEWLINE;
         break;
@@ -254,7 +255,7 @@ if (isset($group_id) and ($group_id > 0)) {
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

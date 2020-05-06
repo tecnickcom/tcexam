@@ -273,6 +273,7 @@ if ($itemcount > 0) {
     echo '<input type="hidden" name="itemcount" id="itemcount" value="'.$itemcount.'>" />'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
 }
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 
 echo '</div>'.K_NEWLINE;

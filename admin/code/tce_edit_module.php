@@ -96,6 +96,7 @@ switch ($menu_mode) {
             <?php
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
+            echo F_getCSRFTokenField().K_NEWLINE;
             ?>
             </div>
             </form>
@@ -328,7 +329,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
     $sql = 'SELECT user_id, user_lastname, user_firstname, user_name FROM '.K_TABLE_USERS.' WHERE user_id='.$module_user_id.'';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
-            echo '<span style="font-style:italic;color:#333333;">('.$m['user_name'].') '.$m['user_lastname'].' '.$m['user_firstname'].'</span>'.K_NEWLINE;
+            echo '<span style="font-style:italic;color:#333333;">('.unhtmlentities(strip_tags($m['user_name'].') '.$m['user_lastname'].' '.$m['user_firstname'])).'</span>'.K_NEWLINE;
         }
     } else {
         echo '</select></span></div>'.K_NEWLINE;
@@ -364,7 +365,7 @@ $sqlg = 'SELECT *
 if ($rg = F_db_query($sqlg, $db)) {
     echo '<span style="font-style:italic;color#333333;font-size:small;">';
     while ($mg = F_db_fetch_array($rg)) {
-        echo ' · '.$mg['group_name'].'';
+        echo ' · '.unhtmlentities(strip_tags($mg['group_name'])).'';
     }
     echo '</span>';
 } else {
@@ -403,6 +404,7 @@ echo '&nbsp;'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '&nbsp;'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

@@ -376,6 +376,7 @@ if (isset($testlog_id) and ($testlog_id > 0)) {
 }
 
 echo '</div>'.K_NEWLINE;
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

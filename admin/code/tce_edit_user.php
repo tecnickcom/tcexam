@@ -91,6 +91,7 @@ switch ($menu_mode) { // process submitted data
         <?php
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
         F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
+        echo F_getCSRFTokenField().K_NEWLINE;
         ?>
         </div>
         </form>
@@ -181,7 +182,7 @@ switch ($menu_mode) { // process submitted data
             if (!$r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {
-                F_print_error('MESSAGE', $user_name.': '.$l['m_user_updated']);
+                F_print_error('MESSAGE', stripslashes($user_name).': '.$l['m_user_updated']);
             }
             // remove old groups
             $old_user_groups = F_get_user_groups($user_id);
@@ -527,7 +528,7 @@ F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
 echo '<input type="hidden" name="user_password" id="user_password" value="'.$user_password.'" />'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
 

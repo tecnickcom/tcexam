@@ -218,7 +218,7 @@ if (isset($menu_mode) and (!empty($menu_mode))) {
 }
 
 F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id, $wherequery, $searchterms);
-
+echo F_getCSRFTokenField().K_NEWLINE;
 echo '</form>'.K_NEWLINE;
 
 require_once('../code/tce_page_footer.php');
