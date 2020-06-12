@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-23
+// Last Update : 2020-06-12
 //
 // Description : Display test results to the current user.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -58,8 +58,8 @@ if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
 }
 
 // security check
-$checkid = 0;
-$sqlt = 'SELECT testuser_user_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_id='.$testuser_id.'';
+$checkid = -1;
+$sqlt = 'SELECT testuser_user_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_id='.$testuser_id.' AND testuser_status>3';
 if ($rt = F_db_query($sqlt, $db)) {
     if ($mt = F_db_fetch_assoc($rt)) {
         $checkid = $mt['testuser_user_id'];
@@ -74,8 +74,9 @@ if ($user_id != $checkid) {
 
 // get user's test stats
 $userdata = F_getUserData($user_id);
-$teststat = F_getTestStat($test_id, 0, $user_id, 0, 0, $testuser_id);
-$teststat['testinfo'] = F_getUserTestStat($test_id, $user_id, $testuser_id);
+$teststat = F_getTestStat($test_id, 0, $user_id, 0, 0, $testuser_id, true);
+
+$teststat['testinfo'] = F_getUserTestStat($test_id, $user_id, $testuser_id, true);
 $test_id = $teststat['testinfo']['test_id'];
 
 if (!F_getBoolean($teststat['testinfo']['test_results_to_users'])) {
