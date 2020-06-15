@@ -128,7 +128,7 @@ function F_session_write($key, $val)
 				\''.$val.'\'
 				)';
         }
-        return F_db_query($sqlup, $db);
+        return F_db_query($sqlup, $db) ? true : false;
     }
     return false;
 }
