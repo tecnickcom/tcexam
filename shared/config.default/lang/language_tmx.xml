@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tmx version="1.4">
    <header datatype="PlainText"
-           changedate="20200103T120400Z"
+           changedate="20200617T010500Z"
            creationtoolversion="1"
            segtype="sentence"
            creationtool="hand made"
@@ -33500,7 +33500,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>suala verilən maksimum vaxt (0 = söndürmək)</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>maximo numero de segundos en los cuales se muestra la pregunta (0 = deshabilita el timer)</seg>
+            <seg>máximo número de segundos en los cuales se muestra la pregunta (0 = deshabilita el timer)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>题目显示的最长时间（秒，0＝不计时）</seg>
@@ -40649,7 +40649,7 @@ Backup files are stored on the "cache/backup" folder using the following syntax:
             <seg>Bu səhifə Sizə nüsxələri (backup) yaradıb bərpa etməyə imkan verir. (ancaq POSİX sistemlərdə MySQL və ya PostgreSQL-ı dəstəkləyir). [backup] düyməsini basmaqla Siz TCExam sisteminin verilənlər bazasının SQL damp (verilənlər və struktur) faylını arxivləşdirilmiş formatda yarada bilərsiniz. Seçilmiş faylı bərpa etmək üçün [bərpa et] düyməsini basın. Nəzərə alın ki, hər bir bərpadan əvvəl sistem avtomatik olaraq yeni nüsxə faylını yaradır. Beləliklə Siz əməliyyatınızdan imtina edə bilərsiniz. Fayllar "cache/backup" qovluğunda yerləşir. Onlar YYYYMMDDhhmmss_tcexam_backup.sql.gz kimi adlandırılacaq, YYYYMMDDhhmmss il - (Y), ay (M), gün (D), saat (h), dəqiqə (m), saniyə (s) deməkdir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Através de esta màscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
+            <seg>A través de esta máscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
 Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump SQL de la entera base de datos de TCExam (estructura y datos).
 Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
 Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la 'operaciòn de restablecimiento.
@@ -41090,7 +41090,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu formu ile parolunuzu dəyişə bilərsiniz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Atraves de esta máscara es posible modificar la propia password de acceso.</seg>
+            <seg>A través de esta máscara es posible modificar la propia password de acceso.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单修改访问密码。</seg>
@@ -41170,7 +41170,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu form ilə email ünvanını dəyişə bilərsiniz. Siz yeni bir məktub alacaqsınız. Təstiq edilməmiş email aktiv olmayacaq.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Atraves de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.</seg>
+            <seg>A través de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单修改邮箱，验证邮件会发送到新邮箱地址。在收到确认前账户会被禁用。</seg>
@@ -41650,7 +41650,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>azı 8 hərif-rəqəm simvolu</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>almenos 8 caracteres alfanumericos</seg>
+            <seg>Al menos 8 caracteres alfanuméricos</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>至少8位数字字符</seg>
@@ -42210,7 +42210,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Administrasiya</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>area de administración</seg>
+            <seg>área de administración</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>管理区</seg>
@@ -43143,7 +43143,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu forma ilə multimedia faylları idarə edə bilərsiniz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Atraves de esta página es posible gestionar los archivos multimediales.</seg>
+            <seg>A través de esta página es posible gestionar los archivos multimediales.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单管理文件。</seg>
@@ -44823,7 +44823,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu forma ilə Siz istifadəçilərin cavab kartlarının skan olunmuş şəkillərini import edə bilərsiniz. Bu şəkil OMR sistemi ilə oxunulacaq və istifadəçilərin imtahan nəticələri sistemə yazılacaq. Sistemdə olan nəticələr import olunmuş nəticələr ilə əvəz olunacaq. OMR səhifələr rəngli, ən azı 200DPİ keyfiyyəti ilə skan edilməlidir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Atraves de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a almenos 200DPI.</seg>
+            <seg>A través de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a al menos 200DPI.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过这种形式，你可以导入用户从答卷的扫描图像的答案。这个图片将被用于光学标记识别（OMR）系统进行识别，以便处理测试数据和用户的答案。导入的数据将覆盖现有的结果。 OMR表必须完全使用200DPI或以上的全彩颜色进行扫描。</seg>
