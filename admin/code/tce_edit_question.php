@@ -780,7 +780,7 @@ if ($question_type==4) {
     echo ' checked="checked"';
 }
 echo ' title="'.$l['h_enable_ordering_answer'].'" />';
-echo '<label for="free_answer">'.$l['w_ordering_answer'].'</label>'.K_NEWLINE;
+echo '<label for="ordering_answer">'.$l['w_ordering_answer'].'</label>'.K_NEWLINE;
 
 echo '</fieldset>'.K_NEWLINE;
 echo '</div>'.K_NEWLINE;
