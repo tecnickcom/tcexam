@@ -304,6 +304,7 @@ div.popupcontainer {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 100%;
+	box-sizing:border-box
 }
 
 div.popuptitle {
@@ -586,6 +587,7 @@ table.userselect tr{
 
 textarea {
 	font-size: 95%;
+	width:100%
 }
 
 textarea.answertext {
@@ -641,6 +643,7 @@ ul.tcecode{
 	text-align: left;
 	width: 100%;
 	box-sizing: border-box;
+	overflow:auto
 }
 
 a.xmlbutton:link, a.xmlbutton:visited {
