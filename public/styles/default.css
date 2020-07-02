@@ -167,6 +167,7 @@ div.container {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 98%;
+	box-sizing: border-box
 }
 
 div.content {
@@ -175,6 +176,7 @@ div.content {
 	padding: 5px 5px 5px 5px;
 	text-align: left;
 	width: 84%;
+	box-sizing: border-box
 }
 
 /* ---------- */
@@ -285,6 +287,7 @@ div.pagehelp {
 	padding: 5px 5px 5px 5px;
 	width: 100%;
 	text-align:justify;
+	box-sizing: border-box
 }
 
 /* Page selector --------------------------*/
@@ -301,6 +304,7 @@ div.popupcontainer {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 100%;
+	box-sizing:border-box
 }
 
 div.popuptitle {
@@ -376,6 +380,7 @@ div.tceformbox {
 	padding: 5px 5px 5px 5px;
 	text-align: center;
 	width: 100%;
+	box-sizing: border-box
 }
 
 /* TITLE ------------------------------- */
@@ -540,7 +545,7 @@ span.langselector {
 	font-size: 9px;
 	padding: 0px 3px 0px 3px;
 	text-decoration: none;
-	white-space: nowrap;
+	display: block;
 }
 
 span.langselector span.selected {
@@ -582,6 +587,7 @@ table.userselect tr{
 
 textarea {
 	font-size: 95%;
+	width:100%
 }
 
 textarea.answertext {
@@ -636,6 +642,8 @@ ul.tcecode{
 	padding: 5px 5px 5px 5px;
 	text-align: left;
 	width: 100%;
+	box-sizing: border-box;
+	overflow:auto
 }
 
 a.xmlbutton:link, a.xmlbutton:visited {
