@@ -196,6 +196,7 @@ div.container {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 99%;
+	overflow:auto
 }
 
 div.content {
@@ -204,6 +205,7 @@ div.content {
 	padding: 5px 15px 5px 15px;
 	text-align: left;
 	width: 98%;
+	box-sizing: border-box
 }
 
 /* ---------- */
@@ -314,6 +316,7 @@ div.pagehelp {
 	padding: 5px 5px 5px 5px;
 	width: 100%;
 	text-align:justify;
+	box-sizing: border-box
 }
 
 /* Page selector --------------------------*/
@@ -399,6 +402,7 @@ div.rowl {
 	clear: both;
 	padding: 1px 1px 1px 1px;
 	text-align: left;
+	overflow: auto;
 }
 
 div.row fieldset {
@@ -451,6 +455,7 @@ div.tceformbox {
 	padding: 5px 5px 5px 5px;
 	text-align: center;
 	width: 100%;
+	box-sizing: border-box
 }
 
 div.contentbox {
@@ -459,6 +464,7 @@ div.contentbox {
 	margin: 0px 0px 0px 0px;
 	padding: 5px 5px 5px 5px;
 	width: 100%;
+	box-sizing: border-box
 }
 
 /* TITLE ------------------------------- */
@@ -613,7 +619,7 @@ span.langselector {
 	font-size: 9px;
 	padding: 0px 3px 0px 3px;
 	text-decoration: none;
-	white-space: nowrap;
+	display:block
 }
 
 span.langselector span.selected {
@@ -660,6 +666,7 @@ td.questionid {
 
 textarea {
 	font-size: 95%;
+	width: 100%
 }
 
 textarea.answertext {
@@ -740,7 +747,7 @@ td.numeric {
 div.scrollmenu {
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
-	height: 22px;
+	height: auto;
 	margin: 0 auto;
 	width: 100%;
 	color: #FFAA00;

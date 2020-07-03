@@ -417,7 +417,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>нажмите на кнопку, чтобы выйти из системы</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Click pada tombol untuk keluar dari system</seg>
+            <seg>Klik pada tombol untuk keluar dari sistem</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>cliquer sur le bouton pour quitter le système</seg>
@@ -497,7 +497,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>TCExam это программное обеспечение для проведения интерактивных тестов, а также управления ими.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>TCExam adalah software untuk mengelola dan menjalankan test online</seg>
+            <seg>TCExam adalah software untuk mengelola dan menjalankan ujian daring</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>TCExam est une application pour la gestion et l'exécution de tests en ligne.</seg>
@@ -1934,7 +1934,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>место рождения пользователя (город, край/область, страна)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>kota tempat lahir user(kota, propinsi, negara)</seg>
+            <seg>kota tempat lahir user (kota, propinsi, negara)</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>lieu de naissance de l'utilisateur (ville, département, pays)</seg>
@@ -2414,7 +2414,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>изменить базу данных</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>merubah database</seg>
+            <seg>mengubah database</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>modifie la base de données</seg>
@@ -3535,7 +3535,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>имя пользователя (например: Михаил, Иван, ...)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>nama depan user (contoh: Ahmad, Lina)</seg>
+            <seg>nama depan user (contoh: Ahmad, Siti, ...)</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>nom de l'utilisateur (p. ex. Michel, Jean, ...)</seg>
@@ -3615,7 +3615,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>номер соц. страхования пользователя</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>nomor tanda pengenal </seg>
+            <seg>nomor tanda pengenal</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>numéro de sécurité sociale de l'utilisateur</seg>
@@ -4255,7 +4255,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Фамилия пользователя (например: Иванов, Петров, Сидоров, ...)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Nama belakang (contoh: Bardosono, Astuti</seg>
+            <seg>Nama belakang (contoh: Bardosono, Rahmawati</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Nom de famille de l'utilisateur (p. ex. Dupont, Lavoix, ...)</seg>
@@ -12732,7 +12732,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>неверное имя пользователя или пароль</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>user atau èassword salah</seg>
+            <seg>user atau password salah</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>identifiant / mot de passe non valide</seg>
@@ -22578,7 +22578,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>каталог</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>index</seg>
+            <seg>Beranda</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>index</seg>
@@ -39214,7 +39214,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>повторить</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>mengulang</seg>
+            <seg>ulangi</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>repeter</seg>
@@ -40918,7 +40918,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Change Password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Change Password</seg>
+            <seg>Ganti Password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Change Password</seg>
@@ -40998,7 +40998,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Change Email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Change Email</seg>
+            <seg>Ganti Email</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Change Email</seg>
@@ -41078,7 +41078,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can change your access password.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>With this form you can change your access password.</seg>
+            <seg>Melalui form ini anda dapat mengganti akses password anda.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>With this form you can change your access password.</seg>
@@ -41158,7 +41158,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+            <seg>Melalui form ini anda dapat mengganti email. Pesan verifikasi akan dikirim ke email baru Anda. Akun anda akan dinonaktifkan hingga konfirmasi diterima.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
@@ -41238,7 +41238,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>the password has been updated</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>the password has been updated</seg>
+            <seg>password sudah diubah</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>the password has been updated</seg>
@@ -41478,7 +41478,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>current password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>current password</seg>
+            <seg>password saat ini</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>current password</seg>
@@ -41558,7 +41558,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>new password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>new password</seg>
+            <seg>password baru</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>new password</seg>
@@ -41638,7 +41638,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>at least 8 alphanumeric characters</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>at least 8 alphanumeric characters</seg>
+            <seg>setidaknya 8 karakter alphanumeric</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>at least 8 alphanumeric characters</seg>
@@ -41718,7 +41718,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>new email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>new email</seg>
+            <seg>email baru</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>new email</seg>
@@ -41958,7 +41958,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>change email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>change email</seg>
+            <seg>ganti email</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>change email</seg>
@@ -42038,7 +42038,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>change password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>change password</seg>
+            <seg>ganti password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>change password</seg>
@@ -42438,7 +42438,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Test List</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Test List</seg>
+            <seg>Daftar Ujian</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Test List</seg>
@@ -42518,7 +42518,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>action</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>action</seg>
+            <seg>aksi</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>action</seg>
@@ -45531,7 +45531,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>I forgot my password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>I forgot my password</seg>
+            <seg>Saya lupa password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>I forgot my password</seg>
@@ -47367,7 +47367,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>One Time Password code generated using your smartphone application</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>One Time Password code generated using your smartphone application</seg>
+            <seg>Kode One Time Password dibangkitkan menggunakan aplikasi smartphone anda</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>One Time Password : codice generato utlizzando l'applicazione del vostro smartphone</seg>
@@ -47447,7 +47447,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
+            <seg>Anda terlalu sering dan cepat dalam percobaan masuk, mohon tunggu sebanyak detik berikut sebelum mencoba masuk kembali:</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Stai tentando di accedere troppe volte e troppo velocemente, attendi il seguente numero di secondi prima di ritentare:</seg>
@@ -47527,7 +47527,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>test password</seg>
+            <seg>password ujian</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>password per il test</seg>
@@ -47607,7 +47607,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>password, alphanumeric code required to execute this test</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>password, alphanumeric code required to execute this test</seg>
+            <seg>password, kode alphanumeric code dibutuhkan untuk memulai ujian ini</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>password, codice alfanumerico richiesto per eseguire questo test</seg>
@@ -47687,7 +47687,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In order to execute this test you must provide the test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>In order to execute this test you must provide the test password</seg>
+            <seg>Agar dapat mengerjakan ujian ini, anda harus memasukkan password ujian</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Per eseguire questo test occorre inserire la password del test</seg>
@@ -47767,7 +47767,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>wrong test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>wrong test password</seg>
+            <seg>password ujian salah</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>la password del test è sbagliata</seg>
@@ -47847,7 +47847,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Test Selection</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Test Selection</seg>
+            <seg>Pilihan Test</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Selezione Test</seg>
@@ -47927,7 +47927,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>open a test selection page</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>open a test selection page</seg>
+            <seg>buka halaman pilihan test</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>apre la pagina di selezione del test</seg>
@@ -48007,7 +48007,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
+            <seg>Pada form ini anda dapat melihat dan memilih test. Anda dapat mengganti urutan tampilan dengan klik pada nama kolom</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Questa maschera consente di visualizzare e selezionare i test. È possibile ordinare i test secondo vari criteri cliccando sui nomi delle colonne.</seg>

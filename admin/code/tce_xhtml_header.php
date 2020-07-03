@@ -74,6 +74,7 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language
 
 echo '<head>'.K_NEWLINE;
 echo '<title>'.htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charset']).'</title>'.K_NEWLINE;
+echo '<meta name="viewport" content="width=device-width, initial-scale=1">'.K_NEWLINE;
 echo '<meta http-equiv="Content-Type" content="text/html; charset='.$l['a_meta_charset'].'" />'.K_NEWLINE;
 echo '<meta name="language" content="'.$l['a_meta_language'].'" />'.K_NEWLINE;
 echo '<meta name="tcexam_level" content="'.$pagelevel.'" />'.K_NEWLINE;
