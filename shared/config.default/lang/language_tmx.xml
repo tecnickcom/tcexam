@@ -328,7 +328,7 @@ Statistiques des questions et des réponses peuvent non seulement être consult�
             <seg>This is the administration area of &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam&lt;/a&gt;, is a platform and language independent user-friendly software to create, manage and perform online tests.&lt;br /&gt;&lt;br /&gt;From the menu you can access the different sections of the system:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;users&lt;/strong&gt;&lt;br /&gt;This sections contains the forms for &lt;a href="tce_edit_user.php" title="User Management"&gt;insert and manage&lt;/a&gt; users, &lt;a href="tce_select_users.php" title="User Selection"&gt; to select them&lt;/a&gt; and to show the list of the ones currently &lt;a href="tce_show_online_users.php" title="Online Users"&gt;online&lt;/a&gt;.&lt;br /&gt;Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.&lt;br /&gt;It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).&lt;br /&gt;TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;modules&lt;/strong&gt;&lt;br /&gt;This section contains the forms to insert and modify test &lt;a href="tce_edit_module.php" title="Modules Management"&gt;modules&lt;/a&gt;, &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;topics&lt;/a&gt;, the related &lt;a href="tce_edit_question.php" title="Question Management"&gt;questions&lt;/a&gt; and &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;answers&lt;/a&gt;.&lt;br /&gt;You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.&lt;br /&gt;TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt;&lt;/a&gt;, while the former will be automatically evaluated.&lt;br /&gt;All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;This section includes a form to insert, generate and modify the different &lt;a href="tce_edit_test.php" title="Test Management"&gt;tests&lt;/a&gt;, a form to &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;evaluate&lt;/a&gt; the free answers and forms to show or generate PDF versions of the &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;results&lt;/a&gt;, a detailed view of the &lt;a href="tce_show_result_user.php" title="Test Results"&gt;users' tests&lt;/a&gt; and the &lt;a href="tce_show_result_allusers.php" title="Question Statistics"&gt;statistics&lt;/a&gt; of questions and answers used.&lt;br /&gt;TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.&lt;br /&gt;It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.&lt;/li&gt;&lt;/ul&gt;</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Esta es el área de administración de &lt;a href="tce_page_info.php" title="acerca de TCExam"&gt;TCExam&lt;/a&gt;, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.&lt;br /&gt;&lt;br /&gt;Mediante el menu usted puede acceder a las diferentes secciones del sistema:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;usuarios&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para &lt;a href="tce_edit_user.php" title="Administración de Usuarios"&gt;insertar y modificar&lt;/a&gt; usuarios, &lt;a href="tce_select_users.php" title="Selección Usuarios"&gt; para seleccionarlos&lt;/a&gt; y para mostrar la lista de los que están actualmente &lt;a href="tce_show_online_users.php" title="Usuarios en Línea"&gt;en línea&lt;/a&gt;.&lt;br /&gt;Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.&lt;br /&gt;Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).&lt;br /&gt;TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;tópicos&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para insertar y modificar el test &lt;a href="tce_edit_subject.php" title="Administración Tópicos"&gt;tópicos&lt;/a&gt;, las &lt;a href="tce_edit_question.php" title="Administración Preguntas"&gt;preguntas&lt;/a&gt; y &lt;a href="tce_edit_answer.php" title="Administración Respuestas Múltiples"&gt;respuestas&lt;/a&gt; relacionadas.&lt;br /&gt;Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.&lt;br /&gt;TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación &lt;a href="tce_edit_rating.php" title="Evaluación respuesta"&gt;evaluación&lt;/a&gt;, mientras las otras serán evaluadas automaticamente.&lt;br /&gt;Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;Esta sección incluye el formulario para insertar, generar y modificar los diferentes &lt;a href="tce_edit_test.php" title="Administración Test"&gt;tests&lt;/a&gt;, el formulario para &lt;a href="tce_edit_rating.php" title="Evaluación Respuesta"&gt;evaluar&lt;/a&gt; las respuestas libres y los formularios para mostrar o generar versiones PDF de los &lt;a href="tce_show_result_allusers.php" title="Resumen Resultados Test"&gt;resultados&lt;/a&gt;, una vista detallada de los &lt;a href="tce_show_result_user.php" title="Resultados test"&gt;tests de usuarios&lt;/a&gt; y las &lt;a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas"&gt;estadísticas&lt;/a&gt; de preguntas y respuestas utilizadas.&lt;br /&gt;TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.&lt;br /&gt;Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.&lt;/li&gt;&lt;/ul&gt;</seg>
+            <seg>Esta es el área de administración de &lt;a href="tce_page_info.php" title="acerca de TCExam"&gt;TCExam&lt;/a&gt;, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.&lt;br /&gt;&lt;br /&gt;Mediante el menu usted puede acceder a las diferentes secciones del sistema:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;usuarios&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para &lt;a href="tce_edit_user.php" title="Administración de Usuarios"&gt;insertar y modificar&lt;/a&gt; usuarios, &lt;a href="tce_select_users.php" title="Selección Usuarios"&gt; para seleccionarlos&lt;/a&gt; y para mostrar la lista de los que están actualmente &lt;a href="tce_show_online_users.php" title="Usuarios en Línea"&gt;en línea&lt;/a&gt;.&lt;br /&gt;Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.&lt;br /&gt;Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).&lt;br /&gt;TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;tópicos&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para insertar y modificar el test &lt;a href="tce_edit_subject.php" title="Administración Tópicos"&gt;tópicos&lt;/a&gt;, the related &lt;a href="tce_edit_question.php" title="Administración Preguntas"&gt;preguntas&lt;/a&gt; y &lt;a href="tce_edit_answer.php" title="Administración Respuestas Múltiples"&gt;respuestas&lt;/a&gt;.&lt;br /&gt;Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.&lt;br /&gt;TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación &lt;a href="tce_edit_rating.php" title="Evaluación respuesta"&gt;evaluación&lt;/a&gt;, mientras las otras serán evaluadas automaticamente.&lt;br /&gt;Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;Esta sección incluye el formulario para insertar, generar y modificar los diferentes &lt;a href="tce_edit_test.php" title="Administración Test"&gt;tests&lt;/a&gt;, el formulario para &lt;a href="tce_edit_rating.php" title="Evaluación Respuesta"&gt;evaluar&lt;/a&gt; las respuestas libres y los formularios para mostrar o generar versiones PDF de los &lt;a href="tce_show_result_allusers.php" title="Resumen Resultados Test"&gt;resultados&lt;/a&gt;, una vista detallada de los &lt;a href="tce_show_result_user.php" title="Resultados test"&gt;tests de usuarios&lt;/a&gt; y las &lt;a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas"&gt;estadísticas&lt;/a&gt; de preguntas y respuestas utilizadas.&lt;br /&gt;TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.&lt;br /&gt;Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.&lt;/li&gt;&lt;/ul&gt;</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>这是 &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam &lt;/a&gt;的管理区域。TCExam 是一个多语言、易用的，用于创建、管理在线测验的软件平台。&lt;br /&gt;&lt;br /&gt;你可以通过菜单使用系统各种功能：&lt;ul&gt;&lt;li&gt;&lt;strong&gt;用户&lt;/strong&gt;&lt;br /&gt;本模块包含 &lt;a href="tce_edit_user.php" title="用户管理"&gt;增加和管理&lt;/a&gt; 用户, &lt;a href="tce_select_users.php" title="用户选择n"&gt; 选择他们&lt;/a&gt; 和显示 &lt;a href="tce_show_online_users.php" title="Online Users"&gt;当前在线用户&lt;/a&gt;。&lt;br /&gt;允许注册用户，获取访问系统公共区域权限，进行测试。&lt;br /&gt;可以指派不同权限、不同系统功能给用户。&lt;br /&gt;可以通过IP来限制非法访问。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;模块&lt;/strong&gt;&lt;br /&gt;本功能包括增加、修改测验 &lt;a href="tce_edit_module.php" title="Modules Management"&gt;模块&lt;/a&gt;, &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;主题&lt;/a&gt;，相关的 &lt;a href="tce_edit_question.php" title="Question Management"&gt;题目&lt;/a&gt; 和 &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;答案&lt;/a&gt;。&lt;br /&gt;你可以选择不限数量的主题，以便用于指定的测试。每个主题可以定于不限数量的题目和答案。系统可以随机选择可利用的题目和答案。&lt;br /&gt;支持多选题和自由作答题目。后者将通过指定的 &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt; 评价表单 &lt;/a&gt;来进行评价。&lt;br /&gt;所有的测试、主题、问题、答案的说明都支持特殊的专有的代码(tcecode)，允许使用图形和字符格式。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;测试&lt;/strong&gt;&lt;br /&gt;本功能包括增加、生成和修改 &lt;a href="tce_edit_test.php" title="Test Management"&gt;测验&lt;/a&gt;,  &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;评估&lt;/a&gt; 自由作答并把结果可以生成一个包含 &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;测验结果&lt;/a&gt;，&lt;a href="tce_show_result_user.php" title="Risultati test"&gt;用户测验&lt;/a&gt; 以及 &lt;a href="tce_show_result_allusers.php" title="Question Statistics"&gt;统计&lt;/a&gt; 的PDF文档。&lt;br /&gt;支持随机选择题目和答案，不同用户的同一次测验的题目是不一样的。&lt;br /&gt;也支持生成多次测验的PDF文档，以便用于传统的测验。&lt;/li&gt;&lt;/ul&gt;</seg>
@@ -417,7 +417,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>нажмите на кнопку, чтобы выйти из системы</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Click pada tombol untuk keluar dari system</seg>
+            <seg>Klik pada tombol untuk keluar dari sistem</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>cliquer sur le bouton pour quitter le système</seg>
@@ -497,7 +497,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>TCExam это программное обеспечение для проведения интерактивных тестов, а также управления ими.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>TCExam adalah software untuk mengelola dan menjalankan test online</seg>
+            <seg>TCExam adalah software untuk mengelola dan menjalankan ujian daring</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>TCExam est une application pour la gestion et l'exécution de tests en ligne.</seg>
@@ -1934,7 +1934,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>место рождения пользователя (город, край/область, страна)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>kota tempat lahir user(kota, propinsi, negara)</seg>
+            <seg>kota tempat lahir user (kota, propinsi, negara)</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>lieu de naissance de l'utilisateur (ville, département, pays)</seg>
@@ -2414,7 +2414,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>изменить базу данных</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>merubah database</seg>
+            <seg>mengubah database</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>modifie la base de données</seg>
@@ -3535,7 +3535,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>имя пользователя (например: Михаил, Иван, ...)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>nama depan user (contoh: Ahmad, Lina)</seg>
+            <seg>nama depan user (contoh: Ahmad, Siti, ...)</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>nom de l'utilisateur (p. ex. Michel, Jean, ...)</seg>
@@ -3615,7 +3615,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>номер соц. страхования пользователя</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>nomor tanda pengenal </seg>
+            <seg>nomor tanda pengenal</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>numéro de sécurité sociale de l'utilisateur</seg>
@@ -4255,7 +4255,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Фамилия пользователя (например: Иванов, Петров, Сидоров, ...)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Nama belakang (contoh: Bardosono, Astuti</seg>
+            <seg>Nama belakang (contoh: Bardosono, Rahmawati</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Nom de famille de l'utilisateur (p. ex. Dupont, Lavoix, ...)</seg>
@@ -12732,7 +12732,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>неверное имя пользователя или пароль</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>user atau èassword salah</seg>
+            <seg>user atau password salah</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>identifiant / mot de passe non valide</seg>
@@ -22578,7 +22578,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>каталог</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>index</seg>
+            <seg>Beranda</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>index</seg>
@@ -38905,7 +38905,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>İzah</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>explicación</seg>
+            <seg>explicaciòn</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>解释</seg>
@@ -38985,7 +38985,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>çap versiyası üçün izah</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>explicación que será impresa en los resultados</seg>
+            <seg>explicaciòn que serà imprimida en los resultados</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>在结果中输出的注释</seg>
@@ -39214,7 +39214,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>повторить</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>mengulang</seg>
+            <seg>ulangi</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>repeter</seg>
@@ -40918,7 +40918,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Change Password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Change Password</seg>
+            <seg>Ganti Password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Change Password</seg>
@@ -40998,7 +40998,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Change Email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Change Email</seg>
+            <seg>Ganti Email</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Change Email</seg>
@@ -41078,7 +41078,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can change your access password.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>With this form you can change your access password.</seg>
+            <seg>Melalui form ini anda dapat mengganti akses password anda.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>With this form you can change your access password.</seg>
@@ -41158,7 +41158,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
+            <seg>Melalui form ini anda dapat mengganti email. Pesan verifikasi akan dikirim ke email baru Anda. Akun anda akan dinonaktifkan hingga konfirmasi diterima.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>With this form you can change your email. A verification message will be sent to your new email address. Your account will be disabled until confirmation receipt.</seg>
@@ -41238,7 +41238,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>the password has been updated</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>the password has been updated</seg>
+            <seg>password sudah diubah</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>the password has been updated</seg>
@@ -41478,7 +41478,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>current password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>current password</seg>
+            <seg>password saat ini</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>current password</seg>
@@ -41558,7 +41558,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>new password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>new password</seg>
+            <seg>password baru</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>new password</seg>
@@ -41638,7 +41638,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>at least 8 alphanumeric characters</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>at least 8 alphanumeric characters</seg>
+            <seg>setidaknya 8 karakter alphanumeric</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>at least 8 alphanumeric characters</seg>
@@ -41718,7 +41718,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>new email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>new email</seg>
+            <seg>email baru</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>new email</seg>
@@ -41958,7 +41958,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>change email</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>change email</seg>
+            <seg>ganti email</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>change email</seg>
@@ -42038,7 +42038,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>change password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>change password</seg>
+            <seg>ganti password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>change password</seg>
@@ -42438,7 +42438,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Test List</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Test List</seg>
+            <seg>Daftar Ujian</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Test List</seg>
@@ -42518,7 +42518,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>action</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>action</seg>
+            <seg>aksi</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>action</seg>
@@ -45531,7 +45531,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>I forgot my password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>I forgot my password</seg>
+            <seg>Saya lupa password</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>I forgot my password</seg>
@@ -47367,7 +47367,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>One Time Password code generated using your smartphone application</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>One Time Password code generated using your smartphone application</seg>
+            <seg>Kode One Time Password dibangkitkan menggunakan aplikasi smartphone anda</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>One Time Password : codice generato utlizzando l'applicazione del vostro smartphone</seg>
@@ -47447,7 +47447,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
+            <seg>Anda terlalu sering dan cepat dalam percobaan masuk, mohon tunggu sebanyak detik berikut sebelum mencoba masuk kembali:</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Stai tentando di accedere troppe volte e troppo velocemente, attendi il seguente numero di secondi prima di ritentare:</seg>
@@ -47527,7 +47527,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>test password</seg>
+            <seg>password ujian</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>password per il test</seg>
@@ -47607,7 +47607,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>password, alphanumeric code required to execute this test</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>password, alphanumeric code required to execute this test</seg>
+            <seg>password, kode alphanumeric code dibutuhkan untuk memulai ujian ini</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>password, codice alfanumerico richiesto per eseguire questo test</seg>
@@ -47687,7 +47687,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In order to execute this test you must provide the test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>In order to execute this test you must provide the test password</seg>
+            <seg>Agar dapat mengerjakan ujian ini, anda harus memasukkan password ujian</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Per eseguire questo test occorre inserire la password del test</seg>
@@ -47767,7 +47767,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>wrong test password</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>wrong test password</seg>
+            <seg>password ujian salah</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>la password del test è sbagliata</seg>
@@ -47847,7 +47847,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Test Selection</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>Test Selection</seg>
+            <seg>Pilihan Test</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Selezione Test</seg>
@@ -47927,7 +47927,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>open a test selection page</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>open a test selection page</seg>
+            <seg>buka halaman pilihan test</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>apre la pagina di selezione del test</seg>
@@ -48007,7 +48007,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
+            <seg>Pada form ini anda dapat melihat dan memilih test. Anda dapat mengganti urutan tampilan dengan klik pada nama kolom</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>Questa maschera consente di visualizzare e selezionare i test. È possibile ordinare i test secondo vari criteri cliccando sui nomi delle colonne.</seg>
