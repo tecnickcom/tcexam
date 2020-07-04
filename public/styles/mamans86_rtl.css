@@ -1,0 +1,764 @@
+/*
+//============================================================+
+// File name   : mamans86.css
+// Begin       : 2020-07-04
+// Last Update : 2020-07-04
+//
+// Description : MamanS86 CSS for public area.
+//
+// Author: Maman Sulaeman
+//    
+//============================================================+
+*/
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+
+/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /*
+   * Printing Tables:
+   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+/******************** Begin Styling TCExam ***********************/
+
+* {font-family:Helvetica,Roboto,DroidSans,Arial,sans-serif;font-size:0.97em}
+body{background:#f5f5f5;padding:0 0 20px 0}
+div.header{background:#003399}
+div.header div.left{background-color: #003399;background-image: url(../../images/logo_tcexam_118x25.png);background-position: bottom;background-repeat: no-repeat;border: 0px none;height: 50px}
+label.timerlabel {display: none;width: auto}
+input[type=checkbox]#show_graph,label[for=show_graph]{display:inline-block;width:auto}
+input#timer {background: unset;border: none;color: #fff;text-align:center}
+div.container{padding:1em;overflow:hidden}
+.hidden,#menusection,#topofdoc,div.minibutton a.white{display:none}
+a#timersection:before{content: "☰";position: absolute;top: 1.1em;left: 0.7em;color: #fc0;font-weight: bold;font-size: 1.5em;cursor:pointer;z-index:999}
+div#scrollayer{text-transform:capitalize;color:#fff;background: #000000e0; height: 100%; width: 17em; margin: 0 !important;position:fixed;top:0;margin:0;padding:0;display:none}
+div#scrollayer ul {list-style-type:none;margin:0;padding:3em 0 0 0}
+div#scrollayer ul li {color:#fff;margin:1em}
+div#scrollayer ul li span.active{background:#2196f3;padding:0.5em 0.75em;display:block;font-weight:bold}
+div#scrollayer ul li a{display: block;color: #fff;border-bottom: 1px solid #222;padding-bottom: 1em}
+div#scrollayer ul li a:hover{font-weight:bold}
+div#scrollayer ul li ul {padding:0}
+
+span#menu_close{text-align: right;padding: 0;font-weight: bold;font-size: x-large;cursor: pointer;color: #FFEB3B;line-height: 1;margin-right: 0.5em;margin-top: 0.5em;display: block}
+
+form#form_resultallusers{overflow:hidden}
+form#form_resultallusers div.row {border:1px solid #CFD8DC; border-radius:0.25em}
+form#form_resultallusers div.row:nth-child(12),form#form_resultallusers div.row:nth-child(13),form#form_resultallusers div.row:nth-child(15),form#form_resultallusers div.row:nth-child(17) {border:none}
+form#form_resultallusers div.rowl{overflow:auto}
+.gsoformbox,.tceformbox,.popupcontainer,form#testform,table.testlist,table.userselect{margin:1em 0;border:1px solid #eee;padding:1.3em;background:#fff;border:1px solid #CFD8DC;box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.15)}
+div.row{margin:0.5em 0}
+div.pagehelp{background:#BBDEFB;border:1px solid #90CAF9;padding:0.5em;margin-top:1em}
+/*div.pagehelp:before{content:"i";background:#90caf9;padding:0.3em 0.7em;font-family:serif;font-style:italic;margin:0 0.5em 0 0;font-weight:bold;font-size:large;color:#fff}*/
+h1{color:#fff;text-align:center;padding:0.3em 0;margin:0;background:#003399;font-size: 1.1em}
+a{text-decoration:none;color:#2196f3}
+label{text-transform:capitalize}
+label,input{display:block;width:100%;border:none}
+input[type=text],input[type=password]{padding:1em 1em; border:1px solid #CFD8DC;box-sizing: border-box;}
+input#install,input[type=submit],input#wclose{background:#22A222;border:none;padding:1em;color:#fff;text-transform:uppercase;font-weight:bold;margin-top:1em;cursor:pointer}
+input[type=submit]#prevquestion{background:#607D8B}
+input#install,input[type=submit]#nextquestion{background:#2196f3}
+input[type=submit]#terminatetest,input#wclose{background:#ff5722}
+ol.qlist li {margin:0.5em 0;border:1px solid #F5F5F5;padding: 0.3em}
+ol.qlist li input[type=submit],ol.qlist li input[type=button][disabled=disabled]{border-radius:0.25em;background:#78909C;display:inline-block;width:auto;padding:0.5em 0.8em;margin:0}
+ol.qlist li acronym{text-decoration:none;padding:0.475em 0.675em}
+ol.qlist li acronym.onbox{background:#78909C;color:#fff;padding:0.50em 0.775em}
+ol.qlist li acronym.offbox{background:unset;border:1px solid #78909C;padding:0.40em 0.775em}
+ol.qlist li input[type=button][disabled=disabled]{background:#22a222;color:#fff;font-weight:bold}
+ol.qlist li.selected{background:#ddd;border:1px solid #ccc}
+div.minibutton{text-align:center}
+div.minibutton span {color:#ECEFF1 !important}
+div.minibutton span.langselector{background:#fff;display:block;padding:0 0.5em;text-align:center;border:1px solid #CFD8DC;color:#fff !important;line-height:2}
+.langselector a{display:inline-block;background:unset;margin:0;padding:0 0.5em;border:none;font-size:x-small;color:#000 !important}
+.langselector a:hover{background:#22A222;color:#fff !important}
+.langselector span.selected{background:#22A222;padding:0.3em 0.5em;color:#fff;font-weight:bold;font-size:x-small;color:#fff !important}
+div.minibutton span.copyright {color:#333 !important;display:block;padding:1.1em 0 0 0;font-size:0.80em}
+div.minibutton span.copyright a {display:inline}
+div.minibutton a span {color:#fff !important;background:#2196F3;padding:0.3em 0.5em;font-size:0.75em}
+.userbar{background:#003399;padding:0.5em 1em;color:#fff;text-align:right}
+.userbar span{color:#FFEB3B}
+.userbar a{margin-left:0.5em;background:#BBDEFB;padding:0.2em 0.5em;color:#003399;font-weight:bold;text-transform:capitalize}
+.message, .error, .warning {background: #FFC107;text-align: center;color: #fff;padding: 2.5em 1em;position: fixed;width: 22em;z-index: 999;top: 0.5em;right: 0.5em;box-sizing: border-box;margin: auto;border-radius: 0.17em;box-shadow: -4px 2px 10px 4px rgba(0,0,0,0.15);overflow:auto}
+.error{background:#FF5722}.message{background:#2196F3}
+div.tcecontentbox{overflow:auto}
+a.buttongreen,a.buttonblue,textarea,.gsoformbox,.tceformbox,input,.userbar a,.langselector span.selected,div.minibutton a span,.langselector a:hover,.tcecontentbox,.popupcontainer,.xmlbutton,table.testlist,table.userselect,ol.qlist li acronym,ol.qlist li,div.rowl ol.answer li span,div.popupcontainer div.tceformbox div.row,span.infolink a,div#scrollayer ul li span.active,div.test_result div.row{border-radius:0.25em}
+a.buttongreen,a.buttonblue,.xmlbutton{display:block;text-align:center;text-transform:uppercase;padding:0.5em;background:#607D8B;color:#fff;margin:0.5em 0}
+a.buttongreen,a.buttonblue{display:inline-block}
+form#form_test_terminate div input#forceterminate,.popupcontainer .row a:nth-child(1){background:#22a222}
+form#form_test_terminate div input#cancel,.popupcontainer .row a:nth-child(2){background:#FF5722}
+div.popupcontainer div.tceformbox div.row {margin:1em 0;border:1px solid #CFD8DC}
+div.popupcontainer div.tceformbox div.row span.label,div.popupcontainer div.tceformbox div.row span.value {text-transform: uppercase;display: block;background: #607D8B;color: #ffffff;margin: 0.35em 0.35em;padding: 0.5em 0.75em;font-weight: bold;border-radius: 0.25em}
+div.popupcontainer div.tceformbox div.row span.value{background:unset;color:unset;text-transform:unset;font-weight:unset}
+div.popupcontainer div.tcecontentbox{border-left: 1px solid #CFD8DC;border-bottom: 1px solid #CFD8DC;border-right: 1px solid #CFD8DC;border-top: none;border-radius: 0px 0px 3px 3px;padding: 0.5em 1em}
+div.popupcontainer h1{background: #2196f3;color: #fff;border-radius: 0.15em 0.15em 0 0}
+a.buttongreen{background:#22A222}
+a.buttonblue{background:#2196f3}
+textarea{width:100%;background:#E3F2FD;border:1px solid #2196f3}
+textarea#answertext{box-sizing:border-box}
+table.testlist,table.userselect{width: 100%;text-align: center}
+table.testlist, table.userselect {border-collapse:collapse}
+table.testlist th, table.userselect th {text-transform:uppercase}
+table.testlist tr td{width: 7em;padding: 0.75em}
+table.testlist tr td, table.userselect tr td{border-bottom:1px solid #ddd;height:3.75em}
+table.testlist tr td a, table.userselect tr td a{display:inline-block}
+table.testlist tbody tr th, table.userselect tbody tr th{background:#333;color:#fff;padding:0.75em 0}
+table.testlist tbody tr:nth-child(odd), table.userselect tbody tr:nth-child(odd){background:#fafafa}
+table.userselect tbody tr td input[type=checkbox]{display:none}
+
+table.userselect tbody tr:nth-last-child(1),table.userselect tbody tr:nth-last-child(2),table.userselect tbody tr:nth-last-child(3),table.userselect tbody tr:nth-last-child(4),table.userselect tbody tr:nth-last-child(5),table.userselect tbody tr:nth-last-child(6){border-bottom:1px solid #555}
+
+table.userselect tbody tr:nth-last-child(1) th,table.userselect tbody tr:nth-last-child(2) th,table.userselect tbody tr:nth-last-child(3) th,table.userselect tbody tr:nth-last-child(4) th,table.userselect tbody tr:nth-last-child(5) th,table.userselect tbody tr:nth-last-child(6) th{padding-right:1em}
+
+div.rowl ol.answer {padding-left:0}
+div.rowl ol.answer li span label,div.rowl ol.answer li span input,div.rowl ol.answer li input,div.rowl ol.answer li label {display:inline-block;width:auto}
+div.rowl ol.answer li span{padding:0.5em}
+div.rowl ol.answer li{margin:1em 0;list-style-type:none}
+span.infolink{display:block}
+span.infolink a{background:#2196f3;color:#fff;padding:0.45em 1em;font-weight:bold;border-radius: 100px}
+
+div.container div.tceformbox div.row span.label,div.container div.tceformbox div.row span.formw {display:block;padding:0.5em 1em;border-radius:0.25em}
+div.container div.tceformbox div.row span.label {background:#607d8b;color:#fff;font-weight:bold}
+div.container div.tceformbox div.row span.formw {margin-bottom:1em}
+
+div.container form#form_login div.row span.label {display:unset !important;padding:0 !important; border-radius:unset !important;background:unset !important;color:unset !important}
+div.container form#form_login div.row span.formw {padding:0 !important}
+
+form#form_resultallusers div.row span.label {color:unset;background:unset}
+
+div.tceformbox div.rowl ol.question li ol.answer {padding-left:1em}
+div.tceformbox div.rowl ol.question li ol.answer li{list-style-type:upper-alpha !important}
+div.tceformbox div.rowl ol.question li ol.answer li acronym{padding:0.2em;width:1.3em;display:inline-block;text-align:center;text-decoration:none;color:#fff;border-radius:0.25em;font-weight:bold}
+div.tceformbox div.rowl ol.question li ol.answer li acronym.offbox{background:#ddd}
+div.tceformbox div.rowl ol.question li ol.answer li acronym.okbox{background:#4CAF50}
+div.tceformbox div.rowl ol.question li ol.answer li acronym.nobox{background:#FF5722}
+div.tceformbox div.rowl ol.question li ol.answer li acronym.onbox{background:#2196F3}
+
+form#form_usereditor div.row span.label {background:unset;color:unset;padding-top:0;padding-bottom:0}
+input#user_agreement {display:inline;width:auto}
+label[for=user_agreement]{display:inline;width:auto}
+form#form_usereditor div.row span.label acronym.requiredonbox {color:#FF5722;text-decoration:none}
+form#form_usereditor div.row span.label label {display:inline}
+
+form#form_test_login div.row span.label{color:unset;background:unset;text-align:center}
+@media (min-width: 768px) {
+	form#form_resultallusers div.row {border:none}
+	form#form_test_login div.row input#login {display:inline-block !important}
+	form#form_test_login div.row span.label {background:unset;color:unset;padding:0}
+	div.container div.tceformbox div.row span.label,div.container div.tceformbox div.row span.formw {display:inline-block}	
+	div.container div.tceformbox div.row span.label{width:8em}
+	form#form_resultallusers div.row span.label {color:unset;background:unset;text-align:right}
+	form#form_usereditor div.row span.label{color:unset;background:unset;text-align:right;vertical-align:top}
+	input[type=submit]#add{display: block !important;text-align: center;margin: 0 auto}
+	form#form_TCExam_installer div.row span.label, form#form_TCExam_installer div.row span.formw, div.test_result div.row span.label, div.test_result div.row span.formw{display:inline-block !important;vertical-align:top}
+	form#form_TCExam_installer div.row span.label,div.test_result div.row span.label{width:7em}
+	form#form_TCExam_installer div.row span.label{width:15em}
+	form#form_TCExam_installer div.row span.formw,div.test_result div.row span.formw{width:auto}
+	form#form_resultallusers div.row span.label{width:10em}
+	form#form_TCExam_installer div.row span.label, form#form_TCExam_installer div.row span.formw,form#form_resultallusers div.row span.label,form#form_resultallusers div.row span.formw {display:inline-block;vertical-align:top}
+	form#form_TCExam_installer div.row span.formw{padding:0}
+	form#form_TCExam_installer div.row span.formw input[type=checkbox]{width:unset;display:inline-block}
+	form#form_TCExam_installer div.row span.label{text-align:right} 
+	input#install,a.buttongreen, a.buttonblue, .xmlbutton, input[type=submit], input#wclose{display:inline-block !important; width:auto; margin-right:1em}
+	.login_box{width:25em;margin:auto}
+	#userreg_link{display:block;text-align:center;margin-bottom:1em}
+	input#login{display:block !important; width:10em; margin:2em auto 0 auto}
+	form#form_usereditor div.row span.label {display:inline-block;width:12em}
+	form#form_usereditor div.row span.label label {display:inline}
+	div.popupcontainer div.tceformbox div.row span.label {display:inline-block;width:16em}
+	form#form_usereditor div.row span.formw, div.popupcontainer div.tceformbox div.row span.value {display:inline-block;width:auto}
+	
+	form#form_usereditor div.row span.label acronym.requiredonbox{color:#FF5722;text-decoration:none;font-size:large}
+	input#user_agreement {display: inline;width: auto}
+	label[for=user_agreement] {display: inline}
+	
+	form[action="/tceori/public/code/tce_password_reset.php"]#form_usereditor div.row span.label{width:auto;text-align:left;padding:0;vertical-align:middle}
+}
+
+@media (min-width: 992px) {
+	/***/
+}
+
+@media (min-width: 1200px) {
+	/***/
+}
+
+/******************** End Styling TCExam ***********************/
