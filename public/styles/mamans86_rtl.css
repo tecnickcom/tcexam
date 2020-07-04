@@ -720,13 +720,15 @@ form#form_usereditor div.row span.label label {display:inline}
 
 form#form_test_login div.row span.label{color:unset;background:unset;text-align:center}
 @media (min-width: 768px) {
+	form#form_login div.row span.label {text-align:left}
+	form#form_login div.row span.formw {display:block}
 	form#form_resultallusers div.row {border:none}
 	form#form_test_login div.row input#login {display:inline-block !important}
 	form#form_test_login div.row span.label {background:unset;color:unset;padding:0}
 	div.container div.tceformbox div.row span.label,div.container div.tceformbox div.row span.formw {display:inline-block}	
 	div.container div.tceformbox div.row span.label{width:8em}
 	form#form_resultallusers div.row span.label {color:unset;background:unset;text-align:right}
-	form#form_usereditor div.row span.label{color:unset;background:unset;text-align:right;vertical-align:top}
+	form#form_usereditor div.row span.label{color:unset;background:unset;text-align:left;vertical-align:top}
 	input[type=submit]#add{display: block !important;text-align: center;margin: 0 auto}
 	form#form_TCExam_installer div.row span.label, form#form_TCExam_installer div.row span.formw, div.test_result div.row span.label, div.test_result div.row span.formw{display:inline-block !important;vertical-align:top}
 	form#form_TCExam_installer div.row span.label,div.test_result div.row span.label{width:7em}
@@ -749,8 +751,6 @@ form#form_test_login div.row span.label{color:unset;background:unset;text-align:
 	form#form_usereditor div.row span.label acronym.requiredonbox{color:#FF5722;text-decoration:none;font-size:large}
 	input#user_agreement {display: inline;width: auto}
 	label[for=user_agreement] {display: inline}
-	
-	form[action="/tceori/public/code/tce_password_reset.php"]#form_usereditor div.row span.label{width:auto;text-align:left;padding:0;vertical-align:middle}
 }
 
 @media (min-width: 992px) {
