@@ -73,7 +73,7 @@ define('K_SITE_ICON', '../../favicon.ico');
 * Theme to use on public area
 */
 //you can change 'default' to any available theme, example: 'mamans86'
-define('K_PUBLIC_THEME', 'mamans86');
+define('K_PUBLIC_THEME', 'default');
 
 /**
  * Path to public CSS stylesheet.
