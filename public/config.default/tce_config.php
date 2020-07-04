@@ -70,14 +70,20 @@ define('K_SITE_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
 define('K_SITE_ICON', '../../favicon.ico');
 
 /**
+* Theme to use on public area
+*/
+//you can change 'default' to any available theme, example: 'mamans86'
+define('K_PUBLIC_THEME', 'mamans86');
+
+/**
  * Path to public CSS stylesheet.
  */
-define('K_SITE_STYLE', K_PATH_STYLE_SHEETS.'default.css');
+define('K_SITE_STYLE', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'.css');
 
 /**
  * Full path to CSS stylesheet for RTL languages.
  */
-define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
+define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'_rtl.css');
 
 // --- OPTIONS / COSTANTS ------------------------------------------------------
 
