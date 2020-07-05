@@ -162,7 +162,7 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
             echo '<strong style="margin:5px">'.$l['m_with_selected'].'</strong>'.K_NEWLINE;
             // delete user
             echo '<div>';
-            F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+            F_submit_button_confirm('delete', $l['w_delete'], $l['h_delete'], 'onclick="return confirm(\''.$l['m_delete_confirm'].'\')"');
             F_submit_button('lock', $l['w_lock'], $l['w_lock']);
             F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
             echo '</div>'.K_NEWLINE;
