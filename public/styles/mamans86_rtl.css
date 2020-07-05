@@ -678,7 +678,7 @@ table.testlist,table.userselect{width: 100%;text-align: center}
 table.testlist, table.userselect {border-collapse:collapse}
 table.testlist th, table.userselect th {text-transform:uppercase}
 table.testlist tr td{width: 7em;padding: 0.75em}
-table.testlist tr td, table.userselect tr td{border-bottom:1px solid #ddd;height:3.75em}
+table.testlist tr td, table.userselect tr td{border:1px solid #ddd;height:3.75em}
 table.testlist tr td a, table.userselect tr td a{display:inline-block}
 table.testlist tbody tr th, table.userselect tbody tr th{background:#333;color:#fff;padding:0.75em 0}
 table.testlist tbody tr:nth-child(odd), table.userselect tbody tr:nth-child(odd){background:#fafafa}
