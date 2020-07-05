@@ -213,7 +213,10 @@ function F_submit_button($name, $value, $title = "")
 {
     echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" />';
 }
-
+function F_submit_button_confirm($name, $value, $title = "", $confirm)
+{
+    echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" '.$confirm.'/>';
+}
 
 /**
  * Returns XHTML code string to display the CSRF token field.
