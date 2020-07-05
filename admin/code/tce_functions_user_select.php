@@ -204,7 +204,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
             if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS) {
                 // delete user
                 echo '<li>';
-                F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+                F_submit_button_confirm('delete', $l['w_delete'], $l['h_delete'], 'onclick="return confirm(\''.$l['m_delete_confirm'].'\')"');
                 echo '</li>'.K_NEWLINE;
             }
             if ($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS) {
@@ -213,7 +213,7 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
                 echo F_user_group_select('new_group_id');
                 F_submit_button('addgroup', $l['w_add'], $l['w_add']);
                 if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS) {
-                    F_submit_button('delgroup', $l['w_delete'], $l['h_delete']);
+                    F_submit_button_confirm('delgroup', $l['w_delete'], $l['h_delete'], 'onclick="return confirm(\''.$l['m_delete_confirm'].'\')"');
                 }
                 echo '</li>'.K_NEWLINE;
                 if ($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS) {
