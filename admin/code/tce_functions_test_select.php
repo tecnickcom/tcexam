@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_select.php
 // Begin       : 2012-12-02
-// Last Update : 2014-03-04
+// Last Update : 2020-07-16
 //
 // Description : Functions to display and select tests.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
