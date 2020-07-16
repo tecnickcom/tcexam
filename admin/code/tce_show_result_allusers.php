@@ -380,7 +380,7 @@ if (isset($_REQUEST['sel'])) {
         echo '<label for="checkall0">'.$l['w_uncheck_all'].'</label>';
         echo '</span>'.K_NEWLINE;
         echo '<br /><strong style="margin:5px">'.$l['m_with_selected'].'</strong><br />'.K_NEWLINE;
-        F_submit_button('delete', $l['w_delete'], $l['h_delete']);
+        F_submit_button('delete', $l['w_delete'], $l['h_delete'], 'onclick="return confirm(\''.$l['m_delete_confirm'].'\')"');
         F_submit_button('lock', $l['w_lock'], $l['w_lock']);
         F_submit_button('unlock', $l['w_unlock'], $l['w_unlock']);
         F_submit_button('extendtime', '+'.K_EXTEND_TIME_MINUTES.' min', $l['h_add_five_minutes']);
