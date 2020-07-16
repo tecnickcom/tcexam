@@ -217,8 +217,7 @@ echo '<label for="test_id">'.$l['w_test'].'</label>'.K_NEWLINE;
 echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
-//echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
-echo '<select name="test_id" id="test_id" size="0" title="'.$l['h_test'].'">'.K_NEWLINE;
+echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
     echo '<option value="0"';
