@@ -206,12 +206,14 @@ function F_close_button($onclick = '')
  * Returns XHTML code string to display Form Submit Button.
  * @param $name (string) button name
  * @param $value (string) label for button
- * @param $title (string) button title, default=""
+ * @param $title (string) button title, default=''
+ * @param $extra (string) optional extra fields to add to the input tag, default=''
+ * 
  * @return XHTML code string
  */
-function F_submit_button($name, $value, $title = "")
+function F_submit_button($name, $value, $title = '', $extra = '')
 {
-    echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" />';
+    echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" '.$extra.'/>';
 }
 
 

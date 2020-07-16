@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_page_footer.php
 // Begin       : 2001-09-02
-// Last Update : 2009-09-30
+// Last Update : 2020-07-16
 //
 // Description : Outputs default XHTML page footer.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -34,6 +34,7 @@ echo K_NEWLINE;
 echo '</div>'.K_NEWLINE; //close div.body
 
 include('../../shared/code/tce_page_userbar.php'); // display user bar
+include('../config/theme/'.K_PUBLIC_THEME.'.php'); // load extra script for the selected theme
 
 echo '<!-- '.base64_decode(K_KEY_SECURITY).' -->'.K_NEWLINE;
 echo '</body>'.K_NEWLINE;

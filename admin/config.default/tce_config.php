@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
-// Last Update : 2013-07-05
+// Last Update : 2020-07-16
 //
 // Description : Configuration file for administration section.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -92,19 +92,19 @@ define('K_TCEXAM_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
 define('K_TCEXAM_ICON', '../../favicon.ico');
 
 /**
- * Full path to CSS stylesheet.
+ * Theme for the admin area
  */
-define('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.'default.css');
+define('K_ADMIN_THEME', 'default');
+
+/**
+ * Path to public CSS stylesheet for LTR languages.
+ */
+define('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.K_ADMIN_THEME.'.css');
 
 /**
  * Full path to CSS stylesheet for RTL languages.
  */
-define('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
-
-/**
- * Full path to CSS stylesheet for help file.
- */
-define('K_TCEXAM_HELP_STYLE', K_PATH_STYLE_SHEETS.'help.css');
+define('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.K_ADMIN_THEME.'_rtl.css');
 
 /**
  * If true display admin clock in UTC (GMT).
