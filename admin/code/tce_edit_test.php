@@ -192,6 +192,10 @@ $aordmode = array($l['w_position'], $l['w_alphabetic'], $l['w_id']);
 $test_fieldset_name = '';
 
 if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
+	if (isset($_REQUEST['link_action']) and ($_REQUEST['link_action'] == 'deletesubject')) {
+		$menu_mode = 'deletesubject';
+	}
+	
     $test_id = intval($_REQUEST['test_id']);
     // check user's authorization
     if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
@@ -1274,7 +1278,7 @@ if (isset($test_id) and ($test_id > 0)) {
             $subjlist .= '</acronym> ';
             $subjlist .= '<acronym class="offbox" title="'.$l['h_question_difficulty'].'">'.$m['tsubset_difficulty'].'</acronym> ';
             $subjlist .= '<acronym class="offbox" title="'.$l['h_num_answers'].'">'.$m['tsubset_answers'].'</acronym> ';
-            $subjlist .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?menu_mode=deletesubject&amp;test_id='.$test_id.'&amp;tsubset_id='.$m['tsubset_id'].'" title="'.$l['h_delete'].'" class="deletebutton">'.$l['w_delete'].'</a>';
+            $subjlist .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?link_action=deletesubject&amp;test_id='.$test_id.'&amp;tsubset_id='.$m['tsubset_id'].'" title="'.$l['h_delete'].'" class="deletebutton">'.$l['w_delete'].'</a>';
             $subjlist .= '</li>'.K_NEWLINE;
 
             // update test_max_score
