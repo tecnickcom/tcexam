@@ -513,6 +513,7 @@ ol.answer_inline li {
 /* ----- */
 ol.qlist li {
 	font-size: 95%;
+	font-weight: lighter;
 }
 
 ol.qlist li.selected {
