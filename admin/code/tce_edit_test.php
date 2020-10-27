@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2020-05-06
+// Last Update : 2020-10-27
 //
 // Description : Edit Tests
 //
@@ -42,7 +42,6 @@ require_once('tce_functions_tcecode_editor.php');
 require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
 require_once('tce_functions_test_select.php');
-
 
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'test_name,test_description,test_ip_range,test_duration_time,test_score_right';
@@ -239,11 +238,16 @@ switch ($menu_mode) {
             F_stripslashes_formfields();
             break;
         }
-        $sql = 'DELETE FROM '.K_TABLE_TEST_SUBJSET.' WHERE tsubset_id='.$tsubset_id.'';
-        if (!$r = F_db_query($sql, $db)) {
-            F_display_db_error(false);
-        } else {
-            F_print_error('MESSAGE', $l['m_deleted']);
+        // for all selected subjects
+        for ($i = 0; $i<$subjcount; $i++) {
+            if (!empty($_POST['selectsubject'.$i])) {
+                $sql = 'DELETE FROM '.K_TABLE_TEST_SUBJSET.' WHERE tsubset_test_id='.$test_id.' AND tsubset_id='.$_POST['selectsubject'.$i].'';
+                if (!$r = F_db_query($sql, $db)) {
+                    F_display_db_error(false);
+                } else {
+                    F_print_error('MESSAGE', $l['m_deleted']);
+                }
+            }
         }
         break;
     }
@@ -1245,6 +1249,7 @@ if (isset($test_id) and ($test_id > 0)) {
 		WHERE tsubset_test_id=\''.$test_id.'\'
 		ORDER BY tsubset_id';
     if ($r = F_db_query($sql, $db)) {
+        $subjcount = 0;
         while ($m = F_db_fetch_array($r)) {
             $subjlist .= '<li>';
             $subjects_list = '';
@@ -1263,6 +1268,8 @@ if (isset($test_id) and ($test_id > 0)) {
             // remove last comma + space
             $subjlist .= substr($subjects_list, 0, -2);
             $subjlist .= '<br />'.K_NEWLINE;
+            $subjlist .= '<input type="checkbox" name="selectsubject'.$subjcount.'" id="selectsubject'.$subjcount.'" value="'.$m['tsubset_id'].'" title="'.$l['w_select'].'" />';
+            $subjcount++;
             $subjlist .= '<acronym class="offbox" title="'.$l['h_num_questions'].'">'.$m['tsubset_quantity'].'</acronym> ';
             $subjlist .= '<acronym class="offbox" title="'.$l['h_question_type'].'">';
             if ($m['tsubset_type'] > 0) {
@@ -1274,7 +1281,6 @@ if (isset($test_id) and ($test_id > 0)) {
             $subjlist .= '</acronym> ';
             $subjlist .= '<acronym class="offbox" title="'.$l['h_question_difficulty'].'">'.$m['tsubset_difficulty'].'</acronym> ';
             $subjlist .= '<acronym class="offbox" title="'.$l['h_num_answers'].'">'.$m['tsubset_answers'].'</acronym> ';
-            $subjlist .= ' <a href="'.$_SERVER['SCRIPT_NAME'].'?menu_mode=deletesubject&amp;test_id='.$test_id.'&amp;tsubset_id='.$m['tsubset_id'].'" title="'.$l['h_delete'].'" class="deletebutton">'.$l['w_delete'].'</a>';
             $subjlist .= '</li>'.K_NEWLINE;
 
             // update test_max_score
@@ -1288,8 +1294,11 @@ if (isset($test_id) and ($test_id > 0)) {
                 }
             }
         }
-        if (strlen($subjlist) > 0) {
+        if ($subjcount > 0) {
             echo '<ul>'.K_NEWLINE.$subjlist.'</ul>'.K_NEWLINE;
+            echo '<input type="hidden" name="subjcount" id="subjcount" value="'.$subjcount.'" />';
+            F_submit_button('deletesubject', $l['w_delete'], $l['h_delete']);
+            echo '<br />'.K_NEWLINE;
         }
     } else {
         F_display_db_error();
