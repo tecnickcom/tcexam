@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2020-05-06
+// Last Update : 2020-10-27
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -49,6 +49,8 @@ if (isset($_POST['update'])) {
     $menu_mode = 'upload';
 } elseif (isset($_POST['addquestion'])) {
     $menu_mode = 'addquestion';
+} elseif (isset($_POST['deletesubject'])) {
+    $menu_mode = 'deletesubject';
 }
 if (empty($menu_mode)) {
     $menu_mode = '';
