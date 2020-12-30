@@ -11,11 +11,11 @@ var $toggle = document.getElementById("header_button")
 var $slider = document.getElementById("scrollayer");
 
 $toggle.addEventListener("click", function() {
-    var isOpen = $slider.classList.contains("slide-in");
-    $slider.setAttribute("class", isOpen ? "slide-out" : "slide-in");
-	$toggle.setAttribute("class", isOpen ? "hb_slideout" : "hb_slidein");	
+	var isOpen = $slider.classList.contains("slide-in");
+	$slider.setAttribute("class", isOpen ? "slide-out" : "slide-in");
+	$toggle.setAttribute("class", isOpen ? "hb_slideout" : "hb_slidein");
 	if(isOpen){
-		$toggle.textContent="☰";	
+		$toggle.textContent="☰";
 	}else{
 		$toggle.innerHTML="&times;";
 	}
@@ -31,15 +31,13 @@ if(document.getElementById("testform")){
 }
 
 function isInPage(node) {
-  return (node === document.body) ? false : document.body.contains(node);
+	return (node === document.body) ? false : document.body.contains(node);
 }
 
 function togglePassField(id){
 	if(document.getElementById(id)){
 		document.getElementById(id).insertAdjacentHTML("afterend", "<span id='"+id+"_eye' class='icon-eye'></span>");
-		
 		var a = document.getElementById(id+"_eye");
-		
 		a.addEventListener("click", function() {
 			var b = a.classList.contains("icon-eye");
 			a.setAttribute("class", b ? "icon-eye-unblocked" : "icon-eye");
@@ -52,15 +50,17 @@ togglePassField("currentpassword");
 togglePassField("newpassword");
 togglePassField("newpassword_repeat");
 togglePassField("xuser_password");
- 
- if(document.querySelectorAll(".okbox")){
+
+if(document.querySelectorAll(".okbox")){
 	var okBox = document.querySelectorAll(".okbox");
-    for (var i = 0; i < okBox.length; i++) {
-        var str = okBox[i].innerHTML = "&check;";
-        okBox[i].innerHTML = str;
-    }
- }
+	for (var i = 0; i < okBox.length; i++) {
+		var str = okBox[i].innerHTML = "&check;";
+		okBox[i].innerHTML = str;
+	}
+}
+
 var adaForm = document.forms.length;
+
 if(adaForm===1){
 	var tceFormBox = document.querySelector(".tceformbox");
 	var tceContentBox = document.querySelector(".tcecontentbox");
@@ -83,12 +83,12 @@ if(adaForm===1){
 		if(buttonBlue){
 			buttonBlue.setAttribute("onclick","clearUnsure()");
 		}
-		
 	}
 }
 
 var qNum = document.getElementById("confirmanswer");
 var fTestForm = document.getElementById("testform");
+
 if(fTestForm){
 	var qNum = qNum.value;
 	var qNumber = qNum.replace(/\D/g,'');
@@ -117,6 +117,7 @@ function zoomintext(idText){
 		localStorage.setItem("fontSize", fontSize);
 	}
 }
+
 function zoomouttext(idText){
 	if(fTestForm){
 		var fs=parseFloat(window.getComputedStyle(document.querySelector(".tcecontentbox")).fontSize);
@@ -127,7 +128,7 @@ function zoomouttext(idText){
 		}
 		fontSize=newfontSize;
 		localStorage.setItem("fontSize", fontSize);
-	}	
+	}
 }
 
 function clearUnsure(){
@@ -143,10 +144,12 @@ function setUnsureLiBg(a){
 		document.querySelectorAll("ol.qlist li")[a].style.backgroundImage = "linear-gradient(270deg, transparent 50%, rgb(255, 241, 118) 100%), var(--icon-flag)";
 		document.querySelectorAll("ol.qlist li")[a].style.backgroundPosition = "center left";
 	}
-	document.querySelectorAll("ol.qlist li")[a].style.backgroundRepeat = "no-repeat";	
+	document.querySelectorAll("ol.qlist li")[a].style.backgroundRepeat = "no-repeat";
 	document.querySelectorAll("ol.qlist li")[a].style.backgroundSize = "contain";
 }
+
 var qNumSpan = document.getElementById("qNum");
+
 if(localStorage.getItem('unsure') && fTestForm){
 	const unsures = JSON.parse(localStorage.getItem('unsure'));
 	var unsureBtn = document.getElementById("unsure");
@@ -157,7 +160,6 @@ if(localStorage.getItem('unsure') && fTestForm){
 			unsureBtn.style.backgroundColor = "#fff176";
 			unsureBtn.style.color = "#575757";
 			unsureBtn.style.borderColor = "#08769b";
-			
 			qNumSpan.style.backgroundColor = "#fff176";
 			qNumSpan.style.color = "#575757";
 			qNumSpan.style.borderColor = "#08769b";
@@ -171,17 +173,14 @@ function addUnsure(){
 		var index = document.getElementById("qNum").textContent-1;
 		var unsureBtn = document.getElementById("unsure");
 		unsureBtn.setAttribute("onclick","removeUnsure()");
-		
 		unsureBtn.style.backgroundColor = "#fff176";
 		unsureBtn.style.color = "#575757";
 		unsureBtn.style.borderColor = "#08769b";
-		
 		qNumSpan.style.backgroundColor = "#fff176";
 		qNumSpan.style.color = "#575757";
 		qNumSpan.style.borderColor = "#08769b";
-		
 		setUnsureLiBg(index);
-		let unsure;		
+		let unsure;
 		if(localStorage.getItem('unsure') === null){
 			unsure = [];
 		}else{
