@@ -158,9 +158,11 @@ if ($question_id > 0) {
 		LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
+            $subject_module_id = intval($m['subject_module_id']);
+            $question_subject_id = intval($m['question_subject_id']);
             // check user's authorization for parent module
-            if ((!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id'))
-                and (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $m['question_subject_id'], 'subject_user_id'))) {
+            if ((!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id'))
+                and (!F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $question_subject_id, 'subject_user_id'))) {
                 F_print_error('ERROR', $l['m_authorization_denied'], true);
             }
         }
