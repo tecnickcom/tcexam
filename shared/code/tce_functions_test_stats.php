@@ -201,7 +201,7 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
         }
         foreach ($test_ids as $tid) {
             // select test IDs
-            $data =  F_getRawTestStat($tid, $group_id, $user_id, $startdate, $enddate, $testuser_id, $data);
+            $data =  F_getRawTestStat($tid, $group_id, $user_id, $startdate, $enddate, $testuser_id, $data, $pubmode);
         }
         return $data;
     }
@@ -248,7 +248,7 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
     }
     $sql .= ' COUNT(question_id) AS recurrence,
 		AVG(testlog_score) AS average_score,
-		AVG(testlog_change_time - testlog_display_time) AS average_time,
+		AVG('.F_db_datetime_diff_seconds('testlog_display_time', 'testlog_change_time').') AS average_time,
 		MIN(question_type) AS question_type,
 		MIN(question_difficulty) AS question_difficulty';
     $sql .= ' FROM '.$sqlm;
