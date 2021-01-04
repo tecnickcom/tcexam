@@ -1547,8 +1547,8 @@ function F_updateQuestionLog($test_id, $testlog_id, $answpos = array(), $answer_
             if ($r = F_db_query($sql, $db)) {
                 while ($m = F_db_fetch_array($r)) {
                     if ((K_SHORT_ANSWERS_BINARY and (strcmp(trim($answer_text), $m['answer_description']) == 0))
-                        or (!K_SHORT_ANSWERS_BINARY and (strcasecmp(trim($answer_text), $m['answer_description']) == 0))) {
-                        $answer_score += $question_right_score;
+                        or (!K_SHORT_ANSWERS_BINARY and (strcasecmp(trim($answer_text), $m['answer_description']) == 0))) { 
+                        $answer_score = $question_right_score;
                         break;
                     }
                 }
