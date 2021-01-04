@@ -117,14 +117,27 @@ if ($teststat['testinfo']['test_score_threshold'] > 0) {
     }
 }
 if ($teststat['testinfo']['test_max_score'] > 0) {
-    $score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)'.$passmsg;
+    $score_all = $teststat['testinfo']['user_score'].' / '.$teststat['testinfo']['test_max_score'].' ('.round(100 * $teststat['testinfo']['user_score'] / $teststat['testinfo']['test_max_score']).'%)';
 } else {
-    $score_all = $teststat['testinfo']['user_score'].$passmsg;
+    $score_all = $teststat['testinfo']['user_score'];
 }
-echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all);
+echo getFormDescriptionLine($l['w_score'].':', $l['h_score_total'], $score_all.$passmsg);
 
 $score_right_all = $teststat['qstats']['right'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['right_perc'].'%)';
 echo getFormDescriptionLine($l['w_answers_right'].':', $l['h_answers_right'], $score_right_all);
+
+$score_wrong_all = $teststat['qstats']['wrong'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['wrong_perc'].'%)';
+echo getFormDescriptionLine($l['w_answers_wrong'].':', $l['h_answers_wrong'], $score_wrong_all);
+
+$score_unanswered_all = $teststat['qstats']['unanswered'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['unanswered_perc'].'%)';
+echo getFormDescriptionLine($l['w_questions_unanswered'].':', $l['h_questions_unanswered'], $score_unanswered_all);
+
+$score_undisplayed_all = $teststat['qstats']['undisplayed'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['undisplayed_perc'].'%)';
+echo getFormDescriptionLine($l['w_questions_undisplayed'].':', $l['h_questions_undisplayed'], $score_undisplayed_all);
+
+$score_unrated_all = $teststat['qstats']['unrated'].' / '.$teststat['qstats']['recurrence'].' ('.$teststat['qstats']['unrated_perc'].'%)';
+echo getFormDescriptionLine($l['w_questions_unrated'].':', $l['h_questions_unrated'], $score_unrated_all);
+
 echo getFormDescriptionLine($l['w_comment'].':', $l['h_testcomment'], F_decode_tcecode($teststat['testinfo']['user_comment']));
 
 if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {
@@ -136,7 +149,7 @@ if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {
     echo '<div class="rowl">'.K_NEWLINE;
     echo '<hr />'.K_NEWLINE;
     echo '<h2>'.$l['w_stats'].'</h2>';
-    echo F_printTestStat($test_id, 0, $user_id, 0, 0, $testuser_id, $teststat, 1, true);
+    echo F_printTestStat($test_id, 0, $user_id, 0, 0, $testuser_id, $teststat, 2, true);
     echo '<hr />'.K_NEWLINE;
     echo '</div>'.K_NEWLINE;
 
