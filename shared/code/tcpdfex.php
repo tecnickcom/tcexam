@@ -640,16 +640,19 @@ class TCPDFEX extends TCPDF
         }
 
         $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_answers_right'].': ', 0, 0, $dirlabel, 0, '', 1);
-        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['right'].' '.F_formatPdfPercentage($data['right_perc'], false), 0, 1, $dirvalue, 0, '', 1);
+        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['right'].' / '.$data['recurrence'].' '.F_formatPdfPercentage($data['right_perc'], false), 0, 1, $dirvalue, 0, '', 1);
 
         $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_answers_wrong'].': ', 0, 0, $dirlabel, 0, '', 1);
-        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['wrong'].' '.F_formatPdfPercentage($data['wrong_perc'], false), 0, 1, $dirvalue, 0, '', 1);
+        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['wrong'].' / '.$data['recurrence'].' '.F_formatPdfPercentage($data['wrong_perc'], false), 0, 1, $dirvalue, 0, '', 1);
 
         $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_questions_unanswered'].': ', 0, 0, $dirlabel, 0, '', 1);
-        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['unanswered'].' '.F_formatPdfPercentage($data['unanswered_perc'], false), 0, 1, $dirvalue, 0, '', 1);
+        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['unanswered'].' / '.$data['recurrence'].' '.F_formatPdfPercentage($data['unanswered_perc'], false), 0, 1, $dirvalue, 0, '', 1);
 
         $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_questions_undisplayed'].': ', 0, 0, $dirlabel, 0, '', 1);
-        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['undisplayed'].' '.F_formatPdfPercentage($data['undisplayed_perc'], false), 0, 1, $dirvalue, 0, '', 1);
+        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['undisplayed'].' / '.$data['recurrence'].' '.F_formatPdfPercentage($data['undisplayed_perc'], false), 0, 1, $dirvalue, 0, '', 1);
+
+        $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_questions_unrated'].': ', 0, 0, $dirlabel, 0, '', 1);
+        $this->Cell($info_cell_width, $this->tce_data_cell_height, $data['unrated'].' / '.$data['recurrence'].' '.F_formatPdfPercentage($data['unrated_perc'], false), 0, 1, $dirvalue, 0, '', 1);
 
         $this->SetFont(PDF_FONT_NAME_DATA, 'B', PDF_FONT_SIZE_DATA);
         $this->Cell($column_names_width, $this->tce_data_cell_height, $l['w_score'].': ', 0, 0, $dirlabel, 0, '', 1);

@@ -1110,6 +1110,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
         $statsdata['unanswered'] = array();
         $statsdata['undisplayed'] = array();
         $statsdata['unrated'] = array();
+        $statsdata['recurrence'] = array();
         while ($mr = F_db_fetch_array($rr)) {
             $itemcount++;
             $usrtestdata = F_getUserTestStat($mr['testuser_test_id'], $mr['user_id'], $mr['testuser_id']);
@@ -1153,6 +1154,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
             $data['testuser']['\''.$mr['testuser_id'].'\'']['total_score'] = $mr['total_score'];
             $data['testuser']['\''.$mr['testuser_id'].'\'']['total_score_perc'] = $total_score_perc;
             if ($stats > 0) {
+                $data['testuser']['\''.$mr['testuser_id'].'\'']['recurrence'] = $teststat['qstats']['recurrence'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = $teststat['qstats']['right'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = $teststat['qstats']['right_perc'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = $teststat['qstats']['wrong'];
@@ -1164,6 +1166,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['unrated'] = $teststat['qstats']['unrated'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['unrated_perc'] = $teststat['qstats']['unrated_perc'];
             } else {
+                $data['testuser']['\''.$mr['testuser_id'].'\'']['recurrence'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = '';
@@ -1189,6 +1192,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
             $statsdata['score'][] = $mr['total_score'];
             $statsdata['score_perc'][] = $total_score_perc;
             if ($stats > 0) {
+                $statsdata['recurrence'][] = $teststat['qstats']['recurrence'];
                 $statsdata['right'][] = $teststat['qstats']['right'];
                 $statsdata['right_perc'][] = $teststat['qstats']['right_perc'];
                 $statsdata['wrong'][] = $teststat['qstats']['wrong'];
@@ -1200,6 +1204,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
                 $statsdata['unrated'][] = $teststat['qstats']['unrated'];
                 $statsdata['unrated_perc'][] = $teststat['qstats']['unrated_perc'];
             } else {
+                $statsdata['recurrence'][] = '';
                 $statsdata['right'][] = '';
                 $statsdata['right_perc'][] = '';
                 $statsdata['wrong'][] = '';

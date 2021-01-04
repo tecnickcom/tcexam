@@ -103,7 +103,7 @@ if (isset($_REQUEST['display_mode'])) {
     $display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
     $filter .= '&amp;display_mode='.$display_mode;
 } else {
-    $display_mode = 0;
+    $display_mode = 1;
 }
 
 if (isset($_REQUEST['show_graph'])) {
@@ -137,7 +137,6 @@ $pubmode = true;
 
 // get the data to print
 $ts = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, $pubmode, $display_mode);
-
 if (empty($ts['num_records'])) {
     return;
 }
@@ -232,7 +231,7 @@ if ($mode != 3) {
 
 if ($mode > 2) {
     // print testuser details
-    if ($testuser_id == 0) {
+    if (empty($testuser_id)) {
         foreach ($ts['testuser'] as $tstusr) {
             if ((!$pubmode) or F_getBoolean($tstusr['test']['test_report_to_users'])) {
                 $pdf->AddPage();
