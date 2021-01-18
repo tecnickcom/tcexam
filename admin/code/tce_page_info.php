@@ -147,7 +147,7 @@ echo '<li>[FR] French : Roger Koukerjinian, André Scherrer</li>'.K_NEWLINE;
 echo '<li>[HI] Hindi : Mahesh K Bhandari, Shekhar K Maravi, Pradeep K Nayak</li>'.K_NEWLINE;
 echo '<li>[HE] Hebrew : Oron Peled</li>'.K_NEWLINE;
 echo '<li>[HU] Hungarian : Peter Ivanyi, Tibor Balázs</li>'.K_NEWLINE;
-echo '<li>[ID] Indonesian : Ahmad Bardosono</li>'.K_NEWLINE;
+echo '<li>[ID] Indonesian : Ahmad Bardosono, Maman Sulaeman</li>'.K_NEWLINE;
 echo '<li>[IT] Italian : Nicola Asuni</li>'.K_NEWLINE;
 echo '<li>[JP] Japanese : Koji Nakajima</li>'.K_NEWLINE;
 echo '<li>[MR] Marathi : Tushar Sayankar</li>'.K_NEWLINE;
