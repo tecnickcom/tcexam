@@ -24,7 +24,7 @@ TUID IDENTIFIERS PREFIXES:
 
 d_ indicates a brief description;
 
-h_ indicates an help message to de used on title fields of html tags;
+h_ indicates an help message to be used on title fields of html tags;
 
 w_ is a single word or small sentence to be used as a field label;
 
