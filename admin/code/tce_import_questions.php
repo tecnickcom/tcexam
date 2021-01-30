@@ -324,7 +324,7 @@ function F_TSVQuestionImporter($tsvfile)
                     if ($m = F_db_fetch_array($r)) {
                         // get existing question ID
                         $current_question_id = $m['question_id'];
-                        continue;
+                        continue 2;
                     }
                 } else {
                     F_display_db_error();
