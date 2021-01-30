@@ -30,7 +30,11 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
+<<<<<<< HEAD
 TCExam includes some third-party software components that are not strictly required but have been included as your convenience, and if used are subject to their respective licenses.
+=======
+TCExam includes some third-party software components that are not strictly required but have been included at your convenience, and if used are subject to their respective licenses.
+>>>>>>> develop
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
@@ -68,9 +72,10 @@ TCExam includes some third-party software components that are not strictly requi
 
 * **Fonts**
 
-    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included as your convenience.
+    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included at your convenience.
 
-    All the PHP files on the fonts’ directory are subject to the general TCPDF license (GNU-LGPLv3),
+    All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
+
     they do not contain any binary data but just a description of the general properties of a specific font.
     These files can be also generated on the fly using the font utilities and TCPDF methods.
 
@@ -79,7 +84,7 @@ TCExam includes some third-party software components that are not strictly requi
     The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
     The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919
-    Link : http://www.gnu.org/software/freefont/
+    Link: http://www.gnu.org/software/freefont/
 
     The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33
