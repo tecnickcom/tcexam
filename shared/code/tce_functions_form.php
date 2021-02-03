@@ -54,7 +54,7 @@ if (empty($menu_mode)) {
     $menu_mode = '';
 } else {
     // check for CSRF
-    if (empty($_POST['csrf_token']) or !checkCSRFToken($_POST['csrf_token'])) {
+    if ($_POST && (empty($_POST['csrf_token']) or !checkCSRFToken($_POST['csrf_token']))) {
         exit();
     }
 }
