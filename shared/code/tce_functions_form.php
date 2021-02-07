@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_form.php
 // Begin       : 2001-11-07
-// Last Update : 2020-05-06
+// Last Update : 2020-10-27
 //
 // Description : Functions to handle XHTML Form Fields.
 //
@@ -49,6 +49,8 @@ if (isset($_POST['update'])) {
     $menu_mode = 'upload';
 } elseif (isset($_POST['addquestion'])) {
     $menu_mode = 'addquestion';
+} elseif (isset($_POST['deletesubject'])) {
+    $menu_mode = 'deletesubject';
 }
 if (empty($menu_mode)) {
     $menu_mode = '';
@@ -206,12 +208,14 @@ function F_close_button($onclick = '')
  * Returns XHTML code string to display Form Submit Button.
  * @param $name (string) button name
  * @param $value (string) label for button
- * @param $title (string) button title, default=""
+ * @param $title (string) button title, default=''
+ * @param $extra (string) optional extra fields to add to the input tag, default=''
+ * 
  * @return XHTML code string
  */
-function F_submit_button($name, $value, $title = "")
+function F_submit_button($name, $value, $title = '', $extra = '')
 {
-    echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" />';
+    echo '<input type="submit" name="'.$name.'" id="'.$name.'" value="'.$value.'" title="'.$title.'" '.$extra.'/>';
 }
 
 

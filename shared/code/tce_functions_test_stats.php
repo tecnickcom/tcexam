@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2014-01-27
+// Last Update : 2020-06-12
 //
 // Description : Statistical functions for test results.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -32,9 +32,10 @@
 * @param $test_id (int) test ID.
 * @param $user_id (int) user ID - if greater than zero, filter stats for the specified user.
 * @param $testuser_id (int) test-user ID - if greater than zero, filter stats for the specified test-user.
+* @param $pubmode (boolean) If true filter the results for the public interface.
 * return $data array containing test-user statistics.
 */
-function F_getUserTestStat($test_id, $user_id = 0, $testuser_id = 0)
+function F_getUserTestStat($test_id, $user_id = 0, $testuser_id = 0, $pubmode = false)
 {
     require_once('../config/tce_config.php');
     require_once('../../shared/code/tce_functions_test.php');
@@ -44,7 +45,7 @@ function F_getUserTestStat($test_id, $user_id = 0, $testuser_id = 0)
     $testuser_id = intval($testuser_id);
     // get test data array
     $data = F_getTestData($test_id);
-    $data += F_getUserTestTotals($test_id, $user_id, $testuser_id);
+    $data += F_getUserTestTotals($test_id, $user_id, $testuser_id, $pubmode);
     return $data;
 }
 
@@ -53,9 +54,10 @@ function F_getUserTestStat($test_id, $user_id = 0, $testuser_id = 0)
 * @param $test_id (int) test ID.
 * @param $user_id (int) user ID - if greater than zero, filter stats for the specified user.
 * @param $testuser_id (int) test-user ID - if greater than zero, filter stats for the specified test-user.
+* @param $pubmode (boolean) If true filter the results for the public interface.
 * return $data array containing test-user statistics.
 */
-function F_getUserTestTotals($test_id, $user_id = 0, $testuser_id = 0)
+function F_getUserTestTotals($test_id, $user_id = 0, $testuser_id = 0, $pubmode = false)
 {
     require_once('../config/tce_config.php');
     require_once('../../shared/code/tce_functions_test.php');
@@ -65,6 +67,10 @@ function F_getUserTestTotals($test_id, $user_id = 0, $testuser_id = 0)
     $testuser_id = intval($testuser_id);
     // get test data array
     $data = array();
+    $status_filter = 0;
+    if ($pubmode) {
+        $status_filter = 3;
+    }
     // additional info
     if (($test_id > 0) and ($user_id > 0) and ($testuser_id > 0)) {
         // get user totals
@@ -74,7 +80,7 @@ function F_getUserTestTotals($test_id, $user_id = 0, $testuser_id = 0)
 			AND testuser_id='.$testuser_id.'
 			AND testuser_test_id='.$test_id.'
 			AND testuser_user_id='.$user_id.'
-			AND testuser_status>0
+			AND testuser_status>'.$status_filter.'
 		GROUP BY testuser_id, testuser_creation_time, testuser_status, testuser_comment';
         if ($ru = F_db_query($sqlu, $db)) {
             if ($mu = F_db_fetch_array($ru)) {
@@ -141,13 +147,14 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
     // apply filters
     $sqlw = 'WHERE testlog_testuser_id=testuser_id';
     $sqlansw = 'WHERE logansw_answer_id=answer_id AND logansw_testlog_id=testlog_id AND testlog_testuser_id=testuser_id';
+    if ($pubmode) {
+        $test_ids_results = F_getTestIDResults($test_id, $user_id);
+        $sqlw .= ' AND testuser_test_id IN ('.$test_ids_results.') AND testuser_status>3';
+        $sqlansw .= ' AND testuser_test_id IN ('.$test_ids_results.') AND testuser_status>3';
+    }
     if ($test_id > 0) {
         $sqlw .= ' AND testuser_test_id='.$test_id.'';
         $sqlansw .= ' AND testuser_test_id='.$test_id.'';
-    } elseif ($pubmode) {
-        $test_ids_results = F_getTestIDResults($test_id, $user_id);
-        $sqlw .= ' AND testuser_test_id IN ('.$test_ids_results.')';
-        $sqlansw .= ' AND testuser_test_id IN ('.$test_ids_results.')';
     }
     if ($user_id > 0) {
         $sqltot .= ', '.K_TABLE_USERS;
@@ -194,7 +201,7 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
         }
         foreach ($test_ids as $tid) {
             // select test IDs
-            $data =  F_getRawTestStat($tid, $group_id, $user_id, $startdate, $enddate, $testuser_id, $data);
+            $data =  F_getRawTestStat($tid, $group_id, $user_id, $startdate, $enddate, $testuser_id, $data, $pubmode);
         }
         return $data;
     }
@@ -241,7 +248,7 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
     }
     $sql .= ' COUNT(question_id) AS recurrence,
 		AVG(testlog_score) AS average_score,
-		AVG(testlog_change_time - testlog_display_time) AS average_time,
+		AVG('.F_db_datetime_diff_seconds('testlog_display_time', 'testlog_change_time').') AS average_time,
 		MIN(question_type) AS question_type,
 		MIN(question_difficulty) AS question_difficulty';
     $sql .= ' FROM '.$sqlm;
@@ -1065,10 +1072,11 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
         $sqlr .= ','.K_TABLE_USERGROUP.'';
     }
     $sqlr .= ' WHERE testlog_testuser_id=testuser_id AND testuser_user_id=user_id';
+    if ($pubmode) {
+        $sqlr .= ' AND testuser_test_id IN ('.F_getTestIDResults($test_id, $user_id).') AND testuser_user_id='.$user_id.' AND testuser_status>3';
+    }
     if ($test_id > 0) {
         $sqlr .= ' AND testuser_test_id='.$test_id.'';
-    } elseif ($pubmode) {
-        $sqlr .= ' AND testuser_test_id IN ('.F_getTestIDResults($test_id, $user_id).')';
     }
     if ($group_id > 0) {
         $sqlr .= ' AND usrgrp_user_id=user_id AND usrgrp_group_id='.$group_id.'';
@@ -1088,7 +1096,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
     }
     if ($stats > 1) {
         // get stats
-        $data += F_getTestStat($test_id, $group_id, $user_id, $startdate, $enddate);
+        $data += F_getTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $pubmode);
     }
     $sqlr .= ' GROUP BY testuser_id, testuser_test_id, testuser_creation_time, user_id, user_lastname, user_firstname, user_name, user_email, testuser_status
 		ORDER BY '.$full_order_field.'';
@@ -1102,11 +1110,12 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
         $statsdata['unanswered'] = array();
         $statsdata['undisplayed'] = array();
         $statsdata['unrated'] = array();
+        $statsdata['recurrence'] = array();
         while ($mr = F_db_fetch_array($rr)) {
             $itemcount++;
             $usrtestdata = F_getUserTestStat($mr['testuser_test_id'], $mr['user_id'], $mr['testuser_id']);
             if ($stats > 0) {
-                $teststat = F_getTestStat($mr['testuser_test_id'], $group_id, $mr['user_id'], $startdate, $enddate, $mr['testuser_id']);
+                $teststat = F_getTestStat($mr['testuser_test_id'], $group_id, $mr['user_id'], $startdate, $enddate, $mr['testuser_id'], $pubmode);
             }
             $data['testuser']['\''.$mr['testuser_id'].'\''] = array();
             $data['testuser']['\''.$mr['testuser_id'].'\'']['test'] = $usrtestdata;
@@ -1145,6 +1154,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
             $data['testuser']['\''.$mr['testuser_id'].'\'']['total_score'] = $mr['total_score'];
             $data['testuser']['\''.$mr['testuser_id'].'\'']['total_score_perc'] = $total_score_perc;
             if ($stats > 0) {
+                $data['testuser']['\''.$mr['testuser_id'].'\'']['recurrence'] = $teststat['qstats']['recurrence'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = $teststat['qstats']['right'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = $teststat['qstats']['right_perc'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = $teststat['qstats']['wrong'];
@@ -1156,6 +1166,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['unrated'] = $teststat['qstats']['unrated'];
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['unrated_perc'] = $teststat['qstats']['unrated_perc'];
             } else {
+                $data['testuser']['\''.$mr['testuser_id'].'\'']['recurrence'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['right_perc'] = '';
                 $data['testuser']['\''.$mr['testuser_id'].'\'']['wrong'] = '';
@@ -1181,6 +1192,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
             $statsdata['score'][] = $mr['total_score'];
             $statsdata['score_perc'][] = $total_score_perc;
             if ($stats > 0) {
+                $statsdata['recurrence'][] = $teststat['qstats']['recurrence'];
                 $statsdata['right'][] = $teststat['qstats']['right'];
                 $statsdata['right_perc'][] = $teststat['qstats']['right_perc'];
                 $statsdata['wrong'][] = $teststat['qstats']['wrong'];
@@ -1192,6 +1204,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
                 $statsdata['unrated'][] = $teststat['qstats']['unrated'];
                 $statsdata['unrated_perc'][] = $teststat['qstats']['unrated_perc'];
             } else {
+                $statsdata['recurrence'][] = '';
                 $statsdata['right'][] = '';
                 $statsdata['right_perc'][] = '';
                 $statsdata['wrong'][] = '';
@@ -1274,7 +1287,7 @@ function F_getTestIDs($test_id, $user_id, $filter = 'test_results_to_users')
     $str = '0'; // string to return
     $test_id = intval($test_id);
     $user_id = intval($user_id);
-    $sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id IN (SELECT DISTINCT testuser_test_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_user_id='.intval($user_id).' AND testuser_status>0) AND '.$filter.'=1';
+    $sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id IN (SELECT DISTINCT testuser_test_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_user_id='.intval($user_id).' AND testuser_status>3) AND '.$filter.'=1';
     if ($r = F_db_query($sql, $db)) {
         while ($m = F_db_fetch_assoc($r)) {
             $str .= ','.$m['test_id'];

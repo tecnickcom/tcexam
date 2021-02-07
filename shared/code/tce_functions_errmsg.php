@@ -43,6 +43,7 @@
 function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = false)
 {
     require_once(dirname(__FILE__).'/../config/tce_config.php');
+    require_once(dirname(__FILE__).'/tce_functions_general.php');
     global $l;
     $messagetype = strtolower($messagetype);
     $messagetoprint = unhtmlentities(strip_tags($messagetoprint));

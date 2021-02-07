@@ -202,7 +202,7 @@ function F_substr_utf8($str, $start = 0, $length)
             $str_end = $i;
             break;
         }
-        $char = ord($str{$i}); // get one string character at time
+        $char = ord($str[$i]); // get one string character at time
         if ($char <= 0x7F) {
             $i += 1;
         } elseif (($char >> 0x05) == 0x06) { // 2 bytes character (0x06 = 110 BIN)

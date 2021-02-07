@@ -178,6 +178,17 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
 }
 
 /**
+ * Returns the SQL string to calculate the difference in seconds between to datetime fields.
+ * @param $start_date (string) Column name of the start date-time.
+ * @param $end_date (string) Column name of the end date-time.
+ * @return SQL query string
+ */
+function F_db_datetime_diff_seconds($start_date_field, $end_date_field)
+{
+    return '('.$end_date_field.' – '.$start_date_field.')*86400';
+}
+
+/**
  * Escape a string for insertion into a SQL text field (avoiding SQL injection).
  * @param $link_identifier (resource) database link identifier.
  * @param $str (string) The string that is to be escaped.

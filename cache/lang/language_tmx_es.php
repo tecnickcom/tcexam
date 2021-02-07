@@ -1,12 +1,12 @@
 <?php
 // CACHE FILE FOR LANGUAGE: es
-// DATE: 2020-01-03 12:04:56
+// DATE: 2021-01-30 13:13:57
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
 $tmx['a_meta_dir']='ltr';
 $tmx['a_meta_language']='es';
-$tmx['d_admin_index']='Esta es el área de administración de <a href="tce_page_info.php" title="acerca de TCExam">TCExam</a>, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.<br /><br />Mediante el menu usted puede acceder a las diferentes secciones del sistema:<ul><li><strong>usuarios</strong><br />Esta sección contiene los formularios para <a href="tce_edit_user.php" title="Administración de Usuarios">insertar y modificar</a> usuarios, <a href="tce_select_users.php" title="Selección Usuarios"> para seleccionarlos</a> y para mostrar la lista de los que están actualmente <a href="tce_show_online_users.php" title="Usuarios en Línea">en línea</a>.<br />Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.<br />Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).<br />TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.</li><li><strong>tópicos</strong><br />Esta sección contiene los formularios para insertar y modificar el test <a href="tce_edit_subject.php" title="Administración Tópicos">tópicos</a>, the related <a href="tce_edit_question.php" title="Administración Preguntas">preguntas</a> y <a href="tce_edit_answer.php" title="Administración Respuestas Múltiples">respuestas</a>.<br />Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.<br />TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación <a href="tce_edit_rating.php" title="Evaluación respuesta">evaluación</a>, mientras las otras serán evaluadas automaticamente.<br />Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.</li><li><strong>test</strong><br />Esta sección incluye el formulario para insertar, generar y modificar los diferentes <a href="tce_edit_test.php" title="Administración Test">tests</a>, el formulario para <a href="tce_edit_rating.php" title="Evaluación Respuesta">evaluar</a> las respuestas libres y los formularios para mostrar o generar versiones PDF de los <a href="tce_show_result_allusers.php" title="Resumen Resultados Test">resultados</a>, una vista detallada de los <a href="tce_show_result_user.php" title="Resultados test">tests de usuarios</a> y las <a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas">estadísticas</a> de preguntas y respuestas utilizadas.<br />TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.<br />Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.</li></ul>';
+$tmx['d_admin_index']='Esta es el área de administración de <a href="tce_page_info.php" title="acerca de TCExam">TCExam</a>, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.<br /><br />Mediante el menu usted puede acceder a las diferentes secciones del sistema:<ul><li><strong>usuarios</strong><br />Esta sección contiene los formularios para <a href="tce_edit_user.php" title="Administración de Usuarios">insertar y modificar</a> usuarios, <a href="tce_select_users.php" title="Selección Usuarios"> para seleccionarlos</a> y para mostrar la lista de los que están actualmente <a href="tce_show_online_users.php" title="Usuarios en Línea">en línea</a>.<br />Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.<br />Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).<br />TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.</li><li><strong>tópicos</strong><br />Esta sección contiene los formularios para insertar y modificar el test <a href="tce_edit_subject.php" title="Administración Tópicos">tópicos</a>, las <a href="tce_edit_question.php" title="Administración Preguntas">preguntas</a> y <a href="tce_edit_answer.php" title="Administración Respuestas Múltiples">respuestas</a> relacionadas.<br />Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.<br />TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación <a href="tce_edit_rating.php" title="Evaluación respuesta">evaluación</a>, mientras las otras serán evaluadas automaticamente.<br />Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.</li><li><strong>test</strong><br />Esta sección incluye el formulario para insertar, generar y modificar los diferentes <a href="tce_edit_test.php" title="Administración Test">tests</a>, el formulario para <a href="tce_edit_rating.php" title="Evaluación Respuesta">evaluar</a> las respuestas libres y los formularios para mostrar o generar versiones PDF de los <a href="tce_show_result_allusers.php" title="Resumen Resultados Test">resultados</a>, una vista detallada de los <a href="tce_show_result_user.php" title="Resultados test">tests de usuarios</a> y las <a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas">estadísticas</a> de preguntas y respuestas utilizadas.<br />TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.<br />Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.</li></ul>';
 $tmx['d_logout_desc']='clickea en el botón para salir del sistema';
 $tmx['d_tcexam_desc']='TCExam es un software para la gestión y realización de test en línea.';
 $tmx['h_add']='añade el presente registro a la base de datos';
@@ -420,7 +420,7 @@ $tmx['w_i_agree']='Acepto los terminos y las condiciones';
 $tmx['w_registration_verification']='Verifica el Registro';
 $tmx['m_email_registration']='<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><body><p>Esta es una respuesta automática para verificar a Petición de Registro de un Nuevo Usuario <a href="#TCEXAMURL#">TCExam</a>.<br />Se precisa verificar por email #EMAIL# enviado a la IP remota #USERIP#.<br />Si este mensaje ha sido enviado por error, por favor ignórelo.<br /><br /><b>PARA CONFIRMAR EL REGISTRO UTILICE EL SIGUIENTE LINK:<br /><a href="#SUBSCRIBEURL#">#SUBSCRIBEURL#</a></b></p></body></html>';
 $tmx['w_timer']='timer [sec]';
-$tmx['h_question_timer']='maximo numero de segundos en los cuales se muestra la pregunta (0 = deshabilita el timer)';
+$tmx['h_question_timer']='máximo número de segundos en los cuales se muestra la pregunta (0 = deshabilita el timer)';
 $tmx['w_fullscreen']='pantalla completa';
 $tmx['h_question_fullscreen']='habilita/deshabilita la modalidad pantalla completa para esta pregunta';
 $tmx['h_position']='orden de visualizaciòn corecto';
@@ -487,8 +487,8 @@ $tmx['t_all_results_user']='Resultados del Usuario';
 $tmx['hp_allresults_user']='Este formulario resume los resultados de un usuario determinado.';
 $tmx['hp_result_alluser']='Este formulario sintetiza los resultados de todos los usuarios para el test seleccionado.';
 $tmx['h_module_name']='nombre del modulo';
-$tmx['w_explanation']='explicaciòn';
-$tmx['h_explanation']='explicaciòn que serà imprimida en los resultados';
+$tmx['w_explanation']='explicación';
+$tmx['h_explanation']='explicación que será impresa en los resultados';
 $tmx['w_repeatable']='repetible';
 $tmx['h_repeatable_test']='los usuarios pueden repetir este test varias veces';
 $tmx['w_repeat']='repite';
@@ -508,7 +508,7 @@ $tmx['h_restore']='restablezco la cobertura seleccionada';
 $tmx['m_backup_completed']='La cobertura ha sido ejecutada';
 $tmx['m_restore_completed']='El restablecimiento ha sido ejecutado';
 $tmx['m_restore_confirm']='confirma restablecimiento';
-$tmx['hp_edit_backups']='Através de esta màscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
+$tmx['hp_edit_backups']='A través de esta máscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
 Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump SQL de la entera base de datos de TCExam (estructura y datos).
 Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
 Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la \'operaciòn de restablecimiento.
@@ -517,21 +517,21 @@ $tmx['w_download']='descarga';
 $tmx['h_download']='descarga el archivo de backup seleccionado';
 $tmx['t_user_change_password']='Modifica Password';
 $tmx['t_user_change_email']='Modifica Email';
-$tmx['hp_user_change_password']='Atraves de esta máscara es posible modificar la propia password de acceso.';
-$tmx['hp_user_change_email']='Atraves de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.';
+$tmx['hp_user_change_password']='A través de esta máscara es posible modificar la propia password de acceso.';
+$tmx['hp_user_change_email']='A través de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.';
 $tmx['m_password_updated']='la password ha sido actualizada';
 $tmx['m_email_updated']='la password ha sido actualizada';
 $tmx['m_different_emails']='las emails son diferentes';
 $tmx['w_current_password']='password actual';
 $tmx['w_new_password']='nueva password';
-$tmx['d_password_lenght']='almenos 8 caracteres alfanumericos';
+$tmx['d_password_lenght']='Al menos 8 caracteres alfanuméricos';
 $tmx['w_new_email']='nueva email';
 $tmx['h_email']='dirección e-mail';
 $tmx['h_login_link']='clicar en este link para acceder a este sistema';
 $tmx['w_change_email']='modifica email';
 $tmx['w_change_password']='modifica password';
 $tmx['w_admin']='administración';
-$tmx['h_admin_link']='area de administración';
+$tmx['h_admin_link']='área de administración';
 $tmx['h_public_link']='área pública';
 $tmx['w_public']='pública';
 $tmx['t_test_list']='Lista Test';
@@ -542,7 +542,7 @@ $tmx['w_size']='dimensión';
 $tmx['w_date']='fecha';
 $tmx['w_permissions']='permisos';
 $tmx['t_filemanager']='Gestión Archivos Multimediales';
-$tmx['hp_filemanager']='Atraves de esta página es posible gestionar los archivos multimediales.';
+$tmx['hp_filemanager']='A través de esta página es posible gestionar los archivos multimediales.';
 $tmx['m_used_file']='este archivo es utilizado en la descripción de una pregunta o respuesta';
 $tmx['m_delete_file_error']='imposible cancelar el archivo o la carpeta seleccionados';
 $tmx['w_rename']='renombra';
@@ -563,7 +563,7 @@ $tmx['w_owner']='propietario';
 $tmx['h_module_owner']='propietario de este modulo';
 $tmx['h_topic_owner']='poprietario de este argumento';
 $tmx['t_omr_answers_importer']='Importación Respuestas (OMR)';
-$tmx['hp_omr_answers_importer']='Atraves de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a almenos 200DPI.';
+$tmx['hp_omr_answers_importer']='A través de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a al menos 200DPI.';
 $tmx['w_import_omr_answers']='importar respuestas';
 $tmx['w_omr_data_page']='OMR DATA';
 $tmx['w_omr_answer_sheet']='OMR ANSWER SHEET';

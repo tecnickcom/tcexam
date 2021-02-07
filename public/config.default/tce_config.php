@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-10-23
-// Last Update : 2010-09-26
+// Last Update : 2020-07-16
 //
 // Description : Configuration file for public section.
 //
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -70,14 +70,19 @@ define('K_SITE_KEYWORDS', 'TCExam, eExam, e-exam, web, exam');
 define('K_SITE_ICON', '../../favicon.ico');
 
 /**
- * Path to public CSS stylesheet.
+ * Theme for the public area
  */
-define('K_SITE_STYLE', K_PATH_STYLE_SHEETS.'default.css');
+define('K_PUBLIC_THEME', 'default');
 
 /**
- * Full path to CSS stylesheet for RTL languages.
+ * Path to public CSS stylesheet for LTR languages.
  */
-define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS.'default_rtl.css');
+define('K_SITE_STYLE', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'.css');
+
+/**
+ * Path to CSS stylesheet for RTL languages.
+ */
+define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'_rtl.css');
 
 // --- OPTIONS / COSTANTS ------------------------------------------------------
 

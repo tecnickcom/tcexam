@@ -827,24 +827,22 @@ function F_addLogAnswers($testlog_id, $answers_ids)
     global $db, $l;
     $testlog_id = intval($testlog_id);
     $i = 0;
+    $answer_data = array();		
     foreach ($answers_ids as $key => $answid) {
         $i++;
-        $sqli = 'INSERT INTO '.K_TABLE_LOG_ANSWER.' (
+	$answer_data[] = '('.$testlog_id.', '.$answid.', -1, '.$i.')';    
+    }
+    $answer_data_value = implode(', ', $answer_data);	
+    $sqli = 'INSERT INTO '.K_TABLE_LOG_ANSWER.' (
 			logansw_testlog_id,
 			logansw_answer_id,
 			logansw_selected,
 			logansw_order
-			) VALUES (
-			'.$testlog_id.',
-			'.$answid.',
-			-1,
-			'.$i.'
-			)';
-        if (!$ri = F_db_query($sqli, $db)) {
-            F_display_db_error(false);
-            return false;
-        }
-    }
+			) VALUES '.$answer_data_value;
+    if (!$ri = F_db_query($sqli, $db)) {
+        F_display_db_error(false);
+        return false;
+    }	
     return true;
 }
 
@@ -1549,8 +1547,8 @@ function F_updateQuestionLog($test_id, $testlog_id, $answpos = array(), $answer_
             if ($r = F_db_query($sql, $db)) {
                 while ($m = F_db_fetch_array($r)) {
                     if ((K_SHORT_ANSWERS_BINARY and (strcmp(trim($answer_text), $m['answer_description']) == 0))
-                        or (!K_SHORT_ANSWERS_BINARY and (strcasecmp(trim($answer_text), $m['answer_description']) == 0))) {
-                        $answer_score += $question_right_score;
+                        or (!K_SHORT_ANSWERS_BINARY and (strcasecmp(trim($answer_text), $m['answer_description']) == 0))) { 
+                        $answer_score = $question_right_score;
                         break;
                     }
                 }

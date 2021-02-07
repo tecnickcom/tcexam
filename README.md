@@ -30,7 +30,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
-TCExam includes some third-party software components that are not strictly required but have been included as you convenience, and if used are subject to their respective licenses.
+TCExam includes some third-party software components that are not strictly required but have been included at your convenience, and if used are subject to their respective licenses.
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
@@ -40,7 +40,7 @@ TCExam includes some third-party software components that are not strictly requi
     * Location: /shared/phpmailer/
 
 * **The DHTML Calendar**
-    * Calendar widget written in Javascript.
+    * Calendar widget written in JavaScript.
     * Author: Mihai Bazon (mihai_bazon@yahoo.com)
     * Homepage: http://dynarch.com/mishoo/
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
@@ -68,10 +68,10 @@ TCExam includes some third-party software components that are not strictly requi
 
 * **Fonts**
 
-    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included as you convenience.
+    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included at your convenience.
 
     All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
-    they do not contain any binary data but just a description of the general properties of a particular font.
+    they do not contain any binary data but just a description of the general properties of a specific font.
     These files can be also generated on the fly using the font utilities and TCPDF methods.
 
     All the original binary TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
@@ -79,14 +79,14 @@ TCExam includes some third-party software components that are not strictly requi
     The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
     The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919
-    Link : http://www.gnu.org/software/freefont/
+    Link: http://www.gnu.org/software/freefont/
 
     The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33
-    Link : http://dejavu-fonts.org
+    Link: http://dejavu-fonts.org
 
     The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).
-    Link : http://projects.arabeyes.org/
+    Link: http://projects.arabeyes.org/
 
 
 ## Description
@@ -124,7 +124,7 @@ TCExam independently from the client’s operating system as a normal intranet
 website, with no need to install any additional software or plug-in.
 
 * **Internationalization (I18N)**: TCExam is language-independent through the
-adoption of the UTF-8, Unicode and  TMX standards. It supports the
+adoption of the UTF-8, Unicode and TMX standards. It supports the
 Right-To-Left mode and currently includes translations in 25 different
 languages.
 

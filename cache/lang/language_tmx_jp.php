@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: jp
-// DATE: 2020-01-03 12:05:14
+// DATE: 2021-01-30 13:14:11
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';

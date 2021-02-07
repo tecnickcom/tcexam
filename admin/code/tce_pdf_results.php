@@ -107,7 +107,7 @@ if (isset($_REQUEST['display_mode'])) {
     $display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
     $filter .= '&amp;display_mode='.$display_mode;
 } else {
-    $display_mode = 0;
+    $display_mode = 1;
 }
 
 if (isset($_REQUEST['show_graph'])) {
@@ -237,7 +237,7 @@ if ($mode != 3) {
 
 if ($mode > 2) {
     // print testuser details
-    if ($testuser_id == 0) {
+    if (empty($testuser_id)) {
         foreach ($ts['testuser'] as $tstusr) {
             $pdf->AddPage();
             $pdf->printTestUserInfo($tstusr, $onlytext, $pubmode);

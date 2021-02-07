@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_test_allresults.php
 // Begin       : 2004-06-10
-// Last Update : 2020-05-06
+// Last Update : 2020-06-12
 //
 // Description : Display test results summary.
 //
@@ -138,7 +138,7 @@ echo '</span>'.K_NEWLINE;
 echo '<span class="formw">'.K_NEWLINE;
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />'.K_NEWLINE;
 echo '<select name="test_id" id="test_id" size="0" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'.$l['h_test'].'">'.K_NEWLINE;
-$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id IN ('.F_getTestIDResults($test_id, $user_id).')  ORDER BY test_begin_time DESC, test_name';
+$sql = 'SELECT * FROM '.K_TABLE_TESTS.' WHERE test_id IN ('.F_getTestIDResults($test_id, $user_id).') ORDER BY test_begin_time DESC, test_name';
 if ($r = F_db_query($sql, $db)) {
     echo '<option value="0"';
     if ($test_id == 0) {
