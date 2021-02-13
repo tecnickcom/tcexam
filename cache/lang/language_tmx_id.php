@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: id
-// DATE: 2021-01-30 13:14:07
+// DATE: 2021-02-13 03:56:53
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
@@ -607,31 +607,31 @@ $tmx['m_wrong_test_password']='password ujian salah';
 $tmx['t_test_select']='Pilihan Test';
 $tmx['h_select_test']='buka halaman pilihan test';
 $tmx['hp_select_tests']='Pada form ini anda dapat melihat dan memilih test. Anda dapat mengganti urutan tampilan dengan klik pada nama kolom';
-$tmx['w_limit']='limit';
+$tmx['w_limit']='batas';
 $tmx['w_total']='total';
-$tmx['w_day']='day';
-$tmx['w_month']='month';
-$tmx['w_year']='year';
-$tmx['w_remaining_tests']='remaining tests';
-$tmx['h_remaining_tests']='remaining number of tests that can be executed';
-$tmx['m_reached_test_limit']='the limit of maximum tests has been reached';
-$tmx['w_under_limit']='under limit';
-$tmx['w_over_limit']='over limit';
+$tmx['w_day']='hari';
+$tmx['w_month']='bulan';
+$tmx['w_year']='tahun';
+$tmx['w_remaining_tests']='sisa ujian';
+$tmx['h_remaining_tests']='sisa jumlah ujian yang dapat dieksekusi';
+$tmx['m_reached_test_limit']='batas dari ujian maksimal telah dijangkau';
+$tmx['w_under_limit']='dibawah batas';
+$tmx['w_over_limit']='melebihi batas';
 $tmx['w_font']='font';
-$tmx['w_font_size']='font size';
-$tmx['w_keyboard']='keyboard';
-$tmx['w_layout']='layout';
-$tmx['w_language']='language';
-$tmx['w_max']='max';
-$tmx['w_remaining']='remaining';
-$tmx['w_executed']='executed';
-$tmx['w_overwrite']='overwrite';
-$tmx['h_omr_overwrite']='select this option to overwrite existing results on non-repeatable test';
-$tmx['w_sslcerts']='SSL certificates';
+$tmx['w_font_size']='ukuran font';
+$tmx['w_keyboard']='kibor';
+$tmx['w_layout']='tata letak';
+$tmx['w_language']='bahasa';
+$tmx['w_max']='maks';
+$tmx['w_remaining']='lagi';
+$tmx['w_executed']='dikerjakan';
+$tmx['w_overwrite']='timpa';
+$tmx['h_omr_overwrite']='pilih opsi ini untuk menimpa hasil pada test yang tidak dapat diulang';
+$tmx['w_sslcerts']='sertifikat SSL';
 $tmx['t_sslcerts']='SSL Certificates';
-$tmx['w_sslcert']='SSL certificate';
-$tmx['hp_import_ssl_certificates']='With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.';
-$tmx['m_ssl_certificate_required']='To access this page you need a valid SSL certificate client.';
-$tmx['w_graph']='graph';
+$tmx['w_sslcert']='sertifikat SSL';
+$tmx['hp_import_ssl_certificates']='Dengan form ini anda dapat mengimpor sertifikat SSL client (pfx, pem, crt). Sertifikat tersebut dapat digunakan untuk membatasi akses ke area atau ujian tertentu.';
+$tmx['m_ssl_certificate_required']='Untuk mengaksese halaman ini anda membutuhkan sebuah sertifikat SSL client yang valid.';
+$tmx['w_graph']='grafik';
 
 // --- EOF ---
