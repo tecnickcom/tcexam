@@ -1,6 +1,6 @@
 <?php
 // CACHE FILE FOR LANGUAGE: ru
-// DATE: 2021-01-30 13:14:19
+// DATE: 2021-02-20 10:36:02
 // *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***
 
 $tmx['a_meta_charset']='UTF-8';
