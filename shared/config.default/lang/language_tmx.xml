@@ -48087,7 +48087,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>limit</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>limit</seg>
+            <seg>batas</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>limite</seg>
@@ -48247,7 +48247,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>day</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>day</seg>
+            <seg>hari</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>giorno</seg>
@@ -48327,7 +48327,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>month</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>month</seg>
+            <seg>bulan</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>mese</seg>
@@ -48407,7 +48407,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>year</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>year</seg>
+            <seg>tahun</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>anno</seg>
@@ -48487,7 +48487,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining tests</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>remaining tests</seg>
+            <seg>sisa ujian</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>test rimanenti</seg>
@@ -48567,7 +48567,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining number of tests that can be executed</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>remaining number of tests that can be executed</seg>
+            <seg>sisa jumlah ujian yang dapat dieksekusi</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>numero di test rimanenti che possono essere eseguiti</seg>
@@ -48647,7 +48647,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>the limit of maximum tests has been reached</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>the limit of maximum tests has been reached</seg>
+            <seg>batas dari ujian maksimal telah dijangkau</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>il numero massimo di test è stato raggiunto</seg>
@@ -48727,7 +48727,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>under limit</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>under limit</seg>
+            <seg>dibawah batas</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>sotto il limite</seg>
@@ -48807,7 +48807,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>over limit</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>over limit</seg>
+            <seg>melebihi batas</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>oltre il limite</seg>
@@ -48967,7 +48967,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>font size</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>font size</seg>
+            <seg>ukuran font</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>dimensione font</seg>
@@ -49047,7 +49047,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>keyboard</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>keyboard</seg>
+            <seg>kibor</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>tastiera</seg>
@@ -49127,7 +49127,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>layout</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>layout</seg>
+            <seg>tata letak</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>schema</seg>
@@ -49207,7 +49207,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>language</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>language</seg>
+            <seg>bahasa</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>lingua</seg>
@@ -49287,7 +49287,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>max</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>max</seg>
+            <seg>maks</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>max</seg>
@@ -49367,7 +49367,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>remaining</seg>
+            <seg>lagi</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>rimanenti</seg>
@@ -49447,7 +49447,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>executed</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>executed</seg>
+            <seg>dikerjakan</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>eseguiti</seg>
@@ -49527,7 +49527,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>overwrite</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>overwrite</seg>
+            <seg>timpa</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>sovrascrivi</seg>
@@ -49607,7 +49607,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>select this option to overwrite existing results on non-repeatable test</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>select this option to overwrite existing results on non-repeatable test</seg>
+            <seg>pilih opsi ini untuk menimpa hasil pada test yang tidak dapat diulang</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>seleziona questa opzione per sovrascrivere i risultati nei test non ripetibili</seg>
@@ -49687,7 +49687,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>SSL certificates</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>SSL certificates</seg>
+            <seg>sertifikat SSL</seg>
          </tuv>
          <tuv xml:lang="IT">
             <seg>certificati SSL</seg>
@@ -49853,7 +49853,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>SSL certificate</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>SSL certificate</seg>
+            <seg>sertifikat SSL</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>SSL certificate</seg>
@@ -49933,7 +49933,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+            <seg>Dengan form ini anda dapat mengimpor sertifikat SSL client (pfx, pem, crt). Sertifikat tersebut dapat digunakan untuk membatasi akses ke area atau ujian tertentu.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
@@ -50014,7 +50014,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>To access this page you need a valid SSL certificate client.</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>To access this page you need a valid SSL certificate client.</seg>
+            <seg>Untuk mengaksese halaman ini anda membutuhkan sebuah sertifikat SSL client yang valid.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>To access this page you need a valid SSL certificate client.</seg>
@@ -50094,7 +50094,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>graph</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>graph</seg>
+            <seg>grafik</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>graph</seg>
