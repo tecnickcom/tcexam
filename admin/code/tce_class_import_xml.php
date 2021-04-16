@@ -440,7 +440,7 @@ class XMLQuestionImporter
 			\''.$this->qtype[$this->level_data['question']['question_type']].'\',
 			\''.$this->level_data['question']['question_difficulty'].'\',
 			\''.$this->boolval[$this->level_data['question']['question_enabled']].'\',
-			'.F_zero_to_null($this->level_data['question']['question_position']).',
+			'.F_zero_to_null(intval($this->level_data['question']['question_position'])).',
 			\''.$this->level_data['question']['question_timer'].'\',
 			\''.$this->boolval[$this->level_data['question']['question_fullscreen']].'\',
 			\''.$this->boolval[$this->level_data['question']['question_inline_answers']].'\',
@@ -513,7 +513,7 @@ class XMLQuestionImporter
 					'.F_empty_to_null($this->level_data['answer']['answer_explanation']).',
 					\''.$this->boolval[$this->level_data['answer']['answer_isright']].'\',
 					\''.$this->boolval[$this->level_data['answer']['answer_enabled']].'\',
-					'.F_zero_to_null($this->level_data['answer']['answer_position']).',
+					'.F_zero_to_null(intval($this->level_data['answer']['answer_position'])).',
 					'.F_empty_to_null($this->level_data['answer']['answer_keyboard_key']).'
 					)';
                 if (!$r = F_db_query($sql, $db)) {
