@@ -340,31 +340,14 @@ function F_terminateUserTest($test_id)
 }
 
 /**
- * Check and returns count executed test.<br>
+ * Count the number times of retries.<br>
+ * @param $user_id (int) user ID
+ * @param $test_id (int) test ID
+ * @return retried times
  */
 function F_countUserTest($user_id, $test_id)
 {
-    require_once('../config/tce_config.php');
-    global $db, $l;
-    // get current date-time
-    // $test_status = 0;
-    $user_id = intval($user_id);
-    $test_id = intval($test_id);
-    // $testuser_id = 0;
-    // get current test status for the selected user
-    $sql = 'SELECT COUNT(1)
-		FROM '.K_TABLE_TEST_USER.'
-		WHERE testuser_test_id='.$test_id.'
-			AND testuser_user_id='.$user_id.'
-		LIMIT 1';
-    if ($r = F_db_query($sql, $db)) {
-        if ($m = F_db_fetch_array($r)) {
-			$numExecutedUserTest = $m[0]-1;
-        }
-    } else {
-        F_display_db_error();
-    }
-    return $numExecutedUserTest;
+	return F_count_rows(K_TABLE_TEST_USER,'WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status >= 4');
 }
 
 /**
