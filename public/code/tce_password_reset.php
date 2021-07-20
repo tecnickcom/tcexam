@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_password_reset.php
 // Begin       : 2012-04-14
-// Last Update : 2018-07-06
+// Last Update : 2021-07-20
 //
 // Description : Password Reset form.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2021 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -77,15 +77,13 @@ if (isset($_POST['resetpassword'])) { // process submitted data
             // send email confirmation
             require_once('../../shared/code/tce_functions_user_registration.php');
             F_send_user_reg_email($user_id, $user_email, $user_verifycode);
-            F_print_error('MESSAGE', $user_email.': '.$l['m_user_verification_sent']);
-            echo '<div class="container">'.K_NEWLINE;
-            echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
-            echo '</div>'.K_NEWLINE;
-            require_once('../code/tce_page_footer.php');
-            exit;
-        } else {
-            F_print_error('ERROR', $l['w_unknown_email']);
         }
+        F_print_error('MESSAGE', $user_email.': '.$l['m_user_verification_sent']);
+		echo '<div class="container">'.K_NEWLINE;
+		echo '<strong><a href="index.php" title="'.$l['h_index'].'">'.$l['h_index'].' &gt;</a></strong>'.K_NEWLINE;
+		echo '</div>'.K_NEWLINE;
+		require_once('../code/tce_page_footer.php');
+		exit;
     }
 } //end of add
 
