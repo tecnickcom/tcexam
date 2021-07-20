@@ -62,6 +62,10 @@ function F_upload_file($fieldname, $uploaddir)
     // sanitize file name
     $filename = preg_replace('/[\s]/', '_', $_FILES[$fieldname]['name']);
     $filename = preg_replace('/[^a-zA-Z0-9_\.\-]/', '', $filename);
+    if ($filename[0] === '.') {
+		// files starting with a '.' are rendered as HTML pages.
+		return false;
+	}
     $filepath = $uploaddir.$filename;
     if (F_is_allowed_upload($filename) and move_uploaded_file($_FILES[$fieldname]['tmp_name'], $filepath)) {
         F_print_error('MESSAGE', htmlspecialchars($filename).': '.$l['m_upload_yes']);
