@@ -146,8 +146,8 @@ shell&gt; mysql -u root -p TCExam &lt; db_data.sql</pre><p>As another option you
 find . -exec chown -R apache:apache {} \;<br />
 find . -type f -exec chmod 544 {} \;<br />
 find cache/ -type f -exec chmod 644 {} \;<br />
-find cache/backup -type f -exec chmod 644 {} \;<br />
 find cache/lang -type f -exec chmod 544 {} \;<br />
+find admin/backup -type f -exec chmod 644 {} \;<br />
 find admin/log/ -type f -exec chmod 644 {} \;<br />
 find public/log/ -type f -exec chmod 644 {} \;<br />
 find . -type d -exec chmod 755 {} \;</code><br />
@@ -185,8 +185,7 @@ find . -type d -exec chmod 755 {} \;</code><br />
 <li>name: admin</li>
 <li>password: 1234</li></ul>
 <p>In order to protect your system and be granted with an unique personal access, remember to change the password with the <em>Users</em> form.<br /><br />To achieve a better level of security you have to protect the whole <em>admin</em> folder with a web-based user authentication system. For Apache check the <a href="http://httpd.apache.org/docs/1.3/howto/auth.html" target="_blank" title="Apache basic authentication">Apache Authentication, Authorization, and Access Control</a>.<br />
-If you have SELinux enabled and you are unable to login, check the SELinux settings or disable SELinux.
-
+Please protect separately the <em>admin/backup</em>em> folder or move the backup folder to another protected location and set the <em>K_PATH_BACKUP</em> constant in <em>shared/config/tce_paths.php</em>. The content of this directory shoul dnot be available via Web browser.
 </p>
 
 </body>

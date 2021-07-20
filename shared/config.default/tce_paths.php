@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_paths.php
 // Begin       : 2002-01-15
-// Last Update : 2010-02-12
+// Last Update : 2021-07-20
 //
 // Description : Configuration file for files and directories
 //               paths.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2021  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -84,8 +84,9 @@ define('K_PATH_LANG_CACHE', K_PATH_CACHE.'lang/');
 
 /**
  * Full path to backup directory.
+ * Please protect this directory with extra authentication to restrict access.
  */
-define('K_PATH_BACKUP', K_PATH_CACHE.'backup/');
+define ('K_PATH_BACKUP', K_PATH_MAIN.'admin/backup/');
 
 /**
  * Full path to fonts directory.
