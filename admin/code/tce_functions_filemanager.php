@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_filemanager.php
 // Begin       : 2010-09-20
-// Last Update : 2013-04-12
+// Last Update : 2021-07-20
 //
 // Description : Functions for TCExam file manager.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2021 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -444,9 +444,6 @@ function F_getAuthorizedDirs()
 function F_isAuthorizedDir($dir, $rootdir, $authdirs = '')
 {
     require_once('../config/tce_config.php');
-    if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
-        return true;
-    }
     if (empty($authdirs)) {
         $authdirs = F_getAuthorizedDirs();
     }
