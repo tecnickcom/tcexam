@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_errmsg.php
 // Begin       : 2001-09-17
-// Last Update : 2013-12-11
+// Last Update : 2021-08-04
 //
 // Description : handle error messages
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2021  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -34,6 +34,11 @@
  */
 
 /**
+ * HTML tags that are allowed in an error message.
+ */
+define('K_ALLOWED_ERROR_TAGS', '<a><b><br><em><p><ol><ul><li><small><table><tr><th><td>');
+
+/**
  * Handle error/warning/system messages.
  * Print a message
  * @param $messagetype (string) Type of message:  0=no message, message; warning; error.
@@ -48,6 +53,7 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
     $messagetype = strtolower($messagetype);
     $messagetoprint = unhtmlentities(strip_tags($messagetoprint));
     $messagetoprint = str_replace("'", "\'", $messagetoprint);
+    $messagetoprint = strip_tags($messagetoprint, K_ALLOWED_ERROR_TAGS);
     //message is appended to the log file
     if (K_USE_ERROR_LOG and (!strcmp($messagetype, 'error'))) {
         $logsttring = date(K_TIMESTAMP_FORMAT).K_TAB;
@@ -118,6 +124,7 @@ function F_error_handler($errno, $errstr, $errfile, $errline)
         return;
     }
     $messagetoprint = '['.$errno.'] '.$errstr.' | LINE: '.$errline.' | FILE: '.$errfile.'';
+    $messagetoprint = strip_tags($messagetoprint, K_ALLOWED_ERROR_TAGS);
     switch ($errno) {
         case E_ERROR:
         case E_USER_ERROR: {
