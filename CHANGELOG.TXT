@@ -1,5 +1,5 @@
-14.8.4 (2021-08-04)
-	- Security patch.
+14.8.5 (2021-08-05)
+	- Security patches.
 
 14.5.0 (2020-12-30)
 	- New custom mobile theme.

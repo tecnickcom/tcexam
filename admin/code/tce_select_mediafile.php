@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_select_mediafile.php
 // Begin       : 2010-09-20
-// Last Update : 2014-01-21
+// Last Update : 2021-08-05
 //
 // Description : Select media file for questions or answer description
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2021  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -87,13 +87,14 @@ if (isset($_REQUEST['v'])) {
 }
 
 // select current dir
+$dir = $usr_dir;
 if (isset($_REQUEST['d'])) {
     $dir = urldecode($_REQUEST['d']);
 } elseif (isset($_REQUEST['dir'])) {
     $dir = $_REQUEST['dir'];
-} else {
-    $dir = $usr_dir;
 }
+# sanitize dir
+$dir = realpath($dir).'/';
 // get the authorized dirs
 $authdirs = F_getAuthorizedDirs();
 // check if the user is authorized to use this directory
@@ -102,13 +103,14 @@ if (!F_isAuthorizedDir($dir, $root_dir, $authdirs)) {
 }
 
 // select file
+$file = '';
 if (isset($_REQUEST['f'])) {
     $file = urldecode($_REQUEST['f']);
 } elseif (isset($_REQUEST['file'])) {
     $file = $_REQUEST['file'];
-} else {
-    $file = '';
 }
+# sanitize file
+$file = realpath($file);
 // check if the user is authorized to use this file
 if (!F_isAuthorizedDir($file.'/', $root_dir, $authdirs)) {
     $file = '';
