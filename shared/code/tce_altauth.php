@@ -243,6 +243,29 @@ function F_altLogin()
         // -------------------------------------------------------------
     }
 
+    /**
+     * Custom authentication methods hook.
+     */
+    if (K_CUSTOM_AUTH_METHODS) {
+        $methods = unserialize(K_CUSTOM_AUTH_METHODS);
+        foreach ($methods as $method) {
+            $config_file = '../../shared/config/custom_auth/' . $method . '.php';
+            if (file_exists($config_file)) {
+                require_once($config_file);
+            }
+
+            $main_file = '../../shared/custom_auth/' . $method . '.php';
+            if (file_exists($main_file)) {
+                require_once($main_file);
+            }
+
+            $auth_function = 'custom_auth_' . $method . '_check_login';
+            if (function_exists($auth_function)) {
+                return $auth_function();
+            }
+        }
+    }
+
     return false;
 }
 
