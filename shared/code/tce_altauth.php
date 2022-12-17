@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2015-03-29
+// Last Update : 2022-12-17
 //
 // Description : Check user authorization against alternative
 //               systems (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -30,7 +30,7 @@
 
 /**
  * Try various external Login Systems.
- * (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
+ * (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP, CUSTOM)
  * @return array of user's data for successful login, false otherwise
  * @since 2012-06-05
  */
