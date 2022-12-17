@@ -68,7 +68,7 @@ TCExam includes some third-party software components that are not strictly requi
 
 * **Fonts**
 
-    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included at your convenience.
+    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included for your convenience.
 
     All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
     they do not contain any binary data but just a description of the general properties of a specific font.
