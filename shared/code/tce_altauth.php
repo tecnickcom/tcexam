@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_altauth.php
 // Begin       : 2008-03-28
-// Last Update : 2015-03-29
+// Last Update : 2022-12-17
 //
 // Description : Check user authorization against alternative
 //               systems (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2015 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -30,7 +30,7 @@
 
 /**
  * Try various external Login Systems.
- * (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP)
+ * (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP, CUSTOM)
  * @return array of user's data for successful login, false otherwise
  * @since 2012-06-05
  */
@@ -241,6 +241,29 @@ function F_altLogin()
             @ldap_unbind($ldapconn);
         }
         // -------------------------------------------------------------
+    }
+
+    /**
+     * Custom authentication methods hook.
+     */
+    if (K_CUSTOM_AUTH_METHODS) {
+        $methods = unserialize(K_CUSTOM_AUTH_METHODS);
+        foreach ($methods as $method) {
+            $config_file = '../../shared/config/custom_auth/' . $method . '.php';
+            if (file_exists($config_file)) {
+                require_once($config_file);
+            }
+
+            $main_file = '../../shared/custom_auth/' . $method . '.php';
+            if (file_exists($main_file)) {
+                require_once($main_file);
+            }
+
+            $auth_function = 'custom_auth_' . $method . '_check_login';
+            if (function_exists($auth_function)) {
+                return $auth_function();
+            }
+        }
     }
 
     return false;

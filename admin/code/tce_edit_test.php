@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2020-10-27
+// Last Update : 2022-12-17
 //
 // Description : Edit Tests
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -163,9 +163,9 @@ if (!isset($_REQUEST['test_mcma_radio']) or (empty($_REQUEST['test_mcma_radio'])
     $test_mcma_radio = F_getBoolean($_REQUEST['test_mcma_radio']);
 }
 if (!isset($_REQUEST['test_repeatable']) or (empty($_REQUEST['test_repeatable']))) {
-    $test_repeatable = false;
+    $test_repeatable = 0;
 } else {
-    $test_repeatable = F_getBoolean($_REQUEST['test_repeatable']);
+    $test_repeatable = intval($_REQUEST['test_repeatable']);
 }
 if (!isset($_REQUEST['test_mcma_partial_score']) or (empty($_REQUEST['test_mcma_partial_score']))) {
     $test_mcma_partial_score = false;
@@ -745,7 +745,7 @@ switch ($menu_mode) {
         $test_menu_enabled = true;
         $test_noanswer_enabled = true;
         $test_mcma_radio = true;
-        $test_repeatable = false;
+        $test_repeatable = 0;
         $test_mcma_partial_score = true;
         $test_logout_on_timeout = false;
         $test_password = '';
@@ -790,7 +790,7 @@ if ($formstatus) {
             $test_menu_enabled = true;
             $test_noanswer_enabled = true;
             $test_mcma_radio = true;
-            $test_repeatable = false;
+            $test_repeatable = 0;
             $test_mcma_partial_score = true;
             $test_logout_on_timeout = false;
             $test_password = '';
@@ -822,7 +822,7 @@ if ($formstatus) {
                     $test_menu_enabled = F_getBoolean($m['test_menu_enabled']);
                     $test_noanswer_enabled = F_getBoolean($m['test_noanswer_enabled']);
                     $test_mcma_radio = F_getBoolean($m['test_mcma_radio']);
-                    $test_repeatable = F_getBoolean($m['test_repeatable']);
+                    $test_repeatable = $m['test_repeatable'];
                     $test_mcma_partial_score = F_getBoolean($m['test_mcma_partial_score']);
                     $test_logout_on_timeout = F_getBoolean($m['test_logout_on_timeout']);
                     $test_password = $m['test_password'];
@@ -850,7 +850,7 @@ if ($formstatus) {
                     $test_menu_enabled = true;
                     $test_noanswer_enabled = true;
                     $test_mcma_radio = true;
-                    $test_repeatable = false;
+                    $test_repeatable = 0;
                     $test_mcma_partial_score = true;
                     $test_logout_on_timeout = false;
                     $test_password = '';
@@ -1055,7 +1055,16 @@ echo getFormRowCheckBox('test_menu_enabled', $l['w_enable_menu'], '', '', 1, $te
 echo getFormRowCheckBox('test_comment_enabled', $l['w_enable_comment'], '', '', 1, $test_comment_enabled, false);
 echo getFormRowCheckBox('test_results_to_users', $l['w_results_to_users'], '', '', 1, $test_results_to_users, false);
 echo getFormRowCheckBox('test_report_to_users', $l['w_report_to_users'], '', '', 1, $test_report_to_users, false);
-echo getFormRowCheckBox('test_repeatable', $l['w_repeatable'], '', '', 1, $test_repeatable, false);
+
+$repeat_options = array(
+    0 => $l['w_no'],
+    1 => $l['w_repeatable'],
+);
+for ($i=2; $i<=127; $i++) {
+    $repeat_options[$i] = $i;
+}
+echo getFormRowSelectBox('test_repeatable', $l['w_repeatable'], '', '', $test_repeatable, $repeat_options, '');
+
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
 echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' ('.$l['d_password_lenght'].')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);

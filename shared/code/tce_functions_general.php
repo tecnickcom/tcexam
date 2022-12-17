@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_general.php
 // Begin       : 2001-09-08
-// Last Update : 2014-02-03
+// Last Update : 2022-12-17
 //
 // Description : General functions.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -306,7 +306,7 @@ function getNormalizedIP($ip)
         // fix localhost problem
         $ip = '127.0.0.1';
     }
-    $ip = strtolower($ip);
+    $ip = strtolower(($ip === null) ? '' : $ip);
     // remove unsupported parts
     if (($pos = strrpos($ip, '%')) !== false) {
         $ip = substr($ip, 0, $pos);

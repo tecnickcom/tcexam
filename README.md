@@ -20,7 +20,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 * Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 * Software License:
-	* Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+	* Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
 
 
@@ -72,7 +72,7 @@ TCExam includes some third-party software components that are not strictly requi
 
 * **Fonts**
 
-    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included at your convenience.
+    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included for your convenience.
 
     All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
 

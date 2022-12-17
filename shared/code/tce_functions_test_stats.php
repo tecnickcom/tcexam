@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_test_stats.php
 // Begin       : 2004-06-10
-// Last Update : 2020-06-12
+// Last Update : 2022-12-17
 //
 // Description : Statistical functions for test results.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -330,7 +330,7 @@ function F_getRawTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0,
             $qunanswered = F_count_rows($sqltot, $sqlw.' AND testlog_question_id='.$m['question_id'].' AND testlog_change_time IS NULL');
             $qundisplayed = F_count_rows($sqltot, $sqlw.' AND testlog_question_id='.$m['question_id'].' AND testlog_display_time IS NULL');
             $qunrated = F_count_rows($sqltot, $sqlw.' AND testlog_question_id='.$m['question_id'].' AND testlog_score IS NULL');
-            if (stripos($m['average_time'], ':') !== false) {
+            if (stripos(($m['average_time'] === null) ? '' : $m['average_time'], ':') !== false) {
                 // PostgreSQL returns formatted time, while MySQL returns the number of seconds
                 $m['average_time'] = strtotime($m['average_time']);
             }

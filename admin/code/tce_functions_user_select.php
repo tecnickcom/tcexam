@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_user_select.php
 // Begin       : 2001-09-13
-// Last Update : 2020-07-16
+// Last Update : 2022-12-17
 //
 // Description : Functions to display and select registered user.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022  Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -155,10 +155,10 @@ function F_show_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $g
                 }
                 echo ' />';
                 echo '</td>'.K_NEWLINE;
-                echo '<td style="text-align:'.$txtalign.';">&nbsp;<a href="tce_edit_user.php?user_id='.$m['user_id'].'" title="'.$l['w_edit'].'">'.htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
-                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
-                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
-                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars($m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+                echo '<td style="text-align:'.$txtalign.';">&nbsp;<a href="tce_edit_user.php?user_id='.$m['user_id'].'" title="'.$l['w_edit'].'">'.htmlspecialchars(($m['user_name'] === null) ? '' : $m['user_name'], ENT_NOQUOTES, $l['a_meta_charset']).'</a></td>'.K_NEWLINE;
+                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(($m['user_lastname'] === null) ? '' : $m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(($m['user_firstname'] === null) ? '' : $m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
+                echo '<td style="text-align:'.$txtalign.';">&nbsp;'.htmlspecialchars(($m['user_regnumber'] === null) ? '' : $m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
                 echo '<td>&nbsp;'.$m['user_level'].'</td>'.K_NEWLINE;
                 echo '<td>&nbsp;'.htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset']).'</td>'.K_NEWLINE;
                 // comma separated list of user's groups
