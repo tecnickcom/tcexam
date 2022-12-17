@@ -124,7 +124,7 @@ function F_getUserTests()
                             break;
                         }
                         default: { // 4 or greater = test can be repeated
-                            if (F_getBoolean($m['test_repeatable'])) {
+                            if ((F_countUserTest($_SESSION['session_user_id'], $m['test_id']) < $m['test_repeatable']) or ($m['test_repeatable']==-1)) {
                                 // print execute test link
                                 $str .= '<a href="';
                                 if (K_DISPLAY_TEST_DESCRIPTION or !empty($m['test_password'])) {
@@ -174,7 +174,7 @@ function F_repeatTest($test_id)
     global $db, $l;
     $test_id = intval($test_id);
     $user_id = intval($_SESSION['session_user_id']);
-    $sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' AND test_repeatable=\'1\' LIMIT 1';
+    $sql = 'SELECT test_id FROM '.K_TABLE_TESTS.' WHERE test_id='.$test_id.' AND test_repeatable<>\'0\' LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
             $sqls = 'SELECT testuser_id FROM '.K_TABLE_TEST_USER.' WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status>3 ORDER BY testuser_status DESC';
@@ -340,6 +340,17 @@ function F_terminateUserTest($test_id)
 }
 
 /**
+ * Count the number times of retries.<br>
+ * @param $user_id (int) user ID
+ * @param $test_id (int) test ID
+ * @return retried times
+ */
+function F_countUserTest($user_id, $test_id)
+{
+	return F_count_rows(K_TABLE_TEST_USER,'WHERE testuser_test_id='.$test_id.' AND testuser_user_id='.$user_id.' AND testuser_status >= 4');
+}
+
+/**
  * Check and returns specific test status for the specified user.<br>
  * @param $user_id (int) user ID
  * @param $test_id (int) test ID
@@ -490,7 +501,19 @@ function F_printTestInfo($test_id, $showip = false)
             $str .= F_twoColRow($l['w_test_score_threshold'], $l['h_test_score_threshold'], $m['test_score_threshold']);
             $str .= F_twoColRow($l['w_results_to_users'], $l['h_results_to_users'], $boolval[intval(F_getBoolean($m['test_results_to_users']))]);
             $str .= F_twoColRow($l['w_report_to_users'], $l['h_report_to_users'], $boolval[intval(F_getBoolean($m['test_report_to_users']))]);
-            $str .= F_twoColRow($l['w_repeatable'], $l['h_repeatable_test'], $boolval[intval(F_getBoolean($m['test_repeatable']))]);
+            if($m['test_repeatable']!=0){
+				$is_test_repeatable=1;
+			}else{
+				$is_test_repeatable=0;
+			}
+			if($m['test_repeatable']==-1){
+				$repeat_times=' ( unlimited )';
+			}elseif($m['test_repeatable']>0){
+				$repeat_times=' ( '.$m['test_repeatable'].'x )';
+			}else{
+				$repeat_times='';
+			}
+			$str .= F_twoColRow($l['w_repeatable'], $l['h_repeatable_test'], $boolval[intval(F_getBoolean($is_test_repeatable))].$repeat_times);
             // Additional information hidden by default
             //$str .= F_twoColRow($l['w_random_questions_select'], $l['h_random_questions_select'], $boolval[intval(F_getBoolean($m['test_random_questions_select']))]);
             //$str .= F_twoColRow($l['w_random_questions_order'], $l['h_random_questions_order'], $boolval[intval(F_getBoolean($m['test_random_questions_order']))]);
@@ -674,9 +697,11 @@ function F_executeTest($test_id)
             if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
                 // the user's IP is valid, check test status
                 list ($test_status, $testuser_id) = F_checkTestStatus($_SESSION['session_user_id'], $m['test_id'], $m['test_duration_time']);
-                if (($test_status > 4) and F_getBoolean($m['test_repeatable'])) {
+                if ($test_status > 4) {
                     // this test can be repeated - create new test session for the current user
-                    return F_createTest($test_id, $_SESSION['session_user_id']);
+                    if((F_countUserTest($_SESSION['session_user_id'], $test_id) < $m['test_repeatable']) or ($m['test_repeatable']==-1)){
+						return F_createTest($test_id, $_SESSION['session_user_id']);
+					}
                 }
                 switch ($test_status) {
                     case 0: { // 0 = test is not yet created
