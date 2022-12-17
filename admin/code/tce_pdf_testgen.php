@@ -583,7 +583,7 @@ for ($item = 1; $item <= $test_num; $item++) {
                     if ($ra = F_db_query($sqla, $db)) {
                         if ($ma = F_db_fetch_array($ra)) {
                             $rightanswer = '';
-                            if ($mq['question_type'] == 4) {
+                            if ($q['type'] == 4) {
                                 $rightanswer = $ma['answer_position'];
                             } elseif (F_getBoolean($ma['answer_isright'])) {
                                 $rightanswer = 'X';
