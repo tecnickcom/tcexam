@@ -341,7 +341,7 @@ function addSlashesArray($data)
  * Add your custom authentication methods here.
  */
 define('K_CUSTOM_AUTH_METHODS', serialize(array(
-    'basic', // Uncomment to enable the simple custom authentication method.
+    // 'basic', // Uncomment to enable the simple custom authentication method.
     /**
      * Take a look at the following files to create your own custom authentication method.
      *
