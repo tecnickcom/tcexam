@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_edit_test.php
 // Begin       : 2004-04-27
-// Last Update : 2020-10-27
+// Last Update : 2022-12-17
 //
 // Description : Edit Tests
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -164,6 +164,8 @@ if (!isset($_REQUEST['test_mcma_radio']) or (empty($_REQUEST['test_mcma_radio'])
 }
 if (!isset($_REQUEST['test_repeatable']) or (empty($_REQUEST['test_repeatable']))) {
     $test_repeatable = 0;
+} else {
+    $test_repeatable = intval($_REQUEST['test_repeatable']);
 }
 if (!isset($_REQUEST['test_mcma_partial_score']) or (empty($_REQUEST['test_mcma_partial_score']))) {
     $test_mcma_partial_score = false;
@@ -1054,31 +1056,14 @@ echo getFormRowCheckBox('test_comment_enabled', $l['w_enable_comment'], '', '', 
 echo getFormRowCheckBox('test_results_to_users', $l['w_results_to_users'], '', '', 1, $test_results_to_users, false);
 echo getFormRowCheckBox('test_report_to_users', $l['w_report_to_users'], '', '', 1, $test_report_to_users, false);
 
-echo '<div class="row">'.K_NEWLINE;
-echo '<span class="label">'.K_NEWLINE;
-echo '<label for="test_repeatable">Repeat times</label>'.K_NEWLINE;
-echo '</span>'.K_NEWLINE;
-echo '<span class="formw">'.K_NEWLINE;
-echo '<select name="test_repeatable" id="test_repeatable" size="0">'.K_NEWLINE;
-for($i=-1; $i<=127; $i++){
-	echo '<option value="'.$i.'" ';
-	if($test_repeatable==$i){
-		echo 'selected="selected"';	
-	}
-	echo '>';
-	if($i==-1){
-		echo 'unlimited';
-	}elseif($i==0){
-		echo 'no repeat';
-	}else{
-		echo $i;
-	}
-	echo '</option>'.K_NEWLINE;
+$repeat_options = array(
+    0 => $l['w_no'],
+    1 => $l['w_repeatable'],
+);
+for ($i=2; $i<=127; $i++) {
+    $repeat_options[$i] = $i;
 }
-
-echo '</select>'.K_NEWLINE;
-echo '</span>'.K_NEWLINE;
-echo '</div>'.K_NEWLINE;
+echo getFormRowSelectBox('test_repeatable', $l['w_repeatable'], '', '', '0', $repeat_options, '');
 
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
