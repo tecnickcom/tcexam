@@ -30,7 +30,11 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
+<<<<<<< HEAD
+TCExam includes some third-party software components that are not strictly required but have been included as your convenience, and if used are subject to their respective licenses.
+=======
 TCExam includes some third-party software components that are not strictly required but have been included at your convenience, and if used are subject to their respective licenses.
+>>>>>>> develop
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
@@ -46,7 +50,7 @@ TCExam includes some third-party software components that are not strictly requi
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
     * Location: /shared/jscripts/jscalendar/
 
-* **Javascript VirtualKeyboard**
+* **JavaScript Virtual Keyboard**
     * Author: Ilya Lebedev (ilya@lebedev.net)
     * Homepage: http://debugger.ru/projects/virtualkeyboard
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
@@ -71,6 +75,7 @@ TCExam includes some third-party software components that are not strictly requi
     TCExam includes fonts for the TCPDF library, they are not strictly required but have been included for your convenience.
 
     All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
+
     they do not contain any binary data but just a description of the general properties of a specific font.
     These files can be also generated on the fly using the font utilities and TCPDF methods.
 
@@ -119,7 +124,7 @@ supporting independent peer review and rapid evolution of the source code.
 * **Web-based Architecture**: TCExam is Web-based and developed with LAMP
 (Linux, Apache, MySQL, PHP) technology. User-friendly interface allows you
 to install and use TCExam by simply connecting one cable to the switch of
-your computer network. All the computers on the network will be able to use
+your computer networks. All the computers on the network will be able to use
 TCExam independently from the client’s operating system as a normal intranet
 website, with no need to install any additional software or plug-in.
 
