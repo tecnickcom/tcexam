@@ -335,6 +335,21 @@ function addSlashesArray($data)
     }
     return $data;
 }
+
+/**
+ * Lisf of enabled custom authentication methods.
+ * Add your custom authentication methods here.
+ */
+define('K_CUSTOM_AUTH_METHODS', serialize(array(
+    'basic', // Uncomment to enable the simple custom authentication method.
+    /**
+     * Take a look at the following files to create your own custom authentication method.
+     *
+     * ../../shared/config/custom_auth/basic.php
+     * ../../shared/custom_auth/basic.php
+     */
+)));
+
 //============================================================+
 // END OF FILE
 //============================================================+
