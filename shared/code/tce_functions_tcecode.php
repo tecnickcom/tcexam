@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2013-12-24
+// Last Update : 2022-12-17
 //
 // Description : Functions to translate TCExam code into XHTML.
 //               The TCExam code is compatible to the common BBCode.
@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -46,7 +46,7 @@ function F_decode_tcecode($text_to_decode)
     $i=0;
 
     // escape some special HTML characters
-    $newtext = htmlspecialchars($text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']);
+    $newtext = htmlspecialchars(($text_to_decode === null) ? '' : $text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']);
 
     // --- convert some BBCode to TCECode: ---
     // [*]list item - convert to new [li] tag

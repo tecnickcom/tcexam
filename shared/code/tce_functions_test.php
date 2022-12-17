@@ -63,7 +63,7 @@ function F_getUserTests()
                     $datestyle = '';
                 }
                 $str .= '<tr>'.K_NEWLINE;
-                if (strlen($m['test_password']) > 0) {
+                if (($m['test_password'] !== null) and (strlen($m['test_password']) > 0)) {
                     $str .= '<td style="background-color:#ffffcc;">';
                 } else {
                     $str .= '<td>';
