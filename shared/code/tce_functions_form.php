@@ -291,6 +291,9 @@ function getFormRowTextInput($field_name, $name, $description = '', $tip = '', $
         }
         $str .= '"';
     }
+    if ($value === null) {
+        $value = '';
+    }
     $str .= ' name="'.$field_name.'" id="'.$field_name.'" value="'.htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']).'" size="20" maxlength="'.$maxlen.'" title="'.$description.'" />';
     $str .= $button;
     if (strlen($tip) > 0) {

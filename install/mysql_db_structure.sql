@@ -2,7 +2,7 @@
 ============================================================
 File name   : mysql_db_structure.sql
 Begin       : 2004-04-28
-Last Update : 2013-07-02
+Last Update : 2022-12-17
 
 Description : TCExam database structure.
 Database    : MySQL 4.1+
@@ -16,7 +16,7 @@ Author: Nicola Asuni
               info@tecnick.com
 
 License:
-Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
    See LICENSE.TXT file for more information.
 //============================================================+
 */
@@ -128,7 +128,7 @@ CREATE TABLE tce_tests (
 	test_menu_enabled Bool NOT NULL Default '1',
 	test_noanswer_enabled Bool NOT NULL Default '1',
 	test_mcma_radio Bool NOT NULL Default '1',
-	test_repeatable Bool NOT NULL Default '0',
+	test_repeatable Tinyint NOT NULL Default 0,
 	test_mcma_partial_score Bool NOT NULL Default '1',
 	test_logout_on_timeout Bool NOT NULL Default '0',
 	test_password Varchar(255),

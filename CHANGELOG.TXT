@@ -1,3 +1,10 @@
+15.0.0 (2022-12-17)
+	- Updated database tce_tests.test_repeatable column to support numeric values.
+	- Test repeatability can now be limited to a fixed value.
+
+14.9.0 (2022-12-17)
+	- Support for custom authentication methods.
+
 14.8.6 (2022-12-17)
 	- Update TCPDF library.
 
