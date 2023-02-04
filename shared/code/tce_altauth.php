@@ -261,7 +261,12 @@ function F_altLogin()
 
             $auth_function = 'custom_auth_' . $method . '_check_login';
             if (function_exists($auth_function)) {
-                return $auth_function();
+                // To allow multiple custom authentication methods work properly.
+                // don't return anything if the returned value is NULL.
+                $auth_result = $auth_function();
+                if ($auth_result !== NULL) {
+                    return $auth_result;
+                }
             }
         }
     }
