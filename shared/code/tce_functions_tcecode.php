@@ -237,14 +237,14 @@ function F_latex_callback($matches)
             } else {
                 $cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PDFLATEX.' '.$imgpath.'.tex';
                 $sts = exec($cmd, $out, $ret);
-                if (!$sts) {
+                if (!file_exists($imgpath.'.pdf')) {
                     $error = implode("\n", $out);
                 } else {
                     // convert code using ImageMagick
                     $cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PATH_CONVERT.' -density '.(K_LATEX_FORMULA_DENSITY * $dr).' -trim +repage '.$imgpath.'.pdf -depth 8 -quality 100 '.$imgpath.'.'.K_LATEX_IMG_FORMAT;
                     unset($out);
                     $sts = exec($cmd, $out, $ret);
-                    if ($ret != 0) {
+                    if (!file_exists($imgpath.'.'.K_LATEX_IMG_FORMAT)) {
                         $error = implode("\n", $out);
                     } else {
                         $imsize = @getimagesize($imgpath.'.'.K_LATEX_IMG_FORMAT);
