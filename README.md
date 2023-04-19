@@ -30,11 +30,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
-<<<<<<< HEAD
 TCExam includes some third-party software components that are not strictly required but have been included as your convenience, and if used are subject to their respective licenses.
-=======
-TCExam includes some third-party software components that are not strictly required but have been included at your convenience, and if used are subject to their respective licenses.
->>>>>>> develop
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
