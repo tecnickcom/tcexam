@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_svg_graph.php
 // Begin       : 2012-04-15
-// Last Update : 2013-07-14
+// Last Update : 2023-11-30
 //
 // Description : Create an SVG graph for user results.
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -27,8 +28,7 @@
  * @since 2012-04-15
  */
 
-/**
- */
+
 
 require_once('../../shared/code/tce_functions_svg_graph.php');
 
@@ -38,18 +38,12 @@ if (isset($_REQUEST['p'])) {
 } else {
     exit;
 }
+
 // graph width
-if (isset($_REQUEST['w'])) {
-    $w = intval($_REQUEST['w']);
-} else {
-    $w = '';
-}
+$w = isset($_REQUEST['w']) ? (int) $_REQUEST['w'] : '';
+
 // graph height
-if (isset($_REQUEST['h'])) {
-    $h = intval($_REQUEST['h']);
-} else {
-    $h = '';
-}
+$h = isset($_REQUEST['h']) ? (int) $_REQUEST['h'] : '';
 
 F_getSVGGraph($p, $w, $h);
 

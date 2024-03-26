@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_functions_questions.php
 // Begin       : 2008-11-26
-// Last Update : 2012-11-07
+// Last Update : 2023-11-30
 //
 // Description : Functions to manipulate questions.
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -38,11 +39,11 @@ function F_question_set_enabled($question_id, $enabled = true)
 {
     global $l, $db;
     require_once('../config/tce_config.php');
-    $question_id = intval($question_id);
-    $sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
-		question_enabled=\''.intval($enabled).'\'
-		WHERE question_id='.$question_id.'';
-    if (!$r = F_db_query($sql, $db)) {
+    $question_id = (int) $question_id;
+    $sql = 'UPDATE ' . K_TABLE_QUESTIONS . ' SET
+		question_enabled=\'' . (int) $enabled . '\'
+		WHERE question_id=' . $question_id . '';
+    if (! $r = F_db_query($sql, $db)) {
         F_display_db_error(false);
     }
 }
@@ -58,11 +59,11 @@ function F_question_get_position($question_id)
 {
     global $l, $db;
     require_once('../config/tce_config.php');
-    $question_id = intval($question_id);
+    $question_id = (int) $question_id;
     $question_position = 0;
     $sql = 'SELECT question_position
-		FROM '.K_TABLE_QUESTIONS.'
-		WHERE question_id='.$question_id.'
+		FROM ' . K_TABLE_QUESTIONS . '
+		WHERE question_id=' . $question_id . '
 		LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
@@ -71,6 +72,7 @@ function F_question_get_position($question_id)
     } else {
         F_display_db_error();
     }
+
     return $question_position;
 }
 
@@ -85,11 +87,11 @@ function F_question_get_data($question_id)
 {
     global $l, $db;
     require_once('../config/tce_config.php');
-    $question_id = intval($question_id);
+    $question_id = (int) $question_id;
     $question_position = 0;
     $sql = 'SELECT *
-		FROM '.K_TABLE_QUESTIONS.'
-		WHERE question_id='.$question_id.'
+		FROM ' . K_TABLE_QUESTIONS . '
+		WHERE question_id=' . $question_id . '
 		LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
@@ -98,6 +100,7 @@ function F_question_get_data($question_id)
     } else {
         F_display_db_error();
     }
+
     return false;
 }
 
@@ -112,37 +115,39 @@ function F_question_delete($question_id, $subject_id)
 {
     global $l, $db;
     require_once('../config/tce_config.php');
-    $question_id = intval($question_id);
-    $subject_id = intval($subject_id);
+    $question_id = (int) $question_id;
+    $subject_id = (int) $subject_id;
     // check if this record is used (test_log)
-    if (!F_check_unique(K_TABLE_TESTS_LOGS, 'testlog_question_id='.$question_id.'')) {
+    if (! F_check_unique(K_TABLE_TESTS_LOGS, 'testlog_question_id=' . $question_id . '')) {
         F_question_set_enabled($question_id, false);
     } else {
         $sql = 'START TRANSACTION';
-        if (!$r = F_db_query($sql, $db)) {
+        if (! $r = F_db_query($sql, $db)) {
             F_display_db_error();
         }
+
         // get question position (if defined)
         $question_position = F_question_get_position($question_id);
         // delete question
-        $sql = 'DELETE FROM '.K_TABLE_QUESTIONS.' WHERE question_id='.$question_id.'';
-        if (!$r = F_db_query($sql, $db)) {
+        $sql = 'DELETE FROM ' . K_TABLE_QUESTIONS . ' WHERE question_id=' . $question_id . '';
+        if (! $r = F_db_query($sql, $db)) {
             F_display_db_error(false);
             F_db_query('ROLLBACK', $db); // rollback transaction
         } else {
             // adjust questions ordering
             if ($question_position > 0) {
-                $sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
+                $sql = 'UPDATE ' . K_TABLE_QUESTIONS . ' SET
 					question_position=question_position-1
-					WHERE question_subject_id='.$subject_id.'
-						AND question_position>'.$question_position.'';
-                if (!$r = F_db_query($sql, $db)) {
+					WHERE question_subject_id=' . $subject_id . '
+						AND question_position>' . $question_position . '';
+                if (! $r = F_db_query($sql, $db)) {
                     F_display_db_error(false);
                     F_db_query('ROLLBACK', $db); // rollback transaction
                 }
             }
+
             $sql = 'COMMIT';
-            if (!$r = F_db_query($sql, $db)) {
+            if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error();
             }
         }
@@ -160,15 +165,15 @@ function F_question_copy($question_id, $new_subject_id)
 {
     global $l, $db;
     require_once('../config/tce_config.php');
-    $question_id = intval($question_id);
-    $new_subject_id = intval($new_subject_id);
+    $question_id = (int) $question_id;
+    $new_subject_id = (int) $new_subject_id;
     // check authorization
-    $sql = 'SELECT subject_module_id FROM '.K_TABLE_SUBJECTS.' WHERE subject_id='.$new_subject_id.' LIMIT 1';
+    $sql = 'SELECT subject_module_id FROM ' . K_TABLE_SUBJECTS . ' WHERE subject_id=' . $new_subject_id . ' LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
             $subject_module_id = $m['subject_module_id'];
             // check user's authorization for parent module
-            if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+            if (! F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
                 return;
             }
         }
@@ -176,33 +181,37 @@ function F_question_copy($question_id, $new_subject_id)
         F_display_db_error();
         return;
     }
+
     $q = F_question_get_data($question_id);
     if ($q !== false) {
         if (K_DATABASE_TYPE == 'ORACLE') {
-            $chksql = 'dbms_lob.instr(question_description,\''.F_escape_sql($db, $q['question_description']).'\',1,1)>0';
-        } elseif ((K_DATABASE_TYPE == 'MYSQL') and defined('K_MYSQL_QA_BIN_UNIQUITY') and K_MYSQL_QA_BIN_UNIQUITY) {
-            $chksql = 'question_description=\''.F_escape_sql($db, $q['question_description']).'\' COLLATE utf8_bin';
+            $chksql = "dbms_lob.instr(question_description,'" . F_escape_sql($db, $q['question_description']) . "',1,1)>0";
+        } elseif (K_DATABASE_TYPE === 'MYSQL' && defined('K_MYSQL_QA_BIN_UNIQUITY') && K_MYSQL_QA_BIN_UNIQUITY) {
+            $chksql = "question_description='" . F_escape_sql($db, $q['question_description']) . "' COLLATE utf8_bin";
         } else {
-            $chksql = 'question_description=\''.F_escape_sql($db, $q['question_description']).'\'';
+            $chksql = "question_description='" . F_escape_sql($db, $q['question_description']) . "'";
         }
-        if (F_check_unique(K_TABLE_QUESTIONS, $chksql.' AND question_subject_id='.$new_subject_id.'')) {
+
+        if (F_check_unique(K_TABLE_QUESTIONS, $chksql . ' AND question_subject_id=' . $new_subject_id . '')) {
             $sql = 'START TRANSACTION';
-            if (!$r = F_db_query($sql, $db)) {
+            if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
                 return;
             }
+
             // adjust questions ordering
             if ($q['question_position'] > 0) {
-                $sql = 'UPDATE '.K_TABLE_QUESTIONS.' SET
+                $sql = 'UPDATE ' . K_TABLE_QUESTIONS . ' SET
 					question_position=question_position+1
-					WHERE question_subject_id='.$new_subject_id.'
-						AND question_position>='.$q['question_position'].'';
-                if (!$r = F_db_query($sql, $db)) {
+					WHERE question_subject_id=' . $new_subject_id . '
+						AND question_position>=' . $q['question_position'] . '';
+                if (! $r = F_db_query($sql, $db)) {
                     F_display_db_error(false);
                     F_db_query('ROLLBACK', $db); // rollback transaction
                 }
             }
-            $sql = 'INSERT INTO '.K_TABLE_QUESTIONS.' (
+
+            $sql = 'INSERT INTO ' . K_TABLE_QUESTIONS . ' (
 				question_subject_id,
 				question_description,
 				question_explanation,
@@ -215,30 +224,31 @@ function F_question_copy($question_id, $new_subject_id)
 				question_inline_answers,
 				question_auto_next
 				) VALUES (
-				'.$new_subject_id.',
-				\''.F_escape_sql($db, $q['question_description']).'\',
-				\''.F_escape_sql($db, $q['question_explanation']).'\',
-				\''.$q['question_type'].'\',
-				\''.$q['question_difficulty'].'\',
-				\''.$q['question_enabled'].'\',
-				'.F_zero_to_null($q['question_position']).',
-				\''.$q['question_timer'].'\',
-				\''.$q['question_fullscreen'].'\',
-				\''.$q['question_inline_answers'].'\',
-				\''.$q['question_auto_next'].'\'
+				' . $new_subject_id . ',
+				\'' . F_escape_sql($db, $q['question_description']) . '\',
+				\'' . F_escape_sql($db, $q['question_explanation']) . '\',
+				\'' . $q['question_type'] . '\',
+				\'' . $q['question_difficulty'] . '\',
+				\'' . $q['question_enabled'] . '\',
+				' . F_zero_to_null($q['question_position']) . ',
+				\'' . $q['question_timer'] . '\',
+				\'' . $q['question_fullscreen'] . '\',
+				\'' . $q['question_inline_answers'] . '\',
+				\'' . $q['question_auto_next'] . '\'
 				)';
-            if (!$r = F_db_query($sql, $db)) {
+            if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {
                 $new_question_id = F_db_insert_id($db, K_TABLE_QUESTIONS, 'question_id');
             }
+
             // copy associated answers
             $sql = 'SELECT *
-				FROM '.K_TABLE_ANSWERS.'
-				WHERE answer_question_id='.$question_id.'';
+				FROM ' . K_TABLE_ANSWERS . '
+				WHERE answer_question_id=' . $question_id . '';
             if ($r = F_db_query($sql, $db)) {
                 while ($m = F_db_fetch_array($r)) {
-                    $sqli = 'INSERT INTO '.K_TABLE_ANSWERS.' (
+                    $sqli = 'INSERT INTO ' . K_TABLE_ANSWERS . ' (
 						answer_question_id,
 						answer_description,
 						answer_explanation,
@@ -247,15 +257,15 @@ function F_question_copy($question_id, $new_subject_id)
 						answer_position,
 						answer_keyboard_key
 						) VALUES (
-						'.$new_question_id.',
-						\''.F_escape_sql($db, $m['answer_description']).'\',
-						\''.F_escape_sql($db, $m['answer_explanation']).'\',
-						\''.$m['answer_isright'].'\',
-						\''.$m['answer_enabled'].'\',
-						'.F_zero_to_null($m['answer_position']).',
-						'.F_empty_to_null($m['answer_keyboard_key']).'
+						' . $new_question_id . ',
+						\'' . F_escape_sql($db, $m['answer_description']) . '\',
+						\'' . F_escape_sql($db, $m['answer_explanation']) . '\',
+						\'' . $m['answer_isright'] . '\',
+						\'' . $m['answer_enabled'] . '\',
+						' . F_zero_to_null($m['answer_position']) . ',
+						' . F_empty_to_null($m['answer_keyboard_key']) . '
 						)';
-                    if (!$ri = F_db_query($sqli, $db)) {
+                    if (! $ri = F_db_query($sqli, $db)) {
                         F_display_db_error(false);
                         F_db_query('ROLLBACK', $db); // rollback transaction
                     }
@@ -263,8 +273,9 @@ function F_question_copy($question_id, $new_subject_id)
             } else {
                 F_display_db_error();
             }
+
             $sql = 'COMMIT';
-            if (!$r = F_db_query($sql, $db)) {
+            if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
                 return;
             }

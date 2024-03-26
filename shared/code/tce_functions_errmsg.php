@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_functions_errmsg.php
 // Begin       : 2001-09-17
-// Last Update : 2021-08-04
+// Last Update : 2023-11-30
 //
 // Description : handle error messages
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2021  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -47,52 +48,42 @@ define('K_ALLOWED_ERROR_TAGS', '<a><b><br><em><p><ol><ul><li><small><table><tr><
  */
 function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = false)
 {
-    require_once(dirname(__FILE__).'/../config/tce_config.php');
-    require_once(dirname(__FILE__).'/tce_functions_general.php');
+    require_once(__DIR__ . '/../config/tce_config.php');
+    require_once(__DIR__ . '/tce_functions_general.php');
     global $l;
     $messagetype = strtolower($messagetype);
     $messagetoprint = unhtmlentities(strip_tags($messagetoprint));
     $messagetoprint = str_replace("'", "\'", $messagetoprint);
     $messagetoprint = strip_tags($messagetoprint, K_ALLOWED_ERROR_TAGS);
     //message is appended to the log file
-    if (K_USE_ERROR_LOG and (!strcmp($messagetype, 'error'))) {
-        $logsttring = date(K_TIMESTAMP_FORMAT).K_TAB;
-        $logsttring .= $_SESSION['session_user_id'].K_TAB;
-        $logsttring .= $_SESSION['session_user_ip'].K_TAB;
-        $logsttring .= $messagetype.K_TAB;
-        $logsttring .= $_SERVER['SCRIPT_NAME'].K_TAB;
-        $logsttring .= $messagetoprint.K_NEWLINE;
+    if (K_USE_ERROR_LOG && ! strcmp($messagetype, 'error')) {
+        $logsttring = date(K_TIMESTAMP_FORMAT) . K_TAB;
+        $logsttring .= $_SESSION['session_user_id'] . K_TAB;
+        $logsttring .= $_SESSION['session_user_ip'] . K_TAB;
+        $logsttring .= $messagetype . K_TAB;
+        $logsttring .= $_SERVER['SCRIPT_NAME'] . K_TAB;
+        $logsttring .= $messagetoprint . K_NEWLINE;
         error_log($logsttring, 3, '../log/tce_errors.log');
     }
+
     if (strlen($messagetoprint) > 0) {
-        switch ($messagetype) {
-            case 'message':{
-                $msgtitle = $l['t_message'];
-                break;
-            }
-            case 'warning':{
-                $msgtitle = $l['t_warning'];
-                break;
-            }
-            case 'error':{
-                $msgtitle = $l['t_error'];
-                break;
-            }
-            default: {//no message
-                $msgtitle = $messagetype;
-                break;
-            }
-        }
-        echo '<div class="'.$messagetype.'">'.$msgtitle.': '.$messagetoprint.'</div>'.K_NEWLINE;
+        $msgtitle = match ($messagetype) {
+            'message' => $l['t_message'],
+            'warning' => $l['t_warning'],
+            'error' => $l['t_error'],
+            default => $messagetype,
+        };
+        echo '<div class="' . $messagetype . '">' . $msgtitle . ': ' . $messagetoprint . '</div>' . K_NEWLINE;
         if (K_ENABLE_JSERRORS) {
             //display message on JavaScript Alert Window.
-            echo '<script type="text/javascript">'.K_NEWLINE;
-            echo '//<![CDATA['.K_NEWLINE;
-            echo 'alert(\'['.$msgtitle.']: '.$messagetoprint.'\');'.K_NEWLINE;
-            echo '//]]>'.K_NEWLINE;
-            echo '</script>'.K_NEWLINE;
+            echo '<script type="text/javascript">' . K_NEWLINE;
+            echo '//<![CDATA[' . K_NEWLINE;
+            echo "alert('[" . $msgtitle . ']: ' . $messagetoprint . "');" . K_NEWLINE;
+            echo '//]]>' . K_NEWLINE;
+            echo '</script>' . K_NEWLINE;
         }
     }
+
     if ($exit) {
         exit(); // terminate the current script
     }
@@ -123,26 +114,14 @@ function F_error_handler($errno, $errstr, $errfile, $errline)
         // this is required to ignore supressed error messages with '@'
         return;
     }
-    $messagetoprint = '['.$errno.'] '.$errstr.' | LINE: '.$errline.' | FILE: '.$errfile.'';
+
+    $messagetoprint = '[' . $errno . '] ' . $errstr . ' | LINE: ' . $errline . ' | FILE: ' . $errfile . '';
     $messagetoprint = strip_tags($messagetoprint, K_ALLOWED_ERROR_TAGS);
-    switch ($errno) {
-        case E_ERROR:
-        case E_USER_ERROR: {
-            F_print_error('ERROR', $messagetoprint, true);
-            break;
-        }
-        case E_WARNING:
-        case E_USER_WARNING: {
-            F_print_error('ERROR', $messagetoprint, false);
-            break;
-        }
-        case E_NOTICE:
-        case E_USER_NOTICE:
-        default: {
-            F_print_error('WARNING', $messagetoprint, false);
-            break;
-        }
-    }
+    match ($errno) {
+        E_ERROR, E_USER_ERROR => F_print_error('ERROR', $messagetoprint, true),
+        E_WARNING, E_USER_WARNING => F_print_error('ERROR', $messagetoprint, false),
+        default => F_print_error('WARNING', $messagetoprint, false),
+    };
 }
 
 // Set the custom error handler function
@@ -153,14 +132,16 @@ $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
  * @param url (string) URL to check.
  * @return Returns TRUE if the URL exists; FALSE otherwise.
  */
-function F_url_exists($url) {
+function F_url_exists($url)
+{
     $crs = curl_init();
     curl_setopt($crs, CURLOPT_URL, $url);
     curl_setopt($crs, CURLOPT_NOBODY, true);
     curl_setopt($crs, CURLOPT_FAILONERROR, true);
-    if ((ini_get('open_basedir') == '') && (!ini_get('safe_mode'))) {
+    if ((ini_get('open_basedir') == '') && (! ini_get('safe_mode'))) {
         curl_setopt($crs, CURLOPT_FOLLOWLOCATION, true);
     }
+
     curl_setopt($crs, CURLOPT_CONNECTTIMEOUT, 5);
     curl_setopt($crs, CURLOPT_TIMEOUT, 30);
     curl_setopt($crs, CURLOPT_SSL_VERIFYPEER, false);
@@ -176,16 +157,19 @@ function F_url_exists($url) {
  * Wrapper for file_exists.
  * Checks whether a file or directory exists.
  * Only allows some protocols and local files.
- * @param filename (string) Path to the file or directory. 
- * @return Returns TRUE if the file or directory specified by filename exists; FALSE otherwise.  
+ * @param filename (string) Path to the file or directory.
+ * @return Returns TRUE if the file or directory specified by filename exists; FALSE otherwise.
  */
-function F_file_exists($filename) {
+function F_file_exists($filename)
+{
     if (preg_match('|^https?://|', $filename) == 1) {
         return F_url_exists($filename);
     }
+
     if (strpos($filename, '://')) {
         return false; // only support http and https wrappers for security reasons
     }
+
     return @file_exists($filename);
 }
 

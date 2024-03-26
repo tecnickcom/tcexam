@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_tmx.php
 // Begin       : 2004-10-19
-// Last Update : 2010-08-09
+// Last Update : 2023-11-30
 //
 // Description : TMX-PHP Bridge Class
 // Platform    : PHP 5
@@ -16,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //
 // 	This program is free software: you can redistribute it and/or modify
 // 	it under the terms of the GNU Lesser General Public License as published by
@@ -55,12 +56,13 @@
  */
 class TMXResourceBundle
 {
+    public $parser;
 
     /**
      * Array used to contain key-translation couples.
      * @private
      */
-    private $resource = array();
+    private array $resource = [];
 
     /**
      * String Current tu -> tuid value.
@@ -72,31 +74,25 @@ class TMXResourceBundle
      * String Current data value.
      * @private
      */
-    private $current_data = '';
+    private string $current_data = '';
 
     /**
      * String Current tuv -> xml:lang value.
      * @private
      */
-    private $current_language = '';
+    private string $current_language = '';
 
     /**
      * Boolean value true when we are inside a seg element
      * @private
      */
-    private $segdata = false;
+    private bool $segdata = false;
 
     /**
      * String ISO language identifier (a two- or three-letter code)
      * @private
      */
-    private $language = '';
-
-    /**
-     * String filename for cache
-     * @private
-     */
-    private $cachefile = '';
+    private string $language = '';
 
     /**
      * Class constructor.
@@ -104,26 +100,28 @@ class TMXResourceBundle
      * @param $language (string) ISO language identifier (a two- or three-letter code)
      * @param $cachefile (string) set filename for cache (leave blank to exclude cache)
      */
-    public function __construct($tmxfile, $language, $cachefile = '')
-    {
-        // reset array
-        $this->resource = array();
+    public function __construct(
+        $tmxfile,
+        $language, /**
+     * String filename for cache
+     * @private
+     */
+        private $cachefile = ''
+    ) {
         // set selecteed language
         $this->language = strtoupper($language);
-        // set filename for cache
-        $this->cachefile = $cachefile;
 
         if (F_file_exists($this->cachefile)) {
             // read data from cache
             require_once($this->cachefile);
             $this->resource = $tmx;
         } else {
-            if (!empty($this->cachefile)) {
+            if (! empty($this->cachefile)) {
                 // open cache file
-                file_put_contents($this->cachefile, '<'.'?php'."\n".
-                '// CACHE FILE FOR LANGUAGE: '.substr($language, 0, 2)."\n".
-                '// DATE: '.date('Y-m-d H:i:s')."\n".
-                '// *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***'."\n", FILE_APPEND | LOCK_EX);
+                file_put_contents($this->cachefile, '<?php' . "\n" .
+                '// CACHE FILE FOR LANGUAGE: ' . substr($language, 0, 2) . "\n" .
+                '// DATE: ' . date('Y-m-d H:i:s') . "\n" .
+                '// *** DELETE THIS FILE TO RELOAD DATA FROM TMX FILE ***' . "\n", FILE_APPEND | LOCK_EX);
             }
 
             // creates a new XML parser to be used by the other XML functions
@@ -137,18 +135,21 @@ class TMXResourceBundle
             // sets the character data handler function for the XML parser
             xml_set_character_data_handler($this->parser, 'segContentHandler');
             // start parsing an XML document
-            if (!xml_parse($this->parser, file_get_contents($tmxfile))) {
+            if (xml_parse($this->parser, file_get_contents($tmxfile)) === 0) {
                 die(sprintf(
                     'ERROR TMXResourceBundle :: XML error: %s at line %d',
                     xml_error_string(xml_get_error_code($this->parser)),
                     xml_get_current_line_number($this->parser)
                 ));
             }
+
             // free this XML parser
             xml_parser_free($this->parser);
-            if (!empty($this->cachefile)) {
+            if (! empty($this->cachefile)) {
                 // close cache file
-                file_put_contents($this->cachefile, "\n\n".'// --- EOF ---', FILE_APPEND);
+                file_put_contents($this->cachefile, '
+
+// --- EOF ---', FILE_APPEND);
             }
         }
     }
@@ -158,7 +159,7 @@ class TMXResourceBundle
      */
     public function __destruct()
     {
-        $resource = array(); // reset resource array
+        $resource = []; // reset resource array
     }
 
     /**
@@ -176,6 +177,7 @@ class TMXResourceBundle
                 if (array_key_exists('tuid', $attribs)) {
                     $this->current_key = $attribs['tuid'];
                 }
+
                 break;
             }
             case 'tuv': {
@@ -183,6 +185,7 @@ class TMXResourceBundle
                 if (array_key_exists('xml:lang', $attribs)) {
                     $this->current_language = strtoupper($attribs['xml:lang']);
                 }
+
                 break;
             }
             case 'seg': {
@@ -219,13 +222,14 @@ class TMXResourceBundle
             case 'seg': {
                 // segment, it contains the translated text
                 $this->segdata = false;
-                if (!empty($this->current_data) or !array_key_exists($this->current_key, $this->resource)) {
+                if ($this->current_data !== '' || ! array_key_exists($this->current_key, $this->resource)) {
                     $this->resource[$this->current_key] = $this->current_data; // set new array element
-                    if (!empty($this->cachefile) and ($this->current_language == $this->language)) {
+                    if (! empty($this->cachefile) && $this->current_language === $this->language) {
                         // write element to cache file
-                        file_put_contents($this->cachefile, "\n".'$'.'tmx[\''.$this->current_key.'\']=\''.str_replace('\'', '\\\'', $this->current_data).'\';', FILE_APPEND);
+                        file_put_contents($this->cachefile, "\n" . '$' . "tmx['" . $this->current_key . "']='" . str_replace("'", '\\\'', $this->current_data) . "';", FILE_APPEND);
                     }
                 }
+
                 break;
             }
             default: {
@@ -242,18 +246,22 @@ class TMXResourceBundle
      */
     private function segContentHandler($parser, $data)
     {
-        if ($this->segdata and (strlen($this->current_key)>0) and (strlen($this->current_language)>0)) {
-            // we are inside a seg element
-            if (strcasecmp($this->current_language, $this->language) == 0) {
-                // we have reached the requested language translation
-                $this->current_data .= $data;
-            }
+        // we are inside a seg element
+        if (! ($this->segdata && strlen($this->current_key) > 0 && strlen($this->current_language) > 0)) {
+            return;
         }
+
+        if (strcasecmp($this->current_language, $this->language) != 0) {
+            return;
+        }
+
+        // we have reached the requested language translation
+        $this->current_data .= $data;
     }
 
     /**
      * Returns the resource array containing the translated word/sentences.
-     * @return Array.
+     * @return array.
      */
     public function getResource()
     {

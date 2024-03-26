@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_db_dal_postgresql.php
 // Begin       : 2003-10-12
-// Last Update : 2014-01-26
+// Last Update : 2023-11-30
 //
 // Description : PostgreSQL driver for TCExam Database
 //               Abstraction Layer (DAL).
@@ -18,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -43,10 +44,11 @@
  */
 function F_db_connect($host = 'localhost', $port = '5432', $username = 'postgres', $password = '', $database = 'template1')
 {
-    $connection_string = 'host=\''.$host.'\' port=\''.$port.'\' dbname=\''.$database.'\' user=\''.$username.'\' password=\''.$password.'\'';
-    if (!$db = @pg_connect($connection_string)) {
+    $connection_string = "host='" . $host . "' port='" . $port . "' dbname='" . $database . "' user='" . $username . "' password='" . $password . "'";
+    if (! $db = @pg_connect($connection_string)) {
         return false;
     }
+
     return $db;
 }
 
@@ -74,7 +76,7 @@ function F_db_error($link_identifier = null)
  * NOTE: Convert MySQL RAND() function to PostgreSQL RANDOM() on ORDER BY clause of selection queries.
  * @param $query (string) The query tosend. The query string should not end with a semicolon.
  * @param $link_identifier (resource) database link identifier.
- * @return FALSE in case of error, TRUE or resource-identifier in case of success.
+ * @return false in case of error, TRUE or resource-identifier in case of success.
  */
 function F_db_query($query, $link_identifier)
 {
@@ -135,23 +137,20 @@ function F_db_num_rows($result)
  */
 function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
 {
-    if ($r = @pg_query($link_identifier, 'SELECT CURRVAL(\''.$tablename.'_'.$fieldname.'_seq\')')) {
-        if ($m = pg_fetch_row($r, 0)) {
-            return $m[0];
-        }
+    if (($r = @pg_query($link_identifier, "SELECT CURRVAL('" . $tablename . '_' . $fieldname . "_seq')")) && ($m = pg_fetch_row($r, 0))) {
+        return $m[0];
     }
+
     return 0;
 }
 
 /**
  * Returns the SQL string to calculate the difference in seconds between to datetime fields.
- * @param $start_date (string) Column name of the start date-time.
- * @param $end_date (string) Column name of the end date-time.
  * @return SQL query string
  */
 function F_db_datetime_diff_seconds($start_date_field, $end_date_field)
 {
-    return 'EXTRACT(EPOCH FROM ('.$end_date_field.' - '.$start_date_field.'))';
+    return 'EXTRACT(EPOCH FROM (' . $end_date_field . ' - ' . $start_date_field . '))';
 }
 
 /**
@@ -168,6 +167,7 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
     if ($stripslashes) {
         $str = stripslashes($str);
     }
+
     return pg_escape_string($link_identifier, $str);
 }
 

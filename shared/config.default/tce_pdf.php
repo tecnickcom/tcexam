@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
-// Last Update : 2013-03-17
+// Last Update : 2024-03-18
 //
 // Description : Configuration file for pdf documents.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -169,6 +169,14 @@ define('K_THAI_TOPCHARS', false);
  * IMPORTANT: For security reason, disable this feature if you are printing user HTML content.
  */
 define('K_TCPDF_CALLS_IN_HTML', false);
+
+/**
+ * List of TCPDF methods that are allowed to be called using HTML syntax.
+ * Note: each method name must end with surrounded with | (pipe) character.
+ * The constant K_TCPDF_CALLS_IN_HTML must be set to true.
+ * IMPORTANT: For security reason, disable this feature if you are allowing user HTML content.
+ */
+define('K_ALLOWED_TCPDF_TAGS', '');
 
 /**
  * if true adn PHP version is greater than 5, then the Error() method throw new exception instead of terminating the execution.

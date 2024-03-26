@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_ssl.php
 // Begin       : 2013-03-27
-// Last Update : 2013-03-27
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for SSL Authentication
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2013-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2013-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

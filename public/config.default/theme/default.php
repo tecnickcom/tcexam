@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : default.php
 // Begin       : 2020-07-16
-// Last Update : 2020-07-16
+// Last Update : 2023-11-30
 //
 // Description : Extra script to include when using the "default" theme.
 //
@@ -15,6 +15,6 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2020-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2020-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+

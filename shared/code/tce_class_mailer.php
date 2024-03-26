@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : cp_class_mailer.php
 // Begin       : 2001-10-20
-// Last Update : 2020-01-03
+// Last Update : 2023-11-30
 //
 // Description : Extend PHPMailer class with inheritance
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -28,8 +29,7 @@
  * @since 2005-02-24
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 
@@ -52,11 +52,14 @@ require_once('../../shared/phpmailer/src/PHPMailer.php');
  */
 class C_mailer extends PHPMailer\PHPMailer\PHPMailer
 {
+    public $ErrorInfo;
+
+    public $language;
+
     /**
      * Replace the default SetError
      * @param $msg (string) error message
      * @public
-     * @return void
      */
     public function setError($msg)
     {
@@ -69,7 +72,6 @@ class C_mailer extends PHPMailer\PHPMailer\PHPMailer
      * Set the language array
      * @param $lang (array) Language array
      * @public
-     * @return void
      */
     public function setLanguageData($lang)
     {
@@ -85,13 +87,8 @@ class C_mailer extends PHPMailer\PHPMailer\PHPMailer
      */
     protected function lang($key)
     {
-        if (isset($this->language['m_mailerror_'.$key])) {
-            return $this->language['m_mailerror_'.$key];
-        } else {
-            return 'UNKNOW ERROR: ['.$key.']';
-        }
+        return $this->language['m_mailerror_' . $key] ?? 'UNKNOW ERROR: [' . $key . ']';
     }
-
 } //end of class
 
 //============================================================+

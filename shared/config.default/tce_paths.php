@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_paths.php
 // Begin       : 2002-01-15
-// Last Update : 2021-07-20
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for files and directories
 //               paths.
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2021  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

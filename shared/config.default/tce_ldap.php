@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_ldap.php
 // Begin       : 2008-03-28
-// Last Update : 2015-03-27
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for LDAP
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2015  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

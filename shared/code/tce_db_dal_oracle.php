@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_db_dal_oracle.php
 // Begin       : 2009-10-09
-// Last Update : 2014-01-26
+// Last Update : 2023-11-30
 //
 // Description : Oracle driver for TCExam Database
 //               Abstraction Layer (DAL).
@@ -18,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2014  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -43,15 +44,17 @@
  */
 function F_db_connect($host = 'localhost', $port = '1521', $username = 'root', $password = '', $database = '')
 {
-    $dbstring = '//'.$host.':'.$port;
-    if (!empty($database)) {
-        $dbstring .= '/'.$database;
+    $dbstring = '//' . $host . ':' . $port;
+    if (! empty($database)) {
+        $dbstring .= '/' . $database;
     }
-    if (!$db = @oci_connect($username, $password, $dbstring, 'UTF8')) {
+
+    if (! $db = @oci_connect($username, $password, $dbstring, 'UTF8')) {
         return false;
     }
+
     // change date format
-    @F_db_query('ALTER SESSION SET NLS_DATE_FORMAT=\'YYYY-MM-DD HH24:MI:SS\'', $db);
+    @F_db_query("ALTER SESSION SET NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS'", $db);
     return $db;
 }
 
@@ -72,7 +75,7 @@ function F_db_close($link_identifier)
 function F_db_error($link_identifier = null)
 {
     $e = oci_error();
-    return '['.$e['code'].']: '.$e['message'].'';
+    return '[' . $e['code'] . ']: ' . $e['message'] . '';
 }
 
 /**
@@ -80,24 +83,28 @@ function F_db_error($link_identifier = null)
  * NOTE: Convert MySQL RAND() function to Oracle RANDOM() on ORDER BY clause of selection queries.
  * @param $query (string) The query tosend. The query string should not end with a semicolon.
  * @param $link_identifier (resource) database link identifier.
- * @return FALSE in case of error, TRUE or resource-identifier in case of success.
+ * @return false in case of error, TRUE or resource-identifier in case of success.
  */
 function F_db_query($query, $link_identifier)
 {
     if ($query == 'START TRANSACTION') {
         return true;
     }
+
     // convert MySQL RAND() function to Oracle dbms_random.random
     $query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY dbms_random.random', $query);
     // remove last limit clause
     $query = preg_replace("/LIMIT 1([\s]*)$/si", '', $query);
+
     $stid = @oci_parse($link_identifier, $query);
-    if (!$stid) {
+    if (! $stid) {
         return false;
     }
+
     if (@oci_execute($stid)) {
         return $stid;
     }
+
     return false;
 }
 
@@ -114,6 +121,7 @@ function F_db_fetch_array($result)
         $arr = array_change_key_case($arr, CASE_LOWER);
         $arr = array_map('stripslashes', $arr);
     }
+
     return $arr;
 }
 
@@ -125,11 +133,12 @@ function F_db_fetch_array($result)
  */
 function F_db_fetch_assoc($result)
 {
-    $arr = oci_fetch_assoc($result, OCI_BOTH + OCI_RETURN_NULLS + OCI_RETURN_LOBS);
+    $arr = oci_fetch_assoc($result);
     if ($arr !== false) {
         $arr = array_change_key_case($arr, CASE_LOWER);
         $arr = array_map('stripslashes', $arr);
     }
+
     return $arr;
 }
 
@@ -151,12 +160,9 @@ function F_db_affected_rows($link_identifier, $result)
  */
 function F_db_num_rows($result)
 {
-    $output = array();
+    $output = [];
     @oci_fetch_all($result, $output);
-    if (isset($output['TOTAL'][0])) {
-        return $output['TOTAL'][0];
-    }
-    return oci_num_rows($result);
+    return $output['TOTAL'][0] ?? oci_num_rows($result);
 }
 
 /**
@@ -168,24 +174,21 @@ function F_db_num_rows($result)
  */
 function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
 {
-    $query = 'SELECT '.$tablename.'_seq.currval FROM dual';
-    if ($r = @F_db_query($query, $link_identifier)) {
-        if ($m = oci_fetch_array($r, OCI_NUM)) {
-            return $m[0];
-        }
+    $query = 'SELECT ' . $tablename . '_seq.currval FROM dual';
+    if (($r = @F_db_query($query, $link_identifier)) && ($m = oci_fetch_array($r, OCI_NUM))) {
+        return $m[0];
     }
+
     return 0;
 }
 
 /**
  * Returns the SQL string to calculate the difference in seconds between to datetime fields.
- * @param $start_date (string) Column name of the start date-time.
- * @param $end_date (string) Column name of the end date-time.
  * @return SQL query string
  */
 function F_db_datetime_diff_seconds($start_date_field, $end_date_field)
 {
-    return '('.$end_date_field.' – '.$start_date_field.')*86400';
+    return '(' . $end_date_field . ' – ' . $start_date_field . ')*86400';
 }
 
 /**
@@ -202,6 +205,7 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
     if ($stripslashes) {
         $str = stripslashes($str);
     }
+
     return pg_escape_string($str);
 }
 

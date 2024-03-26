@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_functions_html2txt.php
 // Begin       : 2001-10-21
-// Last Update : 2017-04-22
+// Last Update : 2023-11-30
 //
 // Description : Function to convert HTML code to Text string.
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -41,7 +42,7 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
     $dollar_replacement = ":.dlr.:"; //string replacement for dollar symbol
 
     //tags conversion table
-    $tags2textTable = array (
+    $tags2textTable = [
         "'<br[^>]*?>'i" => "\n",
         "'<p[^>]*?>'i" => "\n",
         "'</p>'i" => "\n",
@@ -55,10 +56,12 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
         "'<li[^>]*?>\t'i" => "\n",
         "'<h[0-9][^>]*?>'i" => "\n\n",
         "'</h[0-9]>'i" => "\n",
-        "'<head[^>]*?>.*?</head>'si" => "\n",  // Strip out head
-        "'<style[^>]*?>.*?</style>'si" => "\n",  // Strip out style
-        "'<script[^>]*?>.*?</script>'si" => "\n"  // Strip out javascript
-    );
+        "'<head[^>]*?>.*?</head>'si" => "\n",
+        // Strip out head
+        "'<style[^>]*?>.*?</style>'si" => "\n",
+        // Strip out style
+        "'<script[^>]*?>.*?</script>'si" => "\n",
+    ];
 
     $str = str_replace("\r\n", "\n", $str);
 
@@ -70,39 +73,35 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
     //remove applet and get alternative content
     $str = preg_replace_callback(
         "/<applet[^>]*?>(.*?)<\/applet>/si",
-        function($subs) {
-            return preg_replace("/<param[^>]*>/i", "", $subs[1]);
-        },
+        static fn ($subs) => preg_replace("/<param[^>]*>/i", "", $subs[1]),
         $str
     );
 
     //remove object and get alternative content
     $str = preg_replace_callback(
         "/<object[^>]*?>(.*?)<\/object>/si",
-        function($subs) {
-            return preg_replace("/<param[^>]*>/i", "", $subs[1]);
-        },
-        $str);
+        static fn ($subs) => preg_replace("/<param[^>]*>/i", "", $subs[1]),
+        $str
+    );
 
     //indent list elements
     $firstposition = 0;
-    while (($pos=strpos($str, "<ul")) > $firstposition) {
+    while (($pos = strpos($str, "<ul")) > $firstposition) {
         $str = preg_replace_callback(
             "/<ul[^>]*?>(.*?)<\/ul>/si",
-            function($subs) {
-                return preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]);
-            },
-            $str);
+            static fn ($subs) => preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]),
+            $str
+        );
         $firstposition = $pos;
     }
+
     $firstposition = 0;
-    while (($pos=strpos($str, "<ol")) > $firstposition) {
+    while (($pos = strpos($str, "<ol")) > $firstposition) {
         $str = preg_replace_callback(
             "/<ol[^>]*?>(.*?)<\/ol>/si",
-            function($subs) {
-                return preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]);
-            },
-            $str);
+            static fn ($subs) => preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]),
+            $str
+        );
         $firstposition = $pos;
     }
 
@@ -113,7 +112,7 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
         $str = preg_replace("'<a[^>]*href[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si", "\\2 [LINK: \\1]", $str);
     }
 
-    if (!$preserve_newlines) { //remove newlines
+    if (! $preserve_newlines) { //remove newlines
         $str = str_replace("\n", "", $str);
     }
 

@@ -1,7 +1,7 @@
 //============================================================+
 // File name   : timer.js
 // Begin       : 2004-04-29
-// Last Update : 2010-10-05
+// Last Update : 2023-11-30
 //
 // Description : display clock and countdown timer
 //
@@ -14,7 +14,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

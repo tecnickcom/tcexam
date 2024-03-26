@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_functions_otp.php
 // Begin       : 2012-01-09
-// Last Update : 2012-11-22
+// Last Update : 2023-11-30
 //
 // Description : Functions for One Time Password (OTP).
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -38,8 +39,9 @@ function F_getRandomOTPkey()
     $key = '';
     // generate a 16 char random secret key
     for ($i = 0; $i < 16; ++$i) {
-        $key .= $dict[(rand(0, 31))];
+        $key .= $dict[(random_int(0, 31))];
     }
+
     return $key;
 }
 
@@ -53,21 +55,22 @@ function F_decodeBase32($code)
     // dictionary
     $dict = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     // remove invalid chars
-    $code = preg_replace('/[^'.$dict.']+/', '', $code);
+    $code = preg_replace('/[^' . $dict . ']+/', '', $code);
     $n = 0;
     $j = 0;
     $bin = '';
     $len = strlen($code);
     // for each char on code
     for ($c = 0; $c < $len; ++$c) {
-        $n = ($n << 5);
-        $n = ($n + strpos($dict, $code[$c]));
-        $j = ($j + 5);
+        $n <<= 5;
+        $n += strpos($dict, $code[$c]);
+        $j += 5;
         if ($j >= 8) {
-            $j = ($j - 8);
+            $j -= 8;
             $bin .= chr(($n & (0xFF << $j)) >> $j);
         }
     }
+
     return $bin;
 }
 
@@ -85,18 +88,19 @@ function F_getOTP($otpkey, $mtime = 0)
     if ($mtime == 0) {
         $mtime = microtime(true);
     }
+
     $time = floor($mtime / 30);
     // convert timestamp into a binary string of 8 bytes
-    $bintime = pack('N*', 0).pack('N*', $time);
+    $bintime = pack('N*', 0) . pack('N*', $time);
     // calculate the SHA1 hash
     $hash = hash_hmac('sha1', $bintime, $binkey, true);
-    // get offset
+    
     $offset = (ord($hash[19]) & 0xf);
     // one time password
-    $otp = ((((ord($hash[($offset + 0)]) & 0x7f) << 24 )
-        | ((ord($hash[($offset + 1)]) & 0xff) << 16 )
-        | ((ord($hash[($offset + 2)]) & 0xff) << 8 )
-        | (ord($hash[($offset + 3)]) & 0xff)) % pow(10, 6));
+    $otp = ((((ord($hash[($offset + 0)]) & 0x7f) << 24)
+        | ((ord($hash[($offset + 1)]) & 0xff) << 16)
+        | ((ord($hash[($offset + 2)]) & 0xff) << 8)
+        | (ord($hash[($offset + 3)]) & 0xff)) % 10 ** 6);
     return $otp;
 }
 

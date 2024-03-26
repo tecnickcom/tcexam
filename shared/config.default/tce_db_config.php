@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_db_config.php
 // Begin       : 2001-09-02
-// Last Update : 2013-07-05
+// Last Update : 2023-11-30
 //
 // Description : Database congiguration file.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2012  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

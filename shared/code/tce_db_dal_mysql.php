@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_db_dal_mysql.php
 // Begin       : 2003-10-12
-// Last Update : 2022-12-17
+// Last Update : 2023-11-30
 //
 // Description : MySQL driver for TCExam Database Abstraction
 //               Layer (DAL).
@@ -18,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2022  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -42,15 +43,17 @@
  */
 function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '')
 {
-    if (!$db = @mysql_connect($host.':'.$port, $username, $password)) {
+    if (! $db = @mysql_connect($host . ':' . $port, $username, $password)) {
         return false;
     }
-    if ((strlen($database) > 0) and (!@mysql_select_db($database, $db))) {
+
+    if (strlen($database) > 0 && ! @mysql_select_db($database, $db)) {
         return false;
     }
+
     // set the correct charset encoding
-    mysql_query($db, 'SET NAMES \'utf8\' COLLATE \'utf8_unicode_ci\'');
-    mysql_query($db, 'SET CHARACTER SET \'utf8\'');
+    mysql_query($db, "SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
+    mysql_query($db, "SET CHARACTER SET 'utf8'");
     return $db;
 }
 
@@ -73,15 +76,15 @@ function F_db_error($link_identifier = null)
     if (empty($link_identifier)) {
         return '';
     }
-    return '['.mysql_errno($link_identifier).']: '.mysql_error($link_identifier).'';
 
+    return '[' . mysql_errno($link_identifier) . ']: ' . mysql_error($link_identifier) . '';
 }
 
 /**
  * Sends a query to the currently active database on the server that's associated with the specified link identifier.<br>
  * @param $query (string) The query tosend. The query string should not end with a semicolon.
  * @param $link_identifier (resource) database link identifier.
- * @return FALSE in case of error, TRUE or resource-identifier in case of success.
+ * @return false in case of error, TRUE or resource-identifier in case of success.
  */
 function F_db_query($query, $link_identifier)
 {
@@ -143,30 +146,27 @@ function F_db_num_rows($result)
 function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
 {
     /*
-	 * NOTE : mysql_insert_id() converts the return type of the
-	 * native MySQL C API function mysql_insert_id() to a type
-	 * of long (named int in PHP). If your AUTO_INCREMENT column
-	 * has a column type of BIGINT, the value returned by
-	 * mysql_insert_id() will be incorrect.
-	 */
-     //return mysql_insert_id($link_identifier);
-    if ($r = mysql_query('SELECT LAST_INSERT_ID() FROM '.$tablename.'', $link_identifier)) {
-        if ($m = mysql_fetch_row($r)) {
-            return $m[0];
-        }
+     * NOTE : mysql_insert_id() converts the return type of the
+     * native MySQL C API function mysql_insert_id() to a type
+     * of long (named int in PHP). If your AUTO_INCREMENT column
+     * has a column type of BIGINT, the value returned by
+     * mysql_insert_id() will be incorrect.
+     */
+    //return mysql_insert_id($link_identifier);
+    if (($r = mysql_query('SELECT LAST_INSERT_ID() FROM ' . $tablename . '', $link_identifier)) && ($m = mysql_fetch_row($r))) {
+        return $m[0];
     }
+
     return 0;
 }
 
 /**
  * Returns the SQL string to calculate the difference in seconds between to datetime fields.
- * @param $start_date (string) Column name of the start date-time.
- * @param $end_date (string) Column name of the end date-time.
  * @return SQL query string
  */
 function F_db_datetime_diff_seconds($start_date_field, $end_date_field)
 {
-    return 'TIMESTAMPDIFF(SECOND, '.$start_date_field.', '.$end_date_field.')';
+    return 'TIMESTAMPDIFF(SECOND, ' . $start_date_field . ', ' . $end_date_field . ')';
 }
 
 /**
@@ -183,6 +183,7 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
     if ($stripslashes) {
         $str = stripslashes($str);
     }
+
     return mysql_real_escape_string($str, $link_identifier);
 }
 

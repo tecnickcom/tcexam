@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2022-12-17
+// Last Update : 2023-11-30
 //
 // Description : Functions to translate TCExam code into XHTML.
 //               The TCExam code is compatible to the common BBCode.
@@ -17,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -41,12 +42,12 @@ function F_decode_tcecode($text_to_decode)
     global $l, $db;
 
     // Patterns and replacements
-    $pattern = array();
-    $replacement = array();
-    $i=0;
+    $pattern = [];
+    $replacement = [];
+    $i = 0;
 
     // escape some special HTML characters
-    $newtext = htmlspecialchars(($text_to_decode === null) ? '' : $text_to_decode, ENT_NOQUOTES, $l['a_meta_charset']);
+    $newtext = htmlspecialchars($text_to_decode ?? '', ENT_NOQUOTES, $l['a_meta_charset']);
 
     // --- convert some BBCode to TCECode: ---
     // [*]list item - convert to new [li] tag
@@ -76,10 +77,11 @@ function F_decode_tcecode($text_to_decode)
     while (preg_match("'\[code\](.*?) (.*?)\[/code\]'si", $newtext)) {
         $newtext = preg_replace("'\[code\](.*?) (.*?)\[/code\]'si", "[code]\\1&nbsp;\\2[/code]", $newtext);
     }
+
     /*
-	while (preg_match("'\[code\](.*?)\n(.*?)\[/code\]'si", $newtext)) {
-		$newtext = preg_replace("'\[code\](.*?)\n(.*?)\[/code\]'si", "[code]\\1@n@\\2[/code]",  $newtext);
-	}*/
+    while (preg_match("'\[code\](.*?)\n(.*?)\[/code\]'si", $newtext)) {
+        $newtext = preg_replace("'\[code\](.*?)\n(.*?)\[/code\]'si", "[code]\\1@n@\\2[/code]",  $newtext);
+    }*/
 
     // [url]http://www.domain.com[/url]
     $pattern[++$i] = "#\[url\](.*?)\[/url\]#si";
@@ -181,12 +183,11 @@ function F_decode_tcecode($text_to_decode)
     $newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
     $newtext = str_replace('<br /><li', '<li', $newtext);
     $newtext = str_replace('</li><br />', '</li>', $newtext);
-    $newtext = str_replace('<br /><param', '<param', $newtext);
 
     // restore newline chars on [code] tag
     //$newtext = preg_replace("'@n@'si", "\n",  $newtext);
 
-    return ($newtext);
+    return (str_replace('<br /><param', '<param', $newtext));
 }
 
 /**
@@ -202,83 +203,87 @@ function F_latex_callback($matches)
     $latex = unhtmlentities($matches[1]);
     $latex = str_replace("&gt;", '>', $latex);
     $latex = str_replace("&lt;", '<', $latex);
+
     $dr = 3; // density ratio
     // generate file name
-    $filename = K_LATEX_IMG_PREFIX.md5($latex);
-    $imgpath = K_LATEX_PATH_PICTURE.$filename;
+    $filename = K_LATEX_IMG_PREFIX . md5($latex);
+    $imgpath = K_LATEX_PATH_PICTURE . $filename;
     $imgurl = false;
     $error = '';
     // check if file is already cached
-    if (is_file($imgpath.'.'.K_LATEX_IMG_FORMAT)) {
-        $imgurl = K_LATEX_PATH_PICTURE_HTTPD.$filename.'.'.K_LATEX_IMG_FORMAT;
-    } else {
+    if (is_file($imgpath . '.' . K_LATEX_IMG_FORMAT)) {
+        $imgurl = K_LATEX_PATH_PICTURE_HTTPD . $filename . '.' . K_LATEX_IMG_FORMAT;
+    } elseif (strlen($latex) > K_LATEX_MAX_LENGHT) {
         // check if the formula
-        if (strlen($latex) > K_LATEX_MAX_LENGHT) {
-            $error = 'the formula is too long';
-        } elseif (preg_match('/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i', $latex) > 0) {
-            $error = 'invalid command';
+        $error = 'the formula is too long';
+    } elseif (preg_match('/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i', $latex) > 0) {
+        $error = 'invalid command';
+    } else {
+        // wrap the formula
+        $ltx = '\nonstopmode' . "\n";
+        $ltx .= '\documentclass{' . K_LATEX_CLASS . '}' . "\n";
+        $ltx .= '\usepackage[T1]{fontenc}' . "\n";
+        $ltx .= '\usepackage{amsmath,amsfonts,amssymb,wasysym,latexsym,marvosym,txfonts}' . "\n";
+        $ltx .= '\usepackage[pdftex]{color}' . "\n";
+        $ltx .= '\pagestyle{empty}' . "\n";
+        $ltx .= '\begin{document}' . "\n";
+        $ltx .= '\fontsize{' . K_LATEX_FONT_SIZE . '}{' . (2 * K_LATEX_FONT_SIZE) . '}' . "\n";
+        $ltx .= '\selectfont' . "\n";
+        $ltx .= '\color{black}' . "\n";
+        $ltx .= '\pagecolor{white}' . "\n";
+        $ltx .= '$' . $latex . '$' . "\n";
+        $ltx .= '\end{document}' . "\n";
+        if (file_put_contents($imgpath . '.tex', $ltx) === false) {
+            $error = 'unable to write on the cache folder';
         } else {
-            // wrap the formula
-            $ltx = '\nonstopmode'."\n";
-            $ltx .= '\documentclass{'.K_LATEX_CLASS.'}'."\n";
-            $ltx .= '\usepackage[T1]{fontenc}'."\n";
-            $ltx .= '\usepackage{amsmath,amsfonts,amssymb,wasysym,latexsym,marvosym,txfonts}'."\n";
-            $ltx .= '\usepackage[pdftex]{color}'."\n";
-            $ltx .= '\pagestyle{empty}'."\n";
-            $ltx .= '\begin{document}'."\n";
-            $ltx .= '\fontsize{'.K_LATEX_FONT_SIZE.'}{'.(2 * K_LATEX_FONT_SIZE).'}'."\n";
-            $ltx .= '\selectfont'."\n";
-            $ltx .= '\color{black}'."\n";
-            $ltx .= '\pagecolor{white}'."\n";
-            $ltx .= '$'.$latex.'$'."\n";
-            $ltx .= '\end{document}'."\n";
-            if (file_put_contents($imgpath.'.tex', $ltx) === false) {
-                $error = 'unable to write on the cache folder';
+            $cmd = 'cd ' . K_LATEX_PATH_PICTURE . ' && ' . K_LATEX_PDFLATEX . ' ' . $imgpath . '.tex';
+            $sts = exec($cmd, $out, $ret);
+            if (($sts === false) || ($ret != 0)) {
+                $error = implode("\n", $out);
             } else {
-                $cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PDFLATEX.' '.$imgpath.'.tex';
+                // convert code using ImageMagick
+                $cmd = 'cd ' . K_LATEX_PATH_PICTURE . ' && ' . K_LATEX_PATH_CONVERT . ' -density ' . (K_LATEX_FORMULA_DENSITY * $dr) . ' -trim +repage ' . $imgpath . '.pdf -depth 8 -quality 100 ' . $imgpath . '.' . K_LATEX_IMG_FORMAT . ' 2>&1';
+                unset($out);
                 $sts = exec($cmd, $out, $ret);
-                if (!$sts) {
+                if (($sts === false) || ($ret != 0)) {
                     $error = implode("\n", $out);
                 } else {
-                    // convert code using ImageMagick
-                    $cmd = 'cd '.K_LATEX_PATH_PICTURE.' && '.K_LATEX_PATH_CONVERT.' -density '.(K_LATEX_FORMULA_DENSITY * $dr).' -trim +repage '.$imgpath.'.pdf -depth 8 -quality 100 '.$imgpath.'.'.K_LATEX_IMG_FORMAT;
-                    unset($out);
-                    $sts = exec($cmd, $out, $ret);
-                    if ($ret != 0) {
-                        $error = implode("\n", $out);
+                    $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
+                    [$w, $h] = $imsize;
+                    if (($w / $dr) > K_LATEX_MAX_WIDTH || ($h / $dr) > K_LATEX_MAX_HEIGHT) {
+                        $error = 'image size exceed limits';
                     } else {
-                        $imsize = @getimagesize($imgpath.'.'.K_LATEX_IMG_FORMAT);
-                        list($w, $h) = $imsize;
-                        if ((($w / $dr) > K_LATEX_MAX_WIDTH) or (($h / $dr) > K_LATEX_MAX_HEIGHT)) {
-                            $error = 'image size exceed limits';
-                        } else {
-                            $imgurl = K_LATEX_PATH_PICTURE_HTTPD.$filename.'.'.K_LATEX_IMG_FORMAT;
-                        }
+                        $imgurl = K_LATEX_PATH_PICTURE_HTTPD . $filename . '.' . K_LATEX_IMG_FORMAT;
                     }
                 }
             }
-            // remove temporary files (if any)
-            $tmpext = array('tex', 'aux', 'log', 'pdf');
-            foreach ($tmpext as $ext) {
-                if (F_file_exists($imgpath.'.'.$ext)) {
-                    @unlink($imgpath.'.'.$ext);
-                }
+        }
+
+        // remove temporary files (if any)
+        $tmpext = ['tex', 'aux', 'log', 'pdf'];
+        foreach ($tmpext as $ext) {
+            if (F_file_exists($imgpath . '.' . $ext)) {
+                @unlink($imgpath . '.' . $ext);
             }
         }
     }
+
     if ($imgurl === false) {
-        $newtext = '[LaTeX: ERROR '.$error.']';
-    } else {
-        // alternative text to image
-        $alt_latex = '[LaTeX]'."\n".htmlentities($latex, ENT_QUOTES);
-        $replaceTable = array("\r" => '&#13;', "\n" => '&#10;');
-        $alt_latex = strtr($alt_latex, $replaceTable);
-        // XHTML code for image
-        $imsize = @getimagesize($imgpath.'.'.K_LATEX_IMG_FORMAT);
-        list($w, $h) = $imsize;
-        $newtext = '<img src="'.$imgurl.'" alt="'.$alt_latex.'" class="tcecode" width="'.round($w / $dr).'" height="'.round($h / $dr).'" />';
+        return '[LaTeX: ERROR ' . $error . ']';
     }
-    return $newtext;
+
+    // alternative text to image
+    $alt_latex = '[LaTeX]' . "\n" . htmlentities($latex, ENT_QUOTES);
+    $replaceTable = [
+        "\r" => '&#13;',
+        "\n" => '&#10;',
+    ];
+    $alt_latex = strtr($alt_latex, $replaceTable);
+    // XHTML code for image
+    $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
+    [$w, $h] = $imsize;
+
+    return '<img src="' . $imgurl . '" alt="' . $alt_latex . '" class="tcecode" width="' . round($w / $dr) . '" height="' . round($h / $dr) . '" />';
 }
 
 /**
@@ -298,10 +303,11 @@ function F_mathml_callback($matches)
     $mathml = strip_tags($mathml, $mathml_tags);
     $mathml = preg_replace("/[\n\r\s]+/", ' ', $mathml);
     $mathml = trim($mathml);
-    if (strpos($mathml, '<math') !== 0) {
+    if (! str_starts_with($mathml, '<math')) {
         // add default math parent tag
-        $mathml = '<math xmlns="http://www.w3.org/1998/Math/MathML">'.$mathml.'</math>';
+        return '<math xmlns="http://www.w3.org/1998/Math/MathML">' . $mathml . '</math>';
     }
+
     return $mathml;
 }
 
@@ -316,15 +322,18 @@ function F_objects_callback($matches)
     $width = 0;
     $height = 0;
     $alt = '';
-    if (isset($matches[3]) and ($matches[3] > 0)) {
+    if (isset($matches[3]) && $matches[3] > 0) {
         $width = $matches[3];
     }
-    if (isset($matches[4]) and ($matches[4] > 0)) {
+
+    if (isset($matches[4]) && $matches[4] > 0) {
         $height = $matches[4];
     }
-    if (isset($matches[5]) and (!empty($matches[5]))) {
+
+    if (isset($matches[5]) && ! empty($matches[5])) {
         $alt = F_tcecodeToTitle($matches[5]);
     }
+
     return F_objects_replacement($matches[1], $matches[2], $width, $height, $alt);
 }
 
@@ -343,7 +352,7 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
 {
     require_once('../config/tce_config.php');
     global $l, $db;
-    $filename = $name.'.'.$extension;
+    $filename = $name . '.' . $extension;
     $extension = strtolower($extension);
     $htmlcode = '';
     switch ($extension) {
@@ -352,16 +361,17 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         case 'jpeg':
         case 'png':
         case 'svg': { // images
-            $htmlcode = '<img src="'.K_PATH_URL_CACHE.$filename.'"';
-            if (!empty($alt)) {
-                $htmlcode .= ' alt="'.$alt.'"';
+            $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
+            if (! empty($alt)) {
+                $htmlcode .= ' alt="' . $alt . '"';
             } else {
-                $htmlcode .= ' alt="image:'.$filename.'"';
+                $htmlcode .= ' alt="image:' . $filename . '"';
             }
-            $imsize = @getimagesize(K_PATH_CACHE.$filename);
+
+            $imsize = @getimagesize(K_PATH_CACHE . $filename);
             if ($imsize !== false) {
-                list($pixw, $pixh) = $imsize;
-                if (($width <= 0) and ($height <= 0)) {
+                [$pixw, $pixh] = $imsize;
+                if ($width <= 0 && $height <= 0) {
                     // get default size
                     $width = $pixw;
                     $height = $pixh;
@@ -371,74 +381,88 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
                     $height = $width * $pixh / $pixw;
                 }
             }
+
             $ratio = 1;
-            if (($width > 0) and ($height > 0)) {
+            if ($width > 0 && $height > 0) {
                 $ratio = $width / $height;
             }
+
             // fit image on max dimensions
-            if (($maxwidth > 0) and ($width > $maxwidth)) {
+            if ($maxwidth > 0 && $width > $maxwidth) {
                 $width = $maxwidth;
                 $height = round($width / $ratio);
                 $maxheight = min($maxheight, $height);
             }
-            if (($maxheight > 0) and ($height > $maxheight)) {
+
+            if ($maxheight > 0 && $height > $maxheight) {
                 $height = $maxheight;
                 $width = round($height * $ratio);
             }
+
             // print size
             if ($width > 0) {
-                $htmlcode .= ' width="'.$width.'"';
+                $htmlcode .= ' width="' . $width . '"';
             }
+
             if ($height > 0) {
-                $htmlcode .= ' height="'.$height.'"';
+                $htmlcode .= ' height="' . $height . '"';
             }
+
             $htmlcode .= ' class="tcecode" />';
             if ($imsize !== false) {
                 $maxwidth = $pixw;
                 $maxheight = $pixh;
             }
+
             break;
         }
         default: {
             include('../../shared/config/tce_mime.php');
             if (isset($mime[$extension])) {
-                $htmlcode = '<object type="'.$mime[$extension].'" data="'.K_PATH_URL_CACHE.$filename.'"';
-                if ($width >0) {
-                    $htmlcode .= ' width="'.$width.'"';
-                } elseif ($maxwidth > 0) {
-                    $htmlcode .= ' width="'.$maxwidth.'"';
-                }
-                if ($height >0) {
-                    $htmlcode .= ' height="'.$height.'"';
-                } elseif ($maxheight > 0) {
-                    $htmlcode .= ' height="'.$maxheight.'"';
-                }
-                $htmlcode .= '>';
-                $htmlcode .= '<param name="type" value="'.$mime[$extension].'" />';
-                $htmlcode .= '<param name="src" value="'.K_PATH_URL_CACHE.$filename.'" />';
-                $htmlcode .= '<param name="filename" value="'.K_PATH_URL_CACHE.$filename.'" />';
+                $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
                 if ($width > 0) {
-                    $htmlcode .= '<param name="width" value="'.$width.'" />';
+                    $htmlcode .= ' width="' . $width . '"';
                 } elseif ($maxwidth > 0) {
-                    $htmlcode .= '<param name="width" value="'.$maxwidth.'" />';
+                    $htmlcode .= ' width="' . $maxwidth . '"';
                 }
+
                 if ($height > 0) {
-                    $htmlcode .= '<param name="height" value="'.$height.'" />';
+                    $htmlcode .= ' height="' . $height . '"';
                 } elseif ($maxheight > 0) {
-                    $htmlcode .= '<param name="height" value="'.$maxheight.'" />';
+                    $htmlcode .= ' height="' . $maxheight . '"';
                 }
-                if (!empty($alt)) {
-                    $htmlcode .= ''.$alt.'';
+
+                $htmlcode .= '>';
+                $htmlcode .= '<param name="type" value="' . $mime[$extension] . '" />';
+                $htmlcode .= '<param name="src" value="' . K_PATH_URL_CACHE . $filename . '" />';
+                $htmlcode .= '<param name="filename" value="' . K_PATH_URL_CACHE . $filename . '" />';
+                if ($width > 0) {
+                    $htmlcode .= '<param name="width" value="' . $width . '" />';
+                } elseif ($maxwidth > 0) {
+                    $htmlcode .= '<param name="width" value="' . $maxwidth . '" />';
+                }
+
+                if ($height > 0) {
+                    $htmlcode .= '<param name="height" value="' . $height . '" />';
+                } elseif ($maxheight > 0) {
+                    $htmlcode .= '<param name="height" value="' . $maxheight . '" />';
+                }
+
+                if (! empty($alt)) {
+                    $htmlcode .= '' . $alt . '';
                 } else {
-                    $htmlcode .= '['.$mime[$extension].']:'.$filename.'';
+                    $htmlcode .= '[' . $mime[$extension] . ']:' . $filename . '';
                 }
+
                 $htmlcode .= '</object>';
             } else {
-                $htmlcode = '[ERROR - UNKNOW MIME TYPE FOR: '.$extension.']';
+                $htmlcode = '[ERROR - UNKNOW MIME TYPE FOR: ' . $extension . ']';
             }
+
             break;
         }
     }
+
     return $htmlcode;
 }
 
@@ -469,8 +493,7 @@ function F_remove_tcecode($str)
     $str = preg_replace("'\[\*\](.*?)\n'i", ' * \1', $str);
     $str = preg_replace("'\[ulist\](.*?)\[/ulist\]'si", '\1', $str);
     $str = preg_replace("'\[olist([^\]]*?)\](.*?)\[/olist\]'si", '\2', $str);
-    $str = preg_replace("'\[tex\](.*?)\[/tex\]'si", '[TEX]', $str);
-    return $str;
+    return preg_replace("'\[tex\](.*?)\[/tex\]'si", '[TEX]', $str);
 }
 
 /**
@@ -493,8 +516,9 @@ function F_tcecodeToLine($str)
     $str = F_decode_tcecode($str);
     $str = F_compact_string($str);
     if (strlen($str) > K_QUESTION_LINE_MAX_LENGTH) {
-        $str = F_substrHTML($str, K_QUESTION_LINE_MAX_LENGTH, 20).' ...';
+        return F_substrHTML($str, K_QUESTION_LINE_MAX_LENGTH, 20) . ' ...';
     }
+
     return $str;
 }
 
@@ -509,8 +533,7 @@ function F_tcecodeToTitle($str)
     global $l;
     $str = F_remove_tcecode($str);
     $str = F_compact_string($str);
-    $str = htmlspecialchars($str, ENT_COMPAT, $l['a_meta_charset']);
-    return $str;
+    return htmlspecialchars($str, ENT_COMPAT, $l['a_meta_charset']);
 }
 
 /**
@@ -530,54 +553,54 @@ function F_substrHTML($htmltext, $min_length = 100, $offset_length = 20)
     if (strlen($htmltext) > $min_length) {
         // Reset the tag_counter and pass through (part of) the entire text
         $c = 0;
-        for ($i = 0; $i < strlen($htmltext); $i++) {
+        for ($i = 0; $i < strlen($htmltext); ++$i) {
             // Load the current character and the next one if the string has not arrived at the last character
             $current_char = substr($htmltext, $i, 1);
-            if ($i < strlen($htmltext) - 1) {
-                $next_char = substr($htmltext, $i + 1, 1);
-            } else {
-                $next_char = '';
-            }
+            $next_char = $i < strlen($htmltext) - 1 ? substr($htmltext, $i + 1, 1) : '';
+
             // First check if quotes are on
-            if (!$quotes_on) {
+            if (! $quotes_on) {
                 // Check if it's a tag On a "<" add 3 if it's an opening tag (like <a href...) or add only 1 if it's an ending tag (like </a>)
                 if ($current_char == '<') {
                     if ($next_char == '/') {
-                        $tag_counter += 1;
+                        ++$tag_counter;
                     } else {
                         $tag_counter += 3;
                     }
                 }
+
                 // Slash signifies an ending (like </a> or ... />) substract 2
-                if (($current_char == '/') and ($tag_counter != 0)) {
+                if ($current_char == '/' && $tag_counter != 0) {
                     $tag_counter -= 2;
                 }
+
                 // On a ">" substract 1
                 if ($current_char == '>') {
-                    $tag_counter -= 1;
+                    --$tag_counter;
                 }
+
                 // If quotes are encountered, start ignoring the tags (for directory slashes)
                 if ($current_char == '"') {
                     $quotes_on = true;
                 }
-            } else {
+            } elseif ($current_char == '"') {
                 // IF quotes are encountered again, turn it back off
-                if ($current_char == '"') {
-                    $quotes_on = false;
-                }
+                $quotes_on = false;
             }
+
             // Count only the chars outside html tags
-            if (($tag_counter == 2) or ($tag_counter == 0)) {
-                $c++;
+            if ($tag_counter == 2 || $tag_counter == 0) {
+                ++$c;
             }
+
             // Check if the counter has reached the minimum length yet,
             // then wait for the tag_counter to become 0, and chop the string there
-            if (($c > $min_length - $offset_length) and ($tag_counter == 0) and ($next_char == ' ')) {
-                $htmltext = substr($htmltext, 0, $i + 1);
-                return $htmltext;
+            if ($c > $min_length - $offset_length && $tag_counter == 0 && $next_char == ' ') {
+                return substr($htmltext, 0, $i + 1);
             }
         }
     }
+
     return $htmltext;
 }
 

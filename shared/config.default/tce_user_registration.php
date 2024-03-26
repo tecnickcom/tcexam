@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2017-04-01
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for user registration.
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

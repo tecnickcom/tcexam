@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_preview_tcecode.php
 // Begin       : 2002-01-30
-// Last Update : 2009-09-30
+// Last Update : 2023-11-30
 //
 // Description : Renders TCExam code using popup headers.
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -27,8 +28,7 @@
  * @since 2002-01-30
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 $pagelevel = K_AUTH_ADMIN_TCECODE;
@@ -45,7 +45,7 @@ $tcexamcode = stripslashes(urldecode($tcexamcode));
 $tcexamcode = str_replace('~#PLUS#~', '+', $tcexamcode);
 echo F_decode_tcecode($tcexamcode);
 
-echo '<hr />'.K_NEWLINE;
+echo '<hr />' . K_NEWLINE;
 
 echo F_close_button();
 

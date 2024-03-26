@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_popup_test_info.php
 // Begin       : 2004-05-28
-// Last Update : 2010-09-17
+// Last Update : 2023-11-30
 //
 // Description : Output test information using popup page
 //               headers.
@@ -16,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2010  Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -28,8 +29,7 @@
  * @since 2004-05-28
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 
@@ -40,17 +40,17 @@ require_once('../../shared/code/tce_authorization.php');
 
 require_once('../code/tce_page_header_popup.php');
 
-echo '<div class="popupcontainer">'.K_NEWLINE;
-if (isset($_REQUEST['testid']) and ($_REQUEST['testid'] > 0)) {
+echo '<div class="popupcontainer">' . K_NEWLINE;
+if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
     require_once('../../shared/code/tce_functions_test.php');
-    echo F_printTestInfo(intval($_REQUEST['testid']), false);
+    echo F_printTestInfo((int) $_REQUEST['testid'], false);
 }
 
-echo '<div class="row">'.K_NEWLINE;
+echo '<div class="row">' . K_NEWLINE;
 require_once('../../shared/code/tce_functions_form.php');
 echo F_close_button();
-echo '</div>'.K_NEWLINE;
-echo '</div>'.K_NEWLINE;
+echo '</div>' . K_NEWLINE;
+echo '</div>' . K_NEWLINE;
 
 require_once('../code/tce_page_footer_popup.php');
 

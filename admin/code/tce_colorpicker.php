@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_colorpicker.php
 // Begin       : 2001-11-05
-// Last Update : 2013-03-17
+// Last Update : 2023-11-30
 //
 // Description : HTML Color Picker Functions.
 //
@@ -15,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -27,15 +28,14 @@
  * @since 2008-10-01
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 $pagelevel = 0;
-//require_once('../../shared/code/tce_authorization.php');
+require_once('../../shared/code/tce_authorization.php');
 $thispage_title = 'Color Picker';
 require_once('../code/tce_page_header_popup.php');
-echo '<script src="'.K_PATH_SHARED_JSCRIPTS.'inserttag.js" type="text/javascript"></script>'.K_NEWLINE;
+echo '<script src="' . K_PATH_SHARED_JSCRIPTS . 'inserttag.js" type="text/javascript"></script>' . K_NEWLINE;
 F_html_color_picker($_REQUEST['frm'], $_REQUEST['fld'], $_REQUEST['tag']);
 require_once('../code/tce_page_footer_popup.php');
 
@@ -56,10 +56,10 @@ function F_html_color_picker($callingform, $callingfield, $tag)
     $callingfield = preg_replace('/[^a-z0-9_]/', '', $callingfield);
     $tag = preg_replace('/[^a-z0-9_]/', '', $tag);
 
-    echo '<div style="margin:0;padding:0;">'.K_NEWLINE;
-    echo '<a onclick="FJ_pick_color(0); document.getElementById(\'colorname\').selectedIndex=0;"><img src="'.K_PATH_IMAGES.'buttons/colortable.jpg" alt="" id="colorboard" width="320" height="300" style="margin:0;padding:0;border:none;" /></a>'.K_NEWLINE;
+    echo '<div style="margin:0;padding:0;">' . K_NEWLINE;
+    echo '<a onclick="FJ_pick_color(0); document.getElementById(\'colorname\').selectedIndex=0;"><img src="' . K_PATH_IMAGES . 'buttons/colortable.jpg" alt="" id="colorboard" width="320" height="300" style="margin:0;padding:0;border:none;" /></a>' . K_NEWLINE;
     echo K_NEWLINE;
-    echo '<form action="'.$_SERVER['SCRIPT_NAME'].'" method="post" enctype="multipart/form-data" id="form_colorpicker">'.K_NEWLINE;
+    echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_colorpicker">' . K_NEWLINE;
     echo '<div class="smalldigit" style="width:320px;font-size:80%;" >';
     echo 'DEC:';
     echo '<input type="text" name="RED" id="RED" size="3" maxlength="3" readonly="readonly" title="RED (DEC)"/>';
@@ -70,36 +70,38 @@ function F_html_color_picker($callingform, $callingfield, $tag)
     echo '<input type="text" name="HRED" id="HRED" size="3" maxlength="2" readonly="readonly" title="RED (HEX)"/>';
     echo '<input type="text" name="HGREEN" id="HGREEN" size="3" maxlength="2" readonly="readonly" title="GREEN (HEX)"/>';
     echo '<input type="text" name="HBLUE" id="HBLUE" size="3" maxlength="2" readonly="readonly" title="BLUE (HEX)"/>';
-    echo '</div>'.K_NEWLINE;
+    echo '</div>' . K_NEWLINE;
 
     // print a table of websafe colors
     $ck = 1;
     echo '<div style="width:320px;">';
     foreach (TCPDF_COLORS::$webcolor as $key => $val) { // for each color in table
-        echo '<a title="'.$key.'" onclick="document.getElementById(\'CSELECTED\').value=\'#'.$val.'\';FJ_pick_color(1);document.getElementById(\'colorname\').selectedIndex='.$ck.';" style="text-decoration:none;font-size:3px;">';
-        echo '<span style="background-color:#'.$val.';padding:0;margin:0;width:20px;height:10px;float:left;">&nbsp;</span>';
+        echo '<a title="' . $key . '" onclick="document.getElementById(\'CSELECTED\').value=\'#' . $val . "';FJ_pick_color(1);document.getElementById('colorname').selectedIndex=" . $ck . ';" style="text-decoration:none;font-size:3px;">';
+        echo '<span style="background-color:#' . $val . ';padding:0;margin:0;width:20px;height:10px;float:left;">&nbsp;</span>';
         echo '</a>';
-        $ck++;
+        ++$ck;
     }
+
     echo '<br style="clear:both;"/>';
-    echo '</div>'.K_NEWLINE;
-    echo '<div id="pickedcolor" style="visibility:visible;border:1px solid black;width:320px;height:30px;">&nbsp;</div>'.K_NEWLINE;
-    echo '<div>'.K_NEWLINE;
-    echo '<select name="colorname" id="colorname" size="0" onchange="document.getElementById(\'CSELECTED\').value=document.getElementById(\'colorname\').options[document.getElementById(\'colorname\').selectedIndex].value; FJ_pick_color(1);">'.K_NEWLINE;
-    echo '<option value=""></option>'.K_NEWLINE;
+    echo '</div>' . K_NEWLINE;
+    echo '<div id="pickedcolor" style="visibility:visible;border:1px solid black;width:320px;height:30px;">&nbsp;</div>' . K_NEWLINE;
+    echo '<div>' . K_NEWLINE;
+    echo '<select name="colorname" id="colorname" size="0" onchange="document.getElementById(\'CSELECTED\').value=document.getElementById(\'colorname\').options[document.getElementById(\'colorname\').selectedIndex].value; FJ_pick_color(1);">' . K_NEWLINE;
+    echo '<option value=""></option>' . K_NEWLINE;
     reset(TCPDF_COLORS::$webcolor);
     foreach (TCPDF_COLORS::$webcolor as $key => $val) { // for each color in table
-        echo '<option value="#'.$val.'">'.$key.'</option>'.K_NEWLINE;
+        echo '<option value="#' . $val . '">' . $key . '</option>' . K_NEWLINE;
     }
+
     echo '</select>';
-    echo '<input type="text" name="CSELECTED" id="CSELECTED" size="10" maxlength="7" value="" onchange="FJ_pick_color(1); document.getElementById(\'colorname\').selectedIndex=0;" />'.K_NEWLINE;
-    $onclick = 'FJ_insert_tag(window.opener.document.getElementById(\''.$callingform.'\').'.$callingfield.', \'['.$tag.'=\'+document.getElementById(\'CSELECTED\').value+\']\');';
-    echo '<input type="button" name="wclose" id="wclose" value="'.$l['w_close'].'" title="'.$l['h_close_window'].'" onclick="'.$onclick.'self.close();" />'.K_NEWLINE;
-    echo '</div>'.K_NEWLINE;
-    echo F_getCSRFTokenField().K_NEWLINE;
-    echo '</form>'.K_NEWLINE;
-    echo '</div>'.K_NEWLINE;
-?>
+    echo '<input type="text" name="CSELECTED" id="CSELECTED" size="10" maxlength="7" value="" onchange="FJ_pick_color(1); document.getElementById(\'colorname\').selectedIndex=0;" />' . K_NEWLINE;
+    $onclick = "FJ_insert_tag(window.opener.document.getElementById('" . $callingform . "')." . $callingfield . ", '[" . $tag . "='+document.getElementById('CSELECTED').value+']');";
+    echo '<input type="button" name="wclose" id="wclose" value="' . $l['w_close'] . '" title="' . $l['h_close_window'] . '" onclick="' . $onclick . 'self.close();" />' . K_NEWLINE;
+    echo '</div>' . K_NEWLINE;
+    echo F_getCSRFTokenField() . K_NEWLINE;
+    echo '</form>' . K_NEWLINE;
+    echo '</div>' . K_NEWLINE;
+    echo <<<EOD
 <script type="text/javascript">
 //<![CDATA[
 // variables
@@ -111,22 +113,14 @@ var hexChars = '0123456789ABCDEF';
 // ------------------------------------------------------------
 // capture event
 // ------------------------------------------------------------
-if (window.captureEvents) {
-    document.captureEvents(Event.MOUSEMOVE);
-}
 document.onmousemove = FJ_get_coordinates;
 
 // ------------------------------------------------------------
 // Get cursor coordinates and store on Xpos and Ypos variables
 // ------------------------------------------------------------
 function FJ_get_coordinates(e) {
-    if (window.captureEvents) {
-        Xpos = e.pageX;
-        Ypos = e.pageY;
-    } else {
-        Xpos = (event.clientX + document.body.scrollLeft);
-        Ypos = (event.clientY + document.body.scrollTop);
-    }
+    Xpos = (event.clientX + document.body.scrollLeft);
+    Ypos = (event.clientY + document.body.scrollTop);
 
     //calculate color
     if (Xpos<=50) {
@@ -237,8 +231,8 @@ document.getElementById('CSELECTED').value='#000000';
 FJ_pick_color(1);
 //]]>
 </script>
-<?php
-return;
+EOD;
+    return;
 }
 
 //============================================================+

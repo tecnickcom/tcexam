@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_pdf_results.php
 // Begin       : 2004-06-10
-// Last Update : 2020-05-06
+// Last Update : 2023-11-30
 //
 // Description : Create PDF document to display test results
 //               summary for all users.
@@ -16,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -35,8 +36,7 @@
  * @param $_REQUEST['orderdir'] (int) Ordering direction.
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_authorization.php');
@@ -47,91 +47,93 @@ require_once('../../shared/config/tce_pdf.php');
 require_once('../../shared/code/tcpdfex.php');
 require_once('../../shared/code/tce_functions_statistics.php');
 
-$user_id = intval($_SESSION['session_user_id']);
+$user_id = (int) $_SESSION['session_user_id'];
+$mode = isset($_REQUEST['mode']) && $_REQUEST['mode'] > 0 ? (int) $_REQUEST['mode'] : 0;
 
-if (isset($_REQUEST['mode']) and ($_REQUEST['mode'] > 0)) {
-    $mode = intval($_REQUEST['mode']);
-} else {
-    $mode = 0;
-}
 $onlytext = ($mode == 5);
-if (isset($_REQUEST['email']) and !checkPassword(date('Y').$testuser_id.K_RANDOM_SECURITY.$test_id.date('m').$user_id, $_REQUEST['email'])) {
+if (isset($_REQUEST['email']) && ! checkPassword(date('Y') . $testuser_id . K_RANDOM_SECURITY . $test_id . date('m') . $user_id, $_REQUEST['email'])) {
     F_print_error('ERROR', $l['m_authorization_denied'], true);
 }
+
 $filter = 'sel=1';
-if (isset($_REQUEST['test_id']) and ($_REQUEST['test_id'] > 0)) {
-    $test_id = intval($_REQUEST['test_id']);
-    if (!isset($_REQUEST['email'])) {
-        if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-            exit;
-        }
+if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
+    $test_id = (int) $_REQUEST['test_id'];
+    if (! isset($_REQUEST['email']) && ! F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+        exit;
     }
-    $filter .= '&amp;test_id='.$test_id.'';
+
+    $filter .= '&amp;test_id=' . $test_id . '';
 } else {
     $test_id = 0;
 }
-if (isset($_REQUEST['group_id']) and ($_REQUEST['group_id'] > 0)) {
-    $group_id = intval($_REQUEST['group_id']);
-    $filter .= '&amp;group_id='.$group_id.'';
+
+if (isset($_REQUEST['group_id']) && $_REQUEST['group_id'] > 0) {
+    $group_id = (int) $_REQUEST['group_id'];
+    $filter .= '&amp;group_id=' . $group_id . '';
 } else {
     $group_id = 0;
 }
-if (isset($_REQUEST['testuser_id']) and ($_REQUEST['testuser_id'] > 1)) {
-    $testuser_id = intval($_REQUEST['testuser_id']);
-    $filter .= '&amp;testuser_id='.$testuser_id.'';
+
+if (isset($_REQUEST['testuser_id']) && $_REQUEST['testuser_id'] > 1) {
+    $testuser_id = (int) $_REQUEST['testuser_id'];
+    $filter .= '&amp;testuser_id=' . $testuser_id . '';
 } else {
     $testuser_id = 0;
 }
+
 if (isset($_REQUEST['startdate'])) {
     $startdate = $_REQUEST['startdate'];
     $startdate_time = strtotime($startdate);
     $startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
-    $filter .= '&amp;startdate='.urlencode($startdate);
+    $filter .= '&amp;startdate=' . urlencode($startdate);
 } else {
     $startdate = '';
 }
+
 if (isset($_REQUEST['enddate'])) {
     $enddate = $_REQUEST['enddate'];
     $enddate_time = strtotime($enddate);
     $enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
-    $filter .= '&amp;enddate='.urlencode($enddate).'';
+    $filter .= '&amp;enddate=' . urlencode($enddate) . '';
 } else {
     $enddate = '';
 }
 
 if (isset($_REQUEST['display_mode'])) {
-    $display_mode = max(0, min(5, intval($_REQUEST['display_mode'])));
-    $filter .= '&amp;display_mode='.$display_mode;
+    $display_mode = max(0, min(5, (int) $_REQUEST['display_mode']));
+    $filter .= '&amp;display_mode=' . $display_mode;
 } else {
     $display_mode = 1;
 }
 
 if (isset($_REQUEST['show_graph'])) {
-    $show_graph = intval($_REQUEST['show_graph']);
-    $filter .= '&amp;show_graph='.$show_graph;
-    if ($show_graph and ($display_mode == 0)) {
+    $show_graph = (int) $_REQUEST['show_graph'];
+    $filter .= '&amp;show_graph=' . $show_graph;
+    if ($show_graph && $display_mode == 0) {
         $display_mode = 1;
     }
 } else {
     $show_graph = 0;
 }
 
-if (isset($_REQUEST['order_field']) and !empty($_REQUEST['order_field']) and (in_array($_REQUEST['order_field'], array('testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'testuser_test_id')))) {
+if (isset($_REQUEST['order_field']) && ! empty($_REQUEST['order_field']) && in_array($_REQUEST['order_field'], ['testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score', 'testuser_test_id'])) {
     $order_field = $_REQUEST['order_field'];
 } else {
     $order_field = 'total_score, user_lastname, user_firstname';
 }
-$filter .= '&amp;order_field='.urlencode($order_field).'';
-if (!isset($_REQUEST['orderdir']) or empty($_REQUEST['orderdir'])) {
+
+$filter .= '&amp;order_field=' . urlencode($order_field) . '';
+if (! isset($_REQUEST['orderdir']) || empty($_REQUEST['orderdir'])) {
     $orderdir = 0;
     $nextorderdir = 1;
     $full_order_field = $order_field;
 } else {
     $orderdir = 1;
     $nextorderdir = 0;
-    $full_order_field = $order_field.' DESC';
+    $full_order_field = $order_field . ' DESC';
 }
-$filter .= '&amp;orderdir='.$orderdir.'';
+
+$filter .= '&amp;orderdir=' . $orderdir . '';
 
 $pubmode = true;
 
@@ -169,17 +171,17 @@ $pdf = new TCPDFEX(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, $isunicode);
 
 // Set backlink QR-Code
 if ($pubmode) {
-    $pdf->setTCExamBackLink(K_PATH_URL.'public/code/tce_test_allresults.php?'.$filter);
+    $pdf->setTCExamBackLink(K_PATH_URL . 'public/code/tce_test_allresults.php?' . $filter);
 } else {
-    $pdf->setTCExamBackLink(K_PATH_URL.'admin/code/tce_show_result_allusers.php?'.$filter);
+    $pdf->setTCExamBackLink(K_PATH_URL . 'admin/code/tce_show_result_allusers.php?' . $filter);
 }
 
 // set document information
-$pdf->SetCreator('TCExam ver.'.K_TCEXAM_VERSION.'');
+$pdf->SetCreator('TCExam ver.' . K_TCEXAM_VERSION . '');
 $pdf->SetAuthor(PDF_AUTHOR);
 $pdf->SetTitle($doc_title);
 $pdf->SetSubject($doc_description);
-$pdf->SetKeywords('TCExam, '.$doc_title);
+$pdf->SetKeywords('TCExam, ' . $doc_title);
 
 $pdf->setHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 
@@ -195,14 +197,19 @@ $pdf->setFooterMargin(PDF_MARGIN_FOOTER);
 //set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
-$pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont([PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN]);
+$pdf->setFooterFont([PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA]);
 
 $pdf->setLanguageArray($l); //set language items
 
-if (defined('K_DIGSIG_ENABLE') and K_DIGSIG_ENABLE) {
+if (defined('K_DIGSIG_ENABLE') && K_DIGSIG_ENABLE) {
     // set document signature
-    $pdf->setSignature(K_DIGSIG_CERTIFICATE, K_DIGSIG_PRIVATE_KEY, K_DIGSIG_PASSWORD, K_DIGSIG_EXTRA_CERTS, K_DIGSIG_CERT_TYPE, array('Name'=>K_DIGSIG_NAME, 'Location'=>K_DIGSIG_LOCATION, 'Reason'=>K_DIGSIG_REASON, 'ContactInfo'=>K_DIGSIG_CONTACT));
+    $pdf->setSignature(K_DIGSIG_CERTIFICATE, K_DIGSIG_PRIVATE_KEY, K_DIGSIG_PASSWORD, K_DIGSIG_EXTRA_CERTS, K_DIGSIG_CERT_TYPE, [
+        'Name' => K_DIGSIG_NAME,
+        'Location' => K_DIGSIG_LOCATION,
+        'Reason' => K_DIGSIG_REASON,
+        'ContactInfo' => K_DIGSIG_CONTACT,
+    ]);
 }
 
 $pdf->SetFillColor(204, 204, 204);
@@ -217,11 +224,12 @@ if ($mode != 3) {
     $pdf->Ln(5);
     // print test stats table
     $pdf->printTestResultStat($ts, $pubmode, $display_mode);
-    if ($show_graph) {
+    if ($show_graph !== 0) {
         // display graph
         $pdf->Ln(5);
         $pdf->printSVGStatsGraph($ts['svgpoints']);
     }
+
     if ($display_mode > 1) {
         // print question
         $pdf->Bookmark($l['w_statistics']);
@@ -231,18 +239,16 @@ if ($mode != 3) {
 
 if ($mode > 2) {
     // print testuser details
-    if (empty($testuser_id)) {
+    if ($testuser_id === 0) {
         foreach ($ts['testuser'] as $tstusr) {
-            if ((!$pubmode) or F_getBoolean($tstusr['test']['test_report_to_users'])) {
+            if (! $pubmode || F_getBoolean($tstusr['test']['test_report_to_users'])) {
                 $pdf->AddPage();
-                $pdf->printTestUserInfo($tstusr, $onlytext, $pubmode);
+                $pdf->printTestUserInfo($tstusr, $onlytext);
             }
         }
-    } else {
-        if ((!$pubmode) or F_getBoolean($ts['testuser']['\''.$testuser_id.'\'']['test']['test_report_to_users'])) {
-            $pdf->AddPage();
-            $pdf->printTestUserInfo($ts['testuser']['\''.$testuser_id.'\''], $onlytext, $pubmode);
-        }
+    } elseif (! $pubmode || F_getBoolean($ts['testuser']["'" . $testuser_id . "'"]['test']['test_report_to_users'])) {
+        $pdf->AddPage();
+        $pdf->printTestUserInfo($ts['testuser']["'" . $testuser_id . "'"], $onlytext);
     }
 }
 
@@ -257,14 +263,14 @@ $pdf->Cell(0, 0, $msg, 0, 0, 'R', 0, $lnk, 0, false, 'B', 'B');
 
 // set PDF file name
 $pdf_filename = 'tcexam_report';
-$pdf_filename .= empty($startdate) ? '' : '_'.date('YmdHis', $startdate_time);
-$pdf_filename .= empty($enddate) ? '' : '_'.date('YmdHis', $enddate_time);
-$pdf_filename .= '_'.$mode;
-$pdf_filename .= '_'.$display_mode;
-$pdf_filename .= '_'.$test_id;
-$pdf_filename .= '_'.$group_id;
-$pdf_filename .= '_'.$user_id;
-$pdf_filename .= '_'.$testuser_id;
+$pdf_filename .= $startdate === '' ? '' : '_' . date('YmdHis', $startdate_time);
+$pdf_filename .= $enddate === '' ? '' : '_' . date('YmdHis', $enddate_time);
+$pdf_filename .= '_' . $mode;
+$pdf_filename .= '_' . $display_mode;
+$pdf_filename .= '_' . $test_id;
+$pdf_filename .= '_' . $group_id;
+$pdf_filename .= '_' . $user_id;
+$pdf_filename .= '_' . $testuser_id;
 $pdf_filename .= '.pdf';
 
 // Send PDF output

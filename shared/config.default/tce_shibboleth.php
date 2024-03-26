@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_shibboleth.php
 // Begin       : 2012-05-25
-// Last Update : 2013-01-20
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for Shibboleth Single-Sign-On Authentication
 //
@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2012-2013 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2012-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 

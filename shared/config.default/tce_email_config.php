@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_email_config.php
 // Begin       : 2001-10-20
-// Last Update : 2009-11-05
+// Last Update : 2023-11-30
 //
 // Description : Default values for public variables of
 //               C_mailer class

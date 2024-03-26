@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_httpbasic.php
 // Begin       : 2010-09-10
-// Last Update : 2012-09-11
+// Last Update : 2023-11-30
 //
 // Description : Configuration file for HTTP Basic Auth
 //
