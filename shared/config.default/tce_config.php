@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2020-04-01
+// Last Update : 2023-11-30
 //
 // Description : Shared configuration file.
 //
@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2020 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -185,7 +185,17 @@ define('K_COOKIE_PATH', '/');
 /**
  * If true use secure cookies.
  */
-define('K_COOKIE_SECURE', false);
+define('K_COOKIE_SECURE', true);
+
+/**
+ * When true the cookie will be made accessible only through the HTTP protocol.
+ */
+define('K_COOKIE_HTTPONLY', true);
+
+/**
+ * The SameSite attribute lets servers specify whether/when cookies are sent with cross-site requests.
+ */
+define('K_COOKIE_SAMESITE', 'Strict');
 
 /**
  * Expiration time for cookies.

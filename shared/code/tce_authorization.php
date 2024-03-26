@@ -1,8 +1,9 @@
 <?php
+
 //============================================================+
 // File name   : tce_authorization.php
 // Begin       : 2001-09-26
-// Last Update : 2017-04-22
+// Last Update : 2023-11-30
 //
 // Description : Check user authorization level.
 //               Grants / deny access to pages.
@@ -16,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2018 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -38,8 +39,7 @@
  * @since 2001-09-26
  */
 
-/**
- */
+
 
 require_once('../config/tce_config.php');
 require_once('../../shared/code/tce_functions_authorization.php');
@@ -51,60 +51,78 @@ $logged = false; // the user is not yet logged in
 // --- read existing user's session data from database
 $PHPSESSIDSQL = F_escape_sql($db, $PHPSESSID);
 $fingerprintkey = getClientFingerprint();
-$sqls = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
+$sqls = 'SELECT * FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $PHPSESSIDSQL . "'";
 if ($rs = F_db_query($sqls, $db)) {
     if ($ms = F_db_fetch_array($rs)) { // the user's session already exist
         // decode session data
         session_decode($ms['cpsession_data']);
         // check for possible session hijacking
-        if (K_CHECK_SESSION_FINGERPRINT and ((!isset($_SESSION['session_hash'])) or ($fingerprintkey != $_SESSION['session_hash']))) {
+        if (K_CHECK_SESSION_FINGERPRINT && (! isset($_SESSION['session_hash']) || $fingerprintkey != $_SESSION['session_hash'])) {
             // display login form
             session_regenerate_id(true);
             F_login_form();
             exit();
         }
+
         // update session expiration time
         $expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
-        $sqlx = 'UPDATE '.K_TABLE_SESSIONS.' SET cpsession_expiry=\''.$expiry.'\' WHERE cpsession_id=\''.$PHPSESSIDSQL.'\'';
-        if (!$rx = F_db_query($sqlx, $db)) {
+        $sqlx = 'UPDATE ' . K_TABLE_SESSIONS . " SET cpsession_expiry='" . $expiry . "' WHERE cpsession_id='" . $PHPSESSIDSQL . "'";
+        if (! $rx = F_db_query($sqlx, $db)) {
             F_display_db_error();
         }
     } else { // session do not exist so, create new anonymous session
         $_SESSION['session_hash'] = $fingerprintkey;
         $_SESSION['session_user_id'] = 1;
-        $_SESSION['session_user_name'] = '- ['.substr($PHPSESSID, 12, 8).']';
+        $_SESSION['session_user_name'] = '- [' . substr($PHPSESSID, 12, 8) . ']';
         $_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
         $_SESSION['session_user_level'] = 0;
         $_SESSION['session_user_firstname'] = '';
         $_SESSION['session_user_lastname'] = '';
         $_SESSION['session_test_login'] = '';
         // read client cookie
-        if (isset($_COOKIE['LastVisit'])) {
-            $_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
-        } else {
-            $_SESSION['session_last_visit'] = 0;
-        }
+        $_SESSION['session_last_visit'] = isset($_COOKIE['LastVisit']) ? (int) $_COOKIE['LastVisit'] : 0;
+
         // set client cookie
         $cookie_now_time = time(); // note: while time() function returns a 32 bit integer, it works fine until year 2038.
         $cookie_expire_time = $cookie_now_time + K_COOKIE_EXPIRE; // set cookie expiration time
-        setcookie('LastVisit', $cookie_now_time, $cookie_expire_time, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
-        setcookie('PHPSESSID', $PHPSESSID, $cookie_expire_time, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
+        setcookie(
+            'LastVisit', 
+            $cookie_now_time,
+            [
+                'expires' => $cookie_expire_time,
+                'path' => K_COOKIE_PATH,
+                'domain' => K_COOKIE_DOMAIN,
+                'secure' => K_COOKIE_SECURE,
+                'httponly' => K_COOKIE_HTTPONLY,
+                'samesite' => K_COOKIE_SAMESITE,
+            ]);
+        setcookie(
+            'PHPSESSID',
+            $PHPSESSID,
+            [
+                'expires' => $cookie_expire_time,
+                'path' => K_COOKIE_PATH,
+                'domain' => K_COOKIE_DOMAIN,
+                'secure' => K_COOKIE_SECURE,
+                'httponly' => K_COOKIE_HTTPONLY,
+                'samesite' => K_COOKIE_SAMESITE,
+            ]);
         // track when user request logout
         if (isset($_REQUEST['logout'])) {
             $_SESSION['logout'] = true;
             if (strlen(K_LOGOUT_URL) > 0) {
-                $htmlredir = '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;
-                $htmlredir .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">'.K_NEWLINE;
-                $htmlredir .= '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language'].'" lang="'.$l['a_meta_language'].'" dir="'.$l['a_meta_dir'].'">'.K_NEWLINE;
-                $htmlredir .= '<head>'.K_NEWLINE;
-                $htmlredir .= '<title>LOGOUT</title>'.K_NEWLINE;
-                $htmlredir .= '<meta http-equiv="refresh" content="0;url='.K_LOGOUT_URL.'" />'.K_NEWLINE;
-                $htmlredir .= '</head>'.K_NEWLINE;
-                $htmlredir .= '<body>'.K_NEWLINE;
-                $htmlredir .= '<a href="'.K_LOGOUT_URL.'">LOGOUT...</a>'.K_NEWLINE;
-                $htmlredir .= '</body>'.K_NEWLINE;
-                $htmlredir .= '</html>'.K_NEWLINE;
-                header('Location: '.K_LOGOUT_URL);
+                $htmlredir = '<?xml version="1.0" encoding="' . $l['a_meta_charset'] . '"?' . '>' . K_NEWLINE;
+                $htmlredir .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">' . K_NEWLINE;
+                $htmlredir .= '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $l['a_meta_language'] . '" lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
+                $htmlredir .= '<head>' . K_NEWLINE;
+                $htmlredir .= '<title>LOGOUT</title>' . K_NEWLINE;
+                $htmlredir .= '<meta http-equiv="refresh" content="0;url=' . K_LOGOUT_URL . '" />' . K_NEWLINE;
+                $htmlredir .= '</head>' . K_NEWLINE;
+                $htmlredir .= '<body>' . K_NEWLINE;
+                $htmlredir .= '<a href="' . K_LOGOUT_URL . '">LOGOUT...</a>' . K_NEWLINE;
+                $htmlredir .= '</body>' . K_NEWLINE;
+                $htmlredir .= '</html>' . K_NEWLINE;
+                header('Location: ' . K_LOGOUT_URL);
                 echo $htmlredir;
                 exit;
             }
@@ -120,52 +138,56 @@ require_once('../../shared/code/tce_altauth.php');
 $altusr = F_altLogin();
 
 // --- check if login information has been submitted
-if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_POST['xuser_name']) and isset($_POST['xuser_password'])) {
+if (isset($_POST['logaction']) && $_POST['logaction'] == 'login' && isset($_POST['xuser_name']) && isset($_POST['xuser_password'])) {
     $bruteforce = false;
     if (K_BRUTE_FORCE_DELAY_RATIO > 0) {
         // check login attempt from the current client device to avoid brute force attack
         $bruteforce = true;
         // we are using another entry in the session table to keep track of the login attempts
-        $sqlt = 'SELECT * FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$fingerprintkey.'\' LIMIT 1';
+        $sqlt = 'SELECT * FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $fingerprintkey . "' LIMIT 1";
         if ($rt = F_db_query($sqlt, $db)) {
             if ($mt = F_db_fetch_array($rt)) {
                 // check the expiration time
                 if (strtotime($mt['cpsession_expiry']) < time()) {
                     $bruteforce = false;
                 }
+
                 // update wait time
-                $wait = intval($mt['cpsession_data']);
+                $wait = (int) $mt['cpsession_data'];
                 if ($wait < K_SECONDS_IN_HOUR) {
                     $wait *= K_BRUTE_FORCE_DELAY_RATIO;
                 }
-                $sqlup = 'UPDATE '.K_TABLE_SESSIONS.' SET
-					cpsession_expiry=\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
-					cpsession_data=\''.$wait.'\'
-					WHERE cpsession_id=\''.$fingerprintkey.'\'';
-                if (!F_db_query($sqlup, $db)) {
+
+                $sqlup = 'UPDATE ' . K_TABLE_SESSIONS . ' SET
+					cpsession_expiry=\'' . date(K_TIMESTAMP_FORMAT, (time() + $wait)) . '\',
+					cpsession_data=\'' . $wait . '\'
+					WHERE cpsession_id=\'' . $fingerprintkey . "'";
+                if (! F_db_query($sqlup, $db)) {
                     F_display_db_error();
                 }
             } else {
                 // add new record
                 $wait = 1; // number of seconds to wait for the second attempt
-                $sqls = 'INSERT INTO '.K_TABLE_SESSIONS.' (
+                $sqls = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
 					cpsession_id,
 					cpsession_expiry,
 					cpsession_data
 					) VALUES (
-					\''.$fingerprintkey.'\',
-					\''.date(K_TIMESTAMP_FORMAT, (time() + $wait)).'\',
-					\''.$wait.'\'
+					\'' . $fingerprintkey . '\',
+					\'' . date(K_TIMESTAMP_FORMAT, (time() + $wait)) . '\',
+					\'' . $wait . '\'
 					)';
-                if (!F_db_query($sqls, $db)) {
+                if (! F_db_query($sqls, $db)) {
                     F_display_db_error();
                 }
+
                 $bruteforce = false;
             }
         }
     }
+
     if ($bruteforce) {
-        F_print_error('WARNING', $l['m_login_brute_force'].' '.$wait);
+        F_print_error('WARNING', $l['m_login_brute_force'] . ' ' . $wait);
     } else {
         // encode password
         $xuser_password = getPasswordHash($_POST['xuser_password']);
@@ -173,37 +195,34 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
         $otp = false;
         if (K_OTP_LOGIN) {
             $mtime = microtime(true);
-            if ((isset($_POST['xuser_otpcode'])) and !empty($_POST['xuser_otpcode'])
-                and (($_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], $mtime))
-                    or ($_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime - 30)))
-                    or ($_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime + 30))))) {
+            if (isset($_POST['xuser_otpcode']) && ! empty($_POST['xuser_otpcode']) && ($_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], $mtime) || $_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime - 30)) || $_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime + 30)))) {
                 // check if this OTP token has been alredy used
-                $sqlt = 'SELECT cpsession_id FROM '.K_TABLE_SESSIONS.' WHERE cpsession_id=\''.$_POST['xuser_otpcode'].'\' LIMIT 1';
-                if ($rt = F_db_query($sqlt, $db)) {
-                    if (!F_db_fetch_array($rt)) {
-                        // Store this token on the session table to mark it as invalid for 5 minute (300 seconds)
-                        $sqltu = 'INSERT INTO '.K_TABLE_SESSIONS.' (
+                $sqlt = 'SELECT cpsession_id FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $_POST['xuser_otpcode'] . "' LIMIT 1";
+                if (($rt = F_db_query($sqlt, $db)) && ! F_db_fetch_array($rt)) {
+                    // Store this token on the session table to mark it as invalid for 5 minute (300 seconds)
+                    $sqltu = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
 							cpsession_id,
 							cpsession_expiry,
 							cpsession_data
 							) VALUES (
-							\''.$_POST['xuser_otpcode'].'\',
-							\''.date(K_TIMESTAMP_FORMAT, (time() + 300)).'\',
+							\'' . $_POST['xuser_otpcode'] . '\',
+							\'' . date(K_TIMESTAMP_FORMAT, (time() + 300)) . '\',
 							\'300\'
 							)';
-                        if (!F_db_query($sqltu, $db)) {
-                            F_display_db_error();
-                        }
-                        $otp = true;
+                    if (! F_db_query($sqltu, $db)) {
+                        F_display_db_error();
                     }
+
+                    $otp = true;
                 }
             }
         }
-        if (!K_OTP_LOGIN or $otp) {
+
+        if (! K_OTP_LOGIN || $otp) {
             // check if submitted login information are correct
-            $sql = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'';
+            $sql = 'SELECT * FROM ' . K_TABLE_USERS . " WHERE user_name='" . F_escape_sql($db, $_POST['xuser_name']) . "'";
             if ($r = F_db_query($sql, $db)) {
-                if (($m = F_db_fetch_array($r)) and checkPassword($_POST['xuser_password'], $m['user_password'])) {
+                if (($m = F_db_fetch_array($r)) && checkPassword($_POST['xuser_password'], $m['user_password'])) {
                     // sets some user's session data
                     $_SESSION['session_user_id'] = $m['user_id'];
                     $_SESSION['session_user_name'] = $m['user_name'];
@@ -213,28 +232,26 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
                     $_SESSION['session_user_lastname'] = urlencode($m['user_lastname']);
                     $_SESSION['session_test_login'] = '';
                     // read client cookie
-                    if (isset($_COOKIE['LastVisit'])) {
-                        $_SESSION['session_last_visit'] = intval($_COOKIE['LastVisit']);
-                    } else {
-                        $_SESSION['session_last_visit'] = 0;
-                    }
+                    $_SESSION['session_last_visit'] = isset($_COOKIE['LastVisit']) ? (int) $_COOKIE['LastVisit'] : 0;
+
                     $logged = true;
-                    if (K_USER_GROUP_RSYNC and ($altusr !== false)) {
+                    if (K_USER_GROUP_RSYNC && $altusr !== false) {
                         // sync user groups
                         F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
                     }
-                } elseif (!F_check_unique(K_TABLE_USERS, 'user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'')) {
-                        // the user name exist but the password is wrong
+                } elseif (! F_check_unique(K_TABLE_USERS, "user_name='" . F_escape_sql($db, $_POST['xuser_name']) . "'")) {
+                    // the user name exist but the password is wrong
                     if ($altusr !== false) {
                         // resync the password
-                        $sqlu = 'UPDATE '.K_TABLE_USERS.' SET
-								user_password=\''.F_escape_sql($db, $xuser_password).'\'
-								WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\'';
-                        if (!$ru = F_db_query($sqlu, $db)) {
+                        $sqlu = 'UPDATE ' . K_TABLE_USERS . ' SET
+								user_password=\'' . F_escape_sql($db, $xuser_password) . '\'
+								WHERE user_name=\'' . F_escape_sql($db, $_POST['xuser_name']) . "'";
+                        if (! $ru = F_db_query($sqlu, $db)) {
                             F_display_db_error();
                         }
+
                         // get user data
-                        $sqld = 'SELECT * FROM '.K_TABLE_USERS.' WHERE user_name=\''.F_escape_sql($db, $_POST['xuser_name']).'\' AND user_password=\''.F_escape_sql($db, $xuser_password).'\'';
+                        $sqld = 'SELECT * FROM ' . K_TABLE_USERS . " WHERE user_name='" . F_escape_sql($db, $_POST['xuser_name']) . "' AND user_password='" . F_escape_sql($db, $xuser_password) . "'";
                         if ($rd = F_db_query($sqld, $db)) {
                             if ($md = F_db_fetch_array($rd)) {
                                 // sets some user's session data
@@ -259,11 +276,10 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
                         // the password is wrong
                         F_print_error('WARNING', $l['m_login_wrong']);
                     }
-                } else {
+                } elseif ($altusr !== false) {
                     // this user do not exist on TCExam database
-                    if ($altusr !== false) {
-                        // replicate external user account on TCExam local database
-                        $sql = 'INSERT INTO '.K_TABLE_USERS.' (
+                    // replicate external user account on TCExam local database
+                    $sql = 'INSERT INTO ' . K_TABLE_USERS . ' (
 							user_regdate,
 							user_ip,
 							user_name,
@@ -277,39 +293,38 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
 							user_ssn,
 							user_level
 							) VALUES (
-							\''.F_escape_sql($db, date(K_TIMESTAMP_FORMAT)).'\',
-							\''.F_escape_sql($db, getNormalizedIP($_SERVER['REMOTE_ADDR'])).'\',
-							\''.F_escape_sql($db, $_POST['xuser_name']).'\',
-							'.F_empty_to_null($altusr['user_email']).',
-							\''.F_escape_sql($db, $xuser_password).'\',
-							'.F_empty_to_null($altusr['user_regnumber']).',
-							'.F_empty_to_null($altusr['user_firstname']).',
-							'.F_empty_to_null($altusr['user_lastname']).',
-							'.F_empty_to_null($altusr['user_birthdate']).',
-							'.F_empty_to_null($altusr['user_birthplace']).',
-							'.F_empty_to_null($altusr['user_ssn']).',
-							\''.intval($altusr['user_level']).'\'
+							\'' . F_escape_sql($db, date(K_TIMESTAMP_FORMAT)) . '\',
+							\'' . F_escape_sql($db, getNormalizedIP($_SERVER['REMOTE_ADDR'])) . '\',
+							\'' . F_escape_sql($db, $_POST['xuser_name']) . '\',
+							' . F_empty_to_null($altusr['user_email']) . ',
+							\'' . F_escape_sql($db, $xuser_password) . '\',
+							' . F_empty_to_null($altusr['user_regnumber']) . ',
+							' . F_empty_to_null($altusr['user_firstname']) . ',
+							' . F_empty_to_null($altusr['user_lastname']) . ',
+							' . F_empty_to_null($altusr['user_birthdate']) . ',
+							' . F_empty_to_null($altusr['user_birthplace']) . ',
+							' . F_empty_to_null($altusr['user_ssn']) . ',
+							\'' . (int) $altusr['user_level'] . '\'
 							)';
-                        if (!$r = F_db_query($sql, $db)) {
-                            F_display_db_error();
-                        } else {
-                            $user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
-                            // sets some user's session data
-                            $_SESSION['session_user_id'] = $user_id;
-                            $_SESSION['session_user_name'] = F_escape_sql($db, $_POST['xuser_name']);
-                            $_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
-                            $_SESSION['session_user_level'] = intval($altusr['user_level']);
-                            $_SESSION['session_user_firstname'] = urlencode($altusr['user_firstname']);
-                            $_SESSION['session_user_lastname'] = urlencode($altusr['user_lastname']);
-                            $_SESSION['session_last_visit'] = 0;
-                            $_SESSION['session_test_login'] = '';
-                            $logged = true;
-                            // sync user groups
-                            F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
-                        }
+                    if (! $r = F_db_query($sql, $db)) {
+                        F_display_db_error();
                     } else {
-                        $login_error = true;
+                        $user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
+                        // sets some user's session data
+                        $_SESSION['session_user_id'] = $user_id;
+                        $_SESSION['session_user_name'] = F_escape_sql($db, $_POST['xuser_name']);
+                        $_SESSION['session_user_ip'] = getNormalizedIP($_SERVER['REMOTE_ADDR']);
+                        $_SESSION['session_user_level'] = (int) $altusr['user_level'];
+                        $_SESSION['session_user_firstname'] = urlencode($altusr['user_firstname']);
+                        $_SESSION['session_user_lastname'] = urlencode($altusr['user_lastname']);
+                        $_SESSION['session_last_visit'] = 0;
+                        $_SESSION['session_test_login'] = '';
+                        $logged = true;
+                        // sync user groups
+                        F_syncUserGroups($_SESSION['session_user_id'], $altusr['usrgrp_group_id']);
                     }
+                } else {
+                    $login_error = true;
                 }
             } else {
                 F_display_db_error();
@@ -320,17 +335,17 @@ if (isset($_POST['logaction']) and ($_POST['logaction'] == 'login') and isset($_
     } // end of brute-force check
 }
 
-if (!isset($pagelevel)) {
+if (! isset($pagelevel)) {
     // set default page level
     $pagelevel = 0;
 }
 
 // check client SSL certificate if required
-if ((K_AUTH_SSL_LEVEL !== false) and (K_AUTH_SSL_LEVEL <= $pagelevel)) {
+if (K_AUTH_SSL_LEVEL && K_AUTH_SSL_LEVEL <= $pagelevel) {
     $sslids = preg_replace('/[^0-9,]*/', '', K_AUTH_SSLIDS);
-    if (!empty($sslids)) {
+    if (! empty($sslids)) {
         $client_hash = F_getSSLClientHash();
-        $valid_ssl = F_count_rows(K_TABLE_SSLCERTS, 'WHERE ssl_hash=\''.$client_hash.'\' AND ssl_id IN ('.$sslids.')');
+        $valid_ssl = F_count_rows(K_TABLE_SSLCERTS, "WHERE ssl_hash='" . $client_hash . "' AND ssl_id IN (" . $sslids . ')');
         if ($valid_ssl == 0) {
             $thispage_title = $l['t_login_form']; //set page title
             require_once('../code/tce_page_header.php');
@@ -342,36 +357,37 @@ if ((K_AUTH_SSL_LEVEL !== false) and (K_AUTH_SSL_LEVEL <= $pagelevel)) {
 }
 
 // check user's level
-if ($pagelevel) { // pagelevel=0 means access to anonymous user
-    // pagelevel >= 1
-    if ($_SESSION['session_user_level'] < $pagelevel) { //check user level
-        // To gain access to a specific resource, the user's level must be equal or greater to the one specified for the requested resource.
-        F_login_form(); //display login form
-    }
+// pagelevel=0 means access to anonymous user
+// pagelevel >= 1
+if ($pagelevel && $_SESSION['session_user_level'] < $pagelevel) {
+    //check user level
+    // To gain access to a specific resource, the user's level must be equal or greater to the one specified for the requested resource.
+    F_login_form();
+    //display login form
 }
 
 if ($logged) { //if user is just logged in: reloads page
     // html redirect
-    $htmlredir = '<'.'?xml version="1.0" encoding="'.$l['a_meta_charset'].'"?'.'>'.K_NEWLINE;
-    $htmlredir .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'.K_NEWLINE;
-    $htmlredir .= '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$l['a_meta_language'].'" lang="'.$l['a_meta_language'].'" dir="'.$l['a_meta_dir'].'">'.K_NEWLINE;
-    $htmlredir .= '<head>'.K_NEWLINE;
-    $htmlredir .= '<title>ENTER</title>'.K_NEWLINE;
-    $htmlredir .= '<meta http-equiv="refresh" content="0" />'.K_NEWLINE; //reload page
-    $htmlredir .= '</head>'.K_NEWLINE;
-    $htmlredir .= '<body>'.K_NEWLINE;
-    $htmlredir .= '<a href="'.$_SERVER['SCRIPT_NAME'].'">ENTER</a>'.K_NEWLINE;
-    $htmlredir .= '</body>'.K_NEWLINE;
-    $htmlredir .= '</html>'.K_NEWLINE;
+    $htmlredir = '<?xml version="1.0" encoding="' . $l['a_meta_charset'] . '"?' . '>' . K_NEWLINE;
+    $htmlredir .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . K_NEWLINE;
+    $htmlredir .= '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $l['a_meta_language'] . '" lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
+    $htmlredir .= '<head>' . K_NEWLINE;
+    $htmlredir .= '<title>ENTER</title>' . K_NEWLINE;
+    $htmlredir .= '<meta http-equiv="refresh" content="0" />' . K_NEWLINE; //reload page
+    $htmlredir .= '</head>' . K_NEWLINE;
+    $htmlredir .= '<body>' . K_NEWLINE;
+    $htmlredir .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '">ENTER</a>' . K_NEWLINE;
+    $htmlredir .= '</body>' . K_NEWLINE;
+    $htmlredir .= '</html>' . K_NEWLINE;
     switch (K_REDIRECT_LOGIN_MODE) {
         case 1: {
             // relative redirect
-            header('Location: '.$_SERVER['SCRIPT_NAME']);
+            header('Location: ' . $_SERVER['SCRIPT_NAME']);
             break;
         }
         case 2: {
             // absolute redirect
-            header('Location: '.K_PATH_HOST.$_SERVER['SCRIPT_NAME']);
+            header('Location: ' . K_PATH_HOST . $_SERVER['SCRIPT_NAME']);
             break;
         }
         case 3: {
@@ -382,21 +398,22 @@ if ($logged) { //if user is just logged in: reloads page
         case 4:
         default: {
             // full redirect
-            header('Location: '.K_PATH_HOST.$_SERVER['SCRIPT_NAME']);
+            header('Location: ' . K_PATH_HOST . $_SERVER['SCRIPT_NAME']);
             echo $htmlredir;
             break;
         }
     }
+
     exit;
 }
 
 // check for test password
-if (isset($_POST['testpswaction']) and ($_POST['testpswaction'] == 'login') and isset($_POST['xtest_password']) and isset($_POST['testid'])) {
+if (isset($_POST['testpswaction']) && $_POST['testpswaction'] == 'login' && isset($_POST['xtest_password']) && isset($_POST['testid'])) {
     require_once('../../shared/code/tce_functions_test.php');
     $tph = F_getTestPassword($_POST['testid']);
     if (checkPassword($_POST['xtest_password'], $tph)) {
         // test password is correct, save status on a session variable
-        $_SESSION['session_test_login'] = getPasswordHash($tph.$_POST['testid'].$_SESSION['session_user_id'].$_SESSION['session_user_ip']);
+        $_SESSION['session_test_login'] = getPasswordHash($tph . $_POST['testid'] . $_SESSION['session_user_id'] . $_SESSION['session_user_ip']);
     } else {
         F_print_error('WARNING', $l['m_wrong_test_password']);
     }
