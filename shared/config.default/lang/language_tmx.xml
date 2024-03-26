@@ -328,7 +328,7 @@ Statistiques des questions et des réponses peuvent non seulement être consult�
             <seg>This is the administration area of &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam&lt;/a&gt;, is a platform and language independent user-friendly software to create, manage and perform online tests.&lt;br /&gt;&lt;br /&gt;From the menu you can access the different sections of the system:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;users&lt;/strong&gt;&lt;br /&gt;This sections contains the forms for &lt;a href="tce_edit_user.php" title="User Management"&gt;insert and manage&lt;/a&gt; users, &lt;a href="tce_select_users.php" title="User Selection"&gt; to select them&lt;/a&gt; and to show the list of the ones currently &lt;a href="tce_show_online_users.php" title="Online Users"&gt;online&lt;/a&gt;.&lt;br /&gt;Only the registered users granted a username and a password are entitled to access the public area of the system and perform the tests.&lt;br /&gt;It is possible to specify different access levels for both the users and the different components and parts of the system (pages, forms, sections).&lt;br /&gt;TCExam also uses another security system to prevent unauthorized access based on checking the IP addresses.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;modules&lt;/strong&gt;&lt;br /&gt;This section contains the forms to insert and modify test &lt;a href="tce_edit_module.php" title="Modules Management"&gt;modules&lt;/a&gt;, &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;topics&lt;/a&gt;, the related &lt;a href="tce_edit_question.php" title="Question Management"&gt;questions&lt;/a&gt; and &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;answers&lt;/a&gt;.&lt;br /&gt;You can select an unlimited number of topics that can be used together for a specific test, and for each topic you can define an unlimited number of questions and possible answers. Depending on the settings of the Random question and Random answer tick boxes, the system can randomly select questions and answers among the available ones.&lt;br /&gt;TCExam supports both multiple-answer questions and free-answer questions. The latter will be evaluated through a specific evaluation form &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt;&lt;/a&gt;, while the former will be automatically evaluated.&lt;br /&gt;All the descriptions of tests, topics, questions and answers support a particular proprietary code (tcecode) that, by using a specific form, allows the use of images and text formatting.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;This section includes a form to insert, generate and modify the different &lt;a href="tce_edit_test.php" title="Test Management"&gt;tests&lt;/a&gt;, a form to &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;evaluate&lt;/a&gt; the free answers and forms to show or generate PDF versions of the &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;results&lt;/a&gt;, a detailed view of the &lt;a href="tce_show_result_user.php" title="Test Results"&gt;users' tests&lt;/a&gt; and the &lt;a href="tce_show_result_allusers.php" title="Question Statistics"&gt;statistics&lt;/a&gt; of questions and answers used.&lt;br /&gt;TCExam can be instructed to select, on a random basis, the various questions and related available answers, so that all tests for the different users will be different from each other.&lt;br /&gt;It is also possible to generate an arbitrary number of tests in PDF format so that they can be printed and used for a conventional exam.&lt;/li&gt;&lt;/ul&gt;</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Esta es el área de administración de &lt;a href="tce_page_info.php" title="acerca de TCExam"&gt;TCExam&lt;/a&gt;, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.&lt;br /&gt;&lt;br /&gt;Mediante el menu usted puede acceder a las diferentes secciones del sistema:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;usuarios&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para &lt;a href="tce_edit_user.php" title="Administración de Usuarios"&gt;insertar y modificar&lt;/a&gt; usuarios, &lt;a href="tce_select_users.php" title="Selección Usuarios"&gt; para seleccionarlos&lt;/a&gt; y para mostrar la lista de los que están actualmente &lt;a href="tce_show_online_users.php" title="Usuarios en Línea"&gt;en línea&lt;/a&gt;.&lt;br /&gt;Solo los usuarios registrados autorizados con un user/password podrán acceder al área pública del sistema y desarrollar los test.&lt;br /&gt;Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).&lt;br /&gt;TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;tópicos&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para insertar y modificar el test &lt;a href="tce_edit_subject.php" title="Administración Tópicos"&gt;tópicos&lt;/a&gt;, las &lt;a href="tce_edit_question.php" title="Administración Preguntas"&gt;preguntas&lt;/a&gt; y &lt;a href="tce_edit_answer.php" title="Administración Respuestas Múltiples"&gt;respuestas&lt;/a&gt; relacionadas.&lt;br /&gt;Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.&lt;br /&gt;TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación &lt;a href="tce_edit_rating.php" title="Evaluación respuesta"&gt;evaluación&lt;/a&gt;, mientras las otras serán evaluadas automaticamente.&lt;br /&gt;Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;Esta sección incluye el formulario para insertar, generar y modificar los diferentes &lt;a href="tce_edit_test.php" title="Administración Test"&gt;tests&lt;/a&gt;, el formulario para &lt;a href="tce_edit_rating.php" title="Evaluación Respuesta"&gt;evaluar&lt;/a&gt; las respuestas libres y los formularios para mostrar o generar versiones PDF de los &lt;a href="tce_show_result_allusers.php" title="Resumen Resultados Test"&gt;resultados&lt;/a&gt;, una vista detallada de los &lt;a href="tce_show_result_user.php" title="Resultados test"&gt;tests de usuarios&lt;/a&gt; y las &lt;a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas"&gt;estadísticas&lt;/a&gt; de preguntas y respuestas utilizadas.&lt;br /&gt;TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.&lt;br /&gt;Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.&lt;/li&gt;&lt;/ul&gt;</seg>
+            <seg>Esta es el área de administración de &lt;a href="tce_page_info.php" title="acerca de TCExam"&gt;TCExam&lt;/a&gt;, es un software accesible, independiente de la plataforma y del idioma, para la creación, administración y desarrollo de test en línea.&lt;br /&gt;&lt;br /&gt;Mediante el menu usted puede acceder a las diferentes secciones del sistema:&lt;ul&gt;&lt;li&gt;&lt;strong&gt;usuarios&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para &lt;a href="tce_edit_user.php" title="Administración de Usuarios"&gt;insertar y modificar&lt;/a&gt; usuarios, &lt;a href="tce_select_users.php" title="Selección Usuarios"&gt; para seleccionarlos&lt;/a&gt; y para mostrar la lista de los que están actualmente &lt;a href="tce_show_online_users.php" title="Usuarios en Línea"&gt;en línea&lt;/a&gt;.&lt;br /&gt;Solo los usuarios registrados autorizados con un user/contraseña podrán acceder al área pública del sistema y desarrollar los test.&lt;br /&gt;Es posible especificar diferentes niveles de acceso para los usuarios y los diferentes componentes y partes del sistema (páginas, formularios, secciones).&lt;br /&gt;TCExam utiliza también otro sistema de seguridad para prevenir accesos no autorizados, basado en el chequeo de las direcciones IP.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;tópicos&lt;/strong&gt;&lt;br /&gt;Esta sección contiene los formularios para insertar y modificar el test &lt;a href="tce_edit_subject.php" title="Administración Tópicos"&gt;tópicos&lt;/a&gt;, las &lt;a href="tce_edit_question.php" title="Administración Preguntas"&gt;preguntas&lt;/a&gt; y &lt;a href="tce_edit_answer.php" title="Administración Respuestas Múltiples"&gt;respuestas&lt;/a&gt; relacionadas.&lt;br /&gt;Se puede seleccionar un número ilimitado de tópicos que pueden ser usados en forma conjunta para un test específico, y para cada tópico se puede definir un número ilimitado de preguntas y respuestas posibles. El sistema selecciona aleatoriamente las preguntas y respuestas entre las que dispone.&lt;br /&gt;TCExam soporta preguntas de respuesta-libre y preguntas de múltiple-respuesta. Las respuestas serán evaluadas a través de un formulario de evaluación &lt;a href="tce_edit_rating.php" title="Evaluación respuesta"&gt;evaluación&lt;/a&gt;, mientras las otras serán evaluadas automaticamente.&lt;br /&gt;Las descripciones de tests, tópicos, preguntas y respuestas soportan un código propietario particular (tcecode) que, utilizando un formulario específico, permite el uso de imágenes y formateo específico de texto.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;test&lt;/strong&gt;&lt;br /&gt;Esta sección incluye el formulario para insertar, generar y modificar los diferentes &lt;a href="tce_edit_test.php" title="Administración Test"&gt;tests&lt;/a&gt;, el formulario para &lt;a href="tce_edit_rating.php" title="Evaluación Respuesta"&gt;evaluar&lt;/a&gt; las respuestas libres y los formularios para mostrar o generar versiones PDF de los &lt;a href="tce_show_result_allusers.php" title="Resumen Resultados Test"&gt;resultados&lt;/a&gt;, una vista detallada de los &lt;a href="tce_show_result_user.php" title="Resultados test"&gt;tests de usuarios&lt;/a&gt; y las &lt;a href="tce_show_result_allusers.php" title="Estadísticas de las Preguntas"&gt;estadísticas&lt;/a&gt; de preguntas y respuestas utilizadas.&lt;br /&gt;TCExam selecciona en forma aleatoria varias preguntas y respuestas relacionadas haciendo que todos los tests para los diferentes usuarios sean diferentes para cada uno.&lt;br /&gt;Es también posible generar un numero arbitrario de test en PDF para que puedan ser impresos y utilizados en un examen convencional.&lt;/li&gt;&lt;/ul&gt;</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>这是 &lt;a href="tce_page_info.php" title="about TCExam"&gt;TCExam &lt;/a&gt;的管理区域。TCExam 是一个多语言、易用的，用于创建、管理在线测验的软件平台。&lt;br /&gt;&lt;br /&gt;你可以通过菜单使用系统各种功能：&lt;ul&gt;&lt;li&gt;&lt;strong&gt;用户&lt;/strong&gt;&lt;br /&gt;本模块包含 &lt;a href="tce_edit_user.php" title="用户管理"&gt;增加和管理&lt;/a&gt; 用户, &lt;a href="tce_select_users.php" title="用户选择n"&gt; 选择他们&lt;/a&gt; 和显示 &lt;a href="tce_show_online_users.php" title="Online Users"&gt;当前在线用户&lt;/a&gt;。&lt;br /&gt;允许注册用户，获取访问系统公共区域权限，进行测试。&lt;br /&gt;可以指派不同权限、不同系统功能给用户。&lt;br /&gt;可以通过IP来限制非法访问。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;模块&lt;/strong&gt;&lt;br /&gt;本功能包括增加、修改测验 &lt;a href="tce_edit_module.php" title="Modules Management"&gt;模块&lt;/a&gt;, &lt;a href="tce_edit_subject.php" title="Topic Management"&gt;主题&lt;/a&gt;，相关的 &lt;a href="tce_edit_question.php" title="Question Management"&gt;题目&lt;/a&gt; 和 &lt;a href="tce_edit_answer.php" title="Multiple-Answer Management"&gt;答案&lt;/a&gt;。&lt;br /&gt;你可以选择不限数量的主题，以便用于指定的测试。每个主题可以定于不限数量的题目和答案。系统可以随机选择可利用的题目和答案。&lt;br /&gt;支持多选题和自由作答题目。后者将通过指定的 &lt;a href="tce_edit_rating.php" title="Answer evaluation"&gt; 评价表单 &lt;/a&gt;来进行评价。&lt;br /&gt;所有的测试、主题、问题、答案的说明都支持特殊的专有的代码(tcecode)，允许使用图形和字符格式。&lt;/li&gt;&lt;li&gt;&lt;strong&gt;测试&lt;/strong&gt;&lt;br /&gt;本功能包括增加、生成和修改 &lt;a href="tce_edit_test.php" title="Test Management"&gt;测验&lt;/a&gt;,  &lt;a href="tce_edit_rating.php" title="Answer Evaluation"&gt;评估&lt;/a&gt; 自由作答并把结果可以生成一个包含 &lt;a href="tce_show_result_allusers.php" title="Test Results Summary"&gt;测验结果&lt;/a&gt;，&lt;a href="tce_show_result_user.php" title="Risultati test"&gt;用户测验&lt;/a&gt; 以及 &lt;a href="tce_show_result_allusers.php" title="Question Statistics"&gt;统计&lt;/a&gt; 的PDF文档。&lt;br /&gt;支持随机选择题目和答案，不同用户的同一次测验的题目是不一样的。&lt;br /&gt;也支持生成多次测验的PDF文档，以便用于传统的测验。&lt;/li&gt;&lt;/ul&gt;</seg>
@@ -429,7 +429,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Sistemdən çıxmaq üçün düymənı basın</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>clickea en el botón para salir del sistema</seg>
+            <seg>Presiona el botón para salir del sistema</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>点击按钮退出系统</seg>
@@ -509,7 +509,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>TCExam onlayn testlərin idarə edilməsi sistemidir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>TCExam es un software para la gestión y realización de test en línea.</seg>
+            <seg>TCExam es un software para la gestión y realización de exámenes en línea.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>TcExam是管理和进行在线测验的软件</seg>
@@ -909,7 +909,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Seçilmiş mövzunu testə əlavə et</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>inserta el tópico seleccionado en el test</seg>
+            <seg>inserta el tópico seleccionado en el examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>在此测验中插入选定的主题</seg>
@@ -1069,7 +1069,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Şeçildikdə, hər suala "Cavab yoxdur" cavabını əlavə edir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si es seleccionado, una opcion addicional -sin respuesta- sera adicionada a cada pregunta</seg>
+            <seg>si es seleccionado, una opción addicional -sin respuesta- será adicionada a cada pregunta</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选定，每一个题目将会另外增加“无答案”选项</seg>
@@ -2346,7 +2346,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testı davam et</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>continúa la ejecución del test</seg>
+            <seg>continúa la ejecución del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>继续测验</seg>
@@ -2906,7 +2906,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>seçildikdə ancaq bir cavab verməyə imkan verir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si seleccionado, habilita la modalidad de respuesta simple</seg>
+            <seg>si es seleccionado, habilita la modalidad de respuesta simple</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选择，启用单选模式</seg>
@@ -3066,7 +3066,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>seçildikdə  bir neçə cavab verməyə imkan verir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si seleccionado, habilita la modalidad de respuesta libre</seg>
+            <seg>si es seleccionado, habilita la modalidad de respuesta libre</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选择，启用自由文本答题模式</seg>
@@ -3227,7 +3227,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testə başla</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>ejecuta el test</seg>
+            <seg>ejecuta el examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>开始答题</seg>
@@ -3387,7 +3387,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>eXtensible Markup Language</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>eXtensible Markup Language</seg>
+            <seg>Lenguaje de Marcado Extensible (eXtensible Markup Language)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>可扩展的标记语言（XML）</seg>
@@ -4427,7 +4427,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>sistemə daxil olmaq üçün bura basın</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>clickea aqui para autenticarte</seg>
+            <seg>presiona aquí para autenticarte</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>点击这里登录</seg>
@@ -4507,7 +4507,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>İstifadəçinin adı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>username, nombre usado para autenticarse y acceder a éste sistema multi-usuario</seg>
+            <seg>username, nombre usado para autenticarse y acceder a este sistema multi-usuario</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>用户名，用于登录此多用户系统的名字</seg>
@@ -4587,7 +4587,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Sessiyanı bağla</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>clickea en este link para salir del sistema (finalizar sesión)</seg>
+            <seg>presiona sobre este hipervínculo para salir del sistema (finalizar sesión)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>在本链接上点击退出系统（会话结束）</seg>
@@ -5067,7 +5067,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>parol</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>password, código alfanumérico que junto con el username otorga acceso al sistema</seg>
+            <seg>contraseña, código alfanumérico que junto al nombre de usuario, otorga acceso al sistema</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>密码，和用户名一起使用可通过此系统访问认证的字母和数字混合代码</seg>
@@ -5147,7 +5147,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>parolu təkrar edin</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>repetir la password en este campo para controlar posibles errores de digitación</seg>
+            <seg>repetir la contraseña en este campo para controlar posibles errores de digitación</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>在本字段中重复密码以检查可能的拼写错误</seg>
@@ -6667,7 +6667,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>istifadəçinin nömrəsi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>matricula, número de registro de usuario</seg>
+            <seg>matrícula, número de registro de usuario</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>注册号，用户的注册号</seg>
@@ -7307,7 +7307,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>balların yekun hesabı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Puntuación Final</seg>
+            <seg>puntuación final</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>最终成绩</seg>
@@ -7707,7 +7707,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın mövzusu</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>tópico del test</seg>
+            <seg>tópico del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验主题</seg>
@@ -7787,7 +7787,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>test mövzusunun qısa məzmunu</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>descripción del tópico del test</seg>
+            <seg>descripción del tópico del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验主题说明</seg>
@@ -7867,7 +7867,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>test mövzusunun adı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>nombre del tópico del test</seg>
+            <seg>nombre del tópico del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验主题名称</seg>
@@ -7947,7 +7947,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>test mövzuların siyahısı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>lista de tópicos del test</seg>
+            <seg>lista de tópicos del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验主题列表</seg>
@@ -8107,7 +8107,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>redaktə etmək üçün alət</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>editor que permite el formateo del texto usando un código propietario simple</seg>
+            <seg>editor que permite darle formato al texto usando un código propietario simple</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过使用简单专用代码允许文本格式化的编辑器</seg>
@@ -8187,7 +8187,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>test, imtahan</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>test, exámen</seg>
+            <seg>test, examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验，考试</seg>
@@ -8267,7 +8267,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın qısa məzmunu</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>descripción del test</seg>
+            <seg>descripción del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验说明</seg>
@@ -8347,7 +8347,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın adı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>nombre del test</seg>
+            <seg>nombre del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验名称</seg>
@@ -8427,7 +8427,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın maksimal vaxtı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>duración máxima del test en minutos</seg>
+            <seg>duración máxima del examen en minutos</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>最长测验时间（分钟）</seg>
@@ -8507,7 +8507,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın başlama vaxt və tarixi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>fecha y hora de inicio del test [aaaa-mm-dd hh:mm:ss]</seg>
+            <seg>fecha y hora de inicio del examen [aaaa-mm-dd hh:mm:ss]</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验开始日期和时间[年-月-日 时:分:秒]</seg>
@@ -8587,7 +8587,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testın sona çatması vaxt və tarixi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>fecha y hora de término del test [aaaa-mm-dd hh:mm:ss]</seg>
+            <seg>fecha y hora de término del examen [aaaa-mm-dd hh:mm:ss]</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验结束日期和时间[年-月-日 时:分:秒]</seg>
@@ -9784,7 +9784,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>"Bu formada, siz, insert dəyişdirmək, və ya test düzəlişlər edə bilərsiniz. Test daxil etmək üçün birinci, ən azı, suallar və cavablar müəyyən bir mövzu müəyyən etməlidir. Kifayət qədər istifadə hüquqlarının, habelə test yerinə doğru / qüvvədə IP ünvan yalnız. IP da virgülle ayrılmış, bu test etmək hüququ müxtəlif IP ünvanlar siyahısı ola bilər. IP ünvanı joker də ola bilər (* = hər hansı bir sayı). Test yalnız ərzində aktiv olacaq, sonra başlanmışdır əvvəlcədən müəyyən vaxt intervalı və, müəyyən bir maksimum vaxt ərzində başa olmalıdır. Testler rasgele seçiləcək suallara müxtəlif növləri bir çox mövzular əlavə edə bilərsiniz. Siz həmçinin məsələlərin mürəkkəbliyi hər bir səviyyəsi üçün əsas (bazis.) puanları müəyyən edə bilərsiniz. Siz artıq başa edilmiş test, dəyişə bilməz. Test aradan olduqda, həmçinin onun kütük (test data) bütün silindi. The [yaratmaq] Siz çap və kompüter olmadan edilə bilər PDF formatında, nadir testlər hər hansı bir sayı yaratmaq üçün imkan verir. Mövzular üzrə kare parantez içinde rəqəmlərdən suallar üçün tez statistikası: [(bir sıra) (sual növü S, M, T, O) (çətin): (min cavablar) - (max cavab)].</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>En este formulario se pueden insertar, modificar o eliminar los tests. Para insertar un test se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los tests. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los tests. Una dirección IP también puede contener comodines (* = cualquier número). El test estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los tests pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un test que ya ha sido realizado. Cuando un test es eliminado también lo son sus logs (datos del test efectuado). El botón [generar] permite generar un número arbitrario de test únicos en formato PDF que pueden ser impresos y desarrollados sin computadora. The letters and numbers inside the squared parenthesis on topics are quick statistics for questions: [ (number of questions)(question type S,M,T,O)(difficulty):(min answers)-(max answers) ].</seg>
+            <seg>En este formulario se pueden insertar, modificar o eliminar los exámenes. Para insertar un examen se debe haber definido previamente por lo menos un tópico con un cierto número de preguntas y respuestas. Solamente usuarios con suficientes derechos y dirección IP válida pueden realizar los exámenes. El campo IP puede contener una lista de diferentes direcciones IP, separadas por comas, autorizadas para realizar los exámenes. Una dirección IP también puede contener comodines (* = cualquier número). El examen estará activo solamente durante el tiempo especificado, una vez comenzado, tendrá que ser completado dentro del tiempo máximo especificado. Los exámenes pueden contener varios tópicos con diferentes tipos de preguntas que serán extraídas aleatoriamente. También se puede especificar un puntaje base para cada punto de dificultad de la pregunta. No se puede modificar un examen que ya ha sido realizado. Cuando un examen es eliminado también lo son sus logs (datos del examen efectuado). El botón [generar] permite generar un número arbitrario de exámenes únicos en formato PDF que pueden ser impresos y desarrollados sin computadora. Las letras y números dentro de los corchetes en los temas son estadísticas rápidas para las preguntas: [ (cantidad de preguntas)(tipo de pregunta S,M,T,O)(dificultad):(cantidad mínima de respuestas)-(cantidad máxima de respuestas) ].</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>您可以通过本表单插入，修改或删除的测验。在添加测验前须先定义至少一个主题，主题要有一些问题和答案。有足够的权利和有效的IP地址的用户才可以进行测试。IP字段是一个有权执行测试不同的IP地址的列表，通过","号分隔。IP地址可以包含通配符（* =任何数字）。在指定的时间测试将被激活，一旦启动，将要指定的最大时间内完成。测试可以包含几个主题，主题支持随机选择有多个不同类型的问题。您还可以为每个不同难度水平的问题指定基本分数。您不能修改一个已经执行的测试。删除测试时所有的日志（测试数据）也将被删除。 [生成]按钮允许您生成任意数量的唯一的PDF格式测验，就算没有电脑，也可以通过打印进行测验。主题方括号内的字母和数字是用于快速统计问题：[ (问题)(问题类型S，M，T，O)(难度):(最小答案)-(最大答案)]。</seg>
@@ -9944,7 +9944,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>E-mail istifadəçi nəticələri göndər. e-poçt</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Enviar los resultados a los usuarios por email</seg>
+            <seg>Enviar los resultados a los usuarios por correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过电子邮件向用户发送成绩</seg>
@@ -10664,7 +10664,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu formada siz authorized users göz və seçə bilərsiniz. Siz sütunun adını tıklayarak gösterimi yeniden düzenleyebilirsiniz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>En este formulario se pueden ver y seleccionar los usuarios registrados. Se puede cambiar el orden de visualización clickeando sobre los nombres de las columnas.</seg>
+            <seg>En este formulario se pueden ver y seleccionar los usuarios registrados. Se puede cambiar el orden de visualización presionando sobre los nombres de las columnas.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单查看和选择注册用户。通过点击名称列改变显示次序。</seg>
@@ -10744,7 +10744,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>E-mail göndərin. mesajı seçin. Mesaj göndərmək bekleyin sona çatdı.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Envío de email en progreso. Favor esperar mientras se completa el proceso de envío.</seg>
+            <seg>Envío de correo electrónico en progreso. Favor esperar mientras se completa el proceso de envío.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>邮件发送中，请等候发送进程结束</seg>
@@ -10824,7 +10824,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu səhifə seçilmiş test imkan verir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Esta página permite realizar el test seleccionado.</seg>
+            <seg>Esta página permite realizar el examen seleccionado.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>本页面允许进行选定的测验</seg>
@@ -10904,7 +10904,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Seçilmiş test üçün məlumat göstər.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Muestra información sobre el test seleccionado.</seg>
+            <seg>Muestra información sobre el examen seleccionado.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>显示选定测验的信息</seg>
@@ -10984,7 +10984,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu səhifə seçilmiş test nəticələri göstərilir. Results yalnız neçə seçki suallara aiddir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Esta página muestra los resultados del test seleccionado. Los resultados se refieren únicamente a las preguntas con respuestas múltiples.</seg>
+            <seg>Esta página muestra los resultados del examen seleccionado. Los resultados se refieren únicamente a las preguntas con respuestas múltiples.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>本页显示选定测验的结果，仅选择题结果</seg>
@@ -11384,7 +11384,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>aradan qaldırılması, bu test də (test nəticələri) bütün qeydləri silər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>borrar este test también borrará todos sus logs (resultados del test)</seg>
+            <seg>borrar este examen también borrará todos sus registros de actividad (resultados del test)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>删除此测验会删除所有它的日志(成绩)</seg>
@@ -11784,7 +11784,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu yazı istifadə olunur. Siz onu istifadə olunan yalnız testdən silib sonra bu yazıya düzəlişlər edə bilərsiniz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>el registro ha sido deshabilitado, no puede ser borrado porque está siendo utilizado en otras tablas. Se puede borrar este registro solamente después de borrar el test en el cual está siendo utilizado.</seg>
+            <seg>el registro ha sido deshabilitado, no puede ser borrado porque está siendo utilizado en otras tablas. Se puede borrar este registro solamente después de borrar el examen en el cual está siendo utilizado.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>记录被禁用，因为它被别的表使用而不能被删除，你只有在删除了使用它的测验之后，才能删除此记录</seg>
@@ -12264,7 +12264,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bağışlayın,  test vaxtı bitib!</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>¡El tiempo disponible para completar el test ha caducado!</seg>
+            <seg>¡El tiempo disponible para completar el examen ha caducado!</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>对不起，测验时间已到</seg>
@@ -14344,7 +14344,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu linki yeni brauzer pəncərəsində açılacaq</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>este enlace abrirá una nueva ventana del browser</seg>
+            <seg>este enlace abrirá una nueva ventana del navegador</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>本链接将会打开一个新的浏览器窗口</seg>
@@ -15147,7 +15147,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>bu test nəticələri cədvəldə istifadə olunur, qeyd yenilənə bilməz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>el registro no puede ser actualizado debido a que está en uso en la tabla de resultados del test. Será posible modificar este registro solamente despues de borrar el test que lo está usando. Se puede deshabilitar con el botón [eliminar].</seg>
+            <seg>el registro no puede ser actualizado debido a que está en uso en la tabla de resultados del examen. Será posible modificar este registro solamente despues de borrar el examen que lo está usando. Se puede deshabilitar con el botón [eliminar].</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>由于被测验的成绩表使用，记录不能被更新。只有在使用它的测验删除后才能修改此记录，你可使用[删除]按钮禁用它</seg>
@@ -15227,7 +15227,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>bu test nəticələri cədvəldə istifadə olunur, qeyd yenilənə bilməz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>el registro no puede ser actualizado debido a que está en uso en la tabla de resultados del test.</seg>
+            <seg>el registro no puede ser actualizado debido a que está en uso en la tabla de resultados del examen.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>由于被测验成绩表使用，记录不能被更新.</seg>
@@ -16267,7 +16267,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Onlayn istifadəçilər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Usuarios Online</seg>
+            <seg>Usuarios en línea</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>在线用户</seg>
@@ -16507,7 +16507,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Test</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>TCExam :: Ejecución Test</seg>
+            <seg>TCExam :: Ejecución de examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>TcExam :: 进行测验</seg>
@@ -16907,7 +16907,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Testın nəticələri</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Resumen Resultados Test</seg>
+            <seg>Resumen Resultados de examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验成绩汇总</seg>
@@ -17070,7 +17070,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Testın nəticələri</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Resultados Test</seg>
+            <seg>Resultados examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验成绩</seg>
@@ -17310,7 +17310,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Testın gedişi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Ejecución Test</seg>
+            <seg>Ejecución examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>进行测验</seg>
@@ -17470,7 +17470,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Testın nəticələri</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Resultados del Tests</seg>
+            <seg>Resultados del examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验成绩</seg>
@@ -17550,7 +17550,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Testlərin idarə edilməsi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Administración Test</seg>
+            <seg>Administración examen</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验管理</seg>
@@ -19630,7 +19630,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>vaxt  taymer</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>reloj / timer</seg>
+            <seg>reloj / temporizador</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>时间/计时器</seg>
@@ -20910,7 +20910,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>email ünvanı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>email</seg>
+            <seg>correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>电子邮件</seg>
@@ -20990,7 +20990,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>məktubu göndər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>enviar emails</seg>
+            <seg>enviar correos electrónicos</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>发送电子邮件</seg>
@@ -21070,7 +21070,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>məktubu göndər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>envía email</seg>
+            <seg>enviar correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>发送电子邮件</seg>
@@ -22590,7 +22590,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>kataloq</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>indice</seg>
+            <seg>índice</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>主页</seg>
@@ -23070,7 +23070,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>taymerə keç</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>ir al reloj/timer</seg>
+            <seg>ir al reloj/temporizador</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>跳到时间/计时器</seg>
@@ -25070,7 +25070,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>parol</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>password</seg>
+            <seg>contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>密码</seg>
@@ -25230,7 +25230,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>PDF formatında testlər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>PDF tests</seg>
+            <seg>PDF exámenes</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>PDF测验</seg>
@@ -25310,7 +25310,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>PDF offlayn testlər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>PDF offline test</seg>
+            <seg>PDF examen sin conexión</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>PDF离线测验</seg>
@@ -27150,7 +27150,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>nömrə</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>inscripción</seg>
+            <seg>número de matrícula</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>注册号</seg>
@@ -29310,7 +29310,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>mövcud testlər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>tests disponibles</seg>
+            <seg>exámenes disponibles</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>可用测验</seg>
@@ -32939,7 +32939,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Sizin logininiz yoxdur? Yeni birini yaradın!</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>¿No estas registrado? Crea una nueva cuenta.</seg>
+            <seg>¿No está registrado? Cree una nueva cuenta.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>没有账号？创建一个</seg>
@@ -33019,7 +33019,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>ünvanınıza təstiqləmə kodu ilə məktub göndərildi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>un mensaje de verificacion ha sido enviado a esta direccion</seg>
+            <seg>un mensaje de verificación ha sido enviado a esta dirección</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>验证消息已发送到此地址</seg>
@@ -33339,7 +33339,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;This is an automated response to verify &lt;a href="#TCEXAMURL#"&gt;TCExam&lt;/a&gt; New User Registration Request.&lt;br /&gt;Request verification for email #EMAIL# submitted by remote IP #USERIP#.&lt;br /&gt;If this message has been sent in error, please disregard.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;TO CONFIRM THE REGISTRATION USE THE FOLLOWING LINK:&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;Esta es una respuesta automática para verificar a Petición de Registro de un Nuevo Usuario &lt;a href="#TCEXAMURL#"&gt;TCExam&lt;/a&gt;.&lt;br /&gt;Se precisa verificar por email #EMAIL# enviado a la IP remota #USERIP#.&lt;br /&gt;Si este mensaje ha sido enviado por error, por favor ignórelo.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;PARA CONFIRMAR EL REGISTRO UTILICE EL SIGUIENTE LINK:&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
+            <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;Esta es una respuesta automática para verificar a Petición de Registro de un Nuevo Usuario &lt;a href="#TCEXAMURL#"&gt;TCExam&lt;/a&gt;.&lt;br /&gt;Se precisa verificar por email #EMAIL# enviado a la IP remota #USERIP#.&lt;br /&gt;Si este mensaje ha sido enviado por error, por favor ignórelo.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;PARA CONFIRMAR EL REGISTRO UTILICE EL SIGUIENTE HIPERVÍNCULO:&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd"&gt;&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"&gt;&lt;body&gt;&lt;p&gt;此为自动应答以确认 &lt;a href="#TCEXAMURL#"&gt;TcExam&lt;/a&gt; 新用户注册请求。&lt;br /&gt;请求验证邮箱 #EMAIL# 提交于远程 IP #USERIP#。&lt;br /&gt;若发错邮件, 请无视。&lt;br /&gt;&lt;br /&gt;&lt;b&gt;请用下列链接确认注册：&lt;br /&gt;&lt;a href="#SUBSCRIBEURL#"&gt;#SUBSCRIBEURL#&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</seg>
@@ -33500,7 +33500,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>suala verilən maksimum vaxt (0 = söndürmək)</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>máximo número de segundos en los cuales se muestra la pregunta (0 = deshabilita el timer)</seg>
+            <seg>máximo número de segundos en los cuales se muestra la pregunta (0 = deshabilita el temporizador)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>题目显示的最长时间（秒，0＝不计时）</seg>
@@ -33740,7 +33740,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>ardıcıllıq</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>orden de visualizaciòn corecto</seg>
+            <seg>orden de visualización corecto</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>正确的视觉顺序</seg>
@@ -34095,7 +34095,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>radiobuttons for MCMA</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>radiobutton para MCMA</seg>
+            <seg>botón de opción para MCMA</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>多选题的按钮</seg>
@@ -34175,7 +34175,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>if selected, uses radiouttons instead of checkboxes for MCMA questions</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si seleccionado, utiliza los radiobutton en lugar de los checkbox para la preguntas MCMA</seg>
+            <seg>si seleccionado, utiliza los botones de opción en lugar de las cajas de verificación para la preguntas MCMA</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选择，用单选钮替代多选题的复选框</seg>
@@ -34735,7 +34735,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>nəticəni göstər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>relacción a los usuarios</seg>
+            <seg>reportes a los usuarios</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>用户报告</seg>
@@ -35215,7 +35215,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>növbəti suala avtomatik keçid</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>avance automatico</seg>
+            <seg>avance automático</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>自动转到下一题</seg>
@@ -35295,7 +35295,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>seçildikdə növbəti suala avtomatik olaraq keçid olunacaq</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si es seleccionada, pasa automaticamente a la respuesta siguiente cuando se selecciona una respuesta y una pregunta MCSA</seg>
+            <seg>si es seleccionada, pasa automáticamente a la respuesta siguiente cuando se selecciona una respuesta y una pregunta MCSA</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选择，当一个单选题答案选定时自动转到下一题目</seg>
@@ -37057,7 +37057,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>modul</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>modulo</seg>
+            <seg>módulo</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>模块</seg>
@@ -37137,7 +37137,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>modullar</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>modulos</seg>
+            <seg>módulos</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>模块</seg>
@@ -37217,7 +37217,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Modulların İdarə Edilməsi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Gestión de modulos</seg>
+            <seg>Gestión de módulos</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>模块管理</seg>
@@ -37255,7 +37255,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu forma ilə siz müxtəlif modullar idarə edə bilərsiniz. Sistemində Mövzular bu modulları bağlı ola bilər. Bir test bir neçə modulları istifadə edə bilər. Siz [sil] basaraq aradan biləcək halda, əvvəlki test hissəsi olan modulu, dəyişdirmək və ya aradan qaldırılması ola bilər. Əfsanə: [+] Enabled [-] Off;</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Con este formulario puedes administrar los distintos módulos. Los tópicos en el sistema pueden clasificarse de acuerdo a estos módulos. En un único test pueden incluirse distintos módulos. No se puede modificar o eliminar un módulo que previamente se ha incluido en un test que ya ha sido realizado, en ese caso se puede simplemente deshabilitar utilizando el botón [eliminar]. Leyenda: [+] Habilitar; [-] Deshabilitar;</seg>
+            <seg>Con este formulario puedes administrar los distintos módulos. Los tópicos en el sistema pueden clasificarse de acuerdo a estos módulos. En un único examen pueden incluirse distintos módulos. No se puede modificar o eliminar un módulo que previamente se ha incluido en un examen que ya ha sido realizado, en ese caso se puede simplemente deshabilitar utilizando el botón [eliminar]. Leyenda: [+] Habilitar; [-] Deshabilitar;</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单管理不同的模块，系统内的主题可根据这些模块分类。一个测试中可以有多个主题模块，你不能修改或删除作为之前进行过的测试中的部分的模块。这种情况下可以通过使用[删除]按钮禁用它。示意：[+] 启用；[-] 禁用；</seg>
@@ -37783,7 +37783,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>kvadratların cəmi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>square sum</seg>
+            <seg>cuadrado</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>平方数</seg>
@@ -38424,7 +38424,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>asimmetriya</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>skewness</seg>
+            <seg>asimetría</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>失真</seg>
@@ -38504,7 +38504,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>kurtosis</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>kurtosi</seg>
+            <seg>curtosis</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>峰态</seg>
@@ -38744,7 +38744,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Bu form secilmis bir test icin butun kullanici urunlerini ozetler.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Este formulario sintetiza los resultados de todos los usuarios para el test seleccionado.</seg>
+            <seg>Este formulario sintetiza los resultados de todos los usuarios para el examen seleccionado.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>此表单汇总了选定测验所有用户的成绩</seg>
@@ -38825,7 +38825,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>modulun adı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>nombre del modulo</seg>
+            <seg>nombre del módulo</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>模块名称</seg>
@@ -39146,7 +39146,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>İstifadəçilər testi bir neçə dəfə təkrar edə bilərlər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>los usuarios pueden repetir este test varias veces</seg>
+            <seg>los usuarios pueden repetir este examen varias veces</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>用户可多次重复此测验</seg>
@@ -39306,7 +39306,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>testı təkrar et</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>repite este test (los resultados actuales vendràn cancelados)</seg>
+            <seg>repite este examen (los resultados actuales serán eliminados)</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>重复此测验 (当前成绩会删除)</seg>
@@ -39467,7 +39467,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>daxil edilmiş ball maksimum balldan yuxarıdır</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>la puntuaciòn seleccionada es mayor que el maximo consentido</seg>
+            <seg>la puntuaciòn seleccionada es mayor que el máximo permitido</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>选定成绩超过允许的最大值</seg>
@@ -39548,7 +39548,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>partial score for MCMA</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>puntuaciòn parcial para MCMA</seg>
+            <seg>puntuación parcial para MCMA</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>多选题部分得分</seg>
@@ -39628,7 +39628,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>seçildikdə, MCMA sualları qismən olaraq qiymətləndirir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si seleccioanado, utiliza una puntuaciòn parcial para las preguntas MCMA y ORDER</seg>
+            <seg>si es seleccioanado, utiliza una puntuación parcial para las preguntas MCMA y ORDER</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选定，多选题可部分得分</seg>
@@ -39708,7 +39708,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>Seçilmiş vaxt bitdikdə, istifadəçini sistemdən çıxardır</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>si seleccionado, cierra la sesiòn usuario al tèrmino del tiempo disponible</seg>
+            <seg>si es seleccionado, cierra la sesión de usuario expirar el tiempo disponible</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>如果选定，当过期时注销用户</seg>
@@ -39788,7 +39788,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>vaxt bitdikdə sistemdən çıx</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Salida al tèrmino del tiempo</seg>
+            <seg>desconectar cuando el tiempo expire</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>当过期时注销</seg>
@@ -40188,7 +40188,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>yeni nüsxə faylını yarat</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>ejecuta una nueva cobertura</seg>
+            <seg>ejecuta una nueva copia de resguardo</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>创建新备份</seg>
@@ -40268,7 +40268,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>nüsxə faylını bərpa et</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>restablezco la cobertura seleccionada</seg>
+            <seg>restablecer la copia de resguardo seleccionada</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>还原选定的备份</seg>
@@ -40348,7 +40348,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>nüsxə faylı yaradıldı!</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>La cobertura ha sido ejecutada</seg>
+            <seg>la copia de resguardo ha sido ejecutada</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>成功创建备份</seg>
@@ -40428,7 +40428,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
             <seg>bərpa yerinə yetirildi!</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>El restablecimiento ha sido ejecutado</seg>
+            <seg>el restablecimiento ha sido ejecutado</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>成功还原</seg>
@@ -40649,9 +40649,9 @@ Backup files are stored on the "cache/backup" folder using the following syntax:
             <seg>Bu səhifə Sizə nüsxələri (backup) yaradıb bərpa etməyə imkan verir. (ancaq POSİX sistemlərdə MySQL və ya PostgreSQL-ı dəstəkləyir). [backup] düyməsini basmaqla Siz TCExam sisteminin verilənlər bazasının SQL damp (verilənlər və struktur) faylını arxivləşdirilmiş formatda yarada bilərsiniz. Seçilmiş faylı bərpa etmək üçün [bərpa et] düyməsini basın. Nəzərə alın ki, hər bir bərpadan əvvəl sistem avtomatik olaraq yeni nüsxə faylını yaradır. Beləliklə Siz əməliyyatınızdan imtina edə bilərsiniz. Fayllar "cache/backup" qovluğunda yerləşir. Onlar YYYYMMDDhhmmss_tcexam_backup.sql.gz kimi adlandırılacaq, YYYYMMDDhhmmss il - (Y), ay (M), gün (D), saat (h), dəqiqə (m), saniyə (s) deməkdir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>A través de esta máscara es posible crear y restablecer copias del archivo (cobertura) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
-Comprimiendo la tecla [cobertura] el sistema crea una copia comprimida del dump SQL de la entera base de datos de TCExam (estructura y datos).
-Para restablecer una copia de cobertura es suficiente seleccionarla  comprimiendo la tecla [restablece].
+            <seg>A través de esta máscara es posible crear y restablecer copias del archivo (copia de resguardo) de la base de datos (funciona solo en los sistemas POSIX con MySQL o PostgreSQL).
+Presionando el botón [cobertura] el sistema crea una copia comprimida del dump SQL de la entera base de datos de TCExam (estructura y datos).
+Para restablecer una copia de resguardo es suficiente seleccionarla presionar la tecla [restablece].
 Por seguridad, antes de cada restablecimiento el sistema ejecuta una cobertura asì para poder anular la 'operaciòn de restablecimiento.
 El expediente de cobertura viene registrado en la carpeta "cache/backup" con la siguiente sintaxis: AAAAMMGGhhmmss_tcexam_backup.sql.gz , donde AAAAMMGGhhmmss representa la cifra del'año (A), mes (M), dia (G), hora (h), minutos (m), segundos (s).</seg>
          </tuv>
@@ -41010,7 +41010,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Email ünvanını dəyiş</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Modifica Email</seg>
+            <seg>Modifica dirección de correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>修改邮箱</seg>
@@ -41090,7 +41090,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu formu ile parolunuzu dəyişə bilərsiniz.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>A través de esta máscara es posible modificar la propia password de acceso.</seg>
+            <seg>A través de este formulario es posible modificar la propia contraseña de acceso.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单修改访问密码。</seg>
@@ -41170,7 +41170,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu form ilə email ünvanını dəyişə bilərsiniz. Siz yeni bir məktub alacaqsınız. Təstiq edilməmiş email aktiv olmayacaq.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>A través de esta máscara es posible modificar la propia email. Un mensaje de verifica vendrà enviado a la nueva email. La cuenta vendrá desactivada hasta la recepciòn de la confirmación.</seg>
+            <seg>A través de este formulario es posible modificar la propia dirección de correo electrónico. Un mensaje de verificación será enviado a la nueva dirección. La cuenta será desactivada hasta la recepciòn de la confirmación.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过此表单修改邮箱，验证邮件会发送到新邮箱地址。在收到确认前账户会被禁用。</seg>
@@ -41250,7 +41250,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Parol yeniləndi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>la password ha sido actualizada</seg>
+            <seg>la contraseña ha sido actualizada</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>密码已更新</seg>
@@ -41330,7 +41330,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>E-poçt yeniləndi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>la password ha sido actualizada</seg>
+            <seg>la dirección de correo electrónico ha sido actualizada</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>邮件已更新</seg>
@@ -41410,7 +41410,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Ünvanlar fərqlidir</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>las emails son diferentes</seg>
+            <seg>las direcciones de correo electrónico son diferentes</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>邮件不同</seg>
@@ -41490,7 +41490,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>indiki parol</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>password actual</seg>
+            <seg>contraseña actual</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>当前密码</seg>
@@ -41570,7 +41570,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>yeni parol</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>nueva password</seg>
+            <seg>nueva contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>新密码</seg>
@@ -41730,7 +41730,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>yeni email</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>nueva email</seg>
+            <seg>nueva dirección</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>新邮件</seg>
@@ -41810,7 +41810,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Email ünvanı</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>dirección e-mail</seg>
+            <seg>dirección de correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>邮箱地址</seg>
@@ -41890,7 +41890,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>click on this link to access on this system</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>clicar en este link para acceder a este sistema</seg>
+            <seg>presionar sobre este hipervínculo para acceder a este sistema</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>点击此链接访问此系统</seg>
@@ -41970,7 +41970,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Email ünvanını dəyiş</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>modifica email</seg>
+            <seg>modifica dirección de correo electrónico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>修改邮箱</seg>
@@ -42050,7 +42050,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Parolu dəyiş</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>modifica password</seg>
+            <seg>modifica contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>修改密码</seg>
@@ -42450,7 +42450,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Testlər</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Lista Test</seg>
+            <seg>Lista exámenes</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>测验列表</seg>
@@ -44183,7 +44183,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>cədvəl</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>table</seg>
+            <seg>tabla</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>列表</seg>
@@ -44423,7 +44423,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu səhifə cari təsviri bir multimedia fayl obyekt daxil etmək üçün imkan verir. Siz daxil etmək istədiyiniz object seçin təsviri sahələri doldurub və [əlavə et] düyməsini basın.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Esta página consiente de insertar un objeto multimedial en la descripción corriente. Selecciona el objeto a insertar, rellenar los campos de descripción y presione el pulsante [añadir].</seg>
+            <seg>Esta página permite insertar un objeto multimedial en la descripción corriente. Seleccione el objeto a insertar, rellene los campos de descripción y presione el botón [añadir].</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>此页面允许在当前描述中插入多媒体对象。选定要插入的对象，填写描述字段并点击[添加]按钮。</seg>
@@ -44583,7 +44583,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>modulun sahibi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>propietario de este modulo</seg>
+            <seg>propietario de este módulo</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>此模块的所有者</seg>
@@ -44663,7 +44663,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>mövzunun sahibi</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>poprietario de este argumento</seg>
+            <seg>poprietario de este tema</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>此主题的所有者</seg>
@@ -44823,7 +44823,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Bu forma ilə Siz istifadəçilərin cavab kartlarının skan olunmuş şəkillərini import edə bilərsiniz. Bu şəkil OMR sistemi ilə oxunulacaq və istifadəçilərin imtahan nəticələri sistemə yazılacaq. Sistemdə olan nəticələr import olunmuş nəticələr ilə əvəz olunacaq. OMR səhifələr rəngli, ən azı 200DPİ keyfiyyəti ilə skan edilməlidir.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>A través de esta máscara es posible importar las respuestas del usuario desde las imágenes escaneadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de Optical Mark Recognition (OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes se sobrescribirán a los resultados existentes. Las hojas ORM deben ser enteramente escaneadas a color a al menos 200DPI.</seg>
+            <seg>A través de este formulario es posible importar las respuestas del usuario desde las imágenes digitalizadas de las hojas de respuesta. Las imágenes vendrán elaboradas utilizando un sistema de reconocimiento óptico de marcas (Optical Mark Recognition - OMR) para identificar los datos del test y las respuestas del usuario. Los datos importantes sobrescribirán los resultados existentes. Las hojas ORM deben ser enteramente digitalizadas a color a al menos 200 puntos por pulgada.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>通过这种形式，你可以导入用户从答卷的扫描图像的答案。这个图片将被用于光学标记识别（OMR）系统进行识别，以便处理测试数据和用户的答案。导入的数据将覆盖现有的结果。 OMR表必须完全使用200DPI或以上的全彩颜色进行扫描。</seg>
@@ -44983,7 +44983,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR DATA</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OMR DATA</seg>
+            <seg>DATOS OMR</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR 数据</seg>
@@ -45063,7 +45063,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR ANSWER SHEET</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OMR ANSWER SHEET</seg>
+            <seg>HOJA DE RESPUESTA OMR</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR 答案表格</seg>
@@ -45143,7 +45143,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR DATA adlandırılan səhifənin skan kopiyası</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>imágenes escaneadas desde la página titulada OMR DATA</seg>
+            <seg>imágenes digitalizadas desde la página titulada DATOS OMR</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>标有OMR数据页的扫描图像</seg>
@@ -45303,7 +45303,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR ANSWER SHEET səhifənin şəkili yoxdur və ya onu oxumaq mümkün deyil</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>la imagen de la página OMR ANSWER SHEET falta o es ilegible</seg>
+            <seg>la imagen de la página HOJA DE RESPUESTA OMR falta o es ilegible</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR答案纸页的图像丢失或不可读</seg>
@@ -45543,7 +45543,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>I forgot my password</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>I forgot my password</seg>
+            <seg>Olvidé mi contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>I forgot my password</seg>
@@ -45623,7 +45623,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>reset the password</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>reset the password</seg>
+            <seg>restablecer contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>reset the password</seg>
@@ -45703,7 +45703,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
+            <seg>Por favor ingrese la dirección de correo electrónico que usó para crear su cuenta y le enviaremos un hipervínculo para restablecer su contraseña.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>Please enter the email address you used to create your account, and we will send you a link to reset your password.</seg>
@@ -45783,7 +45783,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Password Assistance</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Password Assistance</seg>
+            <seg>Asistencia para contraseña</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>Password Assistance</seg>
@@ -45863,7 +45863,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>unknown email</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>unknown email</seg>
+            <seg>dirección de correo electrónico desconocida</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>unknown email</seg>
@@ -45943,7 +45943,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>graph of points and correct answers percentage for each listed test</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>graph of points and correct answers percentage for each listed test</seg>
+            <seg>gráfico de puntos y porcentaje de respuestas correctas para cada examen listado</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>graph of points and correct answers percentage for each listed test</seg>
@@ -46023,7 +46023,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR Import Directory</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OMR Import Directory</seg>
+            <seg>Directorio de importación OMR</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR Import Directory</seg>
@@ -46103,7 +46103,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR Directory</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OMR Directory</seg>
+            <seg>Directorio OMR</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR Directory</seg>
@@ -46183,7 +46183,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OMR Bulk Importer</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OMR Bulk Importer</seg>
+            <seg>Importador OMR en masa</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>OMR Bulk Importer</seg>
@@ -46263,7 +46263,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
+            <seg>Con este formulario usted puede importar a granel las respuestas desde imágenes digitalizadas de las hojas de respuestas. Los archivos de imágenes deben ser ubicados en una sub-carpeta del directorio cache/OMR. Las imágenes que contengan el código QR deben ser nombradas "OMR_[USRREG]_QR.png" donde [USRREG] es el número de matrícula del usuario. Los archivos que contengan las respuestas deben ser nombradas "OMR_[USRREG]_A[X].png", donde [X] es el número de hoja. Las imágenes serán procesadas usando un sistema de reconocimiento óptico de marcas (Optical Mark Recognition - OMR) para identificar los datos del examen y las respuestas de los usuarios. Las hojas OMR deben ser completamente digitalizadas en rango de color completo a una definición de 200 puntos por pulgada o más.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>With this form you can import in bulk test answers from scanned images of answer sheets. The image files must be located on a subfolder of the cache/OMR directory. The images containing the QR code must be named "OMR_[USRREG]_QR.png" where [USRREG] is the registration code of the user. The images containing the answers must be named "OMR_[USRREG]_A[X].png" where [X] is the sheet number. The images will be processed using Optical Mark Recognition (OMR) system to identify test data and user's answers. The OMR sheets must be fully scanned with full color range at 200DPI or more.</seg>
@@ -46311,7 +46311,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>alphabetic</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>alphabetic</seg>
+            <seg>alfabético</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>alphabetic</seg>
@@ -46471,7 +46471,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>database ID</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>database ID</seg>
+            <seg>ID base de datos</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>database ID</seg>
@@ -46551,7 +46551,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>order by</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>order by</seg>
+            <seg>ordenar por</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>order by</seg>
@@ -46631,7 +46631,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>questions order</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>questions order</seg>
+            <seg>orden de preguntas</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>questions order</seg>
@@ -46711,7 +46711,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>ordering mode for questions</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>ordering mode for questions</seg>
+            <seg>modo de ordenamiento para preguntas</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>ordering mode for questions</seg>
@@ -46791,7 +46791,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>answers order</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>answers order</seg>
+            <seg>orden de respuestas</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>answers order</seg>
@@ -46871,7 +46871,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>ordering mode for answers</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>ordering mode for answers</seg>
+            <seg>modo de ordenamiento para respuestas</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>ordering mode for answers</seg>
@@ -46951,7 +46951,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OTP key</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OTP key</seg>
+            <seg>llave OTP</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>OTP key</seg>
@@ -47031,7 +47031,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>One Time Password secret key</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>One Time Password secret key</seg>
+            <seg>Contraseña secreta de un solo uso OTP</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>One Time Password secret key</seg>
@@ -47111,7 +47111,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OTP QR-Code</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OTP QR-Code</seg>
+            <seg>Código QR de clave de un solo uso OTP</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>OTP QR-Code</seg>
@@ -47191,7 +47191,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.&lt;br /&gt;&lt;br /&gt;You must download and install the &lt;a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator"&gt;Google Authenticator&lt;/a&gt; app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.&lt;br /&gt;&lt;br /&gt;You must download and install the &lt;a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator"&gt;Google Authenticator&lt;/a&gt; app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:</seg>
+            <seg>TCExam usa un proceso de verificación de dos pasos, el cual requiere que ingrese dos piezas de información antes de ingresar al sistema. La información requerida es la contraseña convencional TCExam y el código de verificación generado desde su teléfono inteligente. Ésto previene que adversarios ingresen a su cuenta usando solamente su contraseña o solamente su teléfono inteligente. Sin embargo, también significa que usted siempre deberá tener su teléfono inteligente a mano toda vez que desee ingresar a su cuenta TCExam.&lt;br /&gt;&lt;br /&gt;Usted deberá descargar e estalar la aplicación &lt;a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator"&gt;Google Authenticator&lt;/a&gt; en su teléfono inteligente. Cuando haya descargado e instalado la aplicación, usted podrá usar el siguiente código, or leer el código QR:</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>TCExam uses a 2-step verification process that requires you to enter two pieces of information before you can access the system. The required information is the standard TCExam password and the verification code generated by your smartphone. This prevents hackers from accessing your account if they only have your password or phone. However, it also means that you will always need to have your phone at hand whenever you want to login to your TCExam Account.&lt;br /&gt;&lt;br /&gt;You must download and install the &lt;a href="https://support.google.com/accounts/answer/1066447" title="Install Google Authenticator"&gt;Google Authenticator&lt;/a&gt; app on your smartphone. When you have downloaded and installed the app you can use the following code, or scan the QR-Code:</seg>
@@ -47272,7 +47272,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>OTP code</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>OTP code</seg>
+            <seg>Código de un solo uso OTP</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>OTP code</seg>
@@ -47352,7 +47352,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>One Time Password code generated using your smartphone application</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>One Time Password code generated using your smartphone application</seg>
+            <seg>Código de un solo uso OTP generado usando la aplicación de su teléfono inteligente</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>One Time Password code generated using your smartphone application</seg>
@@ -47432,7 +47432,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
+            <seg>Usted está intentando ingresar demasiadas veces en poco tiempo, por favor aguarde durante los segundos a continuación antes de volver a intentar:</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>You are trying to log too many times and too fast, please wait the following number of seconds before the next attempt:</seg>
@@ -47512,7 +47512,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>test password</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>test password</seg>
+            <seg>probar contraseña</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>test password</seg>
@@ -47592,7 +47592,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>password, alphanumeric code required to execute this test</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>password, alphanumeric code required to execute this test</seg>
+            <seg>contraseña, código alfanumérico requerido para ejecutar este examen</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>password, alphanumeric code required to execute this test</seg>
@@ -47672,7 +47672,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In order to execute this test you must provide the test password</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>In order to execute this test you must provide the test password</seg>
+            <seg>Para realizar este examen usted deberá proveer la contraseña del examen</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>In order to execute this test you must provide the test password</seg>
@@ -47752,7 +47752,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>wrong test password</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>wrong test password</seg>
+            <seg>contraseña de examen errónea</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>wrong test password</seg>
@@ -47832,7 +47832,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>Test Selection</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>Test Selection</seg>
+            <seg>Selección de examen</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>Test Selection</seg>
@@ -47912,7 +47912,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>open a test selection page</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>open a test selection page</seg>
+            <seg>abrir una página de selección de examen</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>open a test selection page</seg>
@@ -47992,7 +47992,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
+            <seg>En este formulario puede ver y seleccionar exámenes. Puede modificar la secuencia visualizada presionando sobre los nombres de las columnas.</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>In this form you can see and select the tests. You can change the displayed sequence by clicking on the column names.</seg>
@@ -48072,7 +48072,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>limit</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>limit</seg>
+            <seg>límite</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>limit</seg>
@@ -48232,7 +48232,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>day</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>day</seg>
+            <seg>día</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>day</seg>
@@ -48312,7 +48312,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>month</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>month</seg>
+            <seg>mes</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>month</seg>
@@ -48392,7 +48392,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>year</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>year</seg>
+            <seg>año</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>year</seg>
@@ -48472,7 +48472,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining tests</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>remaining tests</seg>
+            <seg>exámenes restantes</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>remaining tests</seg>
@@ -48552,7 +48552,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining number of tests that can be executed</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>remaining number of tests that can be executed</seg>
+            <seg>cantidad de exámenes restantes que pueden ser ejecutados</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>remaining number of tests that can be executed</seg>
@@ -48632,7 +48632,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>the limit of maximum tests has been reached</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>the limit of maximum tests has been reached</seg>
+            <seg>el límite máximo de exámenes ha sido alcanzado</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>the limit of maximum tests has been reached</seg>
@@ -48712,7 +48712,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>under limit</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>under limit</seg>
+            <seg>límite inferior</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>under limit</seg>
@@ -48792,7 +48792,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>over limit</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>over limit</seg>
+            <seg>límite superior</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>over limit</seg>
@@ -48872,7 +48872,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>font</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>font</seg>
+            <seg>tipografía</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>font</seg>
@@ -48952,7 +48952,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>font size</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>font size</seg>
+            <seg>tamaño de tipografía</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>font size</seg>
@@ -49032,7 +49032,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>keyboard</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>keyboard</seg>
+            <seg>teclado</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>keyboard</seg>
@@ -49112,7 +49112,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>layout</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>layout</seg>
+            <seg>distribución</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>layout</seg>
@@ -49192,7 +49192,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>language</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>language</seg>
+            <seg>idioma</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>language</seg>
@@ -49272,7 +49272,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>max</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>max</seg>
+            <seg>máximo</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>max</seg>
@@ -49352,7 +49352,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>remaining</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>remaining</seg>
+            <seg>restante</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>remaining</seg>
@@ -49432,7 +49432,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>executed</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>executed</seg>
+            <seg>ejecutado</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>executed</seg>
@@ -49512,7 +49512,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>overwrite</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>overwrite</seg>
+            <seg>sobreescrito</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>overwrite</seg>
@@ -49592,7 +49592,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>select this option to overwrite existing results on non-repeatable test</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>select this option to overwrite existing results on non-repeatable test</seg>
+            <seg>seleccione esta opción para sebreescribir los resultados preexistentes en exámenes no repetibles</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>select this option to overwrite existing results on non-repeatable test</seg>
@@ -49672,7 +49672,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>SSL certificates</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>SSL certificates</seg>
+            <seg>certificados SSL</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>SSL certificates</seg>
@@ -49752,7 +49752,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>SSL Certificates</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>SSL Certificates</seg>
+            <seg>Certificados SSL</seg>
          </tuv>
          <tuv xml:lang="FR">
             <seg>SSL Certificates</seg>
@@ -49865,7 +49865,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>SSL certificate</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>SSL certificate</seg>
+            <seg>certificado SSL</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>SSL certificate</seg>
@@ -49945,7 +49945,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
+            <seg>Con este formulario usted podrá importar certificados SSL (pfx, pem, crt) de clientes. Esos certificados podrán ser usados para restringir el acceso a ciertos exámenes o áreas.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>With this form you can import client SSL certificates (pfx, pem, crt). These certificates can be used to restrict the access to certain tests or areas.</seg>
@@ -50026,7 +50026,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>To access this page you need a valid SSL certificate client.</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>To access this page you need a valid SSL certificate client.</seg>
+            <seg>Para acceder esta página deberá poseer un certificado SSL cliente válido.</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>To access this page you need a valid SSL certificate client.</seg>
@@ -50106,7 +50106,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>graph</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>graph</seg>
+            <seg>gráfico</seg>
          </tuv>
          <tuv xml:lang="CN">
             <seg>graph</seg>
