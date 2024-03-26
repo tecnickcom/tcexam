@@ -1,14 +1,7 @@
-# TCExam - README
+# TCExam
 
-------------------------------------------------------
+**Computer-Based Assessment Software**
 
-FOR ANY USAGE THAT REQUIRES COMMERCIAL LICENSING TERMS,
-PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
-
-------------------------------------------------------
-
-* Name: TCExam
-* Author: Nicola Asuni
 * URLs:
 	* http://www.tcexam.org
 	* https://github.com/tecnickcom/tcexam
@@ -20,7 +13,7 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 * Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 * Software License:
-	* Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
+	* Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
 
 
@@ -30,11 +23,8 @@ PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A LICENSE.
 
 ## Third-party Software
 
-<<<<<<< HEAD
-TCExam includes some third-party software components that are not strictly required but have been included as your convenience, and if used are subject to their respective licenses.
-=======
-TCExam includes some third-party software components that are not strictly required but have been included at your convenience, and if used are subject to their respective licenses.
->>>>>>> develop
+TCExam includes some third-party software components that are not strictly required but have been included as your convenience,
+and if used are subject to their respective licenses:
 
 * **PHPMailer**
     * Full Featured Email Transfer Class for PHP.
@@ -69,6 +59,13 @@ TCExam includes some third-party software components that are not strictly requi
     * Homepage: https://wiki.jasig.org/display/CASC/phpCAS
     * License: Apache License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0
     * Location: /shared/cas/
+
+* **TCPDF**
+    * TCPDF library to generate PDF documents.
+    * Copyright 2002-2024 Nicola Asuni - Tecnick.com LTD
+    * Homepage: https://tcpdf.org
+    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
+    * Location: /shared/tcpdf/
 
 * **Fonts**
 

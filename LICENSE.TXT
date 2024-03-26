@@ -1,19 +1,10 @@
 --------------------------------------------------------------------------------
-Copyright (C) 2004-2022 Nicola Asuni - Tecnick.com LTD
+TCExam - Computer-Based Assessment Software
+Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
 
-TCEXAM IS SUBJECT TO THE FOLLOWING GNU-AGPLV3 LICENSE WITH THE
-FOLLOWING ADDITIONAL TERMS:
-
- * YOU CAN'T ALTER, REMOVE, MOVE OR HIDE THE ORIGINAL TCEXAM LOGO,
-   COPYRIGHTS STATEMENTS, LINKS TO TECNICK.COM AND TCEXAM WEBSITES,
-   OTHER PROPRIETARY NOTICES, LEGENDS, SYMBOLS OR LABELS IN THE SOFTWARE.
-
- * TCEXAM NAME AND LOGO ARE TRADEMARKS OF TECNICK.COM LTD
-   AND SHALL BE USED IN ACCORDANCE WITH ACCEPTED TRADEMARK
-   PRACTICE, INCLUDING IDENTIFICATION OF TRADEMARK OWNER'S NAME.
-
-FOR ANY USAGE THAT REQUIRES DIFFERENT (COMMERCIAL) LICENSING TERMS,
-PLEASE CONTACT INFO@TECNICK.COM TO PURCHASE A COMMERCIAL LICENSE.
+NOTE: TCExam name and logo are trademarks of Tecnick.com LTD
+and shall be used in accordance with accepted trademark
+practice, including identification of trademark owner's name.
 --------------------------------------------------------------------------------
 
                     GNU AFFERO GENERAL PUBLIC LICENSE

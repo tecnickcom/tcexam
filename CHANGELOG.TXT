@@ -1,3 +1,11 @@
+16.3.1 (2024-03-24)
+	- Updated documentation and licensing information.
+	- Update TCPDF
+	- Format code.
+	- Requires PHP 8.0+
+	- Minor fixes.
+	- Updated spanish translation.
+
 15.0.0 (2022-12-17)
 	- Updated database tce_tests.test_repeatable column to support numeric values.
 	- Test repeatability can now be limited to a fixed value.
