@@ -65,21 +65,16 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @link     https://wiki.jasig.org/display/CASC/phpCAS
  */
-class CAS_ProxiedService_Http_Get
-extends CAS_ProxiedService_Http_Abstract
+class CAS_ProxiedService_Http_Get extends CAS_ProxiedService_Http_Abstract
 {
-
     /**
      * Add any other parts of the request needed by concrete classes
      *
      * @param CAS_Request_RequestInterface $request request interface
-     *
-     * @return void
      */
-    protected function populateRequest (CAS_Request_RequestInterface $request)
+    protected function populateRequest(CAS_Request_RequestInterface $request)
     {
         // do nothing, since the URL has already been sent and that is our
         // only data.
     }
 }
-?>

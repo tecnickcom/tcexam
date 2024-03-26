@@ -67,21 +67,19 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @link     https://wiki.jasig.org/display/CASC/phpCAS
  */
-class CAS_ProxiedService_Http_Post
-extends CAS_ProxiedService_Http_Abstract
+class CAS_ProxiedService_Http_Post extends CAS_ProxiedService_Http_Abstract
 {
-
     /**
      * The content-type of this request
      *
-     * @var string $_contentType
+     * @var string
      */
     private $_contentType;
 
     /**
      * The body of the this request
      *
-     * @var string $_body
+     * @var string
      */
     private $_body;
 
@@ -90,10 +88,9 @@ extends CAS_ProxiedService_Http_Abstract
      *
      * @param string $contentType content type
      *
-     * @return void
      * @throws CAS_OutOfSequenceException If called after the Request has been sent.
      */
-    public function setContentType ($contentType)
+    public function setContentType($contentType)
     {
         if ($this->hasBeenSent()) {
             throw new CAS_OutOfSequenceException(
@@ -109,10 +106,9 @@ extends CAS_ProxiedService_Http_Abstract
      *
      * @param string $body body to set
      *
-     * @return void
      * @throws CAS_OutOfSequenceException If called after the Request has been sent.
      */
-    public function setBody ($body)
+    public function setBody($body)
     {
         if ($this->hasBeenSent()) {
             throw new CAS_OutOfSequenceException(
@@ -127,26 +123,21 @@ extends CAS_ProxiedService_Http_Abstract
      * Add any other parts of the request needed by concrete classes
      *
      * @param CAS_Request_RequestInterface $request request interface class
-     *
-     * @return void
      */
-    protected function populateRequest (CAS_Request_RequestInterface $request)
+    protected function populateRequest(CAS_Request_RequestInterface $request)
     {
-        if (empty($this->_contentType) && !empty($this->_body)) {
+        if (empty($this->_contentType) && ! empty($this->_body)) {
             throw new CAS_ProxiedService_Exception(
                 "If you pass a POST body, you must specify a content type via "
-                .get_class($this).'->setContentType($contentType).'
+                . static::class . '->setContentType($contentType).'
             );
         }
 
         $request->makePost();
-        if (!empty($this->_body)) {
-            $request->addHeader('Content-Type: '.$this->_contentType);
-            $request->addHeader('Content-Length: '.strlen($this->_body));
+        if (! empty($this->_body)) {
+            $request->addHeader('Content-Type: ' . $this->_contentType);
+            $request->addHeader('Content-Length: ' . strlen($this->_body));
             $request->setPostBody($this->_body);
         }
     }
-
-
 }
-?>

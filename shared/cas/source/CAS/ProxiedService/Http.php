@@ -40,7 +40,6 @@
  */
 interface CAS_ProxiedService_Http
 {
-
     /*********************************************************
      * Configure the Request
     *********************************************************/
@@ -50,10 +49,9 @@ interface CAS_ProxiedService_Http
      *
      * @param string $url Url to set
      *
-     * @return void
      * @throws CAS_OutOfSequenceException If called after the Request has been sent.
      */
-    public function setUrl ($url);
+    public function setUrl($url);
 
     /*********************************************************
      * 2. Send the Request
@@ -65,7 +63,7 @@ interface CAS_ProxiedService_Http
      * @return bool TRUE on success, FALSE on failure.
      * @throws CAS_OutOfSequenceException If called multiple times.
      */
-    public function send ();
+    public function send();
 
     /*********************************************************
      * 3. Access the response
@@ -77,7 +75,7 @@ interface CAS_ProxiedService_Http
      * @return array An array of header strings.
      * @throws CAS_OutOfSequenceException If called before the Request has been sent.
      */
-    public function getResponseHeaders ();
+    public function getResponseHeaders();
 
     /**
      * Answer the body of response.
@@ -85,7 +83,5 @@ interface CAS_ProxiedService_Http
      * @return string
      * @throws CAS_OutOfSequenceException If called before the Request has been sent.
      */
-    public function getResponseBody ();
-
+    public function getResponseBody();
 }
-?>

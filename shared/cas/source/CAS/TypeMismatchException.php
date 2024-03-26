@@ -37,8 +37,7 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  * @link     https://wiki.jasig.org/display/CASC/phpCAS
  */
-class CAS_TypeMismatchException
-extends CAS_InvalidArgumentException
+class CAS_TypeMismatchException extends CAS_InvalidArgumentException
 {
     /**
      * Constructor, provides a nice message.
@@ -48,23 +47,21 @@ extends CAS_InvalidArgumentException
      * @param string  $type         Type
      * @param string  $message      Error Message
      * @param integer $code         Code
-     *
-     * @return void
      */
-    public function __construct (
-        $argument, $argumentName, $type, $message = '', $code = 0
+    public function __construct(
+        mixed $argument,
+        $argumentName,
+        $type,
+        $message = '',
+        $code = 0
     ) {
-        if (is_object($argument)) {
-            $foundType = get_class($argument).' object';
-        } else {
-            $foundType = gettype($argument);
-        }
+        $foundType = is_object($argument) ? $argument::class . ' object' : gettype($argument);
 
         parent::__construct(
             'type mismatched for parameter '
-            . $argumentName . ' (should be \'' . $type .' \'), '
-            . $foundType . ' given. ' . $message, $code
+            . $argumentName . " (should be '" . $type . " '), "
+            . $foundType . ' given. ' . $message,
+            $code
         );
     }
 }
-?>

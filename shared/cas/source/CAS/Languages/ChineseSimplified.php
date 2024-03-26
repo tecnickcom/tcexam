@@ -83,30 +83,30 @@ class CAS_Languages_ChineseSimplified implements CAS_Languages_LanguageInterface
     }
 
     /**
-    * Get authentication failed string
-    *
-    * @return string authentication failed
-    */
+     * Get authentication failed string
+     *
+     * @return string authentication failed
+     */
     public function getAuthenticationFailed()
     {
         return 'CAS 认证失败！';
     }
 
     /**
-    * Get the your were not authenticated string
-    *
-    * @return string not authenticated
-    */
+     * Get the your were not authenticated string
+     *
+     * @return string not authenticated
+     */
     public function getYouWereNotAuthenticated()
     {
         return '<p>你没有成功登录。</p><p>你可以<a href="%s">点击这里重新登录</a>。</p><p>如果问题依然存在，请<a href="mailto:%s">联系本站管理员</a>。</p>';
     }
 
     /**
-    * Get the service unavailable string
-    *
-    * @return string service unavailable
-    */
+     * Get the service unavailable string
+     *
+     * @return string service unavailable
+     */
     public function getServiceUnavailable()
     {
         return '服务器 <b>%s</b> 不可用（<b>%s</b>）。';

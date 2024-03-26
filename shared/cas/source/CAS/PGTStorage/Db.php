@@ -46,6 +46,11 @@ define('CAS_PGT_STORAGE_DB_DEFAULT_TABLE', 'cas_pgts');
 class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
 {
     /**
+     * @var int[]
+     */
+    public $_driver_options = [];
+
+    /**
      * @addtogroup internalCAS_PGTStorageDb
      * @{
      */
@@ -53,7 +58,7 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
     /**
      * the PDO object to use for database interactions
      */
-    private $_pdo;
+    private ?\PDO $_pdo = null;
 
     /**
      * This method returns the PDO object to use for database interactions.
@@ -69,8 +74,11 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
      * database connection options to use when creating a new PDO object
      */
     private $_dsn;
+
     private $_username;
+
     private $_password;
+
     private $_table_options;
 
     /**
@@ -112,7 +120,7 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
      */
     public function getStorageInfo()
     {
-        return 'table=`'.$this->_getTable().'\'';
+        return 'table=`' . $this->_getTable() . "'";
     }
 
     // ########################################################################
@@ -136,19 +144,26 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
      * connecting to the database
      */
     public function __construct(
-        $cas_parent, $dsn_or_pdo, $username='', $password='', $table='',
-        $driver_options=null
+        $cas_parent,
+        $dsn_or_pdo,
+        $username = '',
+        $password = '',
+        $table = '',
+        $driver_options = null
     ) {
         phpCAS::traceBegin();
         // call the ancestor's constructor
         parent::__construct($cas_parent);
 
         // set default values
-        if ( empty($table) ) {
+        if (empty($table)) {
             $table = CAS_PGT_STORAGE_DB_DEFAULT_TABLE;
         }
-        if ( !is_array($driver_options) ) {
-            $driver_options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+
+        if (! is_array($driver_options)) {
+            $driver_options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            ];
         }
 
         // store the specified parameters
@@ -173,8 +188,6 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
 
     /**
      * This method is used to initialize the storage. Halts on error.
-     *
-     * @return void
      */
     public function init()
     {
@@ -188,14 +201,15 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
         parent::init();
 
         // create the PDO object if it doesn't exist already
-        if (!($this->_pdo instanceof PDO)) {
+        if (! ($this->_pdo instanceof PDO)) {
             try {
                 $this->_pdo = new PDO(
-                    $this->_dsn, $this->_username, $this->_password,
+                    $this->_dsn,
+                    $this->_username,
+                    $this->_password,
                     $this->_driver_options
                 );
-            }
-            catch(PDOException $e) {
+            } catch (PDOException $e) {
                 phpCAS::error('Database connection error: ' . $e->getMessage());
             }
         }
@@ -215,8 +229,6 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
 
     /**
      * This method will enable the Exception error mode on the PDO object
-     *
-     * @return void
      */
     private function _setErrorMode()
     {
@@ -228,8 +240,6 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
 
     /**
      * this method will reset the error mode on the PDO object
-     *
-     * @return void
      */
     private function _resetErrorMode()
     {
@@ -297,15 +307,13 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
 
     /**
      * This method creates the database table used to store pgt's and pgtiou's
-     *
-     * @return void
      */
     public function createTable()
     {
         phpCAS::traceBegin();
 
         // initialize this PGTStorage object if it hasn't been initialized yet
-        if ( !$this->isInitialized() ) {
+        if (! $this->isInitialized()) {
             $this->init();
         }
 
@@ -320,15 +328,14 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
             $query->closeCursor();
 
             $pdo->commit();
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $pdoException) {
             // attempt rolling back the transaction before throwing a phpCAS error
             try {
                 $pdo->rollBack();
+            } catch (PDOException $pdoException) {
             }
-            catch(PDOException $e) {
-            }
-            phpCAS::error('error creating PGT storage table: ' . $e->getMessage());
+
+            phpCAS::error('error creating PGT storage table: ' . $pdoException->getMessage());
         }
 
         // reset the PDO object
@@ -343,8 +350,6 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
      *
      * @param string $pgt     the PGT
      * @param string $pgt_iou the PGT iou
-     *
-     * @return void
      */
     public function write($pgt, $pgt_iou)
     {
@@ -364,15 +369,14 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
             $query->closeCursor();
 
             $pdo->commit();
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $pdoException) {
             // attempt rolling back the transaction before throwing a phpCAS error
             try {
                 $pdo->rollBack();
+            } catch (PDOException $pdoException) {
             }
-            catch(PDOException $e) {
-            }
-            phpCAS::error('error writing PGT to database: ' . $e->getMessage());
+
+            phpCAS::error('error writing PGT to database: ' . $pdoException->getMessage());
         }
 
         // reset the PDO object
@@ -415,15 +419,14 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
             $query->closeCursor();
 
             $pdo->commit();
-        }
-        catch(PDOException $e) {
+        } catch (PDOException $pdoException) {
             // attempt rolling back the transaction before throwing a phpCAS error
             try {
                 $pdo->rollBack();
+            } catch (PDOException $pdoException) {
             }
-            catch(PDOException $e) {
-            }
-            phpCAS::trace('error reading PGT from database: ' . $e->getMessage());
+
+            phpCAS::trace('error reading PGT from database: ' . $pdoException->getMessage());
         }
 
         // reset the PDO object
@@ -434,7 +437,4 @@ class CAS_PGTStorage_Db extends CAS_PGTStorage_AbstractStorage
     }
 
     /** @} */
-
 }
-
-?>

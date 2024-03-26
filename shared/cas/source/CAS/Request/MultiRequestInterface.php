@@ -41,7 +41,6 @@
  */
 interface CAS_Request_MultiRequestInterface
 {
-
     /*********************************************************
      * Add Requests
     *********************************************************/
@@ -53,20 +52,19 @@ interface CAS_Request_MultiRequestInterface
      *
      * @param CAS_Request_RequestInterface $request request interface
      *
-     * @return void
      * @throws CAS_OutOfSequenceException If called after the Request has been
      * sent.
      * @throws CAS_InvalidArgumentException If passed a Request of the wrong
      * implmentation.
      */
-    public function addRequest (CAS_Request_RequestInterface $request);
+    public function addRequest(CAS_Request_RequestInterface $request);
 
     /**
      * Retrieve the number of requests added to this batch.
      *
      * @return number of request elements
      */
-    public function getNumRequests ();
+    public function getNumRequests();
 
     /*********************************************************
      * 2. Send the Request
@@ -79,5 +77,5 @@ interface CAS_Request_MultiRequestInterface
      * @return bool TRUE on success, FALSE on failure.
      * @throws CAS_OutOfSequenceException If called multiple times.
      */
-    public function send ();
+    public function send();
 }

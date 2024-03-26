@@ -112,4 +112,3 @@ class CAS_Languages_Greek implements CAS_Languages_LanguageInterface
         return 'Η υπηρεσία `<b>%s</b>\' δεν είναι διαθέσιμη (<b>%s</b>).';
     }
 }
-?>

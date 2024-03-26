@@ -46,14 +46,13 @@
  */
 interface CAS_ProxiedService
 {
-
     /**
      * Answer a service identifier (URL) for whom we should fetch a proxy ticket.
      *
      * @return string
      * @throws Exception If no service url is available.
      */
-    public function getServiceUrl ();
+    public function getServiceUrl();
 
     /**
      * Register a proxy ticket with the ProxiedService that it can use when
@@ -61,12 +60,9 @@ interface CAS_ProxiedService
      *
      * @param string $proxyTicket Proxy ticket string
      *
-     * @return void
      * @throws InvalidArgumentException If the $proxyTicket is invalid.
      * @throws CAS_OutOfSequenceException If called after a proxy ticket has
      * already been initialized/set.
      */
-    public function setProxyTicket ($proxyTicket);
-
+    public function setProxyTicket($proxyTicket);
 }
-?>
