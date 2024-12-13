@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_show_result_allusers.php
 // Begin       : 2004-06-10
-// Last Update : 2023-11-30
+// Last Update : 2024-12-13
 //
 // Description : Display test results summary for all users.
 //
@@ -155,7 +155,7 @@ if (isset($menu_mode) && ! empty($menu_mode)) {
         // for each selected item
         $keyname = 'testuserid' . $i;
         if (isset(${$keyname})) {
-            $testuser_id = ${$keyname};
+            $testuser_id = (int) ${$keyname};
             switch ($menu_mode) {
                 case 'delete':{
                     $sql = 'DELETE FROM ' . K_TABLE_TEST_USER . '
