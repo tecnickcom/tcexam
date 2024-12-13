@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_show_all_questions.php
 // Begin       : 2005-07-06
-// Last Update : 2023-11-30
+// Last Update : 2024-12-13
 //
 // Description : Display all questions grouped by topic.
 //
@@ -129,7 +129,7 @@ if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && ! empt
         // for each selected question
         $keyname = 'questionid' . $i;
         if (isset(${$keyname})) {
-            $question_id = ${$keyname};
+            $question_id = (int) ${$keyname};
             switch ($menu_action) {
                 case 'move': {
                     if (isset($new_subject_id) && $new_subject_id > 0) {
