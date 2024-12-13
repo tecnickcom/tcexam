@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2023-11-30
+// Last Update : 2024-12-13
 //
 // Description : Functions to translate TCExam code into XHTML.
 //               The TCExam code is compatible to the common BBCode.
@@ -187,7 +187,15 @@ function F_decode_tcecode($text_to_decode)
     // restore newline chars on [code] tag
     //$newtext = preg_replace("'@n@'si", "\n",  $newtext);
 
-    return (str_replace('<br /><param', '<param', $newtext));
+    $newtext = (str_replace('<br /><param', '<param', $newtext));
+
+    // remove javascript
+    $newtext = preg_replace('#[\s\'"]href=".*javascript[\s]*:[^"]+"#Usi', '', $newtext);
+    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*\'[^"]+\'#Usi', '', $newtext);
+    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*"[^"]+"#Usi', '', $newtext);
+    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*[^\s>]+#Usi', '', $newtext);
+
+    return $newtext;
 }
 
 /**
