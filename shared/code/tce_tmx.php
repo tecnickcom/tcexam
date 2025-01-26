@@ -17,7 +17,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
 //
 // 	This program is free software: you can redistribute it and/or modify
 // 	it under the terms of the GNU Lesser General Public License as published by

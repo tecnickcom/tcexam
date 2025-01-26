@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 TCExam - Computer-Based Assessment Software
-Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
+Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
 
 NOTE: TCExam name and logo are trademarks of Tecnick.com LTD
 and shall be used in accordance with accepted trademark

@@ -18,7 +18,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -81,7 +81,7 @@ if (K_LANGUAGE_SELECTOR && stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.ph
 }
 
 echo '<div class="minibutton" dir="ltr">';
-echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. ' . K_TCEXAM_VERSION . ' - Copyright &copy; 2004-2024 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com LTD</a></span>';
+echo '<span class="copyright"><a href="http://www.tcexam.org">TCExam</a> ver. ' . K_TCEXAM_VERSION . ' - Copyright &copy; 2004-2025 Nicola Asuni - <a href="http://www.tecnick.com">Tecnick.com LTD</a></span>';
 echo '</div>' . K_NEWLINE;
 
 // Display W3C logos

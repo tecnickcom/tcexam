@@ -13,7 +13,7 @@
 * Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 * Software License:
-	* Copyright (C) 2004-2024 Nicola Asuni - Tecnick.com LTD
+	* Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
 
 
@@ -62,7 +62,7 @@ and if used are subject to their respective licenses:
 
 * **TCPDF**
     * TCPDF library to generate PDF documents.
-    * Copyright 2002-2024 Nicola Asuni - Tecnick.com LTD
+    * Copyright 2002-2025 Nicola Asuni - Tecnick.com LTD
     * Homepage: https://tcpdf.org
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
     * Location: /shared/tcpdf/
