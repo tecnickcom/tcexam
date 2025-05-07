@@ -179,6 +179,18 @@ function F_decode_tcecode($text_to_decode)
 
     $newtext = preg_replace($pattern, $replacement, $newtext);
 
+    // Convert multiple spaces to &nbsp; to support indentation.
+    preg_match_all("#[ ]{2,}#", $newtext, $matches);
+    if (isset($matches[0])) {
+        foreach($matches[0] as $match) {
+            $pos = strpos($newtext, $match);
+            if ($pos !== false) {
+                $len = strlen($match);
+                $newtext = substr_replace($newtext, str_repeat('&nbsp;', $len), $pos, $len);
+            }
+        }
+    }
+
     // line breaks
     $newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
     $newtext = str_replace('<br /><li', '<li', $newtext);
