@@ -281,10 +281,24 @@ switch ($menu_mode) {
     }
 } //end of switch
 
+echo '<script src="' . K_PATH_SHARED_JSCRIPTS . 'inserttag.js" type="text/javascript"></script>' . K_NEWLINE;
 
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="contentbox">' . K_NEWLINE;
+echo '<p><b>' . $l['w_insert_object_url'] . '</b></p>' . K_NEWLINE;
+
+echo '<fieldset>' . K_NEWLINE;
+echo '<legend title="' . $l['w_object_url'] . '">' . $l['w_object_url'] . '</legend>' . K_NEWLINE;
+$onclick = "FJ_insert_text(window.opener.document.getElementById('" . $callingform . "')." . $callingfield . ", '[object]'+document.getElementById('objecturl').value+'[/object]');";
+echo '<input type="text" name="objecturl" id="objecturl" value="" size="50" title="' . $l['w_object_url'] . '" /> <input type="button" name="addobjecturl" id="addobjecturl" value="' . $l['w_add'] . '" title="' . $l['h_add_object'] . '" onclick="' . $onclick . 'self.close();" />' . K_NEWLINE;
+echo '<form>' . K_NEWLINE;
+
+echo '</form>' . K_NEWLINE;
+echo '</fieldset>' . K_NEWLINE;
+
+echo '<p><b>' . $l['w_upload_choose_file'] . '</b></p>' . K_NEWLINE;
+
 echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_filemanager">' . K_NEWLINE;
 echo '<div>' . K_NEWLINE;
 
@@ -323,8 +337,6 @@ if (! empty($file)) {
     // description fields
     // --- insert image/object
     echo '<br />' . K_NEWLINE;
-
-    echo '<script src="' . K_PATH_SHARED_JSCRIPTS . 'inserttag.js" type="text/javascript"></script>' . K_NEWLINE;
 
     echo '<table>' . K_NEWLINE;
     echo '<tr>';
