@@ -286,18 +286,37 @@ echo '<script src="' . K_PATH_SHARED_JSCRIPTS . 'inserttag.js" type="text/javasc
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="contentbox">' . K_NEWLINE;
-echo '<p><b>' . $l['w_insert_object_url'] . '</b></p>' . K_NEWLINE;
 
 echo '<fieldset>' . K_NEWLINE;
 echo '<legend title="' . $l['w_object_url'] . '">' . $l['w_object_url'] . '</legend>' . K_NEWLINE;
-$onclick = "FJ_insert_text(window.opener.document.getElementById('" . $callingform . "')." . $callingfield . ", '[object]'+document.getElementById('objecturl').value+'[/object]');";
-echo '<input type="text" name="objecturl" id="objecturl" value="" size="50" title="' . $l['w_object_url'] . '" /> <input type="button" name="addobjecturl" id="addobjecturl" value="' . $l['w_add'] . '" title="' . $l['h_add_object'] . '" onclick="' . $onclick . 'self.close();" />' . K_NEWLINE;
 echo '<form>' . K_NEWLINE;
+
+echo '<input type="text" name="objecturl" id="objecturl" value="" size="50" title="' . $l['w_insert_object_url'] . '" />' . K_NEWLINE;
+
+echo '<table>' . K_NEWLINE;
+echo '<tr>';
+echo '<th><label for="object_width">' . $l['w_width'] . '</label></th>';
+echo '<th><label for="object_height">' . $l['w_height'] . '</label></th>';
+echo '<th><label for="object_alt">' . $l['w_description'] . '</label></th>';
+echo '<th>&nbsp;</th>';
+echo '</tr>' . K_NEWLINE;
+echo '<tr>';
+echo '<td><input type="text" name="object_width" id="objecturl_width" value="" size="3" maxlength="5" title="' . $l['h_object_width'] . '"/></td>';
+echo '<td><input type="text" name="object_height" id="objecturl_height" value="" size="3" maxlength="5" title="' . $l['h_object_height'] . '"/></td>';
+echo '<td><input type="text" name="object_alt" id="objecturl_alt" value="" size="30" maxlength="255" title="' . $l['w_description'] . '"/></td>';
+$onclick = "FJ_insert_text(window.opener.document.getElementById('" . $callingform . "')." . $callingfield . ", '[object]'+document.getElementById('objecturl').value+'[/object:'+document.getElementById('objecturl_width').value+':'+document.getElementById('objecturl_height').value+':'+document.getElementById('objecturl_alt').value+']');";
+echo '<td><input type="button" name="addobjecturl" id="addobjecturl" value="' . $l['w_add'] . '" title="' . $l['h_add_object'] . '" onclick="' . $onclick . 'self.close();" /></td>';
+echo '</tr>' . K_NEWLINE;
+echo '</table>' . K_NEWLINE;
 
 echo '</form>' . K_NEWLINE;
 echo '</fieldset>' . K_NEWLINE;
 
+echo '</div>' . K_NEWLINE;
+
 echo '<p><b>' . $l['w_upload_choose_file'] . '</b></p>' . K_NEWLINE;
+
+echo '<div class="contentbox">' . K_NEWLINE;
 
 echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_filemanager">' . K_NEWLINE;
 echo '<div>' . K_NEWLINE;
