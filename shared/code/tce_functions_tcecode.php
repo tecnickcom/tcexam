@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_functions_tcecode.php
 // Begin       : 2002-01-09
-// Last Update : 2024-12-13
+// Last Update : 2025-06-13
 //
 // Description : Functions to translate TCExam code into XHTML.
 //               The TCExam code is compatible to the common BBCode.
@@ -46,17 +46,14 @@ function F_decode_tcecode($text_to_decode)
     $replacement = [];
     $i = 0;
 
-    // escape some special HTML characters
-    $newtext = htmlspecialchars($text_to_decode ?? '', ENT_NOQUOTES, $l['a_meta_charset']);
+    if (empty($text_to_decode)) {
+        return '';
+    }
 
-    // --- convert some BBCode to TCECode: ---
-    // [*]list item - convert to new [li] tag
-    $newtext = preg_replace("'\[\*\](.*?)\n'i", "[li]\\1[/li]", $newtext);
-    // [img]image[/img] - convert to new object tag
-    $newtext = preg_replace("'\[img\](.*?)\[/img\]'si", "[object]\\1[/object]", $newtext);
-    // [img=WIDTHxHEIGHT]image[/img] - convert to new object tag
-    $newtext = preg_replace("'\[img=(.*?)x(.*?)\](.*?)\[/img\]'si", "[object]\\3[/object:\\1:\\2]", $newtext);
-    // ---
+    // escape some special HTML characters
+    $newtext = htmlspecialchars($text_to_decode ?? '', ENT_QUOTES, $l['a_meta_charset']);
+
+    $newtext = F_bbcode_to_tcecode($newtext);
 
     // [tex]LaTeX_code[/tex]
     $newtext = preg_replace_callback("#\[tex\](.*?)\[/tex\]#si", 'F_latex_callback', $newtext);
@@ -71,113 +68,17 @@ function F_decode_tcecode($text_to_decode)
     // [object]object_url[/object]
     $newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\]#si", 'F_objects_callback', $newtext);
 
-    // replace newline chars on [code] tag
-    //$newtext = preg_replace("'\r\n'si", "\n",  $newtext);
-    //$newtext = preg_replace("'\n\r'si", "\n",  $newtext);
     while (preg_match("'\[code\](.*?) (.*?)\[/code\]'si", $newtext)) {
         $newtext = preg_replace("'\[code\](.*?) (.*?)\[/code\]'si", "[code]\\1&nbsp;\\2[/code]", $newtext);
     }
 
-    /*
-    while (preg_match("'\[code\](.*?)\n(.*?)\[/code\]'si", $newtext)) {
-        $newtext = preg_replace("'\[code\](.*?)\n(.*?)\[/code\]'si", "[code]\\1@n@\\2[/code]",  $newtext);
-    }*/
+    $newtext = F_tcecode_url($newtext);
+    $newtext = F_tcecode_tag($newtext);
+    $newtext = F_tcecode_tag_arg($newtext);
 
-    // [url]http://www.domain.com[/url]
-    $pattern[++$i] = "#\[url\](.*?)\[/url\]#si";
-    $replacement[++$i] = '<a class="tcecode" href="\1">\1</a>';
-
-    // [url=http://www.domain.com]linkname[/url]
-    $pattern[++$i] = "#\[url=(.*?)\](.*?)\[/url\]#si";
-    $replacement[++$i] = '<a class="tcecode" href="\1">\2</a>';
-
-    // [dir=ltr]text direction: ltr, rtl[/dir]
-    $pattern[++$i] = "#\[dir=(.*?)\](.*?)\[/dir\]#si";
-    $replacement[++$i] = '<span dir="\1">\2</span>';
-
-    // [align=left]text alignment: left, right, center, justify[/align]
-    $pattern[++$i] = "#\[align=(.*?)\](.*?)\[/align\]#si";
-    $replacement[++$i] = '<span style="text-align:\1;">\2</span>';
-
-    // [code] and [/code] display text as source code
-    $pattern[++$i] = "#\[code\](.*?)\[/code\]#si";
-    $replacement[++$i] = '<div class="tcecodepre">\1</div>';
-
-    // [small] and [/small] for small text
-    $pattern[++$i] = "#\[small\](.*?)\[/small\]#si";
-    $replacement[++$i] = '<small class="tcecode">\1</small>';
-
-    // [b] and [/b] for bolding text.
-    $pattern[++$i] = "#\[b\](.*?)\[/b\]#si";
-    $replacement[++$i] = '<strong class="tcecode">\1</strong>';
-
-    // [i] and [/i] for italicizing text.
-    $pattern[++$i] = "#\[i\](.*?)\[/i\]#si";
-    $replacement[++$i] = '<em class="tcecode">\1</em>';
-
-    // [s] and [/s] for strikethrough text.
-    $pattern[++$i] = "#\[s\](.*?)\[/s\]#si";
-    $replacement[++$i] = '<span style="text-decoration:line-through;">\1</span>';
-
-    // [u] and [/u] for underlined text.
-    $pattern[++$i] = "#\[u\](.*?)\[/u\]#si";
-    $replacement[++$i] = '<span style="text-decoration:underline;">\1</span>';
-
-    // [o] and [/o] for overlined text.
-    $pattern[++$i] = "#\[o\](.*?)\[/o\]#si";
-    $replacement[++$i] = '<span style="text-decoration:overline;">\1</span>';
-
-    // [sub] and [/sub] for subscript text.
-    $pattern[++$i] = "#\[sub\](.*?)\[/sub\]#si";
-    $replacement[++$i] = '<sub class="tcecode">\1</sub>';
-
-    // [sup] and [/sup] for superscript text.
-    $pattern[++$i] = "#\[sup\](.*?)\[/sup\]#si";
-    $replacement[++$i] = '<sup class="tcecode">\1</sup>';
-
-    // [ulist] and [/ulist] unordered list
-    $pattern[++$i] = "#\[ulist\](.*?)\[/ulist\]#si";
-    $replacement[++$i] = '<ul class="tcecode">\1</ul>';
-
-    // [olist] and [/olist] ordered list.
-    $pattern[++$i] = "#\[olist\](.*?)\[/olist\]#si";
-    $replacement[++$i] = '<ol class="tcecode">\1</ol>';
-
-    // [olist=1] and [/olist] ordered list.
-    $pattern[++$i] = "#\[olist=1\](.*?)\[/olist\]#si";
-    $replacement[++$i] = '<ol class="tcecode" style="list-style-type:arabic-numbers">\1</ol>';
-
-    // [olist=a] and [/olist] ordered list.
-    $pattern[++$i] = "#\[olist=a\](.*?)\[/olist\]#si";
-    $replacement[++$i] = '<ol class="tcecode" style="list-style-type:lower-alpha">\1</ol>';
-
-    // [li] list items [/li]
-    $pattern[++$i] = "#\[li\](.*?)\[/li\]#si";
-    $replacement[++$i] = '<li class="tcecode">\1</li>';
-
-    // [color=#RRGGBB] and [/color]
-    // [color=rgb(red,green,blue)] and [/color]
-    // [color=html_color_name] and [/color]
-    $pattern[++$i] = "#\[color=(.*?)\](.*?)\[/color\]#si";
-    $replacement[++$i] = '<span style="color:\1">\2</span>';
-
-    // [bgcolor=#RRGGBB] and [/bgcolor]
-    // [bgcolor=rgb(red,green,blue)] and [/bgcolor]
-    // [bgcolor=html_color_name] and [/bgcolor]
-    $pattern[++$i] = "#\[bgcolor=(.*?)\](.*?)\[/bgcolor\]#si";
-    $replacement[++$i] = '<span style="background-color:\1">\2</span>';
-
-    // [font=value] and [/font]
-    $pattern[++$i] = "#\[font=(.*?)\](.*?)\[/font\]#si";
-    $replacement[++$i] = '<span style="font-family:\1">\2</span>';
-
-    // [size=value] and [/size]
-    // [size=+value] and [/size]
-    // [size=value%] and [/size]
-    $pattern[++$i] = "#\[size=([+\-]?[0-9a-z\-]+[%]?)\](.*?)\[/size\]#si";
-    $replacement[++$i] = '<span style="font-size:\1">\2</span>';
-
-    $newtext = preg_replace($pattern, $replacement, $newtext);
+    if (empty($newtext)) {
+        return '';
+    }
 
     // Convert multiple spaces to &nbsp; to support indentation.
     preg_match_all("#[ ]{2,}#", $newtext, $matches);
@@ -195,20 +96,139 @@ function F_decode_tcecode($text_to_decode)
     $newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
     $newtext = str_replace('<br /><li', '<li', $newtext);
     $newtext = str_replace('</li><br />', '</li>', $newtext);
-
-    // restore newline chars on [code] tag
-    //$newtext = preg_replace("'@n@'si", "\n",  $newtext);
-
     $newtext = (str_replace('<br /><param', '<param', $newtext));
-
-    // remove javascript
-    $newtext = preg_replace('#[\s\'"]href=".*javascript[\s]*:[^"]+"#Usi', '', $newtext);
-    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*\'[^"]+\'#Usi', '', $newtext);
-    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*"[^"]+"#Usi', '', $newtext);
-    $newtext = preg_replace('#[\s\'"]on[a-z]+[\s]*=[\s]*[^\s>]+#Usi', '', $newtext);
 
     return $newtext;
 }
+
+// ============================================================
+
+/**
+ * Convert some BBCode-style to TCECode.
+ * @param mixed $text
+ * @return string
+ */
+function F_bbcode_to_tcecode($text) {
+    // [*]list item - convert to new [li] tag
+    $text = preg_replace("'\[\*\](.*?)\n'i", "[li]\\1[/li]", $text);
+    // [img]image[/img] - convert to new object tag
+    $text = preg_replace("'\[img\](.*?)\[/img\]'si", "[object]\\1[/object]", $text);
+    // [img=WIDTHxHEIGHT]image[/img] - convert to new object tag
+    $text = preg_replace("'\[img=(.*?)x(.*?)\](.*?)\[/img\]'si", "[object]\\3[/object:\\1:\\2]", $text);
+    return $text;
+}
+
+/**
+ * Convert [url]...[/url] and [url=...]...[/url] to HTML anchor tags.
+ * @param mixed $text
+ * @return string
+ */
+function F_tcecode_url($text) {
+    if (empty($text)) {
+        return '';
+    }
+    $text = preg_replace_callback(
+        '#\[url\](.*?)\[/url\]#si',
+        function ($matches) {
+            $url = $matches[1];
+            // Optionally validate URL
+            if (!preg_match('/^https?:\/\//i', $url)
+               || !filter_var($url, FILTER_VALIDATE_URL)) {
+                return $url;
+            }
+            return '<a class="tcecode" href="' . $url . '" rel="noopener noreferrer" target="_blank">' . $url . '</a>';
+        },
+        $text
+    );
+    return preg_replace_callback(
+        '#\[url=(.*?)\](.*?)\[/url\]#si',
+        function ($matches) {
+            $url = $matches[1];
+            $label = $matches[2];
+            if (!preg_match('/^https?:\/\//i', $url)
+               || !filter_var($url, FILTER_VALIDATE_URL)) {
+                return $label;
+            }
+            return '<a class="tcecode" href="' . $url . '" rel="noopener noreferrer" target="_blank">' . $label . '</a>';
+        },
+        $text
+    );
+}
+
+/**
+ * Convert TCECode simple tags to XHTML tags.
+ * @param mixed $text
+ * @return string
+ */
+function F_tcecode_tag($text) {
+    // Patterns and replacements
+    $tag = [
+        '#\[dir=ltr\](.*?)\[/dir\]#si' => '<span dir="ltr">\1</span>',
+        '#\[dir=rtl\](.*?)\[/dir\]#si' => '<span dir="rtl">\1</span>',
+        "#\[small\](.*?)\[/small\]#si" => '<small class="tcecode">\1</small>',
+        "#\[b\](.*?)\[/b\]#si" => '<strong class="tcecode">\1</strong>',
+        "#\[i\](.*?)\[/i\]#si" => '<em class="tcecode">\1</em>',
+        "#\[s\](.*?)\[/s\]#si" => '<span style="text-decoration:line-through;">\1</span>',
+        "#\[u\](.*?)\[/u\]#si" => '<span style="text-decoration:underline;">\1</span>',
+        "#\[o\](.*?)\[/o\]#si" => '<span style="text-decoration:overline;">\1</span>',
+        "#\[sub\](.*?)\[/sub\]#si" => '<sub class="tcecode">\1</sub>',
+        "#\[sup\](.*?)\[/sup\]#si" => '<sup class="tcecode">\1</sup>',
+        "#\[ulist\](.*?)\[/ulist\]#si" => '<ul class="tcecode">\1</ul>',
+        "#\[olist\](.*?)\[/olist\]#si" => '<ol class="tcecode">\1</ol>',
+        "#\[olist=1\](.*?)\[/olist\]#si" => '<ol class="tcecode" style="list-style-type:arabic-numbers">\1</ol>',
+        "#\[olist=a\](.*?)\[/olist\]#si" => '<ol class="tcecode" style="list-style-type:lower-alpha">\1</ol>',
+        "#\[li\](.*?)\[/li\]#si" => '<li class="tcecode">\1</li>',
+        "#\[code\](.*?)\[/code\]#si" => '<div class="tcecodepre">\1</div>',
+    ];
+
+    foreach ($tag as $pattern => $replacement) {
+        if (empty($text)) {
+            break;
+        }
+        $text = preg_replace_callback(
+            $pattern,
+            fn($matches) => str_replace('\1', $matches[1], $replacement),
+            $text
+        );
+    }
+
+    return $text;
+}
+
+/**
+ * Convert TCECode tags with arguments to XHTML tags.
+ * @param mixed $text
+ * @return string
+ */
+function F_tcecode_tag_arg($text) {
+    // Patterns and replacements
+    $tag = [
+        "#\[align=(left|right|center|justify)\](.*?)\[/align\]#si" => '<span style="text-align:\1;">\2</span>',
+        "#\[color=(\#[0-9a-fA-F]{6})\](.*?)\[/color\]#si" => '<span style="color:\1">\2</span>',
+        "#\[color=(rgb\(\d{1,3},\d{1,3},\d{1,3}\))\](.*?)\[/color\]#si" => '<span style="color:\1">\2</span>',
+        "#\[color=([a-zA-Z]+)\](.*?)\[/color\]#si" => '<span style="color:\1">\2</span>',
+        "#\[bgcolor=(\#[0-9a-fA-F]{6})\](.*?)\[/bgcolor\]#si" => '<span style="background-color:\1">\2</span>',
+        "#\[bgcolor=(rgb\(\d{1,3},\d{1,3},\d{1,3}\))\](.*?)\[/bgcolor\]#si" => '<span style="background-color:\1">\2</span>',
+        "#\[bgcolor=([a-zA-Z]+)\](.*?)\[/bgcolor\]#si" => '<span style="background-color:\1">\2</span>',
+        "#\[font=([a-zA-Z0-9 \-_,]+)\](.*?)\[/font\]#si" => '<span style="font-family:\1">\2</span>',
+        "#\[size=([+\-]?[0-9a-z\-]+[%]?)\](.*?)\[/size\]#si" => '<span style="font-size:\1">\2</span>',
+    ];
+
+    foreach ($tag as $pattern => $replacement) {
+        if (empty($text)) {
+            break;
+        }
+        $text = preg_replace_callback(
+            $pattern,
+            fn($matches) => str_replace(['\1', '\2'], [$matches[1], $matches[2]], $replacement),
+            $text
+        );
+    }
+
+    return $text;
+}
+
+// ============================================================
 
 /**
  * Callback function for preg_replace_callback (LaTeX replacement).
@@ -220,9 +240,7 @@ function F_latex_callback($matches)
 {
     require_once('../../shared/config/tce_latex.php');
     // extract latex code and convert some entities
-    $latex = unhtmlentities($matches[1]);
-    $latex = str_replace("&gt;", '>', $latex);
-    $latex = str_replace("&lt;", '<', $latex);
+    $latex = unhtmlentities($matches[1], true);
 
     $dr = 3; // density ratio
     // generate file name
@@ -316,9 +334,9 @@ function F_mathml_callback($matches)
 {
     $mathml_tags = '<abs><and><annotation><annotation-xml><apply><approx><arccos><arccosh><arccot><arccoth><arccsc><arccsch><arcsec><arcsech><arcsin><arcsinh><arctan><arctanh><arg><bind><bvar><card><cartesianproduct><cbytes><ceiling><cerror><ci><cn><codomain><complexes><compose><condition><conjugate><cos><cosh><cot><coth><cs><csc><csch><csymbol><curl><declare><degree><determinant><diff><divergence><divide><domain><domainofapplication><el><emptyset><eq><equivalent><eulergamma><exists><exp><exponentiale><factorial><factorof><false><floor><fn><forall><gcd><geq><grad><gt><ident><image><imaginary><imaginaryi><implies><in><infinity><int><integers><intersect><interval><inverse><lambda><laplacian><lcm><leq><limit><list><ln><log><logbase><lowlimit><lt><maction><malign><maligngroup><malignmark><malignscope><math><matrix><matrixrow><max><mean><median><menclose><merror><mfenced><mfrac><mfraction><mglyph><mi><min><minus><mlabeledtr><mlongdiv><mmultiscripts><mn><mo><mode><moment><momentabout><mover><mpadded><mphantom><mprescripts><mroot><mrow><ms><mscarries><mscarry><msgroup><msline><mspace><msqrt><msrow><mstack><mstyle><msub><msubsup><msup><mtable><mtd><mtext><mtr><munder><munderover><naturalnumbers><neq><none><not><notanumber><note><notin><notprsubset><notsubset><or><otherwise><outerproduct><partialdiff><pi><piece><piecewise><plus><power><primes><product><prsubset><quotient><rationals><real><reals><reln><rem><root><scalarproduct><sdev><sec><sech><selector><semantics><sep><set><setdiff><share><sin><sinh><subset><sum><tan><tanh><tendsto><times><transpose><true><union><uplimit><variance><vector><vectorproduct><xor>';
     // extract latex code and convert some entities
-    $mathml = unhtmlentities($matches[1]);
-    $mathml = str_replace("&gt;", '>', $mathml);
-    $mathml = str_replace("&lt;", '<', $mathml);
+    $mathml = unhtmlentities($matches[1], true);
+    // $mathml = str_replace("&gt;", '>', $mathml);
+    // $mathml = str_replace("&lt;", '<', $mathml);
     // remove all non-MathML tags
     $mathml = strip_tags($mathml, $mathml_tags);
     $mathml = preg_replace("/[\n\r\s]+/", ' ', $mathml);
@@ -343,11 +361,11 @@ function F_objects_callback($matches)
     $height = 0;
     $alt = '';
     if (isset($matches[3]) && $matches[3] > 0) {
-        $width = $matches[3];
+        $width = intval($matches[3]);
     }
 
     if (isset($matches[4]) && $matches[4] > 0) {
-        $height = $matches[4];
+        $height = intval($matches[4]);
     }
 
     if (isset($matches[5]) && ! empty($matches[5])) {
@@ -363,9 +381,9 @@ function F_objects_callback($matches)
  * @param $extension (string) object extension (e.g.: gif, jpg, swf, ...)
  * @param $width (int) object width
  * @param $height (int) object height
+ * @param $alt (string) alternative content
  * @param $maxwidth (int) object max or default width
  * @param $maxheight (int) object max or default height
- * @param $alt (string) alternative content
  * @return string replacement string
  */
 function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt = '', &$maxwidth = 0, &$maxheight = 0)
@@ -553,7 +571,7 @@ function F_tcecodeToTitle($str)
     global $l;
     $str = F_remove_tcecode($str);
     $str = F_compact_string($str);
-    return htmlspecialchars($str, ENT_COMPAT, $l['a_meta_charset']);
+    return htmlspecialchars($str, ENT_QUOTES | ENT_COMPAT, $l['a_meta_charset']);
 }
 
 /**
@@ -623,6 +641,7 @@ function F_substrHTML($htmltext, $min_length = 100, $offset_length = 20)
 
     return $htmltext;
 }
+
 
 //============================================================+
 // END OF FILE
