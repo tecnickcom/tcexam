@@ -93,7 +93,7 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
     $mail->WordWrap = $emailcfg['WordWrap'];
     $mail->Mailer = $emailcfg['Mailer'];
     $mail->Sendmail = $emailcfg['Sendmail'];
-    $mail->UseMSMailHeaders = $emailcfg['UseMSMailHeaders'];
+    // $mail->UseMSMailHeaders = $emailcfg['UseMSMailHeaders'];
     $mail->Host = $emailcfg['Host'];
     $mail->Port = $emailcfg['Port'];
     $mail->Helo = $emailcfg['Helo'];
@@ -182,8 +182,8 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
             $mail->Body = str_replace('#LANGDIR#', $l['a_meta_dir'], $mail->Body);
             $mail->Body = str_replace('#EMAIL#', $tu['user_email'], $mail->Body);
             $mail->Body = str_replace('#USERNAME#', htmlspecialchars($tu['user_name'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
-            $mail->Body = str_replace('#USERFIRSTNAME#', htmlspecialchars($tu['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
-            $mail->Body = str_replace('#USERLASTNAME#', htmlspecialchars($tu['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
+            $mail->Body = str_replace('#USERFIRSTNAME#', htmlspecialchars(($tu['user_firstname'] ?? ''), ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
+            $mail->Body = str_replace('#USERLASTNAME#', htmlspecialchars(($tu['user_lastname'] ?? ''), ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
 
             // add a "To" address
             $mail->addAddress($tu['user_email'], $tu['user_name']);

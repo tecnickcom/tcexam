@@ -453,7 +453,7 @@ function getIpAsString($ip)
  */
 function F_formatFloat($num)
 {
-    return sprintf('%.03f', round($num, 3));
+    return sprintf('%.03f', round(($num ?? 0), 3));
 }
 
 /**

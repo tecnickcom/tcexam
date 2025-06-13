@@ -652,7 +652,7 @@ function F_printTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0, 
     $ret .= '<td colspan="4">' . $l['w_all'] . '</td>' . K_NEWLINE;
     $ret .= '<td class="numeric">' . $ts['qstats']['recurrence'] . ' ' . F_formatPercentage($ts['qstats']['recurrence_perc'], false) . '</td>' . K_NEWLINE;
     $ret .= '<td class="numeric">' . ($ts['qstats']['average_score_perc']) . '%</td>' . K_NEWLINE;
-    $ret .= '<td class="numeric">&nbsp;' . date('i:s', $ts['qstats']['average_time']) . '</td>' . K_NEWLINE;
+    $ret .= '<td class="numeric">&nbsp;' . date('i:s', intval($ts['qstats']['average_time'])) . '</td>' . K_NEWLINE;
     $ret .= '<td class="numeric">' . $ts['qstats']['right'] . ' ' . F_formatPercentage($ts['qstats']['right_perc'], false) . '</td>' . K_NEWLINE;
     $ret .= '<td class="numeric">' . $ts['qstats']['wrong'] . ' ' . F_formatPercentage($ts['qstats']['wrong_perc'], false) . '</td>' . K_NEWLINE;
     $ret .= '<td class="numeric">' . $ts['qstats']['unanswered'] . ' ' . F_formatPercentage($ts['qstats']['unanswered_perc'], false) . '</td>' . K_NEWLINE;
@@ -672,7 +672,7 @@ function F_printTestStat($test_id, $group_id = 0, $user_id = 0, $startdate = 0, 
         $ret .= '<td rowspan="2" colspan="3">&nbsp;</td>' . K_NEWLINE;
         $ret .= '<td class="numeric">' . $module['recurrence'] . ' ' . F_formatPercentage($module['recurrence_perc'], false) . '</td>' . K_NEWLINE;
         $ret .= '<td class="numeric">' . ($module['average_score_perc']) . '%</td>' . K_NEWLINE;
-        $ret .= '<td class="numeric">&nbsp;' . date('i:s', $module['average_time']) . '</td>' . K_NEWLINE;
+        $ret .= '<td class="numeric">&nbsp;' . date('i:s', intval($module['average_time'])) . '</td>' . K_NEWLINE;
         $ret .= '<td class="numeric">' . $module['right'] . ' ' . F_formatPercentage($module['right_perc'], false) . '</td>' . K_NEWLINE;
         $ret .= '<td class="numeric">' . $module['wrong'] . ' ' . F_formatPercentage($module['wrong_perc'], false) . '</td>' . K_NEWLINE;
         $ret .= '<td class="numeric">' . $module['unanswered'] . ' ' . F_formatPercentage($module['unanswered_perc'], false) . '</td>' . K_NEWLINE;

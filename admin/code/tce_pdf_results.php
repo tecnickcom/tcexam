@@ -49,6 +49,13 @@ require_once('../../shared/code/tce_functions_statistics.php');
 require_once('tce_functions_user_select.php');
 $mode = isset($_REQUEST['mode']) && $_REQUEST['mode'] > 0 ? (int) $_REQUEST['mode'] : 0;
 
+$test_id  = $_REQUEST['test_id'] ?? 0;
+$user_id  = $_REQUEST['user_id'] ?? 0;
+$group_id  = $_REQUEST['group_id'] ?? 0;
+$testuser_id  = $_REQUEST['testuser_id'] ?? 0;
+$order_field  = $_REQUEST['order_field'] ?? '';
+$orderdir  = $_REQUEST['orderdir'] ?? 0;
+
 $onlytext = ($mode == 5);
 if (isset($_REQUEST['email']) && ! checkPassword(date('Y') . $testuser_id . K_RANDOM_SECURITY . $test_id . date('m') . $user_id, $_REQUEST['email'])) {
     F_print_error('ERROR', $l['m_authorization_denied'], true);
