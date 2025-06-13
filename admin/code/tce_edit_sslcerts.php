@@ -74,7 +74,7 @@ if (isset($_FILES['userfile']['name']) && ! empty($_FILES['userfile']['name'])) 
 
 switch ($menu_mode) {
     case 'delete':{
-        F_stripslashes_formfields();
+        
         // check if this record is used
         if (! F_check_unique(K_TABLE_TEST_SSLCERTS, 'tstssl_ssl_id=' . $ssl_id . '')) {
             //this record will be only disabled and not deleted because it's used
@@ -106,7 +106,7 @@ switch ($menu_mode) {
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields();
+        
         if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
             $sql = 'DELETE FROM ' . K_TABLE_SSLCERTS . ' WHERE ssl_id=' . $ssl_id . '';
             if (! $r = F_db_query($sql, $db)) {
@@ -124,7 +124,7 @@ switch ($menu_mode) {
         // check if the confirmation chekbox has been selected
         if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
             F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -133,7 +133,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_SSLCERTS, "ssl_name='" . F_escape_sql($db, $ssl_name) . "'", 'ssl_id', $ssl_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -164,7 +164,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_SSLCERTS, "ssl_name='" . F_escape_sql($db, $ssl_name) . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 

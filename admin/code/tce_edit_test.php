@@ -252,7 +252,7 @@ switch ($menu_mode) {
         // check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
         if (! F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id=' . $test_id . '')) {
             F_print_error('WARNING', $l['m_update_restrict']);
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -276,7 +276,7 @@ switch ($menu_mode) {
         if (! F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id=' . $test_id . '')) {
             F_print_error('WARNING', $l['m_update_restrict']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -439,7 +439,7 @@ switch ($menu_mode) {
     }
 
     case 'delete':{
-        F_stripslashes_formfields();        // ask confirmation
+                // ask confirmation
         F_print_error('WARNING', $l['m_delete_confirm_test']);
         ?>
         <div class="confirmbox">
@@ -460,7 +460,7 @@ switch ($menu_mode) {
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields(); // Delete
+         // Delete
         if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
             // delete test
             $sql = 'DELETE FROM ' . K_TABLE_TESTS . ' WHERE test_id=' . $test_id . '';
@@ -480,7 +480,7 @@ switch ($menu_mode) {
         if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
             F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -489,7 +489,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id=' . $test_id . '')) {
                 F_print_error('WARNING', $l['m_update_restrict']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -497,7 +497,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_TESTS, "test_name='" . $test_name . "'", 'test_id', $test_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -600,7 +600,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_TESTS, "test_name='" . F_escape_sql($db, $test_name) . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 

@@ -63,7 +63,7 @@ $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l[
 
 switch ($menu_mode) { // process submitted data
     case 'delete':{
-        F_stripslashes_formfields(); // ask confirmation
+         // ask confirmation
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
             F_print_error('ERROR', $l['m_authorization_denied']);
             break;
@@ -85,7 +85,7 @@ switch ($menu_mode) { // process submitted data
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields(); // Delete specified user
+         // Delete specified user
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
             F_print_error('ERROR', $l['m_authorization_denied']);
             break;
@@ -108,7 +108,7 @@ switch ($menu_mode) { // process submitted data
         // check if the confirmation chekbox has been selected
         if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
             F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -117,7 +117,7 @@ switch ($menu_mode) { // process submitted data
             if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . F_escape_sql($db, $group_name) . "'", 'group_id', $group_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -140,7 +140,7 @@ switch ($menu_mode) { // process submitted data
             if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . F_escape_sql($db, $group_name) . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 

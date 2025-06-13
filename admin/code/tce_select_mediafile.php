@@ -144,7 +144,7 @@ if (isset($_POST['rename'])) {
 // switch actions
 switch ($menu_mode) {
     case 'delete':{
-        F_stripslashes_formfields();
+        
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_MEDIAFILE) {
             F_print_error('WARNING', $l['m_authorization_denied']);
             break;
@@ -172,7 +172,7 @@ switch ($menu_mode) {
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields(); // Delete
+         // Delete
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_MEDIAFILE) {
             F_print_error('WARNING', $l['m_authorization_denied']);
             break;
@@ -199,7 +199,7 @@ switch ($menu_mode) {
     }
 
     case 'rename':{
-        F_stripslashes_formfields();
+        
         if ($_SESSION['session_user_level'] < K_AUTH_RENAME_MEDIAFILE) {
             F_print_error('WARNING', $l['m_authorization_denied']);
             break;
@@ -228,7 +228,7 @@ switch ($menu_mode) {
     }
 
     case 'newdir':{
-        F_stripslashes_formfields();
+        
         if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
             F_print_error('WARNING', $l['m_authorization_denied']);
             break;
@@ -255,7 +255,7 @@ switch ($menu_mode) {
     }
 
     case 'deldir':{
-        F_stripslashes_formfields(); // Delete
+         // Delete
         if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
             F_print_error('WARNING', $l['m_authorization_denied']);
             break;

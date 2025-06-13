@@ -93,7 +93,7 @@ if (isset($_POST['lock'])) {
 
 switch ($menu_mode) {
     case 'delete':{
-        F_stripslashes_formfields();
+        
         // ask confirmation
         F_print_error('WARNING', $l['m_delete_confirm']);
         echo '<div class="confirmbox">' . K_NEWLINE;
@@ -110,7 +110,7 @@ switch ($menu_mode) {
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields(); // Delete
+         // Delete
         if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
             $sql = 'DELETE FROM ' . K_TABLE_TEST_USER . '
 					WHERE testuser_id=' . $testuser_id . '';

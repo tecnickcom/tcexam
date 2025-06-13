@@ -165,34 +165,18 @@ function F_check_form_fields()
     //check missing fields
     if ($missing_fields = F_check_required_fields($formfields)) {
         F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $missing_fields);
-        F_stripslashes_formfields();
+        
         return false;
     }
 
     //check fields format
     if ($wrong_fields = F_check_fields_format($formfields)) {
         F_print_error('WARNING', $l['m_form_wrong_fields'] . ': ' . $wrong_fields);
-        F_stripslashes_formfields();
+        
         return false;
     }
 
     return true;
-}
-
-/**
- * Strip slashes from posted form fields.
- */
-function F_stripslashes_formfields()
-{
-    foreach ($_POST as $key => $value) {
-        if ($key[0] != '_' && is_string($value)) {
-            $key = preg_replace('/[^a-z0-9_\[\]]/i', '', $key);
-            global ${$key};
-            if (! isset(${$key})) {
-                ${$key} = stripslashes($value);
-            }
-        }
-    }
 }
 
 /**
@@ -368,7 +352,7 @@ function getFormRowTextBox($field_name, $name, $description = '', $value = '', $
         $str .= ' readonly="readonly" class="disabled"';
     }
 
-    $str .= '>' . htmlspecialchars($value, ENT_NOQUOTES, $l['a_meta_charset']) . '</textarea>' . K_NEWLINE;
+    $str .= '>' . htmlspecialchars($value ?? '', ENT_NOQUOTES, $l['a_meta_charset']) . '</textarea>' . K_NEWLINE;
     $str .= '</span>' . K_NEWLINE;
     return $str . ('</div>' . K_NEWLINE);
 }

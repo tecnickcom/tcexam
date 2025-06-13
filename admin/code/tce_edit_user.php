@@ -76,7 +76,7 @@ $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l[
 
 switch ($menu_mode) { // process submitted data
     case 'delete':{
-        F_stripslashes_formfields(); // ask confirmation
+         // ask confirmation
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_USERS || $user_id == $_SESSION['session_user_id'] || $user_id == 1) {
             F_print_error('ERROR', $l['m_authorization_denied']);
             break;
@@ -102,7 +102,7 @@ switch ($menu_mode) { // process submitted data
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields(); // Delete specified user
+         // Delete specified user
         if ($_SESSION['session_user_level'] < K_AUTH_DELETE_USERS || $user_id == $_SESSION['session_user_id'] || $user_id == 1) {
             F_print_error('ERROR', $l['m_authorization_denied']);
             break;
@@ -129,7 +129,7 @@ switch ($menu_mode) { // process submitted data
         // check if the confirmation chekbox has been selected
         if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
             F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -138,7 +138,7 @@ switch ($menu_mode) { // process submitted data
             if (! F_check_unique(K_TABLE_USERS, "user_name='" . F_escape_sql($db, $user_name) . "'", 'user_id', $user_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -146,7 +146,7 @@ switch ($menu_mode) { // process submitted data
             if (isset($user_regnumber) && strlen($user_regnumber) > 0 && ! F_check_unique(K_TABLE_USERS, "user_regnumber='" . F_escape_sql($db, $user_regnumber) . "'", 'user_id', $user_id)) {
                 F_print_error('WARNING', $l['m_duplicate_regnumber']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -154,7 +154,7 @@ switch ($menu_mode) { // process submitted data
             if (isset($user_ssn) && strlen($user_ssn) > 0 && ! F_check_unique(K_TABLE_USERS, "user_ssn='" . F_escape_sql($db, $user_ssn) . "'", 'user_id', $user_id)) {
                 F_print_error('WARNING', $l['m_duplicate_ssn']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -167,7 +167,7 @@ switch ($menu_mode) { // process submitted data
                 } else { //print message and exit
                     F_print_error('WARNING', $l['m_different_passwords']);
                     $formstatus = false;
-                    F_stripslashes_formfields();
+                    
                     break;
                 }
             }
@@ -234,7 +234,7 @@ switch ($menu_mode) { // process submitted data
             if (! F_check_unique(K_TABLE_USERS, "user_name='" . $user_name . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -242,7 +242,7 @@ switch ($menu_mode) { // process submitted data
             if (isset($user_regnumber) && strlen($user_regnumber) > 0 && ! F_check_unique(K_TABLE_USERS, "user_regnumber='" . F_escape_sql($db, $user_regnumber) . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_regnumber']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -250,7 +250,7 @@ switch ($menu_mode) { // process submitted data
             if (isset($user_ssn) && strlen($user_ssn) > 0 && ! F_check_unique(K_TABLE_USERS, "user_ssn='" . F_escape_sql($db, $user_ssn) . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_ssn']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -263,13 +263,13 @@ switch ($menu_mode) { // process submitted data
                 } else { //print message and exit
                     F_print_error('WARNING', $l['m_different_passwords']);
                     $formstatus = false;
-                    F_stripslashes_formfields();
+                    
                     break;
                 }
             } else { //print message and exit
                 F_print_error('WARNING', $l['m_empty_password']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -376,20 +376,20 @@ if ($formstatus && $menu_mode != 'clear') {
         $sql = 'SELECT * FROM ' . K_TABLE_USERS . ' WHERE user_id=' . $user_id . ' LIMIT 1';
         if ($r = F_db_query($sql, $db)) {
             if ($m = F_db_fetch_array($r)) {
-                $user_id = $m['user_id'];
-                $user_regdate = $m['user_regdate'];
-                $user_ip = $m['user_ip'];
-                $user_name = $m['user_name'];
-                $user_email = $m['user_email'];
-                $user_password = $m['user_password'];
-                $user_regnumber = $m['user_regnumber'];
-                $user_firstname = $m['user_firstname'];
-                $user_lastname = $m['user_lastname'];
-                $user_birthdate = substr($m['user_birthdate'], 0, 10);
-                $user_birthplace = $m['user_birthplace'];
-                $user_ssn = $m['user_ssn'];
-                $user_level = $m['user_level'];
-                $user_otpkey = $m['user_otpkey'];
+                $user_id = $m['user_id'] ?? '';
+                $user_regdate = $m['user_regdate'] ?? '';
+                $user_ip = $m['user_ip'] ?? '';
+                $user_name = $m['user_name'] ?? '';
+                $user_email = $m['user_email'] ?? '';
+                $user_password = $m['user_password'] ?? '';
+                $user_regnumber = $m['user_regnumber'] ?? '';
+                $user_firstname = $m['user_firstname'] ?? '';
+                $user_lastname = $m['user_lastname'] ?? '';
+                $user_birthdate = substr($m['user_birthdate'] ?? '', 0, 10);
+                $user_birthplace = $m['user_birthplace'] ?? '';
+                $user_ssn = $m['user_ssn'] ?? '';
+                $user_level = $m['user_level'] ?? '';
+                $user_otpkey = $m['user_otpkey'] ?? '';
             } else {
                 $user_regdate = '';
                 $user_ip = '';

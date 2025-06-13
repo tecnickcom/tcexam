@@ -83,7 +83,7 @@ switch ($menu_mode) { // process submitted data
     }
 
     case 'forcerestore':{
-        F_stripslashes_formfields(); // Delete specified record
+         // Delete specified record
         //check if delete button has been pushed (redundant check)
         if ($forcerestore == $l['w_restore'] && (isset($backup_file) && ! empty($backup_file))) {
             // create a backup of the current database data

@@ -96,7 +96,7 @@ if ($subject_id > 0) {
 
 switch ($menu_mode) {
     case 'delete':{
-        F_stripslashes_formfields();
+        
         // check if this record is used (test_log)
         if (! F_check_unique(K_TABLE_SUBJECT_SET, 'subjset_subject_id=' . $subject_id . '')) {
             //this record will be only disabled and not deleted because it's used
@@ -133,7 +133,7 @@ switch ($menu_mode) {
     }
 
     case 'forcedelete':{
-        F_stripslashes_formfields();
+        
         if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
             $sql = 'DELETE FROM ' . K_TABLE_SUBJECTS . ' WHERE subject_id=' . $subject_id . '';
             if (! $r = F_db_query($sql, $db)) {
@@ -151,7 +151,7 @@ switch ($menu_mode) {
         // check if the confirmation chekbox has been selected
         if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
             F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
-            F_stripslashes_formfields();
+            
             break;
         }
 
@@ -177,7 +177,7 @@ switch ($menu_mode) {
                 }
 
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -185,7 +185,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_SUBJECTS, "subject_name='" . F_escape_sql($db, $subject_name) . "' AND subject_module_id=" . $subject_module_id . '', 'subject_id', $subject_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -211,7 +211,7 @@ switch ($menu_mode) {
             if (! F_check_unique(K_TABLE_SUBJECTS, "subject_name='" . F_escape_sql($db, $subject_name) . "' AND subject_module_id=" . $subject_module_id . '')) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 

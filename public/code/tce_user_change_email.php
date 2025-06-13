@@ -53,7 +53,7 @@ switch ($menu_mode) {
                 //print message and exit
                 F_print_error('WARNING', $l['m_different_emails']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
                 break;
             }
 
@@ -62,7 +62,7 @@ switch ($menu_mode) {
                 if (! ($m = F_db_fetch_array($r)) || ! checkPassword($currentpassword, $m['user_password'])) {
                     F_print_error('WARNING', $l['m_login_wrong']);
                     $formstatus = false;
-                    F_stripslashes_formfields();
+                    
                     break;
                 }
             } else {

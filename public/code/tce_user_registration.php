@@ -88,21 +88,21 @@ if ($menu_mode == 'add') { // process submitted data
         if (! F_check_unique(K_TABLE_USERS, "user_name='" . F_escape_sql($db, $user_name) . "'")) {
             F_print_error('WARNING', $l['m_duplicate_name']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
         }
 
         // check if registration number is unique
         if (isset($user_regnumber) && strlen($user_regnumber) > 0 && ! F_check_unique(K_TABLE_USERS, "user_regnumber='" . F_escape_sql($db, $user_regnumber) . "'")) {
             F_print_error('WARNING', $l['m_duplicate_regnumber']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
         }
 
         // check if ssn is unique
         if (isset($user_ssn) && strlen($user_ssn) > 0 && ! F_check_unique(K_TABLE_USERS, "user_ssn='" . F_escape_sql($db, $user_ssn) . "'")) {
             F_print_error('WARNING', $l['m_duplicate_ssn']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
         }
 
         // check password
@@ -114,12 +114,12 @@ if ($menu_mode == 'add') { // process submitted data
             } else { //print message and exit
                 F_print_error('WARNING', $l['m_different_passwords']);
                 $formstatus = false;
-                F_stripslashes_formfields();
+                
             }
         } else { //print message and exit
             F_print_error('WARNING', $l['m_empty_password']);
             $formstatus = false;
-            F_stripslashes_formfields();
+            
         }
 
         if ($formstatus) {
