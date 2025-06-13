@@ -1,3 +1,8 @@
+16.5.0 (2025-06-13)
+	- This version includes security fixes, please update ASAP.
+	- Please update the code in your shared/config/tce_config.php file with the latest one.
+	- The tcecode parser was updated to sanitize input and avoid XSS.
+
 16.3.7 (2025-01-26)
 	- Updated TCPDF.
 
