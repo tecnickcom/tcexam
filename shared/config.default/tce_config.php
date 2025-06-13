@@ -2,13 +2,13 @@
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
-// Last Update : 2023-11-30
+// Last Update : 2025-06-12
 //
 // Description : Shared configuration file.
 //
 // Author: Nicola Asuni
 //
-// (c) Copyright 2004-2020:
+// (c) Copyright 2004-2025:
 //               Nicola Asuni
 //               Tecnick.com LTD
 //               UK
@@ -304,46 +304,21 @@ if (!defined('PHP_VERSION_ID')) {
     define('PHP_VERSION_ID', (($version[0] * 10000) + ($version[2] * 100) + $version[4]));
 }
 if (PHP_VERSION_ID < 50300) {
-    @set_magic_quotes_runtime(false); //disable magic quotes
-    ini_set('magic_quotes_gpc', 'On');
-    ini_set('magic_quotes_runtime', 'Off');
-    ini_set('register_long_arrays', 'On');
-    //ini_set('register_globals', 'On');
+	@set_magic_quotes_runtime(false); //disable magic quotes
+	ini_set('magic_quotes_gpc', 'Off');
+	ini_set('magic_quotes_runtime', 'Off');
+	ini_set('register_long_arrays', 'On');
+	//ini_set('register_globals', 'On');
 }
 
-// --- get 'post', 'get' and 'cookie' variables
-foreach ($_REQUEST as $postkey => $postvalue) {
-    if (($postkey[0] != '_') and (!preg_match('/[A-Z]/', $postkey[0]))) {
-        if (!function_exists('get_magic_quotes_gpc') or (PHP_VERSION_ID >= 70400) or !get_magic_quotes_gpc()) {
-            $postvalue = addSlashesArray($postvalue);
-            $_REQUEST[$postkey] = $postvalue;
-            if (isset($_GET[$postkey])) {
-                $_GET[$postkey] = $postvalue;
-            } elseif (isset($_POST[$postkey])) {
-                $_POST[$postkey] = $postvalue;
-            } elseif (isset($_COOKIE[$postkey])) {
-                $_COOKIE[$postkey] = $postvalue;
-            }
+// --- parse posted variables ---
+foreach ($_POST as $reqkey => $reqval) {
+	if (($reqkey[0] != '_') && (!preg_match('/[A-Z]/', $reqkey[0]))) {
+		$reqkey = preg_replace('/[^a-z0-9_\[\]]/i', '', $reqkey);
+        if (!isset(${$reqkey}) && is_string($reqval)) {
+            ${$reqkey} = $reqval;
         }
-        $$postkey = $postvalue;
-    }
-}
-
-/**
- * Escape strings with backslashes before characters that need to be escaped.
- * These characters are single quote ('), double quote ("), backslash (\) and NUL (the NULL byte).
- * @param $data (array|string) String or array to escape
- * @return array|string
- */
-function addSlashesArray($data)
-{
-    if (is_array($data)) {
-        return array_map('addSlashesArray', $data);
-    }
-    if (is_string($data)) {
-        return addslashes($data);
-    }
-    return $data;
+	}
 }
 
 /**
