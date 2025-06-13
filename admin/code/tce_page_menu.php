@@ -83,7 +83,7 @@ $menu = [
         'enabled' => true,
     ],
     'tcexam.org' => [
-        'link' => 'http://www.tcexam.org',
+        'link' => 'https://tcexam.org/',
         'title' => $l['h_guide'],
         'name' => $l['w_guide'],
         'level' => K_AUTH_ADMIN_INFO,
