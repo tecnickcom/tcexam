@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -45,129 +45,137 @@ ini_set('session.cookie_secure', K_COOKIE_SECURE ? 'On' : 'Off');
 ini_set('session.cookie_samesite', K_COOKIE_SAMESITE);
 
 /**
- * Open session.
- * @param $save_path (string) path were to store session data
- * @param $session_name (string) name of session
- * @return bool always TRUE
+ * Session Handler Class implementing SessionHandlerInterface
+ * @package com.tecnick.tcexam.shared
  */
-function F_session_open($save_path, $session_name)
+class TCExamSessionHandler implements SessionHandlerInterface
 {
-    return true;
-}
+    /**
+     * Open session.
+     * @param string $path path were to store session data
+     * @param string $name name of session
+     * @return bool always TRUE
+     */
+    public function open(string $path, string $name): bool
+    {
+        return true;
+    }
 
-/**
- * Close session.<br>
- * Call garbage collector function to remove expired sessions.
- * @return bool always TRUE
- */
-function F_session_close()
-{
-    F_session_gc(); //call garbage collector
-    return true;
-}
+    /**
+     * Close session.<br>
+     * Call garbage collector function to remove expired sessions.
+     * @return bool always TRUE
+     */
+    public function close(): bool
+    {
+        $this->gc(ini_get('session.gc_maxlifetime'));
+        return true;
+    }
 
-/**
- * Get session data.
- * @param $key (string) session ID.
- * @return string session data.
- */
-function F_session_read($key)
-{
-    global $db;
-    $key = F_escape_sql($db, $key);
-    $sql = 'SELECT cpsession_data
-			FROM ' . K_TABLE_SESSIONS . '
-			WHERE cpsession_id=\'' . $key . '\'
-				AND cpsession_expiry>=\'' . date(K_TIMESTAMP_FORMAT) . '\'
-			LIMIT 1';
-    if ($r = F_db_query($sql, $db)) {
-        if ($m = F_db_fetch_array($r)) {
-            return $m['cpsession_data'];
+    /**
+     * Get session data.
+     * @param string $id session ID.
+     * @return string|false session data or false on failure.
+     */
+    public function read(string $id): string|false
+    {
+        global $db;
+        $id = F_escape_sql($db, $id);
+        $sql = 'SELECT cpsession_data
+				FROM ' . K_TABLE_SESSIONS . '
+				WHERE cpsession_id=\'' . $id . '\'
+					AND cpsession_expiry>=\'' . date(K_TIMESTAMP_FORMAT) . '\'
+				LIMIT 1';
+        if ($r = F_db_query($sql, $db)) {
+            if ($m = F_db_fetch_array($r)) {
+                return $m['cpsession_data'];
+            }
+
+            return '';
         }
 
-        return ('');
+        return '';
     }
 
-    return ('');
-}
-
-/**
- * Insert or Update session.
- * @param $key (string) session ID.
- * @param $val (string) session data.
- * @return resource database query result.
- */
-function F_session_write($key, $val)
-{
-    global $db;
-    // workaround for PHP bug 41230
-    if ((! isset($db) || ! $db) && ! $db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT, K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
-        return;
-    }
-
-    $key = F_escape_sql($db, $key);
-    $val = F_escape_sql($db, $val);
-    $expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
-    // check if this session already exist on database
-    $sql = 'SELECT cpsession_id
-			FROM ' . K_TABLE_SESSIONS . '
-			WHERE cpsession_id=\'' . $key . '\'
-			LIMIT 1';
-    if ($r = F_db_query($sql, $db)) {
-        if ($m = F_db_fetch_array($r)) {
-            // SQL to update existing session
-            $sqlup = 'UPDATE ' . K_TABLE_SESSIONS . ' SET
-				cpsession_expiry=\'' . $expiry . '\',
-				cpsession_data=\'' . $val . '\'
-				WHERE cpsession_id=\'' . $key . "'";
-        } else {
-            // SQL to insert new session
-            $sqlup = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
-				cpsession_id,
-				cpsession_expiry,
-				cpsession_data
-				) VALUES (
-				\'' . $key . '\',
-				\'' . $expiry . '\',
-				\'' . $val . '\'
-				)';
+    /**
+     * Insert or Update session.
+     * @param string $id session ID.
+     * @param string $data session data.
+     * @return bool true on success, false on failure.
+     */
+    public function write(string $id, string $data): bool
+    {
+        global $db;
+        // workaround for PHP bug 41230
+        if ((! isset($db) || ! $db) && ! $db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT, K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+            return false;
         }
 
-        return (F_db_query($sqlup, $db) !== false);
-    }
+        $id = F_escape_sql($db, $id);
+        $data = F_escape_sql($db, $data);
+        $expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
+        // check if this session already exist on database
+        $sql = 'SELECT cpsession_id
+				FROM ' . K_TABLE_SESSIONS . '
+				WHERE cpsession_id=\'' . $id . '\'
+				LIMIT 1';
+        if ($r = F_db_query($sql, $db)) {
+            if ($m = F_db_fetch_array($r)) {
+                // SQL to update existing session
+                $sqlup = 'UPDATE ' . K_TABLE_SESSIONS . ' SET
+					cpsession_expiry=\'' . $expiry . '\',
+					cpsession_data=\'' . $data . '\'
+					WHERE cpsession_id=\'' . $id . "'";
+            } else {
+                // SQL to insert new session
+                $sqlup = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
+					cpsession_id,
+					cpsession_expiry,
+					cpsession_data
+					) VALUES (
+					\'' . $id . '\',
+					\'' . $expiry . '\',
+					\'' . $data . '\'
+					)';
+            }
 
-    return false;
-}
+            return F_db_query($sqlup, $db) !== false;
+        }
 
-/**
- * Deletes the specific session.
- * @param $key (string) session ID of session to destroy.
- * @return resource database query result.
- */
-function F_session_destroy($key)
-{
-    global $db;
-    $key = F_escape_sql($db, $key);
-    $sql = 'DELETE FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $key . "'";
-    return F_db_query($sql, $db);
-}
-
-/**
- * Garbage collector.<br>
- * Deletes expired sessions.<br>
- * NOTE: while time() function returns a 32 bit integer, it works fine until year 2038.
- * @return int number of deleted sessions.
- */
-function F_session_gc()
-{
-    global $db;
-    $expiry_time = date(K_TIMESTAMP_FORMAT);
-    $sql = 'DELETE FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_expiry<='" . $expiry_time . "'";
-    if (! $r = F_db_query($sql, $db)) {
         return false;
     }
 
-    return F_db_affected_rows($db, $r);
+    /**
+     * Deletes the specific session.
+     * @param string $id session ID of session to destroy.
+     * @return bool true on success, false on failure.
+     */
+    public function destroy(string $id): bool
+    {
+        global $db;
+        $id = F_escape_sql($db, $id);
+        $sql = 'DELETE FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $id . "'";
+        return F_db_query($sql, $db) !== false;
+    }
+
+    /**
+     * Garbage collector.<br>
+     * Deletes expired sessions.<br>
+     * NOTE: while time() function returns a 32 bit integer, it works fine until year 2038.
+     * @param int $maxlifetime max session lifetime in seconds.
+     * @return int|false number of deleted sessions or false on failure.
+     */
+    public function gc(int $maxlifetime): int|false
+    {
+        global $db;
+        $expiry_time = date(K_TIMESTAMP_FORMAT);
+        $sql = 'DELETE FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_expiry<='" . $expiry_time . "'";
+        if (! $r = F_db_query($sql, $db)) {
+            return false;
+        }
+
+        return F_db_affected_rows($db, $r);
+    }
 }
 
 /**
@@ -294,8 +302,8 @@ function F_getCSRFToken()
 
 // ------------------------------------------------------------
 
-// Sets user-level session storage functions.
-session_set_save_handler('F_session_open', 'F_session_close', 'F_session_read', 'F_session_write', 'F_session_destroy', 'F_session_gc');
+// Sets user-level session storage functions using SessionHandlerInterface.
+session_set_save_handler(new TCExamSessionHandler(), true);
 
 // start user session
 if (isset($_COOKIE['PHPSESSID'])) {
