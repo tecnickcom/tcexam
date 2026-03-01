@@ -55,7 +55,7 @@ class TCPDF_STATIC {
 	 * Current TCPDF version.
 	 * @private static
 	 */
-	private static $tcpdf_version = '6.10.0';
+	private static $tcpdf_version = '6.11.0';
 
 	/**
 	 * String alias for total number of pages.
@@ -1863,7 +1863,9 @@ class TCPDF_STATIC {
         curl_setopt_array($crs, $curlopts);
 		curl_exec($crs);
 		$code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
-		curl_close($crs);
+		if (PHP_VERSION_ID < 80000) {
+			curl_close($crs);
+		}
 		return ($code == 200);
 	}
 
@@ -1995,7 +1997,9 @@ class TCPDF_STATIC {
 				$curlopts[CURLOPT_URL] = $url;
 				curl_setopt_array($crs, $curlopts);
 				$ret = curl_exec($crs);
-				curl_close($crs);
+				if (PHP_VERSION_ID < 80000) {
+					curl_close($crs);
+				}
 				if ($ret !== false) {
 					return $ret;
 				}

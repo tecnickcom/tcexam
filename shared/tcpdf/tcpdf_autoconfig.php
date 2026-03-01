@@ -206,7 +206,7 @@ if (!defined('PDF_FONT_MONOSPACED')) {
 }
 
 if (!defined('PDF_IMAGE_SCALE_RATIO')) {
-	define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+	define ('PDF_IMAGE_SCALE_RATIO', 96/72);
 }
 
 if (!defined('HEAD_MAGNIFICATION')) {

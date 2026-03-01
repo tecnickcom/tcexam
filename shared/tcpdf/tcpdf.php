@@ -1,9 +1,9 @@
 <?php
 //============================================================+
 // File name   : tcpdf.php
-// Version     : 6.10.0
+// Version     : 6.11.0
 // Begin       : 2002-08-03
-// Last Update : 2025-05-27
+// Last Update : 2026-03-01
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
 // License     : GNU-LGPL v3 (https://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
@@ -104,7 +104,7 @@
  * Tools to encode your unicode fonts are on fonts/utils directory.</p>
  * @package com.tecnick.tcpdf
  * @author Nicola Asuni
- * @version 6.10.0
+ * @version 6.11.0
  */
 
 // TCPDF configuration
@@ -128,7 +128,7 @@ require_once(dirname(__FILE__).'/include/tcpdf_static.php');
  * TCPDF project (http://www.tcpdf.org) has been originally derived in 2002 from the Public Domain FPDF class by Olivier Plathey (http://www.fpdf.org), but now is almost entirely rewritten.<br>
  * @package com.tecnick.tcpdf
  * @brief PHP class for generating PDF documents without requiring external extensions.
- * @version 6.10.0
+ * @version 6.11.0
  * @author Nicola Asuni - info@tecnick.com
  * @IgnoreAnnotation("protected")
  * @IgnoreAnnotation("public")
@@ -2907,12 +2907,10 @@ class TCPDF {
 	 * @since 1.4
 	 */
 	public function setCompression($compress=true) {
-		$this->compress = false;
+		$this->compress = false; return;
 		if (function_exists('gzcompress')) {
 			if ($compress) {
-				if ( !$this->pdfa_mode) {
-					$this->compress = true;
-				}
+                $this->compress = true;
 			}
 		}
 	}
@@ -5001,11 +4999,10 @@ class TCPDF {
 					$filter = '';
 					if ($this->compress) {
 						$data = gzcompress($data);
-						$filter = ' /Filter /FlateDecode';
+						$filter .= ' /Filter /FlateDecode';
 					}
-
 					if ($this->pdfa_version == 3) {
-						$filter = ' /Subtype /text#2Fxml';
+						$filter .= ' /Subtype /text#2Fxml';
 					}
 
 					$stream = $this->_getrawstream($data, $filedata['n']);
@@ -6925,8 +6922,8 @@ class TCPDF {
 			// fallback to avoid division by zero
 			$h = $h == 0 ? 1 : $h;
 			$ratio_wh = ($w / $h);
-			if (($y + $h) > $this->PageBreakTrigger) {
-				$h = $this->PageBreakTrigger - $y;
+			if (($y + $h) > $this->PageBreakTrigger + $this->bMargin) {
+				$h = $this->PageBreakTrigger + $this->bMargin - $y;
 				$w = ($h * $ratio_wh);
 			}
 			if ((!$this->rtl) AND (($x + $w) > ($this->w - $this->rMargin))) {
@@ -7440,12 +7437,16 @@ class TCPDF {
 					}
 				}
 				imagepng($imgalpha, $tempfile_alpha);
-				imagedestroy($imgalpha);
+				if (PHP_VERSION_ID < 80000) {
+					imagedestroy($imgalpha);
+				}
 				// extract image without alpha channel
 				$imgplain = imagecreatetruecolor($wpx, $hpx);
 				imagecopy($imgplain, $img, 0, 0, 0, 0, $wpx, $hpx);
 				imagepng($imgplain, $tempfile_plain);
-				imagedestroy($imgplain);
+				if (PHP_VERSION_ID < 80000) {
+					imagedestroy($imgplain);
+				}
 				$parsed = true;
 			} catch (Exception $e) {
 				// GD fails
@@ -7887,7 +7888,7 @@ class TCPDF {
 	 * @since 4.5.016 (2009-02-24)
 	 */
 	public function _destroy($destroyall=false, $preserve_objcopy=false) {
-		if (isset(self::$cleaned_ids[$this->file_id])) {
+		if (isset($this->file_id) && isset(self::$cleaned_ids[$this->file_id])) {
 			$destroyall = false;
 		}
 		if ($destroyall AND !$preserve_objcopy && isset($this->file_id)) {
@@ -16452,7 +16453,7 @@ class TCPDF {
 	 * @since 3.2.000 (2008-06-20)
 	 */
 	protected function getHtmlDomArray($html) {
-		// set inheritable properties fot the first void element
+		// set inheritable properties for the first void element
 		// possible inheritable properties are: azimuth, border-collapse, border-spacing, caption-side, color, cursor, direction, empty-cells, font, font-family, font-stretch, font-size, font-size-adjust, font-style, font-variant, font-weight, letter-spacing, line-height, list-style, list-style-image, list-style-position, list-style-type, orphans, page, page-break-inside, quotes, speak, speak-header, text-align, text-indent, text-transform, volume, white-space, widows, word-spacing
 		$dom = array(
 			array(
@@ -16918,7 +16919,7 @@ class TCPDF {
 							$dom[$key]['height'] = $dom[$key]['style']['height'];
 						}
 						// check for text alignment
-						if (isset($dom[$key]['style']['text-align'])) {
+						if (isset($dom[$key]['style']['text-align'][0])) {
 							$dom[$key]['align'] = strtoupper($dom[$key]['style']['text-align'][0]);
 						}
 						// check for CSS border properties
@@ -23268,8 +23269,11 @@ class TCPDF {
 			$error_message = sprintf('SVG Error: %s at line %d', xml_error_string(xml_get_error_code($parser)), xml_get_current_line_number($parser));
 			$this->Error($error_message);
 		}
-		// free this XML parser
-		xml_parser_free($parser);
+		
+		// free this XML parser (does nothing in PHP >= 8.0)
+		if (function_exists('xml_parser_free') && PHP_VERSION_ID < 80000) {
+		    xml_parser_free($parser);
+		}
 
 		// >= PHP 7.0.0 "explicitly unset the reference to parser to avoid memory leaks"
 		unset($parser);
@@ -23500,7 +23504,8 @@ class TCPDF {
 				$gradient['coords'][4] /= $w;
 			} elseif ($gradient['mode'] == 'percentage') {
 				foreach($gradient['coords'] as $key => $val) {
-					$gradient['coords'][$key] = (intval($val) / 100);
+					$val = floatval($val) / 100;
+					$gradient['coords'][$key] = $val;
 					if ($val < 0) {
 						$gradient['coords'][$key] = 0;
 					} elseif ($val > 1) {
@@ -23725,9 +23730,11 @@ class TCPDF {
 			}
 			$params = array();
 			if (isset($val[2])) {
-				// get curve parameters
-				preg_match_all('/-?\d*\.?\d+/', trim($val[2]), $matches);
-				$rawparams = $matches[0];
+				// get curve parameters, see https://github.com/tecnickcom/TCPDF/issues/767
+				$rawparams = preg_split('/([\,\s]+)/si', trim($val[2]));
+				$rawparams = array_filter($rawparams, function($p) {
+					return trim($p) != '';
+				});
 				$params = array();
 				foreach ($rawparams as $ck => $cp) {
 					$params[$ck] = $this->getHTMLUnitToUnits($cp, 0, $this->svgunit, false);
@@ -24424,6 +24431,7 @@ class TCPDF {
 					}
 					$this->StopTransform();
 				}
+				
 				break;
 			}
 			case 'ellipse': {
@@ -24737,7 +24745,7 @@ class TCPDF {
 	 */
 	protected function endSVGElementHandler($parser, $name) {
 		$name = $this->removeTagNamespace($name);
-		if ($this->svgdefsmode AND !in_array($name, array('defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop'))) {;
+		if ($this->svgdefsmode AND !in_array($name, array('defs', 'clipPath', 'linearGradient', 'radialGradient', 'stop'))) {
 			if (end($this->svgdefs) !== FALSE) {
 				$last_svgdefs_id = key($this->svgdefs);
 				if (isset($this->svgdefs[$last_svgdefs_id]['attribs']['child_elements'])) {
