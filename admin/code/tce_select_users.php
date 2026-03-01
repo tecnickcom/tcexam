@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_select_users.php
 // Begin       : 2001-09-13
-// Last Update : 2023-11-30
+// Last Update : 2026-03-01
 //
 // Description : Display user selection table.
 //
@@ -40,30 +40,22 @@ $thispage_title = $l['t_user_select'];
 require_once('../code/tce_page_header.php');
 require_once('../../shared/code/tce_functions_form.php');
 require_once('tce_functions_user_select.php');
+
 // set default values
 $new_group_id = isset($new_group_id) ? (int) $new_group_id : 0;
+$group_id = isset($_REQUEST['group_id']) ? (int) $_REQUEST['group_id'] : 0;
+$orderdir = isset($orderdir) ? (int) $orderdir : 0;
+$firstrow = isset($firstrow) ? (int) $firstrow : 0;
+$rowsperpage = isset($rowsperpage) ? (int) $rowsperpage : K_MAX_ROWS_PER_PAGE;
 
 if (! isset($order_field)) {
     $order_field = 'user_lastname,user_firstname';
-}
-
-if (! isset($orderdir)) {
-    $orderdir = 0;
-}
-
-if (! isset($firstrow)) {
-    $firstrow = 0;
-}
-
-if (! isset($rowsperpage)) {
-    $rowsperpage = K_MAX_ROWS_PER_PAGE;
 }
 
 if (! isset($searchterms)) {
     $searchterms = '';
 }
 
-$group_id = isset($_REQUEST['group_id']) ? (int) $_REQUEST['group_id'] : 0;
 
 if (! F_isAuthorizedEditorForGroup($group_id)) {
     F_print_error('ERROR', $l['m_authorization_denied'], true);

@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_edit_group.php
 // Begin       : 2006-03-11
-// Last Update : 2023-11-30
+// Last Update : 2026-03-01
 //
 // Description : Edit users' groups.
 //
@@ -56,6 +56,8 @@ if (isset($_REQUEST['group_id'])) {
 }
 
 $group_name = $_REQUEST['group_name'] ?? '';
+$group_name_sl = stripslashes($group_name);
+$group_name_db = F_escape_sql($db, $group_name);
 
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'group_name';
@@ -74,7 +76,7 @@ switch ($menu_mode) { // process submitted data
         echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_delete">' . K_NEWLINE;
         echo '<div>' . K_NEWLINE;
         echo '<input type="hidden" name="group_id" id="group_id" value="' . $group_id . '" />' . K_NEWLINE;
-        echo '<input type="hidden" name="group_name" id="group_name" value="' . stripslashes($group_name) . '" />' . K_NEWLINE;
+        echo '<input type="hidden" name="group_name" id="group_name" value="' . $group_name_sl . '" />' . K_NEWLINE;
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
         F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
         echo '</div>' . K_NEWLINE;
@@ -97,7 +99,7 @@ switch ($menu_mode) { // process submitted data
                 F_display_db_error(false);
             } else {
                 $group_id = false;
-                F_print_error('MESSAGE', '[' . stripslashes($group_name) . '] ' . $l['m_group_deleted']);
+                F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_deleted']);
             }
         }
 
@@ -114,7 +116,7 @@ switch ($menu_mode) { // process submitted data
 
         if ($formstatus = F_check_form_fields()) {
             // check if name is unique
-            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . F_escape_sql($db, $group_name) . "'", 'group_id', $group_id)) {
+            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'", 'group_id', $group_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
                 
@@ -122,12 +124,12 @@ switch ($menu_mode) { // process submitted data
             }
 
             $sql = 'UPDATE ' . K_TABLE_GROUPS . ' SET
-				group_name=\'' . F_escape_sql($db, $group_name) . '\'
+				group_name=\'' . $group_name_db . '\'
 				WHERE group_id=' . $group_id . '';
             if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {
-                F_print_error('MESSAGE', $group_name . ': ' . $l['m_group_updated']);
+                F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_updated']);
             }
         }
 
@@ -137,7 +139,7 @@ switch ($menu_mode) { // process submitted data
     case 'add':{ // Add user
         if ($formstatus = F_check_form_fields()) { // check submitted form fields
             // check if name is unique
-            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . F_escape_sql($db, $group_name) . "'")) {
+            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'")) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
                 
@@ -147,7 +149,7 @@ switch ($menu_mode) { // process submitted data
             $sql = 'INSERT INTO ' . K_TABLE_GROUPS . ' (
 				group_name
 				) VALUES (
-				\'' . F_escape_sql($db, $group_name) . "')";
+				\'' . $group_name_db . "')";
             if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
             } else {
@@ -172,6 +174,8 @@ switch ($menu_mode) { // process submitted data
 
     case 'clear':{ // Clear form fields
         $group_name = '';
+        $group_name_sl = '';
+        $group_name_db = '';
         break;
     }
 
@@ -185,6 +189,8 @@ if ($formstatus && $menu_mode != 'clear') {
     if (! isset($group_id) || $group_id === 0) {
         $group_id = 0;
         $group_name = '';
+        $group_name_sl = '';
+        $group_name_db = '';
     } else {
         $sql = F_user_group_select_sql('group_id=' . $group_id) . ' LIMIT 1';
         if ($r = F_db_query($sql, $db)) {
@@ -193,6 +199,8 @@ if ($formstatus && $menu_mode != 'clear') {
                 $group_name = $m['group_name'];
             } else {
                 $group_name = '';
+                $group_name_sl = '';
+                $group_name_db = '';
             }
         } else {
             F_display_db_error();

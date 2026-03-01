@@ -1,3 +1,7 @@
+16.6.0 (2026-03-01)
+	- Update Session handlers (requires PHP 7+).
+	- Tydy up some code.
+
 16.5.0 (2025-06-13)
 	- This version includes security fixes, please update ASAP.
 	- Please update the code in your shared/config/tce_config.php file with the latest one.

@@ -150,7 +150,7 @@ function F_xml_export_users()
             $xml .= '</lastname>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<birthdate>';
-            $xml .= substr($ma['user_birthdate'], 0, 10);
+            $xml .= substr($ma['user_birthdate'] ?? '', 0, 10);
             $xml .= '</birthdate>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<birthplace>';

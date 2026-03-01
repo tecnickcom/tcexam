@@ -107,7 +107,7 @@ function F_tsv_export_users()
             $tsv .= K_TAB . $m['user_ip'];
             $tsv .= K_TAB . $m['user_firstname'];
             $tsv .= K_TAB . $m['user_lastname'];
-            $tsv .= K_TAB . substr($m['user_birthdate'], 0, 10);
+            $tsv .= K_TAB . substr($m['user_birthdate'] ?? '', 0, 10);
             $tsv .= K_TAB . $m['user_birthplace'];
             $tsv .= K_TAB . $m['user_regnumber'];
             $tsv .= K_TAB . $m['user_ssn'];
