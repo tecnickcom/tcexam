@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -95,7 +95,7 @@ echo '<div class="gsoformbox">' . K_NEWLINE;
 echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_editor">' . K_NEWLINE;
 
 echo getFormRowTextInput('currentpassword', $l['w_current_password'], $l['h_password'], '', '', '', 255, false, false, true, '');
-echo getFormRowTextInput('newpassword', $l['w_new_password'], $l['h_password'], ' (' . $l['d_password_lenght'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true, '');
+echo getFormRowTextInput('newpassword', $l['w_new_password'], $l['h_password'], ' (' . $l['d_password_length'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true, '');
 echo getFormRowTextInput('newpassword_repeat', $l['w_new_password'], $l['h_password_repeat'], ' (' . $l['w_repeat'] . ')', '', '', 255, false, false, true, '');
 
 echo '<div class="row">' . K_NEWLINE;

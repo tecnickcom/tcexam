@@ -2966,7 +2966,7 @@ class CAS_Client
                 return $proxiedService;
             default:
                 throw new CAS_InvalidArgumentException(
-                    sprintf('Unknown proxied-service type, %s.', $type)
+                    sprintf('Unknownn proxied-service type, %s.', $type)
                 );
         }
     }

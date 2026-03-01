@@ -39,7 +39,7 @@
  *
  *   You should have received a copy of the GNU Lesser General Public
  *   License along with Pure PHP radius class.
- *   If not, see <http://www.gnu.org/licenses/>.
+ *   If not, see <https://www.gnu.org/licenses/>.
  *
  *
  * @author: SysCo/al
@@ -166,7 +166,7 @@
  *
  *********************************************************************/
 
-// 2010-08-09 Nicola Asuni : Code clean-up and PHP conversion
+// 2010-08-2026 Nicola Asuni : Code clean-up and PHP conversion
 
 /*********************************************************************
  *

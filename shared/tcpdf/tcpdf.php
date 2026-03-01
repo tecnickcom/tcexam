@@ -5,9 +5,9 @@
 // Begin       : 2002-08-03
 // Last Update : 2025-05-27
 // Author      : Nicola Asuni - Tecnick.com LTD - www.tecnick.com - info@tecnick.com
-// License     : GNU-LGPL v3 (http://www.gnu.org/copyleft/lesser.html)
+// License     : GNU-LGPL v3 (https://www.gnu.org/copyleft/lesser.html)
 // -------------------------------------------------------------------
-// Copyright (C) 2002-2025 Nicola Asuni - Tecnick.com LTD
+// Copyright (C) 2002-2026 Nicola Asuni - Tecnick.com LTD
 //
 // This file is part of TCPDF software library.
 //
@@ -1131,7 +1131,7 @@ class TCPDF {
 	protected $opencell = true;
 
 	/**
-	 * Array of files to embedd.
+	 * Array of files to embed.
 	 * @protected
 	 * @since 4.4.000 (2008-12-07)
 	 */
@@ -4259,7 +4259,7 @@ class TCPDF {
 	 * @param string $style Font style. Possible values are (case insensitive):<ul><li>empty string: regular (default)</li><li>B: bold</li><li>I: italic</li><li>BI or IB: bold italic</li></ul>
 	 * @param string $fontfile The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
 	 * @return array|false array containing the font data, or false in case of error.
-	 * @param mixed $subset if true embedd only a subset of the font (stores only the information related to the used characters); if false embedd full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
+	 * @param mixed $subset if true embed only a subset of the font (stores only the information related to the used characters); if false embed full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
 	 * @public
 	 * @since 1.5
 	 * @see SetFont(), setFontSubsetting()
@@ -4439,7 +4439,7 @@ class TCPDF {
 				$this->Error('All fonts must be embedded in PDF/A mode!');
 			}
 		} else {
-			$this->Error('Unknow font type: '.$type.'');
+			$this->Error('Unknown font type: '.$type.'');
 		}
 		// set name if unset
 		if (empty($name)) {
@@ -4529,7 +4529,7 @@ class TCPDF {
 	 * @param string $style Font style. Possible values are (case insensitive):<ul><li>empty string: regular</li><li>B: bold</li><li>I: italic</li><li>U: underline</li><li>D: line through</li><li>O: overline</li></ul> or any combination. The default value is regular. Bold and italic styles do not apply to Symbol and ZapfDingbats basic fonts or other fonts when not defined.
 	 * @param float|null $size Font size in points. The default value is the current size. If no size has been specified since the beginning of the document, the value taken is 12
 	 * @param string $fontfile The font definition file. By default, the name is built from the family and style, in lower case with no spaces.
-	 * @param mixed $subset if true embedd only a subset of the font (stores only the information related to the used characters); if false embedd full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
+	 * @param mixed $subset if true embed only a subset of the font (stores only the information related to the used characters); if false embed full font; if 'default' uses the default value set using setFontSubsetting(). This option is valid only for TrueTypeUnicode fonts. If you want to enable users to change the document, set this parameter to false. If you subset the font, the person who receives your PDF would need to have your same font in order to make changes to your PDF. The file size of the PDF would also be smaller because you are embedding only part of a font.
 	 * @param boolean $out if true output the font size command, otherwise only set the font properties.
 	 * @author Nicola Asuni
 	 * @public
@@ -6271,7 +6271,7 @@ class TCPDF {
 	 * @param array|null $cellpadding Internal cell padding, if empty uses default cell padding.
 	 * @param mixed $border Indicates if borders must be drawn around the cell. The value can be a number:<ul><li>0: no border (default)</li><li>1: frame</li></ul> or a string containing some or all of the following characters (in any order):<ul><li>L: left</li><li>T: top</li><li>R: right</li><li>B: bottom</li></ul> or an array of line styles for each border group - for example: array('LTRB' => array('width' => 2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)))
 	 * @return float Return the minimal height needed for multicell method for printing the $txt param.
-	 * @author Alexander Escalona Fern\E1ndez, Nicola Asuni
+	 * @author Alexander Escalona Fern\E1ndez,2026 Nicola Asuni
 	 * @public
 	 * @since 4.5.011
 	 */
@@ -6467,7 +6467,7 @@ class TCPDF {
 		// replacement for SHY character (minus symbol)
 		$shy_replacement = 45;
 		$shy_replacement_char = TCPDF_FONTS::unichr($shy_replacement, $this->isunicode);
-		// widht for SHY replacement
+		// width for SHY replacement
 		$shy_replacement_width = $this->GetCharWidth($shy_replacement);
 		// page width
 		$pw = $w = $this->w - $this->lMargin - $this->rMargin;
@@ -8935,7 +8935,7 @@ class TCPDF {
 			$this->_out('<< /Type /Encoding /BaseEncoding /WinAnsiEncoding /Differences ['.$diff.'] >>'."\n".'endobj');
 		}
 		foreach ($this->FontFiles as $file => $info) {
-			// search and get font file to embedd
+			// search and get font file to embed
 			$fontfile = TCPDF_FONTS::getFontFullPath($file, $info['fontdir']);
 			if (!TCPDF_STATIC::empty_string($fontfile)) {
 				$font = file_get_contents($fontfile);
@@ -9150,9 +9150,9 @@ class TCPDF {
 			$this->_newobj();
 			// Embed CIDToGIDMap
 			// A specification of the mapping from CIDs to glyph indices
-			// search and get CTG font file to embedd
+			// search and get CTG font file to embed
 			$ctgfile = strtolower($font['ctg']);
-			// search and get ctg font file to embedd
+			// search and get ctg font file to embed
 			$fontfile = TCPDF_FONTS::getFontFullPath($ctgfile, $fontdir);
 			if (TCPDF_STATIC::empty_string($fontfile)) {
 				$this->Error('Font file not found: '.$ctgfile);
@@ -9177,7 +9177,7 @@ class TCPDF {
 	 * A Type 0 CIDFont contains glyph descriptions based on the Adobe Type 1 font format
 	 * @param array $font font data
 	 * @protected
-	 * @author Andrew Whitehead, Nicola Asuni, Yukihiro Nakadaira
+	 * @author Andrew Whitehead,2026 Nicola Asuni, Yukihiro Nakadaira
 	 * @since 3.2.000 (2008-06-23)
 	 */
 	protected function _putcidfont0($font) {
@@ -12331,7 +12331,7 @@ class TCPDF {
 	 * @param int $head_style (0 = draw only arrowhead arms, 1 = draw closed arrowhead, but no fill, 2 = closed and filled arrowhead, 3 = filled arrowhead)
 	 * @param float $arm_size length of arrowhead arms
 	 * @param int $arm_angle angle between an arm and the shaft
-	 * @author Piotr Galecki, Nicola Asuni, Andy Meier
+	 * @author Piotr Galecki,2026 Nicola Asuni, Andy Meier
 	 * @since 4.6.018 (2009-07-10)
 	 */
 	public function Arrow($x0, $y0, $x1, $y1, $head_style=0, $arm_size=5, $arm_angle=15) {
@@ -12396,7 +12396,7 @@ class TCPDF {
 	 * @param float $x X position in user units of the destiantion on the selected page (default = -1 = current position;).
 	 * @return string|false Stripped named destination identifier or false in case of error.
 	 * @public
-	 * @author Christian Deligant, Nicola Asuni
+	 * @author Christian Deligant,2026 Nicola Asuni
 	 * @since 5.9.097 (2011-06-23)
 	 */
 	public function setDestination($name, $y=-1, $page='', $x=-1) {
@@ -12449,7 +12449,7 @@ class TCPDF {
 	/**
 	 * Insert Named Destinations.
 	 * @protected
-	 * @author Johannes G\FCntert, Nicola Asuni
+	 * @author Johannes G\FCntert,2026 Nicola Asuni
 	 * @since 5.9.098 (2011-06-23)
 	 */
 	protected function _putdests() {
@@ -12558,7 +12558,7 @@ class TCPDF {
 	/**
 	 * Create a bookmark PDF string.
 	 * @protected
-	 * @author Olivier Plathey, Nicola Asuni
+	 * @author Olivier Plathey,2026 Nicola Asuni
 	 * @since 2.1.002 (2008-02-12)
 	 */
 	protected function _putbookmarks() {
@@ -12684,7 +12684,7 @@ class TCPDF {
 	 * Adds a javascript
 	 * @param string $script Javascript code
 	 * @public
-	 * @author Johannes G\FCntert, Nicola Asuni
+	 * @author Johannes G\FCntert,2026 Nicola Asuni
 	 * @since 2.1.002 (2008-02-12)
 	 */
 	public function IncludeJS($script) {
@@ -12713,7 +12713,7 @@ class TCPDF {
 	/**
 	 * Create a javascript PDF string.
 	 * @protected
-	 * @author Johannes G\FCntert, Nicola Asuni
+	 * @author Johannes G\FCntert,2026 Nicola Asuni
 	 * @since 2.1.002 (2008-02-12)
 	 */
 	protected function _putjavascript() {
@@ -12771,7 +12771,7 @@ class TCPDF {
 	 * @param int $h height
 	 * @param array $prop javascript field properties. Possible values are described on official Javascript for Acrobat API reference.
 	 * @protected
-	 * @author Denis Van Nuffelen, Nicola Asuni
+	 * @author Denis Van Nuffelen,2026 Nicola Asuni
 	 * @since 2.1.002 (2008-02-12)
 	 */
 	protected function _addfield($type, $name, $x, $y, $w, $h, $prop) {
@@ -14504,7 +14504,7 @@ class TCPDF {
 	 * @param array $col1 first color (Grayscale, RGB or CMYK components).
 	 * @param array $col2 second color (Grayscale, RGB or CMYK components).
 	 * @param array $coords array of the form (x1, y1, x2, y2) which defines the gradient vector (see linear_gradient_coords.jpg). The default value is from left to right (x1=0, y1=0, x2=1, y2=0).
-	 * @author Andreas W\FCrmser, Nicola Asuni
+	 * @author Andreas W\FCrmser,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */
@@ -14522,7 +14522,7 @@ class TCPDF {
 	 * @param array $col1 first color (Grayscale, RGB or CMYK components).
 	 * @param array $col2 second color (Grayscale, RGB or CMYK components).
 	 * @param array $coords array of the form (fx, fy, cx, cy, r) where (fx, fy) is the starting point of the gradient with color1, (cx, cy) is the center of the circle with color2, and r is the radius of the circle (see radial_gradient_coords.jpg). (fx, fy) should be inside the circle, otherwise some areas will not be defined.
-	 * @author Andreas W\FCrmser, Nicola Asuni
+	 * @author Andreas W\FCrmser,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */
@@ -14545,7 +14545,7 @@ class TCPDF {
 	 * @param array $coords_min minimum value used by the coordinates. If a coordinate's value is smaller than this it will be cut to coords_min. default: 0
 	 * @param array $coords_max maximum value used by the coordinates. If a coordinate's value is greater than this it will be cut to coords_max. default: 1
 	 * @param boolean $antialias A flag indicating whether to filter the shading function to prevent aliasing artifacts.
-	 * @author Andreas W\FCrmser, Nicola Asuni
+	 * @author Andreas W\FCrmser,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */
@@ -14637,7 +14637,7 @@ class TCPDF {
 	 * @param float $y ordinate of the top left corner of the rectangle.
 	 * @param float $w width of the rectangle.
 	 * @param float $h height of the rectangle.
-	 * @author Andreas W\FCrmser, Nicola Asuni
+	 * @author Andreas W\FCrmser,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @protected
 	 */
@@ -14963,7 +14963,7 @@ class TCPDF {
 	 * @param string $style Style of rendering. See the getPathPaintOperator() function for more information.
 	 * @param float $cw indicates whether to go clockwise (default: true).
 	 * @param float $o origin of angles (0 for 3 o'clock, 90 for noon, 180 for 9 o'clock, 270 for 6 o'clock). Default: 90.
-	 * @author Maxime Delorme, Nicola Asuni
+	 * @author Maxime Delorme,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */
@@ -14984,7 +14984,7 @@ class TCPDF {
 	 * @param float $cw indicates whether to go clockwise.
 	 * @param float $o origin of angles (0 for 3 o'clock, 90 for noon, 180 for 9 o'clock, 270 for 6 o'clock).
 	 * @param integer $nc Number of curves used to draw a 90 degrees portion of arc.
-	 * @author Maxime Delorme, Nicola Asuni
+	 * @author Maxime Delorme,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */
@@ -15028,7 +15028,7 @@ class TCPDF {
 	 * @param mixed $border Indicates if borders must be drawn around the cell. The value can be a number:<ul><li>0: no border (default)</li><li>1: frame</li></ul> or a string containing some or all of the following characters (in any order):<ul><li>L: left</li><li>T: top</li><li>R: right</li><li>B: bottom</li></ul> or an array of line styles for each border group - for example: array('LTRB' => array('width' => 2, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0)))
 	 * @param boolean $fitonpage if true the image is resized to not exceed page dimensions.
 	 * @param boolean $fixoutvals if true remove values outside the bounding box.
-	 * @author Valentin Schmidt, Nicola Asuni
+	 * @author Valentin Schmidt,2026 Nicola Asuni
 	 * @since 3.1.000 (2008-06-09)
 	 * @public
 	 */

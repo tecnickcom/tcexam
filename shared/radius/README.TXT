@@ -81,4 +81,4 @@ GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with Pure PHP radius class.
-If not, see <http://www.gnu.org/licenses/>.
+If not, see <https://www.gnu.org/licenses/>.

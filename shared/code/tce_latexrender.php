@@ -37,7 +37,7 @@ require_once('../../shared/config/tce_latex.php');
  * Please check the following Website to obtain the original
  * source code: http://www.mayer.dial.pipex.com/tex.htm
  * @package com.tecnick.tcexam.shared
- * @authors Benjamin Zeiss, Nicola Asuni
+ * @authors Benjamin Zeiss,2026 Nicola Asuni
  */
 class LatexRender
 {
@@ -284,9 +284,9 @@ class LatexRender
 
     /**
      * Set size limit for input string.
-     * @param $string_length_limit (string) max lenght for LaTeX string.
+     * @param $string_length_limit (string) max length for LaTeX string.
      */
-    public function setMaxLenght($string_length_limit)
+    public function setMaxLength($string_length_limit)
     {
         $this->string_length_limit = $string_length_limit;
     }

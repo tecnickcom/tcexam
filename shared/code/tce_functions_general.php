@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -200,7 +200,7 @@ function F_replace_angulars($str)
  * Performs a multi-byte safe substr() operation based on number of characters.
  * @param $str (string) input string
  * @param $start (int) substring start index
- * @param $length (int) substring max lenght
+ * @param $length (int) substring max length
  * @return substring
  */
 function F_substr_utf8($str, $start, $length)

@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -1127,7 +1127,7 @@ echo getFormRowSelectBox('test_repeatable', $l['w_repeatable'], '', '', $test_re
 
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
-echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' (' . $l['d_password_lenght'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
+echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' (' . $l['d_password_length'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<br />' . K_NEWLINE;

@@ -6,7 +6,7 @@
 //
 // Description : Configuration file for HTTP Basic Auth
 //
-// Author: Matthias Wolf, Nicola Asuni
+// Author: Matthias Wolf,2026 Nicola Asuni
 //
 // (c) Copyright:
 //               Matthias Wolf
@@ -19,7 +19,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2010   Matthias Wolf - Freiwillige Feuerwehr München, Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2010   Matthias Wolf - Freiwillige Feuerwehr München,2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -31,7 +31,7 @@
  * If support for HTTP Basic Auth is enabled, TCExam trusts this mechanism and replicates any authenticated user into the tcexam database.
  * WARNING: On logout, TCExam automatically disable the HTTP Basic Authentication. To restore the HTTP Basic Authentication the user must clear the cache of the browser.
  * @package com.tecnick.tcexam.shared.cfg
- * @author Matthias Wolf, Nicola Asuni
+ * @author Matthias Wolf,2026 Nicola Asuni
  * @since 2010-09-16
  */
 

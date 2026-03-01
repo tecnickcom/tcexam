@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -45,8 +45,8 @@ echo '<div class="container">' . K_NEWLINE;
 echo '' . $l['d_tcexam_desc'] . '<br />' . K_NEWLINE;
 
 echo '<ul class="credits">' . K_NEWLINE;
-echo '<li><strong>' . $l['w_author'] . ':</strong> Nicola Asuni</li>' . K_NEWLINE;
-echo '<li><strong>Copyright:</strong><br /> (c) 2004-2025 Nicola Asuni - Tecnick.com LTD<br />' . K_NEWLINE;
+echo '<li><strong>' . $l['w_author'] . ':</strong>2026 Nicola Asuni</li>' . K_NEWLINE;
+echo '<li><strong>Copyright:</strong><br /> (c) 2004-2026 Nicola Asuni - Tecnick.com LTD<br />' . K_NEWLINE;
 echo '<a href="mailto:info@tecnick.com">info@tecnick.com</a> - ' . K_NEWLINE;
 echo '<a href="http://www.tecnick.com" title="' . $l['m_new_window_link'] . '">www.tecnick.com</a></li>' . K_NEWLINE;
 echo '<li><strong>' . $l['w_license'] . ':</strong> <a href="../../LICENSE.TXT" title="' . $l['m_new_window_link'] . '">LICENSE.TXT</a></li>' . K_NEWLINE;
@@ -67,7 +67,7 @@ Authors:<ul>
 <li>2004 - 2009 Andy Prevost
 </ul>
 Homepage: <a href="https://github.com/PHPMailer/PHPMailer/">https://github.com/PHPMailer/PHPMailer</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+License: <a href="https://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/phpmailer/<br /><br />
 </li>' . K_NEWLINE;
 
@@ -75,14 +75,14 @@ echo '<li><strong>The DHTML Calendar</strong><br />
 Calendar widget written in Javascript.<br />
 Author: Mihai Bazon (<a href="mailto:mihai_bazon@yahoo.com">mihai_bazon@yahoo.com</a>)<br />
 Homepage: <a href="http://dynarch.com/mishoo/" title="mishoo">http://dynarch.com/mishoo/</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+License: <a href="https://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/jscripts/jscalendar/<br /><br />
 </li>' . K_NEWLINE;
 
 echo '<li><strong>Javascript VirtualKeyboard</strong><br />
 Author: Ilya Lebedev (<a href="mailto:ilya@lebedev.net">ilya@lebedev.net</a>)<br />
 Homepage: <a href="http://debugger.ru/projects/virtualkeyboard" title="VirtualKeyboard">http://debugger.ru/projects/virtualkeyboard</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+License: <a href="https://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/jscripts/vk/<br /><br />
 </li>' . K_NEWLINE;
 
@@ -90,7 +90,7 @@ echo '<li><strong>Radius Class</strong><br />
 Radius client implementation in pure PHP.<br />
 Author: SysCo/al (<a href="mailto:developer@sysco.ch">developer@sysco.ch</a>)<br />
 Homepage: <a href="http://developer.sysco.ch/php/" title="sysco">http://developer.sysco.ch/php/</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+License: <a href="https://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/radius/<br /><br />
 </li>' . K_NEWLINE;
 
@@ -107,7 +107,7 @@ echo '<li><strong>TCPDF</strong><br />
 TCPDF library to generate PDF documents.<br />
 Author: Nicola Asuni<br />
 Homepage: <a href="https://tcpdf.org" title="TCPDF">https://tcpdf.org</a><br />
-License: <a href="http://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
+License: <a href="https://www.gnu.org/copyleft/lesser.html" title="GNU Lesser General Public License">LGPL (GNU LESSER GENERAL PUBLIC LICENSE)</a><br />
 Location: /shared/tcpdf/<br /><br />
 </li>' . K_NEWLINE;
 
@@ -122,8 +122,8 @@ All the original binary TTF font files have been renamed for compatibility with 
 The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).<br />
 The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.<br />
 For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919<br />
-Homepage: <a href="http://www.gnu.org/software/freefont/" title="GNU FreeFont">http://www.gnu.org/software/freefont/</a><br />
-License: <a href="http://www.gnu.org/licenses/gpl.html" title="GNU General Public License, version 3">GNU-GPLv3</a><br />
+Homepage: <a href="https://www.gnu.org/software/freefont/" title="GNU FreeFont">https://www.gnu.org/software/freefont/</a><br />
+License: <a href="https://www.gnu.org/licenses/gpl.html" title="GNU General Public License, version 3">GNU-GPLv3</a><br />
 <br />
 The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.<br />
 For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33<br />
@@ -132,7 +132,7 @@ License: <a href="http://dejavu-fonts.org/wiki/License" title="Bitstream License
 <br />
 The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).<br />
 Homepage: <a href="http://projects.arabeyes.org" title="Arabeyes.org">http://projects.arabeyes.org</a><br />
-License: <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="GNU General Public License, version 2">GNU-GPLv2</a><br />
+License: <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="GNU General Public License, version 2">GNU-GPLv2</a><br />
 
 
 </li>' . K_NEWLINE;

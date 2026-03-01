@@ -13093,7 +13093,7 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
       </tu>
       <tu tuid="m_mailerror_encoding" datatype="plaintext">
          <tuv xml:lang="EN">
-            <seg>Unknown encoding: </seg>
+            <seg>Unknownn encoding: </seg>
          </tuv>
          <tuv xml:lang="AR">
             <seg>ترميز غير معروف: </seg>
@@ -41597,7 +41597,7 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>نیا پاسورڈ</seg>
          </tuv>
       </tu>
-      <tu tuid="d_password_lenght" datatype="plaintext">
+      <tu tuid="d_password_length" datatype="plaintext">
          <tuv xml:lang="NL">
             <seg>at least 8 alphanumeric characters</seg>
          </tuv>

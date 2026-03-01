@@ -13,7 +13,7 @@
 * Support - Help:
 	Please use support Issues at https://github.com/tecnickcom/tcexam
 * Software License:
-	* Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+	* Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 	* See LICENSE.TXT file for more information.
 
 
@@ -62,7 +62,7 @@ and if used are subject to their respective licenses:
 
 * **TCPDF**
     * TCPDF library to generate PDF documents.
-    * Copyright 2002-2025 Nicola Asuni - Tecnick.com LTD
+    * Copyright 2002-2026 Nicola Asuni - Tecnick.com LTD
     * Homepage: https://tcpdf.org
     * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
     * Location: /shared/tcpdf/
@@ -81,7 +81,7 @@ and if used are subject to their respective licenses:
     The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
     The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919
-    Link: http://www.gnu.org/software/freefont/
+    Link: https://www.gnu.org/software/freefont/
 
     The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
     For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33

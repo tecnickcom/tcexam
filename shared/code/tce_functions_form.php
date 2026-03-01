@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -230,7 +230,7 @@ function F_getCSRFTokenField()
  * @param $tip (string) Help to be displayed on the right of the input field.
  * @param $value (string) Initial value.
  * @param $format (string) Regular expression to check the format of the field.
- * @param $maxlen (int) Maximum input lenght.
+ * @param $maxlen (int) Maximum input length.
  * @param $date (boolean) True if the field is a date input.
  * @param $datetime (boolean) True if the field is a date-time input.
  * @param $password (boolean) True if the field is a password.

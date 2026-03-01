@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 TCExam - Computer-Based Assessment Software
-Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 
 NOTE: TCExam name and logo are trademarks of Tecnick.com LTD
 and shall be used in accordance with accepted trademark
@@ -10,7 +10,7 @@ practice, including identification of trademark owner's name.
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://www.fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 

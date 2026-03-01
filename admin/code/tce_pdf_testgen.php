@@ -16,7 +16,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -138,7 +138,7 @@ $circle_shift = $circle_width + $line_width;
 $circle_half_width = ($circle_width / 2);
 $align_mark_color = [0, 0, 0];
 $align_mark_width = ($line_width * 7);
-$align_mark_lenght = ($line_width * 22);
+$align_mark_length = ($line_width * 22);
 $align_mark_shift = ($line_width * 8);
 $row_height = $circle_width + (8 * $line_width);
 $line_style = [
@@ -754,15 +754,15 @@ for ($item = 1; $item <= $test_num; ++$item) {
 
         // top alignment marks for columns
         $x = $start_x;
-        $pdf->Rect($x, $y, $align_mark_lenght, $align_mark_lenght, 'F', [], $align_mark_color);
-        $x += $align_mark_lenght + 9;
+        $pdf->Rect($x, $y, $align_mark_length, $align_mark_length, 'F', [], $align_mark_color);
+        $x += $align_mark_length + 9;
         $pdf->SetFont('helvetica', '', 10);
         for ($i = 0; $i < 12; ++$i) {
             // vertical alignment mark
             $x += $circle_shift;
-            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', [], $align_mark_color);
+            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_length, 'F', [], $align_mark_color);
             $x += $circle_shift;
-            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', [], $align_mark_color);
+            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_length, 'F', [], $align_mark_color);
             $x += $circle_shift;
         }
 
@@ -777,8 +777,8 @@ for ($item = 1; $item <= $test_num; ++$item) {
             // center of circles
             $cy = $y + $circle_half_width;
             // left alignment mark for row
-            $pdf->Rect($x, $y + $align_mark_shift, $align_mark_lenght, $align_mark_width, 'F', [], $align_mark_color);
-            $x += $align_mark_lenght;
+            $pdf->Rect($x, $y + $align_mark_shift, $align_mark_length, $align_mark_width, 'F', [], $align_mark_color);
+            $x += $align_mark_length;
             if ($current_question <= $num_questions) {
                 if ($r % 2 != 0) {
                     // row background
@@ -831,22 +831,22 @@ for ($item = 1; $item <= $test_num; ++$item) {
 
             $x += $circle_shift;
             // right alignment mark for row
-            $pdf->Rect($x, $y + $align_mark_shift, $align_mark_lenght, $align_mark_width, 'F', [], $align_mark_color);
+            $pdf->Rect($x, $y + $align_mark_shift, $align_mark_length, $align_mark_width, 'F', [], $align_mark_color);
             $y += $row_height;
         }
 
         // --------------------
 
         // bottom alignment marks for columns
-        $x = $start_x + $align_mark_lenght + 9;
+        $x = $start_x + $align_mark_length + 9;
         $y += $circle_half_width;
         $pdf->SetFont('helvetica', '', 10);
         for ($i = 0; $i < 12; ++$i) {
             // vertical alignment mark
             $x += $circle_shift;
-            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', [], $align_mark_color);
+            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_length, 'F', [], $align_mark_color);
             $x += $circle_shift;
-            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_lenght, 'F', [], $align_mark_color);
+            $pdf->Rect($x + $align_mark_shift, $y, $align_mark_width, $align_mark_length, 'F', [], $align_mark_color);
             $x += $circle_shift;
         }
 
