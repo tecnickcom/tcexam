@@ -1,3 +1,7 @@
+16.6.1 (2026-03-004)
+	- Update TCPDF.
+	- Sanitize XML fields.
+
 16.6.0 (2026-03-01)
 	- Update Session handlers (requires PHP 7+).
 	- Tydy up some code.

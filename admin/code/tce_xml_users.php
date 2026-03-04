@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_xml_users.php
 // Begin       : 2006-03-17
-// Last Update : 2023-11-30
+// Last Update : 2026-03-04
 //
 // Description : Functions to export users' accounts using
 //               XML or JSON format.
@@ -130,15 +130,15 @@ function F_xml_export_users()
             $xml .= '</password>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<email>';
-            $xml .= $ma['user_email'];
+            $xml .= F_text_to_xml($ma['user_email']);
             $xml .= '</email>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<regdate>';
-            $xml .= $ma['user_regdate'];
+            $xml .= F_text_to_xml($ma['user_regdate']);
             $xml .= '</regdate>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<ip>';
-            $xml .= $ma['user_ip'];
+            $xml .= F_text_to_xml($ma['user_ip']);
             $xml .= '</ip>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<firstname>';
@@ -150,7 +150,7 @@ function F_xml_export_users()
             $xml .= '</lastname>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<birthdate>';
-            $xml .= substr($ma['user_birthdate'] ?? '', 0, 10);
+            $xml .= F_text_to_xml(substr($ma['user_birthdate'] ?? '', 0, 10));
             $xml .= '</birthdate>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<birthplace>';
@@ -166,15 +166,15 @@ function F_xml_export_users()
             $xml .= '</ssn>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<level>';
-            $xml .= $ma['user_level'];
+            $xml .= F_text_to_xml($ma['user_level']);
             $xml .= '</level>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<verifycode>';
-            $xml .= $ma['user_verifycode'];
+            $xml .= F_text_to_xml($ma['user_verifycode']);
             $xml .= '</verifycode>' . K_NEWLINE;
 
             $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<otpkey>';
-            $xml .= $ma['user_otpkey'];
+            $xml .= F_text_to_xml($ma['user_otpkey']);
             $xml .= '</otpkey>' . K_NEWLINE;
 
             // add user's groups
@@ -186,7 +186,7 @@ function F_xml_export_users()
             if ($rg = F_db_query($sqlg, $db)) {
                 while ($mg = F_db_fetch_array($rg)) {
                     $xml .= K_TAB . K_TAB . K_TAB . K_TAB . '<group id="' . $mg['group_id'] . '">';
-                    $xml .= $mg['group_name'];
+                    $xml .= F_text_to_xml($mg['group_name']);
                     $xml .= '</group>' . K_NEWLINE;
                 }
             } else {
