@@ -78,7 +78,11 @@ a.tcecode:hover{
 
 a.white {
     color: #FFFFFF;
-    font-size: 5px;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 3px;
+    transition: all 0.2s ease;
 }
 
 a.white:visited {
@@ -87,6 +91,7 @@ a.white:visited {
 
 a.white:hover {
     color: #FFFFFF;
+    background: rgba(255,255,255,0.15);
 }
 
 a.xmlbutton:link, a.xmlbutton:visited {
@@ -289,8 +294,14 @@ div.message {
 /* W3C logos ------------ */
 div.minibutton {
     clear: both;
-    margin: 0px 0px 0px 0px;
+    margin: 12px 0;
+    padding: 6px 0;
     text-align: center;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
 }
 
 div.minibutton span.copyright {
@@ -965,3 +976,117 @@ span.accesskey {
     color:#006000 !important;
     text-align:right !important;
 }
+
+/* ===== MODERN VERTICAL MENU ===== */
+.vmenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 560px;
+}
+
+.vmenu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333333;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.vmenu-item:visited {
+    color: #333333;
+    text-decoration: none;
+}
+
+.vmenu-item:hover,
+.vmenu-item:focus {
+    border-color: #003399;
+    background: #F0F4FF;
+    box-shadow: 0 2px 8px rgba(0,51,153,0.12);
+    transform: translateX(4px);
+    text-decoration: none;
+    color: #003399;
+}
+
+.vmenu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #003399 0%, #336FCC 100%);
+    color: #FFFFFF;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.vmenu-item:hover .vmenu-icon {
+    background: linear-gradient(135deg, #002266 0%, #003399 100%);
+}
+
+.vmenu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.vmenu-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.vmenu-desc {
+    font-size: 12px;
+    color: #888888;
+    line-height: 1.3;
+}
+
+.vmenu-item:hover .vmenu-desc {
+    color: #555555;
+}
+
+.vmenu-arrow {
+    margin-left: auto;
+    font-size: 16px;
+    color: #CCCCCC;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.vmenu-item:hover .vmenu-arrow {
+    color: #003399;
+    transform: translateX(3px);
+}
+
+/* ===== MODERN MULTI-SELECT WIDGET ===== */
+.ms-widget { display:flex; gap:8px; align-items:flex-start; width:100%; }
+.ms-panel { flex:1; border:1px solid #CCCCCC; border-radius:6px; background:#FFFFFF; min-height:120px; max-height:200px; overflow-y:auto; padding:4px; }
+.ms-panel.ms-selected { border-color:#003399; background:#F0F4FF; }
+.ms-panel-title { font-size:11px; font-weight:600; color:#666666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; padding:2px 6px; }
+.ms-search { width:100%; padding:5px 8px; border:1px solid #DDDDDD; border-radius:4px; font-size:12px; margin-bottom:6px; box-sizing:border-box; outline:none; }
+.ms-search:focus { border-color:#003399; box-shadow:0 0 0 2px rgba(0,51,153,0.15); }
+.ms-item { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; margin:2px; border-radius:14px; font-size:12px; cursor:pointer; transition:all 0.15s ease; user-select:none; border:1px solid transparent; }
+.ms-item-available { background:#F0F0F0; color:#333333; }
+.ms-item-available:hover { background:#003399; color:#FFFFFF; }
+.ms-item-available.ms-unauthorized { text-decoration:line-through; opacity:0.6; }
+.ms-item-selected { background:#003399; color:#FFFFFF; }
+.ms-item-selected:hover { background:#CC3333; }
+.ms-item-selected::after { content:"\00d7"; font-size:14px; font-weight:bold; margin-left:2px; }
+.ms-item-selected.ms-unauthorized { text-decoration:line-through; opacity:0.7; }
+.ms-arrows { display:flex; flex-direction:column; gap:4px; justify-content:center; align-self:center; }
+.ms-arrows button { background:#E8E8E8; border:1px solid #CCCCCC; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:14px; line-height:1; }
+.ms-arrows button:hover { background:#003399; color:#FFFFFF; border-color:#003399; }
+.ms-empty { color:#999999; font-size:11px; font-style:italic; padding:8px; text-align:center; }
