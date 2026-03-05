@@ -15,7 +15,7 @@
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
+//    Copyright (C) 2004-2025 Nicola Asuni - Tecnick.com LTD
 //    See LICENSE.TXT file for more information.
 //============================================================+
 
@@ -73,6 +73,11 @@ if (isset($_REQUEST['user_level'])) {
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'user_name';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']);
+
+// get user groups from request only when form is submitted
+if (isset($menu_mode) && in_array($menu_mode, ['update', 'add'])) {
+    $user_groups = ! isset($_REQUEST['user_groups']) || empty($_REQUEST['user_groups']) ? [] : $_REQUEST['user_groups'];
+}
 
 switch ($menu_mode) { // process submitted data
     case 'delete':{
@@ -472,7 +477,7 @@ echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
 echo getFormRowTextInput('user_name', $l['w_username'], $l['h_login_name'], '', $user_name, '', 255, false, false, false);
 echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', $user_email, K_EMAIL_RE_PATTERN, 255, false, false, false);
-echo getFormRowTextInput('newpassword', $l['w_password'], $l['h_password'], ' (' . $l['d_password_length'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
+echo getFormRowTextInput('newpassword', $l['w_password'], $l['h_password'], ' (' . $l['d_password_lenght'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
 echo getFormRowTextInput('newpassword_repeat', $l['w_password'], $l['h_password_repeat'], ' (' . $l['w_repeat'] . ')', '', '', 255, false, false, true);
 echo getFormRowFixedValue('user_regdate', $l['w_regdate'], $l['h_regdate'], '', $user_regdate);
 echo getFormRowFixedValue('user_ip', $l['w_ip'], $l['h_ip'], '', $user_ip);

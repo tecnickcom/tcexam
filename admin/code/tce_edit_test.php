@@ -43,6 +43,8 @@ require_once('../../shared/code/tce_functions_auth_sql.php');
 require_once('tce_functions_user_select.php');
 require_once('tce_functions_test_select.php');
 
+$debug_groups = isset($_REQUEST['debug_groups']) && ((int) $_REQUEST['debug_groups'] === 1);
+
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'test_name,test_description,test_ip_range,test_duration_time,test_score_right';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'] . ',' . $l['w_description'] . ',' . $l['w_ip_range'] . ',' . $l['w_test_time'] . ',' . $l['w_score_right'], ENT_COMPAT, $l['a_meta_charset']);
@@ -61,6 +63,13 @@ if (! isset($_REQUEST['test_report_to_users']) || empty($_REQUEST['test_report_t
 }
 
 $subject_id = ! isset($_REQUEST['subject_id']) || empty($_REQUEST['subject_id']) ? [] : $_REQUEST['subject_id'];
+if (isset($menu_mode) && in_array($menu_mode, ['update', 'add'])) {
+    $user_groups = ! isset($_REQUEST['user_groups']) || empty($_REQUEST['user_groups']) ? [] : $_REQUEST['user_groups'];
+    $sslcerts = ! isset($_REQUEST['sslcerts']) || empty($_REQUEST['sslcerts']) ? [] : $_REQUEST['sslcerts'];
+} else {
+    $user_groups = [];
+    $sslcerts = [];
+}
 
 if (! isset($_REQUEST['tsubset_type']) || empty($_REQUEST['tsubset_type'])) {
     $tsubset_type = 0;
@@ -485,16 +494,8 @@ switch ($menu_mode) {
         }
 
         if ($formstatus = F_check_form_fields()) {
-            // check referential integrity (NOTE: mysql do not support "ON UPDATE" constraint)
-            if (! F_check_unique(K_TABLE_TEST_USER, 'testuser_test_id=' . $test_id . '')) {
-                F_print_error('WARNING', $l['m_update_restrict']);
-                $formstatus = false;
-                
-                break;
-            }
-
             // check if name is unique
-            if (! F_check_unique(K_TABLE_TESTS, "test_name='" . $test_name . "'", 'test_id', $test_id)) {
+            if (! F_check_unique(K_TABLE_TESTS, "test_name='" . F_escape_sql($db, $test_name) . "'", 'test_id', $test_id)) {
                 F_print_error('WARNING', $l['m_duplicate_name']);
                 $formstatus = false;
                 
@@ -540,52 +541,53 @@ switch ($menu_mode) {
 				WHERE test_id=' . $test_id . '';
             if (! $r = F_db_query($sql, $db)) {
                 F_display_db_error(false);
+                $formstatus = false;
             } else {
                 F_print_error('MESSAGE', $l['m_updated']);
-            }
+                
+                // delete previous groups
+                $sql = 'DELETE FROM ' . K_TABLE_TEST_GROUPS . '
+					WHERE tstgrp_test_id=' . $test_id . '';
+                if (! $r = F_db_query($sql, $db)) {
+                    F_display_db_error(false);
+                }
 
-            // delete previous groups
-            $sql = 'DELETE FROM ' . K_TABLE_TEST_GROUPS . '
-				WHERE tstgrp_test_id=' . $test_id . '';
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
-            }
-
-            // update authorized groups
-            if (! empty($user_groups)) {
-                foreach ($user_groups as $group_id) {
-                    $sql = 'INSERT INTO ' . K_TABLE_TEST_GROUPS . ' (
-						tstgrp_test_id,
-						tstgrp_group_id
-						) VALUES (
-						\'' . $test_id . '\',
-						\'' . (int) $group_id . '\'
-						)';
-                    if (! $r = F_db_query($sql, $db)) {
-                        F_display_db_error(false);
+                // update authorized groups
+                if (! empty($user_groups)) {
+                    foreach ($user_groups as $group_id) {
+                        $sql = 'INSERT INTO ' . K_TABLE_TEST_GROUPS . ' (
+							tstgrp_test_id,
+							tstgrp_group_id
+							) VALUES (
+							\'' . $test_id . '\',
+							\'' . (int) $group_id . '\'
+							)';
+                        if (! $r = F_db_query($sql, $db)) {
+                            F_display_db_error(false);
+                        }
                     }
                 }
-            }
 
-            // delete previous SSL certificates
-            $sql = 'DELETE FROM ' . K_TABLE_TEST_SSLCERTS . '
-				WHERE tstssl_test_id=' . $test_id . '';
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
-            }
+                // delete previous SSL certificates
+                $sql = 'DELETE FROM ' . K_TABLE_TEST_SSLCERTS . '
+					WHERE tstssl_test_id=' . $test_id . '';
+                if (! $r = F_db_query($sql, $db)) {
+                    F_display_db_error(false);
+                }
 
-            // update authorized SSL certificates
-            if (! empty($sslcerts)) {
-                foreach ($sslcerts as $ssl_id) {
-                    $sql = 'INSERT INTO ' . K_TABLE_TEST_SSLCERTS . ' (
-						tstssl_test_id,
-						tstssl_ssl_id
-						) VALUES (
-						\'' . $test_id . '\',
-						\'' . (int) $ssl_id . '\'
-						)';
-                    if (! $r = F_db_query($sql, $db)) {
-                        F_display_db_error(false);
+                // update authorized SSL certificates
+                if (! empty($sslcerts)) {
+                    foreach ($sslcerts as $ssl_id) {
+                        $sql = 'INSERT INTO ' . K_TABLE_TEST_SSLCERTS . ' (
+							tstssl_test_id,
+							tstssl_ssl_id
+							) VALUES (
+							\'' . $test_id . '\',
+							\'' . (int) $ssl_id . '\'
+							)';
+                        if (! $r = F_db_query($sql, $db)) {
+                            F_display_db_error(false);
+                        }
                     }
                 }
             }
@@ -910,6 +912,9 @@ echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
 echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_testeditor">' . K_NEWLINE;
+if ($debug_groups) {
+    echo '<input type="hidden" name="debug_groups" id="debug_groups" value="1" />' . K_NEWLINE;
+}
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -968,6 +973,59 @@ echo getFormRowTextInput('test_end_time', $l['w_time_end'], $l['w_time_end'] . '
 echo getFormRowTextInput('test_duration_time', $l['w_test_time'], $l['h_test_time'], '[' . $l['w_minutes'] . ']', $test_duration_time, '^([0-9]*)$', 20, false, false, false);
 echo getFormRowTextInput('test_ip_range', $l['w_ip_range'], $l['h_ip_range'], '', $test_ip_range, '^([0-9a-fA-F,\:\.\*-]*)$', 255, false, false, false);
 
+$selected_user_groups = [];
+if (! empty($user_groups)) {
+    $selected_user_groups = array_map('intval', $user_groups);
+} elseif (isset($test_id) && $test_id > 0) {
+    $sql = 'SELECT tstgrp_group_id FROM ' . K_TABLE_TEST_GROUPS . ' WHERE tstgrp_test_id=' . $test_id;
+    if ($r = F_db_query($sql, $db)) {
+        while ($m = F_db_fetch_array($r)) {
+            $selected_user_groups[] = (int) $m['tstgrp_group_id'];
+        }
+    } else {
+        F_display_db_error();
+    }
+}
+
+$selected_sslcerts = [];
+if (! empty($sslcerts)) {
+    $selected_sslcerts = array_map('intval', $sslcerts);
+} elseif (isset($test_id) && $test_id > 0) {
+    $sql = 'SELECT tstssl_ssl_id FROM ' . K_TABLE_TEST_SSLCERTS . ' WHERE tstssl_test_id=' . $test_id;
+    if ($r = F_db_query($sql, $db)) {
+        while ($m = F_db_fetch_array($r)) {
+            $selected_sslcerts[] = (int) $m['tstssl_ssl_id'];
+        }
+    } else {
+        F_display_db_error();
+    }
+}
+
+if ($debug_groups) {
+    echo '<div style="background:#f5f5f5;border:1px solid #888;padding:10px;margin:10px 0;font-family:monospace;font-size:12px;">';
+    echo '<strong>DEBUG GROUPS</strong><br />';
+    echo 'menu_mode: ' . htmlspecialchars((string) $menu_mode, ENT_NOQUOTES, $l['a_meta_charset']) . '<br />';
+    echo 'test_id: ' . (int) $test_id . '<br />';
+    echo 'request user_groups: ' . htmlspecialchars(implode(',', array_map('intval', (array) $user_groups)), ENT_NOQUOTES, $l['a_meta_charset']) . '<br />';
+    echo 'selected_user_groups: ' . htmlspecialchars(implode(',', $selected_user_groups), ENT_NOQUOTES, $l['a_meta_charset']) . '<br />';
+    echo 'request sslcerts: ' . htmlspecialchars(implode(',', array_map('intval', (array) $sslcerts)), ENT_NOQUOTES, $l['a_meta_charset']) . '<br />';
+    echo 'selected_sslcerts: ' . htmlspecialchars(implode(',', $selected_sslcerts), ENT_NOQUOTES, $l['a_meta_charset']) . '<br />';
+    echo '</div>';
+}
+
+$selected_user_groups_map = [];
+foreach ($selected_user_groups as $selected_group_id) {
+    $selected_user_groups_map[(int) $selected_group_id] = true;
+}
+
+$selected_sslcerts_map = [];
+foreach ($selected_sslcerts as $selected_ssl_id) {
+    $selected_sslcerts_map[(int) $selected_ssl_id] = true;
+}
+
+$debug_group_matches = 0;
+$debug_ssl_matches = 0;
+
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
 echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
@@ -978,8 +1036,12 @@ echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple"
 $sql = 'SELECT * FROM ' . K_TABLE_GROUPS . ' ORDER BY group_name';
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
+        $is_selected_group = isset($selected_user_groups_map[(int) $m['group_id']]);
+        if ($is_selected_group) {
+            ++$debug_group_matches;
+        }
         echo '<option value="' . $m['group_id'] . '"';
-        if (isset($test_id) && $test_id > 0 && F_isTestOnGroup($test_id, $m['group_id'])) {
+        if ($is_selected_group) {
             echo ' selected="selected"';
         }
 
@@ -1003,8 +1065,12 @@ echo '<select name="sslcerts[]" id="sslcerts" size="5" multiple="multiple">' . K
 $sql = 'SELECT * FROM ' . K_TABLE_SSLCERTS . ' ORDER BY ssl_name';
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
+        $is_selected_ssl = isset($selected_sslcerts_map[(int) $m['ssl_id']]);
+        if ($is_selected_ssl) {
+            ++$debug_ssl_matches;
+        }
         echo '<option value="' . $m['ssl_id'] . '"';
-        if (isset($test_id) && $test_id > 0 && F_isTestOnSSLCerts($test_id, $m['ssl_id'])) {
+        if ($is_selected_ssl) {
             echo ' selected="selected"';
         }
 
@@ -1018,6 +1084,13 @@ if ($r = F_db_query($sql, $db)) {
 echo '</select>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+if ($debug_groups) {
+    echo '<div style="background:#eef7ff;border:1px solid #3399ff;padding:8px;margin:6px 0;font-family:monospace;font-size:12px;">';
+    echo 'group options selected in render: ' . (int) $debug_group_matches . '<br />';
+    echo 'ssl options selected in render: ' . (int) $debug_ssl_matches . '<br />';
+    echo '</div>';
+}
 
 echo getFormRowTextInput('test_score_right', $l['w_score_right'], $l['h_score_right'], '', $test_score_right, '^([0-9\+\-]*)([\.]?)([0-9]*)$', 20, false, false, false);
 echo getFormRowTextInput('test_score_wrong', $l['w_score_wrong'], $l['h_score_wrong'], '', $test_score_wrong, '^([0-9\+\-]*)([\.]?)([0-9]*)$', 20, false, false, false);
@@ -1127,7 +1200,7 @@ echo getFormRowSelectBox('test_repeatable', $l['w_repeatable'], '', '', $test_re
 
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
-echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' (' . $l['d_password_length'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
+echo getFormRowTextInput('new_test_password', $l['w_password'], $l['h_test_password'], ' (' . $l['d_password_lenght'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<br />' . K_NEWLINE;
