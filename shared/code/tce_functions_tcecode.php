@@ -286,12 +286,17 @@ function F_latex_callback($matches)
                 if (($sts === false) || ($ret != 0)) {
                     $error = implode("\n", $out);
                 } else {
-                    $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
+                    $lateximg = $imgpath . '.' . K_LATEX_IMG_FORMAT;
+                    $imsize = (file_exists($lateximg) ? @getimagesize($lateximg) : false);
+                    if ($imsize === false) {
+                        $error = 'generated image not found';
+                    } else {
                     [$w, $h] = $imsize;
                     if (($w / $dr) > K_LATEX_MAX_WIDTH || ($h / $dr) > K_LATEX_MAX_HEIGHT) {
                         $error = 'image size exceed limits';
                     } else {
                         $imgurl = K_LATEX_PATH_PICTURE_HTTPD . $filename . '.' . K_LATEX_IMG_FORMAT;
+                    }
                     }
                 }
             }
@@ -318,8 +323,14 @@ function F_latex_callback($matches)
     ];
     $alt_latex = strtr($alt_latex, $replaceTable);
     // XHTML code for image
-    $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
-    [$w, $h] = $imsize;
+    $lateximg = $imgpath . '.' . K_LATEX_IMG_FORMAT;
+    $imsize = (file_exists($lateximg) ? @getimagesize($lateximg) : false);
+    if ($imsize !== false) {
+        [$w, $h] = $imsize;
+    } else {
+        $w = 0;
+        $h = 0;
+    }
 
     return '<img src="' . $imgurl . '" alt="' . $alt_latex . '" class="tcecode" width="' . round($w / $dr) . '" height="' . round($h / $dr) . '" />';
 }
@@ -406,7 +417,8 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
                 $htmlcode .= ' alt="image:' . $filename . '"';
             }
 
-            $imsize = @getimagesize(K_PATH_CACHE . $filename);
+            $imgpath = K_PATH_CACHE . $filename;
+            $imsize = (file_exists($imgpath) ? @getimagesize($imgpath) : false);
             if ($imsize !== false) {
                 [$pixw, $pixh] = $imsize;
                 if ($width <= 0 && $height <= 0) {
