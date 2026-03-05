@@ -20,6 +20,7 @@ phpunit.xml
 public/config/
 rector.php
 shared/config/
+cache/
 target
 vendor
 phpstan.neon
