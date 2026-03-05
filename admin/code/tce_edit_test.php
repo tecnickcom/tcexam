@@ -970,54 +970,143 @@ echo getFormRowTextInput('test_ip_range', $l['w_ip_range'], $l['h_ip_range'], ''
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_groups'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">' . K_NEWLINE;
-//$sql = F_user_group_select_sql();
+
+echo '<div id="groups_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="groups_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'] ?? 'Search', ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="groups_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="groups_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'groups\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'groups\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="groups_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="groups_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+echo '<div id="groups_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_GROUPS . ' ORDER BY group_name';
+$all_groups_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        echo '<option value="' . $m['group_id'] . '"';
-        if (isset($test_id) && $test_id > 0 && F_isTestOnGroup($test_id, $m['group_id'])) {
-            echo ' selected="selected"';
+        $gid = (int) $m['group_id'];
+        $is_sel = (isset($test_id) && $test_id > 0 && F_isTestOnGroup($test_id, $gid));
+        $all_groups_json[] = '{"id":' . $gid . ',"name":"' . addslashes($m['group_name']) . '","sel":' . ($is_sel ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="user_groups[]" value="' . $gid . '" />' . K_NEWLINE;
         }
-
-        echo '>' . htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+echo '</span></div>' . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="sslcerts">' . $l['w_sslcerts'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_sslcerts'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="sslcerts[]" id="sslcerts" size="5" multiple="multiple">' . K_NEWLINE;
+
+echo '<div id="ssl_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="ssl_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'] ?? 'Search', ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="ssl_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ssl_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'ssl\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'ssl\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="ssl_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ssl_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+echo '<div id="ssl_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_SSLCERTS . ' ORDER BY ssl_name';
+$all_ssl_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        echo '<option value="' . $m['ssl_id'] . '"';
-        if (isset($test_id) && $test_id > 0 && F_isTestOnSSLCerts($test_id, $m['ssl_id'])) {
-            echo ' selected="selected"';
+        $sid = (int) $m['ssl_id'];
+        $sname = $m['ssl_name'] . ' (' . substr($m['ssl_end_date'], 0, 10) . ')';
+        $is_sel = (isset($test_id) && $test_id > 0 && F_isTestOnSSLCerts($test_id, $sid));
+        $all_ssl_json[] = '{"id":' . $sid . ',"name":"' . addslashes($sname) . '","sel":' . ($is_sel ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="sslcerts[]" value="' . $sid . '" />' . K_NEWLINE;
         }
-
-        echo '>' . htmlspecialchars($m['ssl_name'] . ' (' . substr($m['ssl_end_date'], 0, 10) . ')', ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+echo '</span></div>' . K_NEWLINE;
+
+echo '<script type="text/javascript">
+//<![CDATA[
+var msData = {};
+msData["groups"] = {items: [' . implode(',', $all_groups_json) . '], hiddenName: "user_groups[]"};
+msData["ssl"] = {items: [' . implode(',', $all_ssl_json) . '], hiddenName: "sslcerts[]"};
+
+function msRender(key) {
+    var d = msData[key];
+    var searchVal = document.getElementById(key + "_search").value.toLowerCase();
+    var avail = document.getElementById(key + "_available_list");
+    var sel = document.getElementById(key + "_selected_list");
+    var hidden = document.getElementById(key + "_hidden_inputs");
+    avail.innerHTML = "";
+    sel.innerHTML = "";
+    hidden.innerHTML = "";
+    var hasAvail = false, hasSel = false;
+    for (var i = 0; i < d.items.length; i++) {
+        var item = d.items[i];
+        var el = document.createElement("span");
+        el.className = "ms-item " + (item.sel ? "ms-item-selected" : "ms-item-available");
+        el.textContent = item.name;
+        el.setAttribute("data-idx", i);
+        el.setAttribute("data-key", key);
+        el.onclick = function() {
+            var k = this.getAttribute("data-key");
+            var idx = parseInt(this.getAttribute("data-idx"));
+            msData[k].items[idx].sel = !msData[k].items[idx].sel;
+            msRender(k);
+        };
+        if (item.sel) {
+            sel.appendChild(el);
+            hasSel = true;
+            var inp = document.createElement("input");
+            inp.type = "hidden";
+            inp.name = d.hiddenName;
+            inp.value = item.id;
+            hidden.appendChild(inp);
+        } else {
+            if (searchVal === "" || item.name.toLowerCase().indexOf(searchVal) !== -1) {
+                avail.appendChild(el);
+                hasAvail = true;
+            }
+        }
+    }
+    if (!hasAvail) { avail.innerHTML = "<div class=\\"ms-empty\\">---</div>"; }
+    if (!hasSel) { sel.innerHTML = "<div class=\\"ms-empty\\">---</div>"; }
+}
+
+function msAddAll(key) {
+    var d = msData[key];
+    var s = document.getElementById(key + "_search").value.toLowerCase();
+    for (var i = 0; i < d.items.length; i++) {
+        if (!d.items[i].sel && (s === "" || d.items[i].name.toLowerCase().indexOf(s) !== -1)) {
+            d.items[i].sel = true;
+        }
+    }
+    msRender(key);
+}
+
+function msRemoveAll(key) {
+    for (var i = 0; i < msData[key].items.length; i++) {
+        msData[key].items[i].sel = false;
+    }
+    msRender(key);
+}
+
+document.getElementById("groups_search").onkeyup = function() { msRender("groups"); };
+document.getElementById("ssl_search").onkeyup = function() { msRender("ssl"); };
+msRender("groups");
+msRender("ssl");
+//]]>
+</script>' . K_NEWLINE;
 
 echo getFormRowTextInput('test_score_right', $l['w_score_right'], $l['h_score_right'], '', $test_score_right, '^([0-9\+\-]*)([\.]?)([0-9]*)$', 20, false, false, false);
 echo getFormRowTextInput('test_score_wrong', $l['w_score_wrong'], $l['h_score_wrong'], '', $test_score_wrong, '^([0-9\+\-]*)([\.]?)([0-9]*)$', 20, false, false, false);

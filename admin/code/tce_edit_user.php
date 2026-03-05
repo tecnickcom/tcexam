@@ -486,33 +486,109 @@ echo getFormRowTextInput('user_ssn', $l['w_fiscal_code'], $l['h_fiscal_code'], '
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_groups'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">' . K_NEWLINE;
+
+echo '<div id="ugroups_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="ugroups_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'] ?? 'Search', ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="ugroups_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ugroups_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'ugroups\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'ugroups\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="ugroups_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ugroups_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+echo '<div id="ugroups_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_GROUPS . ' ORDER BY group_name';
+$ugroups_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        echo '<option value="' . $m['group_id'] . '"';
-        if (! F_isAuthorizedEditorForGroup($m['group_id'])) {
-            echo ' style="text-decoration:line-through;"';
+        $gid = (int) $m['group_id'];
+        $is_auth = F_isAuthorizedEditorForGroup($gid);
+        $is_sel = F_isUserOnGroup($user_id, $gid);
+        $gname = ($is_sel ? '* ' : '') . $m['group_name'] . ($is_auth ? '' : ' ✗');
+        $ugroups_json[] = '{"id":' . $gid . ',"name":"' . addslashes($gname) . '","sel":' . ($is_sel ? 'true' : 'false') . ',"auth":' . ($is_auth ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="user_groups[]" value="' . $gid . '" />' . K_NEWLINE;
         }
-
-        if (F_isUserOnGroup($user_id, $m['group_id'])) {
-            echo ' selected="selected"';
-            $m['group_name'] = '* ' . $m['group_name'];
-        }
-
-        echo '>' . htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+echo '</span></div>' . K_NEWLINE;
+
+echo '<script type="text/javascript">
+//<![CDATA[
+var msData = {};
+msData["ugroups"] = {items: [' . implode(',', $ugroups_json) . '], hiddenName: "user_groups[]"};
+
+function msRender(key) {
+    var d = msData[key];
+    var searchVal = document.getElementById(key + "_search").value.toLowerCase();
+    var avail = document.getElementById(key + "_available_list");
+    var sel = document.getElementById(key + "_selected_list");
+    var hidden = document.getElementById(key + "_hidden_inputs");
+    avail.innerHTML = "";
+    sel.innerHTML = "";
+    hidden.innerHTML = "";
+    var hasAvail = false, hasSel = false;
+    for (var i = 0; i < d.items.length; i++) {
+        var item = d.items[i];
+        var el = document.createElement("span");
+        el.className = "ms-item " + (item.sel ? "ms-item-selected" : "ms-item-available");
+        if (item.auth === false) { el.style.textDecoration = "line-through"; el.style.opacity = "0.6"; }
+        el.textContent = item.name;
+        el.setAttribute("data-idx", i);
+        el.setAttribute("data-key", key);
+        el.onclick = function() {
+            var k = this.getAttribute("data-key");
+            var idx = parseInt(this.getAttribute("data-idx"));
+            msData[k].items[idx].sel = !msData[k].items[idx].sel;
+            msRender(k);
+        };
+        if (item.sel) {
+            sel.appendChild(el);
+            hasSel = true;
+            var inp = document.createElement("input");
+            inp.type = "hidden";
+            inp.name = d.hiddenName;
+            inp.value = item.id;
+            hidden.appendChild(inp);
+        } else {
+            if (searchVal === "" || item.name.toLowerCase().indexOf(searchVal) !== -1) {
+                avail.appendChild(el);
+                hasAvail = true;
+            }
+        }
+    }
+    if (!hasAvail) { avail.innerHTML = "<div class=\\"ms-empty\\">---</div>"; }
+    if (!hasSel) { sel.innerHTML = "<div class=\\"ms-empty\\">---</div>"; }
+}
+
+function msAddAll(key) {
+    var d = msData[key];
+    var s = document.getElementById(key + "_search").value.toLowerCase();
+    for (var i = 0; i < d.items.length; i++) {
+        if (!d.items[i].sel && (s === "" || d.items[i].name.toLowerCase().indexOf(s) !== -1)) {
+            d.items[i].sel = true;
+        }
+    }
+    msRender(key);
+}
+
+function msRemoveAll(key) {
+    for (var i = 0; i < msData[key].items.length; i++) {
+        msData[key].items[i].sel = false;
+    }
+    msRender(key);
+}
+
+document.getElementById("ugroups_search").onkeyup = function() { msRender("ugroups"); };
+msRender("ugroups");
+//]]>
+</script>' . K_NEWLINE;
 
 echo getFormRowTextInput('user_otpkey', $l['w_otpkey'], $l['h_otpkey'], '', $user_otpkey, '', 255, false, false, false);
 
