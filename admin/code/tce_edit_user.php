@@ -489,35 +489,136 @@ echo getFormRowTextInput('user_birthdate', $l['w_birth_date'], $l['h_birth_date'
 echo getFormRowTextInput('user_birthplace', $l['w_birth_place'], $l['h_birth_place'], '', $user_birthplace, '', 255, false, false, false);
 echo getFormRowTextInput('user_ssn', $l['w_fiscal_code'], $l['h_fiscal_code'], '', $user_ssn, '', 255, false, false, false);
 
+// --- Modern multi-select widget CSS ---
+echo '<style type="text/css">
+.ms-widget { display:flex; gap:8px; align-items:flex-start; width:100%; }
+.ms-panel { flex:1; border:1px solid #ccc; border-radius:6px; background:#fff; min-height:120px; max-height:200px; overflow-y:auto; padding:4px; }
+.ms-panel.ms-selected { border-color:#4a90d9; background:#f0f7ff; }
+.ms-panel-title { font-size:11px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; padding:2px 6px; }
+.ms-search { width:100%; padding:5px 8px; border:1px solid #ddd; border-radius:4px; font-size:12px; margin-bottom:6px; box-sizing:border-box; outline:none; }
+.ms-search:focus { border-color:#4a90d9; box-shadow:0 0 0 2px rgba(74,144,217,0.15); }
+.ms-item { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; margin:2px; border-radius:14px; font-size:12px; cursor:pointer; transition:all 0.15s ease; user-select:none; border:1px solid transparent; }
+.ms-item-available { background:#f0f0f0; color:#333; }
+.ms-item-available:hover { background:#4a90d9; color:#fff; }
+.ms-item-available.ms-unauthorized { text-decoration:line-through; opacity:0.6; }
+.ms-item-selected { background:#4a90d9; color:#fff; }
+.ms-item-selected:hover { background:#c0392b; }
+.ms-item-selected::after { content:"\00d7"; font-size:14px; font-weight:bold; margin-left:2px; }
+.ms-item-selected.ms-unauthorized { text-decoration:line-through; opacity:0.7; }
+.ms-arrows { display:flex; flex-direction:column; gap:4px; justify-content:center; align-self:center; }
+.ms-arrows button { background:#e8e8e8; border:1px solid #ccc; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:14px; line-height:1; }
+.ms-arrows button:hover { background:#4a90d9; color:#fff; border-color:#4a90d9; }
+.ms-empty { color:#999; font-size:11px; font-style:italic; padding:8px; text-align:center; }
+</style>' . K_NEWLINE;
+
+// --- Groups widget ---
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_groups'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">' . K_NEWLINE;
+
+echo '<div id="ugroups_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="ugroups_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'] ?? 'Search', ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="ugroups_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ugroups_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'ugroups\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'ugroups\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="ugroups_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ugroups_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+// hidden inputs + build JSON data
+echo '<div id="ugroups_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_GROUPS . ' ORDER BY group_name';
+$all_ugroups_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        echo '<option value="' . $m['group_id'] . '"';
-        if (! F_isAuthorizedEditorForGroup($m['group_id'])) {
-            echo ' style="text-decoration:line-through;"';
+        $gid = (int) $m['group_id'];
+        $gname = $m['group_name'];
+        $is_authorized = F_isAuthorizedEditorForGroup($gid);
+        $is_sel = F_isUserOnGroup($user_id, $gid);
+        $all_ugroups_json[] = '{"id":' . $gid . ',"name":"' . addslashes($gname) . '","sel":' . ($is_sel ? 'true' : 'false') . ',"auth":' . ($is_authorized ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="user_groups[]" value="' . $gid . '" />' . K_NEWLINE;
         }
-
-        if (F_isUserOnGroup($user_id, $m['group_id'])) {
-            echo ' selected="selected"';
-            $m['group_name'] = '* ' . $m['group_name'];
-        }
-
-        echo '>' . htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+echo '</span></div>' . K_NEWLINE;
+
+// --- JavaScript for modern multi-select ---
+echo '<script type="text/javascript">
+//<![CDATA[
+var msData = {};
+msData["ugroups"] = {items: [' . implode(',', $all_ugroups_json) . '], hiddenName: "user_groups[]"};
+
+function msRender(key) {
+    var d = msData[key];
+    var searchVal = document.getElementById(key + "_search").value.toLowerCase();
+    var avail = document.getElementById(key + "_available_list");
+    var sel = document.getElementById(key + "_selected_list");
+    var hidden = document.getElementById(key + "_hidden_inputs");
+    avail.innerHTML = "";
+    sel.innerHTML = "";
+    hidden.innerHTML = "";
+    var hasAvail = false, hasSel = false;
+    for (var i = 0; i < d.items.length; i++) {
+        var item = d.items[i];
+        var el = document.createElement("span");
+        var authClass = item.auth ? "" : " ms-unauthorized";
+        el.className = "ms-item " + (item.sel ? "ms-item-selected" : "ms-item-available") + authClass;
+        el.textContent = item.name;
+        el.setAttribute("data-idx", i);
+        el.setAttribute("data-key", key);
+        el.onclick = function() {
+            var k = this.getAttribute("data-key");
+            var idx = parseInt(this.getAttribute("data-idx"));
+            msData[k].items[idx].sel = !msData[k].items[idx].sel;
+            msRender(k);
+        };
+        if (item.sel) {
+            sel.appendChild(el);
+            hasSel = true;
+            var inp = document.createElement("input");
+            inp.type = "hidden";
+            inp.name = d.hiddenName;
+            inp.value = item.id;
+            hidden.appendChild(inp);
+        } else {
+            if (searchVal === "" || item.name.toLowerCase().indexOf(searchVal) !== -1) {
+                avail.appendChild(el);
+                hasAvail = true;
+            }
+        }
+    }
+    if (!hasAvail) { avail.innerHTML = "<div class=\"ms-empty\">---</div>"; }
+    if (!hasSel) { sel.innerHTML = "<div class=\"ms-empty\">---</div>"; }
+}
+
+function msAddAll(key) {
+    var d = msData[key];
+    var s = document.getElementById(key + "_search").value.toLowerCase();
+    for (var i = 0; i < d.items.length; i++) {
+        if (!d.items[i].sel && (s === "" || d.items[i].name.toLowerCase().indexOf(s) !== -1)) {
+            d.items[i].sel = true;
+        }
+    }
+    msRender(key);
+}
+
+function msRemoveAll(key) {
+    for (var i = 0; i < msData[key].items.length; i++) {
+        msData[key].items[i].sel = false;
+    }
+    msRender(key);
+}
+
+document.getElementById("ugroups_search").onkeyup = function() { msRender("ugroups"); };
+msRender("ugroups");
+//]]>
+</script>' . K_NEWLINE;
 
 echo getFormRowTextInput('user_otpkey', $l['w_otpkey'], $l['h_otpkey'], '', $user_otpkey, '', 255, false, false, false);
 
