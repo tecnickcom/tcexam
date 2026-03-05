@@ -40,13 +40,31 @@ require_once('../code/tce_page_header.php');
 
 echo '<div class="container">' . K_NEWLINE;
 
-// print submenu
-echo '<ul>' . K_NEWLINE;
-foreach ($menu['tce_menu_users.php']['sub'] as $link => $data) {
-    echo F_menu_link($link, $data, 1);
-}
+// Modern vertical menu with icons
+$user_icons = [
+    'tce_edit_user.php' => '&#128100;',
+    'tce_edit_group.php' => '&#128101;',
+    'tce_select_users.php' => '&#128269;',
+    'tce_show_online_users.php' => '&#127760;',
+    'tce_import_users.php' => '&#128228;',
+];
 
-echo '</ul>' . K_NEWLINE;
+echo '<div class="vmenu">' . K_NEWLINE;
+foreach ($menu['tce_menu_users.php']['sub'] as $link => $data) {
+    if (! $data['enabled'] || $_SESSION['session_user_level'] < $data['level']) {
+        continue;
+    }
+    $icon = isset($user_icons[$link]) ? $user_icons[$link] : '&#128196;';
+    echo '<a href="' . $data['link'] . '" class="vmenu-item" title="' . htmlspecialchars($data['title'], ENT_COMPAT, $l['a_meta_charset']) . '">' . K_NEWLINE;
+    echo '<span class="vmenu-icon">' . $icon . '</span>' . K_NEWLINE;
+    echo '<span class="vmenu-text">' . K_NEWLINE;
+    echo '<span class="vmenu-name">' . htmlspecialchars($data['name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</span>' . K_NEWLINE;
+    echo '<span class="vmenu-desc">' . htmlspecialchars($data['title'], ENT_NOQUOTES, $l['a_meta_charset']) . '</span>' . K_NEWLINE;
+    echo '</span>' . K_NEWLINE;
+    echo '<span class="vmenu-arrow">&rsaquo;</span>' . K_NEWLINE;
+    echo '</a>' . K_NEWLINE;
+}
+echo '</div>' . K_NEWLINE;
 
 //echo '<div class="pagehelp">'.$l['w_users'].'</div>'.K_NEWLINE;
 echo '</div>' . K_NEWLINE;
