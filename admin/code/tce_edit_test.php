@@ -1026,64 +1026,176 @@ foreach ($selected_sslcerts as $selected_ssl_id) {
 $debug_group_matches = 0;
 $debug_ssl_matches = 0;
 
+// --- Modern multi-select widget CSS ---
+echo '<style type="text/css">
+.ms-widget { display:flex; gap:8px; align-items:flex-start; width:100%; }
+.ms-panel { flex:1; border:1px solid #ccc; border-radius:6px; background:#fff; min-height:120px; max-height:200px; overflow-y:auto; padding:4px; }
+.ms-panel.ms-selected { border-color:#4a90d9; background:#f0f7ff; }
+.ms-panel-title { font-size:11px; font-weight:600; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; padding:2px 6px; }
+.ms-search { width:100%; padding:5px 8px; border:1px solid #ddd; border-radius:4px; font-size:12px; margin-bottom:6px; box-sizing:border-box; outline:none; }
+.ms-search:focus { border-color:#4a90d9; box-shadow:0 0 0 2px rgba(74,144,217,0.15); }
+.ms-item { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; margin:2px; border-radius:14px; font-size:12px; cursor:pointer; transition:all 0.15s ease; user-select:none; border:1px solid transparent; }
+.ms-item-available { background:#f0f0f0; color:#333; }
+.ms-item-available:hover { background:#4a90d9; color:#fff; }
+.ms-item-selected { background:#4a90d9; color:#fff; }
+.ms-item-selected:hover { background:#c0392b; }
+.ms-item-selected::after { content:"\00d7"; font-size:14px; font-weight:bold; margin-left:2px; }
+.ms-arrows { display:flex; flex-direction:column; gap:4px; justify-content:center; align-self:center; }
+.ms-arrows button { background:#e8e8e8; border:1px solid #ccc; border-radius:4px; padding:4px 8px; cursor:pointer; font-size:14px; line-height:1; }
+.ms-arrows button:hover { background:#4a90d9; color:#fff; border-color:#4a90d9; }
+.ms-empty { color:#999; font-size:11px; font-style:italic; padding:8px; text-align:center; }
+.ms-container { margin-bottom:2px; }
+.ms-container label.ms-label { display:block; font-size:12px; font-weight:600; color:#555; margin-bottom:4px; }
+</style>' . K_NEWLINE;
+
+// --- Groups widget ---
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_groups'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">' . K_NEWLINE;
-//$sql = F_user_group_select_sql();
+
+echo '<div class="ms-container" id="groups_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="groups_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'], ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="groups_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="groups_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'groups\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'groups\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="groups_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="groups_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+// hidden inputs container
+echo '<div id="groups_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_GROUPS . ' ORDER BY group_name';
+$all_groups_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        $is_selected_group = isset($selected_user_groups_map[(int) $m['group_id']]);
-        if ($is_selected_group) {
-            ++$debug_group_matches;
+        $gid = (int) $m['group_id'];
+        $gname = htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']);
+        $is_sel = isset($selected_user_groups_map[$gid]);
+        if ($is_sel) { ++$debug_group_matches; }
+        $all_groups_json[] = '{"id":' . $gid . ',"name":"' . addslashes($m['group_name']) . '","sel":' . ($is_sel ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="user_groups[]" value="' . $gid . '" />' . K_NEWLINE;
         }
-        echo '<option value="' . $m['group_id'] . '"';
-        if ($is_selected_group) {
-            echo ' selected="selected"';
-        }
-
-        echo '>' . htmlspecialchars($m['group_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
+echo '</span></div>' . K_NEWLINE;
+
+// --- SSL Certs widget ---
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
-echo '<label for="sslcerts">' . $l['w_sslcerts'] . '</label>' . K_NEWLINE;
+echo '<label>' . $l['w_sslcerts'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="sslcerts[]" id="sslcerts" size="5" multiple="multiple">' . K_NEWLINE;
+
+echo '<div class="ms-container" id="ssl_container">' . K_NEWLINE;
+echo '<input type="text" class="ms-search" id="ssl_search" placeholder="&#128269; ' . htmlspecialchars($l['w_search'], ENT_COMPAT, $l['a_meta_charset']) . '..." />' . K_NEWLINE;
+echo '<div class="ms-widget">' . K_NEWLINE;
+echo '<div class="ms-panel" id="ssl_available"><div class="ms-panel-title">' . htmlspecialchars($l['w_available'] ?? 'Available', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ssl_available_list"></div></div>' . K_NEWLINE;
+echo '<div class="ms-arrows"><button type="button" onclick="msAddAll(\'ssl\')" title="Add all">&raquo;</button><button type="button" onclick="msRemoveAll(\'ssl\')" title="Remove all">&laquo;</button></div>' . K_NEWLINE;
+echo '<div class="ms-panel ms-selected" id="ssl_selected"><div class="ms-panel-title">' . htmlspecialchars($l['w_selected'] ?? 'Selected', ENT_NOQUOTES, $l['a_meta_charset']) . '</div><div id="ssl_selected_list"></div></div>' . K_NEWLINE;
+echo '</div></div>' . K_NEWLINE;
+
+echo '<div id="ssl_hidden_inputs">' . K_NEWLINE;
 $sql = 'SELECT * FROM ' . K_TABLE_SSLCERTS . ' ORDER BY ssl_name';
+$all_ssl_json = [];
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
-        $is_selected_ssl = isset($selected_sslcerts_map[(int) $m['ssl_id']]);
-        if ($is_selected_ssl) {
-            ++$debug_ssl_matches;
+        $sid = (int) $m['ssl_id'];
+        $sname = $m['ssl_name'] . ' (' . substr($m['ssl_end_date'], 0, 10) . ')';
+        $is_sel = isset($selected_sslcerts_map[$sid]);
+        if ($is_sel) { ++$debug_ssl_matches; }
+        $all_ssl_json[] = '{"id":' . $sid . ',"name":"' . addslashes($sname) . '","sel":' . ($is_sel ? 'true' : 'false') . '}';
+        if ($is_sel) {
+            echo '<input type="hidden" name="sslcerts[]" value="' . $sid . '" />' . K_NEWLINE;
         }
-        echo '<option value="' . $m['ssl_id'] . '"';
-        if ($is_selected_ssl) {
-            echo ' selected="selected"';
-        }
-
-        echo '>' . htmlspecialchars($m['ssl_name'] . ' (' . substr($m['ssl_end_date'], 0, 10) . ')', ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
     }
 } else {
-    echo '</select></span></div>' . K_NEWLINE;
     F_display_db_error();
 }
-
-echo '</select>' . K_NEWLINE;
-echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
+
+echo '</span></div>' . K_NEWLINE;
+
+// --- JavaScript for modern multi-select ---
+echo '<script type="text/javascript">
+//<![CDATA[
+var msData = {};
+
+msData["groups"] = {items: [' . implode(',', $all_groups_json) . '], hiddenName: "user_groups[]"};
+msData["ssl"] = {items: [' . implode(',', $all_ssl_json) . '], hiddenName: "sslcerts[]"};
+
+function msRender(key) {
+    var d = msData[key];
+    var searchVal = document.getElementById(key + "_search").value.toLowerCase();
+    var avail = document.getElementById(key + "_available_list");
+    var sel = document.getElementById(key + "_selected_list");
+    var hidden = document.getElementById(key + "_hidden_inputs");
+    avail.innerHTML = "";
+    sel.innerHTML = "";
+    hidden.innerHTML = "";
+    var hasAvail = false, hasSel = false;
+    for (var i = 0; i < d.items.length; i++) {
+        var item = d.items[i];
+        var el = document.createElement("span");
+        el.className = "ms-item " + (item.sel ? "ms-item-selected" : "ms-item-available");
+        el.textContent = item.name;
+        el.setAttribute("data-idx", i);
+        el.setAttribute("data-key", key);
+        el.onclick = function() {
+            var k = this.getAttribute("data-key");
+            var idx = parseInt(this.getAttribute("data-idx"));
+            msData[k].items[idx].sel = !msData[k].items[idx].sel;
+            msRender(k);
+        };
+        if (item.sel) {
+            sel.appendChild(el);
+            hasSel = true;
+            var inp = document.createElement("input");
+            inp.type = "hidden";
+            inp.name = d.hiddenName;
+            inp.value = item.id;
+            hidden.appendChild(inp);
+        } else {
+            if (searchVal === "" || item.name.toLowerCase().indexOf(searchVal) !== -1) {
+                avail.appendChild(el);
+                hasAvail = true;
+            }
+        }
+    }
+    if (!hasAvail) { avail.innerHTML = "<div class=\"ms-empty\">---</div>"; }
+    if (!hasSel) { sel.innerHTML = "<div class=\"ms-empty\">---</div>"; }
+}
+
+function msAddAll(key) {
+    var d = msData[key];
+    var s = document.getElementById(key + "_search").value.toLowerCase();
+    for (var i = 0; i < d.items.length; i++) {
+        if (!d.items[i].sel && (s === "" || d.items[i].name.toLowerCase().indexOf(s) !== -1)) {
+            d.items[i].sel = true;
+        }
+    }
+    msRender(key);
+}
+
+function msRemoveAll(key) {
+    for (var i = 0; i < msData[key].items.length; i++) {
+        msData[key].items[i].sel = false;
+    }
+    msRender(key);
+}
+
+document.getElementById("groups_search").onkeyup = function() { msRender("groups"); };
+document.getElementById("ssl_search").onkeyup = function() { msRender("ssl"); };
+
+msRender("groups");
+msRender("ssl");
+//]]>
+</script>' . K_NEWLINE;
 
 if ($debug_groups) {
     echo '<div style="background:#eef7ff;border:1px solid #3399ff;padding:8px;margin:6px 0;font-family:monospace;font-size:12px;">';
