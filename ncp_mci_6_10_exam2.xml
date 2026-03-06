@@ -1,0 +1,2584 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tcexamquestions version="16.6.1">
+	<header lang="en" date="2026-03-06 15:00:00">
+	</header>
+	<body>
+		<module>
+			<name>Nutanix NCP-MCI 6.10</name>
+			<enabled>true</enabled>
+			<subject>
+				<name>Examen 2</name>
+				<description></description>
+				<enabled>true</enabled>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>1</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator receives an alert in Prism stating: "Storage container &lt;container_name&gt; on cluster &lt;cluster_name&gt; will run out of storage resources in approximately 1 day." However, the cluster has plenty of available space remaining. What configuration setting is causing the container to run out of space while the cluster has space remaining?</description>
+					<explanation>Reserved Capacity limits how much space a specific container can use, even if the cluster has more space available.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Advertised Capacity is set too low</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Reserved Capacity is set too high</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Compression is set too low</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Replication Factor is set too high</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>2</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is responsible for Nutanix DR configuration and testing. The administrator experiences a Recovery Plan Failure for a cross hypervisor (ESXi to AHV) DR Test. The guest VMs do not recover at the DR location. Which configuration is required for a successful event?</description>
+					<explanation>For cross-hypervisor DR (ESXi to AHV), Nutanix Guest Tools (NGT) must be installed on the source VMs to ensure proper guest customization and recovery.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Utilize delta disks</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Deploy Legacy BIOS boot on hosts within the cluster</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Use raw device mappings</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Guest Tools (NGT) must be installed on source guest VMs</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>3</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What is supported for creating a VM Template in Nutanix?</description>
+					<explanation>VM Templates in Nutanix require VMs with disks located on RF2 containers.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>VM is protected by Protection Domain-based DR</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>VM is an agent or a Prism Central VM</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>VM has disks located on RF2 containers</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>VM runs on the ESXi hypervisor</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>4</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is experiencing storage performance issues on a Windows Server 2019 VM with the below configuration: vCPU: 1, VRAM: 8 GB, vSCSI: VirtIO SCSI Controller, vDisk: 2 (100 GB, 250 GB), vNIC: VirtIO Fast Ethernet. The AHV cluster is healthy, and other Windows VMs are performing well. Which configuration change should be reviewed to enhance VM performance?</description>
+					<explanation>Increasing the number of vCPUs can improve VM performance, especially when storage operations are CPU-bound with only 1 vCPU allocated.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Add a second virtual storage controller (vSCSI)</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Enable Balance-TCP on bridge (br0)</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Increase Controller VM (CVM) resources</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Increase the VM's number of vCPUs</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>5</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>In a five-node Nutanix cluster, an administrator noticed that three VMs are consuming too many resources on a single host, but ADS is not able to migrate these VMs. What reason describes what is preventing ADS from migrating these VMs?</description>
+					<explanation>VMs using GPU pass-through cannot be live migrated by ADS because the GPU hardware is physically tied to the host.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>VMs use a Volume Group</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>VMs use GPU pass-through</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>VM-VM anti-affinity policy is set</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>VMs use external Network Attached Storage</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>6</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>How can just the checks that previously did not pass be executed again to confirm they are all resolved?</description>
+					<explanation>The "Only Failed And Warning Checks" option re-runs only the checks that previously failed or had warnings.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Run LCM Pre-Upgrade to trigger NCC Checks</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Run ncc health checks run_all</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Select Run Check for each check worked</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Select Only Failed And Warning Checks</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>7</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>For dark site Nutanix clusters, what should be downloaded prior to running an LCM Inventory or updates?</description>
+					<explanation>The Nutanix Compatibility Bundle is required for dark site clusters before running LCM inventory or updates.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Foundation</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Compatibility Bundle</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Prism Central</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Foundation Platform</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>8</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>How should an administrator verify cluster protection from potential data loss due to a component failure?</description>
+					<explanation>The Data Resiliency Status widget in Prism shows the cluster's ability to tolerate component failures.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Select the gear icon and then select Pulse</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Click on Home and then Alerts</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Look at the Data Resiliency Status widget</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Navigate to the Health dashboard</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>9</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which Nutanix offering allows for extending an on-prem datacenter into the public cloud?</description>
+					<explanation>Nutanix Cloud Clusters (NC2) allows extending on-premises datacenters into the public cloud.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Cloud Security</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Cloud Clusters</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Kubernetes Engine</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Data Services</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>10</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What must be enabled when creating a VM to enable Windows Defender Credential Guard?</description>
+					<explanation>UEFI boot mode is required for Windows Defender Credential Guard, as it depends on Secure Boot capabilities.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Live Migration</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>UEFI</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>HA</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Legacy BIOS</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>11</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which feature should be enabled to prevent password access to the CVM for both the nutanix and admin user accounts?</description>
+					<explanation>Cluster Lockdown disables password-based SSH access to CVMs and requires key-based authentication.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Cluster lockdown</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>STIG</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>RBAC Policy on PC</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Data-at-Rest Encryption</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>12</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What license type is required to license a new AOS-based cluster with no add-on packages via Nutanix Cloud Platform Package Licensing?</description>
+					<explanation>Nutanix Cloud Infrastructure (NCI) is the base license required for AOS-based clusters.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Cloud Manager (NCM)</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Cloud Infrastructure (NCI)</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Unified Storage (NUS)</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Nutanix Database Service (NDB)</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>13</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>When multiple Alert policies are applied to an entity, which will take precedence?</description>
+					<explanation>A policy applied to a specific entity type takes precedence over broader policies.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Policy applied to a specific entity type.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Policy applied to all entities of an entity type.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Policy applied to an entity type in a category.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Policy applied to an entity type in a cluster.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>1</difficulty>
+					<position>14</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Prism Central will be installed manually on an AHV cluster. Which three disk images must be downloaded from the portal for the Prism Central VM?</description>
+					<explanation>The three disk images required for manual Prism Central deployment are boot, home, and data.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>var</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>tmp</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>boot</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>home</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>5</position>
+						<keyboard_key></keyboard_key>
+						<description>data</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>15</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which data savings technique utilizes stripes and parity calculation in a Nutanix cluster?</description>
+					<explanation>Erasure coding uses stripes and parity calculations to provide data protection with less storage overhead than replication.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Compression</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Parity strip</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Erasure coding</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Deduplication</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>16</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What is the function of the virbr0 bridge on AHV?</description>
+					<explanation>The virbr0 bridge carries storage communication between the guest VMs and the CVM on the internal 192.168.5.0/24 network.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>To carry all traffic between the user VMs and the upstream network.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>To carry management and storage communication between user VMs and the CVM.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>To carry management and storage communication between user VMs and AHV host.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>To carry storage communication between the guest VMs and the CVM.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>17</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>How should an administrator enable secure access to Volumes using a password?</description>
+					<explanation>CHAP (Challenge-Handshake Authentication Protocol) is used to secure iSCSI access to Nutanix Volumes.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>iSER</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>CHAP</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>SAML</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>LDAP</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>2</difficulty>
+					<position>18</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator logs in to Prism Element, goes to the Network Visualization view, and sees the output shown in the exhibit. Which three steps must the administrator take to increase throughput to the host?</description>
+					<explanation>To increase throughput: connect 10Gb interfaces to the physical switch, remove 1Gb interfaces from the default bond, and change the bond mode to balance-slb or balance-tcp to take advantage of multiple links.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Change the VLAN ID to a higher priority ID</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Connect the 10Gb interfaces to the physical switch</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Remove any 1Gb interfaces still connected from the default bond</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Change the bond mode to balance-slb or balance-tcp</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>5</position>
+						<keyboard_key></keyboard_key>
+						<description>Add a new switch to the network and connect 1Gb interfaces to it</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>19</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is configuring data protection and DR for a multi-tier application. All VMs must be protected at the same time. What must the administrator do to meet this requirement?</description>
+					<explanation>A consistency group ensures all VMs in the application are snapshotted at the same point in time.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Create a consistency group for each VM with identical schedules.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Create a consistency group for the application and place all VMs in it.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Create a protection domain for the application and select auto-protect related entities.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Create a protection domain for each VM with identical schedules.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>20</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>A company is evaluating Nutanix Disaster Recovery (DR) to protect multiple business-critical applications. Some applications are built using a 3-tier architecture and have interdependencies. After failover, the VM's static IP address is retained, but DNS configuration is lost. How should an administrator proceed to resolve this issue?</description>
+					<explanation>Custom in-guest scripts can be used to preserve DNS configuration during failover when static IP is retained but DNS settings are lost.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure Self-Service Restore.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Create custom in-guest scripts to preserve the statically assigned DNS IP addresses.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Install Network Manager command-line tool (ncli) in the protected Windows VMs.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure a Protection Domain.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>21</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>If an administrator creates a report with no retention policy configured, how many instances of the report are retained by default?</description>
+					<explanation>By default, Prism Central retains 10 instances of a report when no retention policy is configured.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>5</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>10</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>15</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>20</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>22</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is trying to delete a protected snapshot but is unable to do so. What is the most likely cause?</description>
+					<explanation>An approval policy that was denied prevents the administrator from deleting the protected snapshot.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>There is an active recovery occurring at that time.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Ransomware has encrypted the snapshot.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>There is an approval policy that was denied.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>The snapshot has been corrupted.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>23</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is preparing for a firmware upgrade on a host and wants to manually migrate VMs before executing the LCM upgrade. However, one VM is unable to migrate while others migrate successfully. Which action would fix the issue?</description>
+					<explanation>Agent VMs are pinned to a host and cannot be live migrated. Disabling the Agent VM setting allows migration.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Enable Acropolis Dynamic Scheduling (ADS) at the cluster level.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Update Link Layer Discovery Protocol (LLDP).</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Disable Agent VM within the VM configuration options.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure backplane port groups that are assigned to the CVM.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>24</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator wants to live-migrate a vGPU-enabled VM from one host to another within the same cluster. What requirements must be met before initiating the migration?</description>
+					<explanation>The target host must have sufficient resources (including an available compatible vGPU profile) to support the VM.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>The target host has sufficient resources to support the VM.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>The vGPU profile needs to be changed.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>The VM must be configured as an agent VM.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>The host affinity for the VM must be set to a specific host.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>25</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator wants to ensure that user VMs on AHV hosts can take advantage of bandwidth beyond a single adapter in a bond. Which uplink Bond Type should the administrator configure to accomplish this?</description>
+					<explanation>Active-Active bond mode distributes traffic across all links, providing bandwidth beyond a single adapter.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>No Uplink Bond</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Active-Active</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Active-Active with MAC pinning</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Active-Backup</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>26</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator configured a remote site for Protection Domain replication, but network performance and stability are impacted. How can the remote site configuration be adjusted to fix the issue?</description>
+					<explanation>A Bandwidth Throttling Policy limits the bandwidth used by replication to prevent impact on other network traffic.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure Network Address Translation (NAT) between the two Nutanix clusters.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure the Protection Domain with many-to-many replication.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure a Bandwidth Throttling Policy.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure the remote Cluster VIP as a proxy.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>27</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is configuring Protection Policies to replicate VMs to a Nutanix Cloud Cluster (NC2) over the internet. To comply with an organizational security policy, data sent via the internet must be encrypted. How should data be protected during transmission?</description>
+					<explanation>Data-in-Transit Encryption encrypts replication data as it travels over the network/internet.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure Data on a self-encrypting drive.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure VMs to use UEFI Secure Boot.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Enable Data-at-Rest Encryption.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Enable Data-in-Transit Encryption.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>28</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Due to application requirements, an administrator needs to support a multicast configuration in an AHV cluster. Which AHV feature can be used to optimize network traffic so that multicast traffic is only forwarded to the VMs that need to receive it?</description>
+					<explanation>IGMP Snooping optimizes multicast traffic by forwarding it only to VMs that have joined the multicast group.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>LACP</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>UDP</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>IGMP Snooping</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Network Segmentation</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>29</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What feature allows receiving a weekly message about infrastructure performance summary?</description>
+					<explanation>Intelligent Operations Reports provide weekly summaries about infrastructure performance.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Admin Center Life Cycle Manager</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Prism Central Syslog</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Infrastructure VMs List</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Intelligent Operations Reports</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>30</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which storage attributes do Storage Policies manage?</description>
+					<explanation>Storage Policies manage Replication Factor and Encryption settings.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Storage Containers and Volume Groups</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Replication Factor and Encryption</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Shares and Object Stores</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Data Protection and Security</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>31</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator has been tasked with justifying why Nutanix Disaster Recovery was chosen for a multi-tier application spanning multiple business units. What is the most efficient way to organize and manage the workloads?</description>
+					<explanation>Categories allow organizing VMs logically in Recovery Plans for efficient multi-tier application DR management.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Utilize a VM naming schema that allows sorting</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Utilize Categories to organize VMs in Recovery Plans</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Utilize a 1:10 ratio of Recovery Plan to VMs</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Utilize RESTful APIs to script creation of Recovery Plans</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>32</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which capability refers to the storage of VM data on the node where the VM is running and ensures that the read I/O does not have to traverse the network?</description>
+					<explanation>Data Locality stores VM data on the same node where the VM is running, eliminating network traversal for read I/O.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Intelligent Locality</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Intelligent Tiering</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Data Locality</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Data Tiering</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>33</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>A security team asks an administrator to set up port mirroring of a specific source VM to a target VM. What must the administrator ensure for this configuration to be possible?</description>
+					<explanation>Port mirroring on AHV requires the source VM and target VM to be on the same host.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Source VM and Target VM are on the same VPC.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Source VM and Target VM are on the same subnet.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Source VM and Target VM are on the same host.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Source VM and Target VM are on the same VLAN.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>34</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator needs to create a storage container for VM disks. The container must meet the following conditions: 10 GiB of the total allocated space must not be used by other containers. The container must have a maximum storage capacity of 500 GiB. What settings should the administrator configure while creating the storage container?</description>
+					<explanation>Reserved Capacity of 10 GiB ensures that space is exclusively reserved for this container, and Advertised Capacity of 500 GiB sets the maximum storage capacity.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Set Advertised Capacity to 10 GiB and Reserved Capacity to 500 GiB.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Set Reserved Capacity to 500 GiB.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Set Advertised Capacity to 10 GiB.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Set Reserved Capacity to 10 GiB and Advertised Capacity to 500 GiB.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>35</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is setting up a Nutanix cluster and needs to configure the default VLAN. Which configuration should the administrator choose?</description>
+					<explanation>VLAN 0 is the default (untagged) VLAN used in Nutanix clusters.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>VLAN 0</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>VLAN 1</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>VLAN 2</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>VLAN 7</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>36</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator needs to configure NTP on Prism Central running on a Hyper-V cluster. How should the administrator complete this task?</description>
+					<explanation>On Hyper-V clusters, Prism Central should use the Domain Controller IP as the NTP source for time synchronization.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Add an external NTP server</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Add the DNS server IP</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Add a server with a DNS hostname</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Add the IP of the Domain Controller</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>37</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>After adding new workloads, why is Overall Runway below 365 days and the scenario still shows the cluster is in good shape?</description>
+					<explanation>If the runway target is set to 1 month, the cluster shows as "good" even with less than 365 days of runway because the target threshold is met.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Because Storage Runway is still good</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Because new workloads are sustainable</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Because there are recommended resources</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Because the Target is 1 month</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>38</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator has been tasked with performing firmware upgrades for all Nutanix sites. When attempting to perform firmware upgrades via Life Cycle Manager (LCM) at a remote site with a single-node cluster, no firmware updates are listed as available. The administrator confirmed that the currently installed firmware is several revisions behind. Why are no firmware upgrades listed in LCM for this cluster?</description>
+					<explanation>LCM cannot perform firmware upgrades on single-node clusters because there is no way to perform a rolling upgrade without downtime.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Single-node clusters only support one-disk firmware upgrades</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>LCM is not supported on single-node clusters</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>LCM cannot perform firmware upgrades on single-node clusters</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>LCM does not have connectivity to the internet</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>1</difficulty>
+					<position>39</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which two entities can be categorized? (Choose two.)</description>
+					<explanation>In Nutanix, Virtual Machines and ISO Images can be categorized for policy and management purposes.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Storage Containers</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Alerts</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Virtual Machines</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>ISO Images</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>40</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is configuring a replication schedule on multiple remote locations deployed using a single-node cluster. The goal is to achieve the lowest possible RPO (Recovery Point Objective). How should the administrator configure the replication schedule?</description>
+					<explanation>Async replication is the only option available for single-node clusters. NearSync is not supported on single-node clusters.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure NearSync replication</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure a schedule for 16 minutes up to 59 minutes</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure Async replication</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure a schedule for 1 minute up to 15 minutes</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>41</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What can be used to easily group a set of VMs?</description>
+					<explanation>Categories in Nutanix are used to group and organize VMs for policy application and management.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Labels</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Projects</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Categories</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Catalog Items</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>42</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator wants to create a VM with memory overcommit features enabled in Nutanix cluster. Which statement best describes how the administrator will perform this VM creation?</description>
+					<explanation>Memory overcommit can only be updated using the Prism Central console.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Memory overcommit can only be updated using the Prism Central console.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Memory overcommit cannot be enabled for VM from the Prism Central console.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Memory overcommit can be enabled while creating a VM using Prism Element Web Console.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Memory overcommit can only be updated using the Prism Element Web Console once VM created.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>43</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which feature deploys a temporary VM that allows an administrator to log in and apply operating system patches to a VM template?</description>
+					<explanation>The "Update Guest OS" feature deploys a temporary VM from the template for applying OS patches.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Create VM from Template</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Complete Guest OS Update</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Update Configuration</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Update Guest OS</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>1</difficulty>
+					<position>44</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which two URLs must be accessible from a Connected Site's Controller VMs to allow Life Cycle Manager to download software updates?</description>
+					<explanation>LCM requires access to download.nutanix.com and release-api.nutanix.com for downloading software updates.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>download.nutanix.com</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>mynutanix.com</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>release-api.nutanix.com</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>portal.nutanix.com</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>45</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Refer to the exhibit. An administrator notices the Message shown in the exhibit when navigating to LCM from Prism Central. Which action should they take to update LCM to the latest version?</description>
+					<explanation>Performing an Inventory Scan in LCM checks for and applies the latest LCM framework update.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Run an AOS upgrade.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Run an AHV upgrade.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Perform an Inventory Scan.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Download and install the latest LCM version from a CVM.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>46</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator configured Metro Availability for a Protection Domain but sees a warning: "VM-1 is accessing data from a remote cluster." What should they do first?</description>
+					<explanation>Migrating the VM to its primary site and setting proper DRS and affinity rules resolves the data locality warning.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Run an ncli command to check active roles.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Use must-affinity rules to prevent automated VM migration.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Migrate the VM to its primary site and set proper rules for DRS and affinity.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Run an NCC health check for data locality.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>47</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator needs to set up a protection policy in preparation for a regular Disaster Recovery (DR) test. What is the first step required to satisfy this task?</description>
+					<explanation>Creating an Availability Zone between Production and DR is the first step to establish the DR relationship before creating protection policies.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Install NGT (Nutanix Guest Tools) on VMs where applications are supported.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Create an Availability Zone between Production and DR.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Convert the source cluster to AHV.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Create a point-in-time snapshot of source VMs.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>48</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What is required to create a category in Nutanix?</description>
+					<explanation>Categories in Nutanix require a name and a value pair to be created.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>A name and a value</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>A policy and an entity</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>A service and a scope</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>A catalog and a template</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>49</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator started an LCM upgrade of the AHV hosts in Nutanix Cluster and realized that the upgrade would exceed the planned maintenance window. The administrator would like to prevent further updates at this point. Which feature should be leveraged to prevent additional updates from occurring?</description>
+					<explanation>The Stop Update feature in LCM allows an administrator to halt further updates after the current node completes its upgrade.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Cancel the LCM tasks via the Ergon command line (ecli).</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Run the lcm_task_cleanup.py script.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Restart Genesis on the cluster to restart the LCM service.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Use the Stop Update feature in LCM.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>1</difficulty>
+					<position>50</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is trying to configure Metro Availability between Nutanix ESXi-based clusters. However, the Compatible Remote Sites screen does not list all required storage containers. Which two reasons could be a cause for this issue? (Choose two.)</description>
+					<explanation>Metro Availability requires the destination storage container to be empty and both containers must have the same name.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Source and destination hardware are from different vendors.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>The remote site storage container has compression enabled.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>The destination storage container is not empty.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Both storage containers must have the same name.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>51</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator has successfully configured a Metro Availability protection domain. After a couple of days, the following NCC warning is raised: "Detailed information for data_locality check: Node x.x.x.20: Following VMs are accessing data from remote clusters VM-1 from remote cluster Remote-m1. Refer to KB 2093 for details on data locality check." What is the first action an administrator must take to fix the issue?</description>
+					<explanation>Migrating the VM to its primary site and setting appropriate DRS and affinity rules ensures data locality is maintained.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Run ncli pd ls metro-avail=true and grep for Protection Domain Stretch Role ACTIVE.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Use "must" affinity rules to avoid automated VM migration to the standby datastore.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Run ncc health_checks metro_availability_checks data_locality_check --cvm_list=x.x.x.20.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Migrate the VM to its primary site and set appropriate rules for DRS and affinity.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>52</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>A Linux VM provides services for multiple clients on a single large subnet. The number of clients varies over time. The clients consist of VMs and physical systems. The administrator observed network performance problems on the Linux VM when going over 2,000 client connections. Which action can be performed to mitigate the issue?</description>
+					<explanation>Enabling RSS VirtIO-Net Multi-Queue distributes network processing across multiple queues, improving performance with many connections.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Add multiple VNIC to the virtual machine.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure vNIC to operate in trunk mode.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Enable RSS VirtIO-Net Multi-Queue.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Change VirtIO-Net vNIC to e1000 model.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>53</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is configuring a protection domain for business critical applications, including SQL, Oracle, and Exchange. The administrator needs to evaluate the requirements and limitations for application-consistent snapshots. What action should the administrator take while configuring application-consistent snapshots?</description>
+					<explanation>Selecting the application consistent snapshot checkbox in consistency group settings enables VSS-based snapshots for applications.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Ensure that Windows VMs have in-guest mounted VHDX disks.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure one consistency group for all VMs comprising an App.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Configure one consistency group for each VM.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Select application consistent snapshot checkbox in consistency group settings only.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>54</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is attempting to upgrade the NIC firmware on a Nutanix cluster and sees the error displayed in the exhibit. Which log is the most appropriate to analyze the LCM precheck failure?</description>
+					<explanation>lcm_ops.out contains the operational logs for LCM including precheck failures and upgrade operations.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>genesis.out</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>lcm_ops.out</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>lcm_wget.out</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>catalog.out</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>multiple</type>
+					<difficulty>1</difficulty>
+					<position>55</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>An administrator is protecting an application and its data stored on Volume Groups using protection domains. During failover tests, all application VMs are restored successfully, however, the application data is completely missing. In which two ways can the protection domain configuration be adjusted to avoid this issue in the future? (Choose two.)</description>
+					<explanation>To ensure Volume Groups are included in the protection, either select "Auto protect related entities" or manually add Volume Groups to the Protected Entities list.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Place Volume Groups in a separate Protection Domain.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Select the Auto protect related entities checkbox.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Use application consistent snapshots.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Manually add Volume Groups to Protected Entities.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>56</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>In Prism Element, how many nodes can be placed into maintenance mode at one time on a 12-node F12 cluster?</description>
+					<explanation>Only 1 node can be placed into maintenance mode at a time in Prism Element, regardless of cluster size.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>1</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>2</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>3</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>4</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>57</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>What happens when a VM is associated with multiple VM-Host affinity policies?</description>
+					<explanation>When a VM is associated with multiple VM-Host affinity policies, the oldest policy takes precedence.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>The VM is automatically removed from all policies.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>The newest policy takes precedence.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>The oldest policy is applied.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>All policies are applied simultaneously.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+				<question>
+					<enabled>true</enabled>
+					<type>single</type>
+					<difficulty>1</difficulty>
+					<position>58</position>
+					<timer>0</timer>
+					<fullscreen>false</fullscreen>
+					<inline_answers>false</inline_answers>
+					<auto_next>false</auto_next>
+					<description>Which task should be performed first when upgrading host memory?</description>
+					<explanation>Placing the node into maintenance mode is the first step to safely upgrade host memory, as it migrates all VMs off the host.</explanation>
+					<answer>
+						<enabled>true</enabled>
+						<isright>true</isright>
+						<position>1</position>
+						<keyboard_key></keyboard_key>
+						<description>Place node into the maintenance mode.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>2</position>
+						<keyboard_key></keyboard_key>
+						<description>Gracefully stop the host by using the out of band management interface.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>3</position>
+						<keyboard_key></keyboard_key>
+						<description>Remove node from the cluster.</description>
+						<explanation></explanation>
+					</answer>
+					<answer>
+						<enabled>true</enabled>
+						<isright>false</isright>
+						<position>4</position>
+						<keyboard_key></keyboard_key>
+						<description>Execute "shutdown -h now" from the AHV command line interface.</description>
+						<explanation></explanation>
+					</answer>
+				</question>
+			</subject>
+		</module>
+	</body>
+</tcexamquestions>
