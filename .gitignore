@@ -21,6 +21,7 @@ public/config/
 rector.php
 shared/config/
 cache/
+exclude/
 target
 vendor
 phpstan.neon
