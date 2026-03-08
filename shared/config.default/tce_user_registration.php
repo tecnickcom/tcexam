@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2023-11-30
+// Last Update : 2026-03-08
 //
 // Description : Configuration file for user registration.
 //
@@ -43,6 +43,11 @@ define('K_USRREG_EMAIL_CONFIRM', true);
  * Default user group ID for registered user.
  */
 define('K_USRREG_GROUP', 1);
+
+/**
+ * User groups allowed during registration.
+ */
+define('K_USRREG_ALLOWED_GROUPS', [1]);
 
 /**
  * URL of an HTML page containing the registration agreement (i.e.: "http://www.example.com/agreement.html").

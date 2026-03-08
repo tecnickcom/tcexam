@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
-// Last Update : 2023-11-30
+// Last Update : 2026-03-08
 //
 // Description : User registration form.
 //
@@ -175,12 +175,16 @@ if ($menu_mode == 'add') { // process submitted data
             }
 
             foreach ($user_groups as $group_id) {
+                if (!in_array($group_id, K_USRREG_ALLOWED_GROUPS)) {
+                    continue;
+                }
+
                 $sql = 'INSERT INTO ' . K_TABLE_USERGROUP . ' (
 					usrgrp_user_id,
 					usrgrp_group_id
 					) VALUES (
-					\'' . $user_id . '\',
-					\'' . $group_id . '\'
+					\'' . (int) $user_id . '\',
+					\'' . (int) $group_id . '\'
 					)';
                 if (! $r = F_db_query($sql, $db)) {
                     F_display_db_error(false);
