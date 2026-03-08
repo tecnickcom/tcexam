@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_edit_rating.php
 // Begin       : 2004-06-09
-// Last Update : 2023-11-30
+// Last Update : 2026-03-08
 //
 // Description : Editor to manually rate free text answers.
 //
@@ -45,15 +45,12 @@ if (isset($selectcategory)) {
     $changecategory = 1;
 }
 
-if (isset($testlog_id)) {
-    $testlog_id = (int) $testlog_id;
-}
 
 if (! isset($testlog_comment)) {
     $testlog_comment = '';
 }
 
-if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
+if (!empty($_REQUEST['test_id']) > 0) {
     $test_id = (int) $_REQUEST['test_id'];
     // check user's authorization
     if (! F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
@@ -63,18 +60,55 @@ if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
     $test_id = 0;
 }
 
+if (!empty($_REQUEST['testlog_id']) > 0) {
+    $testlog_id = (int) $_REQUEST['testlog_id'];
+    if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+        $sql = K_TABLE_TESTS . ', ' . K_TABLE_TEST_USER . ', ' . K_TABLE_TESTS_LOGS . '
+            WHERE testuser_test_id=test_id
+                AND testlog_testuser_id=testuser_id
+                AND test_id=' . $test_id . '
+                AND testlog_id=' . $testlog_id . '
+            LIMIT 1';
+        if (F_count_rows($sql) < 1) {
+            F_print_error('ERROR', $l['m_authorization_denied'], true);
+        }
+    }
+} else {
+    $testlog_id = 0;
+}
+
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'testlog_score';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_score'], ENT_COMPAT, $l['a_meta_charset']);
+
+
 
 switch ($menu_mode) {
     case 'update': { // Update
         if (($formstatus = F_check_form_fields()) && (isset($testlog_score) && isset($max_score))) {
             // score cannot be greater than max_score
             $testlog_score = (float) $testlog_score;
-            $max_score = (float) $max_score;
+
+            $max_score = 0.0;
+            $sql = 'SELECT test_score_right, question_difficulty
+            FROM ' . K_TABLE_TESTS . ', ' . K_TABLE_TEST_USER . ', ' . K_TABLE_TESTS_LOGS . ', ' . K_TABLE_QUESTIONS . '
+            WHERE testuser_test_id=test_id
+                AND testlog_testuser_id=testuser_id
+                AND testlog_question_id=question_id
+                AND testlog_id=' . $testlog_id . '
+            LIMIT 1';
+            if ($sql !== '' && $sql !== '0') {
+                if ($r = F_db_query($sql, $db)) {
+                    if ($m = F_db_fetch_array($r)) {
+                        $max_score = round(($m['test_score_right'] * $m['question_difficulty']), 3);
+                    }
+                } else {
+                    F_display_db_error();
+                }
+            }
+
             if ($testlog_score > $max_score) {
-                F_print_error('WARNING', $l['m_score_higher_than_max']);
+                F_print_error('WARNING', $l['m_score_higher_than_max'], false);
                 break;
             }
 
@@ -201,6 +235,7 @@ if ($sql !== '' && $sql !== '0') {
         F_display_db_error();
     }
 }
+
 
 echo '<div class="container">' . K_NEWLINE;
 

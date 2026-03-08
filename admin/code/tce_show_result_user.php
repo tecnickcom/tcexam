@@ -3,7 +3,7 @@
 //============================================================+
 // File name   : tce_show_result_user.php
 // Begin       : 2004-06-10
-// Last Update : 2023-11-30
+// Last Update : 2026-03-08
 //
 // Description : Display test results for specified user.
 //
@@ -64,6 +64,16 @@ if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
 
 if (isset($_REQUEST['testuser_id'])) {
     $testuser_id = (int) $_REQUEST['testuser_id'];
+    if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+        $sql = K_TABLE_TESTS . ', ' . K_TABLE_TEST_USER . '
+            WHERE testuser_test_id=test_id
+                AND test_id=' . $test_id . '
+                AND testuser_id=' . $testuser_id . '
+            LIMIT 1';
+        if (F_count_rows($sql) < 1) {
+            F_print_error('ERROR', $l['m_authorization_denied'], true);
+        }
+    }
     $filter .= '&amp;testuser_id=' . $testuser_id;
 } else {
     $testuser_id = 0;
@@ -71,9 +81,16 @@ if (isset($_REQUEST['testuser_id'])) {
 
 if (isset($_REQUEST['user_id'])) {
     $user_id = (int) $_REQUEST['user_id'];
-    //if (!F_isAuthorizedEditorForUser($user_id)) {
-    //	F_print_error('ERROR', $l['m_authorization_denied'], true);
-    //}
+    if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+        $sql = K_TABLE_TESTS . ', ' . K_TABLE_TEST_USER . '
+            WHERE testuser_test_id=test_id
+                AND test_id=' . $test_id . '
+                AND testuser_user_id=' . $user_id . '
+            LIMIT 1';
+        if (F_count_rows($sql) < 1) {
+            F_print_error('ERROR', $l['m_authorization_denied'], true);
+        }
+    }
     $filter .= '&amp;user_id=' . $user_id;
 } else {
     $user_id = 0;

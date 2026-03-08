@@ -308,7 +308,7 @@ function F_isUsedMediaFile($file)
     global $l, $db;
     require_once('../config/tce_config.php');
     // remove cache root from file path
-    $file = substr($file, strlen(K_PATH_CACHE));
+    $file = F_escape_sql($db, substr($file, strlen(K_PATH_CACHE)));
     // search on questions
     $sql = 'SELECT question_id FROM ' . K_TABLE_QUESTIONS . " WHERE question_description LIKE '%" . $file . "[/object%' OR question_explanation LIKE '%" . $file . "[/object%' LIMIT 1";
     if ($r = F_db_query($sql, $db)) {
