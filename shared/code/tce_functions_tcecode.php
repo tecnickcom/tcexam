@@ -391,7 +391,8 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
     require_once('../config/tce_config.php');
     global $l, $db;
     $filename = $name . '.' . $extension;
-    $extension = strtolower($extension);
+    $arr_extension = explode('.', $filename);
+    $extension = strtolower($arr_extension[count($arr_extension) - 1]);
     $htmlcode = '';
     switch ($extension) {
         case 'gif':
@@ -399,24 +400,33 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         case 'jpeg':
         case 'png':
         case 'svg': { // images
-            $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
-            if (! empty($alt)) {
-                $htmlcode .= ' alt="' . $alt . '"';
-            } else {
-                $htmlcode .= ' alt="image:' . $filename . '"';
+            if (preg_match("#^http[s]?://#", $filename)) {
+                $htmlcode = '<img src="'.$filename.'"';
+                if (!empty($alt)) {
+                    $htmlcode .= ' alt="'.$alt.'"';
+                }
+                $imsize = false;
             }
+            else {
+                $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
+                if (! empty($alt)) {
+                    $htmlcode .= ' alt="' . $alt . '"';
+                } else {
+                    $htmlcode .= ' alt="image:' . $filename . '"';
+                }
 
-            $imsize = @getimagesize(K_PATH_CACHE . $filename);
-            if ($imsize !== false) {
-                [$pixw, $pixh] = $imsize;
-                if ($width <= 0 && $height <= 0) {
-                    // get default size
-                    $width = $pixw;
-                    $height = $pixh;
-                } elseif ($width <= 0) {
-                    $width = $height * $pixw / $pixh;
-                } elseif ($height <= 0) {
-                    $height = $width * $pixh / $pixw;
+                $imsize = @getimagesize(K_PATH_CACHE . $filename);
+                if ($imsize !== false) {
+                    [$pixw, $pixh] = $imsize;
+                    if ($width <= 0 && $height <= 0) {
+                        // get default size
+                        $width = $pixw;
+                        $height = $pixh;
+                    } elseif ($width <= 0) {
+                        $width = $height * $pixw / $pixh;
+                    } elseif ($height <= 0) {
+                        $height = $width * $pixh / $pixw;
+                    }
                 }
             }
 
@@ -457,7 +467,13 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         default: {
             include('../../shared/config/tce_mime.php');
             if (isset($mime[$extension])) {
-                $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
+                if (preg_match("#^http[s]?://#", $filename)) {
+                    $htmlcode = '<object type="' . $mime[$extension] . '" data="' . $filename . '"';
+                }
+                else {
+                    $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
+                }
+
                 if ($width > 0) {
                     $htmlcode .= ' width="' . $width . '"';
                 } elseif ($maxwidth > 0) {

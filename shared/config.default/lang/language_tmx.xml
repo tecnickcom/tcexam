@@ -50133,5 +50133,245 @@ YYYYMMDDhhmmss_tcexam_backup.sql.gz، جہاں YYYYMMDDhhmmss سال (Y)، ما�
             <seg>گراف</seg>
          </tuv>
       </tu>
+      <tu tuid="w_insert_object_url" datatype="plaintext">
+         <tuv xml:lang="NL">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="EN">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Sisipkan URL obyek</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Insert object URL</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>Insert object URL</seg>
+         </tuv>
+      </tu>
+      <tu tuid="w_object_url" datatype="plaintext">
+         <tuv xml:lang="NL">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="EN">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>URL Obyek</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Object URL</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>Object URL</seg>
+         </tuv>
+      </tu>
+      <tu tuid="w_upload_choose_file" datatype="plaintext">
+         <tuv xml:lang="NL">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="MR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="IT">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="TR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="JP">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="VN">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="HI">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="MS">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="PL">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="EN">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="HE">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="EL">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="RU">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="ID">
+            <seg>Atau, pilih/unggah berkas</seg>
+         </tuv>
+         <tuv xml:lang="FR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="BG">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="AZ">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="ES">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="CN">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="HU">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="BR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="RO">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="FA">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="AR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="DE">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+         <tuv xml:lang="UR">
+            <seg>Or, choose/upload file</seg>
+         </tuv>
+      </tu>
    </body>
 </tmx>
