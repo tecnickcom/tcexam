@@ -1,5 +1,6 @@
 16.6.2 (2026-03-08)
-	- 
+	- Add K_USRREG_ALLOWED_GROUPS configuration entry to set the allowed registration groups.
+	- Sanitize fields and additional checks.
 	
 16.6.1 (2026-03-04)
 	- Update TCPDF.
