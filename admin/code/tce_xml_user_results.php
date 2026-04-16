@@ -134,6 +134,10 @@ function F_xml_export_user_results($user_id, $startdate, $enddate, $order_field)
     $qtype = ['S', 'M', 'T', 'O']; // question types
     $type = ['single', 'multiple', 'text', 'ordering'];
     $boolean = ['false', 'true'];
+    $allowed_order_fields = ['testuser_creation_time', 'total_score'];
+    if (! in_array($order_field, $allowed_order_fields, true)) {
+        $order_field = 'testuser_creation_time';
+    }
 
     $xml = ''; // XML data to be returned
 
@@ -186,7 +190,7 @@ function F_xml_export_user_results($user_id, $startdate, $enddate, $order_field)
         $sql .= ' AND test_user_id IN (' . F_getAuthorizedUsers($_SESSION['session_user_id']) . ')';
     }
 
-    $sql .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY ' . F_escape_sql($db, $order_field) . '';
+    $sql .= ' GROUP BY testuser_id, test_id, test_name, testuser_creation_time, testuser_status ORDER BY ' . $order_field . '';
     if ($r = F_db_query($sql, $db)) {
         $passed = 0;
         while ($m = F_db_fetch_array($r)) {

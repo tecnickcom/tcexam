@@ -26,7 +26,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.2",
-        "phpunit/phpunit": "13.0.5 || 12.5.14 || 11.5.55 || 10.5.63",
+        "phpunit/phpunit": "13.1.1 || 12.5.17 || 11.5.55 || 10.5.63",
         "doctrine/annotations": "^1.2"
     },
     "suggest": {

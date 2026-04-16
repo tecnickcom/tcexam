@@ -43,6 +43,11 @@ function F_deleteMediaFile($filename)
     }
 
     $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $normalized_filename = str_replace('\\', '/', $filename);
+    if (preg_match('#(^|/)\.\.(/|$)#', $normalized_filename) === 1) {
+        return false;
+    }
+
     $path_parts = pathinfo($filename);
     if (! str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
         return false;
@@ -79,6 +84,12 @@ function F_renameMediaFile($filename, $newname)
     }
 
     $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $normalized_filename = str_replace('\\', '/', $filename);
+    $normalized_newname = str_replace('\\', '/', $newname);
+    if ((preg_match('#(^|/)\.\.(/|$)#', $normalized_filename) === 1) || (preg_match('#(^|/)\.\.(/|$)#', $normalized_newname) === 1)) {
+        return false;
+    }
+
     $path_parts = pathinfo($filename);
     $path_parts_new = pathinfo($newname);
     if (! str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
@@ -127,6 +138,11 @@ function F_createMediaDir($dirname)
     require_once('../config/tce_config.php');
     if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
         // insufficient user level
+        return false;
+    }
+
+    $normalized_dirname = str_replace('\\', '/', $dirname);
+    if (preg_match('#(^|/)\.\.(/|$)#', $normalized_dirname) === 1) {
         return false;
     }
 

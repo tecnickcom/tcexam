@@ -1,3 +1,6 @@
+16.6.3 (2026-04-16)
+	- Fix potential security vulnerability issues.
+
 16.6.2 (2026-03-08)
 	- Add K_USRREG_ALLOWED_GROUPS configuration entry to set the allowed registration groups.
 	- Sanitize fields and additional checks.

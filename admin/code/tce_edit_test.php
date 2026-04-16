@@ -259,11 +259,14 @@ switch ($menu_mode) {
         // for all selected subjects
         for ($i = 0; $i < $subjcount; ++$i) {
             if (! empty($_POST['selectsubject' . $i])) {
-                $sql = 'DELETE FROM ' . K_TABLE_TEST_SUBJSET . ' WHERE tsubset_test_id=' . $test_id . ' AND tsubset_id=' . $_POST['selectsubject' . $i] . '';
-                if (! $r = F_db_query($sql, $db)) {
-                    F_display_db_error(false);
-                } else {
-                    F_print_error('MESSAGE', $l['m_deleted']);
+                $selected_tsubset_id = (int) $_POST['selectsubject' . $i];
+                if ($selected_tsubset_id > 0) {
+                    $sql = 'DELETE FROM ' . K_TABLE_TEST_SUBJSET . ' WHERE tsubset_test_id=' . $test_id . ' AND tsubset_id=' . $selected_tsubset_id . '';
+                    if (! $r = F_db_query($sql, $db)) {
+                        F_display_db_error(false);
+                    } else {
+                        F_print_error('MESSAGE', $l['m_deleted']);
+                    }
                 }
             }
         }

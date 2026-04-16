@@ -1121,6 +1121,7 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
     $test_id = (int) $test_id;
     $group_id = (int) $group_id;
     $user_id = (int) $user_id;
+    $full_order_field = F_getSafeUsersTestStatOrderBy($full_order_field);
     $data = [];
     $data['svgpoints'] = '';
     $data['testuser'] = [];
@@ -1314,6 +1315,52 @@ function F_getAllUsersTestStat($test_id, $group_id = 0, $user_id = 0, $startdate
     }
 
     return $data;
+}
+
+/**
+ * Returns a safe ORDER BY clause for user test statistics queries.
+ *
+ * @param mixed $full_order_field Raw ORDER BY input.
+ * @return string
+ */
+function F_getSafeUsersTestStatOrderBy($full_order_field)
+{
+    $allowed_fields = [
+        'testuser_creation_time',
+        'testuser_end_time',
+        'user_name',
+        'user_lastname',
+        'user_firstname',
+        'total_score',
+        'testuser_test_id',
+    ];
+    $fallback_order = 'total_score, user_lastname, user_firstname';
+
+    $safe_parts = [];
+    foreach (explode(',', (string) $full_order_field) as $part) {
+        $part = trim($part);
+        if ($part === '') {
+            continue;
+        }
+
+        if (preg_match('/^([a-z_]+)(?:\s+(DESC))?$/i', $part, $matches) !== 1) {
+            continue;
+        }
+
+        $field = strtolower($matches[1]);
+        if (! in_array($field, $allowed_fields, true)) {
+            continue;
+        }
+
+        $direction = isset($matches[2]) ? ' DESC' : '';
+        $safe_parts[] = $field . $direction;
+    }
+
+    if ($safe_parts === []) {
+        return $fallback_order;
+    }
+
+    return implode(', ', $safe_parts);
 }
 
 /**

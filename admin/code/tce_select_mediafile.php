@@ -210,14 +210,17 @@ switch ($menu_mode) {
             break;
         }
 
+        $newname = isset($_REQUEST['newname']) ? basename((string) $_REQUEST['newname']) : '';
         // check if this record is used (test_log)
-        if (F_file_exists($dir . $_REQUEST['newname'])) {
+        if ($newname === '' || $newname === '.' || $newname === '..') {
+            F_print_error('WARNING', $l['m_form_missing_fields']);
+        } elseif (F_file_exists($dir . $newname)) {
             F_print_error('WARNING', $l['m_file_already_exist']);
         } elseif (F_isUsedMediaFile($file)) {
             F_print_error('WARNING', $l['m_used_file']);
         } elseif (isset($_REQUEST['newname'])) {
-            if (F_renameMediaFile($file, $dir . $_REQUEST['newname'])) {
-                $file = $dir . $_REQUEST['newname'];
+            if (F_renameMediaFile($file, $dir . $newname)) {
+                $file = $dir . $newname;
                 F_print_error('MESSAGE', $l['m_file_renamed']);
             } else {
                 F_print_error('ERROR', $l['m_file_rename_error']);
@@ -239,12 +242,15 @@ switch ($menu_mode) {
             break;
         }
 
+        $newdirname = isset($_REQUEST['newdirname']) ? basename((string) $_REQUEST['newdirname']) : '';
         // check if this record is used (test_log)
-        if (F_file_exists($dir . $_REQUEST['newdirname'])) {
+        if ($newdirname === '' || $newdirname === '.' || $newdirname === '..') {
+            F_print_error('WARNING', $l['m_form_missing_fields']);
+        } elseif (F_file_exists($dir . $newdirname)) {
             F_print_error('WARNING', $l['m_file_already_exist']);
         } elseif (isset($_REQUEST['newdirname'])) {
-            if (F_createMediaDir($dir . $_REQUEST['newdirname'])) {
-                $dir = $dir . $_REQUEST['newdirname'] . '/';
+            if (F_createMediaDir($dir . $newdirname)) {
+                $dir = $dir . $newdirname . '/';
                 F_print_error('MESSAGE', $l['m_directory_created']);
             } else {
                 F_print_error('ERROR', $l['m_directory_create_error']);

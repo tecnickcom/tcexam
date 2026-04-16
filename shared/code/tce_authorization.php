@@ -196,8 +196,9 @@ if (isset($_POST['logaction']) && $_POST['logaction'] == 'login' && isset($_POST
         if (K_OTP_LOGIN) {
             $mtime = microtime(true);
             if (isset($_POST['xuser_otpcode']) && ! empty($_POST['xuser_otpcode']) && ($_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], $mtime) || $_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime - 30)) || $_POST['xuser_otpcode'] == F_getOTP($m['user_otpkey'], ($mtime + 30)))) {
+                $xuser_otpcode = F_escape_sql($db, $_POST['xuser_otpcode']);
                 // check if this OTP token has been alredy used
-                $sqlt = 'SELECT cpsession_id FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $_POST['xuser_otpcode'] . "' LIMIT 1";
+                $sqlt = 'SELECT cpsession_id FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_id='" . $xuser_otpcode . "' LIMIT 1";
                 if (($rt = F_db_query($sqlt, $db)) && ! F_db_fetch_array($rt)) {
                     // Store this token on the session table to mark it as invalid for 5 minute (300 seconds)
                     $sqltu = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
@@ -205,7 +206,7 @@ if (isset($_POST['logaction']) && $_POST['logaction'] == 'login' && isset($_POST
 							cpsession_expiry,
 							cpsession_data
 							) VALUES (
-							\'' . $_POST['xuser_otpcode'] . '\',
+							\'' . $xuser_otpcode . '\',
 							\'' . date(K_TIMESTAMP_FORMAT, (time() + 300)) . '\',
 							\'300\'
 							)';
