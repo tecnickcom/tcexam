@@ -28,7 +28,7 @@ jobs:
       matrix:
         php-version: ["8.2", "8.3", "8.4"]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Use php ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
@@ -39,7 +39,7 @@ jobs:
       - name: List php modules
         run: php -m
       - name: Cache Composer modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ~/.composer/cache/
           key: ${{ runner.os }}-php-${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -68,7 +68,7 @@ jobs:
       matrix:
         db: [mysql, postgres]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       # Builds the runner image, seeds a throwaway DB from install/*.sql, runs the unit +
       # integration suites against it, copies the reports back, then tears the env down.
       - name: Run dockerised integration tests
