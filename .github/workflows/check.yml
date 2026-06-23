@@ -46,6 +46,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-php-${{ matrix.php-version }}-composer-
       - name: Install dependencies
+        # The mago installer (pulled in via tc-lib-pdf-font's deps) verifies the
+        # release attestation with `gh`, which needs GH_TOKEN on Actions runners.
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: make deps
       # Linting is advisory until the codebase is made mago-clean (plan Stage 4),
       # after which `continue-on-error` is removed and lint becomes a required gate.
