@@ -7,17 +7,9 @@
 //
 // Description : Main page of administrator section.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,10 +21,10 @@
  * @since 2004-04-20
  */
 
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_INDEX;
-require_once('../../shared/code/tce_authorization.php');
-require_once('tce_page_header.php');
+require_once '../../shared/code/tce_authorization.php';
+require_once 'tce_page_header.php';
 
 // Display test limits (if any)
 
@@ -42,65 +34,131 @@ if (K_REMAINING_TESTS !== false) {
     $limits .= '<tr';
     if (K_REMAINING_TESTS <= 0) {
         $limits .= ' style="text-align:right;background-color:#FFCCCC;" title="' . $l['w_over_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_over_limit'] . '</span> ';
     } else {
         $limits .= ' style="text-align:right;background-color:#CCFFCC;" title="' . $l['w_under_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_under_limit'] . '</span> ';
     }
 
-    $limits .= '><td style="text-align:left;">' . $l['w_total'] . '</td><td>&nbsp;</td><td>&nbsp;</td><td>' . K_REMAINING_TESTS . '</td></tr>';
+    $limits .=
+        '><td style="text-align:left;">'
+        . $l['w_total']
+        . '</td><td>&nbsp;</td><td>&nbsp;</td><td>'
+        . $limitstatus
+        . K_REMAINING_TESTS
+        . '</td></tr>';
 }
 
 $now = time();
 $enddate = date(K_TIMESTAMP_FORMAT, $now);
 if (K_MAX_TESTS_DAY !== false) {
     // day limit (last 24 hours)
-    $startdate = date(K_TIMESTAMP_FORMAT, ($now - K_SECONDS_IN_DAY));
-    $numtests = F_count_rows(K_TABLE_TESTUSER_STAT, "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'");
+    $startdate = date(K_TIMESTAMP_FORMAT, $now - K_SECONDS_IN_DAY);
+    $numtests = F_count_rows(
+        K_TABLE_TESTUSER_STAT,
+        "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'",
+    );
     $limits .= '<tr';
     if ((K_MAX_TESTS_DAY - $numtests) <= 0) {
         $limits .= ' style="text-align:right;background-color:#FFCCCC;" title="' . $l['w_over_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_over_limit'] . '</span> ';
     } else {
         $limits .= ' style="text-align:right;background-color:#CCFFCC;" title="' . $l['w_under_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_under_limit'] . '</span> ';
     }
 
-    $limits .= '><td style="text-align:left;">' . $l['w_day'] . '</td><td>' . K_MAX_TESTS_DAY . '</td><td>' . $numtests . '</td><td><strong>' . (K_MAX_TESTS_DAY - $numtests) . '</strong></td></tr>';
+    $limits .=
+        '><td style="text-align:left;">'
+        . $l['w_day']
+        . '</td><td>'
+        . K_MAX_TESTS_DAY
+        . '</td><td>'
+        . $numtests
+        . '</td><td><strong>'
+        . $limitstatus
+        . (K_MAX_TESTS_DAY - $numtests)
+        . '</strong></td></tr>';
 }
 
 if (K_MAX_TESTS_MONTH !== false) {
     // month limit (last 30 days)
-    $startdate = date(K_TIMESTAMP_FORMAT, ($now - K_SECONDS_IN_MONTH));
-    $numtests = F_count_rows(K_TABLE_TESTUSER_STAT, "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'");
+    $startdate = date(K_TIMESTAMP_FORMAT, $now - K_SECONDS_IN_MONTH);
+    $numtests = F_count_rows(
+        K_TABLE_TESTUSER_STAT,
+        "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'",
+    );
     $limits .= '<tr';
     if ((K_MAX_TESTS_MONTH - $numtests) <= 0) {
         $limits .= ' style="text-align:right;background-color:#FFCCCC;" title="' . $l['w_over_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_over_limit'] . '</span> ';
     } else {
         $limits .= ' style="text-align:right;background-color:#CCFFCC;" title="' . $l['w_under_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_under_limit'] . '</span> ';
     }
 
-    $limits .= '><td style="text-align:left;">' . $l['w_month'] . '</td><td>' . K_MAX_TESTS_MONTH . '</td><td>' . $numtests . '</td><td><strong>' . (K_MAX_TESTS_MONTH - $numtests) . '</strong></td></tr>';
+    $limits .=
+        '><td style="text-align:left;">'
+        . $l['w_month']
+        . '</td><td>'
+        . K_MAX_TESTS_MONTH
+        . '</td><td>'
+        . $numtests
+        . '</td><td><strong>'
+        . $limitstatus
+        . (K_MAX_TESTS_MONTH - $numtests)
+        . '</strong></td></tr>';
 }
 
 if (K_MAX_TESTS_YEAR !== false) {
     // year limit (last 365 days)
-    $startdate = date(K_TIMESTAMP_FORMAT, ($now - K_SECONDS_IN_YEAR));
-    $numtests = F_count_rows(K_TABLE_TESTUSER_STAT, "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'");
+    $startdate = date(K_TIMESTAMP_FORMAT, $now - K_SECONDS_IN_YEAR);
+    $numtests = F_count_rows(
+        K_TABLE_TESTUSER_STAT,
+        "WHERE tus_date>='" . $startdate . "' AND tus_date<='" . $enddate . "'",
+    );
     $limits .= '<tr';
     if ((K_MAX_TESTS_YEAR - $numtests) <= 0) {
         $limits .= ' style="text-align:right;background-color:#FFCCCC;" title="' . $l['w_over_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_over_limit'] . '</span> ';
     } else {
         $limits .= ' style="text-align:right;background-color:#CCFFCC;" title="' . $l['w_under_limit'] . '"';
+        $limitstatus = '<span class="sr-only">' . $l['w_under_limit'] . '</span> ';
     }
 
-    $limits .= '><td style="text-align:left;">' . $l['w_year'] . '</td><td>' . K_MAX_TESTS_YEAR . '</td><td>' . $numtests . '</td><td><strong>' . (K_MAX_TESTS_YEAR - $numtests) . '</strong></td></tr>';
+    $limits .=
+        '><td style="text-align:left;">'
+        . $l['w_year']
+        . '</td><td>'
+        . K_MAX_TESTS_YEAR
+        . '</td><td>'
+        . $numtests
+        . '</td><td><strong>'
+        . $limitstatus
+        . (K_MAX_TESTS_YEAR - $numtests)
+        . '</strong></td></tr>';
 }
 
 if (strlen($limits) > 0) {
-    echo '<table style="border: 1px solid #808080;margin-left:auto; margin-right:auto;"><tr><th colspan="4" style="text-align:center;">' . $l['w_remaining_tests'] . '</th></tr><tr style="background-color:#CCCCCC;"><th>' . $l['w_limit'] . '</th><th>' . $l['w_max'] . '</th><th>' . $l['w_executed'] . '</th><th>' . $l['w_remaining'] . '</th></tr>' . $limits . '</table><br />' . K_NEWLINE;
+    echo
+        '<table style="border: 1px solid #808080;margin-left:auto; margin-right:auto;"><caption class="sr-only">'
+            . $l['w_remaining_tests']
+            . '</caption><thead><tr><th colspan="4" style="text-align:center;">'
+            . $l['w_remaining_tests']
+            . '</th></tr><tr style="background-color:#CCCCCC;"><th scope="col">'
+            . $l['w_limit']
+            . '</th><th scope="col">'
+            . $l['w_max']
+            . '</th><th scope="col">'
+            . $l['w_executed']
+            . '</th><th scope="col">'
+            . $l['w_remaining']
+            . '</th></tr></thead><tbody>'
+            . $limits
+            . '</tbody></table><br />'
+            . K_NEWLINE
+    ;
 }
 
 echo $l['d_admin_index'];
 
-require_once('tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once 'tce_page_footer.php';

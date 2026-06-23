@@ -10,17 +10,9 @@
 //               This abstraction use the same SQL syntax
 //               of MySQL.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -42,10 +34,27 @@
  * @param $database (string) Database name.
  * @return PostgreSQL link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '5432', $username = 'postgres', $password = '', $database = 'template1')
-{
-    $connection_string = "host='" . $host . "' port='" . $port . "' dbname='" . $database . "' user='" . $username . "' password='" . $password . "'";
-    if (! $db = @pg_connect($connection_string)) {
+function F_db_connect(
+    $host = 'localhost',
+    $port = '5432',
+    $username = 'postgres',
+    #[\SensitiveParameter]
+    $password = '',
+    $database = 'template1',
+) {
+    $connection_string =
+        "host='"
+        . $host
+        . "' port='"
+        . $port
+        . "' dbname='"
+        . $database
+        . "' user='"
+        . $username
+        . "' password='"
+        . $password
+        . "'";
+    if (!($db = @pg_connect($connection_string))) {
         return false;
     }
 
@@ -137,7 +146,12 @@ function F_db_num_rows($result)
  */
 function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
 {
-    if (($r = @pg_query($link_identifier, "SELECT CURRVAL('" . $tablename . '_' . $fieldname . "_seq')")) && ($m = pg_fetch_row($r, 0))) {
+    if (
+        ($r = @pg_query(
+            $link_identifier,
+            "SELECT CURRVAL('" . $tablename . '_' . $fieldname . "_seq')",
+        )) && ($m = pg_fetch_row($r, 0))
+    ) {
         return $m[0];
     }
 
@@ -170,7 +184,3 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
 
     return pg_escape_string($link_identifier, $str);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

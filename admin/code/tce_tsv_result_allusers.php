@@ -8,17 +8,9 @@
 // Description : Functions to export users' results using
 //               TSV file format (tab delimited text).
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -30,19 +22,17 @@
  * @since 2006-03-30
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_ADMIN_RESULTS;
-require_once('../../shared/code/tce_authorization.php');
-require_once('../../shared/code/tce_functions_test_stats.php');
+require_once '../../shared/code/tce_authorization.php';
+require_once '../../shared/code/tce_functions_test_stats.php';
 
 if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
     $test_id = (int) $_REQUEST['test_id'];
     // check user's authorization
-    require_once('../../shared/code/tce_authorization.php');
-    if (! F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        exit;
+    require_once '../../shared/code/tce_authorization.php';
+    if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+        exit();
     }
 } else {
     $test_id = 0;
@@ -68,13 +58,24 @@ if (isset($_REQUEST['enddate'])) {
     $enddate = 0;
 }
 
-if (isset($_REQUEST['order_field']) && ! empty($_REQUEST['order_field']) && in_array($_REQUEST['order_field'], ['testuser_creation_time', 'testuser_end_time', 'user_name', 'user_lastname', 'user_firstname', 'total_score'])) {
+if (
+    isset($_REQUEST['order_field'])
+    && !empty($_REQUEST['order_field'])
+    && in_array($_REQUEST['order_field'], [
+        'testuser_creation_time',
+        'testuser_end_time',
+        'user_name',
+        'user_lastname',
+        'user_firstname',
+        'total_score',
+    ])
+) {
     $order_field = $_REQUEST['order_field'];
 } else {
     $order_field = 'total_score, user_lastname, user_firstname';
 }
 
-if (! isset($_REQUEST['orderdir']) || empty($_REQUEST['orderdir'])) {
+if (!isset($_REQUEST['orderdir']) || empty($_REQUEST['orderdir'])) {
     $full_order_field = $order_field;
 } else {
     $full_order_field = $order_field . ' DESC';
@@ -97,8 +98,16 @@ header('Content-Type: text/tab-separated-values', false);
 header('Content-Disposition: attachment; filename=tcexam_test_results_' . $test_id . '_' . date('YmdHis') . '.tsv;');
 header('Content-Transfer-Encoding: binary');
 
-
-$data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, $full_order_field, false, $display_mode);
+$data = F_getAllUsersTestStat(
+    $test_id,
+    $group_id,
+    $user_id,
+    $startdate,
+    $enddate,
+    $full_order_field,
+    false,
+    $display_mode,
+);
 // format data as HTML table
 $table = F_printTestResultStat($data, 1, $order_field, '', false, $display_mode);
 $table .= F_printTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 0, $data, $display_mode);
@@ -116,7 +125,7 @@ if ($user_id == 0) {
         // display detailed stats for each user
         foreach ($users as $uid) {
             echo K_NEWLINE . K_NEWLINE . '### USER' . K_TAB . $uid . K_NEWLINE . K_NEWLINE;
-            
+
             $usrdata = F_getAllUsersTestStat($test_id, $group_id, $uid, $startdate, $enddate, $full_order_field);
             // format data as HTML table
             $table = F_printTestResultStat($usrdata, 1, $order_field, '', false, $display_mode);
@@ -126,7 +135,3 @@ if ($user_id == 0) {
         }
     }
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

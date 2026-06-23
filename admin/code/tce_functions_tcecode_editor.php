@@ -8,17 +8,9 @@
 // Description : TCExam Code Editor (editor for special mark-up
 //               code used to add some text formatting)
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -41,7 +33,7 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
 {
     global $l, $db;
     global $uploadedfile;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
 
     // sanitize input parameters
     $callingform = preg_replace('/[^a-z0-9_]/', '', $callingform);
@@ -72,11 +64,32 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
     $buttons .= getImageButton('LRT', '[dir=ltr]', K_PATH_IMAGES . 'buttons/ltrdir.gif', $onclick, '');
     $buttons .= getImageButton('RTL', '[dir=rtl]', K_PATH_IMAGES . 'buttons/rtldir.gif', $onclick, '');
 
-    $onclick = "window.open('tce_colorpicker.php?frm=" . $callingform . '&amp;fld=' . $callingfield . "&amp;tag=bgcolor','colorpicker','height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes')";
-    $buttons .= getImageButton('background-color', '', K_PATH_IMAGES . 'buttons/bgcolor.gif', $onclick, '');
+    // HTML5 native color pickers shown behind the legacy toolbar icons:
+    // a transparent <input type="color"> is overlaid on the icon, so the
+    // button looks like the others but still opens the native picker.
+    $editfield = "document.getElementById('" . $callingform . "')." . $callingfield;
 
-    $onclick = "window.open('tce_colorpicker.php?frm=" . $callingform . '&amp;fld=' . $callingfield . "&amp;tag=color','colorpicker','height=550,width=330,resizable=yes,menubar=no,scrollbars=no,toolbar=no,directories=no,status=no,modal=yes')";
-    $buttons .= getImageButton('color', '', K_PATH_IMAGES . 'buttons/color.gif', $onclick, '');
+    $onchange = 'FJ_insert_tag(' . $editfield . ", '[bgcolor='+this.value+']')";
+    $buttons .= '<span class="tcecodecolorwrap">';
+    $buttons .=
+        '<img src="'
+        . K_PATH_IMAGES
+        . 'buttons/bgcolor.gif" alt="background-color" class="button" width="23" height="22" />';
+    $buttons .=
+        '<input type="color" class="tcecodecolor" value="#000000" title="background-color" aria-label="background-color" onchange="'
+        . $onchange
+        . '" />';
+    $buttons .= '</span>';
+
+    $onchange = 'FJ_insert_tag(' . $editfield . ", '[color='+this.value+']')";
+    $buttons .= '<span class="tcecodecolorwrap">';
+    $buttons .=
+        '<img src="' . K_PATH_IMAGES . 'buttons/color.gif" alt="color" class="button" width="23" height="22" />';
+    $buttons .=
+        '<input type="color" class="tcecodecolor" value="#000000" title="color" aria-label="color" onchange="'
+        . $onchange
+        . '" />';
+    $buttons .= '</span>';
 
     $onclick = "FJ_insert_tag(document.getElementById('" . $callingform . "')." . $callingfield . '';
     $buttons .= getImageButton('code', '[code]', K_PATH_IMAGES . 'buttons/code.gif', $onclick, 'c');
@@ -84,17 +97,41 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
 
     $buttons .= getImageButton('mathml', '[mathml]', K_PATH_IMAGES . 'buttons/mathml.gif', $onclick, 'h');
 
-    $onclick = "window.open('tce_select_mediafile.php?frm=" . $callingform . '&amp;fld=' . $callingfield . "','mediaselect','height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes')";
+    $onclick =
+        "window.open('tce_select_mediafile.php?frm="
+        . $callingform
+        . '&amp;fld='
+        . $callingfield
+        . "','mediaselect','height=600,width=680,resizable=yes,menubar=no,scrollbars=yes,toolbar=no,directories=no,status=no,modal=yes')";
     $buttons .= getImageButton('object', '', K_PATH_IMAGES . 'buttons/image.gif', $onclick, '');
 
     $buttons .= '<br />' . K_NEWLINE;
 
     // font size
     $onselect = "FJ_insert_tag(document.getElementById('" . $callingform . "')." . $callingfield . ', ';
-    $onselect .= "document.getElementById('font_size_" . $callingfield . "').options[document.getElementById('font_size_" . $callingfield . "').selectedIndex].value";
+    $onselect .=
+        "document.getElementById('font_size_"
+        . $callingfield
+        . "').options[document.getElementById('font_size_"
+        . $callingfield
+        . "').selectedIndex].value";
     $onselect .= ')';
-    $buttons .= '<select name="font_size_' . $callingfield . '" id="font_size_' . $callingfield . '" size="0" title="' . $l['w_font_size'] . '" style="margin:0;padding:0;" onchange="' . $onselect . '">';
-    $buttons .= '<option value="" selected="selected" style="background-color:gray;color:white;">' . $l['w_font_size'] . '</option>';
+    $buttons .=
+        '<select name="font_size_'
+        . $callingfield
+        . '" id="font_size_'
+        . $callingfield
+        . '" title="'
+        . $l['w_font_size']
+        . '" aria-label="'
+        . $l['w_font_size']
+        . '" style="margin:0;padding:0;" onchange="'
+        . $onselect
+        . '">';
+    $buttons .=
+        '<option value="" selected="selected" style="background-color:gray;color:white;">'
+        . $l['w_font_size']
+        . '</option>';
     $buttons .= '<option value="[size=xx-small]">xx-small</option>';
     $buttons .= '<option value="[size=x-small]">x-small</option>';
     $buttons .= '<option value="[size=small]">small</option>';
@@ -110,12 +147,31 @@ function tcecodeEditorTagButtons($callingform, $callingfield)
 
     // font
     $tce_fonts = unserialize(K_AVAILABLE_FONTS);
-    if (! empty($tce_fonts)) {
+    if (!empty($tce_fonts)) {
         $onselect = "FJ_insert_tag(document.getElementById('" . $callingform . "')." . $callingfield . ', ';
-        $onselect .= "document.getElementById('font_" . $callingfield . "').options[document.getElementById('font_" . $callingfield . "').selectedIndex].value";
+        $onselect .=
+            "document.getElementById('font_"
+            . $callingfield
+            . "').options[document.getElementById('font_"
+            . $callingfield
+            . "').selectedIndex].value";
         $onselect .= ')';
-        $buttons .= '<select name="font_' . $callingfield . '" id="font_' . $callingfield . '" size="0" title="' . $l['w_font'] . '" style="margin:0;padding:0;" onchange="' . $onselect . '">';
-        $buttons .= '<option value="" selected="selected" style="background-color:gray;color:white;">' . $l['w_font'] . '</option>';
+        $buttons .=
+            '<select name="font_'
+            . $callingfield
+            . '" id="font_'
+            . $callingfield
+            . '" title="'
+            . $l['w_font']
+            . '" aria-label="'
+            . $l['w_font']
+            . '" style="margin:0;padding:0;" onchange="'
+            . $onselect
+            . '">';
+        $buttons .=
+            '<option value="" selected="selected" style="background-color:gray;color:white;">'
+            . $l['w_font']
+            . '</option>';
         foreach ($tce_fonts as $fname => $font) {
             $buttons .= '<option value="[font=' . $font . ']">' . $fname . '</option>';
         }
@@ -143,11 +199,20 @@ function getImageButton($name, $tag, $image, $onclick = '', $accesskey = '')
         $onclick = $onclick . ", '" . $tag . "')";
     }
 
-    $str = '<a href="#" onclick="' . $onclick . '; return false;" title="' . $name . ' [' . $accesskey . ']" accesskey="' . $accesskey . '">';
-    $str .= '<img src="' . $image . '" alt="' . $name . ' [' . $accesskey . ']" class="button" width="23" height="22" />';
-    return $str . '</a>';
-}
+    $str =
+        '<button type="button" class="tcecodebtn" onclick="'
+        . $onclick
+        . '" title="'
+        . $name
+        . ' ['
+        . $accesskey
+        . ']"';
+    if (strlen($accesskey) > 0) {
+        $str .= ' accesskey="' . $accesskey . '"';
+    }
 
-//============================================================+
-// END OF FILE
-//============================================================+
+    $str .= '>';
+    $str .=
+        '<img src="' . $image . '" alt="' . $name . ' [' . $accesskey . ']" class="button" width="23" height="22" />';
+    return $str . '</button>';
+}

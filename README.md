@@ -1,95 +1,37 @@
 # TCExam
 
-**Computer-Based Assessment Software**
+> **Computer-Based Assessment (CBA) software** — create, distribute and manage exams, tests,
+> surveys and quizzes, on screen or on paper.
 
-* URLs:
-	* http://www.tcexam.org
-	* https://github.com/tecnickcom/tcexam
-* Requirements and Install Documentation:
-	* [ENG] install/index.htm
-	* Check also the documentation on http://www.tcexam.org
-* Source Documentation:
-	http://www.tcexam.org
-* Support - Help:
-	Please use support Issues at https://github.com/tecnickcom/tcexam
-* Software License:
-	* Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-	* See LICENSE.TXT file for more information.
+[![Build](https://github.com/tecnickcom/tcexam/actions/workflows/check.yml/badge.svg)](https://github.com/tecnickcom/tcexam/actions/workflows/check.yml)
+[![License: AGPL v3](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue.svg)](LICENSE)
+[![Sponsor on GitHub](https://img.shields.io/badge/sponsor-github-EA4AAA.svg?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/tecnickcom)
 
+- **Website:** <https://tcexam.org>
+- **Source code:** <https://github.com/tecnickcom/tcexam>
+- **Support / bug reports:** [GitHub Issues](https://github.com/tecnickcom/tcexam/issues)
+- **Security reports:** see [SECURITY.md](SECURITY.md) (do **not** open a public issue)
+- **License:** Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD — GNU AGPL-3.0-or-later
+  (see [LICENSE](LICENSE))
 
-[![Donate via PayPal](https://img.shields.io/badge/donate-paypal-87ceeb.svg)](https://www.paypal.com/donate/?hosted_button_id=NZUEC5XS8MFBJ)
-*Please consider supporting this project by making a donation via [PayPal](https://www.paypal.com/donate/?hosted_button_id=NZUEC5XS8MFBJ)*
+If this project is useful to you, please consider
+[supporting development via GitHub Sponsors](https://github.com/sponsors/tecnickcom).
 
+---
 
-## Third-party Software
+## Contents
 
-TCExam includes some third-party software components that are not strictly required but have been included as your convenience,
-and if used are subject to their respective licenses:
+- [Description](#description)
+- [Key features](#key-features)
+- [Quick start](#quick-start)
+- [Requirements](#requirements)
+- [Dependencies](#dependencies)
+- [Build & development](#build--development)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
 
-* **PHPMailer**
-    * Full Featured Email Transfer Class for PHP.
-    * Author: Brent R. Matzelle (bmatzelle@yahoo.com)
-    * Homepage: https://github.com/PHPMailer/PHPMailer
-    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-    * Location: /shared/phpmailer/
-
-* **The DHTML Calendar**
-    * Calendar widget written in JavaScript.
-    * Author: Mihai Bazon (mihai_bazon@yahoo.com)
-    * Homepage: http://dynarch.com/mishoo/
-    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-    * Location: /shared/jscripts/jscalendar/
-
-* **JavaScript Virtual Keyboard**
-    * Author: Ilya Lebedev (ilya@lebedev.net)
-    * Homepage: http://debugger.ru/projects/virtualkeyboard
-    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-    * Location: /shared/jscripts/vk/
-
-* **Radius Class**
-    * Radius client implementation in pure PHP.
-    * Author: SysCo/al (developer@sysco.ch)
-    * Homepage: http://developer.sysco.ch/php/
-    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-    * Location: /shared/radius/
-
-* **phpCAS**
-    * Central Authentication Service (CAS) client in PHP.
-    * Copyright 2007-2011, JA-SIG, Inc. http://www.jasig.org/
-    * Homepage: https://wiki.jasig.org/display/CASC/phpCAS
-    * License: Apache License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0
-    * Location: /shared/cas/
-
-* **TCPDF**
-    * TCPDF library to generate PDF documents.
-    * Copyright 2002-2026 Nicola Asuni - Tecnick.com LTD
-    * Homepage: https://tcpdf.org
-    * License: LGPL (GNU LESSER GENERAL PUBLIC LICENSE)
-    * Location: /shared/tcpdf/
-
-* **Fonts**
-
-    TCExam includes fonts for the TCPDF library, they are not strictly required but have been included for your convenience.
-
-    All the PHP files on the fonts directory are subject to the general TCPDF license (GNU-LGPLv3),
-
-    they do not contain any binary data but just a description of the general properties of a specific font.
-    These files can be also generated on the fly using the font utilities and TCPDF methods.
-
-    All the original binary TTF font files have been renamed for compatibility with TCPDF and compressed using the gzcompress PHP function that uses the ZLIB data format (.z files).
-
-    The binary files (.z) that begins with the prefix "free" have been extracted from the GNU FreeFont collection (GNU-GPLv3).
-    The binary files (.z) that begins with the prefix "pdfa" have been derived from the GNU FreeFont, so they are subject to the same license.
-    For the details of Copyright, License and other information, please check the files inside the directory fonts/freefont-20100919
-    Link: https://www.gnu.org/software/freefont/
-
-    The binary files (.z) that begins with the prefix "dejavu" have been extracted from the DejaVu fonts 2.33 (Bitstream) collection.
-    For the details of Copyright, License and other information, please check the files inside the directory fonts/dejavu-fonts-ttf-2.33
-    Link: http://dejavu-fonts.org
-
-    The binary files (.z) that begins with the prefix "ae" have been extracted from the Arabeyes.org collection (GNU-GPLv2).
-    Link: http://projects.arabeyes.org/
-
+---
 
 ## Description
 
@@ -107,7 +49,7 @@ TCExam comes in a variety of languages and is already used all over the
 world by top universities, schools, private and public institutions,
 independent educators and research centers.
 
-### KEY FEATURES
+## Key features
 
 * **Flexibility and Configurability**: The system has been designed to offer a
 high degree of adaptability to cover a great variety of usage scenarios.
@@ -118,22 +60,21 @@ requirements.
 GNU-AGPLv3 license. Open Source promotes Software reliability and quality by
 supporting independent peer review and rapid evolution of the source code.
 
-* **Web-based Architecture**: TCExam is Web-based and developed with LAMP
-(Linux, Apache, MySQL, PHP) technology. User-friendly interface allows you
-to install and use TCExam by simply connecting one cable to the switch of
-your computer networks. All the computers on the network will be able to use
-TCExam independently from the client’s operating system as a normal intranet
-website, with no need to install any additional software or plug-in.
+* **Web-based Architecture**: TCExam is a server-side PHP application that runs on a
+standard LAMP-style stack (Linux, Apache, MySQL/MariaDB or PostgreSQL, PHP 8.2+). Once it is
+installed on a server, any device on the network can use it through a normal web browser —
+independently of the client's operating system and with no additional software or plug-in to
+install on the clients.
 
 * **Internationalization (I18N)**: TCExam is language-independent through the
 adoption of the UTF-8, Unicode and TMX standards. It supports the
-Right-To-Left mode and currently includes translations in 25 different
+Right-To-Left mode and currently includes translations in 26 different
 languages.
 
-* **Accessibility and Usability**: TCExam Web interface conforms to the XHTML
-1.0 Strict standard, the guidelines on Accessibility (W3C-WAI-WCAG 1.0) and
-Usability, to provide equal access and equal opportunity to people with
-disabilities, including blindness.
+* **Accessibility and Usability**: The TCExam web interface uses semantic HTML5 and follows
+the Web Content Accessibility Guidelines (WCAG 2.1 level AA) — landmarks, skip links, ARIA
+roles, labelled forms and screen-reader cues — to provide equal access and equal opportunity to
+people with disabilities, including blindness.
 
 * **Results and Statistics**: TCExam outputs a variety of result pages, enabling
 various selection filters and providing numerous statistical indexes.
@@ -162,3 +103,153 @@ cheating on the test.
 generate printable PDF documents for pen-and-paper testing. The OMR answer
 sheet can be scanned and uploaded to TCExam for automatic test importing,
 scoring and reporting.
+
+## Quick start
+
+### Run with Docker (recommended for evaluation)
+
+Requires Docker with the Compose plugin.
+
+```sh
+make up            # or: docker compose up --build
+```
+
+This starts TCExam (Apache + PHP 8.4) on <http://localhost:8080/> together with a MariaDB
+database **and installs it automatically** — the container entrypoint runs the non-interactive
+installer (`install/install_cli.php`) using the database settings from `docker-compose.yml`, so
+there is **no browser install step**. (On first start it also generates the PDF fonts and
+translation caches in the background; PDF export becomes available once font generation finishes.)
+
+When the stack is up, open <http://localhost:8080/> and log in under `admin/code/` (default user
+`admin` / password `1234` — **change it immediately**).
+
+> The database, PDF fonts, cache and the installed configuration (including the per-instance
+> random `K_RANDOM_SECURITY`) are kept in named volumes, so the installed instance survives
+> `docker compose down` / `up`. Run `docker compose down -v` to discard everything and start
+> fresh. For PostgreSQL, swap the `db` service for a `postgres` image and set
+> `TCEXAM_DB_TYPE=POSTGRESQL` / `TCEXAM_DB_PORT=5432` on the `app` service. The interactive web
+> installer at <http://localhost:8080/install/> remains available as a fallback.
+
+### Manual install
+
+1. Install PHP **>= 8.2** with the extensions listed under *Requirements*, plus a web server
+   (Apache + mod_php recommended — the app ships `.htaccess` access controls) and a database.
+2. Install dependencies and build the bundled assets:
+
+   ```sh
+   composer install   # also generates the PDF fonts via the post-install hook
+   make lang          # pre-build the translation caches (optional; built lazily otherwise)
+   ```
+
+3. Point the web server document root at the project directory; make `cache/`, `install/`,
+   `admin/backup/` and the `*/config/` parents writable by the web user.
+4. Run the installer, then **delete the `install/` folder.** Either open
+   <http://your-host/install/> in a browser (the web installer), or run the non-interactive
+   command-line installer for scripted/headless setups — set the `TCEXAM_DB_*` / `TCEXAM_PATH_*`
+   environment variables and run `php install/install_cli.php` (see the file header for the full
+   list). Both generate a unique random `K_RANDOM_SECURITY` for the instance.
+
+Full instructions: [install/README.md](install/README.md) and <https://tcexam.org>.
+
+## Requirements
+
+* PHP **>= 8.2** (tested on 8.2 / 8.3 / 8.4) with: `mysqli` and/or `pgsql`, `gd`, `intl`,
+  `bcmath`, `mbstring`, `zip`, `curl`, `xml`, `openssl`, `posix` (Oracle additionally needs `oci8`).
+* [Composer](https://getcomposer.org/).
+* A database server: MySQL/MariaDB, PostgreSQL or Oracle.
+* A web server (Apache + mod_php recommended).
+
+## Dependencies
+
+PHP dependencies are managed with Composer (`composer.json`) and are **no longer bundled** in the
+source tree:
+
+| Component | Package | Purpose |
+|-----------|---------|---------|
+| PDF engine | `tecnickcom/tc-lib-pdf` | results / report / OMR answer-sheet PDFs |
+| Barcodes / QR | `tecnickcom/tc-lib-barcode` (via tc-lib-pdf) | OTP QR codes, OMR barcodes |
+| PDF fonts | `tecnickcom/tc-lib-pdf-font` | default fonts, generated at install (`make fonts`) |
+| Safe file/URL I/O | `tecnickcom/tc-lib-file` (via tc-lib-pdf) | path/host-allow-listed file & URL access |
+| Email | `phpmailer/phpmailer` | outgoing mail / report delivery |
+| CAS SSO | `apereo/phpcas` | CAS single sign-on |
+| RADIUS | `dapphp/radius` | RADIUS authentication |
+| Tests | `phpunit/phpunit` *(dev)* | unit test suite |
+
+Front-end JavaScript components remain bundled under `shared/jscripts/`.
+
+### PDF fonts
+
+The previously bundled 27 MB of fonts have been removed. The default fonts are generated from
+`tecnickcom/tc-lib-pdf-font` into `vendor/tecnickcom/tc-lib-pdf-font/target/fonts` by `make fonts`
+(run by the Composer post-install hook and by the Docker entrypoint).
+
+### Translations (i18n)
+
+26 languages are maintained in a single TMX file
+(`shared/config.default/lang/language_tmx.xml`, copied to `shared/config/lang/` on install) and
+compiled to per-language PHP caches in `cache/lang/` by `make lang` (or lazily on first request).
+See [doc/TRANSLATORS.md](doc/TRANSLATORS.md) for the maintenance workflow and how to contribute a
+translation.
+
+## Build & development
+
+A `Makefile` wraps the common tasks — run `make help` for the full list:
+
+```
+make deps        # install Composer + lint (mago) dependencies
+make lint        # mago lint + static analysis
+make test        # run the host unit-test suite (no database needed)
+make qa          # lint + test
+make fonts       # generate the default PDF fonts
+make lang        # build the translation caches
+make serve       # local PHP dev server (http://localhost:8080)
+make docker      # build the Docker image
+make up          # run the full stack via docker compose
+make dockertest  # run unit + integration tests against a real DB in Docker
+```
+
+### Integration tests against a real database
+
+`make test` runs only the pure-logic **unit** suite on the host. The **integration** suite
+(`test/integration/`) exercises the Database Abstraction Layer against a live database — and drives
+real controllers over HTTP against an app-under-test container (config generated against the seeded
+DB) — inside a disposable Docker Compose environment:
+
+```
+make dockertest                  # MySQL/MariaDB (default)
+make dockertest DB_TYPE=postgres # PostgreSQL
+```
+
+This builds the test runner image, starts a throwaway database seeded from `install/*.sql`, runs
+the full suite (unit + integration), copies the reports back to `target/` (`coverage/`, `logs/`,
+`report/`), then tears the environment down and exits with the test result. Requires Docker with
+the Compose plugin. The integration tests self-skip when run without the Docker environment, so a
+plain `phpunit` invocation on the host stays green.
+
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [doc/INSTALL.md](doc/INSTALL.md) | Installation (Docker and manual) |
+| [doc/UPGRADE.md](doc/UPGRADE.md) | Upgrade process and per-version notes |
+| [install/README.md](install/README.md) | Full installation manual |
+| [doc/LATEX.md](doc/LATEX.md) | Enabling LaTeX formula rendering |
+| [doc/TRANSLATORS.md](doc/TRANSLATORS.md) | How to contribute a translation |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | How to contribute code |
+| [SECURITY.md](SECURITY.md) | Security policy and vulnerability reporting |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Community Code of Conduct |
+
+## Contributing
+
+Contributions are welcome — bug reports, fixes, documentation, translations and features.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md)
+before opening an issue or pull request. For security issues, follow [SECURITY.md](SECURITY.md)
+instead of filing a public issue.
+
+## License
+
+TCExam is free software distributed under the **GNU Affero General Public License v3.0 or later
+(AGPL-3.0-or-later)**.
+
+Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD. See the [LICENSE](LICENSE) file for the
+full text.

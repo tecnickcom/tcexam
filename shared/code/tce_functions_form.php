@@ -7,17 +7,9 @@
 //
 // Description : Functions to handle XHTML Form Fields.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -27,8 +19,6 @@
  * @author Nicola Asuni
  * @since 2001-11-07
  */
-
-
 
 $formstatus = true; //reset form status
 
@@ -55,7 +45,7 @@ if (isset($_POST['update'])) {
 
 if (empty($menu_mode)) {
     $menu_mode = '';
-} elseif (empty($_POST['csrf_token']) || ! checkCSRFToken($_POST['csrf_token'])) {
+} elseif (empty($_POST['csrf_token']) || !checkCSRFToken($_POST['csrf_token'])) {
     // check for CSRF
     exit();
 }
@@ -80,7 +70,11 @@ function F_decode_form_fields()
 function F_check_required_fields($formfields)
 {
     global $l;
-    if (empty($formfields) || ! array_key_exists('ff_required', $formfields) || strlen($formfields['ff_required']) <= 0) {
+    if (
+        empty($formfields)
+        || !array_key_exists('ff_required', $formfields)
+        || strlen($formfields['ff_required']) <= 0
+    ) {
         return false;
     }
 
@@ -92,7 +86,7 @@ function F_check_required_fields($formfields)
     for ($i = 0; $i < $counter; ++$i) { //for each required field
         $fieldname = trim($required_fields[$i]);
         $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
-        if (! array_key_exists($fieldname, $formfields) || strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
+        if (!array_key_exists($fieldname, $formfields) || strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
             if ($required_fields_labels[$i] !== '' && $required_fields_labels[$i] !== '0') { // check if the field has a label
                 $fieldname = htmlspecialchars($required_fields_labels[$i], ENT_NOQUOTES, $l['a_meta_charset']);
             }
@@ -105,7 +99,7 @@ function F_check_required_fields($formfields)
         $missing_fields = substr($missing_fields, 1); // cuts first comma
     }
 
-    return ($missing_fields);
+    return $missing_fields;
 }
 
 /**
@@ -134,9 +128,13 @@ function F_check_fields_format($formfields)
             $fieldname = substr($key, 2);
             $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
             //if is not empty
-            if ((array_key_exists($fieldname, $formfields) && strlen($formfields[$fieldname]) > 0) && ! preg_match("'" . stripslashes($value) . "'i", $formfields[$fieldname])) {
+            if (
+                array_key_exists($fieldname, $formfields)
+                && strlen($formfields[$fieldname]) > 0
+                && !preg_match("'" . stripslashes($value) . "'i", $formfields[$fieldname])
+            ) {
                 //check regular expression
-                if (isset($formfields['xl_' . $fieldname]) && ! empty($formfields['xl_' . $fieldname])) { //check if field has label
+                if (isset($formfields['xl_' . $fieldname]) && !empty($formfields['xl_' . $fieldname])) { //check if field has label
                     $fieldname = htmlspecialchars($formfields['xl_' . $fieldname], ENT_NOQUOTES, $l['a_meta_charset']);
                 }
 
@@ -149,7 +147,7 @@ function F_check_fields_format($formfields)
         $wrongfields = substr($wrongfields, 2); // cuts first 2 chars
     }
 
-    return ($wrongfields);
+    return $wrongfields;
 }
 
 /**
@@ -159,20 +157,20 @@ function F_check_fields_format($formfields)
  */
 function F_check_form_fields()
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l;
     $formfields = F_decode_form_fields(); //decode form fields
     //check missing fields
     if ($missing_fields = F_check_required_fields($formfields)) {
         F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $missing_fields);
-        
+
         return false;
     }
 
     //check fields format
     if ($wrong_fields = F_check_fields_format($formfields)) {
         F_print_error('WARNING', $l['m_form_wrong_fields'] . ': ' . $wrong_fields);
-        
+
         return false;
     }
 
@@ -186,13 +184,21 @@ function F_check_form_fields()
  */
 function F_close_button($onclick = '')
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l;
     $str = '';
     $str .= '<div class="row">' . K_NEWLINE;
-    $str .= '<form action="' . $_SERVER['SCRIPT_NAME'] . '" id="closeform">' . K_NEWLINE;
+    $str .= '<form action="' . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES) . '" id="closeform">' . K_NEWLINE;
     $str .= '<div>' . K_NEWLINE;
-    $str .= '<input type="button" name="wclose" id="wclose" value="' . $l['w_close'] . '" title="' . $l['h_close_window'] . '" onclick="' . $onclick . 'window.close();" />' . K_NEWLINE;
+    $str .=
+        '<input type="button" name="wclose" id="wclose" value="'
+        . $l['w_close']
+        . '" title="'
+        . $l['h_close_window']
+        . '" onclick="'
+        . $onclick
+        . 'window.close();" />'
+        . K_NEWLINE;
     $str .= '</div>' . K_NEWLINE;
     $str .= '</form>' . K_NEWLINE;
     return $str . ('</div>' . K_NEWLINE);
@@ -209,9 +215,20 @@ function F_close_button($onclick = '')
  */
 function F_submit_button($name, $value, $title = '', $extra = '')
 {
-    echo '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . $value . '" title="' . $title . '" ' . $extra . '/>';
+    echo
+        '<input type="submit" name="'
+            . $name
+            . '" id="'
+            . $name
+            . '" value="'
+            . $value
+            . '" title="'
+            . $title
+            . '" '
+            . $extra
+            . '/>'
+    ;
 }
-
 
 /**
  * Returns XHTML code string to display the CSRF token field.
@@ -220,6 +237,26 @@ function F_submit_button($name, $value, $title = '', $extra = '')
 function F_getCSRFTokenField()
 {
     return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . F_getCSRFToken() . '" />';
+}
+
+/**
+ * Returns the visual "required field" marker to append to a form label.
+ * The control itself should also carry aria-required="true".
+ * @param $required (boolean) true if the field is required.
+ * @return string XHTML code (empty string when the field is not required).
+ */
+function getRequiredMark($required = false)
+{
+    global $l;
+    if (!$required) {
+        return '';
+    }
+
+    return (
+        ' <abbr class="required" title="'
+        . htmlspecialchars($l['w_required'], ENT_QUOTES, $l['a_meta_charset'])
+        . '">*</abbr>'
+    );
 }
 
 /**
@@ -235,30 +272,44 @@ function F_getCSRFTokenField()
  * @param $datetime (boolean) True if the field is a date-time input.
  * @param $password (boolean) True if the field is a password.
  * @param $prefix (string) code to be displayed after label.
+ * @param $required (boolean) If true the field is marked as required.
+ * @param $autocomplete (string) HTML autocomplete token (e.g. 'email', 'username', 'current-password', 'new-password').
+ * @param $inputtype (string) Override for the HTML input type (e.g. 'email', 'tel', 'number'); ignored for password/date/datetime fields.
  * @return string
  */
-function getFormRowTextInput($field_name, $name, $description = '', $tip = '', $value = '', $format = '', $maxlen = 255, $date = false, $datetime = false, $password = false, $prefix = '')
-{
-    require_once(__DIR__ . '/../config/tce_config.php');
+function getFormRowTextInput(
+    $field_name,
+    $name,
+    $description = '',
+    $tip = '',
+    $value = '',
+    $format = '',
+    $maxlen = 255,
+    $date = false,
+    $datetime = false,
+    #[\SensitiveParameter]
+    $password = false,
+    $prefix = '',
+    $required = false,
+    $autocomplete = '',
+    $inputtype = '',
+) {
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     if (strlen($description) == 0) {
         $description = $name;
     }
 
     $str = ''; // string to return
-    $button = '';
     if ($date) {
-        $button = '<button name="' . $field_name . '_date_trigger" id="' . $field_name . '_date_trigger" title="' . $l['w_calendar'] . '">...</button>';
-        $jsdate = 'Calendar.setup({inputField: "' . $field_name . '", ifFormat: "%Y-%m-%d", button: "' . $field_name . '_date_trigger"});' . K_NEWLINE;
         $format = '^([0-9]{4})([\-])([0-9]{2})([\-])([0-9]{2})$';
         $maxlen = 10;
         if (strlen($tip) == 0) {
             $tip = $l['w_date_format'];
         }
     } elseif ($datetime) {
-        $button = '<button name="' . $field_name . '_date_trigger" id="' . $field_name . '_date_trigger" title="' . $l['w_calendar'] . '">...</button>';
-        $jsdate = 'Calendar.setup({inputField: "' . $field_name . '", ifFormat: "%Y-%m-%d %H:%M:%S", showsTime: "true", button: "' . $field_name . '_date_trigger"});' . K_NEWLINE;
-        $format = '^([0-9]{4})([\-])([0-9]{2})([\-])([0-9]{2})([ ])([0-9]{2})([\:])([0-9]{2})([\:])([0-9]{2})$';
+        // native datetime-local uses an ISO 'T' separator and may omit the seconds
+        $format = '^([0-9]{4})([\-])([0-9]{2})([\-])([0-9]{2})([ T])([0-9]{2})([\:])([0-9]{2})(([\:])([0-9]{2}))?$';
         $maxlen = 19;
         if (strlen($tip) == 0) {
             $tip = $l['w_datetime_format'];
@@ -267,8 +318,18 @@ function getFormRowTextInput($field_name, $name, $description = '', $tip = '', $
 
     $str .= '<div class="row">' . K_NEWLINE;
     $str .= '<span class="label">' . K_NEWLINE;
-    $str .= '<label for="' . $field_name . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
-    if (! empty($prefix)) {
+    // the caller may supply its own required marker via $prefix; only add the default mark otherwise
+    $str .=
+        '<label for="'
+        . $field_name
+        . '" title="'
+        . $description
+        . '">'
+        . $name
+        . (empty($prefix) ? getRequiredMark($required) : '')
+        . '</label>'
+        . K_NEWLINE;
+    if (!empty($prefix)) {
         $str .= $prefix;
     }
 
@@ -277,44 +338,82 @@ function getFormRowTextInput($field_name, $name, $description = '', $tip = '', $
     $str .= '<input type="';
     if ($password) {
         $str .= 'password';
+    } elseif ($date) {
+        $str .= 'date';
+    } elseif ($datetime) {
+        $str .= 'datetime-local';
+    } elseif (strlen($inputtype) > 0) {
+        $str .= $inputtype;
     } else {
         $str .= 'text';
     }
 
     $str .= '"';
-    if ($date || $datetime) {
-        $str .= ' style="direction:ltr;';
-        if ($l['a_meta_dir'] == 'rtl') {
-            $str .= 'text-align:right;';
-        }
-
-        $str .= '"';
+    if ($datetime) {
+        $str .= ' step="1"';
     }
 
     if ($value === null) {
         $value = '';
     }
 
-    $str .= ' name="' . $field_name . '" id="' . $field_name . '" value="' . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']) . '" size="20" maxlength="' . $maxlen . '" title="' . $description . '" />';
-    $str .= $button;
+    if ($datetime) {
+        // native datetime-local requires the ISO 'T' separator in the value attribute
+        $value = str_replace(' ', 'T', $value);
+    }
+
+    $str .=
+        ' name="'
+        . $field_name
+        . '" id="'
+        . $field_name
+        . '" value="'
+        . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset'])
+        . '" size="20" maxlength="'
+        . $maxlen
+        . '" title="'
+        . $description
+        . '"';
+    if ($required) {
+        $str .= ' aria-required="true"';
+    }
+
+    if (strlen($autocomplete) > 0) {
+        $str .= ' autocomplete="' . $autocomplete . '"';
+    }
+
     if (strlen($tip) > 0) {
-        $str .= ' <span class="labeldesc">' . $tip . '</span>';
+        $str .= ' aria-describedby="desc_' . $field_name . '"';
+    }
+
+    $str .= ' />';
+    if (strlen($tip) > 0) {
+        $str .= ' <span class="labeldesc" id="desc_' . $field_name . '">' . $tip . '</span>';
     }
 
     if (strlen($format) > 0) {
-        $str .= '<input type="hidden" name="x_' . $field_name . '" id="x_' . $field_name . '" value="' . $format . '" />' . K_NEWLINE;
-        $str .= '<input type="hidden" name="xl_' . $field_name . '" id="xl_' . $field_name . '" value="' . $name . '" />' . K_NEWLINE;
+        $str .=
+            '<input type="hidden" name="x_'
+            . $field_name
+            . '" id="x_'
+            . $field_name
+            . '" value="'
+            . $format
+            . '" />'
+            . K_NEWLINE;
+        $str .=
+            '<input type="hidden" name="xl_'
+            . $field_name
+            . '" id="xl_'
+            . $field_name
+            . '" value="'
+            . $name
+            . '" />'
+            . K_NEWLINE;
     }
 
     $str .= '</span>' . K_NEWLINE;
     $str .= '</div>' . K_NEWLINE;
-    if ($date || $datetime) {
-        $str .= '<script type="text/javascript">' . K_NEWLINE;
-        $str .= '//<![CDATA[' . K_NEWLINE;
-        $str .= $jsdate;
-        $str .= '//]]>' . K_NEWLINE;
-        $str .= '</script>' . K_NEWLINE;
-    }
 
     return $str;
 }
@@ -327,11 +426,19 @@ function getFormRowTextInput($field_name, $name, $description = '', $tip = '', $
  * @param $value (string) Initial value.
  * @param $disabled (boolean) If true disable the field.
  * @param $prefix (string) code to be displayed after label.
+ * @param $required (boolean) If true the field is marked as required.
  * @return string
  */
-function getFormRowTextBox($field_name, $name, $description = '', $value = '', $disabled = false, $prefix = '')
-{
-    require_once(__DIR__ . '/../config/tce_config.php');
+function getFormRowTextBox(
+    $field_name,
+    $name,
+    $description = '',
+    $value = '',
+    $disabled = false,
+    $prefix = '',
+    $required = false,
+) {
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     if (strlen($description) == 0) {
         $description = $name;
@@ -340,14 +447,28 @@ function getFormRowTextBox($field_name, $name, $description = '', $value = '', $
     $str = ''; // string to return
     $str .= '<div class="row">' . K_NEWLINE;
     $str .= '<span class="label">' . K_NEWLINE;
-    $str .= '<label for="' . $field_name . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
-    if (! empty($prefix)) {
+    $str .=
+        '<label for="'
+        . $field_name
+        . '" title="'
+        . $description
+        . '">'
+        . $name
+        . getRequiredMark($required)
+        . '</label>'
+        . K_NEWLINE;
+    if (!empty($prefix)) {
         $str .= $prefix;
     }
 
     $str .= '</span>' . K_NEWLINE;
     $str .= '<span class="formw">' . K_NEWLINE;
-    $str .= '<textarea cols="50" rows="5" name="' . $field_name . '" id="' . $field_name . '" title="' . $description . '"';
+    $str .=
+        '<textarea cols="50" rows="5" name="' . $field_name . '" id="' . $field_name . '" title="' . $description . '"';
+    if ($required) {
+        $str .= ' aria-required="true"';
+    }
+
     if ($disabled) {
         $str .= ' readonly="readonly" class="disabled"';
     }
@@ -368,9 +489,17 @@ function getFormRowTextBox($field_name, $name, $description = '', $value = '', $
  * @param $prefix (string) code to be displayed after label.
  * @return string
  */
-function getFormRowSelectBox($field_name, $name, $description = '', $tip = '', $value = '', $items = [], $prefix = '')
-{
-    require_once(__DIR__ . '/../config/tce_config.php');
+function getFormRowSelectBox(
+    $field_name,
+    $name,
+    $description = '',
+    $tip = '',
+    $value = '',
+    $items = [],
+    $prefix = '',
+    $required = false,
+) {
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     if (strlen($description) == 0) {
         $description = $name;
@@ -379,14 +508,32 @@ function getFormRowSelectBox($field_name, $name, $description = '', $tip = '', $
     $str = ''; // string to return
     $str .= '<div class="row">' . K_NEWLINE;
     $str .= '<span class="label">' . K_NEWLINE;
-    $str .= '<label for="' . $field_name . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
-    if (! empty($prefix)) {
+    $str .=
+        '<label for="'
+        . $field_name
+        . '" title="'
+        . $description
+        . '">'
+        . $name
+        . getRequiredMark($required)
+        . '</label>'
+        . K_NEWLINE;
+    if (!empty($prefix)) {
         $str .= $prefix;
     }
 
     $str .= '</span>' . K_NEWLINE;
     $str .= '<span class="formw">' . K_NEWLINE;
-    $str .= '<select name="' . $field_name . '" id="' . $field_name . '" size="0" title="' . $description . '">' . K_NEWLINE;
+    $str .= '<select name="' . $field_name . '" id="' . $field_name . '" title="' . $description . '"';
+    if ($required) {
+        $str .= ' aria-required="true"';
+    }
+
+    if (strlen($tip) > 0) {
+        $str .= ' aria-describedby="desc_' . $field_name . '"';
+    }
+
+    $str .= '>' . K_NEWLINE;
     foreach ($items as $key => $val) {
         $str .= '<option value="' . $key . '"';
         if ($key == $value) {
@@ -398,7 +545,7 @@ function getFormRowSelectBox($field_name, $name, $description = '', $tip = '', $
 
     $str .= '</select>' . K_NEWLINE;
     if (strlen($tip) > 0) {
-        $str .= ' <span class="labeldesc">' . $tip . '</span>';
+        $str .= ' <span class="labeldesc" id="desc_' . $field_name . '">' . $tip . '</span>';
     }
 
     $str .= '</span>' . K_NEWLINE;
@@ -417,9 +564,17 @@ function getFormRowSelectBox($field_name, $name, $description = '', $tip = '', $
  * @param $prefix (string) code to be displayed after label.
  * @return string
  */
-function getFormRowCheckBox($field_name, $name, $description = '', $tip = '', $value = '', $selected = false, $disabled = false, $prefix = '')
-{
-    require_once(__DIR__ . '/../config/tce_config.php');
+function getFormRowCheckBox(
+    $field_name,
+    $name,
+    $description = '',
+    $tip = '',
+    $value = '',
+    $selected = false,
+    $disabled = false,
+    $prefix = '',
+) {
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     if (strlen($description) == 0) {
         $description = $name;
@@ -431,12 +586,20 @@ function getFormRowCheckBox($field_name, $name, $description = '', $tip = '', $v
     $hidden = '';
     if ($disabled) {
         // add hidden field to be submitted
-        $hidden = '<input type="hidden" name="' . $field_name . '" id="' . $field_name . '" value="' . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']) . '" />' . K_NEWLINE;
+        $hidden =
+            '<input type="hidden" name="'
+            . $field_name
+            . '" id="'
+            . $field_name
+            . '" value="'
+            . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset'])
+            . '" />'
+            . K_NEWLINE;
         $field_name = 'DISABLED_' . $field_name;
     }
 
     $str .= '<label for="' . $field_name . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
-    if (! empty($prefix)) {
+    if (!empty($prefix)) {
         $str .= $prefix;
     }
 
@@ -452,10 +615,15 @@ function getFormRowCheckBox($field_name, $name, $description = '', $tip = '', $v
         $str .= ' checked="checked"';
     }
 
-    $str .= ' title="' . $description . '" />';
+    $str .= ' title="' . $description . '"';
+    if (strlen($tip) > 0) {
+        $str .= ' aria-describedby="desc_' . $field_name . '"';
+    }
+
+    $str .= ' />';
     $str .= $hidden;
     if (strlen($tip) > 0) {
-        $str .= ' <span class="labeldesc">' . $tip . '</span>';
+        $str .= ' <span class="labeldesc" id="desc_' . $field_name . '">' . $tip . '</span>';
     }
 
     $str .= '</span>' . K_NEWLINE;
@@ -473,9 +641,16 @@ function getFormRowCheckBox($field_name, $name, $description = '', $tip = '', $v
  * @param $prefix (string) code to be displayed after label.
  * @return string
  */
-function getFormRowFixedValue($field_name, $name, $description = '', $tip = '', $value = '', $currency = false, $prefix = '')
-{
-    require_once(__DIR__ . '/../config/tce_config.php');
+function getFormRowFixedValue(
+    $field_name,
+    $name,
+    $description = '',
+    $tip = '',
+    $value = '',
+    $currency = false,
+    $prefix = '',
+) {
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     if (strlen($description) == 0) {
         $description = $name;
@@ -485,13 +660,14 @@ function getFormRowFixedValue($field_name, $name, $description = '', $tip = '', 
     $str .= '<div class="row">' . K_NEWLINE;
     $str .= '<span class="label">' . K_NEWLINE;
     $str .= '<label for="DISABLED_' . $field_name . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
-    if (! empty($prefix)) {
+    if (!empty($prefix)) {
         $str .= $prefix;
     }
 
     $str .= '</span>' . K_NEWLINE;
     $str .= '<span class="formw">' . K_NEWLINE;
-    $str .= '<input type="text" readonly="readonly" name="DISABLED_' . $field_name . '" id="DISABLED_' . $field_name . '"';
+    $str .=
+        '<input type="text" readonly="readonly" name="DISABLED_' . $field_name . '" id="DISABLED_' . $field_name . '"';
     if ($currency) {
         $value = F_formatCurrency($value, 2);
         $str .= ' class="disablednum"';
@@ -504,13 +680,28 @@ function getFormRowFixedValue($field_name, $name, $description = '', $tip = '', 
         $size = 40;
     }
 
-    $str .= ' value="' . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']) . '" size="' . $size . '" maxlength="255" title="' . $description . '" />';
+    $str .=
+        ' value="'
+        . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset'])
+        . '" size="'
+        . $size
+        . '" maxlength="255" title="'
+        . $description
+        . '" />';
     if (strlen($tip) > 0) {
         $str .= ' <span class="labeldesc">' . $tip . '</span>';
     }
 
     // add hidden field to be submitted
-    $str .= '<input type="hidden" name="' . $field_name . '" id="' . $field_name . '" value="' . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset']) . '" />' . K_NEWLINE;
+    $str .=
+        '<input type="hidden" name="'
+        . $field_name
+        . '" id="'
+        . $field_name
+        . '" value="'
+        . htmlspecialchars($value, ENT_COMPAT, $l['a_meta_charset'])
+        . '" />'
+        . K_NEWLINE;
     $str .= '</span>' . K_NEWLINE;
     return $str . ('</div>' . K_NEWLINE);
 }
@@ -549,7 +740,12 @@ function getFormRowVertSpace()
  */
 function getFormRowVertDiv($title = '')
 {
-    return '<div class="row"><hr class="dashed"/></div><div class="row"><div style="color:#666666;text-align:center;">' . $title . '</div></div>' . K_NEWLINE;
+    return (
+        '<div class="row"><hr class="dashed"/></div><div class="row"><div style="color:#666666;text-align:center;">'
+        . $title
+        . '</div></div>'
+        . K_NEWLINE
+    );
 }
 
 /**
@@ -559,13 +755,14 @@ function getFormRowVertDiv($title = '')
  */
 function getFormNoscriptSelect($name = 'selectrecord')
 {
-    require_once(__DIR__ . '/../config/tce_config.php');
+    require_once __DIR__ . '/../config/tce_config.php';
     global $l;
     $str = '<noscript>' . K_NEWLINE;
     $str .= '<div class="row">' . K_NEWLINE;
     $str .= '<span class="label">&nbsp;</span>' . K_NEWLINE;
     $str .= '<span class="formw">' . K_NEWLINE;
-    $str .= '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . $l['w_select'] . '" />' . K_NEWLINE;
+    $str .=
+        '<input type="submit" name="' . $name . '" id="' . $name . '" value="' . $l['w_select'] . '" />' . K_NEWLINE;
     $str .= '</span>' . K_NEWLINE;
     $str .= '</div>' . K_NEWLINE;
     return $str . ('</noscript>' . K_NEWLINE);
@@ -614,8 +811,9 @@ function getFormUploadFile($field_name, $field_id, $name, $description = '', $on
     $str .= '<label for="' . $field_id . '" title="' . $description . '">' . $name . '</label>' . K_NEWLINE;
     $str .= '</span>' . K_NEWLINE;
     $str .= '<span class="formw">' . K_NEWLINE;
-    $str .= '<input type="file" name="' . $field_name . '" id="' . $field_id . '" size="20" title="' . $description . '"';
-    if (! empty($onchange)) {
+    $str .=
+        '<input type="file" name="' . $field_name . '" id="' . $field_id . '" size="20" title="' . $description . '"';
+    if (!empty($onchange)) {
         $str .= ' onchange="' . $onchange . '"';
     }
 
@@ -624,7 +822,3 @@ function getFormUploadFile($field_name, $field_id, $name, $description = '', $on
     $str .= '&nbsp;' . K_NEWLINE;
     return $str . ('</div>' . K_NEWLINE);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

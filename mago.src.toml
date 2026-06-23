@@ -1,0 +1,82 @@
+#:schema https://mago.carthage.software/1.26.0/schema.json
+version = "1"
+php-version = "8.2.0"
+
+[source]
+workspace = "."
+paths = ["admin", "public", "shared", "index.php"]
+includes = ["vendor"]
+# Bundled third-party libraries are excluded until they are externalised via
+# Composer (see plan Stage 2); generated caches and live config are never linted.
+excludes = [
+	"shared/tcpdf",
+	"shared/phpmailer",
+	"shared/cas",
+	"shared/radius",
+	"shared/jscripts",
+	"admin/config",
+	"public/config",
+	"shared/config",
+	"cache",
+]
+
+[source.glob]
+literal-separator = true
+
+[formatter]
+print-width = 120
+tab-width = 4
+use-tabs = false
+
+[linter]
+integrations = []
+
+[linter.rules]
+ambiguous-function-call = { enabled = false }
+literal-named-argument = { enabled = false }
+cyclomatic-complexity = { enabled = false }
+excessive-parameter-list = { enabled = false }
+halstead = { enabled = false, effort-threshold = 7000 }
+kan-defect = { enabled = false }
+no-boolean-flag-parameter = { enabled = false }
+no-else-clause = { enabled = false }
+excessive-nesting = { enabled = true, threshold = 10, function-like-threshold = 10 }
+too-many-methods = { enabled = false }
+too-many-properties = { enabled = false }
+# Disabled: rules that fight TCExam's procedural architecture — correct new code in this
+# repo also trips them, so enforcing them buys nothing (see PLAN_LINT.md, Part A).
+no-request-variable = { enabled = false }   # direct $_REQUEST/$_GET is the request model
+no-global = { enabled = false }             # global config model is architectural
+no-assign-in-condition = { enabled = false } # while ($row = ...fetch()) idiom
+no-empty = { enabled = false }              # empty() idiom, pervasive
+no-isset = { enabled = false }              # isset() idiom, pervasive
+combine-consecutive-issets = { enabled = false }
+strict-types = { enabled = false }          # declare(strict_types=1) risks fatals in coercion-reliant code
+strict-behavior = { enabled = false }       # changes runtime semantics of in_array/etc. in untested code
+prefer-early-continue = { enabled = false } # its autofix rewrites if(){} into guard-clauses across untested code; low-value style nudge
+# Kept on: security signals + standards we hold new code to (frozen via baseline).
+identity-comparison = { enabled = true }
+no-insecure-comparison = { enabled = true }
+no-literal-password = { enabled = true }
+
+[analyzer]
+plugins = []
+find-unused-definitions = true
+find-unused-expressions = true
+analyze-dead-code = true
+memoize-properties = true
+check-throws = true
+unchecked-exceptions = [
+	"Error",
+	"LogicException",
+	"ReflectionException",
+]
+unchecked-exception-classes = []
+check-missing-override = true
+find-unused-parameters = true
+strict-list-index-checks = true
+strict-array-index-existence = true
+allow-array-truthy-operand = false
+no-boolean-literal-comparison = true
+check-missing-type-hints = true
+register-super-globals = true

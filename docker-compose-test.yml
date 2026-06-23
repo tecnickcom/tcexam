@@ -1,0 +1,52 @@
+# Base compose file for the Dockerised integration test run (`make dockertest`).
+#
+# A per-database override (docker-compose-test.mysql.yml / docker-compose-test.postgres.yml) adds
+# the database service, seeds it from install/*.sql, and points this runner at it. The reports are
+# written to ./target/* through bind mounts so they are copied back to the host; the Makefile then
+# tears the environment down and propagates the test exit code.
+#
+#   make dockertest                  # MySQL/MariaDB (default)
+#   make dockertest DB_TYPE=postgres # PostgreSQL
+
+services:
+  tcexam_integration:
+    container_name: tcexam_test_integration
+    build:
+      context: .
+      dockerfile: test.integration.Dockerfile
+    environment:
+      # Common connection settings; the override supplies TCEXAM_DB_TYPE/HOST/PORT.
+      TCEXAM_DB_NAME: tcexam
+      TCEXAM_DB_USER: tcexam
+      TCEXAM_DB_PASSWORD: tcexam
+      # Base URL of the app-under-test (used by the HTTP controller integration tests).
+      TCEXAM_APP_URL: http://tcexam_app
+      # Restore host ownership of the copied-back reports (volumes mount as root).
+      HOST_UID: ${HOST_UID:-0}
+      HOST_GID: ${HOST_GID:-0}
+    volumes:
+      - ./target/coverage:/workspace/target/coverage
+      - ./target/logs:/workspace/target/logs
+      - ./target/report:/workspace/target/report
+
+  # App-under-test for the HTTP controller integration tests: the production image, but with the
+  # config generated at start-up against the test database (see docker/test-app-entrypoint.sh).
+  # The per-database override supplies TCEXAM_DB_TYPE/HOST/PORT and the depends_on health gate.
+  tcexam_app:
+    container_name: tcexam_test_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ["/usr/local/bin/tcexam-test-app-entrypoint"]
+    environment:
+      TCEXAM_DB_NAME: tcexam
+      TCEXAM_DB_USER: tcexam
+      TCEXAM_DB_PASSWORD: tcexam
+      TCEXAM_APP_HOST: http://tcexam_app
+    volumes:
+      - ./docker/test-app-entrypoint.sh:/usr/local/bin/tcexam-test-app-entrypoint:ro
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost/favicon.ico"]
+      interval: 5s
+      timeout: 5s
+      retries: 40

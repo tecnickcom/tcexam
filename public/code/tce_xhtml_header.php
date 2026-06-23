@@ -7,17 +7,9 @@
 //
 // Description : Output defaults XHTML header (doctype + head).
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -36,80 +28,91 @@
  * string $thispage_style page CSS file name, default K_SITE_STYLE
  */
 
-
-
 // if necessary load default values
-if (! isset($pagelevel) || empty($pagelevel)) {
+if (!isset($pagelevel) || empty($pagelevel)) {
     $pagelevel = 0;
 }
 
-if (! isset($thispage_title) || empty($thispage_title)) {
+if (!isset($thispage_title) || empty($thispage_title)) {
     $thispage_title = K_SITE_TITLE;
 }
 
-if (! isset($thispage_description) || empty($thispage_description)) {
+if (!isset($thispage_description) || empty($thispage_description)) {
     $thispage_description = K_SITE_DESCRIPTION;
 }
 
-if (! isset($thispage_author) || empty($thispage_author)) {
+if (!isset($thispage_author) || empty($thispage_author)) {
     $thispage_author = K_SITE_AUTHOR;
 }
 
-if (! isset($thispage_reply) || empty($thispage_reply)) {
+if (!isset($thispage_reply) || empty($thispage_reply)) {
     $thispage_reply = K_SITE_REPLY;
 }
 
-if (! isset($thispage_keywords) || empty($thispage_keywords)) {
+if (!isset($thispage_keywords) || empty($thispage_keywords)) {
     $thispage_keywords = K_SITE_KEYWORDS;
 }
 
-if (! isset($thispage_icon) || empty($thispage_icon)) {
+if (!isset($thispage_icon) || empty($thispage_icon)) {
     $thispage_icon = K_SITE_ICON;
 }
 
-if (! isset($thispage_style) || empty($thispage_style)) {
+if (!isset($thispage_style) || empty($thispage_style)) {
     $thispage_style = strcasecmp($l['a_meta_dir'], 'rtl') == 0 ? K_SITE_STYLE_RTL : K_SITE_STYLE;
 }
 
-echo '<?xml version="1.0" encoding="' . $l['a_meta_charset'] . '" ' . '?' . '>' . K_NEWLINE;
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . K_NEWLINE;
-echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $l['a_meta_language'] . '" lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
+echo '<!DOCTYPE html>' . K_NEWLINE;
+echo '<html lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
 
 echo '<head>' . K_NEWLINE;
+echo '<meta charset="' . $l['a_meta_charset'] . '" />' . K_NEWLINE;
 echo '<title>' . htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charset']) . '</title>' . K_NEWLINE;
-echo '<meta name="viewport" content="width=device-width, initial-scale=1">' . K_NEWLINE;
-echo '<meta http-equiv="Content-Type" content="text/html; charset=' . $l['a_meta_charset'] . '" />' . K_NEWLINE;
+echo '<meta name="viewport" content="width=device-width, initial-scale=1" />' . K_NEWLINE;
 echo '<meta name="language" content="' . $l['a_meta_language'] . '" />' . K_NEWLINE;
 echo '<meta name="tcexam_level" content="' . $pagelevel . '" />' . K_NEWLINE;
-echo '<meta name="description" content="[TCExam] ' . htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset']) . ' [' . base64_decode(K_KEY_SECURITY) . ']" />' . K_NEWLINE;
-echo '<meta name="author" content="nick"/>' . K_NEWLINE;
-echo '<meta name="reply-to" content="' . htmlspecialchars($thispage_reply, ENT_COMPAT, $l['a_meta_charset']) . '" />' . K_NEWLINE;
-echo '<meta name="keywords" content="' . htmlspecialchars($thispage_keywords, ENT_COMPAT, $l['a_meta_charset']) . '" />' . K_NEWLINE;
-echo '<link rel="stylesheet" href="' . $thispage_style . '" type="text/css" />' . K_NEWLINE;
-echo '<link rel="shortcut icon" href="' . $thispage_icon . '" />' . K_NEWLINE;
-// calendar
-if (isset($enable_calendar) && $enable_calendar) {
-    echo '<style type="text/css">@import url(' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/calendar-blue.css);</style>' . K_NEWLINE;
-    echo '<script type="text/javascript" src="' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/calendar.js"></script>' . K_NEWLINE;
-    if (F_file_exists('' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/lang/calendar-' . $l['a_meta_language'] . '.js')) {
-        echo '<script type="text/javascript" src="' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/lang/calendar-' . $l['a_meta_language'] . '.js"></script>' . K_NEWLINE;
-    } else {
-        echo '<script type="text/javascript" src="' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/lang/calendar-en.js"></script>' . K_NEWLINE;
-    }
-
-    echo '<script type="text/javascript" src="' . K_PATH_SHARED_JSCRIPTS . 'jscalendar/calendar-setup.js"></script>' . K_NEWLINE;
-}
-
+echo
+    '<meta name="description" content="[TCExam] '
+        . htmlspecialchars($thispage_description, ENT_COMPAT, $l['a_meta_charset'])
+        . ' ['
+        . base64_decode(K_KEY_SECURITY)
+        . ']" />'
+        . K_NEWLINE
+;
+echo
+    '<meta name="author" content="'
+        . htmlspecialchars($thispage_author, ENT_COMPAT, $l['a_meta_charset'])
+        . '" />'
+        . K_NEWLINE
+;
+echo
+    '<meta name="reply-to" content="'
+        . htmlspecialchars($thispage_reply, ENT_COMPAT, $l['a_meta_charset'])
+        . '" />'
+        . K_NEWLINE
+;
+echo
+    '<meta name="keywords" content="'
+        . htmlspecialchars($thispage_keywords, ENT_COMPAT, $l['a_meta_charset'])
+        . '" />'
+        . K_NEWLINE
+;
+echo '<link rel="stylesheet" href="' . $thispage_style . '" />' . K_NEWLINE;
+echo '<link rel="icon" href="' . $thispage_icon . '" />' . K_NEWLINE;
 echo '<!-- TCExam19730104 -->' . K_NEWLINE;
 echo '</head>' . K_NEWLINE;
 
 echo '<body>' . K_NEWLINE;
+// accessibility: skip link to the main content (must be the first focusable element)
+echo
+    '<a href="#maincontent" class="skiplink" accesskey="2" title="[2] '
+        . htmlspecialchars($l['w_skip_navigation'], ENT_QUOTES, $l['a_meta_charset'])
+        . '">'
+        . $l['w_skip_navigation']
+        . '</a>'
+        . K_NEWLINE
+;
 
 global $login_error;
 if (isset($login_error) && $login_error) {
     F_print_error('WARNING', $l['m_login_wrong']);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

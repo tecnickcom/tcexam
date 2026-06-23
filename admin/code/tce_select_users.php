@@ -7,17 +7,9 @@
 //
 // Description : Display user selection table.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,47 +20,49 @@
  * @since 2001-09-13
  */
 
+require_once '../config/tce_config.php';
 
-
-require_once('../config/tce_config.php');
+$from_group_id = $_POST['from_group_id'] ?? '';
+$to_group_id = $_POST['to_group_id'] ?? '';
 
 $pagelevel = K_AUTH_ADMIN_USERS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_user_select'];
 
-require_once('../code/tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
-require_once('tce_functions_user_select.php');
+require_once '../code/tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
+require_once 'tce_functions_user_select.php';
 
 // set default values
-$new_group_id = isset($new_group_id) ? (int) $new_group_id : 0;
+$new_group_id = isset($_REQUEST['new_group_id']) ? (int) $_REQUEST['new_group_id'] : 0;
 $group_id = isset($_REQUEST['group_id']) ? (int) $_REQUEST['group_id'] : 0;
-$orderdir = isset($orderdir) ? (int) $orderdir : 0;
-$firstrow = isset($firstrow) ? (int) $firstrow : 0;
-$rowsperpage = isset($rowsperpage) ? (int) $rowsperpage : K_MAX_ROWS_PER_PAGE;
+$orderdir = isset($_REQUEST['orderdir']) ? (int) $_REQUEST['orderdir'] : 0;
+$firstrow = isset($_REQUEST['firstrow']) ? (int) $_REQUEST['firstrow'] : 0;
+$rowsperpage = isset($_REQUEST['rowsperpage']) ? (int) $_REQUEST['rowsperpage'] : K_MAX_ROWS_PER_PAGE;
+$order_field = $_REQUEST['order_field'] ?? 'user_lastname,user_firstname';
+$searchterms = $_REQUEST['searchterms'] ?? '';
 
-if (! isset($order_field)) {
-    $order_field = 'user_lastname,user_firstname';
-}
-
-if (! isset($searchterms)) {
-    $searchterms = '';
-}
-
-
-if (! F_isAuthorizedEditorForGroup($group_id)) {
+if (!F_isAuthorizedEditorForGroup($group_id)) {
     F_print_error('ERROR', $l['m_authorization_denied'], true);
 }
 
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_userselect">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_userselect">'
+        . K_NEWLINE
+;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
 echo '<label for="group_id">' . $l['w_group'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_userselect\').submit()">' . K_NEWLINE;
+echo
+    '<select name="group_id" id="group_id" onchange="document.getElementById(\'form_userselect\').submit()">'
+        . K_NEWLINE
+;
 
 echo '<option value="0"';
 if ($group_id == 0) {
@@ -93,7 +87,15 @@ if ($r = F_db_query($sql, $db)) {
 
 echo '</select>' . K_NEWLINE;
 
-echo '<input type="text" name="searchterms" id="searchterms" value="' . htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset']) . '" size="20" maxlength="255" title="' . $l['w_search'] . '" />';
+echo
+    '<input type="text" name="searchterms" id="searchterms" value="'
+        . htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset'])
+        . '" size="20" maxlength="255" title="'
+        . $l['w_search']
+        . '" aria-label="'
+        . $l['w_search']
+        . '" />'
+;
 F_submit_button('search', $l['w_search'], $l['w_search']);
 echo '</span></div>' . K_NEWLINE;
 // build a search query
@@ -126,81 +128,136 @@ if (isset($_POST['addgroup'])) {
     $menu_mode = 'move';
 }
 
-if (isset($menu_mode) && ! empty($menu_mode)) {
+if (isset($menu_mode) && !empty($menu_mode)) {
     $istart = 1 + $firstrow;
     $iend = $rowsperpage + $firstrow;
     for ($i = $istart; $i <= $iend; ++$i) {
         // for each selected user
         $keyname = 'userid' . $i;
-        if (isset(${$keyname})) {
-            $user_id = (int) ${$keyname};
+        if (isset($_POST[$keyname])) {
+            $user_id = (int) $_POST[$keyname];
             switch ($menu_mode) {
-                case 'delete': {
-                    if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS && $user_id > 1 && $user_id != $_SESSION['session_user_id'] && F_isAuthorizedEditorForUser($user_id)) {
-                        $sql = 'DELETE FROM ' . K_TABLE_USERS . '
+                case 'delete':
+                    {
+                        if (
+                            $_SESSION['session_user_level'] >= K_AUTH_DELETE_USERS
+                            && $user_id > 1
+                            && $user_id != $_SESSION['session_user_id']
+                            && F_isAuthorizedEditorForUser($user_id)
+                        ) {
+                            $sql = 'DELETE FROM ' . K_TABLE_USERS . '
 							WHERE user_id=' . $user_id . '';
-                        if (! $r = F_db_query($sql, $db)) {
-                            F_display_db_error();
+                            if (!($r = F_db_query($sql, $db))) {
+                                F_display_db_error();
+                            }
                         }
-                    }
 
-                    break;
-                }
-                case 'addgroup': {
-                    if ($_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS && $new_group_id > 0 && F_isAuthorizedEditorForGroup($new_group_id)) {
-                        $groups = F_get_user_groups($user_id);
-                        if (! in_array($new_group_id, $groups)) {
-                            $sql = 'INSERT INTO ' . K_TABLE_USERGROUP . ' (
+                        break;
+                    }
+                case 'addgroup':
+                    {
+                        if (
+                            $_SESSION['session_user_level'] >= K_AUTH_ADMIN_GROUPS
+                            && $new_group_id > 0
+                            && F_isAuthorizedEditorForGroup($new_group_id)
+                        ) {
+                            $groups = F_get_user_groups($user_id);
+                            if (!in_array($new_group_id, $groups)) {
+                                $sql =
+                                    'INSERT INTO '
+                                    . K_TABLE_USERGROUP
+                                    . ' (
 								usrgrp_user_id,
 								usrgrp_group_id
 								) VALUES (
-								\'' . $user_id . '\',
-								\'' . $new_group_id . '\'
+								\''
+                                    . $user_id
+                                    . '\',
+								\''
+                                    . $new_group_id
+                                    . '\'
 								)';
-                            if (! $r = F_db_query($sql, $db)) {
+                                if (!($r = F_db_query($sql, $db))) {
+                                    F_display_db_error();
+                                }
+                            }
+                        }
+
+                        break;
+                    }
+                case 'delgroup':
+                    {
+                        if (
+                            $_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS
+                            && $new_group_id > 0
+                            && F_isAuthorizedEditorForGroup($new_group_id)
+                        ) {
+                            $sql =
+                                'DELETE FROM '
+                                . K_TABLE_USERGROUP
+                                . '
+							WHERE usrgrp_user_id='
+                                . $user_id
+                                . '
+								AND usrgrp_group_id='
+                                . $new_group_id
+                                . '';
+                            if (!($r = F_db_query($sql, $db))) {
                                 F_display_db_error();
                             }
                         }
-                    }
 
-                    break;
-                }
-                case 'delgroup': {
-                    if ($_SESSION['session_user_level'] >= K_AUTH_DELETE_GROUPS && $new_group_id > 0 && F_isAuthorizedEditorForGroup($new_group_id)) {
-                        $sql = 'DELETE FROM ' . K_TABLE_USERGROUP . '
-							WHERE usrgrp_user_id=' . $user_id . '
-								AND usrgrp_group_id=' . $new_group_id . '';
-                        if (! $r = F_db_query($sql, $db)) {
-                            F_display_db_error();
-                        }
+                        break;
                     }
-
-                    break;
-                }
-                case 'move': {
-                    if ($_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS && isset($from_group_id) && $from_group_id > 0 && F_isAuthorizedEditorForGroup($from_group_id) && isset($to_group_id) && $to_group_id > 0 && F_isAuthorizedEditorForGroup($to_group_id)) {
-                        $groups = F_get_user_groups($user_id);
-                        if (! in_array($to_group_id, $groups)) {
-                            $sql = 'UPDATE ' . K_TABLE_USERGROUP . ' SET
-								usrgrp_group_id=' . $to_group_id . '
-								WHERE usrgrp_user_id=' . $user_id . '
-									AND usrgrp_group_id=' . $from_group_id . '
+                case 'move':
+                    {
+                        if (
+                            $_SESSION['session_user_level'] >= K_AUTH_MOVE_GROUPS
+                            && isset($from_group_id)
+                            && $from_group_id > 0
+                            && F_isAuthorizedEditorForGroup($from_group_id)
+                            && isset($to_group_id)
+                            && $to_group_id > 0
+                            && F_isAuthorizedEditorForGroup($to_group_id)
+                        ) {
+                            $groups = F_get_user_groups($user_id);
+                            if (!in_array($to_group_id, $groups)) {
+                                $sql =
+                                    'UPDATE '
+                                    . K_TABLE_USERGROUP
+                                    . ' SET
+								usrgrp_group_id='
+                                    . $to_group_id
+                                    . '
+								WHERE usrgrp_user_id='
+                                    . $user_id
+                                    . '
+									AND usrgrp_group_id='
+                                    . $from_group_id
+                                    . '
 								LIMIT 1';
-                            if (! $r = F_db_query($sql, $db)) {
-                                F_display_db_error();
-                            }
-                        } else {
-                            $sql = 'DELETE FROM ' . K_TABLE_USERGROUP . '
-							WHERE usrgrp_user_id=' . $user_id . '
-								AND usrgrp_group_id=' . $from_group_id . '';
-                            if (! $r = F_db_query($sql, $db)) {
-                                F_display_db_error();
+                                if (!($r = F_db_query($sql, $db))) {
+                                    F_display_db_error();
+                                }
+                            } else {
+                                $sql =
+                                    'DELETE FROM '
+                                    . K_TABLE_USERGROUP
+                                    . '
+							WHERE usrgrp_user_id='
+                                    . $user_id
+                                    . '
+								AND usrgrp_group_id='
+                                    . $from_group_id
+                                    . '';
+                                if (!($r = F_db_query($sql, $db))) {
+                                    F_display_db_error();
+                                }
                             }
                         }
-                    }
 
-                    break;
-                }
+                        break;
+                    }
             } // end of switch
         }
     }
@@ -212,8 +269,4 @@ F_select_user($order_field, $orderdir, $firstrow, $rowsperpage, $group_id, $wher
 echo F_getCSRFTokenField() . K_NEWLINE;
 echo '</form>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

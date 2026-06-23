@@ -7,17 +7,9 @@
 //
 // Description : Function to convert HTML code to Text string.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -37,9 +29,9 @@
  */
 function F_html_to_text($str, $preserve_newlines = false, $display_links = false)
 {
-    require_once('../../shared/code/tce_functions_general.php');
+    require_once '../../shared/code/tce_functions_general.php';
 
-    $dollar_replacement = ":.dlr.:"; //string replacement for dollar symbol
+    $dollar_replacement = ':.dlr.:'; //string replacement for dollar symbol
 
     //tags conversion table
     $tags2textTable = [
@@ -68,39 +60,39 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
     $str = str_replace("\$", $dollar_replacement, $str); //replace special character
 
     //remove session variable PHPSESSID from links
-    $str = preg_replace("/(\?|\&|%3F|%26|\&amp;|%26amp%3B)PHPSESSID(=|%3D)[a-z0-9]{32,32}/i", "", $str);
+    $str = preg_replace("/(\?|\&|%3F|%26|\&amp;|%26amp%3B)PHPSESSID(=|%3D)[a-z0-9]{32,32}/i", '', $str);
 
     //remove applet and get alternative content
     $str = preg_replace_callback(
         "/<applet[^>]*?>(.*?)<\/applet>/si",
-        static fn ($subs) => preg_replace("/<param[^>]*>/i", "", $subs[1]),
-        $str
+        static fn($subs) => preg_replace('/<param[^>]*>/i', '', $subs[1]),
+        $str,
     );
 
     //remove object and get alternative content
     $str = preg_replace_callback(
         "/<object[^>]*?>(.*?)<\/object>/si",
-        static fn ($subs) => preg_replace("/<param[^>]*>/i", "", $subs[1]),
-        $str
+        static fn($subs) => preg_replace('/<param[^>]*>/i', '', $subs[1]),
+        $str,
     );
 
     //indent list elements
     $firstposition = 0;
-    while (($pos = strpos($str, "<ul")) > $firstposition) {
+    while (($pos = strpos($str, '<ul')) > $firstposition) {
         $str = preg_replace_callback(
             "/<ul[^>]*?>(.*?)<\/ul>/si",
-            static fn ($subs) => preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]),
-            $str
+            static fn($subs) => preg_replace('/<li[^>]*>/i', "<li>\t", $subs[1]),
+            $str,
         );
         $firstposition = $pos;
     }
 
     $firstposition = 0;
-    while (($pos = strpos($str, "<ol")) > $firstposition) {
+    while (($pos = strpos($str, '<ol')) > $firstposition) {
         $str = preg_replace_callback(
             "/<ol[^>]*?>(.*?)<\/ol>/si",
-            static fn ($subs) => preg_replace("/<li[^>]*>/i", "<li>\t", $subs[1]),
-            $str
+            static fn($subs) => preg_replace('/<li[^>]*>/i', "<li>\t", $subs[1]),
+            $str,
         );
         $firstposition = $pos;
     }
@@ -109,16 +101,20 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
 
     // give a textual representation of links and images
     if ($display_links) {
-        $str = preg_replace("'<a[^>]*href[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si", "\\2 [LINK: \\1]", $str);
+        $str = preg_replace(
+            "'<a[^>]*href[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si",
+            "\\2 [LINK: \\1]",
+            $str,
+        );
     }
 
-    if (! $preserve_newlines) { //remove newlines
-        $str = str_replace("\n", "", $str);
+    if (!$preserve_newlines) { //remove newlines
+        $str = str_replace("\n", '', $str);
     }
 
     $str = preg_replace(array_keys($tags2textTable), array_values($tags2textTable), $str);
 
-    $str = preg_replace("'<[^>]*?>'si", "", $str); //strip out remaining tags
+    $str = preg_replace("'<[^>]*?>'si", '', $str); //strip out remaining tags
 
     //remove some newlines in excess
     $str = preg_replace("'[ \t\f]+[\r\n]'si", "\n", $str);
@@ -130,7 +126,3 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
 
     return stripslashes(trim($str));
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

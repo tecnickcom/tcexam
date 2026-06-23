@@ -1,0 +1,71 @@
+name: check
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'modern'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - modern
+
+jobs:
+  test-php:
+    name: Test on php ${{ matrix.php-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.2", "8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use php ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+          extensions: bcmath, curl, date, dom, gd, hash, intl, json, mbstring, mysqli, openssl, pcre, xml, zip, zlib
+          ini-values: display_errors=on, error_reporting=-1
+      - name: List php modules
+        run: php -m
+      - name: Cache Composer modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache/
+          key: ${{ runner.os }}-php-${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php-version }}-composer-
+      - name: Install dependencies
+        run: make deps
+      # Linting is advisory until the codebase is made mago-clean (plan Stage 4),
+      # after which `continue-on-error` is removed and lint becomes a required gate.
+      - name: Lint and static analysis
+        continue-on-error: true
+        run: make lint
+      - name: Run unit tests
+        run: make test
+
+  integration:
+    name: Integration tests (${{ matrix.db }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        db: [mysql, postgres]
+    steps:
+      - uses: actions/checkout@v6
+      # Builds the runner image, seeds a throwaway DB from install/*.sql, runs the unit +
+      # integration suites against it, copies the reports back, then tears the env down.
+      - name: Run dockerised integration tests
+        run: make dockertest DB_TYPE=${{ matrix.db }}

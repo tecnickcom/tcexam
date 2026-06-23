@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_user_registration.php
 // Begin       : 2008-03-30
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for user registration.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -71,7 +64,7 @@ define('K_USRREG_PASSWORD_RE', '^(.{8,})$');
  * 1 = enabled field;
  * 2 = required field;
  */
-$regfields = array(
+$regfields = [
     'user_email' => 2,
     'user_regnumber' => 1,
     'user_firstname' => 2,
@@ -80,9 +73,5 @@ $regfields = array(
     'user_birthplace' => 1,
     'user_ssn' => 1,
     'user_groups' => 1,
-    'user_agreement' => 2
-);
-
-//============================================================+
-// END OF FILE
-//============================================================+
+    'user_agreement' => 2,
+];

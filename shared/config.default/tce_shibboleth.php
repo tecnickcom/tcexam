@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_shibboleth.php
 // Begin       : 2012-05-25
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for Shibboleth Single-Sign-On Authentication
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
-//    Copyright (C) 2012-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -49,7 +42,3 @@ define('K_SHIBBOLETH_USER_GROUP_ID', 1);
  * URL of the Shibboleth login page
  */
 define('K_SHIBBOLETH_LOGIN', '');
-
-//============================================================+
-// END OF FILE
-//============================================================+

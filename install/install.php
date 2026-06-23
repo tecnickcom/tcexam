@@ -6,20 +6,19 @@
 //
 // Description : TCExam installation script.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 error_reporting(E_ALL);
+
+// PHP 8.1+ makes mysqli throw exceptions on error by default. The legacy Database Abstraction
+// Layer and the install functions expect the historical "return false on failure" contract so
+// that connection/query problems are reported gracefully instead of crashing the installer.
+if (function_exists('mysqli_report')) {
+    mysqli_report(MYSQLI_REPORT_OFF);
+}
 
 $progress_log = 'install.log'; //installation log file
 
@@ -30,18 +29,18 @@ $dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
 
 require_once('tce_functions_install.php');
 
-//send XHTML headers
-echo '<'.'?'.'xml version="1.0" encoding="UTF-8" '.'?'.'>'."\n";
-echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
-echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">'."\n";
+//send HTML5 headers
+echo '<!DOCTYPE html>'."\n";
+echo '<html lang="en" dir="ltr">'."\n";
 
 echo '<head>'."\n";
+echo '<meta charset="UTF-8">'."\n";
+echo '<meta name="viewport" content="width=device-width, initial-scale=1">'."\n";
 echo '<title>TCExam - Installation</title>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'."\n";
-echo '<meta name="description" content="Installation Script for TCExam" />'."\n";
-echo '<meta name="author" content="Nicola Asuni - Tecnick.com LTD" />'."\n";
-echo '<meta http-equiv="Pragma" content="no-cache" />'."\n";
-echo '<link rel="stylesheet" href="../admin/styles/default.css" type="text/css" />'."\n";
+echo '<meta name="description" content="Installation Script for TCExam">'."\n";
+echo '<meta name="author" content="Nicola Asuni - Tecnick.com LTD">'."\n";
+echo '<meta http-equiv="Pragma" content="no-cache">'."\n";
+echo '<link rel="stylesheet" href="../admin/styles/default.css">'."\n";
 echo '</head>'."\n";
 
 echo '<body>'."\n";
@@ -54,11 +53,11 @@ if (!F_are_files_writable(array($progress_log))) {
 <h1>TCExam - Installation</h1>
 
 <p>
-<strong>This is the <a href="index.htm" title="installation manual">installation</a> script of <a href="http://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="http://www.tecnick.com">Tecnick.com LTD</a></strong>
+<strong>This is the <a href="index.html" title="installation manual">installation</a> script of <a href="https://www.tcexam.org" title="TCExam website">TCExam</a> by <a href="https://tecnick.com">Tecnick.com LTD</a></strong>
 </p>
 
 <p>
-<strong>DO NOT USE THIS SCRIPT FOR UPGRADING AN EXISTING INSTALLATION, INSTEAD READ <a href="../UPGRADE.TXT" title="upgrading instructions">UPGRADE.TXT</a></strong>
+<strong>DO NOT USE THIS SCRIPT FOR UPGRADING AN EXISTING INSTALLATION, INSTEAD READ <a href="../doc/UPGRADE.md" title="upgrading instructions">doc/UPGRADE.md</a></strong>
 </p>
 
 <?php
@@ -176,7 +175,11 @@ if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
 		} else {
 			$_REQUEST['standard_port'] = 80;
 		}
-		$drop_existing = true;
+		// Default to a non-destructive install: never drop an existing database automatically
+		// (tick "Drop Existing Database?" only for a deliberate clean reinstall). Creating the
+		// database is safe to leave on — if it already exists or the user lacks the CREATE
+		// privilege (e.g. a managed/Docker database), the installer falls back to the existing one.
+		$drop_existing = false;
 		$create_new = true;
 	}
 

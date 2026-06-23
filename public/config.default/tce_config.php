@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-10-23
@@ -7,17 +8,9 @@
 // Description : Configuration file for public section.
 //
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,13 +22,10 @@
  * @since 2001-10-23
  */
 
-/**
- */
-
 // --- INCLUDE FILES -----------------------------------------------------------
 
-require_once('../config/tce_auth.php');
-require_once('../../shared/config/tce_config.php');
+require_once '../config/tce_auth.php';
+require_once '../../shared/config/tce_config.php';
 
 // --- DEFAULT META TAGS -------------------------------------------------------
 
@@ -57,7 +47,7 @@ define('K_SITE_AUTHOR', 'Nicola Asuni - Tecnick.com LTD');
 /**
  * Default html reply-to meta tag.
  */
-define('K_SITE_REPLY', ''); //
+define('K_SITE_REPLY', '');
 
 /**
  * Default keywords.
@@ -77,12 +67,12 @@ define('K_PUBLIC_THEME', 'default');
 /**
  * Path to public CSS stylesheet for LTR languages.
  */
-define('K_SITE_STYLE', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'.css');
+define('K_SITE_STYLE', K_PATH_STYLE_SHEETS . K_PUBLIC_THEME . '.css');
 
 /**
  * Path to CSS stylesheet for RTL languages.
  */
-define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS.K_PUBLIC_THEME.'_rtl.css');
+define('K_SITE_STYLE_RTL', K_PATH_STYLE_SHEETS . K_PUBLIC_THEME . '_rtl.css');
 
 // --- OPTIONS / COSTANTS ------------------------------------------------------
 
@@ -94,7 +84,7 @@ define('K_MAX_ROWS_PER_PAGE', 50);
 /**
  * Max file size to be uploaded [bytes].
  */
-define('K_MAX_UPLOAD_SIZE', 1000000);
+define('K_MAX_UPLOAD_SIZE', 1_000_000);
 
 /**
  * Max memory limit for a PHP script.
@@ -118,15 +108,11 @@ define('K_HIDE_EXPIRED_TESTS', false);
 
 // --- INCLUDE FILES -----------------------------------------------------------
 
-require_once('../../shared/config/tce_db_config.php');
-require_once('../../shared/code/tce_db_connect.php');
-require_once('../../shared/code/tce_functions_general.php');
+require_once '../../shared/config/tce_db_config.php';
+require_once '../../shared/code/tce_db_connect.php';
+require_once '../../shared/code/tce_functions_general.php';
 
 // --- PHP SETTINGS ------------------------------------------------------------
 
 ini_set('memory_limit', K_MAX_MEMORY_LIMIT); // set PHP memory limit
 ini_set('session.use_trans_sid', 0); // if =1 use PHPSESSID (for clients that do not support cookies)
-
-//============================================================+
-// END OF FILE
-//============================================================+

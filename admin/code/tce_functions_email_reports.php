@@ -7,17 +7,9 @@
 //
 // Description : Sends email test reports to users.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -42,19 +34,28 @@
  * @param $display_mode display (int) mode: 0 = disabled; 1 = minimum; 2 = module; 3 = subject; 4 = question; 5 = answer.
  * @param $show_graph (boolean) If true display the score graph.
  */
-function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_id = 0, $startdate = 0, $enddate = 0, $mode = 0, $display_mode = 1, $show_graph = false)
-{
+function F_send_report_emails(
+    $test_id,
+    $user_id = 0,
+    $testuser_id = 0,
+    $group_id = 0,
+    $startdate = 0,
+    $enddate = 0,
+    $mode = 0,
+    $display_mode = 1,
+    $show_graph = false,
+) {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_functions_test.php');
-    require_once('../../shared/code/tce_functions_test_stats.php');
-    require_once('../../shared/code/tce_class_mailer.php');
-    require_once('tce_functions_user_select.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_test.php';
+    require_once '../../shared/code/tce_functions_test_stats.php';
+    require_once '../../shared/code/tce_class_mailer.php';
+    require_once 'tce_functions_user_select.php';
 
     $mode = (int) $mode;
     if ($test_id > 0) {
         $test_id = (int) $test_id;
-        if (! F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+        if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
             return;
         }
     } else {
@@ -67,14 +68,14 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
 
     $group_id = $group_id > 0 ? (int) $group_id : 0;
 
-    if (! empty($startdate)) {
+    if (!empty($startdate)) {
         $startdate_time = strtotime($startdate);
         $startdate = date(K_TIMESTAMP_FORMAT, $startdate_time);
     } else {
         $startdate = '';
     }
 
-    if (! empty($enddate)) {
+    if (!empty($enddate)) {
         $enddate_time = strtotime($enddate);
         $enddate = date(K_TIMESTAMP_FORMAT, $enddate_time);
     } else {
@@ -111,7 +112,7 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
     }
 
     $mail->CharSet = $l['a_meta_charset'];
-    if (! $mail->CharSet) {
+    if (!$mail->CharSet) {
         $mail->CharSet = $emailcfg['CharSet'];
     }
 
@@ -121,7 +122,37 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
     $email_num = 0; // count emails;
 
     // get all data
-    $data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 'total_score', false, $display_mode);
+    $data = F_getAllUsersTestStat(
+        $test_id,
+        $group_id,
+        $user_id,
+        $startdate,
+        $enddate,
+        'total_score',
+        false,
+        $display_mode,
+    );
+
+    // SECURITY: the per-user report PDF is rendered by an internal HTTP request to this
+    // installation. Fetch it through tc-lib-file's safe HTTP reader (TLS-verified, size-capped,
+    // restricted to allow-listed hosts) rather than a raw file_get_contents() on a URL. The
+    // install's own host is always trusted; extra hosts can be configured via K_FILE_ALLOWED_HOSTS.
+    require_once __DIR__ . '/../../vendor/autoload.php';
+    if (!defined('FORCE_CURL')) {
+        // force the cURL transport so the safe reader is used even when allow_url_fopen is enabled
+        define('FORCE_CURL', true);
+    }
+
+    // defined() guard keeps pre-existing installs working until they merge the new config defaults
+    $allowed_hosts = defined('K_FILE_ALLOWED_HOSTS') ? unserialize(K_FILE_ALLOWED_HOSTS) : [];
+    $allowed_hosts = is_array($allowed_hosts) ? $allowed_hosts : [];
+    $self_host = parse_url(K_PATH_HOST, PHP_URL_HOST);
+    if (is_string($self_host) && $self_host !== '') {
+        $allowed_hosts[] = $self_host;
+    }
+
+    $pdf_reader = new \Com\Tecnick\File\File();
+    $pdf_reader->setAllowedHosts($allowed_hosts);
 
     foreach ($data['testuser'] as $tu) {
         if (strlen($tu['user_email']) > 3) {
@@ -143,18 +174,74 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
                 $mail->AltBody .= K_NEWLINE;
             }
 
-            $mail->AltBody .= $l['w_score'] . ': ' . F_formatFloat($tu['total_score']) . ' ' . F_formatPercentage($tu['total_score_perc'], false) . $passmsg . K_NEWLINE;
+            $mail->AltBody .=
+                $l['w_score']
+                . ': '
+                . F_formatFloat($tu['total_score'])
+                . ' '
+                . F_formatPercentage($tu['total_score_perc'], false)
+                . $passmsg
+                . K_NEWLINE;
             if ($display_mode > 0) {
-                $mail->AltBody .= $l['w_answers_right'] . ': ' . $tu['right'] . '&nbsp;' . F_formatPercentage($tu['right_perc'], false) . K_NEWLINE;
-                $mail->AltBody .= $l['w_answers_wrong'] . ': ' . $tu['wrong'] . '&nbsp;' . F_formatPercentage($tu['wrong_perc'], false) . K_NEWLINE;
-                $mail->AltBody .= $l['w_questions_unanswered'] . ': ' . $tu['unanswered'] . '&nbsp;' . F_formatPercentage($tu['unanswered_perc'], false) . K_NEWLINE;
-                $mail->AltBody .= $l['w_questions_undisplayed'] . ': ' . $tu['undisplayed'] . '&nbsp;' . F_formatPercentage($tu['undisplayed_perc'], false) . K_NEWLINE;
+                $mail->AltBody .=
+                    $l['w_answers_right']
+                    . ': '
+                    . $tu['right']
+                    . '&nbsp;'
+                    . F_formatPercentage($tu['right_perc'], false)
+                    . K_NEWLINE;
+                $mail->AltBody .=
+                    $l['w_answers_wrong']
+                    . ': '
+                    . $tu['wrong']
+                    . '&nbsp;'
+                    . F_formatPercentage($tu['wrong_perc'], false)
+                    . K_NEWLINE;
+                $mail->AltBody .=
+                    $l['w_questions_unanswered']
+                    . ': '
+                    . $tu['unanswered']
+                    . '&nbsp;'
+                    . F_formatPercentage($tu['unanswered_perc'], false)
+                    . K_NEWLINE;
+                $mail->AltBody .=
+                    $l['w_questions_undisplayed']
+                    . ': '
+                    . $tu['undisplayed']
+                    . '&nbsp;'
+                    . F_formatPercentage($tu['undisplayed_perc'], false)
+                    . K_NEWLINE;
             }
 
             if ($mode == 0) {
-                $pdfkey = getPasswordHash(date('Y') . $tu['id'] . K_RANDOM_SECURITY . $tu['test']['test_id'] . date('m') . $tu['user_id']);
-                // create PDF doc
-                $pdf_content = file_get_contents(K_PATH_HOST . K_PATH_TCEXAM . 'admin/code/tce_pdf_results.php?mode=3&diplay_mode=' . $display_mode . '&show_graph=' . $show_graph . '&test_id=' . $tu['test']['test_id'] . '&user_id=' . $tu['user_id'] . '&testuser_id=' . $tu['id'] . '&email=' . urlencode($pdfkey));
+                $pdfkey = getPasswordHash(
+                    date('Y') . $tu['id'] . K_RANDOM_SECURITY . $tu['test']['test_id'] . date('m') . $tu['user_id'],
+                );
+                // create PDF doc (fetched via tc-lib-file's safe, host-allow-listed HTTP reader)
+                $pdf_url =
+                    K_PATH_HOST
+                    . K_PATH_TCEXAM
+                    . 'admin/code/tce_pdf_results.php?mode=3&diplay_mode='
+                    . $display_mode
+                    . '&show_graph='
+                    . $show_graph
+                    . '&test_id='
+                    . $tu['test']['test_id']
+                    . '&user_id='
+                    . $tu['user_id']
+                    . '&testuser_id='
+                    . $tu['id']
+                    . '&email='
+                    . urlencode($pdfkey);
+                try {
+                    $pdf_content = $pdf_reader->getUrlData($pdf_url);
+                } catch (\Com\Tecnick\File\Exception $e) {
+                    $pdf_content = false;
+                }
+
+                if ($pdf_content === false) {
+                    $pdf_content = '';
+                }
                 // set PDF document file name
                 $doc_name = 'tcexam_report';
                 $doc_name .= '_3';
@@ -166,7 +253,12 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
                 $doc_name .= '.pdf';
 
                 // attach document
-                $mail->addStringAttachment($pdf_content, $doc_name, $emailcfg['AttachmentsEncoding'], 'application/octet-stream');
+                $mail->addStringAttachment(
+                    $pdf_content,
+                    $doc_name,
+                    $emailcfg['AttachmentsEncoding'],
+                    'application/octet-stream',
+                );
                 $mail->AltBody .= K_NEWLINE . $l['w_attachment'] . ': ' . $doc_name . K_NEWLINE;
             }
 
@@ -181,9 +273,21 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
             $mail->Body = str_replace('#LANG#', $l['a_meta_language'], $mail->Body);
             $mail->Body = str_replace('#LANGDIR#', $l['a_meta_dir'], $mail->Body);
             $mail->Body = str_replace('#EMAIL#', $tu['user_email'], $mail->Body);
-            $mail->Body = str_replace('#USERNAME#', htmlspecialchars($tu['user_name'], ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
-            $mail->Body = str_replace('#USERFIRSTNAME#', htmlspecialchars(($tu['user_firstname'] ?? ''), ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
-            $mail->Body = str_replace('#USERLASTNAME#', htmlspecialchars(($tu['user_lastname'] ?? ''), ENT_NOQUOTES, $l['a_meta_charset']), $mail->Body);
+            $mail->Body = str_replace(
+                '#USERNAME#',
+                htmlspecialchars($tu['user_name'], ENT_NOQUOTES, $l['a_meta_charset']),
+                $mail->Body,
+            );
+            $mail->Body = str_replace(
+                '#USERFIRSTNAME#',
+                htmlspecialchars($tu['user_firstname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset']),
+                $mail->Body,
+            );
+            $mail->Body = str_replace(
+                '#USERLASTNAME#',
+                htmlspecialchars($tu['user_lastname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset']),
+                $mail->Body,
+            );
 
             // add a "To" address
             $mail->addAddress($tu['user_email'], $tu['user_name']);
@@ -191,7 +295,7 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
             ++$email_num;
             $progresslog = '' . $email_num . '. ' . $tu['user_email'] . ' [' . $tu['user_name'] . ']'; //output user data
 
-            if (! $mail->send()) { //send email to user
+            if (!$mail->send()) { //send email to user
                 $progresslog .= ' [' . $l['t_error'] . ']'; //display error message
             }
 
@@ -212,7 +316,3 @@ function F_send_report_emails($test_id, $user_id = 0, $testuser_id = 0, $group_i
     $mail->clearReplyTos(); // Clears all recipients assigned in the ReplyTo array
     return;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

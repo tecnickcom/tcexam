@@ -9,17 +9,9 @@
 //               The TCExam code is compatible to the common BBCode.
 //               Supports LaTeX and MathML.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -38,7 +30,7 @@
  */
 function F_decode_tcecode($text_to_decode)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l, $db;
 
     // Patterns and replacements
@@ -62,9 +54,17 @@ function F_decode_tcecode($text_to_decode)
     $newtext = preg_replace_callback("#\[mathml\](.*?)\[/mathml\]#si", 'F_mathml_callback', $newtext);
 
     // [object]object_url[/object:width:height:alt]
-    $newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\:(.*?)\]#si", 'F_objects_callback', $newtext);
+    $newtext = preg_replace_callback(
+        "#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\:(.*?)\]#si",
+        'F_objects_callback',
+        $newtext,
+    );
     // [object]object_url[/object:width:height]
-    $newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\]#si", 'F_objects_callback', $newtext);
+    $newtext = preg_replace_callback(
+        "#\[object\](.*?)\.(.*?)\[/object\:(.*?)\:(.*?)\]#si",
+        'F_objects_callback',
+        $newtext,
+    );
     // [object]object_url[/object]
     $newtext = preg_replace_callback("#\[object\](.*?)\.(.*?)\[/object\]#si", 'F_objects_callback', $newtext);
 
@@ -81,9 +81,9 @@ function F_decode_tcecode($text_to_decode)
     }
 
     // Convert multiple spaces to &nbsp; to support indentation.
-    preg_match_all("#[ ]{2,}#", $newtext, $matches);
+    preg_match_all('#[ ]{2,}#', $newtext, $matches);
     if (isset($matches[0])) {
-        foreach($matches[0] as $match) {
+        foreach ($matches[0] as $match) {
             $pos = strpos($newtext, $match);
             if ($pos !== false) {
                 $len = strlen($match);
@@ -96,9 +96,7 @@ function F_decode_tcecode($text_to_decode)
     $newtext = preg_replace("'(\r\n|\n|\r)'", '<br />', $newtext);
     $newtext = str_replace('<br /><li', '<li', $newtext);
     $newtext = str_replace('</li><br />', '</li>', $newtext);
-    $newtext = (str_replace('<br /><param', '<param', $newtext));
-
-    return $newtext;
+    return str_replace('<br /><param', '<param', $newtext);
 }
 
 // ============================================================
@@ -108,14 +106,14 @@ function F_decode_tcecode($text_to_decode)
  * @param mixed $text
  * @return string
  */
-function F_bbcode_to_tcecode($text) {
+function F_bbcode_to_tcecode($text)
+{
     // [*]list item - convert to new [li] tag
     $text = preg_replace("'\[\*\](.*?)\n'i", "[li]\\1[/li]", $text);
     // [img]image[/img] - convert to new object tag
     $text = preg_replace("'\[img\](.*?)\[/img\]'si", "[object]\\1[/object]", $text);
     // [img=WIDTHxHEIGHT]image[/img] - convert to new object tag
-    $text = preg_replace("'\[img=(.*?)x(.*?)\](.*?)\[/img\]'si", "[object]\\3[/object:\\1:\\2]", $text);
-    return $text;
+    return preg_replace("'\[img=(.*?)x(.*?)\](.*?)\[/img\]'si", "[object]\\3[/object:\\1:\\2]", $text);
 }
 
 /**
@@ -123,7 +121,8 @@ function F_bbcode_to_tcecode($text) {
  * @param mixed $text
  * @return string
  */
-function F_tcecode_url($text) {
+function F_tcecode_url($text)
+{
     if (empty($text)) {
         return '';
     }
@@ -132,26 +131,26 @@ function F_tcecode_url($text) {
         function ($matches) {
             $url = $matches[1];
             // Optionally validate URL
-            if (!preg_match('/^https?:\/\//i', $url)
-               || !filter_var($url, FILTER_VALIDATE_URL)) {
+            if (!preg_match('/^https?:\/\//i', $url) || !filter_var($url, FILTER_VALIDATE_URL)) {
                 return $url;
             }
             return '<a class="tcecode" href="' . $url . '" rel="noopener noreferrer" target="_blank">' . $url . '</a>';
         },
-        $text
+        $text,
     );
     return preg_replace_callback(
         '#\[url=(.*?)\](.*?)\[/url\]#si',
         function ($matches) {
             $url = $matches[1];
             $label = $matches[2];
-            if (!preg_match('/^https?:\/\//i', $url)
-               || !filter_var($url, FILTER_VALIDATE_URL)) {
+            if (!preg_match('/^https?:\/\//i', $url) || !filter_var($url, FILTER_VALIDATE_URL)) {
                 return $label;
             }
-            return '<a class="tcecode" href="' . $url . '" rel="noopener noreferrer" target="_blank">' . $label . '</a>';
+            return (
+                '<a class="tcecode" href="' . $url . '" rel="noopener noreferrer" target="_blank">' . $label . '</a>'
+            );
         },
-        $text
+        $text,
     );
 }
 
@@ -160,7 +159,8 @@ function F_tcecode_url($text) {
  * @param mixed $text
  * @return string
  */
-function F_tcecode_tag($text) {
+function F_tcecode_tag($text)
+{
     // Patterns and replacements
     $tag = [
         '#\[dir=ltr\](.*?)\[/dir\]#si' => '<span dir="ltr">\1</span>',
@@ -185,11 +185,7 @@ function F_tcecode_tag($text) {
         if (empty($text)) {
             break;
         }
-        $text = preg_replace_callback(
-            $pattern,
-            fn($matches) => str_replace('\1', $matches[1], $replacement),
-            $text
-        );
+        $text = preg_replace_callback($pattern, fn($matches) => str_replace('\1', $matches[1], $replacement), $text);
     }
 
     return $text;
@@ -200,7 +196,8 @@ function F_tcecode_tag($text) {
  * @param mixed $text
  * @return string
  */
-function F_tcecode_tag_arg($text) {
+function F_tcecode_tag_arg($text)
+{
     // Patterns and replacements
     $tag = [
         "#\[align=(left|right|center|justify)\](.*?)\[/align\]#si" => '<span style="text-align:\1;">\2</span>',
@@ -221,7 +218,7 @@ function F_tcecode_tag_arg($text) {
         $text = preg_replace_callback(
             $pattern,
             fn($matches) => str_replace(['\1', '\2'], [$matches[1], $matches[2]], $replacement),
-            $text
+            $text,
         );
     }
 
@@ -238,7 +235,7 @@ function F_tcecode_tag_arg($text) {
  */
 function F_latex_callback($matches)
 {
-    require_once('../../shared/config/tce_latex.php');
+    require_once '../../shared/config/tce_latex.php';
     // extract latex code and convert some entities
     $latex = unhtmlentities($matches[1], true);
 
@@ -254,7 +251,12 @@ function F_latex_callback($matches)
     } elseif (strlen($latex) > K_LATEX_MAX_LENGHT) {
         // check if the formula
         $error = 'the formula is too long';
-    } elseif (preg_match('/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i', $latex) > 0) {
+    } elseif (
+        preg_match(
+            '/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i',
+            $latex,
+        ) > 0
+    ) {
         $error = 'invalid command';
     } else {
         // wrap the formula
@@ -276,14 +278,27 @@ function F_latex_callback($matches)
         } else {
             $cmd = 'cd ' . K_LATEX_PATH_PICTURE . ' && ' . K_LATEX_PDFLATEX . ' ' . $imgpath . '.tex';
             $sts = exec($cmd, $out, $ret);
-            if (($sts === false) || ($ret != 0)) {
+            if ($sts === false || $ret != 0) {
                 $error = implode("\n", $out);
             } else {
                 // convert code using ImageMagick
-                $cmd = 'cd ' . K_LATEX_PATH_PICTURE . ' && ' . K_LATEX_PATH_CONVERT . ' -density ' . (K_LATEX_FORMULA_DENSITY * $dr) . ' -trim +repage ' . $imgpath . '.pdf -depth 8 -quality 100 ' . $imgpath . '.' . K_LATEX_IMG_FORMAT . ' 2>&1';
+                $cmd =
+                    'cd '
+                    . K_LATEX_PATH_PICTURE
+                    . ' && '
+                    . K_LATEX_PATH_CONVERT
+                    . ' -density '
+                    . (K_LATEX_FORMULA_DENSITY * $dr)
+                    . ' -trim +repage '
+                    . $imgpath
+                    . '.pdf -depth 8 -quality 100 '
+                    . $imgpath
+                    . '.'
+                    . K_LATEX_IMG_FORMAT
+                    . ' 2>&1';
                 unset($out);
                 $sts = exec($cmd, $out, $ret);
-                if (($sts === false) || ($ret != 0)) {
+                if ($sts === false || $ret != 0) {
                     $error = implode("\n", $out);
                 } else {
                     $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
@@ -307,7 +322,13 @@ function F_latex_callback($matches)
     }
 
     if ($imgurl === false) {
-        return '[LaTeX: ERROR ' . $error . ']';
+        // Keep the placeholder concise. Surface the TeX "! ..." error line when available, but
+        // never echo the full pdflatex log into the rendered output (it leaks server paths).
+        $msg = '';
+        if ($error !== '' && preg_match('/^!\s*(.+)$/m', $error, $em)) {
+            $msg = ': ' . trim($em[1]);
+        }
+        return '[LaTeX error' . htmlspecialchars($msg, ENT_QUOTES) . ']';
     }
 
     // alternative text to image
@@ -321,7 +342,17 @@ function F_latex_callback($matches)
     $imsize = @getimagesize($imgpath . '.' . K_LATEX_IMG_FORMAT);
     [$w, $h] = $imsize;
 
-    return '<img src="' . $imgurl . '" alt="' . $alt_latex . '" class="tcecode" width="' . round($w / $dr) . '" height="' . round($h / $dr) . '" />';
+    return (
+        '<img src="'
+        . $imgurl
+        . '" alt="'
+        . $alt_latex
+        . '" class="tcecode" width="'
+        . round($w / $dr)
+        . '" height="'
+        . round($h / $dr)
+        . '" />'
+    );
 }
 
 /**
@@ -341,7 +372,7 @@ function F_mathml_callback($matches)
     $mathml = strip_tags($mathml, $mathml_tags);
     $mathml = preg_replace("/[\n\r\s]+/", ' ', $mathml);
     $mathml = trim($mathml);
-    if (! str_starts_with($mathml, '<math')) {
+    if (!str_starts_with($mathml, '<math')) {
         // add default math parent tag
         return '<math xmlns="http://www.w3.org/1998/Math/MathML">' . $mathml . '</math>';
     }
@@ -368,7 +399,7 @@ function F_objects_callback($matches)
         $height = intval($matches[4]);
     }
 
-    if (isset($matches[5]) && ! empty($matches[5])) {
+    if (isset($matches[5]) && !empty($matches[5])) {
         $alt = F_tcecodeToTitle($matches[5]);
     }
 
@@ -388,7 +419,7 @@ function F_objects_callback($matches)
  */
 function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt = '', &$maxwidth = 0, &$maxheight = 0)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l, $db;
     $filename = $name . '.' . $extension;
     $extension = strtolower($extension);
@@ -398,107 +429,109 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         case 'jpg':
         case 'jpeg':
         case 'png':
-        case 'svg': { // images
-            $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
-            if (! empty($alt)) {
-                $htmlcode .= ' alt="' . $alt . '"';
-            } else {
-                $htmlcode .= ' alt="image:' . $filename . '"';
-            }
-
-            $imsize = @getimagesize(K_PATH_CACHE . $filename);
-            if ($imsize !== false) {
-                [$pixw, $pixh] = $imsize;
-                if ($width <= 0 && $height <= 0) {
-                    // get default size
-                    $width = $pixw;
-                    $height = $pixh;
-                } elseif ($width <= 0) {
-                    $width = $height * $pixw / $pixh;
-                } elseif ($height <= 0) {
-                    $height = $width * $pixh / $pixw;
+        case 'svg':
+            { // images
+                $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
+                if (!empty($alt)) {
+                    $htmlcode .= ' alt="' . $alt . '"';
+                } else {
+                    $htmlcode .= ' alt="image:' . $filename . '"';
                 }
-            }
 
-            $ratio = 1;
-            if ($width > 0 && $height > 0) {
-                $ratio = $width / $height;
-            }
+                $imsize = @getimagesize(K_PATH_CACHE . $filename);
+                if ($imsize !== false) {
+                    [$pixw, $pixh] = $imsize;
+                    if ($width <= 0 && $height <= 0) {
+                        // get default size
+                        $width = $pixw;
+                        $height = $pixh;
+                    } elseif ($width <= 0) {
+                        $width = ($height * $pixw) / $pixh;
+                    } elseif ($height <= 0) {
+                        $height = ($width * $pixh) / $pixw;
+                    }
+                }
 
-            // fit image on max dimensions
-            if ($maxwidth > 0 && $width > $maxwidth) {
-                $width = $maxwidth;
-                $height = round($width / $ratio);
-                $maxheight = min($maxheight, $height);
-            }
+                $ratio = 1;
+                if ($width > 0 && $height > 0) {
+                    $ratio = $width / $height;
+                }
 
-            if ($maxheight > 0 && $height > $maxheight) {
-                $height = $maxheight;
-                $width = round($height * $ratio);
-            }
+                // fit image on max dimensions
+                if ($maxwidth > 0 && $width > $maxwidth) {
+                    $width = $maxwidth;
+                    $height = round($width / $ratio);
+                    $maxheight = min($maxheight, $height);
+                }
 
-            // print size
-            if ($width > 0) {
-                $htmlcode .= ' width="' . $width . '"';
-            }
+                if ($maxheight > 0 && $height > $maxheight) {
+                    $height = $maxheight;
+                    $width = round($height * $ratio);
+                }
 
-            if ($height > 0) {
-                $htmlcode .= ' height="' . $height . '"';
-            }
-
-            $htmlcode .= ' class="tcecode" />';
-            if ($imsize !== false) {
-                $maxwidth = $pixw;
-                $maxheight = $pixh;
-            }
-
-            break;
-        }
-        default: {
-            include('../../shared/config/tce_mime.php');
-            if (isset($mime[$extension])) {
-                $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
+                // print size
                 if ($width > 0) {
                     $htmlcode .= ' width="' . $width . '"';
-                } elseif ($maxwidth > 0) {
-                    $htmlcode .= ' width="' . $maxwidth . '"';
                 }
 
                 if ($height > 0) {
                     $htmlcode .= ' height="' . $height . '"';
-                } elseif ($maxheight > 0) {
-                    $htmlcode .= ' height="' . $maxheight . '"';
                 }
 
-                $htmlcode .= '>';
-                $htmlcode .= '<param name="type" value="' . $mime[$extension] . '" />';
-                $htmlcode .= '<param name="src" value="' . K_PATH_URL_CACHE . $filename . '" />';
-                $htmlcode .= '<param name="filename" value="' . K_PATH_URL_CACHE . $filename . '" />';
-                if ($width > 0) {
-                    $htmlcode .= '<param name="width" value="' . $width . '" />';
-                } elseif ($maxwidth > 0) {
-                    $htmlcode .= '<param name="width" value="' . $maxwidth . '" />';
+                $htmlcode .= ' class="tcecode" />';
+                if ($imsize !== false) {
+                    $maxwidth = $pixw;
+                    $maxheight = $pixh;
                 }
 
-                if ($height > 0) {
-                    $htmlcode .= '<param name="height" value="' . $height . '" />';
-                } elseif ($maxheight > 0) {
-                    $htmlcode .= '<param name="height" value="' . $maxheight . '" />';
-                }
-
-                if (! empty($alt)) {
-                    $htmlcode .= '' . $alt . '';
-                } else {
-                    $htmlcode .= '[' . $mime[$extension] . ']:' . $filename . '';
-                }
-
-                $htmlcode .= '</object>';
-            } else {
-                $htmlcode = '[ERROR - UNKNOW MIME TYPE FOR: ' . $extension . ']';
+                break;
             }
+        default:
+            {
+                include '../../shared/config/tce_mime.php';
+                if (isset($mime[$extension])) {
+                    $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
+                    if ($width > 0) {
+                        $htmlcode .= ' width="' . $width . '"';
+                    } elseif ($maxwidth > 0) {
+                        $htmlcode .= ' width="' . $maxwidth . '"';
+                    }
 
-            break;
-        }
+                    if ($height > 0) {
+                        $htmlcode .= ' height="' . $height . '"';
+                    } elseif ($maxheight > 0) {
+                        $htmlcode .= ' height="' . $maxheight . '"';
+                    }
+
+                    $htmlcode .= '>';
+                    $htmlcode .= '<param name="type" value="' . $mime[$extension] . '" />';
+                    $htmlcode .= '<param name="src" value="' . K_PATH_URL_CACHE . $filename . '" />';
+                    $htmlcode .= '<param name="filename" value="' . K_PATH_URL_CACHE . $filename . '" />';
+                    if ($width > 0) {
+                        $htmlcode .= '<param name="width" value="' . $width . '" />';
+                    } elseif ($maxwidth > 0) {
+                        $htmlcode .= '<param name="width" value="' . $maxwidth . '" />';
+                    }
+
+                    if ($height > 0) {
+                        $htmlcode .= '<param name="height" value="' . $height . '" />';
+                    } elseif ($maxheight > 0) {
+                        $htmlcode .= '<param name="height" value="' . $maxheight . '" />';
+                    }
+
+                    if (!empty($alt)) {
+                        $htmlcode .= '' . $alt . '';
+                    } else {
+                        $htmlcode .= '[' . $mime[$extension] . ']:' . $filename . '';
+                    }
+
+                    $htmlcode .= '</object>';
+                } else {
+                    $htmlcode = '[ERROR - UNKNOW MIME TYPE FOR: ' . $extension . ']';
+                }
+
+                break;
+            }
     }
 
     return $htmlcode;
@@ -567,7 +600,7 @@ function F_tcecodeToLine($str)
  */
 function F_tcecodeToTitle($str)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l;
     $str = F_remove_tcecode($str);
     $str = F_compact_string($str);
@@ -594,10 +627,10 @@ function F_substrHTML($htmltext, $min_length = 100, $offset_length = 20)
         for ($i = 0; $i < strlen($htmltext); ++$i) {
             // Load the current character and the next one if the string has not arrived at the last character
             $current_char = substr($htmltext, $i, 1);
-            $next_char = $i < strlen($htmltext) - 1 ? substr($htmltext, $i + 1, 1) : '';
+            $next_char = $i < (strlen($htmltext) - 1) ? substr($htmltext, $i + 1, 1) : '';
 
             // First check if quotes are on
-            if (! $quotes_on) {
+            if (!$quotes_on) {
                 // Check if it's a tag On a "<" add 3 if it's an opening tag (like <a href...) or add only 1 if it's an ending tag (like </a>)
                 if ($current_char == '<') {
                     if ($next_char == '/') {
@@ -633,7 +666,7 @@ function F_substrHTML($htmltext, $min_length = 100, $offset_length = 20)
 
             // Check if the counter has reached the minimum length yet,
             // then wait for the tag_counter to become 0, and chop the string there
-            if ($c > $min_length - $offset_length && $tag_counter == 0 && $next_char == ' ') {
+            if ($c > ($min_length - $offset_length) && $tag_counter == 0 && $next_char == ' ') {
                 return substr($htmltext, 0, $i + 1);
             }
         }
@@ -641,8 +674,3 @@ function F_substrHTML($htmltext, $min_length = 100, $offset_length = 20)
 
     return $htmltext;
 }
-
-
-//============================================================+
-// END OF FILE
-//============================================================+

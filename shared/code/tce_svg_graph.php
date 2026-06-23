@@ -7,17 +7,9 @@
 //
 // Description : Create an SVG graph for user results.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,15 +20,13 @@
  * @since 2012-04-15
  */
 
-
-
-require_once('../../shared/code/tce_functions_svg_graph.php');
+require_once '../../shared/code/tce_functions_svg_graph.php';
 
 // points to graph (values between 0 and 100)
 if (isset($_REQUEST['p'])) {
     $p = $_REQUEST['p'];
 } else {
-    exit;
+    exit();
 }
 
 // graph width
@@ -46,7 +36,3 @@ $w = isset($_REQUEST['w']) ? (int) $_REQUEST['w'] : '';
 $h = isset($_REQUEST['h']) ? (int) $_REQUEST['h'] : '';
 
 F_getSVGGraph($p, $w, $h);
-
-//============================================================+
-// END OF FILE
-//============================================================+

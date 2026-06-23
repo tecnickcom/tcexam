@@ -7,17 +7,9 @@
 //
 // Description : Functions to select topics.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -38,15 +30,15 @@
 function F_select_modules_sql($andwhere = '')
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $sql = 'SELECT * FROM ' . K_TABLE_MODULES . '';
     if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
-        if (! empty($andwhere)) {
+        if (!empty($andwhere)) {
             $sql .= ' WHERE ' . $andwhere;
         }
     } else {
         $sql .= ' WHERE module_user_id IN (' . F_getAuthorizedUsers($_SESSION['session_user_id']) . ')';
-        if (! empty($andwhere)) {
+        if (!empty($andwhere)) {
             $sql .= ' AND ' . $andwhere;
         }
     }
@@ -76,15 +68,16 @@ function F_select_subjects_sql($andwhere = '')
 function F_select_module_subjects_sql($andwhere = '')
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $sql = 'SELECT * FROM ' . K_TABLE_MODULES . ',' . K_TABLE_SUBJECTS . '';
     $sql .= ' WHERE module_id=subject_module_id';
     if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
         $authorized_users = F_getAuthorizedUsers($_SESSION['session_user_id']);
-        $sql .= ' AND (module_user_id IN (' . $authorized_users . ') OR subject_user_id IN (' . $authorized_users . '))';
+        $sql .=
+            ' AND (module_user_id IN (' . $authorized_users . ') OR subject_user_id IN (' . $authorized_users . '))';
     }
 
-    if (! empty($andwhere)) {
+    if (!empty($andwhere)) {
         $sql .= ' AND ' . $andwhere;
     }
 
@@ -100,7 +93,7 @@ function F_select_module_subjects_sql($andwhere = '')
 function F_select_tests_sql()
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $sql = 'SELECT * FROM ' . K_TABLE_TESTS . '';
     if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
         $sql .= ' WHERE test_user_id IN (' . F_getAuthorizedUsers($_SESSION['session_user_id']) . ')';
@@ -118,7 +111,7 @@ function F_select_tests_sql()
 function F_select_executed_tests_sql()
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $sql = 'SELECT *
 		FROM ' . K_TABLE_TESTS . '
 		WHERE test_id IN (
@@ -132,7 +125,3 @@ function F_select_executed_tests_sql()
 
     return $sql . ' ORDER BY test_begin_time DESC, test_name';
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

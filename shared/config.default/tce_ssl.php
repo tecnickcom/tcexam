@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_ssl.php
 // Begin       : 2013-03-27
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for SSL Authentication
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2013-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -44,7 +37,3 @@ define('K_SSL_USER_LEVEL', 1);
  * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define('K_SSL_USER_GROUP_ID', 1);
-
-//============================================================+
-// END OF FILE
-//============================================================+

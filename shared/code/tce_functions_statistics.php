@@ -7,17 +7,9 @@
 //
 // Description : Functions to calculate descriptive statistics.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -63,14 +55,14 @@ function F_getArrayStatistics($data)
         }
 
         if ($stats['number'][$set] > 0) {
-            $stats['maximum'][$set] = $dataset[($stats['number'][$set] - 1)];
+            $stats['maximum'][$set] = $dataset[$stats['number'][$set] - 1];
             $stats['range'][$set] = (float) $stats['maximum'][$set] - (float) $stats['minimum'][$set];
             $stats['mean'][$set] = $stats['sum'][$set] / $stats['number'][$set];
             $nsdiv = (int) ($stats['number'][$set] / 2);
-            if (($nsdiv > 0) && (($stats['number'][$set] % 2) == 0)) {
-                $stats['median'][$set] = (((float) $dataset[$nsdiv] + (float) $dataset[($nsdiv - 1)]) / 2);
+            if ($nsdiv > 0 && ($stats['number'][$set] % 2) == 0) {
+                $stats['median'][$set] = ((float) $dataset[$nsdiv] + (float) $dataset[$nsdiv - 1]) / 2;
             } else {
-                $stats['median'][$set] = (float) $dataset[(($stats['number'][$set] - 1) / 2)];
+                $stats['median'][$set] = (float) $dataset[($stats['number'][$set] - 1) / 2];
             }
 
             $freq = array_count_values($datastr);
@@ -89,7 +81,7 @@ function F_getArrayStatistics($data)
             $stats['kurtosi'][$set] = 0;
             if ($stats['standard_deviation'][$set] != 0) {
                 foreach ($dataset as $num => $value) {
-                    $tmpval = (($value - $stats['mean'][$set]) / $stats['standard_deviation'][$set]);
+                    $tmpval = ($value - $stats['mean'][$set]) / $stats['standard_deviation'][$set];
                     $stats['skewness'][$set] += $tmpval ** 3;
                     $stats['kurtosi'][$set] += $tmpval ** 4;
                 }
@@ -102,7 +94,3 @@ function F_getArrayStatistics($data)
 
     return $stats;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

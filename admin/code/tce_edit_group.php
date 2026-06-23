@@ -7,17 +7,9 @@
 //
 // Description : Edit users' groups.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,18 +20,16 @@
  * @since 2006-03-11
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 
 $pagelevel = K_AUTH_ADMIN_GROUPS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_group_editor'];
-require_once('../code/tce_page_header.php');
+require_once '../code/tce_page_header.php';
 
-require_once('../../shared/code/tce_functions_form.php');
-require_once('../code/tce_functions_user_select.php');
+require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_functions_user_select.php';
 
 $user_id = (int) $_SESSION['session_user_id'];
 $userip = $_SESSION['session_user_ip'];
@@ -47,9 +37,9 @@ $userlevel = (int) $_SESSION['session_user_level'];
 
 if (isset($_REQUEST['group_id'])) {
     $group_id = (int) $_REQUEST['group_id'];
-    if (! F_isAuthorizedEditorForGroup($group_id)) {
+    if (!F_isAuthorizedEditorForGroup($group_id)) {
         F_print_error('ERROR', $l['m_authorization_denied']);
-        exit;
+        exit();
     }
 } else {
     $group_id = 0;
@@ -64,129 +54,162 @@ $_REQUEST['ff_required'] = 'group_name';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_name'], ENT_COMPAT, $l['a_meta_charset']);
 
 switch ($menu_mode) { // process submitted data
-    case 'delete':{
-         // ask confirmation
-        if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
-            F_print_error('ERROR', $l['m_authorization_denied']);
-            break;
-        }
-
-        F_print_error('WARNING', $l['m_delete_confirm']);
-        echo '<div class="confirmbox">' . K_NEWLINE;
-        echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_delete">' . K_NEWLINE;
-        echo '<div>' . K_NEWLINE;
-        echo '<input type="hidden" name="group_id" id="group_id" value="' . $group_id . '" />' . K_NEWLINE;
-        echo '<input type="hidden" name="group_name" id="group_name" value="' . $group_name_sl . '" />' . K_NEWLINE;
-        F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
-        F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
-        echo '</div>' . K_NEWLINE;
-        echo F_getCSRFTokenField() . K_NEWLINE;
-        echo '</form>' . K_NEWLINE;
-        echo '</div>' . K_NEWLINE;
-        break;
-    }
-
-    case 'forcedelete':{
-         // Delete specified user
-        if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
-            F_print_error('ERROR', $l['m_authorization_denied']);
-            break;
-        }
-
-        if ($forcedelete == $l['w_delete']) { //check if delete button has been pushed (redundant check)
-            $sql = 'DELETE FROM ' . K_TABLE_GROUPS . ' WHERE group_id=' . $group_id . '';
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
-            } else {
-                $group_id = false;
-                F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_deleted']);
-            }
-        }
-
-        break;
-    }
-
-    case 'update':{ // Update user
-        // check if the confirmation chekbox has been selected
-        if (! isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
-            F_print_error('WARNING', $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update']);
-            
-            break;
-        }
-
-        if ($formstatus = F_check_form_fields()) {
-            // check if name is unique
-            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'", 'group_id', $group_id)) {
-                F_print_error('WARNING', $l['m_duplicate_name']);
-                $formstatus = false;
-                
+    case 'delete':
+        {
+            // ask confirmation
+            if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
+                F_print_error('ERROR', $l['m_authorization_denied']);
                 break;
             }
 
-            $sql = 'UPDATE ' . K_TABLE_GROUPS . ' SET
-				group_name=\'' . $group_name_db . '\'
-				WHERE group_id=' . $group_id . '';
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
-            } else {
-                F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_updated']);
-            }
+            F_print_error('WARNING', $l['m_delete_confirm']);
+            echo '<div class="confirmbox">' . K_NEWLINE;
+            echo
+                '<form action="'
+                    . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+                    . '" method="post" enctype="multipart/form-data" id="form_delete">'
+                    . K_NEWLINE
+            ;
+            echo '<div>' . K_NEWLINE;
+            echo '<input type="hidden" name="group_id" id="group_id" value="' . $group_id . '" />' . K_NEWLINE;
+            echo
+                '<input type="hidden" name="group_name" id="group_name" value="'
+                    . htmlspecialchars((string) $group_name_sl, ENT_QUOTES, $l['a_meta_charset'])
+                    . '" />'
+                    . K_NEWLINE
+            ;
+            F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
+            F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
+            echo '</div>' . K_NEWLINE;
+            echo F_getCSRFTokenField() . K_NEWLINE;
+            echo '</form>' . K_NEWLINE;
+            echo '</div>' . K_NEWLINE;
+            break;
         }
 
-        break;
-    }
-
-    case 'add':{ // Add user
-        if ($formstatus = F_check_form_fields()) { // check submitted form fields
-            // check if name is unique
-            if (! F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'")) {
-                F_print_error('WARNING', $l['m_duplicate_name']);
-                $formstatus = false;
-                
+    case 'forcedelete':
+        {
+            // Delete specified user
+            if ($_SESSION['session_user_level'] < K_AUTH_DELETE_GROUPS) {
+                F_print_error('ERROR', $l['m_authorization_denied']);
                 break;
             }
 
-            $sql = 'INSERT INTO ' . K_TABLE_GROUPS . ' (
+            if (($_POST['forcedelete'] ?? '') == $l['w_delete']) { //check if delete button has been pushed (redundant check)
+                $sql = 'DELETE FROM ' . K_TABLE_GROUPS . ' WHERE group_id=' . $group_id . '';
+                if (!($r = F_db_query($sql, $db))) {
+                    F_display_db_error(false);
+                } else {
+                    $group_id = false;
+                    F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_deleted']);
+                }
+            }
+
+            break;
+        }
+
+    case 'update':
+        { // Update user
+            // check if the confirmation chekbox has been selected
+            if (!isset($_REQUEST['confirmupdate']) || $_REQUEST['confirmupdate'] != 1) {
+                F_print_error(
+                    'WARNING',
+                    $l['m_form_missing_fields'] . ': ' . $l['w_confirm'] . ' &rarr; ' . $l['w_update'],
+                );
+
+                break;
+            }
+
+            if ($formstatus = F_check_form_fields()) {
+                // check if name is unique
+                if (!F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'", 'group_id', $group_id)) {
+                    F_print_error('WARNING', $l['m_duplicate_name']);
+                    $formstatus = false;
+
+                    break;
+                }
+
+                $sql =
+                    'UPDATE '
+                    . K_TABLE_GROUPS
+                    . ' SET
+				group_name=\''
+                    . $group_name_db
+                    . '\'
+				WHERE group_id='
+                    . $group_id
+                    . '';
+                if (!($r = F_db_query($sql, $db))) {
+                    F_display_db_error(false);
+                } else {
+                    F_print_error('MESSAGE', '[' . $group_name_sl . '] ' . $l['m_group_updated']);
+                }
+            }
+
+            break;
+        }
+
+    case 'add':
+        { // Add user
+            if ($formstatus = F_check_form_fields()) { // check submitted form fields
+                // check if name is unique
+                if (!F_check_unique(K_TABLE_GROUPS, "group_name='" . $group_name_db . "'")) {
+                    F_print_error('WARNING', $l['m_duplicate_name']);
+                    $formstatus = false;
+
+                    break;
+                }
+
+                $sql = 'INSERT INTO ' . K_TABLE_GROUPS . ' (
 				group_name
 				) VALUES (
 				\'' . $group_name_db . "')";
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
-            } else {
-                $group_id = F_db_insert_id($db, K_TABLE_GROUPS, 'group_id');
-            }
+                if (!($r = F_db_query($sql, $db))) {
+                    F_display_db_error(false);
+                } else {
+                    $group_id = F_db_insert_id($db, K_TABLE_GROUPS, 'group_id');
+                }
 
-            // add current user to the new group
-            $sql = 'INSERT INTO ' . K_TABLE_USERGROUP . ' (
+                // add current user to the new group
+                $sql =
+                    'INSERT INTO '
+                    . K_TABLE_USERGROUP
+                    . ' (
 				usrgrp_user_id,
 				usrgrp_group_id
 				) VALUES (
-				\'' . $_SESSION['session_user_id'] . '\',
-				\'' . $group_id . '\'
+				\''
+                    . $_SESSION['session_user_id']
+                    . '\',
+				\''
+                    . $group_id
+                    . '\'
 				)';
-            if (! $r = F_db_query($sql, $db)) {
-                F_display_db_error(false);
+                if (!($r = F_db_query($sql, $db))) {
+                    F_display_db_error(false);
+                }
             }
+
+            break;
         }
 
-        break;
-    }
+    case 'clear':
+        { // Clear form fields
+            $group_name = '';
+            $group_name_sl = '';
+            $group_name_db = '';
+            break;
+        }
 
-    case 'clear':{ // Clear form fields
-        $group_name = '';
-        $group_name_sl = '';
-        $group_name_db = '';
-        break;
-    }
-
-    default:{
-        break;
-    }
+    default:
+        {
+            break;
+        }
 } //end of switch
 
 // --- Initialize variables
 if ($formstatus && $menu_mode != 'clear') {
-    if (! isset($group_id) || $group_id === 0) {
+    if (!isset($group_id) || $group_id === 0) {
         $group_id = 0;
         $group_name = '';
         $group_name_sl = '';
@@ -211,14 +234,22 @@ if ($formstatus && $menu_mode != 'clear') {
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_groupeditor">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_groupeditor">'
+        . K_NEWLINE
+;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
 echo '<label for="group_id">' . $l['w_group'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<select name="group_id" id="group_id" size="0" onchange="document.getElementById(\'form_groupeditor\').submit()">' . K_NEWLINE;
+echo
+    '<select name="group_id" id="group_id" onchange="document.getElementById(\'form_groupeditor\').submit()">'
+        . K_NEWLINE
+;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($group_id == 0) {
     echo ' selected="selected"';
@@ -248,14 +279,38 @@ echo getFormNoscriptSelect('selectrecord');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-echo getFormRowTextInput('group_name', $l['w_name'], $l['h_group_name'], '', $group_name, '', 255, false, false, false, '');
+echo
+    getFormRowTextInput(
+        'group_name',
+        $l['w_name'],
+        $l['h_group_name'],
+        '',
+        $group_name,
+        '',
+        255,
+        false,
+        false,
+        false,
+        '',
+    )
+;
 
 echo '<div class="row">' . K_NEWLINE;
 
 // show buttons by case
 if (isset($group_id) && $group_id > 0) {
     echo '<span style="background-color:#999999;">';
-    echo '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="confirm &rarr; update" />';
+    echo
+        '<input type="checkbox" name="confirmupdate" id="confirmupdate" value="1" title="'
+            . $l['w_confirm']
+            . ' &rarr; '
+            . $l['w_update']
+            . '" aria-label="'
+            . $l['w_confirm']
+            . ' &rarr; '
+            . $l['w_update']
+            . '" />'
+    ;
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     F_submit_button('add', $l['w_add'], $l['h_add']);
@@ -277,8 +332,4 @@ echo '</div>' . K_NEWLINE;
 echo '<div class="pagehelp">' . $l['hp_edit_group'] . '</div>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

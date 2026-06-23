@@ -7,17 +7,9 @@
 //
 // Description : handle error messages
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -48,15 +40,16 @@ define('K_ALLOWED_ERROR_TAGS', '<a><b><br><em><p><ol><ul><li><small><table><tr><
  */
 function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = false)
 {
-    require_once(__DIR__ . '/../config/tce_config.php');
-    require_once(__DIR__ . '/tce_functions_general.php');
+    require_once __DIR__ . '/../config/tce_config.php';
+    require_once __DIR__ . '/tce_functions_general.php';
     global $l;
     $messagetype = strtolower($messagetype);
-    $messagetoprint = unhtmlentities(strip_tags($messagetoprint));
-    $messagetoprint = str_replace("'", "\'", $messagetoprint);
-    $messagetoprint = strip_tags($messagetoprint, K_ALLOWED_ERROR_TAGS);
+    // Strip any markup here; the message is escaped per output context (HTML/JS) below.
+    // NOTE: do not re-decode entities (unhtmlentities) — doing so reconstructs tags from
+    // encoded input and reintroduces XSS via attribute-carrying allow-listed tags.
+    $messagetoprint = trim(strip_tags($messagetoprint));
     //message is appended to the log file
-    if (K_USE_ERROR_LOG && ! strcmp($messagetype, 'error')) {
+    if (K_USE_ERROR_LOG && !strcmp($messagetype, 'error')) {
         $logsttring = date(K_TIMESTAMP_FORMAT) . K_TAB;
         $logsttring .= $_SESSION['session_user_id'] . K_TAB;
         $logsttring .= $_SESSION['session_user_ip'] . K_TAB;
@@ -73,12 +66,37 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
             'error' => $l['t_error'],
             default => $messagetype,
         };
-        echo '<div class="' . $messagetype . '">' . $msgtitle . ': ' . $messagetoprint . '</div>' . K_NEWLINE;
+        // announce the message to assistive technologies: warnings/errors are
+        // assertive (role="alert"), informational messages are polite (role="status")
+        $msgrole = match ($messagetype) {
+            'warning', 'error' => 'alert',
+            default => 'status',
+        };
+        echo
+            '<div class="'
+                . $messagetype
+                . '" role="'
+                . $msgrole
+                . '">'
+                . $msgtitle
+                . ': '
+                . htmlspecialchars($messagetoprint, ENT_QUOTES, 'UTF-8')
+                . '</div>'
+                . K_NEWLINE
+        ;
         if (K_ENABLE_JSERRORS) {
             //display message on JavaScript Alert Window.
             echo '<script type="text/javascript">' . K_NEWLINE;
             echo '//<![CDATA[' . K_NEWLINE;
-            echo "alert('[" . $msgtitle . ']: ' . $messagetoprint . "');" . K_NEWLINE;
+            echo
+                'alert('
+                    . json_encode(
+                        '[' . $msgtitle . ']: ' . $messagetoprint,
+                        JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE,
+                    )
+                    . ');'
+                    . K_NEWLINE
+            ;
             echo '//]]>' . K_NEWLINE;
             echo '</script>' . K_NEWLINE;
         }
@@ -138,7 +156,7 @@ function F_url_exists($url)
     curl_setopt($crs, CURLOPT_URL, $url);
     curl_setopt($crs, CURLOPT_NOBODY, true);
     curl_setopt($crs, CURLOPT_FAILONERROR, true);
-    if ((ini_get('open_basedir') == '') && (! ini_get('safe_mode'))) {
+    if (ini_get('open_basedir') == '' && !ini_get('safe_mode')) {
         curl_setopt($crs, CURLOPT_FOLLOWLOCATION, true);
     }
 
@@ -150,7 +168,7 @@ function F_url_exists($url)
     curl_exec($crs);
     $code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
     curl_close($crs);
-    return ($code == 200);
+    return $code == 200;
 }
 
 /**
@@ -172,7 +190,3 @@ function F_file_exists($filename)
 
     return @file_exists($filename);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

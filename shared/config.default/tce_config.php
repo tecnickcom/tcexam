@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2002-02-24
@@ -6,18 +7,9 @@
 //
 // Description : Shared configuration file.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright 2004-2025:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               UK
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -32,7 +24,7 @@
 /**
  * TCExam version (do not change).
  */
-define ('K_TCEXAM_VERSION', file_get_contents('../../VERSION'));
+define('K_TCEXAM_VERSION', file_get_contents('../../VERSION'));
 
 /**
  * 2-letters code for default language.
@@ -48,7 +40,7 @@ define('K_LANGUAGE_SELECTOR', true);
  * Defines a serialized array of available languages.
  * Each language is indexed using a 2-letters code (ISO 639).
  */
-define('K_AVAILABLE_LANGUAGES', serialize(array(
+define('K_AVAILABLE_LANGUAGES', serialize([
     'ar' => 'Arabian',
     'az' => 'Azerbaijani',
     'bg' => 'Bulgarian',
@@ -74,14 +66,12 @@ define('K_AVAILABLE_LANGUAGES', serialize(array(
     'ru' => 'Russian',
     'tr' => 'Turkish',
     'ur' => 'Urdu',
-    'vn' => 'Vietnamese'
-)));
-
-ini_set('zend.ze1_compatibility_mode', false); // disable PHP4 compatibility mode
+    'vn' => 'Vietnamese',
+]));
 
 // -- INCLUDE files --
-require_once('../../shared/config/tce_paths.php');
-require_once('../../shared/config/tce_general_constants.php');
+require_once '../../shared/config/tce_paths.php';
+require_once '../../shared/config/tce_general_constants.php';
 
 /**
  * If true enable One-Time-Password authentication on login.
@@ -97,11 +87,6 @@ define('K_BRUTE_FORCE_DELAY_RATIO', 2);
  * Number of difficulty levels for questions.
  */
 define('K_QUESTION_DIFFICULTY_LEVELS', 10);
-
-/**
- * If true enable virtual keyboard on some textarea fields.
- */
-define('K_ENABLE_VIRTUAL_KEYBOARD', true);
 
 /**
  * Popup window height in pixels for test info.
@@ -221,7 +206,6 @@ define('K_PASSWORD_RESET', true);
  */
 define('K_LOGOUT_URL', '');
 
-
 // Error settings
 
 /**
@@ -252,31 +236,38 @@ define('K_TIMEZONE', 'UTC');
  */
 define('K_EXTEND_TIME_MINUTES', 5);
 
-
 // ---------- * ---------- * ---------- * ---------- * ----------
-
 
 /**
  * Error handlers.
  */
-require_once('../../shared/code/tce_functions_errmsg.php');
+require_once '../../shared/code/tce_functions_errmsg.php';
 
 // load language resources
 
 // set user's selected language or default language
-if (isset($_REQUEST['lang'])
-    and (strlen($_REQUEST['lang']) == 2)
-    and (array_key_exists($_REQUEST['lang'], unserialize(K_AVAILABLE_LANGUAGES)))) {
+if (
+    isset($_REQUEST['lang']) and strlen($_REQUEST['lang']) == 2
+    and array_key_exists($_REQUEST['lang'], unserialize(K_AVAILABLE_LANGUAGES))
+) {
     /**
      * Use requested language.
      * @ignore
      */
     define('K_USER_LANG', $_REQUEST['lang']);
     // set client cookie
-    setcookie('SessionUserLang', K_USER_LANG, time() + K_COOKIE_EXPIRE, K_COOKIE_PATH, K_COOKIE_DOMAIN, K_COOKIE_SECURE);
-} elseif (isset($_COOKIE['SessionUserLang'])
-    and (strlen($_COOKIE['SessionUserLang']) == 2)
-    and (array_key_exists($_COOKIE['SessionUserLang'], unserialize(K_AVAILABLE_LANGUAGES)))) {
+    setcookie(
+        'SessionUserLang',
+        K_USER_LANG,
+        time() + K_COOKIE_EXPIRE,
+        K_COOKIE_PATH,
+        K_COOKIE_DOMAIN,
+        K_COOKIE_SECURE,
+    );
+} elseif (
+    isset($_COOKIE['SessionUserLang']) and strlen($_COOKIE['SessionUserLang']) == 2
+    and array_key_exists($_COOKIE['SessionUserLang'], unserialize(K_AVAILABLE_LANGUAGES))
+) {
     /**
      * Use session language.
      * @ignore
@@ -291,50 +282,36 @@ if (isset($_REQUEST['lang'])
 }
 
 // TMX class
-require_once('../../shared/code/tce_tmx.php');
+require_once '../../shared/code/tce_tmx.php';
 // instantiate new TMXResourceBundle object
-$lang_resources = new TMXResourceBundle(K_PATH_TMX_FILE, K_USER_LANG, K_PATH_LANG_CACHE.basename(K_PATH_TMX_FILE, '.xml').'_'.K_USER_LANG.'.php');
+$lang_resources = new TMXResourceBundle(
+    K_PATH_TMX_FILE,
+    K_USER_LANG,
+    K_PATH_LANG_CACHE . basename(K_PATH_TMX_FILE, '.xml') . '_' . K_USER_LANG . '.php',
+);
 $l = $lang_resources->getResource(); // language array
 
 ini_set('arg_separator.output', '&amp;');
 //date_default_timezone_set(K_TIMEZONE);
 
-if (!defined('PHP_VERSION_ID')) {
-    $version = PHP_VERSION;
-    define('PHP_VERSION_ID', (($version[0] * 10000) + ($version[2] * 100) + $version[4]));
-}
-if (PHP_VERSION_ID < 50300) {
-	@set_magic_quotes_runtime(false); //disable magic quotes
-	ini_set('magic_quotes_gpc', 'Off');
-	ini_set('magic_quotes_runtime', 'Off');
-	ini_set('register_long_arrays', 'On');
-	//ini_set('register_globals', 'On');
-}
-
-// --- parse posted variables ---
-foreach ($_POST as $reqkey => $reqval) {
-	if (($reqkey[0] != '_') && (!preg_match('/[A-Z]/', $reqkey[0]))) {
-		$reqkey = preg_replace('/[^a-z0-9_\[\]]/i', '', $reqkey);
-        if (!isset(${$reqkey}) && is_string($reqval)) {
-            ${$reqkey} = $reqval;
-        }
-	}
-}
+// NOTE: the legacy register-globals emulation (a foreach over $_POST that auto-created bare
+// $variables from posted keys) was removed in the modernisation (plan Stage 8.2). Every
+// controller now reads its inputs explicitly from $_POST/$_REQUEST, which also closes the
+// variable-injection vector the emulation exposed.
 
 /**
  * Lisf of enabled custom authentication methods.
  * Add your custom authentication methods here.
  */
-define('K_CUSTOM_AUTH_METHODS', serialize(array(
-    // 'basic', // Uncomment to enable the simple custom authentication method.
-    /**
-     * Take a look at the following files to create your own custom authentication method.
-     *
-     * ../../shared/config/custom_auth/basic.php
-     * ../../shared/custom_auth/basic.php
-     */
-)));
-
-//============================================================+
-// END OF FILE
-//============================================================+
+define(
+    'K_CUSTOM_AUTH_METHODS',
+    serialize([
+        // 'basic', // Uncomment to enable the simple custom authentication method.
+        /**
+         * Take a look at the following files to create your own custom authentication method.
+         *
+         * ../../shared/config/custom_auth/basic.php
+         * ../../shared/custom_auth/basic.php
+         */
+    ]),
+);

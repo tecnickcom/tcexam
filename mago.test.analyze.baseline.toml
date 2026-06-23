@@ -1,0 +1,409 @@
+variant = "loose"
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_compact_string` could not be found."
+count = 2
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_formatFloat` could not be found."
+count = 3
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_formatPdfPercentage` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_formatPercentage` could not be found."
+count = 3
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_formatXMLPercentage` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_getBoolean` could not be found."
+count = 9
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_isURL` could not be found."
+count = 4
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_replace_angulars` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_substr_utf8` could not be found."
+count = 2
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_text_to_tsv` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_text_to_xml` could not be found."
+count = 2
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_tsv_to_text` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_xml_to_text` could not be found."
+count = 1
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `bcdechex` could not be found."
+count = 3
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `getContrastColor` could not be found."
+count = 2
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `getIpAsInt` could not be found."
+count = 3
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `getNormalizedIP` could not be found."
+count = 5
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `unhtmlentities` could not be found."
+count = 3
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `utrim` could not be found."
+count = 2
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 1
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_isRandomSecurityConfigured` could not be found."
+count = 5
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `checkPassword` could not be found."
+count = 2
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `getPasswordHash` could not be found."
+count = 1
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "unhandled-thrown-type"
+message = 'Potentially unhandled exception `Random\RandomException` in `Test\SessionFunctionsTest::testRandomSecurityAcceptsConfiguredSecret`.'
+count = 1
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "impossible-assignment"
+message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
+count = 4
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertArrayHasKey`: expected `ArrayAccess<array-key, mixed>|array<array-key, mixed>`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "mixed-array-access"
+message = "Unsafe array access on type `mixed`."
+count = 6
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 4
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "non-existent-class"
+message = "Class `TMXResourceBundle` not found."
+count = 4
+
+[[issues]]
+file = "test/bootstrap.php"
+code = "missing-parameter-type"
+message = "Parameter `$filename` is missing a type hint."
+count = 1
+
+[[issues]]
+file = "test/bootstrap.php"
+code = "missing-return-type"
+message = "Function `F_file_exists` is missing a return type hint."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "imprecise-type"
+message = "Type `array` in property `$authCookies` is imprecise, equivalent to `array<array-key, mixed>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "imprecise-type"
+message = "Type `array` in return type of `login` is imprecise, equivalent to `array<array-key, mixed>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "less-specific-argument"
+message = 'Argument type mismatch for argument #3 of `Test\Integration\AppHttpTestCase::http`: expected `array<string, string>`, but provided type `array<array-key, mixed>` is less specific.'
+count = 16
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 6
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_close` could not be found."
+count = 3
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_connect` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_fetch_assoc` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_query` could not be found."
+count = 3
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AdminControllerHttpTest.php"
+code = "reference-to-undefined-variable"
+message = "Reference created from a previously undefined variable `$m`."
+count = 1
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "imprecise-type"
+message = "Type `array` in parameter `$headers` is imprecise, equivalent to `array<array-key, mixed>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "invalid-return-statement"
+message = 'Invalid return type for function `Test\Integration\AppHttpTestCase::cookiesFrom`: expected `array<string, string>`, but found `array<string, null|string>`.'
+count = 1
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "mixed-argument"
+message = "Invalid argument type for argument #2 of `preg_match`: expected `string`, but found `mixed`."
+count = 2
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "possibly-null-argument"
+message = "Argument #1 of function `trim` is possibly `null`, but parameter type `string` does not accept it."
+count = 1
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
+count = 3
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "possibly-undefined-variable"
+message = "Variable `$m` might not have been defined on all execution paths leading to this point."
+count = 2
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "reference-to-undefined-variable"
+message = "Reference created from a previously undefined variable `$m`."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "mixed-array-access"
+message = "Unsafe array access on type `mixed`."
+count = 6
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 14
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "mixed-operand"
+message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-constant"
+message = "Undefined constant: `K_TABLE_GROUPS`."
+count = 5
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-constant"
+message = "Undefined constant: `K_TABLE_PREFIX`."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-constant"
+message = "Undefined constant: `K_TABLE_USERS`."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_affected_rows` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_close` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_connect` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_datetime_diff_seconds` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_fetch_assoc` could not be found."
+count = 5
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_insert_id` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_num_rows` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_query` could not be found."
+count = 7
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
+message = "Function `F_escape_sql` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('admin')` accessed on `array<array-key, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('anonymous')` accessed on `array<array-key, int>`."
+count = 1

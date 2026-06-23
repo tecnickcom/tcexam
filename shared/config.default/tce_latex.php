@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_latex.php
 // Begin       : 2007-05-18
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file LaTeX Render Class.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,34 +21,34 @@
  */
 
 /*
-NOTES
-------------------------------------------------------------
-
-In Linux do "which latex", "which convert" and "which identify" to find right the paths.
-
-In Windows use the dir /x command to find the short (DOS) path to the executables.
-
-To debug the system comment the following line on /shared/code/tce_functions_errmsg.php :
-	//$old_error_handler = set_error_handler("F_error_handler", K_ERROR_TYPES);
-
-The default is to use article.cls for LaTeX which is a common class but it only supports 10,11,12 point font sizes. For smaller (or larger fonts) in the image, install the extsizes package available from CTAN http://ctan.tug.org/. Add these files to a new extsizes directory in usr/share/texmf/tex/latex. Refresh the database using "texhash" command (if using teTeX) or MiKTex Options, Refresh Now (Windows), Then in class.latexrender.php you can change var $_font_size = 10; to var $_font_size = 8;
-
-You can make equation arrays and other code that starts with \begin, by prefacing them with 2 new lines.
-
-Displayed formulae can be rendered using \displaystyle;
-
-Examples of conversions can be found in http://www.mayer.dial.pipex.com/latexrender/latexrender.htm
-
-Although the default size is set, you can resize a formula by using \mbox as in
-\mbox{\huge\sqrt{2}} or \mbox{\footnotesize\sqrt{2}}
-
-------------------------------------------------------------
-*/
+ * NOTES
+ * ------------------------------------------------------------
+ *
+ * In Linux do "which latex", "which convert" and "which identify" to find right the paths.
+ *
+ * In Windows use the dir /x command to find the short (DOS) path to the executables.
+ *
+ * To debug the system comment the following line on /shared/code/tce_functions_errmsg.php :
+ * //$old_error_handler = set_error_handler("F_error_handler", K_ERROR_TYPES);
+ *
+ * The default is to use article.cls for LaTeX which is a common class but it only supports 10,11,12 point font sizes. For smaller (or larger fonts) in the image, install the extsizes package available from CTAN http://ctan.tug.org/. Add these files to a new extsizes directory in usr/share/texmf/tex/latex. Refresh the database using "texhash" command (if using teTeX) or MiKTex Options, Refresh Now (Windows), Then in class.latexrender.php you can change var $_font_size = 10; to var $_font_size = 8;
+ *
+ * You can make equation arrays and other code that starts with \begin, by prefacing them with 2 new lines.
+ *
+ * Displayed formulae can be rendered using \displaystyle;
+ *
+ * Examples of conversions can be found in http://www.mayer.dial.pipex.com/latexrender/latexrender.htm
+ *
+ * Although the default size is set, you can resize a formula by using \mbox as in
+ * \mbox{\huge\sqrt{2}} or \mbox{\footnotesize\sqrt{2}}
+ *
+ * ------------------------------------------------------------
+ */
 
 /**
  * Includes paths configuration file.
  */
-require_once('../../shared/config/tce_paths.php');
+require_once '../../shared/config/tce_paths.php';
 
 /**
  * Absolute path to images directory.
@@ -116,7 +109,3 @@ define('K_LATEX_IMG_PREFIX', 'latex_');
  * Image format (png).
  */
 define('K_LATEX_IMG_FORMAT', 'png');
-
-//============================================================+
-// END OF FILE
-//============================================================+

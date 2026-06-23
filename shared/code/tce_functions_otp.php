@@ -7,17 +7,9 @@
 //
 // Description : Functions for One Time Password (OTP).
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -39,7 +31,7 @@ function F_getRandomOTPkey()
     $key = '';
     // generate a 16 char random secret key
     for ($i = 0; $i < 16; ++$i) {
-        $key .= $dict[(random_int(0, 31))];
+        $key .= $dict[random_int(0, 31)];
     }
 
     return $key;
@@ -94,16 +86,16 @@ function F_getOTP($otpkey, $mtime = 0)
     $bintime = pack('N*', 0) . pack('N*', $time);
     // calculate the SHA1 hash
     $hash = hash_hmac('sha1', $bintime, $binkey, true);
-    
-    $offset = (ord($hash[19]) & 0xf);
-    // one time password
-    $otp = ((((ord($hash[($offset + 0)]) & 0x7f) << 24)
-        | ((ord($hash[($offset + 1)]) & 0xff) << 16)
-        | ((ord($hash[($offset + 2)]) & 0xff) << 8)
-        | (ord($hash[($offset + 3)]) & 0xff)) % 10 ** 6);
-    return $otp;
-}
 
-//============================================================+
-// END OF FILE
-//============================================================+
+    $offset = ord($hash[19]) & 0xf;
+    // one time password
+    return (
+        (
+            ((ord($hash[$offset + 0]) & 0x7f) << 24)
+            | ((ord($hash[$offset + 1]) & 0xff) << 16)
+            | ((ord($hash[$offset + 2]) & 0xff) << 8)
+            | (ord($hash[$offset + 3]) & 0xff)
+        )
+        % (10 ** 6)
+    );
+}

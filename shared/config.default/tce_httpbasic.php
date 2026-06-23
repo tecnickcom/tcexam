@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_httpbasic.php
 // Begin       : 2010-09-10
@@ -15,12 +16,12 @@
 //
 //               Nicola Asuni
 //               Tecnick.com LTD
-//               www.tecnick.com
+//               tecnick.com
 //               info@tecnick.com
 //
 // License:
-//    Copyright (C) 2010   Matthias Wolf - Freiwillige Feuerwehr München,2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    Copyright (C) 2010 Matthias Wolf - Freiwillige Feuerwehr München, 2026 Nicola Asuni - Tecnick.com LTD
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -51,7 +52,3 @@ define('K_HTTPBASIC_USER_LEVEL', 1);
  * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define('K_HTTPBASIC_USER_GROUP_ID', 1);
-
-//============================================================+
-// END OF FILE
-//============================================================+

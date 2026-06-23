@@ -6,17 +6,9 @@
 //
 // Description : Installation functions for TCExam.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -213,8 +205,10 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}
 					if(!$r = @F_db_query($sql, $db)) {
-						echo '<span style="color:#800000">[ERROR: could not create database] '.F_db_error($db).'</span>';
-						return FALSE;
+						// Not fatal: the database may already exist, or the user may lack the global
+						// CREATE privilege while still owning a pre-created database (typical on managed,
+						// hosted and Docker setups). Warn and fall through to connect to it below.
+						echo '<span style="color:#ff8000">[WARNING: could not create database, will try to use an existing one] '.F_db_error($db).'</span> ';
 					}
 				} else {
 					echo '<span style="color:#000080">[SKIP CREATE]</span> ';
@@ -222,7 +216,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 			}
 			@F_db_close($db);
 		} else {
-			echo '<span style="color:#800000">[ERROR: could not connect to database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
+			echo '<span style="color:#800000">[ERROR: could not connect to database: (host:'.$host.', port:'.$port.', user:'.$user.', password:***, database:'.$database.')] '.F_db_error($db).'</span>';
 			return FALSE;
 		}
 	} else {
@@ -231,9 +225,22 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 	if ($db = @F_db_connect($host, $port, $user, $password, $database)) {
 		return $db;
 	} else {
-		echo '<span style="color:#800000">[ERROR: could not access post-installation database: (host:'.$host.', port:'.$port.', user:'.$user.', password:'.$password.', database:'.$database.')] '.F_db_error($db).'</span>';
+		echo '<span style="color:#800000">[ERROR: could not access post-installation database: (host:'.$host.', port:'.$port.', user:'.$user.', password:***, database:'.$database.')] '.F_db_error($db).'</span>';
 		return FALSE;
 	}
+}
+
+/**
+ * Escape a value for safe insertion inside a single-quoted PHP string literal in a configuration
+ * file, e.g. define('K_DATABASE_USER_PASSWORD', '<value>'). Escapes backslashes and single quotes
+ * so that values containing those characters (notably some passwords) round-trip correctly. The
+ * escaped value is written with preg_replace_callback (see F_update_config_files) so that regex
+ * backreference characters ($ and \) in the value are taken literally rather than interpreted.
+ * @param string $value raw value
+ * @return string value safe to place between single quotes
+ */
+function F_cfg_quote_value($value) {
+	return str_replace(array('\\', "'"), array('\\\\', "\\'"), (string) $value);
 }
 
 /**
@@ -262,14 +269,15 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 		@set_magic_quotes_runtime(0);
 	}
 
-	// initialize configuration directories with default values
-	F_move_dir_if_not_exists('../shared/config.default', '../shared/config');
-	F_move_dir_if_not_exists('../admin/config.default', '../admin/config');
-	F_move_dir_if_not_exists('../public/config.default', '../public/config');
+	// initialize configuration directories with default values (idempotent, volume-safe copy)
+	F_copy_config_dir('../shared/config.default', '../shared/config');
+	F_copy_config_dir('../admin/config.default', '../admin/config');
+	F_copy_config_dir('../public/config.default', '../public/config');
 
 	$config_file = array(); // configuration files
 	$config_file[0] = '../shared/config/tce_db_config.php';
 	$config_file[1] = '../shared/config/tce_paths.php';
+	$config_file[2] = '../shared/config/tce_general_constants.php';
 
 	echo "\n".'<li>Check config files permissions:';
 	if (!F_are_files_writable($config_file)) {
@@ -281,23 +289,43 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
 	// file parameters to change as regular expressions (0=>search, 1=>replace)
 	$parameter = array();
 
+	// Capture group that matches the current single-quoted value, tolerating escaped single quotes
+	// and backslashes (\' and \\) so that re-running the installer over an already-escaped value
+	// still matches the whole value rather than stopping at the first escaped quote.
+	$vpat = "((?:\\\\.|[^'\\\\])*)";
+
 	$parameter[0] = array(
 
-		'0'  => array ('0' => "K_DATABASE_TYPE', '([^\']*)'", '1' => "K_DATABASE_TYPE', '".$db_type."'"),
-		'1'  => array ('0' => "K_DATABASE_HOST', '([^\']*)'", '1' => "K_DATABASE_HOST', '".$db_host."'"),
-		'2'  => array ('0' => "K_DATABASE_PORT', '([^\']*)'", '1' => "K_DATABASE_PORT', '".$db_port."'"),
-		'3'  => array ('0' => "K_DATABASE_NAME', '([^\']*)'", '1' => "K_DATABASE_NAME', '".$database_name."'"),
-		'4'  => array ('0' => "K_DATABASE_USER_NAME', '([^\']*)'", '1' => "K_DATABASE_USER_NAME', '".preg_quote($db_user)."'"),
-		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '([^\']*)'", '1' => "K_DATABASE_USER_PASSWORD', '".preg_quote($db_password)."'"),
-		'6'  => array ('0' => "K_TABLE_PREFIX', '([^\']*)'", '1' => "K_TABLE_PREFIX', '".$table_prefix."'")
+		'0'  => array ('0' => "K_DATABASE_TYPE', '".$vpat."'", '1' => "K_DATABASE_TYPE', '".F_cfg_quote_value($db_type)."'"),
+		'1'  => array ('0' => "K_DATABASE_HOST', '".$vpat."'", '1' => "K_DATABASE_HOST', '".F_cfg_quote_value($db_host)."'"),
+		'2'  => array ('0' => "K_DATABASE_PORT', '".$vpat."'", '1' => "K_DATABASE_PORT', '".F_cfg_quote_value($db_port)."'"),
+		'3'  => array ('0' => "K_DATABASE_NAME', '".$vpat."'", '1' => "K_DATABASE_NAME', '".F_cfg_quote_value($database_name)."'"),
+		'4'  => array ('0' => "K_DATABASE_USER_NAME', '".$vpat."'", '1' => "K_DATABASE_USER_NAME', '".F_cfg_quote_value($db_user)."'"),
+		'5'  => array ('0' => "K_DATABASE_USER_PASSWORD', '".$vpat."'", '1' => "K_DATABASE_USER_PASSWORD', '".F_cfg_quote_value($db_password)."'"),
+		'6'  => array ('0' => "K_TABLE_PREFIX', '".$vpat."'", '1' => "K_TABLE_PREFIX', '".F_cfg_quote_value($table_prefix)."'")
 	);
 
 	$parameter[1] = array(
-		'0'  => array ('0' => "K_PATH_HOST', '([^\']*)'", '1' => "K_PATH_HOST', '".$path_host."'"),
-		'1'  => array ('0' => "K_PATH_TCEXAM', '([^\']*)'", '1' => "K_PATH_TCEXAM', '".$path_tcexam."'"),
-		'2'  => array ('0' => "K_PATH_MAIN', '([^\']*)'", '1' => "K_PATH_MAIN', '".$path_main."'"),
-		'3'  => array ('0' => "K_STANDARD_PORT', ([^\)]*)", '1' => "K_STANDARD_PORT', ".$standard_port."")
+		'0'  => array ('0' => "K_PATH_HOST', '".$vpat."'", '1' => "K_PATH_HOST', '".F_cfg_quote_value($path_host)."'"),
+		'1'  => array ('0' => "K_PATH_TCEXAM', '".$vpat."'", '1' => "K_PATH_TCEXAM', '".F_cfg_quote_value($path_tcexam)."'"),
+		'2'  => array ('0' => "K_PATH_MAIN', '".$vpat."'", '1' => "K_PATH_MAIN', '".F_cfg_quote_value($path_main)."'"),
+		'3'  => array ('0' => "K_STANDARD_PORT', ([^\)]*)", '1' => "K_STANDARD_PORT', ".((int) $standard_port)."")
 	);
+
+	// SECURITY: generate a unique random secret per installation so that result-access
+	// tokens, CSRF tokens and the session fingerprint cannot be forged from the shipped
+	// default. The hex value contains only [0-9a-f] so it is safe as a preg_replace replacement.
+	// Preserve an already-personalised secret (e.g. when re-running the installer against a
+	// persisted configuration) so that existing sessions and tokens keep working.
+	$parameter[2] = array();
+	$gc_data = @file_get_contents($config_file[2]);
+	if (($gc_data === false)
+		OR (strpos($gc_data, 'CHANGE_THIS_K_RANDOM_SECURITY') !== false)
+		OR (strpos($gc_data, "K_RANDOM_SECURITY', ''") !== false)) {
+		$parameter[2] = array(
+			'0'  => array ('0' => "K_RANDOM_SECURITY', '([^\']*)'", '1' => "K_RANDOM_SECURITY', '".bin2hex(random_bytes(32))."'")
+		);
+	}
 
 	foreach ($config_file as $key => $file_name) { //for each configuration file
 
@@ -332,7 +360,13 @@ function F_update_config_files($db_type, $db_host, $db_port, $db_user, $db_passw
                                 foreach ($parameter[$key] as $pkey => $pval) { //for each file parameter
 					echo "\n".'<li>update value '.$pkey.' ...........';
 					error_log('      update value '.$pkey.'', 3, $progress_log); //log info
-					$file_data = preg_replace('#'.$pval[0].'#', $pval[1], $file_data); //update cfg parameters
+					// Replace via callback so the replacement is inserted verbatim: regex
+					// backreference characters ($ and \) that may appear in the escaped value are
+					// taken literally instead of being interpreted by preg_replace.
+					$replacement = $pval[1];
+					$file_data = preg_replace_callback('#'.$pval[0].'#', static function ($matches) use ($replacement) {
+						return $replacement;
+					}, $file_data); //update cfg parameters
 					echo '<span style="color:#008000">[OK]</span></li>';
 					error_log(' [OK]'."\n", 3, $progress_log); //log info
 				}
@@ -404,29 +438,48 @@ function F_are_files_writable($files) {
 }
 
 /**
- * renames a folder in a user-friendly way
+ * Initialise a runtime config directory from its shipped config.default counterpart.
  *
- * @param string $source
- * @param string $destination
+ * Recursively copies every file/sub-directory from $source into $destination, creating
+ * $destination if needed and never overwriting a file that already exists there. This is
+ * idempotent and safe to run repeatedly — including over an initially empty Docker/named
+ * volume mounted on the config directory — so existing, customised configuration (and the
+ * generated K_RANDOM_SECURITY) is preserved on re-runs and upgrades.
  *
- * @return void
+ * @param string $source      path to the *.config.default directory
+ * @param string $destination path to the runtime *.config directory
+ *
+ * @return bool true on success, false if the source directory is missing
  */
-function F_move_dir_if_not_exists($source, $destination) {
-	if (is_dir(realpath($destination))) {
-		echo "\n".'<li>the folder <i>'.$destination.'</i> already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
-		return;
+function F_copy_config_dir($source, $destination) {
+	$realsource = realpath($source);
+	if (($realsource === false) OR (!is_dir($realsource))) {
+		echo "\n".'<li>there seems to be an error in the files you downloaded because the folder <i>'.$source.'</i> is not found............<span style="color:#CC0000">[ERROR]</span></li>';
+		return false;
 	}
-	if (is_dir(realpath($source))) {
-		rename($source, $destination);
-		return;
+	$existed = is_dir($destination);
+	if (!$existed) {
+		@mkdir($destination, 0775, true);
 	}
-	if (is_dir(realpath($destination))) {
-		echo "\n".'<li>not overwriting the folder <i>'.$destination.'</i> because already exists from a prior installation attempt. (if upgrading, <a href="../UPGRADE.TXT">follow this instructions instead</a>)...........<span style="color:#ff8000">[WARNING]</span></li>';
-		return;
+	$items = scandir($realsource);
+	if ($items !== false) {
+		foreach ($items as $item) {
+			if (($item === '.') OR ($item === '..')) {
+				continue;
+			}
+			$src = $realsource.'/'.$item;
+			$dst = $destination.'/'.$item;
+			if (is_dir($src)) {
+				F_copy_config_dir($src, $dst);
+			} elseif (!file_exists($dst)) {
+				@copy($src, $dst);
+			}
+		}
 	}
-	echo "\n".'<li>there seems to be an error in the files you downloaded because the folder <i>'.$source.'</i> is not found............<span style="color:#CC0000">[ERROR]</span></li>';
+	if ($existed) {
+		echo "\n".'<li>the folder <i>'.$destination.'</i> already exists; missing default files (if any) were added, existing files left untouched...........<span style="color:#ff8000">[OK]</span></li>';
+	} else {
+		echo "\n".'<li>initialised configuration folder <i>'.$destination.'</i>...........<span style="color:#008000">[OK]</span></li>';
+	}
+	return true;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_pdf.php
 // Begin       : 2004-06-11
@@ -6,22 +7,14 @@
 //
 // Description : Configuration file for pdf documents.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
  * @file
- * Configuration file for TCPDF.
+ * Configuration file for PDF documents (tc-lib-pdf).
  * @author Nicola Asuni
  * @package com.tecnick.tcexam.shared.cfg
  * @since 2004-06-11
@@ -32,7 +25,7 @@
 /**
  * Header title.
  */
-define('PDF_HEADER_TITLE', "School name");
+define('PDF_HEADER_TITLE', 'School name');
 
 /**
  * Header description string.
@@ -63,11 +56,6 @@ define('PDF_PAGE_FORMAT', 'A4');
  * Page orientation (P=portrait, L=landscape).
  */
 define('PDF_PAGE_ORIENTATION', 'P');
-
-/**
- * Document creator.
- */
-define('PDF_CREATOR', 'TCExam 12');
 
 /**
  * Document author.
@@ -129,63 +117,7 @@ define('PDF_FONT_NAME_DATA', 'helvetica');
  */
 define('PDF_FONT_SIZE_DATA', 7);
 
-/**
- * default monospaced font name
- */
-define('PDF_FONT_MONOSPACED', 'courier');
-
-/**
- * ratio used to adjust the conversion of pixels to user units
- */
-define('PDF_IMAGE_SCALE_RATIO', 1.25);
-
-/**
- * magnification factor for titles
- */
-define('HEAD_MAGNIFICATION', 1.1);
-
-/**
- * height of cell repect font height
- */
-define('K_CELL_HEIGHT_RATIO', 1.25);
-
-/**
- * title magnification respect main font size
- */
-define('K_TITLE_MAGNIFICATION', 1.3);
-
-/**
- * reduction factor for small font
- */
-define('K_SMALL_RATIO', 2/3);
-
-/**
- * set to true to enable the special procedure used to avoid the overlappind of symbols on Thai language
- */
-define('K_THAI_TOPCHARS', false);
-
-/**
- * if true allows to call TCPDF methods using HTML syntax
- * IMPORTANT: For security reason, disable this feature if you are printing user HTML content.
- */
-define('K_TCPDF_CALLS_IN_HTML', false);
-
-/**
- * List of TCPDF methods that are allowed to be called using HTML syntax.
- * Note: each method name must end with surrounded with | (pipe) character.
- * The constant K_TCPDF_CALLS_IN_HTML must be set to true.
- * IMPORTANT: For security reason, disable this feature if you are allowing user HTML content.
- */
-define('K_ALLOWED_TCPDF_TAGS', '');
-
-/**
- * if true adn PHP version is greater than 5, then the Error() method throw new exception instead of terminating the execution.
- */
-define('K_TCPDF_THROW_EXCEPTION_ERROR', false);
-
-
 // --- DATA FOR DIGITAL SIGNATURE ----------------------------------------------
-
 
 /**
  * If true digitally sign PDF documents.
@@ -241,11 +173,58 @@ define('K_DIGSIG_REASON', 'Certification');
  */
 define('K_DIGSIG_CONTACT', 'you@example.com');
 
+//============================================================+
+// tc-lib-pdf engine options (PDF report/export documents)
+//============================================================+
+
 /**
- * Do not change the value of this define.
+ * If true, treat input text as Unicode (UTF-8). Disable only for legacy single-byte output.
  */
-define('K_TCPDF_EXTERNAL_CONFIG', true);
+define('K_PDF_UNICODE', true);
+
+/**
+ * If true, subset embedded fonts (smaller files, slightly slower generation).
+ */
+define('K_PDF_SUBSET_FONT', false);
+
+/**
+ * If true, compress the generated PDF stream.
+ */
+define('K_PDF_COMPRESS', true);
+
+/**
+ * PDF compliance mode. One of: '' (none), 'pdfa1', 'pdfa2', 'pdfa3', 'pdfua1', 'pdfua2'.
+ */
+define('K_PDF_MODE', '');
 
 //============================================================+
-// END OF FILE
+// tc-lib-file access security (configurable, mirrors tc-lib-pdf fileOptions)
 //============================================================+
+
+/**
+ * Serialized list of trusted local directory prefixes the PDF engine may read
+ * (images, fonts, cache, SVG temp files). Restricts file:// reads to these paths
+ * to prevent path traversal / arbitrary file disclosure.
+ */
+define(
+    'K_PDF_ALLOWED_PATHS',
+    serialize(array_values(array_filter([
+        realpath(K_PATH_MAIN . 'images'),
+        realpath(K_PATH_MAIN . 'cache'),
+        realpath(K_PATH_MAIN . 'vendor/tecnickcom/tc-lib-pdf-font/target/fonts'),
+        defined('K_PATH_FONTS') ? realpath(K_PATH_FONTS) : false,
+        realpath(sys_get_temp_dir()),
+    ]))),
+);
+
+/**
+ * Serialized whitelist of remote host names the PDF engine may fetch over HTTP(S).
+ * Remote URL loading is DISABLED by default (empty list) to prevent SSRF; add hosts
+ * (e.g. ['cdn.example.com']) only if your templates must load remote resources.
+ */
+define('K_PDF_ALLOWED_HOSTS', serialize([]));
+
+/**
+ * Maximum size, in bytes, accepted for a remote download (default 50 MiB).
+ */
+define('K_PDF_MAX_REMOTE_SIZE', 52_428_800);

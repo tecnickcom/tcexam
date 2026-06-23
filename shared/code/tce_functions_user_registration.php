@@ -7,17 +7,9 @@
 //
 // Description : Support functions for user registration.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -37,11 +29,11 @@
 function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_class_mailer.php');
-    require_once('../../shared/config/tce_email_config.php');
-    require_once('../../shared/config/tce_user_registration.php');
-    require_once('../../shared/code/tce_functions_html2txt.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_class_mailer.php';
+    require_once '../../shared/config/tce_email_config.php';
+    require_once '../../shared/config/tce_user_registration.php';
+    require_once '../../shared/code/tce_functions_html2txt.php';
 
     $user_id = (int) $user_id;
 
@@ -75,7 +67,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     }
 
     $mail->CharSet = $l['a_meta_charset'];
-    if (! $mail->CharSet) {
+    if (!$mail->CharSet) {
         $mail->CharSet = $emailcfg['CharSet'];
     }
 
@@ -85,7 +77,16 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     $mail->isHTML(true); // Sets message type to HTML.
 
     //compose confirmation URL
-    $subscribe_url = '' . K_PATH_PUBLIC_CODE . 'tce_user_verification.php?a=' . $user_email . '&amp;b=' . $user_verifycode . '&amp;c=' . $user_id . '';
+    $subscribe_url =
+        ''
+        . K_PATH_PUBLIC_CODE
+        . 'tce_user_verification.php?a='
+        . $user_email
+        . '&amp;b='
+        . $user_verifycode
+        . '&amp;c='
+        . $user_id
+        . '';
 
     //--- Elaborate Templates ---
     $mail->Body = str_replace('#EMAIL#', $user_email, $mail->Body);
@@ -102,7 +103,7 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
         $mail->addBCC(K_USRREG_ADMIN_EMAIL);
     }
 
-    if (! $mail->send()) { //send email to user
+    if (!$mail->send()) { //send email to user
         F_print_error('ERROR', 'EMAIL ERROR');
     }
 
@@ -112,7 +113,3 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     $mail->clearAttachments(); // Clears all previously set filesystem, string, and binary attachments
     $mail->clearReplyTos(); // Clears all recipients assigned in the ReplyTo array
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

@@ -7,17 +7,9 @@
 //
 // Description : Outputs default XHTML popup page header.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,10 +20,7 @@
  * @since 2001-11-01
  */
 
+require_once 'tce_xhtml_header.php';
 
-
-require_once('tce_xhtml_header.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+echo '<main id="maincontent" class="content">' . K_NEWLINE;
+echo '<h1>' . htmlspecialchars($thispage_title, ENT_NOQUOTES, $l['a_meta_charset']) . '</h1>' . K_NEWLINE;

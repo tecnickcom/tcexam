@@ -1,0 +1,2557 @@
+variant = "loose"
+
+[[issues]]
+file = "admin/code/tce_class_import_xml.php"
+code = "file-name"
+message = "Class `XMLQuestionImporter` should be in a file named `XMLQuestionImporter.php`, found `tce_class_import_xml.php`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_class_import_xml.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_class_import_xml.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_class_import_xml.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 11
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 19
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_backup.php"
+code = "function-name"
+message = "Function name `F_isValidbackupFile` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_backup.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_backup.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_module.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_edit_module.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_module.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 17
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_rating.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_edit_rating.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_edit_sslcerts.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_edit_sslcerts.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_sslcerts.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 19
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 10
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 10
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_email_results.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_export_custom.php"
+code = "no-redundant-file"
+message = "Redundant file with no executable code or declarations."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_filemanager.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_filemanager.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_filemanager.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_functions_email_reports.php"
+code = "function-name"
+message = "Function name `F_send_report_emails` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_email_reports.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_createMediaDir` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_deleteMediaDir` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_deleteMediaFile` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_formatFileSize` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getAuthorizedDirs` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getDirFiles` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getDirTable` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getDirVisualTable` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getFileInfo` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_getMediaDirPathLink` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedDir` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_isUsedMediaFile` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
+message = "Function name `F_renameMediaFile` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "excessive-nesting"
+message = "Excessive block nesting."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "function-name"
+message = "Function name `F_decodeOMRPage` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "function-name"
+message = "Function name `F_decodeOMRTestDataQRCode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "function-name"
+message = "Function name `F_decodeOMRTestData` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "function-name"
+message = "Function name `F_encodeOMRTestData` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "function-name"
+message = "Function name `F_importOMRTestData` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 11
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_omr.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "function-name"
+message = "Function name `F_question_copy` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "function-name"
+message = "Function name `F_question_delete` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "function-name"
+message = "Function name `F_question_get_data` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "function-name"
+message = "Function name `F_question_get_position` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "function-name"
+message = "Function name `F_question_set_enabled` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_questions.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_tcecode_editor.php"
+code = "function-name"
+message = "Function name `getImageButton` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_tcecode_editor.php"
+code = "function-name"
+message = "Function name `tcecodeEditorTagButtons` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_test_select.php"
+code = "function-name"
+message = "Function name `F_isTestOnSSLCerts` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_test_select.php"
+code = "function-name"
+message = "Function name `F_select_test` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_test_select.php"
+code = "function-name"
+message = "Function name `F_show_select_test_popup` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_test_select.php"
+code = "function-name"
+message = "Function name `F_show_select_test` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_test_select.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_is_allowed_upload` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_read_file_size` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_upload_file` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_getUIDfromRegnum` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_get_user_groups` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedEditorForGroup` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedEditorForUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_isTestOnGroup` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_isUserOnGroup` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_select_user` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_show_select_user_popup` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_show_select_user` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_user_group_select_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "function-name"
+message = "Function name `F_user_group_select` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_user_select.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 8
+
+[[issues]]
+file = "admin/code/tce_functions_users_online.php"
+code = "function-name"
+message = "Function name `F_list_online_users` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_users_online.php"
+code = "function-name"
+message = "Function name `F_show_online_users` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_users_online.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_import_custom.php"
+code = "no-redundant-file"
+message = "Redundant file with no executable code or declarations."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_omr_answers.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_import_omr_answers.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_omr_bulk.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_omr_bulk.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_import_omr_bulk.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_import_questions.php"
+code = "function-name"
+message = "Function name `F_TSVQuestionImporter` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_questions.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_import_questions.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
+code = "file-name"
+message = "Class `XMLUserImporter` should be in a file named `XMLUserImporter.php`, found `tce_import_users.php`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
+code = "function-name"
+message = "Function name `F_import_tsv_users` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 12
+
+[[issues]]
+file = "admin/code/tce_page_menu.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_pdf_all_questions.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_pdf_all_questions.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_pdf_results.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_pdf_results.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_pdf_results.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_pdf_testgen.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_pdf_testgen.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_select_mediafile.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_select_mediafile.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_select_mediafile.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_select_tests.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_select_tests.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_select_tests_popup.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_select_users.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_select_users.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_select_users.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_select_users_popup.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_show_all_questions.php"
+code = "function-name"
+message = "Function name `F_show_select_questions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_show_all_questions.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 10
+
+[[issues]]
+file = "admin/code/tce_show_all_questions.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_show_all_questions.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_show_result_allusers.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 8
+
+[[issues]]
+file = "admin/code/tce_show_result_allusers.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_show_result_user.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_show_result_user.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_tsv_questions.php"
+code = "function-name"
+message = "Function name `F_tsv_export_questions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_tsv_result_allusers.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_tsv_users.php"
+code = "function-name"
+message = "Function name `F_tsv_export_users` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xhtml_header.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_question_stats.php"
+code = "function-name"
+message = "Function name `F_xml_export_question_stats` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_question_stats.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_xml_questions.php"
+code = "function-name"
+message = "Function name `F_xml_export_questions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_questions.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_xml_results.php"
+code = "function-name"
+message = "Function name `F_xml_export_results` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_results.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_xml_user_results.php"
+code = "function-name"
+message = "Function name `F_xml_export_user_results` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_user_results.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_user_results.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_xml_users.php"
+code = "function-name"
+message = "Function name `F_xml_export_users` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_users.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "admin/config.default/tce_config.php"
+code = "no-ini-set"
+message = "ini_set should not be used."
+count = 4
+
+[[issues]]
+file = "admin/config.default/theme/default.php"
+code = "no-redundant-file"
+message = "Redundant file with no executable code or declarations."
+count = 1
+
+[[issues]]
+file = "public/code/tce_pdf_results.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "public/code/tce_pdf_results.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "public/code/tce_pdf_results.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 3
+
+[[issues]]
+file = "public/code/tce_show_result_user.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "public/code/tce_test_allresults.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 6
+
+[[issues]]
+file = "public/code/tce_test_execute.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 3
+
+[[issues]]
+file = "public/code/tce_test_execute.php"
+code = "no-redundant-math"
+message = "Redundant addition of `0`: adding 0 does not alter the value."
+count = 1
+
+[[issues]]
+file = "public/code/tce_test_results.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 6
+
+[[issues]]
+file = "public/code/tce_test_start.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "public/code/tce_user_change_email.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "public/code/tce_user_change_email.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "public/code/tce_user_change_password.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "public/code/tce_user_registration.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 11
+
+[[issues]]
+file = "public/code/tce_user_registration.php"
+code = "no-literal-password"
+message = "Literal passwords or sensitive data should not be stored in code."
+count = 1
+
+[[issues]]
+file = "public/code/tce_user_verification.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "public/code/tce_xhtml_header.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "public/config.default/tce_config.php"
+code = "no-ini-set"
+message = "ini_set should not be used."
+count = 2
+
+[[issues]]
+file = "public/config.default/theme/default.php"
+code = "no-redundant-file"
+message = "Redundant file with no executable code or declarations."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_altauth.php"
+code = "function-name"
+message = "Function name `F_altLogin` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_altauth.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_altauth.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_altauth.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 5
+
+[[issues]]
+file = "shared/code/tce_authorization.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_authorization.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_authorization.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 4
+
+[[issues]]
+file = "shared/code/tce_class_mailer.php"
+code = "class-name"
+message = "Class name `C_mailer` should be in class case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_class_mailer.php"
+code = "file-name"
+message = "Class `C_mailer` should be in a file named `C_mailer.php`, found `tce_class_mailer.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_connect.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_affected_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_close` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_connect` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_datetime_diff_seconds` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_fetch_array` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_fetch_assoc` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_insert_id` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_num_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_db_query` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "function-name"
+message = "Function name `F_escape_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysql.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_affected_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_close` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_connect` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_datetime_diff_seconds` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_fetch_array` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_fetch_assoc` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_insert_id` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_num_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_db_query` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "function-name"
+message = "Function name `F_escape_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_mysqli.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_affected_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_close` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_connect` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_datetime_diff_seconds` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_fetch_array` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_fetch_assoc` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_insert_id` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_num_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_db_query` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "function-name"
+message = "Function name `F_escape_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_oracle.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 6
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_affected_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_close` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_connect` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_datetime_diff_seconds` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_fetch_array` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_fetch_assoc` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_insert_id` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_num_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_db_query` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "function-name"
+message = "Function name `F_escape_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_db_dal_postgresql.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_auth_sql.php"
+code = "function-name"
+message = "Function name `F_select_executed_tests_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_auth_sql.php"
+code = "function-name"
+message = "Function name `F_select_module_subjects_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_auth_sql.php"
+code = "function-name"
+message = "Function name `F_select_modules_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_auth_sql.php"
+code = "function-name"
+message = "Function name `F_select_subjects_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_auth_sql.php"
+code = "function-name"
+message = "Function name `F_select_tests_sql` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_getAuthorizedUsers` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_getSSLCertificateHash` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_getSSLClientHash` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_isSslCertificateValid` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_loginForm` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_login_form` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_logout_form` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_logout_page` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_syncUserGroups` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "function-name"
+message = "Function name `F_display_db_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "function-name"
+message = "Function name `F_error_handler` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "function-name"
+message = "Function name `F_file_exists` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "function-name"
+message = "Function name `F_print_error` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "function-name"
+message = "Function name `F_url_exists` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 4
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_check_fields_format` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_check_form_fields` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_check_required_fields` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_close_button` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_decode_form_fields` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_getCSRFTokenField` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `F_submit_button` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormDescriptionLine` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormNoscriptSelect` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowCheckBox` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowFixedValue` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowSelectBox` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowTextBox` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowTextInput` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowVertDiv` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormRowVertSpace` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormSmallDivSpace` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormSmallVertSpace` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getFormUploadFile` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
+message = "Function name `getRequiredMark` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 10
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_check_unique` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_compact_string` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_count_rows` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_db_getUTCoffset` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_empty_to_null` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_formatFloat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_formatPdfPercentage` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_formatPercentage` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_formatXMLPercentage` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_getBoolean` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_getUTCoffset` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_html_to_TSV` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_isURL` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_replace_angulars` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_select_table_header_element` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_substr_utf8` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_text_to_tsv` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_text_to_xml` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_tsv_to_text` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_utf8_normalizer` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_xml_to_text` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `F_zero_to_null` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getContrastColor` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getDataTSVHeader` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getDataTSV` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getDataXML` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getIpAsInt` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getIpAsString` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `getNormalizedIP` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "function-name"
+message = "Function name `showRequiredField` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 17
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 6
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
+code = "no-sprintf-concat"
+message = "String concatenation with `sprintf` can be simplified."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_html2txt.php"
+code = "function-name"
+message = "Function name `F_html_to_text` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_menu.php"
+code = "function-name"
+message = "Function name `F_menu_isChildActive` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_menu.php"
+code = "function-name"
+message = "Function name `F_menu_link` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_menu.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "function-name"
+message = "Function name `F_decodeBase32` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "function-name"
+message = "Function name `F_getOTP` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "function-name"
+message = "Function name `F_getRandomOTPkey` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "no-redundant-math"
+message = "Redundant addition of `0`: adding 0 does not alter the value."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_page.php"
+code = "function-name"
+message = "Function name `F_show_page_navigator` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_page.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "file-name"
+message = "Class `TCExamSessionHandler` should be in a file named `TCExamSessionHandler.php`, found `tce_functions_session.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `F_getCSRFToken` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `F_isRandomSecurityConfigured` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `F_session_string_to_array` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `checkCSRFToken` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `checkPassword` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `getClientFingerprint` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `getNewSessionID` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `getPasswordHash` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "function-name"
+message = "Function name `getPlainCSRFToken` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "no-ini-set"
+message = "ini_set should not be used."
+count = 7
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "function-name"
+message = "Function name `F_getArrayStatistics` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_svg_graph.php"
+code = "function-name"
+message = "Function name `F_getSVGGraphCode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_svg_graph.php"
+code = "function-name"
+message = "Function name `F_getSVGGraph` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_svg_graph.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_bbcode_to_tcecode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_decode_tcecode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_latex_callback` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_mathml_callback` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_objects_callback` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_objects_replacement` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_remove_tcecode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_substrHTML` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_tcecodeToLine` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_tcecodeToTitle` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_tcecode_tag_arg` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_tcecode_tag` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_tcecode_url` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 10
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 4
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_addLogAnswers` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_addQuestionAnswers` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_checkTestStatus` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_countUserTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_count_executed_tests` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_createTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_executeTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getAnswerIdFromPosition` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getFirstTestUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getNumOmittedQuestions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestData` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestDuration` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestGroups` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestName` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestPassword` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestSSLCerts` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getTestStartTime` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getUserData` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_getUserTests` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_isRightTestlogUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_isTestOverLimits` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_isValidIP` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_isValidSSLCert` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_isValidTestUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_newTestLog` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_printTestInfo` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_questionForm` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_questionsMenu` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_repeatTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_selectAnswers` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_terminateUserTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_testComment` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_testInfoLink` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_testLoginForm` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_twoColRow` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_updateQuestionLog` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_updateTestComment` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "function-name"
+message = "Function name `F_updateTestuserStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 43
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 13
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 26
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getAllUsersTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getRawTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getSafeUsersTestStatOrderBy` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getTestIDReports` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getTestIDResults` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getTestIDs` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getUserTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_getUserTestTotals` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_lockUserTest` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_normalizeTestStatAverages` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_printTestResultStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_printTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "function-name"
+message = "Function name `F_printUserTestStat` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 11
+
+[[issues]]
+file = "shared/code/tce_functions_user_registration.php"
+code = "function-name"
+message = "Function name `F_send_user_reg_email` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_latexrender.php"
+code = "file-name"
+message = "Class `LatexRender` should be in a file named `LatexRender.php`, found `tce_latexrender.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_page_userbar.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_pdf_report.php"
+code = "file-name"
+message = "Class `TcePdfReport` should be in a file named `TcePdfReport.php`, found `tce_pdf_report.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_pdf_report.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 5
+
+[[issues]]
+file = "shared/code/tce_pdf_report.php"
+code = "no-empty-catch-clause"
+message = "Do not use empty `catch` blocks."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_pdf_report.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_tmx.php"
+code = "file-name"
+message = "Class `TMXResourceBundle` should be in a file named `TMXResourceBundle.php`, found `tce_tmx.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_tmx.php"
+code = "identity-comparison"
+message = "Use identity inequality `!==` instead of inequality comparison `!=`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_tmx.php"
+code = "no-redundant-block"
+message = "Redundant block around statements."
+count = 8
+
+[[issues]]
+file = "shared/config.default/tce_cas.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 1
+
+[[issues]]
+file = "shared/config.default/tce_config.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2
+
+[[issues]]
+file = "shared/config.default/tce_config.php"
+code = "no-ini-set"
+message = "ini_set should not be used."
+count = 1
+
+[[issues]]
+file = "shared/config.default/tce_paths.php"
+code = "no-redundant-math"
+message = "Redundant subtraction of `0`: subtracting 0 does not change the value."
+count = 2
+
+[[issues]]
+file = "shared/custom_auth/basic.php"
+code = "identity-comparison"
+message = "Use identity comparison `===` instead of equality comparison `==`."
+count = 2

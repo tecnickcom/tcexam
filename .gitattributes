@@ -1,0 +1,28 @@
+# Normalize text sources to LF in the repository and on checkout everywhere,
+# regardless of the contributor's core.autocrlf setting.
+*.php   text eol=lf
+*.js    text eol=lf
+*.css   text eol=lf
+*.scss  text eol=lf
+*.md    text eol=lf
+*.xml   text eol=lf
+*.json  text eol=lf
+*.toml  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
+*.sql   text eol=lf
+*.tmx   text eol=lf
+Makefile text eol=lf
+
+# Binary assets must never be transformed.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary

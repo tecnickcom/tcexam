@@ -12,11 +12,19 @@ function custom_auth_basic_check_login()
     // - It can be checking username and password from another database.
     // - Token from query string.
     // - etc.
-    if (isset($_POST['logaction']) && $_POST['logaction'] == 'login' && isset($_POST['xuser_name']) && isset($_POST['xuser_password'])) {
+    if (
+        isset($_POST['logaction'])
+        && $_POST['logaction'] == 'login'
+        && isset($_POST['xuser_name'])
+        && isset($_POST['xuser_password'])
+    ) {
         $username = $_POST['xuser_name'];
         $password = $_POST['xuser_password'];
 
-        if ($username == K_CUSTOM_AUTH_BASIC_USERNAME && password_verify($password, K_CUSTOM_AUTH_BASIC_PASSWORD_HASH)) {
+        if (
+            $username == K_CUSTOM_AUTH_BASIC_USERNAME
+            && password_verify($password, K_CUSTOM_AUTH_BASIC_PASSWORD_HASH)
+        ) {
             // Return the user data at least with the following minimum format.
             $usr['user_email'] = '';
             $usr['user_firstname'] = '';

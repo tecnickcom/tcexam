@@ -7,17 +7,9 @@
 //
 // Description : Functions for TCExam file manager.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -36,7 +28,7 @@
  */
 function F_deleteMediaFile($filename)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if ($_SESSION['session_user_level'] < K_AUTH_DELETE_MEDIAFILE) {
         // insufficient user level
         return false;
@@ -49,11 +41,11 @@ function F_deleteMediaFile($filename)
     }
 
     $path_parts = pathinfo($filename);
-    if (! str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
+    if (!str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
         return false;
     }
 
-    if (! in_array(strtolower($path_parts['extension']), $allowed_extensions)) {
+    if (!in_array(strtolower($path_parts['extension']), $allowed_extensions)) {
         return false;
     }
 
@@ -77,7 +69,7 @@ function F_deleteMediaFile($filename)
  */
 function F_renameMediaFile($filename, $newname)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if ($_SESSION['session_user_level'] < K_AUTH_RENAME_MEDIAFILE) {
         // insufficient user level
         return false;
@@ -86,17 +78,20 @@ function F_renameMediaFile($filename, $newname)
     $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
     $normalized_filename = str_replace('\\', '/', $filename);
     $normalized_newname = str_replace('\\', '/', $newname);
-    if ((preg_match('#(^|/)\.\.(/|$)#', $normalized_filename) === 1) || (preg_match('#(^|/)\.\.(/|$)#', $normalized_newname) === 1)) {
+    if (
+        preg_match('#(^|/)\.\.(/|$)#', $normalized_filename) === 1
+        || preg_match('#(^|/)\.\.(/|$)#', $normalized_newname) === 1
+    ) {
         return false;
     }
 
     $path_parts = pathinfo($filename);
     $path_parts_new = pathinfo($newname);
-    if (! str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
+    if (!str_contains($path_parts['dirname'] . '/', K_PATH_CACHE)) {
         return false;
     }
 
-    if (! in_array(strtolower($path_parts['extension']), $allowed_extensions)) {
+    if (!in_array(strtolower($path_parts['extension']), $allowed_extensions)) {
         return false;
     }
 
@@ -108,11 +103,11 @@ function F_renameMediaFile($filename, $newname)
         return false;
     }
 
-    if (! str_contains($path_parts_new['dirname'] . '/', K_PATH_CACHE)) {
+    if (!str_contains($path_parts_new['dirname'] . '/', K_PATH_CACHE)) {
         return false;
     }
 
-    if (! in_array(strtolower($path_parts_new['extension']), $allowed_extensions)) {
+    if (!in_array(strtolower($path_parts_new['extension']), $allowed_extensions)) {
         return false;
     }
 
@@ -135,7 +130,7 @@ function F_renameMediaFile($filename, $newname)
  */
 function F_createMediaDir($dirname)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
         // insufficient user level
         return false;
@@ -148,7 +143,7 @@ function F_createMediaDir($dirname)
 
     if (str_contains($dirname . '/', K_PATH_CACHE)) {
         $oldumask = @umask(0);
-        $ret = @mkdir($dirname, 0744, false);
+        $ret = @mkdir($dirname, 0o744, false);
         @umask($oldumask);
         return $ret;
     }
@@ -164,13 +159,13 @@ function F_createMediaDir($dirname)
  */
 function F_deleteMediaDir($dirname)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if ($_SESSION['session_user_level'] < K_AUTH_ADMIN_DIRS) {
         // insufficient user level
         return false;
     }
 
-    if (! str_contains($dirname . '/', K_PATH_CACHE)) {
+    if (!str_contains($dirname . '/', K_PATH_CACHE)) {
         return false;
     }
 
@@ -189,30 +184,30 @@ function F_deleteMediaDir($dirname)
  */
 function F_getFileInfo($file)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $info = pathinfo($file);
     $info['dir'] = is_dir($file);
-    $info['lastmod'] = date("Y-m-d H:i:s", @filemtime($file));
+    $info['lastmod'] = date('Y-m-d H:i:s', @filemtime($file));
     $info['owner'] = @fileowner($file);
     $info['perms'] = @fileperms($file);
     $info['aperms'] = $info['dir'] ? 'd' : '-';
 
-    $info['aperms'] .= (($info['perms'] & 00400) !== 0) ? 'r' : '-';
-    $info['aperms'] .= (($info['perms'] & 00200) !== 0) ? 'w' : '-';
-    $info['aperms'] .= (($info['perms'] & 00100) !== 0) ? 'x' : '-';
-    $info['aperms'] .= (($info['perms'] & 00040) !== 0) ? 'r' : '-';
-    $info['aperms'] .= (($info['perms'] & 00020) !== 0) ? 'w' : '-';
-    $info['aperms'] .= (($info['perms'] & 00010) !== 0) ? 'x' : '-';
-    $info['aperms'] .= (($info['perms'] & 00004) !== 0) ? 'r' : '-';
-    $info['aperms'] .= (($info['perms'] & 00002) !== 0) ? 'w' : '-';
-    $info['aperms'] .= (($info['perms'] & 00001) !== 0) ? 'x' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0400) !== 0 ? 'r' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0200) !== 0 ? 'w' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0100) !== 0 ? 'x' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0040) !== 0 ? 'r' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0020) !== 0 ? 'w' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0010) !== 0 ? 'x' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0004) !== 0 ? 'r' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0002) !== 0 ? 'w' : '-';
+    $info['aperms'] .= ($info['perms'] & 0o0001) !== 0 ? 'x' : '-';
     $info['size'] = @filesize($file);
     $info['link'] = is_link($file);
     if ($info['link']) {
         $info['linkto'] = readlink($file);
     }
 
-    if (! isset($info['extension'])) {
+    if (!isset($info['extension'])) {
         $info['extension'] = '';
     }
 
@@ -235,7 +230,7 @@ function F_formatFileSize($size)
         $out = '0';
     } else {
         $i = floor(log($size, 1024));
-        $out .= round(($size / 1024 ** $i), $i > 1 ? 2 : 0);
+        $out .= round($size / (1024 ** $i), $i > 1 ? 2 : 0);
         $out .= ' ' . $mult[$i];
     }
 
@@ -252,22 +247,39 @@ function F_formatFileSize($size)
 function F_getMediaDirPathLink($dirpath, $viewmode = true)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $mode = (int) $viewmode;
     $out = ''; //string to be returned
     // write root link
-    $out .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . urlencode(K_PATH_CACHE) . '&amp;v=' . $mode . '" title="CACHE ROOT">[CACHE]</a> /';
+    $out .=
+        '<a href="'
+        . $_SERVER['SCRIPT_NAME']
+        . '?d='
+        . urlencode(K_PATH_CACHE)
+        . '&amp;v='
+        . $mode
+        . '" title="CACHE ROOT">[CACHE]</a> /';
     // conform windows-style directories
     $dirpath = str_replace("\\", '/', $dirpath); // Windows compatibility
     // remove cache root from path
     $dirpath = substr($dirpath, strlen(K_PATH_CACHE));
     if ($dirpath !== false) {
-        
         $dirs = preg_split('/[\/]+/', $dirpath, -1, PREG_SPLIT_NO_EMPTY);
         $current_dir = K_PATH_CACHE;
         foreach ($dirs as $dir) {
             $current_dir .= $dir . '/';
-            $out .= ' <a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . urlencode($current_dir) . '&amp;v=' . $mode . '" title="' . $l['w_change_dir'] . '">' . $dir . '</a> /';
+            $out .=
+                ' <a href="'
+                . $_SERVER['SCRIPT_NAME']
+                . '?d='
+                . urlencode($current_dir)
+                . '&amp;v='
+                . $mode
+                . '" title="'
+                . $l['w_change_dir']
+                . '">'
+                . $dir
+                . '</a> /';
         }
     }
 
@@ -297,7 +309,10 @@ function F_getDirFiles($dir, $rootdir = K_PATH_CACHE, $authdirs = '')
             $filename = $dir . $file;
             if (F_isAuthorizedDir($filename . '/', $rootdir, $authdirs)) {
                 if (is_dir($filename)) {
-                    if (! str_contains($filename . '/', K_PATH_LANG_CACHE) && ! str_contains($filename . '/', K_PATH_BACKUP)) {
+                    if (
+                        !str_contains($filename . '/', K_PATH_LANG_CACHE)
+                        && !str_contains($filename . '/', K_PATH_BACKUP)
+                    ) {
                         $data['dirs'][] = $filename;
                     }
                 } else {
@@ -322,11 +337,18 @@ function F_getDirFiles($dir, $rootdir = K_PATH_CACHE, $authdirs = '')
 function F_isUsedMediaFile($file)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     // remove cache root from file path
     $file = F_escape_sql($db, substr($file, strlen(K_PATH_CACHE)));
     // search on questions
-    $sql = 'SELECT question_id FROM ' . K_TABLE_QUESTIONS . " WHERE question_description LIKE '%" . $file . "[/object%' OR question_explanation LIKE '%" . $file . "[/object%' LIMIT 1";
+    $sql =
+        'SELECT question_id FROM '
+        . K_TABLE_QUESTIONS
+        . " WHERE question_description LIKE '%"
+        . $file
+        . "[/object%' OR question_explanation LIKE '%"
+        . $file
+        . "[/object%' LIMIT 1";
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
             return true;
@@ -336,7 +358,14 @@ function F_isUsedMediaFile($file)
     }
 
     // search on answers
-    $sql = 'SELECT answer_id FROM ' . K_TABLE_ANSWERS . " WHERE answer_description LIKE '%" . $file . "[/object%' OR answer_explanation LIKE '%" . $file . "[/object%' LIMIT 1";
+    $sql =
+        'SELECT answer_id FROM '
+        . K_TABLE_ANSWERS
+        . " WHERE answer_description LIKE '%"
+        . $file
+        . "[/object%' OR answer_explanation LIKE '%"
+        . $file
+        . "[/object%' LIMIT 1";
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
             return true;
@@ -361,30 +390,48 @@ function F_isUsedMediaFile($file)
 function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CACHE, $authdirs = '')
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
     $out = ''; // html string to be returned
     $out .= '<table class="filemanager">' . K_NEWLINE;
+    $out .= '<caption class="sr-only">' . $l['w_directory'] . '</caption>';
     // header
+    $out .= '<thead>';
     $out .= '<tr>';
-    $out .= '<th>' . $l['w_name'] . '</th>';
-    $out .= '<th>' . $l['w_size'] . '</th>';
-    $out .= '<th title="' . $l['w_datetime_format'] . '">' . $l['w_date'] . '</th>';
-    $out .= '<th>' . $l['w_permissions'] . '</th>';
+    $out .= '<th scope="col">' . $l['w_name'] . '</th>';
+    $out .= '<th scope="col">' . $l['w_size'] . '</th>';
+    $out .= '<th scope="col" title="' . $l['w_datetime_format'] . '">' . $l['w_date'] . '</th>';
+    $out .= '<th scope="col">' . $l['w_permissions'] . '</th>';
     $out .= '</tr>' . K_NEWLINE;
+    $out .= '</thead>';
     $data = F_getDirFiles($dir, $rootdir, $authdirs);
     $usrdir = $rootdir . $_SESSION['session_user_id'];
     // dirs
     foreach ($data['dirs'] as $file) {
         $info = F_getFileInfo($file);
         $current_dir = urlencode($dir . $info['basename'] . '/');
+        $usrdir_cue = '';
         if ($file == $usrdir) {
             $out .= '<tr style="background-color:#ddffdd;font-family:monospace;color:#660000;">';
+            $usrdir_cue = '<span class="sr-only">(' . $l['w_user'] . ' ' . $l['w_directory'] . ') </span>';
         } else {
             $out .= '<tr style="background-color:#dddddd;font-family:monospace;color:#660000;">';
         }
 
-        $out .= '<td><strong><a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . $current_dir . '&amp;v=1' . $params . '" title="' . $l['w_change_dir'] . '" style="text-decoration:underline;">' . $info['basename'] . '</a></strong></td>';
+        $out .=
+            '<td>'
+            . $usrdir_cue
+            . '<strong><a href="'
+            . $_SERVER['SCRIPT_NAME']
+            . '?d='
+            . $current_dir
+            . '&amp;v=1'
+            . $params
+            . '" title="'
+            . $l['w_change_dir']
+            . '" style="text-decoration:underline;">'
+            . $info['basename']
+            . '</a></strong></td>';
         $out .= '<td style="text-align:right;">' . F_formatFileSize($info['size']) . '</td>';
         $out .= '<td>' . $info['lastmod'] . '</td>';
         $out .= '<td>' . $info['aperms'] . '</td>';
@@ -395,15 +442,36 @@ function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CAC
     $current_dir = urlencode($dir);
     foreach ($data['files'] as $file) {
         $info = F_getFileInfo($file);
-        if (isset($info['extension']) && in_array(strtolower($info['extension']), $allowed_extensions) && ! str_starts_with($info['basename'], 'latex_')) {
+        if (
+            isset($info['extension'])
+            && in_array(strtolower($info['extension']), $allowed_extensions)
+            && !str_starts_with($info['basename'], 'latex_')
+        ) {
             $current_file = urlencode($dir . $info['basename']);
+            $selected_cue = '';
             if ($info['basename'] == $selected) {
                 $out .= '<tr style="background-color:#ffffcc;font-family:monospace;">';
+                $selected_cue = '<span class="sr-only">(' . $l['w_selection'] . ') </span>';
             } else {
                 $out .= '<tr style="font-family:monospace;">';
             }
 
-            $out .= '<td><a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . $current_dir . '&amp;f=' . urlencode($current_file) . '&amp;v=1' . $params . '" title="' . $l['w_select'] . '">' . $info['basename'] . '</a></td>';
+            $out .=
+                '<td>'
+                . $selected_cue
+                . '<a href="'
+                . $_SERVER['SCRIPT_NAME']
+                . '?d='
+                . $current_dir
+                . '&amp;f='
+                . urlencode($current_file)
+                . '&amp;v=1'
+                . $params
+                . '" title="'
+                . $l['w_select']
+                . '">'
+                . $info['basename']
+                . '</a></td>';
             $out .= '<td style="text-align:right;">' . F_formatFileSize($info['size']) . '</td>';
             //$out .= '<td style="text-align:right;">'.$info['size'].'</td>';
             $out .= '<td>' . $info['lastmod'] . '</td>';
@@ -428,7 +496,7 @@ function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CAC
 function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CACHE, $authdirs = '')
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $imgformats = ['gif', 'jpg', 'jpeg', 'png', 'svg'];
     $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
     $out = ''; // html string to be returned
@@ -437,17 +505,34 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
     foreach ($data['dirs'] as $file) {
         $info = F_getFileInfo($file);
         $current_dir = urlencode($dir . $info['basename'] . '/');
-        $out .= '<table style="float:left;border:none;margin:1px;padding:0;width:158px;background-color:#007fff;">';
-        $out .= '<tr style="height:16px;font-family:monospace;font-size:12px;font-weight:bold;color:white;"><th>';
+        $out .= '<table role="presentation" style="float:left;border:none;margin:1px;padding:0;width:158px;background-color:#007fff;">';
+        $out .= '<tr style="height:16px;font-family:monospace;font-size:12px;font-weight:bold;color:white;"><td>';
         $filename = $info['basename'];
         if (strlen($filename) > 20) {
             $filename = substr($filename, 0, 20) . '...';
         }
 
         $out .= $filename;
-        $out .= '</th></tr>';
+        $out .= '</td></tr>';
         $out .= '<tr style="height:160px;"><td style="text-align:center;vertical-align:middle;background-color:white;">';
-        $out .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . $current_dir . '&amp;v=0' . $params . '" title="' . $l['w_change_dir'] . ' : ' . $info['basename'] . '" style="text-decoration:underline;"><img src="' . K_PATH_IMAGES . 'dir.png" width="50" height="50" alt="' . $l['w_change_dir'] . ' : ' . $info['basename'] . '" style="border:none;" /></a>';
+        $out .=
+            '<a href="'
+            . $_SERVER['SCRIPT_NAME']
+            . '?d='
+            . $current_dir
+            . '&amp;v=0'
+            . $params
+            . '" title="'
+            . $l['w_change_dir']
+            . ' : '
+            . $info['basename']
+            . '" style="text-decoration:underline;"><img src="'
+            . K_PATH_IMAGES
+            . 'dir.png" width="50" height="50" alt="'
+            . $l['w_change_dir']
+            . ' : '
+            . $info['basename']
+            . '" style="border:none;" /></a>';
         $out .= '</td></tr>';
         $out .= '</table>';
     }
@@ -456,29 +541,70 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
     $current_dir = urlencode($dir);
     foreach ($data['files'] as $file) {
         $info = F_getFileInfo($file);
-        if (isset($info['extension']) && in_array(strtolower($info['extension']), $allowed_extensions) && ! str_starts_with($info['basename'], 'latex_')) {
+        if (
+            isset($info['extension'])
+            && in_array(strtolower($info['extension']), $allowed_extensions)
+            && !str_starts_with($info['basename'], 'latex_')
+        ) {
             $current_file = urlencode($dir . $info['basename']);
-            $bgcolor = $info['basename'] == $selected ? '#009900' : '#333333';
+            $is_selected = $info['basename'] == $selected;
+            $bgcolor = $is_selected ? '#009900' : '#333333';
+            $selected_cue = $is_selected ? '<span class="sr-only">(' . $l['w_selection'] . ') </span>' : '';
 
             if (in_array(strtolower($info['extension']), $imgformats)) {
                 $w = 150;
                 $h = 150;
                 $imgicon = F_objects_replacement($info['tcename'], $info['extension'], 0, 0, $l['w_preview'], $w, $h);
             } else {
-                $imgicon = '<img src="' . K_PATH_IMAGES . 'file.png" width="39" height="50" alt="' . $l['w_select'] . ' : ' . $info['basename'] . ' (' . F_formatFileSize($info['size']) . ')' . '" style="border:none;" />';
+                $imgicon =
+                    '<img src="'
+                    . K_PATH_IMAGES
+                    . 'file.png" width="39" height="50" alt="'
+                    . $l['w_select']
+                    . ' : '
+                    . $info['basename']
+                    . ' ('
+                    . F_formatFileSize($info['size'])
+                    . ')'
+                    . '" style="border:none;" />';
             }
 
-            $out .= '<table style="float:left;border:none;margin:1px;padding:0;width:158px;background-color:' . $bgcolor . ';">';
-            $out .= '<tr style="height:16px;font-family:monospace;font-size:12px;color:white;"><th>';
+            $out .=
+                '<table role="presentation" style="float:left;border:none;margin:1px;padding:0;width:158px;background-color:'
+                . $bgcolor
+                . ';">';
+            $out .= '<tr style="height:16px;font-family:monospace;font-size:12px;color:white;"><td>';
+            $out .= $selected_cue;
             $filename = $info['basename'];
             if (strlen($filename) > 20) {
-                $filename = substr(substr($filename, 0, -(strlen($info['extension']) + 1)), 0, 15) . '&rarr;.' . $info['extension'];
+                $filename =
+                    substr(substr($filename, 0, -(strlen($info['extension']) + 1)), 0, 15)
+                    . '&rarr;.'
+                    . $info['extension'];
             }
 
             $out .= $filename;
-            $out .= '</th></tr>';
+            $out .= '</td></tr>';
             $out .= '<tr style="height:160px;"><td style="text-align:center;vertical-align:middle;background-color:white;">';
-            $out .= '<a href="' . $_SERVER['SCRIPT_NAME'] . '?d=' . $current_dir . '&amp;f=' . urlencode($current_file) . '&amp;v=0' . $params . '" title="' . $l['w_select'] . ' : ' . $info['basename'] . ' (' . F_formatFileSize($info['size']) . ')' . '">' . $imgicon . '</a>';
+            $out .=
+                '<a href="'
+                . $_SERVER['SCRIPT_NAME']
+                . '?d='
+                . $current_dir
+                . '&amp;f='
+                . urlencode($current_file)
+                . '&amp;v=0'
+                . $params
+                . '" title="'
+                . $l['w_select']
+                . ' : '
+                . $info['basename']
+                . ' ('
+                . F_formatFileSize($info['size'])
+                . ')'
+                . '">'
+                . $imgicon
+                . '</a>';
             $out .= '</td></tr>';
             $out .= '</table>';
         }
@@ -493,8 +619,8 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
  */
 function F_getAuthorizedDirs()
 {
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_functions_authorization.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_authorization.php';
     if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
         return '[^/]*';
     }
@@ -512,14 +638,10 @@ function F_getAuthorizedDirs()
  */
 function F_isAuthorizedDir($dir, $rootdir, $authdirs = '')
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if (empty($authdirs)) {
         $authdirs = F_getAuthorizedDirs();
     }
 
     return preg_match('#^' . $rootdir . '(' . $authdirs . ')/#', $dir) > 0;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

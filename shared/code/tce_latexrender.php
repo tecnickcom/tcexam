@@ -25,7 +25,7 @@
  */
 
 // Includes configuration file.
-require_once('../../shared/config/tce_latex.php');
+require_once '../../shared/config/tce_latex.php';
 
 /**
  * @class LatexRender
@@ -137,7 +137,38 @@ class LatexRender
      * List of unauthorized LaTeX commands.
      * @protected
      */
-    protected $latex_tags_blacklist = ['include', 'def', 'command', 'loop', 'repeat', 'open', 'toks', 'output', 'input', 'catcode', 'name', '^^', '\every', '\errhelp', '\errorstopmode', '\scrollmode', '\nonstopmode', '\batchmode', '\read', '\write', 'csname', '\newhelp', '\uppercase', '\lowercase', '\relax', '\aftergroup', '\afterassignment', '\expandafter', '\noexpand', '\special'];
+    protected $latex_tags_blacklist = [
+        'include',
+        'def',
+        'command',
+        'loop',
+        'repeat',
+        'open',
+        'toks',
+        'output',
+        'input',
+        'catcode',
+        'name',
+        '^^',
+        '\every',
+        '\errhelp',
+        '\errorstopmode',
+        '\scrollmode',
+        '\nonstopmode',
+        '\batchmode',
+        '\read',
+        '\write',
+        'csname',
+        '\newhelp',
+        '\uppercase',
+        '\lowercase',
+        '\relax',
+        '\aftergroup',
+        '\afterassignment',
+        '\expandafter',
+        '\noexpand',
+        '\special',
+    ];
 
     // ------ private ------
 
@@ -171,10 +202,8 @@ class LatexRender
      */
     private $img_height = 0;
 
-
     //  ---------- constructor / destructor functions ---------- * ---------- * ----------
 
-    
     public function __construct()
     {
         $this->tmp_filename = md5(random_int(0, mt_getrandmax()));
@@ -183,10 +212,7 @@ class LatexRender
     /**
      * Default destructor.
      */
-    public function __destruct()
-    {
-    }
-
+    public function __destruct() {}
 
     // ---------- public functions ---------- * ---------- * ---------- * ----------
 
@@ -352,8 +378,8 @@ class LatexRender
     {
         // circumvent certain security functions of web-software which
         // is pretty pointless right here
-        $latex_formula = preg_replace("/&gt;/i", '>', $latex_formula);
-        $latex_formula = preg_replace("/&lt;/i", '<', $latex_formula);
+        $latex_formula = preg_replace('/&gt;/i', '>', $latex_formula);
+        $latex_formula = preg_replace('/&lt;/i', '<', $latex_formula);
 
         $filename = $this->getFilename($latex_formula);
         $full_path_filename = $this->picture_path . '' . $filename;
@@ -412,7 +438,6 @@ class LatexRender
     {
         return $this->errorcode;
     }
-
 
     //  --- private functions --------------------------------------------------
 
@@ -477,7 +502,7 @@ class LatexRender
      */
     private function checkImageDimensions($filename)
     {
-        $output = exec($this->identify_path . " " . $filename);
+        $output = exec($this->identify_path . ' ' . $filename);
         if ($output === '' || $output === false) {
             return false;
         }
@@ -520,7 +545,7 @@ class LatexRender
         // create temporary DVI file
         $command = $this->latex_path . ' --interaction=nonstopmode ' . $this->tmp_filename . '.tex';
         $status_code = exec($command);
-        if (! $status_code) {
+        if (!$status_code) {
             $this->cleanTemporaryDirectory($current_dir, 4);
             return false;
         }
@@ -530,11 +555,20 @@ class LatexRender
         $status_code = exec($command);
 
         // ImageMagick convert PS to image and trim picture
-        $command = $this->convert_path . ' -density ' . $this->formula_density . ' -background "#FFFFFF" -depth 8 ' . $this->tmp_filename . '.ps ' . $this->tmp_filename . '.' . $this->image_format;
+        $command =
+            $this->convert_path
+            . ' -density '
+            . $this->formula_density
+            . ' -background "#FFFFFF" -depth 8 '
+            . $this->tmp_filename
+            . '.ps '
+            . $this->tmp_filename
+            . '.'
+            . $this->image_format;
         $status_code = exec($command);
 
         // check picture dimensions
-        if (! $this->checkImageDimensions($this->tmp_filename . '.' . $this->image_format)) {
+        if (!$this->checkImageDimensions($this->tmp_filename . '.' . $this->image_format)) {
             $this->cleanTemporaryDirectory($current_dir, 7);
             return false;
         }
@@ -543,7 +577,7 @@ class LatexRender
         $filename = $this->getFilename($latex_formula);
         $status_code = copy($this->tmp_filename . '.' . $this->image_format, $filename);
 
-        if (! $status_code) {
+        if (!$status_code) {
             $this->cleanTemporaryDirectory($current_dir, 8);
             return false;
         }
@@ -553,7 +587,3 @@ class LatexRender
         return true;
     }
 } // end of class
-
-//============================================================+
-// END OF FILE
-//============================================================+

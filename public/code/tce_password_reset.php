@@ -7,17 +7,9 @@
 //
 // Description : Password Reset form.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,33 +20,32 @@
  * @since 2008-03-30
  */
 
+require_once '../config/tce_config.php';
 
-
-require_once('../config/tce_config.php');
-
-if (! defined('K_PASSWORD_RESET') || ! K_PASSWORD_RESET) {
+if (!defined('K_PASSWORD_RESET') || !K_PASSWORD_RESET) {
     // password reset is disabled, redirect to main page
     header('Location: ' . K_PATH_HOST . K_PATH_TCEXAM);
-    exit;
+    exit();
 }
 
 $pagelevel = 0;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_password_assistance'];
-require_once('../code/tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
+require_once '../code/tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
 
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'user_email';
 $_REQUEST['ff_required_labels'] = htmlspecialchars($l['w_email'], ENT_COMPAT, $l['a_meta_charset']);
-;
-
 
 // process submitted data
 if (isset($_POST['resetpassword']) && ($formstatus = F_check_form_fields())) {
+    // Read the submitted email explicitly from $_POST instead of relying on the register-globals
+    // emulation in tce_config.php (plan Stage 8.2). F_check_form_fields() above has already
+    // validated that 'user_email' is present and matches the email format.
+    $user_email = isset($_POST['user_email']) ? (string) $_POST['user_email'] : '';
     // check submitted form fields
-    mt_srand((float) microtime() * 1_000_000);
     $user_verifycode = md5(uniqid(random_int(0, mt_getrandmax()), true));
     // verification code
     $user_verifycode[0] = '@';
@@ -71,32 +62,63 @@ if (isset($_POST['resetpassword']) && ($formstatus = F_check_form_fields())) {
 
     if ($user_id > 0) {
         // update verification code
-        $sqlu = 'UPDATE ' . K_TABLE_USERS . " SET user_verifycode='" . F_escape_sql($db, $user_verifycode) . "' WHERE user_id=" . $user_id . '';
-        if (! $ru = F_db_query($sqlu, $db)) {
+        $sqlu =
+            'UPDATE '
+            . K_TABLE_USERS
+            . " SET user_verifycode='"
+            . F_escape_sql($db, $user_verifycode)
+            . "' WHERE user_id="
+            . $user_id
+            . '';
+        if (!($ru = F_db_query($sqlu, $db))) {
             F_display_db_error();
         }
 
         // send email confirmation
-        require_once('../../shared/code/tce_functions_user_registration.php');
+        require_once '../../shared/code/tce_functions_user_registration.php';
         F_send_user_reg_email($user_id, $user_email, $user_verifycode);
     }
 
     F_print_error('MESSAGE', $user_email . ': ' . $l['m_user_verification_sent']);
     echo '<div class="container">' . K_NEWLINE;
-    echo '<strong><a href="index.php" title="' . $l['h_index'] . '">' . $l['h_index'] . ' &gt;</a></strong>' . K_NEWLINE;
+    echo
+        '<strong><a href="index.php" title="' . $l['h_index'] . '">' . $l['h_index'] . ' &gt;</a></strong>' . K_NEWLINE
+    ;
     echo '</div>' . K_NEWLINE;
-    require_once('../code/tce_page_footer.php');
-    exit;
+    require_once '../code/tce_page_footer.php';
+    exit();
 } //end of add
 
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_usereditor">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_usereditor">'
+        . K_NEWLINE
+;
 
 echo '<p>' . $l['d_reset_password'] . '</p>' . K_NEWLINE;
 
-echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', '', K_EMAIL_RE_PATTERN, 255, false, false, false, '');
+echo
+    getFormRowTextInput(
+        'user_email',
+        $l['w_email'],
+        $l['h_usered_email'],
+        '',
+        '',
+        K_EMAIL_RE_PATTERN,
+        255,
+        false,
+        false,
+        false,
+        '',
+        true,
+        'email',
+        'email',
+    )
+;
 
 echo '<div class="row">' . K_NEWLINE;
 
@@ -109,8 +131,4 @@ echo '</div>' . K_NEWLINE;
 
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_config.php
 // Begin       : 2001-09-02
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for administration section.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,13 +21,10 @@
  * @since 2001-09-02
  */
 
-/**
- */
-
 // --- INCLUDE FILES -----------------------------------------------------------
 
-require_once('../config/tce_auth.php');
-require_once('../../shared/config/tce_config.php');
+require_once '../config/tce_auth.php';
+require_once '../../shared/config/tce_config.php';
 
 // --- OPTIONS / COSTANTS ------------------------------------------------------
 
@@ -51,13 +41,43 @@ define('K_MAX_ROWS_PER_PAGE', 50);
 /**
  * Max size to be uploaded in bytes.
  */
-define('K_MAX_UPLOAD_SIZE', 25000000);
+define('K_MAX_UPLOAD_SIZE', 25_000_000);
 
 /**
  * List of allowed file types for upload (remove all extensions to disable upload).
  * FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE
  */
-define('K_ALLOWED_UPLOAD_EXTENSIONS', serialize(array('csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'mp3', 'mid', 'oga', 'ogg', 'wav', 'wma', 'avi', 'flv', 'm2v', 'mpeg', 'mpeg4', 'mpg', 'mpg2', 'mpv', 'ogm', 'ogv', 'vid', 'pfx', 'pem', 'crt')));
+define('K_ALLOWED_UPLOAD_EXTENSIONS', serialize([
+    'csv',
+    'tsv',
+    'xml',
+    'txt',
+    'png',
+    'gif',
+    'jpg',
+    'jpeg',
+    'svg',
+    'mp3',
+    'mid',
+    'oga',
+    'ogg',
+    'wav',
+    'wma',
+    'avi',
+    'flv',
+    'm2v',
+    'mpeg',
+    'mpeg4',
+    'mpg',
+    'mpg2',
+    'mpv',
+    'ogm',
+    'ogv',
+    'vid',
+    'pfx',
+    'pem',
+    'crt',
+]));
 
 // -- DEFAULT META and BODY Tags --
 
@@ -99,12 +119,12 @@ define('K_ADMIN_THEME', 'default');
 /**
  * Path to public CSS stylesheet for LTR languages.
  */
-define('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS.K_ADMIN_THEME.'.css');
+define('K_TCEXAM_STYLE', K_PATH_STYLE_SHEETS . K_ADMIN_THEME . '.css');
 
 /**
  * Full path to CSS stylesheet for RTL languages.
  */
-define('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS.K_ADMIN_THEME.'_rtl.css');
+define('K_TCEXAM_STYLE_RTL', K_PATH_STYLE_SHEETS . K_ADMIN_THEME . '_rtl.css');
 
 /**
  * If true display admin clock in UTC (GMT).
@@ -166,7 +186,7 @@ define('K_OMR_PATH_ZBARIMG', '/usr/bin/zbarimg');
 /**
  * Defines a serialized array of available fonts for PDF.
  */
-define('K_AVAILABLE_FONTS', serialize(array(
+define('K_AVAILABLE_FONTS', serialize([
     'courier' => 'courier',
     'helvetica' => 'helvetica',
     'times' => 'times',
@@ -179,14 +199,14 @@ define('K_AVAILABLE_FONTS', serialize(array(
     'DejaVuSerifCondensed' => 'dejavuserifcondensed,serif',
     'FreeMono' => 'freemono,monospace',
     'FreeSans' => 'freesans,sans',
-    'FreeSerif' => 'freeserif,serif'
-)));
+    'FreeSerif' => 'freeserif,serif',
+]));
 
 // --- INCLUDE FILES -----------------------------------------------------------
 
-require_once('../../shared/config/tce_db_config.php');
-require_once('../../shared/code/tce_db_connect.php');
-require_once('../../shared/code/tce_functions_general.php');
+require_once '../../shared/config/tce_db_config.php';
+require_once '../../shared/code/tce_db_connect.php';
+require_once '../../shared/code/tce_functions_general.php';
 
 // --- PHP SETTINGS -----------------------------------------------------------
 
@@ -194,7 +214,3 @@ ini_set('memory_limit', K_MAX_MEMORY_LIMIT); // set PHPmemory limit
 ini_set('upload_max_filesize', K_MAX_UPLOAD_SIZE); // set max upload size
 ini_set('post_max_size', K_MAX_UPLOAD_SIZE); // set max post size
 ini_set('session.use_trans_sid', 0); // if =1 use PHPSESSID
-
-//============================================================+
-// END OF FILE
-//============================================================+

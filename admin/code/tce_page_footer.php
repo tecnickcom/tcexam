@@ -7,17 +7,9 @@
 //
 // Description : Outputs default XHTML page footer.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,19 +20,15 @@
  * @since 2001-09-02
  */
 
-
-
 echo K_NEWLINE;
 echo '</div>' . K_NEWLINE; //close div.content
-echo '</div>' . K_NEWLINE; //close div.body
+echo '</main>' . K_NEWLINE; //close main.body
 
-include('../../shared/code/tce_page_userbar.php'); // display user bar
-include('../config/theme/' . K_ADMIN_THEME . '.php'); // load extra script for the selected theme
+echo '<footer class="footer" role="contentinfo">' . K_NEWLINE;
+include '../../shared/code/tce_page_userbar.php'; // display user bar
+echo '</footer>' . K_NEWLINE;
+include '../config/theme/' . K_ADMIN_THEME . '.php'; // load extra script for the selected theme
 
 echo '<!-- ' . base64_decode(K_KEY_SECURITY) . ' -->' . K_NEWLINE;
 echo '</body>' . K_NEWLINE;
 echo '</html>';
-
-//============================================================+
-// END OF FILE
-//============================================================+

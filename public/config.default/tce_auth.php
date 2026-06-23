@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_auth.php
 // Begin       : 2010-09-17
@@ -10,17 +11,9 @@
 //                1 = registered user
 //               10 = System Administrator
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -35,7 +28,6 @@
 // SECURITY WARNING :
 // SET THIS FILE AS READ ONLY AFTER MODIFICATIONS
 // ************************************************************
-
 
 /**
  * Required user's level to access index page.
@@ -90,7 +82,3 @@ define('K_AUTH_SSL_LEVEL', false);
  * access pages with K_AUTH_SSL_LEVEL level or more.
  */
 define('K_AUTH_SSLIDS', '');
-
-//============================================================+
-// END OF FILE
-//============================================================+

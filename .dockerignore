@@ -1,0 +1,34 @@
+# Keep the build context small and let the image build its own artifacts.
+.git
+.github
+.gitignore
+.gitattributes
+.editorconfig
+.phpdoc
+.phpunit.cache
+.phpunit.result.cache
+.mago
+.mago-cache
+.vscode
+.idea
+
+# Built/installed in the image, not copied from the host:
+vendor
+target
+node_modules
+
+# Generated at runtime by the entrypoint:
+cache/lang/*.php
+cache/OMR/*
+
+# Local working files / docs not needed at runtime:
+PLAN_*.md
+phpunit.xml
+**/*.bak
+**/*.tmp
+
+# Never ship an installed instance's secrets/config into the image:
+shared/config
+admin/config
+public/config
+install/install.log

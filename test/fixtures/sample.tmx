@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx version="1.4">
+   <header datatype="PlainText"
+           segtype="sentence"
+           creationtool="test"
+           creationtoolversion="1"
+           srclang="EN"
+           adminlang="en-us"
+           o-tmf="test"/>
+   <body>
+      <tu tuid="greeting" datatype="plaintext">
+         <tuv xml:lang="EN"><seg>Hello</seg></tuv>
+         <tuv xml:lang="IT"><seg>Ciao</seg></tuv>
+      </tu>
+      <tu tuid="world" datatype="plaintext">
+         <tuv xml:lang="EN"><seg>World</seg></tuv>
+         <tuv xml:lang="IT"><seg>Mondo</seg></tuv>
+      </tu>
+      <tu tuid="special" datatype="plaintext">
+         <tuv xml:lang="EN"><seg>Coffee &amp; Tea</seg></tuv>
+         <tuv xml:lang="IT"><seg>Caffè &amp; Tè</seg></tuv>
+      </tu>
+   </body>
+</tmx>

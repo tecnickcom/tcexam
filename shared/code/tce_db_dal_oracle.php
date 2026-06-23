@@ -10,17 +10,9 @@
 //               This abstraction use the same SQL syntax
 //               of MySQL.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -42,14 +34,20 @@
  * @param $database (string) Database name.
  * @return Oracle link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '1521', $username = 'root', $password = '', $database = '')
-{
+function F_db_connect(
+    $host = 'localhost',
+    $port = '1521',
+    $username = 'root',
+    #[\SensitiveParameter]
+    $password = '',
+    $database = '',
+) {
     $dbstring = '//' . $host . ':' . $port;
-    if (! empty($database)) {
+    if (!empty($database)) {
         $dbstring .= '/' . $database;
     }
 
-    if (! $db = @oci_connect($username, $password, $dbstring, 'UTF8')) {
+    if (!($db = @oci_connect($username, $password, $dbstring, 'UTF8'))) {
         return false;
     }
 
@@ -97,7 +95,7 @@ function F_db_query($query, $link_identifier)
     $query = preg_replace("/LIMIT 1([\s]*)$/si", '', $query);
 
     $stid = @oci_parse($link_identifier, $query);
-    if (! $stid) {
+    if (!$stid) {
         return false;
     }
 
@@ -208,7 +206,3 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
 
     return pg_escape_string($str);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

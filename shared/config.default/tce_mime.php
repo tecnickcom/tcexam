@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_mime.php
 // Begin       : 2005-03-04
@@ -6,17 +7,9 @@
 //
 // Description : file extension - MIME type associations
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -31,7 +24,7 @@
  * The $mime array associate each file extension with a specific MIME type.
  */
 
-$mime = array();
+$mime = [];
 $mime['323'] = 'text/h323';
 $mime['aab'] = 'application/x-authorware-bin';
 $mime['aam'] = 'application/x-authorware-map';
@@ -362,7 +355,3 @@ $mime['Z'] = 'application/x-compress';
 $mime['zip'] = 'application/x-zip-compressed';
 //$mime['zip'] = 'application/zip';
 $mime['ztardist'] = 'application/x-ztardist';
-
-//============================================================+
-// END OF FILE
-//============================================================+

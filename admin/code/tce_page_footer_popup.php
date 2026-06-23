@@ -7,17 +7,9 @@
 //
 // Description : Outputs default XHTML popup page footer.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,9 +21,6 @@
  */
 
 echo K_NEWLINE;
+echo '</main>' . K_NEWLINE; //close main.content
 echo '</body>' . K_NEWLINE;
 echo '</html>';
-
-//============================================================+
-// END OF FILE
-//============================================================+

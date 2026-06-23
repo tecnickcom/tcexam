@@ -7,17 +7,9 @@
 //
 // Description : User-level session storage functions.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -30,8 +22,6 @@
  * @author Nicola Asuni
  * @since 2001-09-26
  */
-
-
 
 // PHP session settings
 //ini_set('session.save_handler', 'user');
@@ -81,10 +71,17 @@ class TCExamSessionHandler implements SessionHandlerInterface
     {
         global $db;
         $id = F_escape_sql($db, $id);
-        $sql = 'SELECT cpsession_data
-				FROM ' . K_TABLE_SESSIONS . '
-				WHERE cpsession_id=\'' . $id . '\'
-					AND cpsession_expiry>=\'' . date(K_TIMESTAMP_FORMAT) . '\'
+        $sql =
+            'SELECT cpsession_data
+				FROM '
+            . K_TABLE_SESSIONS
+            . '
+				WHERE cpsession_id=\''
+            . $id
+            . '\'
+					AND cpsession_expiry>=\''
+            . date(K_TIMESTAMP_FORMAT)
+            . '\'
 				LIMIT 1';
         if ($r = F_db_query($sql, $db)) {
             if ($m = F_db_fetch_array($r)) {
@@ -107,13 +104,22 @@ class TCExamSessionHandler implements SessionHandlerInterface
     {
         global $db;
         // workaround for PHP bug 41230
-        if ((! isset($db) || ! $db) && ! $db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT, K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+        if (
+            (!isset($db) || !$db)
+            && !($db = @F_db_connect(
+                K_DATABASE_HOST,
+                K_DATABASE_PORT,
+                K_DATABASE_USER_NAME,
+                K_DATABASE_USER_PASSWORD,
+                K_DATABASE_NAME,
+            ))
+        ) {
             return false;
         }
 
         $id = F_escape_sql($db, $id);
         $data = F_escape_sql($db, $data);
-        $expiry = date(K_TIMESTAMP_FORMAT, (time() + K_SESSION_LIFE));
+        $expiry = date(K_TIMESTAMP_FORMAT, time() + K_SESSION_LIFE);
         // check if this session already exist on database
         $sql = 'SELECT cpsession_id
 				FROM ' . K_TABLE_SESSIONS . '
@@ -122,20 +128,38 @@ class TCExamSessionHandler implements SessionHandlerInterface
         if ($r = F_db_query($sql, $db)) {
             if ($m = F_db_fetch_array($r)) {
                 // SQL to update existing session
-                $sqlup = 'UPDATE ' . K_TABLE_SESSIONS . ' SET
-					cpsession_expiry=\'' . $expiry . '\',
-					cpsession_data=\'' . $data . '\'
-					WHERE cpsession_id=\'' . $id . "'";
+                $sqlup =
+                    'UPDATE '
+                    . K_TABLE_SESSIONS
+                    . ' SET
+					cpsession_expiry=\''
+                    . $expiry
+                    . '\',
+					cpsession_data=\''
+                    . $data
+                    . '\'
+					WHERE cpsession_id=\''
+                    . $id
+                    . "'";
             } else {
                 // SQL to insert new session
-                $sqlup = 'INSERT INTO ' . K_TABLE_SESSIONS . ' (
+                $sqlup =
+                    'INSERT INTO '
+                    . K_TABLE_SESSIONS
+                    . ' (
 					cpsession_id,
 					cpsession_expiry,
 					cpsession_data
 					) VALUES (
-					\'' . $id . '\',
-					\'' . $expiry . '\',
-					\'' . $data . '\'
+					\''
+                    . $id
+                    . '\',
+					\''
+                    . $expiry
+                    . '\',
+					\''
+                    . $data
+                    . '\'
 					)';
             }
 
@@ -170,7 +194,7 @@ class TCExamSessionHandler implements SessionHandlerInterface
         global $db;
         $expiry_time = date(K_TIMESTAMP_FORMAT);
         $sql = 'DELETE FROM ' . K_TABLE_SESSIONS . " WHERE cpsession_expiry<='" . $expiry_time . "'";
-        if (! $r = F_db_query($sql, $db)) {
+        if (!($r = F_db_query($sql, $db))) {
             return false;
         }
 
@@ -189,7 +213,7 @@ function F_session_string_to_array($sd)
 {
     $sess_array = [];
     $vars = preg_split('/[;}]/', $sd);
-    for ($i = 0; $i < count($vars) - 1; ++$i) {
+    for ($i = 0; $i < (count($vars) - 1); ++$i) {
         $parts = explode('|', $vars[$i]);
         $key = $parts[0];
         $val = unserialize($parts[1] . ';');
@@ -251,7 +275,7 @@ function getNewSessionID()
  * @param $password (string) Password to hash.
  * @return string password hash
  */
-function getPasswordHash($password)
+function getPasswordHash(#[\SensitiveParameter] $password)
 {
     return password_hash($password, PASSWORD_DEFAULT);
 }
@@ -263,9 +287,30 @@ function getPasswordHash($password)
  *
  * @return boolean
  */
-function checkPassword($password, $hash)
+function checkPassword(#[\SensitiveParameter] $password, $hash)
 {
     return password_verify($password, $hash);
+}
+
+/**
+ * Returns true when K_RANDOM_SECURITY has been set to a unique per-installation secret,
+ * i.e. it is not empty and not one of the values shipped in config.default.
+ * Security-sensitive checks that rely on the secrecy of K_RANDOM_SECURITY (e.g. the
+ * result-access token that bypasses the normal authorization check) MUST fail closed
+ * when this returns false, otherwise an attacker who knows the public default can forge
+ * a valid token. The installer replaces the placeholder with a random value at install time.
+ * @return boolean true if the seed is configured, false if it is still the shipped default.
+ */
+function F_isRandomSecurityConfigured(#[\SensitiveParameter] $secret = null)
+{
+    // Known-insecure values: empty, the current shipped placeholder, and the historical default.
+    $insecure = ['', 'CHANGE_THIS_K_RANDOM_SECURITY', 'mkTzxf8WwUxwvj6w'];
+    // Default to the configured constant; an explicit $secret is accepted for testability.
+    if ($secret === null) {
+        $secret = defined('K_RANDOM_SECURITY') ? K_RANDOM_SECURITY : '';
+    }
+
+    return !in_array($secret, $insecure, true);
 }
 
 /**
@@ -285,7 +330,7 @@ function getPlainCSRFToken()
  *
  * @return boolean
  */
-function checkCSRFToken($token)
+function checkCSRFToken(#[\SensitiveParameter] $token)
 {
     return checkPassword(getPlainCSRFToken(), $token);
 }
@@ -301,6 +346,14 @@ function F_getCSRFToken()
 }
 
 // ------------------------------------------------------------
+
+// The web session bootstrap below must not run under the CLI SAPI (e.g. PHPUnit), where there is
+// no HTTP request context and the DB-backed save handler has no connection. Returning here keeps
+// every function/class defined above available for unit testing. All web SAPIs — including the
+// `php -S` development server (cli-server) — fall through and initialise the session as before.
+if (PHP_SAPI === 'cli') {
+    return;
+}
 
 // Sets user-level session storage functions using SessionHandlerInterface.
 session_set_save_handler(new TCExamSessionHandler(), true);
@@ -323,14 +376,10 @@ if (isset($_REQUEST['PHPSESSID'])) {
     $PHPSESSID = getNewSessionID();
 }
 
-if (! isset($_REQUEST['menu_mode']) || $_REQUEST['menu_mode'] != 'startlongprocess') {
+if (!isset($_REQUEST['menu_mode']) || $_REQUEST['menu_mode'] != 'startlongprocess') {
     // fix flush problem on long processes
     session_id($PHPSESSID); //set session id
 }
 
 session_start(); //start session
 header('Cache-control: private'); // fix IE6 bug
-
-//============================================================+
-// END OF FILE
-//============================================================+

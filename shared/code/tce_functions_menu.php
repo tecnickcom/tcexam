@@ -7,17 +7,9 @@
 //
 // Description : Functions for Web menu.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -38,8 +30,8 @@
 function F_menu_link($link, $data, $level = 0)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    if (! $data['enabled'] || $_SESSION['session_user_level'] < $data['level']) {
+    require_once '../config/tce_config.php';
+    if (!$data['enabled'] || $_SESSION['session_user_level'] < $data['level']) {
         // this item is disabled
         return;
     }
@@ -47,7 +39,7 @@ function F_menu_link($link, $data, $level = 0)
     $str = '<li>';
     if ($link != basename($_SERVER['SCRIPT_NAME'])) {
         $str .= '<a href="' . $data['link'] . '" title="' . $data['title'] . '"';
-        if (! empty($data['key'])) {
+        if (!empty($data['key'])) {
             $str .= ' accesskey="' . $data['key'] . '"';
         }
 
@@ -57,14 +49,14 @@ function F_menu_link($link, $data, $level = 0)
 
         $str .= '>' . $data['name'] . '</a>';
     } else {
-        // active link
-        $str .= '<span class="active">' . $data['name'] . '</span>';
+        // current page (active link): mark it for assistive technologies
+        $str .= '<span class="active" aria-current="page">' . $data['name'] . '</span>';
     }
 
-    if (isset($data['sub']) && ! empty($data['sub'])) {
+    if (isset($data['sub']) && !empty($data['sub'])) {
         // print sub-items
-        $sublevel = ($level + 1);
-        $str .= K_NEWLINE . '<!--[if lte IE 6]><iframe class="menu"></iframe><![endif]-->' . K_NEWLINE;
+        $sublevel = $level + 1;
+        $str .= K_NEWLINE;
         $str .= '<ul>' . K_NEWLINE;
         foreach ($data['sub'] as $sublink => $subdata) {
             $str .= F_menu_link($sublink, $subdata, $sublevel);
@@ -82,7 +74,7 @@ function F_menu_link($link, $data, $level = 0)
  */
 function F_menu_isChildActive($data)
 {
-    if (isset($data['sub']) && ! empty($data['sub'])) {
+    if (isset($data['sub']) && !empty($data['sub'])) {
         if (array_key_exists(basename($_SERVER['SCRIPT_NAME']), $data['sub'])) {
             // key found
             return true;
@@ -98,7 +90,3 @@ function F_menu_isChildActive($data)
 
     return false;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

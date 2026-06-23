@@ -7,17 +7,9 @@
 //
 // Description : General functions.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -37,7 +29,7 @@
 function F_count_rows($dbtable, $where = '')
 {
     global $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $numofrows = 0;
     $sql = 'SELECT COUNT(*) AS numrows FROM ' . $dbtable . ' ' . $where . '';
     if ($r = F_db_query($sql, $db)) {
@@ -48,7 +40,7 @@ function F_count_rows($dbtable, $where = '')
         F_display_db_error();
     }
 
-    return ($numofrows);
+    return $numofrows;
 }
 
 /**
@@ -60,7 +52,7 @@ function F_count_rows($dbtable, $where = '')
 function F_empty_to_null($str)
 {
     global $db;
-    require_once('../../shared/code/tce_db_dal.php');
+    require_once '../../shared/code/tce_db_dal.php';
     if (strlen($str) > 0) {
         return "'" . F_escape_sql($db, $str) . "'";
     }
@@ -77,7 +69,7 @@ function F_empty_to_null($str)
 function F_zero_to_null($num)
 {
     global $db;
-    require_once('../../shared/code/tce_db_dal.php');
+    require_once '../../shared/code/tce_db_dal.php';
     if ($num == 0) {
         return 'NULL';
     }
@@ -114,7 +106,7 @@ function F_getBoolean($str)
  */
 function F_check_unique($table, $where, $fieldname = false, $fieldid = false)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     global $l, $db;
     $sqlc = 'SELECT * FROM ' . $table . ' WHERE ' . $where . ' LIMIT 1';
     if ($rc = F_db_query($sqlc, $db)) {
@@ -317,7 +309,7 @@ function F_tsv_to_text($str)
 }
 
 /**
- * Return a string containing an HTML acronym for required/not required fields.
+ * Return a string containing an HTML abbreviation for required/not required fields.
  * @param $mode (int) field mode: 1=not required; 2=required.
  * @return html string
  */
@@ -326,10 +318,10 @@ function showRequiredField($mode = 1)
     global $l;
     $str = '';
     if ($mode == 2) {
-        return ' <acronym class="requiredonbox" title="' . $l['w_required'] . '">+</acronym>';
+        return ' <abbr class="requiredonbox" title="' . $l['w_required'] . '">+</abbr>';
     }
 
-    return ' <acronym class="requiredoffbox" title="' . $l['w_not_required'] . '">-</acronym>';
+    return ' <abbr class="requiredoffbox" title="' . $l['w_not_required'] . '">-</abbr>';
 }
 
 /**
@@ -373,9 +365,9 @@ function getNormalizedIP($ip)
 
     $ip = preg_replace("/[^0-9a-f:\.]+/si", '', $ip);
     // check address type
-    $is_ipv6 = (str_contains($ip, ':'));
-    $is_ipv4 = (str_contains($ip, '.'));
-    if (! $is_ipv4 && ! $is_ipv6) {
+    $is_ipv6 = str_contains($ip, ':');
+    $is_ipv4 = str_contains($ip, '.');
+    if (!$is_ipv4 && !$is_ipv6) {
         return false;
     }
 
@@ -405,7 +397,7 @@ function getNormalizedIP($ip)
 
     // expand IPv6 notation
     if (str_contains($ip, '::')) {
-        $ip = str_replace('::', str_repeat(':0000', (8 - substr_count($ip, ':'))) . ':', $ip);
+        $ip = str_replace('::', str_repeat(':0000', 8 - substr_count($ip, ':')) . ':', $ip);
     }
 
     if (str_starts_with($ip, ':')) {
@@ -435,15 +427,37 @@ function getIpAsInt($ip)
 }
 
 /**
- * Converts a string containing an IP address into its integer value and return string representation.
+ * Returns a human-readable, compact string representation of an IP address.
+ * The stored form is the expanded IPv6 produced by getNormalizedIP(); this compacts it
+ * (and unwraps IPv4-mapped IPv6, e.g. ::ffff:127.0.0.1 -> 127.0.0.1) so it reads naturally
+ * and fits report/result columns.
  * @param $ip (string) IP address to convert.
- * @return int IP address as string.
+ * @return string IP address as a readable string.
  * @since 9.0.033 (2009-11-03)
  */
 function getIpAsString($ip)
 {
-    $ip = getIpAsInt($ip);
-    return sprintf('%.0f', $ip);
+    $norm = getNormalizedIP($ip);
+    if ($norm === false || $norm === '') {
+        return '';
+    }
+
+    $packed = @inet_pton($norm);
+    if ($packed === false) {
+        return $norm;
+    }
+
+    $str = inet_ntop($packed);
+    if ($str === false) {
+        return $norm;
+    }
+
+    // Unwrap IPv4-mapped IPv6 (e.g. ::ffff:127.0.0.1 -> 127.0.0.1) for readability.
+    if (preg_match('/^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/i', $str, $m)) {
+        return $m[1];
+    }
+
+    return $str;
 }
 
 /**
@@ -453,7 +467,7 @@ function getIpAsString($ip)
  */
 function F_formatFloat($num)
 {
-    return sprintf('%.03f', round(($num ?? 0), 3));
+    return sprintf('%.03f', round($num ?? 0, 3));
 }
 
 /**
@@ -465,7 +479,7 @@ function F_formatFloat($num)
 function F_formatPercentage($num, $ratio = true)
 {
     if ($ratio) {
-        $num = (100 * $num);
+        $num = 100 * $num;
     }
 
     return '(' . str_replace(' ', '&nbsp;', sprintf('% 3d', round($num))) . '%)';
@@ -480,12 +494,11 @@ function F_formatPercentage($num, $ratio = true)
 function F_formatPdfPercentage($num, $ratio = true)
 {
     if ($ratio) {
-        $num = (100 * $num);
+        $num = 100 * $num;
     }
 
     return '(' . sprintf('% 3d', round($num)) . '%)';
 }
-
 
 /**
  * format a percentage number for XML
@@ -496,7 +509,7 @@ function F_formatPdfPercentage($num, $ratio = true)
 function F_formatXMLPercentage($num, $ratio = true)
 {
     if ($ratio) {
-        $num = (100 * $num);
+        $num = 100 * $num;
     }
 
     return sprintf('%3d', round($num));
@@ -522,7 +535,7 @@ function F_getUTCoffset($timezone)
 function F_db_getUTCoffset($timezone)
 {
     $time_offset = F_getUTCoffset($timezone);
-    $sign = ($time_offset >= 0) ? '+' : '-';
+    $sign = $time_offset >= 0 ? '+' : '-';
     return $sign . gmdate('H:i', abs($time_offset));
 }
 
@@ -545,7 +558,7 @@ function getDataXML($data, $level = 1)
 
         $xml .= $tb . '<' . $key . '>';
         if (is_array($value)) {
-            $xml .= "\n" . getDataXML($value, ($level + 1));
+            $xml .= "\n" . getDataXML($value, $level + 1);
         } else {
             $xml .= F_text_to_xml($value);
         }
@@ -602,7 +615,7 @@ function getDataTSV($data)
  */
 function F_html_to_TSV($str)
 {
-    $dollar_replacement = ":.dlr.:"; //string replacement for dollar symbol
+    $dollar_replacement = ':.dlr.:'; //string replacement for dollar symbol
     //tags conversion table
     $tags2textTable = [
         "'<br[^>]*?>'i" => ' ',
@@ -618,13 +631,17 @@ function F_html_to_TSV($str)
     $str = str_replace('&rarr;', '-', $str);
     $str = str_replace('&darr;', '', $str);
     $str = str_replace("\t", ' ', $str);
-    $str = preg_replace_callback('/colspan="([0-9]*)"/x', static function ($match) {
-        if ($match[1] > 1) {
-            return str_repeat('></td><td', ($match[1] - 1));
-        }
+    $str = preg_replace_callback(
+        '/colspan="([0-9]*)"/x',
+        static function ($match) {
+            if ($match[1] > 1) {
+                return str_repeat('></td><td', $match[1] - 1);
+            }
 
-        return '';
-    }, $str);
+            return '';
+        },
+        $str,
+    );
     $str = str_replace("\r\n", "\n", $str);
     $str = str_replace("\$", $dollar_replacement, $str); //replace special character
     //remove newlines
@@ -654,17 +671,34 @@ function F_html_to_TSV($str)
 function F_select_table_header_element($order_field, $orderdir, $title, $name, $current_order_field = '', $filter = '')
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $ord = '';
     if ($order_field == $current_order_field) {
         if ($orderdir == 1) {
-            $ord = ' <acronym title="' . $l['w_ascent'] . '">&gt;</acronym>';
+            $ord = ' <abbr title="' . $l['w_ascent'] . '">&gt;</abbr>';
         } else {
-            $ord = ' <acronym title="' . $l['w_descent'] . '">&lt;</acronym>';
+            $ord = ' <abbr title="' . $l['w_descent'] . '">&lt;</abbr>';
         }
     }
 
-    return '<th><a href="' . $_SERVER['SCRIPT_NAME'] . '?' . $filter . '&amp;firstrow=0&amp;order_field=' . $order_field . '&amp;orderdir=' . $orderdir . '" title="' . $title . '">' . $name . '</a>' . $ord . '</th>' . "\n";
+    return (
+        '<th scope="col"><a href="'
+        . $_SERVER['SCRIPT_NAME']
+        . '?'
+        . $filter
+        . '&amp;firstrow=0&amp;order_field='
+        . $order_field
+        . '&amp;orderdir='
+        . $orderdir
+        . '" title="'
+        . $title
+        . '">'
+        . $name
+        . '</a>'
+        . $ord
+        . '</th>'
+        . "\n"
+    );
 }
 
 /**
@@ -678,7 +712,7 @@ function getContrastColor($color)
     $g = hexdec(substr($color, 2, 2));
     $b = hexdec(substr($color, 4, 2));
     // brightness of the selected color
-    $br = (((299 * $r) + (587 * $g) + (114 * $b)) / 1000);
+    $br = ((299 * $r) + (587 * $g) + (114 * $b)) / 1000;
     if ($br < 128) {
         // white
         return 'ffffff';
@@ -709,40 +743,46 @@ function F_isURL($str)
 function F_utf8_normalizer($str, $mode = 'NONE')
 {
     switch ($mode) {
-        case 'CUSTOM': {
-            if (function_exists('user_utf8_custom_normalizer')) {
-                return call_user_func('user_utf8_custom_normalizer', $str);
+        case 'CUSTOM':
+            {
+                if (function_exists('user_utf8_custom_normalizer')) {
+                    return call_user_func('user_utf8_custom_normalizer', $str);
+                }
+
+                return $str;
+
+                break;
             }
-
-            return $str;
-
-            break;
-        }
-        case 'C': {
-            // Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition
-            return normalizer_normalize($str, Normalizer::FORM_C);
-            break;
-        }
-        case 'D': {
-            // Normalization Form D (NFD) - Canonical Decomposition
-            return normalizer_normalize($str, Normalizer::FORM_D);
-            break;
-        }
-        case 'KC': {
-            // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition
-            return normalizer_normalize($str, Normalizer::FORM_KC);
-            break;
-        }
-        case 'KD': {
-            // Normalization Form KD (NFKD) - Compatibility Decomposition
-            return normalizer_normalize($str, Normalizer::FORM_KD);
-            break;
-        }
+        case 'C':
+            {
+                // Normalization Form C (NFC) - Canonical Decomposition followed by Canonical Composition
+                return normalizer_normalize($str, Normalizer::FORM_C);
+                break;
+            }
+        case 'D':
+            {
+                // Normalization Form D (NFD) - Canonical Decomposition
+                return normalizer_normalize($str, Normalizer::FORM_D);
+                break;
+            }
+        case 'KC':
+            {
+                // Normalization Form KC (NFKC) - Compatibility Decomposition, followed by Canonical Composition
+                return normalizer_normalize($str, Normalizer::FORM_KC);
+                break;
+            }
+        case 'KD':
+            {
+                // Normalization Form KD (NFKD) - Compatibility Decomposition
+                return normalizer_normalize($str, Normalizer::FORM_KD);
+                break;
+            }
         case 'NONE':
-        default: {
-            return $str;
-            break;
-        }
+        default:
+            {
+                return $str;
+                break;
+            }
     }
 }
 
@@ -763,7 +803,3 @@ function bcdechex($dec)
 
     return bcdechex($remain) . strtoupper(dechex($last));
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

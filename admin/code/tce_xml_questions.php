@@ -7,17 +7,9 @@
 //
 // Description : Functions to export questions using XML or JSON format.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,18 +20,18 @@
  * @since 2006-03-11
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_ADMIN_RESULTS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 if (
-    (! isset($_REQUEST['expmode']) || $_REQUEST['expmode'] <= 0)
-    || (! isset($_REQUEST['module_id']) || $_REQUEST['module_id'] <= 0)
-    || (! isset($_REQUEST['subject_id']) || $_REQUEST['subject_id'] <= 0)
+    !isset($_REQUEST['expmode'])
+    || $_REQUEST['expmode'] <= 0
+    || !isset($_REQUEST['module_id'])
+    || $_REQUEST['module_id'] <= 0
+    || (!isset($_REQUEST['subject_id']) || $_REQUEST['subject_id'] <= 0)
 ) {
-    exit;
+    exit();
 }
 
 $expmode = (int) $_REQUEST['expmode'];
@@ -49,8 +41,8 @@ $subject_id = (int) $_REQUEST['subject_id'];
 $output_format = isset($_REQUEST['format']) ? strtoupper($_REQUEST['format']) : 'XML';
 
 // check user's authorization for module
-if (! F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
-    exit;
+if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
+    exit();
 }
 
 // set XML file name
@@ -66,44 +58,45 @@ $out_filename .= '_' . date('YmdHi');
 $xml = F_xml_export_questions($module_id, $subject_id, $expmode);
 
 switch ($output_format) {
-    case 'JSON': {
-        header('Content-Description: JSON File Transfer');
-        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-        header('Pragma: public');
-        header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        // force download dialog
-        header('Content-Type: application/force-download');
-        header('Content-Type: application/octet-stream', false);
-        header('Content-Type: application/download', false);
-        header('Content-Type: application/json', false);
-        // use the Content-Disposition header to supply a recommended filename
-        header('Content-Disposition: attachment; filename=' . $out_filename . '.json;');
-        header('Content-Transfer-Encoding: binary');
-        $xmlobj = new SimpleXMLElement($xml);
-        echo json_encode($xmlobj, JSON_THROW_ON_ERROR);
-        break;
-    }
+    case 'JSON':
+        {
+            header('Content-Description: JSON File Transfer');
+            header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+            header('Pragma: public');
+            header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            // force download dialog
+            header('Content-Type: application/force-download');
+            header('Content-Type: application/octet-stream', false);
+            header('Content-Type: application/download', false);
+            header('Content-Type: application/json', false);
+            // use the Content-Disposition header to supply a recommended filename
+            header('Content-Disposition: attachment; filename=' . $out_filename . '.json;');
+            header('Content-Transfer-Encoding: binary');
+            $xmlobj = new SimpleXMLElement($xml);
+            echo json_encode($xmlobj, JSON_THROW_ON_ERROR);
+            break;
+        }
     case 'XML':
-    default: {
-        header('Content-Description: XML File Transfer');
-        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-        header('Pragma: public');
-        header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        // force download dialog
-        header('Content-Type: application/force-download');
-        header('Content-Type: application/octet-stream', false);
-        header('Content-Type: application/download', false);
-        header('Content-Type: application/xml', false);
-        // use the Content-Disposition header to supply a recommended filename
-        header('Content-Disposition: attachment; filename=' . $out_filename . '.xml;');
-        header('Content-Transfer-Encoding: binary');
-        echo $xml;
-        break;
-    }
+    default:
+        {
+            header('Content-Description: XML File Transfer');
+            header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+            header('Pragma: public');
+            header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            // force download dialog
+            header('Content-Type: application/force-download');
+            header('Content-Type: application/octet-stream', false);
+            header('Content-Type: application/download', false);
+            header('Content-Type: application/xml', false);
+            // use the Content-Disposition header to supply a recommended filename
+            header('Content-Disposition: attachment; filename=' . $out_filename . '.xml;');
+            header('Content-Transfer-Encoding: binary');
+            echo $xml;
+            break;
+        }
 }
-
 
 /**
  * Export all questions of the selected subject to XML.
@@ -117,9 +110,9 @@ switch ($output_format) {
 function F_xml_export_questions($module_id, $subject_id, $expmode)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_authorization.php');
-    require_once('../../shared/code/tce_functions_auth_sql.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_authorization.php';
+    require_once '../../shared/code/tce_functions_auth_sql.php';
     $module_id = (int) $module_id;
     $subject_id = (int) $subject_id;
     $expmode = (int) $expmode;
@@ -180,9 +173,14 @@ function F_xml_export_questions($module_id, $subject_id, $expmode)
                     $xml .= '</enabled>' . K_NEWLINE;
 
                     // ---- questions
-                    $sql = 'SELECT *
-						FROM ' . K_TABLE_QUESTIONS . '
-						WHERE question_subject_id=' . $ms['subject_id'] . '
+                    $sql =
+                        'SELECT *
+						FROM '
+                        . K_TABLE_QUESTIONS
+                        . '
+						WHERE question_subject_id='
+                        . $ms['subject_id']
+                        . '
 						ORDER BY question_enabled DESC, question_position, question_description';
                     if ($r = F_db_query($sql, $db)) {
                         while ($m = F_db_fetch_array($r)) {
@@ -229,9 +227,14 @@ function F_xml_export_questions($module_id, $subject_id, $expmode)
                             $xml .= '</explanation>' . K_NEWLINE;
 
                             // display alternative answers
-                            $sqla = 'SELECT *
-								FROM ' . K_TABLE_ANSWERS . '
-								WHERE answer_question_id=\'' . $m['question_id'] . '\'
+                            $sqla =
+                                'SELECT *
+								FROM '
+                                . K_TABLE_ANSWERS
+                                . '
+								WHERE answer_question_id=\''
+                                . $m['question_id']
+                                . '\'
 								ORDER BY answer_position,answer_isright DESC';
                             if ($ra = F_db_query($sqla, $db)) {
                                 while ($ma = F_db_fetch_array($ra)) {
@@ -289,7 +292,3 @@ function F_xml_export_questions($module_id, $subject_id, $expmode)
 
     return $xml . ('</tcexamquestions>' . K_NEWLINE);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

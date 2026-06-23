@@ -7,17 +7,9 @@
 //
 // Description : Functions for XHTML pages.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -40,16 +32,16 @@
 function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $param_array)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $max_pages = 4; // max pages to display on page selector
     $indexbar = ''; // string for selection page html code
     $firstrow = (int) $firstrow;
     $rowsperpage = (int) $rowsperpage;
-    if (! $sql || $rowsperpage < 1) {
+    if (!$sql || $rowsperpage < 1) {
         return false;
     }
 
-    if (! $r = F_db_query($sql, $db)) {
+    if (!($r = F_db_query($sql, $db))) {
         F_display_db_error();
     }
 
@@ -64,11 +56,11 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 
     $count_rows = preg_match('/GROUP BY/i', $sql); //check if query contain a "GROUP BY"
     $all_updates = F_db_num_rows($r);
-    if ($all_updates == 1 && ! $count_rows) {
+    if ($all_updates == 1 && !$count_rows) {
         [$all_updates] = F_db_fetch_array($r);
     }
 
-    if (! $all_updates) {
+    if (!$all_updates) {
         //no records
         F_print_error('MESSAGE', $l['m_search_void']);
     } elseif ($all_updates > $rowsperpage) {
@@ -82,7 +74,14 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
 
         if ($firstrow >= $rowsperpage) {
             $indexbar .= '<a href="' . $baseaddress . 'firstrow=0">1</a> | ';
-            $indexbar .= '<a href="' . $baseaddress . 'firstrow=' . ($firstrow - $rowsperpage) . '" title="' . $l['w_previous'] . '">&lt;</a> | ';
+            $indexbar .=
+                '<a href="'
+                . $baseaddress
+                . 'firstrow='
+                . ($firstrow - $rowsperpage)
+                . '" title="'
+                . $l['w_previous']
+                . '">&lt;</a> | ';
         } else {
             $indexbar .= '1 | &lt; | ';
         }
@@ -94,7 +93,16 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
                 if ($x == $firstrow) {
                     $indexbar .= $count . ' | ';
                 } else {
-                    $indexbar .= '<a href="' . $baseaddress . 'firstrow=' . $x . '" title="' . $count . '">' . $count . '</a> | ';
+                    $indexbar .=
+                        '<a href="'
+                        . $baseaddress
+                        . 'firstrow='
+                        . $x
+                        . '" title="'
+                        . $count
+                        . '">'
+                        . $count
+                        . '</a> | ';
                 }
             }
 
@@ -102,7 +110,14 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
         }
 
         if (($firstrow + $rowsperpage) < $all_updates) {
-            $indexbar .= '<a href="' . $baseaddress . 'firstrow=' . ($firstrow + $rowsperpage) . '" title="' . $l['w_next'] . '">&gt;</a> | ';
+            $indexbar .=
+                '<a href="'
+                . $baseaddress
+                . 'firstrow='
+                . ($firstrow + $rowsperpage)
+                . '" title="'
+                . $l['w_next']
+                . '">&gt;</a> | ';
             $indexbar .= '<a href="' . $baseaddress . 'firstrow=' . $x . '" title="' . $count . '">' . $count . '</a>';
         } else {
             $indexbar .= '&gt; | ' . $count;
@@ -114,7 +129,3 @@ function F_show_page_navigator($script_name, $sql, $firstrow, $rowsperpage, $par
     echo $indexbar; // display the page selector
     return $all_updates; //return number of records found
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

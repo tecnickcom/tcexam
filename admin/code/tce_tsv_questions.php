@@ -8,17 +8,9 @@
 // Description : Functions to export questions using CVS format.
 //               (tab-separated values)
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,18 +21,18 @@
  * @since 2012-12-31
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_ADMIN_RESULTS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 if (
-    (! isset($_REQUEST['expmode']) || $_REQUEST['expmode'] <= 0)
-    || (! isset($_REQUEST['module_id']) || $_REQUEST['module_id'] <= 0)
-    || (! isset($_REQUEST['subject_id']) || $_REQUEST['subject_id'] <= 0)
+    !isset($_REQUEST['expmode'])
+    || $_REQUEST['expmode'] <= 0
+    || !isset($_REQUEST['module_id'])
+    || $_REQUEST['module_id'] <= 0
+    || (!isset($_REQUEST['subject_id']) || $_REQUEST['subject_id'] <= 0)
 ) {
-    exit;
+    exit();
 }
 
 $expmode = (int) $_REQUEST['expmode'];
@@ -48,8 +40,8 @@ $module_id = (int) $_REQUEST['module_id'];
 $subject_id = (int) $_REQUEST['subject_id'];
 
 // check user's authorization for module
-if (! F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
-    exit;
+if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $module_id, 'module_user_id')) {
+    exit();
 }
 
 // set TSV file name
@@ -77,7 +69,6 @@ header('Content-Transfer-Encoding: binary');
 
 echo F_tsv_export_questions($module_id, $subject_id, $expmode);
 
-
 /**
  * Export all questions of the selected subject to TSV.
  * @param $module_id (int)  module ID
@@ -88,9 +79,9 @@ echo F_tsv_export_questions($module_id, $subject_id, $expmode);
 function F_tsv_export_questions($module_id, $subject_id, $expmode)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_authorization.php');
-    require_once('../../shared/code/tce_functions_auth_sql.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_authorization.php';
+    require_once '../../shared/code/tce_functions_auth_sql.php';
     $module_id = (int) $module_id;
     $subject_id = (int) $subject_id;
     $expmode = (int) $expmode;
@@ -162,9 +153,14 @@ function F_tsv_export_questions($module_id, $subject_id, $expmode)
                     $tsv .= K_TAB . F_text_to_tsv($ms['subject_description']);
                     $tsv .= K_NEWLINE;
                     // ---- questions
-                    $sql = 'SELECT *
-						FROM ' . K_TABLE_QUESTIONS . '
-						WHERE question_subject_id=' . $ms['subject_id'] . '
+                    $sql =
+                        'SELECT *
+						FROM '
+                        . K_TABLE_QUESTIONS
+                        . '
+						WHERE question_subject_id='
+                        . $ms['subject_id']
+                        . '
 						ORDER BY question_enabled DESC, question_position, question_description';
                     if ($r = F_db_query($sql, $db)) {
                         while ($m = F_db_fetch_array($r)) {
@@ -181,9 +177,14 @@ function F_tsv_export_questions($module_id, $subject_id, $expmode)
                             $tsv .= K_TAB . (int) F_getBoolean($m['question_auto_next']);
                             $tsv .= K_NEWLINE;
                             // display alternative answers
-                            $sqla = 'SELECT *
-								FROM ' . K_TABLE_ANSWERS . '
-								WHERE answer_question_id=\'' . $m['question_id'] . '\'
+                            $sqla =
+                                'SELECT *
+								FROM '
+                                . K_TABLE_ANSWERS
+                                . '
+								WHERE answer_question_id=\''
+                                . $m['question_id']
+                                . '\'
 								ORDER BY answer_position,answer_isright DESC';
                             if ($ra = F_db_query($sqla, $db)) {
                                 while ($ma = F_db_fetch_array($ra)) {
@@ -214,7 +215,3 @@ function F_tsv_export_questions($module_id, $subject_id, $expmode)
 
     return $tsv;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

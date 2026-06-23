@@ -10,17 +10,9 @@
 //               This abstraction use the same SQL syntax
 //               of MySQL.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -32,6 +24,15 @@
  * @since 2003-10-12
  */
 
+// PHP 8.1+ enables mysqli exceptions (MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT) by default.
+// This DAL and all its callers are written against the historical "return false / empty on
+// failure" contract (connection and query errors are surfaced via F_db_error(), not thrown), so
+// disable exception reporting here to preserve that behaviour. Without this, any database error at
+// runtime would raise an uncaught mysqli_sql_exception and crash the request.
+if (function_exists('mysqli_report')) {
+    mysqli_report(MYSQLI_REPORT_OFF);
+}
+
 /**
  * Open a connection to a MySQL Server and select a database.
  * @param $host (string) database server host name.
@@ -41,9 +42,15 @@
  * @param $database (string) Database name.
  * @return MySQL link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '')
-{
-    if (! $db = @mysqli_connect($host, $username, $password, $database, $port)) {
+function F_db_connect(
+    $host = 'localhost',
+    $port = '3306',
+    $username = 'root',
+    #[\SensitiveParameter]
+    $password = '',
+    $database = '',
+) {
+    if (!($db = @mysqli_connect($host, $username, $password, $database, $port))) {
         return false;
     }
 
@@ -170,7 +177,3 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
 
     return mysqli_real_escape_string($link_identifier, $str);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

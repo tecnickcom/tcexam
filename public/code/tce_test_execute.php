@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_test_execute.php
 // Begin       : 2004-05-29
@@ -6,17 +7,9 @@
 //
 // Description : execute a specific test
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -27,16 +20,18 @@
  * @since 2004-05-29
  */
 
+require_once '../config/tce_config.php';
 
-
-require_once('../config/tce_config.php');
+if (isset($_POST['examtime'])) {
+    $examtime = $_POST['examtime'];
+}
 
 $pagelevel = K_AUTH_PUBLIC_TEST_EXECUTE;
 $thispage_title = $l['t_test_execute'];
 $thispage_description = $l['hp_test_execute'];
-require_once('../../shared/code/tce_authorization.php');
-require_once('../../shared/code/tce_functions_form.php');
-require_once('../../shared/code/tce_functions_test.php');
+require_once '../../shared/code/tce_authorization.php';
+require_once '../../shared/code/tce_functions_form.php';
+require_once '../../shared/code/tce_functions_test.php';
 
 $formname = 'testform';
 
@@ -51,11 +46,17 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
     $test_id = (int) $_REQUEST['testid'];
     // check for test password
     $tph = F_getTestPassword($test_id);
-    if (! empty($tph) && ! checkPassword($tph . $test_id . $_SESSION['session_user_id'] . $_SESSION['session_user_ip'], $_SESSION['session_test_login'])) {
+    if (
+        !empty($tph)
+        && !checkPassword(
+            $tph . $test_id . $_SESSION['session_user_id'] . $_SESSION['session_user_ip'],
+            $_SESSION['session_test_login'],
+        )
+    ) {
         // display login page
-        require_once('../code/tce_page_header.php');
+        require_once '../code/tce_page_header.php';
         echo F_testLoginForm($_SERVER['SCRIPT_NAME'], 'form_test_login', 'post', 'multipart/form-data', $test_id);
-        require_once('../code/tce_page_footer.php');
+        require_once '../code/tce_page_footer.php';
         exit(); //break page here
     }
 
@@ -65,25 +66,26 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
     }
 
     if (F_executeTest($test_id)) {
-        if (! empty($_REQUEST['testlogid'])) {
+        if (!empty($_REQUEST['testlogid'])) {
             $testlog_id = (int) $_REQUEST['testlogid'];
         }
 
-        if (! empty($_REQUEST['answpos'])) {
-            $answpos = is_numeric($_REQUEST['answpos']) ? [
-                $_REQUEST['answpos'] => 1,
-            ] : (array) $_REQUEST['answpos'];
+        if (!empty($_REQUEST['answpos'])) {
+            $answpos = is_numeric($_REQUEST['answpos'])
+                ? [
+                    $_REQUEST['answpos'] => 1,
+                ] : (array) $_REQUEST['answpos'];
         }
 
-        if (! empty($_REQUEST['answertext'])) {
+        if (!empty($_REQUEST['answertext'])) {
             $answer_text = $_REQUEST['answertext'];
         }
 
-        if (! empty($_REQUEST['reaction_time'])) {
+        if (!empty($_REQUEST['reaction_time'])) {
             $reaction_time = (int) $_REQUEST['reaction_time'];
         }
 
-        if (! empty($_REQUEST['forceterminate']) && F_isRightTestlogUser($test_id, $testlog_id)) {
+        if (!empty($_REQUEST['forceterminate']) && F_isRightTestlogUser($test_id, $testlog_id)) {
             if ($_REQUEST['forceterminate'] == 'lasttimedquestion') {
                 // update last question
                 F_updateQuestionLog($test_id, $testlog_id, $answpos, $answer_text, $reaction_time);
@@ -93,38 +95,43 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
             F_terminateUserTest($test_id);
             // redirect the user to the index page
             header('Location: index.php');
-            echo '<?xml version="1.0" encoding="' . $l['a_meta_charset'] . '"?' . '>' . K_NEWLINE;
-            echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . K_NEWLINE;
-            echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $l['a_meta_language'] . '" lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
+            echo '<!DOCTYPE html>' . K_NEWLINE;
+            echo '<html lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
             echo '<head>' . K_NEWLINE;
-            echo '<title>REDIRECT</title>' . K_NEWLINE;
+            echo '<meta charset="' . $l['a_meta_charset'] . '" />' . K_NEWLINE;
+            echo '<title>' . htmlspecialchars($l['w_index'], ENT_COMPAT, $l['a_meta_charset']) . '</title>' . K_NEWLINE;
             echo '<meta http-equiv="refresh" content="0;url=index.php" />' . K_NEWLINE; //reload page
             echo '</head>' . K_NEWLINE;
             echo '<body>' . K_NEWLINE;
-            echo '<a href="index.php">INDEX...</a>' . K_NEWLINE;
+            echo '<main id="maincontent">' . K_NEWLINE;
+            echo '<a href="index.php">' . $l['w_index'] . '...</a>' . K_NEWLINE;
+            echo '</main>' . K_NEWLINE;
             echo '</body>' . K_NEWLINE;
             echo '</html>' . K_NEWLINE;
-            exit;
+            exit();
         }
 
         // the user is authorized to execute the selected test
         $thispage_title .= ': ' . F_getTestName($test_id);
 
-        require_once('../code/tce_page_header.php');
+        require_once '../code/tce_page_header.php';
         echo '<div class="container">' . K_NEWLINE;
 
         echo '<span class="infolink">' . F_testInfoLink($test_id, $l['w_info']) . '<br /><br /></span>' . K_NEWLINE;
 
-        if (! isset($_REQUEST['terminationform']) && F_isRightTestlogUser($test_id, $testlog_id)) {
+        if (!isset($_REQUEST['terminationform']) && F_isRightTestlogUser($test_id, $testlog_id)) {
             // the form has been submitted, update testlogid data
             F_updateQuestionLog($test_id, $testlog_id, $answpos, $answer_text, $reaction_time);
             // update user's test comment
-            if (isset($_REQUEST['testcomment']) && ! empty($_REQUEST['testcomment'])) {
+            if (isset($_REQUEST['testcomment']) && !empty($_REQUEST['testcomment'])) {
                 $test_comment = $_REQUEST['testcomment'];
                 F_updateTestComment($test_id, $test_comment);
             }
 
-            if ((isset($_REQUEST['nextquestion']) || isset($_REQUEST['autonext']) && $_REQUEST['autonext'] == 1) && $_REQUEST['nextquestionid'] > 0) {
+            if (
+                (isset($_REQUEST['nextquestion']) || isset($_REQUEST['autonext']) && $_REQUEST['autonext'] == 1)
+                && $_REQUEST['nextquestionid'] > 0
+            ) {
                 // go to next question
                 $testlog_id = 0 + (int) $_REQUEST['nextquestionid'];
             } elseif (isset($_REQUEST['prevquestion']) && $_REQUEST['prevquestionid'] > 0) {
@@ -142,18 +149,25 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
         }
 
         // confirmation form to terminate the test
-        if (isset($_REQUEST['terminatetest']) && ! empty($_REQUEST['terminatetest'])) {
+        if (isset($_REQUEST['terminatetest']) && !empty($_REQUEST['terminatetest'])) {
             // check if some questions were omitted (undisplayed or unanswered).
             $num_omitted_questions = F_getNumOmittedQuestions($test_id);
             $omitted_msg = '';
             if ($num_omitted_questions > 0) {
-                $omitted_msg = '<br /><span style="color:#990000;font-size:120%;">[ ' . $l['h_questions_unanswered'] . ': ' . $num_omitted_questions . ' ]</span><br />';
+                $omitted_msg =
+                    '<br /><span style="color:#990000;font-size:120%;">[ '
+                    . $l['h_questions_unanswered']
+                    . ': '
+                    . $num_omitted_questions
+                    . ' ]</span><br />';
             }
 
             F_print_error('WARNING', $omitted_msg . '' . $l['m_confirm_test_termination']);
             ?>
             <div class="confirmbox">
-            <form action="<?php echo $_SERVER['SCRIPT_NAME']; ?>" method="post" enctype="multipart/form-data" id="form_test_terminate">
+            <form action="<?php echo
+                htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+            ; ?>" method="post" enctype="multipart/form-data" id="form_test_terminate">
             <div>
             <input type="hidden" name="testid" id="testid" value="<?php echo $test_id; ?>" />
             <input type="hidden" name="testlogid" id="testlogid" value="<?php echo $testlog_id; ?>" />
@@ -161,6 +175,7 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
             <input type="hidden" name="display_time" id="display_time" value="" />
             <input type="hidden" name="reaction_time" id="reaction_time" value="" />
             <?php
+
             F_submit_button('forceterminate', $l['w_terminate'], $l['w_terminate_exam']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo F_getCSRFTokenField() . K_NEWLINE;
@@ -170,8 +185,16 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
             </div>
 <?php
         } else {
-            echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="' . $formname . '"';
-            echo ' onsubmit="var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;"';
+            echo
+                '<form action="'
+                    . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+                    . '" method="post" enctype="multipart/form-data" id="'
+                    . $formname
+                    . '"'
+            ;
+            echo
+                ' onsubmit="var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;"'
+            ;
             echo '>' . K_NEWLINE;
             echo '<div>' . K_NEWLINE;
 
@@ -199,12 +222,21 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
 
         // start the countdown if disabled
         if (isset($examtime)) {
-            $timeout_logout = isset($timeout_logout) && $timeout_logout ? 'true' : 'false';
+            $timeout_logout = isset($_REQUEST['timeout_logout']) && $_REQUEST['timeout_logout'] ? 'true' : 'false';
 
             echo '<script type="text/javascript">' . K_NEWLINE;
             echo '//<![CDATA[' . K_NEWLINE;
             echo 'if(!enable_countdown) {' . K_NEWLINE;
-            echo '	FJ_start_timer(\'true\', ' . (time() - $examtime) . ", '" . addslashes($l['m_exam_end_time']) . "', " . $timeout_logout . ');' . K_NEWLINE;
+            echo
+                '	FJ_start_timer(\'true\', '
+                    . (time() - $examtime)
+                    . ", '"
+                    . addslashes($l['m_exam_end_time'])
+                    . "', "
+                    . $timeout_logout
+                    . ');'
+                    . K_NEWLINE
+            ;
             echo '}' . K_NEWLINE;
             echo 'var loadtime=new Date();' . K_NEWLINE;
             echo "document.getElementById('display_time').value=loadtime.getTime();" . K_NEWLINE;
@@ -214,21 +246,23 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
     } else {
         // redirect the user to the index page
         header('Location: index.php');
-        echo '<?xml version="1.0" encoding="' . $l['a_meta_charset'] . '"?' . '>' . K_NEWLINE;
-        echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">' . K_NEWLINE;
-        echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $l['a_meta_language'] . '" lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
+        echo '<!DOCTYPE html>' . K_NEWLINE;
+        echo '<html lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;
         echo '<head>' . K_NEWLINE;
-        echo '<title>REDIRECT</title>' . K_NEWLINE;
+        echo '<meta charset="' . $l['a_meta_charset'] . '" />' . K_NEWLINE;
+        echo '<title>' . htmlspecialchars($l['w_index'], ENT_COMPAT, $l['a_meta_charset']) . '</title>' . K_NEWLINE;
         echo '<meta http-equiv="refresh" content="0;url=index.php" />' . K_NEWLINE; //reload page
         echo '</head>' . K_NEWLINE;
         echo '<body>' . K_NEWLINE;
-        echo '<a href="index.php">INDEX...</a>' . K_NEWLINE;
+        echo '<main id="maincontent">' . K_NEWLINE;
+        echo '<a href="index.php">' . $l['w_index'] . '...</a>' . K_NEWLINE;
+        echo '</main>' . K_NEWLINE;
         echo '</body>' . K_NEWLINE;
         echo '</html>' . K_NEWLINE;
-        exit;
+        exit();
     }
 } else {
-    require_once('../code/tce_page_header.php');
+    require_once '../code/tce_page_header.php';
     echo '<div class="container">' . K_NEWLINE;
 }
 
@@ -236,8 +270,4 @@ echo '<div class="pagehelp">' . $l['hp_test_execute'] . '</div>' . K_NEWLINE;
 
 echo '</div>' . K_NEWLINE; // container
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

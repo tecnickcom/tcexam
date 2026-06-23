@@ -7,17 +7,9 @@
 //
 // Description : Extend PHPMailer class with inheritance
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,19 +21,16 @@
  * @since 2005-02-24
  */
 
+require_once '../config/tce_config.php';
 
-
-require_once('../config/tce_config.php');
-
-require_once('../../shared/config/tce_email_config.php'); // Include default public variables
+require_once '../../shared/config/tce_email_config.php'; // Include default public variables
 
 // Set the custom error handler function
 // This suppress the warnings
 //$old_error_handler = set_error_handler('F_error_handler', E_ERROR | E_WARNING | E_PARSE);
 
-// include the phpmailer class
-require_once('../../shared/phpmailer/src/autoload.php');
-require_once('../../shared/phpmailer/src/PHPMailer.php');
+// load Composer-managed dependencies (provides PHPMailer\PHPMailer\PHPMailer)
+require_once '../../vendor/autoload.php';
 
 /**
  * @class C_mailer
@@ -52,12 +41,8 @@ require_once('../../shared/phpmailer/src/PHPMailer.php');
  */
 class C_mailer extends PHPMailer\PHPMailer\PHPMailer
 {
-    public $ErrorInfo;
-
-    public $language;
-
     /**
-     * Replace the default SetError
+     * Replace the default setError to show a localized TCExam error page and stop.
      * @param $msg (string) error message
      * @public
      */
@@ -65,32 +50,29 @@ class C_mailer extends PHPMailer\PHPMailer\PHPMailer
     {
         parent::setError($msg);
         F_print_error('ERROR', $this->ErrorInfo);
-        exit;
+        exit();
     }
 
     /**
-     * Set the language array
-     * @param $lang (array) Language array
+     * Load the localized mailer-error strings.
+     *
+     * PHPMailer 7 resolves its error messages through the static self::lang()/self::$language
+     * mechanism (lang() is no longer an overridable instance method, and is always called as
+     * self::lang() internally). So instead of overriding lang(), the TCExam translations are
+     * merged onto PHPMailer's own language keys: a TMX entry "m_mailerror_<key>" overrides
+     * PHPMailer's "<key>" message. English defaults are loaded first so any key TCExam does not
+     * translate still resolves.
+     *
+     * @param $lang (array) TCExam language array (the global $l).
      * @public
      */
     public function setLanguageData($lang)
     {
-        $this->language = $lang;
-    }
-
-    /**
-     * Returns a message in the appropriate language.
-     * (override original lang() method).
-     * @param $key (string) language key
-     * @protected
-     * @return string
-     */
-    protected function lang($key)
-    {
-        return $this->language['m_mailerror_' . $key] ?? 'UNKNOW ERROR: [' . $key . ']';
+        parent::setLanguage();
+        foreach ($lang as $key => $val) {
+            if (is_string($val) && str_starts_with($key, 'm_mailerror_')) {
+                self::$language[substr($key, 12)] = $val; // 12 == strlen('m_mailerror_')
+            }
+        }
     }
 } //end of class
-
-//============================================================+
-// END OF FILE
-//============================================================+

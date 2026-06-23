@@ -1,4 +1,5 @@
 <?php
+
 // This file name must match the name of your custom authentication method.
 
 // Constants required for this custom authentication.
@@ -11,7 +12,7 @@ define('K_CUSTOM_AUTH_BASIC_USERNAME', '');
 /**
  * Custom user's Password hash generated with https://www.php.net/manual/en/function.crypt.php
  */
-define('K_CUSTOM_AUTH_BASIC_PASSWORD_HASH', ''); 
+define('K_CUSTOM_AUTH_BASIC_PASSWORD_HASH', '');
 
 /**
  * Custom user level.

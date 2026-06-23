@@ -7,17 +7,9 @@
 //
 // Description : Upload functions.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -37,7 +29,7 @@
  */
 function F_is_allowed_upload($filename)
 {
-    if (! defined('K_ALLOWED_UPLOAD_EXTENSIONS')) {
+    if (!defined('K_ALLOWED_UPLOAD_EXTENSIONS')) {
         return false;
     }
 
@@ -57,7 +49,7 @@ function F_is_allowed_upload($filename)
 function F_upload_file($fieldname, $uploaddir)
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     // sanitize file name
     $filename = preg_replace('/[\s]/', '_', $_FILES[$fieldname]['name']);
     $filename = preg_replace('/[^a-zA-Z0-9_\.\-]/', '', $filename);
@@ -86,27 +78,24 @@ function F_upload_file($fieldname, $uploaddir)
 function F_read_file_size($filetocheck)
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     $filesize = 0;
     if ($fp = fopen($filetocheck, 'rb')) {
         $s_array = fstat($fp);
         if ($s_array['size'] !== 0) {
             $filesize = $s_array['size'];
-        } else {//read size from remote file (very slow function)
-            while (! feof($fp)) {
+        } else {
+            //read size from remote file (very slow function)
+            while (!feof($fp)) {
                 $content = fread($fp, 1);
                 ++$filesize;
             }
         }
 
         fclose($fp);
-        return ($filesize);
+        return $filesize;
     }
 
     F_print_error('ERROR', basename($filetocheck) . ': ' . $l['m_openfile_not']);
     return false;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

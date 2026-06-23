@@ -1,26 +1,85 @@
-# How to Contribute
+# Contributing to TCExam
 
+Thank you for your interest in contributing to **TCExam**. Contributions of all kinds are
+welcome: bug reports, bug fixes, documentation improvements, translations, and new features.
+
+Please take a moment to read this guide before opening an issue or pull request.
+
+## Code of Conduct
+
+This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By
+participating you agree to abide by its terms. Please report unacceptable behaviour to
+[info@tecnick.com](mailto:info@tecnick.com).
+
+## Security vulnerabilities
+
+**Do not open a public GitHub issue for security vulnerabilities.** Please follow the
+[Security Policy](SECURITY.md) and report them privately.
 
 ## Reporting a bug
 
-* **Do not open up a GitHub issue if the bug is a security vulnerability**, and instead to refer to our [Security policy](SECURITY.md).
+Before opening an issue:
 
-* Ensure the bug was not already reported by searching on GitHub Issues.
+1. **Check the [Security Policy](SECURITY.md)** — if the bug is a security vulnerability, do not
+   file a public issue.
+2. **Search [existing issues](https://github.com/tecnickcom/tcexam/issues)** to avoid duplicates.
 
-* If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
-
+If no existing issue matches, [open a new one](https://github.com/tecnickcom/tcexam/issues/new)
+using the bug-report template and include a **clear title and description**, the **environment**
+(TCExam version, PHP version, database engine, web server), **steps to reproduce**, and the
+**expected vs. actual behaviour**. A minimal reproduction or failing test case is ideal.
 
 ## Submitting a bug fix
 
-* Open a new GitHub pull request with the patch.
+1. Fork the repository and create a branch from `main`
+   (e.g. `git checkout -b fix/short-description`).
+2. Make your changes, following the existing conventions in the surrounding code.
+3. Add or update tests to cover the change.
+4. Run the quality-assurance suite locally and ensure it passes (see below).
+5. Open a pull request against `main` and fill in the [PR template](.github/pull_request_template.md):
+   describe the problem and your solution, and reference the related issue (e.g. `Fixes #123`).
 
-* Ensure the PR description clearly describes the problem and solution. Include the relevant issue number if applicable.
+## Proposing a new feature
 
-* Ensure the new code is following the existing conventions and the unit test coverage is 100%.
+Before writing any code, **open a Feature Request** on
+[GitHub Issues](https://github.com/tecnickcom/tcexam/issues/new) describing the use case and
+proposed behaviour, and wait for feedback. This avoids investing time in a direction that may
+not be accepted. Once agreed, follow the same branch → code → test → PR workflow as for bug fixes
+(use a branch named `feature/short-description`).
 
-* Before submitting, please run the following command locally to ensure the code is passing the automatic checks: `make buildall`.
+## Development workflow
 
+The `Makefile` wraps the common development tasks — run `make help` for the full list:
 
-## Add a new feature or change an existing one
+| Command | Description |
+|---------|-------------|
+| `make deps` | Install Composer and lint dependencies |
+| `make lint` | Run mago lint + static analysis |
+| `make format` | Auto-format the code with mago |
+| `make test` | Run the host unit-test suite (no database needed) |
+| `make qa` | Run lint + tests |
+| `make dockertest` | Run unit + integration tests against a real database in Docker |
+| `make fonts` | Generate the default PDF fonts |
+| `make lang` | Build the translation caches |
+| `make serve` | Start the built-in PHP development server |
+| `make up` | Run the full stack via docker compose |
 
-* Before writing any code please suggest the change by opening a new Feature Request on Issues.
+Before submitting a pull request, please ensure `make qa` passes. For changes that touch the
+Database Abstraction Layer or controller logic, also run `make dockertest` (MySQL and, ideally,
+`make dockertest DB_TYPE=postgres`).
+
+## Pull request guidelines
+
+- Target the `main` branch and keep PRs focused — one fix or feature per PR.
+- Ensure `make qa` passes locally before opening the PR.
+- Cover new code with tests and do not let coverage regress.
+- Follow the existing coding conventions; run `make format` then `make lint`.
+- Update the relevant documentation when behaviour changes.
+- Update the `VERSION` file as described in the PR template (patch / minor / major).
+- Be responsive to review feedback.
+
+## Questions?
+
+If you have a question that is not covered here, open a
+[GitHub issue](https://github.com/tecnickcom/tcexam/issues) or contact the maintainer at
+[info@tecnick.com](mailto:info@tecnick.com).

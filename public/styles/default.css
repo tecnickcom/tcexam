@@ -6,17 +6,9 @@
 //
 // Description : Default CSS for public area.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 */
 
@@ -62,9 +54,21 @@ a.tcecode:visited{
 a.tcecode:hover{
 }
 
+/* in-page skip/jump links (jump to timer / menu): off-screen until keyboard
+   focus, then revealed as a visible link (WCAG 2.4.7) instead of 5px white text */
 a.white {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 1000;
 	color: #FFFFFF;
-	font-size: 5px;
+}
+
+a.white:focus {
+	left: 0;
+	padding: 8px 16px;
+	background: #000000;
+	text-decoration: underline;
 }
 
 a.white:visited {
@@ -75,7 +79,7 @@ a.white:hover {
 	color: #FFFFFF;
 }
 
-acronym.offbox {
+abbr.offbox {
 	background-color: #EEEEEE;
 	border: 1px solid;
 	border-color: #000000;
@@ -87,7 +91,7 @@ acronym.offbox {
 	text-decoration: none;
 }
 
-acronym.onbox {
+abbr.onbox {
 	background-color: #ADD8E6;
 	border: 1px solid;
 	border-color: #000000;
@@ -99,7 +103,7 @@ acronym.onbox {
 	text-decoration: none;
 }
 
-acronym.requiredonbox {
+abbr.requiredonbox {
 	background-color: #FFFFCC;
 	border: 1px solid;
 	border-color: #CCCCCC;
@@ -111,7 +115,7 @@ acronym.requiredonbox {
 	text-decoration: none;
 }
 
-acronym.requiredoffbox {
+abbr.requiredoffbox {
 	background-color: #FFFFFF;
 	border: 1px solid;
 	border-color: #CCCCCC;
@@ -145,7 +149,7 @@ body {
 }
 
 /* BODY (menu + main) ------------ */
-div.body {
+.body {
 	clear: both;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
@@ -203,7 +207,7 @@ div.float {
 }
 
 /* header (logo + timer) ------------ */
-div.header {
+.header {
 	background-color: #003399;
 	border: 0px none;
 	height: 40px;
@@ -213,7 +217,7 @@ div.header {
 }
 
 /* header logo ------------ */
-div.header div.left {
+.header div.left {
 	background-color: #003399;
 	background-image: url(../../images/logo_tcexam_118x25.png);
 	background-position: top;
@@ -228,7 +232,7 @@ div.header div.left {
 }
 
 /* header banner ------------ */
-div.header div.right {
+.header div.right {
 	background-color: #003399;
 	border: 0px none;
 	float: right;
@@ -239,7 +243,7 @@ div.header div.right {
 	width: 400px;
 }
 
-div.header div.right input{
+.header div.right input{
 	background-color: #003399;
 	border: 0px none;
 	color: #FFFFFF;
@@ -646,7 +650,7 @@ ul.tcecode{
 	overflow:auto
 }
 
-a.xmlbutton:link, a.xmlbutton:visited {
+.xmlbutton {
 	background-color: #D3D3D3;
 	border: 1px solid;
 	border-color: #FFFFFF #696969 #696969 #FFFFFF;
@@ -657,7 +661,7 @@ a.xmlbutton:link, a.xmlbutton:visited {
 	text-decoration: none;
 }
 
-a.xmlbutton:hover {
+.xmlbutton:hover {
 	background-color: #DDEEFF;
 }
 
@@ -672,7 +676,7 @@ ol.testlist li {
 }
 
 
-acronym.nobox {
+abbr.nobox {
 	background-color: #F08080;
 	border: 1px solid;
 	border-color: #000000;
@@ -684,7 +688,7 @@ acronym.nobox {
 	text-decoration: none;
 }
 
-acronym.offbox {
+abbr.offbox {
 	background-color: #EEEEEE;
 	border: 1px solid;
 	border-color: #000000;
@@ -696,7 +700,7 @@ acronym.offbox {
 	text-decoration: none;
 }
 
-acronym.okbox {
+abbr.okbox {
 	background-color: #90EE90;
 	border: 1px solid;
 	border-color: #000000;
@@ -708,7 +712,7 @@ acronym.okbox {
 	text-decoration: none;
 }
 
-acronym.onbox {
+abbr.onbox {
 	background-color: #ADD8E6;
 	border: 1px solid;
 	border-color: #000000;
@@ -727,7 +731,7 @@ td.numeric {
 
 /* MENU ------------ */
 
-div.scrollmenu {
+.scrollmenu {
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
 	height: 22px;
@@ -741,14 +745,14 @@ div.scrollmenu {
 	border: 0;
 }
 
-div.scrollmenu ul {
+.scrollmenu ul {
 	list-style-type: none;
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	width: 99%;
 }
 
-div.scrollmenu ul li {
+.scrollmenu ul li {
 	float: left;
 	height: 20px;
 	line-height: 20px;
@@ -995,3 +999,137 @@ span.accesskey {
 	text-align:right !important;
 }
 
+/* ============================================================ */
+/* Accessibility helpers (added during the a11y overhaul)       */
+/* ============================================================ */
+
+/* visually-hidden content that stays available to screen readers
+   (used by table captions, fieldset legends and off-screen labels) */
+.sr-only {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* "skip to main content" link: off-screen until it receives keyboard focus */
+.skiplink {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	z-index: 1000;
+	padding: 8px 16px;
+	background: #000000;
+	color: #ffffff;
+	text-decoration: underline;
+}
+
+.skiplink:focus {
+	left: 0;
+}
+
+/* visible keyboard focus indicator (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+	outline: 2px solid #0b5fff;
+	outline-offset: 2px;
+}
+
+/* status indicators paired with text so meaning is not colour-only (WCAG 1.4.1) */
+.status_pass {
+	background-color: #bbffbb;
+	color: #000000;
+}
+
+.status_fail {
+	background-color: #ffbbbb;
+	color: #000000;
+}
+
+.status_warn {
+	background-color: #ffe9a8;
+	color: #000000;
+}
+
+/* required-field marker appended to labels */
+abbr.required,
+.required {
+	color: #b00020;
+	text-decoration: none;
+	border: 0;
+	font-weight: bold;
+}
+
+/* answer-option grouping: fieldset is a semantic wrapper only, no visible box */
+fieldset.answergroup {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+fieldset.answergroup > legend {
+	padding: 0;
+}
+
+/* native <button> elements restyled to match the former <a> fake-buttons (a11y) */
+.xmlbutton {
+	-webkit-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+	width: auto;
+}
+
+/* bare inline icon button (tcecode editor toolbar) */
+.tcecodebtn {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: auto;
+}
+
+/* HTML5 native color picker buttons in the tcecode editor toolbar */
+.tcecodecolor {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	height: 22px;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	width: 24px;
+}
+
+/* button that should look like an inline text link (clickable row label) */
+.linkbtn {
+	-webkit-appearance: none;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	color: inherit;
+	cursor: pointer;
+	display: inline;
+	font: inherit;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	text-decoration: underline;
+	width: auto;
+}

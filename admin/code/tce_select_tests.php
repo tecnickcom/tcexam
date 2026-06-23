@@ -7,17 +7,9 @@
 //
 // Description : Display user selection table.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,38 +20,22 @@
  * @since 2012-12-02
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 
 $pagelevel = K_AUTH_ADMIN_TESTS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_test_select'];
 
-require_once('../code/tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
-require_once('tce_functions_test_select.php');
+require_once '../code/tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
+require_once 'tce_functions_test_select.php';
 
-if (! isset($order_field)) {
-    $order_field = 'user_lastname,user_firstname';
-}
-
-if (! isset($orderdir)) {
-    $orderdir = 0;
-}
-
-if (! isset($firstrow)) {
-    $firstrow = 0;
-}
-
-if (! isset($rowsperpage)) {
-    $rowsperpage = K_MAX_ROWS_PER_PAGE;
-}
-
-if (! isset($searchterms)) {
-    $searchterms = '';
-}
+$order_field = $_REQUEST['order_field'] ?? 'user_lastname,user_firstname';
+$orderdir = isset($_REQUEST['orderdir']) ? (int) $_REQUEST['orderdir'] : 0;
+$firstrow = isset($_REQUEST['firstrow']) ? (int) $_REQUEST['firstrow'] : 0;
+$rowsperpage = isset($_REQUEST['rowsperpage']) ? (int) $_REQUEST['rowsperpage'] : K_MAX_ROWS_PER_PAGE;
+$searchterms = $_REQUEST['searchterms'] ?? '';
 
 if (isset($_POST['lock'])) {
     $menu_mode = 'lock';
@@ -67,11 +43,24 @@ if (isset($_POST['lock'])) {
     $menu_mode = 'unlock';
 }
 
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_testselect">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_testselect">'
+        . K_NEWLINE
+;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
-echo '<input type="text" name="searchterms" id="searchterms" value="' . htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset']) . '" size="20" maxlength="255" title="' . $l['w_search'] . '" />';
+echo
+    '<input type="text" name="searchterms" id="searchterms" value="'
+        . htmlspecialchars($searchterms, ENT_COMPAT, $l['a_meta_charset'])
+        . '" size="20" maxlength="255" title="'
+        . $l['w_search']
+        . '" aria-label="'
+        . $l['w_search']
+        . '" />'
+;
 F_submit_button('search', $l['w_search'], $l['w_search']);
 echo '</span></div>' . K_NEWLINE;
 // build a search query
@@ -99,45 +88,48 @@ echo getFormNoscriptSelect();
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-if (isset($menu_mode) && ! empty($menu_mode)) {
+if (isset($menu_mode) && !empty($menu_mode)) {
     $istart = 1 + $firstrow;
     $iend = $rowsperpage + $firstrow;
     for ($i = $istart; $i <= $iend; ++$i) {
         // for each selected user
         $keyname = 'testid' . $i;
-        if (isset(${$keyname})) {
-            $test_id = (int) ${$keyname};
+        if (isset($_POST[$keyname])) {
+            $test_id = (int) $_POST[$keyname];
             if (F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
                 switch ($menu_mode) {
-                    case 'lock':{ // lock test by changing end date (subtract 1000 years)
-                        $sql = 'UPDATE ' . K_TABLE_TESTS . ' SET
+                    case 'lock':
+                        { // lock test by changing end date (subtract 1000 years)
+                            $sql = 'UPDATE ' . K_TABLE_TESTS . ' SET
 							test_end_time=test_end_time-10000000000000
 							WHERE test_id=' . $test_id . '';
-                        if (! $r = F_db_query($sql, $db)) {
-                            F_display_db_error(false);
-                        }
+                            if (!($r = F_db_query($sql, $db))) {
+                                F_display_db_error(false);
+                            }
 
-                        break;
-                    }
-                    case 'unlock':{ // unlock test by restoring original end date (add 1000 years)
-                        $sql = 'UPDATE ' . K_TABLE_TESTS . ' SET
+                            break;
+                        }
+                    case 'unlock':
+                        { // unlock test by restoring original end date (add 1000 years)
+                            $sql = 'UPDATE ' . K_TABLE_TESTS . ' SET
 							test_end_time=test_end_time+10000000000000
 							WHERE test_id=' . $test_id . '';
-                        if (! $r = F_db_query($sql, $db)) {
-                            F_display_db_error(false);
-                        }
+                            if (!($r = F_db_query($sql, $db))) {
+                                F_display_db_error(false);
+                            }
 
-                        break;
-                    }
-                    case 'delete': {
-                        $sql = 'DELETE FROM ' . K_TABLE_TESTS . '
+                            break;
+                        }
+                    case 'delete':
+                        {
+                            $sql = 'DELETE FROM ' . K_TABLE_TESTS . '
 							WHERE test_id=' . $test_id . '';
-                        if (! $r = F_db_query($sql, $db)) {
-                            F_display_db_error();
-                        }
+                            if (!($r = F_db_query($sql, $db))) {
+                                F_display_db_error();
+                            }
 
-                        break;
-                    }
+                            break;
+                        }
                 } // end of switch
             }
         }
@@ -150,8 +142,4 @@ F_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $wherequery, $se
 echo F_getCSRFTokenField() . K_NEWLINE;
 echo '</form>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

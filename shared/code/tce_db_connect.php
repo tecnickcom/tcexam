@@ -7,17 +7,9 @@
 //
 // Description : open connection with active database
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,14 +20,16 @@
  * @since 2001-09-02
  */
 
+require_once '../../shared/code/tce_db_dal.php'; // Database Abstraction Layer for selected DATABASE type
 
-
-require_once('../../shared/code/tce_db_dal.php'); // Database Abstraction Layer for selected DATABASE type
-
-if (! $db = @F_db_connect(K_DATABASE_HOST, K_DATABASE_PORT, K_DATABASE_USER_NAME, K_DATABASE_USER_PASSWORD, K_DATABASE_NAME)) {
+if (
+    !($db = @F_db_connect(
+        K_DATABASE_HOST,
+        K_DATABASE_PORT,
+        K_DATABASE_USER_NAME,
+        K_DATABASE_USER_PASSWORD,
+        K_DATABASE_NAME,
+    ))
+) {
     die('<h2>Unable to connect to the database!</h2>');
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

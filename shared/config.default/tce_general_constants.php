@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_general_constants.php
 // Begin       : 2002-03-01
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for general constants.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,9 +21,13 @@
  */
 
 /**
- * String used as a seed for some security code generation please change this value and keep it secret.
+ * String used as a seed for some security code generation.
+ * SECURITY: this value MUST be unique and secret for every installation. The installer
+ * (install/tce_functions_install.php) replaces the placeholder below with a random value.
+ * If it is left at the shipped placeholder (or the historical default), the security
+ * sensitive result-access token check fails closed - see F_isRandomSecurityConfigured().
  */
-define('K_RANDOM_SECURITY', 'mkTzxf8WwUxwvj6w');
+define('K_RANDOM_SECURITY', 'CHANGE_THIS_K_RANDOM_SECURITY');
 
 /**
  * Maximum number of tests per year (last 365 days).
@@ -103,8 +100,3 @@ define('K_SECONDS_IN_YEAR', 365 * K_SECONDS_IN_DAY);
  * String used for security feature, do not alter.
  */
 define('K_KEY_SECURITY', 'VENFeGFtIChjKSAyMDA0LTIwMjAgTmljb2xhIEFzdW5pIC0gVGVjbmljay5jb20gLSB0Y2V4YW0uY29t');
-
-
-//============================================================+
-// END OF FILE
-//============================================================+

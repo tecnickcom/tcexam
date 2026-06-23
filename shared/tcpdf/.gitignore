@@ -1,6 +1,0 @@
-.idea
-.phpdoc
-*.bak
-/vendor/
-/composer.lock
-/composer.phar

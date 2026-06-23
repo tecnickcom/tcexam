@@ -10,17 +10,9 @@
 // Note: To avoid timeout, please setup a very high limit
 //       for memory (512MB) and execution time (300) on php.ini
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -34,7 +26,3 @@
 // customize this file to import questions from your custom format file.
 
 // ...
-
-//============================================================+
-// END OF FILE
-//============================================================+

@@ -7,17 +7,9 @@
 //
 // Description : Display all questions grouped by topic.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,19 +20,45 @@
  * @since 2005-07-06
  */
 
+require_once '../config/tce_config.php';
 
+$menu_action = $_POST['menu_action'] ?? '';
+$new_subject_id = $_POST['new_subject_id'] ?? '';
 
-require_once('../config/tce_config.php');
+// read request inputs (former register-globals emulation)
+if (isset($_REQUEST['subject_id'])) {
+    $subject_id = (int) $_REQUEST['subject_id'];
+}
+
+if (isset($_REQUEST['subject_module_id'])) {
+    $subject_module_id = (int) $_REQUEST['subject_module_id'];
+}
+
+if (isset($_REQUEST['hide_answers'])) {
+    $hide_answers = $_REQUEST['hide_answers'];
+}
+
+if (isset($_REQUEST['firstrow'])) {
+    $firstrow = (int) $_REQUEST['firstrow'];
+}
+
+if (isset($_REQUEST['rowsperpage'])) {
+    $rowsperpage = (int) $_REQUEST['rowsperpage'];
+}
+
+if (isset($_REQUEST['orderdir'])) {
+    $orderdir = (int) $_REQUEST['orderdir'];
+}
 
 $pagelevel = K_AUTH_ADMIN_RESULTS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_questions_list'];
-require_once('../code/tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
-require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('../../shared/code/tce_functions_auth_sql.php');
-require_once('tce_functions_questions.php');
+require_once '../code/tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
+require_once '../../shared/code/tce_functions_tcecode.php';
+require_once '../../shared/code/tce_functions_auth_sql.php';
+require_once 'tce_functions_questions.php';
 
 // --- Initialize variables
 
@@ -53,27 +71,27 @@ if (K_DATABASE_TYPE == 'ORACLE') {
     $order_field .= ' question_description';
 }
 
-if (! isset($orderdir)) {
+if (!isset($orderdir)) {
     $orderdir = 0;
 }
 
-if (! isset($firstrow)) {
+if (!isset($firstrow)) {
     $firstrow = 0;
 }
 
-if (! isset($rowsperpage)) {
+if (!isset($rowsperpage)) {
     $rowsperpage = K_MAX_ROWS_PER_PAGE;
 }
 
-if (! isset($hide_answers)) {
+if (!isset($hide_answers)) {
     $hide_answers = false;
 }
 
-if (isset($selectmodule)) {
+if (isset($_POST['selectmodule'])) {
     $changemodule = 1;
 }
 
-if (isset($selectcategory)) {
+if (isset($_POST['selectcategory'])) {
     $changecategory = 1;
 }
 
@@ -102,10 +120,10 @@ if (isset($subject_module_id)) {
 }
 
 // check user's authorization
-if (! F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
+if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')) {
     F_print_error('ERROR', $l['m_authorization_denied']);
-    require_once('../code/tce_page_footer.php');
-    exit;
+    require_once '../code/tce_page_footer.php';
+    exit();
 }
 
 if (isset($subject_id)) {
@@ -113,7 +131,7 @@ if (isset($subject_id)) {
 }
 
 // select subject
-if (isset($changemodule) && $changemodule > 0 || ! (isset($subject_id) && $subject_id > 0)) {
+if (isset($changemodule) && $changemodule > 0 || !(isset($subject_id) && $subject_id > 0)) {
     $sql = F_select_subjects_sql('subject_module_id=' . $subject_module_id . '') . ' LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         $subject_id = ($m = F_db_fetch_array($r)) ? $m['subject_id'] : 0;
@@ -122,42 +140,47 @@ if (isset($changemodule) && $changemodule > 0 || ! (isset($subject_id) && $subje
     }
 }
 
-if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && ! empty($menu_action)) {
+if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && !empty($menu_action)) {
     $istart = 1 + $firstrow;
     $iend = $rowsperpage + $firstrow;
     for ($i = $istart; $i <= $iend; ++$i) {
         // for each selected question
         $keyname = 'questionid' . $i;
-        if (isset(${$keyname})) {
-            $question_id = (int) ${$keyname};
+        if (isset($_POST[$keyname])) {
+            $question_id = (int) $_POST[$keyname];
             switch ($menu_action) {
-                case 'move': {
-                    if (isset($new_subject_id) && $new_subject_id > 0) {
-                        F_question_copy($question_id, $new_subject_id);
+                case 'move':
+                    {
+                        if (isset($new_subject_id) && $new_subject_id > 0) {
+                            F_question_copy($question_id, $new_subject_id);
+                            F_question_delete($question_id, $subject_id);
+                        }
+
+                        break;
+                    }
+                case 'copy':
+                    {
+                        if (isset($new_subject_id) && $new_subject_id > 0) {
+                            F_question_copy($question_id, $new_subject_id);
+                        }
+
+                        break;
+                    }
+                case 'delete':
+                    {
                         F_question_delete($question_id, $subject_id);
+                        break;
                     }
-
-                    break;
-                }
-                case 'copy': {
-                    if (isset($new_subject_id) && $new_subject_id > 0) {
-                        F_question_copy($question_id, $new_subject_id);
+                case 'disable':
+                    {
+                        F_question_set_enabled($question_id, false);
+                        break;
                     }
-
-                    break;
-                }
-                case 'delete': {
-                    F_question_delete($question_id, $subject_id);
-                    break;
-                }
-                case 'disable': {
-                    F_question_set_enabled($question_id, false);
-                    break;
-                }
-                case 'enable': {
-                    F_question_set_enabled($question_id, true);
-                    break;
-                }
+                case 'enable':
+                    {
+                        F_question_set_enabled($question_id, true);
+                        break;
+                    }
             } // end of switch
         }
     }
@@ -168,7 +191,12 @@ if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && ! empt
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_selectquestions">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_selectquestions">'
+        . K_NEWLINE
+;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -176,7 +204,12 @@ echo '<label for="subject_module_id">' . $l['w_module'] . '</label>' . K_NEWLINE
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
 echo '<input type="hidden" name="changemodule" id="changemodule" value="" />' . K_NEWLINE;
-echo '<select name="subject_module_id" id="subject_module_id" size="0" onchange="document.getElementById(\'form_selectquestions\').changemodule.value=1;document.getElementById(\'form_selectquestions\').changecategory.value=1; document.getElementById(\'form_selectquestions\').submit();" title="' . $l['w_module'] . '">' . K_NEWLINE;
+echo
+    '<select name="subject_module_id" id="subject_module_id" onchange="document.getElementById(\'form_selectquestions\').changemodule.value=1;document.getElementById(\'form_selectquestions\').changecategory.value=1; document.getElementById(\'form_selectquestions\').submit();" title="'
+        . $l['w_module']
+        . '">'
+        . K_NEWLINE
+;
 $sql = F_select_modules_sql();
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -193,7 +226,12 @@ if ($r = F_db_query($sql, $db)) {
             echo '-';
         }
 
-        echo ' ' . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '&nbsp;</option>' . K_NEWLINE;
+        echo
+            ' '
+                . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
+                . '&nbsp;</option>'
+                . K_NEWLINE
+        ;
         ++$countitem;
     }
 
@@ -217,7 +255,12 @@ echo '<label for="subject_id">' . $l['w_subject'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
 echo '<input type="hidden" name="changecategory" id="changecategory" value="" />' . K_NEWLINE;
-echo '<select name="subject_id" id="subject_id" size="0" onchange="document.getElementById(\'form_selectquestions\').changecategory.value=1;document.getElementById(\'form_selectquestions\').submit()" title="' . $l['h_subject'] . '">' . K_NEWLINE;
+echo
+    '<select name="subject_id" id="subject_id" onchange="document.getElementById(\'form_selectquestions\').changecategory.value=1;document.getElementById(\'form_selectquestions\').submit()" title="'
+        . $l['h_subject']
+        . '">'
+        . K_NEWLINE
+;
 $sql = F_select_subjects_sql('subject_module_id=' . $subject_module_id);
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -256,7 +299,7 @@ if ($hide_answers) {
     echo ' checked="checked"';
 }
 
-echo ' title="' . $l['w_hide_answers'] . '" onclick="document.getElementById(\'form_selectquestions\').submit()" />';
+echo ' title="' . $l['w_hide_answers'] . '" onchange="document.getElementById(\'form_selectquestions\').submit()" />';
 echo '<label for="hide_answers">' . $l['w_hide_answers'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
@@ -266,7 +309,12 @@ echo getFormNoscriptSelect('selectrecord');
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
 // display questions statistics
-$qtype = ['<acronym class="offbox" title="' . $l['w_single_answer'] . '">S</acronym>', '<acronym class="offbox" title="' . $l['w_multiple_answers'] . '">M</acronym>', '<acronym class="offbox" title="' . $l['w_free_answer'] . '">T</acronym>', '<acronym class="offbox" title="' . $l['w_ordering_answer'] . '">O</acronym>']; // question types
+$qtype = [
+    '<abbr class="offbox" title="' . $l['w_single_answer'] . '">S</abbr>',
+    '<abbr class="offbox" title="' . $l['w_multiple_answers'] . '">M</abbr>',
+    '<abbr class="offbox" title="' . $l['w_free_answer'] . '">T</abbr>',
+    '<abbr class="offbox" title="' . $l['w_ordering_answer'] . '">O</abbr>',
+]; // question types
 $qstat = '';
 $nqsum = 0;
 $sql = 'SELECT question_type, COUNT(*) as numquestions
@@ -277,7 +325,7 @@ if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
     while ($m = F_db_fetch_array($r)) {
         $nqsum += $m['numquestions'];
-        $qstat .= ' + ' . $m['numquestions'] . ' ' . $qtype[($m['question_type'] - 1)] . '';
+        $qstat .= ' + ' . $m['numquestions'] . ' ' . $qtype[$m['question_type'] - 1] . '';
     }
 } else {
     F_display_db_error();
@@ -292,7 +340,16 @@ echo '<div class="row"><hr /></div>' . K_NEWLINE;
 echo '<div class="rowl">' . K_NEWLINE;
 
 if (isset($subject_id) && $subject_id > 0) {
-    F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers);
+    F_show_select_questions(
+        $wherequery,
+        $subject_module_id,
+        $subject_id,
+        $order_field,
+        $orderdir,
+        $firstrow,
+        $rowsperpage,
+        $hide_answers,
+    );
 }
 
 echo '&nbsp;' . K_NEWLINE;
@@ -308,23 +365,83 @@ if (isset($subject_id) && $subject_id > 0) {
     $pdflink .= '&amp;subject_id=' . $subject_id;
     $pdflink .= '&amp;hide_answers=' . (int) $hide_answers; // hide answers option
     echo '<a href="' . $pdflink . '&amp;expmode=1" class="xmlbutton" title="' . $l['h_pdf'] . '">PDF</a>';
-    echo '<a href="' . $pdflink . '&amp;expmode=2" class="xmlbutton" title="' . $l['h_pdf'] . '">PDF ' . $l['w_module'] . '</a>';
-    echo '<a href="' . $pdflink . '&amp;expmode=3" class="xmlbutton" title="' . $l['h_pdf'] . '">PDF ' . $l['w_all'] . '</a>';
+    echo
+        '<a href="'
+            . $pdflink
+            . '&amp;expmode=2" class="xmlbutton" title="'
+            . $l['h_pdf']
+            . '">PDF '
+            . $l['w_module']
+            . '</a>'
+    ;
+    echo
+        '<a href="'
+            . $pdflink
+            . '&amp;expmode=3" class="xmlbutton" title="'
+            . $l['h_pdf']
+            . '">PDF '
+            . $l['w_all']
+            . '</a>'
+    ;
     $xmllink = 'tce_xml_questions.php';
     $xmllink .= '?module_id=' . $subject_module_id;
     $xmllink .= '&amp;subject_id=' . $subject_id;
     echo ' <a href="' . $xmllink . '&amp;expmode=1" class="xmlbutton" title="' . $l['h_xml_export'] . '">XML</a>';
-    echo '<a href="' . $xmllink . '&amp;expmode=2" class="xmlbutton" title="' . $l['h_xml_export'] . '">XML ' . $l['w_module'] . '</a>';
-    echo '<a href="' . $xmllink . '&amp;expmode=3" class="xmlbutton" title="' . $l['h_xml_export'] . '">XML ' . $l['w_all'] . '</a>';
+    echo
+        '<a href="'
+            . $xmllink
+            . '&amp;expmode=2" class="xmlbutton" title="'
+            . $l['h_xml_export']
+            . '">XML '
+            . $l['w_module']
+            . '</a>'
+    ;
+    echo
+        '<a href="'
+            . $xmllink
+            . '&amp;expmode=3" class="xmlbutton" title="'
+            . $l['h_xml_export']
+            . '">XML '
+            . $l['w_all']
+            . '</a>'
+    ;
     echo ' <a href="' . $xmllink . '&amp;expmode=1&amp;format=JSON" class="xmlbutton" title="JSON">JSON</a>';
-    echo '<a href="' . $xmllink . '&amp;expmode=2&amp;format=JSON" class="xmlbutton" title="JSON">JSON ' . $l['w_module'] . '</a>';
-    echo '<a href="' . $xmllink . '&amp;expmode=3&amp;format=JSON" class="xmlbutton" title="JSON">JSON ' . $l['w_all'] . '</a>';
+    echo
+        '<a href="'
+            . $xmllink
+            . '&amp;expmode=2&amp;format=JSON" class="xmlbutton" title="JSON">JSON '
+            . $l['w_module']
+            . '</a>'
+    ;
+    echo
+        '<a href="'
+            . $xmllink
+            . '&amp;expmode=3&amp;format=JSON" class="xmlbutton" title="JSON">JSON '
+            . $l['w_all']
+            . '</a>'
+    ;
     $tsvlink = 'tce_tsv_questions.php';
     $tsvlink .= '?module_id=' . $subject_module_id;
     $tsvlink .= '&amp;subject_id=' . $subject_id;
     echo ' <a href="' . $tsvlink . '&amp;expmode=1" class="xmlbutton" title="' . $l['h_tsv_export'] . '">TSV</a>';
-    echo '<a href="' . $tsvlink . '&amp;expmode=2" class="xmlbutton" title="' . $l['h_tsv_export'] . '">TSV ' . $l['w_module'] . '</a>';
-    echo '<a href="' . $tsvlink . '&amp;expmode=3" class="xmlbutton" title="' . $l['h_tsv_export'] . '">TSV ' . $l['w_all'] . '</a>';
+    echo
+        '<a href="'
+            . $tsvlink
+            . '&amp;expmode=2" class="xmlbutton" title="'
+            . $l['h_tsv_export']
+            . '">TSV '
+            . $l['w_module']
+            . '</a>'
+    ;
+    echo
+        '<a href="'
+            . $tsvlink
+            . '&amp;expmode=3" class="xmlbutton" title="'
+            . $l['h_tsv_export']
+            . '">TSV '
+            . $l['w_all']
+            . '</a>'
+    ;
 }
 
 echo '&nbsp;' . K_NEWLINE;
@@ -342,7 +459,7 @@ echo '</div>' . K_NEWLINE;
 echo '<div class="pagehelp">' . $l['hp_select_all_questions'] . '</div>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
+require_once '../code/tce_page_footer.php';
 
 // ------------------------------
 
@@ -360,18 +477,44 @@ require_once('../code/tce_page_footer.php');
  * @param $hide_answers (boolean) if true hide answers
  * @return false in case of empty database, true otherwise
  */
-function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $order_field, $orderdir, $firstrow, $rowsperpage, $hide_answers = false)
-{
+function F_show_select_questions(
+    $wherequery,
+    $subject_module_id,
+    $subject_id,
+    $order_field,
+    $orderdir,
+    $firstrow,
+    $rowsperpage,
+    $hide_answers = false,
+) {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_functions_page.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_page.php';
 
     $subject_module_id = (int) $subject_module_id;
     $subject_id = (int) $subject_id;
     $orderdir = (int) $orderdir;
     $firstrow = (int) $firstrow;
     $rowsperpage = (int) $rowsperpage;
-    if (empty($order_field) || ! in_array($order_field, ['question_id', 'question_subject_id', 'question_description', 'question_explanation', 'question_type', 'question_difficulty', 'question_enabled', 'question_position', 'question_timer', 'question_fullscreen', 'question_inline_answers', 'question_auto_next', 'question_enabled DESC, question_position, CAST(question_description as varchar2(100))', 'question_enabled DESC, question_position, question_description'])) {
+    if (
+        empty($order_field)
+        || !in_array($order_field, [
+            'question_id',
+            'question_subject_id',
+            'question_description',
+            'question_explanation',
+            'question_type',
+            'question_difficulty',
+            'question_enabled',
+            'question_position',
+            'question_timer',
+            'question_fullscreen',
+            'question_inline_answers',
+            'question_auto_next',
+            'question_enabled DESC, question_position, CAST(question_description as varchar2(100))',
+            'question_enabled DESC, question_position, question_description',
+        ])
+    ) {
         $order_field = 'question_description';
     }
 
@@ -383,7 +526,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
         $full_order_field = $order_field . ' DESC';
     }
 
-    if (! F_count_rows(K_TABLE_QUESTIONS)) { //if the table is void (no items) display message
+    if (!F_count_rows(K_TABLE_QUESTIONS)) { //if the table is void (no items) display message
         F_print_error('MESSAGE', $l['m_databasempty']);
         return false;
     }
@@ -400,7 +543,14 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 		' . $wherequery . '
 		ORDER BY ' . $full_order_field;
     if (K_DATABASE_TYPE == 'ORACLE') {
-        $sql = 'SELECT * FROM (' . $sql . ') WHERE rownum BETWEEN ' . $firstrow . ' AND ' . ($firstrow + $rowsperpage) . '';
+        $sql =
+            'SELECT * FROM ('
+            . $sql
+            . ') WHERE rownum BETWEEN '
+            . $firstrow
+            . ' AND '
+            . ($firstrow + $rowsperpage)
+            . '';
     } else {
         $sql .= ' LIMIT ' . $rowsperpage . ' OFFSET ' . $firstrow . '';
     }
@@ -412,7 +562,18 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
             ++$itemcount;
             $questlist .= '<li>' . K_NEWLINE;
             $questlist .= '<strong>' . $itemcount . '.</strong> ';
-            $questlist .= '<input type="checkbox" name="questionid' . $itemcount . '" id="questionid' . $itemcount . '" value="' . $m['question_id'] . '" title="' . $l['w_select'] . '"';
+            $questlist .=
+                '<input type="checkbox" name="questionid'
+                . $itemcount
+                . '" id="questionid'
+                . $itemcount
+                . '" value="'
+                . $m['question_id']
+                . '" title="'
+                . $l['w_select']
+                . '" aria-label="'
+                . $l['w_select']
+                . '"';
             if (isset($_REQUEST['checkall']) && $_REQUEST['checkall'] == 1) {
                 $questlist .= ' checked="checked"';
             }
@@ -420,112 +581,202 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
             $questlist .= ' />';
             // display question description
             if (F_getBoolean($m['question_enabled'])) {
-                $questlist .= '<acronym class="onbox" title="' . $l['w_enabled'] . '">+</acronym>';
+                $questlist .= '<abbr class="onbox" title="' . $l['w_enabled'] . '">+</abbr>';
             } else {
-                $questlist .= '<acronym class="offbox" title="' . $l['w_disabled'] . '">-</acronym>';
+                $questlist .= '<abbr class="offbox" title="' . $l['w_disabled'] . '">-</abbr>';
             }
 
             switch ($m['question_type']) {
-                case 1: {
-                    $questlist .= ' <acronym class="offbox" title="' . $l['w_single_answer'] . '">S</acronym>';
-                    break;
-                }
-                case 2: {
-                    $questlist .= ' <acronym class="offbox" title="' . $l['w_multiple_answers'] . '">M</acronym>';
-                    break;
-                }
-                case 3: {
-                    $questlist .= ' <acronym class="offbox" title="' . $l['w_free_answer'] . '">T</acronym>';
-                    break;
-                }
-                case 4: {
-                    $questlist .= ' <acronym class="offbox" title="' . $l['w_ordering_answer'] . '">O</acronym>';
-                    break;
-                }
+                case 1:
+                    {
+                        $questlist .= ' <abbr class="offbox" title="' . $l['w_single_answer'] . '">S</abbr>';
+                        break;
+                    }
+                case 2:
+                    {
+                        $questlist .= ' <abbr class="offbox" title="' . $l['w_multiple_answers'] . '">M</abbr>';
+                        break;
+                    }
+                case 3:
+                    {
+                        $questlist .= ' <abbr class="offbox" title="' . $l['w_free_answer'] . '">T</abbr>';
+                        break;
+                    }
+                case 4:
+                    {
+                        $questlist .= ' <abbr class="offbox" title="' . $l['w_ordering_answer'] . '">O</abbr>';
+                        break;
+                    }
             }
 
-            $questlist .= ' <acronym class="offbox" title="' . $l['h_question_difficulty'] . '">' . $m['question_difficulty'] . '</acronym>';
+            $questlist .=
+                ' <abbr class="offbox" title="'
+                . $l['h_question_difficulty']
+                . '">'
+                . $m['question_difficulty']
+                . '</abbr>';
             if ($m['question_position'] > 0) {
-                $questlist .= ' <acronym class="onbox" title="' . $l['h_position'] . '">' . (int) $m['question_position'] . '</acronym>';
+                $questlist .=
+                    ' <abbr class="onbox" title="'
+                    . $l['h_position']
+                    . '">'
+                    . (int) $m['question_position']
+                    . '</abbr>';
             } else {
-                $questlist .= ' <acronym class="offbox" title="' . $l['h_position'] . '">&nbsp;</acronym>';
+                $questlist .= ' <abbr class="offbox" title="' . $l['h_position'] . '">&nbsp;</abbr>';
             }
 
             if (F_getBoolean($m['question_fullscreen'])) {
-                $questlist .= ' <acronym class="onbox" title="' . $l['w_fullscreen'] . ': ' . $l['w_enabled'] . '">F</acronym>';
+                $questlist .=
+                    ' <abbr class="onbox" title="' . $l['w_fullscreen'] . ': ' . $l['w_enabled'] . '">F</abbr>';
             } else {
-                $questlist .= ' <acronym class="offbox" title="' . $l['w_fullscreen'] . ': ' . $l['w_disabled'] . '">&nbsp;</acronym>';
+                $questlist .=
+                    ' <abbr class="offbox" title="' . $l['w_fullscreen'] . ': ' . $l['w_disabled'] . '">&nbsp;</abbr>';
             }
 
             if (F_getBoolean($m['question_inline_answers'])) {
-                $questlist .= ' <acronym class="onbox" title="' . $l['w_inline_answers'] . ': ' . $l['w_enabled'] . '">I</acronym>';
+                $questlist .=
+                    ' <abbr class="onbox" title="' . $l['w_inline_answers'] . ': ' . $l['w_enabled'] . '">I</abbr>';
             } else {
-                $questlist .= ' <acronym class="offbox" title="' . $l['w_inline_answers'] . ': ' . $l['w_disabled'] . '">&nbsp;</acronym>';
+                $questlist .=
+                    ' <abbr class="offbox" title="'
+                    . $l['w_inline_answers']
+                    . ': '
+                    . $l['w_disabled']
+                    . '">&nbsp;</abbr>';
             }
 
             if (F_getBoolean($m['question_auto_next'])) {
-                $questlist .= ' <acronym class="onbox" title="' . $l['w_auto_next'] . ': ' . $l['w_enabled'] . '">A</acronym>';
+                $questlist .=
+                    ' <abbr class="onbox" title="' . $l['w_auto_next'] . ': ' . $l['w_enabled'] . '">A</abbr>';
             } else {
-                $questlist .= ' <acronym class="offbox" title="' . $l['w_auto_next'] . ': ' . $l['w_disabled'] . '">&nbsp;</acronym>';
+                $questlist .=
+                    ' <abbr class="offbox" title="' . $l['w_auto_next'] . ': ' . $l['w_disabled'] . '">&nbsp;</abbr>';
             }
 
             if ($m['question_timer'] > 0) {
-                $questlist .= ' <acronym class="onbox" title="' . $l['h_question_timer'] . '">' . (int) $m['question_timer'] . '</acronym>';
+                $questlist .=
+                    ' <abbr class="onbox" title="'
+                    . $l['h_question_timer']
+                    . '">'
+                    . (int) $m['question_timer']
+                    . '</abbr>';
             } else {
-                $questlist .= ' <acronym class="offbox" title="' . $l['h_question_timer'] . '">&nbsp;</acronym>';
+                $questlist .= ' <abbr class="offbox" title="' . $l['h_question_timer'] . '">&nbsp;</abbr>';
             }
 
-            $questlist .= ' <a href="tce_edit_question.php?subject_module_id=' . $subject_module_id . '&amp;question_subject_id=' . $subject_id . '&amp;question_id=' . $m['question_id'] . '" title="' . $l['t_questions_editor'] . ' [ID = ' . $m['question_id'] . ']" class="xmlbutton">' . $l['w_edit'] . '</a>';
+            $questlist .=
+                ' <a href="tce_edit_question.php?subject_module_id='
+                . $subject_module_id
+                . '&amp;question_subject_id='
+                . $subject_id
+                . '&amp;question_id='
+                . $m['question_id']
+                . '" title="'
+                . $l['t_questions_editor']
+                . ' [ID = '
+                . $m['question_id']
+                . ']" class="xmlbutton">'
+                . $l['w_edit']
+                . '</a>';
 
             $questlist .= '<br /><br />' . K_NEWLINE;
-            $questlist .= '<div class="paddingleft">' . F_decode_tcecode($m['question_description']) . '</div>' . K_NEWLINE;
-            if (K_ENABLE_QUESTION_EXPLANATION && ! empty($m['question_explanation'])) {
-                $questlist .= '<div class="paddingleft"><br /><span class="explanation">' . $l['w_explanation'] . ':</span><br />' . F_decode_tcecode($m['question_explanation']) . '</div>' . K_NEWLINE;
+            $questlist .=
+                '<div class="paddingleft">' . F_decode_tcecode($m['question_description']) . '</div>' . K_NEWLINE;
+            if (K_ENABLE_QUESTION_EXPLANATION && !empty($m['question_explanation'])) {
+                $questlist .=
+                    '<div class="paddingleft"><br /><span class="explanation">'
+                    . $l['w_explanation']
+                    . ':</span><br />'
+                    . F_decode_tcecode($m['question_explanation'])
+                    . '</div>'
+                    . K_NEWLINE;
             }
 
-            if (! $hide_answers) {
+            if (!$hide_answers) {
                 // display alternative answers
-                $sqla = 'SELECT *
-					FROM ' . K_TABLE_ANSWERS . '
-					WHERE answer_question_id=\'' . $m['question_id'] . '\'
+                $sqla =
+                    'SELECT *
+					FROM '
+                    . K_TABLE_ANSWERS
+                    . '
+					WHERE answer_question_id=\''
+                    . $m['question_id']
+                    . '\'
 					ORDER BY answer_enabled DESC,answer_position,answer_isright DESC';
                 if ($ra = F_db_query($sqla, $db)) {
                     $answlist = '';
                     while ($ma = F_db_fetch_array($ra)) {
                         $answlist .= '<li>';
                         if (F_getBoolean($ma['answer_enabled'])) {
-                            $answlist .= '<acronym class="onbox" title="' . $l['w_enabled'] . '">+</acronym>';
+                            $answlist .= '<abbr class="onbox" title="' . $l['w_enabled'] . '">+</abbr>';
                         } else {
-                            $answlist .= '<acronym class="offbox" title="' . $l['w_disabled'] . '">-</acronym>';
+                            $answlist .= '<abbr class="offbox" title="' . $l['w_disabled'] . '">-</abbr>';
                         }
 
                         if ($m['question_type'] != 4) {
                             if (F_getBoolean($ma['answer_isright'])) {
-                                $answlist .= ' <acronym class="okbox" title="' . $l['h_answer_right'] . '">T</acronym>';
+                                $answlist .= ' <abbr class="okbox" title="' . $l['h_answer_right'] . '">T</abbr>';
                             } else {
-                                $answlist .= ' <acronym class="nobox" title="' . $l['h_answer_wrong'] . '">F</acronym>';
+                                $answlist .= ' <abbr class="nobox" title="' . $l['h_answer_wrong'] . '">F</abbr>';
                             }
                         }
 
                         if ($ma['answer_position'] > 0) {
-                            $answlist .= ' <acronym class="onbox" title="' . $l['h_position'] . '">' . (int) $ma['answer_position'] . '</acronym>';
+                            $answlist .=
+                                ' <abbr class="onbox" title="'
+                                . $l['h_position']
+                                . '">'
+                                . (int) $ma['answer_position']
+                                . '</abbr>';
                         } else {
-                            $answlist .= ' <acronym class="offbox" title="' . $l['h_position'] . '">&nbsp;</acronym>';
+                            $answlist .= ' <abbr class="offbox" title="' . $l['h_position'] . '">&nbsp;</abbr>';
                         }
 
                         if ($ma['answer_keyboard_key'] > 0) {
-                            $answlist .= ' <acronym class="onbox" title="' . $l['h_answer_keyboard_key'] . '">' . F_text_to_xml(chr($ma['answer_keyboard_key'])) . '</acronym>';
+                            $answlist .=
+                                ' <abbr class="onbox" title="'
+                                . $l['h_answer_keyboard_key']
+                                . '">'
+                                . F_text_to_xml(chr($ma['answer_keyboard_key']))
+                                . '</abbr>';
                         } else {
-                            $answlist .= ' <acronym class="offbox" title="' . $l['h_answer_keyboard_key'] . '">&nbsp;</acronym>';
+                            $answlist .=
+                                ' <abbr class="offbox" title="' . $l['h_answer_keyboard_key'] . '">&nbsp;</abbr>';
                         }
 
-                        $answlist .= ' <a href="tce_edit_answer.php?subject_module_id=' . $subject_module_id . '&amp;question_subject_id=' . $subject_id . '&amp;answer_question_id=' . $m['question_id'] . '&amp;answer_id=' . $ma['answer_id'] . '" title="' . $l['t_answers_editor'] . ' [ID = ' . $ma['answer_id'] . ']" class="xmlbutton">' . $l['w_edit'] . '</a>';
+                        $answlist .=
+                            ' <a href="tce_edit_answer.php?subject_module_id='
+                            . $subject_module_id
+                            . '&amp;question_subject_id='
+                            . $subject_id
+                            . '&amp;answer_question_id='
+                            . $m['question_id']
+                            . '&amp;answer_id='
+                            . $ma['answer_id']
+                            . '" title="'
+                            . $l['t_answers_editor']
+                            . ' [ID = '
+                            . $ma['answer_id']
+                            . ']" class="xmlbutton">'
+                            . $l['w_edit']
+                            . '</a>';
                         //$answlist .= " ";
                         //$answlist .= "".F_decode_tcecode($ma['answer_description'])."";
                         $answlist .= '<br /><br />' . K_NEWLINE;
-                        $answlist .= '<div class="paddingleft">' . F_decode_tcecode($ma['answer_description']) . '</div>' . K_NEWLINE;
-                        if (K_ENABLE_ANSWER_EXPLANATION && ! empty($ma['answer_explanation'])) {
-                            $answlist .= '<div class="paddingleft"><br /><span class="explanation">' . $l['w_explanation'] . ':</span><br />' . F_decode_tcecode($ma['answer_explanation']) . '</div>' . K_NEWLINE;
+                        $answlist .=
+                            '<div class="paddingleft">'
+                            . F_decode_tcecode($ma['answer_description'])
+                            . '</div>'
+                            . K_NEWLINE;
+                        if (K_ENABLE_ANSWER_EXPLANATION && !empty($ma['answer_explanation'])) {
+                            $answlist .=
+                                '<div class="paddingleft"><br /><span class="explanation">'
+                                . $l['w_explanation']
+                                . ':</span><br />'
+                                . F_decode_tcecode($ma['answer_explanation'])
+                                . '</div>'
+                                . K_NEWLINE;
                         }
 
                         $answlist .= '</li>' . K_NEWLINE;
@@ -551,16 +802,20 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
             echo '<div class="row"><hr /></div>' . K_NEWLINE;
             // check/uncheck all options
             echo '<span dir="' . $l['a_meta_dir'] . '">';
-            echo '<input type="radio" name="checkall" id="checkall1" value="1" onclick="document.getElementById(\'form_selectquestions\').submit()" />';
+            echo
+                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_selectquestions\').submit()" />'
+            ;
             echo '<label for="checkall1">' . $l['w_check_all'] . '</label> ';
-            echo '<input type="radio" name="checkall" id="checkall0" value="0" onclick="document.getElementById(\'form_selectquestions\').submit()" />';
+            echo
+                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_selectquestions\').submit()" />'
+            ;
             echo '<label for="checkall0">' . $l['w_uncheck_all'] . '</label>';
             echo '</span>' . K_NEWLINE;
             echo '&nbsp;';
             $arr = $l['a_meta_dir'] == 'rtl' ? '&larr;' : '&rarr;';
 
             // action options
-            echo '<select name="menu_action" id="menu_action" size="0">' . K_NEWLINE;
+            echo '<select name="menu_action" id="menu_action">' . K_NEWLINE;
             echo '<option value="0" style="color:gray">' . $l['m_with_selected'] . '</option>' . K_NEWLINE;
             echo '<option value="enable">' . $l['w_enable'] . '</option>' . K_NEWLINE;
             echo '<option value="disable">' . $l['w_disable'] . '</option>' . K_NEWLINE;
@@ -569,7 +824,14 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
             echo '<option value="move">' . $l['w_move'] . ' ' . $arr . '</option>' . K_NEWLINE;
             echo '</select>' . K_NEWLINE;
             // select new topic (for copy or move action)
-            echo '<select name="new_subject_id" id="new_subject_id" size="0" title="' . $l['h_subject'] . '">' . K_NEWLINE;
+            echo
+                '<select name="new_subject_id" id="new_subject_id" title="'
+                    . $l['h_subject']
+                    . '" aria-label="'
+                    . $l['h_subject']
+                    . '">'
+                    . K_NEWLINE
+            ;
             $sql = F_select_module_subjects_sql("module_enabled='1' AND subject_enabled='1'");
             if ($r = F_db_query($sql, $db)) {
                 echo '<option value="0" style="color:gray">' . $l['w_subject'] . '</option>' . K_NEWLINE;
@@ -577,10 +839,22 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
                 while ($m = F_db_fetch_array($r)) {
                     if ($m['module_id'] != $prev_module_id) {
                         $prev_module_id = $m['module_id'];
-                        echo '<option value="0" style="color:gray;font-weight:bold;" disabled="disabled">* ' . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
+                        echo
+                            '<option value="0" style="color:gray;font-weight:bold;" disabled="disabled">* '
+                                . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
+                                . '</option>'
+                                . K_NEWLINE
+                        ;
                     }
 
-                    echo '<option value="' . $m['subject_id'] . '">&nbsp;&nbsp;&nbsp;&nbsp;' . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '</option>' . K_NEWLINE;
+                    echo
+                        '<option value="'
+                            . $m['subject_id']
+                            . '">&nbsp;&nbsp;&nbsp;&nbsp;'
+                            . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset'])
+                            . '</option>'
+                            . K_NEWLINE
+                    ;
                 }
             } else {
                 echo '</select>' . K_NEWLINE;
@@ -589,14 +863,14 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 
             echo '</select>' . K_NEWLINE;
             // submit button
-            F_submit_button("update", $l['w_update'], $l['h_update']);
+            F_submit_button('update', $l['w_update'], $l['h_update']);
         }
 
         // ---------------------------------------------------------------
         // -- page jumper (menu for successive pages)
         if ($rowsperpage > 0) {
             $sql = 'SELECT count(*) AS total FROM ' . K_TABLE_QUESTIONS . ' ' . $wherequery . '';
-            if (! empty($order_field)) {
+            if (!empty($order_field)) {
                 $param_array = '&amp;order_field=' . urlencode($order_field) . '';
             }
 
@@ -604,7 +878,7 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
                 $param_array .= '&amp;orderdir=' . $orderdir . '';
             }
 
-            if (! empty($hide_answers)) {
+            if (!empty($hide_answers)) {
                 $param_array .= '&amp;hide_answers=' . (int) $hide_answers . '';
             }
 
@@ -619,7 +893,3 @@ function F_show_select_questions($wherequery, $subject_module_id, $subject_id, $
 
     return true;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

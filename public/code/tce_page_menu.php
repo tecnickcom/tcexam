@@ -7,17 +7,9 @@
 //
 // Description : Output XHTML unordered list menu.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,9 +20,7 @@
  * @since 2010-09-16
  */
 
-
-
-require_once('../../shared/code/tce_functions_menu.php');
+require_once '../../shared/code/tce_functions_menu.php';
 
 $menu = [
     'index.php' => [
@@ -47,7 +37,7 @@ $menu = [
         'name' => $l['w_results'],
         'level' => K_AUTH_PUBLIC_TEST_RESULTS,
         'key' => 'r',
-        'enabled' => ($_SESSION['session_user_level'] > K_AUTH_PUBLIC_TEST_RESULTS),
+        'enabled' => $_SESSION['session_user_level'] > K_AUTH_PUBLIC_TEST_RESULTS,
     ],
     'tce_page_user.php' => [
         'link' => 'tce_page_user.php',
@@ -55,7 +45,7 @@ $menu = [
         'name' => $l['w_user'],
         'level' => K_AUTH_PAGE_USER,
         'key' => 'u',
-        'enabled' => ($_SESSION['session_user_level'] > 0),
+        'enabled' => $_SESSION['session_user_level'] > 0,
     ],
     'admin' => [
         'link' => '../../admin/code/index.php',
@@ -63,7 +53,7 @@ $menu = [
         'name' => $l['w_admin'],
         'level' => K_ADMIN_LINK,
         'key' => 'a',
-        'enabled' => ($_SESSION['session_user_level'] >= K_ADMIN_LINK),
+        'enabled' => $_SESSION['session_user_level'] >= K_ADMIN_LINK,
     ],
     'tce_logout.php' => [
         'link' => 'tce_logout.php',
@@ -71,7 +61,7 @@ $menu = [
         'name' => $l['w_logout'],
         'level' => 1,
         'key' => 'q',
-        'enabled' => ($_SESSION['session_user_level'] > 0),
+        'enabled' => $_SESSION['session_user_level'] > 0,
     ],
     'tce_login.php' => [
         'link' => 'tce_login.php',
@@ -79,7 +69,7 @@ $menu = [
         'name' => $l['w_login'],
         'level' => 0,
         'key' => 'l',
-        'enabled' => ($_SESSION['session_user_level'] < 1),
+        'enabled' => $_SESSION['session_user_level'] < 1,
     ],
 ];
 
@@ -102,12 +92,7 @@ $menu['tce_page_user.php']['sub'] = [
     ],
 ];
 
-echo '<a name="menusection" id="menusection"></a>' . K_NEWLINE;
-
-// link to skip navigation
-echo '<div class="hidden">';
-echo '<a href="#topofdoc" accesskey="2" title="[2] ' . $l['w_skip_navigation'] . '">' . $l['w_skip_navigation'] . '</a>';
-echo '</div>' . K_NEWLINE;
+echo '<span id="menusection"></span>' . K_NEWLINE;
 
 $menudata = '';
 foreach ($menu as $link => $data) {
@@ -119,7 +104,3 @@ if ($menudata !== '') {
     echo $menudata;
     echo '</ul>' . K_NEWLINE; // end of menu
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

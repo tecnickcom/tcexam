@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_email_config.php
 // Begin       : 2001-10-20
@@ -7,13 +8,9 @@
 // Description : Default values for public variables of
 //               C_mailer class
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
+// License:
+//    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -22,9 +19,6 @@
  * @package com.tecnick.tcexam.shared.cfg
  * @author Nicola Asuni
  * @since 2005-02-24
- */
-
-/**
  */
 
 // Email priority (1 = High, 3 = Normal, 5 = Low). Default value is 3.
@@ -73,12 +67,14 @@ $emailcfg['Sendmail'] = '/usr/sbin/sendmail';
 $emailcfg['UseMSMailHeaders'] = false;
 
 // Sets default value for Header of messages.
-$emailcfg['MsgHeader'] = "
-<"."?xml version=\"1.0\" encoding=\"#CHARSET#\"?>
-<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"DTD/xhtml1-transitional.dtd\">
-<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"#LANG#\" lang=\"#LANG#\" dir=\"#LANGDIR#\">
+$emailcfg['MsgHeader'] = '
+<!DOCTYPE html>
+<html lang="#LANG#" dir="#LANGDIR#">
+<head>
+<meta charset="#CHARSET#" />
+</head>
 <body>
-";
+';
 
 //Sets default value for Footer of messages.
 $emailcfg['MsgFooter'] = '</body></html>';
@@ -113,7 +109,3 @@ $emailcfg['Timeout'] = 10;
 
 // Sets SMTP class debugging on or off. Default value is false (off).
 $emailcfg['SMTPDebug'] = false;
-
-//============================================================+
-// END OF FILE
-//============================================================+

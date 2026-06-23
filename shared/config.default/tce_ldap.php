@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_ldap.php
 // Begin       : 2008-03-28
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for LDAP
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -75,7 +68,7 @@ define('K_LDAP_FILTER', 'uid=#USERNAME#');
 /**
  * Array of the required attributes. This array maps TCExam user data with LDAP attributes.
  */
-$ldap_attr = array();
+$ldap_attr = [];
 $ldap_attr['dn'] = 'dn';
 $ldap_attr['user_email'] = 'mail';
 $ldap_attr['user_firstname'] = 'givenName';
@@ -101,7 +94,3 @@ define('K_LDAP_USER_LEVEL', 1);
  * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define('K_LDAP_USER_GROUP_ID', 1);
-
-//============================================================+
-// END OF FILE
-//============================================================+

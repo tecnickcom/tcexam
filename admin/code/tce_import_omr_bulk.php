@@ -9,17 +9,9 @@
 //               (Optical Mark Recognition)
 //               technique applied to images of scanned answer sheets.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -30,22 +22,20 @@
  * @since 2012-07-31
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 
 $pagelevel = K_AUTH_ADMIN_OMR_IMPORT;
-$enable_calendar = true;
 $max_omr_sheets = 10;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_omr_bulk_importer'];
-require_once('tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
-require_once('../../shared/code/tce_functions_tcecode.php');
-require_once('../../shared/code/tce_functions_auth_sql.php');
-require_once('tce_functions_omr.php');
-require_once('tce_functions_user_select.php');
+require_once 'tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
+require_once '../../shared/code/tce_functions_tcecode.php';
+require_once '../../shared/code/tce_functions_auth_sql.php';
+require_once 'tce_functions_omr.php';
+require_once 'tce_functions_user_select.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 if (isset($_REQUEST['date'])) {
     $date = $_REQUEST['date'];
@@ -57,14 +47,26 @@ if (isset($_REQUEST['date'])) {
 
 if (isset($_REQUEST['omrdir']) && str_starts_with($_REQUEST['omrdir'], K_PATH_CACHE . 'OMR')) {
     $omrdir = $_REQUEST['omrdir'];
-    if (str_contains($omrdir, '://')) {
+    // Confirm the requested directory is safely contained within an allowed root.
+    // tc-lib-file's isValidFile() rejects parent-directory traversal ('..'), stream wrappers
+    // and (via realpath) symlink escapes from the allowed roots. Validate on a copy so $omrdir
+    // keeps its plain path form for the opendir()/concatenation logic below. The configurable
+    // K_FILE_ALLOWED_PATHS allowlist is honoured; the OMR cache directory is always trusted.
+    $omrcheck = $omrdir;
+    // defined() guard keeps pre-existing installs working until they merge the new config defaults
+    $omr_allowed_paths = defined('K_FILE_ALLOWED_PATHS') ? unserialize(K_FILE_ALLOWED_PATHS) : [];
+    $omr_allowed_paths = is_array($omr_allowed_paths) ? $omr_allowed_paths : [];
+    $omr_allowed_paths[] = (string) realpath(K_PATH_CACHE . 'OMR');
+    $omrvalidator = new \Com\Tecnick\File\File();
+    $omrvalidator->setAllowedPaths($omr_allowed_paths);
+    if (!$omrvalidator->isValidFile($omrcheck)) {
         F_print_error('ERROR', 'Invalid omrdir!', true);
     }
 } else {
     $omrdir = K_PATH_CACHE . 'OMR/';
 }
 
-if (! isset($_REQUEST['overwrite']) || empty($_REQUEST['overwrite'])) {
+if (!isset($_REQUEST['overwrite']) || empty($_REQUEST['overwrite'])) {
     $overwrite = false;
 } else {
     $overwrite = F_getBoolean($_REQUEST['overwrite']);
@@ -80,7 +82,7 @@ if (isset($menu_mode) && $menu_mode == 'upload' && F_file_exists($omrdir)) {
             if ($file != '.' && $file != '..') {
                 $filename = $omrdir . $file;
                 $matches = [];
-                if (! is_dir($filename) && preg_match('/OMR_([^_]+)_QR.([a-zA-Z]+)/', $file, $matches)) {
+                if (!is_dir($filename) && preg_match('/OMR_([^_]+)_QR.([a-zA-Z]+)/', $file, $matches)) {
                     // read OMR DATA page
                     $omr_testdata = F_decodeOMRTestDataQRCode($filename);
                     if ($omr_testdata === false) {
@@ -89,23 +91,41 @@ if (isset($menu_mode) && $menu_mode == 'upload' && F_file_exists($omrdir)) {
                     } else {
                         file_put_contents($logfile, 'OK	' . $file . "\t" . 'SUCCESSFULLY DECODED' . "\n", FILE_APPEND);
                         // read OMR ANSWER SHEET pages
-                        $num_questions = (count($omr_testdata) - 1);
+                        $num_questions = count($omr_testdata) - 1;
                         $num_pages = ceil($num_questions / 30);
                         $omr_answers = [];
                         for ($i = 1; $i <= $num_pages; ++$i) {
                             $answerfile = 'OMR_' . $matches[1] . '_A' . $i . '.' . $matches[2];
                             if (F_file_exists($omrdir . $answerfile)) {
                                 $answers_page = F_decodeOMRPage($omrdir . $answerfile);
-                                if ($answers_page !== false && ! empty($answers_page)) {
+                                if ($answers_page !== false && !empty($answers_page)) {
                                     $omr_answers += $answers_page;
-                                    file_put_contents($logfile, 'OK	' . $answerfile . "\t" . 'SUCCESSFULLY DECODED' . "\n", FILE_APPEND);
+                                    file_put_contents(
+                                        $logfile,
+                                        'OK	' . $answerfile . "\t" . 'SUCCESSFULLY DECODED' . "\n",
+                                        FILE_APPEND,
+                                    );
                                 } else {
-                                    F_print_error('ERROR', '[OMR ANSWER SHEET ' . $answerfile . '] ' . $l['m_omr_wrong_answer_sheet']);
-                                    file_put_contents($logfile, 'ERROR	' . $answerfile . "\t" . 'UNABLE TO DECODE' . "\n", FILE_APPEND);
+                                    F_print_error(
+                                        'ERROR',
+                                        '[OMR ANSWER SHEET ' . $answerfile . '] ' . $l['m_omr_wrong_answer_sheet'],
+                                    );
+                                    file_put_contents(
+                                        $logfile,
+                                        'ERROR	' . $answerfile . "\t" . 'UNABLE TO DECODE' . "\n",
+                                        FILE_APPEND,
+                                    );
                                 }
                             } else {
-                                F_print_error('ERROR', '[OMR ANSWER SHEET ' . $answerfile . '] ' . $l['m_omr_wrong_answer_sheet']);
-                                file_put_contents($logfile, 'ERROR	' . $answerfile . "\t" . 'MISSING IMAGE FILE' . "\n", FILE_APPEND);
+                                F_print_error(
+                                    'ERROR',
+                                    '[OMR ANSWER SHEET ' . $answerfile . '] ' . $l['m_omr_wrong_answer_sheet'],
+                                );
+                                file_put_contents(
+                                    $logfile,
+                                    'ERROR	' . $answerfile . "\t" . 'MISSING IMAGE FILE' . "\n",
+                                    FILE_APPEND,
+                                );
                             }
                         }
 
@@ -114,12 +134,39 @@ if (isset($menu_mode) && $menu_mode == 'upload' && F_file_exists($omrdir)) {
                         // get user ID from user registration code
                         $user_id = F_getUIDfromRegnum($matches[1]);
                         // import answers
-                        if ($user_id > 0 && F_isAuthorizedEditorForUser($user_id) && F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)) {
-                            F_print_error('MESSAGE', '[' . $matches[1] . '] ' . $l['m_import_ok'] . ': <a href="tce_show_result_user.php?testuser_id=32&test_id=' . $omr_testdata[0] . '&user_id=' . $user_id . '" title="' . $l['t_result_user'] . '" style="text-decoration:underline;color:#0000ff;">' . $l['w_results'] . '</a>');
-                            file_put_contents($logfile, 'OK	' . $matches[1] . "\t" . 'SUCCESSFULLY IMPORTED - UID: ' . $user_id . "\n", FILE_APPEND);
+                        if (
+                            $user_id > 0
+                            && F_isAuthorizedEditorForUser($user_id)
+                            && F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite)
+                        ) {
+                            F_print_error(
+                                'MESSAGE',
+                                '['
+                                . $matches[1]
+                                . '] '
+                                . $l['m_import_ok']
+                                . ': <a href="tce_show_result_user.php?testuser_id=32&test_id='
+                                . $omr_testdata[0]
+                                . '&user_id='
+                                . $user_id
+                                . '" title="'
+                                . $l['t_result_user']
+                                . '" style="text-decoration:underline;color:#0000ff;">'
+                                . $l['w_results']
+                                . '</a>',
+                            );
+                            file_put_contents(
+                                $logfile,
+                                'OK	' . $matches[1] . "\t" . 'SUCCESSFULLY IMPORTED - UID: ' . $user_id . "\n",
+                                FILE_APPEND,
+                            );
                         } else {
                             F_print_error('ERROR', '[' . $matches[1] . '] ' . $l['m_import_error']);
-                            file_put_contents($logfile, 'ERROR	' . $matches[1] . "\t" . 'UNABLE TO IMPORT - UID: ' . $user_id . "\n", FILE_APPEND);
+                            file_put_contents(
+                                $logfile,
+                                'ERROR	' . $matches[1] . "\t" . 'UNABLE TO IMPORT - UID: ' . $user_id . "\n",
+                                FILE_APPEND,
+                            );
                         }
                     }
                 } // if QR file
@@ -127,7 +174,18 @@ if (isset($menu_mode) && $menu_mode == 'upload' && F_file_exists($omrdir)) {
         }
 
         // print a link to log file
-        F_print_error('MESSAGE', 'LOGFILE: <a href="tce_filemanager.php?d=' . urlencode(K_PATH_CACHE . 'OMR/') . '&f=' . urlencode($logfile) . '&v=1" title="' . $l['w_select'] . '">' . $logfilename . '</a>');
+        F_print_error(
+            'MESSAGE',
+            'LOGFILE: <a href="tce_filemanager.php?d='
+            . urlencode(K_PATH_CACHE . 'OMR/')
+            . '&f='
+            . urlencode($logfile)
+            . '&v=1" title="'
+            . $l['w_select']
+            . '">'
+            . $logfilename
+            . '</a>',
+        );
     }
 }
 
@@ -136,11 +194,29 @@ if (isset($menu_mode) && $menu_mode == 'upload' && F_file_exists($omrdir)) {
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_omrimport">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_omrimport">'
+        . K_NEWLINE
+;
 
 // -----------------------------------------------------------------------------
 // date
-echo getFormRowTextInput('date', $l['w_date'], $l['w_date'] . ' ' . $l['w_datetime_format'], '', $date, '', 19, false, true, false);
+echo
+    getFormRowTextInput(
+        'date',
+        $l['w_date'],
+        $l['w_date'] . ' ' . $l['w_datetime_format'],
+        '',
+        $date,
+        '',
+        19,
+        false,
+        true,
+        false,
+    )
+;
 
 if (F_file_exists(K_PATH_CACHE . 'OMR')) {
     // directory containing files to import
@@ -178,8 +254,4 @@ echo '</div>' . K_NEWLINE;
 echo '<div class="pagehelp">' . $l['hp_omr_bulk_importer'] . '</div>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

@@ -7,17 +7,9 @@
 //
 // Description : Automatic updates for linux systems.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,14 +20,11 @@
  * @since 2009-09-14
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_ADMINISTRATOR;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 $thispage_title = 'UPDATE';
-require_once('../code/tce_page_header.php');
-
+require_once '../code/tce_page_header.php';
 
 /**
  * Updating server
@@ -91,7 +80,18 @@ while ($continue) {
 
     if (F_file_exists(K_PATH_CACHE . 'patch.sql')) {
         // update database
-        $command = 'mysql -h' . K_DATABASE_HOST . ' -u' . K_DATABASE_USER_NAME . ' -p' . K_DATABASE_USER_PASSWORD . ' ' . K_DATABASE_NAME . ' < ' . K_PATH_CACHE . 'patch.sql';
+        $command =
+            'mysql -h'
+            . K_DATABASE_HOST
+            . ' -u'
+            . K_DATABASE_USER_NAME
+            . ' -p'
+            . K_DATABASE_USER_PASSWORD
+            . ' '
+            . K_DATABASE_NAME
+            . ' < '
+            . K_PATH_CACHE
+            . 'patch.sql';
         exec($command);
         echo exec('rm patch.sql');
     }
@@ -107,8 +107,4 @@ while ($continue) {
 }
 
 echo '</div>' . K_NEWLINE;
-require_once(__DIR__ . '/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once __DIR__ . '/tce_page_footer.php';

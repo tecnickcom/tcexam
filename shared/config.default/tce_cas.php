@@ -1,4 +1,5 @@
 <?php
+
 //============================================================+
 // File name   : tce_cas.php
 // Begin       : 2009-02-06
@@ -6,17 +7,9 @@
 //
 // Description : Configuration file for CAS
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -64,6 +57,22 @@ define('K_CAS_PORT', 443);
 define('K_CAS_PATH', '/cas');
 
 /**
+ * Base URL of this TCExam service, used by phpCAS to build the service callback URL.
+ * Required since phpCAS 1.6. Defaults to the current request scheme + host;
+ * override with an explicit value if TCExam runs behind a proxy or on a custom URL
+ * (e.g. 'https://www.example.com').
+ */
+define(
+    'K_CAS_SERVICE_BASE_URL',
+    (
+        isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? null) == 443
+            ? 'https://'
+            : 'http://'
+    )
+    . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+);
+
+/**
  * Default user level
  */
 define('K_CAS_USER_LEVEL', 1);
@@ -74,7 +83,3 @@ define('K_CAS_USER_LEVEL', 1);
  * You can also set 0 for all available groups or a string containing a comma-separated list of group IDs.
  */
 define('K_CAS_USER_GROUP_ID', 1);
-
-//============================================================+
-// END OF FILE
-//============================================================+

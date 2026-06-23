@@ -1,0 +1,85 @@
+{
+    "name": "tecnickcom/tcexam",
+    "description": "TCExam - Computer-Based Assessment (CBA) software",
+    "type": "project",
+    "homepage": "https://tcexam.org",
+    "license": "AGPL-3.0-or-later",
+    "keywords": [
+        "tcexam",
+        "exam",
+        "test",
+        "quiz",
+        "assessment",
+        "e-learning",
+        "CBA",
+        "CBT"
+    ],
+    "authors": [
+        {
+            "name": "Nicola Asuni",
+            "email": "info@tecnick.com",
+            "role": "lead"
+        }
+    ],
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/tecnickcom"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "apereo/phpcas": "^1.6",
+        "dapphp/radius": "^3.1",
+        "phpmailer/phpmailer": "^7.1",
+        "tecnickcom/tc-lib-pdf": "^8.62"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5 || ^12.5 || ^13.2"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.2.0"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "test",
+            "Test\\Integration\\": "test/integration"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/tecnickcom/tcexam/issues",
+        "source": "https://github.com/tecnickcom/tcexam"
+    },
+    "scripts": {
+        "test": "@php vendor/bin/phpunit --stderr --testsuite unit",
+        "cs-check": [
+            "@cs-check:src",
+            "@cs-check:test"
+        ],
+        "cs-check:src": "vendor/bin/mago --config mago.src.toml lint",
+        "cs-check:test": "vendor/bin/mago --config mago.test.toml lint",
+        "cs-fix": "vendor/bin/mago fmt",
+        "analyse": [
+            "@analyse:src",
+            "@analyse:test"
+        ],
+        "analyse:src": "vendor/bin/mago --config mago.src.toml analyze",
+        "analyse:test": "vendor/bin/mago --config mago.test.toml analyze",
+        "qa": [
+            "@cs-check",
+            "@analyse",
+            "@test"
+        ],
+        "post-install-cmd": [
+            "[ -d vendor/tecnickcom/tc-lib-pdf-font ] && make -C vendor/tecnickcom/tc-lib-pdf-font deps fonts"
+        ],
+        "post-update-cmd": [
+            "[ -d vendor/tecnickcom/tc-lib-pdf-font ] && make -C vendor/tecnickcom/tc-lib-pdf-font deps fonts"
+        ]
+    }
+}

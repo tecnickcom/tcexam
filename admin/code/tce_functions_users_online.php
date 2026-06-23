@@ -7,17 +7,9 @@
 //
 // Description : Functions to display online users' data.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -42,7 +34,7 @@
 function F_show_online_users($wherequery, $order_field, $orderdir, $firstrow, $rowsperpage)
 {
     global $l;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $rowsperpage);
     return true;
 }
@@ -61,9 +53,9 @@ function F_show_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
 function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $rowsperpage)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_functions_page.php');
-    require_once('tce_functions_user_select.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_page.php';
+    require_once 'tce_functions_user_select.php';
 
     //initialize variables
     $orderdir = (int) $orderdir;
@@ -71,7 +63,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
     $rowsperpage = (int) $rowsperpage;
 
     // order fields for SQL query
-    if (empty($order_field) || ! in_array($order_field, ['cpsession_id', 'cpsession_data'])) {
+    if (empty($order_field) || !in_array($order_field, ['cpsession_id', 'cpsession_data'])) {
         $order_field = 'cpsession_expiry';
     }
 
@@ -83,7 +75,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
         $full_order_field = $order_field . ' DESC';
     }
 
-    if (! F_count_rows(K_TABLE_SESSIONS)) { //if the table is void (no items) display message
+    if (!F_count_rows(K_TABLE_SESSIONS)) { //if the table is void (no items) display message
         echo '<h2>' . $l['m_databasempty'] . '</h2>';
         return false;
     }
@@ -96,18 +88,28 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
     }
 
     if (K_DATABASE_TYPE == 'ORACLE') {
-        $sql = 'SELECT * FROM (' . $sql . ') WHERE rownum BETWEEN ' . $firstrow . ' AND ' . ($firstrow + $rowsperpage) . '';
+        $sql =
+            'SELECT * FROM ('
+            . $sql
+            . ') WHERE rownum BETWEEN '
+            . $firstrow
+            . ' AND '
+            . ($firstrow + $rowsperpage)
+            . '';
     } else {
         $sql .= ' LIMIT ' . $rowsperpage . ' OFFSET ' . $firstrow . '';
     }
 
     echo '<div class="container">' . K_NEWLINE;
     echo '<table class="userselect">' . K_NEWLINE;
+    echo '<caption class="sr-only">' . $l['t_online_users'] . '</caption>' . K_NEWLINE;
+    echo '<thead>' . K_NEWLINE;
     echo '<tr>' . K_NEWLINE;
-    echo '<th>' . $l['w_user'] . '</th>' . K_NEWLINE;
-    echo '<th>' . $l['w_level'] . '</th>' . K_NEWLINE;
-    echo '<th>' . $l['w_ip'] . '</th>' . K_NEWLINE;
+    echo '<th scope="col">' . $l['w_user'] . '</th>' . K_NEWLINE;
+    echo '<th scope="col">' . $l['w_level'] . '</th>' . K_NEWLINE;
+    echo '<th scope="col">' . $l['w_ip'] . '</th>' . K_NEWLINE;
     echo '</tr>' . K_NEWLINE;
+    echo '</thead>' . K_NEWLINE;
 
     if ($r = F_db_query($sql, $db)) {
         while ($m = F_db_fetch_array($r)) {
@@ -126,7 +128,9 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
             $user_str .= ' (' . urldecode($this_session['session_user_name']) . ')';
             $user_str = unhtmlentities(strip_tags($user_str));
             if (F_isAuthorizedEditorForUser($this_session['session_user_id'])) {
-                echo '<a href="tce_edit_user.php?user_id=' . $this_session['session_user_id'] . '">' . $user_str . '</a>';
+                echo
+                    '<a href="tce_edit_user.php?user_id=' . $this_session['session_user_id'] . '">' . $user_str . '</a>'
+                ;
             } else {
                 echo $user_str;
             }
@@ -146,7 +150,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
     // --- page jump
     if ($rowsperpage > 0) {
         $sql = 'SELECT count(*) AS total FROM ' . K_TABLE_SESSIONS . ' ' . $wherequery . '';
-        if (! empty($order_field)) {
+        if (!empty($order_field)) {
             $param_array = '&amp;order_field=' . urlencode($order_field) . '';
         }
 
@@ -162,7 +166,3 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
     echo '</div>' . K_NEWLINE;
     return true;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

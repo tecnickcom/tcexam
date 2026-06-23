@@ -7,17 +7,9 @@
 //
 // Description : Export all users' results in XML or JSON format.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,17 +20,15 @@
  * @since 2004-06-11
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_ADMIN_RESULTS;
-require_once('../../shared/code/tce_authorization.php');
-require_once('../../shared/code/tce_functions_test_stats.php');
+require_once '../../shared/code/tce_authorization.php';
+require_once '../../shared/code/tce_functions_test_stats.php';
 
 if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
     $test_id = (int) $_REQUEST['test_id'];
-    if (! F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
-        exit;
+    if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+        exit();
     }
 } else {
     $test_id = 0;
@@ -71,42 +61,44 @@ $out_filename = 'tcexam_results_' . date('YmdHis') . '_test_' . $test_id;
 $xml = F_xml_export_results($test_id, $group_id, $user_id, $startdate, $enddate, $display_mode);
 
 switch ($output_format) {
-    case 'JSON': {
-        header('Content-Description: JSON File Transfer');
-        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-        header('Pragma: public');
-        header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        // force download dialog
-        header('Content-Type: application/force-download');
-        header('Content-Type: application/octet-stream', false);
-        header('Content-Type: application/download', false);
-        header('Content-Type: application/json', false);
-        // use the Content-Disposition header to supply a recommended filename
-        header('Content-Disposition: attachment; filename=' . $out_filename . '.json;');
-        header('Content-Transfer-Encoding: binary');
-        $xmlobj = new SimpleXMLElement($xml);
-        echo json_encode($xmlobj, JSON_THROW_ON_ERROR);
-        break;
-    }
+    case 'JSON':
+        {
+            header('Content-Description: JSON File Transfer');
+            header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+            header('Pragma: public');
+            header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            // force download dialog
+            header('Content-Type: application/force-download');
+            header('Content-Type: application/octet-stream', false);
+            header('Content-Type: application/download', false);
+            header('Content-Type: application/json', false);
+            // use the Content-Disposition header to supply a recommended filename
+            header('Content-Disposition: attachment; filename=' . $out_filename . '.json;');
+            header('Content-Transfer-Encoding: binary');
+            $xmlobj = new SimpleXMLElement($xml);
+            echo json_encode($xmlobj, JSON_THROW_ON_ERROR);
+            break;
+        }
     case 'XML':
-    default: {
-        header('Content-Description: XML File Transfer');
-        header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
-        header('Pragma: public');
-        header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
-        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
-        // force download dialog
-        header('Content-Type: application/force-download');
-        header('Content-Type: application/octet-stream', false);
-        header('Content-Type: application/download', false);
-        header('Content-Type: application/xml', false);
-        // use the Content-Disposition header to supply a recommended filename
-        header('Content-Disposition: attachment; filename=' . $out_filename . '.xml;');
-        header('Content-Transfer-Encoding: binary');
-        echo $xml;
-        break;
-    }
+    default:
+        {
+            header('Content-Description: XML File Transfer');
+            header('Cache-Control: public, must-revalidate, max-age=0'); // HTTP/1.1
+            header('Pragma: public');
+            header('Expires: Thu, 04 Jan 1973 00:00:00 GMT'); // Date in the past
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            // force download dialog
+            header('Content-Type: application/force-download');
+            header('Content-Type: application/octet-stream', false);
+            header('Content-Type: application/download', false);
+            header('Content-Type: application/xml', false);
+            // use the Content-Disposition header to supply a recommended filename
+            header('Content-Disposition: attachment; filename=' . $out_filename . '.xml;');
+            header('Content-Transfer-Encoding: binary');
+            echo $xml;
+            break;
+        }
 }
 
 /**
@@ -123,7 +115,7 @@ switch ($output_format) {
 function F_xml_export_results($test_id, $group_id = 0, $user_id = 0, $startdate = 0, $enddate = 0, $display_mode = 1)
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
 
     $xml = ''; // XML data to be returned
 
@@ -140,14 +132,19 @@ function F_xml_export_results($test_id, $group_id = 0, $user_id = 0, $startdate 
     $xml .= K_TAB . '</header>' . K_NEWLINE;
     $xml .= K_TAB . '<body>' . K_NEWLINE;
 
-    $data = F_getAllUsersTestStat($test_id, $group_id, $user_id, $startdate, $enddate, 'total_score', false, $display_mode);
+    $data = F_getAllUsersTestStat(
+        $test_id,
+        $group_id,
+        $user_id,
+        $startdate,
+        $enddate,
+        'total_score',
+        false,
+        $display_mode,
+    );
     $xml .= getDataXML($data);
 
     $xml .= K_TAB . '</body>' . K_NEWLINE;
 
     return $xml . ('</tcexamresults>' . K_NEWLINE);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

@@ -8,17 +8,9 @@
 // Description : Functions to import test data from scanned
 //               OMR (Optical Mark Recognition) sheets.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -68,7 +60,7 @@ function F_decodeOMRTestData($str)
  */
 function F_decodeOMRTestDataQRCode($image)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     if (empty($image)) {
         return false;
     }
@@ -86,7 +78,7 @@ function F_decodeOMRTestDataQRCode($image)
  */
 function F_decodeOMRPage($image)
 {
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
     // decode barcode containing first question number
     $command = K_OMR_PATH_ZBARIMG . ' --raw -Sdisable -Scode128.enable -q ' . escapeshellarg($image);
     $qstart = exec($command);
@@ -173,7 +165,7 @@ function F_decodeOMRPage($image)
     $omrdata = [];
     // for each row (question)
     for ($r = 0; $r < 30; ++$r) {
-        $omrdata[($r + $qstart)] = [];
+        $omrdata[$r + $qstart] = [];
         $y = round($srow + ($r * $drow));
         // for each column (answer)
         for ($c = 0; $c < 12; ++$c) {
@@ -185,7 +177,7 @@ function F_decodeOMRPage($image)
             // get root-mean-square-error with reference image
             $rmse = $imreg->compareImages($imref, Imagick::METRIC_ROOTMEANSQUAREDERROR);
             // true option
-            $opt_true = (2 * round(1.25 - $rmse[1]));
+            $opt_true = 2 * round(1.25 - $rmse[1]);
             // read false option
             $x += $dtf;
             // get square region inside the current grid position
@@ -196,12 +188,12 @@ function F_decodeOMRPage($image)
             // false option
             $opt_false = round(1.25 - $rmse[1]);
             // set array to be returned (-1 = unset, 0 = false, 1 = true)
-            $val = ($opt_true + $opt_false - 1);
+            $val = $opt_true + $opt_false - 1;
             if ($val > 1) {
                 $val = 1;
             }
 
-            $omrdata[($r + $qstart)][($c + 1)] = $val;
+            $omrdata[$r + $qstart][$c + 1] = $val;
         }
     }
 
@@ -221,8 +213,8 @@ function F_decodeOMRPage($image)
  */
 function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $overwrite = false)
 {
-    require_once('../config/tce_config.php');
-    require_once('../../shared/code/tce_functions_test.php');
+    require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_test.php';
     global $db, $l;
     // check arrays
     if (count($omr_testdata) > (count($omr_answers) + 1)) {
@@ -234,9 +226,20 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
     $user_id = (int) $user_id;
     $time = strtotime($date);
     $date = date(K_TIMESTAMP_FORMAT, $time);
-    $dateanswers = date(K_TIMESTAMP_FORMAT, ($time + 1));
+    $dateanswers = date(K_TIMESTAMP_FORMAT, $time + 1);
     // check user's group
-    if (F_count_rows(K_TABLE_USERGROUP . ', ' . K_TABLE_TEST_GROUPS . ' WHERE usrgrp_group_id=tstgrp_group_id AND tstgrp_test_id=' . $test_id . ' AND usrgrp_user_id=' . $user_id . ' LIMIT 1') == 0) {
+    if (
+        F_count_rows(
+            K_TABLE_USERGROUP
+            . ', '
+            . K_TABLE_TEST_GROUPS
+            . ' WHERE usrgrp_group_id=tstgrp_group_id AND tstgrp_test_id='
+            . $test_id
+            . ' AND usrgrp_user_id='
+            . $user_id
+            . ' LIMIT 1',
+        ) == 0
+    ) {
         return false;
     }
 
@@ -247,17 +250,36 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
     if ($rs = F_db_query($sqls, $db)) {
         if ($ms = F_db_fetch_array($rs)) {
             // 1a. update previous test data if repeatable
-            $sqld = 'UPDATE ' . K_TABLE_TEST_USER . ' SET testuser_status=testuser_status+1 WHERE testuser_test_id=' . $test_id . ' AND testuser_user_id=' . $user_id . ' AND testuser_status>3';
-            if (! $rd = F_db_query($sqld, $db)) {
+            $sqld =
+                'UPDATE '
+                . K_TABLE_TEST_USER
+                . ' SET testuser_status=testuser_status+1 WHERE testuser_test_id='
+                . $test_id
+                . ' AND testuser_user_id='
+                . $user_id
+                . ' AND testuser_status>3';
+            if (!($rd = F_db_query($sqld, $db))) {
                 F_display_db_error();
             }
         } elseif ($overwrite) {
             // 1b. delete previous test data if not repeatable
-            $sqld = 'DELETE FROM ' . K_TABLE_TEST_USER . ' WHERE testuser_test_id=' . $test_id . ' AND testuser_user_id=' . $user_id . '';
-            if (! $rd = F_db_query($sqld, $db)) {
+            $sqld =
+                'DELETE FROM '
+                . K_TABLE_TEST_USER
+                . ' WHERE testuser_test_id='
+                . $test_id
+                . ' AND testuser_user_id='
+                . $user_id
+                . '';
+            if (!($rd = F_db_query($sqld, $db))) {
                 F_display_db_error();
             }
-        } elseif (F_count_rows(K_TABLE_TEST_USER, 'WHERE testuser_test_id=' . $test_id . ' AND testuser_user_id=' . $user_id . '') > 0) {
+        } elseif (
+            F_count_rows(
+                K_TABLE_TEST_USER,
+                'WHERE testuser_test_id=' . $test_id . ' AND testuser_user_id=' . $user_id . '',
+            ) > 0
+        ) {
             // 1c. check if this data already exist
             return false;
         }
@@ -280,7 +302,7 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
 		\'' . $date . '\',
 		\'OMR\'
 		)';
-    if (! $r = F_db_query($sql, $db)) {
+    if (!($r = F_db_query($sql, $db))) {
         F_display_db_error(false);
         return false;
     }
@@ -296,15 +318,23 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
         $question_id = (int) $omr_testdata[$q][0];
         $num_answers = count($omr_testdata[$q][1]);
         // get question data
-        $sqlq = 'SELECT question_type, question_difficulty FROM ' . K_TABLE_QUESTIONS . ' WHERE question_id=' . $question_id . ' LIMIT 1';
+        $sqlq =
+            'SELECT question_type, question_difficulty FROM '
+            . K_TABLE_QUESTIONS
+            . ' WHERE question_id='
+            . $question_id
+            . ' LIMIT 1';
         if ($rq = F_db_query($sqlq, $db)) {
             if ($mq = F_db_fetch_array($rq)) {
                 // question scores
-                $question_right_score = ($testdata['test_score_right'] * $mq['question_difficulty']);
-                $question_wrong_score = ($testdata['test_score_wrong'] * $mq['question_difficulty']);
-                $question_unanswered_score = ($testdata['test_score_unanswered'] * $mq['question_difficulty']);
+                $question_right_score = $testdata['test_score_right'] * $mq['question_difficulty'];
+                $question_wrong_score = $testdata['test_score_wrong'] * $mq['question_difficulty'];
+                $question_unanswered_score = $testdata['test_score_unanswered'] * $mq['question_difficulty'];
                 // add question
-                $sqll = 'INSERT INTO ' . K_TABLE_TESTS_LOGS . ' (
+                $sqll =
+                    'INSERT INTO '
+                    . K_TABLE_TESTS_LOGS
+                    . ' (
 					testlog_testuser_id,
 					testlog_question_id,
 					testlog_score,
@@ -314,16 +344,30 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
 					testlog_order,
 					testlog_num_answers
 					) VALUES (
-					' . $testuser_id . ',
-					' . $question_id . ',
-					' . $question_unanswered_score . ',
-					\'' . $date . '\',
-					\'' . $date . '\',
+					'
+                    . $testuser_id
+                    . ',
+					'
+                    . $question_id
+                    . ',
+					'
+                    . $question_unanswered_score
+                    . ',
+					\''
+                    . $date
+                    . '\',
+					\''
+                    . $date
+                    . '\',
 					1,
-					' . $q . ',
-					' . $num_answers . '
+					'
+                    . $q
+                    . ',
+					'
+                    . $num_answers
+                    . '
 					)';
-                if (! $rl = F_db_query($sqll, $db)) {
+                if (!($rl = F_db_query($sqll, $db))) {
                     F_display_db_error(false);
                     return false;
                 }
@@ -344,18 +388,29 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
                     }
 
                     // add answer
-                    $sqli = 'INSERT INTO ' . K_TABLE_LOG_ANSWER . ' (
+                    $sqli =
+                        'INSERT INTO '
+                        . K_TABLE_LOG_ANSWER
+                        . ' (
 						logansw_testlog_id,
 						logansw_answer_id,
 						logansw_selected,
 						logansw_order
 						) VALUES (
-						' . $testlog_id . ',
-						' . $answer_id . ',
-						' . $answer_selected . ',
-						' . $a . '
+						'
+                        . $testlog_id
+                        . ',
+						'
+                        . $answer_id
+                        . ',
+						'
+                        . $answer_selected
+                        . ',
+						'
+                        . $a
+                        . '
 						)';
-                    if (! $ri = F_db_query($sqli, $db)) {
+                    if (!($ri = F_db_query($sqli, $db))) {
                         F_display_db_error(false);
                         return false;
                     }
@@ -364,47 +419,56 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
                     if ($mq['question_type'] < 3) { // MCSA or MCMA
                         // check if the answer is right
                         $answer_isright = false;
-                        $sqla = 'SELECT answer_isright FROM ' . K_TABLE_ANSWERS . ' WHERE answer_id=' . $answer_id . ' LIMIT 1';
+                        $sqla =
+                            'SELECT answer_isright FROM '
+                            . K_TABLE_ANSWERS
+                            . ' WHERE answer_id='
+                            . $answer_id
+                            . ' LIMIT 1';
                         if ($ra = F_db_query($sqla, $db)) {
-                            if (($ma = F_db_fetch_array($ra))) {
+                            if ($ma = F_db_fetch_array($ra)) {
                                 $answer_isright = F_getBoolean($ma['answer_isright']);
                                 switch ($mq['question_type']) {
-                                    case 1: { // MCSA - Multiple Choice Single Answer
-                                        if ($answer_selected == 1) {
-                                            ++$numselected;
-                                            if ($numselected == 1) {
+                                    case 1:
+                                        { // MCSA - Multiple Choice Single Answer
+                                            if ($answer_selected == 1) {
+                                                ++$numselected;
+                                                if ($numselected == 1) {
+                                                    $unanswered = false;
+                                                    $qscore = $answer_isright
+                                                        ? $question_right_score
+                                                        : $question_wrong_score;
+                                                } else {
+                                                    // multiple answer selected
+                                                    $unanswered = true;
+                                                    $qscore = $question_unanswered_score;
+                                                }
+                                            }
+
+                                            break;
+                                        }
+                                    case 2:
+                                        { // MCMA - Multiple Choice Multiple Answer
+                                            if ($answer_selected == -1) {
+                                                $qscore += $question_unanswered_score;
+                                            } elseif ($answer_selected == 0) {
                                                 $unanswered = false;
-                                                $qscore = $answer_isright ? $question_right_score : $question_wrong_score;
-                                            } else {
-                                                // multiple answer selected
-                                                $unanswered = true;
-                                                $qscore = $question_unanswered_score;
+                                                if ($answer_isright) {
+                                                    $qscore += $question_wrong_score;
+                                                } else {
+                                                    $qscore += $question_right_score;
+                                                }
+                                            } elseif ($answer_selected == 1) {
+                                                $unanswered = false;
+                                                if ($answer_isright) {
+                                                    $qscore += $question_right_score;
+                                                } else {
+                                                    $qscore += $question_wrong_score;
+                                                }
                                             }
-                                        }
 
-                                        break;
-                                    }
-                                    case 2: { // MCMA - Multiple Choice Multiple Answer
-                                        if ($answer_selected == -1) {
-                                            $qscore += $question_unanswered_score;
-                                        } elseif ($answer_selected == 0) {
-                                            $unanswered = false;
-                                            if ($answer_isright) {
-                                                $qscore += $question_wrong_score;
-                                            } else {
-                                                $qscore += $question_right_score;
-                                            }
-                                        } elseif ($answer_selected == 1) {
-                                            $unanswered = false;
-                                            if ($answer_isright) {
-                                                $qscore += $question_right_score;
-                                            } else {
-                                                $qscore += $question_wrong_score;
-                                            }
+                                            break;
                                         }
-
-                                        break;
-                                    }
                                 }
                             }
                         } else {
@@ -419,7 +483,7 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
                     // normalize score
                     if (F_getBoolean($testdata['test_mcma_partial_score'])) {
                         // use partial scoring for MCMA and ORDER questions
-                        $qscore = round(($qscore / $num_answers), 3);
+                        $qscore = round($qscore / $num_answers, 3);
                     } elseif ($qscore >= ($question_right_score * $num_answers)) {
                         // all-or-nothing points
                         // right
@@ -436,12 +500,21 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
                 $change_time = $unanswered ? '' : $dateanswers;
 
                 // update question score
-                $sqll = 'UPDATE ' . K_TABLE_TESTS_LOGS . ' SET
-					testlog_score=' . $qscore . ',
-					testlog_change_time=' . F_empty_to_null($change_time) . ',
+                $sqll =
+                    'UPDATE '
+                    . K_TABLE_TESTS_LOGS
+                    . ' SET
+					testlog_score='
+                    . $qscore
+                    . ',
+					testlog_change_time='
+                    . F_empty_to_null($change_time)
+                    . ',
 					testlog_reaction_time=1000
-					WHERE testlog_id=' . $testlog_id . '';
-                if (! $rl = F_db_query($sqll, $db)) {
+					WHERE testlog_id='
+                    . $testlog_id
+                    . '';
+                if (!($rl = F_db_query($sqll, $db))) {
                     F_display_db_error();
                     return false;
                 }
@@ -455,7 +528,3 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
     // end for each question
     return true;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

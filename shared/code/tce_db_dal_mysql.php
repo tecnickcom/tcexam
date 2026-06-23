@@ -10,17 +10,9 @@
 //               This abstraction use the same SQL syntax
 //               of MySQL.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -41,13 +33,19 @@
  * @param $database (string) Database name.
  * @return MySQL link identifier on success, or FALSE on failure.
  */
-function F_db_connect($host = 'localhost', $port = '3306', $username = 'root', $password = '', $database = '')
-{
-    if (! $db = @mysql_connect($host . ':' . $port, $username, $password)) {
+function F_db_connect(
+    $host = 'localhost',
+    $port = '3306',
+    $username = 'root',
+    #[\SensitiveParameter]
+    $password = '',
+    $database = '',
+) {
+    if (!($db = @mysql_connect($host . ':' . $port, $username, $password))) {
         return false;
     }
 
-    if (strlen($database) > 0 && ! @mysql_select_db($database, $db)) {
+    if (strlen($database) > 0 && !@mysql_select_db($database, $db)) {
         return false;
     }
 
@@ -153,7 +151,10 @@ function F_db_insert_id($link_identifier, $tablename = '', $fieldname = '')
      * mysql_insert_id() will be incorrect.
      */
     //return mysql_insert_id($link_identifier);
-    if (($r = mysql_query('SELECT LAST_INSERT_ID() FROM ' . $tablename . '', $link_identifier)) && ($m = mysql_fetch_row($r))) {
+    if (
+        ($r = mysql_query('SELECT LAST_INSERT_ID() FROM ' . $tablename . '', $link_identifier)) && ($m =
+            mysql_fetch_row($r))
+    ) {
         return $m[0];
     }
 
@@ -186,7 +187,3 @@ function F_escape_sql($link_identifier, $str, $stripslashes = true)
 
     return mysql_real_escape_string($str, $link_identifier);
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

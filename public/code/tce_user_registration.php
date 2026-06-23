@@ -7,17 +7,9 @@
 //
 // Description : User registration form.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,25 +20,37 @@
  * @since 2008-03-30
  */
 
+require_once '../config/tce_config.php';
 
+$newpassword = $_POST['newpassword'] ?? '';
+$newpassword_repeat = $_POST['newpassword_repeat'] ?? '';
 
-require_once('../config/tce_config.php');
+// read submitted form inputs (used by the registration processing path below)
+$user_name = $_REQUEST['user_name'] ?? '';
+$user_email = $_REQUEST['user_email'] ?? '';
+$user_regnumber = $_REQUEST['user_regnumber'] ?? '';
+$user_firstname = $_REQUEST['user_firstname'] ?? '';
+$user_lastname = $_REQUEST['user_lastname'] ?? '';
+$user_birthdate = $_REQUEST['user_birthdate'] ?? '';
+$user_birthplace = $_REQUEST['user_birthplace'] ?? '';
+$user_ssn = $_REQUEST['user_ssn'] ?? '';
+$user_groups = $_REQUEST['user_groups'] ?? [];
 
-require_once('../../shared/config/tce_user_registration.php');
-if (! K_USRREG_ENABLED) {
+require_once '../../shared/config/tce_user_registration.php';
+if (!K_USRREG_ENABLED) {
     // user registration is disabled, redirect to main page
     header('Location: ' . K_PATH_HOST . K_PATH_TCEXAM);
-    exit;
+    exit();
 }
 
 $pagelevel = 0;
-require_once('../../shared/code/tce_authorization.php');
-require_once('../../shared/code/tce_functions_otp.php');
+require_once '../../shared/code/tce_authorization.php';
+require_once '../../shared/code/tce_functions_otp.php';
 
 $thispage_title = $l['t_user_registration'];
 $thispage_description = $l['hp_user_registration'];
-require_once('../code/tce_page_header.php');
-require_once('../../shared/code/tce_functions_form.php');
+require_once '../code/tce_page_header.php';
+require_once '../../shared/code/tce_functions_form.php';
 
 // set fields descriptions for error messages
 $fielddesc = [
@@ -78,59 +82,66 @@ $_REQUEST['ff_required_labels'] = implode(',', $reqdesc);
 if ($menu_mode == 'add') { // process submitted data
     foreach ($regfields as $name => $enabled) {
         // disable unauthorized fields
-        if (! $enabled) {
+        if (!$enabled) {
             ${$name} = '';
         }
     }
 
     if ($formstatus = F_check_form_fields()) { // check submitted form fields
         // check if name is unique
-        if (! F_check_unique(K_TABLE_USERS, "user_name='" . F_escape_sql($db, $user_name) . "'")) {
+        if (!F_check_unique(K_TABLE_USERS, "user_name='" . F_escape_sql($db, $user_name) . "'")) {
             F_print_error('WARNING', $l['m_duplicate_name']);
             $formstatus = false;
-            
         }
 
         // check if registration number is unique
-        if (isset($user_regnumber) && strlen($user_regnumber) > 0 && ! F_check_unique(K_TABLE_USERS, "user_regnumber='" . F_escape_sql($db, $user_regnumber) . "'")) {
+        if (
+            isset($user_regnumber)
+            && strlen($user_regnumber) > 0
+            && !F_check_unique(K_TABLE_USERS, "user_regnumber='" . F_escape_sql($db, $user_regnumber) . "'")
+        ) {
             F_print_error('WARNING', $l['m_duplicate_regnumber']);
             $formstatus = false;
-            
         }
 
         // check if ssn is unique
-        if (isset($user_ssn) && strlen($user_ssn) > 0 && ! F_check_unique(K_TABLE_USERS, "user_ssn='" . F_escape_sql($db, $user_ssn) . "'")) {
+        if (
+            isset($user_ssn)
+            && strlen($user_ssn) > 0
+            && !F_check_unique(K_TABLE_USERS, "user_ssn='" . F_escape_sql($db, $user_ssn) . "'")
+        ) {
             F_print_error('WARNING', $l['m_duplicate_ssn']);
             $formstatus = false;
-            
         }
 
         // check password
-        if (! empty($newpassword) || ! empty($newpassword_repeat)) {// update password
-            if ($newpassword == $newpassword_repeat) {
+        if (!empty($newpassword) || !empty($newpassword_repeat)) {
+            // update password
+            // @mago-expect lint:no-insecure-comparison -- confirm-field match: both operands are same-request user input, not a stored secret
+            if ($newpassword === $newpassword_repeat) {
                 $user_password = getPasswordHash($newpassword);
                 // update OTP key
                 $user_otpkey = F_getRandomOTPkey();
             } else { //print message and exit
                 F_print_error('WARNING', $l['m_different_passwords']);
                 $formstatus = false;
-                
             }
         } else { //print message and exit
             F_print_error('WARNING', $l['m_empty_password']);
             $formstatus = false;
-            
         }
 
         if ($formstatus) {
-            mt_srand((float) microtime() * 1_000_000);
             $user_verifycode = md5(uniqid(random_int(0, mt_getrandmax()), true)); // verification code
             $user_ip = getNormalizedIP($_SERVER['REMOTE_ADDR']); // get the user's IP number
             $user_regdate = date(K_TIMESTAMP_FORMAT);
             // get the registration date and time
             $usrlevel = K_USRREG_EMAIL_CONFIRM ? 0 : 1;
 
-            $sql = 'INSERT INTO ' . K_TABLE_USERS . ' (
+            $sql =
+                'INSERT INTO '
+                . K_TABLE_USERS
+                . ' (
 				user_regdate,
 				user_ip,
 				user_name,
@@ -146,22 +157,50 @@ if ($menu_mode == 'add') { // process submitted data
 				user_verifycode,
 				user_otpkey
 				) VALUES (
-				\'' . F_escape_sql($db, $user_regdate) . '\',
-				\'' . F_escape_sql($db, $user_ip) . '\',
-				\'' . F_escape_sql($db, $user_name) . '\',
-				' . F_empty_to_null($user_email) . ',
-				\'' . F_escape_sql($db, $user_password) . '\',
-				' . F_empty_to_null($user_regnumber) . ',
-				' . F_empty_to_null($user_firstname) . ',
-				' . F_empty_to_null($user_lastname) . ',
-				' . F_empty_to_null($user_birthdate) . ',
-				' . F_empty_to_null($user_birthplace) . ',
-				' . F_empty_to_null($user_ssn) . ',
-				\'' . $usrlevel . '\',
-				\'' . $user_verifycode . '\',
-				' . F_empty_to_null($user_otpkey) . '
+				\''
+                . F_escape_sql($db, $user_regdate)
+                . '\',
+				\''
+                . F_escape_sql($db, $user_ip)
+                . '\',
+				\''
+                . F_escape_sql($db, $user_name)
+                . '\',
+				'
+                . F_empty_to_null($user_email)
+                . ',
+				\''
+                . F_escape_sql($db, $user_password)
+                . '\',
+				'
+                . F_empty_to_null($user_regnumber)
+                . ',
+				'
+                . F_empty_to_null($user_firstname)
+                . ',
+				'
+                . F_empty_to_null($user_lastname)
+                . ',
+				'
+                . F_empty_to_null($user_birthdate)
+                . ',
+				'
+                . F_empty_to_null($user_birthplace)
+                . ',
+				'
+                . F_empty_to_null($user_ssn)
+                . ',
+				\''
+                . $usrlevel
+                . '\',
+				\''
+                . $user_verifycode
+                . '\',
+				'
+                . F_empty_to_null($user_otpkey)
+                . '
 				)';
-            if (! $r = F_db_query($sql, $db)) {
+            if (!($r = F_db_query($sql, $db))) {
                 F_display_db_error(false);
             } else {
                 $user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
@@ -170,7 +209,7 @@ if ($menu_mode == 'add') { // process submitted data
             // add user's groups
             if (empty($user_groups)) {
                 $user_groups = [K_USRREG_GROUP];
-            } elseif (! in_array(K_USRREG_GROUP, $user_groups)) {
+            } elseif (!in_array(K_USRREG_GROUP, $user_groups)) {
                 $user_groups[] = K_USRREG_GROUP;
             }
 
@@ -179,21 +218,28 @@ if ($menu_mode == 'add') { // process submitted data
                     continue;
                 }
 
-                $sql = 'INSERT INTO ' . K_TABLE_USERGROUP . ' (
+                $sql =
+                    'INSERT INTO '
+                    . K_TABLE_USERGROUP
+                    . ' (
 					usrgrp_user_id,
 					usrgrp_group_id
 					) VALUES (
-					\'' . (int) $user_id . '\',
-					\'' . (int) $group_id . '\'
+					\''
+                    . (int) $user_id
+                    . '\',
+					\''
+                    . (int) $group_id
+                    . '\'
 					)';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error(false);
                 }
             }
 
             if (K_USRREG_EMAIL_CONFIRM) {
                 // require email confirmation
-                require_once('../../shared/code/tce_functions_user_registration.php');
+                require_once '../../shared/code/tce_functions_user_registration.php';
                 F_send_user_reg_email($user_id, $user_email, $user_verifycode);
                 F_print_error('MESSAGE', $user_email . ': ' . $l['m_user_verification_sent']);
             } else {
@@ -202,14 +248,20 @@ if ($menu_mode == 'add') { // process submitted data
             }
 
             echo '<div class="container">' . K_NEWLINE;
-            echo '<strong><a href="index.php" title="' . $l['h_index'] . '">' . $l['h_index'] . ' &gt;</a></strong>' . K_NEWLINE;
+            echo
+                '<strong><a href="index.php" title="'
+                    . $l['h_index']
+                    . '">'
+                    . $l['h_index']
+                    . ' &gt;</a></strong>'
+                    . K_NEWLINE
+            ;
             echo '</div>' . K_NEWLINE;
-            require_once('../code/tce_page_footer.php');
-            exit;
+            require_once '../code/tce_page_footer.php';
+            exit();
         }
     }
 } //end of add
-
 
 // --- Initialize variables
 if (isset($_REQUEST['user_name'])) {
@@ -275,38 +327,200 @@ if (K_USRREG_EMAIL_CONFIRM) {
 echo '<div class="container">' . K_NEWLINE;
 
 echo '<div class="tceformbox">' . K_NEWLINE;
-echo '<form action="' . $_SERVER['SCRIPT_NAME'] . '" method="post" enctype="multipart/form-data" id="form_usereditor">' . K_NEWLINE;
+echo
+    '<form action="'
+        . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
+        . '" method="post" enctype="multipart/form-data" id="form_usereditor">'
+        . K_NEWLINE
+;
 
-
-echo getFormRowTextInput('user_name', $l['w_username'], $l['h_login_name'], '', $user_name, '', 255, false, false, false, showRequiredField($regfields['user_name']));
+echo
+    getFormRowTextInput(
+        'user_name',
+        $l['w_username'],
+        $l['h_login_name'],
+        '',
+        $user_name,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_name']),
+        $regfields['user_name'] == 2,
+        'username',
+    )
+;
 if (K_USRREG_EMAIL_CONFIRM || $regfields['user_email']) {
-    echo getFormRowTextInput('user_email', $l['w_email'], $l['h_usered_email'], '', $user_email, K_EMAIL_RE_PATTERN, 255, false, false, false, showRequiredField($regfields['user_email']));
+    echo
+        getFormRowTextInput(
+            'user_email',
+            $l['w_email'],
+            $l['h_usered_email'],
+            '',
+            $user_email,
+            K_EMAIL_RE_PATTERN,
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_email']),
+            $regfields['user_email'] == 2,
+            'email',
+            'email',
+        )
+    ;
 }
 
-echo getFormRowTextInput('newpassword', $l['w_password'], $l['h_password'], ' (' . $l['d_password_length'] . ')', '', K_USRREG_PASSWORD_RE, 255, false, false, true, showRequiredField(2));
-echo getFormRowTextInput('newpassword_repeat', $l['w_password'], $l['h_password_repeat'], ' (' . $l['w_repeat'] . ')', '', '', 255, false, false, true, showRequiredField(2));
+echo
+    getFormRowTextInput(
+        'newpassword',
+        $l['w_password'],
+        $l['h_password'],
+        ' (' . $l['d_password_length'] . ')',
+        '',
+        K_USRREG_PASSWORD_RE,
+        255,
+        false,
+        false,
+        true,
+        showRequiredField(2),
+        true,
+        'new-password',
+    )
+;
+echo
+    getFormRowTextInput(
+        'newpassword_repeat',
+        $l['w_password'],
+        $l['h_password_repeat'],
+        ' (' . $l['w_repeat'] . ')',
+        '',
+        '',
+        255,
+        false,
+        false,
+        true,
+        showRequiredField(2),
+        true,
+        'new-password',
+    )
+;
 if ($regfields['user_regnumber']) {
-    echo getFormRowTextInput('user_regnumber', $l['w_regcode'], $l['h_regcode'], '', $user_regnumber, '', 255, false, false, false, showRequiredField($regfields['user_regnumber']));
+    echo
+        getFormRowTextInput(
+            'user_regnumber',
+            $l['w_regcode'],
+            $l['h_regcode'],
+            '',
+            $user_regnumber,
+            '',
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_regnumber']),
+            $regfields['user_regnumber'] == 2,
+        )
+    ;
 }
 
 if ($regfields['user_firstname']) {
-    echo getFormRowTextInput('user_firstname', $l['w_firstname'], $l['h_firstname'], '', $user_firstname, '', 255, false, false, false, showRequiredField($regfields['user_firstname']));
+    echo
+        getFormRowTextInput(
+            'user_firstname',
+            $l['w_firstname'],
+            $l['h_firstname'],
+            '',
+            $user_firstname,
+            '',
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_firstname']),
+            $regfields['user_firstname'] == 2,
+            'given-name',
+        )
+    ;
 }
 
 if ($regfields['user_lastname']) {
-    echo getFormRowTextInput('user_lastname', $l['w_lastname'], $l['h_lastname'], '', $user_lastname, '', 255, false, false, false, showRequiredField($regfields['user_lastname']));
+    echo
+        getFormRowTextInput(
+            'user_lastname',
+            $l['w_lastname'],
+            $l['h_lastname'],
+            '',
+            $user_lastname,
+            '',
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_lastname']),
+            $regfields['user_lastname'] == 2,
+            'family-name',
+        )
+    ;
 }
 
 if ($regfields['user_birthdate']) {
-    echo getFormRowTextInput('user_birthdate', $l['w_birth_date'], $l['h_birth_date'] . ' ' . $l['w_date_format'], '', $user_birthdate, '', 10, true, false, false, showRequiredField($regfields['user_birthdate']));
+    echo
+        getFormRowTextInput(
+            'user_birthdate',
+            $l['w_birth_date'],
+            $l['h_birth_date'] . ' ' . $l['w_date_format'],
+            '',
+            $user_birthdate,
+            '',
+            10,
+            true,
+            false,
+            false,
+            showRequiredField($regfields['user_birthdate']),
+            $regfields['user_birthdate'] == 2,
+            'bday',
+        )
+    ;
 }
 
 if ($regfields['user_birthplace']) {
-    echo getFormRowTextInput('user_birthplace', $l['w_birth_place'], $l['h_birth_place'], '', $user_birthplace, '', 255, false, false, false, showRequiredField($regfields['user_birthplace']));
+    echo
+        getFormRowTextInput(
+            'user_birthplace',
+            $l['w_birth_place'],
+            $l['h_birth_place'],
+            '',
+            $user_birthplace,
+            '',
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_birthplace']),
+            $regfields['user_birthplace'] == 2,
+        )
+    ;
 }
 
 if ($regfields['user_ssn']) {
-    echo getFormRowTextInput('user_ssn', $l['w_fiscal_code'], $l['h_fiscal_code'], '', $user_ssn, '', 255, false, false, false, showRequiredField($regfields['user_ssn']));
+    echo
+        getFormRowTextInput(
+            'user_ssn',
+            $l['w_fiscal_code'],
+            $l['h_fiscal_code'],
+            '',
+            $user_ssn,
+            '',
+            255,
+            false,
+            false,
+            false,
+            showRequiredField($regfields['user_ssn']),
+            $regfields['user_ssn'] == 2,
+        )
+    ;
 }
 
 if ($regfields['user_groups']) {
@@ -343,8 +557,22 @@ if ($regfields['user_agreement'] > 0) {
     echo '<div class="row">' . K_NEWLINE;
     echo '<span class="label">&nbsp;</span>' . K_NEWLINE;
     echo '<span class="formw">' . K_NEWLINE;
-    echo '<input type="checkbox" name="user_agreement" id="user_agreement" value="1" title="..." />' . K_NEWLINE;
-    echo '<label for="user_agreement"><a href="' . K_USRREG_AGREEMENT . '" title="' . $l['m_new_window_link'] . '">' . $l['w_i_agree'] . '</a></label></span>' . K_NEWLINE;
+    echo
+        '<input type="checkbox" name="user_agreement" id="user_agreement" value="1" title="'
+            . $l['w_i_agree']
+            . '" />'
+            . K_NEWLINE
+    ;
+    echo
+        '<label for="user_agreement"><a href="'
+            . K_USRREG_AGREEMENT
+            . '" title="'
+            . $l['m_new_window_link']
+            . '">'
+            . $l['w_i_agree']
+            . '</a></label></span>'
+            . K_NEWLINE
+    ;
     echo '</div>' . K_NEWLINE;
 }
 
@@ -360,8 +588,4 @@ echo '</div>' . K_NEWLINE;
 echo '<div class="pagehelp">' . $l['hp_user_registration'] . '</div>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

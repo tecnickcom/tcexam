@@ -1,0 +1,41 @@
+# PostgreSQL override for the integration test stack (see docker-compose-test.yml).
+# Seeds a throwaway PostgreSQL instance from the shipped install SQL and points the runner at it.
+
+services:
+  tcexam_db:
+    container_name: tcexam_test_db
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tcexam
+      POSTGRES_USER: tcexam
+      POSTGRES_PASSWORD: tcexam
+    # The official image runs *.sql in /docker-entrypoint-initdb.d in name order on first init:
+    # structure first, then the default data.
+    volumes:
+      - ./install/postgresql_db_structure.sql:/docker-entrypoint-initdb.d/01-structure.sql:ro
+      - ./install/db_data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tcexam -d tcexam"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  tcexam_app:
+    environment:
+      TCEXAM_DB_TYPE: POSTGRESQL
+      TCEXAM_DB_HOST: tcexam_db
+      TCEXAM_DB_PORT: "5432"
+    depends_on:
+      tcexam_db:
+        condition: service_healthy
+
+  tcexam_integration:
+    environment:
+      TCEXAM_DB_TYPE: POSTGRESQL
+      TCEXAM_DB_HOST: tcexam_db
+      TCEXAM_DB_PORT: "5432"
+    depends_on:
+      tcexam_db:
+        condition: service_healthy
+      tcexam_app:
+        condition: service_healthy

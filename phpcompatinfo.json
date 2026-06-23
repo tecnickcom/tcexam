@@ -1,0 +1,25 @@
+{
+    "source-providers": [
+        {
+            "in": "admin/code as admin",
+            "exclude": "vendor",
+            "name": "/\\.(php)$/"
+        },
+        {
+            "in": "public/code as public",
+            "exclude": "vendor",
+            "name": "/\\.(php)$/"
+        },
+        {
+            "in": "shared/code as shared",
+            "exclude": "tcpdf|phpmailer|cas|radius|jscripts",
+            "name": "/\\.(php)$/"
+        }
+    ],
+    "plugins": [
+    ],
+    "analysers": [
+    ],
+    "services": [
+    ]
+}

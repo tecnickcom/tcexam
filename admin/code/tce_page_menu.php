@@ -7,17 +7,9 @@
 //
 // Description : Output XHTML unordered list menu.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,10 +20,8 @@
  * @since 2004-04-20
  */
 
-
-
-require_once('../config/tce_auth.php');
-require_once('../../shared/code/tce_functions_menu.php');
+require_once '../config/tce_auth.php';
+require_once '../../shared/code/tce_functions_menu.php';
 
 $menu = [
     'index.php' => [
@@ -72,7 +62,7 @@ $menu = [
         'name' => $l['w_backup'],
         'level' => K_AUTH_BACKUP,
         'key' => '',
-        'enabled' => (K_DATABASE_TYPE === 'MYSQL' || K_DATABASE_TYPE == 'POSTGRESQL'),
+        'enabled' => K_DATABASE_TYPE === 'MYSQL' || K_DATABASE_TYPE == 'POSTGRESQL',
     ],
     'public' => [
         'link' => '../../public/code/index.php',
@@ -104,7 +94,7 @@ $menu = [
         'name' => $l['w_logout'],
         'level' => 1,
         'key' => '',
-        'enabled' => ($_SESSION['session_user_level'] > 0),
+        'enabled' => $_SESSION['session_user_level'] > 0,
     ],
     'tce_login.php' => [
         'link' => 'tce_login.php',
@@ -112,7 +102,7 @@ $menu = [
         'name' => $l['w_login'],
         'level' => 0,
         'key' => '',
-        'enabled' => ($_SESSION['session_user_level'] < 1),
+        'enabled' => $_SESSION['session_user_level'] < 1,
     ],
 ];
 
@@ -285,12 +275,7 @@ $menu['tce_menu_tests.php']['sub'] = [
     ],
 ];
 
-echo '<a name="menusection" id="menusection"></a>' . K_NEWLINE;
-
-// link to skip navigation
-echo '<div class="hidden">';
-echo '<a href="#topofdoc" accesskey="2" title="[2] ' . $l['w_skip_navigation'] . '">' . $l['w_skip_navigation'] . '</a>';
-echo '</div>' . K_NEWLINE;
+echo '<span id="menusection"></span>' . K_NEWLINE;
 
 echo '<ul class="menu">' . K_NEWLINE;
 foreach ($menu as $link => $data) {
@@ -298,7 +283,3 @@ foreach ($menu as $link => $data) {
 }
 
 echo '</ul>' . K_NEWLINE; // end of menu
-
-//============================================================+
-// END OF FILE
-//============================================================+

@@ -7,17 +7,9 @@
 //
 // Description : Class to import questions from an XML file.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -99,7 +91,7 @@ class XMLQuestionImporter
          * XML file.
          * @private
          */
-        private $xmlfile
+        private $xmlfile,
     ) {
         // creates a new XML parser to be used by the other XML functions
         $this->parser = xml_parser_create();
@@ -116,7 +108,7 @@ class XMLQuestionImporter
             die(sprintf(
                 'ERROR xmlResourceBundle :: XML error: %s at line %d',
                 xml_error_string(xml_get_error_code($this->parser)),
-                xml_get_current_line_number($this->parser)
+                xml_get_current_line_number($this->parser),
             ));
         }
 
@@ -125,7 +117,6 @@ class XMLQuestionImporter
         return true;
     }
 
-    
     public function __destruct()
     {
         // delete uploaded file
@@ -146,61 +137,67 @@ class XMLQuestionImporter
             case 'module':
             case 'subject':
             case 'question':
-            case 'answer': {
-                $this->level = $name;
-                $this->level_data[$name] = [];
-                $this->current_data = '';
-                switch ($name) {
-                    case 'module': {
-                        $this->level_data['module']['module_name'] = 'default';
-                        $this->level_data['module']['module_enabled'] = 'false';
-                        $this->level_data['module']['module_user_id'] = '1';
-                        break;
+            case 'answer':
+                {
+                    $this->level = $name;
+                    $this->level_data[$name] = [];
+                    $this->current_data = '';
+                    switch ($name) {
+                        case 'module':
+                            {
+                                $this->level_data['module']['module_name'] = 'default';
+                                $this->level_data['module']['module_enabled'] = 'false';
+                                $this->level_data['module']['module_user_id'] = '1';
+                                break;
+                            }
+                        case 'subject':
+                            {
+                                $this->addModule();
+                                $this->level_data['subject']['subject_name'] = 'default';
+                                $this->level_data['subject']['subject_description'] = 'default';
+                                $this->level_data['subject']['subject_enabled'] = 'false';
+                                $this->level_data['subject']['subject_user_id'] = '1';
+                                $this->level_data['subject']['subject_module_id'] = '1';
+                                break;
+                            }
+                        case 'question':
+                            {
+                                $this->addSubject();
+                                $this->level_data['question']['question_subject_id'] = '1';
+                                $this->level_data['question']['question_description'] = 'default';
+                                $this->level_data['question']['question_explanation'] = '';
+                                $this->level_data['question']['question_type'] = 'single';
+                                $this->level_data['question']['question_difficulty'] = '0';
+                                $this->level_data['question']['question_enabled'] = 'false';
+                                $this->level_data['question']['question_position'] = 0;
+                                $this->level_data['question']['question_timer'] = 0;
+                                $this->level_data['question']['question_fullscreen'] = 'false';
+                                $this->level_data['question']['question_inline_answers'] = 'false';
+                                $this->level_data['question']['question_auto_next'] = 'false';
+                                break;
+                            }
+                        case 'answer':
+                            {
+                                $this->addQuestion();
+                                $this->level_data['answer']['answer_question_id'] = '1';
+                                $this->level_data['answer']['answer_description'] = 'default';
+                                $this->level_data['answer']['answer_explanation'] = '';
+                                $this->level_data['answer']['answer_isright'] = 'false';
+                                $this->level_data['answer']['answer_enabled'] = 'false';
+                                $this->level_data['answer']['answer_position'] = '0';
+                                $this->level_data['answer']['answer_keyboard_key'] = '';
+                                break;
+                            }
                     }
-                    case 'subject': {
-                        $this->addModule();
-                        $this->level_data['subject']['subject_name'] = 'default';
-                        $this->level_data['subject']['subject_description'] = 'default';
-                        $this->level_data['subject']['subject_enabled'] = 'false';
-                        $this->level_data['subject']['subject_user_id'] = '1';
-                        $this->level_data['subject']['subject_module_id'] = '1';
-                        break;
-                    }
-                    case 'question': {
-                        $this->addSubject();
-                        $this->level_data['question']['question_subject_id'] = '1';
-                        $this->level_data['question']['question_description'] = 'default';
-                        $this->level_data['question']['question_explanation'] = '';
-                        $this->level_data['question']['question_type'] = 'single';
-                        $this->level_data['question']['question_difficulty'] = '0';
-                        $this->level_data['question']['question_enabled'] = 'false';
-                        $this->level_data['question']['question_position'] = 0;
-                        $this->level_data['question']['question_timer'] = 0;
-                        $this->level_data['question']['question_fullscreen'] = 'false';
-                        $this->level_data['question']['question_inline_answers'] = 'false';
-                        $this->level_data['question']['question_auto_next'] = 'false';
-                        break;
-                    }
-                    case 'answer': {
-                        $this->addQuestion();
-                        $this->level_data['answer']['answer_question_id'] = '1';
-                        $this->level_data['answer']['answer_description'] = 'default';
-                        $this->level_data['answer']['answer_explanation'] = '';
-                        $this->level_data['answer']['answer_isright'] = 'false';
-                        $this->level_data['answer']['answer_enabled'] = 'false';
-                        $this->level_data['answer']['answer_position'] = '0';
-                        $this->level_data['answer']['answer_keyboard_key'] = '';
-                        break;
-                    }
-                }
 
-                break;
-            }
-            default: {
-                $this->current_element = $this->level . '_' . $name;
-                $this->current_data = '';
-                break;
-            }
+                    break;
+                }
+            default:
+                {
+                    $this->current_element = $this->level . '_' . $name;
+                    $this->current_data = '';
+                    break;
+                }
         }
     }
 
@@ -213,45 +210,60 @@ class XMLQuestionImporter
     private function endElementHandler($parser, $name)
     {
         global $l, $db;
-        require_once('../config/tce_config.php');
+        require_once '../config/tce_config.php';
         $name = strtolower($name);
         switch ($name) {
-            case 'module': {
-                $this->addModule();
-                $this->level = '';
-                break;
-            }
-            case 'subject': {
-                $this->addSubject();
-                $this->level = 'module';
-                break;
-            }
-            case 'question': {
-                $this->addQuestion();
-                $this->level = 'subject';
-                break;
-            }
-            case 'answer': {
-                $this->addAnswer();
-                $this->level = 'question';
-                break;
-            }
-            default: {
-                $elname = $this->level . '_' . $name;
-                if ($this->current_element === $elname) {
-                    // convert XML special chars
-                    $this->level_data[$this->level][$this->current_element] = F_xml_to_text(utrim($this->current_data));
-                    if ($this->current_element == 'question_description' || $this->current_element == 'answer_description') {
-                        // normalize UTF-8 string based on settings
-                        $this->level_data[$this->level][$this->current_element] = F_utf8_normalizer($this->level_data[$this->level][$this->current_element], K_UTF8_NORMALIZATION_MODE);
+            case 'module':
+                {
+                    $this->addModule();
+                    $this->level = '';
+                    break;
+                }
+            case 'subject':
+                {
+                    $this->addSubject();
+                    $this->level = 'module';
+                    break;
+                }
+            case 'question':
+                {
+                    $this->addQuestion();
+                    $this->level = 'subject';
+                    break;
+                }
+            case 'answer':
+                {
+                    $this->addAnswer();
+                    $this->level = 'question';
+                    break;
+                }
+            default:
+                {
+                    $elname = $this->level . '_' . $name;
+                    if ($this->current_element === $elname) {
+                        // convert XML special chars
+                        $this->level_data[$this->level][$this->current_element] = F_xml_to_text(utrim($this->current_data));
+                        if (
+                            $this->current_element == 'question_description'
+                            || $this->current_element == 'answer_description'
+                        ) {
+                            // normalize UTF-8 string based on settings
+                            $this->level_data[$this->level][$this->current_element] = F_utf8_normalizer(
+                                $this->level_data[$this->level][$this->current_element],
+                                K_UTF8_NORMALIZATION_MODE,
+                            );
+                        }
+
+                        // escape for SQL
+                        $this->level_data[$this->level][$this->current_element] = F_escape_sql(
+                            $db,
+                            $this->level_data[$this->level][$this->current_element],
+                            false,
+                        );
                     }
 
-                    // escape for SQL
-                    $this->level_data[$this->level][$this->current_element] = F_escape_sql($db, $this->level_data[$this->level][$this->current_element], false);
+                    break;
                 }
-
-                break;
-            }
         }
     }
 
@@ -276,21 +288,26 @@ class XMLQuestionImporter
     private function addModule()
     {
         global $l, $db;
-        require_once('../config/tce_config.php');
-        require_once('../../shared/code/tce_functions_auth_sql.php');
+        require_once '../config/tce_config.php';
+        require_once '../../shared/code/tce_functions_auth_sql.php';
         if (isset($this->level_data['module']['module_id']) && $this->level_data['module']['module_id'] > 0) {
             return;
         }
 
         // check if this module already exist
-        $sql = 'SELECT module_id
-			FROM ' . K_TABLE_MODULES . '
-			WHERE module_name=\'' . $this->level_data['module']['module_name'] . '\'
+        $sql =
+            'SELECT module_id
+			FROM '
+            . K_TABLE_MODULES
+            . '
+			WHERE module_name=\''
+            . $this->level_data['module']['module_name']
+            . '\'
 			LIMIT 1';
         if ($r = F_db_query($sql, $db)) {
             if ($m = F_db_fetch_array($r)) {
                 // get existing module ID
-                if (! F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['module_id'], 'module_user_id')) {
+                if (!F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['module_id'], 'module_user_id')) {
                     // unauthorized user
                     $this->level_data['module']['module_id'] = false;
                 } else {
@@ -298,16 +315,25 @@ class XMLQuestionImporter
                 }
             } else {
                 // insert new module
-                $sql = 'INSERT INTO ' . K_TABLE_MODULES . ' (
+                $sql =
+                    'INSERT INTO '
+                    . K_TABLE_MODULES
+                    . ' (
 					module_name,
 					module_enabled,
 					module_user_id
 					) VALUES (
-					\'' . $this->level_data['module']['module_name'] . '\',
-					\'' . $this->boolval[$this->level_data['module']['module_enabled']] . '\',
-					\'' . $_SESSION['session_user_id'] . '\'
+					\''
+                    . $this->level_data['module']['module_name']
+                    . '\',
+					\''
+                    . $this->boolval[$this->level_data['module']['module_enabled']]
+                    . '\',
+					\''
+                    . $_SESSION['session_user_id']
+                    . '\'
 					)';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error();
                 } else {
                     // get new module ID
@@ -326,7 +352,7 @@ class XMLQuestionImporter
     private function addSubject()
     {
         global $l, $db;
-        require_once('../config/tce_config.php');
+        require_once '../config/tce_config.php';
         if ($this->level_data['module']['module_id'] === false) {
             return;
         }
@@ -336,10 +362,17 @@ class XMLQuestionImporter
         }
 
         // check if this subject already exist
-        $sql = 'SELECT subject_id
-			FROM ' . K_TABLE_SUBJECTS . '
-			WHERE subject_name=\'' . $this->level_data['subject']['subject_name'] . '\'
-				AND subject_module_id=' . $this->level_data['module']['module_id'] . '
+        $sql =
+            'SELECT subject_id
+			FROM '
+            . K_TABLE_SUBJECTS
+            . '
+			WHERE subject_name=\''
+            . $this->level_data['subject']['subject_name']
+            . '\'
+				AND subject_module_id='
+            . $this->level_data['module']['module_id']
+            . '
 			LIMIT 1';
         if ($r = F_db_query($sql, $db)) {
             if ($m = F_db_fetch_array($r)) {
@@ -347,20 +380,33 @@ class XMLQuestionImporter
                 $this->level_data['subject']['subject_id'] = $m['subject_id'];
             } elseif ($this->level_data['module']['module_id'] !== false) {
                 // insert new subject
-                $sql = 'INSERT INTO ' . K_TABLE_SUBJECTS . ' (
+                $sql =
+                    'INSERT INTO '
+                    . K_TABLE_SUBJECTS
+                    . ' (
 					subject_name,
 					subject_description,
 					subject_enabled,
 					subject_user_id,
 					subject_module_id
 					) VALUES (
-					\'' . $this->level_data['subject']['subject_name'] . '\',
-					' . F_empty_to_null($this->level_data['subject']['subject_description']) . ',
-					\'' . $this->boolval[$this->level_data['subject']['subject_enabled']] . '\',
-					\'' . $_SESSION['session_user_id'] . '\',
-					' . $this->level_data['module']['module_id'] . '
+					\''
+                    . $this->level_data['subject']['subject_name']
+                    . '\',
+					'
+                    . F_empty_to_null($this->level_data['subject']['subject_description'])
+                    . ',
+					\''
+                    . $this->boolval[$this->level_data['subject']['subject_enabled']]
+                    . '\',
+					\''
+                    . $_SESSION['session_user_id']
+                    . '\',
+					'
+                    . $this->level_data['module']['module_id']
+                    . '
 					)';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error();
                 } else {
                     // get new subject ID
@@ -381,7 +427,7 @@ class XMLQuestionImporter
     private function addQuestion()
     {
         global $l, $db;
-        require_once('../config/tce_config.php');
+        require_once '../config/tce_config.php';
         if ($this->level_data['module']['module_id'] === false) {
             return;
         }
@@ -399,9 +445,13 @@ class XMLQuestionImporter
 			FROM ' . K_TABLE_QUESTIONS . '
 			WHERE ';
         if (K_DATABASE_TYPE == 'ORACLE') {
-            $sql .= "dbms_lob.instr(question_description,'" . $this->level_data['question']['question_description'] . "',1,1)>0";
+            $sql .=
+                "dbms_lob.instr(question_description,'"
+                . $this->level_data['question']['question_description']
+                . "',1,1)>0";
         } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-            $sql .= "question_description='" . $this->level_data['question']['question_description'] . "' COLLATE utf8_bin";
+            $sql .=
+                "question_description='" . $this->level_data['question']['question_description'] . "' COLLATE utf8_bin";
         } else {
             $sql .= "question_description='" . $this->level_data['question']['question_description'] . "'";
         }
@@ -422,10 +472,22 @@ class XMLQuestionImporter
             $maxkey = 240;
             $strkeylimit = min($maxkey, strlen($this->level_data['question']['question_description']));
             $stop = $maxkey / 3;
-            while (in_array(md5(strtolower(substr($this->level_data['subject']['subject_id'] . $this->level_data['question']['question_description'], 0, $strkeylimit))), $this->questionhash) && $stop > 0) {
+            while (
+                in_array(
+                    md5(strtolower(substr(
+                        $this->level_data['subject']['subject_id']
+                        . $this->level_data['question']['question_description'],
+                        0,
+                        $strkeylimit,
+                    ))),
+                    $this->questionhash,
+                )
+                && $stop > 0
+            ) {
                 // a similar question was already imported from this XML, so we change it a little bit to avoid duplicate keys
-                $this->level_data['question']['question_description'] = '_' . $this->level_data['question']['question_description'];
-                $strkeylimit = min($maxkey, ($strkeylimit + 1));
+                $this->level_data['question']['question_description'] =
+                    '_' . $this->level_data['question']['question_description'];
+                $strkeylimit = min($maxkey, $strkeylimit + 1);
                 --$stop; // variable used to avoid infinite loop
             }
 
@@ -436,12 +498,15 @@ class XMLQuestionImporter
         }
 
         $sql = 'START TRANSACTION';
-        if (! $r = F_db_query($sql, $db)) {
+        if (!($r = F_db_query($sql, $db))) {
             F_display_db_error();
         }
 
         // insert question
-        $sql = 'INSERT INTO ' . K_TABLE_QUESTIONS . ' (
+        $sql =
+            'INSERT INTO '
+            . K_TABLE_QUESTIONS
+            . ' (
 			question_subject_id,
 			question_description,
 			question_explanation,
@@ -454,30 +519,56 @@ class XMLQuestionImporter
 			question_inline_answers,
 			question_auto_next
 			) VALUES (
-			' . $this->level_data['subject']['subject_id'] . ',
-			\'' . $this->level_data['question']['question_description'] . '\',
-			' . F_empty_to_null($this->level_data['question']['question_explanation']) . ',
-			\'' . $this->qtype[$this->level_data['question']['question_type']] . '\',
-			\'' . $this->level_data['question']['question_difficulty'] . '\',
-			\'' . $this->boolval[$this->level_data['question']['question_enabled']] . '\',
-			' . F_zero_to_null((int) $this->level_data['question']['question_position']) . ',
-			\'' . $this->level_data['question']['question_timer'] . '\',
-			\'' . $this->boolval[$this->level_data['question']['question_fullscreen']] . '\',
-			\'' . $this->boolval[$this->level_data['question']['question_inline_answers']] . '\',
-			\'' . $this->boolval[$this->level_data['question']['question_auto_next']] . '\'
+			'
+            . $this->level_data['subject']['subject_id']
+            . ',
+			\''
+            . $this->level_data['question']['question_description']
+            . '\',
+			'
+            . F_empty_to_null($this->level_data['question']['question_explanation'])
+            . ',
+			\''
+            . $this->qtype[$this->level_data['question']['question_type']]
+            . '\',
+			\''
+            . $this->level_data['question']['question_difficulty']
+            . '\',
+			\''
+            . $this->boolval[$this->level_data['question']['question_enabled']]
+            . '\',
+			'
+            . F_zero_to_null((int) $this->level_data['question']['question_position'])
+            . ',
+			\''
+            . $this->level_data['question']['question_timer']
+            . '\',
+			\''
+            . $this->boolval[$this->level_data['question']['question_fullscreen']]
+            . '\',
+			\''
+            . $this->boolval[$this->level_data['question']['question_inline_answers']]
+            . '\',
+			\''
+            . $this->boolval[$this->level_data['question']['question_auto_next']]
+            . '\'
 			)';
-        if (! $r = F_db_query($sql, $db)) {
+        if (!($r = F_db_query($sql, $db))) {
             F_display_db_error(false);
         } else {
             // get new question ID
             $this->level_data['question']['question_id'] = F_db_insert_id($db, K_TABLE_QUESTIONS, 'question_id');
             if (K_DATABASE_TYPE === 'MYSQL') {
-                $this->questionhash[] = md5(strtolower(substr($this->level_data['subject']['subject_id'] . $this->level_data['question']['question_description'], 0, $strkeylimit)));
+                $this->questionhash[] = md5(strtolower(substr(
+                    $this->level_data['subject']['subject_id'] . $this->level_data['question']['question_description'],
+                    0,
+                    $strkeylimit,
+                )));
             }
         }
 
         $sql = 'COMMIT';
-        if (! $r = F_db_query($sql, $db)) {
+        if (!($r = F_db_query($sql, $db))) {
             F_display_db_error();
         }
     }
@@ -489,7 +580,7 @@ class XMLQuestionImporter
     private function addAnswer()
     {
         global $l, $db;
-        require_once('../config/tce_config.php');
+        require_once '../config/tce_config.php';
         if ($this->level_data['module']['module_id'] === false) {
             return;
         }
@@ -507,7 +598,8 @@ class XMLQuestionImporter
 			FROM ' . K_TABLE_ANSWERS . '
 			WHERE ';
         if (K_DATABASE_TYPE == 'ORACLE') {
-            $sql .= "dbms_lob.instr(answer_description, '" . $this->level_data['answer']['answer_description'] . "',1,1)>0";
+            $sql .=
+                "dbms_lob.instr(answer_description, '" . $this->level_data['answer']['answer_description'] . "',1,1)>0";
         } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
             $sql .= "answer_description='" . $this->level_data['answer']['answer_description'] . "' COLLATE utf8_bin";
         } else {
@@ -521,11 +613,14 @@ class XMLQuestionImporter
                 $this->level_data['answer']['answer_id'] = $m['answer_id'];
             } else {
                 $sql = 'START TRANSACTION';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error();
                 }
 
-                $sql = 'INSERT INTO ' . K_TABLE_ANSWERS . ' (
+                $sql =
+                    'INSERT INTO '
+                    . K_TABLE_ANSWERS
+                    . ' (
 					answer_question_id,
 					answer_description,
 					answer_explanation,
@@ -534,15 +629,29 @@ class XMLQuestionImporter
 					answer_position,
 					answer_keyboard_key
 					) VALUES (
-					' . $this->level_data['question']['question_id'] . ',
-					\'' . $this->level_data['answer']['answer_description'] . '\',
-					' . F_empty_to_null($this->level_data['answer']['answer_explanation']) . ',
-					\'' . $this->boolval[$this->level_data['answer']['answer_isright']] . '\',
-					\'' . $this->boolval[$this->level_data['answer']['answer_enabled']] . '\',
-					' . F_zero_to_null((int) $this->level_data['answer']['answer_position']) . ',
-					' . F_empty_to_null($this->level_data['answer']['answer_keyboard_key']) . '
+					'
+                    . $this->level_data['question']['question_id']
+                    . ',
+					\''
+                    . $this->level_data['answer']['answer_description']
+                    . '\',
+					'
+                    . F_empty_to_null($this->level_data['answer']['answer_explanation'])
+                    . ',
+					\''
+                    . $this->boolval[$this->level_data['answer']['answer_isright']]
+                    . '\',
+					\''
+                    . $this->boolval[$this->level_data['answer']['answer_enabled']]
+                    . '\',
+					'
+                    . F_zero_to_null((int) $this->level_data['answer']['answer_position'])
+                    . ',
+					'
+                    . F_empty_to_null($this->level_data['answer']['answer_keyboard_key'])
+                    . '
 					)';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error(false);
                     F_db_query('ROLLBACK', $db);
                 } else {
@@ -551,7 +660,7 @@ class XMLQuestionImporter
                 }
 
                 $sql = 'COMMIT';
-                if (! $r = F_db_query($sql, $db)) {
+                if (!($r = F_db_query($sql, $db))) {
                     F_display_db_error();
                 }
             }
@@ -560,7 +669,3 @@ class XMLQuestionImporter
         }
     }
 } // END OF CLASS
-
-//============================================================+
-// END OF FILE
-//============================================================+

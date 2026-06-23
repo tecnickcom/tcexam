@@ -7,17 +7,9 @@
 //
 // Description : Functions to export users using TSV format.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -29,12 +21,10 @@
  * @since 2006-03-30
  */
 
-
-
 // check user's authorization
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 $pagelevel = K_AUTH_EXPORT_USERS;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 // send headers
 header('Content-Description: TXT File Transfer');
@@ -62,7 +52,7 @@ echo F_tsv_export_users();
 function F_tsv_export_users()
 {
     global $l, $db;
-    require_once('../config/tce_config.php');
+    require_once '../config/tce_config.php';
 
     $tsv = ''; // TSV data to be returned
 
@@ -87,12 +77,24 @@ function F_tsv_export_users()
     $sql = 'SELECT * FROM ' . K_TABLE_USERS . ' WHERE (user_id>1)';
     if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
         // filter for level
-        $sql .= ' AND ((user_level<' . $_SESSION['session_user_level'] . ') OR (user_id=' . $_SESSION['session_user_id'] . '))';
+        $sql .=
+            ' AND ((user_level<'
+            . $_SESSION['session_user_level']
+            . ') OR (user_id='
+            . $_SESSION['session_user_id']
+            . '))';
         // filter for groups
-        $sql .= ' AND user_id IN (SELECT tb.usrgrp_user_id
-			FROM ' . K_TABLE_USERGROUP . ' AS ta, ' . K_TABLE_USERGROUP . ' AS tb
+        $sql .=
+            ' AND user_id IN (SELECT tb.usrgrp_user_id
+			FROM '
+            . K_TABLE_USERGROUP
+            . ' AS ta, '
+            . K_TABLE_USERGROUP
+            . ' AS tb
 			WHERE ta.usrgrp_group_id=tb.usrgrp_group_id
-				AND ta.usrgrp_user_id=' . (int) $_SESSION['session_user_id'] . '
+				AND ta.usrgrp_user_id='
+            . (int) $_SESSION['session_user_id']
+            . '
 				AND tb.usrgrp_user_id=user_id)';
     }
 
@@ -117,10 +119,17 @@ function F_tsv_export_users()
             $tsv .= K_TAB;
             $grp = '';
             // comma separated list of user's groups
-            $sqlg = 'SELECT *
-				FROM ' . K_TABLE_GROUPS . ', ' . K_TABLE_USERGROUP . '
+            $sqlg =
+                'SELECT *
+				FROM '
+                . K_TABLE_GROUPS
+                . ', '
+                . K_TABLE_USERGROUP
+                . '
 				WHERE usrgrp_group_id=group_id
-					AND usrgrp_user_id=' . $m['user_id'] . '
+					AND usrgrp_user_id='
+                . $m['user_id']
+                . '
 				ORDER BY group_name';
             if ($rg = F_db_query($sqlg, $db)) {
                 while ($mg = F_db_fetch_array($rg)) {
@@ -141,7 +150,3 @@ function F_tsv_export_users()
 
     return $tsv;
 }
-
-//============================================================+
-// END OF FILE
-//============================================================+

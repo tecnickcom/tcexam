@@ -1,0 +1,19 @@
+variant = "loose"
+
+[[issues]]
+file = "test/bootstrap.php"
+code = "function-name"
+message = "Function name `F_file_exists` should be in snake case."
+count = 1
+
+[[issues]]
+file = "test/bootstrap.php"
+code = "no-error-control-operator"
+message = "Unsafe use of error control operator `@`."
+count = 1
+
+[[issues]]
+file = "test/integration/AppHttpTestCase.php"
+code = "prefer-early-continue"
+message = "Consider using early continue pattern to reduce nesting."
+count = 2

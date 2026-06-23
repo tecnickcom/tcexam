@@ -7,17 +7,9 @@
 //
 // Description : Output XHTML unordered list menu for user.
 //
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//
 // License:
 //    Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
-//    See LICENSE.TXT file for more information.
+//    See LICENSE file for more information.
 //============================================================+
 
 /**
@@ -28,15 +20,13 @@
  * @since 2010-09-20
  */
 
-
-
-require_once('../config/tce_config.php');
+require_once '../config/tce_config.php';
 
 $pagelevel = K_AUTH_PAGE_USER;
-require_once('../../shared/code/tce_authorization.php');
+require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['w_user'];
-require_once('../code/tce_page_header.php');
+require_once '../code/tce_page_header.php';
 
 echo '<div class="container">' . K_NEWLINE;
 
@@ -50,8 +40,4 @@ echo '</ul>' . K_NEWLINE;
 
 echo '</div>' . K_NEWLINE;
 
-require_once('../code/tce_page_footer.php');
-
-//============================================================+
-// END OF FILE
-//============================================================+
+require_once '../code/tce_page_footer.php';

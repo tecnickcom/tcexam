@@ -1,0 +1,42 @@
+# MySQL/MariaDB override for the integration test stack (see docker-compose-test.yml).
+# Seeds a throwaway MariaDB instance from the shipped install SQL and points the runner at it.
+
+services:
+  tcexam_db:
+    container_name: tcexam_test_db
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: tcexam
+      MARIADB_USER: tcexam
+      MARIADB_PASSWORD: tcexam
+      MARIADB_ROOT_PASSWORD: root
+    # The official image runs *.sql in /docker-entrypoint-initdb.d in name order on first init:
+    # structure first, then the default data.
+    volumes:
+      - ./install/mysql_db_structure.sql:/docker-entrypoint-initdb.d/01-structure.sql:ro
+      - ./install/db_data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  tcexam_app:
+    environment:
+      TCEXAM_DB_TYPE: MYSQL
+      TCEXAM_DB_HOST: tcexam_db
+      TCEXAM_DB_PORT: "3306"
+    depends_on:
+      tcexam_db:
+        condition: service_healthy
+
+  tcexam_integration:
+    environment:
+      TCEXAM_DB_TYPE: MYSQL
+      TCEXAM_DB_HOST: tcexam_db
+      TCEXAM_DB_PORT: "3306"
+    depends_on:
+      tcexam_db:
+        condition: service_healthy
+      tcexam_app:
+        condition: service_healthy

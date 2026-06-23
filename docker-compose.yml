@@ -1,0 +1,69 @@
+# TCExam development / demo stack (plan Stage 7).
+#
+#   docker compose up --build        # or: make up
+#   then open http://localhost:8080/  and sign in at /admin/code/ (admin / 1234).
+#
+# The app entrypoint runs the non-interactive installer automatically using the TCEXAM_* settings
+# below, so no browser install step is required. The installer is idempotent.
+#
+# Volumes persist the database, the generated PDF fonts, the cache and the installed configuration
+# (including the generated K_RANDOM_SECURITY) across restarts, so the installed instance survives
+# `docker compose down` / `up`. For PostgreSQL, swap the db service for a postgres image and set
+# TCEXAM_DB_TYPE=POSTGRESQL / TCEXAM_DB_PORT=5432 on the app service.
+
+services:
+  app:
+    build: .
+    image: tecnickcom/tcexam:local
+    restart: unless-stopped
+    ports:
+      - "${TCEXAM_PORT:-8080}:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    # The entrypoint runs the non-interactive installer with these settings on first start, so no
+    # browser install step is needed (it is idempotent: existing config and data are preserved).
+    environment:
+      TCEXAM_DB_TYPE: MYSQL
+      TCEXAM_DB_HOST: db
+      TCEXAM_DB_PORT: "3306"
+      TCEXAM_DB_NAME: tcexam
+      TCEXAM_DB_USER: tcexam
+      TCEXAM_DB_PASSWORD: tcexam
+      TCEXAM_TABLE_PREFIX: tce_
+      TCEXAM_PATH_HOST: "http://localhost:${TCEXAM_PORT:-8080}"
+      TCEXAM_PATH_TCEXAM: /
+      TCEXAM_PATH_MAIN: /var/www/html/
+      TCEXAM_STANDARD_PORT: "${TCEXAM_PORT:-8080}"
+    volumes:
+      - tcexam_fonts:/var/www/html/vendor/tecnickcom/tc-lib-pdf-font/target/fonts
+      - tcexam_cache:/var/www/html/cache
+      # Persist the installed configuration (incl. the generated K_RANDOM_SECURITY) so the
+      # instance survives `docker compose down` / `up`, like the database and font volumes.
+      - tcexam_config_shared:/var/www/html/shared/config
+      - tcexam_config_admin:/var/www/html/admin/config
+      - tcexam_config_public:/var/www/html/public/config
+
+  db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: tcexam
+      MARIADB_USER: tcexam
+      MARIADB_PASSWORD: tcexam
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - tcexam_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  tcexam_db:
+  tcexam_fonts:
+  tcexam_cache:
+  tcexam_config_shared:
+  tcexam_config_admin:
+  tcexam_config_public:
