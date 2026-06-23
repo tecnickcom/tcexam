@@ -99,8 +99,12 @@ define('PDF_MARGIN_RIGHT', 15);
 
 /**
  * Main font name.
+ * DejaVu Sans is used by default because it carries a broad Unicode glyph set
+ * (Latin with diacritics, Cyrillic, Greek, ...) so exported PDFs render the
+ * non-Latin languages TCExam supports. The 14 standard PDF fonts (e.g. helvetica)
+ * only cover Latin-1. For CJK content set a cid0* font here.
  */
-define('PDF_FONT_NAME_MAIN', 'helvetica');
+define('PDF_FONT_NAME_MAIN', 'dejavusans');
 
 /**
  * Main font size.
@@ -109,8 +113,10 @@ define('PDF_FONT_SIZE_MAIN', 9);
 
 /**
  * Data font name.
+ * See PDF_FONT_NAME_MAIN: DejaVu Sans is used so the test/answer content (which may
+ * be in any of the supported languages) renders with the correct glyphs.
  */
-define('PDF_FONT_NAME_DATA', 'helvetica');
+define('PDF_FONT_NAME_DATA', 'dejavusans');
 
 /**
  * Data font size.

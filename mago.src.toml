@@ -44,7 +44,7 @@ excessive-nesting = { enabled = true, threshold = 10, function-like-threshold = 
 too-many-methods = { enabled = false }
 too-many-properties = { enabled = false }
 # Disabled: rules that fight TCExam's procedural architecture — correct new code in this
-# repo also trips them, so enforcing them buys nothing (see PLAN_LINT.md, Part A).
+# repo also trips them, so enforcing them buys nothing.
 no-request-variable = { enabled = false }   # direct $_REQUEST/$_GET is the request model
 no-global = { enabled = false }             # global config model is architectural
 no-assign-in-condition = { enabled = false } # while ($row = ...fetch()) idiom

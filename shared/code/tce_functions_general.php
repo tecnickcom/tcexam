@@ -343,7 +343,7 @@ function utrim($txt)
 /**
  * Convert all IP addresses to IPv6 expanded notation.
  * @param $ip (string) IP address to normalize.
- * @return string IPv6 address in expanded notation or false in case of invalid input.
+ * @return string|false IPv6 address in expanded notation or false in case of invalid input.
  * @since 7.1.000 (2009-02-13)
  */
 function getNormalizedIP($ip)
@@ -414,16 +414,23 @@ function getNormalizedIP($ip)
 }
 
 /**
- * Converts a string containing an IP address into its integer value.
+ * Converts an IP address into its packed 16-byte binary representation (network byte order).
+ * This preserves full 128-bit precision and is case-insensitive, so the returned fixed-width
+ * byte strings can be ordered and range-compared losslessly with strcmp() (see F_isValidIP).
+ * Input may use any notation accepted by getNormalizedIP() (IPv4, IPv6, or the expanded form
+ * already stored in the database).
  * @param $ip (string) IP address to convert.
- * @return int IP address as integer number.
- * @since 7.1.000 (2009-02-13)
+ * @return string|false 16-byte packed IPv6 address, or false on invalid input.
+ * @since 17.1.0 (2026-06-23)
  */
-function getIpAsInt($ip)
+function getIpAsBytes($ip): string|false
 {
-    $ip = getNormalizedIP($ip);
-    $ip = str_replace(':', '', $ip);
-    return hexdec($ip);
+    $norm = getNormalizedIP($ip);
+    if ($norm === false) {
+        return false;
+    }
+
+    return @inet_pton($norm);
 }
 
 /**

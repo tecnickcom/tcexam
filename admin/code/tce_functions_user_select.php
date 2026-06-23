@@ -714,7 +714,7 @@ function F_show_select_user_popup(
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
-                        . htmlspecialchars($m['user_lastname'], ENT_NOQUOTES, $l['a_meta_charset'])
+                        . htmlspecialchars($m['user_lastname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
                         . K_NEWLINE
                 ;
@@ -722,7 +722,7 @@ function F_show_select_user_popup(
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
-                        . htmlspecialchars($m['user_firstname'], ENT_NOQUOTES, $l['a_meta_charset'])
+                        . htmlspecialchars($m['user_firstname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
                         . K_NEWLINE
                 ;
@@ -730,7 +730,7 @@ function F_show_select_user_popup(
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
-                        . htmlspecialchars($m['user_email'], ENT_NOQUOTES, $l['a_meta_charset'])
+                        . htmlspecialchars($m['user_email'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
                         . K_NEWLINE
                 ;
@@ -738,7 +738,7 @@ function F_show_select_user_popup(
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
-                        . htmlspecialchars($m['user_regnumber'], ENT_NOQUOTES, $l['a_meta_charset'])
+                        . htmlspecialchars($m['user_regnumber'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
                         . K_NEWLINE
                 ;

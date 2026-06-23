@@ -121,7 +121,7 @@ format:
 ## Statically analyze and lint the source code with mago
 # Baselines freeze pre-existing legacy debt so only NEW issues fail the build.
 # Regenerate after fixing real issues: add --generate-baseline (or
-# --remove-outdated-baseline-entries to prune stale entries). See PLAN_LINT.md.
+# --remove-outdated-baseline-entries to prune stale entries).
 .PHONY: lint
 lint:
 	./vendor/bin/mago --config ./mago.src.toml lint --baseline ./mago.lint.baseline.toml

@@ -55,3 +55,6 @@ if (! function_exists('F_file_exists')) {
 require_once __DIR__ . '/../shared/code/tce_functions_general.php';
 require_once __DIR__ . '/../shared/code/tce_functions_session.php';
 require_once __DIR__ . '/../shared/code/tce_tmx.php';
+// Form helpers: the top-level CSRF guard self-skips under the CLI SAPI (no POST action), and the
+// only include-time side effect is defining K_EMAIL_RE_PATTERN. F_check_fields_format() is pure.
+require_once __DIR__ . '/../shared/code/tce_functions_form.php';

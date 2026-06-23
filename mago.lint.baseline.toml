@@ -1557,6 +1557,12 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "function-name"
+message = "Function name `F_get_field_format_registry` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "function-name"
 message = "Function name `F_submit_button` should be in snake case."
 count = 1
 
@@ -1803,7 +1809,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "function-name"
-message = "Function name `getIpAsInt` should be in snake case."
+message = "Function name `getIpAsBytes` should be in snake case."
 count = 1
 
 [[issues]]
@@ -1834,7 +1840,7 @@ count = 17
 file = "shared/code/tce_functions_general.php"
 code = "no-error-control-operator"
 message = "Unsafe use of error control operator `@`."
-count = 2
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -2362,7 +2368,7 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
-count = 43
+count = 42
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"

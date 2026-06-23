@@ -92,7 +92,13 @@ if ($r = F_db_query($sql, $db)) {
                 $barcode = new Com\Tecnick\Barcode\Barcode();
                 $qrcode = $barcode->getBarcodeObj(
                     'QRCODE,H',
-                    'otpauth://totp/' . $m['user_name'] . '@' . $host . '?secret=' . $m['user_otpkey'],
+                    'otpauth://totp/'
+                    . rawurlencode($host . ':' . $m['user_name'])
+                    . '?secret='
+                    . rawurlencode($m['user_otpkey'])
+                    . '&issuer='
+                    . rawurlencode($host)
+                    . '&algorithm=SHA1&digits=6&period=30',
                     -6,
                     -6,
                     'black',

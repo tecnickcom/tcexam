@@ -103,48 +103,102 @@ function F_check_required_fields($formfields)
 }
 
 /**
- * Check fields format using regular expression comparisons.<br>
+ * Server-side registry of canonical field-format patterns, keyed by form field name.
+ *
+ * This is the single source of truth used by F_check_fields_format() to validate submitted
+ * values. The matching pattern is resolved here, on the server, by field name.
+ *
+ * Field names are static across the application, so a flat "name => un-delimited regex" map is
+ * sufficient. Configurable constants are reused where they already exist.
+ *
+ * @return array<string,string> map of field name to un-delimited regular expression
+ */
+function F_get_field_format_registry(): array
+{
+    // Canonical, server-authored patterns (the password pattern is admin-configurable).
+    $re_email = K_EMAIL_RE_PATTERN;
+    $re_password = defined('K_USRREG_PASSWORD_RE') ? K_USRREG_PASSWORD_RE : '^(.{8,})$';
+    $re_int = '^([0-9]*)$';
+    $re_decimal = '^([0-9\+\-]*)([\.]?)([0-9]*)$';
+    $re_iplist = '^([0-9a-fA-F,\:\.\*-]*)$';
+    $re_date = '^([0-9]{4})([\-])([0-9]{2})([\-])([0-9]{2})$';
+    $re_datetime = '^([0-9]{4})([\-])([0-9]{2})([\-])([0-9]{2})([ T])([0-9]{2})([\:])([0-9]{2})(([\:])([0-9]{2}))?$';
+
+    return [
+        // user identity / credentials
+        'user_email' => $re_email,
+        'newpassword' => $re_password,
+        'new_test_password' => $re_password,
+        'user_birthdate' => $re_date,
+        // test definition
+        'test_begin_time' => $re_datetime,
+        'test_end_time' => $re_datetime,
+        'test_duration_time' => $re_int,
+        'test_ip_range' => $re_iplist,
+        'test_score_right' => $re_decimal,
+        'test_score_wrong' => $re_decimal,
+        'test_score_unanswered' => $re_decimal,
+        'test_score_threshold' => $re_decimal,
+        'tsubset_quantity' => $re_int,
+        'tsubset_answers' => $re_int,
+        // question / rating
+        'question_timer' => $re_int,
+        'testlog_score' => $re_decimal,
+    ];
+}
+
+/**
+ * Check fields format against the server-side canonical pattern registry.<br>
  * Returns a string containing a list of wrong fields (comma separated).
  *
- * NOTE:
- * to check a field create a new hidden field with the same name starting with 'x_'
+ * For every field present in F_get_field_format_registry() that was submitted with a non-empty
+ * value, the value is matched against its canonical (server-authored) pattern. The client-supplied
+ * 'x_<field>' value is ignored entirely, so a tampered/omitted/malicious pattern can neither bypass
+ * validation nor be executed as a regular expression.
  *
- * An example powerful regular expression for email check is:
- *  ^([a-zA-Z0-9_\.\-]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$
- * @param $formfields (string) input array containing form fields
- * @return array containing a list of wrongfields (if any)
+ * @param $formfields (array) input array containing form fields
+ * @return string comma-separated list of wrong fields (empty when all valid)
  */
 function F_check_fields_format($formfields)
 {
     global $l;
-    if (empty($formfields)) {
+    if (!is_array($formfields) || empty($formfields)) {
         return '';
     }
 
-    reset($formfields);
-    $wrongfields = '';
-    foreach ($formfields as $key => $value) {
-        if (str_starts_with($key, 'x_')) {
-            $fieldname = substr($key, 2);
-            $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
-            //if is not empty
-            if (
-                array_key_exists($fieldname, $formfields)
-                && strlen($formfields[$fieldname]) > 0
-                && !preg_match("'" . stripslashes($value) . "'i", $formfields[$fieldname])
-            ) {
-                //check regular expression
-                if (isset($formfields['xl_' . $fieldname]) && !empty($formfields['xl_' . $fieldname])) { //check if field has label
-                    $fieldname = htmlspecialchars($formfields['xl_' . $fieldname], ENT_NOQUOTES, $l['a_meta_charset']);
-                }
+    // Upper bound on the value length we will run a pattern against; bounds worst-case
+    // backtracking cost so an over-long submitted value cannot stall the request (maxlength is
+    // a client-only hint and is not enforced by the browser for a crafted POST).
+    $maxvaluelen = 4096;
 
-                $wrongfields .= ', ' . stripslashes($fieldname);
+    $wrongfields = '';
+    foreach (F_get_field_format_registry() as $fieldname => $pattern) {
+        // only validate fields that were actually submitted with a non-empty scalar value
+        $raw = $formfields[$fieldname] ?? null;
+        if (!is_scalar($raw) || strlen((string) $raw) === 0) {
+            continue;
+        }
+
+        $value = (string) $raw;
+        // an over-long value is treated as invalid rather than risk a costly match. Patterns are
+        // server-authored constants, so preg_match needs no error suppression.
+        $matches = strlen($value) <= $maxvaluelen ? preg_match('~' . $pattern . '~i', $value) : 0;
+        // $matches === false means the (server-authored) pattern errored: treat as "skip" so a
+        // bad pattern cannot silently reject every submission; only a clean 0 means "wrong format".
+        if ($matches === 0) {
+            $label = $fieldname;
+            $xlabel = $formfields['xl_' . $fieldname] ?? ''; // human label supplied by the form
+            if (is_scalar($xlabel) && (string) $xlabel !== '') {
+                $charset = (string) ($l['a_meta_charset'] ?? 'UTF-8');
+                $label = htmlspecialchars((string) $xlabel, ENT_NOQUOTES, $charset);
             }
+
+            $wrongfields .= ', ' . $label;
         }
     }
 
     if (strlen($wrongfields) > 1) {
-        $wrongfields = substr($wrongfields, 2); // cuts first 2 chars
+        $wrongfields = substr($wrongfields, 2); // cuts first 2 chars (", ")
     }
 
     return $wrongfields;
@@ -392,15 +446,10 @@ function getFormRowTextInput(
     }
 
     if (strlen($format) > 0) {
-        $str .=
-            '<input type="hidden" name="x_'
-            . $field_name
-            . '" id="x_'
-            . $field_name
-            . '" value="'
-            . $format
-            . '" />'
-            . K_NEWLINE;
+        // The value's format is validated server-side against a canonical pattern looked up by
+        // field name (see F_get_field_format_registry()); the regex is no longer shipped to, nor
+        // read back from, the client. Only the human label is emitted, used to name the field in
+        // any "wrong format" error message.
         $str .=
             '<input type="hidden" name="xl_'
             . $field_name

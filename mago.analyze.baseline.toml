@@ -5272,7 +5272,7 @@ count = 16
 file = "admin/code/tce_functions_user_select.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
-count = 19
+count = 15
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
@@ -5452,13 +5452,13 @@ count = 1
 file = "admin/code/tce_functions_user_select.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `htmlspecialchars`: expected `string`, but found `mixed`."
-count = 8
+count = 4
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `htmlspecialchars`: expected `string`, but found `nonnull`."
-count = 4
+count = 8
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
@@ -14368,30 +14368,12 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "array-to-string-conversion"
 message = "Invalid right operand: cannot use type `array` in string concatenation."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "generic-object-iteration"
-message = "Iterating over a generic `object`. This will iterate its public properties."
 count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "invalid-iterator"
 message = "The expression provided to `foreach` is not iterable. It resolved to type `mixed`, which is not iterable."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_check_fields_format`: expected `array<array-key, mixed>`, but found `string('')`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_check_fields_format`: expected `array<array-key, mixed>`, but found `string`."
 count = 1
 
 [[issues]]
@@ -14423,12 +14405,6 @@ file = "shared/code/tce_functions_form.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_getCSRFTokenField`: expected `unknown-ref(XHTML)`, but found `truthy-string`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "less-specific-nested-argument-type"
-message = "Argument type mismatch for argument #2 of `array_key_exists`: expected `array<array-key, mixed>`, but provided type `array<mixed, mixed>|list<mixed>|object` is less specific."
-count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14704,7 +14680,7 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `htmlspecialchars`: expected `string`, but found `mixed`."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14715,32 +14691,8 @@ count = 2
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `reset`: expected `array<('K.reset() extends mixed), ('V.reset() extends mixed)>|object`, but found `truthy-mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `str_starts_with`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `stripslashes`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `strlen`: expected `string`, but found `mixed`."
-count = 22
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `substr`: expected `string`, but found `mixed`."
-count = 1
+count = 21
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14763,14 +14715,8 @@ count = 2
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `preg_match`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #3 of `htmlspecialchars`: expected `null|string`, but found `mixed`."
-count = 8
+count = 7
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14782,7 +14728,7 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 16
+count = 15
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14794,7 +14740,13 @@ count = 4
 file = "shared/code/tce_functions_form.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 14
+count = 13
+
+[[issues]]
+file = "shared/code/tce_functions_form.php"
+code = "mixed-assignment"
+message = "Assigning `nonnull` type to a variable may lead to unexpected behavior."
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14806,7 +14758,7 @@ count = 2
 file = "shared/code/tce_functions_form.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 77
+count = 74
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14852,21 +14804,15 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
-code = "possibly-invalid-array-access"
-message = "Cannot perform array access on value of type `object`."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
 code = "possibly-null-argument"
 message = "Argument #1 of function `array_key_exists` is possibly `null`, but parameter type `bool|float|int|string` does not accept it."
-count = 4
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "possibly-null-argument"
 message = "Argument #1 of function `stripslashes` is possibly `null`, but parameter type `string` does not accept it."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14878,37 +14824,13 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "possibly-null-array-index"
 message = "Possibly using `null` as an array index to access elementof variable $formfields."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "possibly-null-operand"
-message = "Possibly null right operand used in string concatenation (type `null|string`)."
-count = 4
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array index accessed on `list<mixed>`."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `non-empty-list<string>`."
 count = 3
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `null|string` accessed on `array<mixed, mixed>`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `string('xl_')|truthy-string` accessed on `array<mixed, mixed>`."
-count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -14927,12 +14849,6 @@ file = "shared/code/tce_functions_general.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "impossible-type-comparison"
-message = "Impossible condition: variable `$norm` (type `string`) can never be `false`."
-count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -15081,20 +14997,8 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "invalid-return-statement"
-message = "Invalid return type for function `getIpAsInt`: expected `int`, but found `float|int`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "invalid-return-statement"
 message = "Invalid return type for function `getIpAsString`: expected `string`, but found `null|string`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `getNormalizedIP`: expected `string`, but found `false`."
-count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -15448,12 +15352,6 @@ count = 1
 file = "shared/code/tce_functions_general.php"
 code = "missing-return-type"
 message = "Function `getDataXML` is missing a return type hint."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "missing-return-type"
-message = "Function `getIpAsInt` is missing a return type hint."
 count = 1
 
 [[issues]]
@@ -15869,18 +15767,6 @@ file = "shared/code/tce_functions_general.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
 count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "redundant-comparison"
-message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "redundant-logical-operation"
-message = "Redundant `||` operation: left operand is always false and right operand is evaluated."
-count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -17422,7 +17308,7 @@ count = 3
 file = "shared/code/tce_functions_test.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 41
+count = 40
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -17519,12 +17405,6 @@ file = "shared/code/tce_functions_test.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_getUserData`: expected `array<array-key, mixed>`, but found `array{}|unknown-ref(Returns)`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_test.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_isValidIP`: expected `true`, but found `false`."
-count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"

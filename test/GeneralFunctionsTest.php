@@ -117,10 +117,19 @@ final class GeneralFunctionsTest extends TestCase
         $this->assertFalse(\getNormalizedIP('256.0.0.1'));
     }
 
-    public function testIpIntegerConversion(): void
+    public function testIpAsBytes(): void
     {
-        $this->assertSame(\getIpAsInt('127.0.0.1'), \getIpAsInt('127.0.0.1')); // deterministic
-        $this->assertMatchesRegularExpression('/^[0-9]+$/', (string) \getIpAsInt('192.168.1.1'));
+        // always packs to the 16-byte IPv6 form, for both IPv4 and IPv6 input
+        $this->assertSame(16, \strlen((string) \getIpAsBytes('192.168.1.1')));
+        $this->assertSame(16, \strlen((string) \getIpAsBytes('2001:db8::1')));
+        // case-insensitive: upper- and lower-case hex pack to identical bytes
+        $this->assertSame(\getIpAsBytes('2001:DB8::1'), \getIpAsBytes('2001:db8::1'));
+        // equivalent localhost forms pack identically
+        $this->assertSame(\getIpAsBytes('127.0.0.1'), \getIpAsBytes('::1'));
+        // ordering matches numeric value (byte-wise strcmp)
+        $this->assertLessThan(0, \strcmp((string) \getIpAsBytes('::9'), (string) \getIpAsBytes('::a')));
+        // invalid input
+        $this->assertFalse(\getIpAsBytes('not-an-ip'));
     }
 
     public function testSubstrUtf8(): void

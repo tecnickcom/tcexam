@@ -280,9 +280,9 @@ function F_repeatTest($test_id)
 
 /**
  * Check if user's IP is valid over test IP range
- * @param $user_ip (int) user's IP address in expanded IPv6 format.
- * @param $test_ips (int) comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses. Intervals must be specified using the '-' character.
- * @return true if IP is valid, false otherwise
+ * @param $user_ip (string) user's IP address (IPv4 or IPv6).
+ * @param $test_ips (string) comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses. Intervals must be specified using the '-' character.
+ * @return bool true if IP is valid, false otherwise
  */
 function F_isValidIP($user_ip, $test_ips)
 {
@@ -290,8 +290,14 @@ function F_isValidIP($user_ip, $test_ips)
         return false;
     }
 
-    // convert user IP to number
-    $usrip = getIpAsInt($user_ip);
+    // Convert the user IP to its packed 16-byte binary form so addresses can be compared
+    // losslessly and case-insensitively as fixed-width byte strings. A 64-bit int form would
+    // overflow 128-bit IPv6 values and lose precision near range boundaries.
+    $usrip = getIpAsBytes($user_ip);
+    if ($usrip === false) {
+        return false;
+    }
+
     // build array of valid IP masks
     $test_ip = explode(',', $test_ips);
     // check user IP against test IP masks
@@ -318,7 +324,13 @@ function F_isValidIP($user_ip, $test_ips)
             }
 
             // convert to IPv6 address range
-            $ipmask = getNormalizedIP(implode('.', $ipv4_start)) . '-' . getNormalizedIP(implode('.', $ipv4_end));
+            $range_start = getNormalizedIP(implode('.', $ipv4_start));
+            $range_end = getNormalizedIP(implode('.', $ipv4_end));
+            if ($range_start === false || $range_end === false) {
+                continue;
+            }
+
+            $ipmask = $range_start . '-' . $range_end;
         }
 
         if (strrpos($ipmask, '-') !== false) {
@@ -328,12 +340,18 @@ function F_isValidIP($user_ip, $test_ips)
                 return false;
             }
 
-            $ip_start = getIpAsInt($ip_range[0]);
-            $ip_end = getIpAsInt($ip_range[1]);
-            if ($usrip >= $ip_start && $usrip <= $ip_end) {
+            $ip_start = getIpAsBytes($ip_range[0]);
+            $ip_end = getIpAsBytes($ip_range[1]);
+            // byte-wise comparison of the packed fixed-width forms matches numeric order
+            if (
+                $ip_start !== false
+                && $ip_end !== false
+                && strcmp($usrip, $ip_start) >= 0
+                && strcmp($usrip, $ip_end) <= 0
+            ) {
                 return true;
             }
-        } elseif ($usrip == getIpAsInt($ipmask)) {
+        } elseif ($usrip === getIpAsBytes($ipmask)) {
             // exact address comparison
             return true;
         }
@@ -1974,7 +1992,7 @@ function F_updateQuestionLog($test_id, $testlog_id, $answpos = [], $answer_text 
         $sqlu .= ' testlog_score=' . $answer_score . ',';
         $sqlu .= ' testlog_change_time=' . F_empty_to_null($change_time) . ',';
         $sqlu .= ' testlog_reaction_time=' . (int) $reaction_time . ',';
-        $sqlu .= " testlog_user_ip='" . getNormalizedIP($_SERVER['REMOTE_ADDR']) . "'";
+        $sqlu .= " testlog_user_ip='" . (string) getNormalizedIP($_SERVER['REMOTE_ADDR']) . "'";
         $sqlu .= ' WHERE testlog_id=' . $testlog_id . '';
         if (!($ru = F_db_query($sqlu, $db))) {
             F_display_db_error();
