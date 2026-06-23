@@ -138,7 +138,7 @@ lint:
 test: ensuretarget
 	@if [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; then \
 		[ -f phpunit.xml ] || cp phpunit.xml.dist phpunit.xml; \
-		XDEBUG_MODE=coverage ./vendor/bin/phpunit --stderr --testsuite unit; \
+		./vendor/bin/phpunit --stderr --no-coverage --testsuite unit; \
 	else \
 		echo "Skipping tests (no phpunit.xml(.dist) yet — see plan Stage 5)"; \
 	fi
