@@ -340,7 +340,11 @@ switch ($menu_mode) {
                     $chksql =
                         "dbms_lob.instr(answer_description,'" . F_escape_sql($db, $answer_description) . "',1,1)>0";
                 } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-                    $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "' COLLATE utf8_bin";
+                    $chksql =
+                        "answer_description='"
+                        . F_escape_sql($db, $answer_description)
+                        . "' COLLATE "
+                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                 } else {
                     $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "'";
                 }
@@ -483,7 +487,11 @@ switch ($menu_mode) {
                     $chksql =
                         "dbms_lob.instr(answer_description,'" . F_escape_sql($db, $answer_description) . "',1,1)>0";
                 } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-                    $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "' COLLATE utf8_bin";
+                    $chksql =
+                        "answer_description='"
+                        . F_escape_sql($db, $answer_description)
+                        . "' COLLATE "
+                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                 } else {
                     $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "'";
                 }

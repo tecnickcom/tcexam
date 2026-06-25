@@ -451,7 +451,10 @@ class XMLQuestionImporter
                 . "',1,1)>0";
         } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
             $sql .=
-                "question_description='" . $this->level_data['question']['question_description'] . "' COLLATE utf8_bin";
+                "question_description='"
+                . $this->level_data['question']['question_description']
+                . "' COLLATE "
+                . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
         } else {
             $sql .= "question_description='" . $this->level_data['question']['question_description'] . "'";
         }
@@ -601,7 +604,11 @@ class XMLQuestionImporter
             $sql .=
                 "dbms_lob.instr(answer_description, '" . $this->level_data['answer']['answer_description'] . "',1,1)>0";
         } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-            $sql .= "answer_description='" . $this->level_data['answer']['answer_description'] . "' COLLATE utf8_bin";
+            $sql .=
+                "answer_description='"
+                . $this->level_data['answer']['answer_description']
+                . "' COLLATE "
+                . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
         } else {
             $sql .= "answer_description='" . $this->level_data['answer']['answer_description'] . "'";
         }

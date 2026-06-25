@@ -344,7 +344,11 @@ function F_TSVQuestionImporter($tsvfile)
                     if (K_DATABASE_TYPE == 'ORACLE') {
                         $sql .= "dbms_lob.instr(question_description,'" . $question_description . "',1,1)>0";
                     } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-                        $sql .= "question_description='" . $question_description . "' COLLATE utf8_bin";
+                        $sql .=
+                            "question_description='"
+                            . $question_description
+                            . "' COLLATE "
+                            . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                     } else {
                         $sql .= "question_description='" . $question_description . "'";
                     }
@@ -489,7 +493,11 @@ function F_TSVQuestionImporter($tsvfile)
                     if (K_DATABASE_TYPE == 'ORACLE') {
                         $sql .= "dbms_lob.instr(answer_description, '" . $answer_description . "',1,1)>0";
                     } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
-                        $sql .= "answer_description='" . $answer_description . "' COLLATE utf8_bin";
+                        $sql .=
+                            "answer_description='"
+                            . $answer_description
+                            . "' COLLATE "
+                            . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                     } else {
                         $sql .= "answer_description='" . $answer_description . "'";
                     }

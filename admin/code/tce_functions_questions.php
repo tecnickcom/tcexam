@@ -194,7 +194,11 @@ function F_question_copy($question_id, $new_subject_id)
             $chksql =
                 "dbms_lob.instr(question_description,'" . F_escape_sql($db, $q['question_description']) . "',1,1)>0";
         } elseif (K_DATABASE_TYPE === 'MYSQL' && defined('K_MYSQL_QA_BIN_UNIQUITY') && K_MYSQL_QA_BIN_UNIQUITY) {
-            $chksql = "question_description='" . F_escape_sql($db, $q['question_description']) . "' COLLATE utf8_bin";
+            $chksql =
+                "question_description='"
+                . F_escape_sql($db, $q['question_description'])
+                . "' COLLATE "
+                . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
         } else {
             $chksql = "question_description='" . F_escape_sql($db, $q['question_description']) . "'";
         }

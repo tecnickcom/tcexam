@@ -355,7 +355,10 @@ switch ($menu_mode) {
                         "dbms_lob.instr(question_description,'" . F_escape_sql($db, $question_description) . "',1,1)>0";
                 } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
                     $chksql =
-                        "question_description='" . F_escape_sql($db, $question_description) . "' COLLATE utf8_bin";
+                        "question_description='"
+                        . F_escape_sql($db, $question_description)
+                        . "' COLLATE "
+                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                 } else {
                     $chksql = "question_description='" . F_escape_sql($db, $question_description) . "'";
                 }
@@ -505,7 +508,10 @@ switch ($menu_mode) {
                         "dbms_lob.instr(question_description,'" . F_escape_sql($db, $question_description) . "',1,1)>0";
                 } elseif (K_DATABASE_TYPE === 'MYSQL' && K_MYSQL_QA_BIN_UNIQUITY) {
                     $chksql =
-                        "question_description='" . F_escape_sql($db, $question_description) . "' COLLATE utf8_bin";
+                        "question_description='"
+                        . F_escape_sql($db, $question_description)
+                        . "' COLLATE "
+                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
                 } else {
                     $chksql = "question_description='" . F_escape_sql($db, $question_description) . "'";
                 }

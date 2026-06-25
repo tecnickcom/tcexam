@@ -1,3 +1,6 @@
+17.2.0 (2026-06-25)
+	- Fixed creating and importing questions and answers on databases using the utf8mb4 character set (issue #461); the binary uniqueness-check collation is now configurable via the new K_MYSQL_QA_BIN_COLLATION constant.
+
 17.0.0 (2026-06-23) [BREAKING CHANGE]
 	- Major modernisation release. Please read UPGRADE.md before updating an existing installation.
 	- PHP 8.2 or newer is now required.
