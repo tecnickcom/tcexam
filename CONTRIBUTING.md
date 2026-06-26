@@ -5,6 +5,10 @@ welcome: bug reports, bug fixes, documentation improvements, translations, and n
 
 Please take a moment to read this guide before opening an issue or pull request.
 
+> **Pull requests are restricted to project collaborators.** If you are not a collaborator, please
+> [open an issue](https://github.com/tecnickcom/tcexam/issues) instead of a pull request,
+> describing the bug or feature in detail. A maintainer will review it and take it from there.
+
 ## Code of Conduct
 
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By
@@ -31,8 +35,13 @@ using the bug-report template and include a **clear title and description**, the
 
 ## Submitting a bug fix
 
-1. Fork the repository and create a branch from `main`
-   (e.g. `git checkout -b fix/short-description`).
+> Only project collaborators can open pull requests. If you are not a collaborator, please
+> [open an issue](https://github.com/tecnickcom/tcexam/issues/new) describing the bug in detail
+> (see [Reporting a bug](#reporting-a-bug)). A maintainer will take it from there.
+
+Collaborators preparing a fix:
+
+1. Create a branch from `main` (e.g. `git checkout -b fix/short-description`).
 2. Make your changes, following the existing conventions in the surrounding code.
 3. Add or update tests to cover the change.
 4. Run the quality-assurance suite locally and ensure it passes (see below).
@@ -44,8 +53,8 @@ using the bug-report template and include a **clear title and description**, the
 Before writing any code, **open a Feature Request** on
 [GitHub Issues](https://github.com/tecnickcom/tcexam/issues/new) describing the use case and
 proposed behaviour, and wait for feedback. This avoids investing time in a direction that may
-not be accepted. Once agreed, follow the same branch → code → test → PR workflow as for bug fixes
-(use a branch named `feature/short-description`).
+not be accepted. Once agreed, a collaborator will implement it following the same
+branch → code → test → PR workflow as for bug fixes (using a branch named `feature/short-description`).
 
 ## Development workflow
 
@@ -70,6 +79,12 @@ Database Abstraction Layer or controller logic, also run `make dockertest` (MySQ
 
 ## Pull request guidelines
 
+> Opening pull requests is restricted to project collaborators. If you are an external
+> contributor, please [open an issue](https://github.com/tecnickcom/tcexam/issues/new) describing
+> the problem or feature in detail instead.
+
+- **Sign the Contributor License Agreement (CLA).** On your first pull request the CLA Assistant
+  bot will comment with a link to sign; the PR cannot be merged until the CLA is signed.
 - Target the `main` branch and keep PRs focused — one fix or feature per PR.
 - Ensure `make qa` passes locally before opening the PR.
 - Cover new code with tests and do not let coverage regress.

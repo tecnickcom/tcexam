@@ -1477,6 +1477,12 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 1
 
 [[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "valid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 5
+
+[[issues]]
 file = "shared/code/tce_functions_errmsg.php"
 code = "function-name"
 message = "Function name `F_display_db_error` should be in snake case."
@@ -1517,6 +1523,12 @@ file = "shared/code/tce_functions_errmsg.php"
 code = "no-error-control-operator"
 message = "Unsafe use of error control operator `@`."
 count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "valid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -2383,6 +2395,12 @@ message = "Redundant block around statements."
 count = 26
 
 [[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "valid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 5
+
+[[issues]]
 file = "shared/code/tce_functions_test_stats.php"
 code = "function-name"
 message = "Function name `F_getAllUsersTestStat` should be in snake case."
@@ -2482,6 +2500,12 @@ count = 1
 file = "shared/code/tce_latexrender.php"
 code = "file-name"
 message = "Class `LatexRender` should be in a file named `LatexRender.php`, found `tce_latexrender.php`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_latexrender.php"
+code = "no-redundant-string-concat"
+message = "String concatenation can be simplified."
 count = 1
 
 [[issues]]

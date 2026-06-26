@@ -370,7 +370,7 @@ count = 5
 file = "admin/code/tce_class_import_xml.php"
 code = "redundant-comparison"
 message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 5
+count = 3
 
 [[issues]]
 file = "admin/code/tce_class_import_xml.php"
@@ -383,12 +383,6 @@ file = "admin/code/tce_class_import_xml.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
 count = 2
-
-[[issues]]
-file = "admin/code/tce_class_import_xml.php"
-code = "too-few-arguments"
-message = "Too few arguments provided for function `xml_parser_create`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_class_import_xml.php"
@@ -616,7 +610,7 @@ count = 1
 file = "admin/code/tce_edit_answer.php"
 code = "mixed-operand"
 message = "Left operand in `<=` comparison has `mixed` type."
-count = 5
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -652,7 +646,7 @@ count = 7
 file = "admin/code/tce_edit_answer.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 15
+count = 11
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -700,7 +694,7 @@ count = 1
 file = "admin/code/tce_edit_answer.php"
 code = "redundant-comparison"
 message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 4
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -724,13 +718,13 @@ count = 2
 file = "admin/code/tce_edit_answer.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 48
+count = 36
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -808,7 +802,7 @@ count = 2
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 18
+count = 17
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -838,7 +832,7 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -855,7 +849,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
 code = "possibly-false-argument"
-message = "Argument #1 of function `readdir` is possibly `false`, but parameter type `resource` does not accept it."
+message = "Argument #1 of function `readdir` is possibly `false`, but parameter type `null|resource` does not accept it."
 count = 1
 
 [[issues]]
@@ -898,7 +892,7 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
-count = 18
+count = 17
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -1090,13 +1084,13 @@ count = 1
 file = "admin/code/tce_edit_group.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 11
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
@@ -1276,13 +1270,13 @@ count = 5
 file = "admin/code/tce_edit_module.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 19
+count = 14
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
@@ -1420,7 +1414,7 @@ count = 1
 file = "admin/code/tce_edit_question.php"
 code = "mixed-operand"
 message = "Left operand in `<=` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1456,7 +1450,7 @@ count = 5
 file = "admin/code/tce_edit_question.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 11
+count = 9
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1504,7 +1498,7 @@ count = 1
 file = "admin/code/tce_edit_question.php"
 code = "redundant-comparison"
 message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 4
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1528,13 +1522,13 @@ count = 2
 file = "admin/code/tce_edit_question.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 44
+count = 32
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1690,7 +1684,7 @@ count = 4
 file = "admin/code/tce_edit_rating.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1744,7 +1738,7 @@ count = 2
 file = "admin/code/tce_edit_rating.php"
 code = "redundant-comparison"
 message = "Redundant `!==` comparison: left-hand side is always not identical to right-hand side."
-count = 4
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1780,7 +1774,7 @@ count = 1
 file = "admin/code/tce_edit_rating.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 8
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1996,13 +1990,13 @@ count = 1
 file = "admin/code/tce_edit_sslcerts.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 16
+count = 12
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -2140,7 +2134,7 @@ count = 3
 file = "admin/code/tce_edit_subject.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2182,13 +2176,13 @@ count = 5
 file = "admin/code/tce_edit_subject.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 19
+count = 14
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2518,13 +2512,13 @@ count = 1
 file = "admin/code/tce_edit_test.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 50
+count = 35
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2662,7 +2656,7 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
 message = "Left operand in `<` comparison has `mixed` type."
-count = 11
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2680,7 +2674,7 @@ count = 2
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2698,7 +2692,7 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
 message = "Right operand in `<` comparison has `mixed` type."
-count = 9
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2746,7 +2740,7 @@ count = 7
 file = "admin/code/tce_edit_user.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 13
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2758,7 +2752,7 @@ count = 14
 file = "admin/code/tce_edit_user.php"
 code = "possibly-undefined-variable"
 message = "Variable `$user_level` might not have been defined on all execution paths leading to this point."
-count = 6
+count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2782,13 +2776,13 @@ count = 6
 file = "admin/code/tce_edit_user.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 29
+count = 23
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "undefined-variable"
 message = "Undefined variable: `$formstatus`."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -4018,7 +4012,7 @@ count = 1
 file = "admin/code/tce_functions_filemanager.php"
 code = "possibly-invalid-argument"
 message = "Possible argument type mismatch for argument #2 of `preg_match`: expected `string`, but possibly received `array<array-key, string>|string`."
-count = 5
+count = 4
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -4642,7 +4636,7 @@ count = 1
 file = "admin/code/tce_functions_questions.php"
 code = "redundant-comparison"
 message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_questions.php"
@@ -5524,7 +5518,7 @@ count = 3
 file = "admin/code/tce_functions_user_select.php"
 code = "mixed-operand"
 message = "Left operand in `>=` comparison has `mixed` type."
-count = 9
+count = 7
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
@@ -5542,7 +5536,7 @@ count = 1
 file = "admin/code/tce_functions_user_select.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 11
+count = 10
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
@@ -5566,7 +5560,7 @@ count = 7
 file = "admin/code/tce_functions_user_select.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 11
+count = 9
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
@@ -5890,7 +5884,7 @@ count = 1
 file = "admin/code/tce_import_omr_answers.php"
 code = "redundant-comparison"
 message = "Redundant `!==` comparison: left-hand side is always not identical to right-hand side."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_import_omr_answers.php"
@@ -5984,12 +5978,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_import_omr_bulk.php"
-code = "mixed-operand"
-message = "Right operand in `&&` operation has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_import_omr_bulk.php"
 code = "possibly-false-argument"
 message = "Argument #2 of function `date` is possibly `false`, but parameter type `int|null` does not accept it."
 count = 1
@@ -6052,7 +6040,7 @@ count = 1
 file = "admin/code/tce_import_omr_bulk.php"
 code = "redundant-comparison"
 message = "Redundant `!==` comparison: left-hand side is always not identical to right-hand side."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_import_omr_bulk.php"
@@ -6238,7 +6226,7 @@ count = 1
 file = "admin/code/tce_import_questions.php"
 code = "redundant-comparison"
 message = "Redundant `===` comparison: left-hand side is never identical to right-hand side."
-count = 6
+count = 4
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
@@ -6526,7 +6514,7 @@ count = 2
 file = "admin/code/tce_import_users.php"
 code = "mixed-operand"
 message = "Left operand in `>=` comparison has `mixed` type."
-count = 4
+count = 2
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6550,7 +6538,7 @@ count = 2
 file = "admin/code/tce_import_users.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 8
+count = 6
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6616,7 +6604,7 @@ count = 2
 file = "admin/code/tce_import_users.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 6
+count = 4
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6629,12 +6617,6 @@ file = "admin/code/tce_import_users.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 8
-
-[[issues]]
-file = "admin/code/tce_import_users.php"
-code = "too-few-arguments"
-message = "Too few arguments provided for function `xml_parser_create`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -8002,7 +7984,7 @@ count = 1
 file = "admin/code/tce_select_tests.php"
 code = "possibly-false-operand"
 message = "Left operand in `==` comparison might be `false` (type `false|int`)."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
@@ -8062,7 +8044,7 @@ count = 1
 file = "admin/code/tce_select_tests.php"
 code = "possibly-undefined-variable"
 message = "Variable `$wd` might not have been defined on all execution paths leading to this point."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
@@ -8074,7 +8056,7 @@ count = 3
 file = "admin/code/tce_select_tests.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 7
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
@@ -8146,7 +8128,7 @@ count = 1
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-false-operand"
 message = "Left operand in `==` comparison might be `false` (type `false|int`)."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
@@ -8236,7 +8218,7 @@ count = 1
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-undefined-variable"
 message = "Variable `$wd` might not have been defined on all execution paths leading to this point."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
@@ -8326,7 +8308,7 @@ count = 1
 file = "admin/code/tce_select_users.php"
 code = "mixed-operand"
 message = "Left operand in `>=` comparison has `mixed` type."
-count = 8
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8338,7 +8320,7 @@ count = 1
 file = "admin/code/tce_select_users.php"
 code = "mixed-operand"
 message = "Right operand in `>=` comparison has `mixed` type."
-count = 8
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8386,7 +8368,7 @@ count = 1
 file = "admin/code/tce_select_users.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 8
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8398,7 +8380,7 @@ count = 5
 file = "admin/code/tce_select_users.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 12
+count = 7
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8770,7 +8752,7 @@ count = 3
 file = "admin/code/tce_show_all_questions.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 10
+count = 8
 
 [[issues]]
 file = "admin/code/tce_show_all_questions.php"
@@ -9034,7 +9016,7 @@ count = 1
 file = "admin/code/tce_show_result_allusers.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 12
+count = 8
 
 [[issues]]
 file = "admin/code/tce_show_result_allusers.php"
@@ -9172,7 +9154,7 @@ count = 1
 file = "admin/code/tce_show_result_user.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 9
+count = 8
 
 [[issues]]
 file = "admin/code/tce_show_result_user.php"
@@ -9286,7 +9268,7 @@ count = 1
 file = "admin/code/tce_show_result_user.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 13
+count = 9
 
 [[issues]]
 file = "admin/code/tce_show_result_user.php"
@@ -10690,7 +10672,7 @@ count = 1
 file = "public/code/tce_password_reset.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 5
+count = 4
 
 [[issues]]
 file = "public/code/tce_password_reset.php"
@@ -11282,6 +11264,12 @@ count = 34
 
 [[issues]]
 file = "public/code/tce_test_execute.php"
+code = "invalid-argument"
+message = "Invalid type for the first value."
+count = 1
+
+[[issues]]
+file = "public/code/tce_test_execute.php"
 code = "invalid-operand"
 message = "Invalid type `unknown-ref(XHTML)` for left operand in string concatenation."
 count = 2
@@ -11303,12 +11291,6 @@ file = "public/code/tce_test_execute.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #3 of `htmlspecialchars`: expected `null|string`, but found `mixed`."
 count = 2
-
-[[issues]]
-file = "public/code/tce_test_execute.php"
-code = "mixed-argument"
-message = "The first value for `echo` is too general."
-count = 1
 
 [[issues]]
 file = "public/code/tce_test_execute.php"
@@ -11636,12 +11618,6 @@ count = 1
 
 [[issues]]
 file = "public/code/tce_test_results.php"
-code = "possibly-null-array-access"
-message = "Cannot perform array access on possibly `null` value."
-count = 4
-
-[[issues]]
-file = "public/code/tce_test_results.php"
 code = "possibly-null-iterator"
 message = "Expression being iterated (type `array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|null`) might be `null` at runtime."
 count = 1
@@ -11657,24 +11633,6 @@ file = "public/code/tce_test_results.php"
 code = "possibly-null-operand"
 message = "Right operand in arithmetic operation might be `null` (type `non-negative-int|null`)."
 count = 4
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array index accessed on `non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>`."
-count = 1
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `mixed` accessed on `array<array-key, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects'?: array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>`."
-count = 1
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `mixed` accessed on `array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>`."
-count = 1
 
 [[issues]]
 file = "public/code/tce_test_results.php"
@@ -11727,7 +11685,7 @@ count = 3
 [[issues]]
 file = "public/code/tce_test_results.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key 'right' accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}`."
+message = "Possibly undefined array key 'right' accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}`."
 count = 1
 
 [[issues]]
@@ -11817,7 +11775,7 @@ count = 1
 [[issues]]
 file = "public/code/tce_test_results.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key 'wrong' accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}`."
+message = "Possibly undefined array key 'wrong' accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}`."
 count = 1
 
 [[issues]]
@@ -11885,18 +11843,6 @@ file = "public/code/tce_test_results.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('user_name')` accessed on `array<array-key, mixed>`."
 count = 1
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int, 'subjects': non-empty-array<mixed, array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int}>|non-empty-list<array{'maxscore'?: mixed, 'name'?: mixed, 'num'?: non-negative-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}>}`."
-count = 2
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key accessed on `array{'maxscore'?: mixed, 'name'?: mixed, 'num': positive-int, 'right'?: non-negative-int, 'score'?: mixed, 'unanswered'?: non-negative-int, 'undisplayed'?: non-negative-int, 'unrated'?: non-negative-int, 'wrong'?: non-negative-int}|array{'num': positive-int}`."
-count = 2
 
 [[issues]]
 file = "public/code/tce_test_results.php"
@@ -12016,7 +11962,7 @@ count = 1
 file = "public/code/tce_user_change_email.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 3
+count = 1
 
 [[issues]]
 file = "public/code/tce_user_change_email.php"
@@ -12034,7 +11980,7 @@ count = 1
 file = "public/code/tce_user_change_email.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 4
+count = 3
 
 [[issues]]
 file = "public/code/tce_user_change_email.php"
@@ -12112,7 +12058,7 @@ count = 1
 file = "public/code/tce_user_change_password.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 3
+count = 1
 
 [[issues]]
 file = "public/code/tce_user_change_password.php"
@@ -12130,7 +12076,7 @@ count = 1
 file = "public/code/tce_user_change_password.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 4
+count = 3
 
 [[issues]]
 file = "public/code/tce_user_change_password.php"
@@ -12178,7 +12124,7 @@ count = 1
 file = "public/code/tce_user_registration.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
-count = 5
+count = 4
 
 [[issues]]
 file = "public/code/tce_user_registration.php"
@@ -12286,7 +12232,7 @@ count = 2
 file = "public/code/tce_user_registration.php"
 code = "possibly-invalid-argument"
 message = "Possible argument type mismatch for argument #2 of `in_array`: expected `array<array-key, array<int|non-empty-string, mixed>|string>`, but possibly received `array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
-count = 2
+count = 1
 
 [[issues]]
 file = "public/code/tce_user_registration.php"
@@ -12340,7 +12286,7 @@ count = 1
 file = "public/code/tce_user_registration.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 12
+count = 10
 
 [[issues]]
 file = "public/code/tce_user_registration.php"
@@ -12466,7 +12412,7 @@ count = 1
 file = "public/code/tce_user_verification.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 6
+count = 5
 
 [[issues]]
 file = "public/code/tce_user_verification.php"
@@ -12634,7 +12580,7 @@ count = 1
 file = "shared/code/tce_altauth.php"
 code = "possibly-false-argument"
 message = 'Argument #1 of function `ldap_search` is possibly `false`, but parameter type `LDAP\Connection` does not accept it.'
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_altauth.php"
@@ -12784,7 +12730,7 @@ count = 1
 file = "shared/code/tce_authorization.php"
 code = "array-to-string-conversion"
 message = "Potentially casting `array` to `string`."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -12856,7 +12802,7 @@ count = 2
 file = "shared/code/tce_authorization.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 20
+count = 19
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -12922,7 +12868,7 @@ count = 2
 file = "shared/code/tce_authorization.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 6
+count = 5
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -13030,7 +12976,7 @@ count = 5
 file = "shared/code/tce_authorization.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('xuser_otpcode')` accessed on `array<int|non-empty-string, non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string>`."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -13102,7 +13048,7 @@ count = 3
 file = "shared/code/tce_authorization.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
-count = 27
+count = 23
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -13114,7 +13060,7 @@ count = 16
 file = "shared/code/tce_authorization.php"
 code = "undefined-variable"
 message = "Undefined variable: `$m`."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -13534,7 +13480,7 @@ count = 3
 file = "shared/code/tce_db_dal_oracle.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "shared/code/tce_db_dal_oracle.php"
@@ -13666,7 +13612,7 @@ count = 1
 file = "shared/code/tce_db_dal_oracle.php"
 code = "non-existent-function"
 message = "Function `oci_connect` could not be found."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_db_dal_oracle.php"
@@ -13882,13 +13828,19 @@ count = 7
 file = "shared/code/tce_functions_authorization.php"
 code = "invalid-argument"
 message = "Invalid type for the first value."
-count = 1
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
 count = 4
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "invalid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -13905,6 +13857,12 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "invalid-return-statement"
+message = "Invalid return type for function `F_loginForm`: expected `unknown-ref(XHTML)`, but found `truthy-string`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "invalid-return-statement"
 message = "Invalid return type for function `F_logout_form`: expected `unknown-ref(XHTML)`, but found `truthy-string`."
 count = 1
 
@@ -13912,7 +13870,7 @@ count = 1
 file = "shared/code/tce_functions_authorization.php"
 code = "malformed-docblock-comment"
 message = "Failed to parse function-like docblock comment."
-count = 1
+count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -14078,12 +14036,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
-code = "mixed-argument"
-message = "The first value for `echo` is too general."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_authorization.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
 count = 24
@@ -14128,7 +14080,7 @@ count = 4
 file = "shared/code/tce_functions_authorization.php"
 code = "non-existent-class-like"
 message = "Cannot find class, interface, enum, or type alias `XHTML`."
-count = 1
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -14183,6 +14135,30 @@ file = "shared/code/tce_functions_errmsg.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "invalid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "invalid-return-statement"
+message = "Invalid return type for function `F_file_exists`: expected `unknown-ref(Returns)`, but found `bool`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "invalid-return-statement"
+message = "Invalid return type for function `F_file_exists`: expected `unknown-ref(Returns)`, but found `false`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
+code = "invalid-return-statement"
+message = "Invalid return type for function `F_url_exists`: expected `unknown-ref(Returns)`, but found `bool`."
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
@@ -14330,6 +14306,12 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
+code = "non-existent-class-like"
+message = "Cannot find class, interface, enum, or type alias `Returns`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_errmsg.php"
 code = "possibly-false-operand"
 message = "Left operand in `==` comparison might be `false` (type `false|int`)."
 count = 1
@@ -14338,7 +14320,7 @@ count = 1
 file = "shared/code/tce_functions_errmsg.php"
 code = "possibly-false-operand"
 message = "Left operand in `==` comparison might be `false` (type `false|string`)."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
@@ -14704,7 +14686,7 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `array_key_exists`: expected `array<array-key, mixed>`, but found `truthy-mixed`."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14734,7 +14716,7 @@ count = 15
 file = "shared/code/tce_functions_form.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `truthy-mixed`."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14806,7 +14788,7 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "possibly-null-argument"
 message = "Argument #1 of function `array_key_exists` is possibly `null`, but parameter type `bool|float|int|string` does not accept it."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -14822,15 +14804,9 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
-code = "possibly-null-array-index"
-message = "Possibly using `null` as an array index to access elementof variable $formfields."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `non-empty-list<string>`."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -15465,7 +15441,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `str_repeat`: expected `int`, but found `mixed`."
+message = "Invalid argument type for argument #2 of `str_repeat`: expected `non-negative-int`, but found `mixed`."
 count = 2
 
 [[issues]]
@@ -15520,7 +15496,7 @@ count = 2
 file = "shared/code/tce_functions_general.php"
 code = "mixed-operand"
 message = "Left operand in `==` comparison has `mixed` type."
-count = 8
+count = 7
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -15656,6 +15632,12 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
+code = "possibly-invalid-argument"
+message = "Possible argument type mismatch for argument #2 of `str_repeat`: expected `non-negative-int`, but possibly received `int<min, 8>`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_general.php"
 code = "possibly-invalid-operand"
 message = "Possibly invalid type for left operand."
 count = 2
@@ -15718,7 +15700,7 @@ count = 2
 file = "shared/code/tce_functions_general.php"
 code = "possibly-null-array-access"
 message = "Cannot perform array access on possibly `null` value."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -15940,7 +15922,7 @@ count = 1
 file = "shared/code/tce_functions_menu.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_menu.php"
@@ -16246,13 +16228,13 @@ count = 2
 file = "shared/code/tce_functions_page.php"
 code = "mixed-operand"
 message = "Right operand in `>=` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_page.php"
 code = "mixed-operand"
 message = "Right operand in binary operation has type `mixed`."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_page.php"
@@ -17104,31 +17086,31 @@ count = 1
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Left operand in `<=` comparison has `mixed` type."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 24
+count = 20
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Left operand in binary operation has type `mixed`."
-count = 14
+count = 12
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Right operand in `>` comparison has `mixed` type."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Right operand in binary operation has type `mixed`."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
@@ -17188,7 +17170,7 @@ count = 2
 file = "shared/code/tce_functions_tcecode.php"
 code = "possibly-null-argument"
 message = "Argument #2 of function `preg_match` is possibly `null`, but parameter type `string` does not accept it."
-count = 5
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
@@ -17326,13 +17308,19 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
-count = 163
+count = 157
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "invalid-array-element-key"
 message = "Invalid array key type."
 count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "invalid-docblock"
+message = "Unexpected token in PHPDoc type"
+count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -17426,6 +17414,12 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
+code = "invalid-return-statement"
+message = "Invalid return type for function `F_testLoginForm`: expected `unknown-ref(XHTML)`, but found `truthy-string`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
 code = "invalid-type-cast"
 message = "Casting `mixed` to `float`."
 count = 1
@@ -17458,7 +17452,7 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "malformed-docblock-comment"
 message = "Failed to parse function-like docblock comment."
-count = 1
+count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18010,7 +18004,7 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 83
+count = 80
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18058,13 +18052,13 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 12
+count = 11
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Left operand in `<=` comparison has `mixed` type."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18082,13 +18076,13 @@ count = 19
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Left operand in `>=` comparison has `mixed` type."
-count = 4
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 17
+count = 15
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18106,7 +18100,7 @@ count = 25
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Right operand in `!=` comparison has `mixed` type."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18118,7 +18112,7 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Right operand in `<` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18184,13 +18178,19 @@ count = 1
 file = "shared/code/tce_functions_test.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 30
+count = 29
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_assoc` has type `never`, meaning it cannot produce a value."
 count = 4
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "non-existent-class-like"
+message = "Cannot find class, interface, enum, or type alias `XHTML`."
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18274,7 +18274,7 @@ count = 2
 file = "shared/code/tce_functions_test.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_id')` accessed on `array<non-empty-string, mixed>`."
-count = 16
+count = 14
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18496,7 +18496,7 @@ count = 1
 file = "shared/code/tce_functions_test_stats.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
-count = 303
+count = 302
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
@@ -18796,7 +18796,7 @@ count = 6
 file = "shared/code/tce_functions_test_stats.php"
 code = "mixed-operand"
 message = "Left operand in `<=` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
@@ -20188,7 +20188,7 @@ count = 2
 file = "shared/code/tce_pdf_report.php"
 code = "no-value"
 message = "Argument #2 passed to function `preg_match` has type `never`, meaning it cannot produce a value."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
@@ -20410,7 +20410,7 @@ count = 1
 file = "shared/code/tce_pdf_report.php"
 code = "reference-to-undefined-variable"
 message = "Reference created from a previously undefined variable `$mm`."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
@@ -20674,7 +20674,7 @@ count = 3
 file = "shared/code/tce_tmx.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `strlen`: expected `string`, but found `mixed`."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_tmx.php"
@@ -20734,12 +20734,6 @@ count = 1
 file = "shared/code/tce_tmx.php"
 code = "possibly-false-argument"
 message = "Argument #2 of function `xml_parse` is possibly `false`, but parameter type `string` does not accept it."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_tmx.php"
-code = "too-few-arguments"
-message = "Too few arguments provided for function `xml_parser_create`."
 count = 1
 
 [[issues]]
