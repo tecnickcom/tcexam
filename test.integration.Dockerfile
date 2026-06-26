@@ -32,7 +32,9 @@ WORKDIR /workspace
 
 # Install dependencies first for better layer caching. Dev requires (PHPUnit) are kept; skip the
 # Composer scripts — the PDF-font build hook is irrelevant to these tests and needs network access.
-COPY composer.json composer.lock ./
+# composer.lock is gitignored: the `*` makes it optional, and `composer install` generates it when
+# absent (resolving from composer.json) so the build works with or without a committed lock file.
+COPY composer.json composer.lock* ./
 RUN composer install --no-interaction --prefer-dist --no-scripts \
     && composer clear-cache
 

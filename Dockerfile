@@ -51,7 +51,9 @@ WORKDIR /var/www/html
 
 # Install PHP dependencies first (better layer caching). Skip Composer scripts here: the PDF-font
 # generation hook downloads large external sources and is deferred to the entrypoint (volume-cached).
-COPY composer.json composer.lock ./
+# composer.lock is gitignored: the `*` makes it optional, and `composer install` generates it when
+# absent (resolving from composer.json) so the build works with or without a committed lock file.
+COPY composer.json composer.lock* ./
 RUN composer install --no-dev --no-scripts --no-autoloader --no-interaction --prefer-dist \
     && composer clear-cache
 
