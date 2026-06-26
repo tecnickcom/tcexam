@@ -32,7 +32,7 @@
         "apereo/phpcas": "^1.6",
         "dapphp/radius": "^3.1",
         "phpmailer/phpmailer": "^7.1",
-        "tecnickcom/tc-lib-pdf": "^8.64"
+        "tecnickcom/tc-lib-pdf": "^8"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.5 || ^12.5 || ^13.2"

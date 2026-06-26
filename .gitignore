@@ -1,3 +1,5 @@
+.mago-cache/
+.mago/
 .phpdoc
 .phpunit.cache
 .phpunit.result.cache
@@ -14,9 +16,8 @@
 **/temp.php
 **/test.php
 admin/config/
-# Generated translation caches (build artifacts) — regenerate with `make lang`.
 cache/lang/*.php
-# composer.lock is intentionally committed for reproducible application installs.
+composer.lock
 ecs.php
 phpstan.neon
 phpunit.xml
@@ -26,5 +27,3 @@ rector.php
 shared/config/
 target
 vendor
-.mago/
-.mago-cache/
