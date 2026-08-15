@@ -113,13 +113,15 @@ echo getFormDescriptionLine($l['w_time_end'] . ':', $l['h_time_end'], $teststat[
 if (
     !isset($teststat['testinfo']['user_test_end_time'])
     || $teststat['testinfo']['user_test_end_time'] <= 0
-    || strtotime($teststat['testinfo']['user_test_end_time']) < strtotime($teststat['testinfo']['user_test_start_time'])
+    || strtotime((string) $teststat['testinfo']['user_test_end_time']) < strtotime(
+        (string) $teststat['testinfo']['user_test_start_time'],
+    )
 ) {
     $time_diff = $teststat['testinfo']['test_duration_time'] * 60;
 } else {
     $time_diff =
-        strtotime($teststat['testinfo']['user_test_end_time'])
-        - strtotime($teststat['testinfo']['user_test_start_time']); //sec
+        strtotime((string) $teststat['testinfo']['user_test_end_time'])
+        - strtotime((string) $teststat['testinfo']['user_test_start_time']); //sec
 }
 
 $time_diff = gmdate('H:i:s', $time_diff);

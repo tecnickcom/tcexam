@@ -81,7 +81,7 @@ echo getFormDescriptionLine($l['w_time_end'] . ':', $l['h_time_end'], $usrtestda
 if (!isset($usrtestdata['test_end_time']) || $usrtestdata['test_end_time'] <= 0) {
     $time_diff = $testdata['test_duration_time'] * 60;
 } else {
-    $time_diff = strtotime($usrtestdata['test_end_time']) - strtotime($usrtestdata['test_start_time']); //sec
+    $time_diff = strtotime((string) $usrtestdata['test_end_time']) - strtotime((string) $usrtestdata['test_start_time']); //sec
 }
 
 $time_diff = gmdate('H:i:s', $time_diff);

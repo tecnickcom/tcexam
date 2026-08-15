@@ -68,6 +68,8 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
 
     /**
      * Constructor: A4 portrait, millimetres, unicode, compressed.
+     *
+     * @throws \Com\Tecnick\Pdf\Font\Exception if the default PDF font cannot be loaded.
      */
     public function __construct()
     {
@@ -103,23 +105,34 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
         if ($signcert === '') {
             return;
         }
-        $data = [
-            'signcert' => $signcert,
-            'privkey' => defined('K_DIGSIG_PRIVATE_KEY') ? (string) K_DIGSIG_PRIVATE_KEY : $signcert,
-            'password' => defined('K_DIGSIG_PASSWORD') ? (string) K_DIGSIG_PASSWORD : '',
-            'cert_type' => defined('K_DIGSIG_CERT_TYPE') ? (int) K_DIGSIG_CERT_TYPE : 2,
-            'info' => [
-                'Name' => defined('K_DIGSIG_NAME') ? (string) K_DIGSIG_NAME : '',
-                'Location' => defined('K_DIGSIG_LOCATION') ? (string) K_DIGSIG_LOCATION : '',
-                'Reason' => defined('K_DIGSIG_REASON') ? (string) K_DIGSIG_REASON : '',
-                'ContactInfo' => defined('K_DIGSIG_CONTACT') ? (string) K_DIGSIG_CONTACT : '',
-            ],
-        ];
-        // Optional bundle of extra certificates (only pass when configured).
+        // Optional bundle of extra certificates (null keeps the engine default).
+        $extracerts = null;
         if (defined('K_DIGSIG_EXTRA_CERTS') && (string) K_DIGSIG_EXTRA_CERTS !== '') {
-            $data['extracerts'] = (string) K_DIGSIG_EXTRA_CERTS;
+            $extracerts = (string) K_DIGSIG_EXTRA_CERTS;
         }
-        $this->setSignature($data);
+
+        // The engine expects the complete signature structure: the keys TCExam does not
+        // expose in its configuration are passed with the tc-lib-pdf default values.
+        $this->setSignature([
+            'appearance' => [
+                'empty' => [],
+                'name' => '',
+                'page' => 0,
+                'rect' => '',
+            ],
+            'approval' => '',
+            'cert_type' => defined('K_DIGSIG_CERT_TYPE') ? (int) K_DIGSIG_CERT_TYPE : 2,
+            'extracerts' => $extracerts,
+            'info' => [
+                'ContactInfo' => defined('K_DIGSIG_CONTACT') ? (string) K_DIGSIG_CONTACT : '',
+                'Location' => defined('K_DIGSIG_LOCATION') ? (string) K_DIGSIG_LOCATION : '',
+                'Name' => defined('K_DIGSIG_NAME') ? (string) K_DIGSIG_NAME : '',
+                'Reason' => defined('K_DIGSIG_REASON') ? (string) K_DIGSIG_REASON : '',
+            ],
+            'password' => defined('K_DIGSIG_PASSWORD') ? (string) K_DIGSIG_PASSWORD : '',
+            'privkey' => defined('K_DIGSIG_PRIVATE_KEY') ? (string) K_DIGSIG_PRIVATE_KEY : $signcert,
+            'signcert' => $signcert,
+        ]);
     }
 
     /**
@@ -750,12 +763,15 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
         if (
             !isset($data['test']['user_test_end_time'])
             || $data['test']['user_test_end_time'] <= 0
-            || strtotime($data['test']['user_test_end_time']) < strtotime($data['test']['user_test_start_time'])
+            || strtotime((string) $data['test']['user_test_end_time']) < strtotime(
+                (string) $data['test']['user_test_start_time'],
+            )
         ) {
             $time_diff = ($data['test']['test_duration_time'] ?? 0) * 60;
         } else {
             $time_diff =
-                strtotime($data['test']['user_test_end_time']) - strtotime($data['test']['user_test_start_time']);
+                strtotime((string) $data['test']['user_test_end_time'])
+                - strtotime((string) $data['test']['user_test_start_time']);
         }
 
         $rec = $data['recurrence'] ?? '';

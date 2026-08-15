@@ -369,15 +369,14 @@ function F_syncUserGroups($usrid, $grpids)
     $newgrps = [];
     if (is_string($grpids)) {
         // comma separated list of group IDs
-        $newgrps = explode(',', $grpids);
-        array_walk($newgrps, 'intval');
+        $newgrps = array_map('intval', explode(',', $grpids));
         $newgrps = array_unique($newgrps, SORT_NUMERIC);
     } elseif ($grpids == 0) {
         // all available groups
         $sqlg = 'SELECT group_id FROM ' . K_TABLE_GROUPS . '';
         if ($rg = F_db_query($sqlg, $db)) {
             while ($mg = F_db_fetch_array($rg)) {
-                $newgrps[] = $mg['group_id'];
+                $newgrps[] = (int) $mg['group_id'];
             }
         } else {
             F_display_db_error();
@@ -396,7 +395,7 @@ function F_syncUserGroups($usrid, $grpids)
     $sqlu = 'SELECT usrgrp_group_id FROM ' . K_TABLE_USERGROUP . ' WHERE usrgrp_user_id=' . $usrid . '';
     if ($ru = F_db_query($sqlu, $db)) {
         while ($mu = F_db_fetch_array($ru)) {
-            $usrgrps[] = $mu['usrgrp_group_id'];
+            $usrgrps[] = (int) $mu['usrgrp_group_id'];
         }
     } else {
         F_display_db_error();

@@ -1982,7 +1982,7 @@ if (isset($test_id) && $test_id > 0) {
                 . '" class="xmlbutton" onclick="pdfWindow=window.open(\'tce_pdf_testgen.php?test_id='
                 . $test_id
                 . '&amp;num=\' + document.getElementById(\'form_testeditor\').test_num.value + \'\',\'pdfWindow\',\'dependent,menubar=yes,resizable=yes,scrollbars=yes,status=yes,toolbar=yes\'); return false;">'
-                . $l['w_generate']
+                . (string) $l['w_generate']
                 . '</a>'
         ;
         echo '</span>&nbsp;' . K_NEWLINE;
@@ -1995,7 +1995,7 @@ echo '</form>' . K_NEWLINE;
 
 echo '</div>' . K_NEWLINE;
 
-echo '<div class="pagehelp">' . $l['hp_edit_test'] . '</div>' . K_NEWLINE;
+echo '<div class="pagehelp">' . (string) $l['hp_edit_test'] . '</div>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
 // javascript controls

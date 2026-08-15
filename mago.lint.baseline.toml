@@ -955,12 +955,6 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 3
 
 [[issues]]
-file = "public/code/tce_test_execute.php"
-code = "no-redundant-math"
-message = "Redundant addition of `0`: adding 0 does not alter the value."
-count = 1
-
-[[issues]]
 file = "public/code/tce_test_results.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
@@ -1477,12 +1471,6 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 1
 
 [[issues]]
-file = "shared/code/tce_functions_authorization.php"
-code = "valid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 5
-
-[[issues]]
 file = "shared/code/tce_functions_errmsg.php"
 code = "function-name"
 message = "Function name `F_display_db_error` should be in snake case."
@@ -1523,12 +1511,6 @@ file = "shared/code/tce_functions_errmsg.php"
 code = "no-error-control-operator"
 message = "Unsafe use of error control operator `@`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_errmsg.php"
-code = "valid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
@@ -2393,12 +2375,6 @@ file = "shared/code/tce_functions_test.php"
 code = "no-redundant-block"
 message = "Redundant block around statements."
 count = 26
-
-[[issues]]
-file = "shared/code/tce_functions_test.php"
-code = "valid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"

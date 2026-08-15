@@ -88,35 +88,11 @@ function F_send_report_emails(
     //Load default values
     $mail->setLanguageData($l);
 
-    $mail->Priority = $emailcfg['Priority'];
-    $mail->ContentType = $emailcfg['ContentType'];
-    $mail->Encoding = $emailcfg['Encoding'];
-    $mail->WordWrap = $emailcfg['WordWrap'];
-    $mail->Mailer = $emailcfg['Mailer'];
-    $mail->Sendmail = $emailcfg['Sendmail'];
-    // $mail->UseMSMailHeaders = $emailcfg['UseMSMailHeaders'];
-    $mail->Host = $emailcfg['Host'];
-    $mail->Port = $emailcfg['Port'];
-    $mail->Helo = $emailcfg['Helo'];
-    $mail->SMTPAuth = $emailcfg['SMTPAuth'];
-    $mail->SMTPSecure = $emailcfg['SMTPSecure'];
-    $mail->Username = $emailcfg['Username'];
-    $mail->Password = $emailcfg['Password'];
-    $mail->Timeout = $emailcfg['Timeout'];
-    $mail->SMTPDebug = $emailcfg['SMTPDebug'];
-    $mail->Sender = $emailcfg['Sender'];
-    $mail->From = $emailcfg['From'];
-    $mail->FromName = $emailcfg['FromName'];
-    if ($emailcfg['Reply']) {
-        $mail->addReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
-    }
+    // $emailcfg is defined by the email config file included via tce_class_mailer.php
+    $emailcfg = isset($emailcfg) && is_array($emailcfg) ? $emailcfg : [];
+    $mail->setConfigData($emailcfg, (string) ($l['a_meta_charset'] ?? ''));
 
-    $mail->CharSet = $l['a_meta_charset'];
-    if (!$mail->CharSet) {
-        $mail->CharSet = $emailcfg['CharSet'];
-    }
-
-    $mail->Subject = $l['t_result_user'];
+    $mail->Subject = (string) $l['t_result_user'];
     $mail->isHTML(true); // Set message type to HTML.
 
     $email_num = 0; // count emails;
@@ -157,7 +133,7 @@ function F_send_report_emails(
     foreach ($data['testuser'] as $tu) {
         if (strlen($tu['user_email']) > 3) {
             // set HTML header
-            $mail->Body = $emailcfg['MsgHeader'];
+            $mail->Body = (string) ($emailcfg['MsgHeader'] ?? '');
             // compose alternate TEXT message
             $mail->AltBody = '' . $l['t_result_user'] . ' [' . $tu['testuser_creation_time'] . ']' . K_NEWLINE;
             $mail->AltBody .= $l['w_test'] . ': ' . $tu['test']['test_name'] . K_NEWLINE;
@@ -256,7 +232,7 @@ function F_send_report_emails(
                 $mail->addStringAttachment(
                     $pdf_content,
                     $doc_name,
-                    $emailcfg['AttachmentsEncoding'],
+                    (string) ($emailcfg['AttachmentsEncoding'] ?? 'base64'),
                     'application/octet-stream',
                 );
                 $mail->AltBody .= K_NEWLINE . $l['w_attachment'] . ': ' . $doc_name . K_NEWLINE;
@@ -266,7 +242,7 @@ function F_send_report_emails(
             $mail->Body .= str_replace(K_NEWLINE, '<br />' . K_NEWLINE, $mail->AltBody);
 
             // add HTML footer
-            $mail->Body .= $emailcfg['MsgFooter'];
+            $mail->Body .= (string) ($emailcfg['MsgFooter'] ?? '');
 
             //--- Elaborate user Templates ---
             $mail->Body = str_replace('#CHARSET#', $l['a_meta_charset'], $mail->Body);

@@ -434,10 +434,14 @@ if (isset($teststat) && !empty($teststat)) {
 
     echo getFormDescriptionLine($l['w_time_end'] . ':', $l['h_time_end'], $test_end_time);
 
-    if (!isset($test_end_time) || $test_end_time <= 0 || strtotime($test_end_time) < strtotime($test_start_time)) {
+    if (
+        !isset($test_end_time)
+        || $test_end_time <= 0
+        || strtotime((string) $test_end_time) < strtotime((string) $test_start_time)
+    ) {
         $time_diff = $test_duration_time * 60;
     } else {
-        $time_diff = strtotime($test_end_time) - strtotime($test_start_time); //sec
+        $time_diff = strtotime((string) $test_end_time) - strtotime((string) $test_start_time); //sec
     }
 
     $time_diff = gmdate('H:i:s', $time_diff);

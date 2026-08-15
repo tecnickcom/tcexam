@@ -54,6 +54,49 @@ class C_mailer extends PHPMailer\PHPMailer\PHPMailer
     }
 
     /**
+     * Copy the TCExam email configuration ($emailcfg) onto this mailer instance.
+     *
+     * The configuration comes from a plain PHP config file, so every value is untyped as far as
+     * static analysis is concerned: cast each one to the type PHPMailer declares for the matching
+     * property. The charset falls back to the configured default when the language has none.
+     *
+     * @param array<array-key, mixed> $emailcfg TCExam email configuration array.
+     * @param string $charset Language charset, overrides the configured one when not empty.
+     * @public
+     */
+    public function setConfigData(array $emailcfg, string $charset = ''): void
+    {
+        $this->Priority = (int) ($emailcfg['Priority'] ?? 3);
+        $this->ContentType = (string) ($emailcfg['ContentType'] ?? 'text/plain');
+        $this->Encoding = (string) ($emailcfg['Encoding'] ?? '8bit');
+        $this->WordWrap = (int) ($emailcfg['WordWrap'] ?? 0);
+        $this->Mailer = (string) ($emailcfg['Mailer'] ?? 'mail');
+        $this->Sendmail = (string) ($emailcfg['Sendmail'] ?? '/usr/sbin/sendmail');
+        $this->Host = (string) ($emailcfg['Host'] ?? 'localhost');
+        $this->Port = (int) ($emailcfg['Port'] ?? 25);
+        $this->Helo = (string) ($emailcfg['Helo'] ?? '');
+        $this->SMTPAuth = filter_var($emailcfg['SMTPAuth'] ?? false, FILTER_VALIDATE_BOOLEAN);
+        $this->SMTPSecure = (string) ($emailcfg['SMTPSecure'] ?? '');
+        $this->Username = (string) ($emailcfg['Username'] ?? '');
+        $this->Password = (string) ($emailcfg['Password'] ?? '');
+        $this->Timeout = (int) ($emailcfg['Timeout'] ?? 300);
+        $this->SMTPDebug = (int) ($emailcfg['SMTPDebug'] ?? 0);
+        $this->Sender = (string) ($emailcfg['Sender'] ?? '');
+        $this->From = (string) ($emailcfg['From'] ?? '');
+        $this->FromName = (string) ($emailcfg['FromName'] ?? '');
+        $reply = (string) ($emailcfg['Reply'] ?? '');
+        if ($reply !== '') {
+            try {
+                $this->addReplyTo($reply, (string) ($emailcfg['ReplyName'] ?? ''));
+            } catch (PHPMailer\PHPMailer\Exception $e) {
+                $this->setError($e->getMessage());
+            }
+        }
+
+        $this->CharSet = $charset === '' ? (string) ($emailcfg['CharSet'] ?? 'UTF-8') : $charset;
+    }
+
+    /**
      * Load the localized mailer-error strings.
      *
      * PHPMailer 7 resolves its error messages through the static self::lang()/self::$language

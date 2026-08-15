@@ -43,36 +43,12 @@ function F_send_user_reg_email($user_id, $user_email, $user_verifycode)
     //Load default values
     $mail->setLanguageData($l);
 
-    $mail->Priority = $emailcfg['Priority'];
-    $mail->ContentType = $emailcfg['ContentType'];
-    $mail->Encoding = $emailcfg['Encoding'];
-    $mail->WordWrap = $emailcfg['WordWrap'];
-    $mail->Mailer = $emailcfg['Mailer'];
-    $mail->Sendmail = $emailcfg['Sendmail'];
-    $mail->UseMSMailHeaders = $emailcfg['UseMSMailHeaders'];
-    $mail->Host = $emailcfg['Host'];
-    $mail->Port = $emailcfg['Port'];
-    $mail->Helo = $emailcfg['Helo'];
-    $mail->SMTPAuth = $emailcfg['SMTPAuth'];
-    $mail->SMTPSecure = $emailcfg['SMTPSecure'];
-    $mail->Username = $emailcfg['Username'];
-    $mail->Password = $emailcfg['Password'];
-    $mail->Timeout = $emailcfg['Timeout'];
-    $mail->SMTPDebug = $emailcfg['SMTPDebug'];
-    $mail->Sender = $emailcfg['Sender'];
-    $mail->From = $emailcfg['From'];
-    $mail->FromName = $emailcfg['FromName'];
-    if ($emailcfg['Reply']) {
-        $mail->addReplyTo($emailcfg['Reply'], $emailcfg['ReplyName']);
-    }
+    // $emailcfg is defined by the tce_email_config.php file included above
+    $emailcfg = isset($emailcfg) && is_array($emailcfg) ? $emailcfg : [];
+    $mail->setConfigData($emailcfg, (string) ($l['a_meta_charset'] ?? ''));
 
-    $mail->CharSet = $l['a_meta_charset'];
-    if (!$mail->CharSet) {
-        $mail->CharSet = $emailcfg['CharSet'];
-    }
-
-    $mail->Subject = $l['w_registration_verification'];
-    $mail->Body = $l['m_email_registration'];
+    $mail->Subject = (string) $l['w_registration_verification'];
+    $mail->Body = (string) $l['m_email_registration'];
 
     $mail->isHTML(true); // Sets message type to HTML.
 

@@ -130,10 +130,11 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
 
             if (
                 (isset($_REQUEST['nextquestion']) || isset($_REQUEST['autonext']) && $_REQUEST['autonext'] == 1)
-                && $_REQUEST['nextquestionid'] > 0
+                && isset($_REQUEST['nextquestionid'])
+                && (int) $_REQUEST['nextquestionid'] > 0
             ) {
                 // go to next question
-                $testlog_id = 0 + (int) $_REQUEST['nextquestionid'];
+                $testlog_id = (int) $_REQUEST['nextquestionid'];
             } elseif (isset($_REQUEST['prevquestion']) && $_REQUEST['prevquestionid'] > 0) {
                 // go to previous question
                 $testlog_id = (int) $_REQUEST['prevquestionid'];

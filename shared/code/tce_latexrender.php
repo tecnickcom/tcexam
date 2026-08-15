@@ -490,7 +490,7 @@ class LatexRender
         unlink($this->tmp_dir . '' . $this->tmp_filename . '.ps');
         unlink($this->tmp_dir . '' . $this->tmp_filename . '.' . $this->image_format);
         chdir($current_dir);
-        $this->errorcode = $error_code;
+        $this->errorcode = (int) $error_code;
     }
 
     /**

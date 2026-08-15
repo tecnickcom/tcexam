@@ -2295,12 +2295,6 @@ count = 6
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "mixed-operand"
-message = "Invalid middle operand: type `falsy-mixed` cannot be reliably used in string concatenation."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_edit_test.php"
-code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
 count = 80
 
@@ -3123,12 +3117,6 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
 code = "mixed-argument"
-message = 'Invalid argument type for argument #1 of `PHPMailer\PHPMailer\PHPMailer::addReplyTo`: expected `string`, but found `mixed`.'
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `htmlspecialchars`: expected `string`, but found `mixed`."
 count = 1
 
@@ -3165,20 +3153,8 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
 code = "mixed-argument"
-message = 'Invalid argument type for argument #2 of `PHPMailer\PHPMailer\PHPMailer::addReplyTo`: expected `string`, but found `mixed`.'
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `str_replace`: expected `array<array-key, string>|string`, but found `mixed`."
 count = 4
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-argument"
-message = 'Invalid argument type for argument #3 of `PHPMailer\PHPMailer\PHPMailer::addStringAttachment`: expected `string`, but found `mixed`.'
-count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
@@ -3190,7 +3166,7 @@ count = 3
 file = "admin/code/tce_functions_email_reports.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 85
+count = 60
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
@@ -3208,7 +3184,7 @@ count = 28
 file = "admin/code/tce_functions_email_reports.php"
 code = "mixed-operand"
 message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 8
+count = 7
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
@@ -3230,132 +3206,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Body` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$CharSet` (string)."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$ContentType` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Encoding` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$FromName` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$From` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Helo` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Host` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Mailer` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Password` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Port` (int)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Priority` (int|null)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPAuth` (bool)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPDebug` (int)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPSecure` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Sender` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Sendmail` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Subject` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Timeout` (int)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Username` (string)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$WordWrap` (int)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
 code = "possibly-false-argument"
 message = "Argument #2 of function `date` is possibly `false`, but parameter type `int|null` does not accept it."
 count = 2
@@ -3371,12 +3221,6 @@ file = "admin/code/tce_functions_email_reports.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is evaluated and right operand is always truthy."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_email_reports.php"
-code = "undefined-variable"
-message = "Undefined variable: `$emailcfg`."
-count = 25
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
@@ -6248,6 +6092,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
+code = "redundant-type-comparison"
+message = "Redundant condition: variable `$current_question_id` (type `int(0)`) is already known to be `=int(0)`."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_questions.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 9
@@ -8716,7 +8566,7 @@ count = 4
 file = "admin/code/tce_show_all_questions.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 10
+count = 9
 
 [[issues]]
 file = "admin/code/tce_show_all_questions.php"
@@ -9053,12 +8903,6 @@ file = "admin/code/tce_show_result_user.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `round`: expected `float|int`, but found `mixed`."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_show_result_user.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `strtotime`: expected `string`, but found `mixed`."
-count = 4
 
 [[issues]]
 file = "admin/code/tce_show_result_user.php"
@@ -10899,12 +10743,6 @@ count = 1
 [[issues]]
 file = "public/code/tce_show_result_user.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `strtotime`: expected `string`, but found `mixed`."
-count = 4
-
-[[issues]]
-file = "public/code/tce_show_result_user.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `gmdate`: expected `int|null`, but found `mixed`."
 count = 1
 
@@ -11344,7 +11182,7 @@ count = 1
 file = "public/code/tce_test_execute.php"
 code = "possibly-invalid-operand"
 message = "Left operand may be an `array` when compared with non-array type `int(0)` using `>`."
-count = 4
+count = 3
 
 [[issues]]
 file = "public/code/tce_test_execute.php"
@@ -11368,12 +11206,6 @@ count = 1
 file = "public/code/tce_test_execute.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('forceterminate')` accessed on `array<int|non-empty-string, non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string>`."
-count = 1
-
-[[issues]]
-file = "public/code/tce_test_execute.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `string('nextquestionid')` accessed on `array<int|non-empty-string, non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string>`."
 count = 1
 
 [[issues]]
@@ -11453,12 +11285,6 @@ file = "public/code/tce_test_results.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `strlen`: expected `string`, but found `mixed`."
 count = 3
-
-[[issues]]
-file = "public/code/tce_test_results.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `strtotime`: expected `string`, but found `mixed`."
-count = 2
 
 [[issues]]
 file = "public/code/tce_test_results.php"
@@ -13838,12 +13664,6 @@ count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
-code = "invalid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 5
-
-[[issues]]
-file = "shared/code/tce_functions_authorization.php"
 code = "invalid-operand"
 message = "Invalid type `unknown-ref(XHTML)` for middle operand in string concatenation."
 count = 2
@@ -13865,12 +13685,6 @@ file = "shared/code/tce_functions_authorization.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_logout_form`: expected `unknown-ref(XHTML)`, but found `truthy-string`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_authorization.php"
-code = "malformed-docblock-comment"
-message = "Failed to parse function-like docblock comment."
-count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -14044,13 +13858,13 @@ count = 24
 file = "shared/code/tce_functions_authorization.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 5
+count = 4
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 20
+count = 19
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -14068,7 +13882,7 @@ count = 1
 file = "shared/code/tce_functions_authorization.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 3
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -14138,12 +13952,6 @@ count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
-code = "invalid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_errmsg.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_file_exists`: expected `unknown-ref(Returns)`, but found `bool`."
 count = 1
@@ -14159,12 +13967,6 @@ file = "shared/code/tce_functions_errmsg.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_url_exists`: expected `unknown-ref(Returns)`, but found `bool`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_errmsg.php"
-code = "malformed-docblock-comment"
-message = "Failed to parse function-like docblock comment."
-count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
@@ -17318,12 +17120,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
-code = "invalid-docblock"
-message = "Unexpected token in PHPDoc type"
-count = 5
-
-[[issues]]
-file = "shared/code/tce_functions_test.php"
 code = "invalid-iterator"
 message = "The expression provided to `foreach` is not iterable. It resolved to type `mixed`, which is not iterable."
 count = 2
@@ -17447,12 +17243,6 @@ file = "shared/code/tce_functions_test.php"
 code = "less-specific-return-statement"
 message = "Returned type `bool` is less specific than the declared return type `true` for function `F_isValidTestUser`."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_test.php"
-code = "malformed-docblock-comment"
-message = "Failed to parse function-like docblock comment."
-count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -19029,18 +18819,6 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_user_registration.php"
 code = "mixed-argument"
-message = 'Invalid argument type for argument #1 of `PHPMailer\PHPMailer\PHPMailer::addReplyTo`: expected `string`, but found `mixed`.'
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-argument"
-message = 'Invalid argument type for argument #2 of `PHPMailer\PHPMailer\PHPMailer::addReplyTo`: expected `string`, but found `mixed`.'
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `str_replace`: expected `array<array-key, string>|string`, but found `mixed`."
 count = 1
 
@@ -19048,7 +18826,7 @@ count = 1
 file = "shared/code/tce_functions_user_registration.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 25
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_user_registration.php"
@@ -19058,147 +18836,9 @@ count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Body` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$CharSet` (string)."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$ContentType` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Encoding` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$FromName` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$From` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Helo` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Host` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Mailer` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Password` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Port` (int)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Priority` (int|null)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPAuth` (bool)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPDebug` (int)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$SMTPSecure` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Sender` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Sendmail` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Subject` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Timeout` (int)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$Username` (string)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$WordWrap` (int)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "non-existent-property"
-message = "Property `$UseMSMailHeaders` does not exist on class `C_mailer`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
 code = "redundant-comparison"
 message = "Redundant `>` comparison: left-hand side is never greater than right-hand side."
 count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_user_registration.php"
-code = "undefined-variable"
-message = "Undefined variable: `$emailcfg`."
-count = 23
 
 [[issues]]
 file = "shared/code/tce_functions_user_registration.php"
@@ -19670,12 +19310,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_latexrender.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$errorcode` (int)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_latexrender.php"
 code = "non-existent-constant"
 message = "Undefined constant: `K_LATEX_PATH_DVIPS`."
 count = 1
@@ -20031,12 +19665,6 @@ count = 1
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `strtotime`: expected `string`, but found `mixed`."
-count = 4
-
-[[issues]]
-file = "shared/code/tce_pdf_report.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `TcePdfReport::statsRow`: expected `string`, but found `mixed`."
 count = 1
 
@@ -20219,12 +19847,6 @@ file = "shared/code/tce_pdf_report.php"
 code = "possibly-false-operand"
 message = "Right operand in arithmetic operation might be `false` (type `false|int`)."
 count = 2
-
-[[issues]]
-file = "shared/code/tce_pdf_report.php"
-code = "possibly-invalid-argument"
-message = '''Possible argument type mismatch for argument #1 of `Com\Tecnick\Pdf\Tcpdf::setSignature`: expected `array{'appearance': array{'ap'?: array<string, array<string, string>|string>|string, 'as'?: string, 'empty': array<int, array{'name': string, 'objid': int, 'page': int, 'rect': string}>, 'name': string, 'page': int, 'rect': string, 'xobj'?: string}, 'approval': string, 'cert_type': int, 'extracerts': null|string, 'info': array{'ContactInfo': string, 'Location': string, 'Name': string, 'Reason': string}, 'ltv'?: array{'embed_certs': bool, 'embed_crl': bool, 'embed_ocsp': bool, 'enabled': bool, 'include_dss': bool, 'include_vri': bool}, 'password': string, 'privkey': string, 'signcert': string}`, but possibly received `array{'cert_type': int(1)|int(2), 'extracerts'?: string(''), 'info': array{'ContactInfo': string('')|string('you@example.com'), 'Location': string('')|string('Office'), 'Name': string('')|string('TCEXAM'), 'Reason': string('')|string('Certification')}, 'password': string('')|string('tcpdfdemo'), 'privkey': string('file://../../shared/config/tcpdf.crt'), 'signcert': string('file://../../shared/config/tcpdf.crt')}`.'''
-count = 1
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
@@ -20726,20 +20348,8 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_tmx.php"
-code = "mixed-property-type-coercion"
-message = "A value with a less specific type `mixed` is being assigned to property `$$resource` (array<array-key, mixed>)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_tmx.php"
 code = "possibly-false-argument"
 message = "Argument #2 of function `xml_parse` is possibly `false`, but parameter type `string` does not accept it."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_tmx.php"
-code = "undefined-variable"
-message = "Undefined variable: `$tmx`."
 count = 1
 
 [[issues]]
