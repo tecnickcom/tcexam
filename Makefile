@@ -71,9 +71,6 @@ COMPOSER=$(PHP) -d "apc.enable_cli=0" $(shell which composer)
 # phpDocumentor executable file
 PHPDOC=$(shell which phpDocumentor)
 
-# Mago version
-MAGOVERSION=1.46.0
-
 # --- MAKE TARGETS ---
 
 # Display general help about this command
@@ -90,12 +87,11 @@ help:
 .PHONY: all
 all: help
 
-## Clean the vendor directory and download all dependencies (Composer + mago linter)
+## Clean the vendor directory and download all dependencies
 .PHONY: deps
 deps: ensuretarget
 	rm -rf ./vendor/*
 	($(COMPOSER) install --no-interaction)
-	curl --proto '=https' --tlsv1.2 --silent --show-error --fail --location https://carthage.software/mago.sh | bash -s -- --install-dir=./vendor/bin --version=$(MAGOVERSION)
 
 ## Generate the default PDF fonts into the vendored tc-lib-pdf-font/target/fonts (as in tc-lib-pdf)
 .PHONY: fonts
@@ -195,13 +191,13 @@ dockertestdown:
 	$(DOCKERCOMPOSETEST) down --rmi local --volumes --remove-orphans || true
 	@exit `cat $(TARGETDIR)/make.exit`
 
-## Run mago lint + static analysis in a container (no host mago install required)
+## Run mago lint + static analysis in a container on a fixed PHP version
 .PHONY: dockerlint
 dockerlint:
 	docker build -f mago.Dockerfile -t "$(OWNER)/$(PROJECT)-mago:local" .
 	docker run --rm -v "$(CURRENTDIR):/app" -w /app --entrypoint sh "$(OWNER)/$(PROJECT)-mago:local" -c '\
-		mago --config mago.src.toml lint; mago --config mago.src.toml analyze; \
-		mago --config mago.test.toml lint; mago --config mago.test.toml analyze'
+		./vendor/bin/mago --config mago.src.toml lint; ./vendor/bin/mago --config mago.src.toml analyze; \
+		./vendor/bin/mago --config mago.test.toml lint; ./vendor/bin/mago --config mago.test.toml analyze'
 
 ## Delete the vendor and target directories (keeps the app cache/ data)
 .PHONY: clean
