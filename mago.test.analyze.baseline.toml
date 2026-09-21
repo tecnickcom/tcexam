@@ -196,7 +196,7 @@ count = 1
 file = "test/TmxResourceBundleTest.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 6
+count = 4
 
 [[issues]]
 file = "test/TmxResourceBundleTest.php"
@@ -340,7 +340,7 @@ count = 1
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 6
+count = 5
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
@@ -424,12 +424,6 @@ count = 7
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
 message = "Function `F_escape_sql` could not be found."
-count = 1
-
-[[issues]]
-file = "test/integration/DatabaseDalIntegrationTest.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `string('admin')` accessed on `array<array-key, int>`."
 count = 1
 
 [[issues]]

@@ -3867,7 +3867,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -7839,7 +7839,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_tests.php"
 code = "possibly-false-operand"
-message = "Left operand in `==` comparison might be `false` (type `false|int`)."
+message = "Left operand in `==` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -7989,7 +7989,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-false-operand"
-message = "Left operand in `==` comparison might be `false` (type `false|int`)."
+message = "Left operand in `==` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -8841,7 +8841,7 @@ count = 2
 [[issues]]
 file = "admin/code/tce_show_result_allusers.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|non-negative-int`)."
 count = 1
 
 [[issues]]
@@ -11085,7 +11085,7 @@ count = 2
 [[issues]]
 file = "public/code/tce_test_allresults.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|non-negative-int`)."
 count = 1
 
 [[issues]]
@@ -11205,7 +11205,7 @@ count = 2
 [[issues]]
 file = "public/code/tce_test_execute.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -14139,7 +14139,7 @@ count = 2
 [[issues]]
 file = "shared/code/tce_functions_errmsg.php"
 code = "possibly-false-operand"
-message = "Left operand in `==` comparison might be `false` (type `false|int`)."
+message = "Left operand in `==` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -15423,7 +15423,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -15549,12 +15549,6 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "possibly-null-operand"
-message = "Left operand in arithmetic operation might be `null` (type `int(0)|null|string`)."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
-code = "possibly-null-operand"
 message = "Possibly null middle operand used in string concatenation (type `null|string`)."
 count = 2
 
@@ -15566,15 +15560,9 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
-code = "possibly-null-operand"
-message = "Right operand in arithmetic operation might be `null` (type `int(0)|null|string`)."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_general.php"
 code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array index accessed on `non-empty-list<int(0)|string>`."
-count = 4
+message = "Possibly undefined array index accessed on `list{int(0)|string, int(0)|string, int(0)|string, int(0)|string, ...<int(0)|string>}`."
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
@@ -16977,7 +16965,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "possibly-false-operand"
-message = "Left operand in `>` comparison might be `false` (type `false|int`)."
+message = "Left operand in `>` comparison might be `false` (type `false|int(0)|int(1)`)."
 count = 1
 
 [[issues]]
@@ -19851,7 +19839,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
 code = "possibly-false-operand"
-message = "Left operand in `<=` comparison might be `false` (type `false|int`)."
+message = "Left operand in `<=` comparison might be `false` (type `false|non-negative-int`)."
 count = 1
 
 [[issues]]
