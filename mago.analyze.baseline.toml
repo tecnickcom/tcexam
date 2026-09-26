@@ -4623,7 +4623,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_tcecode_editor.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 2
 
 [[issues]]
@@ -5025,7 +5025,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #1 of `htmlspecialchars`: expected `string`, but possibly received `array<array-key, string>|null|string`."
+message = "Possible argument type mismatch for argument #1 of `htmlspecialchars`: expected `string`, but possibly received `array<non-negative-int, string>|null|string`."
 count = 2
 
 [[issues]]
@@ -5055,7 +5055,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "possibly-null-argument"
-message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<array-key, string>|string` does not accept it."
+message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<non-negative-int, string>|string` does not accept it."
 count = 2
 
 [[issues]]
@@ -5067,13 +5067,13 @@ count = 3
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "possibly-null-operand"
-message = "Possibly null right operand used in string concatenation (type `array<array-key, string>|null|string`)."
+message = "Possibly null right operand used in string concatenation (type `array<non-negative-int, string>|null|string`)."
 count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `int(0)` accessed on `array<array-key, string>`."
+message = "Possibly undefined array key `int(0)` accessed on `array<non-negative-int, string>`."
 count = 1
 
 [[issues]]
@@ -6405,7 +6405,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_import_users.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `int(1)|truthy-string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but possibly received `int(1)|truthy-string`."
 count = 1
 
 [[issues]]
@@ -7719,7 +7719,7 @@ count = 2
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<int|non-empty-string, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
 count = 2
 
 [[issues]]
@@ -7731,13 +7731,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
 code = "possibly-null-operand"
-message = "Possibly null middle operand used in string concatenation (type `array<array-key, string>|null|string`)."
+message = "Possibly null middle operand used in string concatenation (type `array<int|non-empty-string, string>|null|string`)."
 count = 4
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
 code = "possibly-null-operand"
-message = "Possibly null right operand used in string concatenation (type `array<array-key, string>|null|string`)."
+message = "Possibly null right operand used in string concatenation (type `array<int|non-empty-string, string>|null|string`)."
 count = 2
 
 [[issues]]
@@ -8007,7 +8007,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #2 of `explode`: expected `string`, but possibly received `non-empty-array<array-key, string>|truthy-string`."
+message = "Possible argument type mismatch for argument #2 of `explode`: expected `string`, but possibly received `non-empty-array<int|non-empty-string, string>|truthy-string`."
 count = 1
 
 [[issues]]
@@ -8019,13 +8019,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<int|non-empty-string, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
 count = 2
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #7 of `F_show_select_test_popup`: expected `string`, but possibly received `array<array-key, string>|null|string`."
+message = "Possible argument type mismatch for argument #7 of `F_show_select_test_popup`: expected `string`, but possibly received `array<int|non-empty-string, string>|null|string`."
 count = 1
 
 [[issues]]
@@ -8055,7 +8055,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
 code = "possibly-null-operand"
-message = "Possibly null middle operand used in string concatenation (type `array<array-key, string>|null|string`)."
+message = "Possibly null middle operand used in string concatenation (type `array<int|non-empty-string, string>|null|string`)."
 count = 2
 
 [[issues]]
@@ -8343,7 +8343,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #2 of `explode`: expected `string`, but possibly received `non-empty-array<array-key, string>|truthy-string`."
+message = "Possible argument type mismatch for argument #2 of `explode`: expected `string`, but possibly received `non-empty-array<int|non-empty-string, string>|truthy-string`."
 count = 1
 
 [[issues]]
@@ -8355,13 +8355,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<int|non-empty-string, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
 count = 2
 
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #8 of `F_show_select_user_popup`: expected `string`, but possibly received `array<array-key, string>|null|string`."
+message = "Possible argument type mismatch for argument #8 of `F_show_select_user_popup`: expected `string`, but possibly received `array<int|non-empty-string, string>|null|string`."
 count = 1
 
 [[issues]]
@@ -8373,7 +8373,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
 code = "possibly-null-operand"
-message = "Possibly null middle operand used in string concatenation (type `array<array-key, string>|null|string`)."
+message = "Possibly null middle operand used in string concatenation (type `array<int|non-empty-string, string>|null|string`)."
 count = 2
 
 [[issues]]
@@ -12207,13 +12207,13 @@ count = 1
 [[issues]]
 file = "public/code/tce_user_verification.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|null|string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<int|non-empty-string, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|null|string`."
 count = 2
 
 [[issues]]
 file = "public/code/tce_user_verification.php"
 code = "possibly-null-argument"
-message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<array-key, string>|string` does not accept it."
+message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<int|non-empty-string, string>|string` does not accept it."
 count = 2
 
 [[issues]]
@@ -12231,7 +12231,7 @@ count = 1
 [[issues]]
 file = "public/code/tce_user_verification.php"
 code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `int(0)` accessed on `array<array-key, string>`."
+message = "Possibly undefined array key `int(0)` accessed on `array<int|non-empty-string, string>`."
 count = 1
 
 [[issues]]
@@ -13317,7 +13317,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_db_dal_oracle.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 1
 
 [[issues]]
@@ -15279,13 +15279,13 @@ count = 2
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_general.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `truthy-mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `truthy-mixed`."
 count = 1
 
 [[issues]]
@@ -15681,8 +15681,14 @@ count = 4
 [[issues]]
 file = "shared/code/tce_functions_html2txt.php"
 code = "possibly-null-argument"
+message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<('K.preg_replace() extends array-key), string>|string` does not accept it."
+count = 4
+
+[[issues]]
+file = "shared/code/tce_functions_html2txt.php"
+code = "possibly-null-argument"
 message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<array-key, string>|string` does not accept it."
-count = 10
+count = 6
 
 [[issues]]
 file = "shared/code/tce_functions_html2txt.php"
@@ -15867,7 +15873,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_otp.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 1
 
 [[issues]]
@@ -16269,19 +16275,19 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_session.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #1 of `session_id`: expected `null|string`, but possibly received `array<array-key, string>|null|string`."
+message = "Possible argument type mismatch for argument #1 of `session_id`: expected `null|string`, but possibly received `array<int|non-empty-string, string>|null|string`."
 count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_session.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #1 of `strlen`: expected `string`, but possibly received `array<array-key, string>|null|string`."
+message = "Possible argument type mismatch for argument #1 of `strlen`: expected `string`, but possibly received `array<int|non-empty-string, string>|null|string`."
 count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_session.php"
 code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
+message = "Possible argument type mismatch for argument #3 of `preg_replace`: expected `array<int|non-empty-string, string>|string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
 count = 1
 
 [[issues]]
@@ -16863,7 +16869,7 @@ count = 3
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 3
 
 [[issues]]
@@ -19281,7 +19287,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_latexrender.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<array-key, string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `preg_replace`: expected `array<('K.preg_replace() extends array-key), string>|string`, but found `mixed`."
 count = 1
 
 [[issues]]
