@@ -32,10 +32,10 @@
         "apereo/phpcas": "^1.6",
         "dapphp/radius": "^3.1",
         "phpmailer/phpmailer": "^7.1",
-        "tecnickcom/tc-lib-pdf": "^8.76"
+        "tecnickcom/tc-lib-pdf": "^8.77"
     },
     "require-dev": {
-        "carthage-software/mago": "1.50.0",
+        "carthage-software/mago": "1.51.2",
         "phpunit/phpunit": "^11.5 || ^12.5 || ^13.3"
     },
     "minimum-stability": "stable",
