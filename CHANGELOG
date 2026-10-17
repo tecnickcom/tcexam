@@ -1,4 +1,4 @@
-17.3.0 (2026-10-17)
+17.3.1 (2026-10-17)
 	- Security hardening of uploaded files. Please read the "Uploaded files, CSRF and backups" section of UPGRADE.md before updating an existing installation.
 	- Media uploads reject markup and script types, and every upload rejects server script types; file content is checked, file names are sanitized and existing files are never overwritten.
 	- SVG uploads are accepted only as plain, static SVG files (no scripts, event handlers, external references, DTD/entities or editor-specific namespaces).
