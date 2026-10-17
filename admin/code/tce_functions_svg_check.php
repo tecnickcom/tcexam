@@ -288,8 +288,8 @@ function F_get_svg_metadata_namespaces(): array
 
 /**
  * Check that an SVG attribute value or style sheet contains no external reference or script.
- * url() references must point to a fragment (#id); CSS escapes, @import, expression(),
- * behaviors, bindings and script URLs are rejected.
+ * url() references must point to a fragment (#id); CSS escapes, @import, image(), image-set(),
+ * cross-fade(), src(), expression(), behaviors, bindings and script URLs are rejected.
  *
  * @param string $value Attribute value or style sheet text.
  *
@@ -299,7 +299,7 @@ function F_is_safe_svg_value(string $value): bool
 {
     return (
         preg_match(
-            '/\\\\|@import|expression\s*\(|behavior\s*:|-moz-binding|(?:java|vb)script\s*:|url\s*\(\s*+(?![\'"]?\s*#)/i',
+            '/\\\\|@import|\b(?:image|image-set|cross-fade|src)\s*\(|expression\s*\(|behavior\s*:|-moz-binding|(?:java|vb)script\s*:|url\s*\(\s*+(?![\'"]?\s*#)/i',
             $value,
         ) !== 1
     );
@@ -424,7 +424,14 @@ function F_is_safe_svg_content(string $filepath): bool
     }
 
     $data = file_get_contents($filepath);
-    if ($data === false || $data === '' || preg_match('//u', $data) !== 1 || stripos($data, '<!ENTITY') !== false) {
+    // NUL bytes reject UTF-16 and UTF-32 data, which can pass the UTF-8 check without a byte order mark
+    if (
+        $data === false
+        || $data === ''
+        || str_contains($data, "\0")
+        || preg_match('//u', $data) !== 1
+        || stripos($data, '<!ENTITY') !== false
+    ) {
         return false;
     }
 

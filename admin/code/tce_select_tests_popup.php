@@ -27,8 +27,8 @@ require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_test_select'];
 
-require_once '../code/tce_page_header_popup.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_page_header_popup.php';
 require_once 'tce_functions_test_select.php';
 
 $order_field = $_REQUEST['order_field'] ?? 'test_begin_time DESC,test_name';

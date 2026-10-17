@@ -176,6 +176,16 @@ final class SvgCheckTest extends TestCase
                 '<svg ' . $ns . '><style><![CDATA[rect{fill:url("https://example.com/a")}]]></style></svg>',
             ],
             'css escape' => ['<svg ' . $ns . '><rect style="fill:\\75rl(https://example.com/a)"/></svg>'],
+            'style element image-set' => [
+                '<svg ' . $ns . '><style>rect{fill:-webkit-image-set("https://example.com/a.png" 1x)}</style></svg>',
+            ],
+            'style attribute image' => [
+                '<svg ' . $ns . '><rect style="fill:image(\'https://example.com/a.png\')"/></svg>',
+            ],
+            'style attribute cross-fade' => [
+                '<svg ' . $ns . '><rect style="fill:cross-fade(\'https://example.com/a.png\', red)"/></svg>',
+            ],
+            'style element src' => ['<svg ' . $ns . '><style>rect{fill:src("https://example.com/a")}</style></svg>'],
             'stylesheet processing instruction' => [
                 '<?xml-stylesheet type="text/xsl" href="data:,x"?><svg ' . $ns . '/>',
             ],
@@ -189,6 +199,14 @@ final class SvgCheckTest extends TestCase
             'utf-7 declaration' => ["<?xml version='1.0' encoding = 'UTF-7'?><svg " . $ns . '/>'],
             'invalid utf-8' => ['<svg ' . $ns . "><text>\xff\xfe</text></svg>"],
             'utf-16 content' => [(string) mb_convert_encoding('<svg ' . $ns . '/>', 'UTF-16', 'UTF-8')],
+            'utf-16le content without byte order mark' => [
+                (string) mb_convert_encoding(
+                    '<?xml version="1.0" encoding="UTF-16"?><svg ' . $ns . '/>',
+                    'UTF-16LE',
+                    'UTF-8',
+                ),
+            ],
+            'nul byte' => ['<svg ' . $ns . "><text>a\0b</text></svg>"],
             'gzip compressed' => [(string) gzencode('<svg ' . $ns . '/>')],
             'svg element in metadata' => ['<svg ' . $ns . '><metadata><script>alert(1)</script></metadata></svg>'],
             'xhtml element in metadata' => [

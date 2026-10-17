@@ -460,6 +460,8 @@ if ($pagelevel && $_SESSION['session_user_level'] < $pagelevel) {
 }
 
 if ($logged) { //if user is just logged in: reloads page
+    // the stored password of SSL, CAS and Shibboleth users is generated at login
+    $_SESSION['session_user_sso'] = !empty($altusr['sso']);
     // html redirect
     $htmlredir = '<!DOCTYPE html>' . K_NEWLINE;
     $htmlredir .= '<html lang="' . $l['a_meta_language'] . '" dir="' . $l['a_meta_dir'] . '">' . K_NEWLINE;

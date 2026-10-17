@@ -26,8 +26,8 @@ $pagelevel = K_AUTH_ADMIN_MODULES;
 require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_modules_editor'];
-require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_auth_sql.php';
 
 // set default values

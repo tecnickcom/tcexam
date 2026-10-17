@@ -24,6 +24,7 @@
 /**
  * Try various external Login Systems.
  * (SSL, HTTP-BASIC, CAS, SHIBBOLETH, RADIUS, LDAP, CUSTOM)
+ * The 'sso' key is true for SSL, CAS and Shibboleth logins, which use a generated password.
  * @return array of user's data for successful login, false otherwise
  * @since 2012-06-05
  */
@@ -69,6 +70,7 @@ function F_altLogin()
         $usr['user_ssn'] = '';
         $usr['user_level'] = K_SSL_USER_LEVEL;
         $usr['usrgrp_group_id'] = K_SSL_USER_GROUP_ID;
+        $usr['sso'] = true;
         return $usr;
     }
 
@@ -126,6 +128,7 @@ function F_altLogin()
             $usr['user_ssn'] = '';
             $usr['user_level'] = K_CAS_USER_LEVEL;
             $usr['usrgrp_group_id'] = K_CAS_USER_GROUP_ID;
+            $usr['sso'] = true;
             return $usr;
         }
     }
@@ -164,6 +167,7 @@ function F_altLogin()
         $usr['user_ssn'] = '';
         $usr['user_level'] = K_SHIBBOLETH_USER_LEVEL;
         $usr['usrgrp_group_id'] = K_SHIBBOLETH_USER_GROUP_ID;
+        $usr['sso'] = true;
         return $usr;
     }
 

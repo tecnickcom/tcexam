@@ -254,8 +254,37 @@ function F_logout_page()
 }
 
 /**
+ * Returns true if the current session user can confirm actions with the stored password.
+ * Returns false for sessions opened through SSL client certificate, CAS or Shibboleth,
+ * where the stored password is generated at login and unknown to the user.
+ *
+ * @return bool True if the current user's password can be checked.
+ */
+function F_has_current_user_password(): bool
+{
+    return empty($_SESSION['session_user_sso']);
+}
+
+/**
+ * Returns the number of seconds left before the current user's password can be checked again.
+ * The check is locked for 15 minutes after 5 consecutive failures in the same session.
+ *
+ * @return int Remaining lock time in seconds, 0 if the check is not locked.
+ */
+function F_get_current_user_password_lock_time(): int
+{
+    $failures = (int) ($_SESSION['session_password_failures'] ?? 0);
+    $last_failure = (int) ($_SESSION['session_password_failure_time'] ?? 0);
+    if ($failures < 5) {
+        return 0;
+    }
+
+    return max(0, 900 - (time() - $last_failure));
+}
+
+/**
  * Returns true if the password matches the stored password of the current session user.
- * After 5 consecutive failures in the same session, every check fails for 15 minutes.
+ * Every check fails while F_get_current_user_password_lock_time() is greater than 0.
  *
  * @param mixed $password Password to check.
  *
@@ -265,16 +294,15 @@ function F_check_current_user_password(#[\SensitiveParameter] mixed $password): 
 {
     global $db;
     require_once '../config/tce_config.php';
+    if (F_get_current_user_password_lock_time() > 0) {
+        return false;
+    }
+
     if (!is_string($password) || $password === '' || empty($_SESSION['session_user_id'])) {
         return false;
     }
 
     $failures = (int) ($_SESSION['session_password_failures'] ?? 0);
-    $last_failure = (int) ($_SESSION['session_password_failure_time'] ?? 0);
-    if ($failures >= 5 && (time() - $last_failure) < 900) {
-        return false;
-    }
-
     $sql = 'SELECT user_password FROM ' . K_TABLE_USERS . ' WHERE user_id=' . (int) $_SESSION['session_user_id'];
     if (!($r = F_db_query($sql, $db))) {
         F_display_db_error(false);

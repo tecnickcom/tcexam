@@ -71,11 +71,13 @@ below, note the following one-time changes.
   - scripts, event handler attributes (`onload`, `onclick`, ...), `<foreignObject>`, links
     (`<a>`), animation elements, or SVG fonts;
   - references to anything other than an element of the same file (`#id`) or an embedded
-    PNG, JPEG or GIF image (`data:image/png;base64,...`), including in CSS `url()` and `@import`;
+    PNG, JPEG or GIF image (`data:image/png;base64,...`), including in CSS `url()`, `@import`,
+    `image()`, `image-set()`, `cross-fade()` and `src()`;
   - entity declarations, an internal DTD subset, or processing instructions such as
     `<?xml-stylesheet?>`;
   - editor-specific elements or attributes (Inkscape, Sodipodi, Adobe Illustrator, Sketch, ...);
-  - a declared encoding other than UTF-8, or gzip compression (`.svgz`).
+  - an encoding other than UTF-8 (declared, or detected such as UTF-16), or gzip compression
+    (`.svgz`).
 
   Save drawings as plain SVG before uploading them:
   - **Inkscape:** *File > Save a Copy...* and choose *Plain SVG* or *Optimized SVG*.
@@ -95,12 +97,13 @@ below, note the following one-time changes.
   `<video>` and every other type as a download link. Uploaded files are no longer embedded with
   `<object>`.
 - **CSRF**: every `POST` request with form data or files to a page that loads the form helpers
-  must carry a valid `csrf_token`; otherwise the request stops before the submitted data is
-  processed.
+  must carry a valid `csrf_token`; otherwise the request stops with HTTP status 403 before the
+  submitted data is processed and before the page is displayed.
 - **Backups**: creating, restoring and downloading a backup requires the current user's password.
   After 5 wrong passwords in the same session the backup actions are refused for 15 minutes.
-  Accounts that sign in only through an external system (CAS, Shibboleth, HTTP Basic) need a local
-  password to use the backup page.
+  Users signed in through an SSL client certificate, CAS or Shibboleth are not asked for a
+  password, because TCExam stores a generated password for these accounts at every login.
+  Users signed in through HTTP Basic, RADIUS or LDAP enter the password of that system.
 - **`cache/` server configuration.** The shipped `cache/.htaccess` serves the directory as passive
   content: `X-Content-Type-Options: nosniff`, a `Content-Security-Policy` with `sandbox`,
   `Content-Disposition: attachment` for markup types, and no script execution. It requires

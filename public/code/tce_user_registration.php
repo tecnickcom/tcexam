@@ -49,8 +49,8 @@ require_once '../../shared/code/tce_functions_otp.php';
 
 $thispage_title = $l['t_user_registration'];
 $thispage_description = $l['hp_user_registration'];
-require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_page_header.php';
 
 // set fields descriptions for error messages
 $fielddesc = [

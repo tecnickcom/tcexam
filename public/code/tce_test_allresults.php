@@ -26,8 +26,8 @@ $pagelevel = K_AUTH_PUBLIC_TEST_RESULTS;
 require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_all_results_user'];
-require_once 'tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once 'tce_page_header.php';
 require_once '../../shared/code/tce_functions_tcecode.php';
 require_once '../../shared/code/tce_functions_test.php';
 require_once '../../shared/code/tce_functions_test_stats.php';

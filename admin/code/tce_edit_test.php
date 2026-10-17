@@ -41,8 +41,8 @@ require_once '../../shared/code/tce_authorization.php';
 require_once '../../shared/config/tce_user_registration.php';
 
 $thispage_title = $l['t_tests_editor'];
-require_once 'tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once 'tce_page_header.php';
 require_once '../../shared/code/tce_functions_tcecode.php';
 require_once 'tce_functions_tcecode_editor.php';
 require_once '../../shared/code/tce_functions_auth_sql.php';

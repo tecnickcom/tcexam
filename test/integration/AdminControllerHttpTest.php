@@ -545,10 +545,9 @@ final class AdminControllerHttpTest extends AppHttpTestCase
         $cookies = $this->login();
         $name = 'itest_grp_nocsrf';
 
-        // the page header is sent before the check, so the request stops with the current status
         foreach ([[], ['csrf_token' => 'invalid']] as $token) {
             [$status, $body] = $this->http('POST', '/admin/code/tce_edit_group.php', $cookies, ['add' => '1', 'group_name' => $name] + $token);
-            $this->assertLessThan(500, $status);
+            $this->assertSame(403, $status);
             $this->assertStringNotContainsString('form_groupeditor', $body, 'the page must stop at the CSRF check');
             $this->assertSame(0, $this->groupIdByName($name), 'the group must not be created without a valid token');
         }

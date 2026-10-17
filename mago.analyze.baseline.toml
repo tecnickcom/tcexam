@@ -796,7 +796,7 @@ count = 2
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 22
+count = 23
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -808,7 +808,7 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-operand"
 message = "Invalid left operand: type `mixed` cannot be reliably used in string concatenation."
-count = 2
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -886,7 +886,7 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
-count = 22
+count = 23
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"

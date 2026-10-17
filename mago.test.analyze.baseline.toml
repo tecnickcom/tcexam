@@ -1,6 +1,24 @@
 variant = "loose"
 
 [[issues]]
+file = "test/CurrentUserPasswordTest.php"
+code = "non-existent-function"
+message = "Function `F_check_current_user_password` could not be found."
+count = 5
+
+[[issues]]
+file = "test/CurrentUserPasswordTest.php"
+code = "non-existent-function"
+message = "Function `F_get_current_user_password_lock_time` could not be found."
+count = 4
+
+[[issues]]
+file = "test/CurrentUserPasswordTest.php"
+code = "non-existent-function"
+message = "Function `F_has_current_user_password` could not be found."
+count = 3
+
+[[issues]]
 file = "test/FormValidationTest.php"
 code = "mixed-argument"
 message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertArrayHasKey`: expected `ArrayAccess<array-key, mixed>|array<array-key, mixed>`, but found `mixed`.'

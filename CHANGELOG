@@ -5,7 +5,7 @@
 	- User, question and SSL certificate imports are read from the PHP temporary upload directory instead of being copied into cache/.
 	- Previews and [object] tags display files with <img>, <audio> or <video>, or as a download link, instead of <object>.
 	- Every POST request with form data or files must carry a valid CSRF token.
-	- Creating, restoring and downloading backups requires the current user's password, with a 15-minute lockout after 5 wrong attempts.
+	- Creating, restoring and downloading backups requires the current user's password, with a 15-minute lockout after 5 wrong attempts; SSL client certificate, CAS and Shibboleth sessions are not asked for a password.
 	- Added cache/.htaccess and matching Docker Apache rules to serve cache/ as passive content only.
 
 17.2.0 (2026-06-25)

@@ -26,9 +26,9 @@ $pagelevel = K_AUTH_ADMIN_GROUPS;
 require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_group_editor'];
+require_once '../../shared/code/tce_functions_form.php';
 require_once '../code/tce_page_header.php';
 
-require_once '../../shared/code/tce_functions_form.php';
 require_once '../code/tce_functions_user_select.php';
 
 $user_id = (int) $_SESSION['session_user_id'];

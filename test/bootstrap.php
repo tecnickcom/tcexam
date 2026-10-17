@@ -80,3 +80,5 @@ require_once __DIR__ . '/../shared/code/tce_functions_form.php';
 // inside the functions (see the tests for the working-directory fixture).
 require_once __DIR__ . '/../admin/code/tce_functions_upload.php';
 require_once __DIR__ . '/../shared/code/tce_functions_tcecode.php';
+// Authorization helpers: definition file; its relative config includes run only inside the functions.
+require_once __DIR__ . '/../shared/code/tce_functions_authorization.php';

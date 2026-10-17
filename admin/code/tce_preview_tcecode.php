@@ -26,10 +26,10 @@ require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = '';
 
+require_once '../../shared/code/tce_functions_form.php';
 require_once '../code/tce_page_header_popup.php';
 
 require_once '../../shared/code/tce_functions_tcecode.php';
-require_once '../../shared/code/tce_functions_form.php';
 $tcexamcode = str_replace('+', '~#PLUS#~', $_REQUEST['tcexamcode']);
 $tcexamcode = stripslashes(urldecode($tcexamcode));
 $tcexamcode = str_replace('~#PLUS#~', '+', $tcexamcode);

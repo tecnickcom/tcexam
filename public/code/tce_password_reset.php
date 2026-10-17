@@ -32,8 +32,8 @@ $pagelevel = 0;
 require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_password_assistance'];
-require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_page_header.php';
 
 // comma separated list of required fields
 $_REQUEST['ff_required'] = 'user_email';

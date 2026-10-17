@@ -54,8 +54,8 @@ $pagelevel = K_AUTH_ADMIN_RESULTS;
 require_once '../../shared/code/tce_authorization.php';
 
 $thispage_title = $l['t_questions_list'];
-require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_form.php';
+require_once '../code/tce_page_header.php';
 require_once '../../shared/code/tce_functions_tcecode.php';
 require_once '../../shared/code/tce_functions_auth_sql.php';
 require_once 'tce_functions_questions.php';

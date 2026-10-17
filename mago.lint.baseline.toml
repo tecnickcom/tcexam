@@ -1533,6 +1533,18 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "function-name"
+message = "Function name `F_get_current_user_password_lock_time` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_has_current_user_password` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
 message = "Function name `F_isAuthorizedUser` should be in snake case."
 count = 1
 

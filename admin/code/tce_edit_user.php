@@ -45,9 +45,9 @@ require_once '../../shared/code/tce_authorization.php';
 require_once '../../shared/config/tce_user_registration.php';
 
 $thispage_title = $l['t_user_editor'];
+require_once '../../shared/code/tce_functions_form.php';
 require_once '../code/tce_page_header.php';
 
-require_once '../../shared/code/tce_functions_form.php';
 require_once '../../shared/code/tce_functions_otp.php';
 require_once 'tce_functions_user_select.php';
 
