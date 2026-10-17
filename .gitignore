@@ -27,3 +27,4 @@ rector.php
 shared/config/
 target
 vendor
+_TMP

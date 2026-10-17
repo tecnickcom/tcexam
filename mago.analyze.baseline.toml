@@ -50,12 +50,6 @@ count = 27
 
 [[issues]]
 file = "admin/code/index.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 1
-
-[[issues]]
-file = "admin/code/index.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
 count = 29
@@ -496,7 +490,7 @@ count = 1
 file = "admin/code/tce_edit_answer.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 16
+count = 17
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -574,7 +568,7 @@ count = 76
 file = "admin/code/tce_edit_answer.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 13
+count = 12
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -604,12 +598,6 @@ count = 2
 file = "admin/code/tce_edit_answer.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_answer.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -692,6 +680,12 @@ count = 11
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
 code = "redundant-cast"
 message = "Redundant cast to `(string)`: the expression already has this type."
 count = 1
@@ -718,19 +712,13 @@ count = 13
 file = "admin/code/tce_edit_answer.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
-count = 2
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
 count = 36
-
-[[issues]]
-file = "admin/code/tce_edit_answer.php"
-code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -814,7 +802,7 @@ count = 17
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -910,7 +898,7 @@ count = 1
 file = "admin/code/tce_edit_group.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 4
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
@@ -964,7 +952,7 @@ count = 37
 file = "admin/code/tce_edit_group.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 5
+count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
@@ -988,12 +976,6 @@ count = 1
 file = "admin/code/tce_edit_group.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_group.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -1023,20 +1005,8 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_group.php"
 code = "mixed-operand"
-message = "Right operand in `<` comparison has `mixed` type."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_edit_group.php"
-code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
 count = 2
-
-[[issues]]
-file = "admin/code/tce_edit_group.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
@@ -1070,6 +1040,12 @@ count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
 code = "redundant-cast"
 message = "Redundant cast to `(string)`: the expression already has this type."
 count = 1
@@ -1083,6 +1059,12 @@ count = 4
 [[issues]]
 file = "admin/code/tce_edit_group.php"
 code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
+code = "redundant-logical-operation"
 message = "Redundant `||` operation: left operand is always false and right operand is evaluated."
 count = 1
 
@@ -1091,12 +1073,6 @@ file = "admin/code/tce_edit_group.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
 count = 7
-
-[[issues]]
-file = "admin/code/tce_edit_group.php"
-code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_group.php"
@@ -1120,7 +1096,7 @@ count = 3
 file = "admin/code/tce_edit_module.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 7
+count = 8
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
@@ -1180,7 +1156,7 @@ count = 47
 file = "admin/code/tce_edit_module.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 4
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
@@ -1210,12 +1186,6 @@ count = 2
 file = "admin/code/tce_edit_module.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_module.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -1268,21 +1238,27 @@ count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_module.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
-code = "undefined-variable"
-message = "Undefined variable: `$db`."
-count = 14
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
 code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
+message = "Undefined variable: `$db`."
+count = 14
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
@@ -1306,7 +1282,7 @@ count = 4
 file = "admin/code/tce_edit_question.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 14
+count = 15
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1378,7 +1354,7 @@ count = 90
 file = "admin/code/tce_edit_question.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 14
+count = 13
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1408,12 +1384,6 @@ count = 2
 file = "admin/code/tce_edit_question.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_question.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -1491,6 +1461,12 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_question.php"
 code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
+code = "possibly-undefined-variable"
 message = "Variable `$question_description` might not have been defined on all execution paths leading to this point."
 count = 11
 
@@ -1522,19 +1498,13 @@ count = 13
 file = "admin/code/tce_edit_question.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
-count = 2
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
 count = 32
-
-[[issues]]
-file = "admin/code/tce_edit_question.php"
-code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1630,7 +1600,7 @@ count = 41
 file = "admin/code/tce_edit_rating.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1810,7 +1780,7 @@ count = 1
 file = "admin/code/tce_edit_sslcerts.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 4
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -1870,7 +1840,7 @@ count = 38
 file = "admin/code/tce_edit_sslcerts.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 9
+count = 8
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -1894,12 +1864,6 @@ count = 3
 file = "admin/code/tce_edit_sslcerts.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_sslcerts.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -1976,6 +1940,12 @@ count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_sslcerts.php"
 code = "redundant-cast"
 message = "Redundant cast to `(string)`: the expression already has this type."
 count = 1
@@ -1990,7 +1960,7 @@ count = 4
 file = "admin/code/tce_edit_sslcerts.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -2003,12 +1973,6 @@ file = "admin/code/tce_edit_sslcerts.php"
 code = "undefined-variable"
 message = "Undefined variable: `$db`."
 count = 12
-
-[[issues]]
-file = "admin/code/tce_edit_sslcerts.php"
-code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -2032,7 +1996,7 @@ count = 3
 file = "admin/code/tce_edit_subject.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 7
+count = 8
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2080,7 +2044,7 @@ count = 57
 file = "admin/code/tce_edit_subject.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2110,12 +2074,6 @@ count = 3
 file = "admin/code/tce_edit_subject.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_subject.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -2180,21 +2138,27 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
-code = "undefined-variable"
-message = "Undefined variable: `$db`."
-count = 14
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
 code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
+message = "Undefined variable: `$db`."
+count = 14
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2224,7 +2188,7 @@ count = 1
 file = "admin/code/tce_edit_test.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 15
+count = 16
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2296,7 +2260,7 @@ count = 149
 file = "admin/code/tce_edit_test.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 29
+count = 28
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2326,12 +2290,6 @@ count = 8
 file = "admin/code/tce_edit_test.php"
 code = "mixed-operand"
 message = "Left operand in `!=` comparison has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_test.php"
-code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
 count = 1
 
 [[issues]]
@@ -2469,6 +2427,12 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "possibly-undefined-variable"
 message = "Variable `$menu_mode` might not have been defined on all execution paths leading to this point."
 count = 1
 
@@ -2500,7 +2464,7 @@ count = 15
 file = "admin/code/tce_edit_test.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2529,12 +2493,6 @@ count = 35
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_test.php"
-code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 148
 
@@ -2554,7 +2512,7 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 6
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2608,7 +2566,7 @@ count = 77
 file = "admin/code/tce_edit_user.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2655,12 +2613,6 @@ count = 2
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
-message = "Left operand in `&&` operation has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_user.php"
-code = "mixed-operand"
 message = "Left operand in `<` comparison has `mixed` type."
 count = 5
 
@@ -2698,19 +2650,13 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
 message = "Right operand in `<` comparison has `mixed` type."
-count = 3
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
 count = 6
-
-[[issues]]
-file = "admin/code/tce_edit_user.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2746,7 +2692,13 @@ count = 7
 file = "admin/code/tce_edit_user.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 7
+count = 8
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "possibly-undefined-variable"
+message = "Variable `$formstatus` might not have been defined on all execution paths leading to this point."
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2786,15 +2738,15 @@ count = 6
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
-code = "undefined-variable"
-message = "Undefined variable: `$db`."
-count = 23
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "undefined-variable"
-message = "Undefined variable: `$formstatus`."
-count = 1
+message = "Undefined variable: `$db`."
+count = 23
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2824,7 +2776,7 @@ count = 5
 file = "admin/code/tce_email_results.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_email_results.php"
@@ -2914,7 +2866,7 @@ count = 58
 file = "admin/code/tce_filemanager.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 5
+count = 4
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
@@ -2961,20 +2913,8 @@ count = 3
 [[issues]]
 file = "admin/code/tce_filemanager.php"
 code = "mixed-operand"
-message = "Right operand in `<` comparison has `mixed` type."
-count = 5
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 3
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
@@ -3759,12 +3699,6 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "mixed-operand"
-message = "Right operand in `<` comparison has `mixed` type."
-count = 4
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
-code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
 count = 2
 
@@ -4216,12 +4150,6 @@ count = 1
 file = "admin/code/tce_functions_omr.php"
 code = "possibly-false-argument"
 message = "Argument #1 of function `base64_encode` is possibly `false`, but parameter type `string` does not accept it."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_omr.php"
-code = "possibly-false-argument"
-message = "Argument #1 of function `gzuncompress` is possibly `false`, but parameter type `string` does not accept it."
 count = 1
 
 [[issues]]
@@ -5378,12 +5306,6 @@ count = 7
 
 [[issues]]
 file = "admin/code/tce_functions_user_select.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 4
-
-[[issues]]
-file = "admin/code/tce_functions_user_select.php"
 code = "mixed-return-statement"
 message = "Could not infer a precise return type for function `F_getUIDfromRegnum`. Saw type `mixed`."
 count = 1
@@ -5608,7 +5530,7 @@ count = 24
 file = "admin/code/tce_import_omr_answers.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_import_omr_answers.php"
@@ -5806,7 +5728,7 @@ count = 19
 file = "admin/code/tce_import_omr_bulk.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_import_omr_bulk.php"
@@ -5980,7 +5902,7 @@ count = 9
 file = "admin/code/tce_import_questions.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
@@ -6322,7 +6244,7 @@ count = 2
 file = "admin/code/tce_import_users.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 8
+count = 7
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6334,13 +6256,13 @@ count = 1
 file = "admin/code/tce_import_users.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 16
+count = 13
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `nonnull` cannot be reliably used in string concatenation."
-count = 5
+count = 8
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6721,12 +6643,6 @@ message = "Undefined variable: `$menu`."
 count = 1
 
 [[issues]]
-file = "admin/code/tce_page_footer.php"
-code = "possibly-false-operand"
-message = "Possibly false middle operand used in string concatenation (type `false|string`)."
-count = 1
-
-[[issues]]
 file = "admin/code/tce_page_header.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `htmlspecialchars`: expected `string`, but found `mixed`."
@@ -6904,7 +6820,7 @@ count = 5
 file = "admin/code/tce_pdf_all_questions.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 9
+count = 8
 
 [[issues]]
 file = "admin/code/tce_pdf_all_questions.php"
@@ -7510,7 +7426,7 @@ count = 3
 file = "admin/code/tce_popup_test_info.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_popup_test_info.php"
@@ -7528,12 +7444,6 @@ count = 3
 file = "admin/code/tce_preview_tcecode.php"
 code = "invalid-argument"
 message = "Invalid type for the first value."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_preview_tcecode.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
 count = 1
 
 [[issues]]
@@ -7630,7 +7540,7 @@ count = 66
 file = "admin/code/tce_select_mediafile.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 5
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
@@ -7677,20 +7587,8 @@ count = 3
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
 code = "mixed-operand"
-message = "Right operand in `<` comparison has `mixed` type."
-count = 5
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "mixed-operand"
 message = "Right operand in `==` comparison has `mixed` type."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 3
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
@@ -7822,7 +7720,7 @@ count = 7
 file = "admin/code/tce_select_tests.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
@@ -7972,7 +7870,7 @@ count = 6
 file = "admin/code/tce_select_tests_popup.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
@@ -8152,7 +8050,7 @@ count = 10
 file = "admin/code/tce_select_users.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8177,12 +8075,6 @@ file = "admin/code/tce_select_users.php"
 code = "mixed-operand"
 message = "Right operand in `!=` comparison has `mixed` type."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_select_users.php"
-code = "mixed-operand"
-message = "Right operand in `>=` comparison has `mixed` type."
-count = 4
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -8302,7 +8194,7 @@ count = 9
 file = "admin/code/tce_select_users_popup.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
@@ -8410,7 +8302,7 @@ count = 8
 file = "admin/code/tce_show_all_questions.php"
 code = "invalid-array-access"
 message = "Cannot perform array access on value of type `unknown-ref(Returns)`."
-count = 39
+count = 40
 
 [[issues]]
 file = "admin/code/tce_show_all_questions.php"
@@ -8518,7 +8410,7 @@ count = 78
 file = "admin/code/tce_show_all_questions.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_show_all_questions.php"
@@ -8686,7 +8578,7 @@ count = 1
 file = "admin/code/tce_show_online_users.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_show_online_users.php"
@@ -8782,7 +8674,7 @@ count = 59
 file = "admin/code/tce_show_result_allusers.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 4
+count = 3
 
 [[issues]]
 file = "admin/code/tce_show_result_allusers.php"
@@ -8986,7 +8878,7 @@ count = 1
 file = "admin/code/tce_show_result_user.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 14
+count = 13
 
 [[issues]]
 file = "admin/code/tce_show_result_user.php"
@@ -9230,12 +9122,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_tsv_questions.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_tsv_questions.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
 count = 3
@@ -9304,7 +9190,7 @@ count = 3
 file = "admin/code/tce_tsv_result_allusers.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "admin/code/tce_tsv_result_allusers.php"
@@ -9376,12 +9262,6 @@ count = 1
 file = "admin/code/tce_tsv_users.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `substr`: expected `string`, but found `nonnull`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_tsv_users.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
 count = 1
 
 [[issues]]
@@ -9490,12 +9370,6 @@ count = 3
 file = "admin/code/tce_xhtml_header.php"
 code = "mixed-operand"
 message = "Right operand in `&&` operation has `mixed` type."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_xhtml_header.php"
-code = "possibly-false-operand"
-message = "Possibly false middle operand used in string concatenation (type `false|string`)."
 count = 1
 
 [[issues]]
@@ -9610,7 +9484,7 @@ count = 16
 file = "admin/code/tce_xml_question_stats.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_xml_question_stats.php"
@@ -9730,12 +9604,6 @@ count = 1
 file = "admin/code/tce_xml_questions.php"
 code = "missing-return-type"
 message = "Function `F_xml_export_questions` is missing a return type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_xml_questions.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
 count = 1
 
 [[issues]]
@@ -9868,7 +9736,7 @@ count = 1
 file = "admin/code/tce_xml_results.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_xml_results.php"
@@ -10184,12 +10052,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_xml_users.php"
-code = "mixed-assignment"
-message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_xml_users.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
 count = 7
@@ -10313,12 +10175,6 @@ file = "public/code/tce_logout.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 6
-
-[[issues]]
-file = "public/code/tce_page_footer.php"
-code = "possibly-false-operand"
-message = "Possibly false middle operand used in string concatenation (type `false|string`)."
-count = 1
 
 [[issues]]
 file = "public/code/tce_page_header.php"
@@ -12332,12 +12188,6 @@ count = 1
 
 [[issues]]
 file = "public/code/tce_xhtml_header.php"
-code = "possibly-false-operand"
-message = "Possibly false middle operand used in string concatenation (type `false|string`)."
-count = 1
-
-[[issues]]
-file = "public/code/tce_xhtml_header.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 14
@@ -12530,12 +12380,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_altauth.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `int(0)` accessed on `non-empty-array<array-key, mixed>`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_altauth.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_name')` accessed on `array<non-empty-string, mixed>`."
 count = 3
@@ -12633,12 +12477,6 @@ count = 1
 [[issues]]
 file = "shared/code/tce_authorization.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `date`: expected `int|null`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_authorization.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `setcookie`: expected `string`, but found `mixed`."
 count = 1
 
@@ -12658,7 +12496,7 @@ count = 19
 file = "shared/code/tce_authorization.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
@@ -12710,12 +12548,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_authorization.php"
-code = "mixed-operand"
-message = "Right operand in binary operation has type `mixed`."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_authorization.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
 count = 4
@@ -12724,6 +12556,12 @@ count = 4
 file = "shared/code/tce_authorization.php"
 code = "possibly-false-operand"
 message = "Left operand in `<` comparison might be `false` (type `false|int`)."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_authorization.php"
+code = "possibly-invalid-argument"
+message = "Possible argument type mismatch for argument #2 of `date`: expected `int|null`, but possibly received `float|int`."
 count = 1
 
 [[issues]]
@@ -16197,12 +16035,6 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_session.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `date`: expected `int|null`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_session.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `password_verify`: expected `string`, but found `mixed`."
 count = 1
 
@@ -16216,12 +16048,6 @@ count = 1
 file = "shared/code/tce_functions_session.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_session.php"
-code = "mixed-operand"
-message = "Right operand in binary operation has type `mixed`."
 count = 1
 
 [[issues]]
@@ -16282,6 +16108,12 @@ count = 1
 file = "shared/code/tce_functions_session.php"
 code = "possibly-invalid-argument"
 message = "Possible argument type mismatch for argument #1 of `strlen`: expected `string`, but possibly received `array<int|non-empty-string, string>|null|string`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_session.php"
+code = "possibly-invalid-argument"
+message = "Possible argument type mismatch for argument #2 of `date`: expected `int|null`, but possibly received `float|int`."
 count = 1
 
 [[issues]]
@@ -16851,7 +16683,7 @@ count = 2
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `exec`: expected `int|int`, but found `mixed`."
+message = "Invalid argument type for argument #3 of `exec`: expected `int|null`, but found `mixed`."
 count = 1
 
 [[issues]]
@@ -16888,13 +16720,13 @@ count = 10
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Invalid left operand: type `mixed` cannot be reliably used in string concatenation."
-count = 5
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 15
+count = 13
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
@@ -18038,12 +17870,6 @@ count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
-code = "possibly-invalid-array-access"
-message = "Cannot perform array access on value of type `int`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_test.php"
 code = "possibly-null-operand"
 message = "Possibly null left operand used in string concatenation (type `non-empty-string|null`)."
 count = 2
@@ -18298,7 +18124,7 @@ count = 3
 file = "shared/code/tce_functions_test_stats.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 9
+count = 10
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
@@ -18568,7 +18394,7 @@ count = 1
 file = "shared/code/tce_functions_test_stats.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 522
+count = 523
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
@@ -19750,13 +19576,13 @@ count = 5
 file = "shared/code/tce_pdf_report.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `nonnull` cannot be reliably used in string concatenation."
-count = 5
+count = 6
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `truthy-mixed` cannot be reliably used in string concatenation."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
@@ -19966,7 +19792,7 @@ count = 1
 file = "shared/code/tce_pdf_report.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('test')` accessed on `array<array-key, mixed>`."
-count = 4
+count = 2
 
 [[issues]]
 file = "shared/code/tce_pdf_report.php"
@@ -20426,20 +20252,8 @@ count = 1
 
 [[issues]]
 file = "shared/config.default/tce_config.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `setcookie`: expected `array<array-key, mixed>|int`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/config.default/tce_config.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 1
-
-[[issues]]
-file = "shared/config.default/tce_config.php"
-code = "mixed-operand"
-message = "Right operand in binary operation has type `mixed`."
 count = 1
 
 [[issues]]
@@ -20453,6 +20267,12 @@ file = "shared/config.default/tce_config.php"
 code = "possibly-invalid-argument"
 message = "Possible argument type mismatch for argument #1 of `strlen`: expected `string`, but possibly received `non-empty-array<int|non-empty-string, array<int|non-empty-string, mixed>|string>|string`."
 count = 2
+
+[[issues]]
+file = "shared/config.default/tce_config.php"
+code = "possibly-invalid-argument"
+message = "Possible argument type mismatch for argument #3 of `setcookie`: expected `array<array-key, mixed>|int`, but possibly received `float|int`."
+count = 1
 
 [[issues]]
 file = "shared/config.default/tce_config.php"
@@ -20476,12 +20296,6 @@ count = 26
 file = "shared/config.default/tce_email_config.php"
 code = "undefined-variable"
 message = "Undefined variable: `$emailcfg`."
-count = 1
-
-[[issues]]
-file = "shared/config.default/tce_paths.php"
-code = "impossible-type-comparison"
-message = "Impossible condition: variable `$_SERVER['DOCUMENT_ROOT']` (type `non-empty-string`) can never be `empty`."
 count = 1
 
 [[issues]]
