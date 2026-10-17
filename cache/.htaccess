@@ -1,0 +1,24 @@
+# Files in this directory are served as passive content only.
+# Requires AllowOverride AuthConfig FileInfo (or All); docker/tcexam-apache.conf applies the same rules.
+
+# Scripts are not served; index.php only redirects to the public area.
+<FilesMatch "(?i)\.(php[0-9]?|pht|phtml|phar|phps|cgi|pl|py|sh|asp|aspx|jsp)(\.|$)">
+    Require all denied
+</FilesMatch>
+<Files "index.php">
+    Require all granted
+</Files>
+
+# Markup and script types are served as binary data.
+<FilesMatch "(?i)\.(xml|xslt?|xht|xhtml|s?html?|mht|mhtml|m?js|swf)$">
+    ForceType application/octet-stream
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Content-Security-Policy "default-src 'none'; img-src 'self' data:; media-src 'self'; style-src 'unsafe-inline'; sandbox"
+    # Markup and script types are downloaded when opened directly; SVG still displays through <img>.
+    <FilesMatch "(?i)\.(svgz?|xml|xslt?|xht|xhtml|s?html?|mht|mhtml|m?js|swf)$">
+        Header always set Content-Disposition "attachment"
+    </FilesMatch>
+</IfModule>

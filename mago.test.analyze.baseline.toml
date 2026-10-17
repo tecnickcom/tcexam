@@ -181,6 +181,54 @@ message = 'Potentially unhandled exception `Random\RandomException` in `Test\Ses
 count = 1
 
 [[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #1 of `Test\TcecodeObjectsTest::assertNoEmbeddedDocument`: expected `string`, but found `mixed`.'
+count = 5
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertStringContainsString`: expected `string`, but found `mixed`.'
+count = 3
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertStringNotContainsString`: expected `string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertStringStartsWith`: expected `string`, but found `mixed`.'
+count = 8
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 6
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "non-existent-function"
+message = "Function `F_is_valid_object_path` could not be found."
+count = 1
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "non-existent-function"
+message = "Function `F_objects_callback` could not be found."
+count = 4
+
+[[issues]]
+file = "test/TcecodeObjectsTest.php"
+code = "non-existent-function"
+message = "Function `F_objects_replacement` could not be found."
+count = 10
+
+[[issues]]
 file = "test/TmxResourceBundleTest.php"
 code = "impossible-assignment"
 message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
@@ -211,6 +259,36 @@ message = "Class `TMXResourceBundle` not found."
 count = 4
 
 [[issues]]
+file = "test/SvgCheckTest.php"
+code = "non-existent-function"
+message = "Function `F_is_safe_media_content` could not be found."
+count = 3
+
+[[issues]]
+file = "test/SvgCheckTest.php"
+code = "non-existent-function"
+message = "Function `F_is_safe_svg_content` could not be found."
+count = 3
+
+[[issues]]
+file = "test/UploadFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_is_allowed_upload` could not be found."
+count = 16
+
+[[issues]]
+file = "test/UploadFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_is_safe_media_content` could not be found."
+count = 12
+
+[[issues]]
+file = "test/UploadFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_sanitize_upload_filename` could not be found."
+count = 1
+
+[[issues]]
 file = "test/bootstrap.php"
 code = "missing-parameter-type"
 message = "Parameter `$filename` is missing a type hint."
@@ -221,24 +299,6 @@ file = "test/bootstrap.php"
 code = "missing-return-type"
 message = "Function `F_file_exists` is missing a return type hint."
 count = 1
-
-[[issues]]
-file = "test/integration/AdminControllerHttpTest.php"
-code = "imprecise-type"
-message = "Type `array` in property `$authCookies` is imprecise, equivalent to `array<array-key, mixed>`."
-count = 1
-
-[[issues]]
-file = "test/integration/AdminControllerHttpTest.php"
-code = "imprecise-type"
-message = "Type `array` in return type of `login` is imprecise, equivalent to `array<array-key, mixed>`."
-count = 1
-
-[[issues]]
-file = "test/integration/AdminControllerHttpTest.php"
-code = "less-specific-argument"
-message = 'Argument type mismatch for argument #3 of `Test\Integration\AppHttpTestCase::http`: expected `array<string, string>`, but provided type `array<array-key, mixed>` is less specific.'
-count = 16
 
 [[issues]]
 file = "test/integration/AdminControllerHttpTest.php"

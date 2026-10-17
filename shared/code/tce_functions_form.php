@@ -45,9 +45,16 @@ if (isset($_POST['update'])) {
 
 if (empty($menu_mode)) {
     $menu_mode = '';
-} elseif (empty($_POST['csrf_token']) || !checkCSRFToken($_POST['csrf_token'])) {
-    // check for CSRF
-    exit();
+}
+
+// check for CSRF: every POST request carrying form data or files must have a valid token
+if (
+    ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST'
+    && ($_POST !== [] || $_FILES !== [])
+    && (empty($_POST['csrf_token']) || !is_string($_POST['csrf_token']) || !checkCSRFToken($_POST['csrf_token']))
+) {
+    http_response_code(403);
+    exit(htmlspecialchars((string) ($GLOBALS['l']['m_authorization_denied'] ?? 'Forbidden'), ENT_QUOTES));
 }
 
 define('K_EMAIL_RE_PATTERN', '^([a-zA-Z0-9_\.\-\+\%]+)@([a-zA-Z0-9\.\-]+)$');

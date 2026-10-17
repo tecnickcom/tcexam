@@ -50,6 +50,24 @@ if (! function_exists('F_file_exists')) {
     }
 }
 
+// Upload allow-list of an installation whose configuration still lists markup and script types,
+// so the tests verify that the code-level deny-lists take precedence over the configuration.
+if (! defined('K_ALLOWED_UPLOAD_EXTENSIONS')) {
+    define('K_ALLOWED_UPLOAD_EXTENSIONS', serialize([
+        'csv', 'tsv', 'xml', 'txt', 'png', 'gif', 'jpg', 'jpeg', 'svg', 'html', 'php',
+        'mp3', 'ogg', 'ogv', 'mpeg', 'pfx', 'pem', 'crt',
+    ]));
+}
+
+// Cache paths used by the TCECode object renderer.
+if (! defined('K_PATH_CACHE')) {
+    define('K_PATH_CACHE', sys_get_temp_dir() . '/tcexam-test-cache-' . (int) getmypid() . '/');
+}
+
+if (! defined('K_PATH_URL_CACHE')) {
+    define('K_PATH_URL_CACHE', '/cache/');
+}
+
 // Application source under test. Each is a pure definition file, except tce_functions_session.php
 // whose web bootstrap is guarded to be skipped under the CLI SAPI (see that file).
 require_once __DIR__ . '/../shared/code/tce_functions_general.php';
@@ -58,3 +76,7 @@ require_once __DIR__ . '/../shared/code/tce_tmx.php';
 // Form helpers: the top-level CSRF guard self-skips under the CLI SAPI (no POST action), and the
 // only include-time side effect is defining K_EMAIL_RE_PATTERN. F_check_fields_format() is pure.
 require_once __DIR__ . '/../shared/code/tce_functions_form.php';
+// Upload checks and TCECode rendering: definition files; their relative config includes run only
+// inside the functions (see the tests for the working-directory fixture).
+require_once __DIR__ . '/../admin/code/tce_functions_upload.php';
+require_once __DIR__ . '/../shared/code/tce_functions_tcecode.php';

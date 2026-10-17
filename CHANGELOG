@@ -1,3 +1,13 @@
+17.3.0 (2026-10-17)
+	- Security hardening of uploaded files. Please read the "Uploaded files, CSRF and backups" section of UPGRADE.md before updating an existing installation.
+	- Media uploads reject markup and script types, and every upload rejects server script types; file content is checked, file names are sanitized and existing files are never overwritten.
+	- SVG uploads are accepted only as plain, static SVG files (no scripts, event handlers, external references, DTD/entities or editor-specific namespaces).
+	- User, question and SSL certificate imports are read from the PHP temporary upload directory instead of being copied into cache/.
+	- Previews and [object] tags display files with <img>, <audio> or <video>, or as a download link, instead of <object>.
+	- Every POST request with form data or files must carry a valid CSRF token.
+	- Creating, restoring and downloading backups requires the current user's password, with a 15-minute lockout after 5 wrong attempts.
+	- Added cache/.htaccess and matching Docker Apache rules to serve cache/ as passive content only.
+
 17.2.0 (2026-06-25)
 	- Fixed creating and importing questions and answers on databases using the utf8mb4 character set (issue #461); the binary uniqueness-check collation is now configurable via the new K_MYSQL_QA_BIN_COLLATION constant.
 

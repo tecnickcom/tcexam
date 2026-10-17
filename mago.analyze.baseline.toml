@@ -796,7 +796,7 @@ count = 2
 file = "admin/code/tce_edit_backup.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 17
+count = 22
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -886,7 +886,7 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
-count = 17
+count = 22
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -1815,12 +1815,6 @@ count = 2
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `str_ends_with`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_sslcerts.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `strlen`: expected `string`, but found `mixed`."
 count = 1
 
@@ -1840,7 +1834,7 @@ count = 38
 file = "admin/code/tce_edit_sslcerts.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 8
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -1858,7 +1852,7 @@ count = 12
 file = "admin/code/tce_edit_sslcerts.php"
 code = "mixed-operand"
 message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 3
+count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -2846,18 +2840,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `basename`: expected `string`, but found `mixed`."
-count = 3
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `basename`: expected `string`, but found `truthy-mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
 count = 58
@@ -2866,7 +2848,7 @@ count = 58
 file = "admin/code/tce_filemanager.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 4
+count = 3
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
@@ -2878,19 +2860,7 @@ count = 1
 file = "admin/code/tce_filemanager.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 17
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "mixed-operand"
-message = "Invalid middle operand: type `truthy-mixed` cannot be reliably used in string concatenation."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "mixed-operand"
-message = "Invalid right operand: type `truthy-mixed` cannot be reliably used in string concatenation."
-count = 1
+count = 16
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
@@ -2926,7 +2896,7 @@ count = 1
 file = "admin/code/tce_filemanager.php"
 code = "possibly-false-operand"
 message = "Possibly false left operand used in string concatenation (type `false|string`)."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_filemanager.php"
@@ -3194,12 +3164,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
-code = "impossible-assignment"
-message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 2
@@ -3226,19 +3190,19 @@ count = 4
 file = "admin/code/tce_functions_filemanager.php"
 code = "invalid-operand"
 message = "Invalid type `never` for middle operand in string concatenation."
-count = 5
+count = 2
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "invalid-operand"
 message = "Invalid type `never` for right operand in string concatenation."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_createMediaDir`: expected `true`, but found `false`."
-count = 3
+count = 4
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3597,20 +3561,8 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `unserialize`: expected `string`, but found `mixed`."
-count = 4
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `urlencode`: expected `string`, but found `mixed`."
 count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `in_array`: expected `array<array-key, ('V.in_array() extends mixed)>`, but found `mixed`."
-count = 5
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3646,7 +3598,7 @@ count = 8
 file = "admin/code/tce_functions_filemanager.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 11
+count = 7
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3658,7 +3610,7 @@ count = 14
 file = "admin/code/tce_functions_filemanager.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 29
+count = 26
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3670,7 +3622,7 @@ count = 1
 file = "admin/code/tce_functions_filemanager.php"
 code = "mixed-operand"
 message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3735,20 +3687,8 @@ count = 2
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "no-value"
-message = "Argument #1 passed to function `strlen` has type `never`, meaning it cannot produce a value."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
-code = "no-value"
 message = "Argument #1 passed to function `strtolower` has type `never`, meaning it cannot produce a value."
 count = 3
-
-[[issues]]
-file = "admin/code/tce_functions_filemanager.php"
-code = "no-value"
-message = "Argument #1 passed to function `substr` has type `never`, meaning it cannot produce a value."
-count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3820,7 +3760,7 @@ count = 4
 file = "admin/code/tce_functions_filemanager.php"
 code = "possibly-null-argument"
 message = "Argument #1 of function `strtolower` is possibly `null`, but parameter type `string` does not accept it."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -3850,7 +3790,7 @@ count = 3
 file = "admin/code/tce_functions_filemanager.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key 'extension' accessed on `array{'basename': string, 'dirname'?: string, 'extension'?: string, 'filename': string}`."
-count = 3
+count = 2
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
@@ -4826,62 +4766,14 @@ count = 2
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
-code = "array-to-string-conversion"
-message = "Potential array in right operand of string concatenation."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_is_allowed_upload`: expected `true`, but found `false`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "less-specific-return-statement"
-message = "Returned type `bool` is less specific than the declared return type `true` for function `F_is_allowed_upload`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "missing-parameter-type"
-message = "Parameter `$fieldname` is missing a type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "missing-parameter-type"
-message = "Parameter `$filename` is missing a type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
 code = "missing-parameter-type"
 message = "Parameter `$filetocheck` is missing a type hint."
 count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
-code = "missing-parameter-type"
-message = "Parameter `$uploaddir` is missing a type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "missing-return-type"
-message = "Function `F_is_allowed_upload` is missing a return type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
 code = "missing-return-type"
 message = "Function `F_read_file_size` is missing a return type hint."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "missing-return-type"
-message = "Function `F_upload_file` is missing a return type hint."
 count = 1
 
 [[issues]]
@@ -4898,27 +4790,9 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `pathinfo`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `unserialize`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `in_array`: expected `array<array-key, ('V.in_array() extends mixed)>`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 3
+count = 9
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
@@ -4929,109 +4803,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "mixed-operand"
-message = "Invalid left operand: type `mixed` cannot be reliably used in string concatenation."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "mixed-operand"
-message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "mixed-operand"
 message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 2
+count = 7
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "possibly-false-array-access"
 message = "Cannot perform array access on possibly `false` value."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #1 of `htmlspecialchars`: expected `string`, but possibly received `array<non-negative-int, string>|null|string`."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-invalid-argument"
-message = "Possible argument type mismatch for argument #1 of `move_uploaded_file`: expected `string`, but possibly received `non-empty-list<non-empty-string>|non-empty-string|null`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-argument"
-message = "Argument #1 of function `htmlspecialchars` is possibly `null`, but parameter type `string` does not accept it."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-argument"
-message = "Argument #1 of function `move_uploaded_file` is possibly `null`, but parameter type `string` does not accept it."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-argument"
-message = "Argument #1 of function `strtolower` is possibly `null`, but parameter type `string` does not accept it."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-argument"
-message = "Argument #3 of function `preg_replace` is possibly `null`, but parameter type `array<non-negative-int, string>|string` does not accept it."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-array-access"
-message = "Cannot perform array access on possibly `null` value."
-count = 3
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-null-operand"
-message = "Possibly null right operand used in string concatenation (type `array<non-negative-int, string>|null|string`)."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `int(0)` accessed on `array<non-negative-int, string>`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-undefined-int-array-index"
-message = "Possibly undefined array key `mixed` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key 'extension' accessed on `array{'basename': string, 'dirname'?: string, 'extension'?: string, 'filename': string}`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key 'name' accessed on `array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key 'tmp_name' accessed on `array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_upload.php"
-code = "redundant-logical-operation"
-message = "Redundant `&&` operation: left operand is always truthy and right operand is evaluated."
 count = 1
 
 [[issues]]
@@ -5902,7 +5680,7 @@ count = 9
 file = "admin/code/tce_import_questions.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 6
+count = 5
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
@@ -5915,12 +5693,6 @@ file = "admin/code/tce_import_questions.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
 count = 13
-
-[[issues]]
-file = "admin/code/tce_import_questions.php"
-code = "mixed-operand"
-message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 3
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
@@ -6244,7 +6016,7 @@ count = 2
 file = "admin/code/tce_import_users.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 7
+count = 6
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -6268,7 +6040,7 @@ count = 8
 file = "admin/code/tce_import_users.php"
 code = "mixed-operand"
 message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 3
+count = 1
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
@@ -7520,18 +7292,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `basename`: expected `string`, but found `mixed`."
-count = 3
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `basename`: expected `string`, but found `truthy-mixed`."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
 count = 66
@@ -7540,7 +7300,7 @@ count = 66
 file = "admin/code/tce_select_mediafile.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 4
+count = 3
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
@@ -7552,19 +7312,7 @@ count = 1
 file = "admin/code/tce_select_mediafile.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 28
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "mixed-operand"
-message = "Invalid middle operand: type `truthy-mixed` cannot be reliably used in string concatenation."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "mixed-operand"
-message = "Invalid right operand: type `truthy-mixed` cannot be reliably used in string concatenation."
-count = 1
+count = 26
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
@@ -7600,7 +7348,7 @@ count = 1
 file = "admin/code/tce_select_mediafile.php"
 code = "possibly-false-operand"
 message = "Possibly false left operand used in string concatenation (type `false|string`)."
-count = 2
+count = 1
 
 [[issues]]
 file = "admin/code/tce_select_mediafile.php"
@@ -13750,7 +13498,7 @@ count = 2
 file = "shared/code/tce_functions_authorization.php"
 code = "no-value"
 message = "Argument #1 passed to function `F_db_fetch_array` has type `never`, meaning it cannot produce a value."
-count = 4
+count = 5
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -13786,7 +13534,7 @@ count = 1
 file = "shared/code/tce_functions_authorization.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
-count = 2
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
@@ -16665,12 +16413,6 @@ count = 3
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `strtolower`: expected `string`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #1 of `substr`: expected `string`, but found `mixed`."
 count = 3
 
@@ -16720,25 +16462,13 @@ count = 10
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Invalid left operand: type `mixed` cannot be reliably used in string concatenation."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
-count = 13
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "mixed-operand"
-message = "Invalid middle operand: type `truthy-mixed` cannot be reliably used in string concatenation."
 count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "mixed-operand"
-message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
-count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
@@ -16750,7 +16480,7 @@ count = 4
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-operand"
 message = "Left operand in `>` comparison has `mixed` type."
-count = 20
+count = 16
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"

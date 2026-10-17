@@ -53,14 +53,12 @@ $ssl_hash = '';
 $ssl_end_date = '';
 if (isset($_FILES['userfile']['name']) && !empty($_FILES['userfile']['name'])) {
     require_once '../code/tce_functions_upload.php';
-    // upload file
-    $uploadedfile = F_upload_file('userfile', K_PATH_CACHE);
-    if ($uploadedfile !== false) {
-        $cert = file_get_contents(K_PATH_CACHE . $uploadedfile);
-        $pkcs12 = str_ends_with($uploadedfile, '.pfx');
+    // read the uploaded file from the PHP temporary upload directory
+    $upload = F_get_uploaded_tmp_file('userfile', ['pfx', 'pem', 'crt']);
+    if ($upload !== false) {
+        $cert = file_get_contents($upload['tmp_name']);
+        $pkcs12 = str_ends_with(strtolower($upload['name']), '.pfx');
         [$ssl_hash, $ssl_end_date] = F_getSSLCertificateHash($cert, $pkcs12);
-        //remove certificate file
-        unlink(K_PATH_CACHE . $uploadedfile);
     }
 }
 

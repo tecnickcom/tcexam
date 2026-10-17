@@ -303,6 +303,12 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "function-name"
+message = "Function name `F_getMediaFileExtensions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_filemanager.php"
+code = "function-name"
 message = "Function name `F_isAuthorizedDir` should be in snake case."
 count = 1
 
@@ -471,13 +477,109 @@ count = 7
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "function-name"
+message = "Function name `F_get_active_content_extensions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_get_active_content_mime_types` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_get_allowed_upload_extensions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_get_server_script_extensions` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_get_uploaded_file_entry` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_get_uploaded_tmp_file` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
 message = "Function name `F_is_allowed_upload` should be in snake case."
 count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_upload.php"
 code = "function-name"
+message = "Function name `F_is_safe_media_content` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_allowed_elements` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_allowed_attributes` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_metadata_namespaces` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_value` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_href` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_attribute` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_node` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_content` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
 message = "Function name `F_read_file_size` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_upload.php"
+code = "function-name"
+message = "Function name `F_sanitize_upload_filename` should be in snake case."
 count = 1
 
 [[issues]]
@@ -1407,6 +1509,12 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "function-name"
+message = "Function name `F_check_current_user_password` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
 message = "Function name `F_getAuthorizedUsers` should be in snake case."
 count = 1
 
@@ -2038,6 +2146,12 @@ count = 1
 file = "shared/code/tce_functions_tcecode.php"
 code = "function-name"
 message = "Function name `F_decode_tcecode` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_tcecode.php"
+code = "function-name"
+message = "Function name `F_is_valid_object_path` should be in snake case."
 count = 1
 
 [[issues]]

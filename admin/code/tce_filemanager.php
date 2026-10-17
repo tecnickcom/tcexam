@@ -86,7 +86,7 @@ if (isset($_REQUEST['f'])) {
 }
 
 // sanitize file
-$file = realpath($file);
+$file = (string) realpath($file);
 // check if the user is authorized to use this file
 if (!F_isAuthorizedDir($file . '/', $root_dir, $authdirs)) {
     $file = '';
@@ -100,9 +100,7 @@ if (isset($_POST['sendfile']) && $_FILES['userfile']['name']) {
     }
 
     $file = F_upload_file('userfile', $dir);
-    if (!empty($file)) {
-        $file = $dir . $file;
-    }
+    $file = $file === false ? '' : $dir . $file;
 }
 
 if (isset($_POST['rename'])) {
@@ -137,8 +135,18 @@ switch ($menu_mode) {
                     . K_NEWLINE
             ;
             echo '<div>' . K_NEWLINE;
-            echo '<input type="hidden" name="dir" id="dir" value="' . $dir . '" />' . K_NEWLINE;
-            echo '<input type="hidden" name="file" id="file" value="' . $file . '" />' . K_NEWLINE;
+            echo
+                '<input type="hidden" name="dir" id="dir" value="'
+                    . htmlspecialchars($dir, ENT_QUOTES)
+                    . '" />'
+                    . K_NEWLINE
+            ;
+            echo
+                '<input type="hidden" name="file" id="file" value="'
+                    . htmlspecialchars($file, ENT_QUOTES)
+                    . '" />'
+                    . K_NEWLINE
+            ;
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>' . K_NEWLINE;
@@ -279,7 +287,7 @@ echo
 echo '<div>' . K_NEWLINE;
 
 // current dir
-echo '<input type="hidden" name="d" id="d" value="' . $dir . '" />' . K_NEWLINE;
+echo '<input type="hidden" name="d" id="d" value="' . htmlspecialchars($dir, ENT_QUOTES) . '" />' . K_NEWLINE;
 
 echo '<fieldset>' . K_NEWLINE;
 echo '<legend title="' . $l['w_action'] . '">' . $l['w_action'] . '</legend>' . K_NEWLINE;
@@ -306,10 +314,15 @@ if (!empty($file)) {
     ;
     echo '<br />' . K_NEWLINE;
     // action buttons
-    echo '<input type="hidden" name="file" id="file" value="' . $file . '" />' . K_NEWLINE;
+    echo
+        '<input type="hidden" name="file" id="file" value="'
+            . htmlspecialchars($file, ENT_QUOTES)
+            . '" />'
+            . K_NEWLINE
+    ;
     echo
         '<input type="text" name="newname" id="newname" value="'
-            . basename($file)
+            . htmlspecialchars(basename($file), ENT_QUOTES)
             . '" size="40" maxlength="255" title="'
             . $l['w_name']
             . '" />'

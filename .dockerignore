@@ -23,6 +23,7 @@ cache/OMR/*
 
 # Local working files / docs not needed at runtime:
 PLAN_*.md
+_TMP
 phpunit.xml
 **/*.bak
 **/*.tmp

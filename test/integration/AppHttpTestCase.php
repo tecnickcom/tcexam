@@ -47,11 +47,76 @@ abstract class AppHttpTestCase extends TestCase
      * @param array<string,mixed>  $post    Form fields for a POST request (values may be arrays,
      *                                       e.g. multi-select `name[]` fields).
      *
-     * @return array{0:int,1:string,2:array<string,string>} [status, body, cookies(sent+received)]
+     * @return array{0:int,1:string,2:array<string,string>,3:list<string>} [status, body, cookies(sent+received), response headers]
      */
     protected function http(string $method, string $path, array $cookies = [], array $post = []): array
     {
-        $header = "Accept: text/html\r\n";
+        $header = '';
+        $content = null;
+        if ($method === 'POST') {
+            $header = "Content-Type: application/x-www-form-urlencoded\r\n";
+            $content = http_build_query($post);
+        }
+
+        return $this->send($method, $path, $cookies, $header, $content);
+    }
+
+    /**
+     * Perform a multipart/form-data POST request with file uploads.
+     *
+     * @param array<string,string>                    $cookies Cookies to send (name => value).
+     * @param array<string,string>                    $fields  Form fields.
+     * @param array<string,array{0:string,1:string}> $files   Upload fields (name => [file name, content]).
+     *
+     * @return array{0:int,1:string,2:array<string,string>,3:list<string>} [status, body, cookies(sent+received), response headers]
+     */
+    protected function httpMultipart(string $path, array $cookies, array $fields, array $files): array
+    {
+        $boundary = '----tcexam' . uniqid();
+        $content = '';
+        foreach ($fields as $name => $value) {
+            $content .=
+                '--'
+                . $boundary
+                . "\r\n"
+                . 'Content-Disposition: form-data; name="'
+                . $name
+                . "\"\r\n\r\n"
+                . $value
+                . "\r\n";
+        }
+
+        foreach ($files as $name => [$filename, $data]) {
+            $content .=
+                '--'
+                . $boundary
+                . "\r\n"
+                . 'Content-Disposition: form-data; name="'
+                . $name
+                . '"; filename="'
+                . $filename
+                . "\"\r\n"
+                . "Content-Type: application/octet-stream\r\n\r\n"
+                . $data
+                . "\r\n";
+        }
+
+        $content .= '--' . $boundary . "--\r\n";
+        $header = 'Content-Type: multipart/form-data; boundary=' . $boundary . "\r\n";
+
+        return $this->send('POST', $path, $cookies, $header, $content);
+    }
+
+    /**
+     * Send a request with the given extra headers and body.
+     *
+     * @param array<string,string> $cookies Cookies to send (name => value).
+     *
+     * @return array{0:int,1:string,2:array<string,string>,3:list<string>} [status, body, cookies(sent+received), response headers]
+     */
+    private function send(string $method, string $path, array $cookies, string $header, ?string $content): array
+    {
+        $header = "Accept: text/html\r\n" . $header;
         if ($cookies !== []) {
             $pairs = [];
             foreach ($cookies as $k => $v) {
@@ -62,15 +127,33 @@ abstract class AppHttpTestCase extends TestCase
         }
 
         $opts = ['method' => $method, 'header' => $header, 'ignore_errors' => true, 'timeout' => 20];
-        if ($method === 'POST') {
-            $opts['header'] .= "Content-Type: application/x-www-form-urlencoded\r\n";
-            $opts['content'] = http_build_query($post);
+        if ($content !== null) {
+            $opts['content'] = $content;
         }
 
         $body = file_get_contents($this->base . $path, false, stream_context_create(['http' => $opts]));
         $headers = $http_response_header ?? [];
 
-        return [self::statusFrom($headers), (string) $body, $cookies + self::cookiesFrom($headers)];
+        return [self::statusFrom($headers), (string) $body, $cookies + self::cookiesFrom($headers), $headers];
+    }
+
+    /**
+     * Return the value of the last response header with the given name, or null when absent.
+     *
+     * @param list<string> $headers Response header lines.
+     */
+    protected static function headerValue(array $headers, string $name): ?string
+    {
+        $value = null;
+        foreach ($headers as $h) {
+            if (stripos($h, $name . ':') !== 0) {
+                continue;
+            }
+
+            $value = trim(substr($h, strlen($name) + 1));
+        }
+
+        return $value;
     }
 
     /** Extract the CSRF token embedded in a form, or null when absent. */

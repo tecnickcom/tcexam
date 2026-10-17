@@ -30,7 +30,11 @@ final class AdminControllerHttpTest extends AppHttpTestCase
     /** Known password seeded for the 'admin' user so the test can authenticate. */
     private const ADMIN_PW = 'itest-admin-pw-7Q2cl8k8ec';
 
-    /** Cached authenticated cookies (log in once for the whole class). */
+    /**
+     * Cached authenticated cookies (log in once for the whole class).
+     *
+     * @var array<string,string>
+     */
     private static array $authCookies = [];
 
     /** Guard so the admin password is seeded only once. */
@@ -156,7 +160,11 @@ final class AdminControllerHttpTest extends AppHttpTestCase
         }
     }
 
-    /** Log in as admin once and cache the authenticated session cookies. */
+    /**
+     * Log in as admin once and cache the authenticated session cookies.
+     *
+     * @return array<string,string>
+     */
     private function login(): array
     {
         if (self::$authCookies !== []) {
@@ -479,4 +487,218 @@ final class AdminControllerHttpTest extends AppHttpTestCase
         );
     }
 
+    /** 1x1 PNG image. */
+    private const PNG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+    /** Absolute cache directory of the app-under-test (see docker/test-app-entrypoint.sh). */
+    private const APP_CACHE = '/var/www/html/cache/';
+
+    /**
+     * Return a CSRF token rendered by the given page.
+     *
+     * @param array<string,string> $cookies Session cookies.
+     */
+    private function tokenFor(string $path, array $cookies): string
+    {
+        [, $body] = $this->http('GET', $path, $cookies);
+        $token = self::extractCsrfToken($body);
+        $this->assertNotNull($token, $path . ' should expose a CSRF token');
+
+        return $token;
+    }
+
+    /**
+     * Upload a file through the File Manager as the logged-in administrator.
+     *
+     * @param array<string,string> $cookies Session cookies.
+     */
+    private function uploadMedia(array $cookies, string $filename, string $content): string
+    {
+        [, $body] = $this->httpMultipart(
+            '/admin/code/tce_filemanager.php',
+            $cookies,
+            ['sendfile' => '1', 'csrf_token' => $this->tokenFor('/admin/code/tce_filemanager.php', $cookies)],
+            ['userfile' => [$filename, $content]],
+        );
+
+        return $body;
+    }
+
+    /**
+     * Return the backup files listed by the backup page.
+     *
+     * @param array<string,string> $cookies Session cookies.
+     *
+     * @return list<string>
+     */
+    private function listedBackups(array $cookies): array
+    {
+        [, $body] = $this->http('GET', '/admin/code/tce_edit_backup.php', $cookies);
+        $matches = [];
+        preg_match_all('/value="(\d{14}_tcexam_backup\.(?:sql|tar)\.gz)"/', $body, $matches);
+
+        return array_values(array_unique($matches[1] ?? []));
+    }
+
+    public function testPostWithoutCsrfTokenIsRejected(): void
+    {
+        $cookies = $this->login();
+        $name = 'itest_grp_nocsrf';
+
+        // the page header is sent before the check, so the request stops with the current status
+        foreach ([[], ['csrf_token' => 'invalid']] as $token) {
+            [$status, $body] = $this->http('POST', '/admin/code/tce_edit_group.php', $cookies, ['add' => '1', 'group_name' => $name] + $token);
+            $this->assertLessThan(500, $status);
+            $this->assertStringNotContainsString('form_groupeditor', $body, 'the page must stop at the CSRF check');
+            $this->assertSame(0, $this->groupIdByName($name), 'the group must not be created without a valid token');
+        }
+    }
+
+    public function testBackupActionsRequireTokenAndPassword(): void
+    {
+        $cookies = $this->login();
+        $before = $this->listedBackups($cookies);
+
+        [$status] = $this->http('POST', '/admin/code/tce_edit_backup.php', $cookies, ['backup' => '1']);
+        $this->assertSame(403, $status, 'backup without a CSRF token must be rejected');
+
+        $token = $this->tokenFor('/admin/code/tce_edit_backup.php', $cookies);
+        foreach (['', 'wrong-password'] as $password) {
+            [$status] = $this->http('POST', '/admin/code/tce_edit_backup.php', $cookies, [
+                'backup' => '1',
+                'currentpassword' => $password,
+                'csrf_token' => $token,
+            ]);
+            $this->assertSame(200, $status);
+        }
+
+        $this->assertSame($before, $this->listedBackups($cookies), 'no backup may be created without the password');
+
+        [$status] = $this->http('POST', '/admin/code/tce_edit_backup.php', $cookies, [
+            'backup' => '1',
+            'currentpassword' => self::ADMIN_PW,
+            'csrf_token' => $token,
+        ]);
+        $this->assertSame(200, $status);
+        $after = $this->listedBackups($cookies);
+        $this->assertCount(count($before) + 1, $after, 'the backup is created with the correct password');
+
+        $created = array_values(array_diff($after, $before));
+        $this->assertNotEmpty($created);
+        $newest = $created[0] ?? '';
+        [$status, $body, , $headers] = $this->http('POST', '/admin/code/tce_edit_backup.php', $cookies, [
+            'download' => '1',
+            'backup_file' => $newest,
+            'currentpassword' => 'wrong-password',
+            'csrf_token' => $token,
+        ]);
+        $this->assertSame(200, $status);
+        $this->assertNull(self::headerValue($headers, 'Content-Disposition'), 'the backup must not be downloaded without the password');
+        $this->assertStringContainsString('form_editor', $body);
+
+        [$status, , , $headers] = $this->http('POST', '/admin/code/tce_edit_backup.php', $cookies, [
+            'download' => '1',
+            'backup_file' => $newest,
+            'currentpassword' => self::ADMIN_PW,
+            'csrf_token' => $token,
+        ]);
+        $this->assertSame(200, $status);
+        $this->assertStringContainsString('attachment', (string) self::headerValue($headers, 'Content-Disposition'));
+    }
+
+    public function testMediaUploadRejectsActiveContent(): void
+    {
+        $cookies = $this->login();
+        $id = uniqid();
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg"><script>document.title="TCEXAM_XSS_SVG"</script></svg>';
+        $xml = '<?xml version="1.0"?><?xml-stylesheet type="text/xsl" href="data:,x"?><root/>';
+        $uploads = [
+            'itest_' . $id . '_a.svg' => $svg,
+            'itest_' . $id . '_b.xml' => $xml,
+            'itest_' . $id . '_c.png' => $svg,
+            'itest_' . $id . '_d.txt' => '<!DOCTYPE html><html><script>document.title="x"</script></html>',
+        ];
+        foreach ($uploads as $filename => $content) {
+            $this->uploadMedia($cookies, $filename, $content);
+            [$status] = $this->http('GET', '/cache/' . $filename);
+            $this->assertSame(404, $status, $filename . ' must not be stored');
+        }
+    }
+
+    public function testMediaFileIsServedAsPassiveContent(): void
+    {
+        $cookies = $this->login();
+        $filename = 'itest_' . uniqid() . '.png';
+        $png = (string) base64_decode(self::PNG, true);
+        $this->uploadMedia($cookies, $filename, $png);
+
+        [$status, $body, , $headers] = $this->http('GET', '/cache/' . $filename);
+        $this->assertSame(200, $status);
+        $this->assertSame($png, $body);
+        $this->assertSame('nosniff', self::headerValue($headers, 'X-Content-Type-Options'));
+        $this->assertStringContainsString('sandbox', (string) self::headerValue($headers, 'Content-Security-Policy'));
+
+        // an existing file is never overwritten
+        $this->uploadMedia($cookies, $filename, $png . 'changed');
+        [, $body] = $this->http('GET', '/cache/' . $filename);
+        $this->assertSame($png, $body);
+
+        // renaming to an active content extension is rejected
+        $svgname = substr($filename, 0, -4) . '.svg';
+        $this->http('POST', '/admin/code/tce_filemanager.php', $cookies, [
+            'rename' => '1',
+            'file' => self::APP_CACHE . $filename,
+            'newname' => $svgname,
+            'csrf_token' => $this->tokenFor('/admin/code/tce_filemanager.php', $cookies),
+        ]);
+        [$status] = $this->http('GET', '/cache/' . $svgname);
+        $this->assertSame(404, $status, 'a file must not be renamed to an active content extension');
+        [$status] = $this->http('GET', '/cache/' . $filename);
+        $this->assertSame(200, $status);
+    }
+
+    public function testFilePreviewDoesNotEmbedDocuments(): void
+    {
+        $cookies = $this->login();
+        $filename = 'itest_' . uniqid() . '.txt';
+        $this->uploadMedia($cookies, $filename, 'plain text');
+
+        [$status, $body] = $this->http(
+            'GET',
+            '/admin/code/tce_filemanager.php?d=' . urlencode(self::APP_CACHE) . '&f=' . urlencode(self::APP_CACHE . $filename) . '&v=0',
+            $cookies,
+        );
+        $this->assertSame(200, $status);
+        $this->assertStringContainsString('<a href="/cache/' . $filename . '" download="">', $body);
+        $this->assertStringNotContainsStringIgnoringCase('<object', $body);
+    }
+
+    public function testNewDirectoryNameWithMarkupIsRejected(): void
+    {
+        $cookies = $this->login();
+        $marker = 'itestdir' . uniqid();
+        $this->http('POST', '/admin/code/tce_filemanager.php', $cookies, [
+            'newdir' => '1',
+            'newdirname' => '<b>' . $marker,
+            'csrf_token' => $this->tokenFor('/admin/code/tce_filemanager.php', $cookies),
+        ]);
+
+        [, $body] = $this->http('GET', '/admin/code/tce_filemanager.php?d=' . urlencode(self::APP_CACHE) . '&v=1', $cookies);
+        $this->assertStringNotContainsString($marker, $body, 'the directory must not be created');
+    }
+
+    public function testUserImportDoesNotStoreFileInCache(): void
+    {
+        $cookies = $this->login();
+        $filename = 'itest_' . uniqid() . '.tsv';
+        [$status] = $this->httpMultipart(
+            '/admin/code/tce_import_users.php',
+            $cookies,
+            ['upload' => '1', 'file_type' => '2', 'csrf_token' => $this->tokenFor('/admin/code/tce_import_users.php', $cookies)],
+            ['userfile' => [$filename, "header\n"]],
+        );
+        $this->assertSame(200, $status);
+        [$status] = $this->http('GET', '/cache/' . $filename);
+        $this->assertSame(404, $status, 'import files must not be stored in the public cache');
+    }
 }

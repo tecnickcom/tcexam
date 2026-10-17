@@ -192,6 +192,9 @@ function F_login_form()
         exit(); //break page here
     }
 
+    // the login page processes no submitted data
+    $_POST = [];
+    $_FILES = [];
     require_once '../../shared/code/tce_functions_form.php';
     $thispage_title = $l['t_login_form']; //set page title
     require_once '../code/tce_page_header.php';
@@ -248,6 +251,45 @@ function F_logout_page()
     echo F_logout_form();
     require_once '../code/tce_page_footer.php';
     exit();
+}
+
+/**
+ * Returns true if the password matches the stored password of the current session user.
+ * After 5 consecutive failures in the same session, every check fails for 15 minutes.
+ *
+ * @param mixed $password Password to check.
+ *
+ * @return bool True if the password is correct.
+ */
+function F_check_current_user_password(#[\SensitiveParameter] mixed $password): bool
+{
+    global $db;
+    require_once '../config/tce_config.php';
+    if (!is_string($password) || $password === '' || empty($_SESSION['session_user_id'])) {
+        return false;
+    }
+
+    $failures = (int) ($_SESSION['session_password_failures'] ?? 0);
+    $last_failure = (int) ($_SESSION['session_password_failure_time'] ?? 0);
+    if ($failures >= 5 && (time() - $last_failure) < 900) {
+        return false;
+    }
+
+    $sql = 'SELECT user_password FROM ' . K_TABLE_USERS . ' WHERE user_id=' . (int) $_SESSION['session_user_id'];
+    if (!($r = F_db_query($sql, $db))) {
+        F_display_db_error(false);
+        return false;
+    }
+
+    $m = F_db_fetch_array($r);
+    if (!empty($m['user_password']) && checkPassword($password, (string) $m['user_password'])) {
+        $_SESSION['session_password_failures'] = 0;
+        return true;
+    }
+
+    $_SESSION['session_password_failures'] = ($failures >= 5 ? 0 : $failures) + 1;
+    $_SESSION['session_password_failure_time'] = time();
+    return false;
 }
 
 /**

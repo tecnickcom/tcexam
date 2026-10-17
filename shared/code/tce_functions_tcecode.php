@@ -403,13 +403,47 @@ function F_objects_callback($matches)
         $alt = F_tcecodeToTitle($matches[5]);
     }
 
-    return F_objects_replacement($matches[1], $matches[2], $width, $height, $alt);
+    // the object path comes from HTML-escaped text
+    $name = htmlspecialchars_decode((string) $matches[1], ENT_QUOTES);
+    $extension = htmlspecialchars_decode((string) $matches[2], ENT_QUOTES);
+    return F_objects_replacement($name, $extension, $width, $height, $alt);
 }
 
 /**
- * Returns the xhtml code needed to display the object by MIME type.
+ * Returns true if the object path is a relative path inside the cache directory.
+ * Rejects empty paths, absolute paths, schemes, backslashes, control characters,
+ * hidden or parent path segments, and extensions that are not alphanumeric.
+ *
+ * @param string $name      Object path excluded extension.
+ * @param string $extension Object extension.
+ *
+ * @return bool True if the path is valid.
+ */
+function F_is_valid_object_path(string $name, string $extension): bool
+{
+    if (preg_match('/^[a-zA-Z0-9]+$/', $extension) !== 1) {
+        return false;
+    }
+
+    if ($name === '' || preg_match('/[\x00-\x1f\x7f\\\\:]/', $name) === 1) {
+        return false;
+    }
+
+    foreach (explode('/', $name) as $segment) {
+        if ($segment === '' || $segment[0] === '.') {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Returns the HTML code needed to display a cache file by type.
+ * Raster and SVG images are displayed with <img>, audio and video files with <audio> and <video>,
+ * all other known types with a download link. Uploaded files are never embedded as documents.
  * @param $name (string) object path excluded extension
- * @param $extension (string) object extension (e.g.: gif, jpg, swf, ...)
+ * @param $extension (string) object extension (e.g.: gif, jpg, mp3, ...)
  * @param $width (int) object width
  * @param $height (int) object height
  * @param $alt (string) alternative content
@@ -420,8 +454,18 @@ function F_objects_callback($matches)
 function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt = '', &$maxwidth = 0, &$maxheight = 0)
 {
     require_once '../config/tce_config.php';
-    global $l, $db;
+    $name = (string) $name;
+    $extension = (string) $extension;
+    if (!F_is_valid_object_path($name, $extension)) {
+        return '[ERROR - INVALID OBJECT PATH]';
+    }
+
     $filename = $name . '.' . $extension;
+    $url = htmlspecialchars(
+        K_PATH_URL_CACHE . implode('/', array_map('rawurlencode', explode('/', $filename))),
+        ENT_QUOTES,
+    );
+    $alt = htmlspecialchars((string) $alt, ENT_QUOTES, 'UTF-8', false);
     $extension = strtolower($extension);
     $htmlcode = '';
     switch ($extension) {
@@ -431,11 +475,11 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         case 'png':
         case 'svg':
             { // images
-                $htmlcode = '<img src="' . K_PATH_URL_CACHE . $filename . '"';
+                $htmlcode = '<img src="' . $url . '"';
                 if (!empty($alt)) {
                     $htmlcode .= ' alt="' . $alt . '"';
                 } else {
-                    $htmlcode .= ' alt="image:' . $filename . '"';
+                    $htmlcode .= ' alt="image:' . htmlspecialchars($filename, ENT_QUOTES) . '"';
                 }
 
                 $imsize = @getimagesize(K_PATH_CACHE . $filename);
@@ -489,45 +533,43 @@ function F_objects_replacement($name, $extension, $width = 0, $height = 0, $alt 
         default:
             {
                 include '../../shared/config/tce_mime.php';
-                if (isset($mime[$extension])) {
-                    $htmlcode = '<object type="' . $mime[$extension] . '" data="' . K_PATH_URL_CACHE . $filename . '"';
-                    if ($width > 0) {
-                        $htmlcode .= ' width="' . $width . '"';
-                    } elseif ($maxwidth > 0) {
-                        $htmlcode .= ' width="' . $maxwidth . '"';
-                    }
-
-                    if ($height > 0) {
-                        $htmlcode .= ' height="' . $height . '"';
-                    } elseif ($maxheight > 0) {
-                        $htmlcode .= ' height="' . $maxheight . '"';
-                    }
-
-                    $htmlcode .= '>';
-                    $htmlcode .= '<param name="type" value="' . $mime[$extension] . '" />';
-                    $htmlcode .= '<param name="src" value="' . K_PATH_URL_CACHE . $filename . '" />';
-                    $htmlcode .= '<param name="filename" value="' . K_PATH_URL_CACHE . $filename . '" />';
-                    if ($width > 0) {
-                        $htmlcode .= '<param name="width" value="' . $width . '" />';
-                    } elseif ($maxwidth > 0) {
-                        $htmlcode .= '<param name="width" value="' . $maxwidth . '" />';
-                    }
-
-                    if ($height > 0) {
-                        $htmlcode .= '<param name="height" value="' . $height . '" />';
-                    } elseif ($maxheight > 0) {
-                        $htmlcode .= '<param name="height" value="' . $maxheight . '" />';
-                    }
-
-                    if (!empty($alt)) {
-                        $htmlcode .= '' . $alt . '';
-                    } else {
-                        $htmlcode .= '[' . $mime[$extension] . ']:' . $filename . '';
-                    }
-
-                    $htmlcode .= '</object>';
-                } else {
+                if (!isset($mime[$extension])) {
                     $htmlcode = '[ERROR - UNKNOW MIME TYPE FOR: ' . $extension . ']';
+                    break;
+                }
+
+                $mimetype = (string) $mime[$extension];
+                $type = htmlspecialchars($mimetype, ENT_QUOTES);
+                $label = !empty($alt) ? $alt : '[' . $type . ']:' . htmlspecialchars($filename, ENT_QUOTES);
+                $link = '<a href="' . $url . '" download="">' . $label . '</a>';
+                $size = '';
+                if ($width > 0) {
+                    $size .= ' width="' . (int) $width . '"';
+                } elseif ($maxwidth > 0) {
+                    $size .= ' width="' . (int) $maxwidth . '"';
+                }
+
+                if ($height > 0) {
+                    $size .= ' height="' . (int) $height . '"';
+                } elseif ($maxheight > 0) {
+                    $size .= ' height="' . (int) $maxheight . '"';
+                }
+
+                if (str_starts_with($mimetype, 'audio/')) {
+                    $htmlcode = '<audio controls="controls" preload="none" src="' . $url . '" title="' . $label . '">';
+                    $htmlcode .= $link . '</audio>';
+                } elseif (str_starts_with($mimetype, 'video/')) {
+                    $htmlcode =
+                        '<video controls="controls" preload="none" src="'
+                        . $url
+                        . '"'
+                        . $size
+                        . ' title="'
+                        . $label
+                        . '">';
+                    $htmlcode .= $link . '</video>';
+                } else {
+                    $htmlcode = $link;
                 }
 
                 break;

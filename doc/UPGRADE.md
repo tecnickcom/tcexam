@@ -52,6 +52,106 @@ below, note the following one-time changes.
   the variable-injection vector), delete the "parse posted variables" `foreach` loop from your
   `shared/config/tce_config.php`, matching the shipped default.
 
+### Uploaded files, CSRF and backups
+
+- **Media uploads** (File Manager, media selector, question/answer/subject attachments) reject
+  markup and script types (`svgz`, `xml`, `xsl`, `xslt`, `xht`, `xhtml`, `htm`, `html`,
+  `shtml`, `mht`, `mhtml`, `js`, `mjs`, `swf`) even when they are listed in
+  `K_ALLOWED_UPLOAD_EXTENSIONS`. Server script types (`php*`, `phtml`, `phar`, `cgi`, `pl`, `py`,
+  `sh`, ...) are rejected for every upload. File content is checked, inner dots in file names
+  become underscores and existing files are never overwritten. File Manager rename follows the
+  same rules, including the content check for the new extension; new directory names are
+  restricted to `[A-Za-z0-9_-]`. The File Manager still lists existing markup files so that they
+  can be deleted.
+- **SVG uploads accept only plain, static SVG files.** `'svg'` is in the default
+  `K_ALLOWED_UPLOAD_EXTENSIONS`; add it to `admin/config/tce_config.php` to enable SVG uploads on
+  an existing install. Each uploaded or renamed SVG file must be well-formed UTF-8 XML with an
+  `<svg>` root element and contain only static graphics. The upload is rejected if the file
+  contains any of the following:
+  - scripts, event handler attributes (`onload`, `onclick`, ...), `<foreignObject>`, links
+    (`<a>`), animation elements, or SVG fonts;
+  - references to anything other than an element of the same file (`#id`) or an embedded
+    PNG, JPEG or GIF image (`data:image/png;base64,...`), including in CSS `url()` and `@import`;
+  - entity declarations, an internal DTD subset, or processing instructions such as
+    `<?xml-stylesheet?>`;
+  - editor-specific elements or attributes (Inkscape, Sodipodi, Adobe Illustrator, Sketch, ...);
+  - a declared encoding other than UTF-8, or gzip compression (`.svgz`).
+
+  Save drawings as plain SVG before uploading them:
+  - **Inkscape:** *File > Save a Copy...* and choose *Plain SVG* or *Optimized SVG*.
+  - **Adobe Illustrator:** *File > Export > Export As...* and choose *SVG*, with *Styling:
+    Presentation Attributes* or *Internal CSS*, *Font: Convert to Outlines* and *Images: Embed*.
+    Do not use *Save As* with *Preserve Illustrator Editing Capabilities*.
+  - **Other editors:** remove editor metadata with an optimizer such as
+    [SVGO](https://github.com/svg/svgo) or [Scour](https://github.com/scour-project/scour).
+
+  Existing SVG files are not checked again and are still displayed through `<img>`.
+- **Imports** (users, questions, SSL certificates) are read from the PHP temporary upload directory
+  and are no longer copied into `cache/`. Keep `'xml'`, `'tsv'`, `'csv'`, `'txt'`, `'pfx'`, `'pem'`
+  and `'crt'` in `K_ALLOWED_UPLOAD_EXTENSIONS` as needed by the importers. A custom question
+  importer (`admin/code/tce_import_custom.php`) receives the temporary file path, which has no
+  file name extension.
+- **Previews and `[object]` tags** display images with `<img>`, audio with `<audio>`, video with
+  `<video>` and every other type as a download link. Uploaded files are no longer embedded with
+  `<object>`.
+- **CSRF**: every `POST` request with form data or files to a page that loads the form helpers
+  must carry a valid `csrf_token`; otherwise the request stops before the submitted data is
+  processed.
+- **Backups**: creating, restoring and downloading a backup requires the current user's password.
+  After 5 wrong passwords in the same session the backup actions are refused for 15 minutes.
+  Accounts that sign in only through an external system (CAS, Shibboleth, HTTP Basic) need a local
+  password to use the backup page.
+- **`cache/` server configuration.** The shipped `cache/.htaccess` serves the directory as passive
+  content: `X-Content-Type-Options: nosniff`, a `Content-Security-Policy` with `sandbox`,
+  `Content-Disposition: attachment` for markup types, and no script execution. It requires
+  `mod_headers` and `AllowOverride AuthConfig FileInfo` (or `All`). Keep this file when copying an
+  old `cache/` folder (step 8 below). For nginx, add the equivalent rules to the server block:
+
+  ```nginx
+  location ^~ /cache/ {
+      location ~* \.(php[0-9]?|pht|phtml|phar|phps|cgi|pl|py|sh|asp|aspx|jsp)(\.|$) { deny all; }
+      location ~* \.(svgz?|xml|xslt?|xht|xhtml|s?html?|mht|mhtml|m?js|swf)$ {
+          add_header Content-Disposition "attachment" always;
+          add_header X-Content-Type-Options "nosniff" always;
+          add_header Content-Security-Policy "default-src 'none'; sandbox" always;
+      }
+      add_header X-Content-Type-Options "nosniff" always;
+      add_header Content-Security-Policy "default-src 'none'; img-src 'self' data:; media-src 'self'; style-src 'unsafe-inline'; sandbox" always;
+  }
+  ```
+
+  Adjust the `/cache/` prefix if TCExam is installed in a sub-path. `cache/index.php` only
+  redirects to the public area, so denying it is harmless.
+- **Review existing content.** Files uploaded before this release are not checked again:
+  1. List markup and script files in the cache and review or delete them:
+
+     ```sh
+     find cache/ -type f \( -iname '*.svg' -o -iname '*.svgz' -o -iname '*.xml' -o -iname '*.xsl*' \
+         -o -iname '*.htm*' -o -iname '*.xht*' -o -iname '*.mht*' -o -iname '*.js' -o -iname '*.mjs' \
+         -o -iname '*.swf' -o -iname '*.php*' -o -iname '*.phtml' \) -not -path 'cache/lang/*' \
+         -not -name index.php
+     ```
+
+  2. List file and directory names that contain characters outside `[A-Za-z0-9_.-]`:
+
+     ```sh
+     find cache/ -name '*[!A-Za-z0-9_.-]*'
+     ```
+
+  3. Delete leftover import files (`*.tsv`, `*.csv`, `*.txt`, `*.xml`) from the `cache/` root.
+  4. Search question, answer and subject text for `[object]` tags that reference non-media files:
+
+     ```sql
+     SELECT question_id FROM tce_questions
+      WHERE question_description LIKE '%[object]%' OR question_explanation LIKE '%[object]%';
+     SELECT answer_id FROM tce_answers
+      WHERE answer_description LIKE '%[object]%' OR answer_explanation LIKE '%[object]%';
+     SELECT subject_id FROM tce_subjects WHERE subject_description LIKE '%[object]%';
+     ```
+
+  5. If level 5 accounts could upload `svg` or `xml` files before this release, check
+     `admin/backup/` for unexpected backups and consider rotating administrator passwords.
+
 ### New configuration constants
 
 Compare your config files against the shipped `*.default` files and add the new constants:

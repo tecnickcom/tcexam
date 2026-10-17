@@ -42,6 +42,15 @@ if (isset($_POST['backup'])) {
     $menu_mode = 'download';
 }
 
+// creating, restoring and downloading backups require the current user's password
+if (
+    in_array($menu_mode ?? '', ['backup', 'forcerestore', 'download'], true)
+    && !F_check_current_user_password($_POST['currentpassword'] ?? '')
+) {
+    F_print_error('WARNING', $l['m_login_wrong']);
+    $menu_mode = '';
+}
+
 function F_isValidbackupFile($file)
 {
     return (
@@ -78,6 +87,23 @@ switch ($menu_mode) { // process submitted data
                         . stripslashes($backup_file)
                         . '" />'
                         . K_NEWLINE
+                ;
+                echo
+                    getFormRowTextInput(
+                        'currentpassword',
+                        $l['w_current_password'],
+                        $l['h_password'],
+                        '',
+                        '',
+                        '',
+                        255,
+                        false,
+                        false,
+                        true,
+                        '',
+                        true,
+                        'current-password',
+                    )
                 ;
                 F_submit_button('forcerestore', $l['w_restore'], $l['h_restore']);
                 F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
@@ -322,6 +348,24 @@ echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
 echo getFormNoscriptSelect('selectrecord');
+
+echo
+    getFormRowTextInput(
+        'currentpassword',
+        $l['w_current_password'],
+        $l['h_password'],
+        '',
+        '',
+        '',
+        255,
+        false,
+        false,
+        true,
+        '',
+        true,
+        'current-password',
+    )
+;
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 

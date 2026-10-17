@@ -37,19 +37,20 @@ switch ($menu_mode) {
         {
             if ($_FILES['userfile']['name']) {
                 require_once '../code/tce_functions_upload.php';
-                // upload file
-                $uploadedfile = F_upload_file('userfile', K_PATH_CACHE);
-                if ($uploadedfile !== false) {
+                // read the uploaded file from the PHP temporary upload directory
+                $import_extensions = (int) $file_type === 1 ? ['xml'] : ['tsv', 'txt', 'csv'];
+                $upload = F_get_uploaded_tmp_file('userfile', $import_extensions);
+                if ($upload !== false) {
                     switch ($file_type) {
                         case 1:
                             {
-                                $xmlimporter = new XMLUserImporter(K_PATH_CACHE . $uploadedfile);
+                                $xmlimporter = new XMLUserImporter($upload['tmp_name']);
                                 F_print_error('MESSAGE', $l['m_importing_complete']);
                                 break;
                             }
                         case 2:
                             {
-                                if (F_import_tsv_users(K_PATH_CACHE . $uploadedfile)) {
+                                if (F_import_tsv_users($upload['tmp_name'])) {
                                     F_print_error('MESSAGE', $l['m_importing_complete']);
                                 }
 

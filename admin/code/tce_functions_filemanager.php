@@ -21,6 +21,22 @@
  */
 
 /**
+ * Returns the file extensions that the File Manager lists, deletes and renames:
+ * the configured upload extensions plus the active content extensions, so that existing
+ * markup files can be found and removed.
+ *
+ * @return list<string> lowercase extensions
+ */
+function F_getMediaFileExtensions(): array
+{
+    require_once '../code/tce_functions_upload.php';
+    return array_values(array_unique(array_merge(
+        F_get_allowed_upload_extensions(),
+        F_get_active_content_extensions(),
+    )));
+}
+
+/**
  * Delete the selected media file
  * @author Nicola Asuni
  * @param $filename (string) the file name
@@ -34,7 +50,7 @@ function F_deleteMediaFile($filename)
         return false;
     }
 
-    $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $allowed_extensions = F_getMediaFileExtensions();
     $normalized_filename = str_replace('\\', '/', $filename);
     if (preg_match('#(^|/)\.\.(/|$)#', $normalized_filename) === 1) {
         return false;
@@ -75,7 +91,7 @@ function F_renameMediaFile($filename, $newname)
         return false;
     }
 
-    $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $allowed_extensions = F_getMediaFileExtensions();
     $normalized_filename = str_replace('\\', '/', $filename);
     $normalized_newname = str_replace('\\', '/', $newname);
     if (
@@ -107,7 +123,14 @@ function F_renameMediaFile($filename, $newname)
         return false;
     }
 
-    if (!in_array(strtolower($path_parts_new['extension']), $allowed_extensions)) {
+    // the new name must be a sanitized file name with an extension accepted for media uploads,
+    // and the content must pass the media upload check for the new extension
+    require_once '../code/tce_functions_upload.php';
+    if (
+        F_sanitize_upload_filename($path_parts_new['basename']) !== $path_parts_new['basename']
+        || !F_is_allowed_upload($path_parts_new['basename'])
+        || !F_is_safe_media_content((string) $filename, pathinfo((string) $newname, PATHINFO_EXTENSION))
+    ) {
         return false;
     }
 
@@ -138,6 +161,11 @@ function F_createMediaDir($dirname)
 
     $normalized_dirname = str_replace('\\', '/', $dirname);
     if (preg_match('#(^|/)\.\.(/|$)#', $normalized_dirname) === 1) {
+        return false;
+    }
+
+    // directory names are restricted to [a-zA-Z0-9_-]
+    if (preg_match('/^[a-zA-Z0-9_\-]+$/', basename((string) $dirname)) !== 1) {
         return false;
     }
 
@@ -278,7 +306,7 @@ function F_getMediaDirPathLink($dirpath, $viewmode = true)
                 . '" title="'
                 . $l['w_change_dir']
                 . '">'
-                . $dir
+                . htmlspecialchars($dir, ENT_QUOTES)
                 . '</a> /';
         }
     }
@@ -391,7 +419,7 @@ function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CAC
 {
     global $l;
     require_once '../config/tce_config.php';
-    $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $allowed_extensions = F_getMediaFileExtensions();
     $out = ''; // html string to be returned
     $out .= '<table class="filemanager">' . K_NEWLINE;
     $out .= '<caption class="sr-only">' . $l['w_directory'] . '</caption>';
@@ -430,7 +458,7 @@ function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CAC
             . '" title="'
             . $l['w_change_dir']
             . '" style="text-decoration:underline;">'
-            . $info['basename']
+            . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
             . '</a></strong></td>';
         $out .= '<td style="text-align:right;">' . F_formatFileSize($info['size']) . '</td>';
         $out .= '<td>' . $info['lastmod'] . '</td>';
@@ -470,7 +498,7 @@ function F_getDirTable($dir, $selected = '', $params = '', $rootdir = K_PATH_CAC
                 . '" title="'
                 . $l['w_select']
                 . '">'
-                . $info['basename']
+                . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
                 . '</a></td>';
             $out .= '<td style="text-align:right;">' . F_formatFileSize($info['size']) . '</td>';
             //$out .= '<td style="text-align:right;">'.$info['size'].'</td>';
@@ -498,7 +526,7 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
     global $l;
     require_once '../config/tce_config.php';
     $imgformats = ['gif', 'jpg', 'jpeg', 'png', 'svg'];
-    $allowed_extensions = unserialize(K_ALLOWED_UPLOAD_EXTENSIONS);
+    $allowed_extensions = F_getMediaFileExtensions();
     $out = ''; // html string to be returned
     $data = F_getDirFiles($dir, $rootdir, $authdirs);
     // dirs
@@ -512,7 +540,7 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
             $filename = substr($filename, 0, 20) . '...';
         }
 
-        $out .= $filename;
+        $out .= htmlspecialchars((string) $filename, ENT_QUOTES);
         $out .= '</td></tr>';
         $out .= '<tr style="height:160px;"><td style="text-align:center;vertical-align:middle;background-color:white;">';
         $out .=
@@ -525,13 +553,13 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
             . '" title="'
             . $l['w_change_dir']
             . ' : '
-            . $info['basename']
+            . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
             . '" style="text-decoration:underline;"><img src="'
             . K_PATH_IMAGES
             . 'dir.png" width="50" height="50" alt="'
             . $l['w_change_dir']
             . ' : '
-            . $info['basename']
+            . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
             . '" style="border:none;" /></a>';
         $out .= '</td></tr>';
         $out .= '</table>';
@@ -562,7 +590,7 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
                     . 'file.png" width="39" height="50" alt="'
                     . $l['w_select']
                     . ' : '
-                    . $info['basename']
+                    . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
                     . ' ('
                     . F_formatFileSize($info['size'])
                     . ')'
@@ -575,12 +603,19 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
                 . ';">';
             $out .= '<tr style="height:16px;font-family:monospace;font-size:12px;color:white;"><td>';
             $out .= $selected_cue;
-            $filename = $info['basename'];
-            if (strlen($filename) > 20) {
+            $filename = htmlspecialchars((string) $info['basename'], ENT_QUOTES);
+            if (strlen((string) $info['basename']) > 20) {
                 $filename =
-                    substr(substr($filename, 0, -(strlen($info['extension']) + 1)), 0, 15)
+                    htmlspecialchars(
+                        substr(
+                            substr((string) $info['basename'], 0, -(strlen((string) $info['extension']) + 1)),
+                            0,
+                            15,
+                        ),
+                        ENT_QUOTES,
+                    )
                     . '&rarr;.'
-                    . $info['extension'];
+                    . htmlspecialchars((string) $info['extension'], ENT_QUOTES);
             }
 
             $out .= $filename;
@@ -598,7 +633,7 @@ function F_getDirVisualTable($dir, $selected = '', $params = '', $rootdir = K_PA
                 . '" title="'
                 . $l['w_select']
                 . ' : '
-                . $info['basename']
+                . htmlspecialchars((string) $info['basename'], ENT_QUOTES)
                 . ' ('
                 . F_formatFileSize($info['size'])
                 . ')'

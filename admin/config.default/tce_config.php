@@ -46,6 +46,10 @@ define('K_MAX_UPLOAD_SIZE', 25_000_000);
 /**
  * List of allowed file types for upload (remove all extensions to disable upload).
  * FOR SERVER SECURITY DO NOT ADD EXECUTABLE FILE TYPES HERE
+ * Media uploads always reject markup and script types (e.g. svgz, xml, html, js);
+ * 'svg' files are accepted only when they contain static graphics saved as "Plain SVG"
+ * (no scripts, event handlers, external references or editor-specific namespaces);
+ * 'xml' is used only by the user and question importers.
  */
 define('K_ALLOWED_UPLOAD_EXTENSIONS', serialize([
     'csv',

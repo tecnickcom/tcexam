@@ -35,29 +35,34 @@ $type = !isset($_REQUEST['type']) || empty($_REQUEST['type']) ? 1 : (int) $_REQU
 
 if (isset($menu_mode) && $menu_mode == 'upload' && $_FILES['userfile']['name']) {
     require_once '../code/tce_functions_upload.php';
-    // upload file
-    $uploadedfile = F_upload_file('userfile', K_PATH_CACHE);
-    if ($uploadedfile !== false) {
+    // read the uploaded file from the PHP temporary upload directory
+    $import_extensions = match ($type) {
+        2 => ['tsv', 'txt', 'csv'],
+        3 => F_get_allowed_upload_extensions(),
+        default => ['xml'],
+    };
+    $upload = F_get_uploaded_tmp_file('userfile', $import_extensions);
+    if ($upload !== false) {
         $qimp = false;
         switch ($type) {
             case 1:
                 {
                     // standard TCExam XML format
                     require_once '../code/tce_class_import_xml.php';
-                    $qimp = new XMLQuestionImporter(K_PATH_CACHE . $uploadedfile);
+                    $qimp = new XMLQuestionImporter($upload['tmp_name']);
                     break;
                 }
             case 2:
                 {
                     // standard TCExam TSV format
-                    $qimp = F_TSVQuestionImporter(K_PATH_CACHE . $uploadedfile);
+                    $qimp = F_TSVQuestionImporter($upload['tmp_name']);
                     break;
                 }
             case 3:
                 {
                     // Custom TCExam XML format
                     require_once '../code/tce_import_custom.php';
-                    $qimp = new CustomQuestionImporter(K_PATH_CACHE . $uploadedfile);
+                    $qimp = new CustomQuestionImporter($upload['tmp_name']);
                     break;
                 }
         }
