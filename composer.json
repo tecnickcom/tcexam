@@ -35,7 +35,7 @@
         "tecnickcom/tc-lib-pdf": "^8.81"
     },
     "require-dev": {
-        "carthage-software/mago": "1.57.0",
+        "carthage-software/mago": "1.59.0",
         "phpunit/phpunit": "^11.5 || ^12.5 || ^13.4"
     },
     "minimum-stability": "stable",
