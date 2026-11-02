@@ -98,8 +98,7 @@ switch ($menu_mode) {
                             . '">'
                             . $l['h_index']
                             . ' &gt;</a></strong>'
-                            . K_NEWLINE
-                    ;
+                            . K_NEWLINE;
                     echo '</div>' . K_NEWLINE;
                     require_once 'tce_page_footer.php';
                     exit();
@@ -122,62 +121,55 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_editor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'user_email',
-        $l['w_new_email'],
-        $l['h_email'],
-        '',
-        '',
-        K_EMAIL_RE_PATTERN,
-        255,
-        false,
-        false,
-        false,
-        '',
-        true,
-        'email',
-        'email',
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_email_repeat',
-        $l['w_new_email'],
-        $l['h_email'],
-        ' (' . $l['w_repeat'] . ')',
-        '',
-        '',
-        255,
-        false,
-        false,
-        false,
-        '',
-        true,
-        'email',
-        'email',
-    )
-;
-echo
-    getFormRowTextInput(
-        'currentpassword',
-        $l['w_password'],
-        $l['h_password'],
-        '',
-        '',
-        '',
-        255,
-        false,
-        false,
-        true,
-        '',
-        true,
-        'current-password',
-    )
-;
+echo getFormRowTextInput(
+    'user_email',
+    $l['w_new_email'],
+    $l['h_email'],
+    '',
+    '',
+    K_EMAIL_RE_PATTERN,
+    255,
+    false,
+    false,
+    false,
+    '',
+    true,
+    'email',
+    'email',
+);
+echo getFormRowTextInput(
+    'user_email_repeat',
+    $l['w_new_email'],
+    $l['h_email'],
+    ' (' . $l['w_repeat'] . ')',
+    '',
+    '',
+    255,
+    false,
+    false,
+    false,
+    '',
+    true,
+    'email',
+    'email',
+);
+echo getFormRowTextInput(
+    'currentpassword',
+    $l['w_password'],
+    $l['h_password'],
+    '',
+    '',
+    '',
+    255,
+    false,
+    false,
+    true,
+    '',
+    true,
+    'current-password',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 

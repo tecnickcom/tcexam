@@ -122,8 +122,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_omrimport">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 // select user
 echo '<div class="row">' . K_NEWLINE;
@@ -171,8 +170,7 @@ if ($r = F_db_query($sql, $db)) {
                     $l['a_meta_charset'],
                 )
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 } else {
@@ -191,46 +189,40 @@ echo '</div>' . K_NEWLINE;
 
 // -----------------------------------------------------------------------------
 // date
-echo
-    getFormRowTextInput(
-        'date',
-        $l['w_date'],
-        $l['w_date'] . ' ' . $l['w_datetime_format'],
-        '',
-        $date,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'date',
+    $l['w_date'],
+    $l['w_date'] . ' ' . $l['w_datetime_format'],
+    '',
+    $date,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
 
 // OMR DATA page
 echo getFormUploadFile('omrfile[]', 'omrdata', $l['w_omr_data_page'], $l['h_omr_data_page'], '');
 
 // OMR ANSWER SHEET pages
 for ($i = 1; $i < $max_omr_sheets; ++$i) {
-    echo
-        getFormUploadFile(
-            'omrfile[]',
-            'omrsheet' . $i,
-            $l['w_omr_answer_sheet'] . ' ' . $i,
-            '',
-            "document.getElementById('divomrsheet" . ($i + 1) . "').style.display='block';",
-        )
-    ;
+    echo getFormUploadFile(
+        'omrfile[]',
+        'omrsheet' . $i,
+        $l['w_omr_answer_sheet'] . ' ' . $i,
+        '',
+        "document.getElementById('divomrsheet" . ($i + 1) . "').style.display='block';",
+    );
 }
 
-echo
-    getFormUploadFile(
-        'omrfile[]',
-        'omrsheet' . $max_omr_sheets,
-        $l['w_omr_answer_sheet'] . ' ' . $max_omr_sheets,
-        '',
-        '',
-    )
-;
+echo getFormUploadFile(
+    'omrfile[]',
+    'omrsheet' . $max_omr_sheets,
+    $l['w_omr_answer_sheet'] . ' ' . $max_omr_sheets,
+    '',
+    '',
+);
 
 echo getFormRowCheckBox('overwrite', $l['w_overwrite'], $l['h_omr_overwrite'], '', 1, $overwrite, false, '');
 
@@ -252,8 +244,7 @@ echo
     'for (i=2; i<='
         . $max_omr_sheets
         . "; i++) {document.getElementById('divomrsheet'+i).style.display='none';}"
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '//]]>' . K_NEWLINE;
 echo '</script>' . K_NEWLINE;
 

@@ -82,8 +82,7 @@ if (isset($_POST['resetpassword']) && ($formstatus = F_check_form_fields())) {
     F_print_error('MESSAGE', $user_email . ': ' . $l['m_user_verification_sent']);
     echo '<div class="container">' . K_NEWLINE;
     echo
-        '<strong><a href="index.php" title="' . $l['h_index'] . '">' . $l['h_index'] . ' &gt;</a></strong>' . K_NEWLINE
-    ;
+        '<strong><a href="index.php" title="' . $l['h_index'] . '">' . $l['h_index'] . ' &gt;</a></strong>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
     require_once '../code/tce_page_footer.php';
     exit();
@@ -96,29 +95,26 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_usereditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<p>' . $l['d_reset_password'] . '</p>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'user_email',
-        $l['w_email'],
-        $l['h_usered_email'],
-        '',
-        '',
-        K_EMAIL_RE_PATTERN,
-        255,
-        false,
-        false,
-        false,
-        '',
-        true,
-        'email',
-        'email',
-    )
-;
+echo getFormRowTextInput(
+    'user_email',
+    $l['w_email'],
+    $l['h_usered_email'],
+    '',
+    '',
+    K_EMAIL_RE_PATTERN,
+    255,
+    false,
+    false,
+    false,
+    '',
+    true,
+    'email',
+    'email',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 

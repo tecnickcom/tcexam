@@ -198,25 +198,22 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_omrimport">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 // -----------------------------------------------------------------------------
 // date
-echo
-    getFormRowTextInput(
-        'date',
-        $l['w_date'],
-        $l['w_date'] . ' ' . $l['w_datetime_format'],
-        '',
-        $date,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'date',
+    $l['w_date'],
+    $l['w_date'] . ' ' . $l['w_datetime_format'],
+    '',
+    $date,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
 
 if (F_file_exists(K_PATH_CACHE . 'OMR')) {
     // directory containing files to import

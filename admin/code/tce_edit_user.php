@@ -98,14 +98,17 @@ switch ($menu_mode) { // process submitted data
             F_print_error('WARNING', $l['m_delete_confirm']);
             ?>
         <div class="confirmbox">
-        <form action="<?php echo
-            htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-        ; ?>" method="post" enctype="multipart/form-data" id="form_delete">
+        <form action="<?php echo htmlspecialchars(
+            $_SERVER['SCRIPT_NAME'],
+            ENT_QUOTES,
+        ); ?>" method="post" enctype="multipart/form-data" id="form_delete">
         <div>
         <input type="hidden" name="user_id" id="user_id" value="<?php echo $user_id; ?>" />
-        <input type="hidden" name="user_name" id="user_name" value="<?php echo
-            htmlspecialchars(stripslashes((string) $user_name), ENT_QUOTES, $l['a_meta_charset'])
-        ; ?>" />
+        <input type="hidden" name="user_name" id="user_name" value="<?php echo htmlspecialchars(
+            stripslashes((string) $user_name),
+            ENT_QUOTES,
+            $l['a_meta_charset'],
+        ); ?>" />
         <?php
 
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
@@ -565,8 +568,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_usereditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -574,8 +576,7 @@ echo '<label for="user_id">' . $l['w_user'] . '</label>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
 echo
-    '<select name="user_id" id="user_id" onchange="document.getElementById(\'form_usereditor\').submit()">' . K_NEWLINE
-;
+    '<select name="user_id" id="user_id" onchange="document.getElementById(\'form_usereditor\').submit()">' . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($user_id == 0) {
     echo ' selected="selected"';
@@ -621,8 +622,7 @@ if ($r = F_db_query($sql, $db)) {
                     $l['a_meta_charset'],
                 )
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 } else {
@@ -643,74 +643,66 @@ echo getFormNoscriptSelect('selectrecord');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'user_name',
-        $l['w_username'],
-        $l['h_login_name'],
-        '',
-        $user_name,
-        '',
-        255,
-        false,
-        false,
-        false,
-        '',
-        true,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_email',
-        $l['w_email'],
-        $l['h_usered_email'],
-        '',
-        $user_email,
-        K_EMAIL_RE_PATTERN,
-        255,
-        false,
-        false,
-        false,
-        '',
-        false,
-        '',
-        'email',
-    )
-;
-echo
-    getFormRowTextInput(
-        'newpassword',
-        $l['w_password'],
-        $l['h_password'],
-        ' (' . $l['d_password_length'] . ')',
-        '',
-        K_USRREG_PASSWORD_RE,
-        255,
-        false,
-        false,
-        true,
-        '',
-        false,
-        'new-password',
-    )
-;
-echo
-    getFormRowTextInput(
-        'newpassword_repeat',
-        $l['w_password'],
-        $l['h_password_repeat'],
-        ' (' . $l['w_repeat'] . ')',
-        '',
-        '',
-        255,
-        false,
-        false,
-        true,
-        '',
-        false,
-        'new-password',
-    )
-;
+echo getFormRowTextInput(
+    'user_name',
+    $l['w_username'],
+    $l['h_login_name'],
+    '',
+    $user_name,
+    '',
+    255,
+    false,
+    false,
+    false,
+    '',
+    true,
+);
+echo getFormRowTextInput(
+    'user_email',
+    $l['w_email'],
+    $l['h_usered_email'],
+    '',
+    $user_email,
+    K_EMAIL_RE_PATTERN,
+    255,
+    false,
+    false,
+    false,
+    '',
+    false,
+    '',
+    'email',
+);
+echo getFormRowTextInput(
+    'newpassword',
+    $l['w_password'],
+    $l['h_password'],
+    ' (' . $l['d_password_length'] . ')',
+    '',
+    K_USRREG_PASSWORD_RE,
+    255,
+    false,
+    false,
+    true,
+    '',
+    false,
+    'new-password',
+);
+echo getFormRowTextInput(
+    'newpassword_repeat',
+    $l['w_password'],
+    $l['h_password_repeat'],
+    ' (' . $l['w_repeat'] . ')',
+    '',
+    '',
+    255,
+    false,
+    false,
+    true,
+    '',
+    false,
+    'new-password',
+);
 echo getFormRowFixedValue('user_regdate', $l['w_regdate'], $l['h_regdate'], '', $user_regdate);
 echo getFormRowFixedValue('user_ip', $l['w_ip'], $l['h_ip'], '', $user_ip);
 echo getFormRowSelectBox('user_level', $l['w_level'], $l['h_level'], '', $user_level, [
@@ -726,90 +718,78 @@ echo getFormRowSelectBox('user_level', $l['w_level'], $l['h_level'], '', $user_l
     9,
     10,
 ]);
-echo
-    getFormRowTextInput(
-        'user_regnumber',
-        $l['w_regcode'],
-        $l['h_regcode'],
-        '',
-        $user_regnumber,
-        '',
-        255,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_firstname',
-        $l['w_firstname'],
-        $l['h_firstname'],
-        '',
-        $user_firstname,
-        '',
-        255,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_lastname',
-        $l['w_lastname'],
-        $l['h_lastname'],
-        '',
-        $user_lastname,
-        '',
-        255,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_birthdate',
-        $l['w_birth_date'],
-        $l['h_birth_date'] . ' ' . $l['w_date_format'],
-        '',
-        $user_birthdate,
-        '',
-        10,
-        true,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_birthplace',
-        $l['w_birth_place'],
-        $l['h_birth_place'],
-        '',
-        $user_birthplace,
-        '',
-        255,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'user_ssn',
-        $l['w_fiscal_code'],
-        $l['h_fiscal_code'],
-        '',
-        $user_ssn,
-        '',
-        255,
-        false,
-        false,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'user_regnumber',
+    $l['w_regcode'],
+    $l['h_regcode'],
+    '',
+    $user_regnumber,
+    '',
+    255,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'user_firstname',
+    $l['w_firstname'],
+    $l['h_firstname'],
+    '',
+    $user_firstname,
+    '',
+    255,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'user_lastname',
+    $l['w_lastname'],
+    $l['h_lastname'],
+    '',
+    $user_lastname,
+    '',
+    255,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'user_birthdate',
+    $l['w_birth_date'],
+    $l['h_birth_date'] . ' ' . $l['w_date_format'],
+    '',
+    $user_birthdate,
+    '',
+    10,
+    true,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'user_birthplace',
+    $l['w_birth_place'],
+    $l['h_birth_place'],
+    '',
+    $user_birthplace,
+    '',
+    255,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'user_ssn',
+    $l['w_fiscal_code'],
+    $l['h_fiscal_code'],
+    '',
+    $user_ssn,
+    '',
+    255,
+    false,
+    false,
+    false,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -862,8 +842,7 @@ if (!empty($user_otpkey)) {
         '<img src="data:image/png;base64,'
             . base64_encode($qrcode->getPngData(false))
             . '" alt="OTP QR code" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo '</span>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
 }
@@ -886,8 +865,7 @@ if (isset($user_id) && $user_id > 0) {
                 . $l['w_confirm']
                 . ' &rarr; '
                 . $l['w_update']
-                . '" />'
-        ;
+                . '" />';
         F_submit_button('update', $l['w_update'], $l['h_update']);
         echo '</span>';
     }

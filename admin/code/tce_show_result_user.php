@@ -124,8 +124,7 @@ switch ($menu_mode) {
                 '<form action="'
                     . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                     . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '<div>' . K_NEWLINE;
             echo '<input type="hidden" name="testuser_id" id="testuser_id" value="' . $testuser_id . '" />' . K_NEWLINE;
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
@@ -305,8 +304,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_resultuser">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -319,8 +317,7 @@ echo
     '<select name="test_id" id="test_id" onchange="document.getElementById(\'form_resultuser\').changecategory.value=1;document.getElementById(\'form_resultuser\').submit()" title="'
         . $l['h_test']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
     while ($m = F_db_fetch_array($r)) {
@@ -335,8 +332,7 @@ if ($r = F_db_query($sql, $db)) {
                 . ' '
                 . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
     }
 } else {
     F_display_db_error();
@@ -362,8 +358,7 @@ echo
     '<select name="testuser_id" id="testuser_id" onchange="document.getElementById(\'form_resultuser\').submit()" title="'
         . $l['h_select_user']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql =
     'SELECT testuser_id, user_lastname, user_firstname, user_name, testuser_creation_time FROM '
     . K_TABLE_TEST_USER
@@ -397,8 +392,7 @@ if ($r = F_db_query($sql, $db)) {
                     ENT_NOQUOTES,
                     $l['a_meta_charset'],
                 )
-                . ''
-        ;
+                . '';
         echo '</option>' . K_NEWLINE;
         ++$usrcount;
     }
@@ -497,9 +491,11 @@ if (isset($teststat) && !empty($teststat)) {
         . ' ('
         . $teststat['qstats']['unanswered_perc']
         . '%)';
-    echo
-        getFormDescriptionLine($l['w_questions_unanswered'] . ':', $l['h_questions_unanswered'], $score_unanswered_all)
-    ;
+    echo getFormDescriptionLine(
+        $l['w_questions_unanswered'] . ':',
+        $l['h_questions_unanswered'],
+        $score_unanswered_all,
+    );
 
     $score_undisplayed_all =
         $teststat['qstats']['undisplayed']
@@ -508,13 +504,11 @@ if (isset($teststat) && !empty($teststat)) {
         . ' ('
         . $teststat['qstats']['undisplayed_perc']
         . '%)';
-    echo
-        getFormDescriptionLine(
-            $l['w_questions_undisplayed'] . ':',
-            $l['h_questions_undisplayed'],
-            $score_undisplayed_all,
-        )
-    ;
+    echo getFormDescriptionLine(
+        $l['w_questions_undisplayed'] . ':',
+        $l['h_questions_undisplayed'],
+        $score_undisplayed_all,
+    );
 
     $score_unrated_all =
         $teststat['qstats']['unrated']
@@ -525,13 +519,11 @@ if (isset($teststat) && !empty($teststat)) {
         . '%)';
     echo getFormDescriptionLine($l['w_questions_unrated'] . ':', $l['h_questions_unrated'], $score_unrated_all);
 
-    echo
-        getFormDescriptionLine(
-            $l['w_comment'] . ':',
-            $l['h_testcomment'],
-            F_decode_tcecode($teststat['testinfo']['user_comment']),
-        )
-    ;
+    echo getFormDescriptionLine(
+        $l['w_comment'] . ':',
+        $l['h_testcomment'],
+        F_decode_tcecode($teststat['testinfo']['user_comment']),
+    );
 
     if (isset($testuser_id) && $testuser_id !== 0 && !empty($teststat)) {
         echo '<div class="rowl">' . K_NEWLINE;
@@ -567,8 +559,7 @@ if (isset($teststat) && !empty($teststat)) {
                     . $l['h_pdf']
                     . '">'
                     . $l['w_pdf']
-                    . '</a> '
-            ;
+                    . '</a> ';
             echo
                 '<a href="tce_email_results.php?mode=1&amp;menu_mode=startlongprocess'
                     . $filter
@@ -576,8 +567,7 @@ if (isset($teststat) && !empty($teststat)) {
                     . $l['h_email_result']
                     . '">'
                     . $l['w_email_result']
-                    . '</a> '
-            ;
+                    . '</a> ';
             echo
                 '<a href="tce_email_results.php?mode=0&amp;menu_mode=startlongprocess'
                     . $filter
@@ -585,8 +575,7 @@ if (isset($teststat) && !empty($teststat)) {
                     . $l['h_email_result']
                     . ' + PDF">'
                     . $l['w_email_result']
-                    . ' + PDF</a> '
-            ;
+                    . ' + PDF</a> ';
         }
     }
 

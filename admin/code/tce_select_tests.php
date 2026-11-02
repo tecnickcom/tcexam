@@ -47,8 +47,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_testselect">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
@@ -59,8 +58,7 @@ echo
         . $l['w_search']
         . '" aria-label="'
         . $l['w_search']
-        . '" />'
-;
+        . '" />';
 F_submit_button('search', $l['w_search'], $l['w_search']);
 echo '</span></div>' . K_NEWLINE;
 // build a search query

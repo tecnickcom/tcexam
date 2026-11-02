@@ -82,8 +82,7 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
                 . ': '
                 . htmlspecialchars($messagetoprint, ENT_QUOTES, 'UTF-8')
                 . '</div>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         if (K_ENABLE_JSERRORS) {
             //display message on JavaScript Alert Window.
             echo '<script type="text/javascript">' . K_NEWLINE;
@@ -95,8 +94,7 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
                         JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE,
                     )
                     . ');'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '//]]>' . K_NEWLINE;
             echo '</script>' . K_NEWLINE;
         }

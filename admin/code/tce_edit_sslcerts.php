@@ -84,16 +84,14 @@ switch ($menu_mode) {
                     '<form action="'
                         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                         . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '<div>' . K_NEWLINE;
                 echo '<input type="hidden" name="ssl_id" id="ssl_id" value="' . $ssl_id . '" />' . K_NEWLINE;
                 echo
                     '<input type="hidden" name="ssl_name" id="ssl_name" value="'
                         . htmlspecialchars((string) $ssl_name, ENT_QUOTES, $l['a_meta_charset'])
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
                 F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
                 echo '</div>' . K_NEWLINE;
@@ -286,8 +284,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_importsslcert">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -298,8 +295,7 @@ echo
     '<select name="ssl_id" id="ssl_id" onchange="document.getElementById(\'form_importsslcert\').submit()" title="'
         . $l['w_sslcert']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($ssl_id == 0) {
     echo ' selected="selected"';
@@ -348,8 +344,7 @@ if (!isset($ssl_id) || $ssl_id <= 0) {
     echo '<span class="formw">' . K_NEWLINE;
     echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . K_MAX_UPLOAD_SIZE . '" />' . K_NEWLINE;
     echo
-        '<input type="file" name="userfile" id="userfile" size="20" title="' . $l['h_upload_file'] . '" />' . K_NEWLINE
-    ;
+        '<input type="file" name="userfile" id="userfile" size="20" title="' . $l['h_upload_file'] . '" />' . K_NEWLINE;
     echo '</span>' . K_NEWLINE;
     echo '&nbsp;' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
@@ -371,8 +366,7 @@ if (isset($ssl_id) && $ssl_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     //F_submit_button('add', $l['w_add'], $l['h_add']);

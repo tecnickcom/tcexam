@@ -191,66 +191,54 @@ function F_show_select_user(
                 $filter .= '&amp;searchterms=' . urlencode($searchterms);
             }
 
-            echo
-                F_select_table_header_element(
-                    'user_name',
-                    $nextorderdir,
-                    $l['h_login_name'],
-                    $l['w_user'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_lastname',
-                    $nextorderdir,
-                    $l['h_lastname'],
-                    $l['w_lastname'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_firstname',
-                    $nextorderdir,
-                    $l['h_firstname'],
-                    $l['w_firstname'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_regnumber',
-                    $nextorderdir,
-                    $l['h_regcode'],
-                    $l['w_regcode'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_level',
-                    $nextorderdir,
-                    $l['h_level'],
-                    $l['w_level'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_regdate',
-                    $nextorderdir,
-                    $l['h_regdate'],
-                    $l['w_regdate'],
-                    $order_field,
-                    $filter,
-                )
-            ;
+            echo F_select_table_header_element(
+                'user_name',
+                $nextorderdir,
+                $l['h_login_name'],
+                $l['w_user'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_lastname',
+                $nextorderdir,
+                $l['h_lastname'],
+                $l['w_lastname'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_firstname',
+                $nextorderdir,
+                $l['h_firstname'],
+                $l['w_firstname'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_regnumber',
+                $nextorderdir,
+                $l['h_regcode'],
+                $l['w_regcode'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_level',
+                $nextorderdir,
+                $l['h_level'],
+                $l['w_level'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_regdate',
+                $nextorderdir,
+                $l['h_regdate'],
+                $l['w_regdate'],
+                $order_field,
+                $filter,
+            );
             echo '<th scope="col" title="' . $l['h_group_name'] . '">' . $l['w_groups'] . '</th>' . K_NEWLINE;
             echo '<th scope="col" title="' . $l['t_all_results_user'] . '">' . $l['w_tests'] . '</th>' . K_NEWLINE;
             echo '</tr>' . K_NEWLINE;
@@ -269,8 +257,7 @@ function F_show_select_user(
                         . $m['user_id']
                         . '" title="'
                         . $l['w_select']
-                        . '"'
-                ;
+                        . '"';
                 if (isset($_REQUEST['checkall']) && $_REQUEST['checkall'] == 1) {
                     echo ' checked="checked"';
                 }
@@ -287,39 +274,34 @@ function F_show_select_user(
                         . '">'
                         . htmlspecialchars($m['user_name'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</a></td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_lastname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_firstname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_regnumber'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '<td>&nbsp;' . $m['user_level'] . '</td>' . K_NEWLINE;
                 echo
                     '<td>&nbsp;'
                         . htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 // comma separated list of user's groups
                 $grp = '';
                 $sqlg =
@@ -348,8 +330,7 @@ function F_show_select_user(
                         . ';">&nbsp;'
                         . htmlspecialchars(substr($grp, 0, -2), ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
 
                 echo
                     '<td><a href="tce_show_result_allusers.php?user_id='
@@ -357,8 +338,7 @@ function F_show_select_user(
                         . '" class="xmlbutton" title="'
                         . $l['t_all_results_user']
                         . '">...</a></td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
 
                 echo '</tr>' . K_NEWLINE;
             } while ($m = F_db_fetch_array($r));
@@ -375,12 +355,10 @@ function F_show_select_user(
             // check/uncheck all options
             echo '<span dir="' . $l['a_meta_dir'] . '">';
             echo
-                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_userselect\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_userselect\').submit()" />';
             echo '<label for="checkall1">' . $l['w_check_all'] . '</label> ';
             echo
-                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_userselect\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_userselect\').submit()" />';
             echo '<label for="checkall0">' . $l['w_uncheck_all'] . '</label>';
             echo '</span>' . K_NEWLINE;
             echo '<br />' . K_NEWLINE;
@@ -616,76 +594,62 @@ function F_show_select_user_popup(
                 $filter .= '&amp;searchterms=' . urlencode($searchterms);
             }
 
-            echo
-                F_select_table_header_element(
-                    'user_name',
-                    $nextorderdir,
-                    $l['h_login_name'],
-                    $l['w_user'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_lastname',
-                    $nextorderdir,
-                    $l['h_lastname'],
-                    $l['w_lastname'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_firstname',
-                    $nextorderdir,
-                    $l['h_firstname'],
-                    $l['w_firstname'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_email',
-                    $nextorderdir,
-                    $l['h_email'],
-                    $l['w_email'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_regnumber',
-                    $nextorderdir,
-                    $l['h_regcode'],
-                    $l['w_regcode'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_level',
-                    $nextorderdir,
-                    $l['h_level'],
-                    $l['w_level'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'user_regdate',
-                    $nextorderdir,
-                    $l['h_regdate'],
-                    $l['w_regdate'],
-                    $order_field,
-                    $filter,
-                )
-            ;
+            echo F_select_table_header_element(
+                'user_name',
+                $nextorderdir,
+                $l['h_login_name'],
+                $l['w_user'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_lastname',
+                $nextorderdir,
+                $l['h_lastname'],
+                $l['w_lastname'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_firstname',
+                $nextorderdir,
+                $l['h_firstname'],
+                $l['w_firstname'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_email',
+                $nextorderdir,
+                $l['h_email'],
+                $l['w_email'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_regnumber',
+                $nextorderdir,
+                $l['h_regcode'],
+                $l['w_regcode'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_level',
+                $nextorderdir,
+                $l['h_level'],
+                $l['w_level'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'user_regdate',
+                $nextorderdir,
+                $l['h_regdate'],
+                $l['w_regdate'],
+                $order_field,
+                $filter,
+            );
             //echo '<th title="'.$l['h_group_name'].'">'.$l['w_groups'].'</th>'.K_NEWLINE;
             echo '</tr>' . K_NEWLINE;
             echo '</thead>' . K_NEWLINE;
@@ -708,47 +672,41 @@ function F_show_select_user_popup(
                         . ']">'
                         . htmlspecialchars($m['user_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</button></td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_lastname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_firstname'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_email'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['user_regnumber'] ?? '', ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '<td>&nbsp;' . $m['user_level'] . '</td>' . K_NEWLINE;
                 echo
                     '<td>&nbsp;'
                         . htmlspecialchars($m['user_regdate'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 /*
                  * // comma separated list of user's groups
                  * $grp = '';

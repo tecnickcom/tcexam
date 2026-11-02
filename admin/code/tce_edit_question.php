@@ -178,39 +178,33 @@ switch ($menu_mode) {
                     '<form action="'
                         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                         . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '<div>' . K_NEWLINE;
                 echo
                     '<input type="hidden" name="question_id" id="question_id" value="'
                         . $question_id
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<input type="hidden" name="subject_module_id" id="subject_module_id" value="'
                         . $subject_module_id
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<input type="hidden" name="question_subject_id" id="question_subject_id" value="'
                         . $question_subject_id
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<input type="hidden" name="question_description" id="question_description" value="'
                         . htmlspecialchars((string) $question_description, ENT_QUOTES, $l['a_meta_charset'])
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<input type="hidden" name="question_explanation" id="question_explanation" value="'
                         . htmlspecialchars((string) $question_explanation, ENT_QUOTES, $l['a_meta_charset'])
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
                 F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
                 echo '</div>' . K_NEWLINE;
@@ -717,8 +711,7 @@ if ($subject_module_id <= 0 || $question_subject_id <= 0) {
             . '" class="xmlbutton">&lt; '
             . $l['t_subjects_editor']
             . '</a></p>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo '<div class="pagehelp">' . $l['hp_edit_question'] . '</div>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
     require_once '../code/tce_page_footer.php';
@@ -734,8 +727,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_questioneditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -747,8 +739,7 @@ echo
     '<select name="subject_module_id" id="subject_module_id" onchange="document.getElementById(\'form_questioneditor\').changemodule.value=1; document.getElementById(\'form_questioneditor\').submit();" title="'
         . $l['w_module']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_modules_sql();
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -769,8 +760,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '&nbsp;</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -798,8 +788,7 @@ echo
     '<select name="question_subject_id" id="question_subject_id" onchange="document.getElementById(\'form_questioneditor\').changecategory.value=1; document.getElementById(\'form_questioneditor\').submit();" title="'
         . $l['h_subject']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_subjects_sql('subject_module_id=' . $subject_module_id);
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -820,8 +809,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars(F_remove_tcecode($m['subject_name']), ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -848,8 +836,7 @@ echo
     '<select name="question_id" id="question_id" onchange="document.getElementById(\'form_questioneditor\').submit()" title="'
         . $l['h_question']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($question_id == 0) {
     echo ' selected="selected"';
@@ -891,8 +878,7 @@ if ($r = F_db_query($sql, $db)) {
                     $l['a_meta_charset'],
                 )
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -922,16 +908,14 @@ echo
         . '" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_questioneditor\').question_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'
         . $l['w_preview']
         . '</button>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw" style="border:1px solid #808080;">' . K_NEWLINE;
 echo
     '<textarea cols="50" rows="10" name="question_description" id="question_description" aria-required="true" title="'
         . $l['h_question_description']
-        . '"'
-;
+        . '"';
 
 echo '>' . htmlspecialchars($question_description, ENT_NOQUOTES, $l['a_meta_charset']) . '</textarea>' . K_NEWLINE;
 echo '<br />' . K_NEWLINE;
@@ -952,8 +936,7 @@ if (K_ENABLE_QUESTION_EXPLANATION) {
             . $l['w_show']
             . '">'
             . $l['w_show']
-            . ' &rarr;</button></span>'
-    ;
+            . ' &rarr;</button></span>';
     $hideexplanationarea = "javascript:if(document.getElementById('explanationarea').style.display=='block'){document.getElementById('explanationarea').style.display='none';document.getElementById('showexplanationarea').style.display='block';document.getElementById('hideexplanationarea').style.display='none';}; return false;";
     echo '<span id="hideexplanationarea" style="display:none;">';
     echo
@@ -962,8 +945,7 @@ if (K_ENABLE_QUESTION_EXPLANATION) {
             . '" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_questioneditor\').question_explanation.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'
             . $l['w_preview']
             . '</button>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo
         '<button type="button" class="xmlbutton" onclick="'
             . $hideexplanationarea
@@ -971,16 +953,14 @@ if (K_ENABLE_QUESTION_EXPLANATION) {
             . $l['w_hide']
             . '">'
             . $l['w_hide']
-            . '</button> '
-    ;
+            . '</button> ';
     echo '</span>';
     echo '</span>' . K_NEWLINE;
     echo '<span id="explanationarea" class="formw" style="display:none;border:1px solid #808080;">' . K_NEWLINE;
     echo
         '<textarea cols="50" rows="10" name="question_explanation" id="question_explanation" title="'
             . $l['h_explanation']
-            . '"'
-    ;
+            . '"';
 
     echo '>' . htmlspecialchars($question_explanation, ENT_NOQUOTES, $l['a_meta_charset']) . '</textarea>' . K_NEWLINE;
     echo '<br />' . K_NEWLINE;
@@ -1041,17 +1021,15 @@ for ($i = 0; $i <= K_QUESTION_DIFFICULTY_LEVELS; ++$i) {
     $items[$i] = $i;
 }
 
-echo
-    getFormRowSelectBox(
-        'question_difficulty',
-        $l['w_question_difficulty'],
-        $l['h_question_difficulty'],
-        '',
-        $question_difficulty,
-        $items,
-        '',
-    )
-;
+echo getFormRowSelectBox(
+    'question_difficulty',
+    $l['w_question_difficulty'],
+    $l['h_question_difficulty'],
+    '',
+    $question_difficulty,
+    $items,
+    '',
+);
 
 // question position
 echo '<div class="row">' . K_NEWLINE;
@@ -1086,65 +1064,61 @@ for ($pos = 1; $pos <= $max_position; ++$pos) {
 }
 
 echo
-    '<option value="' . ($max_position + 1) . '" style="color:#ff0000">' . ($max_position + 1) . '</option>' . K_NEWLINE
-;
+    '<option value="'
+        . ($max_position + 1)
+        . '" style="color:#ff0000">'
+        . ($max_position + 1)
+        . '</option>'
+        . K_NEWLINE;
 echo '</select>' . K_NEWLINE;
 echo '<input type="hidden" name="max_position" id="max_position" value="' . $max_position . '" />' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'question_timer',
-        $l['w_timer'],
-        $l['h_question_timer'],
-        '[sec]',
-        $question_timer,
-        '^([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-        '',
-    )
-;
+echo getFormRowTextInput(
+    'question_timer',
+    $l['w_timer'],
+    $l['h_question_timer'],
+    '[sec]',
+    $question_timer,
+    '^([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+    '',
+);
 
-echo
-    getFormRowCheckBox(
-        'question_fullscreen',
-        $l['w_fullscreen'],
-        $l['h_question_fullscreen'],
-        '',
-        1,
-        $question_fullscreen,
-        false,
-        '',
-    )
-;
-echo
-    getFormRowCheckBox(
-        'question_inline_answers',
-        $l['w_inline_answers'],
-        $l['h_question_inline_answers'],
-        '',
-        1,
-        $question_inline_answers,
-        false,
-        '',
-    )
-;
-echo
-    getFormRowCheckBox(
-        'question_auto_next',
-        $l['w_auto_next'],
-        $l['h_question_auto_next'],
-        '',
-        1,
-        $question_auto_next,
-        false,
-        '',
-    )
-;
+echo getFormRowCheckBox(
+    'question_fullscreen',
+    $l['w_fullscreen'],
+    $l['h_question_fullscreen'],
+    '',
+    1,
+    $question_fullscreen,
+    false,
+    '',
+);
+echo getFormRowCheckBox(
+    'question_inline_answers',
+    $l['w_inline_answers'],
+    $l['h_question_inline_answers'],
+    '',
+    1,
+    $question_inline_answers,
+    false,
+    '',
+);
+echo getFormRowCheckBox(
+    'question_auto_next',
+    $l['w_auto_next'],
+    $l['h_question_auto_next'],
+    '',
+    1,
+    $question_auto_next,
+    false,
+    '',
+);
 echo getFormRowCheckBox('question_enabled', $l['w_enabled'], $l['h_enabled'], '', 1, $question_enabled, false, '');
 
 echo '<div class="row">' . K_NEWLINE;
@@ -1161,8 +1135,7 @@ if (isset($question_id) && $question_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     F_submit_button('add', $l['w_add'], $l['h_add']);
@@ -1188,8 +1161,7 @@ if (isset($question_subject_id) && $question_subject_id > 0) {
             . $l['t_subjects_editor']
             . '" class="xmlbutton">&lt; '
             . $l['t_subjects_editor']
-            . '</a>'
-    ;
+            . '</a>';
 }
 
 echo '</span>' . K_NEWLINE;
@@ -1206,8 +1178,7 @@ if (isset($question_id) && $question_id > 0) {
             . $l['t_answers_editor']
             . '" class="xmlbutton">'
             . $l['t_answers_editor']
-            . ' &gt;</a>'
-    ;
+            . ' &gt;</a>';
 }
 
 echo '&nbsp;' . K_NEWLINE;

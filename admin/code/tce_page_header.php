@@ -35,8 +35,7 @@ echo
     '<nav id="scrollayer" class="scrollmenu" aria-label="'
         . htmlspecialchars($l['w_jump_menu'], ENT_QUOTES, $l['a_meta_charset'])
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 require_once __DIR__ . '/tce_page_menu.php';
 echo '</nav>' . K_NEWLINE;
 

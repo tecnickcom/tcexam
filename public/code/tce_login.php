@@ -41,8 +41,7 @@ echo
         . '">'
         . $l['w_login']
         . '...</a>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</main>' . K_NEWLINE;
 echo '</body>' . K_NEWLINE;
 echo '</html>' . K_NEWLINE;

@@ -110,8 +110,7 @@ if ($r = F_db_query($sql, $db)) {
                     '<img src="data:image/png;base64,'
                         . base64_encode($qrcode->getPngData(false))
                         . '" alt="OTP QR code" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '</div>' . K_NEWLINE;
             }
 
@@ -121,8 +120,7 @@ if ($r = F_db_query($sql, $db)) {
                     . '">'
                     . $l['h_index']
                     . ' &gt;</a></strong>'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '</div>' . K_NEWLINE;
             require_once '../code/tce_page_footer.php';
             exit();

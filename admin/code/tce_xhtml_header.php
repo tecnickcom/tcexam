@@ -76,26 +76,22 @@ echo
         . ' ['
         . base64_decode(K_KEY_SECURITY)
         . ']" />'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     '<meta name="author" content="'
         . htmlspecialchars($thispage_author, ENT_COMPAT, $l['a_meta_charset'])
         . '" />'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     '<meta name="reply-to" content="'
         . htmlspecialchars($thispage_reply, ENT_COMPAT, $l['a_meta_charset'])
         . '" />'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     '<meta name="keywords" content="'
         . htmlspecialchars($thispage_keywords, ENT_COMPAT, $l['a_meta_charset'])
         . '" />'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<link rel="stylesheet" href="' . $thispage_style . '" />' . K_NEWLINE;
 echo '<link rel="icon" href="' . $thispage_icon . '" />' . K_NEWLINE;
 echo '<!-- TCExam19730104 -->' . K_NEWLINE;
@@ -109,8 +105,7 @@ echo
         . '">'
         . $l['w_skip_navigation']
         . '</a>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 global $login_error;
 if (isset($login_error) && $login_error) {

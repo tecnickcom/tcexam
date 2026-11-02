@@ -199,6 +199,18 @@ message = 'Potentially unhandled exception `Random\RandomException` in `Test\Ses
 count = 1
 
 [[issues]]
+file = "test/SvgCheckTest.php"
+code = "non-existent-function"
+message = "Function `F_is_safe_media_content` could not be found."
+count = 3
+
+[[issues]]
+file = "test/SvgCheckTest.php"
+code = "non-existent-function"
+message = "Function `F_is_safe_svg_content` could not be found."
+count = 3
+
+[[issues]]
 file = "test/TcecodeObjectsTest.php"
 code = "mixed-argument"
 message = 'Invalid argument type for argument #1 of `Test\TcecodeObjectsTest::assertNoEmbeddedDocument`: expected `string`, but found `mixed`.'
@@ -275,18 +287,6 @@ file = "test/TmxResourceBundleTest.php"
 code = "non-existent-class"
 message = "Class `TMXResourceBundle` not found."
 count = 4
-
-[[issues]]
-file = "test/SvgCheckTest.php"
-code = "non-existent-function"
-message = "Function `F_is_safe_media_content` could not be found."
-count = 3
-
-[[issues]]
-file = "test/SvgCheckTest.php"
-code = "non-existent-function"
-message = "Function `F_is_safe_svg_content` could not be found."
-count = 3
 
 [[issues]]
 file = "test/UploadFunctionsTest.php"
@@ -502,10 +502,4 @@ count = 7
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
 message = "Function `F_escape_sql` could not be found."
-count = 1
-
-[[issues]]
-file = "test/integration/DatabaseDalIntegrationTest.php"
-code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `string('anonymous')` accessed on `array<array-key, int>`."
 count = 1

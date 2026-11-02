@@ -103,60 +103,53 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_editor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'currentpassword',
-        $l['w_current_password'],
-        $l['h_password'],
-        '',
-        '',
-        '',
-        255,
-        false,
-        false,
-        true,
-        '',
-        true,
-        'current-password',
-    )
-;
-echo
-    getFormRowTextInput(
-        'newpassword',
-        $l['w_new_password'],
-        $l['h_password'],
-        ' (' . $l['d_password_length'] . ')',
-        '',
-        K_USRREG_PASSWORD_RE,
-        255,
-        false,
-        false,
-        true,
-        '',
-        true,
-        'new-password',
-    )
-;
-echo
-    getFormRowTextInput(
-        'newpassword_repeat',
-        $l['w_new_password'],
-        $l['h_password_repeat'],
-        ' (' . $l['w_repeat'] . ')',
-        '',
-        '',
-        255,
-        false,
-        false,
-        true,
-        '',
-        true,
-        'new-password',
-    )
-;
+echo getFormRowTextInput(
+    'currentpassword',
+    $l['w_current_password'],
+    $l['h_password'],
+    '',
+    '',
+    '',
+    255,
+    false,
+    false,
+    true,
+    '',
+    true,
+    'current-password',
+);
+echo getFormRowTextInput(
+    'newpassword',
+    $l['w_new_password'],
+    $l['h_password'],
+    ' (' . $l['d_password_length'] . ')',
+    '',
+    K_USRREG_PASSWORD_RE,
+    255,
+    false,
+    false,
+    true,
+    '',
+    true,
+    'new-password',
+);
+echo getFormRowTextInput(
+    'newpassword_repeat',
+    $l['w_new_password'],
+    $l['h_password_repeat'],
+    ' (' . $l['w_repeat'] . ')',
+    '',
+    '',
+    255,
+    false,
+    false,
+    true,
+    '',
+    true,
+    'new-password',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 

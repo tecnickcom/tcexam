@@ -142,8 +142,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_resultallusers">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -155,8 +154,7 @@ echo
     '<select name="test_id" id="test_id" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'
         . $l['h_test']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql =
     'SELECT * FROM '
     . K_TABLE_TESTS
@@ -182,8 +180,7 @@ if ($r = F_db_query($sql, $db)) {
                 . ' '
                 . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
     }
 } else {
     F_display_db_error();
@@ -196,34 +193,30 @@ echo '</div>' . K_NEWLINE;
 
 echo getFormNoscriptSelect('selectcategory');
 
-echo
-    getFormRowTextInput(
-        'startdate',
-        $l['w_time_begin'],
-        $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
-        '',
-        $startdate,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'enddate',
-        $l['w_time_end'],
-        $l['w_time_end'] . ' ' . $l['w_datetime_format'],
-        '',
-        $enddate,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'startdate',
+    $l['w_time_begin'],
+    $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
+    '',
+    $startdate,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
+echo getFormRowTextInput(
+    'enddate',
+    $l['w_time_end'],
+    $l['w_time_end'] . ' ' . $l['w_datetime_format'],
+    '',
+    $enddate,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -232,8 +225,7 @@ echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
 echo
     '<select name="group_id" id="group_id" onchange="document.getElementById(\'form_resultallusers\').submit()">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql =
     'SELECT * FROM '
     . K_TABLE_GROUPS
@@ -341,8 +333,7 @@ if ($show_graph && isset($data['svgpoints']) && preg_match_all('/[x]/', $data['s
             . $l['w_answers_right']
             . '&nbsp;</span> / <span style="background-color:#dddddd;color:#000000;">&nbsp;'
             . $l['w_tests']
-            . '&nbsp;</span></div>'
-    ;
+            . '&nbsp;</span></div>';
     echo
         '<img src="../../shared/code/tce_svg_graph.php?w='
             . $w
@@ -357,8 +348,7 @@ if ($show_graph && isset($data['svgpoints']) && preg_match_all('/[x]/', $data['s
             . '" alt="'
             . $l['w_result_graph']
             . '" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
 }
 
@@ -380,8 +370,7 @@ if ($itemcount > 0) {
             . $l['h_pdf']
             . '">'
             . $l['w_pdf']
-            . '</a> '
-    ;
+            . '</a> ';
     echo
         '<a href="tce_pdf_results.php?mode=4'
             . $filter
@@ -389,8 +378,7 @@ if ($itemcount > 0) {
             . $l['h_pdf_all']
             . '">'
             . $l['w_pdf_all']
-            . '</a> '
-    ;
+            . '</a> ';
 
     echo '<input type="hidden" name="order_field" id="order_field" value="' . $order_field . '" />' . K_NEWLINE;
     echo '<input type="hidden" name="orderdir" id="orderdir" value="' . $orderdir . '" />' . K_NEWLINE;

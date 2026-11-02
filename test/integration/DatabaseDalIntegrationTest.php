@@ -131,15 +131,15 @@ final class DatabaseDalIntegrationTest extends TestCase
         $levels = [];
         $row = \F_db_fetch_assoc($res);
         while (is_array($row)) {
-            $levels[$row['user_name']] = (int) $row['user_level'];
+            $levels[(string) $row['user_name']] = (int) $row['user_level'];
             $row = \F_db_fetch_assoc($res);
         }
 
         $this->assertGreaterThanOrEqual(2, \F_db_num_rows($res));
         $this->assertArrayHasKey('anonymous', $levels);
         $this->assertArrayHasKey('admin', $levels);
-        $this->assertSame(0, $levels['anonymous']);
-        $this->assertSame(10, $levels['admin']);
+        $this->assertSame(0, $levels['anonymous'] ?? null);
+        $this->assertSame(10, $levels['admin'] ?? null);
     }
 
     public function testEscapeSqlRoundTripsThroughTheServer(): void

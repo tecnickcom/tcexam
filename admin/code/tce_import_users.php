@@ -75,9 +75,10 @@ switch ($menu_mode) {
 <div class="container">
 
 <div class="tceformbox">
-<form action="<?php echo
-    htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-; ?>" method="post" enctype="multipart/form-data" id="form_importusers">
+<form action="<?php echo htmlspecialchars(
+    $_SERVER['SCRIPT_NAME'],
+    ENT_QUOTES,
+); ?>" method="post" enctype="multipart/form-data" id="form_importusers">
 
 <div class="row">
 <span class="label">
@@ -96,8 +97,7 @@ switch ($menu_mode) {
 <legend title="<?php echo $l['h_file_type']; ?>"><?php echo $l['w_type']; ?></legend>
 
 <input type="radio" name="file_type" id="file_type_xml" value="1" checked="checked" title="<?php echo
-    $l['h_file_type_xml']
-; ?>" />
+    $l['h_file_type_xml']; ?>" />
 <label for="file_type_xml">XML</label>
 <br />
 <input type="radio" name="file_type" id="file_type_tsv" value="2" title="<?php echo $l['h_file_type_tsv']; ?>" />

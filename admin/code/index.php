@@ -155,8 +155,7 @@ if (strlen($limits) > 0) {
             . '</th></tr></thead><tbody>'
             . $limits
             . '</tbody></table><br />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
 }
 
 echo $l['d_admin_index'];

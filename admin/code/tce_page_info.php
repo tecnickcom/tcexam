@@ -40,24 +40,21 @@ echo
     '<a href="https://tecnick.com" target="_blank" rel="noopener noreferrer" title="'
         . $l['m_new_window_link']
         . '">tecnick.com</a></li>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     '<li><strong>'
         . $l['w_license']
         . ':</strong> <a href="../../LICENSE" target="_blank" rel="noopener noreferrer" title="'
         . $l['m_new_window_link']
         . '">LICENSE</a></li>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</ul>' . K_NEWLINE;
 
 echo '<h2>' . $l['t_third_parties'] . '</h2>' . K_NEWLINE;
 
 echo
     '<p>TCExam relies on some third-party software components that are not bundled with this codebase but are installed via Composer. When used, they are subject to their respective licenses. The complete list of components, with their exact versions and license terms, is declared in the <code>composer.json</code> file and can be inspected with the <code>composer licenses</code> command.</p>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<h2>' . $l['t_translations'] . '</h2>' . K_NEWLINE;
 
@@ -98,8 +95,7 @@ echo '<br />' . K_NEWLINE;
 echo '<div class="creditslogos">' . K_NEWLINE;
 echo
     '<a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="../../images/credits/agplv3-88x31.png" alt="GNU AFFERO GENERAL PUBLIC LICENSE" width="88" height="31" style="border:none;" /></a>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
 require_once 'tce_page_footer.php';

@@ -83,33 +83,29 @@ switch ($menu_mode) { // process submitted data
                     '<form action="'
                         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                         . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '<div>' . K_NEWLINE;
                 echo
                     '<input type="hidden" name="backup_file" id="backup_file" value="'
                         . stripslashes($backup_file)
                         . '" />'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 if (F_has_current_user_password()) {
-                    echo
-                        getFormRowTextInput(
-                            'currentpassword',
-                            $l['w_current_password'],
-                            $l['h_password'],
-                            '',
-                            '',
-                            '',
-                            255,
-                            false,
-                            false,
-                            true,
-                            '',
-                            true,
-                            'current-password',
-                        )
-                    ;
+                    echo getFormRowTextInput(
+                        'currentpassword',
+                        $l['w_current_password'],
+                        $l['h_password'],
+                        '',
+                        '',
+                        '',
+                        255,
+                        false,
+                        false,
+                        true,
+                        '',
+                        true,
+                        'current-password',
+                    );
                 }
 
                 F_submit_button('forcerestore', $l['w_restore'], $l['h_restore']);
@@ -321,8 +317,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_editor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -357,23 +352,21 @@ echo '</div>' . K_NEWLINE;
 echo getFormNoscriptSelect('selectrecord');
 
 if (F_has_current_user_password()) {
-    echo
-        getFormRowTextInput(
-            'currentpassword',
-            $l['w_current_password'],
-            $l['h_password'],
-            '',
-            '',
-            '',
-            255,
-            false,
-            false,
-            true,
-            '',
-            true,
-            'current-password',
-        )
-    ;
+    echo getFormRowTextInput(
+        'currentpassword',
+        $l['w_current_password'],
+        $l['h_password'],
+        '',
+        '',
+        '',
+        255,
+        false,
+        false,
+        true,
+        '',
+        true,
+        'current-password',
+    );
 }
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;

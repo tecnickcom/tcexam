@@ -262,8 +262,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_resultallusers">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -275,8 +274,7 @@ echo
     '<select name="test_id" id="test_id" onchange="document.getElementById(\'form_resultallusers\').changecategory.value=1; document.getElementById(\'form_resultallusers\').submit()" title="'
         . $l['h_test']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
     echo '<option value="0"';
@@ -297,8 +295,7 @@ if ($r = F_db_query($sql, $db)) {
                 . ' '
                 . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
     }
 } else {
     F_display_db_error();
@@ -315,34 +312,30 @@ echo '</div>' . K_NEWLINE;
 
 echo getFormNoscriptSelect('selectcategory');
 
-echo
-    getFormRowTextInput(
-        'startdate',
-        $l['w_time_begin'],
-        $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
-        '',
-        $startdate,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'enddate',
-        $l['w_time_end'],
-        $l['w_time_end'] . ' ' . $l['w_datetime_format'],
-        '',
-        $enddate,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'startdate',
+    $l['w_time_begin'],
+    $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
+    '',
+    $startdate,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
+echo getFormRowTextInput(
+    'enddate',
+    $l['w_time_end'],
+    $l['w_time_end'] . ' ' . $l['w_datetime_format'],
+    '',
+    $enddate,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -425,8 +418,7 @@ if ($r = F_db_query($sql, $db)) {
                     $l['a_meta_charset'],
                 )
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 } else {
@@ -500,12 +492,10 @@ if (isset($_REQUEST['sel'])) {
         // check/uncheck all options
         echo '<span dir="' . $l['a_meta_dir'] . '">';
         echo
-            '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_resultallusers\').submit()" />'
-        ;
+            '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_resultallusers\').submit()" />';
         echo '<label for="checkall1">' . $l['w_check_all'] . '</label> ';
         echo
-            '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_resultallusers\').submit()" />'
-        ;
+            '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_resultallusers\').submit()" />';
         echo '<label for="checkall0">' . $l['w_uncheck_all'] . '</label>';
         echo '</span>' . K_NEWLINE;
         echo '<br /><strong style="margin:5px">' . $l['m_with_selected'] . '</strong><br />' . K_NEWLINE;
@@ -537,8 +527,7 @@ if (isset($_REQUEST['sel'])) {
                 . $l['w_answers_right']
                 . '&nbsp;</span> / <span style="background-color:#dddddd;color:#000000;">&nbsp;'
                 . $l['w_tests']
-                . '&nbsp;</span></div>'
-        ;
+                . '&nbsp;</span></div>';
         echo
             '<img src="../../shared/code/tce_svg_graph.php?w='
                 . $w
@@ -553,8 +542,7 @@ if (isset($_REQUEST['sel'])) {
                 . '" alt="'
                 . $l['w_result_graph']
                 . '" />'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         echo '</div>' . K_NEWLINE;
     }
 
@@ -574,13 +562,11 @@ if (isset($_REQUEST['sel'])) {
                 . $filter
                 . '" class="xmlbutton" title="'
                 . $l['h_xml_export']
-                . '">XML</a> '
-        ;
+                . '">XML</a> ';
         echo
             '<a href="tce_xml_results.php?format=JSON&amp;menu_mode=startlongprocess'
                 . $filter
-                . '" class="xmlbutton" title="JSON">JSON</a> '
-        ;
+                . '" class="xmlbutton" title="JSON">JSON</a> ';
         echo
             '<a href="tce_tsv_result_allusers.php?'
                 . $filter
@@ -590,8 +576,7 @@ if (isset($_REQUEST['sel'])) {
                 . $orderdir
                 . '" class="xmlbutton" title="'
                 . $l['h_tsv_export']
-                . '">TSV</a> '
-        ;
+                . '">TSV</a> ';
         echo
             '<a href="tce_pdf_results.php?mode=1'
                 . $filter
@@ -599,8 +584,7 @@ if (isset($_REQUEST['sel'])) {
                 . $l['h_pdf']
                 . '">'
                 . $l['w_pdf']
-                . '</a> '
-        ;
+                . '</a> ';
         echo
             '<a href="tce_pdf_results.php?mode=4'
                 . $filter
@@ -608,8 +592,7 @@ if (isset($_REQUEST['sel'])) {
                 . $l['h_pdf_all']
                 . '">'
                 . $l['w_pdf_all']
-                . '</a> '
-        ;
+                . '</a> ';
         if (K_DISPLAY_PDFTEXT_BUTTON) {
             echo
                 '<a href="tce_pdf_results.php?mode=5'
@@ -618,8 +601,7 @@ if (isset($_REQUEST['sel'])) {
                     . $l['h_pdf_all']
                     . ' - TEXT">'
                     . $l['w_pdf']
-                    . ' TEXT</a> '
-            ;
+                    . ' TEXT</a> ';
         }
 
         echo
@@ -629,8 +611,7 @@ if (isset($_REQUEST['sel'])) {
                 . $l['h_email_all_results']
                 . '">'
                 . $l['w_email_all_results']
-                . '</a> '
-        ;
+                . '</a> ';
         echo
             '<a href="tce_email_results.php?mode=0&amp;menu_mode=startlongprocess'
                 . $filter
@@ -638,8 +619,7 @@ if (isset($_REQUEST['sel'])) {
                 . $l['h_email_all_results']
                 . ' + PDF">'
                 . $l['w_email_all_results']
-                . ' + PDF</a> '
-        ;
+                . ' + PDF</a> ';
         $custom_export = K_ENABLE_CUSTOM_EXPORT;
         if ($custom_export !== '') {
             echo
@@ -649,8 +629,7 @@ if (isset($_REQUEST['sel'])) {
                     . $custom_export
                     . '">'
                     . $custom_export
-                    . '</a> '
-            ;
+                    . '</a> ';
         }
     }
 }

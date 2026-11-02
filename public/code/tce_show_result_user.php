@@ -105,9 +105,11 @@ $test_all =
 $test_all .= htmlspecialchars($teststat['testinfo']['test_description'], ENT_NOQUOTES, $l['a_meta_charset']);
 echo getFormDescriptionLine($l['w_test'] . ':', $l['w_test'], $test_all);
 
-echo
-    getFormDescriptionLine($l['w_time_begin'] . ':', $l['h_time_begin'], $teststat['testinfo']['user_test_start_time'])
-;
+echo getFormDescriptionLine(
+    $l['w_time_begin'] . ':',
+    $l['h_time_begin'],
+    $teststat['testinfo']['user_test_start_time'],
+);
 echo getFormDescriptionLine($l['w_time_end'] . ':', $l['h_time_end'], $teststat['testinfo']['user_test_end_time']);
 
 if (
@@ -198,13 +200,11 @@ $score_unrated_all =
     . '%)';
 echo getFormDescriptionLine($l['w_questions_unrated'] . ':', $l['h_questions_unrated'], $score_unrated_all);
 
-echo
-    getFormDescriptionLine(
-        $l['w_comment'] . ':',
-        $l['h_testcomment'],
-        F_decode_tcecode($teststat['testinfo']['user_comment']),
-    )
-;
+echo getFormDescriptionLine(
+    $l['w_comment'] . ':',
+    $l['h_testcomment'],
+    F_decode_tcecode($teststat['testinfo']['user_comment']),
+);
 
 if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {
     echo '<div class="rowl">' . K_NEWLINE;
@@ -233,8 +233,7 @@ if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {
                 . $l['h_pdf']
                 . '">'
                 . $l['w_pdf']
-                . '</a> '
-        ;
+                . '</a> ';
         echo '</div>' . K_NEWLINE;
     }
 }

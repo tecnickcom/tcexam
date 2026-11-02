@@ -95,7 +95,6 @@ function F_getOTP($otpkey, $mtime = 0)
             | ((ord($hash[$offset + 1]) & 0xff) << 16)
             | ((ord($hash[$offset + 2]) & 0xff) << 8)
             | (ord($hash[$offset + 3]) & 0xff)
-        )
-        % (10 ** 6)
+        ) % (10 ** 6)
     );
 }

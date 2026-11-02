@@ -299,8 +299,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_ratingeditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -312,8 +311,7 @@ echo
     '<select name="test_id" id="test_id" onchange="document.getElementById(\'form_ratingeditor\').changecategory.value=1;document.getElementById(\'form_ratingeditor\').submit()" title="'
         . $l['h_test']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_executed_tests_sql();
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -329,8 +327,7 @@ if ($r = F_db_query($sql, $db)) {
                 . ' : '
                 . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -361,8 +358,7 @@ echo
     '<select name="testlog_id" id="testlog_id" onchange="document.getElementById(\'form_ratingeditor\').submit()" title="'
         . $l['h_select_answer']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql =
     'SELECT testlog_id, testlog_score, user_lastname, user_firstname, user_name, question_description FROM '
     . K_TABLE_TESTS_LOGS
@@ -403,8 +399,7 @@ if ($r = F_db_query($sql, $db)) {
                         ENT_NOQUOTES,
                         $l['a_meta_charset'],
                     )
-                    . ''
-            ;
+                    . '';
         }
 
         echo '</option>' . K_NEWLINE;
@@ -433,8 +428,7 @@ echo
     '<select name="sqlordermode" id="sqlordermode" onchange="document.getElementById(\'form_ratingeditor\').submit()" title="'
         . $l['w_order']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0"';
 if ($sqlordermode == 0) {
     echo ' selected="selected"';
@@ -459,18 +453,16 @@ echo '</div>' . K_NEWLINE;
 
 echo getFormNoscriptSelect('selectmode');
 
-echo
-    getFormRowCheckBox(
-        'display_user_info',
-        $l['w_display_user_info'],
-        $l['h_display_user_info'],
-        '',
-        1,
-        $display_user_info,
-        false,
-        '',
-    )
-;
+echo getFormRowCheckBox(
+    'display_user_info',
+    $l['w_display_user_info'],
+    $l['h_display_user_info'],
+    '',
+    1,
+    $display_user_info,
+    false,
+    '',
+);
 echo getFormRowCheckBox('display_all', $l['w_display_all'], $l['h_display_all'], '', 1, $display_all, false, '');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
@@ -505,16 +497,14 @@ echo $answer . '&nbsp;<br />&nbsp;' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'testlog_score',
-        $l['w_score'],
-        $l['h_score'],
-        '',
-        $testlog_score,
-        '^([0-9\+\-]*)([\.]?)([0-9]*)$',
-    )
-;
+echo getFormRowTextInput(
+    'testlog_score',
+    $l['w_score'],
+    $l['h_score'],
+    '',
+    $testlog_score,
+    '^([0-9\+\-]*)([\.]?)([0-9]*)$',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">&nbsp;</span>' . K_NEWLINE;
@@ -530,8 +520,7 @@ echo
         . ' ['
         . $test_score_right
         . ']</label>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
@@ -548,8 +537,7 @@ echo
         . ' ['
         . $test_score_wrong
         . ']</label>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
@@ -566,8 +554,7 @@ echo
         . ' ['
         . $test_score_unanswered
         . ']</label>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 

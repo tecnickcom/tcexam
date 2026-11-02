@@ -68,8 +68,7 @@ define(
         isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? null) == 443
             ? 'https://'
             : 'http://'
-    )
-    . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+    ) . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
 );
 
 /**

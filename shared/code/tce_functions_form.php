@@ -287,8 +287,7 @@ function F_submit_button($name, $value, $title = '', $extra = '')
             . $title
             . '" '
             . $extra
-            . '/>'
-    ;
+            . '/>';
 }
 
 /**

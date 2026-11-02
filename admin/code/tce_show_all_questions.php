@@ -195,8 +195,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_selectquestions">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -208,8 +207,7 @@ echo
     '<select name="subject_module_id" id="subject_module_id" onchange="document.getElementById(\'form_selectquestions\').changemodule.value=1;document.getElementById(\'form_selectquestions\').changecategory.value=1; document.getElementById(\'form_selectquestions\').submit();" title="'
         . $l['w_module']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_modules_sql();
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -230,8 +228,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '&nbsp;</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -259,8 +256,7 @@ echo
     '<select name="subject_id" id="subject_id" onchange="document.getElementById(\'form_selectquestions\').changecategory.value=1;document.getElementById(\'form_selectquestions\').submit()" title="'
         . $l['h_subject']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_subjects_sql('subject_module_id=' . $subject_module_id);
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -372,8 +368,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_pdf']
             . '">PDF '
             . $l['w_module']
-            . '</a>'
-    ;
+            . '</a>';
     echo
         '<a href="'
             . $pdflink
@@ -381,8 +376,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_pdf']
             . '">PDF '
             . $l['w_all']
-            . '</a>'
-    ;
+            . '</a>';
     $xmllink = 'tce_xml_questions.php';
     $xmllink .= '?module_id=' . $subject_module_id;
     $xmllink .= '&amp;subject_id=' . $subject_id;
@@ -394,8 +388,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_xml_export']
             . '">XML '
             . $l['w_module']
-            . '</a>'
-    ;
+            . '</a>';
     echo
         '<a href="'
             . $xmllink
@@ -403,23 +396,20 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_xml_export']
             . '">XML '
             . $l['w_all']
-            . '</a>'
-    ;
+            . '</a>';
     echo ' <a href="' . $xmllink . '&amp;expmode=1&amp;format=JSON" class="xmlbutton" title="JSON">JSON</a>';
     echo
         '<a href="'
             . $xmllink
             . '&amp;expmode=2&amp;format=JSON" class="xmlbutton" title="JSON">JSON '
             . $l['w_module']
-            . '</a>'
-    ;
+            . '</a>';
     echo
         '<a href="'
             . $xmllink
             . '&amp;expmode=3&amp;format=JSON" class="xmlbutton" title="JSON">JSON '
             . $l['w_all']
-            . '</a>'
-    ;
+            . '</a>';
     $tsvlink = 'tce_tsv_questions.php';
     $tsvlink .= '?module_id=' . $subject_module_id;
     $tsvlink .= '&amp;subject_id=' . $subject_id;
@@ -431,8 +421,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_tsv_export']
             . '">TSV '
             . $l['w_module']
-            . '</a>'
-    ;
+            . '</a>';
     echo
         '<a href="'
             . $tsvlink
@@ -440,8 +429,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['h_tsv_export']
             . '">TSV '
             . $l['w_all']
-            . '</a>'
-    ;
+            . '</a>';
 }
 
 echo '&nbsp;' . K_NEWLINE;
@@ -803,12 +791,10 @@ function F_show_select_questions(
             // check/uncheck all options
             echo '<span dir="' . $l['a_meta_dir'] . '">';
             echo
-                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_selectquestions\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_selectquestions\').submit()" />';
             echo '<label for="checkall1">' . $l['w_check_all'] . '</label> ';
             echo
-                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_selectquestions\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_selectquestions\').submit()" />';
             echo '<label for="checkall0">' . $l['w_uncheck_all'] . '</label>';
             echo '</span>' . K_NEWLINE;
             echo '&nbsp;';
@@ -830,8 +816,7 @@ function F_show_select_questions(
                     . '" aria-label="'
                     . $l['h_subject']
                     . '">'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             $sql = F_select_module_subjects_sql("module_enabled='1' AND subject_enabled='1'");
             if ($r = F_db_query($sql, $db)) {
                 echo '<option value="0" style="color:gray">' . $l['w_subject'] . '</option>' . K_NEWLINE;
@@ -843,8 +828,7 @@ function F_show_select_questions(
                             '<option value="0" style="color:gray;font-weight:bold;" disabled="disabled">* '
                                 . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                                 . '</option>'
-                                . K_NEWLINE
-                        ;
+                                . K_NEWLINE;
                     }
 
                     echo
@@ -853,8 +837,7 @@ function F_show_select_questions(
                             . '">&nbsp;&nbsp;&nbsp;&nbsp;'
                             . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                             . '</option>'
-                            . K_NEWLINE
-                    ;
+                            . K_NEWLINE;
                 }
             } else {
                 echo '</select>' . K_NEWLINE;

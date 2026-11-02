@@ -109,17 +109,19 @@ switch ($menu_mode) {
                 F_print_error('WARNING', $l['m_delete_confirm']);
                 ?>
             <div class="confirmbox">
-            <form action="<?php echo
-                htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-            ; ?>" method="post" enctype="multipart/form-data" id="form_delete">
+            <form action="<?php echo htmlspecialchars(
+                $_SERVER['SCRIPT_NAME'],
+                ENT_QUOTES,
+            ); ?>" method="post" enctype="multipart/form-data" id="form_delete">
             <div>
             <input type="hidden" name="subject_id" id="subject_id" value="<?php echo $subject_id; ?>" />
             <input type="hidden" name="subject_module_id" id="subject_module_id" value="<?php echo
-                $subject_module_id
-            ; ?>" />
-            <input type="hidden" name="subject_name" id="subject_name" value="<?php echo
-                htmlspecialchars($subject_name, ENT_COMPAT, $l['a_meta_charset'])
-            ; ?>" />
+                $subject_module_id; ?>" />
+            <input type="hidden" name="subject_name" id="subject_name" value="<?php echo htmlspecialchars(
+                $subject_name,
+                ENT_COMPAT,
+                $l['a_meta_charset'],
+            ); ?>" />
             <?php
 
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
@@ -356,8 +358,7 @@ if ($subject_module_id <= 0) {
             . '" class="xmlbutton">&lt; '
             . $l['t_modules_editor']
             . '</a></p>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo '<div class="pagehelp">' . $l['hp_edit_subject'] . '</div>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
     require_once '../code/tce_page_footer.php';
@@ -373,8 +374,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_subjecteditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -386,8 +386,7 @@ echo
     '<select name="subject_module_id" id="subject_module_id" onchange="document.getElementById(\'form_subjecteditor\').changecategory.value=1; document.getElementById(\'form_subjecteditor\').submit();" title="'
         . $l['w_module']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 $sql = F_select_modules_sql();
 if ($r = F_db_query($sql, $db)) {
     $countitem = 1;
@@ -408,8 +407,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '&nbsp;</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -436,8 +434,7 @@ echo
     '<select name="subject_id" id="subject_id" onchange="document.getElementById(\'form_subjecteditor\').submit()" title="'
         . $l['h_subject']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($subject_id == 0) {
     echo ' selected="selected"';
@@ -464,8 +461,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '&nbsp;</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -485,21 +481,19 @@ echo getFormNoscriptSelect('selectrecord');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'subject_name',
-        $l['w_name'],
-        $l['h_subject_name'],
-        '',
-        $subject_name,
-        '',
-        255,
-        false,
-        false,
-        false,
-        '',
-    )
-;
+echo getFormRowTextInput(
+    'subject_name',
+    $l['w_name'],
+    $l['h_subject_name'],
+    '',
+    $subject_name,
+    '',
+    255,
+    false,
+    false,
+    false,
+    '',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -511,16 +505,14 @@ echo
         . '" class="xmlbutton" onclick="previewWindow=window.open(\'tce_preview_tcecode.php?tcexamcode=\'+encodeURIComponent(document.getElementById(\'form_subjecteditor\').subject_description.value),\'previewWindow\',\'dependent,height=500,width=500,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no\'); return false;">'
         . $l['w_preview']
         . '</button>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '</span>' . K_NEWLINE;
 echo '<span class="formw" style="border:1px solid #808080;">' . K_NEWLINE;
 echo
     '<textarea cols="50" rows="5" name="subject_description" id="subject_description" title="'
         . $l['h_subject_description']
-        . '"'
-;
+        . '"';
 
 echo '>' . htmlspecialchars($subject_description, ENT_NOQUOTES, $l['a_meta_charset']) . '</textarea>' . K_NEWLINE;
 echo '<br />' . K_NEWLINE;
@@ -544,8 +536,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     F_submit_button('add', $l['w_add'], $l['h_add']);
@@ -570,8 +561,7 @@ if ($subject_module_id > 0) {
             . $l['t_modules_editor']
             . '" class="xmlbutton">&lt; '
             . $l['t_modules_editor']
-            . '</a>'
-    ;
+            . '</a>';
 }
 
 echo '</span>' . K_NEWLINE;
@@ -587,8 +577,7 @@ if (isset($subject_id) && $subject_id > 0) {
             . $l['t_questions_editor']
             . '" class="xmlbutton">'
             . $l['t_questions_editor']
-            . ' &gt;</a>'
-    ;
+            . ' &gt;</a>';
 }
 
 echo '&nbsp;' . K_NEWLINE;

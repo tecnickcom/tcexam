@@ -81,14 +81,17 @@ switch ($menu_mode) {
                 F_print_error('WARNING', $l['m_delete_confirm']);
                 ?>
             <div class="confirmbox">
-            <form action="<?php echo
-                htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-            ; ?>" method="post" enctype="multipart/form-data" id="form_delete">
+            <form action="<?php echo htmlspecialchars(
+                $_SERVER['SCRIPT_NAME'],
+                ENT_QUOTES,
+            ); ?>" method="post" enctype="multipart/form-data" id="form_delete">
             <div>
             <input type="hidden" name="module_id" id="module_id" value="<?php echo $module_id; ?>" />
-            <input type="hidden" name="module_name" id="module_name" value="<?php echo
-                htmlspecialchars($module_name, ENT_COMPAT, $l['a_meta_charset'])
-            ; ?>" />
+            <input type="hidden" name="module_name" id="module_name" value="<?php echo htmlspecialchars(
+                $module_name,
+                ENT_COMPAT,
+                $l['a_meta_charset'],
+            ); ?>" />
             <?php
 
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
@@ -305,8 +308,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_moduleeditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -317,8 +319,7 @@ echo
     '<select name="module_id" id="module_id" onchange="document.getElementById(\'form_moduleeditor\').submit()" title="'
         . $l['h_module_name']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($module_id == 0) {
     echo ' selected="selected"';
@@ -345,8 +346,7 @@ if ($r = F_db_query($sql, $db)) {
             ' '
                 . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '&nbsp;</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 
@@ -366,21 +366,19 @@ echo getFormNoscriptSelect('selectrecord');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'module_name',
-        $l['w_name'],
-        $l['h_module_name'],
-        '',
-        $module_name,
-        '',
-        255,
-        false,
-        false,
-        false,
-        '',
-    )
-;
+echo getFormRowTextInput(
+    'module_name',
+    $l['w_name'],
+    $l['h_module_name'],
+    '',
+    $module_name,
+    '',
+    255,
+    false,
+    false,
+    false,
+    '',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -393,8 +391,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
         '<select name="module_user_id" id="module_user_id" title="'
             . $l['h_module_owner']
             . '" onchange="">'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     $sql =
         'SELECT user_id, user_lastname, user_firstname, user_name FROM '
         . K_TABLE_USERS
@@ -415,8 +412,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
                         $l['a_meta_charset'],
                     )
                     . '</option>'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
         }
     } else {
         echo '</select></span></div>' . K_NEWLINE;
@@ -441,8 +437,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
                         $m['user_name'] . ') ' . $m['user_lastname'] . ' ' . $m['user_firstname'],
                     ))
                     . '</span>'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
         }
     } else {
         echo '</select></span></div>' . K_NEWLINE;
@@ -516,8 +511,7 @@ if (isset($module_id) && $module_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     F_submit_button('add', $l['w_add'], $l['h_add']);
@@ -541,8 +535,7 @@ if (isset($module_id) && $module_id > 0) {
             . $l['t_subjects_editor']
             . '" class="xmlbutton">'
             . $l['t_subjects_editor']
-            . ' &gt;</a>'
-    ;
+            . ' &gt;</a>';
 }
 
 echo '&nbsp;' . K_NEWLINE;

@@ -233,8 +233,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                     echo
                         ' | '
                             . date('i:s', strtotime($m['testlog_change_time']) - strtotime($m['testlog_display_time']))
-                            . ''
-                    ;
+                            . '';
                 } else {
                     echo ' | --:--' . K_NEWLINE;
                 }
@@ -256,8 +255,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                             . ':</span><br />'
                             . F_decode_tcecode($m['question_explanation'])
                             . ''
-                            . K_NEWLINE
-                    ;
+                            . K_NEWLINE;
                 }
 
                 if ($m['question_type'] == 3) {
@@ -292,16 +290,14 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                                                 . $l['h_answer_right']
                                                 . '" class="okbox">'
                                                 . $ma['logansw_position']
-                                                . '</abbr>'
-                                        ;
+                                                . '</abbr>';
                                     } else {
                                         echo
                                             '<abbr title="'
                                                 . $l['h_answer_wrong']
                                                 . '" class="nobox">'
                                                 . $ma['logansw_position']
-                                                . '</abbr>'
-                                        ;
+                                                . '</abbr>';
                                     }
                                 } else {
                                     echo '<abbr title="' . $l['m_unanswered'] . '" class="offbox">&nbsp;</abbr>';
@@ -332,8 +328,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                                         . $l['w_position']
                                         . '" class="onbox">'
                                         . $ma['answer_position']
-                                        . '</abbr>'
-                                ;
+                                        . '</abbr>';
                             } elseif (F_getBoolean($ma['answer_isright'])) {
                                 echo '<abbr title="' . $l['w_answers_right'] . '" class="onbox">&reg;</abbr>';
                             } else {
@@ -349,8 +344,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                                         . ':</span><br />'
                                         . F_decode_tcecode($ma['answer_explanation'])
                                         . ''
-                                        . K_NEWLINE
-                                ;
+                                        . K_NEWLINE;
                             }
 
                             echo '</li>' . K_NEWLINE;
@@ -449,8 +443,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                 . $l['h_pdf']
                 . '">'
                 . $l['w_pdf']
-                . '</a> '
-        ;
+                . '</a> ';
         echo '</div>' . K_NEWLINE;
     }
 }

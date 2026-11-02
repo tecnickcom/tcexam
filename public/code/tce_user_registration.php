@@ -254,8 +254,7 @@ if ($menu_mode == 'add') { // process submitted data
                     . '">'
                     . $l['h_index']
                     . ' &gt;</a></strong>'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '</div>' . K_NEWLINE;
             require_once '../code/tce_page_footer.php';
             exit();
@@ -331,196 +330,175 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_usereditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'user_name',
-        $l['w_username'],
-        $l['h_login_name'],
+echo getFormRowTextInput(
+    'user_name',
+    $l['w_username'],
+    $l['h_login_name'],
+    '',
+    $user_name,
+    '',
+    255,
+    false,
+    false,
+    false,
+    showRequiredField($regfields['user_name']),
+    $regfields['user_name'] == 2,
+    'username',
+);
+if (K_USRREG_EMAIL_CONFIRM || $regfields['user_email']) {
+    echo getFormRowTextInput(
+        'user_email',
+        $l['w_email'],
+        $l['h_usered_email'],
         '',
-        $user_name,
-        '',
+        $user_email,
+        K_EMAIL_RE_PATTERN,
         255,
         false,
         false,
         false,
-        showRequiredField($regfields['user_name']),
-        $regfields['user_name'] == 2,
-        'username',
-    )
-;
-if (K_USRREG_EMAIL_CONFIRM || $regfields['user_email']) {
-    echo
-        getFormRowTextInput(
-            'user_email',
-            $l['w_email'],
-            $l['h_usered_email'],
-            '',
-            $user_email,
-            K_EMAIL_RE_PATTERN,
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_email']),
-            $regfields['user_email'] == 2,
-            'email',
-            'email',
-        )
-    ;
+        showRequiredField($regfields['user_email']),
+        $regfields['user_email'] == 2,
+        'email',
+        'email',
+    );
 }
 
-echo
-    getFormRowTextInput(
-        'newpassword',
-        $l['w_password'],
-        $l['h_password'],
-        ' (' . $l['d_password_length'] . ')',
-        '',
-        K_USRREG_PASSWORD_RE,
-        255,
-        false,
-        false,
-        true,
-        showRequiredField(2),
-        true,
-        'new-password',
-    )
-;
-echo
-    getFormRowTextInput(
-        'newpassword_repeat',
-        $l['w_password'],
-        $l['h_password_repeat'],
-        ' (' . $l['w_repeat'] . ')',
-        '',
-        '',
-        255,
-        false,
-        false,
-        true,
-        showRequiredField(2),
-        true,
-        'new-password',
-    )
-;
+echo getFormRowTextInput(
+    'newpassword',
+    $l['w_password'],
+    $l['h_password'],
+    ' (' . $l['d_password_length'] . ')',
+    '',
+    K_USRREG_PASSWORD_RE,
+    255,
+    false,
+    false,
+    true,
+    showRequiredField(2),
+    true,
+    'new-password',
+);
+echo getFormRowTextInput(
+    'newpassword_repeat',
+    $l['w_password'],
+    $l['h_password_repeat'],
+    ' (' . $l['w_repeat'] . ')',
+    '',
+    '',
+    255,
+    false,
+    false,
+    true,
+    showRequiredField(2),
+    true,
+    'new-password',
+);
 if ($regfields['user_regnumber']) {
-    echo
-        getFormRowTextInput(
-            'user_regnumber',
-            $l['w_regcode'],
-            $l['h_regcode'],
-            '',
-            $user_regnumber,
-            '',
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_regnumber']),
-            $regfields['user_regnumber'] == 2,
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_regnumber',
+        $l['w_regcode'],
+        $l['h_regcode'],
+        '',
+        $user_regnumber,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_regnumber']),
+        $regfields['user_regnumber'] == 2,
+    );
 }
 
 if ($regfields['user_firstname']) {
-    echo
-        getFormRowTextInput(
-            'user_firstname',
-            $l['w_firstname'],
-            $l['h_firstname'],
-            '',
-            $user_firstname,
-            '',
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_firstname']),
-            $regfields['user_firstname'] == 2,
-            'given-name',
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_firstname',
+        $l['w_firstname'],
+        $l['h_firstname'],
+        '',
+        $user_firstname,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_firstname']),
+        $regfields['user_firstname'] == 2,
+        'given-name',
+    );
 }
 
 if ($regfields['user_lastname']) {
-    echo
-        getFormRowTextInput(
-            'user_lastname',
-            $l['w_lastname'],
-            $l['h_lastname'],
-            '',
-            $user_lastname,
-            '',
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_lastname']),
-            $regfields['user_lastname'] == 2,
-            'family-name',
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_lastname',
+        $l['w_lastname'],
+        $l['h_lastname'],
+        '',
+        $user_lastname,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_lastname']),
+        $regfields['user_lastname'] == 2,
+        'family-name',
+    );
 }
 
 if ($regfields['user_birthdate']) {
-    echo
-        getFormRowTextInput(
-            'user_birthdate',
-            $l['w_birth_date'],
-            $l['h_birth_date'] . ' ' . $l['w_date_format'],
-            '',
-            $user_birthdate,
-            '',
-            10,
-            true,
-            false,
-            false,
-            showRequiredField($regfields['user_birthdate']),
-            $regfields['user_birthdate'] == 2,
-            'bday',
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_birthdate',
+        $l['w_birth_date'],
+        $l['h_birth_date'] . ' ' . $l['w_date_format'],
+        '',
+        $user_birthdate,
+        '',
+        10,
+        true,
+        false,
+        false,
+        showRequiredField($regfields['user_birthdate']),
+        $regfields['user_birthdate'] == 2,
+        'bday',
+    );
 }
 
 if ($regfields['user_birthplace']) {
-    echo
-        getFormRowTextInput(
-            'user_birthplace',
-            $l['w_birth_place'],
-            $l['h_birth_place'],
-            '',
-            $user_birthplace,
-            '',
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_birthplace']),
-            $regfields['user_birthplace'] == 2,
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_birthplace',
+        $l['w_birth_place'],
+        $l['h_birth_place'],
+        '',
+        $user_birthplace,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_birthplace']),
+        $regfields['user_birthplace'] == 2,
+    );
 }
 
 if ($regfields['user_ssn']) {
-    echo
-        getFormRowTextInput(
-            'user_ssn',
-            $l['w_fiscal_code'],
-            $l['h_fiscal_code'],
-            '',
-            $user_ssn,
-            '',
-            255,
-            false,
-            false,
-            false,
-            showRequiredField($regfields['user_ssn']),
-            $regfields['user_ssn'] == 2,
-        )
-    ;
+    echo getFormRowTextInput(
+        'user_ssn',
+        $l['w_fiscal_code'],
+        $l['h_fiscal_code'],
+        '',
+        $user_ssn,
+        '',
+        255,
+        false,
+        false,
+        false,
+        showRequiredField($regfields['user_ssn']),
+        $regfields['user_ssn'] == 2,
+    );
 }
 
 if ($regfields['user_groups']) {
@@ -561,8 +539,7 @@ if ($regfields['user_agreement'] > 0) {
         '<input type="checkbox" name="user_agreement" id="user_agreement" value="1" title="'
             . $l['w_i_agree']
             . '" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo
         '<label for="user_agreement"><a href="'
             . K_USRREG_AGREEMENT
@@ -571,8 +548,7 @@ if ($regfields['user_agreement'] > 0) {
             . '">'
             . $l['w_i_agree']
             . '</a></label></span>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
 }
 

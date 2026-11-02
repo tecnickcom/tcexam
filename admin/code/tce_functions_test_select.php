@@ -161,46 +161,38 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
                 $filter .= '&amp;searchterms=' . urlencode($searchterms);
             }
 
-            echo
-                F_select_table_header_element(
-                    'test_begin_time',
-                    $nextorderdir,
-                    $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
-                    $l['w_time_begin'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_end_time',
-                    $nextorderdir,
-                    $l['w_time_end'] . ' ' . $l['w_datetime_format'],
-                    $l['w_time_end'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_name',
-                    $nextorderdir,
-                    $l['h_test_name'],
-                    $l['w_name'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_description',
-                    $nextorderdir,
-                    $l['h_test_description'],
-                    $l['w_description'],
-                    $order_field,
-                    $filter,
-                )
-            ;
+            echo F_select_table_header_element(
+                'test_begin_time',
+                $nextorderdir,
+                $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
+                $l['w_time_begin'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_end_time',
+                $nextorderdir,
+                $l['w_time_end'] . ' ' . $l['w_datetime_format'],
+                $l['w_time_end'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_name',
+                $nextorderdir,
+                $l['h_test_name'],
+                $l['w_name'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_description',
+                $nextorderdir,
+                $l['h_test_description'],
+                $l['w_description'],
+                $order_field,
+                $filter,
+            );
             echo '</tr>' . K_NEWLINE;
             echo '</thead>' . K_NEWLINE;
             $itemcount = 0;
@@ -217,8 +209,7 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
                         . $m['test_id']
                         . '" title="'
                         . $l['w_select']
-                        . '"'
-                ;
+                        . '"';
                 if (isset($_REQUEST['checkall']) && $_REQUEST['checkall'] == 1) {
                     echo ' checked="checked"';
                 }
@@ -231,16 +222,14 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_begin_time'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_end_time'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
@@ -251,16 +240,14 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
                         . '">'
                         . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</a></td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_description'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '</tr>' . K_NEWLINE;
             } while ($m = F_db_fetch_array($r));
 
@@ -276,12 +263,10 @@ function F_show_select_test($order_field, $orderdir, $firstrow, $rowsperpage, $a
             // check/uncheck all options
             echo '<span dir="' . $l['a_meta_dir'] . '">';
             echo
-                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_testselect\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall1" value="1" onchange="document.getElementById(\'form_testselect\').submit()" />';
             echo '<label for="checkall1">' . $l['w_check_all'] . '</label> ';
             echo
-                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_testselect\').submit()" />'
-            ;
+                '<input type="radio" name="checkall" id="checkall0" value="0" onchange="document.getElementById(\'form_testselect\').submit()" />';
             echo '<label for="checkall0">' . $l['w_uncheck_all'] . '</label>';
             echo '</span>' . K_NEWLINE;
             echo '<br />' . K_NEWLINE;
@@ -464,46 +449,38 @@ function F_show_select_test_popup(
                 $filter .= '&amp;searchterms=' . urlencode($searchterms);
             }
 
-            echo
-                F_select_table_header_element(
-                    'test_begin_time',
-                    $nextorderdir,
-                    $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
-                    $l['w_time_begin'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_end_time',
-                    $nextorderdir,
-                    $l['w_time_end'] . ' ' . $l['w_datetime_format'],
-                    $l['w_time_end'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_name',
-                    $nextorderdir,
-                    $l['h_test_name'],
-                    $l['w_name'],
-                    $order_field,
-                    $filter,
-                )
-            ;
-            echo
-                F_select_table_header_element(
-                    'test_description',
-                    $nextorderdir,
-                    $l['h_test_description'],
-                    $l['w_description'],
-                    $order_field,
-                    $filter,
-                )
-            ;
+            echo F_select_table_header_element(
+                'test_begin_time',
+                $nextorderdir,
+                $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
+                $l['w_time_begin'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_end_time',
+                $nextorderdir,
+                $l['w_time_end'] . ' ' . $l['w_datetime_format'],
+                $l['w_time_end'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_name',
+                $nextorderdir,
+                $l['h_test_name'],
+                $l['w_name'],
+                $order_field,
+                $filter,
+            );
+            echo F_select_table_header_element(
+                'test_description',
+                $nextorderdir,
+                $l['h_test_description'],
+                $l['w_description'],
+                $order_field,
+                $filter,
+            );
             echo '</tr>' . K_NEWLINE;
             echo '</thead>' . K_NEWLINE;
             $itemcount = 0;
@@ -521,16 +498,14 @@ function F_show_select_test_popup(
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_begin_time'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_end_time'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
@@ -541,16 +516,14 @@ function F_show_select_test_popup(
                         . ']">'
                         . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</button></td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo
                     '<td style="text-align:'
                         . $txtalign
                         . ';">&nbsp;'
                         . htmlspecialchars($m['test_description'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</td>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
                 echo '</tr>' . K_NEWLINE;
             } while ($m = F_db_fetch_array($r));
 

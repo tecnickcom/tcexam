@@ -68,16 +68,14 @@ switch ($menu_mode) { // process submitted data
                 '<form action="'
                     . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                     . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '<div>' . K_NEWLINE;
             echo '<input type="hidden" name="group_id" id="group_id" value="' . $group_id . '" />' . K_NEWLINE;
             echo
                 '<input type="hidden" name="group_name" id="group_name" value="'
                     . htmlspecialchars((string) $group_name_sl, ENT_QUOTES, $l['a_meta_charset'])
                     . '" />'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>' . K_NEWLINE;
@@ -238,8 +236,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_groupeditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -248,8 +245,7 @@ echo '</span>' . K_NEWLINE;
 echo '<span class="formw">' . K_NEWLINE;
 echo
     '<select name="group_id" id="group_id" onchange="document.getElementById(\'form_groupeditor\').submit()">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($group_id == 0) {
     echo ' selected="selected"';
@@ -279,21 +275,19 @@ echo getFormNoscriptSelect('selectrecord');
 
 echo '<div class="row"><hr /></div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'group_name',
-        $l['w_name'],
-        $l['h_group_name'],
-        '',
-        $group_name,
-        '',
-        255,
-        false,
-        false,
-        false,
-        '',
-    )
-;
+echo getFormRowTextInput(
+    'group_name',
+    $l['w_name'],
+    $l['h_group_name'],
+    '',
+    $group_name,
+    '',
+    255,
+    false,
+    false,
+    false,
+    '',
+);
 
 echo '<div class="row">' . K_NEWLINE;
 
@@ -309,8 +303,7 @@ if (isset($group_id) && $group_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
     F_submit_button('add', $l['w_add'], $l['h_add']);

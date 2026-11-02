@@ -166,9 +166,10 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
             F_print_error('WARNING', $omitted_msg . '' . $l['m_confirm_test_termination']);
             ?>
             <div class="confirmbox">
-            <form action="<?php echo
-                htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-            ; ?>" method="post" enctype="multipart/form-data" id="form_test_terminate">
+            <form action="<?php echo htmlspecialchars(
+                $_SERVER['SCRIPT_NAME'],
+                ENT_QUOTES,
+            ); ?>" method="post" enctype="multipart/form-data" id="form_test_terminate">
             <div>
             <input type="hidden" name="testid" id="testid" value="<?php echo $test_id; ?>" />
             <input type="hidden" name="testlogid" id="testlogid" value="<?php echo $testlog_id; ?>" />
@@ -191,11 +192,9 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
                     . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                     . '" method="post" enctype="multipart/form-data" id="'
                     . $formname
-                    . '"'
-            ;
+                    . '"';
             echo
-                ' onsubmit="var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;"'
-            ;
+                ' onsubmit="var submittime=new Date();document.getElementById(\'reaction_time\').value=submittime.getTime()-document.getElementById(\'display_time\').value;"';
             echo '>' . K_NEWLINE;
             echo '<div>' . K_NEWLINE;
 
@@ -236,8 +235,7 @@ if (isset($_REQUEST['testid']) && $_REQUEST['testid'] > 0) {
                     . "', "
                     . $timeout_logout
                     . ');'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '}' . K_NEWLINE;
             echo 'var loadtime=new Date();' . K_NEWLINE;
             echo "document.getElementById('display_time').value=loadtime.getTime();" . K_NEWLINE;

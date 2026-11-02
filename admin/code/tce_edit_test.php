@@ -519,14 +519,17 @@ switch ($menu_mode) {
             F_print_error('WARNING', $l['m_delete_confirm_test']);
             ?>
         <div class="confirmbox">
-        <form action="<?php echo
-            htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
-        ; ?>" method="post" enctype="multipart/form-data" id="form_delete">
+        <form action="<?php echo htmlspecialchars(
+            $_SERVER['SCRIPT_NAME'],
+            ENT_QUOTES,
+        ); ?>" method="post" enctype="multipart/form-data" id="form_delete">
         <div>
         <input type="hidden" name="test_id" id="test_id" value="<?php echo $test_id; ?>" />
-        <input type="hidden" name="test_name" id="test_name" value="<?php echo
-            htmlspecialchars((string) $test_name, ENT_QUOTES, $l['a_meta_charset'])
-        ; ?>" />
+        <input type="hidden" name="test_name" id="test_name" value="<?php echo htmlspecialchars(
+            (string) $test_name,
+            ENT_QUOTES,
+            $l['a_meta_charset'],
+        ); ?>" />
         <?php
 
         F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
@@ -1179,8 +1182,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_testeditor">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -1191,8 +1193,7 @@ echo
     '<select name="test_id" id="test_id" onchange="document.getElementById(\'form_testeditor\').submit()" title="'
         . $l['h_test']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<option value="0" style="background-color:#009900;color:white;"';
 if ($test_id == 0) {
     echo ' selected="selected"';
@@ -1224,8 +1225,7 @@ if ($r = F_db_query($sql, $db)) {
                 . ' '
                 . htmlspecialchars($m['test_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         ++$countitem;
     }
 } else {
@@ -1249,73 +1249,63 @@ echo '<fieldset>' . K_NEWLINE;
 echo '<legend>' . $l['w_test'] . '</legend>' . K_NEWLINE;
 
 echo getFormRowTextInput('test_name', $l['w_name'], $l['h_test_name'], '', $test_name, '', 255, false, false, false);
-echo
-    getFormRowTextBox(
-        'test_description',
-        $l['w_description'],
-        $l['h_test_description'],
-        $test_description,
-        false,
-        '',
-        true,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_begin_time',
-        $l['w_time_begin'],
-        $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
-        '',
-        $test_begin_time,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_end_time',
-        $l['w_time_end'],
-        $l['w_time_end'] . ' ' . $l['w_datetime_format'],
-        '',
-        $test_end_time,
-        '',
-        19,
-        false,
-        true,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_duration_time',
-        $l['w_test_time'],
-        $l['h_test_time'],
-        '[' . $l['w_minutes'] . ']',
-        $test_duration_time,
-        '^([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_ip_range',
-        $l['w_ip_range'],
-        $l['h_ip_range'],
-        '',
-        $test_ip_range,
-        '^([0-9a-fA-F,\:\.\*-]*)$',
-        255,
-        false,
-        false,
-        false,
-    )
-;
+echo getFormRowTextBox(
+    'test_description',
+    $l['w_description'],
+    $l['h_test_description'],
+    $test_description,
+    false,
+    '',
+    true,
+);
+echo getFormRowTextInput(
+    'test_begin_time',
+    $l['w_time_begin'],
+    $l['w_time_begin'] . ' ' . $l['w_datetime_format'],
+    '',
+    $test_begin_time,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
+echo getFormRowTextInput(
+    'test_end_time',
+    $l['w_time_end'],
+    $l['w_time_end'] . ' ' . $l['w_datetime_format'],
+    '',
+    $test_end_time,
+    '',
+    19,
+    false,
+    true,
+    false,
+);
+echo getFormRowTextInput(
+    'test_duration_time',
+    $l['w_test_time'],
+    $l['h_test_time'],
+    '[' . $l['w_minutes'] . ']',
+    $test_duration_time,
+    '^([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'test_ip_range',
+    $l['w_ip_range'],
+    $l['h_ip_range'],
+    '',
+    $test_ip_range,
+    '^([0-9a-fA-F,\:\.\*-]*)$',
+    255,
+    false,
+    false,
+    false,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -1365,8 +1355,7 @@ if ($r = F_db_query($sql, $db)) {
                     $l['a_meta_charset'],
                 )
                 . '</option>'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
     }
 } else {
     echo '</select></span></div>' . K_NEWLINE;
@@ -1377,62 +1366,54 @@ echo '</select>' . K_NEWLINE;
 echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
-echo
-    getFormRowTextInput(
-        'test_score_right',
-        $l['w_score_right'],
-        $l['h_score_right'],
-        '',
-        $test_score_right,
-        '^([0-9\+\-]*)([\.]?)([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_score_wrong',
-        $l['w_score_wrong'],
-        $l['h_score_wrong'],
-        '',
-        $test_score_wrong,
-        '^([0-9\+\-]*)([\.]?)([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_score_unanswered',
-        $l['w_score_unanswered'],
-        $l['h_score_unanswered'],
-        '',
-        $test_score_unanswered,
-        '^([0-9\+\-]*)([\.]?)([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-    )
-;
-echo
-    getFormRowTextInput(
-        'test_score_threshold',
-        $l['w_test_score_threshold'],
-        $l['h_test_score_threshold'],
-        '',
-        $test_score_threshold,
-        '^([0-9\+\-]*)([\.]?)([0-9]*)$',
-        20,
-        false,
-        false,
-        false,
-    )
-;
+echo getFormRowTextInput(
+    'test_score_right',
+    $l['w_score_right'],
+    $l['h_score_right'],
+    '',
+    $test_score_right,
+    '^([0-9\+\-]*)([\.]?)([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'test_score_wrong',
+    $l['w_score_wrong'],
+    $l['h_score_wrong'],
+    '',
+    $test_score_wrong,
+    '^([0-9\+\-]*)([\.]?)([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'test_score_unanswered',
+    $l['w_score_unanswered'],
+    $l['h_score_unanswered'],
+    '',
+    $test_score_unanswered,
+    '^([0-9\+\-]*)([\.]?)([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+);
+echo getFormRowTextInput(
+    'test_score_threshold',
+    $l['w_test_score_threshold'],
+    $l['h_test_score_threshold'],
+    '',
+    $test_score_threshold,
+    '^([0-9\+\-]*)([\.]?)([0-9]*)$',
+    20,
+    false,
+    false,
+    false,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<span class="label">' . K_NEWLINE;
@@ -1463,8 +1444,7 @@ echo
     ' <select name="test_questions_order_mode" id="test_questions_order_mode" size="1" title="'
         . $l['h_questions_order_mode']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 foreach ($qordmode as $ok => $ov) {
     echo '<option value="' . $ok . '"';
     if ($test_questions_order_mode == $ok) {
@@ -1509,8 +1489,7 @@ echo
     ' <select name="test_answers_order_mode" id="test_answers_order_mode" size="1" title="'
         . $l['h_answers_order_mode']
         . '">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 foreach ($aordmode as $ok => $ov) {
     echo '<option value="' . $ok . '"';
     if ($test_answers_order_mode == $ok) {
@@ -1527,17 +1506,15 @@ echo '</span>' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
 echo getFormRowCheckBox('test_mcma_radio', $l['w_mcma_radio'], '', '', 1, $test_mcma_radio, false);
-echo
-    getFormRowCheckBox(
-        'test_mcma_partial_score',
-        $l['w_mcma_partial_score'],
-        '',
-        '',
-        1,
-        $test_mcma_partial_score,
-        false,
-    )
-;
+echo getFormRowCheckBox(
+    'test_mcma_partial_score',
+    $l['w_mcma_partial_score'],
+    '',
+    '',
+    1,
+    $test_mcma_partial_score,
+    false,
+);
 echo getFormRowCheckBox('test_noanswer_enabled', $l['w_enable_noanswer'], '', '', 1, $test_noanswer_enabled, false);
 echo getFormRowCheckBox('test_menu_enabled', $l['w_enable_menu'], '', '', 1, $test_menu_enabled, false);
 echo getFormRowCheckBox('test_comment_enabled', $l['w_enable_comment'], '', '', 1, $test_comment_enabled, false);
@@ -1556,20 +1533,18 @@ echo getFormRowSelectBox('test_repeatable', $l['w_repeatable'], '', '', $test_re
 
 echo getFormRowCheckBox('test_logout_on_timeout', $l['w_logout_on_timeout'], '', '', 1, $test_logout_on_timeout, false);
 
-echo
-    getFormRowTextInput(
-        'new_test_password',
-        $l['w_password'],
-        $l['h_test_password'],
-        ' (' . $l['d_password_length'] . ')',
-        '',
-        K_USRREG_PASSWORD_RE,
-        255,
-        false,
-        false,
-        true,
-    )
-;
+echo getFormRowTextInput(
+    'new_test_password',
+    $l['w_password'],
+    $l['h_test_password'],
+    ' (' . $l['d_password_length'] . ')',
+    '',
+    K_USRREG_PASSWORD_RE,
+    255,
+    false,
+    false,
+    true,
+);
 
 echo '<div class="row">' . K_NEWLINE;
 echo '<br />' . K_NEWLINE;
@@ -1577,8 +1552,7 @@ echo
     '<input type="hidden" name="test_password" id="test_password" value="'
         . htmlspecialchars((string) $test_password, ENT_QUOTES, $l['a_meta_charset'])
         . '" />'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 
 // show buttons by case
 
@@ -1593,8 +1567,7 @@ if (isset($test_id) && $test_id > 0) {
             . $l['w_confirm']
             . ' &rarr; '
             . $l['w_update']
-            . '" />'
-    ;
+            . '" />';
     F_submit_button('update', $l['w_update'], $l['h_update']);
     echo '</span>';
 }
@@ -1637,8 +1610,7 @@ if (isset($test_id) && $test_id > 0) {
         '<select name="subject_id[]" id="subject_id" size="10" multiple="multiple" title="'
             . $l['h_subjects']
             . '">'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     // select subject_id
     $sql = F_select_module_subjects_sql("module_enabled='1' AND subject_enabled='1'");
     if ($r = F_db_query($sql, $db)) {
@@ -1652,8 +1624,7 @@ if (isset($test_id) && $test_id > 0) {
                         . '" style="background-color:#DDEEFF;font-weight:bold">* '
                         . htmlspecialchars($m['module_name'], ENT_NOQUOTES, $l['a_meta_charset'])
                         . '</option>'
-                        . K_NEWLINE
-                ;
+                        . K_NEWLINE;
             }
 
             echo '<option value="' . $m['subject_id'] . '"';
@@ -1662,8 +1633,7 @@ if (isset($test_id) && $test_id > 0) {
             }
 
             echo
-                '>&nbsp;&nbsp;&nbsp;' . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']) . ' ['
-            ;
+                '>&nbsp;&nbsp;&nbsp;' . htmlspecialchars($m['subject_name'], ENT_NOQUOTES, $l['a_meta_charset']) . ' [';
             // count available questions for each type
             $qstat = '';
             $sqln =
@@ -1741,20 +1711,18 @@ if (isset($test_id) && $test_id > 0) {
     echo '</span>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
 
-    echo
-        getFormRowTextInput(
-            'tsubset_quantity',
-            $l['w_num_questions'],
-            $l['h_num_questions'],
-            '',
-            $tsubset_quantity,
-            '^([0-9]*)$',
-            20,
-            false,
-            false,
-            false,
-        )
-    ;
+    echo getFormRowTextInput(
+        'tsubset_quantity',
+        $l['w_num_questions'],
+        $l['h_num_questions'],
+        '',
+        $tsubset_quantity,
+        '^([0-9]*)$',
+        20,
+        false,
+        false,
+        false,
+    );
 
     echo '<div class="row">' . K_NEWLINE;
     echo '<span class="label">' . K_NEWLINE;
@@ -1805,8 +1773,7 @@ if (isset($test_id) && $test_id > 0) {
         '<select name="tsubset_difficulty" id="tsubset_difficulty" title="'
             . $l['h_question_difficulty']
             . '">'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     for ($i = 0; $i <= K_QUESTION_DIFFICULTY_LEVELS; ++$i) {
         echo '<option value="' . $i . '"';
         if ($i == $tsubset_difficulty) {
@@ -1820,20 +1787,18 @@ if (isset($test_id) && $test_id > 0) {
     echo '</span>' . K_NEWLINE;
     echo '</div>' . K_NEWLINE;
 
-    echo
-        getFormRowTextInput(
-            'tsubset_answers',
-            $l['w_num_answers'],
-            $l['h_num_answers'],
-            '',
-            $tsubset_answers,
-            '^([0-9]*)$',
-            20,
-            false,
-            false,
-            false,
-        )
-    ;
+    echo getFormRowTextInput(
+        'tsubset_answers',
+        $l['w_num_answers'],
+        $l['h_num_answers'],
+        '',
+        $tsubset_answers,
+        '^([0-9]*)$',
+        20,
+        false,
+        false,
+        false,
+    );
 
     echo '<div class="row">' . K_NEWLINE;
     echo '<span class="label">&nbsp;</span>' . K_NEWLINE;
@@ -1970,8 +1935,7 @@ if (isset($test_id) && $test_id > 0) {
                 . '" size="4" maxlength="10" title="'
                 . $l['h_pdf_offline_test']
                 . '" />'
-                . K_NEWLINE
-        ;
+                . K_NEWLINE;
         echo
             '<a href="tce_pdf_testgen.php?test_id='
                 . $test_id
@@ -1983,8 +1947,7 @@ if (isset($test_id) && $test_id > 0) {
                 . $test_id
                 . '&amp;num=\' + document.getElementById(\'form_testeditor\').test_num.value + \'\',\'pdfWindow\',\'dependent,menubar=yes,resizable=yes,scrollbars=yes,status=yes,toolbar=yes\'); return false;">'
                 . (string) $l['w_generate']
-                . '</a>'
-        ;
+                . '</a>';
         echo '</span>&nbsp;' . K_NEWLINE;
         echo '</div>' . K_NEWLINE;
     }
@@ -2004,28 +1967,22 @@ echo '//<![CDATA[' . K_NEWLINE;
 echo 'function JF_check_random_boxes() {' . K_NEWLINE;
 echo
     " if (document.getElementById('test_random_questions_select').checked==true){document.getElementById('test_random_questions_order').checked=true;}"
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     " if ((document.getElementById('test_random_questions_order').checked==false)&&(document.getElementById('test_random_questions_select').checked==true)){document.getElementById('test_random_questions_order').checked=true;}"
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     ' if (document.getElementById(\'test_random_questions_order\').checked==false){document.getElementById(\'select_questions_order_mode\').style.visibility="visible";}else{document.getElementById(\'select_questions_order_mode\').style.visibility="hidden";}'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     " if (document.getElementById('test_random_answers_select').checked==true){document.getElementById('test_random_answers_order').checked=true;}"
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     " if ((document.getElementById('test_random_answers_order').checked==false)&&(document.getElementById('test_random_answers_select').checked==true)){document.getElementById('test_random_answers_order').checked=true;}"
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     ' if (document.getElementById(\'test_random_answers_order\').checked==false){document.getElementById(\'select_answers_order_mode\').style.visibility="visible";}else{document.getElementById(\'select_answers_order_mode\').style.visibility="hidden";}'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '}' . K_NEWLINE;
 echo 'JF_check_random_boxes();' . K_NEWLINE;
 echo '//]]>' . K_NEWLINE;

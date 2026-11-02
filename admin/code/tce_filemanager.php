@@ -132,21 +132,18 @@ switch ($menu_mode) {
                 '<form action="'
                     . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
                     . '" method="post" enctype="multipart/form-data" id="form_delete">'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo '<div>' . K_NEWLINE;
             echo
                 '<input type="hidden" name="dir" id="dir" value="'
                     . htmlspecialchars($dir, ENT_QUOTES)
                     . '" />'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             echo
                 '<input type="hidden" name="file" id="file" value="'
                     . htmlspecialchars($file, ENT_QUOTES)
                     . '" />'
-                    . K_NEWLINE
-            ;
+                    . K_NEWLINE;
             F_submit_button('forcedelete', $l['w_delete'], $l['h_delete']);
             F_submit_button('cancel', $l['w_cancel'], $l['h_cancel']);
             echo '</div>' . K_NEWLINE;
@@ -282,8 +279,7 @@ echo
     '<form action="'
         . htmlspecialchars($_SERVER['SCRIPT_NAME'], ENT_QUOTES)
         . '" method="post" enctype="multipart/form-data" id="form_filemanager">'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '<div>' . K_NEWLINE;
 
 // current dir
@@ -310,24 +306,18 @@ if (!empty($file)) {
             . F_formatFileSize($filedata['size'])
             . ' ) '
             . $filedata['lastmod']
-            . '</span>'
-    ;
+            . '</span>';
     echo '<br />' . K_NEWLINE;
     // action buttons
     echo
-        '<input type="hidden" name="file" id="file" value="'
-            . htmlspecialchars($file, ENT_QUOTES)
-            . '" />'
-            . K_NEWLINE
-    ;
+        '<input type="hidden" name="file" id="file" value="' . htmlspecialchars($file, ENT_QUOTES) . '" />' . K_NEWLINE;
     echo
         '<input type="text" name="newname" id="newname" value="'
             . htmlspecialchars(basename($file), ENT_QUOTES)
             . '" size="40" maxlength="255" title="'
             . $l['w_name']
             . '" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     if ($_SESSION['session_user_level'] >= K_AUTH_RENAME_MEDIAFILE) {
         F_submit_button('rename', $l['w_rename'], $l['w_rename']);
     }
@@ -340,16 +330,14 @@ if (!empty($file)) {
     echo '<label for="userfile">' . $l['w_upload_file'] . '</label>' . K_NEWLINE;
     echo '<input type="hidden" name="MAX_FILE_SIZE" value="' . K_MAX_UPLOAD_SIZE . '" />' . K_NEWLINE;
     echo
-        '<input type="file" name="userfile" id="userfile" size="20" title="' . $l['h_upload_file'] . '" />' . K_NEWLINE
-    ;
+        '<input type="file" name="userfile" id="userfile" size="20" title="' . $l['h_upload_file'] . '" />' . K_NEWLINE;
     echo
         '<input type="submit" name="sendfile" id="sendfile" value="'
             . $l['w_upload']
             . '" title="'
             . $l['h_upload_file']
             . '" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
 }
 
 echo '</fieldset>' . K_NEWLINE;
@@ -378,8 +366,7 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMIN_DIRS) {
         ' <input type="text" name="newdirname" id="newdirname" value="" size="15" maxlength="255" title="'
             . $l['w_new_directory']
             . '" />'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     F_submit_button('newdir', $l['w_create_directory'], $l['w_new_directory']);
     if (count(scandir($dir)) <= 2) {
         F_submit_button('deldir', $l['w_delete'], $l['w_delete']);

@@ -39,8 +39,7 @@ echo
     '<input type="text" name="timer" id="timer" value="" size="29" maxlength="29" title="'
         . $l['w_clock_timer']
         . '" readonly="readonly"/>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '&nbsp;</div>' . K_NEWLINE;
 echo '</form>' . K_NEWLINE;
 echo '<script src="' . K_PATH_SHARED_JSCRIPTS . 'timer.js" type="text/javascript"></script>' . K_NEWLINE;
@@ -58,7 +57,6 @@ echo
         . ', '
         . round(microtime(true) * 1000)
         . ');'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '//]]>' . K_NEWLINE;
 echo '</script>' . K_NEWLINE;

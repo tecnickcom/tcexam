@@ -32,16 +32,14 @@ echo
         . '" class="white">'
         . $l['w_jump_timer']
         . '</a> <span style="color:white;">|</span>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo
     '<a href="#menusection" accesskey="4" title="[4] '
         . $l['w_jump_menu']
         . '" class="white">'
         . $l['w_jump_menu']
         . '</a>'
-        . K_NEWLINE
-;
+        . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 
 echo '<div class="userbar">' . K_NEWLINE;
@@ -54,8 +52,7 @@ if ($_SESSION['session_user_level'] > 0) {
             . $l['w_user']
             . ': '
             . htmlspecialchars($_SESSION['session_user_name'], ENT_QUOTES)
-            . '</span>'
-    ;
+            . '</span>';
     // display logout link
     echo
         ' <a href="tce_logout.php" class="logoutbutton" title="'
@@ -65,8 +62,7 @@ if ($_SESSION['session_user_level'] > 0) {
             . ' ?\')">'
             . $l['w_logout']
             . '</a>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
 } else {
     // display login link
     echo
@@ -75,8 +71,7 @@ if ($_SESSION['session_user_level'] > 0) {
             . '">'
             . $l['w_login']
             . '</a>'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
 }
 
 echo '</div>' . K_NEWLINE;
@@ -88,8 +83,7 @@ if (K_LANGUAGE_SELECTOR && stristr($_SERVER['SCRIPT_NAME'], 'tce_test_execute.ph
         '<span class="langselector" role="group" aria-label="'
             . htmlspecialchars($l['w_language'], ENT_QUOTES, $l['a_meta_charset'])
             . '">'
-            . K_NEWLINE
-    ;
+            . K_NEWLINE;
     $lang_array = unserialize(K_AVAILABLE_LANGUAGES);
     $lngstr = '';
     foreach ($lang_array as $lang_code => $lang_name) {
@@ -131,6 +125,5 @@ echo '<div class="minibutton" dir="ltr">';
 echo
     '<span class="copyright"><a href="https://tcexam.org/">TCExam</a> ver. '
         . K_TCEXAM_VERSION
-        . ' - Copyright &copy; 2004-2026 Nicola Asuni - <a href="https://tecnick.com">Tecnick.com LTD</a></span>'
-;
+        . ' - Copyright &copy; 2004-2026 Nicola Asuni - <a href="https://tecnick.com">Tecnick.com LTD</a></span>';
 echo '</div>' . K_NEWLINE;
