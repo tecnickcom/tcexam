@@ -47,7 +47,8 @@ function F_altLogin()
             && isset($_SERVER['SSL_CLIENT_VERIFY'])
             && $_SERVER['SSL_CLIENT_VERIFY'] === 'SUCCESS'
             && isset($_SERVER['SSL_CLIENT_V_REMAIN'])
-            && $_SERVER['SSL_CLIENT_V_REMAIN'] <= 0
+            && (int) $_SERVER['SSL_CLIENT_V_REMAIN'] > 0
+            && $_SESSION['session_user_name'] != md5($_SERVER['SSL_CLIENT_M_SERIAL'] . $_SERVER['SSL_CLIENT_I_DN'])
         )
     ) {
         $_POST['xuser_name'] = md5($_SERVER['SSL_CLIENT_M_SERIAL'] . $_SERVER['SSL_CLIENT_I_DN']);
@@ -112,7 +113,12 @@ function F_altLogin()
     if (K_CAS_ENABLED) {
         require_once '../../vendor/autoload.php';
         phpCAS::client(K_CAS_VERSION, K_CAS_HOST, K_CAS_PORT, K_CAS_PATH, K_CAS_SERVICE_BASE_URL, false);
-        phpCAS::setNoCasServerValidation();
+        if (defined('K_CAS_SERVER_CA_CERT') && K_CAS_SERVER_CA_CERT !== '') {
+            phpCAS::setCasServerCACert(K_CAS_SERVER_CA_CERT);
+        } else {
+            phpCAS::setNoCasServerValidation();
+        }
+
         phpCAS::forceAuthentication();
         if ($_SESSION['session_user_name'] != phpCAS::getUser()) {
             $_POST['xuser_name'] = phpCAS::getUser();

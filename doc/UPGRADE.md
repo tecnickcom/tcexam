@@ -206,6 +206,12 @@ below, note the following one-time changes.
   after installation as before.
 - **Removed `admin/code/tce_update.php`.** Upgrade as described in "General upgrade process".
 - **LDAP.** The user name is escaped before it is inserted into `K_LDAP_FILTER`.
+- **CAS.** Set the new `K_CAS_SERVER_CA_CERT` in `shared/config/tce_cas.php` to the path of a PEM
+  file with the CA certificate(s) of the CAS server to validate its certificate. If it is empty or
+  not defined, the CAS server certificate is not validated.
+- **SSL client certificate login.** With `K_SSL_ENABLED`, users with a valid, unexpired client
+  certificate are now logged in and replicated into the TCExam database. Before, only expired
+  certificates matched, so this login method did not work.
 - **Session ID at login.** A new session ID is issued at login and the session used before login is
   deleted.
 
@@ -216,7 +222,7 @@ Compare your config files against the shipped `*.default` files and add the new 
 | File | New constants |
 |------|---------------|
 | `shared/config/tce_paths.php` | `K_FILE_ALLOWED_PATHS`, `K_FILE_ALLOWED_HOSTS` (allow-lists for `tc-lib-file` safe file/URL access), `K_PATH_URL_ADMIN` (base URL of the administration area) |
-| `shared/config/tce_cas.php` *(CAS only)* | `K_CAS_SERVICE_BASE_URL` |
+| `shared/config/tce_cas.php` *(CAS only)* | `K_CAS_SERVICE_BASE_URL`, `K_CAS_SERVER_CA_CERT` |
 | `shared/config/tce_pdf.php` | TCPDF-only options removed; `tc-lib-pdf` options added: `K_PDF_UNICODE`, `K_PDF_SUBSET_FONT`, `K_PDF_COMPRESS`, `K_PDF_MODE`, `K_PDF_ALLOWED_PATHS` / `K_PDF_ALLOWED_HOSTS` / `K_PDF_MAX_REMOTE_SIZE` |
 
 The simplest approach is to start from the new `*.default` files and re-apply your previous

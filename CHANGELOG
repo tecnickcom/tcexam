@@ -10,6 +10,8 @@
 	- CSRF tokens are HMAC-SHA256 values that depend on the full session ID.
 	- Test IP ranges are checked against the address of the current request.
 	- The LDAP user name is escaped in the search filter.
+	- CAS validates the server certificate when K_CAS_SERVER_CA_CERT is set.
+	- SSL client certificate login accepts certificates that have not expired (previously only expired ones) and does not repeat the login for a user who is already logged in.
 	- The session ID changes at login.
 
 17.4.0 (2026-11-02)

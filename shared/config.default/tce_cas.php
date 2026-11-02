@@ -72,6 +72,12 @@ define(
 );
 
 /**
+ * Path of the PEM file with the CA certificate(s) used to validate the CAS server certificate.
+ * If empty, the CAS server certificate is not validated.
+ */
+define('K_CAS_SERVER_CA_CERT', '');
+
+/**
  * Default user level
  */
 define('K_CAS_USER_LEVEL', 1);
