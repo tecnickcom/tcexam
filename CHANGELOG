@@ -10,6 +10,7 @@
 	- CSRF tokens are HMAC-SHA256 values that depend on the full session ID.
 	- Test IP ranges are checked against the address of the current request.
 	- The LDAP user name is escaped in the search filter.
+	- The session ID changes at login.
 
 17.4.0 (2026-11-02)
 	- Security fixes for access control. Please read the "Access control and the administration area" section of UPGRADE.md before updating an existing installation.

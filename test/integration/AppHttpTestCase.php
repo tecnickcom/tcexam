@@ -116,25 +116,60 @@ abstract class AppHttpTestCase extends TestCase
      */
     private function send(string $method, string $path, array $cookies, string $header, ?string $content): array
     {
-        $header = "Accept: text/html\r\n" . $header;
-        if ($cookies !== []) {
-            $pairs = [];
-            foreach ($cookies as $k => $v) {
-                $pairs[] = $k . '=' . $v;
+        // Redirects are followed here, like a browser: cookies set by a response are stored
+        // before the next request, which is sent as GET.
+        $url = $this->base . $path;
+        $allheaders = [];
+        $redirects = 0;
+        while (true) {
+            $opts = [
+                'method' => $method,
+                'header' => "Accept: text/html\r\n" . $header . self::cookieHeader($cookies),
+                'ignore_errors' => true,
+                'timeout' => 20,
+                'follow_location' => 0,
+            ];
+            if ($content !== null) {
+                $opts['content'] = $content;
             }
 
-            $header .= 'Cookie: ' . implode('; ', $pairs) . "\r\n";
+            $body = file_get_contents($url, false, stream_context_create(['http' => $opts]));
+            $headers = $http_response_header ?? [];
+            $allheaders = array_merge($allheaders, $headers);
+            $cookies = array_merge($cookies, self::cookiesFrom($headers));
+            $status = self::statusFrom($headers);
+            $location = self::headerValue($headers, 'Location');
+            if ($location === null || $status < 300 || $status >= 400 || $redirects >= 5) {
+                break;
+            }
+
+            ++$redirects;
+            $url = preg_match('#^https?://#i', $location) === 1 ? $location : $this->base . $location;
+            $method = 'GET';
+            $header = '';
+            $content = null;
         }
 
-        $opts = ['method' => $method, 'header' => $header, 'ignore_errors' => true, 'timeout' => 20];
-        if ($content !== null) {
-            $opts['content'] = $content;
+        return [$status, (string) $body, $cookies, $allheaders];
+    }
+
+    /**
+     * Build the Cookie request header line, or an empty string when there are no cookies.
+     *
+     * @param array<string,string> $cookies Cookies to send (name => value).
+     */
+    private static function cookieHeader(array $cookies): string
+    {
+        if ($cookies === []) {
+            return '';
         }
 
-        $body = file_get_contents($this->base . $path, false, stream_context_create(['http' => $opts]));
-        $headers = $http_response_header ?? [];
+        $pairs = [];
+        foreach ($cookies as $k => $v) {
+            $pairs[] = $k . '=' . $v;
+        }
 
-        return [self::statusFrom($headers), (string) $body, $cookies + self::cookiesFrom($headers), $headers];
+        return 'Cookie: ' . implode('; ', $pairs) . "\r\n";
     }
 
     /**

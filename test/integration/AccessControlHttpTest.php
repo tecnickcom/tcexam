@@ -304,6 +304,24 @@ final class AccessControlHttpTest extends AppHttpTestCase
         $this->assertNotSame($fixed, $cookies['PHPSESSID'], 'a session ID supplied in the URL must be ignored');
     }
 
+    public function testSessionIdChangesAtLogin(): void
+    {
+        $fixed = str_repeat('cd', 16);
+        [, , $cookies] = $this->http('GET', '/admin/code/index.php', ['PHPSESSID' => $fixed]);
+        $this->assertSame($fixed, $cookies['PHPSESSID'] ?? '');
+        [, , $cookies] = $this->http('POST', '/admin/code/index.php', $cookies, [
+            'logaction' => 'login',
+            'xuser_name' => 'itest_ac_opa',
+            'xuser_password' => self::PW,
+        ]);
+        $this->assertNotSame($fixed, $cookies['PHPSESSID'] ?? $fixed, 'the session ID must change at login');
+
+        [, $body] = $this->http('GET', '/admin/code/index.php', $cookies);
+        $this->assertStringNotContainsString('form_login', $body, 'the new session ID must be logged in');
+        [, $body] = $this->http('GET', '/admin/code/index.php', ['PHPSESSID' => $fixed]);
+        $this->assertStringContainsString('form_login', $body, 'the session ID used before login must not be logged in');
+    }
+
     public function testOperatorAllResultsExcludeForeignTests(): void
     {
         $cookies = $this->loginAs('itest_ac_opb');

@@ -398,6 +398,24 @@ if (
     } // end of brute-force check
 }
 
+if ($logged) {
+    // move the session data to a new session ID, so an ID known before login cannot be used afterwards
+    $sessdata = $_SESSION;
+    session_destroy();
+    $PHPSESSID = getNewSessionID();
+    session_id($PHPSESSID);
+    session_start();
+    $_SESSION = $sessdata;
+    setcookie('PHPSESSID', $PHPSESSID, [
+        'expires' => time() + K_COOKIE_EXPIRE,
+        'path' => K_COOKIE_PATH,
+        'domain' => K_COOKIE_DOMAIN,
+        'secure' => K_COOKIE_SECURE,
+        'httponly' => K_COOKIE_HTTPONLY,
+        'samesite' => K_COOKIE_SAMESITE,
+    ]);
+}
+
 if (!isset($pagelevel)) {
     // pages that do not set a level require the administrator level (10); anonymous pages must set 0
     $pagelevel = defined('K_AUTH_ADMINISTRATOR') ? K_AUTH_ADMINISTRATOR : 10;

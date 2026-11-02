@@ -206,6 +206,8 @@ below, note the following one-time changes.
   after installation as before.
 - **Removed `admin/code/tce_update.php`.** Upgrade as described in "General upgrade process".
 - **LDAP.** The user name is escaped before it is inserted into `K_LDAP_FILTER`.
+- **Session ID at login.** A new session ID is issued at login and the session used before login is
+  deleted.
 
 ### New configuration constants
 
