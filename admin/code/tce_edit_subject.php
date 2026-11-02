@@ -68,26 +68,41 @@ $subject_name = isset($_REQUEST['subject_name']) ? utrim($_REQUEST['subject_name
 
 $subject_description = isset($_REQUEST['subject_description']) ? utrim($_REQUEST['subject_description']) : '';
 
+// module of the stored subject
+$stored_module_id = 0;
 if ($subject_id > 0) {
-    if ($changecategory == 0) {
-        $sql = 'SELECT subject_module_id FROM ' . K_TABLE_SUBJECTS . ' WHERE subject_id=' . $subject_id . ' LIMIT 1';
-        if ($r = F_db_query($sql, $db)) {
-            if ($m = F_db_fetch_array($r)) {
-                $subject_module_id = (int) $m['subject_module_id'];
-                // check user's authorization for parent module
-                if (
-                    !F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')
-                    && !F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')
-                ) {
-                    F_print_error('ERROR', $l['m_authorization_denied'], true);
-                }
+    $sql = 'SELECT subject_module_id FROM ' . K_TABLE_SUBJECTS . ' WHERE subject_id=' . $subject_id . ' LIMIT 1';
+    if ($r = F_db_query($sql, $db)) {
+        if ($m = F_db_fetch_array($r)) {
+            $stored_module_id = (int) $m['subject_module_id'];
+            // check user's authorization for parent module
+            if (
+                !F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $stored_module_id, 'module_user_id')
+                && !F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')
+            ) {
+                F_print_error('ERROR', $l['m_authorization_denied'], true);
             }
-        } else {
-            F_display_db_error();
+
+            if ($changecategory == 0) {
+                $subject_module_id = $stored_module_id;
+            }
         }
+    } else {
+        F_display_db_error();
     }
 } else {
     $subject_id = 0;
+}
+
+// check user's authorization for the target module
+if (
+    ($menu_mode === 'add' || $menu_mode === 'update' && $subject_module_id !== $stored_module_id)
+    && (
+        $subject_module_id <= 0
+        || !F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $subject_module_id, 'module_user_id')
+    )
+) {
+    F_print_error('ERROR', $l['m_authorization_denied'], true);
 }
 
 switch ($menu_mode) {

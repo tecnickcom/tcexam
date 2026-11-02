@@ -49,6 +49,10 @@ sed -i \
     -e "s|define('K_BRUTE_FORCE_DELAY_RATIO', [0-9]*)|define('K_BRUTE_FORCE_DELAY_RATIO', 0)|" \
     "${APP}/shared/config/tce_config.php"
 
+# The test MySQL database uses utf8mb4: use the matching binary collation for question/answer uniqueness checks.
+sed -i "s|define('K_MYSQL_QA_BIN_COLLATION', 'utf8_bin')|define('K_MYSQL_QA_BIN_COLLATION', 'utf8mb4_bin')|" \
+    "${APP}/admin/config/tce_config.php"
+
 # Disable the registration email-confirmation step so integration tests don't require an SMTP server.
 sed -i "s|define('K_USRREG_EMAIL_CONFIRM', true)|define('K_USRREG_EMAIL_CONFIRM', false)|" \
     "${APP}/shared/config/tce_user_registration.php"

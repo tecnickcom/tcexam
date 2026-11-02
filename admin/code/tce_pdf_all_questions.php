@@ -79,10 +79,16 @@ switch ($expmode) {
         );
         break;
     case 2:
-        $pdf->setTCExamBackLink(K_PATH_URL . 'admin/code/tce_show_all_questions.php?subject_module_id=' . $module_id);
+        $pdf->setTCExamBackLink(
+            (defined('K_PATH_URL_ADMIN') ? K_PATH_URL_ADMIN : K_PATH_URL)
+            . 'admin/code/tce_show_all_questions.php?subject_module_id='
+            . $module_id,
+        );
         break;
     case 3:
-        $pdf->setTCExamBackLink(K_PATH_URL . 'admin/code/tce_show_all_questions.php');
+        $pdf->setTCExamBackLink(
+            (defined('K_PATH_URL_ADMIN') ? K_PATH_URL_ADMIN : K_PATH_URL) . 'admin/code/tce_show_all_questions.php',
+        );
         break;
 }
 

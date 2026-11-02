@@ -394,6 +394,76 @@ function F_isAuthorizedUser($table, $field_id_name, $value_id, $field_user_id)
 }
 
 /**
+ * Returns true if the current user is authorized to edit the specified subject and its content.
+ * The user must be authorized for the subject or for its parent module.
+ * @param $subject_id (int) subject ID
+ * @return boolean true if the subject exists and the user is authorized, false otherwise
+ */
+function F_isAuthorizedSubject($subject_id)
+{
+    global $db;
+    require_once '../config/tce_config.php';
+    $subject_id = (int) $subject_id;
+    $sql = 'SELECT subject_module_id FROM ' . K_TABLE_SUBJECTS . ' WHERE subject_id=' . $subject_id . ' LIMIT 1';
+    if (!($r = F_db_query($sql, $db))) {
+        F_display_db_error();
+    }
+
+    if (!($m = F_db_fetch_array($r))) {
+        return false;
+    }
+
+    return (
+        F_isAuthorizedUser(K_TABLE_MODULES, 'module_id', $m['subject_module_id'], 'module_user_id')
+        || F_isAuthorizedUser(K_TABLE_SUBJECTS, 'subject_id', $subject_id, 'subject_user_id')
+    );
+}
+
+/**
+ * Returns true if the current user is authorized to edit the specified question and its answers.
+ * @param $question_id (int) question ID
+ * @return boolean true if the question exists and the user is authorized for its subject, false otherwise
+ */
+function F_isAuthorizedQuestion($question_id)
+{
+    global $db;
+    require_once '../config/tce_config.php';
+    $question_id = (int) $question_id;
+    $sql = 'SELECT question_subject_id FROM ' . K_TABLE_QUESTIONS . ' WHERE question_id=' . $question_id . ' LIMIT 1';
+    if (!($r = F_db_query($sql, $db))) {
+        F_display_db_error();
+    }
+
+    if (!($m = F_db_fetch_array($r))) {
+        return false;
+    }
+
+    return F_isAuthorizedSubject($m['question_subject_id']);
+}
+
+/**
+ * Returns true if the current user is authorized for the test of the specified test-user record.
+ * @param $testuser_id (int) test-user ID
+ * @return boolean true if the record exists and the user is authorized for its test, false otherwise
+ */
+function F_isAuthorizedTestUser($testuser_id)
+{
+    global $db;
+    require_once '../config/tce_config.php';
+    $testuser_id = (int) $testuser_id;
+    $sql = 'SELECT testuser_test_id FROM ' . K_TABLE_TEST_USER . ' WHERE testuser_id=' . $testuser_id . ' LIMIT 1';
+    if (!($r = F_db_query($sql, $db))) {
+        F_display_db_error();
+    }
+
+    if (!($m = F_db_fetch_array($r))) {
+        return false;
+    }
+
+    return F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $m['testuser_test_id'], 'test_user_id');
+}
+
+/**
  * Returns a comma separated string of ID of the users that belong to the same groups.
  * @author Nicola Asuni
  * @since 2006-03-11

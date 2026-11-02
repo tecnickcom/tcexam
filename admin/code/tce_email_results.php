@@ -21,6 +21,10 @@
  * @since 2005-02-24
  */
 
+// Use the generated tc-lib-pdf fonts for the attached reports (set before the config defines the legacy default).
+require_once __DIR__ . '/../../vendor/autoload.php';
+define('K_PATH_FONTS', realpath(__DIR__ . '/../../vendor/tecnickcom/tc-lib-pdf-font/target/fonts'));
+
 require_once '../config/tce_config.php';
 
 $pagelevel = K_AUTH_ADMIN_RESULTS;

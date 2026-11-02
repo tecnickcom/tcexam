@@ -23,6 +23,10 @@
  * @param $_REQUEST['orderfield'] (string) ORDER BY portion of SQL selection query
  */
 
+require_once '../config/tce_config.php';
+$pagelevel = K_AUTH_ADMIN_RESULTS;
+require_once '../../shared/code/tce_authorization.php';
+
 // customize this file to export questions to your custom format file.
 
 // ...

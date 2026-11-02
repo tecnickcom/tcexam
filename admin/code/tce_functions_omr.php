@@ -45,11 +45,26 @@ function F_decodeOMRTestData($str)
         return false;
     }
 
-    $data = $str;
-    $data = urldecode($data);
-    $data = base64_decode($data);
-    $data = gzuncompress($data);
-    return unserialize($data);
+    $data = base64_decode(urldecode($str));
+    // the QR-Code content is untrusted: cap the decompressed size and never instantiate objects
+    $data = gzuncompress($data, 1_048_576);
+    if ($data === false) {
+        return false;
+    }
+
+    $data = unserialize($data, ['allowed_classes' => false]);
+    if (!is_array($data) || !isset($data[0]) || !is_int($data[0])) {
+        return false;
+    }
+
+    $num_questions = count($data) - 1;
+    for ($q = 1; $q <= $num_questions; ++$q) {
+        if (!isset($data[$q][0], $data[$q][1]) || !is_array($data[$q][1])) {
+            return false;
+        }
+    }
+
+    return $data;
 }
 
 /**
@@ -241,6 +256,50 @@ function F_importOMRTestData($user_id, $date, $omr_testdata, $omr_answers, $over
         ) == 0
     ) {
         return false;
+    }
+
+    // check user's authorization for the test
+    if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+        return false;
+    }
+
+    // check that each question belongs to the test subjects and each answer to its question
+    $num_questions = count($omr_testdata) - 1;
+    for ($q = 1; $q <= $num_questions; ++$q) {
+        $question_id = (int) $omr_testdata[$q][0];
+        if (
+            F_count_rows(
+                K_TABLE_QUESTIONS
+                . ', '
+                . K_TABLE_SUBJECT_SET
+                . ', '
+                . K_TABLE_TEST_SUBJSET
+                . ' WHERE question_id='
+                . $question_id
+                . ' AND question_subject_id=subjset_subject_id AND subjset_tsubset_id=tsubset_id AND tsubset_test_id='
+                . $test_id
+                . ' LIMIT 1',
+            ) < 1
+        ) {
+            return false;
+        }
+
+        $num_answers = count($omr_testdata[$q][1]);
+        for ($a = 1; $a <= $num_answers; ++$a) {
+            $answer_id = (int) $omr_testdata[$q][1][$a];
+            if (
+                F_count_rows(
+                    K_TABLE_ANSWERS
+                    . ' WHERE answer_id='
+                    . $answer_id
+                    . ' AND answer_question_id='
+                    . $question_id
+                    . ' LIMIT 1',
+                ) < 1
+            ) {
+                return false;
+            }
+        }
     }
 
     // get test data

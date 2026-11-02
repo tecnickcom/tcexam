@@ -25,6 +25,7 @@
  */
 
 require_once '../config/tce_config.php';
+$pagelevel = K_AUTH_ADMIN_RESULTS;
 require_once '../../shared/code/tce_authorization.php';
 require_once '../../shared/code/tce_functions_tcecode.php';
 require_once '../../shared/code/tce_functions_test.php';

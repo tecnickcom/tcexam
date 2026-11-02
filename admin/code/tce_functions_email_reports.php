@@ -109,26 +109,7 @@ function F_send_report_emails(
         $display_mode,
     );
 
-    // SECURITY: the per-user report PDF is rendered by an internal HTTP request to this
-    // installation. Fetch it through tc-lib-file's safe HTTP reader (TLS-verified, size-capped,
-    // restricted to allow-listed hosts) rather than a raw file_get_contents() on a URL. The
-    // install's own host is always trusted; extra hosts can be configured via K_FILE_ALLOWED_HOSTS.
-    require_once __DIR__ . '/../../vendor/autoload.php';
-    if (!defined('FORCE_CURL')) {
-        // force the cURL transport so the safe reader is used even when allow_url_fopen is enabled
-        define('FORCE_CURL', true);
-    }
-
-    // defined() guard keeps pre-existing installs working until they merge the new config defaults
-    $allowed_hosts = defined('K_FILE_ALLOWED_HOSTS') ? unserialize(K_FILE_ALLOWED_HOSTS) : [];
-    $allowed_hosts = is_array($allowed_hosts) ? $allowed_hosts : [];
-    $self_host = parse_url(K_PATH_HOST, PHP_URL_HOST);
-    if (is_string($self_host) && $self_host !== '') {
-        $allowed_hosts[] = $self_host;
-    }
-
-    $pdf_reader = new \Com\Tecnick\File\File();
-    $pdf_reader->setAllowedHosts($allowed_hosts);
+    require_once '../../shared/code/tce_functions_pdf_results.php';
 
     foreach ($data['testuser'] as $tu) {
         if (strlen($tu['user_email']) > 3) {
@@ -190,32 +171,24 @@ function F_send_report_emails(
             }
 
             if ($mode == 0) {
-                $pdfkey = getPasswordHash(
-                    date('Y') . $tu['id'] . K_RANDOM_SECURITY . $tu['test']['test_id'] . date('m') . $tu['user_id'],
-                );
-                // create PDF doc (fetched via tc-lib-file's safe, host-allow-listed HTTP reader)
-                $pdf_url =
-                    K_PATH_HOST
-                    . K_PATH_TCEXAM
-                    . 'admin/code/tce_pdf_results.php?mode=3&diplay_mode='
-                    . $display_mode
-                    . '&show_graph='
-                    . $show_graph
-                    . '&test_id='
-                    . $tu['test']['test_id']
-                    . '&user_id='
-                    . $tu['user_id']
-                    . '&testuser_id='
-                    . $tu['id']
-                    . '&email='
-                    . urlencode($pdfkey);
+                // create the PDF document
                 try {
-                    $pdf_content = $pdf_reader->getUrlData($pdf_url);
-                } catch (\Com\Tecnick\File\Exception $e) {
-                    $pdf_content = false;
-                }
-
-                if ($pdf_content === false) {
+                    $pdf = F_getResultsPDF(
+                        3,
+                        $tu['test']['test_id'],
+                        0,
+                        $tu['user_id'],
+                        $tu['id'],
+                        '',
+                        '',
+                        'total_score, user_lastname, user_firstname',
+                        $display_mode,
+                        (int) $show_graph,
+                        false,
+                        '',
+                    );
+                    $pdf_content = $pdf === null ? '' : $pdf->getOutPDFString();
+                } catch (\Throwable $e) {
                     $pdf_content = '';
                 }
                 // set PDF document file name

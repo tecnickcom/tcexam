@@ -1,3 +1,16 @@
+17.4.0 (2026-11-02)
+	- Security fixes for access control. Please read the "Access control and the administration area" section of UPGRADE.md before updating an existing installation.
+	- Fixed missing page levels: the results PDF, the test PDF generator and the user results export were reachable without logging in or by public users. Pages that do not set a level now require the administrator level.
+	- Emailed PDF reports are generated in-process; the ?email= token of tce_pdf_results.php has been removed.
+	- Operators see and change only the results of the tests they are authorized for, including the "all tests" view, the user filter and the bulk lock, unlock, extend-time and delete actions.
+	- Fixed cross-operator writes: subjects, questions and answers can no longer be added or moved under a module, subject or question owned by another operator, the subject editor no longer skips the ownership check when the module selector changes, and only authorized subjects can be added to a test.
+	- OMR imports are accepted only for authorized tests and only when every question and answer belongs to the test; the QR-Code data is decoded without instantiating objects.
+	- The session ID is read only from the PHPSESSID cookie.
+	- Added admin/log/.htaccess and public/log/.htaccess, updated admin/backup/.htaccess to the Apache 2.4 syntax and added matching Docker Apache rules.
+	- New configuration constant K_PATH_URL_ADMIN for serving the administration area from a separate host.
+	- Added the "Isolating the administration area" section to SECURITY.md.
+	- Updated tc-lib-pdf.
+
 17.3.1 (2026-10-17)
 	- Security hardening of uploaded files. Please read the "Uploaded files, CSRF and backups" section of UPGRADE.md before updating an existing installation.
 	- Media uploads reject markup and script types, and every upload rejects server script types; file content is checked, file names are sanitized and existing files are never overwritten.

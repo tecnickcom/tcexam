@@ -205,12 +205,6 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 1
 
 [[issues]]
-file = "admin/code/tce_export_custom.php"
-code = "no-redundant-file"
-message = "Redundant file with no executable code or declarations."
-count = 1
-
-[[issues]]
 file = "admin/code/tce_filemanager.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
@@ -433,6 +427,54 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 1
 
 [[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_allowed_attributes` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_allowed_elements` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_get_svg_metadata_namespaces` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_attribute` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_content` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_href` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_node` should be in snake case."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_functions_svg_check.php"
+code = "function-name"
+message = "Function name `F_is_safe_svg_value` should be in snake case."
+count = 1
+
+[[issues]]
 file = "admin/code/tce_functions_tcecode_editor.php"
 code = "function-name"
 message = "Function name `getImageButton` should be in snake case."
@@ -520,54 +562,6 @@ count = 1
 file = "admin/code/tce_functions_upload.php"
 code = "function-name"
 message = "Function name `F_is_safe_media_content` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_get_svg_allowed_elements` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_get_svg_allowed_attributes` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_get_svg_metadata_namespaces` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_is_safe_svg_value` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_is_safe_svg_href` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_is_safe_svg_attribute` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_is_safe_svg_node` should be in snake case."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_functions_svg_check.php"
-code = "function-name"
-message = "Function name `F_is_safe_svg_content` should be in snake case."
 count = 1
 
 [[issues]]
@@ -679,12 +673,6 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 2
 
 [[issues]]
-file = "admin/code/tce_import_custom.php"
-code = "no-redundant-file"
-message = "Redundant file with no executable code or declarations."
-count = 1
-
-[[issues]]
 file = "admin/code/tce_import_omr_answers.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
@@ -784,19 +772,7 @@ count = 1
 file = "admin/code/tce_pdf_results.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
-count = 2
-
-[[issues]]
-file = "admin/code/tce_pdf_results.php"
-code = "identity-comparison"
-message = "Use identity inequality `!==` instead of inequality comparison `!=`."
 count = 1
-
-[[issues]]
-file = "admin/code/tce_pdf_results.php"
-code = "no-redundant-block"
-message = "Redundant block around statements."
-count = 3
 
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
@@ -1024,19 +1000,7 @@ count = 1
 file = "public/code/tce_pdf_results.php"
 code = "identity-comparison"
 message = "Use identity comparison `===` instead of equality comparison `==`."
-count = 2
-
-[[issues]]
-file = "public/code/tce_pdf_results.php"
-code = "identity-comparison"
-message = "Use identity inequality `!==` instead of inequality comparison `!=`."
 count = 1
-
-[[issues]]
-file = "public/code/tce_pdf_results.php"
-code = "no-redundant-block"
-message = "Redundant block around statements."
-count = 3
 
 [[issues]]
 file = "public/code/tce_show_result_user.php"
@@ -1545,6 +1509,24 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_authorization.php"
 code = "function-name"
+message = "Function name `F_isAuthorizedQuestion` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedSubject` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
+message = "Function name `F_isAuthorizedTestUser` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_authorization.php"
+code = "function-name"
 message = "Function name `F_isAuthorizedUser` should be in snake case."
 count = 1
 
@@ -2035,6 +2017,12 @@ message = "Use identity comparison `===` instead of equality comparison `==`."
 count = 2
 
 [[issues]]
+file = "shared/code/tce_functions_pdf_results.php"
+code = "function-name"
+message = "Function name `F_getResultsPDF` should be in snake case."
+count = 1
+
+[[issues]]
 file = "shared/code/tce_functions_session.php"
 code = "file-name"
 message = "Class `TCExamSessionHandler` should be in a file named `TCExamSessionHandler.php`, found `tce_functions_session.php`."
@@ -2110,7 +2098,7 @@ count = 1
 file = "shared/code/tce_functions_session.php"
 code = "no-ini-set"
 message = "ini_set should not be used."
-count = 7
+count = 9
 
 [[issues]]
 file = "shared/code/tce_functions_statistics.php"

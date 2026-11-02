@@ -23,6 +23,10 @@
  * @since 2000-12-01
  */
 
+require_once '../config/tce_config.php';
+$pagelevel = K_AUTH_ADMIN_IMPORT;
+require_once '../../shared/code/tce_authorization.php';
+
 // customize this file to import questions from your custom format file.
 
 // ...

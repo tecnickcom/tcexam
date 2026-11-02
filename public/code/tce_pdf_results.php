@@ -33,39 +33,19 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 define('K_PATH_FONTS', realpath(__DIR__ . '/../../vendor/tecnickcom/tc-lib-pdf-font/target/fonts'));
 
 require_once '../config/tce_config.php';
+$pagelevel = K_AUTH_PUBLIC_TEST_RESULTS;
 require_once '../../shared/code/tce_authorization.php';
-require_once '../../shared/code/tce_functions_tcecode.php';
-require_once '../../shared/code/tce_functions_test.php';
-require_once '../../shared/code/tce_functions_test_stats.php';
-require_once '../../shared/config/tce_pdf.php';
-require_once '../../shared/code/tce_pdf_report.php';
-require_once '../../shared/code/tce_functions_statistics.php';
+require_once '../../shared/code/tce_functions_pdf_results.php';
 
 $user_id = (int) $_SESSION['session_user_id'];
 $mode = isset($_REQUEST['mode']) && $_REQUEST['mode'] > 0 ? (int) $_REQUEST['mode'] : 0;
 $test_id = isset($_REQUEST['test_id']) ? (int) $_REQUEST['test_id'] : 0;
 $testuser_id = isset($_REQUEST['testuser_id']) ? (int) $_REQUEST['testuser_id'] : 0;
 
-$onlytext = $mode == 5;
-// The ?email= token bypasses the normal authorization check, so it must fail closed when
-// K_RANDOM_SECURITY is still the shipped default (otherwise the token is publicly forgeable).
-if (
-    isset($_REQUEST['email'])
-    && (
-        !F_isRandomSecurityConfigured()
-        || !checkPassword(
-            date('Y') . $testuser_id . K_RANDOM_SECURITY . $test_id . date('m') . $user_id,
-            $_REQUEST['email'],
-        )
-    )
-) {
-    F_print_error('ERROR', $l['m_authorization_denied'], true);
-}
-
 $filter = 'sel=1';
 if (isset($_REQUEST['test_id']) && $_REQUEST['test_id'] > 0) {
     $test_id = (int) $_REQUEST['test_id'];
-    if (!isset($_REQUEST['email']) && !F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
+    if (!F_isAuthorizedUser(K_TABLE_TESTS, 'test_id', $test_id, 'test_user_id')) {
         exit();
     }
 
@@ -154,96 +134,26 @@ if (!isset($_REQUEST['orderdir']) || empty($_REQUEST['orderdir'])) {
 
 $filter .= '&amp;orderdir=' . $orderdir . '';
 
-$pubmode = true;
-
-// get the data to print
-$ts = F_getAllUsersTestStat(
+$pdf = F_getResultsPDF(
+    $mode,
     $test_id,
     $group_id,
     $user_id,
+    $testuser_id,
     $startdate,
     $enddate,
     $full_order_field,
-    $pubmode,
     $display_mode,
+    $show_graph,
+    true,
+    $filter,
 );
-if (empty($ts['num_records'])) {
-    return;
-}
-
-switch ($mode) {
-    case 1:
-        {
-            // all users results
-            $doc_title = unhtmlentities($l['t_result_all_users']);
-            $doc_description = F_compact_string(unhtmlentities($l['hp_result_alluser']));
-            break;
-        }
-    case 3: // detailed report for specific user
-    case 4: // detailed report for all users
-    case 5:
-        { // detailed report for all users with only open questions
-            $doc_title = unhtmlentities($l['t_result_user']);
-            $doc_description = F_compact_string(unhtmlentities($l['hp_result_user']));
-            break;
-        }
-    default:
-        {
-            echo $l['m_authorization_denied'];
-            exit();
-        }
-}
-
-// --- create the PDF document (tc-lib-pdf) ---
-
-$pdf = new TcePdfReport();
-
-// header back-link QR-Code
-if ($pubmode) {
-    $pdf->setTCExamBackLink(K_PATH_URL . 'public/code/tce_test_allresults.php?' . $filter);
-} else {
-    $pdf->setTCExamBackLink(K_PATH_URL . 'admin/code/tce_show_result_allusers.php?' . $filter);
-}
-
-// document metadata
-$pdf->setCreator('TCExam ver.' . K_TCEXAM_VERSION);
-$pdf->setAuthor(PDF_AUTHOR);
-$pdf->setTitle((string) $doc_title);
-$pdf->setSubject((string) $doc_description);
-$pdf->setKeywords('TCExam, ' . $doc_title);
-$pdf->setLanguageArray($l);
-
-// page header content (title, description, logo)
-$pdf->setReportHeader(PDF_HEADER_TITLE, PDF_HEADER_STRING, PDF_HEADER_LOGO, (float) PDF_HEADER_LOGO_WIDTH);
-
-if ($mode != 3) {
-    $pdf->addReportPage();
-    $pdf->writeReportHTML(
-        '<h1 style="text-align:center;font-size:13pt;">' . htmlspecialchars((string) $doc_title) . '</h1>',
-    );
-    $pdf->printTestResultStat($ts, $pubmode, $display_mode);
-    if ($show_graph !== 0) {
-        $pdf->printSVGStatsGraph($ts['svgpoints']);
+if ($pdf === null) {
+    if (!in_array($mode, [1, 3, 4, 5], true)) {
+        echo $l['m_authorization_denied'];
     }
-    if ($display_mode > 1) {
-        $pdf->setBookmark($l['w_statistics']);
-        $pdf->printQuestionStats($ts['qstats'], $display_mode);
-    }
-}
 
-if ($mode > 2) {
-    // detailed report per test user (respecting the per-test "report to users" flag in public mode)
-    if ($testuser_id === 0) {
-        foreach ($ts['testuser'] as $tstusr) {
-            if (!$pubmode || F_getBoolean($tstusr['test']['test_report_to_users'])) {
-                $pdf->addReportPage();
-                $pdf->printTestUserInfo($tstusr, $onlytext);
-            }
-        }
-    } elseif (!$pubmode || F_getBoolean($ts['testuser']["'" . $testuser_id . "'"]['test']['test_report_to_users'])) {
-        $pdf->addReportPage();
-        $pdf->printTestUserInfo($ts['testuser']["'" . $testuser_id . "'"], $onlytext);
-    }
+    exit();
 }
 
 // build the download file name

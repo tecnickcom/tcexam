@@ -48,7 +48,7 @@ $menu = [
         'enabled' => $_SESSION['session_user_level'] > 0,
     ],
     'admin' => [
-        'link' => '../../admin/code/index.php',
+        'link' => (defined('K_PATH_URL_ADMIN') ? K_PATH_URL_ADMIN : '../../') . 'admin/code/index.php',
         'title' => $l['h_admin_link'],
         'name' => $l['w_admin'],
         'level' => K_ADMIN_LINK,

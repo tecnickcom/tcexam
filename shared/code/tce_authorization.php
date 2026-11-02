@@ -425,8 +425,8 @@ if (
 }
 
 if (!isset($pagelevel)) {
-    // set default page level
-    $pagelevel = 0;
+    // pages that do not set a level require the administrator level (10); anonymous pages must set 0
+    $pagelevel = defined('K_AUTH_ADMINISTRATOR') ? K_AUTH_ADMINISTRATOR : 10;
 }
 
 // check client SSL certificate if required

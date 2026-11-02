@@ -36,10 +36,8 @@ below, note the following one-time changes.
 ### Security-relevant changes
 
 - **`K_RANDOM_SECURITY`.** The shipped value is now a placeholder and the installer generates a
-  unique random secret per install. The PDF `?email=` result-access token now **fails closed**
-  while the secret is left at the placeholder or the old hardcoded default
-  (`'mkTzxf8WwUxwvj6w'`). If `shared/config/tce_general_constants.php` still has the old default,
-  set a fresh random value:
+  unique random secret per install. If `shared/config/tce_general_constants.php` still has the
+  placeholder or the old hardcoded default (`'mkTzxf8WwUxwvj6w'`), set a fresh random value:
 
   ```sh
   php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"
@@ -155,13 +153,41 @@ below, note the following one-time changes.
   5. If level 5 accounts could upload `svg` or `xml` files before this release, check
      `admin/backup/` for unexpected backups and consider rotating administrator passwords.
 
+### Access control and the administration area
+
+- **Page levels.** A page that does not set `$pagelevel` now requires the administrator level.
+  The results PDF, the test PDF generator and the user results XML/JSON export require the
+  results or tests operator level. Pages meant for anonymous users set `$pagelevel = 0;`
+  explicitly; do the same in any customised page, including `admin/code/tce_export_custom.php`
+  and `admin/code/tce_import_custom.php`.
+- **Emailed PDF reports** are generated in-process. The `?email=` token parameter of
+  `tce_pdf_results.php` has been removed, and the email job no longer requests
+  `admin/code/tce_pdf_results.php` over HTTP, so `K_PATH_HOST` no longer needs to be reachable
+  from the server and `K_FILE_ALLOWED_HOSTS` is not needed for reports.
+- **Session ID.** The session ID is read only from the `PHPSESSID` cookie. Links carrying a
+  `PHPSESSID` URL parameter no longer resume a session.
+- **Operator scope.** Operators (non-administrators) see and change only results of the tests
+  they are authorized for, including the "all tests" view and the bulk lock, unlock, extend-time
+  and delete actions. Subjects, questions and answers can be added or moved only under a module,
+  subject or question the operator is authorized for, and only authorized subjects can be added
+  to a test. OMR imports are accepted only for authorized tests, and only when every question and
+  answer on the sheet belongs to that test.
+- **Log and backup directories.** New `admin/log/.htaccess` and `public/log/.htaccess` files deny
+  web access to the error logs, and `admin/backup/.htaccess` now uses the Apache 2.4 syntax
+  (`Require all denied`). Keep these files when copying old directories. For nginx, add
+  `location ^~ /admin/backup/ { deny all; }`, `location ^~ /admin/log/ { deny all; }` and
+  `location ^~ /public/log/ { deny all; }`.
+- **Isolating `/admin/`.** See "Isolating the administration area" in
+  [SECURITY.md](../SECURITY.md) for a separate admin host, network restrictions and web server
+  examples. Set `K_PATH_URL_ADMIN` when the admin area is served from its own host.
+
 ### New configuration constants
 
 Compare your config files against the shipped `*.default` files and add the new constants:
 
 | File | New constants |
 |------|---------------|
-| `shared/config/tce_paths.php` | `K_FILE_ALLOWED_PATHS`, `K_FILE_ALLOWED_HOSTS` (allow-lists for `tc-lib-file` safe file/URL access) |
+| `shared/config/tce_paths.php` | `K_FILE_ALLOWED_PATHS`, `K_FILE_ALLOWED_HOSTS` (allow-lists for `tc-lib-file` safe file/URL access), `K_PATH_URL_ADMIN` (base URL of the administration area) |
 | `shared/config/tce_cas.php` *(CAS only)* | `K_CAS_SERVICE_BASE_URL` |
 | `shared/config/tce_pdf.php` | TCPDF-only options removed; `tc-lib-pdf` options added: `K_PDF_UNICODE`, `K_PDF_SUBSET_FONT`, `K_PDF_COMPRESS`, `K_PDF_MODE`, `K_PDF_ALLOWED_PATHS` / `K_PDF_ALLOWED_HOSTS` / `K_PDF_MAX_REMOTE_SIZE` |
 

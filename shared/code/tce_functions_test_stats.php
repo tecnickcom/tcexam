@@ -1837,6 +1837,7 @@ function F_getAllUsersTestStat(
     $stats = 2,
 ) {
     require_once '../config/tce_config.php';
+    require_once '../../shared/code/tce_functions_authorization.php';
     require_once '../../shared/code/tce_functions_test.php';
     require_once '../../shared/code/tce_functions_statistics.php';
     global $db, $l;
@@ -1872,6 +1873,14 @@ function F_getAllUsersTestStat(
             . ') AND testuser_user_id='
             . $user_id
             . ' AND testuser_status>3';
+    } elseif (!defined('K_AUTH_ADMINISTRATOR') || $_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+        // restrict non-administrators to the tests they are authorized for
+        $sqlr .=
+            ' AND testuser_test_id IN (SELECT test_id FROM '
+            . K_TABLE_TESTS
+            . ' WHERE test_user_id IN ('
+            . F_getAuthorizedUsers($_SESSION['session_user_id'])
+            . '))';
     }
 
     if ($test_id > 0) {

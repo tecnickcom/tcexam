@@ -29,6 +29,8 @@ ini_set('session.name', 'PHPSESSID');
 //ini_set('session.gc_maxlifetime', K_SESSION_LIFE);
 ini_set('session.cookie_lifetime', 0);
 ini_set('session.use_cookies', true);
+ini_set('session.use_only_cookies', true);
+ini_set('session.use_trans_sid', false);
 ini_set('session.use_strict_mode', 'On');
 ini_set('session.cookie_httponly', K_COOKIE_HTTPONLY ? 'On' : 'Off');
 ini_set('session.cookie_secure', K_COOKIE_SECURE ? 'On' : 'Off');
@@ -216,7 +218,7 @@ function F_session_string_to_array($sd)
     for ($i = 0; $i < (count($vars) - 1); ++$i) {
         $parts = explode('|', $vars[$i]);
         $key = $parts[0];
-        $val = unserialize($parts[1] . ';');
+        $val = unserialize(($parts[1] ?? '') . ';', ['allowed_classes' => false]);
         $sess_array[$key] = $val;
     }
 
@@ -295,10 +297,8 @@ function checkPassword(#[\SensitiveParameter] $password, $hash)
 /**
  * Returns true when K_RANDOM_SECURITY has been set to a unique per-installation secret,
  * i.e. it is not empty and not one of the values shipped in config.default.
- * Security-sensitive checks that rely on the secrecy of K_RANDOM_SECURITY (e.g. the
- * result-access token that bypasses the normal authorization check) MUST fail closed
- * when this returns false, otherwise an attacker who knows the public default can forge
- * a valid token. The installer replaces the placeholder with a random value at install time.
+ * The installer replaces the placeholder with a random value at install time.
+ * @param $secret (string|null) value to check; null checks the configured K_RANDOM_SECURITY.
  * @return boolean true if the seed is configured, false if it is still the shipped default.
  */
 function F_isRandomSecurityConfigured(#[\SensitiveParameter] $secret = null)
@@ -358,15 +358,10 @@ if (PHP_SAPI === 'cli') {
 // Sets user-level session storage functions using SessionHandlerInterface.
 session_set_save_handler(new TCExamSessionHandler(), true);
 
-// start user session
-if (isset($_COOKIE['PHPSESSID'])) {
-    // cookie takes precedence
-    $_REQUEST['PHPSESSID'] = $_COOKIE['PHPSESSID'];
-}
-
-if (isset($_REQUEST['PHPSESSID'])) {
-    // sanitize $PHPSESSID from get/post/cookie
-    $PHPSESSID = preg_replace('/[^0-9a-f]*/', '', $_REQUEST['PHPSESSID']);
+// start user session (the session ID is read only from the cookie, never from the URL or form data)
+if (isset($_COOKIE['PHPSESSID']) && is_string($_COOKIE['PHPSESSID'])) {
+    // sanitize $PHPSESSID from cookie
+    $PHPSESSID = preg_replace('/[^0-9a-f]*/', '', $_COOKIE['PHPSESSID']);
     if (strlen($PHPSESSID) != 32) {
         // generate new ID
         $PHPSESSID = getNewSessionID();

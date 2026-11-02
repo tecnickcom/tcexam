@@ -34,6 +34,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 define('K_PATH_FONTS', realpath(__DIR__ . '/../../vendor/tecnickcom/tc-lib-pdf-font/target/fonts'));
 
 require_once '../config/tce_config.php';
+$pagelevel = K_AUTH_ADMIN_TESTS;
 require_once '../../shared/code/tce_authorization.php';
 require_once '../../shared/code/tce_functions_tcecode.php';
 require_once '../../shared/code/tce_functions_test.php';
@@ -176,7 +177,11 @@ for ($item = 1; $item <= $test_num; ++$item) {
     // QUESTION SHEET (HTML; not scanned, so rendered with the HTML engine)
     // ====================================================================
     $pdf->enablePageDecoration(true);
-    $pdf->setTCExamBackLink(K_PATH_URL . 'admin/code/tce_edit_test.php?test_id=' . $test_id);
+    $pdf->setTCExamBackLink(
+        (defined('K_PATH_URL_ADMIN') ? K_PATH_URL_ADMIN : K_PATH_URL)
+        . 'admin/code/tce_edit_test.php?test_id='
+        . $test_id,
+    );
     $pdf->addReportPage();
 
     $html =

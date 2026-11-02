@@ -154,6 +154,11 @@ if ($answer_id > 0) {
     }
 }
 
+// check user's authorization for the target question
+if (($menu_mode === 'add' || $menu_mode === 'update') && !F_isAuthorizedQuestion($answer_question_id)) {
+    F_print_error('ERROR', $l['m_authorization_denied'], true);
+}
+
 switch ($menu_mode) {
     case 'delete':
         {

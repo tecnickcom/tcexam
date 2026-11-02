@@ -174,8 +174,7 @@ checklist):
 - **Change the default credentials.** Create a new level-10 administrator and remove the default
   `admin` user as soon as possible.
 - **Confirm `K_RANDOM_SECURITY` is set** to a unique random value in
-  `shared/config/tce_general_constants.php` (the installer does this automatically; the PDF
-  result-access token fails closed while it is left at the placeholder).
+  `shared/config/tce_general_constants.php` (the installer does this automatically).
 - **Serve over HTTPS** so credentials and session tokens are never sent in clear text.
 - **Apply least-privilege file permissions.** On a POSIX system (example for Apache running as
   `www-data`, installed in `/var/www/tcexam`):

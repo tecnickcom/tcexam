@@ -319,6 +319,156 @@ message = "Function `F_file_exists` is missing a return type hint."
 count = 1
 
 [[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "imprecise-type"
+message = "Type `array` in return type of `addContent` is imprecise, equivalent to `array<array-key, mixed>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 4
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "mixed-operand"
+message = "Invalid middle operand: type `mixed` cannot be reliably used in string concatenation."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "mixed-property-type-coercion"
+message = "Mixed property type coercion"
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_close` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_connect` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_fetch_assoc` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_query` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-operand"
+message = "Possibly null right operand used in string concatenation (type `int|null`)."
+count = 11
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('PHPSESSID')` accessed on `array<string, string>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('answ')` accessed on `array<array-key, mixed>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('answa')` accessed on `array<string, int>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('examinee')` accessed on `array<string, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('mod')` accessed on `array<array-key, mixed>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('moda')` accessed on `array<string, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('modb')` accessed on `array<string, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('quest')` accessed on `array<array-key, mixed>`."
+count = 3
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('questa')` accessed on `array<string, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('questb')` accessed on `array<string, int>`."
+count = 3
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('subj')` accessed on `array<array-key, mixed>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('subjb')` accessed on `array<string, int>`."
+count = 7
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('testa')` accessed on `array<string, int>`."
+count = 3
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('testb')` accessed on `array<string, int>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('tub')` accessed on `array<string, int>`."
+count = 2
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "redundant-cast"
+message = "Redundant cast to `(string)`: the expression already has this type."
+count = 1
+
+[[issues]]
 file = "test/integration/AdminControllerHttpTest.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."

@@ -161,6 +161,10 @@ if (isset($menu_mode) && !empty($menu_mode)) {
         $keyname = 'testuserid' . $i;
         if (isset($_POST[$keyname])) {
             $testuser_id = (int) $_POST[$keyname];
+            if (!F_isAuthorizedTestUser($testuser_id)) {
+                continue;
+            }
+
             switch ($menu_mode) {
                 case 'delete':
                     {
@@ -391,6 +395,18 @@ if ($test_id > 0) {
         ', ' . K_TABLE_USERGROUP . ' WHERE usrgrp_user_id=user_id AND usrgrp_group_id=' . $group_id . ' AND user_id>1';
 } else {
     $sql .= ' WHERE user_id>1';
+}
+
+if ($_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR) {
+    // list only the users with results on authorized tests
+    $sql .=
+        ' AND user_id IN (SELECT testuser_user_id FROM '
+        . K_TABLE_TEST_USER
+        . ' WHERE testuser_test_id IN (SELECT test_id FROM '
+        . K_TABLE_TESTS
+        . ' WHERE test_user_id IN ('
+        . F_getAuthorizedUsers($_SESSION['session_user_id'])
+        . ')))';
 }
 
 $sql .= ' GROUP BY user_id, user_lastname, user_firstname, user_name ORDER BY user_lastname, user_firstname, user_name';

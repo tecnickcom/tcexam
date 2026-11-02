@@ -353,6 +353,10 @@ switch ($menu_mode) {
                             F_display_db_error();
                         }
                     } else {
+                        if (!F_isAuthorizedSubject($subid)) {
+                            F_print_error('ERROR', $l['m_authorization_denied'], true);
+                        }
+
                         $subjids .= (int) $subid . ',';
                     }
                 }

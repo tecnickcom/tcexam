@@ -42,6 +42,12 @@ define('K_PATH_MAIN', '');
 define('K_PATH_URL', K_PATH_HOST . K_PATH_TCEXAM);
 
 /**
+ * Base URL used for links to the administration area (e.g.: "https://admin.yoursite.com/").
+ * Set it when the admin/ directory is served from a separate host.
+ */
+define('K_PATH_URL_ADMIN', K_PATH_URL);
+
+/**
  * Standard port for http (80) or https (443).
  */
 define('K_STANDARD_PORT', 80);
@@ -58,9 +64,7 @@ define('K_FILE_ALLOWED_PATHS', serialize([]));
 
 /**
  * Allowlist of hostnames that the tc-lib-file safe methods are permitted to fetch
- * remote URLs from (mitigates SSRF). Used e.g. by the email report generator, which
- * renders a PDF via an internal HTTP request to this installation. Provide a serialized
- * array of hostnames. The host of K_PATH_HOST is always trusted in addition to these.
+ * remote URLs from (mitigates SSRF). Provide a serialized array of hostnames.
  * Example: define('K_FILE_ALLOWED_HOSTS', serialize(array('reports.example.com')));
  */
 define('K_FILE_ALLOWED_HOSTS', serialize([]));
