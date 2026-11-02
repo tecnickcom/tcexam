@@ -56,6 +56,25 @@ if (isset($_REQUEST['user_id'])) {
     if (!F_isAuthorizedEditorForUser($user_id)) {
         F_print_error('ERROR', $l['m_authorization_denied'], true);
     }
+
+    // non-administrators can only edit their own account and users with a lower level
+    if (
+        $_SESSION['session_user_level'] < K_AUTH_ADMINISTRATOR
+        && $user_id > 0
+        && $user_id !== (int) $_SESSION['session_user_id']
+    ) {
+        $target_level = K_AUTH_ADMINISTRATOR;
+        $sqll = 'SELECT user_level FROM ' . K_TABLE_USERS . ' WHERE user_id=' . $user_id . '';
+        if ($rl = F_db_query($sqll, $db)) {
+            $target_level = ($ml = F_db_fetch_array($rl)) ? (int) $ml['user_level'] : 0;
+        } else {
+            F_display_db_error();
+        }
+
+        if ($target_level >= $_SESSION['session_user_level']) {
+            F_print_error('ERROR', $l['m_authorization_denied'], true);
+        }
+    }
 }
 
 if (isset($_REQUEST['group_id'])) {

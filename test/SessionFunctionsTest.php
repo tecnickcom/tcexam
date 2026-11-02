@@ -49,4 +49,19 @@ final class SessionFunctionsTest extends TestCase
         // the no-argument form reads the configured K_RANDOM_SECURITY from the test bootstrap
         $this->assertTrue(\F_isRandomSecurityConfigured());
     }
+
+    /**
+     * The CSRF token depends on the full session ID, whatever the length of the script path.
+     */
+    public function testCsrfTokenDependsOnSessionId(): void
+    {
+        $previous = (string) \session_id();
+        \session_id(\str_repeat('a', 32));
+        $token = \F_getCSRFToken();
+        $this->assertTrue(\checkCSRFToken($token));
+        \session_id(\str_repeat('a', 31) . 'b');
+        $this->assertFalse(\checkCSRFToken($token));
+        $this->assertFalse(\checkCSRFToken(null));
+        \session_id($previous);
+    }
 }

@@ -217,49 +217,23 @@ if (
         // check One-Time-Password if enabled
         $otp = false;
         if (K_OTP_LOGIN) {
-            $mtime = microtime(true);
-            if (
-                isset($_POST['xuser_otpcode'])
-                && !empty($_POST['xuser_otpcode'])
-                && (
-                    hash_equals((string) F_getOTP($m['user_otpkey'], $mtime), (string) $_POST['xuser_otpcode'])
-                    || hash_equals((string) F_getOTP($m['user_otpkey'], $mtime - 30), (string) $_POST['xuser_otpcode'])
-                    || hash_equals((string) F_getOTP($m['user_otpkey'], $mtime + 30), (string) $_POST['xuser_otpcode'])
-                )
-            ) {
-                $xuser_otpcode = F_escape_sql($db, $_POST['xuser_otpcode']);
-                // check if this OTP token has been alredy used
-                $sqlt =
-                    'SELECT cpsession_id FROM '
-                    . K_TABLE_SESSIONS
-                    . " WHERE cpsession_id='"
-                    . $xuser_otpcode
-                    . "' LIMIT 1";
-                if (($rt = F_db_query($sqlt, $db)) && !F_db_fetch_array($rt)) {
-                    // Store this token on the session table to mark it as invalid for 5 minute (300 seconds)
-                    $sqltu =
-                        'INSERT INTO '
-                        . K_TABLE_SESSIONS
-                        . ' (
-							cpsession_id,
-							cpsession_expiry,
-							cpsession_data
-							) VALUES (
-							\''
-                        . $xuser_otpcode
-                        . '\',
-							\''
-                        . date(K_TIMESTAMP_FORMAT, time() + 300)
-                        . '\',
-							\'300\'
-							)';
-                    if (!F_db_query($sqltu, $db)) {
-                        F_display_db_error();
-                    }
-
-                    $otp = true;
+            // the code is checked against the secret key of the submitted user name
+            $otpkey = '';
+            $sqlk =
+                'SELECT user_otpkey FROM '
+                . K_TABLE_USERS
+                . " WHERE user_name='"
+                . F_escape_sql($db, $_POST['xuser_name'])
+                . "'";
+            if ($rk = F_db_query($sqlk, $db)) {
+                if ($mk = F_db_fetch_array($rk)) {
+                    $otpkey = (string) $mk['user_otpkey'];
                 }
+            } else {
+                F_display_db_error();
             }
+
+            $otp = F_checkOTPLogin((string) $_POST['xuser_name'], $otpkey, $_POST['xuser_otpcode'] ?? '');
         }
 
         if (!K_OTP_LOGIN || $otp) {

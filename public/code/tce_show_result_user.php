@@ -203,7 +203,7 @@ echo getFormDescriptionLine($l['w_questions_unrated'] . ':', $l['h_questions_unr
 echo getFormDescriptionLine(
     $l['w_comment'] . ':',
     $l['h_testcomment'],
-    F_decode_tcecode($teststat['testinfo']['user_comment']),
+    F_decode_tcecode($teststat['testinfo']['user_comment'], false),
 );
 
 if (F_getBoolean($teststat['testinfo']['test_report_to_users'])) {

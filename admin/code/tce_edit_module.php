@@ -433,9 +433,11 @@ if ($_SESSION['session_user_level'] >= K_AUTH_ADMINISTRATOR) {
         if ($m = F_db_fetch_array($r)) {
             echo
                 '<span style="font-style:italic;color:#333333;">('
-                    . unhtmlentities(strip_tags(
+                    . htmlspecialchars(
                         $m['user_name'] . ') ' . $m['user_lastname'] . ' ' . $m['user_firstname'],
-                    ))
+                        ENT_NOQUOTES,
+                        $l['a_meta_charset'],
+                    )
                     . '</span>'
                     . K_NEWLINE;
         }
@@ -484,7 +486,7 @@ $sqlg =
 if ($rg = F_db_query($sqlg, $db)) {
     echo '<span style="font-style:italic;color#333333;font-size:small;">';
     while ($mg = F_db_fetch_array($rg)) {
-        echo ' · ' . unhtmlentities(strip_tags($mg['group_name'])) . '';
+        echo ' · ' . htmlspecialchars($mg['group_name'], ENT_NOQUOTES, $l['a_meta_charset']) . '';
     }
 
     echo '</span>';

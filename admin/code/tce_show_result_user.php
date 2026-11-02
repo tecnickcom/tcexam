@@ -522,7 +522,7 @@ if (isset($teststat) && !empty($teststat)) {
     echo getFormDescriptionLine(
         $l['w_comment'] . ':',
         $l['h_testcomment'],
-        F_decode_tcecode($teststat['testinfo']['user_comment']),
+        F_decode_tcecode($teststat['testinfo']['user_comment'], false),
     );
 
     if (isset($testuser_id) && $testuser_id !== 0 && !empty($teststat)) {

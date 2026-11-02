@@ -234,7 +234,11 @@ function F_altLogin()
 
             if ($lbind = ldap_bind($ldapconn, K_LDAP_ROOT_DN, K_LDAP_ROOT_PASS)) {
                 // Search user on LDAP tree
-                $ldap_filter = str_replace('#USERNAME#', $ldapusername, K_LDAP_FILTER);
+                $ldap_filter = str_replace(
+                    '#USERNAME#',
+                    ldap_escape((string) $ldapusername, '', LDAP_ESCAPE_FILTER),
+                    K_LDAP_FILTER,
+                );
                 $sorted_ldap_attr = $ldap_attr;
                 sort($sorted_ldap_attr);
                 //var_export($rdn); // uncomment this to see the structure of the entries

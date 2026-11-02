@@ -181,6 +181,32 @@ below, note the following one-time changes.
   [SECURITY.md](../SECURITY.md) for a separate admin host, network restrictions and web server
   examples. Set `K_PATH_URL_ADMIN` when the admin area is served from its own host.
 
+### Exam pages, LaTeX, OTP and installer
+
+- **Exam navigation.** The exam page displays and stores answers only for test logs of the
+  examinee's active attempt. Answers of earlier (locked or repeated) attempts can no longer be
+  changed.
+- **LaTeX in examinee text.** `[tex]` in free-text answers and test comments is shown as text and
+  is not compiled. Delete `cache/latex_*.png` after upgrading to remove images generated from
+  examinee text. pdflatex now runs with `openin_any=p openout_any=p` and `-no-shell-escape`, and
+  formulas using `\pdf...` primitives, `\scantokens`, `\immediate` or `\shipout` are rejected.
+- **Names and test names** containing HTML entities are displayed literally on the online users
+  page, the results pages, the module editor and the public test list.
+- **One-Time-Password.** With `K_OTP_LOGIN` enabled, the code is checked against the secret key
+  of the user who logs in. Users without a key cannot log in; a new key is generated when an
+  administrator sets a new password in the user editor.
+- **Test IP ranges** are checked against the address of the current request instead of the
+  address recorded at login.
+- **CSRF tokens** have a new format. Reload forms that were open during the upgrade.
+- **User editor.** Editors below the administrator level can only edit their own account and
+  users with a lower level.
+- **Installer.** `install/install.php` refuses to run when `shared/config/tce_db_config.php`
+  exists and accepts the installation only from a POST request. `install/phpinfo.php` has been
+  removed. The Docker image denies web access to `install/`. Delete the `install/` directory
+  after installation as before.
+- **Removed `admin/code/tce_update.php`.** Upgrade as described in "General upgrade process".
+- **LDAP.** The user name is escaped before it is inserted into `K_LDAP_FILTER`.
+
 ### New configuration constants
 
 Compare your config files against the shipped `*.default` files and add the new constants:

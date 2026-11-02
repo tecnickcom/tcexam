@@ -1380,7 +1380,7 @@ function F_printTestResultStat($data, $nextorderdir, $order_field, $filter, $pub
     $ret .= '</tr>' . K_NEWLINE;
     $ret .= '</thead>' . K_NEWLINE;
     foreach ($data['testuser'] as $tu) {
-        $tu['test']['test_name'] = unhtmlentities(strip_tags($tu['test']['test_name']));
+        $tu['test']['test_name'] = htmlspecialchars($tu['test']['test_name'], ENT_NOQUOTES, $l['a_meta_charset']);
         $ret .= '<tr>';
         $ret .= '<td>';
         $ret .=
@@ -1701,7 +1701,7 @@ function F_printUserTestStat($testuser_id)
             if ($m['question_type'] == 3) {
                 // TEXT
                 $ret .= '<ul class="answer"><li>' . K_NEWLINE;
-                $ret .= F_decode_tcecode($m['testlog_answer_text']);
+                $ret .= F_decode_tcecode($m['testlog_answer_text'], false);
                 $ret .= '&nbsp;</li></ul>' . K_NEWLINE;
             } else {
                 $ret .= '<ol class="answer">' . K_NEWLINE;

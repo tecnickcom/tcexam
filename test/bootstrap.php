@@ -72,6 +72,7 @@ if (! defined('K_PATH_URL_CACHE')) {
 // whose web bootstrap is guarded to be skipped under the CLI SAPI (see that file).
 require_once __DIR__ . '/../shared/code/tce_functions_general.php';
 require_once __DIR__ . '/../shared/code/tce_functions_session.php';
+require_once __DIR__ . '/../shared/code/tce_functions_otp.php';
 require_once __DIR__ . '/../shared/code/tce_tmx.php';
 // Form helpers: the top-level CSRF guard self-skips under the CLI SAPI (no POST action), and the
 // only include-time side effect is defining K_EMAIL_RE_PATTERN. F_check_fields_format() is pure.

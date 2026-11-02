@@ -126,7 +126,7 @@ function F_list_online_users($wherequery, $order_field, $orderdir, $firstrow, $r
             }
 
             $user_str .= ' (' . urldecode($this_session['session_user_name']) . ')';
-            $user_str = unhtmlentities(strip_tags($user_str));
+            $user_str = htmlspecialchars($user_str, ENT_NOQUOTES, $l['a_meta_charset']);
             if (F_isAuthorizedEditorForUser($this_session['session_user_id'])) {
                 echo
                     '<a href="tce_edit_user.php?user_id='

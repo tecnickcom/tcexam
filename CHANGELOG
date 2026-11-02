@@ -1,3 +1,16 @@
+17.5.0 (2026-11-02)
+	- Security fixes for exam pages, LaTeX, OTP and the installer. Please read the "Exam pages, LaTeX, OTP and installer" section of UPGRADE.md before updating an existing installation.
+	- The exam page displays and stores answers only for test logs of the examinee's active attempt; other examinees' questions and answers can no longer be displayed, and answers of earlier attempts can no longer be changed.
+	- [tex] in free-text answers and test comments is no longer compiled; pdflatex runs with restricted file access and without shell escape, and pdfTeX primitives are rejected.
+	- Names and test names are HTML-escaped on the online users page, the results pages, the module editor and the public test list.
+	- One-Time-Password codes are checked against the key of the user who logs in, codes with a leading zero are accepted, and a used code is blocked only for that user.
+	- Answer text and test comments are escaped on the exam page and in the PDF report.
+	- Editors below the administrator level can only edit their own account and users with a lower level.
+	- The web installer refuses to run on an installed instance and accepts only POST; install/phpinfo.php and admin/code/tce_update.php have been removed; the Docker image denies web access to install/.
+	- CSRF tokens are HMAC-SHA256 values that depend on the full session ID.
+	- Test IP ranges are checked against the address of the current request.
+	- The LDAP user name is escaped in the search filter.
+
 17.4.0 (2026-11-02)
 	- Security fixes for access control. Please read the "Access control and the administration area" section of UPGRADE.md before updating an existing installation.
 	- Fixed missing page levels: the results PDF, the test PDF generator and the user results export were reachable without logging in or by public users. Pages that do not set a level now require the administrator level.

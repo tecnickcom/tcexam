@@ -169,9 +169,33 @@ message = "Function `utrim` could not be found."
 count = 2
 
 [[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "mixed-argument"
+message = "Invalid argument type for argument #2 of `sprintf`: expected `Stringable|null|scalar`, but found `mixed`."
+count = 1
+
+[[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "non-existent-function"
+message = 'Could not find definition for function `Test\F_getOTP` (also tried as `F_getOTP` in a broader scope).'
+count = 4
+
+[[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "non-existent-function"
+message = 'Could not find definition for function `Test\F_isValidOTPCode` (also tried as `F_isValidOTPCode` in a broader scope).'
+count = 12
+
+[[issues]]
 file = "test/SessionFunctionsTest.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_getCSRFToken` could not be found."
 count = 1
 
 [[issues]]
@@ -179,6 +203,12 @@ file = "test/SessionFunctionsTest.php"
 code = "non-existent-function"
 message = "Function `F_isRandomSecurityConfigured` could not be found."
 count = 5
+
+[[issues]]
+file = "test/SessionFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `checkCSRFToken` could not be found."
+count = 3
 
 [[issues]]
 file = "test/SessionFunctionsTest.php"
@@ -209,6 +239,36 @@ file = "test/SvgCheckTest.php"
 code = "non-existent-function"
 message = "Function `F_is_safe_svg_content` could not be found."
 count = 3
+
+[[issues]]
+file = "test/TcecodeLatexTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertStringContainsString`: expected `string`, but found `mixed`.'
+count = 1
+
+[[issues]]
+file = "test/TcecodeLatexTest.php"
+code = "mixed-argument"
+message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertStringNotContainsString`: expected `string`, but found `mixed`.'
+count = 2
+
+[[issues]]
+file = "test/TcecodeLatexTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 1
+
+[[issues]]
+file = "test/TcecodeLatexTest.php"
+code = "non-existent-function"
+message = 'Could not find definition for function `Test\F_decode_tcecode` (also tried as `F_decode_tcecode` in a broader scope).'
+count = 1
+
+[[issues]]
+file = "test/TcecodeLatexTest.php"
+code = "non-existent-function"
+message = 'Could not find definition for function `Test\F_latex_callback` (also tried as `F_latex_callback` in a broader scope).'
+count = 1
 
 [[issues]]
 file = "test/TcecodeObjectsTest.php"
@@ -652,4 +712,70 @@ count = 7
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
 message = "Function `F_escape_sql` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 4
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_close` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_connect` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_fetch_assoc` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_query` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-null-operand"
+message = "Possibly null middle operand used in string concatenation (type `int|null`)."
+count = 5
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-null-operand"
+message = "Possibly null right operand used in string concatenation (type `int|null`)."
+count = 2
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('log_a')` accessed on `array<string, int>`."
+count = 3
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('log_b')` accessed on `array<string, int>`."
+count = 1
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('log_old_a')` accessed on `array<string, int>`."
+count = 2
+
+[[issues]]
+file = "test/integration/ExamSecurityHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('test')` accessed on `array<string, int>`."
 count = 1

@@ -53,7 +53,7 @@ function F_getUserTests()
         while ($m = F_db_fetch_array($r)) { // for each active test
             $expired = false;
             // check user's authorization
-            if (F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])) {
+            if (F_isValidTestUser($m['test_id'], getNormalizedIP($_SERVER['REMOTE_ADDR']), $m['test_ip_range'])) {
                 // the user's IP is valid, check test status
                 [$test_status, $testuser_id] = F_checkTestStatus($user_id, $m['test_id'], $m['test_duration_time']);
                 if (strtotime($current_time) >= strtotime($m['test_end_time'])) {
@@ -613,7 +613,7 @@ function F_testInfoLink($test_id, $link_name = '')
         . $l['m_new_window_link']
         . '">';
     if (strlen($link_name) > 0) {
-        $str .= unhtmlentities(strip_tags($link_name));
+        $str .= htmlspecialchars($link_name, ENT_NOQUOTES, $l['a_meta_charset']);
     } else {
         $str .= $l['w_info'];
     }
@@ -638,7 +638,7 @@ function F_printTestInfo($test_id, $showip = false)
     $sql = 'SELECT * FROM ' . K_TABLE_TESTS . ' WHERE test_id=' . $test_id . ' LIMIT 1';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
-            if (!F_isValidTestUser($test_id, $_SESSION['session_user_ip'], $m['test_ip_range'])) {
+            if (!F_isValidTestUser($test_id, getNormalizedIP($_SERVER['REMOTE_ADDR']), $m['test_ip_range'])) {
                 return '';
             }
 
@@ -870,7 +870,7 @@ function F_executeTest($test_id)
         // check user's authorization
         if (
             ($m = F_db_fetch_array($r))
-            && F_isValidTestUser($m['test_id'], $_SESSION['session_user_ip'], $m['test_ip_range'])
+            && F_isValidTestUser($m['test_id'], getNormalizedIP($_SERVER['REMOTE_ADDR']), $m['test_ip_range'])
         ) {
             // the user's IP is valid, check test status
             [$test_status, $testuser_id] = F_checkTestStatus(
@@ -919,7 +919,7 @@ function F_executeTest($test_id)
 
 /**
  * Checks if the current user is the right testlog_id owner.<br>
- * This function is used for security reasons.
+ * The test log must belong to the current user's active (not locked) attempt of the specified test.
  * @param $test_id (int) test ID
  * @param $testlog_id (int) test log ID
  * @return boolean TRUE in case of success, FALSE otherwise
@@ -934,6 +934,7 @@ function F_isRightTestlogUser($test_id, $testlog_id)
     $sql = 'SELECT testuser_user_id, testuser_test_id
 		FROM ' . K_TABLE_TEST_USER . ', ' . K_TABLE_TESTS_LOGS . '
 		WHERE testuser_id=testlog_testuser_id
+			AND testuser_status<4
 			AND testlog_id=' . $testlog_id . '';
     if ($r = F_db_query($sql, $db)) {
         if ($m = F_db_fetch_array($r)) {
@@ -945,6 +946,7 @@ function F_isRightTestlogUser($test_id, $testlog_id)
         }
     } else {
         F_display_db_error();
+        return false;
     }
 
     return true;
@@ -2070,6 +2072,11 @@ function F_questionForm($test_id, $testlog_id, $formname)
         $noanswer_disabled = ' readonly="readonly" disabled="disabled"';
     }
 
+    // a test log of another user or attempt is replaced by the first question
+    if ($testlog_id > 0 && !F_isRightTestlogUser($test_id, $testlog_id)) {
+        $testlog_id = 0;
+    }
+
     // select question for the first time
     if (!isset($testlog_id) || $testlog_id == 0) {
         //select first question
@@ -2167,7 +2174,7 @@ function F_questionForm($test_id, $testlog_id, $formname)
                     . K_ANSWER_TEXTAREA_ROWS
                     . '" name="answertext" id="answertext" onchange="saveAnswer()"';
                 $str .= '>';
-                $str .= $m['testlog_answer_text'];
+                $str .= htmlspecialchars((string) $m['testlog_answer_text'], ENT_NOQUOTES, $l['a_meta_charset']);
                 $str .= '</textarea>' . K_NEWLINE;
             } else {
                 // multiple-choice question
@@ -2754,7 +2761,7 @@ function F_testComment($test_id)
             . '" rows="4" name="testcomment" id="testcomment" class="answertext" title="'
             . $l['h_testcomment']
             . '">'
-            . $comment
+            . htmlspecialchars((string) $comment, ENT_NOQUOTES, $l['a_meta_charset'])
             . '</textarea><br />'
             . K_NEWLINE;
     }

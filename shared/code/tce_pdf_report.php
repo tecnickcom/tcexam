@@ -843,7 +843,7 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
                 '<div style="font-size:8pt;"><b>'
                 . htmlspecialchars($l['w_comment'])
                 . '</b>: '
-                . $data['test']['user_comment']
+                . htmlspecialchars((string) $data['test']['user_comment'])
                 . '</div>';
         }
 
@@ -943,7 +943,7 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
                     // free-text answer
                     $html .=
                         '<div style="font-size:8pt;border:0.5px solid #000000;">'
-                        . F_decode_tcecode($m['testlog_answer_text'])
+                        . F_decode_tcecode($m['testlog_answer_text'], false)
                         . '</div>';
                 } else {
                     $sqla =

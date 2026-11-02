@@ -51,13 +51,12 @@ CONFIG_DIRS="${APP}/shared/config ${APP}/admin/config ${APP}/public/config"
 if [ -f "${APP}/install/install_cli.php" ]; then
     echo "[tcexam] running non-interactive installer…"
     if php "${APP}/install/install_cli.php"; then
-        # The web user must be able to read the configuration (and write it during a later
-        # web re-configuration); volumes mount as root by default.
+        # The web user must be able to read the configuration; volumes mount as root by default.
         chown -R www-data:www-data ${CONFIG_DIRS} 2>/dev/null || true
     else
-        echo "[tcexam] WARNING: automatic installation did not complete. The app may not be" >&2
-        echo "[tcexam]          configured yet; you can finish it from the web installer at" >&2
-        echo "[tcexam]          http://<host>:<port>/install/ ." >&2
+        echo "[tcexam] WARNING: automatic installation did not complete. Check the TCEXAM_*" >&2
+        echo "[tcexam]          settings and restart the container, or run" >&2
+        echo "[tcexam]          php install/install_cli.php --reconfig inside it." >&2
     fi
 fi
 

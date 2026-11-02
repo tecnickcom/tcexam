@@ -115,7 +115,11 @@ $score_right_all =
     . '%)';
 echo getFormDescriptionLine($l['w_answers_right'] . ':', $l['h_answers_right'], $score_right_all);
 
-echo getFormDescriptionLine($l['w_comment'] . ':', $l['h_testcomment'], F_decode_tcecode($usrtestdata['comment']));
+echo getFormDescriptionLine(
+    $l['w_comment'] . ':',
+    $l['h_testcomment'],
+    F_decode_tcecode($usrtestdata['comment'], false),
+);
 
 if (F_getBoolean($testdata['test_report_to_users'])) {
     echo '<div class="rowl">' . K_NEWLINE;
@@ -261,7 +265,7 @@ if (F_getBoolean($testdata['test_report_to_users'])) {
                 if ($m['question_type'] == 3) {
                     // TEXT
                     echo '<ul class="answer"><li>' . K_NEWLINE;
-                    echo F_decode_tcecode($m['testlog_answer_text']);
+                    echo F_decode_tcecode($m['testlog_answer_text'], false);
                     echo '&nbsp;</li></ul>' . K_NEWLINE;
                 } else {
                     echo '<ol class="answer">' . K_NEWLINE;

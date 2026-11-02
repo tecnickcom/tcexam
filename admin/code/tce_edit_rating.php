@@ -275,7 +275,7 @@ if ($sql !== '' && $sql !== '0') {
             $test_score_unanswered = round($m['test_score_unanswered'] * $m['question_difficulty'], 3);
             $question = F_decode_tcecode($m['question_description']);
             $explanation = F_decode_tcecode($m['question_explanation']);
-            $answer = F_decode_tcecode($m['testlog_answer_text']);
+            $answer = F_decode_tcecode($m['testlog_answer_text'], false);
         } else {
             $testlog_id = '';
             $testlog_score = '';

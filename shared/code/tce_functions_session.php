@@ -332,17 +332,17 @@ function getPlainCSRFToken()
  */
 function checkCSRFToken(#[\SensitiveParameter] $token)
 {
-    return checkPassword(getPlainCSRFToken(), $token);
+    return is_string($token) && hash_equals(F_getCSRFToken(), $token);
 }
 
 /**
- * Generate CSRF token
+ * Generate CSRF token (HMAC-SHA256 of the plain token keyed with K_RANDOM_SECURITY)
  *
  * @return string
  */
 function F_getCSRFToken()
 {
-    return getPasswordHash(getPlainCSRFToken());
+    return hash_hmac('sha256', getPlainCSRFToken(), K_RANDOM_SECURITY);
 }
 
 // ------------------------------------------------------------

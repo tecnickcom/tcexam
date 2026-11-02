@@ -44,6 +44,12 @@ echo '<link rel="stylesheet" href="../admin/styles/default.css">'."\n";
 echo '</head>'."\n";
 
 echo '<body>'."\n";
+// an existing database configuration means that TCExam is already installed
+if (file_exists('../shared/config/tce_db_config.php')) {
+	echo '<p><strong>TCExam is already installed. To run the installer again, delete shared/config/tce_db_config.php on the server.</strong></p>'."\n";
+	echo '</body></html>'."\n";
+	exit();
+}
 if (!F_are_files_writable(array($progress_log))) {
 	echo '</body></html>'."\n";
 	exit();
@@ -71,7 +77,7 @@ if (!isset($_REQUEST['database_name'])) {
 }
 
 //if this form has been submitted go on with installation process
-if (isset($_REQUEST['forceinstall']) AND ($_REQUEST['forceinstall'] == 1)) {
+if (isset($_POST['forceinstall']) AND ($_POST['forceinstall'] == 1)) {
 
 	if (!isset($_REQUEST['path_main'])) {
 		$_REQUEST['path_main'] = ''; //this field is not required

@@ -26,9 +26,10 @@
 /**
  * Returns XHTML code from text marked-up with TCExam Code Tags
  * @param $text_to_decode (string) text to convert
+ * @param $allow_latex (bool) if false, [tex] tags are left as text (use false for text written by examinees)
  * @return string XHTML code
  */
-function F_decode_tcecode($text_to_decode)
+function F_decode_tcecode($text_to_decode, bool $allow_latex = true)
 {
     require_once '../config/tce_config.php';
     global $l, $db;
@@ -48,7 +49,9 @@ function F_decode_tcecode($text_to_decode)
     $newtext = F_bbcode_to_tcecode($newtext);
 
     // [tex]LaTeX_code[/tex]
-    $newtext = preg_replace_callback("#\[tex\](.*?)\[/tex\]#si", 'F_latex_callback', $newtext);
+    if ($allow_latex) {
+        $newtext = preg_replace_callback("#\[tex\](.*?)\[/tex\]#si", 'F_latex_callback', $newtext);
+    }
 
     // [mathml]MathML_code[/mathml]
     $newtext = preg_replace_callback("#\[mathml\](.*?)\[/mathml\]#si", 'F_mathml_callback', $newtext);
@@ -253,7 +256,7 @@ function F_latex_callback($matches)
         $error = 'the formula is too long';
     } elseif (
         preg_match(
-            '/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special)/i',
+            '/(include|def|command|loop|repeat|open|toks|output|input|catcode|name|[\^]{2}|\\\\every|\\\\errhelp|\\\\errorstopmode|\\\\scrollmode|\\\\nonstopmode|\\\\batchmode|\\\\read|\\\\write|csname|\\\\newhelp|\\\\uppercase|\\\\lowercase|\\\\relax|\\\\aftergroup|\\\\afterassignment|\\\\expandafter|\\\\noexpand|\\\\special|\\\\pdf|scantokens|\\\\immediate|\\\\shipout)/i',
             $latex,
         ) > 0
     ) {
@@ -276,7 +279,15 @@ function F_latex_callback($matches)
         if (file_put_contents($imgpath . '.tex', $ltx) === false) {
             $error = 'unable to write on the cache folder';
         } else {
-            $cmd = 'cd ' . K_LATEX_PATH_PICTURE . ' && ' . K_LATEX_PDFLATEX . ' ' . $imgpath . '.tex';
+            // restrict file access to the working directory and disable shell commands
+            $cmd =
+                'cd '
+                . K_LATEX_PATH_PICTURE
+                . ' && openin_any=p openout_any=p '
+                . K_LATEX_PDFLATEX
+                . ' -no-shell-escape '
+                . $imgpath
+                . '.tex';
             $sts = exec($cmd, $out, $ret);
             if ($sts === false || $ret != 0) {
                 $error = implode("\n", $out);
@@ -318,6 +329,11 @@ function F_latex_callback($matches)
             if (F_file_exists($imgpath . '.' . $ext)) {
                 @unlink($imgpath . '.' . $ext);
             }
+        }
+
+        // do not keep an image that failed the checks
+        if ($imgurl === false && F_file_exists($imgpath . '.' . K_LATEX_IMG_FORMAT)) {
+            unlink($imgpath . '.' . K_LATEX_IMG_FORMAT);
         }
     }
 

@@ -1977,6 +1977,12 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_otp.php"
 code = "function-name"
+message = "Function name `F_checkOTPLogin` should be in snake case."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "function-name"
 message = "Function name `F_decodeBase32` should be in snake case."
 count = 1
 
@@ -1990,6 +1996,13 @@ count = 1
 file = "shared/code/tce_functions_otp.php"
 code = "function-name"
 message = "Function name `F_getRandomOTPkey` should be in snake case."
+count = 1
+
+
+[[issues]]
+file = "shared/code/tce_functions_otp.php"
+code = "function-name"
+message = "Function name `F_isValidOTPCode` should be in snake case."
 count = 1
 
 [[issues]]
