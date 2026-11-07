@@ -154,7 +154,7 @@ function F_altLogin()
                 || isset($_SERVER['HTTP_SHIB_IDENTITY_PROVIDER']) && !empty($_SERVER['HTTP_SHIB_IDENTITY_PROVIDER'])
             )
             && isset($_SERVER['eppn'])
-            && $_SESSION['session_user_name'] != $_SERVER['eppn']
+            && $_SESSION['session_user_name'] !== $_SERVER['eppn']
         )
     ) {
         $_POST['xuser_name'] = $_SERVER['eppn'];
