@@ -546,12 +546,15 @@ final class AccessControlHttpTest extends AppHttpTestCase
 
     public function testOperatorCannotBulkChangeForeignQuestions(): void
     {
-        $subjc = self::$ids['subjc'];
+        $subjc = self::$ids['subjc'] ?? 0;
         $subja = self::$ids['subja'];
-        $quest = [];
-        foreach (['disable', 'enable', 'delete', 'copy', 'move'] as $action) {
-            $quest[$action] = self::addQuestion($subjc, 'itest_ac_c_bulk_' . $action);
-        }
+        $quest = [
+            'disable' => self::addQuestion($subjc, 'itest_ac_c_bulk_disable'),
+            'enable' => self::addQuestion($subjc, 'itest_ac_c_bulk_enable'),
+            'delete' => self::addQuestion($subjc, 'itest_ac_c_bulk_delete'),
+            'copy' => self::addQuestion($subjc, 'itest_ac_c_bulk_copy'),
+            'move' => self::addQuestion($subjc, 'itest_ac_c_bulk_move'),
+        ];
         self::dbExec("UPDATE tce_questions SET question_enabled='0' WHERE question_id=" . $quest['enable']);
 
         $cookies = $this->loginAs('itest_ac_opa');

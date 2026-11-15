@@ -73,7 +73,8 @@ function F_getSVGGraphCode($p, $w = '', $h = '')
     for ($i = 0; $i <= 10; ++$i) {
         $y = ($i + 1) * $vstep;
         // text
-        $svg .= '	<text x="' . $textpos . '" y="' . $y . '" stroke-width="0">' . (100 - ($i * 10)) . '%</text>' . "\n";
+        $svg .=
+            '	<text x="' . $textpos . '" y="' . $y . '" stroke-width="0">' . (100 - ($i * 10)) . '%</text>' . "\n";
         // line
         $svg .= '	<line x1="' . $label_space . '" y1="' . $y . '" x2="' . $hw . '" y2="' . $y . '" />' . "\n";
     }
@@ -114,7 +115,14 @@ function F_getSVGGraphCode($p, $w = '', $h = '')
             $graph[$k] .= ' ' . $x . ',' . $y;
             // point
             $svg .=
-                '	<circle cx="' . $x . '" cy="' . $y . '" r="4" stroke-width="0" fill="#' . $color[$k] . '" />' . "\n";
+                '	<circle cx="'
+                . $x
+                . '" cy="'
+                . $y
+                . '" r="4" stroke-width="0" fill="#'
+                . $color[$k]
+                . '" />'
+                . "\n";
         }
     }
 

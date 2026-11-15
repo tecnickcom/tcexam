@@ -512,16 +512,14 @@ final class AdminControllerHttpTest extends AppHttpTestCase
      *
      * @param array<string,string> $cookies Session cookies.
      */
-    private function uploadMedia(array $cookies, string $filename, string $content): string
+    private function uploadMedia(array $cookies, string $filename, string $content): void
     {
-        [, $body] = $this->httpMultipart(
+        $this->httpMultipart(
             '/admin/code/tce_filemanager.php',
             $cookies,
             ['sendfile' => '1', 'csrf_token' => $this->tokenFor('/admin/code/tce_filemanager.php', $cookies)],
             ['userfile' => [$filename, $content]],
         );
-
-        return $body;
     }
 
     /**

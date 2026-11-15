@@ -72,7 +72,7 @@ function F_decode_form_fields()
  * Check Required Form Fields.<br>
  * Returns a string containing a list of missing fields (comma separated).
  * @param $formfields (string) input array containing form fields
- * @return array containing a list of missing fields (if any)
+ * @return string|false comma-separated list of missing fields, or false when no field is required
  */
 function F_check_required_fields($formfields)
 {

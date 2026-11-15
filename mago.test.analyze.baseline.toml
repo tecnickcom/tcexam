@@ -430,19 +430,19 @@ count = 2
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-null-argument"
 message = 'Argument #1 of method `Test\Integration\AccessControlHttpTest::addQuestion` is possibly `null`, but parameter type `int` does not accept it.'
-count = 9
-
-[[issues]]
-file = "test/integration/AccessControlHttpTest.php"
-code = "possibly-null-argument"
-message = 'Argument #1 of method `Test\Integration\AccessControlHttpTest::countQuestions` is possibly `null`, but parameter type `int` does not accept it.'
 count = 8
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-null-argument"
+message = 'Argument #1 of method `Test\Integration\AccessControlHttpTest::countQuestions` is possibly `null`, but parameter type `int` does not accept it.'
+count = 7
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-argument"
 message = 'Argument #4 of method `Test\Integration\AccessControlHttpTest::questionBulkAction` is possibly `null`, but parameter type `int` does not accept it.'
-count = 6
+count = 5
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -550,7 +550,7 @@ count = 7
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('subjc')` accessed on `array<string, int>`."
-count = 11
+count = 10
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -668,12 +668,6 @@ count = 1
 
 [[issues]]
 file = "test/integration/AppHttpTestCase.php"
-code = "possibly-undefined-variable"
-message = "Variable `$m` might not have been defined on all execution paths leading to this point."
-count = 2
-
-[[issues]]
-file = "test/integration/AppHttpTestCase.php"
 code = "reference-to-undefined-variable"
 message = "Reference created from a previously undefined variable `$m`."
 count = 1
@@ -682,7 +676,7 @@ count = 1
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
-count = 5
+count = 3
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"

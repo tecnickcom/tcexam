@@ -488,6 +488,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 16
@@ -644,6 +650,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
+code = "possibly-null-operand"
+message = "Left operand in `!=` comparison might be `null` (type `null|string('add')|string('update')`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_answer.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `list{string('S'), string('M'), string('T'), string('O')}`."
 count = 1
@@ -657,7 +669,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-lowercase-string` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
+message = "Possibly undefined array key `string('userfile0')|string('userfile1')` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
 count = 1
 
 [[issues]]
@@ -676,7 +688,7 @@ count = 1
 file = "admin/code/tce_edit_answer.php"
 code = "possibly-undefined-variable"
 message = "Variable `$menu_mode` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_answer.php"
@@ -725,12 +737,6 @@ file = "admin/code/tce_edit_answer.php"
 code = "unreachable-else-clause"
 message = "Unreachable else clause"
 count = 4
-
-[[issues]]
-file = "admin/code/tce_edit_answer.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_backup.php"
@@ -880,6 +886,12 @@ count = 1
 file = "admin/code/tce_edit_backup.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always truthy and right operand is evaluated."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_edit_backup.php"
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is evaluated and right operand is always truthy."
 count = 1
 
 [[issues]]
@@ -892,6 +904,12 @@ count = 23
 file = "admin/code/tce_edit_backup.php"
 code = "unreachable-match-arm"
 message = "This match arm is unreachable."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_group.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 1
 
 [[issues]]
@@ -1088,6 +1106,12 @@ count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_module.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_module.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 8
@@ -1256,6 +1280,12 @@ count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 9
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 14
@@ -1406,6 +1436,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
+code = "possibly-null-operand"
+message = "Left operand in `!=` comparison might be `null` (type `null|string('add')|string('update')`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_question.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `list{string('S'), string('M'), string('T'), string('O')}`."
 count = 1
@@ -1419,7 +1455,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_question.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-lowercase-string` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
+message = "Possibly undefined array key `string('userfile0')|string('userfile1')` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
 count = 1
 
 [[issues]]
@@ -1432,7 +1468,7 @@ count = 1
 file = "admin/code/tce_edit_question.php"
 code = "possibly-undefined-variable"
 message = "Variable `$menu_mode` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_question.php"
@@ -1489,16 +1525,16 @@ message = "Unreachable else clause"
 count = 4
 
 [[issues]]
-file = "admin/code/tce_edit_question.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
+file = "admin/code/tce_edit_rating.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 6
+count = 9
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1696,13 +1732,13 @@ count = 1
 file = "admin/code/tce_edit_rating.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always truthy and right operand is evaluated."
-count = 3
+count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is evaluated and right operand is always truthy."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_rating.php"
@@ -1739,6 +1775,12 @@ file = "admin/code/tce_edit_rating.php"
 code = "unreachable-else-clause"
 message = "Unreachable else clause"
 count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_sslcerts.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_sslcerts.php"
@@ -1946,6 +1988,12 @@ count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 8
@@ -2066,6 +2114,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
+code = "possibly-null-operand"
+message = "Left operand in `!=` comparison might be `null` (type `null|string('add')|string('update')`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_subject.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key 'name' accessed on `array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}`."
 count = 1
@@ -2079,7 +2133,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-lowercase-string` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
+message = "Possibly undefined array key `string('userfile0')|string('userfile1')` accessed on `array<non-empty-string, array{'error'?: int<0, 8>|non-empty-list<int<0, 8>>, 'full_path'?: non-empty-list<non-empty-string>|non-empty-string, 'name'?: non-empty-list<non-empty-string>|non-empty-string, 'size'?: non-empty-list<non-negative-int>|non-negative-int, 'tmp_name'?: non-empty-list<non-empty-string>|non-empty-string, 'type'?: non-empty-list<non-empty-string>|non-empty-string}>`."
 count = 1
 
 [[issues]]
@@ -2092,7 +2146,7 @@ count = 1
 file = "admin/code/tce_edit_subject.php"
 code = "possibly-undefined-variable"
 message = "Variable `$menu_mode` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_subject.php"
@@ -2131,10 +2185,10 @@ message = "Unreachable else clause"
 count = 4
 
 [[issues]]
-file = "admin/code/tce_edit_subject.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
+file = "admin/code/tce_edit_test.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 14
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2349,6 +2403,12 @@ count = 1
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "possibly-null-operand"
+message = "Left operand in `!=` comparison might be `null` (type `null|string('lock')|string('unlock')`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "possibly-null-operand"
 message = "Possibly null middle operand used in string concatenation (type `null|string('M')|string('O')|string('S')|string('T')`)."
 count = 1
 
@@ -2386,7 +2446,7 @@ count = 1
 file = "admin/code/tce_edit_test.php"
 code = "possibly-undefined-variable"
 message = "Variable `$menu_mode` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2403,6 +2463,12 @@ count = 3
 [[issues]]
 file = "admin/code/tce_edit_test.php"
 code = "redundant-comparison"
+message = "Redundant `!==` comparison: left-hand side is always not identical to right-hand side."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_test.php"
+code = "redundant-comparison"
 message = "Redundant `>` comparison: left-hand side is always greater than right-hand side."
 count = 1
 
@@ -2410,7 +2476,7 @@ count = 1
 file = "admin/code/tce_edit_test.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
-count = 15
+count = 16
 
 [[issues]]
 file = "admin/code/tce_edit_test.php"
@@ -2455,10 +2521,10 @@ message = "Unreachable else clause"
 count = 8
 
 [[issues]]
-file = "admin/code/tce_edit_test.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
+file = "admin/code/tce_edit_user.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2470,7 +2536,7 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
-count = 8
+count = 7
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2637,6 +2703,24 @@ count = 2
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "possibly-null-operand"
+message = "Left operand in `==` comparison might be `null` (type `int<2, max>|non-positive-int|null`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "possibly-null-operand"
+message = "Left operand in `==` comparison might be `null` (type `int|null`)."
+count = 5
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "possibly-null-operand"
+message = "Possibly null middle operand used in string concatenation (type `int<2, max>|non-positive-int|null`)."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "possibly-null-operand"
 message = "Possibly null middle operand used in string concatenation (type `null|string`)."
 count = 1
 
@@ -2644,13 +2728,13 @@ count = 1
 file = "admin/code/tce_edit_user.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_id')` accessed on `array<non-empty-string, mixed>`."
-count = 8
+count = 6
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('session_user_level')` accessed on `array<non-empty-string, mixed>`."
-count = 10
+count = 9
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2684,12 +2768,6 @@ count = 2
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
-code = "redundant-comparison"
-message = "Redundant `==` comparison: left-hand side is never equal to right-hand side."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_edit_user.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 6
@@ -2699,6 +2777,12 @@ file = "admin/code/tce_edit_user.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is always falsy and right operand is not evaluated."
 count = 1
+
+[[issues]]
+file = "admin/code/tce_edit_user.php"
+code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always truthy and right operand is evaluated."
+count = 4
 
 [[issues]]
 file = "admin/code/tce_edit_user.php"
@@ -2723,6 +2807,12 @@ file = "admin/code/tce_edit_user.php"
 code = "unreachable-else-clause"
 message = "Unreachable else clause"
 count = 3
+
+[[issues]]
+file = "admin/code/tce_email_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 7
 
 [[issues]]
 file = "admin/code/tce_email_results.php"
@@ -2927,12 +3017,6 @@ file = "admin/code/tce_filemanager.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 58
-
-[[issues]]
-file = "admin/code/tce_filemanager.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_email_reports.php"
@@ -3183,13 +3267,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "invalid-return-statement"
-message = "Invalid return type for function `F_getDirVisualTable`: expected `unknown-ref(html)`, but found `truthy-string`."
+message = """Invalid return type for function `F_getDirVisualTable`: expected `unknown-ref(html)`, but found `string('<br style="clear:both;" />')|truthy-string`."""
 count = 1
 
 [[issues]]
 file = "admin/code/tce_functions_filemanager.php"
 code = "invalid-return-statement"
-message = "Invalid return type for function `F_getFileInfo`: expected `unknown-ref(associative)`, but found `array{'aperms': truthy-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string(''), 'filename': string, 'lastmod': string, 'link': true, 'linkto': false|string, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}|array{'aperms': truthy-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string, 'filename': string, 'lastmod': string, 'link': false, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}|array{'aperms': truthy-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string, 'filename': string, 'lastmod': string, 'link': true, 'linkto': false|string, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}`."
+message = "Invalid return type for function `F_getFileInfo`: expected `unknown-ref(associative)`, but found `array{'aperms': truthy-lowercase-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string(''), 'filename': string, 'lastmod': string, 'link': true, 'linkto': false|string, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}|array{'aperms': truthy-lowercase-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string, 'filename': string, 'lastmod': string, 'link': false, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}|array{'aperms': truthy-lowercase-string, 'basename': string, 'dir': bool, 'dirname'?: string, 'extension': string, 'filename': string, 'lastmod': string, 'link': true, 'linkto': false|string, 'owner': false|non-negative-int, 'perms': false|non-negative-int, 'size': false|non-negative-int, 'tcefile': string, 'tcename': string}`."
 count = 1
 
 [[issues]]
@@ -5186,6 +5270,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_import_omr_answers.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_omr_answers.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 2
@@ -5528,6 +5618,12 @@ count = 19
 
 [[issues]]
 file = "admin/code/tce_import_questions.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_questions.php"
 code = "impossible-assignment"
 message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
 count = 1
@@ -5702,6 +5798,12 @@ count = 4
 
 [[issues]]
 file = "admin/code/tce_import_users.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_import_users.php"
 code = "deprecated-function"
 message = "Call to deprecated function: `xml_parser_free`."
 count = 1
@@ -5835,7 +5937,7 @@ count = 1
 [[issues]]
 file = "admin/code/tce_import_users.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #1 of `min`: expected `int(1)|non-empty-array<array-key, int(1)|string>|string`, but found `mixed`."
+message = "Invalid argument type for argument #1 of `min`: expected `false|int(1)|non-empty-array<array-key, false|int(1)|non-empty-string>|non-empty-string`, but found `mixed`."
 count = 1
 
 [[issues]]
@@ -6458,6 +6560,12 @@ count = 60
 
 [[issues]]
 file = "admin/code/tce_pdf_all_questions.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_pdf_all_questions.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 4
@@ -6590,6 +6698,12 @@ count = 6
 
 [[issues]]
 file = "admin/code/tce_pdf_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 7
+
+[[issues]]
+file = "admin/code/tce_pdf_results.php"
 code = "array-to-string-conversion"
 message = "Potential array in left operand of string concatenation."
 count = 1
@@ -6653,6 +6767,12 @@ file = "admin/code/tce_pdf_results.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 1
+
+[[issues]]
+file = "admin/code/tce_pdf_testgen.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
 
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
@@ -6825,13 +6945,13 @@ count = 2
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
 code = "possibly-null-operand"
-message = "Possibly null left operand used in string concatenation (type `non-empty-string|null`)."
+message = "Possibly null left operand used in string concatenation (type `null|string('0')|truthy-string`)."
 count = 2
 
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
 code = "possibly-null-operand"
-message = "Possibly null middle operand used in string concatenation (type `non-empty-string|null`)."
+message = "Possibly null middle operand used in string concatenation (type `null|string('0')|truthy-string`)."
 count = 2
 
 [[issues]]
@@ -6969,13 +7089,13 @@ count = 1
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-string` accessed on `array<truthy-string, non-empty-string>`."
+message = "Possibly undefined array key `truthy-string` accessed on `array<truthy-string, string('0')|truthy-string>`."
 count = 2
 
 [[issues]]
 file = "admin/code/tce_pdf_testgen.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-string` accessed on `non-empty-array<truthy-string, non-empty-string>`."
+message = "Possibly undefined array key `truthy-string` accessed on `non-empty-array<truthy-string, string('0')|truthy-string>`."
 count = 2
 
 [[issues]]
@@ -7018,6 +7138,12 @@ count = 1
 file = "admin/code/tce_pdf_testgen.php"
 code = "unhandled-thrown-type"
 message = 'Potentially unhandled exception `Com\Tecnick\Unicode\Exception` in `{closure:admin/code/tce_pdf_testgen.php:135:12}`.'
+count = 1
+
+[[issues]]
+file = "admin/code/tce_popup_test_info.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 1
 
 [[issues]]
@@ -7273,10 +7399,10 @@ message = "Undefined variable: `$l`."
 count = 66
 
 [[issues]]
-file = "admin/code/tce_select_mediafile.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
+file = "admin/code/tce_select_tests.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
@@ -7400,12 +7526,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests.php"
-code = "possibly-undefined-variable"
-message = "Variable `$wd` might not have been defined on all execution paths leading to this point."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_select_tests.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 3
@@ -7427,6 +7547,12 @@ file = "admin/code/tce_select_tests.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 7
+
+[[issues]]
+file = "admin/code/tce_select_tests_popup.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
@@ -7580,12 +7706,6 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_select_tests_popup.php"
-code = "possibly-undefined-variable"
-message = "Variable `$wd` might not have been defined on all execution paths leading to this point."
-count = 1
-
-[[issues]]
-file = "admin/code/tce_select_tests_popup.php"
 code = "redundant-comparison"
 message = "Redundant `!==` comparison: left-hand side is always not identical to right-hand side."
 count = 1
@@ -7606,6 +7726,12 @@ count = 1
 file = "admin/code/tce_select_tests_popup.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
+count = 6
+
+[[issues]]
+file = "admin/code/tce_select_users.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 6
 
 [[issues]]
@@ -7744,7 +7870,7 @@ count = 5
 file = "admin/code/tce_select_users.php"
 code = "redundant-logical-operation"
 message = "Redundant `&&` operation: left operand is evaluated and right operand is always truthy."
-count = 1
+count = 3
 
 [[issues]]
 file = "admin/code/tce_select_users.php"
@@ -7757,6 +7883,12 @@ file = "admin/code/tce_select_users.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 10
+
+[[issues]]
+file = "admin/code/tce_select_users_popup.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 4
 
 [[issues]]
 file = "admin/code/tce_select_users_popup.php"
@@ -7901,6 +8033,12 @@ file = "admin/code/tce_select_users_popup.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 9
+
+[[issues]]
+file = "admin/code/tce_show_all_questions.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 8
 
 [[issues]]
 file = "admin/code/tce_show_all_questions.php"
@@ -8192,6 +8330,12 @@ count = 36
 
 [[issues]]
 file = "admin/code/tce_show_online_users.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_show_online_users.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
 count = 1
@@ -8207,6 +8351,12 @@ file = "admin/code/tce_show_online_users.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 1
+
+[[issues]]
+file = "admin/code/tce_show_result_allusers.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 7
 
 [[issues]]
 file = "admin/code/tce_show_result_allusers.php"
@@ -8447,6 +8597,12 @@ file = "admin/code/tce_show_result_allusers.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 59
+
+[[issues]]
+file = "admin/code/tce_show_result_user.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
 
 [[issues]]
 file = "admin/code/tce_show_result_user.php"
@@ -8719,10 +8875,10 @@ message = "Unreachable else clause"
 count = 4
 
 [[issues]]
-file = "admin/code/tce_show_result_user.php"
-code = "unreachable-switch-default"
-message = "Unreachable default case"
-count = 1
+file = "admin/code/tce_tsv_questions.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
 
 [[issues]]
 file = "admin/code/tce_tsv_questions.php"
@@ -8825,6 +8981,12 @@ file = "admin/code/tce_tsv_questions.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `list{string('S'), string('M'), string('T'), string('O')}`."
 count = 1
+
+[[issues]]
+file = "admin/code/tce_tsv_result_allusers.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 4
 
 [[issues]]
 file = "admin/code/tce_tsv_result_allusers.php"
@@ -9032,6 +9194,12 @@ count = 14
 
 [[issues]]
 file = "admin/code/tce_xml_question_stats.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "admin/code/tce_xml_question_stats.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 3
@@ -9200,6 +9368,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_xml_questions.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 3
+
+[[issues]]
+file = "admin/code/tce_xml_questions.php"
 code = "impossible-condition"
 message = "This condition (type `false`) will always evaluate to false."
 count = 4
@@ -9326,6 +9500,12 @@ count = 1
 
 [[issues]]
 file = "admin/code/tce_xml_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 4
+
+[[issues]]
+file = "admin/code/tce_xml_results.php"
 code = "invalid-argument"
 message = "Invalid argument type for argument #1 of `SimpleXMLElement::__construct`: expected `string`, but found `unknown-ref(XML)`."
 count = 1
@@ -9425,6 +9605,12 @@ file = "admin/code/tce_xml_results.php"
 code = "possibly-invalid-operand"
 message = "Left operand may be an `array` when compared with non-array type `int(0)` using `>`."
 count = 2
+
+[[issues]]
+file = "admin/code/tce_xml_user_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
 
 [[issues]]
 file = "admin/code/tce_xml_user_results.php"
@@ -10076,6 +10262,12 @@ count = 11
 
 [[issues]]
 file = "public/code/tce_pdf_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 8
+
+[[issues]]
+file = "public/code/tce_pdf_results.php"
 code = "array-to-string-conversion"
 message = "Potential array in left operand of string concatenation."
 count = 1
@@ -10148,6 +10340,12 @@ count = 1
 
 [[issues]]
 file = "public/code/tce_popup_test_info.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "public/code/tce_popup_test_info.php"
 code = "invalid-argument"
 message = "Invalid type for the first value."
 count = 1
@@ -10174,6 +10372,12 @@ count = 1
 file = "public/code/tce_popup_test_info.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
+count = 2
+
+[[issues]]
+file = "public/code/tce_show_result_user.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 2
 
 [[issues]]
@@ -10376,6 +10580,12 @@ count = 36
 
 [[issues]]
 file = "public/code/tce_test_allresults.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 4
+
+[[issues]]
+file = "public/code/tce_test_allresults.php"
 code = "array-to-string-conversion"
 message = "Potential array in left operand of string concatenation."
 count = 1
@@ -10562,6 +10772,12 @@ count = 34
 
 [[issues]]
 file = "public/code/tce_test_execute.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 6
+
+[[issues]]
+file = "public/code/tce_test_execute.php"
 code = "invalid-argument"
 message = "Invalid type for the first value."
 count = 1
@@ -10688,12 +10904,6 @@ count = 1
 
 [[issues]]
 file = "public/code/tce_test_execute.php"
-code = "possibly-undefined-variable"
-message = "Variable `$matches` might not have been defined on all execution paths leading to this point."
-count = 1
-
-[[issues]]
-file = "public/code/tce_test_execute.php"
 code = "redundant-condition"
 message = "This condition (type `true`) will always evaluate to true."
 count = 1
@@ -10703,6 +10913,12 @@ file = "public/code/tce_test_execute.php"
 code = "undefined-variable"
 message = "Undefined variable: `$l`."
 count = 25
+
+[[issues]]
+file = "public/code/tce_test_results.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
 
 [[issues]]
 file = "public/code/tce_test_results.php"
@@ -11228,6 +11444,12 @@ count = 45
 
 [[issues]]
 file = "public/code/tce_test_start.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 1
+
+[[issues]]
+file = "public/code/tce_test_start.php"
 code = "mixed-array-access"
 message = "Unsafe array access on type `mixed`."
 count = 6
@@ -11480,12 +11702,6 @@ count = 4
 
 [[issues]]
 file = "public/code/tce_user_registration.php"
-code = "invalid-assignment"
-message = "Invalid target for assignment."
-count = 1
-
-[[issues]]
-file = "public/code/tce_user_registration.php"
 code = "invalid-iterator"
 message = "The expression provided to `foreach` is not iterable. It resolved to type `mixed`, which is not iterable."
 count = 2
@@ -11631,6 +11847,12 @@ count = 5
 [[issues]]
 file = "public/code/tce_user_registration.php"
 code = "redundant-logical-operation"
+message = "Redundant `&&` operation: left operand is always truthy and right operand is evaluated."
+count = 2
+
+[[issues]]
+file = "public/code/tce_user_registration.php"
+code = "redundant-logical-operation"
 message = "Redundant `||` operation: left operand is always true and right operand is not evaluated."
 count = 1
 
@@ -11668,6 +11890,12 @@ count = 2
 file = "public/code/tce_user_registration.php"
 code = "unreachable-else-clause"
 message = "Unreachable else clause"
+count = 1
+
+[[issues]]
+file = "public/code/tce_user_verification.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 1
 
 [[issues]]
@@ -12064,6 +12292,12 @@ count = 1
 file = "shared/code/tce_altauth.php"
 code = "undefined-variable"
 message = "Undefined variable: `$ldap_attr`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_authorization.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
 count = 2
 
 [[issues]]
@@ -13694,12 +13928,6 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_form.php"
-code = "array-to-string-conversion"
-message = "Invalid right operand: cannot use type `array` in string concatenation."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
 code = "invalid-iterator"
 message = "The expression provided to `foreach` is not iterable. It resolved to type `mixed`, which is not iterable."
 count = 1
@@ -13708,18 +13936,6 @@ count = 1
 file = "shared/code/tce_functions_form.php"
 code = "invalid-return-statement"
 message = "Invalid return type for function `F_check_form_fields`: expected `false`, but found `true`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_check_required_fields`: expected `array<array-key, mixed>`, but found `false`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_form.php"
-code = "invalid-return-statement"
-message = "Invalid return type for function `F_check_required_fields`: expected `array<array-key, mixed>`, but found `string`."
 count = 1
 
 [[issues]]
@@ -16130,6 +16346,18 @@ count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_statistics.php"
+code = "possibly-null-operand"
+message = "Right operand in arithmetic operation might be `null` (type `float|int|null`)."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "possibly-null-operand"
+message = "Right operand in arithmetic operation might be `null` (type `non-negative-int|null`)."
+count = 3
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `list<mixed>`."
 count = 5
@@ -16138,6 +16366,18 @@ count = 5
 file = "shared/code/tce_functions_statistics.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array index accessed on `list<string>`."
+count = 1
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `mixed` accessed on `non-empty-array<mixed, float|int>`."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_statistics.php"
+code = "possibly-undefined-int-array-index"
+message = "Possibly undefined array key `mixed` accessed on `non-empty-array<mixed, non-negative-int>`."
 count = 1
 
 [[issues]]
@@ -16233,7 +16473,7 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_svg_graph.php"
 code = "possibly-null-operand"
-message = "Possibly null left operand used in string concatenation (type `null|string`)."
+message = "Possibly null left operand used in string concatenation (type `null|string('')|truthy-string`)."
 count = 1
 
 [[issues]]
@@ -16551,18 +16791,6 @@ count = 3
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
 code = "mixed-argument"
-message = "Invalid argument type for argument #2 of `exec`: expected `array<array-key, mixed>|null`, but found `mixed`."
-count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "mixed-argument"
-message = "Invalid argument type for argument #3 of `exec`: expected `int|null`, but found `mixed`."
-count = 1
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "mixed-argument"
 message = "Invalid argument type for argument #3 of `htmlspecialchars`: expected `null|string`, but found `mixed`."
 count = 2
 
@@ -16733,12 +16961,6 @@ file = "shared/code/tce_functions_tcecode.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array key `int(2)` accessed on `array<array-key, string>`."
 count = 2
-
-[[issues]]
-file = "shared/code/tce_functions_tcecode.php"
-code = "possibly-undefined-variable"
-message = "Variable `$out` might not have been defined on all execution paths leading to this point."
-count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_tcecode.php"
@@ -17608,7 +17830,7 @@ count = 15
 file = "shared/code/tce_functions_test.php"
 code = "mixed-operand"
 message = "Left operand in `||` operation has `mixed` type."
-count = 2
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -17745,14 +17967,20 @@ count = 3
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "possibly-null-operand"
-message = "Possibly null left operand used in string concatenation (type `non-empty-string|null`)."
+message = "Possibly null left operand used in string concatenation (type `null|string('0')|truthy-string`)."
 count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "possibly-null-operand"
-message = "Possibly null middle operand used in string concatenation (type `non-empty-string|null`)."
+message = "Possibly null middle operand used in string concatenation (type `null|string('0')|truthy-string`)."
 count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_test.php"
+code = "possibly-null-operand"
+message = "Right operand in `<=` comparison might be `null` (type `null|unknown-ref(number)`)."
+count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -17889,13 +18117,13 @@ count = 1
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-string` accessed on `array<truthy-string, non-empty-string>`."
+message = "Possibly undefined array key `truthy-string` accessed on `array<truthy-string, string('0')|truthy-string>`."
 count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
 code = "possibly-undefined-string-array-index"
-message = "Possibly undefined array key `truthy-string` accessed on `non-empty-array<truthy-string, non-empty-string>`."
+message = "Possibly undefined array key `truthy-string` accessed on `non-empty-array<truthy-string, string('0')|truthy-string>`."
 count = 2
 
 [[issues]]
@@ -17920,7 +18148,7 @@ count = 2
 file = "shared/code/tce_functions_test.php"
 code = "possibly-undefined-variable"
 message = "Variable `$question_timer` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 2
 
 [[issues]]
 file = "shared/code/tce_functions_test.php"
@@ -18434,6 +18662,12 @@ count = 1
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
+code = "possibly-null-operand"
+message = "Left operand in `>` comparison might be `null` (type `non-negative-int|null`)."
+count = 2
+
+[[issues]]
+file = "shared/code/tce_functions_test_stats.php"
 code = "possibly-undefined-int-array-index"
 message = "Possibly undefined array key `int(1)` accessed on `array<array-key, string>`."
 count = 1
@@ -18466,13 +18700,7 @@ count = 1
 file = "shared/code/tce_functions_test_stats.php"
 code = "possibly-undefined-variable"
 message = "Variable `$itemcount` might not have been defined on all execution paths leading to this point."
-count = 4
-
-[[issues]]
-file = "shared/code/tce_functions_test_stats.php"
-code = "possibly-undefined-variable"
-message = "Variable `$matches` might not have been defined on all execution paths leading to this point."
-count = 1
+count = 3
 
 [[issues]]
 file = "shared/code/tce_functions_test_stats.php"
@@ -19943,6 +20171,12 @@ file = "shared/code/tce_pdf_report.php"
 code = "unhandled-thrown-type"
 message = "Potentially unhandled exception `Throwable` in `TcePdfReport::writeReportHTML`."
 count = 1
+
+[[issues]]
+file = "shared/code/tce_svg_graph.php"
+code = "array-to-int-cast"
+message = "Casting an array to int instead of counting its elements."
+count = 2
 
 [[issues]]
 file = "shared/code/tce_tmx.php"

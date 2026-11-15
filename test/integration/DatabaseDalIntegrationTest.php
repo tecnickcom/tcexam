@@ -131,7 +131,7 @@ final class DatabaseDalIntegrationTest extends TestCase
         $levels = [];
         $row = \F_db_fetch_assoc($res);
         while (is_array($row)) {
-            $levels[(string) $row['user_name']] = (int) $row['user_level'];
+            $levels[(string) ($row['user_name'] ?? '')] = (int) ($row['user_level'] ?? 0);
             $row = \F_db_fetch_assoc($res);
         }
 
