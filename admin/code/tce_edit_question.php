@@ -657,6 +657,11 @@ if ($changemodule > 0 || $question_subject_id <= 0) {
     }
 }
 
+// check user's authorization for the displayed subject
+if ($question_subject_id > 0 && !F_isAuthorizedSubject($question_subject_id)) {
+    F_print_error('ERROR', $l['m_authorization_denied'], true);
+}
+
 // --- Initialize variables
 if ($formstatus && $menu_mode != 'clear') {
     if ($changemodule > 0 || $changecategory > 0 || $question_id === 0) {

@@ -428,9 +428,39 @@ count = 2
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Test\Integration\AccessControlHttpTest::addQuestion` is possibly `null`, but parameter type `int` does not accept it.'
+count = 9
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-argument"
+message = 'Argument #1 of method `Test\Integration\AccessControlHttpTest::countQuestions` is possibly `null`, but parameter type `int` does not accept it.'
+count = 8
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-argument"
+message = 'Argument #4 of method `Test\Integration\AccessControlHttpTest::questionBulkAction` is possibly `null`, but parameter type `int` does not accept it.'
+count = 6
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-argument"
+message = 'Argument #5 of method `Test\Integration\AccessControlHttpTest::questionBulkAction` is possibly `null`, but parameter type `int` does not accept it.'
+count = 5
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-null-operand"
+message = "Possibly null middle operand used in string concatenation (type `int|null`)."
+count = 16
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-null-operand"
 message = "Possibly null right operand used in string concatenation (type `int|null`)."
-count = 11
+count = 18
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -448,7 +478,7 @@ count = 2
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('answa')` accessed on `array<string, int>`."
-count = 2
+count = 3
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -460,19 +490,25 @@ count = 1
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('mod')` accessed on `array<array-key, mixed>`."
-count = 2
+count = 3
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('moda')` accessed on `array<string, int>`."
-count = 1
+count = 10
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('modb')` accessed on `array<string, int>`."
 count = 1
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('modc')` accessed on `array<string, int>`."
+count = 2
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -484,7 +520,7 @@ count = 3
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('questa')` accessed on `array<string, int>`."
-count = 1
+count = 2
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
@@ -496,13 +532,31 @@ count = 3
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('subj')` accessed on `array<array-key, mixed>`."
-count = 2
+count = 4
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('subja')` accessed on `array<string, int>`."
+count = 13
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('subjb')` accessed on `array<string, int>`."
 count = 7
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('subjc')` accessed on `array<string, int>`."
+count = 11
+
+[[issues]]
+file = "test/integration/AccessControlHttpTest.php"
+code = "possibly-undefined-string-array-index"
+message = "Possibly undefined array key `string('subjd')` accessed on `array<string, int>`."
+count = 5
 
 [[issues]]
 file = "test/integration/AccessControlHttpTest.php"

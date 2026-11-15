@@ -225,14 +225,17 @@ switch ($menu_mode) {
                     break;
                 }
 
-                // get answer position (if defined)
-                $sql = 'SELECT answer_position
+                // get answer position (if defined) and parent question
+                $answer_position = 0;
+                $answer_parent_id = 0;
+                $sql = 'SELECT answer_position, answer_question_id
 				FROM ' . K_TABLE_ANSWERS . '
 				WHERE answer_id=' . $answer_id . '
 				LIMIT 1';
                 if ($r = F_db_query($sql, $db)) {
                     if ($m = F_db_fetch_array($r)) {
-                        $answer_position = $m['answer_position'];
+                        $answer_position = (int) $m['answer_position'];
+                        $answer_parent_id = (int) $m['answer_question_id'];
                     }
                 } else {
                     F_display_db_error();
@@ -253,7 +256,7 @@ switch ($menu_mode) {
                             . ' SET
 						answer_position=answer_position-1
 						WHERE answer_question_id='
-                            . $answer_question_id
+                            . $answer_parent_id
                             . '
 							AND answer_position>'
                             . $answer_position
@@ -644,6 +647,18 @@ if ($changesubject > 0 || $changemodule > 0 || $answer_question_id <= 0) {
     } else {
         F_display_db_error();
     }
+}
+
+// check user's authorization for the displayed subject and question
+if (
+    $question_subject_id > 0 && !F_isAuthorizedSubject($question_subject_id)
+    || $answer_question_id > 0
+    && F_count_rows(
+        K_TABLE_QUESTIONS,
+        'WHERE question_id=' . (int) $answer_question_id . ' AND question_subject_id=' . (int) $question_subject_id,
+    ) < 1
+) {
+    F_print_error('ERROR', $l['m_authorization_denied'], true);
 }
 
 // --- Initialize variables

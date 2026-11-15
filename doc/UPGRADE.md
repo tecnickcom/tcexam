@@ -215,6 +215,17 @@ below, note the following one-time changes.
 - **Session ID at login.** A new session ID is issued at login and the session used before login is
   deleted.
 
+### Question list and editors
+
+- **Question list** (`tce_show_all_questions.php`). The selected topic must belong to the selected
+  module and the user must be authorized for it. Bulk actions apply only to questions of the
+  displayed topic and require the `K_AUTH_ADMIN_QUESTIONS` level; copy and move also require
+  authorization for the target topic.
+- **Move** keeps the question in the source topic when the copy fails or when an identical
+  question already exists in the target topic.
+- **Question and answer editors** refuse requests for a topic or question the user is not
+  authorized for.
+
 ### New configuration constants
 
 Compare your config files against the shipped `*.default` files and add the new constants:

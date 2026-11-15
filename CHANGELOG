@@ -1,3 +1,11 @@
+17.5.2 (2026-11-15)
+	- Security fixes for question access. Please read the "Question list and editors" section of UPGRADE.md before updating an existing installation.
+	- The question list checks that the selected topic belongs to the selected module and that the user is authorized for it, and applies bulk actions only to questions of that topic.
+	- Bulk actions on the question list (delete, enable, disable, copy, move) require the K_AUTH_ADMIN_QUESTIONS level; copy and move require authorization for the target topic.
+	- Moving a question no longer deletes it when the copy fails or an identical question already exists in the target topic.
+	- Deleting a question renumbers the positions of its own topic.
+	- The question and answer editors no longer list questions or answers of topics the user is not authorized for.
+
 17.5.0 (2026-11-02)
 	- Security fixes for exam pages, LaTeX, OTP and the installer. Please read the "Exam pages, LaTeX, OTP and installer" section of UPGRADE.md before updating an existing installation.
 	- The exam page displays and stores answers only for test logs of the examinee's active attempt; other examinees' questions and answers can no longer be displayed, and answers of earlier attempts can no longer be changed.

@@ -141,6 +141,39 @@ final class AccessControlHttpTest extends AppHttpTestCase
         return ['mod' => $mod, 'subj' => $subj, 'quest' => $quest, 'answ' => $answ];
     }
 
+    /** Insert a single-answer question with one right answer and return its ID. */
+    private static function addQuestion(int $subjectId, string $description): int
+    {
+        self::dbExec(
+            'INSERT INTO tce_questions (question_subject_id,question_description,question_type,question_difficulty,question_enabled,question_timer) '
+            . 'VALUES (' . $subjectId . ",'" . $description . "',1,1,'1',0)"
+        );
+        $quest = self::dbInt("SELECT question_id FROM tce_questions WHERE question_description='" . $description . "'");
+        self::dbExec(
+            'INSERT INTO tce_answers (answer_question_id,answer_description,answer_isright,answer_enabled) '
+            . 'VALUES (' . $quest . ",'" . $description . "_key','1','1')"
+        );
+
+        return $quest;
+    }
+
+    /** Return the number of questions with the given description in a subject. */
+    private static function countQuestions(int $subjectId, string $description): int
+    {
+        return self::dbInt(
+            'SELECT COUNT(*) FROM tce_questions WHERE question_subject_id=' . $subjectId
+            . " AND question_description='" . $description . "'"
+        );
+    }
+
+    /** Return 1 if the question is enabled, 0 otherwise. */
+    private static function isEnabled(int $questionId): int
+    {
+        return self::dbInt(
+            'SELECT COUNT(*) FROM tce_questions WHERE question_id=' . $questionId . " AND question_enabled='1'"
+        );
+    }
+
     /** Seed groups, users, content, tests and one result on operator B's test. */
     private static function seed(): void
     {
@@ -158,6 +191,8 @@ final class AccessControlHttpTest extends AppHttpTestCase
 
         $a = self::addContent('itest_ac_a', $opa);
         $b = self::addContent('itest_ac_b', $opb);
+        $c = self::addContent('itest_ac_c', $opb);
+        $d = self::addContent('itest_ac_d', $opa);
 
         foreach (['a' => $opa, 'b' => $opb] as $k => $owner) {
             self::dbExec(
@@ -196,6 +231,9 @@ final class AccessControlHttpTest extends AppHttpTestCase
             'subjb' => $b['subj'],
             'questb' => $b['quest'],
             'answb' => $b['answ'],
+            'modc' => $c['mod'],
+            'subjc' => $c['subj'],
+            'subjd' => $d['subj'],
         ];
     }
 
@@ -457,5 +495,176 @@ final class AccessControlHttpTest extends AppHttpTestCase
             self::dbInt('SELECT COUNT(*) FROM tce_test_subject_set WHERE tsubset_test_id=' . self::$ids['testa']),
             'a foreign subject must not be added to a test'
         );
+    }
+
+    /**
+     * Post a bulk action on the question list as the given session.
+     *
+     * @param array<string,string> $cookies Session cookies.
+     */
+    private function questionBulkAction(
+        array $cookies,
+        string $action,
+        int $questionId,
+        int $subjectId,
+        int $newSubjectId = 0
+    ): string {
+        $page = '/admin/code/tce_show_all_questions.php';
+        [, $body] = $this->http('POST', $page, $cookies, [
+            'update' => '1',
+            'menu_action' => $action,
+            'subject_module_id' => (string) self::$ids['moda'],
+            'subject_id' => (string) $subjectId,
+            'new_subject_id' => (string) $newSubjectId,
+            'questionid1' => (string) $questionId,
+            'csrf_token' => $this->tokenFor($page, $cookies),
+        ]);
+
+        return $body;
+    }
+
+    public function testOperatorCannotListForeignQuestions(): void
+    {
+        self::addQuestion(self::$ids['subjc'], 'itest_ac_c_listed');
+        $path = '/admin/code/tce_show_all_questions.php?subject_module_id=';
+
+        $cookies = $this->loginAs('itest_ac_opb');
+        [, $body] = $this->http('GET', $path . self::$ids['modc'] . '&subject_id=' . self::$ids['subjc'], $cookies);
+        $this->assertStringContainsString('itest_ac_c_listed_key', $body, 'the owner must see its own questions');
+        $this->assertStringContainsString('okbox', $body, 'the owner must see the right answers');
+
+        $cookies = $this->loginAs('itest_ac_opa');
+        [, $body] = $this->http('GET', $path . self::$ids['moda'] . '&subject_id=' . self::$ids['subjc'], $cookies);
+        $this->assertStringNotContainsString('itest_ac_c_listed', $body, 'a foreign subject must not be listed');
+        $this->assertStringNotContainsString('form_selectquestions', $body, 'a foreign subject must be refused');
+        [, $body] = $this->http('GET', $path . self::$ids['moda'] . '&subject_id=' . self::$ids['subjd'], $cookies);
+        $this->assertStringNotContainsString('itest_ac_d_question', $body, 'a subject of another module must not be listed');
+        $this->assertStringNotContainsString('form_selectquestions', $body, 'a subject of another module must be refused');
+        [, $body] = $this->http('GET', $path . self::$ids['moda'] . '&subject_id=' . self::$ids['subja'], $cookies);
+        $this->assertStringContainsString('itest_ac_a_question', $body, 'an owned subject must be listed');
+    }
+
+    public function testOperatorCannotBulkChangeForeignQuestions(): void
+    {
+        $subjc = self::$ids['subjc'];
+        $subja = self::$ids['subja'];
+        $quest = [];
+        foreach (['disable', 'enable', 'delete', 'copy', 'move'] as $action) {
+            $quest[$action] = self::addQuestion($subjc, 'itest_ac_c_bulk_' . $action);
+        }
+        self::dbExec("UPDATE tce_questions SET question_enabled='0' WHERE question_id=" . $quest['enable']);
+
+        $cookies = $this->loginAs('itest_ac_opa');
+        foreach ($quest as $action => $questionId) {
+            $this->questionBulkAction($cookies, $action, $questionId, $subja, $subja);
+            $this->questionBulkAction($cookies, $action, $questionId, $subjc, $subja);
+        }
+
+        foreach (array_keys($quest) as $action) {
+            $desc = 'itest_ac_c_bulk_' . $action;
+            $this->assertSame(1, self::countQuestions($subjc, $desc), $action . ': the foreign question must stay in its subject');
+            $this->assertSame(0, self::countQuestions($subja, $desc), $action . ': the foreign question must not be copied');
+        }
+        $this->assertSame(1, self::isEnabled($quest['disable']), 'a foreign question must not be disabled');
+        $this->assertSame(0, self::isEnabled($quest['enable']), 'a foreign question must not be enabled');
+    }
+
+    public function testMoveKeepsQuestionWhenTargetIsForeign(): void
+    {
+        $questionId = self::addQuestion(self::$ids['subja'], 'itest_ac_a_move_foreign');
+        $body = $this->questionBulkAction($this->loginAs('itest_ac_opa'), 'move', $questionId, self::$ids['subja'], self::$ids['subjc']);
+        $this->assertStringContainsString('class="error"', $body, 'a foreign target must be reported');
+        $this->assertSame(1, self::countQuestions(self::$ids['subja'], 'itest_ac_a_move_foreign'), 'the question must not be lost');
+        $this->assertSame(0, self::countQuestions(self::$ids['subjc'], 'itest_ac_a_move_foreign'));
+    }
+
+    public function testMoveKeepsQuestionWhenTargetHasDuplicate(): void
+    {
+        $questionId = self::addQuestion(self::$ids['subja'], 'itest_ac_a_move_dup');
+        self::dbExec(
+            'INSERT INTO tce_questions (question_subject_id,question_description,question_type,question_difficulty,question_enabled,question_timer) '
+            . 'VALUES (' . self::$ids['subjd'] . ",'itest_ac_a_move_dup',1,1,'1',0)"
+        );
+        $this->questionBulkAction($this->loginAs('itest_ac_opa'), 'move', $questionId, self::$ids['subja'], self::$ids['subjd']);
+        $this->assertSame(1, self::countQuestions(self::$ids['subja'], 'itest_ac_a_move_dup'), 'the question must not be lost');
+        $this->assertSame(1, self::countQuestions(self::$ids['subjd'], 'itest_ac_a_move_dup'), 'no second copy must be created');
+    }
+
+    public function testOperatorCanChangeOwnQuestions(): void
+    {
+        $cookies = $this->loginAs('itest_ac_opa');
+        $subja = self::$ids['subja'];
+        $subjd = self::$ids['subjd'];
+
+        $moved = self::addQuestion($subja, 'itest_ac_a_move_own');
+        $this->questionBulkAction($cookies, 'move', $moved, $subja, $subjd);
+        $this->assertSame(0, self::countQuestions($subja, 'itest_ac_a_move_own'), 'the moved question must leave the source');
+        $this->assertSame(1, self::countQuestions($subjd, 'itest_ac_a_move_own'), 'the moved question must reach the target');
+        $this->assertSame(
+            1,
+            self::dbInt("SELECT COUNT(*) FROM tce_answers WHERE answer_description='itest_ac_a_move_own_key' AND answer_isright='1'"),
+            'the answers must be moved with the question'
+        );
+
+        $disabled = self::addQuestion($subja, 'itest_ac_a_disable_own');
+        $this->questionBulkAction($cookies, 'disable', $disabled, $subja);
+        $this->assertSame(0, self::isEnabled($disabled), 'an owned question must be disabled');
+    }
+
+    public function testOperatorCannotRenumberForeignAnswers(): void
+    {
+        $foreign = self::addQuestion(self::$ids['subjc'], 'itest_ac_c_positions');
+        self::dbExec('UPDATE tce_answers SET answer_position=2 WHERE answer_question_id=' . $foreign);
+        $own = self::addQuestion(self::$ids['subja'], 'itest_ac_a_positions');
+        self::dbExec('UPDATE tce_answers SET answer_position=1 WHERE answer_question_id=' . $own);
+        $ownAnswer = self::dbInt('SELECT answer_id FROM tce_answers WHERE answer_question_id=' . $own);
+
+        $cookies = $this->loginAs('itest_ac_opa');
+        $page = '/admin/code/tce_edit_answer.php';
+        $this->http('POST', $page, $cookies, [
+            'forcedelete' => 'delete',
+            'answer_id' => (string) $ownAnswer,
+            'answer_question_id' => (string) $foreign,
+            'csrf_token' => $this->tokenFor($page, $cookies),
+        ]);
+        $this->assertSame(0, self::dbInt('SELECT COUNT(*) FROM tce_answers WHERE answer_id=' . $ownAnswer), 'the owned answer must be deleted');
+        $this->assertSame(
+            2,
+            self::dbInt('SELECT answer_position FROM tce_answers WHERE answer_question_id=' . $foreign),
+            'positions of a foreign question must not change'
+        );
+    }
+
+    public function testEditorsDoNotListForeignContent(): void
+    {
+        $questionId = self::addQuestion(self::$ids['subjc'], 'itest_ac_c_editor');
+        $answerPage = '/admin/code/tce_edit_answer.php?subject_module_id=';
+
+        $cookies = $this->loginAs('itest_ac_opb');
+        [, $body] = $this->http(
+            'GET',
+            $answerPage . self::$ids['modc'] . '&question_subject_id=' . self::$ids['subjc'] . '&answer_question_id=' . $questionId,
+            $cookies
+        );
+        $this->assertStringContainsString('itest_ac_c_editor_key', $body, 'the owner must see its own answers');
+
+        $cookies = $this->loginAs('itest_ac_opa');
+        foreach ([
+            '/admin/code/tce_edit_question.php?subject_module_id=' . self::$ids['moda'] . '&question_subject_id=' . self::$ids['subjc'],
+            $answerPage . self::$ids['moda'] . '&question_subject_id=' . self::$ids['subjc'] . '&answer_question_id=' . $questionId,
+            $answerPage . self::$ids['moda'] . '&question_subject_id=' . self::$ids['subja'] . '&answer_question_id=' . $questionId,
+            $answerPage . self::$ids['moda'] . '&question_subject_id=' . self::$ids['subja'] . '&answer_question_id=' . $questionId
+                . '&answer_id=' . self::$ids['answa'],
+        ] as $path) {
+            [, $body] = $this->http('GET', $path, $cookies);
+            $this->assertStringNotContainsString('itest_ac_c_editor', $body, $path);
+        }
+
+        [, $body] = $this->http(
+            'GET',
+            $answerPage . self::$ids['moda'] . '&question_subject_id=' . self::$ids['subja'] . '&answer_question_id=' . self::$ids['questa'],
+            $cookies
+        );
+        $this->assertStringContainsString('itest_ac_a_answer', $body, 'an owned question must be listed');
     }
 }

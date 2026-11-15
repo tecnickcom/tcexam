@@ -87,11 +87,11 @@ if (!isset($hide_answers)) {
     $hide_answers = false;
 }
 
-if (isset($_POST['selectmodule'])) {
+if (isset($_POST['selectmodule']) || isset($_POST['changemodule']) && $_POST['changemodule'] > 0) {
     $changemodule = 1;
 }
 
-if (isset($_POST['selectcategory'])) {
+if (isset($_POST['selectcategory']) || isset($_POST['changecategory']) && $_POST['changecategory'] > 0) {
     $changecategory = 1;
 }
 
@@ -140,35 +140,69 @@ if (isset($changemodule) && $changemodule > 0 || !(isset($subject_id) && $subjec
     }
 }
 
-if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && !empty($menu_action)) {
-    $istart = 1 + $firstrow;
-    $iend = $rowsperpage + $firstrow;
-    for ($i = $istart; $i <= $iend; ++$i) {
-        // for each selected question
-        $keyname = 'questionid' . $i;
-        if (isset($_POST[$keyname])) {
+// check that the subject belongs to the selected module and the user is authorized for it
+if (
+    $subject_id > 0
+    && (
+        F_count_rows(
+            K_TABLE_SUBJECTS,
+            'WHERE subject_id=' . $subject_id . ' AND subject_module_id=' . $subject_module_id,
+        ) < 1
+        || !F_isAuthorizedSubject($subject_id)
+    )
+) {
+    F_print_error('ERROR', $l['m_authorization_denied']);
+    require_once '../code/tce_page_footer.php';
+    exit();
+}
+
+$new_subject_id = (int) $new_subject_id;
+
+if (isset($menu_mode) && $menu_mode == 'update' && !empty($menu_action) && $subject_id > 0) {
+    $transfer = in_array($menu_action, ['move', 'copy'], true);
+    if (
+        $_SESSION['session_user_level'] < K_AUTH_ADMIN_QUESTIONS
+        || $transfer && $new_subject_id > 0 && !F_isAuthorizedSubject($new_subject_id)
+    ) {
+        F_print_error('ERROR', $l['m_authorization_denied']);
+    } elseif (!$transfer || $new_subject_id > 0) {
+        $istart = 1 + $firstrow;
+        $iend = $rowsperpage + $firstrow;
+        for ($i = $istart; $i <= $iend; ++$i) {
+            // for each selected question
+            $keyname = 'questionid' . $i;
+            if (!isset($_POST[$keyname])) {
+                continue;
+            }
+
             $question_id = (int) $_POST[$keyname];
+            // only questions of the selected subject
+            if (
+                F_count_rows(
+                    K_TABLE_QUESTIONS,
+                    'WHERE question_id=' . $question_id . ' AND question_subject_id=' . $subject_id,
+                ) < 1
+            ) {
+                continue;
+            }
+
             switch ($menu_action) {
                 case 'move':
                     {
-                        if (isset($new_subject_id) && $new_subject_id > 0) {
-                            F_question_copy($question_id, $new_subject_id);
-                            F_question_delete($question_id, $subject_id);
+                        if (F_question_copy($question_id, $new_subject_id)) {
+                            F_question_delete($question_id);
                         }
 
                         break;
                     }
                 case 'copy':
                     {
-                        if (isset($new_subject_id) && $new_subject_id > 0) {
-                            F_question_copy($question_id, $new_subject_id);
-                        }
-
+                        F_question_copy($question_id, $new_subject_id);
                         break;
                     }
                 case 'delete':
                     {
-                        F_question_delete($question_id, $subject_id);
+                        F_question_delete($question_id);
                         break;
                     }
                 case 'disable':
@@ -183,9 +217,9 @@ if (isset($menu_mode) && $menu_mode == 'update' && isset($menu_action) && !empty
                     }
             } // end of switch
         }
-    }
 
-    F_print_error('MESSAGE', $l['m_updated']);
+        F_print_error('MESSAGE', $l['m_updated']);
+    }
 }
 
 echo '<div class="container">' . K_NEWLINE;
