@@ -226,6 +226,61 @@ below, note the following one-time changes.
 - **Question and answer editors** refuse requests for a topic or question the user is not
   authorized for.
 
+### User editor, registration, IP ranges and MySQL character set
+
+- **User editor password.** In 17.0.0 to 17.5.3, saving a user in the user editor without entering
+  a new password stored an empty password and removed the OTP key. Find the affected accounts and
+  set a new password for them (user editor or password reset):
+
+  ```sql
+  SELECT user_id, user_name FROM tce_users WHERE user_password = '' AND user_id > 1;
+  ```
+
+  The user editor no longer sends the password hash to the browser. The stored password changes
+  only when a new password is entered. An empty OTP key field removes the key; the key is kept when
+  the field is not submitted or not changed. A changed key must be a base32 key of at least 16
+  characters; white space and `=` padding are removed.
+- **Test IP ranges.** `*.*.*.*` (and `*`) now match IPv4 and IPv6 clients. Use
+  `0.0.0.0-255.255.255.255` to allow IPv4 clients only. Other `*` patterns (e.g. `192.168.*.*`)
+  still match IPv4 addresses only.
+- **Registration groups.** The registration form lists only the groups in
+  `K_USRREG_ALLOWED_GROUPS`. `K_USRREG_GROUP` is always assigned, also when it is not in that list.
+  A required groups field (`'user_groups' => 2`) needs at least one allowed group to be selected.
+  When `K_USRREG_ALLOWED_GROUPS` is empty the groups field is not displayed.
+- **MySQL character set.** The database connection uses utf8mb4. Set `K_MYSQL_QA_BIN_COLLATION` in
+  `admin/config/tce_config.php` to `'utf8mb4_bin'`; values that are not utf8mb4 collations (such as
+  the previous default `'utf8_bin'`) are replaced by `'utf8mb4_bin'`. New installations create
+  utf8mb4 tables and require MySQL 5.7.7+ or MariaDB 10.2.2+. Existing utf8mb3 databases keep
+  working, but text with 4-byte characters (emoji, some mathematical symbols) is rejected with a
+  database error until the tables are converted (see
+  [Converting a MySQL database to utf8mb4](#converting-a-mysql-database-to-utf8mb4)).
+- **`K_DATABASE_TYPE` `'MYSQLDEPRECATED'`** is no longer supported (its PHP extension was removed in
+  PHP 7). Set it to `'MYSQL'` in `shared/config/tce_db_config.php`.
+- **`K_ERROR_TYPES`.** `E_STRICT` is deprecated in PHP 8.4. Replace `E_ALL | E_STRICT` with `E_ALL`
+  in `shared/config/tce_config.php`.
+- **`F_file_exists()`** returns `false` for URLs and stream wrapper paths; it checks local files
+  only. This affects custom code that called it with `http://` or `https://` URLs.
+
+### Converting a MySQL database to utf8mb4
+
+1. Back up the database.
+2. If the tables use a prefix other than `tce_`, replace `tce_` in
+   `install/upgrade/mysql/mysql_db_upgrade_utf8mb4.sql`.
+3. Set the database default character set (replace `tcexam` with the database name):
+
+   ```sql
+   ALTER DATABASE tcexam CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   ```
+
+4. Run the conversion script. It rewrites every table, so large `tce_tests_logs` tables can take a
+   long time:
+
+   ```sh
+   mysql -u root -p tcexam < install/upgrade/mysql/mysql_db_upgrade_utf8mb4.sql
+   ```
+
+5. Set `K_MYSQL_QA_BIN_COLLATION` to `'utf8mb4_bin'` in `admin/config/tce_config.php`.
+
 ### New configuration constants
 
 Compare your config files against the shipped `*.default` files and add the new constants:

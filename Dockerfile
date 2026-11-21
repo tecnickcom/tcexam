@@ -7,8 +7,7 @@
 # artifacts (PDF fonts and translation caches) are generated on first container start by the
 # entrypoint and cached in volumes — see docker/entrypoint.sh and docker-compose.yml.
 
-# PHP 8.4 = the newest version in the project's CI matrix (composer requires >=8.2; CI tests
-# 8.2/8.3/8.4). PHP 8.5 is intentionally not used yet — it is outside the tested matrix. Apache +
+# PHP 8.4 (composer requires >=8.2; CI tests 8.2/8.3/8.4/8.5). Apache +
 # mod_php is used (not nginx) because the app ships .htaccess access controls (admin/backup/,
 # admin/log/, public/log/, cache/) that nginx would silently ignore.
 FROM php:8.4-apache

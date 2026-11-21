@@ -153,10 +153,10 @@ Full instructions: [install/README.md](install/README.md) and <https://tcexam.or
 
 ## Requirements
 
-* PHP **>= 8.2** (tested on 8.2 / 8.3 / 8.4) with: `mysqli` and/or `pgsql`, `gd`, `intl`,
+* PHP **>= 8.2** (tested on 8.2 / 8.3 / 8.4 / 8.5) with: `mysqli` and/or `pgsql`, `gd`, `intl`,
   `bcmath`, `mbstring`, `zip`, `curl`, `xml`, `openssl`, `posix` (Oracle additionally needs `oci8`).
 * [Composer](https://getcomposer.org/).
-* A database server: MySQL/MariaDB, PostgreSQL or Oracle.
+* A database server: MySQL 5.7.7+ / MariaDB 10.2.2+, PostgreSQL or Oracle.
 * A web server (Apache + mod_php recommended).
 
 ## Dependencies

@@ -21,6 +21,27 @@
  */
 
 /**
+ * Normalize a One Time Password Secret Key (Base32 encoded) entered by a user.
+ * White space and '=' padding are removed and letters are converted to uppercase.
+ * @param string $key key to normalize
+ * @return string normalized key
+ */
+function F_normalizeOTPkey(string $key): string
+{
+    return strtoupper((string) preg_replace('/[\t\n\x0B\f\r =]+/', '', $key));
+}
+
+/**
+ * Check whether a normalized One Time Password Secret Key is a Base32 string of 16 to 255 characters.
+ * @param string $key normalized key
+ * @return bool true if the key is valid
+ */
+function F_isValidOTPkey(string $key): bool
+{
+    return preg_match('/^[A-Z2-7]{16,255}$/', $key) === 1;
+}
+
+/**
  * Return a random One Time Password Secret Key (Base32 encoded).
  * @return Base32 encoded key.
  */

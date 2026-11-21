@@ -93,20 +93,47 @@ function F_check_required_fields($formfields)
     for ($i = 0; $i < $counter; ++$i) { //for each required field
         $fieldname = trim($required_fields[$i]);
         $fieldname = preg_replace('/[^a-z0-9_\[\]]/i', '', $fieldname);
-        if (!array_key_exists($fieldname, $formfields) || strlen(trim($formfields[$fieldname])) <= 0) { //if is empty
-            if ($required_fields_labels[$i] !== '' && $required_fields_labels[$i] !== '0') { // check if the field has a label
-                $fieldname = htmlspecialchars($required_fields_labels[$i], ENT_NOQUOTES, $l['a_meta_charset']);
+        if (!array_key_exists($fieldname, $formfields) || !F_is_filled_form_value($formfields[$fieldname])) {
+            $label = $required_fields_labels[$i] ?? '';
+            if ($label !== '' && $label !== '0') { // check if the field has a label
+                $fieldname = htmlspecialchars($label, ENT_NOQUOTES, $l['a_meta_charset']);
             }
 
             $missing_fields .= ', ' . stripslashes($fieldname);
         }
     }
 
-    if (strlen($missing_fields) > 1) {
-        $missing_fields = substr($missing_fields, 1); // cuts first comma
+    if (strlen($missing_fields) > 2) {
+        $missing_fields = substr($missing_fields, 2); // cuts first 2 chars (", ")
     }
 
     return $missing_fields;
+}
+
+/**
+ * Check whether a submitted form value is filled.
+ * A scalar is filled when its trimmed string form is not empty; an array (multiple select) is
+ * filled when at least one of its scalar elements is filled.
+ * @param mixed $value submitted value
+ * @return bool true if the value is filled
+ */
+function F_is_filled_form_value(mixed $value): bool
+{
+    if (is_array($value)) {
+        return array_filter($value, F_is_filled_form_value_scalar(...)) !== [];
+    }
+
+    return F_is_filled_form_value_scalar($value);
+}
+
+/**
+ * Check whether a submitted value is a scalar whose trimmed string form is not empty.
+ * @param mixed $value submitted value
+ * @return bool true if the value is a filled scalar
+ */
+function F_is_filled_form_value_scalar(mixed $value): bool
+{
+    return is_scalar($value) && trim((string) $value) !== '';
 }
 
 /**

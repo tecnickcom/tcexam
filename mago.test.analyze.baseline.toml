@@ -19,6 +19,24 @@ message = "Function `F_has_current_user_password` could not be found."
 count = 3
 
 [[issues]]
+file = "test/ErrorFunctionsTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 2
+
+[[issues]]
+file = "test/ErrorFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_error_handler` could not be found."
+count = 2
+
+[[issues]]
+file = "test/ErrorFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_file_exists` could not be found."
+count = 8
+
+[[issues]]
 file = "test/FormValidationTest.php"
 code = "mixed-argument"
 message = 'Invalid argument type for argument #2 of `PHPUnit\Framework\Assert::assertArrayHasKey`: expected `ArrayAccess<array-key, mixed>|array<array-key, mixed>`, but found `mixed`.'
@@ -34,13 +52,19 @@ count = 3
 file = "test/FormValidationTest.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 5
+count = 7
 
 [[issues]]
 file = "test/FormValidationTest.php"
 code = "non-existent-function"
 message = "Function `F_check_fields_format` could not be found."
 count = 18
+
+[[issues]]
+file = "test/FormValidationTest.php"
+code = "non-existent-function"
+message = "Function `F_check_required_fields` could not be found."
+count = 3
 
 [[issues]]
 file = "test/FormValidationTest.php"
@@ -95,6 +119,12 @@ file = "test/GeneralFunctionsTest.php"
 code = "non-existent-function"
 message = "Function `F_isURL` could not be found."
 count = 4
+
+[[issues]]
+file = "test/GeneralFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_normalize_id_list` could not be found."
+count = 5
 
 [[issues]]
 file = "test/GeneralFunctionsTest.php"
@@ -169,6 +199,12 @@ message = "Function `utrim` could not be found."
 count = 2
 
 [[issues]]
+file = "test/MysqlCollationTest.php"
+code = "non-existent-function"
+message = "Function `F_db_mysql_bin_collation` could not be found."
+count = 4
+
+[[issues]]
 file = "test/OtpFunctionsTest.php"
 code = "mixed-argument"
 message = "Invalid argument type for argument #2 of `sprintf`: expected `Stringable|null|scalar`, but found `mixed`."
@@ -185,6 +221,24 @@ file = "test/OtpFunctionsTest.php"
 code = "non-existent-function"
 message = 'Could not find definition for function `Test\F_isValidOTPCode` (also tried as `F_isValidOTPCode` in a broader scope).'
 count = 12
+
+[[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_getRandomOTPkey` could not be found."
+count = 1
+
+[[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_isValidOTPkey` could not be found."
+count = 6
+
+[[issues]]
+file = "test/OtpFunctionsTest.php"
+code = "non-existent-function"
+message = "Function `F_normalizeOTPkey` could not be found."
+count = 3
 
 [[issues]]
 file = "test/SessionFunctionsTest.php"
@@ -319,6 +373,18 @@ message = "Function `F_objects_replacement` could not be found."
 count = 10
 
 [[issues]]
+file = "test/TestIpRangeTest.php"
+code = "non-existent-function"
+message = "Function `F_isValidIP` could not be found."
+count = 4
+
+[[issues]]
+file = "test/TestIpRangeTest.php"
+code = "non-existent-function"
+message = "Function `getNormalizedIP` could not be found."
+count = 2
+
+[[issues]]
 file = "test/TmxResourceBundleTest.php"
 code = "impossible-assignment"
 message = "Invalid assignment: the right-hand side has type `never` and cannot produce a value."
@@ -346,7 +412,13 @@ count = 4
 file = "test/TmxResourceBundleTest.php"
 code = "non-existent-class"
 message = "Class `TMXResourceBundle` not found."
-count = 4
+count = 5
+
+[[issues]]
+file = "test/TmxResourceBundleTest.php"
+code = "unevaluated-code"
+message = "Unreachable code detected."
+count = 1
 
 [[issues]]
 file = "test/UploadFunctionsTest.php"
@@ -364,18 +436,6 @@ count = 12
 file = "test/UploadFunctionsTest.php"
 code = "non-existent-function"
 message = "Function `F_sanitize_upload_filename` could not be found."
-count = 1
-
-[[issues]]
-file = "test/bootstrap.php"
-code = "missing-parameter-type"
-message = "Parameter `$filename` is missing a type hint."
-count = 1
-
-[[issues]]
-file = "test/bootstrap.php"
-code = "missing-return-type"
-message = "Function `F_file_exists` is missing a return type hint."
 count = 1
 
 [[issues]]
@@ -586,13 +646,13 @@ count = 1
 file = "test/integration/AdminControllerHttpTest.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 6
+count = 10
 
 [[issues]]
 file = "test/integration/AdminControllerHttpTest.php"
 code = "non-existent-function"
 message = "Function `F_db_close` could not be found."
-count = 3
+count = 4
 
 [[issues]]
 file = "test/integration/AdminControllerHttpTest.php"
@@ -604,13 +664,13 @@ count = 1
 file = "test/integration/AdminControllerHttpTest.php"
 code = "non-existent-function"
 message = "Function `F_db_fetch_assoc` could not be found."
-count = 1
+count = 2
 
 [[issues]]
 file = "test/integration/AdminControllerHttpTest.php"
 code = "non-existent-function"
 message = "Function `F_db_query` could not be found."
-count = 3
+count = 4
 
 [[issues]]
 file = "test/integration/AdminControllerHttpTest.php"
@@ -682,7 +742,7 @@ count = 3
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "mixed-assignment"
 message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
-count = 14
+count = 28
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
@@ -692,9 +752,15 @@ count = 2
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "mixed-operand"
+message = "Invalid right operand: type `mixed` cannot be reliably used in string concatenation."
+count = 2
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-constant"
 message = "Undefined constant: `K_TABLE_GROUPS`."
-count = 5
+count = 7
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
@@ -735,8 +801,14 @@ count = 2
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
+message = "Function `F_db_error` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
 message = "Function `F_db_fetch_assoc` could not be found."
-count = 5
+count = 12
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
@@ -747,20 +819,26 @@ count = 1
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
+message = "Function `F_db_mysql_bin_collation` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/DatabaseDalIntegrationTest.php"
+code = "non-existent-function"
 message = "Function `F_db_num_rows` could not be found."
-count = 2
+count = 3
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
 message = "Function `F_db_query` could not be found."
-count = 7
+count = 23
 
 [[issues]]
 file = "test/integration/DatabaseDalIntegrationTest.php"
 code = "non-existent-function"
 message = "Function `F_escape_sql` could not be found."
-count = 1
+count = 2
 
 [[issues]]
 file = "test/integration/ExamSecurityHttpTest.php"
@@ -827,3 +905,33 @@ file = "test/integration/ExamSecurityHttpTest.php"
 code = "possibly-undefined-string-array-index"
 message = "Possibly undefined array key `string('test')` accessed on `array<string, int>`."
 count = 1
+
+[[issues]]
+file = "test/integration/RegistrationHttpTest.php"
+code = "mixed-assignment"
+message = "Assigning `mixed` type to a variable may lead to unexpected behavior."
+count = 4
+
+[[issues]]
+file = "test/integration/RegistrationHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_close` could not be found."
+count = 2
+
+[[issues]]
+file = "test/integration/RegistrationHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_connect` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/RegistrationHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_fetch_assoc` could not be found."
+count = 1
+
+[[issues]]
+file = "test/integration/RegistrationHttpTest.php"
+code = "non-existent-function"
+message = "Function `F_db_query` could not be found."
+count = 2

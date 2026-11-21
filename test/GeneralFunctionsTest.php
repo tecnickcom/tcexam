@@ -154,4 +154,13 @@ final class GeneralFunctionsTest extends TestCase
         $this->assertSame('10', \bcdechex('16'));
         $this->assertSame('0', \bcdechex('0'));
     }
+
+    public function testNormalizeIdList(): void
+    {
+        $this->assertSame([3, 5], \F_normalize_id_list(['3', '5']));
+        $this->assertSame([3, 5], \F_normalize_id_list(['3', '3', 5, '0', '-2', 'x', '4.5', ['7'], null]));
+        $this->assertSame([], \F_normalize_id_list('3'));
+        $this->assertSame([], \F_normalize_id_list(null));
+        $this->assertSame([], \F_normalize_id_list([]));
+    }
 }

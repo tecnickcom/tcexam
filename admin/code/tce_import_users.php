@@ -181,14 +181,13 @@ class XMLUserImporter
     ) {
         // creates a new XML parser to be used by the other XML functions
         $this->parser = xml_parser_create();
-        // the following function allows to use parser inside object
-        xml_set_object($this->parser, $this);
         // disable case-folding for this XML parser
         xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
-        // sets the element handler functions for the XML parser
-        xml_set_element_handler($this->parser, 'startElementHandler', 'endElementHandler');
+        // sets the element handler functions for the XML parser (first-class callables of the
+        // private handler methods)
+        xml_set_element_handler($this->parser, $this->startElementHandler(...), $this->endElementHandler(...));
         // sets the character data handler function for the XML parser
-        xml_set_character_data_handler($this->parser, 'segContentHandler');
+        xml_set_character_data_handler($this->parser, $this->segContentHandler(...));
         // start parsing an XML document
         if (xml_parse($this->parser, file_get_contents($xmlfile)) === 0) {
             die(sprintf(
@@ -198,8 +197,8 @@ class XMLUserImporter
             ));
         }
 
-        // free this XML parser
-        xml_parser_free($this->parser);
+        // release the parser (its handlers reference this object)
+        $this->parser = null;
     }
 
     public function __destruct()

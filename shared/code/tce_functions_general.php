@@ -44,6 +44,26 @@ function F_count_rows($dbtable, $where = '')
 }
 
 /**
+ * Convert a submitted value to a list of unique positive integer IDs.
+ * Non-array values give an empty list; elements that are not positive integers are dropped.
+ * @param mixed $value submitted value (e.g. a multiple select)
+ * @return list<int> IDs in submission order
+ */
+function F_normalize_id_list(mixed $value): array
+{
+    if (!is_array($value)) {
+        return [];
+    }
+
+    $ids = array_map(static fn(mixed $item): int => is_int($item)
+        || is_string($item) && preg_match('/^[0-9]{1,18}$/', $item) === 1
+            ? (int) $item
+            : 0, array_values($value));
+
+    return array_values(array_unique(array_filter($ids, static fn(int $id): bool => $id > 0)));
+}
+
+/**
  * Prepare field value for SQL query.<br>
  * Returns the quoted string if not empty, NULL otherwise.
  * @param $str (string) string to check.

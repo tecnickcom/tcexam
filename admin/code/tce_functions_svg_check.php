@@ -299,7 +299,7 @@ function F_is_safe_svg_value(string $value): bool
 {
     return (
         preg_match(
-            '/\\\\|@import|\b(?:image|image-set|cross-fade|src)\s*\(|expression\s*\(|behavior\s*:|-moz-binding|(?:java|vb)script\s*:|url\s*\(\s*+(?![\'"]?\s*#)/i',
+            '/\\\\|@import|(?<![0-9A-Za-z_])(?:image|image-set|cross-fade|src)[\t\n\x0B\f\r ]*\(|expression[\t\n\x0B\f\r ]*\(|behavior[\t\n\x0B\f\r ]*:|-moz-binding|(?:java|vb)script[\t\n\x0B\f\r ]*:|url[\t\n\x0B\f\r ]*\([\t\n\x0B\f\r ]*+(?![\'"]?[\t\n\x0B\f\r ]*#)/i',
             $value,
         ) !== 1
     );
@@ -319,10 +319,10 @@ function F_is_safe_svg_href(string $element, string $value): bool
 {
     $value = trim($value);
     if ($element === 'image') {
-        return preg_match('#^data:image/(?:png|jpeg|gif);base64,[A-Za-z0-9+/=\s]+$#D', $value) === 1;
+        return preg_match('#^data:image/(?:png|jpeg|gif);base64,[A-Za-z0-9+/=\t\n\x0B\f\r ]+$#D', $value) === 1;
     }
 
-    return preg_match('/^#\S+$/D', $value) === 1;
+    return preg_match('/^#[^\t\n\x0B\f\r ]+$/D', $value) === 1;
 }
 
 /**
@@ -438,7 +438,11 @@ function F_is_safe_svg_content(string $filepath): bool
     // the declared encoding must be UTF-8
     $match = [];
     if (
-        preg_match('/^(?:\xEF\xBB\xBF)?<\?xml\s[^>]*?\bencoding\s*=\s*["\']([^"\']*)["\']/', $data, $match) === 1
+        preg_match(
+            '/^(?:\xEF\xBB\xBF)?<\?xml[\t\n\x0B\f\r ][^>]*?(?<![0-9A-Za-z_])encoding[\t\n\x0B\f\r ]*=[\t\n\x0B\f\r ]*["\']([^"\']*)["\']/',
+            $data,
+            $match,
+        ) === 1
         && strtolower($match[1] ?? '') !== 'utf-8'
     ) {
         return false;

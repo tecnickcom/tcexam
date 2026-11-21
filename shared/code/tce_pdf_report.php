@@ -1104,7 +1104,11 @@ class TcePdfReport extends \Com\Tecnick\Pdf\Tcpdf
         $natW = 800.0;
         $natH = 450.0;
         if (
-            preg_match('/<svg\b[^>]*?\bwidth="([0-9.]+)"[^>]*?\bheight="([0-9.]+)"/', $svg, $mm)
+            preg_match(
+                '/<svg(?![0-9A-Za-z_])[^>]*?(?<![0-9A-Za-z_])width="([0-9.]+)"[^>]*?(?<![0-9A-Za-z_])height="([0-9.]+)"/',
+                $svg,
+                $mm,
+            )
             && (float) $mm[1] > 0.0
         ) {
             $natW = (float) $mm[1];

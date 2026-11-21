@@ -23,13 +23,13 @@ installation? Read [doc/UPGRADE.md](../doc/UPGRADE.md) first.
 
 The instructions below assume a working web server. These are the minimum requirements:
 
-- **PHP 8.2 or newer** (tested on 8.2, 8.3 and 8.4 — [php.net](https://www.php.net/)), with the
+- **PHP 8.2 or newer** (tested on 8.2, 8.3, 8.4 and 8.5, see [php.net](https://www.php.net/)), with the
   following extensions enabled: `mysqli` and/or `pgsql`, `gd`, `intl`, `bcmath`, `mbstring`,
   `zip`, `curl`, `xml`, `openssl` and `posix` (Oracle additionally needs `oci8`).
 - **Composer** ([getcomposer.org](https://getcomposer.org/)) to install the PHP dependencies — the
   bundled libraries (PDF engine, mailer, CAS, RADIUS) are **no longer shipped** in the source tree
   and must be installed with `composer install`.
-- A **DBMS**: MySQL/MariaDB ([mariadb.org](https://mariadb.org/)),
+- A **DBMS**: MySQL 5.7.7+ / MariaDB 10.2.2+ ([mariadb.org](https://mariadb.org/)),
   PostgreSQL ([postgresql.org](https://www.postgresql.org/)) or Oracle.
 - A **web server**. Apache with `mod_php` is recommended because TCExam ships `.htaccess`
   access-control rules; on other web servers you must replicate those restrictions manually
@@ -242,7 +242,7 @@ Load the files with your DBMS client. For MySQL/MariaDB:
 
 ```sh
 mysql -u root -p
-mysql> CREATE DATABASE tcexam;
+mysql> CREATE DATABASE tcexam CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 mysql> quit
 shell> mysql -u root -p tcexam < install/mysql_db_structure.sql
 shell> mysql -u root -p tcexam < install/db_data.sql

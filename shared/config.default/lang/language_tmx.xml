@@ -4136,82 +4136,82 @@ Statistiken der Fragen und Antworten können nicht nur online betrachtet werden,
       </tu>
       <tu tuid="h_ip_range" datatype="plaintext">
          <tuv xml:lang="NL">
-            <seg>lijst toegestane IP- adressen gescheiden door komma (bijv.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>lijst toegestane IP-adressen gescheiden door komma; *.*.*.* komt overeen met elk IPv4- of IPv6-adres, andere *-patronen alleen met IPv4 (bijv.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="MR">
-            <seg>स्वल्पविरामाच्याव्दारे सुचविलेल्याIP पत्याची  यादी वेगळी करणे.(e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>स्वल्पविरामाने वेगळ्या केलेल्या सक्षम IP पत्त्यांची यादी; *.*.*.* कोणत्याही IPv4 किंवा IPv6 पत्त्याशी जुळतो, इतर * नमुने फक्त IPv4 पत्त्यांशी जुळतात (उदा.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="IT">
-            <seg>elenco degli indirizzi IP abilitati separati da virgole (es: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>elenco degli indirizzi IP abilitati separati da virgole; *.*.*.* corrisponde a qualsiasi indirizzo IPv4 o IPv6, gli altri schemi con * solo a indirizzi IPv4 (es: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="TR">
-            <seg>gecerli IP adresleri noktalarla ayrilarak belirtilmistir (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>gecerli IP adresleri virgullerle ayrilarak belirtilmistir; *.*.*.* herhangi bir IPv4 veya IPv6 adresiyle eslesir, diger * kaliplari yalnizca IPv4 ile eslesir (orn.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="JP">
-            <seg>接続可能ＩＰアドレスのリスト（カンマで区切り）(例: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>接続可能ＩＰアドレスのリスト（カンマで区切り）。*.*.*.* はすべての IPv4 / IPv6 アドレスに一致し、その他の * パターンは IPv4 のみに一致します (例: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="VN">
-            <seg>danh sách địa chỉ IP cách nhau bởi dấu phẩy (ví dụ: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>danh sách địa chỉ IP cách nhau bởi dấu phẩy; *.*.*.* khớp với mọi địa chỉ IPv4 hoặc IPv6, các mẫu * khác chỉ khớp với IPv4 (ví dụ: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="HI">
-            <seg>सक्षम  आईपी पते  की सूची जो अल्पविराम के द्वारा अलग है (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>सक्षम आईपी पतों की सूची जो अल्पविराम के द्वारा अलग है; *.*.*.* किसी भी IPv4 या IPv6 पते से मेल खाता है, अन्य * पैटर्न केवल IPv4 से मेल खाते हैं (उदा.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="MS">
-            <seg>senarai dibolehkan alamat IP dipisahkan oleh koma (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>senarai alamat IP yang dibenarkan dipisahkan oleh koma; *.*.*.* sepadan dengan mana-mana alamat IPv4 atau IPv6, corak * lain hanya sepadan dengan IPv4 (cth.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="PL">
-            <seg>list of enabled IP addresses separated by commas (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>lista dozwolonych adresów IP oddzielonych przecinkami; *.*.*.* pasuje do dowolnego adresu IPv4 lub IPv6, pozostałe wzorce z * pasują tylko do IPv4 (np.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="EN">
-            <seg>list of enabled IP addresses separated by commas (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>list of enabled IP addresses separated by commas; *.*.*.* matches any IPv4 or IPv6 address, other * patterns match IPv4 only (e.g.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="HE">
-            <seg> ( 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140לדוגמא:)  אפשריות מופרדות על ידי פסיקים IP רשימת כתובות </seg>
+            <seg>רשימת כתובות IP מורשות מופרדות בפסיקים; *.*.*.* תואם כל כתובת IPv4 או IPv6, תבניות * אחרות תואמות IPv4 בלבד (לדוגמה: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="EL">
-            <seg>λίστα ενεργοποιημένων ΙΡ διευθύνσεων χωρισμένων με κόμμα (π.χ.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>λίστα ενεργοποιημένων IP διευθύνσεων χωρισμένων με κόμμα· το *.*.*.* αντιστοιχεί σε οποιαδήποτε διεύθυνση IPv4 ή IPv6, τα άλλα μοτίβα με * μόνο σε IPv4 (π.χ.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="RU">
-            <seg>список задействованных IP-адресов разделенных запятыми (например: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>список задействованных IP-адресов, разделенных запятыми; *.*.*.* соответствует любому адресу IPv4 или IPv6, остальные шаблоны с * только адресам IPv4 (например: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="ID">
-            <seg>daftar IP yang aktif dipisahkan oleh koma (contoh: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>daftar IP yang aktif dipisahkan oleh koma; *.*.*.* cocok dengan alamat IPv4 atau IPv6 apa pun, pola * lainnya hanya cocok dengan IPv4 (contoh: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="FR">
-            <seg>liste d'adresses IP autorisées, séparées par des virgules (p. ex. 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>liste d'adresses IP autorisées, séparées par des virgules ; *.*.*.* correspond à toute adresse IPv4 ou IPv6, les autres motifs avec * uniquement aux adresses IPv4 (p. ex. 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="BG">
-            <seg>списък на позволените IP адреси разделени чрез запетайки (например: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>списък на позволените IP адреси, разделени чрез запетайки; *.*.*.* съответства на всеки IPv4 или IPv6 адрес, другите шаблони с * само на IPv4 адреси (например: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="AZ">
-            <seg>istifadədə olan İP ünvanlar</seg>
+            <seg>vergüllə ayrılmış icazə verilən IP ünvanlarının siyahısı; *.*.*.* istənilən IPv4 və ya IPv6 ünvanına uyğun gəlir, digər * şablonları yalnız IPv4 ünvanlarına uyğun gəlir (məsələn: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="ES">
-            <seg>lista de direcciones IP habilitadas separadas por comas (ej.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>lista de direcciones IP habilitadas separadas por comas; *.*.*.* coincide con cualquier dirección IPv4 o IPv6, los demás patrones con * solo con IPv4 (ej.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="CN">
-            <seg>逗号分隔的允许Ip地址清单（如：192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140）</seg>
+            <seg>逗号分隔的允许IP地址清单；*.*.*.* 匹配任意 IPv4 或 IPv6 地址，其他 * 模式仅匹配 IPv4（如：192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff）</seg>
          </tuv>
          <tuv xml:lang="HU">
-            <seg>érvényes IP címek listája, vesszővel elválasztva (pl.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>érvényes IP címek listája, vesszővel elválasztva; a *.*.*.* bármely IPv4 vagy IPv6 címre illeszkedik, a többi * minta csak IPv4 címekre (pl.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="BR">
-            <seg>lista de endereços IP separados por virgula (ex.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>lista de endereços IP separados por vírgula; *.*.*.* corresponde a qualquer endereço IPv4 ou IPv6, outros padrões com * apenas a IPv4 (ex.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="RO">
-            <seg>lista cu adresele IP active, separate prin virgulă (ex.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>lista cu adresele IP active, separate prin virgulă; *.*.*.* se potrivește cu orice adresă IPv4 sau IPv6, celelalte modele cu * doar cu adrese IPv4 (ex.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="FA">
-            <seg>لیست آدرس های آی پی فعال، ویرگول بین آدرسها (مثال: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>لیست آدرس‌های آی‌پی فعال، جدا شده با ویرگول؛ *.*.*.* با هر آدرس IPv4 یا IPv6 مطابقت دارد، سایر الگوهای * فقط با IPv4 مطابقت دارند (مثال: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="AR">
-            <seg>قائمة بعناوين الآي بي المفعلة مرتبة بالفواصل (مثل.: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>قائمة بعناوين الآي بي المفعلة مفصولة بفواصل؛ *.*.*.* يطابق أي عنوان IPv4 أو IPv6، وأنماط * الأخرى تطابق IPv4 فقط (مثال: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="DE">
-            <seg>kommagetrennte Liste aktivierter IP-Adressen (z.B. 192.168.*.*, 127.0.0.*)</seg>
+            <seg>kommagetrennte Liste aktivierter IP-Adressen; *.*.*.* passt auf jede IPv4- oder IPv6-Adresse, andere *-Muster nur auf IPv4 (z.B. 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
          <tuv xml:lang="UR">
-            <seg> فعال آئی پی پتے کی فہرست کومہ سے علیحدہ (192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,::ffff:c0a8:0110-::ffff:c0a8:0140)</seg>
+            <seg>فعال آئی پی پتوں کی فہرست، کوما سے علیحدہ؛ *.*.*.* کسی بھی IPv4 یا IPv6 پتے سے مطابقت رکھتا ہے، دیگر * پیٹرن صرف IPv4 سے (مثال: 192.168.*.*,127.0.0.*,192.168.234.16-192.168.234.32,2001:db8::-2001:db8::ffff)</seg>
          </tuv>
       </tu>
       <tu tuid="h_lastname" datatype="plaintext">

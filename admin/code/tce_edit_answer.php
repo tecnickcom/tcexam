@@ -354,7 +354,7 @@ switch ($menu_mode) {
                         "answer_description='"
                         . F_escape_sql($db, $answer_description)
                         . "' COLLATE "
-                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
+                        . F_db_mysql_bin_collation();
                 } else {
                     $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "'";
                 }
@@ -501,7 +501,7 @@ switch ($menu_mode) {
                         "answer_description='"
                         . F_escape_sql($db, $answer_description)
                         . "' COLLATE "
-                        . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
+                        . F_db_mysql_bin_collation();
                 } else {
                     $chksql = "answer_description='" . F_escape_sql($db, $answer_description) . "'";
                 }

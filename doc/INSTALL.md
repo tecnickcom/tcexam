@@ -31,7 +31,7 @@ generation and persistence notes).
    - PHP **>= 8.2** with the extensions: `mysqli` and/or `pgsql`, `gd`, `intl`, `bcmath`,
      `mbstring`, `zip`, `curl`, `xml`, `openssl`, `posix` (Oracle additionally needs `oci8`).
    - [Composer](https://getcomposer.org/).
-   - A database server: MySQL/MariaDB, PostgreSQL or Oracle.
+   - A database server: MySQL 5.7.7+ / MariaDB 10.2.2+, PostgreSQL or Oracle.
    - A web server (Apache + `mod_php` recommended — the app ships `.htaccess` access controls).
 
 2. **Install dependencies and build the bundled assets:**

@@ -169,10 +169,10 @@ define('K_MYSQL_QA_BIN_UNIQUITY', true);
 
 /**
  * Binary collation used for the question and answer uniqueness check when K_MYSQL_QA_BIN_UNIQUITY is true.
- * The collation must be compatible with the character set of your database columns:
- * use 'utf8_bin' for utf8 (utf8mb3) columns, or 'utf8mb4_bin' for utf8mb4 columns.
+ * The database connection uses utf8mb4, so this must be a utf8mb4 collation (it works with both utf8mb3 and
+ * utf8mb4 columns); any other value is replaced by 'utf8mb4_bin'.
  */
-define('K_MYSQL_QA_BIN_COLLATION', 'utf8_bin');
+define('K_MYSQL_QA_BIN_COLLATION', 'utf8mb4_bin');
 
 /**
  * Set the UTF-8 Normalization mode for question and answer descriptions:

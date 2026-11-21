@@ -130,8 +130,8 @@ class TMXResourceBundle
                 ));
             }
 
-            // free this XML parser
-            xml_parser_free($this->parser);
+            // release the parser (its handlers reference this object)
+            $this->parser = null;
             if (!empty($this->cachefile)) {
                 // close cache file
                 file_put_contents($this->cachefile, '

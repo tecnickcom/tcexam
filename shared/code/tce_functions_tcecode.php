@@ -341,7 +341,7 @@ function F_latex_callback($matches)
         // Keep the placeholder concise. Surface the TeX "! ..." error line when available, but
         // never echo the full pdflatex log into the rendered output (it leaks server paths).
         $msg = '';
-        if ($error !== '' && preg_match('/^!\s*(.+)$/m', $error, $em)) {
+        if ($error !== '' && preg_match('/^![\t\n\x0B\f\r ]*(.+)$/m', $error, $em)) {
             $msg = ': ' . trim($em[1]);
         }
         return '[LaTeX error' . htmlspecialchars($msg, ENT_QUOTES) . ']';
@@ -386,7 +386,7 @@ function F_mathml_callback($matches)
     // $mathml = str_replace("&lt;", '<', $mathml);
     // remove all non-MathML tags
     $mathml = strip_tags($mathml, $mathml_tags);
-    $mathml = preg_replace("/[\n\r\s]+/", ' ', $mathml);
+    $mathml = preg_replace("/[\t\n\x0B\f\r ]+/", ' ', $mathml);
     $mathml = trim($mathml);
     if (!str_starts_with($mathml, '<math')) {
         // add default math parent tag

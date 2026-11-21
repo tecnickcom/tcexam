@@ -211,7 +211,7 @@ define('K_LOGOUT_URL', '');
 /**
  * Define error reporting types for debug.
  */
-define('K_ERROR_TYPES', E_ALL | E_STRICT);
+define('K_ERROR_TYPES', E_ALL);
 //define ('K_ERROR_TYPES', E_ERROR | E_WARNING | E_PARSE);
 
 /**

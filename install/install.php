@@ -25,7 +25,7 @@ $progress_log = 'install.log'; //installation log file
 $start_installation = FALSE; // becomes true on form submission
 
 // define supported databases
-$dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
+$dbtypes = Array('MYSQL', 'POSTGRESQL', 'ORACLE');
 
 require_once('tce_functions_install.php');
 

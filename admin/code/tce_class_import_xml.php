@@ -95,14 +95,13 @@ class XMLQuestionImporter
     ) {
         // creates a new XML parser to be used by the other XML functions
         $this->parser = xml_parser_create();
-        // the following function allows to use parser inside object
-        xml_set_object($this->parser, $this);
         // disable case-folding for this XML parser
         xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
-        // sets the element handler functions for the XML parser
-        xml_set_element_handler($this->parser, 'startElementHandler', 'endElementHandler');
+        // sets the element handler functions for the XML parser (first-class callables of the
+        // private handler methods)
+        xml_set_element_handler($this->parser, $this->startElementHandler(...), $this->endElementHandler(...));
         // sets the character data handler function for the XML parser
-        xml_set_character_data_handler($this->parser, 'segContentHandler');
+        xml_set_character_data_handler($this->parser, $this->segContentHandler(...));
         // start parsing an XML document
         if (xml_parse($this->parser, file_get_contents($xmlfile)) === 0) {
             die(sprintf(
@@ -112,8 +111,8 @@ class XMLQuestionImporter
             ));
         }
 
-        // free this XML parser
-        xml_parser_free($this->parser);
+        // release the parser (its handlers reference this object)
+        $this->parser = null;
         return true;
     }
 
@@ -454,7 +453,7 @@ class XMLQuestionImporter
                 "question_description='"
                 . $this->level_data['question']['question_description']
                 . "' COLLATE "
-                . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
+                . F_db_mysql_bin_collation();
         } else {
             $sql .= "question_description='" . $this->level_data['question']['question_description'] . "'";
         }
@@ -608,7 +607,7 @@ class XMLQuestionImporter
                 "answer_description='"
                 . $this->level_data['answer']['answer_description']
                 . "' COLLATE "
-                . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
+                . F_db_mysql_bin_collation();
         } else {
             $sql .= "answer_description='" . $this->level_data['answer']['answer_description'] . "'";
         }

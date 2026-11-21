@@ -39,6 +39,11 @@ $user_ssn = $_POST['user_ssn'] ?? '';
 // round-tripped hidden fields preserved on UPDATE (overwritten internally in the add branch)
 $user_ip = $_POST['user_ip'] ?? '';
 $user_regdate = $_POST['user_regdate'] ?? '';
+// OTP key field: on UPDATE the stored key is kept when no string value is submitted
+$user_otpkey_raw = $_POST['user_otpkey'] ?? null;
+$user_otpkey_submitted = is_string($user_otpkey_raw);
+$user_otpkey = $user_otpkey_submitted ? $user_otpkey_raw : '';
+$user_password = '';
 
 $pagelevel = K_AUTH_ADMIN_USERS;
 require_once '../../shared/code/tce_authorization.php';
@@ -231,18 +236,34 @@ switch ($menu_mode) { // process submitted data
                     break;
                 }
 
-                // check password
+                // check password: the stored hash is changed only when a new password is set
+                $password_sql = '';
+                $otpkey_sql = '';
                 if (!empty($newpassword) || !empty($newpassword_repeat)) {
                     // @mago-expect lint:no-insecure-comparison -- confirm-field match: both operands are same-request user input, not a stored secret
                     if ($newpassword === $newpassword_repeat) {
-                        $user_password = getPasswordHash($newpassword);
+                        $password_sql = 'user_password=\'' . F_escape_sql($db, getPasswordHash($newpassword)) . '\',';
                         // update OTP key
                         $user_otpkey = F_getRandomOTPkey();
+                        $otpkey_sql = ', user_otpkey=' . F_empty_to_null($user_otpkey);
                     } else { //print message and exit
                         F_print_error('WARNING', $l['m_different_passwords']);
                         $formstatus = false;
 
                         break;
+                    }
+                } elseif ($user_otpkey_submitted) {
+                    $user_otpkey = F_normalizeOTPkey($user_otpkey);
+                    if ($user_otpkey !== F_normalizeOTPkey(F_getUserOTPkey((int) $user_id))) {
+                        // a changed OTP key must be valid; an empty field clears the key
+                        if ($user_otpkey !== '' && !F_isValidOTPkey($user_otpkey)) {
+                            F_print_error('WARNING', $l['m_form_wrong_fields'] . ': ' . $l['w_otpkey']);
+                            $formstatus = false;
+
+                            break;
+                        }
+
+                        $otpkey_sql = ', user_otpkey=' . F_empty_to_null($user_otpkey);
                     }
                 }
 
@@ -262,9 +283,9 @@ switch ($menu_mode) { // process submitted data
 				user_email='
                     . F_empty_to_null($user_email)
                     . ',
-				user_password=\''
-                    . F_escape_sql($db, $user_password)
-                    . '\',
+				'
+                    . $password_sql
+                    . '
 				user_regnumber='
                     . F_empty_to_null($user_regnumber)
                     . ',
@@ -285,9 +306,8 @@ switch ($menu_mode) { // process submitted data
                     . ',
 				user_level=\''
                     . $user_level
-                    . '\',
-				user_otpkey='
-                    . F_empty_to_null($user_otpkey)
+                    . '\''
+                    . $otpkey_sql
                     . '
 				WHERE user_id='
                     . $user_id
@@ -506,7 +526,6 @@ switch ($menu_mode) { // process submitted data
             $user_ip = '';
             $user_name = '';
             $user_email = '';
-            $user_password = '';
             $user_regnumber = '';
             $user_firstname = '';
             $user_lastname = '';
@@ -532,7 +551,6 @@ if ($formstatus && $menu_mode != 'clear') {
         $user_ip = '';
         $user_name = '';
         $user_email = '';
-        $user_password = '';
         $user_regnumber = '';
         $user_firstname = '';
         $user_lastname = '';
@@ -550,7 +568,6 @@ if ($formstatus && $menu_mode != 'clear') {
                 $user_ip = $m['user_ip'] ?? '';
                 $user_name = $m['user_name'] ?? '';
                 $user_email = $m['user_email'] ?? '';
-                $user_password = $m['user_password'] ?? '';
                 $user_regnumber = $m['user_regnumber'] ?? '';
                 $user_firstname = $m['user_firstname'] ?? '';
                 $user_lastname = $m['user_lastname'] ?? '';
@@ -564,7 +581,6 @@ if ($formstatus && $menu_mode != 'clear') {
                 $user_ip = '';
                 $user_name = '';
                 $user_email = '';
-                $user_password = '';
                 $user_regnumber = '';
                 $user_firstname = '';
                 $user_lastname = '';
@@ -903,7 +919,6 @@ if (isset($user_id) && $user_id > 0) {
 
 F_submit_button('clear', $l['w_clear'], $l['h_clear']);
 
-echo '<input type="hidden" name="user_password" id="user_password" value="' . $user_password . '" />' . K_NEWLINE;
 echo '</div>' . K_NEWLINE;
 echo F_getCSRFTokenField() . K_NEWLINE;
 echo '</form>' . K_NEWLINE;

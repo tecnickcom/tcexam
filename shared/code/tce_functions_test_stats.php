@@ -2097,7 +2097,7 @@ function F_getSafeUsersTestStatOrderBy($full_order_field)
             continue;
         }
 
-        if (preg_match('/^([a-z_]+)(?:\s+(DESC))?$/i', $part, $matches) !== 1) {
+        if (preg_match('/^([a-z_]+)(?:[\t\n\x0B\f\r ]+(DESC))?$/i', $part, $matches) !== 1) {
             continue;
         }
 

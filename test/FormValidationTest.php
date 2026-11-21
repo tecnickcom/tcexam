@@ -128,4 +128,58 @@ final class FormValidationTest extends TestCase
             $this->assertArrayHasKey($field, $registry);
         }
     }
+
+    // --- Required fields ---
+
+    /**
+     * @param array<string,mixed> $fields
+     */
+    private static function requiredGroups(array $fields): string|false
+    {
+        // @mago-expect lint:no-global -- F_check_required_fields() reads the language array from the global $l
+        $GLOBALS['l'] = ['a_meta_charset' => 'UTF-8'];
+
+        $missing = \F_check_required_fields(array_merge([
+            'ff_required' => 'user_name,user_groups',
+            'ff_required_labels' => 'Name,Groups',
+            'user_name' => 'jdoe',
+        ], $fields));
+
+        return \is_string($missing) ? $missing : false;
+    }
+
+    public function testRequiredArrayFieldWithValueIsPresent(): void
+    {
+        $this->assertSame('', self::requiredGroups(['user_groups' => ['3']]));
+        $this->assertSame('', self::requiredGroups(['user_groups' => ['', '5']]));
+    }
+
+    public function testRequiredArrayFieldWithoutValueIsMissing(): void
+    {
+        $this->assertSame('Groups', self::requiredGroups(['user_groups' => []]));
+        $this->assertSame('Groups', self::requiredGroups(['user_groups' => ['', '  ']]));
+        $this->assertSame('Groups', self::requiredGroups(['user_groups' => [['1']]]));
+    }
+
+    public function testRequiredScalarFieldWithSpacesOnlyIsMissing(): void
+    {
+        $this->assertSame('Groups', self::requiredGroups(['user_groups' => '   ']));
+        $this->assertSame('', self::requiredGroups(['user_groups' => '7']));
+    }
+
+    public function testMissingFieldListHasNoLeadingSpace(): void
+    {
+        // @mago-expect lint:no-global -- F_check_required_fields() reads the language array from the global $l
+        $GLOBALS['l'] = ['a_meta_charset' => 'UTF-8'];
+        $result = \F_check_required_fields([
+            'ff_required' => 'user_name,user_groups',
+            'ff_required_labels' => 'Name,Groups',
+        ]);
+        $this->assertSame('Name, Groups', $result);
+    }
+
+    public function testNoRequiredFieldsReturnsFalse(): void
+    {
+        $this->assertFalse(\F_check_required_fields(['user_name' => 'x']));
+    }
 }

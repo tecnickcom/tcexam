@@ -97,12 +97,16 @@ function F_html_to_text($str, $preserve_newlines = false, $display_links = false
         $firstposition = $pos;
     }
 
-    $str = preg_replace("'<img[^>]*alt[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>'i", "[IMAGE: \\1]", $str);
+    $str = preg_replace(
+        "'<img[^>]*alt[\t\n\x0B\f\r ]*=[\t\n\x0B\f\r ]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>'i",
+        "[IMAGE: \\1]",
+        $str,
+    );
 
     // give a textual representation of links and images
     if ($display_links) {
         $str = preg_replace(
-            "'<a[^>]*href[\s]*=[\s]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si",
+            "'<a[^>]*href[\t\n\x0B\f\r ]*=[\t\n\x0B\f\r ]*[\"\']*([^\"\'<>]*)[\"\'][^>]*>(.*?)</a>'si",
             "\\2 [LINK: \\1]",
             $str,
         );

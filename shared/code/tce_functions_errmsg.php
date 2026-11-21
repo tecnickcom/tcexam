@@ -60,12 +60,17 @@ function F_print_error($messagetype = 'MESSAGE', $messagetoprint = '', $exit = f
     }
 
     if (strlen($messagetoprint) > 0) {
-        $msgtitle = match ($messagetype) {
-            'message' => $l['t_message'],
-            'warning' => $l['t_warning'],
-            'error' => $l['t_error'],
-            default => $messagetype,
+        // the translated title is used when available ($l is not set while the language file is being loaded)
+        $msgtitle = $messagetype;
+        $msgkey = match ($messagetype) {
+            'message' => 't_message',
+            'warning' => 't_warning',
+            'error' => 't_error',
+            default => '',
         };
+        if ($msgkey !== '' && is_array($l) && array_key_exists($msgkey, $l) && is_string($l[$msgkey])) {
+            $msgtitle = $l[$msgkey];
+        }
         // announce the message to assistive technologies: warnings/errors are
         // assertive (role="alert"), informational messages are polite (role="status")
         $msgrole = match ($messagetype) {
@@ -126,9 +131,9 @@ function F_display_db_error($exit = true)
  */
 function F_error_handler($errno, $errstr, $errfile, $errline)
 {
-    if (ini_get('error_reporting') == 0) {
-        // this is required to ignore supressed error messages with '@'
-        return;
+    if ((error_reporting() & (int) $errno) === 0) {
+        // the error is suppressed with '@' or excluded from error_reporting
+        return false;
     }
 
     $messagetoprint = '[' . $errno . '] ' . $errstr . ' | LINE: ' . $errline . ' | FILE: ' . $errfile . '';
@@ -144,46 +149,16 @@ function F_error_handler($errno, $errstr, $errfile, $errline)
 $old_error_handler = set_error_handler('F_error_handler', K_ERROR_TYPES);
 
 /**
- * Check if the URL exist.
- * @param url (string) URL to check.
- * @return Returns TRUE if the URL exists; FALSE otherwise.
- */
-function F_url_exists($url)
-{
-    $crs = curl_init();
-    curl_setopt($crs, CURLOPT_URL, $url);
-    curl_setopt($crs, CURLOPT_NOBODY, true);
-    curl_setopt($crs, CURLOPT_FAILONERROR, true);
-    if (ini_get('open_basedir') == '' && !ini_get('safe_mode')) {
-        curl_setopt($crs, CURLOPT_FOLLOWLOCATION, true);
-    }
-
-    curl_setopt($crs, CURLOPT_CONNECTTIMEOUT, 5);
-    curl_setopt($crs, CURLOPT_TIMEOUT, 30);
-    curl_setopt($crs, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($crs, CURLOPT_SSL_VERIFYHOST, false);
-    curl_setopt($crs, CURLOPT_USERAGENT, 'tc-lib-file');
-    curl_exec($crs);
-    $code = curl_getinfo($crs, CURLINFO_HTTP_CODE);
-    curl_close($crs);
-    return $code == 200;
-}
-
-/**
  * Wrapper for file_exists.
- * Checks whether a file or directory exists.
- * Only allows some protocols and local files.
+ * Checks whether a local file or directory exists; paths containing '://' (stream wrappers and URLs) return false.
  * @param filename (string) Path to the file or directory.
  * @return Returns TRUE if the file or directory specified by filename exists; FALSE otherwise.
  */
 function F_file_exists($filename)
 {
-    if (preg_match('|^https?://|', $filename) == 1) {
-        return F_url_exists($filename);
-    }
-
-    if (strpos($filename, '://')) {
-        return false; // only support http and https wrappers for security reasons
+    $filename = (string) $filename;
+    if (str_contains($filename, '://')) {
+        return false;
     }
 
     return @file_exists($filename);

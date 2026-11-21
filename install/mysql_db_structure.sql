@@ -5,7 +5,7 @@ Begin       : 2004-04-28
 Last Update : 2022-12-17
 
 Description : TCExam database structure.
-Database    : MySQL 4.1+
+Database    : MySQL 5.7.7+ or MariaDB 10.2.2+
 
 License:
 Copyright (C) 2004-2026 Nicola Asuni - Tecnick.com LTD
@@ -21,7 +21,7 @@ CREATE TABLE tce_sessions (
 	cpsession_data Text NOT NULL,
  Primary Key (cpsession_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_users (
 	user_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -42,7 +42,7 @@ CREATE TABLE tce_users (
 	UNIQUE (user_verifycode),
  Primary Key (user_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_modules (
 	module_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -51,7 +51,7 @@ CREATE TABLE tce_modules (
 	module_user_id Bigint UNSIGNED NOT NULL DEFAULT 1,
  Primary Key (module_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_subjects (
 	subject_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ CREATE TABLE tce_subjects (
 	subject_user_id Bigint UNSIGNED NOT NULL DEFAULT 1,
  Primary Key (subject_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_questions (
 	question_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -79,7 +79,7 @@ CREATE TABLE tce_questions (
 	question_auto_next Bool NOT NULL DEFAULT '0',
  Primary Key (question_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_answers (
 	answer_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -92,7 +92,7 @@ CREATE TABLE tce_answers (
 	answer_keyboard_key Smallint(10) UNSIGNED NULL,
  Primary Key (answer_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_tests (
 	test_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -126,14 +126,14 @@ CREATE TABLE tce_tests (
 	test_password Varchar(255),
  Primary Key (test_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_test_subjects (
 	subjset_tsubset_id Bigint UNSIGNED NOT NULL,
 	subjset_subject_id Bigint UNSIGNED NOT NULL,
  Primary Key (subjset_tsubset_id,subjset_subject_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_tests_users (
 	testuser_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -144,7 +144,7 @@ CREATE TABLE tce_tests_users (
 	testuser_comment Text,
  Primary Key (testuser_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_tests_logs (
 	testlog_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -162,7 +162,7 @@ CREATE TABLE tce_tests_logs (
 	testlog_comment Text,
  Primary Key (testlog_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_tests_logs_answers (
 	logansw_testlog_id Bigint UNSIGNED NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE tce_tests_logs_answers (
 	logansw_position Bigint UNSIGNED NULL,
  Primary Key (logansw_testlog_id,logansw_answer_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_user_groups (
 	group_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -180,21 +180,21 @@ CREATE TABLE tce_user_groups (
 	UNIQUE (group_name),
  Primary Key (group_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_usrgroups (
 	usrgrp_user_id Bigint UNSIGNED NOT NULL,
 	usrgrp_group_id Bigint UNSIGNED NOT NULL,
  Primary Key (usrgrp_user_id,usrgrp_group_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_testgroups (
 	tstgrp_test_id Bigint UNSIGNED NOT NULL,
 	tstgrp_group_id Bigint UNSIGNED NOT NULL,
  Primary Key (tstgrp_test_id,tstgrp_group_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_test_subject_set (
 	tsubset_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -205,7 +205,7 @@ CREATE TABLE tce_test_subject_set (
 	tsubset_answers Smallint NOT NULL DEFAULT 0,
  Primary Key (tsubset_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_sslcerts (
 	ssl_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -216,21 +216,21 @@ CREATE TABLE tce_sslcerts (
 	ssl_user_id BIGINT UNSIGNED NOT NULL DEFAULT 1,
  Primary Key (ssl_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_testsslcerts (
 	tstssl_test_id BIGINT UNSIGNED NOT NULL,
 	tstssl_ssl_id BIGINT UNSIGNED NOT NULL,
  Primary Key (tstssl_test_id, tstssl_ssl_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 CREATE TABLE tce_testuser_stat (
 	tus_id Bigint UNSIGNED NOT NULL AUTO_INCREMENT,
 	tus_date Datetime NOT NULL,
  PRIMARY KEY (tus_id)
 ) ENGINE = InnoDB
-CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 /* Alternate Keys */
 

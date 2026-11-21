@@ -201,7 +201,7 @@ function F_question_copy($question_id, $new_subject_id)
             "question_description='"
             . F_escape_sql($db, $q['question_description'])
             . "' COLLATE "
-            . (defined('K_MYSQL_QA_BIN_COLLATION') ? K_MYSQL_QA_BIN_COLLATION : 'utf8_bin');
+            . F_db_mysql_bin_collation();
     } else {
         $chksql = "question_description='" . F_escape_sql($db, $q['question_description']) . "'";
     }

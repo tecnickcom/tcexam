@@ -60,4 +60,21 @@ final class TmxResourceBundleTest extends TestCase
         // the XML parser decodes &amp; to & and preserves the accented UTF-8 characters
         $this->assertSame('Caffè & Tè', $res['special']);
     }
+
+    public function testParsingRaisesNoDeprecation(): void
+    {
+        $deprecations = [];
+        set_error_handler(static function (int $_errno, string $errstr) use (&$deprecations): bool {
+            $deprecations[] = $errstr;
+
+            return true;
+        }, E_DEPRECATED | E_USER_DEPRECATED);
+        try {
+            new TMXResourceBundle($this->fixture(), 'IT', '');
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertSame([], $deprecations);
+    }
 }

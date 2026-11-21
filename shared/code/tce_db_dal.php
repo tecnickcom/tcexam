@@ -27,6 +27,9 @@ match (K_DATABASE_TYPE) {
     'MYSQL' => require_once '../../shared/code/tce_db_dal_mysqli.php',
     'POSTGRESQL' => require_once '../../shared/code/tce_db_dal_postgresql.php',
     'ORACLE' => require_once '../../shared/code/tce_db_dal_oracle.php',
-    'MYSQLDEPRECATED' => require_once '../../shared/code/tce_db_dal_mysql.php',
-    default => F_print_error('ERROR', 'K_DATABASE_TYPE is not set!'),
+    default => F_print_error(
+        'ERROR',
+        'K_DATABASE_TYPE in shared/config/tce_db_config.php must be one of: MYSQL, POSTGRESQL, ORACLE',
+        true,
+    ),
 };

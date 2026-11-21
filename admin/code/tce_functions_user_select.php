@@ -817,6 +817,23 @@ function F_isUserOnGroup($user_id, $group_id)
 }
 
 /**
+ * Return the stored One Time Password Secret Key of a user.
+ * @param int $user_id user ID
+ * @return string stored key, or an empty string when the user has no key
+ */
+function F_getUserOTPkey(int $user_id): string
+{
+    global $db;
+    require_once '../config/tce_config.php';
+    $sql = 'SELECT user_otpkey FROM ' . K_TABLE_USERS . ' WHERE user_id=' . $user_id . ' LIMIT 1';
+    if (($r = F_db_query($sql, $db)) && ($m = F_db_fetch_array($r)) && is_string($m['user_otpkey'] ?? null)) {
+        return $m['user_otpkey'];
+    }
+
+    return '';
+}
+
+/**
  * Return true if the current user is an administrator or belongs to the group, false otherwise
  * @param $group_id (int) group ID
  * @return boolean true/false

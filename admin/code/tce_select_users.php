@@ -99,7 +99,7 @@ echo '</span></div>' . K_NEWLINE;
 $wherequery = '';
 if (strlen($searchterms) > 0) {
     $wherequery = '';
-    $terms = preg_split("/[\s]+/i", $searchterms); // Get all the words into an array
+    $terms = preg_split("/[\t\n\x0B\f\r ]+/i", $searchterms); // Get all the words into an array
     foreach ($terms as $word) {
         $word = F_escape_sql($db, $word);
         $wherequery .= " AND ((user_name LIKE '%" . $word . "%')";

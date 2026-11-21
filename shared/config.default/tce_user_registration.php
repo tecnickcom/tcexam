@@ -34,11 +34,14 @@ define('K_USRREG_EMAIL_CONFIRM', true);
 
 /**
  * Default user group ID for registered user.
+ * This group is always assigned, even when it is not listed in K_USRREG_ALLOWED_GROUPS.
  */
 define('K_USRREG_GROUP', 1);
 
 /**
  * User groups allowed during registration.
+ * Only these groups are listed on the registration form; other submitted group IDs are ignored.
+ * When the list is empty the groups field is not displayed.
  */
 define('K_USRREG_ALLOWED_GROUPS', [1]);
 

@@ -364,9 +364,197 @@ final class AdminControllerHttpTest extends AppHttpTestCase
         $this->assertSame($newName, $this->dbScalar('SELECT user_name FROM tce_users WHERE user_id=' . $id), 'user_name should be updated');
         $this->assertStringStartsWith('2020-01-01', (string) $this->dbScalar('SELECT user_regdate FROM tce_users WHERE user_id=' . $id), 'user_regdate must be preserved');
         $this->assertSame('1.2.3.4', $this->dbScalar('SELECT user_ip FROM tce_users WHERE user_id=' . $id), 'user_ip must be preserved');
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id), 'user_password must be preserved');
 
         $this->deleteUserByName($newName);
         $this->deleteUserByName($name);
+    }
+
+    /** Insert a user with a known password hash and OTP key; return its id. */
+    private function seedUserWithOtp(string $name, string $hash, string $otpkey): int
+    {
+        $this->deleteUserByName($name);
+        $this->dbExec(
+            'INSERT INTO tce_users (user_regdate,user_ip,user_name,user_password,user_level,user_otpkey) '
+            . "VALUES ('2020-01-01 00:00:00','1.2.3.4','" . $name . "','" . $hash . "',1,'" . $otpkey . "')"
+        );
+
+        return $this->userIdByName($name);
+    }
+
+    /**
+     * Load the user editor and POST an update for the given user with the given extra fields.
+     *
+     * @param array<string,string> $fields
+     * @return array{0:int,1:string} status and response body
+     */
+    private function postUserUpdate(int $id, string $name, array $fields): array
+    {
+        $cookies = $this->login();
+        [$status, $body] = $this->http('GET', '/admin/code/tce_edit_user.php?user_id=' . $id, $cookies);
+        $this->assertSame(200, $status);
+        $this->assertStringNotContainsString('name="user_password"', $body, 'the password hash must not be sent to the browser');
+        $token = self::extractCsrfToken($body);
+        $this->assertNotNull($token);
+
+        [$status, $body] = $this->http('POST', '/admin/code/tce_edit_user.php', $cookies, array_merge([
+            'update' => '1',
+            'confirmupdate' => '1',
+            'user_id' => (string) $id,
+            'user_name' => $name,
+            'user_level' => '1',
+            'user_regdate' => '2020-01-01 00:00:00',
+            'user_ip' => '1.2.3.4',
+            'csrf_token' => $token,
+        ], $fields));
+
+        return [$status, $body];
+    }
+
+    /** Updating a user without a new password keeps the stored password hash and OTP key. */
+    public function testEditUserUpdateKeepsPasswordAndOtpKey(): void
+    {
+        $name = 'itest_user_keep';
+        $hash = password_hash('keep-pw-1', PASSWORD_DEFAULT);
+        $otp = 'ABCDEFGHIJKLMNOP';
+        $id = $this->seedUserWithOtp($name, $hash, $otp);
+        $this->assertGreaterThan(0, $id);
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_firstname' => 'Changed', 'user_otpkey' => $otp]);
+        $this->assertSame(200, $status);
+
+        $this->assertSame('Changed', $this->dbScalar('SELECT user_firstname FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($otp, $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** An update that does not submit the OTP key field keeps the stored key. */
+    public function testEditUserUpdateWithoutOtpKeyFieldKeepsKey(): void
+    {
+        $name = 'itest_user_nootp';
+        $hash = password_hash('keep-pw-4', PASSWORD_DEFAULT);
+        $otp = 'ABCDEFGHIJKLMNOP';
+        $id = $this->seedUserWithOtp($name, $hash, $otp);
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_firstname' => 'NoOtpField']);
+        $this->assertSame(200, $status);
+
+        $this->assertSame('NoOtpField', $this->dbScalar('SELECT user_firstname FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($otp, $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** An unchanged stored OTP key is kept even when it does not match the format of new keys. */
+    public function testEditUserUpdateKeepsUnchangedNonStandardOtpKey(): void
+    {
+        $name = 'itest_user_oldotp';
+        $hash = password_hash('keep-pw-5', PASSWORD_DEFAULT);
+        $otp = 'MFRGG===';
+        $id = $this->seedUserWithOtp($name, $hash, $otp);
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_firstname' => 'OldOtp', 'user_otpkey' => $otp]);
+        $this->assertSame(200, $status);
+
+        $this->assertSame('OldOtp', $this->dbScalar('SELECT user_firstname FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($otp, $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** A new OTP key entered with spaces and lowercase letters is stored normalized. */
+    public function testEditUserUpdateStoresNormalizedOtpKey(): void
+    {
+        $name = 'itest_user_normotp';
+        $hash = password_hash('keep-pw-6', PASSWORD_DEFAULT);
+        $id = $this->seedUserWithOtp($name, $hash, 'ABCDEFGHIJKLMNOP');
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_otpkey' => ' jbsw y3dp ehpk 3pxp ']);
+        $this->assertSame(200, $status);
+
+        $this->assertSame('JBSWY3DPEHPK3PXP', $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** Setting a new password stores a new hash and a new OTP key. */
+    public function testEditUserUpdateWithNewPasswordChangesHashAndOtpKey(): void
+    {
+        $name = 'itest_user_newpw';
+        $hash = password_hash('old-pw-1', PASSWORD_DEFAULT);
+        $otp = 'ABCDEFGHIJKLMNOP';
+        $id = $this->seedUserWithOtp($name, $hash, $otp);
+
+        [$status] = $this->postUserUpdate($id, $name, [
+            'newpassword' => 'New-pw-12345',
+            'newpassword_repeat' => 'New-pw-12345',
+            'user_otpkey' => $otp,
+        ]);
+        $this->assertSame(200, $status);
+
+        $stored = (string) $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id);
+        $this->assertTrue(password_verify('New-pw-12345', $stored), 'the new password must verify');
+        $newOtp = (string) $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id);
+        $this->assertMatchesRegularExpression('/^[A-Z2-7]{16}$/', $newOtp);
+        $this->assertNotSame($otp, $newOtp, 'a new OTP key is generated with a new password');
+
+        $this->deleteUserByName($name);
+    }
+
+    /** An empty OTP key field clears the key and keeps the password hash. */
+    public function testEditUserUpdateWithEmptyOtpKeyClearsKey(): void
+    {
+        $name = 'itest_user_clrotp';
+        $hash = password_hash('keep-pw-2', PASSWORD_DEFAULT);
+        $id = $this->seedUserWithOtp($name, $hash, 'ABCDEFGHIJKLMNOP');
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_otpkey' => '']);
+        $this->assertSame(200, $status);
+
+        $this->assertNull($this->dbScalarOrNull('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** An invalid OTP key is rejected and the row is left unchanged. */
+    public function testEditUserUpdateWithInvalidOtpKeyIsRejected(): void
+    {
+        $name = 'itest_user_badotp';
+        $hash = password_hash('keep-pw-3', PASSWORD_DEFAULT);
+        $otp = 'ABCDEFGHIJKLMNOP';
+        $id = $this->seedUserWithOtp($name, $hash, $otp);
+
+        [$status] = $this->postUserUpdate($id, $name, ['user_firstname' => 'Rejected', 'user_otpkey' => 'abc!']);
+        $this->assertSame(200, $status);
+
+        $this->assertNotSame('Rejected', $this->dbScalarOrNull('SELECT user_firstname FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($otp, $this->dbScalar('SELECT user_otpkey FROM tce_users WHERE user_id=' . $id));
+        $this->assertSame($hash, $this->dbScalar('SELECT user_password FROM tce_users WHERE user_id=' . $id));
+
+        $this->deleteUserByName($name);
+    }
+
+    /** Return the first column of the first row of a query, keeping SQL NULL as null. */
+    private function dbScalarOrNull(string $sql): ?string
+    {
+        $db = $this->dbConnect();
+        $res = \F_db_query($sql, $db);
+        $val = null;
+        if ($res !== false) {
+            $row = \F_db_fetch_assoc($res);
+            if (\is_array($row)) {
+                $first = reset($row);
+                $val = $first === null ? null : (string) $first;
+            }
+        }
+        \F_db_close($db);
+
+        return $val;
     }
 
     /** Regression test: adding a test via the converted edit_test controller persists it. */

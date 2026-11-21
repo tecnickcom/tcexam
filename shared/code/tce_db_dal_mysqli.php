@@ -54,10 +54,33 @@ function F_db_connect(
         return false;
     }
 
-    // set the correct charset encoding
-    mysqli_query($db, "SET NAMES 'utf8' COLLATE 'utf8_unicode_ci'");
-    mysqli_query($db, "SET CHARACTER SET 'utf8'");
+    // utf8mb4 for client, connection and results (works with utf8mb3 and utf8mb4 columns)
+    if (!mysqli_set_charset($db, 'utf8mb4')) {
+        mysqli_close($db);
+        return false;
+    }
+
+    if (!mysqli_query($db, 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci')) {
+        mysqli_close($db);
+        return false;
+    }
+
     return $db;
+}
+
+/**
+ * Returns the binary collation for the MySQL question and answer uniqueness checks.
+ * The connection character set is utf8mb4, so the collation must be a utf8mb4 one:
+ * K_MYSQL_QA_BIN_COLLATION is used when it names a utf8mb4 collation, 'utf8mb4_bin' otherwise.
+ * @return string collation name
+ */
+function F_db_mysql_bin_collation(): string
+{
+    if (defined('K_MYSQL_QA_BIN_COLLATION') && preg_match('/^utf8mb4_[a-z0-9_]+$/', K_MYSQL_QA_BIN_COLLATION) === 1) {
+        return K_MYSQL_QA_BIN_COLLATION;
+    }
+
+    return 'utf8mb4_bin';
 }
 
 /**

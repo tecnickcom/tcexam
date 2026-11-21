@@ -1,3 +1,20 @@
+17.6.0 (2026-11-21)
+	- Bug fixes for the user editor, user registration, test IP ranges, the MySQL character set and PHP 8.4/8.5. Please read the "User editor, registration, IP ranges and MySQL character set" section of UPGRADE.md before updating an existing installation.
+	- Saving a user in the user editor without a new password keeps the stored password and OTP key (issue #467); the password hash is no longer sent to the browser; an empty OTP key field removes the key, and a changed key must be a base32 key of at least 16 characters (white space and '=' padding are removed).
+	- User registration with a required groups field no longer fails with a TypeError (issue #466); required multiple-select fields are checked for at least one selected value.
+	- The registration form lists only the groups in K_USRREG_ALLOWED_GROUPS, and K_USRREG_GROUP is always assigned.
+	- The test IP range *.*.*.* (and *) matches IPv6 clients too (issue #465); other * patterns still match IPv4 addresses only.
+	- The MySQL connection uses the utf8mb4 character set, so 4-byte UTF-8 characters are stored and displayed on utf8mb4 databases (issue #468); the default K_MYSQL_QA_BIN_COLLATION is now utf8mb4_bin, and non-utf8mb4 values are replaced by utf8mb4_bin.
+	- New MySQL installations create utf8mb4 tables (MySQL 5.7.7+ or MariaDB 10.2.2+ required); added install/upgrade/mysql/mysql_db_upgrade_utf8mb4.sql to convert existing databases.
+	- Removed the deprecated xml_parser_free(), xml_set_object() and curl_close() calls, and E_STRICT from the default K_ERROR_TYPES (issue #469).
+	- The error handler skips errors suppressed with @ on PHP 8, and messages printed before the language file is loaded no longer raise a warning.
+	- F_file_exists() checks local files only; the HTTP(S) existence check, which did not verify TLS certificates, has been removed.
+	- Removed the MYSQLDEPRECATED database driver, which required the mysql extension removed in PHP 7.
+	- The list of missing required fields no longer starts with a space.
+	- Requires tc-lib-pdf 8.85: when K_PDF_MODE is 'pdfua1', 'pdfua2' or a PDF/A level A or U mode, a table header repeated on a new page of a PDF report no longer shows .notdef glyphs, and characters the font has no glyph for take no space in the layout.
+	- PDF reports keep HTML text with characters such as "à" when the C library locale classifies byte 0xA0 as white space (tc-lib-pdf issue #331); the white-space and word-boundary patterns of TCExam match ASCII characters only, so they no longer split or strip UTF-8 characters under such a locale.
+	- CI tests PHP 8.5.
+
 17.5.2 (2026-11-15)
 	- Security fixes for question access. Please read the "Question list and editors" section of UPGRADE.md before updating an existing installation.
 	- The question list checks that the selected topic belongs to the selected module and that the user is authorized for it, and applies bulk actions only to questions of that topic.

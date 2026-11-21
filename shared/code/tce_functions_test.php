@@ -281,7 +281,7 @@ function F_repeatTest($test_id)
 /**
  * Check if user's IP is valid over test IP range
  * @param $user_ip (string) user's IP address (IPv4 or IPv6).
- * @param $test_ips (string) comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses. Intervals must be specified using the '-' character.
+ * @param $test_ips (string) comma separated list of valid test IP addresses. The '*' character may be used to indicate any number in IPv4 addresses; '*.*.*.*' or '*' alone matches any IPv4 or IPv6 address. Intervals must be specified using the '-' character.
  * @return bool true if IP is valid, false otherwise
  */
 function F_isValidIP($user_ip, $test_ips)
@@ -302,6 +302,16 @@ function F_isValidIP($user_ip, $test_ips)
     $test_ip = explode(',', $test_ips);
     // check user IP against test IP masks
     foreach ($test_ip as $key => $ipmask) {
+        $ipmask = trim($ipmask);
+        if ($ipmask === '') {
+            continue;
+        }
+
+        if ($ipmask === '*' || $ipmask === '*.*.*.*') {
+            // match any address, IPv4 or IPv6
+            return true;
+        }
+
         if (strrpos($ipmask, '*') !== false) {
             // old range notation using IPv4 addresses and '*' character.
             $ipv4 = explode('.', $ipmask);

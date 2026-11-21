@@ -116,7 +116,7 @@ function F_get_active_content_mime_types(): array
  */
 function F_sanitize_upload_filename(string $name): string
 {
-    $filename = (string) preg_replace('/[\s]/', '_', $name);
+    $filename = (string) preg_replace('/[\t\n\x0B\f\r ]/', '_', $name);
     $filename = (string) preg_replace('/[^a-zA-Z0-9_\.\-]/', '', $filename);
     $pos = strrpos($filename, '.');
     if ($pos === false || $pos === 0 || $pos === (strlen($filename) - 1)) {
@@ -226,7 +226,10 @@ function F_is_safe_media_content(string $filepath, string $extension): bool
         return false;
     }
 
-    return preg_match('/<\s*(?:\?xml|!doctype|html|head|body|script|svg|iframe|object|embed|xsl:)/i', $head) !== 1;
+    return (
+        preg_match('/<[\t\n\x0B\f\r ]*(?:\?xml|!doctype|html|head|body|script|svg|iframe|object|embed|xsl:)/i', $head)
+        !== 1
+    );
 }
 
 /**

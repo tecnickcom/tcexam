@@ -42,10 +42,6 @@ function F_install_database($db_type, $db_host, $db_port, $db_user, $db_password
 			require_once('../shared/code/tce_db_dal_mysqli.php');
 			break;
 		}
-		case 'MYSQLDEPRECATED': {
-			require_once('../shared/code/tce_db_dal_mysql.php');
-			break;
-		}
 		default: {
 			return false;
 		}
@@ -105,9 +101,9 @@ function F_execute_sql_queries($db, $sql_file, $search, $replace, $progress_log)
 	$sql_data = str_replace("\r", '', $sql_data); // remove CR
 	$sql_data = "\n".$sql_data; //prepare string for replacements
 	$sql_data = preg_replace("/\/\*([^\*]*)\*\//si", ' ', $sql_data); // remove comments (/* ... */)
-	$sql_data = preg_replace("/\n([\s]*)\#([^\n]*)/si", '', $sql_data); // remove comments (lines starting with '#' (MySQL))
-	$sql_data = preg_replace("/\n([\s]*)\-\-([^\n]*)/si", '', $sql_data); // remove comments (lines starting with '--' (PostgreSQL))
-	$sql_data = preg_replace("/;([\s]*)\n/si", ";\r", $sql_data); // mark valid new lines
+	$sql_data = preg_replace("/\n([\t\n\x0B\f\r ]*)\#([^\n]*)/si", '', $sql_data); // remove comments (lines starting with '#' (MySQL))
+	$sql_data = preg_replace("/\n([\t\n\x0B\f\r ]*)\-\-([^\n]*)/si", '', $sql_data); // remove comments (lines starting with '--' (PostgreSQL))
+	$sql_data = preg_replace("/;([\t\n\x0B\f\r ]*)\n/si", ";\r", $sql_data); // mark valid new lines
 	$sql_data = str_replace("\n", " ", $sql_data); // remove carriage returns
 	$sql_data = preg_replace("/(;\r)$/si", '', $sql_data); // remove last ";\r"
 	$sql_query = explode(";\r", trim($sql_data)); // split sql string into SQL statements
@@ -200,7 +196,7 @@ function F_create_database($dbtype, $host, $port, $user, $password, $database, $
 					// create database
 					$sql = 'CREATE DATABASE '.$database.'';
 					if ($dbtype == 'MYSQL') {
-						$sql .= ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
+						$sql .= ' CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci';
 					} elseif ($dbtype == 'POSTGRESQL') {
 						$sql .= ' ENCODING=\'UNICODE\'';
 					}

@@ -34,7 +34,6 @@ $user_lastname = $_REQUEST['user_lastname'] ?? '';
 $user_birthdate = $_REQUEST['user_birthdate'] ?? '';
 $user_birthplace = $_REQUEST['user_birthplace'] ?? '';
 $user_ssn = $_REQUEST['user_ssn'] ?? '';
-$user_groups = $_REQUEST['user_groups'] ?? [];
 
 require_once '../../shared/config/tce_user_registration.php';
 if (!K_USRREG_ENABLED) {
@@ -42,6 +41,17 @@ if (!K_USRREG_ENABLED) {
     header('Location: ' . K_PATH_HOST . K_PATH_TCEXAM);
     exit();
 }
+
+// groups the registrant can select; the field is hidden when none is allowed
+$usrreg_allowed_groups = F_normalize_id_list(K_USRREG_ALLOWED_GROUPS);
+$usrreg_groups_enabled = $usrreg_allowed_groups !== [];
+
+// selected groups, limited to the allowed list (also used by the required-field check)
+$user_groups = array_values(array_intersect(
+    F_normalize_id_list($_REQUEST['user_groups'] ?? []),
+    $usrreg_allowed_groups,
+));
+$_REQUEST['user_groups'] = array_map(strval(...), $user_groups);
 
 $pagelevel = 0;
 require_once '../../shared/code/tce_authorization.php';
@@ -70,7 +80,7 @@ $fielddesc = [
 $reqfields = [];
 $reqdesc = [];
 foreach ($regfields as $field => $required) {
-    if ($required == 2) {
+    if ($required == 2 && ($field !== 'user_groups' || $usrreg_groups_enabled)) {
         $reqfields[] = $field;
         $reqdesc[] = htmlspecialchars($fielddesc[$field], ENT_COMPAT, $l['a_meta_charset']);
     }
@@ -206,18 +216,14 @@ if ($menu_mode == 'add') { // process submitted data
                 $user_id = F_db_insert_id($db, K_TABLE_USERS, 'user_id');
             }
 
-            // add user's groups
-            if (empty($user_groups)) {
-                $user_groups = [K_USRREG_GROUP];
-            } elseif (!in_array(K_USRREG_GROUP, $user_groups)) {
-                $user_groups[] = K_USRREG_GROUP;
+            // add user's groups: the selected allowed groups plus the default group
+            // ($user_groups is an empty string when the field is disabled)
+            $user_groups = F_normalize_id_list($user_groups);
+            if (!in_array((int) K_USRREG_GROUP, $user_groups, true)) {
+                $user_groups[] = (int) K_USRREG_GROUP;
             }
 
             foreach ($user_groups as $group_id) {
-                if (!in_array($group_id, K_USRREG_ALLOWED_GROUPS)) {
-                    continue;
-                }
-
                 $sql =
                     'INSERT INTO '
                     . K_TABLE_USERGROUP
@@ -313,7 +319,7 @@ if (isset($_REQUEST['user_ssn'])) {
     $user_ssn = '';
 }
 
-$user_groups = $_REQUEST['user_groups'] ?? [];
+$user_groups = F_normalize_id_list($_REQUEST['user_groups'] ?? []);
 
 // some fields are always required
 $regfields['user_name'] = 2;
@@ -501,7 +507,7 @@ if ($regfields['user_ssn']) {
     );
 }
 
-if ($regfields['user_groups']) {
+if ($usrreg_groups_enabled && !empty($regfields['user_groups'])) {
     echo '<div class="row">' . K_NEWLINE;
     echo '<span class="label">' . K_NEWLINE;
     echo '<label for="user_groups">' . $l['w_groups'] . '</label>' . K_NEWLINE;
@@ -509,8 +515,15 @@ if ($regfields['user_groups']) {
     echo '</span>' . K_NEWLINE;
     echo '<span class="formw">' . K_NEWLINE;
     echo '<select name="user_groups[]" id="user_groups" size="5" multiple="multiple">' . K_NEWLINE;
-    $sql = 'SELECT *
-		FROM ' . K_TABLE_GROUPS . '
+    // list only the groups the registrant is allowed to select
+    $sql =
+        'SELECT *
+		FROM '
+        . K_TABLE_GROUPS
+        . '
+		WHERE group_id IN ('
+        . implode(',', $usrreg_allowed_groups)
+        . ')
 		ORDER BY group_name';
     if ($r = F_db_query($sql, $db)) {
         while ($m = F_db_fetch_array($r)) {

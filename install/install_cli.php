@@ -20,7 +20,7 @@
 //
 //   Settings are read from these environment variables (defaults in brackets):
 //
-//     TCEXAM_DB_TYPE        MYSQL | POSTGRESQL | ORACLE | MYSQLDEPRECATED [MYSQL]
+//     TCEXAM_DB_TYPE        MYSQL | POSTGRESQL | ORACLE                   [MYSQL]
 //     TCEXAM_DB_HOST        database host                                [localhost]
 //     TCEXAM_DB_PORT        database port            [3306 / 5432 / 1521 by type]
 //     TCEXAM_DB_NAME        database name                                [tcexam]
@@ -88,7 +88,7 @@ function F_cli_err($msg) {
 
 // --- collect settings from the environment -----------------------------------------------------
 $db_type = strtoupper(F_cli_env('TCEXAM_DB_TYPE', 'MYSQL'));
-$valid_types = array('MYSQL', 'POSTGRESQL', 'ORACLE', 'MYSQLDEPRECATED');
+$valid_types = array('MYSQL', 'POSTGRESQL', 'ORACLE');
 if (!in_array($db_type, $valid_types, true)) {
     F_cli_err('unsupported TCEXAM_DB_TYPE "'.$db_type.'" (expected one of: '.implode(', ', $valid_types).')');
     exit(2);
@@ -145,7 +145,6 @@ if (!defined('K_DATABASE_TYPE')) {
 switch (K_DATABASE_TYPE) {
     case 'ORACLE':          require_once('../shared/code/tce_db_dal_oracle.php'); break;
     case 'POSTGRESQL':      require_once('../shared/code/tce_db_dal_postgresql.php'); break;
-    case 'MYSQLDEPRECATED': require_once('../shared/code/tce_db_dal_mysql.php'); break;
     default:                require_once('../shared/code/tce_db_dal_mysqli.php');
 }
 

@@ -61,4 +61,21 @@ final class OtpFunctionsTest extends TestCase
         self::assertFalse(F_isValidOTPCode('', $code, 1111111109));
         self::assertFalse(F_isValidOTPCode(null, $code, 1111111109));
     }
+
+    public function testNormalizeOtpKey(): void
+    {
+        $this->assertSame('JBSWY3DPEHPK3PXP', \F_normalizeOTPkey(' jbsw y3dp ehpk 3pxp '));
+        $this->assertSame('MFRGG', \F_normalizeOTPkey("MFRGG===\n"));
+        $this->assertSame('', \F_normalizeOTPkey('  '));
+    }
+
+    public function testValidOtpKey(): void
+    {
+        $this->assertTrue(\F_isValidOTPkey('ABCDEFGHIJKLMNOP'));
+        $this->assertTrue(\F_isValidOTPkey(\F_getRandomOTPkey()));
+        $this->assertFalse(\F_isValidOTPkey('ABCDEFGHIJKLMNO'), '15 characters');
+        $this->assertFalse(\F_isValidOTPkey('ABCDEFGHIJKLMNO1'), '1 is not a base32 character');
+        $this->assertFalse(\F_isValidOTPkey('abcdefghijklmnop'), 'the key must be normalized');
+        $this->assertFalse(\F_isValidOTPkey(''));
+    }
 }

@@ -40,15 +40,14 @@ if (! defined('K_COOKIE_SAMESITE')) {
     define('K_COOKIE_SAMESITE', 'Strict');
 }
 
-// Minimal shim for the file-existence helper used by TMXResourceBundle. The real implementation
-// lives in shared/code/tce_functions_errmsg.php, which registers a global error handler on
-// include; the TMX parser only needs a plain local-file check here.
-if (! function_exists('F_file_exists')) {
-    function F_file_exists($filename)
-    {
-        return @file_exists((string) $filename);
-    }
+// Error and file-existence helpers (F_file_exists() is used by TMXResourceBundle). The file
+// registers F_error_handler() on include; PHPUnit's own handler is restored right after.
+if (! defined('K_ERROR_TYPES')) {
+    define('K_ERROR_TYPES', E_ALL);
 }
+
+require_once __DIR__ . '/../shared/code/tce_functions_errmsg.php';
+restore_error_handler();
 
 // Upload allow-list of an installation whose configuration still lists markup and script types,
 // so the tests verify that the code-level deny-lists take precedence over the configuration.
@@ -83,3 +82,5 @@ require_once __DIR__ . '/../admin/code/tce_functions_upload.php';
 require_once __DIR__ . '/../shared/code/tce_functions_tcecode.php';
 // Authorization helpers: definition file; its relative config includes run only inside the functions.
 require_once __DIR__ . '/../shared/code/tce_functions_authorization.php';
+// Test helpers: definition file; F_isValidIP() is pure, the other functions need a database.
+require_once __DIR__ . '/../shared/code/tce_functions_test.php';

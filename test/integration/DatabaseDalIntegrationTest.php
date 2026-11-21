@@ -207,4 +207,179 @@ final class DatabaseDalIntegrationTest extends TestCase
         $row = \F_db_fetch_assoc($res);
         $this->assertSame(60, (int) $row['d']);
     }
+
+    public function testFourByteCharactersRoundTrip(): void
+    {
+        // emoji (U+1F600) and mathematical italic small alpha (U+1D6FC) need 4 bytes in UTF-8
+        $name = self::ROW_PREFIX . "utf8_a\u{1F600}b\u{1D6FC}";
+        $ins = \F_db_query(
+            'INSERT INTO ' . \K_TABLE_GROUPS . " (group_name) VALUES ('" . \F_escape_sql($this->db, $name, false) . "')",
+            $this->db
+        );
+        $this->assertNotFalse($ins, 'a 4-byte character must be accepted');
+
+        $res = \F_db_query(
+            'SELECT group_name FROM ' . \K_TABLE_GROUPS . " WHERE group_name LIKE '" . self::ROW_PREFIX . "utf8_%'",
+            $this->db
+        );
+        $row = \F_db_fetch_assoc($res);
+        $this->assertSame(bin2hex($name), bin2hex((string) ($row['group_name'] ?? '')), 'the value must round-trip byte for byte');
+    }
+
+    public function testMysqlSessionCharsetIsUtf8mb4(): void
+    {
+        $this->requireMysql();
+        $res = \F_db_query(
+            'SELECT @@character_set_client AS c, @@character_set_connection AS n, @@character_set_results AS r',
+            $this->db
+        );
+        $row = \F_db_fetch_assoc($res);
+        $this->assertSame(['c' => 'utf8mb4', 'n' => 'utf8mb4', 'r' => 'utf8mb4'], $row);
+    }
+
+    public function testMysqlTablesUseUtf8mb4(): void
+    {
+        $this->requireMysql();
+        $res = \F_db_query(
+            'SELECT TABLE_NAME, COLUMN_NAME, CHARACTER_SET_NAME FROM information_schema.COLUMNS'
+            . " WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE 'tce\\_%'"
+            . " AND CHARACTER_SET_NAME IS NOT NULL AND CHARACTER_SET_NAME <> 'utf8mb4'",
+            $this->db
+        );
+        $this->assertNotFalse($res);
+        $this->assertSame(0, \F_db_num_rows($res), 'every text column of the tce_ tables must be utf8mb4');
+    }
+
+    public function testMysqlBinaryCollationWorksOnUtf8mb3Columns(): void
+    {
+        $this->requireMysql();
+        $this->assertNotFalse(\F_db_query(
+            'CREATE TEMPORARY TABLE itest_mb3 (d TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci) ENGINE=InnoDB',
+            $this->db
+        ));
+        $this->assertNotFalse(\F_db_query("INSERT INTO itest_mb3 (d) VALUES ('Abc')", $this->db));
+
+        $collation = \F_db_mysql_bin_collation();
+        $same = \F_db_query("SELECT COUNT(*) AS n FROM itest_mb3 WHERE d='Abc' COLLATE " . $collation, $this->db);
+        $this->assertNotFalse($same, 'the binary collation must be valid on a utf8mb4 connection');
+        $this->assertSame(1, (int) \F_db_fetch_assoc($same)['n']);
+
+        $case = \F_db_query("SELECT COUNT(*) AS n FROM itest_mb3 WHERE d='abc' COLLATE " . $collation, $this->db);
+        $this->assertSame(0, (int) \F_db_fetch_assoc($case)['n'], 'the comparison must stay case-sensitive');
+
+        // a 4-byte character does not fit a utf8mb3 column: the strict SQL mode rejects it
+        $bad = \F_db_query("INSERT INTO itest_mb3 (d) VALUES ('x\u{1F600}y')", $this->db);
+        $this->assertFalse($bad, 'no truncated row may be stored');
+
+        \F_db_query('DROP TEMPORARY TABLE itest_mb3', $this->db);
+    }
+
+    public function testMysqlUpgradeScriptConvertsUtf8mb3Schema(): void
+    {
+        $this->requireMysql();
+        $prefix = 'itup_';
+        $old = __DIR__ . '/../fixtures/mysql_db_structure_utf8mb3.sql';
+        $upgrade = __DIR__ . '/../../install/upgrade/mysql/mysql_db_upgrade_utf8mb4.sql';
+        $tables = $this->prefixedTables($old, $prefix);
+        $this->assertNotSame([], $tables);
+
+        try {
+            $this->runSqlFile($old, $prefix);
+            $this->assertGreaterThan(0, $this->countNonUtf8mb4Columns($prefix), 'the fixture must start as utf8mb3');
+
+            $this->runSqlFile($upgrade, $prefix);
+            $this->assertSame(0, $this->countNonUtf8mb4Columns($prefix), 'the upgrade must convert every text column');
+            $this->assertSame(
+                $this->columnDefinitions('tce_'),
+                $this->columnDefinitions($prefix),
+                'an upgraded schema must match a fresh installation',
+            );
+        } finally {
+            \F_db_query('SET FOREIGN_KEY_CHECKS = 0', $this->db);
+            foreach ($tables as $table) {
+                \F_db_query('DROP TABLE IF EXISTS ' . $table, $this->db);
+            }
+            \F_db_query('SET FOREIGN_KEY_CHECKS = 1', $this->db);
+        }
+    }
+
+    private function requireMysql(): void
+    {
+        if ((string) getenv('TCEXAM_DB_TYPE') !== 'MYSQL') {
+            $this->markTestSkipped('MySQL only.');
+        }
+    }
+
+    /**
+     * Return the table names created by an SQL file, with the tce_ prefix replaced.
+     *
+     * @return list<string>
+     */
+    private function prefixedTables(string $file, string $prefix): array
+    {
+        $tables = [];
+        foreach (explode("\n", (string) file_get_contents($file)) as $line) {
+            if (!str_starts_with($line, 'CREATE TABLE tce_')) {
+                continue;
+            }
+
+            $tables[] = $prefix . trim(substr($line, \strlen('CREATE TABLE tce_')), " (\t\r");
+        }
+
+        return $tables;
+    }
+
+    /** Run the statements of an SQL file, replacing the tce_ table prefix. */
+    private function runSqlFile(string $file, string $prefix): void
+    {
+        $sql = str_replace('tce_', $prefix, (string) file_get_contents($file));
+        $sql = (string) preg_replace('~/\*.*?\*/~s', ' ', $sql);
+        $statements = preg_split('/;\s*\n/', $sql);
+        foreach ($statements === false ? [] : $statements as $statement) {
+            $statement = trim($statement, " \t\r\n;");
+            if ($statement === '') {
+                continue;
+            }
+
+            $this->assertNotFalse(\F_db_query($statement, $this->db), 'SQL failed: ' . $statement . ' ' . \F_db_error($this->db));
+        }
+    }
+
+    /**
+     * Return the type, nullability and collation of every column of the tables with the given prefix.
+     *
+     * @return array<string,string> map of "table.column" (without prefix) to "type|nullable|collation"
+     */
+    private function columnDefinitions(string $prefix): array
+    {
+        $res = \F_db_query(
+            'SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLLATION_NAME FROM information_schema.COLUMNS'
+            . " WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE '" . str_replace('_', '\\_', $prefix) . "%'"
+            . ' ORDER BY TABLE_NAME, COLUMN_NAME',
+            $this->db
+        );
+        $this->assertNotFalse($res);
+        $columns = [];
+        $row = \F_db_fetch_assoc($res);
+        while (\is_array($row)) {
+            $table = substr((string) ($row['TABLE_NAME'] ?? ''), \strlen($prefix));
+            $columns[$table . '.' . (string) ($row['COLUMN_NAME'] ?? '')] =
+                (string) ($row['COLUMN_TYPE'] ?? '') . '|' . (string) ($row['IS_NULLABLE'] ?? '') . '|' . (string) ($row['COLLATION_NAME'] ?? '');
+            $row = \F_db_fetch_assoc($res);
+        }
+
+        return $columns;
+    }
+
+    private function countNonUtf8mb4Columns(string $prefix): int
+    {
+        $res = \F_db_query(
+            'SELECT COUNT(*) AS n FROM information_schema.COLUMNS'
+            . " WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE '" . $prefix . "%'"
+            . " AND CHARACTER_SET_NAME IS NOT NULL AND CHARACTER_SET_NAME <> 'utf8mb4'",
+            $this->db
+        );
+
+        return (int) \F_db_fetch_assoc($res)['n'];
+    }
 }

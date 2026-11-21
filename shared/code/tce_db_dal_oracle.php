@@ -92,7 +92,7 @@ function F_db_query($query, $link_identifier)
     // convert MySQL RAND() function to Oracle dbms_random.random
     $query = preg_replace('/ORDER BY RAND\(\)/si', 'ORDER BY dbms_random.random', $query);
     // remove last limit clause
-    $query = preg_replace("/LIMIT 1([\s]*)$/si", '', $query);
+    $query = preg_replace("/LIMIT 1([\t\n\x0B\f\r ]*)$/si", '', $query);
 
     $stid = @oci_parse($link_identifier, $query);
     if (!$stid) {
